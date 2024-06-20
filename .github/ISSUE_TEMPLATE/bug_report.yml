@@ -2,7 +2,7 @@ name: Report a bug
 description: Tell us about a bug or issue you may have identified in UDS Android.
 title: "[Bug]: Bug Summary"
 labels: ["🐞 bug", "🔍 triage"]
-assignees: ["paulinea", "florentmaitre"]
+assignees: ["florentmaitre", "paulinea"]
 body:
   - type: checkboxes
     attributes:
