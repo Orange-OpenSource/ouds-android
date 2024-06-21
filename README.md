@@ -4,9 +4,9 @@
   UDS Android provides Orange Android components to developers and a demo application.
   <br>
   <br>
-  <a href="https://github.com/Orange-OpenSource/uds-android/issues/new?assignees=paulinea&labels=%F0%9F%90%9E+bug%2C%F0%9F%94%8D+triage&template=bug_report.yml&title=[Bug]%3A+Bug+Summary">Report bug</a>
+  <a href="https://github.com/uds-sandbox/uds-android/issues/new?assignees=paulinea&labels=%F0%9F%90%9E+bug%2C%F0%9F%94%8D+triage&template=bug_report.yml&title=[Bug]%3A+Bug+Summary">Report bug</a>
   ·
-  <a href="https://github.com/Orange-OpenSource/uds-android/issues/new?assignees=paulinea&labels=feature%2C%F0%9F%94%8D%20triage&template=feature_request.yml&title=[feature]%3A+">Request feature</a>
+  <a href="https://github.com/uds-sandbox/uds-android/issues/new?assignees=paulinea&labels=feature%2C%F0%9F%94%8D%20triage&template=feature_request.yml&title=[feature]%3A+">Request feature</a>
 </p>
 
 ## Table of contents
