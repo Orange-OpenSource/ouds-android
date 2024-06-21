@@ -6,7 +6,7 @@
     ":rebaseStalePrs"
   ],
   "labels": ["dependencies"],
-  "baseBranches": ["develop"],
+  "baseBranches": ["main"],
   "timezone": "Europe/Paris",
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
