@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Orange Unified Design System</string>
+    <string name="app_name">OUDS</string>
 
     <!-- Bottom navigation -->
     <string name="app_bottomNavigation_menu_guidelines">Guidelines</string>

@@ -18,7 +18,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Unified Design System Android"
+rootProject.name = "OUDS Android"
 include(":app")
 include(":foundation")
 include(":core")
