@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Orange Unified Design System</string>
+
+    <!-- Bottom navigation -->
+    <string name="app_bottomNavigation_menu_guidelines">Guidelines</string>
+    <string name="app_bottomNavigation_menu_components">Components</string>
+    <string name="app_bottomNavigation_menu_modules">Modules</string>
+    <string name="app_bottomNavigation_menu_about">About</string>
+
+</resources>
