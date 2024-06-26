@@ -1,7 +1,7 @@
-<h1 align="center">Orange Unified Design System Android</h1>
+<h1 align="center">OUDS Android</h1>
 
 <p align="center">
-  UDS Android provides Orange Android components to developers and a demo application.
+  OUDS Android provides Orange Android components to developers and a demo application.
   <br>
   <br>
   <a href="https://github.com/uds-sandbox/uds-android/issues/new?assignees=paulinea&labels=%F0%9F%90%9E+bug%2C%F0%9F%94%8D+triage&template=bug_report.yml&title=[Bug]%3A+Bug+Summary">Report bug</a>
@@ -18,7 +18,7 @@
 
 ## Content
 
-This repository contains the Orange Unified Design System Android library that provides Orange Android components, but also a demo application showcasing these different components.
+This repository contains the OUDS Android library that provides Orange Android components, but also a demo application showcasing these different components.
 
 ## Bugs and feature requests
 
