@@ -1,6 +1,6 @@
-# Contributing to Orange Unified Design System Android
+# Contributing to OUDS Android
 
-Looking to contribute something to Orange Unified Design System Android? **Here's how you can help.**
+Looking to contribute something to OUDS Android? **Here's how you can help.**
 
 Please take a moment to review this document in order to make the contribution process easy for everyone involved.
 
