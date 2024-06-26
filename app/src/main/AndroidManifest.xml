@@ -7,7 +7,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.UDSApp">
+        android:theme="@style/Theme.OUDS.NoActionBar">
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
