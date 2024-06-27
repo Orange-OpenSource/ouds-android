@@ -11,6 +11,5 @@ Any use or displaying shall constitute an infringement under intellectual proper
 app/src/main/res/drawable/ic_component_atom.xml
 app/src/main/res/drawable/ic_guideline_dna.xml
 app/src/main/res/drawable/ic_info.xml
-app/src/main/res/drawable/ic_module_molecule.xml
 
 End of the parts list under Orange SA Copyright

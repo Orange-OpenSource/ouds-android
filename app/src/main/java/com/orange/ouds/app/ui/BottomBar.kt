@@ -27,7 +27,6 @@ import androidx.navigation.compose.composable
 import com.orange.ouds.app.ui.about.AboutScreen
 import com.orange.ouds.app.ui.components.ComponentsScreen
 import com.orange.ouds.app.ui.guidelines.GuidelinesScreen
-import com.orange.ouds.app.ui.modules.ModulesScreen
 import com.orange.ouds.app.R
 
 @Composable
@@ -62,9 +61,6 @@ fun NavGraphBuilder.addBottomBarGraph() {
     composable(BottomBarItem.Components.route) { _ ->
         ComponentsScreen()
     }
-    composable(BottomBarItem.Modules.route) { _ ->
-        ModulesScreen()
-    }
     composable(BottomBarItem.About.route) { _ ->
         AboutScreen()
     }
@@ -77,6 +73,5 @@ enum class BottomBarItem(
 ) {
     Guidelines(R.string.app_bottomNavigation_menu_guidelines, R.drawable.ic_guideline_dna, "main/guidelines"),
     Components(R.string.app_bottomNavigation_menu_components, R.drawable.ic_component_atom, "main/components"),
-    Modules(R.string.app_bottomNavigation_menu_modules, R.drawable.ic_module_molecule, "main/modules"),
     About(R.string.app_bottomNavigation_menu_about, R.drawable.ic_info, "main/about");
 }

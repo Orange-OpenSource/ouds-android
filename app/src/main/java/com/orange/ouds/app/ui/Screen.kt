@@ -44,11 +44,6 @@ sealed class Screen(
         title = UiString.StringResource(R.string.app_bottomNavigation_menu_components)
     )
 
-    data object Modules : Screen(
-        route = BottomBarItem.Modules.route,
-        title = UiString.StringResource(R.string.app_bottomNavigation_menu_modules)
-    )
-
     data object About : Screen(
         route = BottomBarItem.About.route,
         title = UiString.StringResource(R.string.app_bottomNavigation_menu_about)
