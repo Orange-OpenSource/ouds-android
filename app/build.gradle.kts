@@ -6,11 +6,11 @@ plugins {
 
 
 android {
-    namespace = "com.orange.uds.app"
+    namespace = "com.orange.ouds.app"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.orange.uds.app"
+        applicationId = "com.orange.ouds.app"
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = 1

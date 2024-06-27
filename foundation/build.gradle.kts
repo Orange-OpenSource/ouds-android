@@ -1,10 +1,10 @@
 plugins {
-    id("com.orange.uds.gradle.library")
+    id("com.orange.ouds.gradle.library")
     alias(libs.plugins.compose.compiler)
 }
 
 android {
-    namespace = "com.orange.uds.foundation"
+    namespace = "com.orange.ouds.foundation"
 
     buildFeatures {
         compose = true
