@@ -14,12 +14,12 @@
     <string name="app_name">OUDS showcase</string>
 
     <!-- Bottom navigation -->
-    <string name="app_bottomNavigation_menu_guidelines">Guidelines</string>
-    <string name="app_bottomNavigation_menu_components">Components</string>
-    <string name="app_bottomNavigation_menu_about">About</string>
+    <string name="app_bottomBar_guidelines_label">Guidelines</string>
+    <string name="app_bottomBar_components_label">Components</string>
+    <string name="app_bottomBar_about_label">About</string>
 
     <!-- About screen -->
-    <string name="app_about_menu_privacyPolicy">Privacy policy</string>
-    <string name="app_about_menu_legalInformation">Legal information</string>
+    <string name="app_about_privacyPolicy_label">Privacy policy</string>
+    <string name="app_about_legalInformation_label">Legal information</string>
 
 </resources>

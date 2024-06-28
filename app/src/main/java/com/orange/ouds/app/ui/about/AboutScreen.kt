@@ -37,8 +37,8 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
 }
 
 enum class AboutMenuItem(val id: Int, @StringRes val labelRes: Int, @RawRes val fileRes: Int ) {
-    LegalInformation(1, R.string.app_about_menu_legalInformation, R.raw.about_legal_information),
-    PrivacyPolicy(2, R.string.app_about_menu_privacyPolicy, R.raw.about_privacy_policy);
+    LegalInformation(1, R.string.app_about_legalInformation_label, R.raw.about_legal_information),
+    PrivacyPolicy(2, R.string.app_about_privacyPolicy_label, R.raw.about_privacy_policy);
 
     companion object {
         fun fromId(id: Int) = AboutMenuItem.entries.firstOrNull { it.id == id }

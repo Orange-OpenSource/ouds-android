@@ -22,11 +22,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.orange.ouds.app.ui.about.AboutScreen
-import com.orange.ouds.app.ui.components.ComponentsScreen
-import com.orange.ouds.app.ui.guidelines.GuidelinesScreen
 import com.orange.ouds.app.R
 
 @Composable
@@ -59,7 +54,7 @@ enum class BottomBarItem(
     @DrawableRes val iconRes: Int,
     val route: String
 ) {
-    Guidelines(R.string.app_bottomNavigation_menu_guidelines, R.drawable.ic_guideline_dna, "main/guidelines"),
-    Components(R.string.app_bottomNavigation_menu_components, R.drawable.ic_component_atom, "main/components"),
-    About(R.string.app_bottomNavigation_menu_about, R.drawable.ic_info, "main/about");
+    Guidelines(R.string.app_bottomBar_guidelines_label, R.drawable.ic_guideline_dna, "main/guidelines"),
+    Components(R.string.app_bottomBar_components_label, R.drawable.ic_component_atom, "main/components"),
+    About(R.string.app_bottomBar_about_label, R.drawable.ic_info, "main/about");
 }

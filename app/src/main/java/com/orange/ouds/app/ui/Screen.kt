@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui
 
 import android.os.Bundle
-import com.google.android.material.color.utilities.Variant
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutMenuItem
@@ -56,17 +55,17 @@ sealed class Screen(
 
     data object Guidelines : Screen(
         route = BottomBarItem.Guidelines.route,
-        title = UiString.StringResource(R.string.app_bottomNavigation_menu_guidelines)
+        title = UiString.StringResource(R.string.app_bottomBar_guidelines_label)
     )
 
     data object Components : Screen(
         route = BottomBarItem.Components.route,
-        title = UiString.StringResource(R.string.app_bottomNavigation_menu_components)
+        title = UiString.StringResource(R.string.app_bottomBar_components_label)
     )
 
     data object About : Screen(
         route = BottomBarItem.About.route,
-        title = UiString.StringResource(R.string.app_bottomNavigation_menu_about)
+        title = UiString.StringResource(R.string.app_bottomBar_about_label)
     )
 
 
