@@ -12,15 +12,33 @@
 
 package com.orange.ouds.app.ui
 
+import android.os.Bundle
+import com.google.android.material.color.utilities.Variant
 import com.orange.ouds.app.R
-import com.orange.ouds.foundation.utilities.UiString
+import com.orange.ouds.app.ui.about.AboutDestinations
+import com.orange.ouds.app.ui.about.AboutMenuItem
+import com.orange.ouds.app.ui.about.AboutNavigationKey
+import com.orange.ouds.foundation.UiString
 
 /**
  * Returns the [Screen] corresponding to the given [route].
  */
-fun getScreen(route: String): Screen? {
-    val screens = Screen::class.sealedSubclasses.mapNotNull { it.objectInstance }
-    return screens.firstOrNull { screen -> screen.route == route }
+fun getScreen(route: String, args: Bundle?): Screen? {
+    val matchElementRouteResult = Regex("^(.+)/\\{.+\\}$").find(route)
+    return if (matchElementRouteResult != null) {
+        // Specific element route -> get element id
+        val (routeRoot) = matchElementRouteResult.destructured
+        when (routeRoot) {
+            AboutDestinations.FileRoute -> {
+                args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
+            }
+            else -> null
+        }
+    } else {
+        // Simple route
+        val screens = Screen::class.sealedSubclasses.mapNotNull { it.objectInstance }
+        screens.firstOrNull { screen -> screen.route == route }
+    }
 }
 
 /**
@@ -31,6 +49,8 @@ sealed class Screen(
     val route: String,
     val title: UiString? = null,
 ) {
+
+    fun isHome() = this in listOf(Guidelines, Components, About)
 
     // Bottom navigation screens
 
@@ -49,4 +69,11 @@ sealed class Screen(
         title = UiString.StringResource(R.string.app_bottomNavigation_menu_about)
     )
 
+
+    // About screens screens
+
+    data class AboutFile(val menuItemId: Long) : Screen(
+        route = AboutDestinations.FileRoute,
+        title = AboutMenuItem.fromId(menuItemId.toInt())?.labelRes?.let { UiString.StringResource(it) }
+    )
 }

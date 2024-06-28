@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.foundation.utilities
+package com.orange.ouds.foundation
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable

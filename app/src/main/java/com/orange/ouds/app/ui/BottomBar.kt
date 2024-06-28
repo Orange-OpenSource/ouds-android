@@ -54,18 +54,6 @@ fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute
     )
 }
 
-fun NavGraphBuilder.addBottomBarGraph() {
-    composable(BottomBarItem.Guidelines.route) { _ ->
-        GuidelinesScreen()
-    }
-    composable(BottomBarItem.Components.route) { _ ->
-        ComponentsScreen()
-    }
-    composable(BottomBarItem.About.route) { _ ->
-        AboutScreen()
-    }
-}
-
 enum class BottomBarItem(
     @StringRes val titleRes: Int,
     @DrawableRes val iconRes: Int,

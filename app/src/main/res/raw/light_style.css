@@ -1,0 +1,22 @@
+body {
+    font-family: sans-serif;
+    font-size: 14;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+a:visited {
+    color: #000000;
+}
+
+a:hover {
+    color: #000000;
+}
+
+a:active, a:focus {
+    color: #000000;
+}
+
+a:link {
+    color: #0000FF;
+}

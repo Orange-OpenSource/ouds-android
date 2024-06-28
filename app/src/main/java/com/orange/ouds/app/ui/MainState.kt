@@ -20,7 +20,11 @@ import com.orange.ouds.app.ui.navigation.rememberAppNavigationState
 class MainState(
     val navigationState: AppNavigationState,
     val topBarState: TopBarState
-)
+) {
+    val showBottomBar: Boolean
+        @Composable
+        get() = navigationState.currentScreen?.isHome() == true
+}
 
 @Composable
 fun rememberMainState(

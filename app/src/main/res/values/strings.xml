@@ -11,11 +11,15 @@
   -->
 
 <resources>
-    <string name="app_name">OUDS</string>
+    <string name="app_name">OUDS showcase</string>
 
     <!-- Bottom navigation -->
     <string name="app_bottomNavigation_menu_guidelines">Guidelines</string>
     <string name="app_bottomNavigation_menu_components">Components</string>
     <string name="app_bottomNavigation_menu_about">About</string>
+
+    <!-- About screen -->
+    <string name="app_about_menu_privacyPolicy">Privacy policy</string>
+    <string name="app_about_menu_legalInformation">Legal information</string>
 
 </resources>
