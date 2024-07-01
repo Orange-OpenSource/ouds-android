@@ -1,4 +1,4 @@
-## In the showcase app
+## In the OUDS Playground app
 
 ### AndroidX
 
@@ -7,6 +7,7 @@ Copyright 2021 The Android Open Source Project
 Apache License 2.0
 
 ### JavaPoet
+
 Copyright 2015 Square, Inc.
 [https://github.com/square/javapoet](https://github.com/square/javapoet)
 Apache License 2.0

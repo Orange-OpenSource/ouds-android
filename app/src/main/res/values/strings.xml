@@ -11,7 +11,7 @@
   -->
 
 <resources>
-    <string name="app_name">OUDS showcase</string>
+    <string name="app_name">OudsPlayground</string>
 
     <!-- Bottom navigation -->
     <string name="app_bottomBar_guidelines_label">Guidelines</string>
