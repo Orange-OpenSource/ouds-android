@@ -41,7 +41,6 @@ fun MainScreen() {
                     exit = fadeOut(tween(100))
                 ) {
                     BottomBar(
-                        items = BottomBarItem.entries.toTypedArray(),
                         currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                         navigateToRoute = { route ->
                             mainState.navigationState.navigateToBottomBarRoute(route)

@@ -25,7 +25,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ouds.app.R
 
 @Composable
-fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute: (String) -> Unit) {
+fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit) {
+    val items = BottomBarItem.entries.toTypedArray()
     NavigationBar(
         content = {
             items.forEach { item ->
