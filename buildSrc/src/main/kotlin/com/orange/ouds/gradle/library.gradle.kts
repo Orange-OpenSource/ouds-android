@@ -12,10 +12,7 @@
 
 package com.orange.ouds.gradle
 
-import gradle.kotlin.dsl.accessors._cb41af676f88d94563fb18deaa5153de.android
-import gradle.kotlin.dsl.accessors._cb41af676f88d94563fb18deaa5153de.kotlin
 import org.gradle.accessors.dm.LibrariesForLibs
-import org.gradle.kotlin.dsl.the
 
 private val libs = the<LibrariesForLibs>() // https://github.com/gradle/gradle/issues/15383
 

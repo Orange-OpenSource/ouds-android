@@ -15,8 +15,8 @@ package com.orange.ouds.app.ui.about
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,14 +29,14 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
     LazyColumn {
         items(AboutMenuItem.entries.toList()) { item ->
             ListItem(
-                modifier = Modifier.clickable { onMenuItemClick(item.id)  },
+                modifier = Modifier.clickable { onMenuItemClick(item.id) },
                 headlineContent = { Text(text = stringResource(id = item.labelRes)) }
             )
         }
     }
 }
 
-enum class AboutMenuItem(val id: Int, @StringRes val labelRes: Int, @RawRes val fileRes: Int ) {
+enum class AboutMenuItem(val id: Int, @StringRes val labelRes: Int, @RawRes val fileRes: Int) {
     LegalInformation(1, R.string.app_about_legalInformation_label, R.raw.about_legal_information),
     PrivacyPolicy(2, R.string.app_about_privacyPolicy_label, R.raw.about_privacy_policy);
 

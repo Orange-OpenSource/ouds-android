@@ -20,9 +20,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.navigation.compose.NavHost
 import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.core.theme.OudsTheme

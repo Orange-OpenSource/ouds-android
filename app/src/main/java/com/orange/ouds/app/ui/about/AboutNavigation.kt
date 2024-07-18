@@ -24,7 +24,7 @@ object AboutDestinations {
 }
 
 object AboutNavigationKey {
- const val MenuItemIdKey = "aboutMenuItemId"
+    const val MenuItemIdKey = "aboutMenuItemId"
 }
 
 fun NavGraphBuilder.addAboutGraph() {

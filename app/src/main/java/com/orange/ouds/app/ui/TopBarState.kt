@@ -14,7 +14,6 @@ package com.orange.ouds.app.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.app.ui.navigation.AppNavigationState
 
 class TopBarState(
