@@ -1,0 +1,60 @@
+html, body {
+
+    padding: 0;
+
+    -webkit-text-size-adjust: none;
+
+    margin: 0%;
+}
+
+h1 {
+    font-size: 24;
+    font-family: sans-serif;
+    font-weight: bold;
+    line-height: 100%;
+    margin-top: 0.8em;
+    margin-bottom: 0.5em ;
+}
+
+h2 {
+    font-family: sans-serif;
+    font-size: 20;
+    line-height: 100%;
+    letter-spacing: -0.3;
+    font-weight: bold;
+    margin-top: 1.5em ;
+    margin-bottom: 0.3em ;
+}
+
+h3 {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16;
+    margin-top: 1.2em ;
+    margin-bottom: 0.8em ;
+}
+
+p, ul, li {
+    font-weight: normal;
+    font-size: 14;
+    letter-spacing: 0.4;
+    line-height: 1.6;
+    font-family: sans-serif;
+    margin-top: 0.3em ;
+    margin-bottom: 0em ;
+}
+
+table {
+  border-collapse: collapse;
+  width: 98%;
+}
+
+th, td {
+  padding: 0.2em;
+}
+
+a:link {
+    font-weight: normal
+    font-size: 15;
+    text-decoration: underline;
+}

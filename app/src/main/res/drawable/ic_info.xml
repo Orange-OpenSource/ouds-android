@@ -1,0 +1,24 @@
+<!--
+  ~ Software Name: Orange Unified Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M12,1.812C6.3667,1.812 1.8,6.3787 1.8,12.012C1.8,17.6453 6.3667,22.212 12,22.212C17.6333,22.212 22.2,17.6453 22.2,12.012C22.2,6.3787 17.6333,1.812 12,1.812ZM12,4.212C12.9941,4.212 13.8,5.0179 13.8,6.012C13.8,7.0061 12.9941,7.812 12,7.812C11.0059,7.812 10.2,7.0061 10.2,6.012C10.2,5.0179 11.0059,4.212 12,4.212L12,4.212ZM15,18.612L9.6,18.612L9.6,17.9943L9.7269,17.9903C10.1002,17.9783 10.3776,17.8722 10.5517,17.675C10.6135,17.6037 10.7187,17.3606 10.7187,16.5434L10.7187,11.0906C10.7187,10.3132 10.6101,10.0202 10.5192,9.9112C10.3906,9.7578 10.1228,9.6677 9.7231,9.6434L9.6,9.636L9.6,9.012L13.8,9.012L13.8,16.5434C13.8,17.3213 14.003,17.6142 14.0938,17.7228C14.2219,17.8761 14.4701,17.9662 14.8768,17.9904L15,17.9976L15,18.612L15,18.612Z"
+        android:strokeWidth="1"
+        android:fillColor="#000000"
+        android:fillType="evenOdd"
+        android:strokeColor="#00000000" />
+</vector>
