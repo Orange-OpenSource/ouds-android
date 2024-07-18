@@ -68,8 +68,7 @@ sealed class Screen(
         title = UiString.StringResource(R.string.app_bottomBar_about_label)
     )
 
-
-    // About screens screens
+    // About screens
 
     data class AboutFile(val menuItemId: Long) : Screen(
         route = AboutDestinations.FileRoute,

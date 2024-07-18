@@ -27,7 +27,7 @@ import com.orange.ouds.app.R
 @Composable
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
     LazyColumn {
-        items(AboutMenuItem.entries.toList()) { item ->
+        items(AboutMenuItem.entries) { item ->
             ListItem(
                 modifier = Modifier.clickable { onMenuItemClick(item.id) },
                 headlineContent = { Text(text = stringResource(id = item.labelRes)) }
