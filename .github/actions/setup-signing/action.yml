@@ -1,0 +1,37 @@
+name: setup-signing
+
+description: Set up signing configuration
+
+inputs:
+  keystore:
+    description: Keystore file as base64 value
+    required: true
+  store-password:
+    description: Store password
+    required: true
+  key-alias:
+    description: Key alias
+    required: true
+  key-password:
+    description: Key password
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set environment variables
+      shell: bash
+      run: |
+        SIGNING_STORE_FOLDER_PATH=${RUNNER_TEMP}/keystore
+        echo "SIGNING_STORE_FOLDER_PATH=${SIGNING_STORE_FOLDER_PATH}" >> $GITHUB_ENV
+        echo "SIGNING_STORE_FILE_PATH=${SIGNING_STORE_FOLDER_PATH}/debug.keystore" >> $GITHUB_ENV
+        echo "SIGNING_STORE_PASSWORD=${{ inputs.store-password }}" >> $GITHUB_ENV
+        echo "SIGNING_KEY_ALIAS=${{ inputs.key-alias }}" >> $GITHUB_ENV
+        echo "SIGNING_KEY_PASSWORD=${{ inputs.key-password }}" >> $GITHUB_ENV
+        echo "SIGNING_KEYSTORE=${{ inputs.keystore }}" >> $GITHUB_ENV
+    - name: Decode keystore
+      shell: bash
+      if: "${{ env.SIGNING_KEYSTORE != '' }}"
+      run: |
+        mkdir "${SIGNING_STORE_FOLDER_PATH}"
+        echo ${SIGNING_KEYSTORE} | base64 -d > ${SIGNING_STORE_FILE_PATH}

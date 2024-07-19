@@ -1,0 +1,67 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Run Android Linter
+        run: ./gradlew lint
+
+      - name: Build
+        run: |
+          # Git SHA is equal to github.event.pull_request.head.sha for pull requests
+          # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
+          BRANCH_SHA=${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
+          ./gradlew assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
+
+      - name: Store app artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: app/build/outputs/apk/*/*.apk
+
+      - name: Store core artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: core
+          path: core/build/outputs/aar/*.aar
+
+      - name: Store foundation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundation
+          path: foundation/build/outputs/aar/*.aar
