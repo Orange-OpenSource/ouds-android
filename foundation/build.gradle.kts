@@ -25,5 +25,5 @@ android {
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
-    api(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui)
 }
