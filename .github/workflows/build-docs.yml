@@ -16,8 +16,8 @@ on:
       - unlabeled
 
 env:
-  INSTANCE: 'docs/Writerside/ouds-android-docs'
-  ARTIFACT: 'docsOAD2-all.zip'
+  INSTANCE: 'docs/oad'
+  ARTIFACT: 'webHelpOAD2-all.zip'
   DOCKER_VERSION: '241.16003'
 
 jobs:
