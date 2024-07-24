@@ -1,5 +1,5 @@
 /*
- * Software Name: Orange Unified Design System
+ * Software Name: OUDS Android
  * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
@@ -31,6 +31,7 @@ fun getScreen(route: String, args: Bundle?): Screen? {
             AboutDestinations.FileRoute -> {
                 args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
             }
+
             else -> null
         }
     } else {
@@ -57,7 +58,7 @@ sealed class Screen(
         route = BottomBarItem.Guidelines.route,
         title = UiString.StringResource(R.string.app_bottomBar_guidelines_label)
     )
-    
+
     data object Components : Screen(
         route = BottomBarItem.Components.route,
         title = UiString.StringResource(R.string.app_bottomBar_components_label)

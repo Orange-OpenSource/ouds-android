@@ -2,7 +2,7 @@ import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.findTypedProperty
 
 /*
- * Software Name: Orange Unified Design System
+ * Software Name: OUDS Android
  * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *

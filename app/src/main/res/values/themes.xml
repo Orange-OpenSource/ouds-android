@@ -1,5 +1,5 @@
 <!--
-  ~ Software Name: Orange Unified Design System
+  ~ Software Name: OUDS Android
   ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
   ~ SPDX-License-Identifier: MIT
   ~
@@ -11,6 +11,7 @@
   -->
 
 <resources>
+
     <style name="Theme.OUDS" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/core_orange_200</item>
         <item name="colorPrimaryVariant">@color/core_orange_200</item>
