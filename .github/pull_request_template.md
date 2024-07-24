@@ -50,7 +50,7 @@ _Note: Please transform `- [ ]` into `- (NA)` in the description when things are
 
 - [ ] My change follows
   the [developer guide](https://github.com/Orange-OpenSource/ouds-android/blob/develop/DEVELOP.md)
-- [ ] <!-- OPTIONAL --> I have added unit tests to cover my changes _(optional)_
+- [ ] I have added unit tests to cover my changes _(optional)_
 
 #### Documentation
 
