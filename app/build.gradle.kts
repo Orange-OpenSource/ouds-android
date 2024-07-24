@@ -1,6 +1,3 @@
-import com.orange.ouds.gradle.Environment
-import com.orange.ouds.gradle.findTypedProperty
-
 /*
  * Software Name: OUDS Android
  * SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -12,6 +9,9 @@ import com.orange.ouds.gradle.findTypedProperty
  *
  * Software description: Android library of reusable graphical components
  */
+
+import com.orange.ouds.gradle.Environment
+import com.orange.ouds.gradle.findTypedProperty
 
 plugins {
     id(libs.plugins.android.application.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
