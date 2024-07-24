@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.16.1/css/tarteaucitron.min.css" integrity="sha384-BcX4jPjWhPR4tq8MiMIJsc8NEImprNB8rbfGW22r5McjVlsyu293nER76RWkv5cb" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.16.1/tarteaucitron.min.js" integrity="sha384-AcN5kJiCfqbrk/SICuAawqTeUR7KQrKpXMeDFL5XZh7x+IBWERL5to8nwE0gapz6" crossorigin="anonymous"></script>
+
+<script>
+    (function () {
+        'use strict'
+
+        document.addEventListener('googletagmanager_added', () => {
+            const ask = document.querySelector('#googletagmanagerLine .tarteaucitronAsk')
+            const choiceEvent = 'tarteaucitron.userInterface.respond(document.getElementById(\'googletagmanagerAllowed\'),document.getElementById(\'googletagmanagerAllowed\').checked);'
+            const toggle = document.createRange().createContextualFragment(`<div class="form-check form-switch my-2 my-lg-0"><input class="form-check-input ms-0" type="checkbox" id="googletagmanagerAllowed" aria-describedby="tacCLgoogletagmanager" onchange="${choiceEvent}"${((document.cookie.match(/^(?:.*;)?\s*cookie-consent\s*=\s*([^;]+)(?:.*)?$/) || [null])[1].match('!googletagmanager=true') ? 'checked' : '')}><label class="form-check-label visually-hidden" for="googletagmanagerAllowed">Google Tag Manager</label><input id="googletagmanagerDenied" class="d-none"></div>`)
+            ask.innerHTML = ''
+            ask.append(toggle)
+        }, { once: true })
+    })()
+
+    if (typeof tarteaucitron !== 'undefined') {
+        tarteaucitron.init({
+            hashtag: '#tarteaucitron',
+            cookieName: 'tarteaucitron',
+            orientation: 'bottom',
+            bodyPosition: 'top',
+            cookieslist: true,
+            highPrivacy: false,
+            showIcon: false,
+            handleBrowserDNTRequest: true,
+            mandatory: false
+        })
+
+        tarteaucitron.user.googletagmanagerId = 'GTM-P6H78BQ';
+        (tarteaucitron.job = tarteaucitron.job || []).push('googletagmanager')
+        dataLayer = [{
+            site_name: 'OUDS-Android',
+            phase: 'prod',
+            page_type: 'doc',
+            page_title: document.title
+        }]
+    }
+
+    tarteaucitron.services.googletagmanager = {
+        key: 'googletagmanager',
+        type: 'api',
+        name: 'Google Tag Manager',
+        uri: 'https://policies.google.com/privacy',
+        needConsent: true,
+        cookies: ['_ga', '_gat', '__utma', '__utmb', '__utmc', '__utmt', '__utmz', '__gads', '_drt_', 'FLC', 'exchange_uid', 'id', 'fc', 'rrs', 'rds', 'rv', 'uid', 'UIDR', 'UID', 'clid', 'ipinfo', 'acs'],
+        js() {
+            'use strict'
+            if (tarteaucitron.user.googletagmanagerId === undefined) {
+                return
+            }
+
+            window.dataLayer = window.dataLayer || []
+            window.dataLayer.push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            })
+            tarteaucitron.addScript(`https://www.googletagmanager.com/gtm.js?id=${tarteaucitron.user.googletagmanagerId}`)
+        }
+    }
+</script>
