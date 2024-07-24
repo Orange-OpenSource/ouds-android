@@ -9,7 +9,8 @@
         <header-logo>orange-logo.svg</header-logo>
         <download-title>Get OUDS Playground</download-title>
         <download-page>https://example.com</download-page>
-        <showDownloadButton>true</showDownloadButton>
+        <showDownloadButton>false</showDownloadButton>
+        <analytics-body-html-file>tarteaucitron.html</analytics-body-html-file>
     </variables>
     <build-profile instance="oad">
         <variables>
