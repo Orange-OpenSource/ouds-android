@@ -17,5 +17,7 @@
             <noindex-content>true</noindex-content>
         </variables>
     </build-profile>
-
+    <footer>
+        <copyright>Orange 2024</copyright>
+    </footer>
 </buildprofiles>
