@@ -35,3 +35,5 @@ rootProject.name = "OUDS Android"
 include(":app")
 include(":foundation")
 include(":core")
+include(":theme-contract")
+include(":theme-orange")
