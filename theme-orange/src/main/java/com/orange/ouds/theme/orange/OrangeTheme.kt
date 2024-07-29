@@ -10,23 +10,13 @@
  * Software description: Android library of reusable graphical components
  */
 
-plugins {
-    id("library")
-    alias(libs.plugins.compose.compiler)
-}
+package com.orange.ouds.theme.orange
 
-android {
-    namespace = "com.orange.ouds.core"
+import com.orange.ouds.theme.OudsCustomTheme
+import com.orange.ouds.theme.colors.OudsSemanticColors
 
-    buildFeatures {
-        compose = true
-    }
-}
+class OrangeTheme : OudsCustomTheme {
 
-dependencies {
-    api(project(":theme-contract"))
-
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.material)
+    override val semanticColors: OudsSemanticColors
+        get() = OrangeSemanticColors
 }

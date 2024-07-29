@@ -24,12 +24,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.theme.OudsCustomTheme
 
 @Composable
-fun MainScreen() {
+fun MainScreen(customTheme: OudsCustomTheme) {
     val mainState = rememberMainState()
 
-    OudsTheme {
+    OudsTheme(customTheme = customTheme) {
         Scaffold(
             topBar = { TopBar(mainState.topBarState) },
             bottomBar = {
