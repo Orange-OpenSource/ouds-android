@@ -21,6 +21,9 @@ class TopBarState(
 ) {
     val title: String
         @Composable get() = navigationState.currentScreen?.title?.asString().orEmpty()
+
+    val actions: List<@Composable () -> Unit>
+        @Composable get() = navigationState.currentScreen?.getTopBarActions().orEmpty()
 }
 
 @Composable
