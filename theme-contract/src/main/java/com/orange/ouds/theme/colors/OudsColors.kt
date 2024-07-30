@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.colors
 
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 
 class OudsColors(
@@ -51,3 +52,39 @@ class OudsColors(
     val info: Color,
     val alert: Color,
 )
+
+@Stable
+fun OudsColors.fromToken(value: OudsSemanticColorToken): Color {
+    return when (value) {
+        OudsSemanticColorToken.Background -> background
+        OudsSemanticColorToken.Error -> error
+        OudsSemanticColorToken.ErrorContainer -> errorContainer
+        OudsSemanticColorToken.InverseOnSurface -> inverseOnSurface
+        OudsSemanticColorToken.InversePrimary -> inversePrimary
+        OudsSemanticColorToken.InverseSurface -> inverseSurface
+        OudsSemanticColorToken.OnBackground -> onBackground
+        OudsSemanticColorToken.OnError -> onError
+        OudsSemanticColorToken.OnErrorContainer -> onErrorContainer
+        OudsSemanticColorToken.OnPrimary -> onPrimary
+        OudsSemanticColorToken.OnPrimaryContainer -> onPrimaryContainer
+        OudsSemanticColorToken.OnSecondary -> onSecondary
+        OudsSemanticColorToken.OnSecondaryContainer -> onSecondaryContainer
+        OudsSemanticColorToken.OnSurface -> onSurface
+        OudsSemanticColorToken.OnSurfaceVariant -> onSurfaceVariant
+        OudsSemanticColorToken.SurfaceTint -> surfaceTint
+        OudsSemanticColorToken.OnTertiary -> onTertiary
+        OudsSemanticColorToken.OnTertiaryContainer -> onTertiaryContainer
+        OudsSemanticColorToken.Outline -> outline
+        OudsSemanticColorToken.OutlineVariant -> outlineVariant
+        OudsSemanticColorToken.Primary -> primary
+        OudsSemanticColorToken.PrimaryContainer -> primaryContainer
+        OudsSemanticColorToken.Scrim -> scrim
+        OudsSemanticColorToken.Secondary -> secondary
+        OudsSemanticColorToken.SecondaryContainer -> secondaryContainer
+        OudsSemanticColorToken.Surface -> surface
+        OudsSemanticColorToken.SurfaceVariant -> surfaceVariant
+        OudsSemanticColorToken.Tertiary -> tertiary
+        OudsSemanticColorToken.TertiaryContainer -> tertiaryContainer
+        else -> Color.Unspecified
+    }
+}
