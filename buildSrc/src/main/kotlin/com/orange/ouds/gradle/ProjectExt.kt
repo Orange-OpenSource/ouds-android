@@ -12,9 +12,11 @@
 
 package com.orange.ouds.gradle
 
+import com.google.auth.oauth2.GoogleCredentials
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import java.io.ByteArrayOutputStream
+import java.io.FileInputStream
 
 /**
  * Returns the value of the given property or null if not found.
@@ -45,8 +47,9 @@ fun Project.execute(executable: String, vararg args: String): String {
  * This method is used to make the task fail when HTTP status code is invalid.
  *
  * @param args The cURL arguments.
+ * @return The cURL output.
  */
-fun Project.curl(vararg args: String) {
+fun Project.curl(vararg args: String): String {
     // Add an argument to write the HTTP status code at the end of the output
     val output = execute("curl", *args, "-w", "\n%{http_code}")
 
@@ -54,10 +57,13 @@ fun Project.curl(vararg args: String) {
     val splitOutput = output.split("\n")
     val httpStatusCode = splitOutput.last().toInt()
     // Reconstruct output without the status code and print it
-    println(splitOutput.dropLast(1).joinToString("\n"))
+    val outputWithoutStatus = splitOutput.dropLast(1).joinToString("\n")
+    println(outputWithoutStatus)
     if (httpStatusCode < 200 || httpStatusCode >= 300) {
         throw GradleException("Received HTTP error code $httpStatusCode.")
     }
+
+    return outputWithoutStatus
 }
 
 /**
@@ -104,7 +110,16 @@ fun Project.findLastTag(pattern: String, before: String?, isAnnotated: Boolean):
     return results.firstOrNull()
 }
 
-fun Project.gitHubApi(action: GitHubApi.() -> Unit) {
+fun <T> Project.gitHubApi(action: GitHubApi.() -> T): T {
     val token = Environment.getVariables("GITHUB_TOKEN").first()
-    GitHubApi(token, "Orange-OpenSource/ouds-android").action()
+    return GitHubApi(token, "Orange-OpenSource/ouds-android").action()
+}
+
+fun <T> Project.firebaseApi(appId: String, action: FirebaseApi.() -> T): T {
+    val serviceAccountFilePath = Environment.getVariables("GOOGLE_SERVICE_ACCOUNT_FILE_PATH").first()
+    val serviceAccount = FileInputStream(serviceAccountFilePath)
+    val credentials = GoogleCredentials.fromStream(serviceAccount).createScoped("https://www.googleapis.com/auth/cloud-platform")
+    credentials.refresh()
+    val accessToken = credentials.accessToken.tokenValue
+    return FirebaseApi(accessToken, "756919609448", appId).action()
 }
