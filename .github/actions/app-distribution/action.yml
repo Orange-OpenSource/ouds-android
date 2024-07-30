@@ -22,6 +22,9 @@ inputs:
   group:
     description: Group of testers that will be notified of the uploaded APK
     required: true
+  custom-release-notes:
+    description: Custom release notes
+    required: false
 
 runs:
   using: composite
@@ -34,7 +37,8 @@ runs:
         BRANCH_SHA=${{ github.event.pull_request.head.sha }}
         COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
         [ ${{ inputs.append-git-sha-to-version-name }} == 'true' ] && VERSION_NAME_SUFFIX=-${COMMIT_SHA::7} || VERSION_NAME_SUFFIX=''
-        ./gradlew :app:appDistributionUpload -PversionNameSuffix=$VERSION_NAME_SUFFIX -PversionCode=$GITHUB_RUN_NUMBER -PappDistributionVariants=release -PapplicationId=${{ inputs.application-id }} -PappDistributionGitTagPrefix=${{ inputs.git-tag-prefix }} -PappDistributionGroup=${{ inputs.group }} -PappDistributionGitTagSha=$COMMIT_SHA --stacktrace
+        [ "${{ inputs.custom-release-notes }}" ] && CUSTOM_RELEASE_NOTES="-PcustomReleaseNotes=${{ inputs.custom-release-notes }}" || CUSTOM_RELEASE_NOTES=''
+        ./gradlew :app:appDistributionUpload -PversionNameSuffix=$VERSION_NAME_SUFFIX -PversionCode=$GITHUB_RUN_NUMBER -PappDistributionVariants=release -PapplicationId=${{ inputs.application-id }} -PappDistributionGitTagPrefix=${{ inputs.git-tag-prefix }} -PappDistributionGroup=${{ inputs.group }} -PappDistributionGitTagSha=$COMMIT_SHA "$CUSTOM_RELEASE_NOTES" --stacktrace
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
         FIREBASE_TOKEN: ${{ inputs.firebase-token }}

@@ -72,17 +72,19 @@ tasks.register<DefaultTask>("appDistributionUpload") {
  */
 tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
     doLast {
-        // Retrieve latest Firebase App Distribution tag
-        // Firebase App Distribution tags are not annotated
-        val lastTag = findLastTag("^$gitTagPrefix-.*$", null, false)
-        if (lastTag != null) {
-            println("Found last App Distribution tag with prefix \"$gitTagPrefix\": \"$lastTag\".")
-        } else {
-            println("Could not find an App Distribution tag with prefix \"$gitTagPrefix\".")
-        }
-
         // Generate release notes
-        var releaseNotes = generateReleaseNotes(lastTag)
+        val customReleaseNotes = findTypedProperty<String>("customReleaseNotes")
+        var releaseNotes = customReleaseNotes ?: run {
+            // Retrieve latest Firebase App Distribution tag
+            // Firebase App Distribution tags are not annotated
+            val lastTag = findLastTag("^$gitTagPrefix-.*$", null, false)
+            if (lastTag != null) {
+                println("Found last App Distribution tag with prefix \"$gitTagPrefix\": \"$lastTag\".")
+            } else {
+                println("Could not find an App Distribution tag with prefix \"$gitTagPrefix\".")
+            }
+            generateReleaseNotes(lastTag)
+        }
         val maximumLength = 16 * 1024
         if (releaseNotes.length > maximumLength) {
             val truncationSymbol = "..."
