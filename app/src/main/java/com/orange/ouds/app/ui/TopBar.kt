@@ -13,13 +13,24 @@
 package com.orange.ouds.app.ui
 
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
+import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.TopBarAction.ChangeMode
+import com.orange.ouds.app.ui.TopBarAction.ChangeTheme
+import com.orange.ouds.app.ui.utilities.isDarkModeEnabled
+
+val TopBarDefaultActions = listOf(ChangeTheme, ChangeMode)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,6 +39,44 @@ fun TopBar(
 ) {
     TopAppBar(
         title = { Text(text = topBarState.title, modifier = Modifier.semantics { traversalIndex = -1f }) },
-        modifier = Modifier.semantics { isTraversalGroup = true }
+        modifier = Modifier.semantics { isTraversalGroup = true },
+        actions = {
+            topBarState.actions.forEach { topBarAction ->
+                topBarAction()
+            }
+        }
     )
+}
+
+enum class TopBarAction {
+    ChangeTheme, ChangeMode;
+
+    @Composable
+    fun TopBarIconButton(onActionClick: (TopBarAction) -> Unit) = when (this) {
+        ChangeTheme -> ChangeThemeAction(onActionClick)
+        ChangeMode -> ChangeModeAction(onActionClick)
+    }
+}
+
+@Composable
+fun getDefaultActions(onActionClick: (TopBarAction) -> Unit): List<@Composable () -> Unit> =
+    TopBarDefaultActions.map { { it.TopBarIconButton(onActionClick = onActionClick) } }
+
+@Composable
+private fun ChangeThemeAction(onClick: (TopBarAction) -> Unit) {
+    IconButton(onClick = { onClick(TopBarAction.ChangeTheme) }) {
+        Icon(painter = painterResource(id = R.drawable.ic_palette), contentDescription = stringResource(id = R.string.app_topBar_changeTheme_button_a11y))
+    }
+}
+
+@Composable
+private fun ChangeModeAction(onClick: (TopBarAction) -> Unit) {
+    val configuration = LocalConfiguration.current
+
+    val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
+    val iconDesc = if (configuration.isDarkModeEnabled) R.string.app_topBar_changeModeToLight_button_a11y else R.string.app_topBar_changeModeToDark_button_a11y
+
+    IconButton(onClick = { onClick(TopBarAction.ChangeMode) }) {
+        Icon(painter = painterResource(id = painterRes), contentDescription = stringResource(id = iconDesc))
+    }
 }
