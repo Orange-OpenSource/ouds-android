@@ -14,8 +14,12 @@ import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.findTypedProperty
 
 plugins {
+    id("firebase")
     id(libs.plugins.android.application.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.firebase.appdistribution)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.google.services)
     id(libs.plugins.kotlin.android.get().pluginId)
 }
 
@@ -25,7 +29,7 @@ android {
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.orange.ouds.app"
+        applicationId = project.findTypedProperty<String>("applicationId") ?: "com.orange.ouds.app"
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 1
@@ -36,6 +40,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 
@@ -73,6 +78,11 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+
+    firebaseAppDistribution {
+        releaseNotesFile = Firebase_gradle.AppDistribution.releaseNotesFilePath
+        groups = project.findTypedProperty("appDistributionGroup")
+    }
 }
 
 dependencies {
@@ -84,5 +94,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
     implementation(libs.kotlin.reflect)
 }
