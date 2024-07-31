@@ -1,6 +1,12 @@
 name: app-distribution-review
 
 on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
   workflow_dispatch:
 
 jobs:

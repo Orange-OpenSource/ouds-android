@@ -39,6 +39,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    println("=====")
+    println(project.findTypedProperty<String>("customReleaseNotes"))
+    println("=====")
+
     buildFeatures {
         buildConfig = true
         compose = true
