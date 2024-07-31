@@ -12,4 +12,7 @@ app/src/main/res/drawable/ic_component_atom.xml
 app/src/main/res/drawable/ic_guideline_dna.xml
 app/src/main/res/drawable/ic_info.xml
 
+docs/images/favicon-16x16.png
+docs/images/orange-logo.svg
+
 End of the parts list under Orange SA Copyright

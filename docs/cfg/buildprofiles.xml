@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variables>
+        <primary-color>halloween</primary-color>
+        <color-preset>contrast</color-preset>
+        <custom-favicons>../images/favicon-16x16.png</custom-favicons>
+        <header-logo>orange-logo.svg</header-logo>
+        <download-title>Get OUDS Playground</download-title>
+        <download-page>https://example.com</download-page>
+        <showDownloadButton>false</showDownloadButton>
+        <analytics-body-html-file>tarteaucitron.html</analytics-body-html-file>
+    </variables>
+    <build-profile instance="oad">
+        <variables>
+            <noindex-content>true</noindex-content>
+        </variables>
+    </build-profile>
+    <footer>
+        <copyright>Orange 2024</copyright>
+    </footer>
+</buildprofiles>
