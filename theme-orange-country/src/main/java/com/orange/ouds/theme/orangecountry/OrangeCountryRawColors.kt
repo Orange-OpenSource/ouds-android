@@ -10,11 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.orangederived
+package com.orange.ouds.theme.orangecountry
 
 import androidx.compose.ui.graphics.Color
 
-internal object OrangeDerivedRawColors {
+internal object OrangeCountryRawColors {
     val orange100 = Color(0xffff7900)
     val orange200 = Color(0xfff16e00)
     val tmpOrangeFFA14D = Color(0xffffa14d)
