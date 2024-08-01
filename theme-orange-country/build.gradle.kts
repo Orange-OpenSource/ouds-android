@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.orange.ouds.theme.orangederived"
+    namespace = "com.orange.ouds.theme.orangecountry"
 
     buildFeatures {
         compose = true

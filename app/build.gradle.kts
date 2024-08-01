@@ -91,7 +91,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
     implementation(project(":theme-orange"))
-    implementation(project(":theme-orange-derived"))
+    implementation(project(":theme-orange-country"))
     implementation(project(":theme-white-label"))
 
     implementation(libs.androidx.activity.compose)

@@ -10,21 +10,21 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.orangederived
+package com.orange.ouds.theme.orangecountry
 
 import com.orange.ouds.theme.colors.OudsSemanticColorValue
 import com.orange.ouds.theme.colors.OudsSemanticColors
 import com.orange.ouds.theme.orange.OrangeSemanticColors
 import com.orange.ouds.theme.orange.OrangeTheme
 
-class OrangeDerivedTheme : OrangeTheme() {
+class OrangeCountryTheme : OrangeTheme() {
 
     override val name: String
-        get() = "Orange derived"
+        get() = "Orange country"
 
     override val semanticColors: OudsSemanticColors
         get() = OrangeSemanticColors.apply {
-            with(OrangeDerivedRawColors) {
+            with(OrangeCountryRawColors) {
                 primary = OudsSemanticColorValue(alert200, alert100)
             }
         }

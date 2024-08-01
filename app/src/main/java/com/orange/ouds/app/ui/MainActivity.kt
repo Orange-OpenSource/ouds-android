@@ -16,7 +16,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orangederived.OrangeDerivedTheme
+import com.orange.ouds.theme.orangecountry.OrangeCountryTheme
 import com.orange.ouds.theme.whitelabel.WhiteLabelTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen(customThemes = listOf(OrangeTheme(), OrangeDerivedTheme(), WhiteLabelTheme()))
+            MainScreen(customThemes = listOf(OrangeTheme(), OrangeCountryTheme(), WhiteLabelTheme()))
         }
     }
 }
