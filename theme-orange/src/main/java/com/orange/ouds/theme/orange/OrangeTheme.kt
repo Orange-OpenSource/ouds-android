@@ -19,11 +19,11 @@ import kotlinx.parcelize.Parcelize
 const val ORANGE_THEME_NAME = "Orange"
 
 @Parcelize
-open class OrangeTheme : OrangeRawColors, OudsCustomTheme {
+open class OrangeTheme : OudsCustomTheme {
 
     override val name: String
         get() = ORANGE_THEME_NAME
 
     override val semanticColors: OudsSemanticColors
-        get() = orangeSemanticColors
+        get() = OrangeSemanticColors
 }

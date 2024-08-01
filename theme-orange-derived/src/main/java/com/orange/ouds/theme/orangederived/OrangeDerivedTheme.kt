@@ -14,8 +14,8 @@ package com.orange.ouds.theme.orangederived
 
 import com.orange.ouds.theme.colors.OudsSemanticColorValue
 import com.orange.ouds.theme.colors.OudsSemanticColors
+import com.orange.ouds.theme.orange.OrangeSemanticColors
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orange.orangeSemanticColors
 
 class OrangeDerivedTheme : OrangeTheme() {
 
@@ -23,7 +23,9 @@ class OrangeDerivedTheme : OrangeTheme() {
         get() = "Orange derived"
 
     override val semanticColors: OudsSemanticColors
-        get() = orangeSemanticColors.apply {
-            primary = OudsSemanticColorValue(info100, info200)
+        get() = OrangeSemanticColors.apply {
+            with(OrangeDerivedRawColors) {
+                primary = OudsSemanticColorValue(alert200, alert100)
+            }
         }
 }
