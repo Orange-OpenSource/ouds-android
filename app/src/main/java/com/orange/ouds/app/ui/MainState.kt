@@ -18,6 +18,7 @@ import com.orange.ouds.app.ui.navigation.AppNavigationState
 import com.orange.ouds.app.ui.navigation.rememberAppNavigationState
 
 class MainState(
+    val themeState: ThemeState,
     val navigationState: AppNavigationState,
     val topBarState: TopBarState
 ) {
@@ -28,8 +29,9 @@ class MainState(
 
 @Composable
 fun rememberMainState(
+    themeState: ThemeState,
     appNavigationState: AppNavigationState = rememberAppNavigationState(),
     topBarState: TopBarState = rememberTopBarState(appNavigationState),
-) = remember(appNavigationState, topBarState) {
-    MainState(appNavigationState, topBarState)
+) = remember(themeState, appNavigationState, topBarState) {
+    MainState(themeState, appNavigationState, topBarState)
 }

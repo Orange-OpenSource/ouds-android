@@ -20,8 +20,6 @@
         <item name="colorSecondary">@color/core_orange_200</item>
         <item name="colorSecondaryVariant">@color/core_orange_200</item>
         <item name="colorOnSecondary">@color/core_black_900</item>
-
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
     </style>
 
     <style name="Theme.OUDS.NoActionBar">
