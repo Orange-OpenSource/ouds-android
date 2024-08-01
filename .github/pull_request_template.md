@@ -35,8 +35,7 @@ _Note: Please transform `- [ ]` into `- (NA)` in the description when things are
 
 #### Contribution
 
-- [ ] I have read
-  the [contributing guidelines](https://github.com/Orange-OpenSource/ouds-android/blob/develop/CONTRIBUTING.md)
+- [ ] I have read the [contributing guidelines](https://github.com/Orange-OpenSource/ouds-android/blob/develop/CONTRIBUTING.md)
 
 #### Accessibility
 
@@ -48,23 +47,18 @@ _Note: Please transform `- [ ]` into `- (NA)` in the description when things are
 
 #### Development
 
-- [ ] My change follows
-  the [developer guide](https://github.com/Orange-OpenSource/ouds-android/blob/develop/DEVELOP.md)
+- [ ] My change follows the [developer guide](https://github.com/Orange-OpenSource/ouds-android/blob/develop/DEVELOP.md)
 - [ ] I have added unit tests to cover my changes _(optional)_
 
 #### Documentation
 
-- [ ] My change introduces changes to the documentation and/or I have updated the documentation
-  accordingly
+- [ ] My change introduces changes to the documentation and/or I have updated the documentation accordingly
 
 ### Checklist (for Core Team only)
 
 - [ ] Manually test (dark mode, RTL, landscape display, tablet)
 - [ ] Documentation has been updated if relevant
-- [ ] Code review
 - [ ] Design review
 - [ ] A11y review
 - [ ] Internal files have been updated if relevant (THIRD_PARTY, NOTICE)
-- [ ] changelog.md has been updated
-  respecting [keep a changelog rules](https://keepachangelog.com/en/1.0.0/) and referencing the
-  issue
+- [ ] changelog.md has been updated respecting [keep a changelog rules](https://keepachangelog.com/en/1.0.0/) and referencing the issue
