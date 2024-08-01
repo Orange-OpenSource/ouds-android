@@ -10,10 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.colors
+package com.orange.ouds.theme
 
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorToken
 
 class OudsColors(
     val primary: Color,

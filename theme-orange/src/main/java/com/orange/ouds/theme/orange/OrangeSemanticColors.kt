@@ -12,8 +12,8 @@
 
 package com.orange.ouds.theme.orange
 
-import com.orange.ouds.theme.colors.OudsSemanticColorValue
-import com.orange.ouds.theme.colors.OudsSemanticColors
+import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorValue
+import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
 
 val OrangeTheme.OrangeSemanticColors
     get() = with(OrangeRawColors) {
