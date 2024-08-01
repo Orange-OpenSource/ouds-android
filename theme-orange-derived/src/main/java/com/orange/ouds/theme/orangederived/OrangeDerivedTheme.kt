@@ -10,20 +10,20 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.orange
+package com.orange.ouds.theme.orangederived
 
-import com.orange.ouds.theme.OudsCustomTheme
+import com.orange.ouds.theme.colors.OudsSemanticColorValue
 import com.orange.ouds.theme.colors.OudsSemanticColors
-import kotlinx.parcelize.Parcelize
+import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.orange.orangeSemanticColors
 
-const val ORANGE_THEME_NAME = "Orange"
-
-@Parcelize
-open class OrangeTheme : OrangeRawColors, OudsCustomTheme {
+class OrangeDerivedTheme : OrangeTheme() {
 
     override val name: String
-        get() = ORANGE_THEME_NAME
+        get() = "Orange derived"
 
     override val semanticColors: OudsSemanticColors
-        get() = orangeSemanticColors
+        get() = orangeSemanticColors.apply {
+            primary = OudsSemanticColorValue(info100, info200)
+        }
 }

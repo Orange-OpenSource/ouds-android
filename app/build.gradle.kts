@@ -91,6 +91,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
     implementation(project(":theme-orange"))
+    implementation(project(":theme-orange-derived"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.browser)
