@@ -10,6 +10,4 @@
   ~ Software description: Android library of reusable graphical components
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-</manifest>
+<manifest />
