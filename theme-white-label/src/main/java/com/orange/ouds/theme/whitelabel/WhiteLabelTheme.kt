@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.whitelabel
 
 import com.orange.ouds.theme.OudsCustomTheme
-import com.orange.ouds.theme.colors.OudsSemanticColors
+import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

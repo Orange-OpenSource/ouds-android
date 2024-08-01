@@ -13,8 +13,8 @@
 package com.orange.ouds.theme
 
 import android.os.Parcelable
-import com.orange.ouds.theme.colors.OudsSemanticColors
-import com.orange.ouds.theme.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
 
 interface OudsCustomTheme : Parcelable {
 

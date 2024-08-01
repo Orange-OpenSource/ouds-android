@@ -12,10 +12,10 @@
 
 package com.orange.ouds.theme.orangecountry
 
-import com.orange.ouds.theme.colors.OudsSemanticColorValue
-import com.orange.ouds.theme.colors.OudsSemanticColors
 import com.orange.ouds.theme.orange.OrangeSemanticColors
 import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorValue
+import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
 
 class OrangeCountryTheme : OrangeTheme() {
 

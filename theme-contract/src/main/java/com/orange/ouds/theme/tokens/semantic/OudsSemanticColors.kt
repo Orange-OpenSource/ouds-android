@@ -10,12 +10,13 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.colors
+package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.theme.OudsColors
 
 class OudsSemanticColors(
     var primary: OudsSemanticColorValue,
