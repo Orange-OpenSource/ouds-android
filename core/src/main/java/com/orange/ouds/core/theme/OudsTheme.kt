@@ -18,9 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.orange.ouds.theme.OudsColors
 import com.orange.ouds.theme.OudsCustomTheme
-import com.orange.ouds.theme.colors.OudsColors
-import com.orange.ouds.theme.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 
 private fun customThemeError(message: Any): Nothing = error("OudsTheme not found. $message")
 

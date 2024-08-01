@@ -10,9 +10,9 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.components
+package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.theme.colors.OudsSemanticColorToken
+import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorToken
 
 open class OudsButtonTokens(
     val containerColor: OudsSemanticColorToken = OudsSemanticColorToken.Primary,

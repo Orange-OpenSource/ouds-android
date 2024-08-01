@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.theme.colors.fromToken
+import com.orange.ouds.theme.fromToken
 
 @Composable
 fun OudsButton(
