@@ -1,14 +1,12 @@
-name: app-distribution-daily
+name: app-distribution-review
 
 on:
-  schedule:
-    - cron: '31 7 * * MON-FRI'
   workflow_dispatch:
 
 jobs:
-  app-distribution-daily:
+  app-distribution-review:
     runs-on: ubuntu-latest
-    if: github.repository == 'Orange-OpenSource/ouds-android'
+    if: github.event_name == 'pull_request'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -40,11 +38,11 @@ jobs:
         uses: ./.github/actions/app-distribution
         with:
           append-git-sha-to-version-name: 'true'
-          application-id: 'com.orange.ouds.test.app'
+          application-id: 'com.orange.ouds.review.app'
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}
-          git-tag-prefix: 'ci/daily-app'
+          git-tag-prefix: 'ci/review-app'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          group: 'ouds-android-test'
+          group: 'ouds-android-review'
 
       - name: Publish Firebase App Distribution QR code
         run: ./gradlew publishAppDistributionQrCode

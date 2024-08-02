@@ -26,7 +26,11 @@ kotlin {
 
 dependencies {
     implementation(libs.android.gradle.plugin)
+    implementation(libs.google.auth.library.oauth2.http)
     implementation(libs.javapoet) // https://github.com/google/dagger/issues/3282
+    implementation(libs.json)
     implementation(libs.kotlin.gradle.plugin) // https://issuetracker.google.com/issues/176079157#comment14
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location)) // https://github.com/gradle/gradle/issues/15383
+    implementation(libs.zxing.core)
+    implementation(libs.zxing.javase)
 }

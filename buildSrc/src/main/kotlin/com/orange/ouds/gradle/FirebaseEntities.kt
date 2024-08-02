@@ -10,21 +10,9 @@
  * Software description: Android library of reusable graphical components
  */
 
-plugins {
-    id("library")
-    alias(libs.plugins.compose.compiler)
-}
+package com.orange.ouds.gradle
 
-android {
-    namespace = "com.orange.ouds.core"
-
-    buildFeatures {
-        compose = true
-    }
-}
-
-dependencies {
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.material)
-}
+data class FirebaseAppDistributionRelease(
+    val buildVersion: Int,
+    val binaryDownloadUri: String,
+)

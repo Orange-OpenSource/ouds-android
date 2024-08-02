@@ -10,8 +10,6 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.gradle
-
 import org.gradle.accessors.dm.LibrariesForLibs
 
 private val libs = the<LibrariesForLibs>() // https://github.com/gradle/gradle/issues/15383
