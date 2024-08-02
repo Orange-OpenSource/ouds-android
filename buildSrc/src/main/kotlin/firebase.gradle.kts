@@ -150,7 +150,7 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
     mustRunAfter("appDistributionUpload")
 
     doLast {
-        firebaseApi("1:756919609448:android:08045c141d8ea56d54f3dd") {
+        firebaseApi("1:756919609448:android:7e1826645210d00a54f3dd") {
             // Find App Distribution release corresponding to version code
             val versionCode = Environment.getVariables("GITHUB_RUN_NUMBER").first().toInt()
             val release = getAppDistributionReleases().firstOrNull { it.buildVersion == versionCode }
