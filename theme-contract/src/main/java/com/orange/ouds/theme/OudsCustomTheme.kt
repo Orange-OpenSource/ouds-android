@@ -26,7 +26,7 @@ interface OudsCustomTheme : Parcelable {
     /**
      * Semantic colors values used in the theme
      */
-    val semanticColors: OudsSemanticColors
+    val colors: OudsSemanticColors
 
     /**
      * Customization of the OUDS components if needed
