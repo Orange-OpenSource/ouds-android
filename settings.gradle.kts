@@ -35,6 +35,7 @@ rootProject.name = "OUDS Android"
 include(":app")
 include(":foundation")
 include(":core")
+include(":tokens-global-raw")
 include(":theme-contract")
 include(":theme-orange")
 include(":theme-orange-country")
