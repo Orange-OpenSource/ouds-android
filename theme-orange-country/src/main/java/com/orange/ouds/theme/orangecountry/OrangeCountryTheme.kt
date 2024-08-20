@@ -12,9 +12,8 @@
 
 package com.orange.ouds.theme.orangecountry
 
-import com.orange.ouds.theme.orange.OrangeSemanticColors
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorValue
+import com.orange.ouds.theme.orangecountry.tokens.semantic.orangeCountrySemanticColors
 import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
 
 class OrangeCountryTheme : OrangeTheme() {
@@ -23,9 +22,5 @@ class OrangeCountryTheme : OrangeTheme() {
         get() = "Orange country"
 
     override val semanticColors: OudsSemanticColors
-        get() = OrangeSemanticColors.apply {
-            with(OrangeCountryRawColors) {
-                primary = OudsSemanticColorValue(alert200, alert100)
-            }
-        }
+        get() = orangeCountrySemanticColors
 }

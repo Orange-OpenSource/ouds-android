@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.orange
+package com.orange.ouds.theme.orange.tokens.raw
 
 import androidx.compose.ui.graphics.Color
 

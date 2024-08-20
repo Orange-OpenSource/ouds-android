@@ -10,10 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.whitelabel
+package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorValue
 import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
+import com.orange.ouds.theme.whitelabel.tokens.raw.WhiteLabelRawColors
 
 val WhiteLabelSemanticColors = with(WhiteLabelRawColors) {
     OudsSemanticColors(

@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.orange
 
 import com.orange.ouds.theme.OudsCustomTheme
+import com.orange.ouds.theme.orange.tokens.semantic.orangeSemanticColors
 import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
 import kotlinx.parcelize.Parcelize
 
@@ -25,5 +26,5 @@ open class OrangeTheme : OudsCustomTheme {
         get() = ORANGE_THEME_NAME
 
     override val semanticColors: OudsSemanticColors
-        get() = OrangeSemanticColors
+        get() = orangeSemanticColors
 }

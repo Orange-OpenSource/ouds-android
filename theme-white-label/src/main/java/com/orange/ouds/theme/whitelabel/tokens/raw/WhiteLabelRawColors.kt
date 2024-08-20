@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.whitelabel
+package com.orange.ouds.theme.whitelabel.tokens.raw
 
 import androidx.compose.ui.graphics.Color
 
@@ -57,7 +57,6 @@ object WhiteLabelRawColors {
 
     val white = Color(0xffffffff)
     val black = Color(0xff000000)
-    val darkGrey = Color(0xff121212)
 
     val info = Color(0xff4170D8)
     val yellow = Color(0xffffcc00)
