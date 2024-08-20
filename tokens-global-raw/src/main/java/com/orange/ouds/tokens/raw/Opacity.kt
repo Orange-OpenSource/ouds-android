@@ -10,22 +10,17 @@
  * Software description: Android library of reusable graphical components
  */
 
-plugins {
-    id("library")
-    alias(libs.plugins.compose.compiler)
-}
+package com.orange.ouds.tokens.raw
 
-android {
-    namespace = "com.orange.ouds.theme"
-
-    buildFeatures {
-        compose = true
-    }
-}
-
-dependencies {
-    implementation(project(":tokens-global-raw"))
-
-    api(platform(libs.androidx.compose.bom))
-    api(libs.androidx.compose.material3)
+object Opacity {
+    val opacity0 = 0f
+    val opacity100 = 0.04f
+    val opacity200 = 0.08f
+    val opacity300 = 0.16f
+    val opacity400 = 0.24f
+    val opacity500 = 0.32f
+    val opacity600 = 0.48f
+    val opacity700 = 0.64f
+    val opacity800 = 0.88f
+    val opacity900 = 1f
 }
