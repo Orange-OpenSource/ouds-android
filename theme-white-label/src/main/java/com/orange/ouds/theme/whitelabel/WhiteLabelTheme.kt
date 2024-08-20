@@ -14,6 +14,7 @@ package com.orange.ouds.theme.whitelabel
 
 import com.orange.ouds.theme.OudsCustomTheme
 import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
+import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelSemanticColors
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
