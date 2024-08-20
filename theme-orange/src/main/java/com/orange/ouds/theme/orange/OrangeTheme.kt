@@ -25,6 +25,6 @@ open class OrangeTheme : OudsCustomTheme {
     override val name: String
         get() = ORANGE_THEME_NAME
 
-    override val semanticColors: OudsSemanticColors
+    override val colors: OudsSemanticColors
         get() = orangeSemanticColors
 }

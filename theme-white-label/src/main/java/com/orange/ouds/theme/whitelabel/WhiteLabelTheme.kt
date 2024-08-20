@@ -23,6 +23,6 @@ open class WhiteLabelTheme : OudsCustomTheme {
     override val name: String
         get() = "White label"
 
-    override val semanticColors: OudsSemanticColors
+    override val colors: OudsSemanticColors
         get() = WhiteLabelSemanticColors
 }

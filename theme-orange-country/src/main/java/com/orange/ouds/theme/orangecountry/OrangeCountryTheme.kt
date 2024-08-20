@@ -21,6 +21,6 @@ class OrangeCountryTheme : OrangeTheme() {
     override val name: String
         get() = "Orange country"
 
-    override val semanticColors: OudsSemanticColors
+    override val colors: OudsSemanticColors
         get() = orangeCountrySemanticColors
 }
