@@ -53,13 +53,13 @@ fun OudsTheme(
     content: @Composable () -> Unit
 ) {
 
-    val colors = if (darkThemeEnabled) customTheme.semanticColors.darkColors else customTheme.semanticColors.lightColors
+    val colors = if (darkThemeEnabled) customTheme.colors.darkColors else customTheme.colors.lightColors
 
     CompositionLocalProvider(
         LocalColors provides colors,
         LocalComponentsTokens provides customTheme.componentsTokens
     ) {
-        MaterialTheme(colorScheme = if (darkThemeEnabled) customTheme.semanticColors.materialDarkColorScheme else customTheme.semanticColors.materialLightColorScheme) {
+        MaterialTheme(colorScheme = if (darkThemeEnabled) customTheme.colors.materialDarkColorScheme else customTheme.colors.materialLightColorScheme) {
             content()
         }
     }
