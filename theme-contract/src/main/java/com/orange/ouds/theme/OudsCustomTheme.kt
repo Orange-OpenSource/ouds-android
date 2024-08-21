@@ -14,7 +14,7 @@ package com.orange.ouds.theme
 
 import android.os.Parcelable
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
+import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 
 interface OudsCustomTheme : Parcelable {
 
@@ -26,7 +26,7 @@ interface OudsCustomTheme : Parcelable {
     /**
      * Semantic colors values used in the theme
      */
-    val colors: OudsSemanticColors
+    val colors: OudsColorTokens
 
     /**
      * Customization of the OUDS components if needed

@@ -15,11 +15,11 @@ package com.orange.ouds.theme.orangecountry.tokens.semantic
 import com.orange.ouds.theme.orange.tokens.semantic.orangeSemanticColors
 import com.orange.ouds.theme.orangecountry.OrangeCountryTheme
 import com.orange.ouds.theme.orangecountry.tokens.raw.OrangeCountryRawColors
-import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorValue
+import com.orange.ouds.theme.tokens.semantic.OudsColorTokenValue
 
 val OrangeCountryTheme.orangeCountrySemanticColors
     get() = orangeSemanticColors.apply {
         with(OrangeCountryRawColors) {
-            primary = OudsSemanticColorValue(alert200, alert100)
+            primary = OudsColorTokenValue(alert200, alert100)
         }
     }

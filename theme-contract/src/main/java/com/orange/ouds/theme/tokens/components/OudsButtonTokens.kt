@@ -12,11 +12,11 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorToken
+import com.orange.ouds.theme.tokens.semantic.OudsColorToken
 
 open class OudsButtonTokens(
-    val containerColor: OudsSemanticColorToken = OudsSemanticColorToken.Primary,
-    val contentColor: OudsSemanticColorToken = OudsSemanticColorToken.OnPrimary,
-    val disabledContainerColor: OudsSemanticColorToken = OudsSemanticColorToken.Secondary,
-    val disabledContentColor: OudsSemanticColorToken = OudsSemanticColorToken.OnSecondary,
+    val containerColor: OudsColorToken = OudsColorToken.Primary,
+    val contentColor: OudsColorToken = OudsColorToken.OnPrimary,
+    val disabledContainerColor: OudsColorToken = OudsColorToken.Secondary,
+    val disabledContentColor: OudsColorToken = OudsColorToken.OnSecondary,
 )
