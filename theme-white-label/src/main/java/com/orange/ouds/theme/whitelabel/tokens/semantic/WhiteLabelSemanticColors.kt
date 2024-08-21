@@ -12,48 +12,48 @@
 
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
-import com.orange.ouds.theme.tokens.semantic.OudsSemanticColorValue
-import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
+import com.orange.ouds.theme.tokens.semantic.OudsColorTokenValue
+import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 import com.orange.ouds.theme.whitelabel.tokens.raw.WhiteLabelRawColors
 
 val WhiteLabelSemanticColors = with(WhiteLabelRawColors) {
-    OudsSemanticColors(
-        primary = OudsSemanticColorValue(primary40, primary80),
-        onPrimary = OudsSemanticColorValue(white, primary20),
-        primaryContainer = OudsSemanticColorValue(primary90, primary30),
-        onPrimaryContainer = OudsSemanticColorValue(white, white),
-        inversePrimary = OudsSemanticColorValue(primary80, primary40),
+    OudsColorTokens(
+        primary = OudsColorTokenValue(primary40, primary80),
+        onPrimary = OudsColorTokenValue(white, primary20),
+        primaryContainer = OudsColorTokenValue(primary90, primary30),
+        onPrimaryContainer = OudsColorTokenValue(white, white),
+        inversePrimary = OudsColorTokenValue(primary80, primary40),
 
-        secondary = OudsSemanticColorValue(secondary40, secondary80),
-        onSecondary = OudsSemanticColorValue(white, secondary20),
-        secondaryContainer = OudsSemanticColorValue(secondary90, secondary30),
-        onSecondaryContainer = OudsSemanticColorValue(secondary10, secondary90),
+        secondary = OudsColorTokenValue(secondary40, secondary80),
+        onSecondary = OudsColorTokenValue(white, secondary20),
+        secondaryContainer = OudsColorTokenValue(secondary90, secondary30),
+        onSecondaryContainer = OudsColorTokenValue(secondary10, secondary90),
 
-        tertiary = OudsSemanticColorValue(tertiary40, tertiary80),
-        onTertiary = OudsSemanticColorValue(white, tertiary20),
-        tertiaryContainer = OudsSemanticColorValue(tertiary90, tertiary30),
-        onTertiaryContainer = OudsSemanticColorValue(tertiary10, tertiary90),
-        background = OudsSemanticColorValue(white, black),
-        onBackground = OudsSemanticColorValue(black, white),
-        surface = OudsSemanticColorValue(neutral98, neutral6),
-        onSurface = OudsSemanticColorValue(black, neutral90),
-        surfaceVariant = OudsSemanticColorValue(neutral94, neutral24),
-        onSurfaceVariant = OudsSemanticColorValue(black, neutralVariant90),
-        surfaceTint = OudsSemanticColorValue(white, neutral98),
-        inverseSurface = OudsSemanticColorValue(neutral20, neutral90),
-        inverseOnSurface = OudsSemanticColorValue(neutral95, neutral20),
-        error = OudsSemanticColorValue(error40, error80),
-        onError = OudsSemanticColorValue(white, error20),
-        errorContainer = OudsSemanticColorValue(error90, error30),
-        onErrorContainer = OudsSemanticColorValue(white, error90),
-        outline = OudsSemanticColorValue(neutralVariant50, neutralVariant60),
-        outlineVariant = OudsSemanticColorValue(neutralVariant80, neutralVariant30),
-        scrim = OudsSemanticColorValue(black, black),
-        positive = OudsSemanticColorValue(green, green),
-        onPositive = OudsSemanticColorValue(white, white),
-        negative = OudsSemanticColorValue(red, red),
-        onNegative = OudsSemanticColorValue(white, white),
-        info = OudsSemanticColorValue(info, info),
-        alert = OudsSemanticColorValue(yellow, yellow)
+        tertiary = OudsColorTokenValue(tertiary40, tertiary80),
+        onTertiary = OudsColorTokenValue(white, tertiary20),
+        tertiaryContainer = OudsColorTokenValue(tertiary90, tertiary30),
+        onTertiaryContainer = OudsColorTokenValue(tertiary10, tertiary90),
+        background = OudsColorTokenValue(white, black),
+        onBackground = OudsColorTokenValue(black, white),
+        surface = OudsColorTokenValue(neutral98, neutral6),
+        onSurface = OudsColorTokenValue(black, neutral90),
+        surfaceVariant = OudsColorTokenValue(neutral94, neutral24),
+        onSurfaceVariant = OudsColorTokenValue(black, neutralVariant90),
+        surfaceTint = OudsColorTokenValue(white, neutral98),
+        inverseSurface = OudsColorTokenValue(neutral20, neutral90),
+        inverseOnSurface = OudsColorTokenValue(neutral95, neutral20),
+        error = OudsColorTokenValue(error40, error80),
+        onError = OudsColorTokenValue(white, error20),
+        errorContainer = OudsColorTokenValue(error90, error30),
+        onErrorContainer = OudsColorTokenValue(white, error90),
+        outline = OudsColorTokenValue(neutralVariant50, neutralVariant60),
+        outlineVariant = OudsColorTokenValue(neutralVariant80, neutralVariant30),
+        scrim = OudsColorTokenValue(black, black),
+        positive = OudsColorTokenValue(green, green),
+        onPositive = OudsColorTokenValue(white, white),
+        negative = OudsColorTokenValue(red, red),
+        onNegative = OudsColorTokenValue(white, white),
+        info = OudsColorTokenValue(info, info),
+        alert = OudsColorTokenValue(yellow, yellow)
     )
 }
