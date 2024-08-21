@@ -10,11 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.whitelabel.tokens.raw
+package com.orange.ouds.theme.whitelabel.tokens
 
 import androidx.compose.ui.graphics.Color
 
-object WhiteLabelRawColors {
+object WhiteLabelColorRawTokens {
     val primary20 = Color(0xff00315f)
     val primary30 = Color(0xff006cc5)
     val primary40 = Color(0xff005095)

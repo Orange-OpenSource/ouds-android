@@ -10,15 +10,14 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.orange.tokens.semantic
+package com.orange.ouds.theme.orange.tokens
 
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orange.tokens.raw.OrangeRawColors
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokenValue
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 
-val OrangeTheme.orangeSemanticColors
-    get() = with(OrangeRawColors) {
+val OrangeTheme.orangeColorSemanticTokens
+    get() = with(OrangeColorRawTokens) {
         OudsColorTokens(
             primary = OudsColorTokenValue(orange200, orange100),
             onPrimary = OudsColorTokenValue(white100, black900),

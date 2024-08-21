@@ -24,9 +24,9 @@ interface OudsCustomTheme : Parcelable {
     val name: String
 
     /**
-     * Semantic colors values used in the theme
+     * Color semantic tokens values used in the theme
      */
-    val colors: OudsColorTokens
+    val colorTokens: OudsColorTokens
 
     /**
      * Customization of the OUDS components if needed
