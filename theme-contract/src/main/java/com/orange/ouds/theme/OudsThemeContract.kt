@@ -30,9 +30,9 @@ interface OudsThemeContract : Parcelable {
     val colorTokens: OudsColorTokens
 
     /**
-     * Semantic opacities values used in the theme
+     * Opacity semantic tokens values used in the theme
      */
-    val opacities: OudsOpacityTokens
+    val opacityTokens: OudsOpacityTokens
         get() = OudsOpacityTokens()
 
     /**
