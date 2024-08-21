@@ -18,42 +18,42 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.OudsColors
 
-class OudsSemanticColors(
-    var primary: OudsSemanticColorValue,
-    var onPrimary: OudsSemanticColorValue,
-    var primaryContainer: OudsSemanticColorValue,
-    var onPrimaryContainer: OudsSemanticColorValue,
-    var inversePrimary: OudsSemanticColorValue,
-    var secondary: OudsSemanticColorValue,
-    var onSecondary: OudsSemanticColorValue,
-    var secondaryContainer: OudsSemanticColorValue,
-    var onSecondaryContainer: OudsSemanticColorValue,
-    var tertiary: OudsSemanticColorValue,
-    var onTertiary: OudsSemanticColorValue,
-    var tertiaryContainer: OudsSemanticColorValue,
-    var onTertiaryContainer: OudsSemanticColorValue,
-    var background: OudsSemanticColorValue,
-    var onBackground: OudsSemanticColorValue,
-    var surface: OudsSemanticColorValue,
-    var onSurface: OudsSemanticColorValue,
-    var surfaceVariant: OudsSemanticColorValue,
-    var onSurfaceVariant: OudsSemanticColorValue,
-    var surfaceTint: OudsSemanticColorValue,
-    var inverseSurface: OudsSemanticColorValue,
-    var inverseOnSurface: OudsSemanticColorValue,
-    var error: OudsSemanticColorValue,
-    var onError: OudsSemanticColorValue,
-    var errorContainer: OudsSemanticColorValue,
-    var onErrorContainer: OudsSemanticColorValue,
-    var outline: OudsSemanticColorValue,
-    var outlineVariant: OudsSemanticColorValue,
-    var scrim: OudsSemanticColorValue,
-    var positive: OudsSemanticColorValue,
-    var onPositive: OudsSemanticColorValue,
-    var negative: OudsSemanticColorValue,
-    var onNegative: OudsSemanticColorValue,
-    var info: OudsSemanticColorValue,
-    var alert: OudsSemanticColorValue,
+class OudsColorTokens(
+    var primary: OudsColorTokenValue,
+    var onPrimary: OudsColorTokenValue,
+    var primaryContainer: OudsColorTokenValue,
+    var onPrimaryContainer: OudsColorTokenValue,
+    var inversePrimary: OudsColorTokenValue,
+    var secondary: OudsColorTokenValue,
+    var onSecondary: OudsColorTokenValue,
+    var secondaryContainer: OudsColorTokenValue,
+    var onSecondaryContainer: OudsColorTokenValue,
+    var tertiary: OudsColorTokenValue,
+    var onTertiary: OudsColorTokenValue,
+    var tertiaryContainer: OudsColorTokenValue,
+    var onTertiaryContainer: OudsColorTokenValue,
+    var background: OudsColorTokenValue,
+    var onBackground: OudsColorTokenValue,
+    var surface: OudsColorTokenValue,
+    var onSurface: OudsColorTokenValue,
+    var surfaceVariant: OudsColorTokenValue,
+    var onSurfaceVariant: OudsColorTokenValue,
+    var surfaceTint: OudsColorTokenValue,
+    var inverseSurface: OudsColorTokenValue,
+    var inverseOnSurface: OudsColorTokenValue,
+    var error: OudsColorTokenValue,
+    var onError: OudsColorTokenValue,
+    var errorContainer: OudsColorTokenValue,
+    var onErrorContainer: OudsColorTokenValue,
+    var outline: OudsColorTokenValue,
+    var outlineVariant: OudsColorTokenValue,
+    var scrim: OudsColorTokenValue,
+    var positive: OudsColorTokenValue,
+    var onPositive: OudsColorTokenValue,
+    var negative: OudsColorTokenValue,
+    var onNegative: OudsColorTokenValue,
+    var info: OudsColorTokenValue,
+    var alert: OudsColorTokenValue,
 ) {
 
     val lightColors: OudsColors
@@ -201,9 +201,9 @@ class OudsSemanticColors(
         )
 }
 
-data class OudsSemanticColorValue(val light: Color, val dark: Color)
+data class OudsColorTokenValue(val light: Color, val dark: Color)
 
-enum class OudsSemanticColorToken {
+enum class OudsColorToken {
     Background,
     Error,
     ErrorContainer,

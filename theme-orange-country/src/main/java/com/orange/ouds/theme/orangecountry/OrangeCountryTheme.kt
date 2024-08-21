@@ -14,13 +14,13 @@ package com.orange.ouds.theme.orangecountry
 
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orangecountry.tokens.semantic.orangeCountrySemanticColors
-import com.orange.ouds.theme.tokens.semantic.OudsSemanticColors
+import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 
 class OrangeCountryTheme : OrangeTheme() {
 
     override val name: String
         get() = "Orange country"
 
-    override val colors: OudsSemanticColors
+    override val colors: OudsColorTokens
         get() = orangeCountrySemanticColors
 }
