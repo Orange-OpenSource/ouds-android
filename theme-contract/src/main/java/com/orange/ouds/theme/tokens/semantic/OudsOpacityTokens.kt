@@ -14,7 +14,7 @@ package com.orange.ouds.theme.tokens.semantic
 
 import com.orange.ouds.tokens.OpacityRawTokens
 
-class OudsSemanticOpacity(
+class OudsOpacityTokens(
     var transparent: Float = OpacityRawTokens.opacity0,
     var weaker: Float = OpacityRawTokens.opacity100,
     var weak: Float = OpacityRawTokens.opacity300,
