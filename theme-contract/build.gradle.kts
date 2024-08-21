@@ -24,8 +24,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":tokens-global-raw"))
-
+    implementation(project(":global-raw-tokens"))
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.compose.material3)
 }
