@@ -15,7 +15,7 @@ package com.orange.ouds.theme
 import android.os.Parcelable
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
-import com.orange.ouds.theme.tokens.semantic.OudsSemanticOpacity
+import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
 interface OudsThemeContract : Parcelable {
 
@@ -32,8 +32,8 @@ interface OudsThemeContract : Parcelable {
     /**
      * Semantic opacities values used in the theme
      */
-    val opacities: OudsSemanticOpacity
-        get() = OudsSemanticOpacity()
+    val opacities: OudsOpacityTokens
+        get() = OudsOpacityTokens()
 
     /**
      * Customization of the OUDS components if needed
