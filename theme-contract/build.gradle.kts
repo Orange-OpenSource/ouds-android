@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":tokens-global-raw"))
+    implementation(project(":global-raw-tokens"))
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
 }

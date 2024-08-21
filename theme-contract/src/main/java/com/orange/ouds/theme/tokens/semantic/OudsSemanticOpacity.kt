@@ -12,13 +12,13 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import com.orange.ouds.tokens.raw.Opacity
+import com.orange.ouds.tokens.OpacityRawTokens
 
 class OudsSemanticOpacity(
-    var transparent: Float = Opacity.opacity0,
-    var weaker: Float = Opacity.opacity100,
-    var weak: Float = Opacity.opacity300,
-    var medium: Float = Opacity.opacity500,
-    var emphasis: Float = Opacity.opacity700,
-    var opaque: Float = Opacity.opacity900
+    var transparent: Float = OpacityRawTokens.opacity0,
+    var weaker: Float = OpacityRawTokens.opacity100,
+    var weak: Float = OpacityRawTokens.opacity300,
+    var medium: Float = OpacityRawTokens.opacity500,
+    var emphasis: Float = OpacityRawTokens.opacity700,
+    var opaque: Float = OpacityRawTokens.opacity900
 )

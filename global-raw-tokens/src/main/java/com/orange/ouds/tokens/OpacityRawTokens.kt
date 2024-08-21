@@ -10,17 +10,17 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.tokens.raw
+package com.orange.ouds.tokens
 
-object Opacity {
-    val opacity0 = 0f
-    val opacity100 = 0.04f
-    val opacity200 = 0.08f
-    val opacity300 = 0.16f
-    val opacity400 = 0.24f
-    val opacity500 = 0.32f
-    val opacity600 = 0.48f
-    val opacity700 = 0.64f
-    val opacity800 = 0.88f
-    val opacity900 = 1f
+object OpacityRawTokens {
+    const val opacity0 = 0f
+    const val opacity100 = 0.04f
+    const val opacity200 = 0.08f
+    const val opacity300 = 0.16f
+    const val opacity400 = 0.24f
+    const val opacity500 = 0.32f
+    const val opacity600 = 0.48f
+    const val opacity700 = 0.64f
+    const val opacity800 = 0.88f
+    const val opacity900 = 1f
 }
