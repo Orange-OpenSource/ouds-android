@@ -10,11 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.orangecountry.tokens.raw
+package com.orange.ouds.theme.orangecountry.tokens
 
 import androidx.compose.ui.graphics.Color
 
-internal object OrangeCountryRawColors {
+internal object OrangeCountryColorRawTokens {
     val alert100 = Color(0xffFFCC00)
     val alert200 = Color(0xff8F7200)
 }
