@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
+import androidx.compose.runtime.Stable
 import com.orange.ouds.tokens.OpacityRawTokens
 
 class OudsOpacityTokens(
@@ -22,3 +23,24 @@ class OudsOpacityTokens(
     var emphasis: Float = OpacityRawTokens.opacity700,
     var opaque: Float = OpacityRawTokens.opacity900
 )
+
+enum class OudsOpacityToken {
+    Transparent,
+    Weaker,
+    Weak,
+    Medium,
+    Emphasis,
+    Opaque
+}
+
+@Stable
+fun OudsOpacityTokens.fromToken(token: OudsOpacityToken): Float {
+    return when (token) {
+        OudsOpacityToken.Transparent -> transparent
+        OudsOpacityToken.Weaker -> weaker
+        OudsOpacityToken.Weak -> weak
+        OudsOpacityToken.Medium -> medium
+        OudsOpacityToken.Emphasis -> emphasis
+        OudsOpacityToken.Opaque -> opaque
+    }
+}
