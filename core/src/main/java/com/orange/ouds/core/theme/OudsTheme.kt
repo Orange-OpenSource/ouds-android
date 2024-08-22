@@ -21,10 +21,12 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColors
 import com.orange.ouds.theme.OudsCustomTheme
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
 private fun customThemeError(message: Any): Nothing = error("OudsTheme not found. $message")
 
 internal val LocalColors = staticCompositionLocalOf<OudsColors> { customThemeError("LocalColors CompositionLocal not present") }
+private val LocalOpacityTokens = staticCompositionLocalOf { OudsOpacityTokens() }
 private val LocalComponentsTokens = staticCompositionLocalOf { OudsComponentsTokens() }
 
 object OudsTheme {
@@ -32,6 +34,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalColors.current
+
+    val opacityTokens: OudsOpacityTokens
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalOpacityTokens.current
 
     val componentsTokens: OudsComponentsTokens
         @Composable
@@ -57,6 +64,7 @@ fun OudsTheme(
 
     CompositionLocalProvider(
         LocalColors provides colors,
+        LocalOpacityTokens provides customTheme.opacityTokens,
         LocalComponentsTokens provides customTheme.componentsTokens
     ) {
         MaterialTheme(colorScheme = if (darkThemeEnabled) customTheme.colorTokens.materialDarkColorScheme else customTheme.colorTokens.materialLightColorScheme) {
