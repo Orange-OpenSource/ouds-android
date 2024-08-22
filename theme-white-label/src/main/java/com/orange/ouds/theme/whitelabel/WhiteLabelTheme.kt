@@ -13,6 +13,9 @@
 package com.orange.ouds.theme.whitelabel
 
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.tokens.components.OudsButtonTokens
+import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 import com.orange.ouds.theme.whitelabel.tokens.whiteLabelSemanticColorTokens
 import kotlinx.parcelize.Parcelize
@@ -25,4 +28,9 @@ open class WhiteLabelTheme : OudsThemeContract {
 
     override val colorTokens: OudsColorTokens
         get() = whiteLabelSemanticColorTokens
+
+    override val componentsTokens: OudsComponentsTokens
+        get() = OudsComponentsTokens(
+            button = OudsButtonTokens(cornerRadius = OudsBorderRadiusToken.Pill)
+        )
 }

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.tokens.type.BorderStyle
@@ -31,7 +32,66 @@ class OudsBorderTokens(
     var radiusMedium: Dp = BorderRawTokens.borderRadius150.dp,
     var radiusTall: Dp = BorderRawTokens.borderRadius300.dp,
     var radiusPill: Dp = BorderRawTokens.borderRadius9999.dp,
-    var radiusCircle: Float = 0.5f, //TODO Waiting for an answer to my question here: https://github.com/Orange-OpenSource/ouds-android/issues/30
+    //TODO var radiusCircle: Int = 50, waiting for an answer here https://github.com/Orange-OpenSource/ouds-android/issues/30
     var styleDefault: BorderStyle = BorderStyle.fromString(BorderRawTokens.borderStyleSolid),
     var styleDrag: BorderStyle = BorderStyle.fromString(BorderRawTokens.borderStyleDashed)
 )
+
+enum class OudsBorderWidthToken {
+    None,
+    Default,
+    Thin,
+    Thick,
+    Thicker,
+    Thickest,
+    InteractivePrimaryFocus
+}
+
+@Stable
+fun OudsBorderTokens.fromToken(token: OudsBorderWidthToken): Dp {
+    return when (token) {
+        OudsBorderWidthToken.None -> widthNone
+        OudsBorderWidthToken.Default -> widthDefault
+        OudsBorderWidthToken.Thin -> widthThin
+        OudsBorderWidthToken.Thick -> widthThick
+        OudsBorderWidthToken.Thicker -> widthThicker
+        OudsBorderWidthToken.Thickest -> widthThickest
+        OudsBorderWidthToken.InteractivePrimaryFocus -> widthInteractivePrimaryFocus
+    }
+}
+
+enum class OudsBorderRadiusToken {
+    None,
+    Default,
+    Short,
+    Medium,
+    Tall,
+    Pill,
+    // TODO add Circle
+}
+
+@Stable
+fun OudsBorderTokens.fromToken(token: OudsBorderRadiusToken): Dp {
+    return when (token) {
+        OudsBorderRadiusToken.None -> radiusNone
+        OudsBorderRadiusToken.Default -> radiusDefault
+        OudsBorderRadiusToken.Short -> radiusShort
+        OudsBorderRadiusToken.Medium -> radiusMedium
+        OudsBorderRadiusToken.Tall -> radiusTall
+        OudsBorderRadiusToken.Pill -> radiusPill
+        //TODO OudsBorderRadiusToken.Circle -> radiusCircle
+    }
+}
+
+enum class OudsBorderStyleToken {
+    Default,
+    Drag
+}
+
+@Stable
+fun OudsBorderTokens.fromToken(token: OudsBorderStyleToken): BorderStyle {
+    return when (token) {
+        OudsBorderStyleToken.Default -> styleDefault
+        OudsBorderStyleToken.Drag -> styleDrag
+    }
+}

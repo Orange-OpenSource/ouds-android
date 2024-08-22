@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.tokens.components
 
+import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorToken
 
 open class OudsButtonTokens(
@@ -19,4 +20,5 @@ open class OudsButtonTokens(
     val contentColor: OudsColorToken = OudsColorToken.OnPrimary,
     val disabledContainerColor: OudsColorToken = OudsColorToken.Secondary,
     val disabledContentColor: OudsColorToken = OudsColorToken.OnSecondary,
+    val cornerRadius: OudsBorderRadiusToken = OudsBorderRadiusToken.None
 )
