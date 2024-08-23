@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component.utilities
 
 import android.content.res.Configuration
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,11 +24,14 @@ import com.orange.ouds.core.theme.OudsTheme
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
  *
+ * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
  * @param content The content of the preview.
  */
 @Composable
-fun OudsPreview(content: @Composable () -> Unit) = OudsTheme(customTheme = BuildConfig.PREVIEW_CUSTOM_THEME) {
-    Surface(content = content) // Add a surface to be able to see components
+fun OudsPreview(darkThemeEnabled: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    OudsTheme(customTheme = BuildConfig.PREVIEW_CUSTOM_THEME, darkThemeEnabled) {
+        Surface(content = content) // Add a surface to be able to see components
+    }
 }
 
 /**
