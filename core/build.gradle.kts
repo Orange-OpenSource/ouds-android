@@ -15,18 +15,33 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+/**
+ * The OudsCustomTheme implementation used by Android Studio previews for the OUDS library.
+ * Please change this value if you want to have a custom theme preview for the OUDS library and
+ * don't forget to add a dependency to your custom theme in this case.
+ */
+val previewCustomThemeClass = "com.orange.ouds.theme.orange.OrangeTheme"
+
 android {
     namespace = "com.orange.ouds.core"
 
+    defaultConfig {
+        buildConfigField("com.orange.ouds.theme.OudsCustomTheme", "PREVIEW_CUSTOM_THEME", "new $previewCustomThemeClass()")
+    }
+
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 }
 
 dependencies {
     api(project(":theme-contract"))
+    api(project(":theme-orange"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.material)
 }
