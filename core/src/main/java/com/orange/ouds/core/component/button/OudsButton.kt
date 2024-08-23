@@ -20,6 +20,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.component.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.core.component.utilities.OudsPreview
+import com.orange.ouds.core.component.utilities.UiModePreviews
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.fromToken
 import com.orange.ouds.theme.tokens.semantic.fromToken
@@ -51,3 +55,25 @@ fun OudsButton(
         )
     }
 }
+
+@UiModePreviews.Button
+@Composable
+private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvider::class) parameter: OudsButtonPreviewParameter) = OudsPreview {
+    with(parameter) {
+        OudsButton(text = "Text", onClick = {}, enabled = enabled)
+    }
+}
+
+private data class OudsButtonPreviewParameter(
+    val enabled: Boolean = true
+)
+
+private class OudsButtonPreviewParameterProvider :
+    BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OudsButtonPreviewParameter>
+    get() = mutableListOf<OudsButtonPreviewParameter>().apply {
+        add(OudsButtonPreviewParameter())
+        add(OudsButtonPreviewParameter(enabled = false))
+    }
+
