@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.core.component.utilities.OudsPreview
@@ -64,11 +65,19 @@ private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvid
     }
 }
 
-private data class OudsButtonPreviewParameter(
+
+@Composable
+internal fun PreviewOudsButton(darkThemeEnabled: Boolean, parameter: OudsButtonPreviewParameter) = OudsPreview(darkThemeEnabled) {
+    with(parameter) {
+        OudsButton(text = "Text", onClick = {}, enabled = enabled)
+    }
+}
+
+internal data class OudsButtonPreviewParameter(
     val enabled: Boolean = true
 )
 
-private class OudsButtonPreviewParameterProvider :
+internal class OudsButtonPreviewParameterProvider :
     BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsButtonPreviewParameter>
