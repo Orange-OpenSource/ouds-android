@@ -52,6 +52,13 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.material)
+
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.kotlin.reflect)
+    androidTestImplementation(libs.mockito.android)
+    androidTestImplementation(libs.mockito.kotlin)
+    // Needed for createComposeRule(), but not for createAndroidComposeRule<YourActivity>():
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
 
 // TODO Remove when https://github.com/google/guava/issues/6567 is fixed.
