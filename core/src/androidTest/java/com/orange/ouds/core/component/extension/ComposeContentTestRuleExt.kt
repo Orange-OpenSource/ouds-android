@@ -17,7 +17,7 @@ import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.orange.OrangeTheme
 
-internal fun ComposeContentTestRule.setOdsContent(composable: @Composable () -> Unit) {
+internal fun ComposeContentTestRule.setOudsContent(composable: @Composable () -> Unit) {
     setContent {
         OudsTheme(customTheme = OrangeTheme(), content = composable)
     }
