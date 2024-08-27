@@ -24,6 +24,14 @@ class GitHubApi(private val token: String, private val repository: String) {
         )
     }
 
+    fun Project.publishRelease(tag: String, draft: Boolean, prerelease: Boolean) {
+        launchRequest(
+            "releases",
+            "POST",
+            "{\"tag_name\":\"$tag\",\"name\":\"$tag\",\"draft\":$draft,\"prerelease\":$prerelease}"
+        )
+    }
+
     private fun Project.launchRequest(path: String, method: String, postData: String? = null) {
         val args = mutableListOf(
             "-X", method,
