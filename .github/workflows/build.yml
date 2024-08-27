@@ -146,3 +146,36 @@ jobs:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
         run: ./gradlew publish
+
+  github-release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    needs: build
+    environment:
+      name: github-release
+      url: https://github.com/Orange-OpenSource/ouds-android/releases
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Publish release to GitHub
+        run: ./gradlew publishToGitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }

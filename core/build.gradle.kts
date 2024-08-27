@@ -11,6 +11,7 @@
  */
 
 plugins {
+    id("github")
     id("library")
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.paparazzi)
