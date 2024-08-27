@@ -108,3 +108,6 @@ fun Project.gitHubApi(action: GitHubApi.() -> Unit) {
     val token = Environment.getVariables("GITHUB_TOKEN").first()
     GitHubApi(token, "Orange-OpenSource/ouds-android").action()
 }
+
+val Project.artifactId: String
+    get() = "ouds-$name"

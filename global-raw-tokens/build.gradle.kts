@@ -1,5 +1,5 @@
 plugins {
-    id("com.orange.ouds.gradle.library")
+    id("library")
 }
 
 android {

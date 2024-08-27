@@ -10,20 +10,16 @@
  * Software description: Android library of reusable graphical components
  */
 
-plugins {
-    id("library")
-    alias(libs.plugins.compose.compiler)
-}
+package com.orange.ouds.gradle
 
-android {
-    namespace = "com.orange.ouds.foundation"
+abstract class MavenCentralPublishPluginExtension {
 
-    buildFeatures {
-        compose = true
+    companion object {
+        const val NAME = "mavenCentralPublish"
+        const val VARIANT = "prodRelease"
     }
-}
 
-dependencies {
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.ui)
+    var artifactId: String? = null
+
+    var enabled: Boolean = true
 }
