@@ -15,7 +15,7 @@ package com.orange.ouds.core.component.button
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.orange.ouds.core.component.extension.setOdsContent
+import com.orange.ouds.core.component.extension.setOudsContent
 import org.junit.Rule
 import org.junit.Test
 
@@ -30,7 +30,7 @@ internal class OudsButtonTest {
             val text = "Click"
             val onClick = {}
 
-            setOdsContent {
+            setOudsContent {
                 OudsButton(
                     text = text,
                     onClick = onClick,
