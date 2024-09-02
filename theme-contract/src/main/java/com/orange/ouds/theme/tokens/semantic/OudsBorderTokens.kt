@@ -32,7 +32,6 @@ class OudsBorderTokens(
     var radiusMedium: Dp = BorderRawTokens.borderRadius150.dp,
     var radiusTall: Dp = BorderRawTokens.borderRadius300.dp,
     var radiusPill: Dp = BorderRawTokens.borderRadius9999.dp,
-    //TODO var radiusCircle: Int = 50, waiting for an answer here https://github.com/Orange-OpenSource/ouds-android/issues/30
     var styleDefault: BorderStyle = BorderStyle.fromString(BorderRawTokens.borderStyleSolid),
     var styleDrag: BorderStyle = BorderStyle.fromString(BorderRawTokens.borderStyleDashed)
 )
@@ -66,8 +65,7 @@ enum class OudsBorderRadiusToken {
     Short,
     Medium,
     Tall,
-    Pill,
-    // TODO add Circle
+    Pill
 }
 
 @Stable
@@ -79,7 +77,6 @@ fun OudsBorderTokens.fromToken(token: OudsBorderRadiusToken): Dp {
         OudsBorderRadiusToken.Medium -> radiusMedium
         OudsBorderRadiusToken.Tall -> radiusTall
         OudsBorderRadiusToken.Pill -> radiusPill
-        //TODO OudsBorderRadiusToken.Circle -> radiusCircle
     }
 }
 
