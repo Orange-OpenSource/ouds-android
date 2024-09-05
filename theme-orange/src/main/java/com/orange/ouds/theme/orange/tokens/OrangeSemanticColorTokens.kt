@@ -15,8 +15,8 @@ package com.orange.ouds.theme.orange.tokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokenValue
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 
-val orangeColorSemanticTokens
-    get() = with(OrangeColorRawTokens) {
+val orangeSemanticColorTokens
+    get() = with(OrangeRawColorTokens) {
         OudsColorTokens(
             primary = OudsColorTokenValue(orange200, orange100),
             onPrimary = OudsColorTokenValue(white100, black900),

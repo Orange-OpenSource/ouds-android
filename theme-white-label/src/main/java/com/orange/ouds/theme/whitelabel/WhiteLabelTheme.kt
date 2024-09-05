@@ -14,7 +14,7 @@ package com.orange.ouds.theme.whitelabel
 
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
-import com.orange.ouds.theme.whitelabel.tokens.WhiteLabelColorSemanticTokens
+import com.orange.ouds.theme.whitelabel.tokens.whiteLabelSemanticColorTokens
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -24,5 +24,5 @@ open class WhiteLabelTheme : OudsThemeContract {
         get() = "White label"
 
     override val colorTokens: OudsColorTokens
-        get() = WhiteLabelColorSemanticTokens
+        get() = whiteLabelSemanticColorTokens
 }

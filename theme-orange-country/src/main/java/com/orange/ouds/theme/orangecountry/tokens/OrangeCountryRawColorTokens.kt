@@ -12,12 +12,9 @@
 
 package com.orange.ouds.theme.orangecountry.tokens
 
-import com.orange.ouds.theme.orange.tokens.orangeColorSemanticTokens
-import com.orange.ouds.theme.tokens.semantic.OudsColorTokenValue
+import androidx.compose.ui.graphics.Color
 
-val orangeCountrySemanticColorTokens
-    get() = with(OrangeCountryColorRawTokens) {
-        orangeColorSemanticTokens.copy(
-            primary = OudsColorTokenValue(alert200, alert100)
-        )
-    }
+internal object OrangeCountryRawColorTokens {
+    val alert100 = Color(0xFFFFCC00)
+    val alert200 = Color(0xFF8F7200)
+}

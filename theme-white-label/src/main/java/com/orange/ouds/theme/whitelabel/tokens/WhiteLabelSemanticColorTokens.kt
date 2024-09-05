@@ -15,7 +15,7 @@ package com.orange.ouds.theme.whitelabel.tokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokenValue
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 
-val WhiteLabelColorSemanticTokens = with(WhiteLabelColorRawTokens) {
+val whiteLabelSemanticColorTokens = with(WhiteLabelRawColorTokens) {
     OudsColorTokens(
         primary = OudsColorTokenValue(primary40, primary80),
         onPrimary = OudsColorTokenValue(white, primary20),

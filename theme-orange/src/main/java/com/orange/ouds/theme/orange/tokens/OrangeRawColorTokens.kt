@@ -14,7 +14,7 @@ package com.orange.ouds.theme.orange.tokens
 
 import androidx.compose.ui.graphics.Color
 
-internal object OrangeColorRawTokens {
+internal object OrangeRawColorTokens {
     val orange100 = Color(0xFFFF7900)
     val orange200 = Color(0xFFF16E00)
     val tmpOrangeFFA14D = Color(0xFFFFA14D)
