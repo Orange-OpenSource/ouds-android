@@ -161,7 +161,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
         ) {
             //TODO Replace hard coded values by tokens when available and use OUDS typography
             Text(
-                text = stringResource(R.string.app_changeThemeDialog_label),
+                text = stringResource(R.string.app_themeDialog_label),
                 modifier = Modifier
                     .padding(top = 16.dp, bottom = 8.dp)
                     .padding(horizontal = 16.dp),
