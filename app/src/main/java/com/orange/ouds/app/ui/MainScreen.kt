@@ -71,7 +71,7 @@ fun MainScreen(customThemes: List<OudsCustomTheme>, mainViewModel: MainViewModel
                 )
             },
             darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
-            customThemes = customThemes
+            availableThemes = customThemes
         )
     )
 

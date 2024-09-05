@@ -44,9 +44,9 @@ class ThemeState(
 
 @Composable
 fun rememberThemeState(
-    customThemes: List<OudsCustomTheme>,
+    availableThemes: List<OudsCustomTheme>,
     currentTheme: MutableState<OudsCustomTheme>,
     darkModeEnabled: MutableState<Boolean>,
-) = remember(customThemes, currentTheme, darkModeEnabled) {
-    ThemeState(customThemes, currentTheme, darkModeEnabled)
+) = remember(availableThemes, currentTheme, darkModeEnabled) {
+    ThemeState(availableThemes, currentTheme, darkModeEnabled)
 }
