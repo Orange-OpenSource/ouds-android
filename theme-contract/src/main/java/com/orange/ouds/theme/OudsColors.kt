@@ -86,6 +86,5 @@ fun OudsColors.fromToken(value: OudsColorToken): Color {
         OudsColorToken.SurfaceVariant -> surfaceVariant
         OudsColorToken.Tertiary -> tertiary
         OudsColorToken.TertiaryContainer -> tertiaryContainer
-        else -> Color.Unspecified
     }
 }
