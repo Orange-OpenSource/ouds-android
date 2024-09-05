@@ -24,6 +24,6 @@ android {
 }
 
 dependencies {
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material3)
+    api(platform(libs.androidx.compose.bom))
+    api(libs.androidx.compose.material3)
 }
