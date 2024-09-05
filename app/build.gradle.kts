@@ -16,13 +16,13 @@ import com.orange.ouds.gradle.findTypedProperty
 plugins {
     id("firebase")
     id(libs.plugins.android.application.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    id(libs.plugins.kotlin.android.get().pluginId)
+    id(libs.plugins.kotlin.kapt.get().pluginId)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.firebase.appdistribution)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.services)
     alias(libs.plugins.hilt)
-    id(libs.plugins.kotlin.android.get().pluginId)
-    id(libs.plugins.kotlin.kapt.get().pluginId) // This must be the last statement in the plugins {} to avoid "options not recognized" warning
 }
 
 
