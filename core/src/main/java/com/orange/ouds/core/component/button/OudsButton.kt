@@ -36,10 +36,10 @@ fun OudsButton(
         interactionSource = remember { MutableInteractionSource() },
         elevation = null,
         colors = ButtonDefaults.buttonColors(
-            containerColor = OudsTheme.colors.fromToken(OudsTheme.componentsTokens.button.containerColor),
-            contentColor = OudsTheme.colors.fromToken(OudsTheme.componentsTokens.button.contentColor),
-            disabledContainerColor = OudsTheme.colors.fromToken(OudsTheme.componentsTokens.button.disabledContainerColor),
-            disabledContentColor = OudsTheme.colors.fromToken(OudsTheme.componentsTokens.button.disabledContentColor),
+            containerColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.containerColor),
+            contentColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.contentColor),
+            disabledContainerColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.disabledContainerColor),
+            disabledContentColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.disabledContentColor),
         )
     ) {
         Text(

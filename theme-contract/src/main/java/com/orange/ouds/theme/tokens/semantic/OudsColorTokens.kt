@@ -16,7 +16,7 @@ import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.OudsColors
+import com.orange.ouds.theme.OudsColorScheme
 
 class OudsColorTokens(
     val primary: OudsColorTokenValue,
@@ -56,8 +56,8 @@ class OudsColorTokens(
     val alert: OudsColorTokenValue,
 ) {
 
-    val lightColors: OudsColors
-        get() = OudsColors(
+    val lightColorScheme: OudsColorScheme
+        get() = OudsColorScheme(
             primary = primary.light,
             onPrimary = onPrimary.light,
             primaryContainer = primaryContainer.light,
@@ -95,8 +95,8 @@ class OudsColorTokens(
             alert = alert.light
         )
 
-    val darkColors: OudsColors
-        get() = OudsColors(
+    val darkColorScheme: OudsColorScheme
+        get() = OudsColorScheme(
             primary = primary.dark,
             onPrimary = onPrimary.dark,
             primaryContainer = primaryContainer.dark,

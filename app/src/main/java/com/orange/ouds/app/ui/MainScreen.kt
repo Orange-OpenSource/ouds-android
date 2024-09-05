@@ -156,7 +156,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
     Dialog(onDismissRequest = dismissDialog) {
         Column(
             modifier = Modifier
-                .background(OudsTheme.colors.surfaceVariant)
+                .background(OudsTheme.colorScheme.surfaceVariant)
                 .selectableGroup()
         ) {
             //TODO Replace hard coded values by tokens when available and use OUDS typography

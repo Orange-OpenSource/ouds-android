@@ -18,20 +18,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.orange.ouds.theme.OudsColors
+import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 
 private fun themeError(message: Any): Nothing = error("OudsTheme not found. $message")
 
-private val LocalColors = staticCompositionLocalOf<OudsColors> { themeError("LocalColors CompositionLocal not present") }
+private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { themeError("LocalColorScheme CompositionLocal not present") }
 private val LocalComponentsTokens = staticCompositionLocalOf { OudsComponentsTokens() }
 
 object OudsTheme {
-    val colors: OudsColors
+    val colorScheme: OudsColorScheme
         @Composable
         @ReadOnlyComposable
-        get() = LocalColors.current
+        get() = LocalColorScheme.current
 
     val componentsTokens: OudsComponentsTokens
         @Composable
@@ -53,10 +53,10 @@ fun OudsTheme(
     content: @Composable () -> Unit
 ) {
 
-    val colors = if (darkThemeEnabled) themeContract.colorTokens.darkColors else themeContract.colorTokens.lightColors
+    val colorScheme = if (darkThemeEnabled) themeContract.colorTokens.darkColorScheme else themeContract.colorTokens.lightColorScheme
 
     CompositionLocalProvider(
-        LocalColors provides colors,
+        LocalColorScheme provides colorScheme,
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
         MaterialTheme(colorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme) {

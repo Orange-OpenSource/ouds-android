@@ -16,7 +16,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorToken
 
-class OudsColors(
+class OudsColorScheme(
     val primary: Color,
     val onPrimary: Color,
     val primaryContainer: Color,
@@ -55,7 +55,7 @@ class OudsColors(
 )
 
 @Stable
-fun OudsColors.fromToken(value: OudsColorToken): Color {
+fun OudsColorScheme.fromToken(value: OudsColorToken): Color {
     return when (value) {
         OudsColorToken.Background -> background
         OudsColorToken.Error -> error
