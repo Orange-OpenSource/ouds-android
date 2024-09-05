@@ -26,7 +26,4 @@ android {
 
 dependencies {
     implementation(project(":theme-contract"))
-
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material3)
 }
