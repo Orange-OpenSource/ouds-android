@@ -19,12 +19,12 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColors
-import com.orange.ouds.theme.OudsCustomTheme
+import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 
-private fun customThemeError(message: Any): Nothing = error("OudsTheme not found. $message")
+private fun themeError(message: Any): Nothing = error("OudsTheme not found. $message")
 
-private val LocalColors = staticCompositionLocalOf<OudsColors> { customThemeError("LocalColors CompositionLocal not present") }
+private val LocalColors = staticCompositionLocalOf<OudsColors> { themeError("LocalColors CompositionLocal not present") }
 private val LocalComponentsTokens = staticCompositionLocalOf { OudsComponentsTokens() }
 
 object OudsTheme {
@@ -42,24 +42,24 @@ object OudsTheme {
 /**
  * OUDS theme is the theme to apply to your screens in an Orange Jetpack Compose application.
  *
- * @param customTheme Custom theme which contain the configuration of the OudsTheme: colors, typography...
+ * @param themeContract Theme contract which contain the configuration of the OudsTheme: colors, typography...
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
  * @param content Theme nested content. OudsTheme will be applied to this content.
  */
 @Composable
 fun OudsTheme(
-    customTheme: OudsCustomTheme,
+    themeContract: OudsThemeContract,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
 
-    val colors = if (darkThemeEnabled) customTheme.colorTokens.darkColors else customTheme.colorTokens.lightColors
+    val colors = if (darkThemeEnabled) themeContract.colorTokens.darkColors else themeContract.colorTokens.lightColors
 
     CompositionLocalProvider(
         LocalColors provides colors,
-        LocalComponentsTokens provides customTheme.componentsTokens
+        LocalComponentsTokens provides themeContract.componentsTokens
     ) {
-        MaterialTheme(colorScheme = if (darkThemeEnabled) customTheme.colorTokens.materialDarkColorScheme else customTheme.colorTokens.materialLightColorScheme) {
+        MaterialTheme(colorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme) {
             content()
         }
     }

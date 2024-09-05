@@ -52,26 +52,26 @@ import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.app.ui.utilities.isDarkModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.theme.OudsCustomTheme
+import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @Composable
-fun MainScreen(customThemes: List<OudsCustomTheme>, mainViewModel: MainViewModel = viewModel()) {
+fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = viewModel()) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
         themeState = rememberThemeState(
             currentTheme = rememberSaveable {
                 mutableStateOf(
-                    getCurrentCustomTheme(
+                    getCurrentTheme(
                         mainViewModel.getUserThemeName(),
-                        customThemes
+                        themes
                     )
                 )
             },
             darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
-            availableThemes = customThemes
+            availableThemes = themes
         )
     )
 
@@ -87,7 +87,7 @@ fun MainScreen(customThemes: List<OudsCustomTheme>, mainViewModel: MainViewModel
     ) {
         TopBarActionsHandler(onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OudsTheme(
-            customTheme = mainState.themeState.currentTheme,
+            themeContract = mainState.themeState.currentTheme,
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
             Scaffold(
@@ -205,9 +205,9 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
 /**
  * Returns the stored user theme if it exists. Otherwise, returns the Orange theme or the first existing theme.
  */
-private fun getCurrentCustomTheme(
+private fun getCurrentTheme(
     storedUserThemeName: String?,
-    customThemes: List<OudsCustomTheme>
-) = customThemes.firstOrNull { it.name == storedUserThemeName }
-    .orElse { customThemes.firstOrNull { it.name == ORANGE_THEME_NAME } }
-    .orElse { customThemes.first() }
+    themes: List<OudsThemeContract>
+) = themes.firstOrNull { it.name == storedUserThemeName }
+    .orElse { themes.firstOrNull { it.name == ORANGE_THEME_NAME } }
+    .orElse { themes.first() }

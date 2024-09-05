@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen(customThemes = listOf(OrangeTheme(), OrangeCountryTheme(), WhiteLabelTheme()))
+            MainScreen(themes = listOf(OrangeTheme(), OrangeCountryTheme(), WhiteLabelTheme()))
         }
     }
 }

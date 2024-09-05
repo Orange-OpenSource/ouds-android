@@ -18,13 +18,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.orange.ouds.theme.OudsCustomTheme
+import com.orange.ouds.theme.OudsThemeContract
 
 val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("CompositionLocal LocalThemeManager not present") }
 
 interface ThemeManager {
-    val availableThemes: List<OudsCustomTheme>
-    var currentTheme: OudsCustomTheme
+    val availableThemes: List<OudsThemeContract>
+    var currentTheme: OudsThemeContract
     var darkModeEnabled: Boolean
 }
 
@@ -32,8 +32,8 @@ interface ThemeManager {
  * Theme state source of truth.
  */
 class ThemeState(
-    override val availableThemes: List<OudsCustomTheme>,
-    currentTheme: MutableState<OudsCustomTheme>,
+    override val availableThemes: List<OudsThemeContract>,
+    currentTheme: MutableState<OudsThemeContract>,
     darkModeEnabled: MutableState<Boolean>
 ) : ThemeManager {
 
@@ -44,8 +44,8 @@ class ThemeState(
 
 @Composable
 fun rememberThemeState(
-    availableThemes: List<OudsCustomTheme>,
-    currentTheme: MutableState<OudsCustomTheme>,
+    availableThemes: List<OudsThemeContract>,
+    currentTheme: MutableState<OudsThemeContract>,
     darkModeEnabled: MutableState<Boolean>,
 ) = remember(availableThemes, currentTheme, darkModeEnabled) {
     ThemeState(availableThemes, currentTheme, darkModeEnabled)

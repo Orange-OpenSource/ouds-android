@@ -16,7 +16,7 @@ import android.os.Parcelable
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 
-interface OudsCustomTheme : Parcelable {
+interface OudsThemeContract : Parcelable {
 
     /**
      * Theme display name

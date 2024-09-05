@@ -12,13 +12,13 @@
 
 package com.orange.ouds.theme.whitelabel
 
-import com.orange.ouds.theme.OudsCustomTheme
+import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 import com.orange.ouds.theme.whitelabel.tokens.WhiteLabelColorSemanticTokens
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-open class WhiteLabelTheme : OudsCustomTheme {
+open class WhiteLabelTheme : OudsThemeContract {
 
     override val name: String
         get() = "White label"
