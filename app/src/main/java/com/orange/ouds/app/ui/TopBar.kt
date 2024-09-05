@@ -64,7 +64,7 @@ fun getDefaultActions(onActionClick: (TopBarAction) -> Unit): List<@Composable (
 
 @Composable
 private fun ChangeThemeAction(onClick: (TopBarAction) -> Unit) {
-    IconButton(onClick = { onClick(TopBarAction.ChangeTheme) }) {
+    IconButton(onClick = { onClick(ChangeTheme) }) {
         Icon(painter = painterResource(id = R.drawable.ic_palette), contentDescription = stringResource(id = R.string.app_topBar_changeTheme_button_a11y))
     }
 }
@@ -76,7 +76,7 @@ private fun ChangeModeAction(onClick: (TopBarAction) -> Unit) {
     val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
     val iconDesc = if (configuration.isDarkModeEnabled) R.string.app_topBar_changeModeToLight_button_a11y else R.string.app_topBar_changeModeToDark_button_a11y
 
-    IconButton(onClick = { onClick(TopBarAction.ChangeMode) }) {
+    IconButton(onClick = { onClick(ChangeMode) }) {
         Icon(painter = painterResource(id = painterRes), contentDescription = stringResource(id = iconDesc))
     }
 }
