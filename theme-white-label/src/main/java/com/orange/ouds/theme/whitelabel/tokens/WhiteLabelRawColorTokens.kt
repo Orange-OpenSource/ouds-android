@@ -14,7 +14,7 @@ package com.orange.ouds.theme.whitelabel.tokens
 
 import androidx.compose.ui.graphics.Color
 
-object WhiteLabelRawColorTokens {
+internal object WhiteLabelRawColorTokens {
     val primary20 = Color(0xFF00315F)
     val primary30 = Color(0xFF006CC5)
     val primary40 = Color(0xFF005095)
