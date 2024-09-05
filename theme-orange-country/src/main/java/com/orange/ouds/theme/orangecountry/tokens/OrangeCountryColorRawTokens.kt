@@ -15,6 +15,6 @@ package com.orange.ouds.theme.orangecountry.tokens
 import androidx.compose.ui.graphics.Color
 
 internal object OrangeCountryColorRawTokens {
-    val alert100 = Color(0xffFFCC00)
-    val alert200 = Color(0xff8F7200)
+    val alert100 = Color(0xFFFFCC00)
+    val alert200 = Color(0xFF8F7200)
 }
