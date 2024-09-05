@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.tokens
+package com.orange.ouds.tokens.global.raw
 
 object OpacityRawTokens {
     const val opacity0 = 0f

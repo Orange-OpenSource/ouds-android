@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.runtime.Stable
-import com.orange.ouds.tokens.OpacityRawTokens
+import com.orange.ouds.tokens.global.raw.OpacityRawTokens
 
 class OudsOpacityTokens(
     var transparent: Float = OpacityRawTokens.opacity0,
