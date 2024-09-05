@@ -13,10 +13,9 @@
 package com.orange.ouds.theme.orangecountry.tokens
 
 import com.orange.ouds.theme.orange.tokens.orangeColorSemanticTokens
-import com.orange.ouds.theme.orangecountry.OrangeCountryTheme
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokenValue
 
-val OrangeCountryTheme.orangeCountrySemanticColorTokens
+val orangeCountrySemanticColorTokens
     get() = with(OrangeCountryColorRawTokens) {
         orangeColorSemanticTokens.copy(
             primary = OudsColorTokenValue(alert200, alert100)
