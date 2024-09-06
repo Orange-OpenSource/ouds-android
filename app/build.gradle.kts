@@ -16,11 +16,13 @@ import com.orange.ouds.gradle.findTypedProperty
 plugins {
     id("firebase")
     id(libs.plugins.android.application.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    id(libs.plugins.kotlin.android.get().pluginId)
+    id(libs.plugins.kotlin.kapt.get().pluginId)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.firebase.appdistribution)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.services)
-    id(libs.plugins.kotlin.android.get().pluginId)
+    alias(libs.plugins.hilt)
 }
 
 
@@ -88,13 +90,19 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
+    implementation(project(":theme-orange"))
+    implementation(project(":theme-orange-country"))
+    implementation(project(":theme-white-label"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.browser)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.navigation.compose)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
     implementation(libs.kotlin.reflect)
 }

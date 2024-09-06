@@ -13,11 +13,15 @@
 package com.orange.ouds.app.ui
 
 import android.os.Bundle
+import androidx.compose.runtime.Composable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutMenuItem
 import com.orange.ouds.app.ui.about.AboutNavigationKey
 import com.orange.ouds.foundation.UiString
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 
 /**
  * Returns the [Screen] corresponding to the given [route].
@@ -50,7 +54,15 @@ sealed class Screen(
     val title: UiString? = null,
 ) {
 
+    companion object {
+        private val _topBarActionClicked = MutableSharedFlow<TopBarAction>(extraBufferCapacity = 1)
+        val topBarActionClicked: Flow<TopBarAction> = _topBarActionClicked.asSharedFlow()
+    }
+
     fun isHome() = this in listOf(Guidelines, Components, About)
+
+    @Composable
+    fun getTopBarActions(): List<@Composable () -> Unit> = getDefaultActions { action -> _topBarActionClicked.tryEmit(action) }
 
     // Bottom navigation screens
 
