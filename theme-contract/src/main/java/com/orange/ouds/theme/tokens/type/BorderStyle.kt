@@ -18,10 +18,10 @@ enum class BorderStyle {
     None, Solid, Dashed, Dotted;
 
     companion object {
-        fun fromString(s: String): BorderStyle {
+        fun fromString(string: String): BorderStyle {
             return try {
-                BorderStyle.valueOf(s.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() })
-            } catch (e: IllegalArgumentException) {
+                BorderStyle.valueOf(string.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() })
+            } catch (exception: IllegalArgumentException) {
                 // If the provided border style value is unknown, return the default border style
                 None
             }
