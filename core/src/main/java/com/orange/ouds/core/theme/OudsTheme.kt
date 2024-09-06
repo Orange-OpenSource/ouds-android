@@ -27,7 +27,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 private fun themeError(message: Any): Nothing = error("OudsTheme not found. $message")
 
 private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { themeError("LocalColorScheme CompositionLocal not present") }
-private val LocalBorderTokens = staticCompositionLocalOf { OudsBorderTokens() }
+private val LocalBorderTokens = staticCompositionLocalOf<OudsBorderTokens> { themeError("LocalBorderTokens CompositionLocal not present") }
 private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { themeError("LocalOpacityTokens CompositionLocal not present") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { themeError("LocalComponentsTokens CompositionLocal not present") }
 
