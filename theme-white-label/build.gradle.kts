@@ -11,7 +11,7 @@
  */
 
 plugins {
-    id("com.orange.ouds.gradle.library")
+    id("library")
     alias(libs.plugins.compose.compiler)
     id(libs.plugins.kotlin.parcelize.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
 }
