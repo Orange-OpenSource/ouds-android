@@ -34,7 +34,7 @@ android {
     namespace = "com.orange.ouds.core"
 
     defaultConfig {
-        buildConfigField("com.orange.ouds.theme.OudsCustomTheme", "PREVIEW_CUSTOM_THEME", "new $previewCustomThemeClass()")
+        buildConfigField("com.orange.ouds.theme.OudsThemeContract", "PREVIEW_CUSTOM_THEME", "new $previewCustomThemeClass()")
     }
 
     buildFeatures {

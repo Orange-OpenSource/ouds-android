@@ -19,6 +19,6 @@ import com.orange.ouds.theme.orange.OrangeTheme
 
 internal fun ComposeContentTestRule.setOudsContent(composable: @Composable () -> Unit) {
     setContent {
-        OudsTheme(customTheme = OrangeTheme(), content = composable)
+        OudsTheme(themeContract = OrangeTheme(), content = composable)
     }
 }
