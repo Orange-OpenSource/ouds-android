@@ -25,7 +25,7 @@ import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 private fun themeError(message: Any): Nothing = error("OudsTheme not found. $message")
 
 private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { themeError("LocalColorScheme CompositionLocal not present") }
-private val LocalComponentsTokens = staticCompositionLocalOf { OudsComponentsTokens() }
+private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { themeError("LocalComponentsTokens CompositionLocal not present") }
 
 object OudsTheme {
     val colorScheme: OudsColorScheme
