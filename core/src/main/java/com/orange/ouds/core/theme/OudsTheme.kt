@@ -24,12 +24,12 @@ import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
-private fun themeError(message: Any): Nothing = error("OudsTheme not found. $message")
+private fun missingCompositionLocalError(compositionLocalName: String): Nothing = error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
 
-private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { themeError("LocalColorScheme CompositionLocal not present") }
-private val LocalBorderTokens = staticCompositionLocalOf<OudsBorderTokens> { themeError("LocalBorderTokens CompositionLocal not present") }
-private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { themeError("LocalOpacityTokens CompositionLocal not present") }
-private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { themeError("LocalComponentsTokens CompositionLocal not present") }
+private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
+private val LocalBorderTokens = staticCompositionLocalOf<OudsBorderTokens> { missingCompositionLocalError("LocalBorderTokens") }
+private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { missingCompositionLocalError("LocalOpacityTokens") }
+private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
 object OudsTheme {
     val colorScheme: OudsColorScheme
