@@ -9,9 +9,9 @@
  *
  * Software description: Android library of reusable graphical components
  */
- 
+
 plugins {
-    id("com.orange.ouds.gradle.library")
+    id("library")
 }
 
 android {
