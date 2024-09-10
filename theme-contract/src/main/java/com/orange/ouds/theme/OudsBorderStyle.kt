@@ -10,17 +10,17 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.tokens.type
+package com.orange.ouds.theme
 
 import java.util.Locale
 
-enum class BorderStyle {
+enum class OudsBorderStyle {
     None, Solid, Dashed, Dotted;
 
     companion object {
-        fun fromString(string: String): BorderStyle {
+        fun fromString(string: String): OudsBorderStyle {
             return try {
-                BorderStyle.valueOf(string.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() })
+                OudsBorderStyle.valueOf(string.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() })
             } catch (exception: IllegalArgumentException) {
                 // If the provided border style value is unknown, return the default border style
                 None

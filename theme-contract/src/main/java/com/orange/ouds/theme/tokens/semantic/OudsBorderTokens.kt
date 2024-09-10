@@ -15,7 +15,7 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.theme.tokens.type.BorderStyle
+import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.tokens.raw.BorderRawTokens
 
 class OudsBorderTokens(
@@ -32,8 +32,8 @@ class OudsBorderTokens(
     var radiusMedium: Dp = BorderRawTokens.borderRadius150.dp,
     var radiusTall: Dp = BorderRawTokens.borderRadius300.dp,
     var radiusPill: Dp = BorderRawTokens.borderRadius9999.dp,
-    var styleDefault: BorderStyle = BorderStyle.fromString(BorderRawTokens.borderStyleSolid),
-    var styleDrag: BorderStyle = BorderStyle.fromString(BorderRawTokens.borderStyleDashed)
+    var styleDefault: OudsBorderStyle = OudsBorderStyle.fromString(BorderRawTokens.borderStyleSolid),
+    var styleDrag: OudsBorderStyle = OudsBorderStyle.fromString(BorderRawTokens.borderStyleDashed)
 )
 
 enum class OudsBorderWidthToken {
@@ -86,7 +86,7 @@ enum class OudsBorderStyleToken {
 }
 
 @Stable
-fun OudsBorderTokens.fromToken(token: OudsBorderStyleToken): BorderStyle {
+fun OudsBorderTokens.fromToken(token: OudsBorderStyleToken): OudsBorderStyle {
     return when (token) {
         OudsBorderStyleToken.Default -> styleDefault
         OudsBorderStyleToken.Drag -> styleDrag
