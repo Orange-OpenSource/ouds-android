@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.fromToken
+import com.orange.ouds.theme.tokens.semantic.fromToken
 
 @Composable
 fun OudsButton(
@@ -32,6 +34,7 @@ fun OudsButton(
     Button(
         onClick = onClick,
         enabled = enabled,
+        shape = RoundedCornerShape(OudsTheme.borderTokens.fromToken(OudsTheme.componentsTokens.button.cornerRadius)),
         modifier = modifier,
         interactionSource = remember { MutableInteractionSource() },
         elevation = null,

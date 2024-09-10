@@ -21,19 +21,26 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.semantic.OudsBorderTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
-private fun themeError(message: Any): Nothing = error("OudsTheme not found. $message")
+private fun missingCompositionLocalError(compositionLocalName: String): Nothing = error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
 
-private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { themeError("LocalColorScheme CompositionLocal not present") }
-private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { themeError("LocalOpacityTokens CompositionLocal not present") }
-private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { themeError("LocalComponentsTokens CompositionLocal not present") }
+private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
+private val LocalBorderTokens = staticCompositionLocalOf<OudsBorderTokens> { missingCompositionLocalError("LocalBorderTokens") }
+private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { missingCompositionLocalError("LocalOpacityTokens") }
+private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
 object OudsTheme {
     val colorScheme: OudsColorScheme
         @Composable
         @ReadOnlyComposable
         get() = LocalColorScheme.current
+
+    val borderTokens: OudsBorderTokens
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalBorderTokens.current
 
     val opacityTokens: OudsOpacityTokens
         @Composable
@@ -64,6 +71,7 @@ fun OudsTheme(
 
     CompositionLocalProvider(
         LocalColorScheme provides colorScheme,
+        LocalBorderTokens provides themeContract.borderTokens,
         LocalOpacityTokens provides themeContract.opacityTokens,
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
