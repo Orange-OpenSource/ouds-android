@@ -21,6 +21,6 @@ object OpacityRawTokens {
     const val opacity500 = 0.32f
     const val opacity600 = 0.48f
     const val opacity700 = 0.64f
-    const val opacity800 = 0.88f
+    const val opacity800 = 0.80f
     const val opacity900 = 1f
 }
