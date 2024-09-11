@@ -68,10 +68,10 @@ annotation class UiModePreviews {
     }
 
     @Preview(name = LightName)
-    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES)
     annotation class Default
 
     @Preview(name = LightName, widthDp = ButtonWidthDp)
-    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = ButtonWidthDp)
+    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, widthDp = ButtonWidthDp)
     annotation class Button
 }
