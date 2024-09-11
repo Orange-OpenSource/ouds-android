@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -20,7 +21,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.UiModePreviews
 import com.orange.ouds.theme.fromToken
 import com.orange.ouds.theme.tokens.semantic.fromToken
 
@@ -51,3 +56,31 @@ fun OudsButton(
         )
     }
 }
+
+@Suppress("PreviewShouldNotBeCalledRecursively")
+@UiModePreviews.Button
+@Composable
+private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvider::class) parameter: OudsButtonPreviewParameter) = OudsPreview {
+    PreviewOudsButton(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Composable
+internal fun PreviewOudsButton(darkThemeEnabled: Boolean, parameter: OudsButtonPreviewParameter) = OudsPreview(darkThemeEnabled) {
+    with(parameter) {
+        OudsButton(text = "Text", onClick = {}, enabled = enabled)
+    }
+}
+
+internal data class OudsButtonPreviewParameter(
+    val enabled: Boolean = true
+)
+
+internal class OudsButtonPreviewParameterProvider :
+    BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OudsButtonPreviewParameter>
+    get() = mutableListOf<OudsButtonPreviewParameter>().apply {
+        add(OudsButtonPreviewParameter())
+        add(OudsButtonPreviewParameter(enabled = false))
+    }
+
