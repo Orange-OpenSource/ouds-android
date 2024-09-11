@@ -42,7 +42,13 @@ fun OudsButton(
         shape = RoundedCornerShape(OudsTheme.borderTokens.fromToken(OudsTheme.componentsTokens.button.cornerRadius)),
         modifier = modifier,
         interactionSource = remember { MutableInteractionSource() },
-        elevation = null,
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.defaultElevation),
+            pressedElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.pressedElevation),
+            focusedElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.focusedElevation),
+            hoveredElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.hoveredElevation),
+            disabledElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.disabledElevation),
+        ),
         colors = ButtonDefaults.buttonColors(
             containerColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.containerColor),
             contentColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.contentColor),

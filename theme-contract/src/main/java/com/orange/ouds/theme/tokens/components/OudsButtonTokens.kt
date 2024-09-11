@@ -12,13 +12,20 @@
 
 package com.orange.ouds.theme.tokens.components
 
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorToken
+import com.orange.ouds.theme.tokens.semantic.OudsElevationToken
 
 open class OudsButtonTokens(
     val containerColor: OudsColorToken = OudsColorToken.Primary,
     val contentColor: OudsColorToken = OudsColorToken.OnPrimary,
     val disabledContainerColor: OudsColorToken = OudsColorToken.Secondary,
     val disabledContentColor: OudsColorToken = OudsColorToken.OnSecondary,
-    val cornerRadius: OudsBorderRadiusToken = OudsBorderRadiusToken.None
+    val cornerRadius: OudsBorderRadiusToken = OudsBorderRadiusToken.None,
+    val defaultElevation: OudsElevationToken = OudsElevationToken.None,
+    val pressedElevation: OudsElevationToken = OudsElevationToken.None,
+    val focusedElevation: OudsElevationToken = OudsElevationToken.None,
+    val hoveredElevation: OudsElevationToken = OudsElevationToken.None,
+    val disabledElevation: OudsElevationToken = OudsElevationToken.None
 )
