@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component.button
 
 import app.cash.paparazzi.Paparazzi
+import com.android.ide.common.rendering.api.SessionParams
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,7 +29,7 @@ internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter)
     }
 
     @get:Rule
-    val paparazzi = Paparazzi(maxPercentDifference = 0.0)
+    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.0)
 
     @Test
     fun takeOudsButtonLightThemeSnapshot() {
