@@ -20,12 +20,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.UiModePreviews
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.fromToken
 import com.orange.ouds.theme.tokens.semantic.fromToken
 
@@ -64,7 +63,6 @@ private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvid
         OudsButton(text = "Text", onClick = {}, enabled = enabled)
     }
 }
-
 
 @Composable
 internal fun PreviewOudsButton(darkThemeEnabled: Boolean, parameter: OudsButtonPreviewParameter) = OudsPreview(darkThemeEnabled) {
