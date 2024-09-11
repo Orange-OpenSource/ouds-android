@@ -23,11 +23,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.UiModePreviews
-import com.orange.ouds.theme.fromToken
-import com.orange.ouds.theme.tokens.semantic.fromToken
 
 @Composable
 fun OudsButton(
@@ -36,30 +35,32 @@ fun OudsButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
-    Button(
-        onClick = onClick,
-        enabled = enabled,
-        shape = RoundedCornerShape(OudsTheme.borderTokens.fromToken(OudsTheme.componentsTokens.button.cornerRadius)),
-        modifier = modifier,
-        interactionSource = remember { MutableInteractionSource() },
-        elevation = ButtonDefaults.buttonElevation(
-            defaultElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.defaultElevation),
-            pressedElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.pressedElevation),
-            focusedElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.focusedElevation),
-            hoveredElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.hoveredElevation),
-            disabledElevation = OudsTheme.elevationTokens.fromToken(OudsTheme.componentsTokens.button.disabledElevation),
-        ),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.containerColor),
-            contentColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.contentColor),
-            disabledContainerColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.disabledContainerColor),
-            disabledContentColor = OudsTheme.colorScheme.fromToken(OudsTheme.componentsTokens.button.disabledContentColor),
-        )
-    ) {
-        Text(
-            text = text,
+    with(OudsTheme.componentsTokens.button) {
+        Button(
+            onClick = onClick,
+            enabled = enabled,
+            shape = RoundedCornerShape(cornerRadius.value),
             modifier = modifier,
-        )
+            interactionSource = remember { MutableInteractionSource() },
+            elevation = ButtonDefaults.buttonElevation(
+                defaultElevation = defaultElevation.value,
+                pressedElevation = pressedElevation.value,
+                focusedElevation = focusedElevation.value,
+                hoveredElevation = hoveredElevation.value,
+                disabledElevation = disabledElevation.value,
+            ),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = containerColor.value,
+                contentColor = contentColor.value,
+                disabledContainerColor = disabledContainerColor.value,
+                disabledContentColor = disabledContentColor.value,
+            )
+        ) {
+            Text(
+                text = text,
+                modifier = modifier,
+            )
+        }
     }
 }
 
