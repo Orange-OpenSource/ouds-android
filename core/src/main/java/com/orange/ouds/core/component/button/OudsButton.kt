@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -56,12 +57,11 @@ fun OudsButton(
     }
 }
 
+@Suppress("PreviewShouldNotBeCalledRecursively")
 @UiModePreviews.Button
 @Composable
 private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvider::class) parameter: OudsButtonPreviewParameter) = OudsPreview {
-    with(parameter) {
-        OudsButton(text = "Text", onClick = {}, enabled = enabled)
-    }
+    PreviewOudsButton(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
