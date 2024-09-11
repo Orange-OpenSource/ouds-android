@@ -30,7 +30,7 @@ import com.orange.ouds.core.theme.OudsTheme
 @Composable
 fun OudsPreview(darkThemeEnabled: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     OudsTheme(themeContract = BuildConfig.PREVIEW_THEME, darkThemeEnabled) {
-        Surface(content = content) // Add a surface to be able to see components
+        Surface(color = OudsTheme.colorScheme.background, content = content) // Add a surface to be able to see components
     }
 }
 
@@ -53,7 +53,7 @@ internal open class BasicPreviewParameterProvider<T>(vararg values: T) : Preview
 internal open class EnumPreviewParameterProvider(clazz: Class<out Enum<*>>) : BasicPreviewParameterProvider<Enum<*>>(*clazz.enumConstants)
 
 /**
- * Multipreview annotation classes used to display both light and dark mode previews.
+ * Multi-preview annotation classes used to display both light and dark mode previews.
  *
  * The only reason why `UiModePreviews` is an annotation class is to colorize it as an annotation in Android Studio.
  * An empty `Target` annotation has been added in order to avoid using the parent `UiModePreviews` annotation which has no effect.
