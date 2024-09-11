@@ -10,15 +10,15 @@
  * Software description: Android library of reusable graphical components
  */
 
-plugins {
-    id("library")
-}
+package com.orange.ouds.tokens.global.raw
 
-android {
-    namespace = "com.orange.ouds.tokens.global.raw"
-}
+import androidx.compose.ui.unit.dp
 
-dependencies {
-    api(platform(libs.androidx.compose.bom))
-    api(libs.androidx.compose.material3)
+object ElevationRawTokens {
+    val elevation0 = 0.dp
+    val elevation1 = 1.dp
+    val elevation2 = 3.dp
+    val elevation3 = 6.dp
+    val elevation4 = 8.dp
+    val elevation5 = 12.dp
 }
