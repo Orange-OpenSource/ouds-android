@@ -29,7 +29,7 @@ import com.orange.ouds.core.theme.OudsTheme
  */
 @Composable
 fun OudsPreview(darkThemeEnabled: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    OudsTheme(themeContract = BuildConfig.PREVIEW_CUSTOM_THEME, darkThemeEnabled) {
+    OudsTheme(themeContract = BuildConfig.PREVIEW_THEME, darkThemeEnabled) {
         Surface(content = content) // Add a surface to be able to see components
     }
 }
