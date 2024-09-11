@@ -15,7 +15,7 @@ package com.orange.ouds.core.component.button
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.orange.ouds.core.component.extension.setOudsContent
+import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
 import org.junit.Test
 

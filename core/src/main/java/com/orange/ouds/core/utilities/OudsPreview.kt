@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component.utilities
+package com.orange.ouds.core.utilities
 
 import android.content.res.Configuration
 import androidx.compose.foundation.isSystemInDarkTheme
