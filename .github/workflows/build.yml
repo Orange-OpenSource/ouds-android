@@ -69,6 +69,7 @@ jobs:
         with:
           name: tests
           path: |
+            core/build/paparazzi
             core/build/reports/paparazzi
             core/build/reports/androidTests
             core/build/reports/tests
