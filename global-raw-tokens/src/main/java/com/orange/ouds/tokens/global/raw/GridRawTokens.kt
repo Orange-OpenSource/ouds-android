@@ -13,36 +13,10 @@
 package com.orange.ouds.tokens.global.raw
 
 object GridRawTokens {
-    const val gridWidth100 = 320
-    const val gridWidth200 = 390
-    const val gridWidth300 = 480
-    const val gridWidth400 = 768
-    const val gridWidth500 = 1024
-    const val gridWidth600 = 1440
-    const val gridWidth700 = 1680
-    const val gridWidth800 = 1920
-
-    const val gridMinWidth100 = 1
-    const val gridMinWidth200 = 390
-    const val gridMinWidth300 = 480
-    const val gridMinWidth400 = 736
-    const val gridMinWidth500 = 1024
-    const val gridMinWidth600 = 1320
-    const val gridMinWidth700 = 1640
-    const val gridMinWidth800 = 1880
     const val gridMinWidthExtraCompact = 320
     const val gridMinWidthCompact = 390
     const val gridMinWidthMedium = 600
-
-    const val gridMaxWidth100 = 389
-    const val gridMaxWidth200 = 479
-    const val gridMaxWidth300 = 735
-    const val gridMaxWidth400 = 1023
-    const val gridMaxWidth500 = 1319
-    const val gridMaxWidth600 = 1639
-    const val gridMaxWidth650 = 1680
-    const val gridMaxWidth700 = 1879
-    const val gridMaxWidth800 = 1920
+    
     const val gridMaxWidthExtraCompact = 389
     const val gridMaxWidthCompact = 599
     const val gridMaxWidthMedium = 1200
