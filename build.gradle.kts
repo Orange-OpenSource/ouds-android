@@ -17,4 +17,5 @@ plugins {
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.google.services) apply false
     id("github")
+    id("release")
 }
