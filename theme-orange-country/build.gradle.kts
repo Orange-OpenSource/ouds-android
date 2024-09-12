@@ -24,6 +24,10 @@ android {
     }
 }
 
+mavenCentralPublish {
+    enabled = false
+}
+
 dependencies {
     implementation(project(":theme-contract"))
     implementation(project(":theme-orange"))

@@ -91,3 +91,97 @@ jobs:
         with:
           name: foundation
           path: foundation/build/outputs/aar/*.aar
+
+      - name: Store global-raw-tokens artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-raw-tokens
+          path: global-raw-tokens/build/outputs/aar/*.aar
+
+      - name: Store theme-contract artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-contract
+          path: theme-contract/build/outputs/aar/*.aar
+
+      - name: Store theme-orange artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-orange
+          path: theme-orange/build/outputs/aar/*.aar
+
+      - name: Store theme-white-label artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-white-label
+          path: theme-white-label/build/outputs/aar/*.aar
+
+  maven-central-release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    needs: build
+    environment:
+      name: maven-central-release
+      url: https://mvnrepository.com/artifact/com.orange.ouds.android
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Publish release to Maven Central
+        env:
+          GNUPG_SIGNING_KEY_ID: ${{ secrets.GNUPG_SIGNING_KEY_ID }}
+          GNUPG_SIGNING_PASSWORD: ${{ secrets.GNUPG_SIGNING_PASSWORD }}
+          GNUPG_SIGNING_SECRET_KEY: ${{ secrets.GNUPG_SIGNING_SECRET_KEY }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+        run: ./gradlew publish
+
+  github-release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    needs: build
+    environment:
+      name: github-release
+      url: https://github.com/Orange-OpenSource/ouds-android/releases
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Publish release to GitHub
+        run: ./gradlew publishToGitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

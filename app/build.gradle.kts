@@ -35,7 +35,7 @@ android {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 1
-        versionName = "1.0"
+        versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -82,7 +82,7 @@ android {
     }
 
     firebaseAppDistribution {
-        releaseNotesFile = Firebase_gradle.AppDistribution.releaseNotesFilePath
+        releaseNotesFile = Firebase_gradle.AppDistribution.RELEASE_NOTES_FILE_PATH
         groups = project.findTypedProperty("appDistributionGroup")
     }
 }

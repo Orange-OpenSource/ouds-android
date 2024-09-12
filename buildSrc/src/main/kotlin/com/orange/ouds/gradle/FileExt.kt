@@ -10,12 +10,14 @@
  * Software description: Android library of reusable graphical components
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    alias(libs.plugins.compose.compiler) apply false
-    alias(libs.plugins.firebase.appdistribution) apply false
-    alias(libs.plugins.firebase.crashlytics) apply false
-    alias(libs.plugins.google.services) apply false
-    id("github")
-    id("release")
+import java.io.File
+
+fun File.replace(regex: Regex, replacement: String) {
+    val text = readText()
+    writeText(text.replace(regex, replacement))
+}
+
+fun File.replace(regex: Regex, transform: (MatchResult) -> CharSequence) {
+    val text = readText()
+    writeText(text.replace(regex, transform))
 }

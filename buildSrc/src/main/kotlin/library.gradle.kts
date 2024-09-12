@@ -10,6 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
+import com.orange.ouds.gradle.MavenCentralPublishPluginExtension
 import org.gradle.accessors.dm.LibrariesForLibs
 
 private val libs = the<LibrariesForLibs>() // https://github.com/gradle/gradle/issues/15383
@@ -17,6 +18,7 @@ private val libs = the<LibrariesForLibs>() // https://github.com/gradle/gradle/i
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-central-publish")
 }
 
 android {
@@ -42,6 +44,13 @@ android {
             // Suppresses an expected warning that triggers a build failure because allWarningsAsErrors is true
             // See https://youtrack.jetbrains.com/issue/KT-68400/K2-w-Kapt-currently-doesnt-support-language-version-2.0.-Falling-back-to-1.9.
             freeCompilerArgs.add("-Xsuppress-version-warnings")
+        }
+    }
+
+    publishing {
+        singleVariant(MavenCentralPublishPluginExtension.VARIANT) {
+            withSourcesJar()
+            withJavadocJar()
         }
     }
 

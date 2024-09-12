@@ -25,8 +25,7 @@ import java.util.EnumMap
 import kotlin.io.path.Path
 
 object AppDistribution {
-
-    const val releaseNotesFilePath = "./app_distribution_release_notes.txt"
+    const val RELEASE_NOTES_FILE_PATH = "./app_distribution_release_notes.txt"
 }
 
 internal val releaseNotesExtraKey = "releaseNotesExtraKey"
@@ -62,7 +61,7 @@ tasks.register<DefaultTask>("appDistributionUpload") {
     doLast {
         // If release note is empty, do not upload APK
         val releaseNotes = tasks["generateAppDistributionReleaseNotes"].extra[releaseNotesExtraKey] as? String
-        if (releaseNotes == null || releaseNotes.isEmpty()) {
+        if (releaseNotes.isNullOrEmpty()) {
             appDistributionTasks.forEach { it.enabled = false }
             tasks["gitTagAppDistribution"].enabled = false
         }
@@ -113,7 +112,7 @@ tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
         }
 
         // Create a file and export release notes as an extra property
-        File(AppDistribution.releaseNotesFilePath).apply {
+        File(AppDistribution.RELEASE_NOTES_FILE_PATH).apply {
             writeText(releaseNotes)
         }
         extra.set(releaseNotesExtraKey, releaseNotes)

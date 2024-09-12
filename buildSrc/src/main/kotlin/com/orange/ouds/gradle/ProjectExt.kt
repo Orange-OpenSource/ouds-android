@@ -123,3 +123,9 @@ fun <T> Project.firebaseApi(appId: String, action: FirebaseApi.() -> T): T {
     val accessToken = credentials.accessToken.tokenValue
     return FirebaseApi(accessToken, "756919609448", appId).action()
 }
+
+val Project.artifactId: String
+    get() = "ouds-$name"
+
+val Project.isPublished: Boolean
+    get() = extensions.findByType(MavenCentralPublishPluginExtension::class.java)?.enabled == true
