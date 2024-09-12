@@ -110,6 +110,12 @@ jobs:
           name: theme-orange
           path: theme-orange/build/outputs/aar/*.aar
 
+      - name: Store theme-white-label artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-white-label
+          path: theme-white-label/build/outputs/aar/*.aar
+
   maven-central-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
