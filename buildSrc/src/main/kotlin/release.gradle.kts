@@ -57,7 +57,7 @@ tasks.register<DefaultTask>("testSonatypeRepository") {
         }
 
         // Add Sonatype Maven repository in root build.gradle.kts file
-        File("build.gradle.kts").replace("(\\s*)mavenCentral\\(\\)".toRegex()) { matchResult ->
+        File("settings.gradle.kts").replace("(\\s*)mavenCentral\\(\\)".toRegex()) { matchResult ->
             val indent = matchResult.groupValues[1]
             "${matchResult.value}${indent}maven(url = \"https://oss.sonatype.org/content/repositories/comorange-$sonatypeRepositoryId\")"
         }

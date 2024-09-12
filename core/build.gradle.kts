@@ -16,13 +16,6 @@ plugins {
     alias(libs.plugins.paparazzi)
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-    }
-}
-
 /**
  * The OudsThemeContract implementation used by Android Studio previews for the OUDS library.
  * Please change this value if you want to have a custom theme preview for the OUDS library and
@@ -73,7 +66,7 @@ dependencies.constraints {
         }
         because(
             "Paparazzi's layoutlib and sdk-common depend on Guava's -jre published variant." +
-                "See https://github.com/cashapp/paparazzi/issues/906."
+                    "See https://github.com/cashapp/paparazzi/issues/906."
         )
     }
 }
