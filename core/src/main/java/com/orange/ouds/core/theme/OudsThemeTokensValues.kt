@@ -23,6 +23,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsBorderStyleToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderWidthToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorToken
 import com.orange.ouds.theme.tokens.semantic.OudsElevationToken
+import com.orange.ouds.theme.tokens.semantic.OudsGridToken
 import com.orange.ouds.theme.tokens.semantic.fromToken
 
 /**
@@ -64,3 +65,11 @@ val OudsElevationToken.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.elevationTokens.fromToken(this)
+
+/**
+ * Converts an OUDS grid token to the local grid value provided by the theme.
+ */
+internal val OudsGridToken.value: Dp
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.gridTokens.fromToken(this)

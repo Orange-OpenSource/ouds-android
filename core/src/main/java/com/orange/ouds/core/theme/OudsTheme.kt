@@ -23,14 +23,16 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationTokens
+import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing = error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
 
 private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
 private val LocalBorderTokens = staticCompositionLocalOf<OudsBorderTokens> { missingCompositionLocalError("LocalBorderTokens") }
-private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { missingCompositionLocalError("LocalOpacityTokens") }
 private val LocalElevationTokens = staticCompositionLocalOf<OudsElevationTokens> { missingCompositionLocalError("LocalElevationTokens") }
+private val LocalGridTokens = staticCompositionLocalOf<OudsGridTokens> { missingCompositionLocalError("LocalGridTokens") }
+private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { missingCompositionLocalError("LocalOpacityTokens") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
 object OudsTheme {
@@ -48,6 +50,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalElevationTokens.current
+
+    val gridTokens: OudsGridTokens
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalGridTokens.current
 
     val opacityTokens: OudsOpacityTokens
         @Composable
@@ -80,6 +87,7 @@ fun OudsTheme(
         LocalColorScheme provides colorScheme,
         LocalBorderTokens provides themeContract.borderTokens,
         LocalElevationTokens provides themeContract.elevationTokens,
+        LocalGridTokens provides themeContract.gridTokens,
         LocalOpacityTokens provides themeContract.opacityTokens,
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
