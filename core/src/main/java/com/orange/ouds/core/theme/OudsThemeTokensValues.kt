@@ -28,7 +28,7 @@ import com.orange.ouds.theme.tokens.semantic.fromToken
 /**
  * Converts an OUDS border radius token to the local border radius value provided by the theme.
  */
-internal val OudsBorderRadiusToken.value: Dp
+val OudsBorderRadiusToken.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.borderTokens.fromToken(this)
@@ -36,7 +36,7 @@ internal val OudsBorderRadiusToken.value: Dp
 /**
  * Converts an OUDS border style token to the local [OudsBorderStyle] value provided by the theme.
  */
-internal val OudsBorderStyleToken.value: OudsBorderStyle
+val OudsBorderStyleToken.value: OudsBorderStyle
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.borderTokens.fromToken(this)
@@ -44,7 +44,7 @@ internal val OudsBorderStyleToken.value: OudsBorderStyle
 /**
  * Converts an OUDS border width token to the local border width value provided by the theme.
  */
-internal val OudsBorderWidthToken.value: Dp
+val OudsBorderWidthToken.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.borderTokens.fromToken(this)
@@ -52,7 +52,7 @@ internal val OudsBorderWidthToken.value: Dp
 /**
  * Converts an OUDS color token to the local color value provided by the theme.
  */
-internal val OudsColorToken.value: Color
+val OudsColorToken.value: Color
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.colorScheme.fromToken(this)
@@ -60,7 +60,7 @@ internal val OudsColorToken.value: Color
 /**
  * Converts an OUDS elevation token to the local elevation value provided by the theme.
  */
-internal val OudsElevationToken.value: Dp
+val OudsElevationToken.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.elevationTokens.fromToken(this)
