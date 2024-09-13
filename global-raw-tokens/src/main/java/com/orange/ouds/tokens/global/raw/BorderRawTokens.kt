@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.tokens.raw
+package com.orange.ouds.tokens.global.raw
 
 object BorderRawTokens {
     const val borderBase = 4

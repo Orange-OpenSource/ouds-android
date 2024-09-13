@@ -16,7 +16,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.OudsBorderStyle
-import com.orange.ouds.tokens.raw.BorderRawTokens
+import com.orange.ouds.tokens.global.raw.BorderRawTokens
 
 class OudsBorderTokens(
     var widthNone: Dp = BorderRawTokens.borderWidth0.dp,
