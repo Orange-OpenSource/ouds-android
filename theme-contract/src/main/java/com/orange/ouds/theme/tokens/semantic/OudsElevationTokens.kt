@@ -22,7 +22,7 @@ class OudsElevationTokens(
     var overlayDefault: Dp = ElevationRawTokens.elevation2,
     var allSticky: Dp = ElevationRawTokens.elevation3,
     var drag: Dp = ElevationRawTokens.elevation4,
-    var overlayEmphased: Dp = ElevationRawTokens.elevation5,
+    var overlayEmphasized: Dp = ElevationRawTokens.elevation5,
 )
 
 enum class OudsElevationToken {
@@ -31,7 +31,7 @@ enum class OudsElevationToken {
     OverlayDefault,
     AllSticky,
     Drag,
-    OverlayEmphased
+    OverlayEmphasized
 }
 
 @Stable
@@ -42,6 +42,6 @@ fun OudsElevationTokens.fromToken(token: OudsElevationToken): Dp {
         OudsElevationToken.OverlayDefault -> overlayDefault
         OudsElevationToken.AllSticky -> allSticky
         OudsElevationToken.Drag -> drag
-        OudsElevationToken.OverlayEmphased -> overlayEmphased
+        OudsElevationToken.OverlayEmphasized -> overlayEmphasized
     }
 }
