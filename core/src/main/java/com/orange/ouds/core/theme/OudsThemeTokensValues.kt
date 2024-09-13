@@ -12,10 +12,14 @@
 
 package com.orange.ouds.core.theme
 
+import androidx.compose.material3.adaptive.currentWindowSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.toSize
+import com.orange.ouds.theme.OudsAdaptiveDisplayType
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.fromToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
@@ -68,8 +72,11 @@ val OudsElevationToken.value: Dp
 
 /**
  * Converts an OUDS grid token to the local grid value provided by the theme.
+ * Note that grid token value returned varies depending on the screen size.
  */
-internal val OudsGridToken.value: Dp
-    @ReadOnlyComposable
+val OudsGridToken.value: Dp
     @Composable
-    get() = OudsTheme.gridTokens.fromToken(this)
+    get() {
+        val windowWidth = with(LocalDensity.current) { currentWindowSize().toSize().toDpSize().width }
+        return OudsTheme.gridTokens.fromToken(this, OudsAdaptiveDisplayType.fromWindowWidth(windowWidth))
+    }

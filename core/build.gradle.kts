@@ -42,6 +42,7 @@ dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3.adaptive)
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.material)
@@ -66,7 +67,7 @@ dependencies.constraints {
         }
         because(
             "Paparazzi's layoutlib and sdk-common depend on Guava's -jre published variant." +
-                    "See https://github.com/cashapp/paparazzi/issues/906."
+                "See https://github.com/cashapp/paparazzi/issues/906."
         )
     }
 }

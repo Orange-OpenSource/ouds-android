@@ -15,52 +15,49 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.theme.AdaptiveTokenValue
+import com.orange.ouds.theme.OudsAdaptiveDisplayType
 import com.orange.ouds.tokens.global.raw.GridRawTokens
 
 class OudsGridTokens(
-    var extraCompactMinWidth: Dp = GridRawTokens.gridMinWidthExtraCompact.dp,
-    var extraCompactMaxWidth: Dp = GridRawTokens.gridMaxWidthExtraCompact.dp,
-    var extraCompactMargin: Dp = GridRawTokens.gridMargin100.dp,
-    var extraCompactColumnGap: Dp = GridRawTokens.gridColumnGap100.dp,
-    var compactMinWidth: Dp = GridRawTokens.gridMinWidthCompact.dp,
-    var compactMaxWidth: Dp = GridRawTokens.gridMaxWidthCompact.dp,
-    var compactMargin: Dp = GridRawTokens.gridMargin300.dp,
-    var compactColumnGap: Dp = GridRawTokens.gridColumnGap200.dp,
-    var mediumMinWidth: Dp = GridRawTokens.gridMinWidthMedium.dp,
-    var mediumMaxWidth: Dp = GridRawTokens.gridMaxWidthMedium.dp,
-    var mediumMargin: Dp = GridRawTokens.gridMargin500.dp,
-    var mediumColumnGap: Dp = GridRawTokens.gridColumnGap400.dp,
+    var minWidth: AdaptiveTokenValue = AdaptiveTokenValue(GridRawTokens.gridMinWidthExtraCompact.dp, GridRawTokens.gridMinWidthCompact.dp, GridRawTokens.gridMinWidthMedium.dp),
+    var maxWidth: AdaptiveTokenValue = AdaptiveTokenValue(GridRawTokens.gridMaxWidthExtraCompact.dp, GridRawTokens.gridMaxWidthCompact.dp, GridRawTokens.gridMaxWidthMedium.dp),
+    var margin: AdaptiveTokenValue = AdaptiveTokenValue(GridRawTokens.gridMargin100.dp, GridRawTokens.gridMargin300.dp, GridRawTokens.gridMargin500.dp),
+    var columnGap: AdaptiveTokenValue = AdaptiveTokenValue(GridRawTokens.gridColumnGap100.dp, GridRawTokens.gridColumnGap200.dp, GridRawTokens.gridColumnGap400.dp),
 )
 
 enum class OudsGridToken {
-    ExtraCompactMinWidth,
-    ExtraCompactMaxWidth,
-    ExtraCompactColumnGap,
-    ExtraCompactMargin,
-    CompactMinWidth,
-    CompactMaxWidth,
-    CompactColumnGap,
-    CompactMargin,
-    MediumMinWidth,
-    MediumMaxWidth,
-    MediumColumnGap,
-    MediumMargin,
+    MinWidth,
+    MaxWidth,
+    ColumnGap,
+    Margin,
 }
 
 @Stable
-fun OudsGridTokens.fromToken(token: OudsGridToken): Dp {
+fun OudsGridTokens.fromToken(token: OudsGridToken, windowSizeClass: OudsAdaptiveDisplayType): Dp {
     return when (token) {
-        OudsGridToken.ExtraCompactMinWidth -> extraCompactMinWidth
-        OudsGridToken.ExtraCompactMaxWidth -> extraCompactMaxWidth
-        OudsGridToken.ExtraCompactColumnGap -> extraCompactColumnGap
-        OudsGridToken.ExtraCompactMargin -> extraCompactMargin
-        OudsGridToken.CompactMinWidth -> compactMinWidth
-        OudsGridToken.CompactMaxWidth -> compactMaxWidth
-        OudsGridToken.CompactColumnGap -> compactColumnGap
-        OudsGridToken.CompactMargin -> compactMargin
-        OudsGridToken.MediumMinWidth -> mediumMinWidth
-        OudsGridToken.MediumMaxWidth -> mediumMaxWidth
-        OudsGridToken.MediumColumnGap -> mediumColumnGap
-        OudsGridToken.MediumMargin -> mediumMargin
+        OudsGridToken.MinWidth -> when (windowSizeClass) {
+            OudsAdaptiveDisplayType.EXTRA_COMPACT -> minWidth.extraCompact
+            OudsAdaptiveDisplayType.COMPACT -> minWidth.compact
+            OudsAdaptiveDisplayType.MEDIUM -> minWidth.medium
+        }
+
+        OudsGridToken.MaxWidth -> when (windowSizeClass) {
+            OudsAdaptiveDisplayType.EXTRA_COMPACT -> maxWidth.extraCompact
+            OudsAdaptiveDisplayType.COMPACT -> maxWidth.compact
+            OudsAdaptiveDisplayType.MEDIUM -> maxWidth.medium
+        }
+
+        OudsGridToken.ColumnGap -> when (windowSizeClass) {
+            OudsAdaptiveDisplayType.EXTRA_COMPACT -> columnGap.extraCompact
+            OudsAdaptiveDisplayType.COMPACT -> columnGap.compact
+            OudsAdaptiveDisplayType.MEDIUM -> columnGap.medium
+        }
+
+        OudsGridToken.Margin -> when (windowSizeClass) {
+            OudsAdaptiveDisplayType.EXTRA_COMPACT -> margin.extraCompact
+            OudsAdaptiveDisplayType.COMPACT -> margin.compact
+            OudsAdaptiveDisplayType.MEDIUM -> margin.medium
+        }
     }
 }
