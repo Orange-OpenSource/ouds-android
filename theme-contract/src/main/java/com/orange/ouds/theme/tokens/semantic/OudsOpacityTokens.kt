@@ -20,7 +20,7 @@ class OudsOpacityTokens(
     var weaker: Float = OpacityRawTokens.opacity100,
     var weak: Float = OpacityRawTokens.opacity300,
     var medium: Float = OpacityRawTokens.opacity500,
-    var emphasis: Float = OpacityRawTokens.opacity700,
+    var strong: Float = OpacityRawTokens.opacity700,
     var opaque: Float = OpacityRawTokens.opacity900
 )
 
@@ -29,7 +29,7 @@ enum class OudsOpacityToken {
     Weaker,
     Weak,
     Medium,
-    Emphasis,
+    Strong,
     Opaque
 }
 
@@ -40,7 +40,7 @@ fun OudsOpacityTokens.fromToken(token: OudsOpacityToken): Float {
         OudsOpacityToken.Weaker -> weaker
         OudsOpacityToken.Weak -> weak
         OudsOpacityToken.Medium -> medium
-        OudsOpacityToken.Emphasis -> emphasis
+        OudsOpacityToken.Strong -> strong
         OudsOpacityToken.Opaque -> opaque
     }
 }
