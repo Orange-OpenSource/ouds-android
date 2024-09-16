@@ -16,7 +16,7 @@ object GridRawTokens {
     const val gridMinWidthExtraCompact = 320
     const val gridMinWidthCompact = 390
     const val gridMinWidthMedium = 600
-    
+
     const val gridMaxWidthExtraCompact = 389
     const val gridMaxWidthCompact = 599
     const val gridMaxWidthMedium = 1200
@@ -39,7 +39,7 @@ object GridRawTokens {
     const val gridColumnGap300 = DimensionRawTokens.dimensionBase * 5
     const val gridColumnGap400 = DimensionRawTokens.dimensionBase * 6
     const val gridColumnGap600 = DimensionRawTokens.dimensionBase * 8
-    const val gridColumnGap700 = DimensionRawTokens.dimensionBase * 10
+    const val gridColumnGap800 = DimensionRawTokens.dimensionBase * 10
 
     const val gridColumnCount100 = 1
     const val gridColumnCount200 = 2
