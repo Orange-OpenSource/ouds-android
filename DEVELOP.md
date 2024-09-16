@@ -10,4 +10,4 @@ When installed, launch Writerside and open the `ouds-android/docs` directory.
 In the Writerside table of content, click on "Getting started". The Writerside Preview panel is on the right with an "Open in browser" button to test
 documentation display in a browser.
 
-More technical information about Writerside are available [here](https://www.jetbrains.com/help/writerside/getting-started.html).
+More technical information about Writerside is available [here](https://www.jetbrains.com/help/writerside/getting-started.html).
