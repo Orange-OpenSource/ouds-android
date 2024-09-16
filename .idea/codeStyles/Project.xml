@@ -1,5 +1,7 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+    <option name="RIGHT_MARGIN" value="160" />
+    <option name="SOFT_MARGINS" value="160" />
     <codeStyleSettings language="Markdown">
       <option name="RIGHT_MARGIN" value="160" />
     </codeStyleSettings>
