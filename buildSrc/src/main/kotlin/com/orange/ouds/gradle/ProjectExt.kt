@@ -30,6 +30,10 @@ inline fun <reified T> Project.findTypedProperty(propertyName: String): T? {
     return findProperty(propertyName) as? T
 }
 
+inline fun <reified T> Project.requireTypedProperty(propertyName: String): T {
+    return findTypedProperty(propertyName) ?: throw GradleException("Please set the \"$propertyName\" project property.")
+}
+
 fun Project.execute(executable: String, vararg args: String): String {
     val output = ByteArrayOutputStream()
     exec {

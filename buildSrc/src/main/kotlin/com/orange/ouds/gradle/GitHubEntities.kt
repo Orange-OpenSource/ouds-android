@@ -17,3 +17,8 @@ data class GitHubPullRequest(
     val title: String,
     val branchName: String,
 )
+
+data class GitHubIssueComment(
+    val id: Long,
+    val body: String,
+)

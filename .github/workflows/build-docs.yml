@@ -60,7 +60,7 @@ jobs:
         with:
           instance: ${{ env.INSTANCE }}
 
-  deploy:
+  github-pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -87,3 +87,40 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  netlify:
+    needs: [ build, test ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+
+      - name: Unzip artifact
+        run: unzip -O UTF-8 -qq '${{ env.ARTIFACT }}' -d dir
+
+      - name: Install Netlify CLI
+        run: npm install --save-dev netlify-cli
+
+      - name: Deploy to Netlify
+        run: |
+          # Git SHA is equal to github.event.pull_request.head.sha for pull requests
+          # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
+          BRANCH_SHA=${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
+          ./gradlew publishDocumentationToNetlify -PdocumentationPath=dir -PnetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -PnetlifyToken=${{ secrets.NETLIFY_TOKEN }} -PcommitSha=$COMMIT_SHA
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
