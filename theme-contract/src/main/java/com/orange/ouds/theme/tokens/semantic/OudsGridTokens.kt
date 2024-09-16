@@ -16,14 +16,30 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.AdaptiveTokenValue
-import com.orange.ouds.theme.OudsAdaptiveDisplayType
+import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.tokens.global.raw.GridRawTokens
 
 class OudsGridTokens(
-    var minWidth: AdaptiveTokenValue = AdaptiveTokenValue(GridRawTokens.gridMinWidthExtraCompact.dp, GridRawTokens.gridMinWidthCompact.dp, GridRawTokens.gridMinWidthMedium.dp),
-    var maxWidth: AdaptiveTokenValue = AdaptiveTokenValue(GridRawTokens.gridMaxWidthExtraCompact.dp, GridRawTokens.gridMaxWidthCompact.dp, GridRawTokens.gridMaxWidthMedium.dp),
-    var margin: AdaptiveTokenValue = AdaptiveTokenValue(GridRawTokens.gridMargin100.dp, GridRawTokens.gridMargin300.dp, GridRawTokens.gridMargin500.dp),
-    var columnGap: AdaptiveTokenValue = AdaptiveTokenValue(GridRawTokens.gridColumnGap100.dp, GridRawTokens.gridColumnGap200.dp, GridRawTokens.gridColumnGap400.dp),
+    var minWidth: AdaptiveTokenValue = AdaptiveTokenValue(
+        GridRawTokens.gridMinWidthExtraCompact.dp,
+        GridRawTokens.gridMinWidthCompact.dp,
+        GridRawTokens.gridMinWidthMedium.dp
+    ),
+    var maxWidth: AdaptiveTokenValue = AdaptiveTokenValue(
+        GridRawTokens.gridMaxWidthExtraCompact.dp,
+        GridRawTokens.gridMaxWidthCompact.dp,
+        GridRawTokens.gridMaxWidthMedium.dp
+    ),
+    var margin: AdaptiveTokenValue = AdaptiveTokenValue(
+        GridRawTokens.gridMargin100.dp,
+        GridRawTokens.gridMargin300.dp,
+        GridRawTokens.gridMargin500.dp
+    ),
+    var columnGap: AdaptiveTokenValue = AdaptiveTokenValue(
+        GridRawTokens.gridColumnGap100.dp,
+        GridRawTokens.gridColumnGap200.dp,
+        GridRawTokens.gridColumnGap400.dp
+    ),
 )
 
 enum class OudsGridToken {
@@ -34,30 +50,30 @@ enum class OudsGridToken {
 }
 
 @Stable
-fun OudsGridTokens.fromToken(token: OudsGridToken, windowSizeClass: OudsAdaptiveDisplayType): Dp {
+fun OudsGridTokens.fromToken(token: OudsGridToken, windowSizeClass: OudsAdaptiveWindowType): Dp {
     return when (token) {
         OudsGridToken.MinWidth -> when (windowSizeClass) {
-            OudsAdaptiveDisplayType.EXTRA_COMPACT -> minWidth.extraCompact
-            OudsAdaptiveDisplayType.COMPACT -> minWidth.compact
-            OudsAdaptiveDisplayType.MEDIUM -> minWidth.medium
+            OudsAdaptiveWindowType.EXTRA_COMPACT -> minWidth.extraCompact
+            OudsAdaptiveWindowType.COMPACT -> minWidth.compact
+            OudsAdaptiveWindowType.MEDIUM -> minWidth.medium
         }
 
         OudsGridToken.MaxWidth -> when (windowSizeClass) {
-            OudsAdaptiveDisplayType.EXTRA_COMPACT -> maxWidth.extraCompact
-            OudsAdaptiveDisplayType.COMPACT -> maxWidth.compact
-            OudsAdaptiveDisplayType.MEDIUM -> maxWidth.medium
+            OudsAdaptiveWindowType.EXTRA_COMPACT -> maxWidth.extraCompact
+            OudsAdaptiveWindowType.COMPACT -> maxWidth.compact
+            OudsAdaptiveWindowType.MEDIUM -> maxWidth.medium
         }
 
         OudsGridToken.ColumnGap -> when (windowSizeClass) {
-            OudsAdaptiveDisplayType.EXTRA_COMPACT -> columnGap.extraCompact
-            OudsAdaptiveDisplayType.COMPACT -> columnGap.compact
-            OudsAdaptiveDisplayType.MEDIUM -> columnGap.medium
+            OudsAdaptiveWindowType.EXTRA_COMPACT -> columnGap.extraCompact
+            OudsAdaptiveWindowType.COMPACT -> columnGap.compact
+            OudsAdaptiveWindowType.MEDIUM -> columnGap.medium
         }
 
         OudsGridToken.Margin -> when (windowSizeClass) {
-            OudsAdaptiveDisplayType.EXTRA_COMPACT -> margin.extraCompact
-            OudsAdaptiveDisplayType.COMPACT -> margin.compact
-            OudsAdaptiveDisplayType.MEDIUM -> margin.medium
+            OudsAdaptiveWindowType.EXTRA_COMPACT -> margin.extraCompact
+            OudsAdaptiveWindowType.COMPACT -> margin.compact
+            OudsAdaptiveWindowType.MEDIUM -> margin.medium
         }
     }
 }

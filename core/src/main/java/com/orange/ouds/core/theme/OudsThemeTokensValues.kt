@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.toSize
-import com.orange.ouds.theme.OudsAdaptiveDisplayType
+import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.fromToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
@@ -78,5 +78,5 @@ val OudsGridToken.value: Dp
     @Composable
     get() {
         val windowWidth = with(LocalDensity.current) { currentWindowSize().toSize().toDpSize().width }
-        return OudsTheme.gridTokens.fromToken(this, OudsAdaptiveDisplayType.fromWindowWidth(windowWidth))
+        return OudsTheme.gridTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(windowWidth))
     }

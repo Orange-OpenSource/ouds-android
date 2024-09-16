@@ -16,16 +16,16 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 /**
- * A class to represent the adaptive displays managed in OUDS.
+ * A class to represent the adaptive windows types managed in OUDS.
  */
-enum class OudsAdaptiveDisplayType {
+enum class OudsAdaptiveWindowType {
     EXTRA_COMPACT, COMPACT, MEDIUM;
 
     companion object {
         /**
-         * Returns the [OudsAdaptiveDisplayType] for the given [windowWidth] in dp.
+         * Returns the [OudsAdaptiveWindowType] for the given [windowWidth] in dp.
          */
-        fun fromWindowWidth(windowWidth: Dp): OudsAdaptiveDisplayType {
+        fun fromWindowWidth(windowWidth: Dp): OudsAdaptiveWindowType {
             return when {
                 windowWidth < 390.dp -> EXTRA_COMPACT
                 windowWidth < 600.dp -> COMPACT
