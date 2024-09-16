@@ -20,22 +20,18 @@
 
 ## Content
 
-This repository contains the OUDS Android library that provides Orange Android components, but also
-a demo application showcasing these different components.
+This repository contains the OUDS Android library that provides Orange Android components, but also a demo application showcasing these different components.
 
 ## Bugs and feature requests
 
-Have a bug or a feature request? Please first search for existing and closed issues. If your problem
-or idea is not addressed
+Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed
 yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-android/issues/new/choose).
 
 ## Contributing
 
-Please read through
-our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-android/blob/main/CONTRIBUTING.md).
+Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-android/blob/main/CONTRIBUTING.md).
 Included are directions for opening issues, coding standards, and notes on development.
 
 ## Copyright and license
 
-Code released under
-the [MIT License](https://github.com/Orange-OpenSource/ouds-android/blob/main/LICENSE).
+Code released under the [MIT License](https://github.com/Orange-OpenSource/ouds-android/blob/main/LICENSE).
