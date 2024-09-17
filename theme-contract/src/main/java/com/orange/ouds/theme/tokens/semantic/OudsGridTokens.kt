@@ -50,30 +50,17 @@ enum class OudsGridToken {
 }
 
 @Stable
-fun OudsGridTokens.fromToken(token: OudsGridToken, windowSizeClass: OudsAdaptiveWindowType): Dp {
-    return when (token) {
-        OudsGridToken.MinWidth -> when (windowSizeClass) {
-            OudsAdaptiveWindowType.EXTRA_COMPACT -> minWidth.extraCompact
-            OudsAdaptiveWindowType.COMPACT -> minWidth.compact
-            OudsAdaptiveWindowType.MEDIUM -> minWidth.medium
-        }
+fun OudsGridTokens.fromToken(token: OudsGridToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    val gridToken = when (token) {
+        OudsGridToken.MinWidth -> minWidth
+        OudsGridToken.MaxWidth -> maxWidth
+        OudsGridToken.ColumnGap -> columnGap
+        OudsGridToken.Margin -> margin
+    }
 
-        OudsGridToken.MaxWidth -> when (windowSizeClass) {
-            OudsAdaptiveWindowType.EXTRA_COMPACT -> maxWidth.extraCompact
-            OudsAdaptiveWindowType.COMPACT -> maxWidth.compact
-            OudsAdaptiveWindowType.MEDIUM -> maxWidth.medium
-        }
-
-        OudsGridToken.ColumnGap -> when (windowSizeClass) {
-            OudsAdaptiveWindowType.EXTRA_COMPACT -> columnGap.extraCompact
-            OudsAdaptiveWindowType.COMPACT -> columnGap.compact
-            OudsAdaptiveWindowType.MEDIUM -> columnGap.medium
-        }
-
-        OudsGridToken.Margin -> when (windowSizeClass) {
-            OudsAdaptiveWindowType.EXTRA_COMPACT -> margin.extraCompact
-            OudsAdaptiveWindowType.COMPACT -> margin.compact
-            OudsAdaptiveWindowType.MEDIUM -> margin.medium
-        }
+    return when (adaptiveWindowType) {
+        OudsAdaptiveWindowType.EXTRA_COMPACT -> gridToken.extraCompact
+        OudsAdaptiveWindowType.COMPACT -> gridToken.compact
+        OudsAdaptiveWindowType.MEDIUM -> gridToken.medium
     }
 }
