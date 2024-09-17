@@ -15,13 +15,13 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.runtime.Stable
 import com.orange.ouds.tokens.global.raw.OpacityRawTokens
 
-class OudsOpacityTokens(
-    var transparent: Float = OpacityRawTokens.opacity0,
-    var weaker: Float = OpacityRawTokens.opacity100,
-    var weak: Float = OpacityRawTokens.opacity300,
-    var medium: Float = OpacityRawTokens.opacity500,
-    var strong: Float = OpacityRawTokens.opacity700,
-    var opaque: Float = OpacityRawTokens.opacity900
+data class OudsOpacityTokens(
+    val transparent: Float = OpacityRawTokens.opacity0,
+    val weaker: Float = OpacityRawTokens.opacity100,
+    val weak: Float = OpacityRawTokens.opacity300,
+    val medium: Float = OpacityRawTokens.opacity500,
+    val strong: Float = OpacityRawTokens.opacity700,
+    val opaque: Float = OpacityRawTokens.opacity900
 )
 
 enum class OudsOpacityToken {
