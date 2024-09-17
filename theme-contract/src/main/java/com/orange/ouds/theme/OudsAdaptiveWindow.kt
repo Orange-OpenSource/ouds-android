@@ -12,8 +12,12 @@
 
 package com.orange.ouds.theme
 
+import androidx.compose.material3.adaptive.currentWindowSize
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 
 /**
  * A class to represent the adaptive windows types managed in OUDS.
@@ -36,3 +40,6 @@ enum class OudsAdaptiveWindowType {
 }
 
 data class AdaptiveTokenValue(val extraCompact: Dp, val compact: Dp, val medium: Dp)
+
+@Composable
+fun currentWindowAdaptiveInfo() = with(LocalDensity.current) { currentWindowSize().toSize().toDpSize().width }

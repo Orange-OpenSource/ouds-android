@@ -12,15 +12,13 @@
 
 package com.orange.ouds.core.theme
 
-import androidx.compose.material3.adaptive.currentWindowSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.toSize
 import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.theme.OudsBorderStyle
+import com.orange.ouds.theme.currentWindowAdaptiveInfo
 import com.orange.ouds.theme.fromToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderStyleToken
@@ -76,7 +74,4 @@ val OudsElevationToken.value: Dp
  */
 val OudsGridToken.value: Dp
     @Composable
-    get() {
-        val windowWidth = with(LocalDensity.current) { currentWindowSize().toSize().toDpSize().width }
-        return OudsTheme.gridTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(windowWidth))
-    }
+    get() = OudsTheme.gridTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowAdaptiveInfo()))
