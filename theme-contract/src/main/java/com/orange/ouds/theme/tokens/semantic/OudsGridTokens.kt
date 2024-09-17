@@ -15,27 +15,27 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.theme.AdaptiveTokenValue
+import com.orange.ouds.theme.OudsAdaptiveTokenValue
 import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.tokens.global.raw.GridRawTokens
 
 class OudsGridTokens(
-    var minWidth: AdaptiveTokenValue = AdaptiveTokenValue(
+    var minWidth: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
         GridRawTokens.gridMinWidthExtraCompact.dp,
         GridRawTokens.gridMinWidthCompact.dp,
         GridRawTokens.gridMinWidthMedium.dp
     ),
-    var maxWidth: AdaptiveTokenValue = AdaptiveTokenValue(
+    var maxWidth: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
         GridRawTokens.gridMaxWidthExtraCompact.dp,
         GridRawTokens.gridMaxWidthCompact.dp,
         GridRawTokens.gridMaxWidthMedium.dp
     ),
-    var margin: AdaptiveTokenValue = AdaptiveTokenValue(
+    var margin: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
         GridRawTokens.gridMargin100.dp,
         GridRawTokens.gridMargin300.dp,
         GridRawTokens.gridMargin500.dp
     ),
-    var columnGap: AdaptiveTokenValue = AdaptiveTokenValue(
+    var columnGap: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
         GridRawTokens.gridColumnGap100.dp,
         GridRawTokens.gridColumnGap200.dp,
         GridRawTokens.gridColumnGap400.dp

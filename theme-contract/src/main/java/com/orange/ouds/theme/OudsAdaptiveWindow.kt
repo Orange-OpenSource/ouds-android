@@ -39,7 +39,7 @@ enum class OudsAdaptiveWindowType {
     }
 }
 
-data class AdaptiveTokenValue(val extraCompact: Dp, val compact: Dp, val medium: Dp)
+data class OudsAdaptiveTokenValue(val extraCompact: Dp, val compact: Dp, val medium: Dp)
 
 @Composable
 fun currentWindowAdaptiveInfo() = with(LocalDensity.current) { currentWindowSize().toSize().toDpSize().width }
