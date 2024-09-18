@@ -15,4 +15,7 @@ app/src/main/res/drawable/ic_palette.xml
 app/src/main/res/drawable/ic_ui_light_mode.xml
 app/src/main/res/drawable/ic_ui_dark_mode.xml
 
+docs/images/favicon-16x16.png
+docs/images/orange-logo.svg
+
 End of the parts list under Orange SA Copyright

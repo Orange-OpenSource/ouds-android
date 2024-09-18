@@ -3,6 +3,8 @@
 <p align="center">
   OUDS Android provides Orange Android components to developers and a demo application.
   <br>
+    <a href="https://android.unified-design-system.orange.com/"><strong>Visit OUDS Android</strong></a>
+  <br>
   <br>
   <a href="https://github.com/Orange-OpenSource/ouds-android/issues/new?assignees=paulinea&labels=%F0%9F%90%9E+bug%2C%F0%9F%94%8D+triage&template=bug_report.yml&title=[Bug]%3A+Bug+Summary">Report bug</a>
   ·
@@ -22,11 +24,13 @@ This repository contains the OUDS Android library that provides Orange Android c
 
 ## Bugs and feature requests
 
-Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-android/issues/new/choose).
+Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed
+yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-android/issues/new/choose).
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-android/blob/main/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-android/blob/main/CONTRIBUTING.md).
+Included are directions for opening issues, coding standards, and notes on development.
 
 ## Copyright and license
 
