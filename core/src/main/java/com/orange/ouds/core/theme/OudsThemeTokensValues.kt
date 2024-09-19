@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.theme.OudsBorderStyle
-import com.orange.ouds.theme.currentWindowAdaptiveInfo
+import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.fromToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderStyleToken
@@ -74,4 +74,4 @@ val OudsElevationToken.value: Dp
  */
 val OudsGridToken.value: Dp
     @Composable
-    get() = OudsTheme.gridTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowAdaptiveInfo()))
+    get() = OudsTheme.gridTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
