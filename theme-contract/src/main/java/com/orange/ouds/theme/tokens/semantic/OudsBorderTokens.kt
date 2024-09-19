@@ -22,10 +22,10 @@ data class OudsBorderTokens(
     val widthNone: Dp = BorderRawTokens.borderWidth0.dp,
     val widthDefault: Dp = BorderRawTokens.borderWidth25.dp,
     val widthThin: Dp = BorderRawTokens.borderWidth25.dp,
-    val widthThick: Dp = BorderRawTokens.borderWidth50.dp,
-    val widthThicker: Dp = BorderRawTokens.borderWidth75.dp,
-    val widthThickest: Dp = BorderRawTokens.borderWidth100.dp,
-    val widthInteractivePrimaryFocus: Dp = BorderRawTokens.borderWidth100.dp,
+    val widthMedium: Dp = BorderRawTokens.borderWidth50.dp,
+    val widthThick: Dp = BorderRawTokens.borderWidth75.dp,
+    val widthThicker: Dp = BorderRawTokens.borderWidth100.dp,
+    val widthOutsideFocus: Dp = BorderRawTokens.borderWidth50.dp,
     val radiusNone: Dp = BorderRawTokens.borderRadius0.dp,
     val radiusDefault: Dp = BorderRawTokens.borderRadius0.dp,
     val radiusShort: Dp = BorderRawTokens.borderRadius75.dp,
@@ -40,10 +40,10 @@ enum class OudsBorderWidthToken {
     None,
     Default,
     Thin,
+    Medium,
     Thick,
     Thicker,
-    Thickest,
-    InteractivePrimaryFocus
+    OutsideFocus
 }
 
 @Stable
@@ -52,10 +52,10 @@ fun OudsBorderTokens.fromToken(token: OudsBorderWidthToken): Dp {
         OudsBorderWidthToken.None -> widthNone
         OudsBorderWidthToken.Default -> widthDefault
         OudsBorderWidthToken.Thin -> widthThin
+        OudsBorderWidthToken.Medium -> widthMedium
         OudsBorderWidthToken.Thick -> widthThick
         OudsBorderWidthToken.Thicker -> widthThicker
-        OudsBorderWidthToken.Thickest -> widthThickest
-        OudsBorderWidthToken.InteractivePrimaryFocus -> widthInteractivePrimaryFocus
+        OudsBorderWidthToken.OutsideFocus -> widthOutsideFocus
     }
 }
 
