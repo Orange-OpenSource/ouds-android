@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
+import com.orange.ouds.theme.tokens.semantic.OudsDimensionTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
@@ -39,6 +40,12 @@ interface OudsThemeContract : Parcelable {
      */
     val borderTokens: OudsBorderSemanticTokens
         get() = OudsBorderSemanticTokens()
+
+    /**
+     * Dimension semantic tokens values used in the theme
+     */
+    val dimensionTokens: OudsDimensionTokens
+        get() = OudsDimensionTokens()
 
     /**
      * Elevation semantic tokens values used in the theme

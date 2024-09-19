@@ -21,6 +21,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.semantic.OudsDimensionTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
@@ -31,6 +32,8 @@ private val LocalElevations = staticCompositionLocalOf<OudsElevations> { missing
 private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 private val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
 private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
+private val LocalDimensionTokens = staticCompositionLocalOf<OudsDimensionTokens> { missingCompositionLocalError("LocalDimensionTokens") }
+
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
 object OudsTheme {
@@ -43,6 +46,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalBorders.current
+
+    val dimensionTokens: OudsDimensionTokens
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalDimensionTokens.current
 
     val elevations: OudsElevations
         @Composable
@@ -93,6 +101,7 @@ fun OudsTheme(
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
         LocalGrids provides themeContract.gridTokens.getGrids(),
         LocalOpacities provides themeContract.opacityTokens.getOpacity(),
+        LocalDimensionTokens provides themeContract.dimensionTokens,
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
         MaterialTheme(colorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme) {
