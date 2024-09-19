@@ -21,6 +21,7 @@ import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
+import com.orange.ouds.theme.tokens.semantic.OudsDimensionSpaceToken
 import com.orange.ouds.theme.whitelabel.tokens.whiteLabelSemanticColorTokens
 import kotlinx.parcelize.Parcelize
 
@@ -43,7 +44,9 @@ open class WhiteLabelTheme : OudsThemeContract {
                 defaultElevation = OudsElevationKeyToken.OverlayDefault,
                 focusedElevation = OudsElevationKeyToken.OverlayDefault,
                 hoveredElevation = OudsElevationKeyToken.OverlayDefault,
-                labelStyle = OudsTypographyKeyToken.BodyDefaultLarge
+                labelStyle = OudsTypographyKeyToken.BodyDefaultLarge,
+                verticalContentPadding = OudsDimensionSpaceToken.Shortest,
+                horizontalContentPadding = OudsDimensionSpaceToken.Short
             )
         )
 }
