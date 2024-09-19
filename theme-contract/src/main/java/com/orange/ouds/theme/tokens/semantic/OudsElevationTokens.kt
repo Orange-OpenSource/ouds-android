@@ -16,13 +16,13 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.tokens.global.raw.ElevationRawTokens
 
-class OudsElevationTokens(
-    var none: Dp = ElevationRawTokens.elevation0,
-    var raised: Dp = ElevationRawTokens.elevation1,
-    var overlayDefault: Dp = ElevationRawTokens.elevation2,
-    var allSticky: Dp = ElevationRawTokens.elevation3,
-    var drag: Dp = ElevationRawTokens.elevation4,
-    var overlayEmphasized: Dp = ElevationRawTokens.elevation5,
+data class OudsElevationTokens(
+    val none: Dp = ElevationRawTokens.elevation0,
+    val raised: Dp = ElevationRawTokens.elevation1,
+    val overlayDefault: Dp = ElevationRawTokens.elevation2,
+    val allSticky: Dp = ElevationRawTokens.elevation3,
+    val drag: Dp = ElevationRawTokens.elevation4,
+    val overlayEmphasized: Dp = ElevationRawTokens.elevation5,
 )
 
 enum class OudsElevationToken {

@@ -18,22 +18,22 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.tokens.global.raw.BorderRawTokens
 
-class OudsBorderTokens(
-    var widthNone: Dp = BorderRawTokens.borderWidth0.dp,
-    var widthDefault: Dp = BorderRawTokens.borderWidth25.dp,
-    var widthThin: Dp = BorderRawTokens.borderWidth25.dp,
-    var widthThick: Dp = BorderRawTokens.borderWidth50.dp,
-    var widthThicker: Dp = BorderRawTokens.borderWidth75.dp,
-    var widthThickest: Dp = BorderRawTokens.borderWidth100.dp,
-    var widthInteractivePrimaryFocus: Dp = BorderRawTokens.borderWidth100.dp,
-    var radiusNone: Dp = BorderRawTokens.borderRadius0.dp,
-    var radiusDefault: Dp = BorderRawTokens.borderRadius0.dp,
-    var radiusShort: Dp = BorderRawTokens.borderRadius75.dp,
-    var radiusMedium: Dp = BorderRawTokens.borderRadius150.dp,
-    var radiusTall: Dp = BorderRawTokens.borderRadius300.dp,
-    var radiusPill: Dp = BorderRawTokens.borderRadius9999.dp,
-    var styleDefault: OudsBorderStyle = OudsBorderStyle.fromString(BorderRawTokens.borderStyleSolid),
-    var styleDrag: OudsBorderStyle = OudsBorderStyle.fromString(BorderRawTokens.borderStyleDashed)
+data class OudsBorderTokens(
+    val widthNone: Dp = BorderRawTokens.borderWidth0.dp,
+    val widthDefault: Dp = BorderRawTokens.borderWidth25.dp,
+    val widthThin: Dp = BorderRawTokens.borderWidth25.dp,
+    val widthThick: Dp = BorderRawTokens.borderWidth50.dp,
+    val widthThicker: Dp = BorderRawTokens.borderWidth75.dp,
+    val widthThickest: Dp = BorderRawTokens.borderWidth100.dp,
+    val widthInteractivePrimaryFocus: Dp = BorderRawTokens.borderWidth100.dp,
+    val radiusNone: Dp = BorderRawTokens.borderRadius0.dp,
+    val radiusDefault: Dp = BorderRawTokens.borderRadius0.dp,
+    val radiusShort: Dp = BorderRawTokens.borderRadius75.dp,
+    val radiusMedium: Dp = BorderRawTokens.borderRadius150.dp,
+    val radiusTall: Dp = BorderRawTokens.borderRadius300.dp,
+    val radiusPill: Dp = BorderRawTokens.borderRadius9999.dp,
+    val styleDefault: OudsBorderStyle = OudsBorderStyle.fromString(BorderRawTokens.borderStyleSolid),
+    val styleDrag: OudsBorderStyle = OudsBorderStyle.fromString(BorderRawTokens.borderStyleDashed)
 )
 
 enum class OudsBorderWidthToken {

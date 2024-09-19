@@ -16,13 +16,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.theme.OudsBorderStyle
+import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.fromToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderStyleToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderWidthToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorToken
 import com.orange.ouds.theme.tokens.semantic.OudsElevationToken
+import com.orange.ouds.theme.tokens.semantic.OudsGridToken
 import com.orange.ouds.theme.tokens.semantic.fromToken
 
 /**
@@ -64,3 +67,11 @@ val OudsElevationToken.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.elevationTokens.fromToken(this)
+
+/**
+ * Converts an OUDS grid token to the local grid value provided by the theme.
+ * Note that grid token value returned varies depending on the window size.
+ */
+val OudsGridToken.value: Dp
+    @Composable
+    get() = OudsTheme.gridTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
