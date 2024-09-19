@@ -1,11 +1,11 @@
 name: build-docs
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+      - develop
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
   pull_request:
@@ -89,8 +89,12 @@ jobs:
         uses: actions/deploy-pages@v4
 
   netlify:
+    environment:
+      name: netlify
+      url: ${{ steps.deployment.outputs.deploy_preview_url }}
     needs: [ build, test ]
     runs-on: ubuntu-latest
+    if: github.event_name != 'push' || github.ref != 'refs/heads/master'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -116,11 +120,14 @@ jobs:
         run: npm install --save-dev netlify-cli
 
       - name: Deploy to Netlify
+        id: deployment
         run: |
           # Git SHA is equal to github.event.pull_request.head.sha for pull requests
           # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
           BRANCH_SHA=${{ github.event.pull_request.head.sha }}
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
           ./gradlew publishDocumentationToNetlify -PdocumentationPath=dir -PnetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -PnetlifyToken=${{ secrets.NETLIFY_TOKEN }} -PcommitSha=$COMMIT_SHA
+          # Set environment URL
+          echo deploy_preview_url=$(cat netlify_deploy_preview_url.txt) >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
