@@ -12,8 +12,8 @@
 
 import com.orange.ouds.gradle.artifactId
 import com.orange.ouds.gradle.execute
-import com.orange.ouds.gradle.findTypedProperty
 import com.orange.ouds.gradle.isPublished
+import com.orange.ouds.gradle.requireTypedProperty
 
 tasks.register<DefaultTask>("prepareRelease") {
     doLast {
@@ -51,10 +51,7 @@ fun updateVersionCode() {
 
 tasks.register<DefaultTask>("testSonatypeRepository") {
     doLast {
-        val sonatypeRepositoryId = project.findTypedProperty<String>("sonatypeRepositoryId")
-        if (sonatypeRepositoryId == null) {
-            throw GradleException("Please set the \"sonatypeRepositoryId\" project property.")
-        }
+        val sonatypeRepositoryId = project.requireTypedProperty<String>("sonatypeRepositoryId")
 
         // Add Sonatype Maven repository in root build.gradle.kts file
         File("settings.gradle.kts").replace("(\\s*)mavenCentral\\(\\)".toRegex()) { matchResult ->

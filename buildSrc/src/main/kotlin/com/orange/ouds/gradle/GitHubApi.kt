@@ -34,11 +34,24 @@ class GitHubApi(private val token: String, private val repository: String) {
         return parsePullRequests(jsonString)
     }
 
-    fun Project.commentIssue(number: Int, comment: String) {
+    fun Project.getIssueComments(issueNumber: Int): List<GitHubIssueComment> {
+        val jsonString = launchRequest("issues/$issueNumber/comments", "GET")
+        return parseIssueComments(jsonString)
+    }
+
+    fun Project.createIssueComment(issueNumber: Int, body: String) {
         launchRequest(
-            "issues/$number/comments",
+            "issues/$issueNumber/comments",
             "POST",
-            "{\"body\":\"$comment\"}"
+            "{\"body\":\"$body\"}"
+        )
+    }
+
+    fun Project.updateIssueComment(commentId: Long, body: String) {
+        launchRequest(
+            "issues/comments/$commentId",
+            "PATCH",
+            "{\"body\":\"$body\"}"
         )
     }
 
@@ -68,7 +81,7 @@ class GitHubApi(private val token: String, private val repository: String) {
             "-H", "Authorization: token $token",
             "-H", "Accept: application/vnd.github.v3+json"
         ).apply {
-            if ((method == "POST" || method == "PUT") && body != null) {
+            if ((method == "POST" || method == "PUT" || method == "PATCH") && body != null) {
                 add("-d")
                 add(body)
             }
@@ -86,6 +99,19 @@ class GitHubApi(private val token: String, private val repository: String) {
                     number = getInt("number"),
                     title = getString("title"),
                     branchName = getJSONObject("head").getString("ref")
+                )
+            }
+        }
+    }
+
+    private fun parseIssueComments(jsonString: String): List<GitHubIssueComment> {
+        val jsonIssueComments = JSONArray(jsonString)
+
+        return List(jsonIssueComments.length()) { index ->
+            with(jsonIssueComments.getJSONObject(index)) {
+                GitHubIssueComment(
+                    id = getLong("id"),
+                    body = getString("body")
                 )
             }
         }

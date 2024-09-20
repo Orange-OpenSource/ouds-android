@@ -18,4 +18,5 @@ plugins {
     alias(libs.plugins.google.services) apply false
     id("github")
     id("release")
+    id("netlify")
 }

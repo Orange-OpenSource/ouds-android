@@ -81,7 +81,10 @@ tasks.register<DefaultTask>("appDistributionUpload") {
 tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
     doLast {
         // Generate release notes
-        val branchName = Environment.getVariables("GITHUB_REF").first().removePrefix("refs/heads/")
+        // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
+        // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
+        // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
+        val branchName = Environment.getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
         var releaseNotes = if (branchName == "develop") {
             // Retrieve latest Firebase App Distribution tag
             // Firebase App Distribution tags are not annotated
@@ -156,9 +159,12 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
             if (release != null) {
                 println("Found App Distribution release with version code $versionCode.")
                 gitHubApi {
+                    // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
+                    // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
+                    // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
+                    val branchName = Environment.getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
                     // Find pull request for current branch
                     val pullRequests = getPullRequests()
-                    val branchName = Environment.getVariables("GITHUB_REF").first().removePrefix("refs/heads/")
                     val pullRequest = pullRequests.firstOrNull { it.branchName == branchName }
                     if (pullRequest != null) {
                         println("Found pull request #${pullRequest.number} for branch $branchName.")
@@ -177,19 +183,19 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                         )
 
                         // Add a comment with a link to the QR code in the repository
-                        println("Add comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
+                        println("Create comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
                         val link = "![qrcode](https://github.com/Orange-OpenSource/ouds-android/raw/$sha/qrcodes/${qrCode.name})"
-                        val comment =
+                        val body =
                             "Flash the QR code below to download and install the OUDS Playground app which contains the changes of this pull request:\\n$link"
-                        // Although we use the "issues/{issue_number}/comments" GitHub API, this will comment the pull request
+                        // Although we use the "issues/{issue_number}/comments" GitHub API, this will comment the pull request because a pull request is an issue
                         // The "pulls/{pull_number}/comments" is used to add review comments on a pull request
-                        commentIssue(pullRequest.number, comment)
+                        createIssueComment(pullRequest.number, body)
                     } else {
-                        println("Could not find a pull request for branch $branchName.")
+                        throw GradleException("Could not find a pull request for branch $branchName.")
                     }
                 }
             } else {
-                println("Could not find an App Distribution release with version code $versionCode.")
+                throw GradleException("Could not find an App Distribution release with version code $versionCode.")
             }
         }
     }
