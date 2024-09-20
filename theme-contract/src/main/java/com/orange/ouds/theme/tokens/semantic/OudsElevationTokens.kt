@@ -25,7 +25,7 @@ data class OudsElevationTokens(
     val overlayEmphasized: Dp = ElevationRawTokens.elevation5,
 )
 
-enum class OudsElevationToken {
+enum class OudsElevationKeyToken {
     None,
     Raised,
     OverlayDefault,
@@ -35,13 +35,13 @@ enum class OudsElevationToken {
 }
 
 @Stable
-fun OudsElevationTokens.fromToken(token: OudsElevationToken): Dp {
+fun OudsElevationTokens.fromToken(token: OudsElevationKeyToken): Dp {
     return when (token) {
-        OudsElevationToken.None -> none
-        OudsElevationToken.Raised -> raised
-        OudsElevationToken.OverlayDefault -> overlayDefault
-        OudsElevationToken.AllSticky -> allSticky
-        OudsElevationToken.Drag -> drag
-        OudsElevationToken.OverlayEmphasized -> overlayEmphasized
+        OudsElevationKeyToken.None -> none
+        OudsElevationKeyToken.Raised -> raised
+        OudsElevationKeyToken.OverlayDefault -> overlayDefault
+        OudsElevationKeyToken.AllSticky -> allSticky
+        OudsElevationKeyToken.Drag -> drag
+        OudsElevationKeyToken.OverlayEmphasized -> overlayEmphasized
     }
 }

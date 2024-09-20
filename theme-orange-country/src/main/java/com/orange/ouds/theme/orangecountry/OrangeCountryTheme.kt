@@ -16,7 +16,7 @@ import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orangecountry.tokens.orangeCountrySemanticColorTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
+import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 
 class OrangeCountryTheme : OrangeTheme() {
@@ -29,6 +29,6 @@ class OrangeCountryTheme : OrangeTheme() {
 
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(
-            button = OudsButtonTokens(cornerRadius = OudsBorderRadiusToken.Short)
+            button = OudsButtonTokens(cornerRadius = OudsBorderRadiusKeyToken.Short)
         )
 }

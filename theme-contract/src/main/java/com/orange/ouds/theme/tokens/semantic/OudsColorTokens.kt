@@ -203,7 +203,7 @@ data class OudsColorTokens(
 
 data class OudsColorTokenValue(val light: Color, val dark: Color)
 
-enum class OudsColorToken {
+enum class OudsColorKeyToken {
     Background,
     Error,
     ErrorContainer,

@@ -14,7 +14,7 @@ package com.orange.ouds.theme
 
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.tokens.semantic.OudsColorToken
+import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 class OudsColorScheme(
     val primary: Color,
@@ -55,36 +55,36 @@ class OudsColorScheme(
 )
 
 @Stable
-fun OudsColorScheme.fromToken(value: OudsColorToken): Color {
+fun OudsColorScheme.fromToken(value: OudsColorKeyToken): Color {
     return when (value) {
-        OudsColorToken.Background -> background
-        OudsColorToken.Error -> error
-        OudsColorToken.ErrorContainer -> errorContainer
-        OudsColorToken.InverseOnSurface -> inverseOnSurface
-        OudsColorToken.InversePrimary -> inversePrimary
-        OudsColorToken.InverseSurface -> inverseSurface
-        OudsColorToken.OnBackground -> onBackground
-        OudsColorToken.OnError -> onError
-        OudsColorToken.OnErrorContainer -> onErrorContainer
-        OudsColorToken.OnPrimary -> onPrimary
-        OudsColorToken.OnPrimaryContainer -> onPrimaryContainer
-        OudsColorToken.OnSecondary -> onSecondary
-        OudsColorToken.OnSecondaryContainer -> onSecondaryContainer
-        OudsColorToken.OnSurface -> onSurface
-        OudsColorToken.OnSurfaceVariant -> onSurfaceVariant
-        OudsColorToken.SurfaceTint -> surfaceTint
-        OudsColorToken.OnTertiary -> onTertiary
-        OudsColorToken.OnTertiaryContainer -> onTertiaryContainer
-        OudsColorToken.Outline -> outline
-        OudsColorToken.OutlineVariant -> outlineVariant
-        OudsColorToken.Primary -> primary
-        OudsColorToken.PrimaryContainer -> primaryContainer
-        OudsColorToken.Scrim -> scrim
-        OudsColorToken.Secondary -> secondary
-        OudsColorToken.SecondaryContainer -> secondaryContainer
-        OudsColorToken.Surface -> surface
-        OudsColorToken.SurfaceVariant -> surfaceVariant
-        OudsColorToken.Tertiary -> tertiary
-        OudsColorToken.TertiaryContainer -> tertiaryContainer
+        OudsColorKeyToken.Background -> background
+        OudsColorKeyToken.Error -> error
+        OudsColorKeyToken.ErrorContainer -> errorContainer
+        OudsColorKeyToken.InverseOnSurface -> inverseOnSurface
+        OudsColorKeyToken.InversePrimary -> inversePrimary
+        OudsColorKeyToken.InverseSurface -> inverseSurface
+        OudsColorKeyToken.OnBackground -> onBackground
+        OudsColorKeyToken.OnError -> onError
+        OudsColorKeyToken.OnErrorContainer -> onErrorContainer
+        OudsColorKeyToken.OnPrimary -> onPrimary
+        OudsColorKeyToken.OnPrimaryContainer -> onPrimaryContainer
+        OudsColorKeyToken.OnSecondary -> onSecondary
+        OudsColorKeyToken.OnSecondaryContainer -> onSecondaryContainer
+        OudsColorKeyToken.OnSurface -> onSurface
+        OudsColorKeyToken.OnSurfaceVariant -> onSurfaceVariant
+        OudsColorKeyToken.SurfaceTint -> surfaceTint
+        OudsColorKeyToken.OnTertiary -> onTertiary
+        OudsColorKeyToken.OnTertiaryContainer -> onTertiaryContainer
+        OudsColorKeyToken.Outline -> outline
+        OudsColorKeyToken.OutlineVariant -> outlineVariant
+        OudsColorKeyToken.Primary -> primary
+        OudsColorKeyToken.PrimaryContainer -> primaryContainer
+        OudsColorKeyToken.Scrim -> scrim
+        OudsColorKeyToken.Secondary -> secondary
+        OudsColorKeyToken.SecondaryContainer -> secondaryContainer
+        OudsColorKeyToken.Surface -> surface
+        OudsColorKeyToken.SurfaceVariant -> surfaceVariant
+        OudsColorKeyToken.Tertiary -> tertiary
+        OudsColorKeyToken.TertiaryContainer -> tertiaryContainer
     }
 }
