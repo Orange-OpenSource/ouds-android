@@ -18,13 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.OudsAdaptiveTokenValue
 import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.tokens.global.raw.DimensionRawTokens
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens.dimension200
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens.dimension300
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens.dimension400
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens.dimension500
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens.dimension600
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens.dimension700
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens.dimension900
 
 data class OudsDimensionTokens(
     val spaceNone: Dp = DimensionRawTokens.dimension0.dp,
@@ -89,13 +82,13 @@ data class OudsDimensionTokens(
         DimensionRawTokens.dimension600.dp,
         DimensionRawTokens.dimension700.dp
     ),
-    val sizeIconDecorativeShortest: Dp = dimension200.dp,
-    val sizeIconDecorativeShorter: Dp = dimension300.dp,
-    val sizeIconDecorativeShort: Dp = dimension400.dp,
-    val sizeIconDecorativeMedium: Dp = dimension500.dp,
-    val sizeIconDecorativeTall: Dp = dimension600.dp,
-    val sizeIconDecorativeTaller: Dp = dimension700.dp,
-    val sizeIconDecorativeTallest: Dp = dimension900.dp,
+    val sizeIconDecorativeShortest: Dp = DimensionRawTokens.dimension200.dp,
+    val sizeIconDecorativeShorter: Dp = DimensionRawTokens.dimension300.dp,
+    val sizeIconDecorativeShort: Dp = DimensionRawTokens.dimension400.dp,
+    val sizeIconDecorativeMedium: Dp = DimensionRawTokens.dimension500.dp,
+    val sizeIconDecorativeTall: Dp = DimensionRawTokens.dimension600.dp,
+    val sizeIconDecorativeTaller: Dp = DimensionRawTokens.dimension700.dp,
+    val sizeIconDecorativeTallest: Dp = DimensionRawTokens.dimension900.dp,
     val sizeIconWithTypeHeadingSmallShort: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
         DimensionRawTokens.dimension400.dp,
         DimensionRawTokens.dimension400.dp,
