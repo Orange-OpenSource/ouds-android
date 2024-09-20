@@ -27,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.theme.tokens.semantic.OudsGridToken
+import com.orange.ouds.theme.tokens.semantic.OudsGridKeyToken
 
 @Composable
 fun ComponentsScreen() {
@@ -36,8 +36,8 @@ fun ComponentsScreen() {
 
         Box(
             modifier = Modifier
-                .width(OudsGridToken.Margin.value)
-                .height(OudsGridToken.ColumnGap.value)
+                .width(OudsGridKeyToken.Margin.value)
+                .height(OudsGridKeyToken.ColumnGap.value)
                 .background(OudsTheme.colorScheme.primary)
         )
     }

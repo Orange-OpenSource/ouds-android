@@ -12,20 +12,19 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import androidx.compose.ui.unit.Dp
-import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorToken
-import com.orange.ouds.theme.tokens.semantic.OudsElevationToken
+import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusKeyToken
+import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.semantic.OudsElevationKeyToken
 
 open class OudsButtonTokens(
-    val containerColor: OudsColorToken = OudsColorToken.Primary,
-    val contentColor: OudsColorToken = OudsColorToken.OnPrimary,
-    val disabledContainerColor: OudsColorToken = OudsColorToken.Secondary,
-    val disabledContentColor: OudsColorToken = OudsColorToken.OnSecondary,
-    val cornerRadius: OudsBorderRadiusToken = OudsBorderRadiusToken.None,
-    val defaultElevation: OudsElevationToken = OudsElevationToken.None,
-    val pressedElevation: OudsElevationToken = OudsElevationToken.None,
-    val focusedElevation: OudsElevationToken = OudsElevationToken.None,
-    val hoveredElevation: OudsElevationToken = OudsElevationToken.None,
-    val disabledElevation: OudsElevationToken = OudsElevationToken.None
+    val containerColor: OudsColorKeyToken = OudsColorKeyToken.Primary,
+    val contentColor: OudsColorKeyToken = OudsColorKeyToken.OnPrimary,
+    val disabledContainerColor: OudsColorKeyToken = OudsColorKeyToken.Secondary,
+    val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.OnSecondary,
+    val cornerRadius: OudsBorderRadiusKeyToken = OudsBorderRadiusKeyToken.None,
+    val defaultElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
+    val pressedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
+    val focusedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
+    val hoveredElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
+    val disabledElevation: OudsElevationKeyToken = OudsElevationKeyToken.None
 )

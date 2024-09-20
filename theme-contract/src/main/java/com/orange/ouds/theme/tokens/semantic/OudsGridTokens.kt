@@ -42,7 +42,7 @@ data class OudsGridTokens(
     ),
 )
 
-enum class OudsGridToken {
+enum class OudsGridKeyToken {
     MinWidth,
     MaxWidth,
     ColumnGap,
@@ -50,12 +50,12 @@ enum class OudsGridToken {
 }
 
 @Stable
-fun OudsGridTokens.fromToken(token: OudsGridToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+fun OudsGridTokens.fromToken(token: OudsGridKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     val gridToken = when (token) {
-        OudsGridToken.MinWidth -> minWidth
-        OudsGridToken.MaxWidth -> maxWidth
-        OudsGridToken.ColumnGap -> columnGap
-        OudsGridToken.Margin -> margin
+        OudsGridKeyToken.MinWidth -> minWidth
+        OudsGridKeyToken.MaxWidth -> maxWidth
+        OudsGridKeyToken.ColumnGap -> columnGap
+        OudsGridKeyToken.Margin -> margin
     }
 
     return when (adaptiveWindowType) {

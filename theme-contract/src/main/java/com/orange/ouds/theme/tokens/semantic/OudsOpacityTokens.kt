@@ -24,7 +24,7 @@ data class OudsOpacityTokens(
     val opaque: Float = OpacityRawTokens.opacity900
 )
 
-enum class OudsOpacityToken {
+enum class OudsOpacityKeyToken {
     Transparent,
     Weaker,
     Weak,
@@ -34,13 +34,13 @@ enum class OudsOpacityToken {
 }
 
 @Stable
-fun OudsOpacityTokens.fromToken(token: OudsOpacityToken): Float {
+fun OudsOpacityTokens.fromToken(token: OudsOpacityKeyToken): Float {
     return when (token) {
-        OudsOpacityToken.Transparent -> transparent
-        OudsOpacityToken.Weaker -> weaker
-        OudsOpacityToken.Weak -> weak
-        OudsOpacityToken.Medium -> medium
-        OudsOpacityToken.Strong -> strong
-        OudsOpacityToken.Opaque -> opaque
+        OudsOpacityKeyToken.Transparent -> transparent
+        OudsOpacityKeyToken.Weaker -> weaker
+        OudsOpacityKeyToken.Weak -> weak
+        OudsOpacityKeyToken.Medium -> medium
+        OudsOpacityKeyToken.Strong -> strong
+        OudsOpacityKeyToken.Opaque -> opaque
     }
 }

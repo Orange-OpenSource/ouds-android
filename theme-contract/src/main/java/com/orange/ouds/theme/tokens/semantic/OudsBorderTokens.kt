@@ -36,7 +36,7 @@ data class OudsBorderTokens(
     val styleDrag: OudsBorderStyle = OudsBorderStyle.fromString(BorderRawTokens.borderStyleDashed)
 )
 
-enum class OudsBorderWidthToken {
+enum class OudsBorderWidthKeyToken {
     None,
     Default,
     Thin,
@@ -47,19 +47,19 @@ enum class OudsBorderWidthToken {
 }
 
 @Stable
-fun OudsBorderTokens.fromToken(token: OudsBorderWidthToken): Dp {
+fun OudsBorderTokens.fromToken(token: OudsBorderWidthKeyToken): Dp {
     return when (token) {
-        OudsBorderWidthToken.None -> widthNone
-        OudsBorderWidthToken.Default -> widthDefault
-        OudsBorderWidthToken.Thin -> widthThin
-        OudsBorderWidthToken.Medium -> widthMedium
-        OudsBorderWidthToken.Thick -> widthThick
-        OudsBorderWidthToken.Thicker -> widthThicker
-        OudsBorderWidthToken.OutsideFocus -> widthOutsideFocus
+        OudsBorderWidthKeyToken.None -> widthNone
+        OudsBorderWidthKeyToken.Default -> widthDefault
+        OudsBorderWidthKeyToken.Thin -> widthThin
+        OudsBorderWidthKeyToken.Medium -> widthMedium
+        OudsBorderWidthKeyToken.Thick -> widthThick
+        OudsBorderWidthKeyToken.Thicker -> widthThicker
+        OudsBorderWidthKeyToken.OutsideFocus -> widthOutsideFocus
     }
 }
 
-enum class OudsBorderRadiusToken {
+enum class OudsBorderRadiusKeyToken {
     None,
     Default,
     Short,
@@ -69,26 +69,26 @@ enum class OudsBorderRadiusToken {
 }
 
 @Stable
-fun OudsBorderTokens.fromToken(token: OudsBorderRadiusToken): Dp {
+fun OudsBorderTokens.fromToken(token: OudsBorderRadiusKeyToken): Dp {
     return when (token) {
-        OudsBorderRadiusToken.None -> radiusNone
-        OudsBorderRadiusToken.Default -> radiusDefault
-        OudsBorderRadiusToken.Short -> radiusShort
-        OudsBorderRadiusToken.Medium -> radiusMedium
-        OudsBorderRadiusToken.Tall -> radiusTall
-        OudsBorderRadiusToken.Pill -> radiusPill
+        OudsBorderRadiusKeyToken.None -> radiusNone
+        OudsBorderRadiusKeyToken.Default -> radiusDefault
+        OudsBorderRadiusKeyToken.Short -> radiusShort
+        OudsBorderRadiusKeyToken.Medium -> radiusMedium
+        OudsBorderRadiusKeyToken.Tall -> radiusTall
+        OudsBorderRadiusKeyToken.Pill -> radiusPill
     }
 }
 
-enum class OudsBorderStyleToken {
+enum class OudsBorderStyleKeyToken {
     Default,
     Drag
 }
 
 @Stable
-fun OudsBorderTokens.fromToken(token: OudsBorderStyleToken): OudsBorderStyle {
+fun OudsBorderTokens.fromToken(token: OudsBorderStyleKeyToken): OudsBorderStyle {
     return when (token) {
-        OudsBorderStyleToken.Default -> styleDefault
-        OudsBorderStyleToken.Drag -> styleDrag
+        OudsBorderStyleKeyToken.Default -> styleDefault
+        OudsBorderStyleKeyToken.Drag -> styleDrag
     }
 }
