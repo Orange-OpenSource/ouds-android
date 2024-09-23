@@ -14,6 +14,7 @@ googleAuthLibraryOauth2Http = "1.27.0"
 googleServices = "4.4.2"
 dataStorePreferences = "1.1.1"
 gradle = "8.6.1"
+grpc = "1.66.0"
 hilt = "2.52"
 javaPoet = "1.13.0"
 json = "20240303"
@@ -44,6 +45,10 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 google-auth-library-oauth2-http = { module = "com.google.auth:google-auth-library-oauth2-http", version.ref = "googleAuthLibraryOauth2Http" }
+grpc-core = { module = "io.grpc:grpc-core", version.ref = "grpc" }
+grpc-netty = { module = "io.grpc:grpc-netty", version.ref = "grpc" }
+grpc-protobuf = { module = "io.grpc:grpc-protobuf", version.ref = "grpc" }
+grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javaPoet" }
