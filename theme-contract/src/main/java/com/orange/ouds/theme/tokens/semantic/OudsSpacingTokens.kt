@@ -159,7 +159,7 @@ data class OudsSpacingTokens(
     val rowGapIsIconTaller: Dp = DimensionRawTokens.dimension200.dp,
 )
 
-enum class OudsSpacingFixedToken {
+enum class OudsSpacingFixedKeyToken {
     None,
     Smash,
     Shortest,
@@ -175,24 +175,24 @@ enum class OudsSpacingFixedToken {
 }
 
 @Stable
-fun OudsSpacingTokens.fromToken(token: OudsSpacingFixedToken): Dp {
+fun OudsSpacingTokens.fromToken(token: OudsSpacingFixedKeyToken): Dp {
     return when (token) {
-        OudsSpacingFixedToken.None -> fixedNone
-        OudsSpacingFixedToken.Smash -> fixedSmash
-        OudsSpacingFixedToken.Shortest -> fixedShortest
-        OudsSpacingFixedToken.Shorter -> fixedShorter
-        OudsSpacingFixedToken.Short -> fixedShort
-        OudsSpacingFixedToken.Medium -> fixedMedium
-        OudsSpacingFixedToken.Tall -> fixedTall
-        OudsSpacingFixedToken.Taller -> fixedTaller
-        OudsSpacingFixedToken.Tallest -> fixedTallest
-        OudsSpacingFixedToken.Spacious -> fixedSpacious
-        OudsSpacingFixedToken.Huge -> fixedHuge
-        OudsSpacingFixedToken.Jumbo -> fixedJumbo
+        OudsSpacingFixedKeyToken.None -> fixedNone
+        OudsSpacingFixedKeyToken.Smash -> fixedSmash
+        OudsSpacingFixedKeyToken.Shortest -> fixedShortest
+        OudsSpacingFixedKeyToken.Shorter -> fixedShorter
+        OudsSpacingFixedKeyToken.Short -> fixedShort
+        OudsSpacingFixedKeyToken.Medium -> fixedMedium
+        OudsSpacingFixedKeyToken.Tall -> fixedTall
+        OudsSpacingFixedKeyToken.Taller -> fixedTaller
+        OudsSpacingFixedKeyToken.Tallest -> fixedTallest
+        OudsSpacingFixedKeyToken.Spacious -> fixedSpacious
+        OudsSpacingFixedKeyToken.Huge -> fixedHuge
+        OudsSpacingFixedKeyToken.Jumbo -> fixedJumbo
     }
 }
 
-enum class OudsSpacingScaledToken {
+enum class OudsSpacingScaledKeyToken {
     None,
     Smash,
     Shortest,
@@ -206,18 +206,18 @@ enum class OudsSpacingScaledToken {
 }
 
 @Stable
-fun OudsSpacingTokens.fromToken(token: OudsSpacingScaledToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+fun OudsSpacingTokens.fromToken(token: OudsSpacingScaledKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     val dimensionAdaptableSpaceToken = when (token) {
-        OudsSpacingScaledToken.None -> scaledNone
-        OudsSpacingScaledToken.Smash -> scaledSmash
-        OudsSpacingScaledToken.Shortest -> scaledShortest
-        OudsSpacingScaledToken.Shorter -> scaledShorter
-        OudsSpacingScaledToken.Short -> scaledShort
-        OudsSpacingScaledToken.Medium -> scaledMedium
-        OudsSpacingScaledToken.Tall -> scaledTall
-        OudsSpacingScaledToken.Taller -> scaledTaller
-        OudsSpacingScaledToken.Tallest -> scaledTallest
-        OudsSpacingScaledToken.Spacious -> scaledSpacious
+        OudsSpacingScaledKeyToken.None -> scaledNone
+        OudsSpacingScaledKeyToken.Smash -> scaledSmash
+        OudsSpacingScaledKeyToken.Shortest -> scaledShortest
+        OudsSpacingScaledKeyToken.Shorter -> scaledShorter
+        OudsSpacingScaledKeyToken.Short -> scaledShort
+        OudsSpacingScaledKeyToken.Medium -> scaledMedium
+        OudsSpacingScaledKeyToken.Tall -> scaledTall
+        OudsSpacingScaledKeyToken.Taller -> scaledTaller
+        OudsSpacingScaledKeyToken.Tallest -> scaledTallest
+        OudsSpacingScaledKeyToken.Spacious -> scaledSpacious
     }
 
     return when (adaptiveWindowType) {
@@ -227,7 +227,7 @@ fun OudsSpacingTokens.fromToken(token: OudsSpacingScaledToken, adaptiveWindowTyp
     }
 }
 
-enum class OudsSpacingPaddingInlineToken {
+enum class OudsSpacingPaddingInlineKeyToken {
     None,
     Shorter,
     Short,
@@ -252,33 +252,33 @@ enum class OudsSpacingPaddingInlineToken {
 }
 
 @Stable
-fun OudsSpacingTokens.fromToken(token: OudsSpacingPaddingInlineToken): Dp {
+fun OudsSpacingTokens.fromToken(token: OudsSpacingPaddingInlineKeyToken): Dp {
     return when (token) {
-        OudsSpacingPaddingInlineToken.None -> paddingInlineNone
-        OudsSpacingPaddingInlineToken.Shorter -> paddingInlineShorter
-        OudsSpacingPaddingInlineToken.Short -> paddingInlineShort
-        OudsSpacingPaddingInlineToken.Medium -> paddingInlineMedium
-        OudsSpacingPaddingInlineToken.Tall -> paddingInlineTall
-        OudsSpacingPaddingInlineToken.Taller -> paddingInlineTaller
-        OudsSpacingPaddingInlineToken.Tallest -> paddingInlineTallest
-        OudsSpacingPaddingInlineToken.IsIconNone -> paddingInlineIsIconNone
-        OudsSpacingPaddingInlineToken.IsIconShorter -> paddingInlineIsIconShorter
-        OudsSpacingPaddingInlineToken.IsIconShort -> paddingInlineIsIconShort
-        OudsSpacingPaddingInlineToken.IsIconMedium -> paddingInlineIsIconMedium
-        OudsSpacingPaddingInlineToken.IsIconTall -> paddingInlineIsIconTall
-        OudsSpacingPaddingInlineToken.IsIconTaller -> paddingInlineIsIconTaller
-        OudsSpacingPaddingInlineToken.IsIconTallest -> paddingInlineIsIconTallest
-        OudsSpacingPaddingInlineToken.IsArrowNone -> paddingInlineIsArrowNone
-        OudsSpacingPaddingInlineToken.IsArrowShorter -> paddingInlineIsArrowShorter
-        OudsSpacingPaddingInlineToken.IsArrowShort -> paddingInlineIsArrowShort
-        OudsSpacingPaddingInlineToken.IsArrowMedium -> paddingInlineIsArrowMedium
-        OudsSpacingPaddingInlineToken.IsArrowTall -> paddingInlineIsArrowTall
-        OudsSpacingPaddingInlineToken.IsArrowTaller -> paddingInlineIsArrowTaller
-        OudsSpacingPaddingInlineToken.IsArrowTallest -> paddingInlineIsArrowTallest
+        OudsSpacingPaddingInlineKeyToken.None -> paddingInlineNone
+        OudsSpacingPaddingInlineKeyToken.Shorter -> paddingInlineShorter
+        OudsSpacingPaddingInlineKeyToken.Short -> paddingInlineShort
+        OudsSpacingPaddingInlineKeyToken.Medium -> paddingInlineMedium
+        OudsSpacingPaddingInlineKeyToken.Tall -> paddingInlineTall
+        OudsSpacingPaddingInlineKeyToken.Taller -> paddingInlineTaller
+        OudsSpacingPaddingInlineKeyToken.Tallest -> paddingInlineTallest
+        OudsSpacingPaddingInlineKeyToken.IsIconNone -> paddingInlineIsIconNone
+        OudsSpacingPaddingInlineKeyToken.IsIconShorter -> paddingInlineIsIconShorter
+        OudsSpacingPaddingInlineKeyToken.IsIconShort -> paddingInlineIsIconShort
+        OudsSpacingPaddingInlineKeyToken.IsIconMedium -> paddingInlineIsIconMedium
+        OudsSpacingPaddingInlineKeyToken.IsIconTall -> paddingInlineIsIconTall
+        OudsSpacingPaddingInlineKeyToken.IsIconTaller -> paddingInlineIsIconTaller
+        OudsSpacingPaddingInlineKeyToken.IsIconTallest -> paddingInlineIsIconTallest
+        OudsSpacingPaddingInlineKeyToken.IsArrowNone -> paddingInlineIsArrowNone
+        OudsSpacingPaddingInlineKeyToken.IsArrowShorter -> paddingInlineIsArrowShorter
+        OudsSpacingPaddingInlineKeyToken.IsArrowShort -> paddingInlineIsArrowShort
+        OudsSpacingPaddingInlineKeyToken.IsArrowMedium -> paddingInlineIsArrowMedium
+        OudsSpacingPaddingInlineKeyToken.IsArrowTall -> paddingInlineIsArrowTall
+        OudsSpacingPaddingInlineKeyToken.IsArrowTaller -> paddingInlineIsArrowTaller
+        OudsSpacingPaddingInlineKeyToken.IsArrowTallest -> paddingInlineIsArrowTallest
     }
 }
 
-enum class OudsSpacingPaddingBlockToken {
+enum class OudsSpacingPaddingBlockKeyToken {
     None,
     Shortest,
     Shorter,
@@ -296,26 +296,26 @@ enum class OudsSpacingPaddingBlockToken {
 }
 
 @Stable
-fun OudsSpacingTokens.fromToken(token: OudsSpacingPaddingBlockToken): Dp {
+fun OudsSpacingTokens.fromToken(token: OudsSpacingPaddingBlockKeyToken): Dp {
     return when (token) {
-        OudsSpacingPaddingBlockToken.None -> paddingBlockNone
-        OudsSpacingPaddingBlockToken.Shortest -> paddingBlockShortest
-        OudsSpacingPaddingBlockToken.Shorter -> paddingBlockShorter
-        OudsSpacingPaddingBlockToken.Short -> paddingBlockShort
-        OudsSpacingPaddingBlockToken.Medium -> paddingBlockMedium
-        OudsSpacingPaddingBlockToken.Tall -> paddingBlockTall
-        OudsSpacingPaddingBlockToken.Taller -> paddingBlockTaller
-        OudsSpacingPaddingBlockToken.IsIconNone -> paddingBlockIsIconNone
-        OudsSpacingPaddingBlockToken.IsIconShorter -> paddingBlockIsIconShorter
-        OudsSpacingPaddingBlockToken.IsIconShort -> paddingBlockIsIconShort
-        OudsSpacingPaddingBlockToken.IsIconMedium -> paddingBlockIsIconMedium
-        OudsSpacingPaddingBlockToken.IsIconTall -> paddingBlockIsIconTall
-        OudsSpacingPaddingBlockToken.IsIconTaller -> paddingBlockIsIconTaller
-        OudsSpacingPaddingBlockToken.IsIconTallest -> paddingBlockIsIconTallest
+        OudsSpacingPaddingBlockKeyToken.None -> paddingBlockNone
+        OudsSpacingPaddingBlockKeyToken.Shortest -> paddingBlockShortest
+        OudsSpacingPaddingBlockKeyToken.Shorter -> paddingBlockShorter
+        OudsSpacingPaddingBlockKeyToken.Short -> paddingBlockShort
+        OudsSpacingPaddingBlockKeyToken.Medium -> paddingBlockMedium
+        OudsSpacingPaddingBlockKeyToken.Tall -> paddingBlockTall
+        OudsSpacingPaddingBlockKeyToken.Taller -> paddingBlockTaller
+        OudsSpacingPaddingBlockKeyToken.IsIconNone -> paddingBlockIsIconNone
+        OudsSpacingPaddingBlockKeyToken.IsIconShorter -> paddingBlockIsIconShorter
+        OudsSpacingPaddingBlockKeyToken.IsIconShort -> paddingBlockIsIconShort
+        OudsSpacingPaddingBlockKeyToken.IsIconMedium -> paddingBlockIsIconMedium
+        OudsSpacingPaddingBlockKeyToken.IsIconTall -> paddingBlockIsIconTall
+        OudsSpacingPaddingBlockKeyToken.IsIconTaller -> paddingBlockIsIconTaller
+        OudsSpacingPaddingBlockKeyToken.IsIconTallest -> paddingBlockIsIconTallest
     }
 }
 
-enum class OudsSpacingPaddingInsetToken {
+enum class OudsSpacingPaddingInsetKeyToken {
     None,
     Smash,
     Shortest,
@@ -329,22 +329,22 @@ enum class OudsSpacingPaddingInsetToken {
 }
 
 @Stable
-fun OudsSpacingTokens.fromToken(token: OudsSpacingPaddingInsetToken): Dp {
+fun OudsSpacingTokens.fromToken(token: OudsSpacingPaddingInsetKeyToken): Dp {
     return when (token) {
-        OudsSpacingPaddingInsetToken.None -> insetNone
-        OudsSpacingPaddingInsetToken.Smash -> insetSmash
-        OudsSpacingPaddingInsetToken.Shortest -> insetShortest
-        OudsSpacingPaddingInsetToken.Shorter -> insetShorter
-        OudsSpacingPaddingInsetToken.Short -> insetShort
-        OudsSpacingPaddingInsetToken.Medium -> insetMedium
-        OudsSpacingPaddingInsetToken.Tall -> insetTall
-        OudsSpacingPaddingInsetToken.Taller -> insetTaller
-        OudsSpacingPaddingInsetToken.Tallest -> insetTallest
-        OudsSpacingPaddingInsetToken.Spacious -> insetSpacious
+        OudsSpacingPaddingInsetKeyToken.None -> insetNone
+        OudsSpacingPaddingInsetKeyToken.Smash -> insetSmash
+        OudsSpacingPaddingInsetKeyToken.Shortest -> insetShortest
+        OudsSpacingPaddingInsetKeyToken.Shorter -> insetShorter
+        OudsSpacingPaddingInsetKeyToken.Short -> insetShort
+        OudsSpacingPaddingInsetKeyToken.Medium -> insetMedium
+        OudsSpacingPaddingInsetKeyToken.Tall -> insetTall
+        OudsSpacingPaddingInsetKeyToken.Taller -> insetTaller
+        OudsSpacingPaddingInsetKeyToken.Tallest -> insetTallest
+        OudsSpacingPaddingInsetKeyToken.Spacious -> insetSpacious
     }
 }
 
-enum class OudsSpacingColumnGapToken {
+enum class OudsSpacingColumnGapKeyToken {
     None,
     Shorter,
     Short,
@@ -366,30 +366,30 @@ enum class OudsSpacingColumnGapToken {
 }
 
 @Stable
-fun OudsSpacingTokens.fromToken(token: OudsSpacingColumnGapToken): Dp {
+fun OudsSpacingTokens.fromToken(token: OudsSpacingColumnGapKeyToken): Dp {
     return when (token) {
-        OudsSpacingColumnGapToken.None -> columnGapNone
-        OudsSpacingColumnGapToken.Shorter -> columnGapShorter
-        OudsSpacingColumnGapToken.Short -> columnGapShort
-        OudsSpacingColumnGapToken.Medium -> columnGapMedium
-        OudsSpacingColumnGapToken.Tall -> columnGapTall
-        OudsSpacingColumnGapToken.Taller -> columnGapTaller
-        OudsSpacingColumnGapToken.IsIconNone -> columnGapIsIconNone
-        OudsSpacingColumnGapToken.IsIconShorter -> columnGapIsIconShorter
-        OudsSpacingColumnGapToken.IsIconShort -> columnGapIsIconShort
-        OudsSpacingColumnGapToken.IsIconMedium -> columnGapIsIconMedium
-        OudsSpacingColumnGapToken.IsIconTall -> columnGapIsIconTall
-        OudsSpacingColumnGapToken.IsIconTaller -> columnGapIsIconTaller
-        OudsSpacingColumnGapToken.IsArrowNone -> columnGapIsArrowNone
-        OudsSpacingColumnGapToken.IsArrowShorter -> columnGapIsArrowShorter
-        OudsSpacingColumnGapToken.IsArrowShort -> columnGapIsArrowShort
-        OudsSpacingColumnGapToken.IsArrowMedium -> columnGapIsArrowMedium
-        OudsSpacingColumnGapToken.IsArrowTall -> columnGapIsArrowTall
-        OudsSpacingColumnGapToken.IsArrowTaller -> columnGapIsArrowTaller
+        OudsSpacingColumnGapKeyToken.None -> columnGapNone
+        OudsSpacingColumnGapKeyToken.Shorter -> columnGapShorter
+        OudsSpacingColumnGapKeyToken.Short -> columnGapShort
+        OudsSpacingColumnGapKeyToken.Medium -> columnGapMedium
+        OudsSpacingColumnGapKeyToken.Tall -> columnGapTall
+        OudsSpacingColumnGapKeyToken.Taller -> columnGapTaller
+        OudsSpacingColumnGapKeyToken.IsIconNone -> columnGapIsIconNone
+        OudsSpacingColumnGapKeyToken.IsIconShorter -> columnGapIsIconShorter
+        OudsSpacingColumnGapKeyToken.IsIconShort -> columnGapIsIconShort
+        OudsSpacingColumnGapKeyToken.IsIconMedium -> columnGapIsIconMedium
+        OudsSpacingColumnGapKeyToken.IsIconTall -> columnGapIsIconTall
+        OudsSpacingColumnGapKeyToken.IsIconTaller -> columnGapIsIconTaller
+        OudsSpacingColumnGapKeyToken.IsArrowNone -> columnGapIsArrowNone
+        OudsSpacingColumnGapKeyToken.IsArrowShorter -> columnGapIsArrowShorter
+        OudsSpacingColumnGapKeyToken.IsArrowShort -> columnGapIsArrowShort
+        OudsSpacingColumnGapKeyToken.IsArrowMedium -> columnGapIsArrowMedium
+        OudsSpacingColumnGapKeyToken.IsArrowTall -> columnGapIsArrowTall
+        OudsSpacingColumnGapKeyToken.IsArrowTaller -> columnGapIsArrowTaller
     }
 }
 
-enum class OudsSpacingRowGapToken {
+enum class OudsSpacingRowGapKeyToken {
     None,
     Shorter,
     Short,
@@ -406,19 +406,19 @@ enum class OudsSpacingRowGapToken {
 
 
 @Stable
-fun OudsSpacingTokens.fromToken(token: OudsSpacingRowGapToken): Dp {
+fun OudsSpacingTokens.fromToken(token: OudsSpacingRowGapKeyToken): Dp {
     return when (token) {
-        OudsSpacingRowGapToken.None -> rowGapNone
-        OudsSpacingRowGapToken.Shorter -> rowGapShorter
-        OudsSpacingRowGapToken.Short -> rowGapShort
-        OudsSpacingRowGapToken.Medium -> rowGapMedium
-        OudsSpacingRowGapToken.Tall -> rowGapTall
-        OudsSpacingRowGapToken.Taller -> rowGapTaller
-        OudsSpacingRowGapToken.IsIconNone -> rowGapIsIconNone
-        OudsSpacingRowGapToken.IsIconShorter -> rowGapIsIconShorter
-        OudsSpacingRowGapToken.IsIconShort -> rowGapIsIconShort
-        OudsSpacingRowGapToken.IsIconMedium -> rowGapIsIconMedium
-        OudsSpacingRowGapToken.IsIconTall -> rowGapIsIconTall
-        OudsSpacingRowGapToken.IsIconTaller -> rowGapIsIconTaller
+        OudsSpacingRowGapKeyToken.None -> rowGapNone
+        OudsSpacingRowGapKeyToken.Shorter -> rowGapShorter
+        OudsSpacingRowGapKeyToken.Short -> rowGapShort
+        OudsSpacingRowGapKeyToken.Medium -> rowGapMedium
+        OudsSpacingRowGapKeyToken.Tall -> rowGapTall
+        OudsSpacingRowGapKeyToken.Taller -> rowGapTaller
+        OudsSpacingRowGapKeyToken.IsIconNone -> rowGapIsIconNone
+        OudsSpacingRowGapKeyToken.IsIconShorter -> rowGapIsIconShorter
+        OudsSpacingRowGapKeyToken.IsIconShort -> rowGapIsIconShort
+        OudsSpacingRowGapKeyToken.IsIconMedium -> rowGapIsIconMedium
+        OudsSpacingRowGapKeyToken.IsIconTall -> rowGapIsIconTall
+        OudsSpacingRowGapKeyToken.IsIconTaller -> rowGapIsIconTaller
     }
 }

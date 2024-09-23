@@ -16,7 +16,7 @@ import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingFixedToken
+import com.orange.ouds.theme.tokens.semantic.OudsSpacingFixedKeyToken
 
 open class OudsButtonTokens(
     val containerColor: OudsColorKeyToken = OudsColorKeyToken.Primary,
@@ -30,6 +30,6 @@ open class OudsButtonTokens(
     val hoveredElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val disabledElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val labelStyle: OudsTypographyKeyToken = OudsTypographyKeyToken.BodyStrongLarge,
-    val verticalContentPadding: OudsSpacingFixedToken = OudsSpacingFixedToken.Smash,
-    val horizontalContentPadding: OudsSpacingFixedToken = OudsSpacingFixedToken.Tall
+    val verticalContentPadding: OudsSpacingFixedKeyToken = OudsSpacingFixedKeyToken.Smash,
+    val horizontalContentPadding: OudsSpacingFixedKeyToken = OudsSpacingFixedKeyToken.Tall
 )
