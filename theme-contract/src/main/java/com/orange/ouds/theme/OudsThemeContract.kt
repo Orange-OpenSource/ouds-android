@@ -17,11 +17,12 @@ import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
-import com.orange.ouds.theme.tokens.semantic.OudsDimensionTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsSizeTokens
+import com.orange.ouds.theme.tokens.semantic.OudsSpacingTokens
 
 interface OudsThemeContract : Parcelable {
 
@@ -40,12 +41,6 @@ interface OudsThemeContract : Parcelable {
      */
     val borderTokens: OudsBorderSemanticTokens
         get() = OudsBorderSemanticTokens()
-
-    /**
-     * Dimension semantic tokens values used in the theme
-     */
-    val dimensionTokens: OudsDimensionTokens
-        get() = OudsDimensionTokens()
 
     /**
      * Elevation semantic tokens values used in the theme
@@ -77,6 +72,18 @@ interface OudsThemeContract : Parcelable {
      */
     val opacityTokens: OudsOpacitySemanticTokens
         get() = OudsOpacitySemanticTokens()
+
+    /**
+     * Size semantic tokens values used in the theme
+     */
+    val sizeTokens: OudsSizeTokens
+        get() = OudsSizeTokens()
+
+    /**
+     * Spacing semantic tokens values used in the theme
+     */
+    val spacingTokens: OudsSpacingTokens
+        get() = OudsSpacingTokens()
 
     /**
      * Customization of the OUDS components if needed
