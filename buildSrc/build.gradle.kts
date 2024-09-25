@@ -27,6 +27,12 @@ kotlin {
 dependencies {
     implementation(libs.android.gradle.plugin)
     implementation(libs.google.auth.library.oauth2.http)
+    // gRPC dependencies below fix an error that appeared with google-auth-library-oauth2-http 1.25.0
+    // which uses grpc-api 1.66.0 whereas another dependency uses a previous and incompatible version of others gRPC modules
+    implementation(libs.grpc.core)
+    implementation(libs.grpc.netty)
+    implementation(libs.grpc.protobuf)
+    implementation(libs.grpc.stub)
     implementation(libs.javapoet) // https://github.com/google/dagger/issues/3282
     implementation(libs.json)
     implementation(libs.kotlin.gradle.plugin) // https://issuetracker.google.com/issues/176079157#comment14
