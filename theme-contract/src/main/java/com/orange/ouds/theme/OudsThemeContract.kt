@@ -17,6 +17,7 @@ import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationTokens
+import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
@@ -43,6 +44,12 @@ interface OudsThemeContract : Parcelable {
      */
     val elevationTokens: OudsElevationTokens
         get() = OudsElevationTokens()
+
+    /**
+     * Font semantic tokens values used in the theme
+     */
+    val fontTokens: OudsFontSemanticTokens
+        get() = OudsFontSemanticTokens()
 
     /**
      * Grid semantic tokens values used in the theme

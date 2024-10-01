@@ -39,7 +39,13 @@ enum class OudsAdaptiveWindowType {
     }
 }
 
-data class OudsAdaptiveTokenValue(val extraCompact: Dp, val compact: Dp, val medium: Dp)
+data class OudsAdaptiveTokenValue<T>(val extraCompact: T, val compact: T, val medium: T) {
+    fun getValue(adaptiveWindowType: OudsAdaptiveWindowType): T = when (adaptiveWindowType) {
+        OudsAdaptiveWindowType.EXTRA_COMPACT -> this.extraCompact
+        OudsAdaptiveWindowType.COMPACT -> this.compact
+        OudsAdaptiveWindowType.MEDIUM -> this.medium
+    }
+}
 
 /**
  * Returns the current window width in dp.
