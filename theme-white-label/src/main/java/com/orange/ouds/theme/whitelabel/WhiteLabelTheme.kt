@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.whitelabel
 
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusKeyToken
@@ -36,7 +37,8 @@ open class WhiteLabelTheme : OudsThemeContract {
                 cornerRadius = OudsBorderRadiusKeyToken.Pill,
                 defaultElevation = OudsElevationKeyToken.OverlayDefault,
                 focusedElevation = OudsElevationKeyToken.OverlayDefault,
-                hoveredElevation = OudsElevationKeyToken.OverlayDefault
+                hoveredElevation = OudsElevationKeyToken.OverlayDefault,
+                labelStyle = OudsTypographyKeyToken.BodyLargeDefault
             )
         )
 }

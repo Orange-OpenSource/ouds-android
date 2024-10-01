@@ -57,8 +57,9 @@ fun OudsButton(
             )
         ) {
             Text(
-                text = text,
                 modifier = modifier,
+                text = text,
+                style = labelStyle.value
             )
         }
     }
