@@ -19,5 +19,7 @@
     </build-profile>
     <footer>
         <copyright>Orange 2024</copyright>
+        <link href="https://unified-design-system.orange.com/">Orange Unified Design System</link>
+        <link href="https://ios.unified-design-system.orange.com/">OUDS iOS</link>
     </footer>
 </buildprofiles>
