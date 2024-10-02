@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OUDS.NoActionBar">
+        android:theme="@style/Theme.MaterialComponents.NoActionBar">
         <activity
             android:name="com.orange.ouds.app.ui.MainActivity"
             android:exported="true">
