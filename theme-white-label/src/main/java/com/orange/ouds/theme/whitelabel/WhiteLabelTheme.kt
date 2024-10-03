@@ -15,10 +15,10 @@ package com.orange.ouds.theme.whitelabel
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationKeyToken
 import com.orange.ouds.theme.whitelabel.tokens.whiteLabelSemanticColorTokens

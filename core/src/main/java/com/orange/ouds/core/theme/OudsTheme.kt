@@ -21,7 +21,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsBorderTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
@@ -30,7 +29,7 @@ private fun missingCompositionLocalError(compositionLocalName: String): Nothing 
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
 
 private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
-private val LocalBorderTokens = staticCompositionLocalOf<OudsBorderTokens> { missingCompositionLocalError("LocalBorderTokens") }
+private val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
 private val LocalElevationTokens = staticCompositionLocalOf<OudsElevationTokens> { missingCompositionLocalError("LocalElevationTokens") }
 private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 private val LocalGridTokens = staticCompositionLocalOf<OudsGridTokens> { missingCompositionLocalError("LocalGridTokens") }
@@ -43,10 +42,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalColorScheme.current
 
-    val borderTokens: OudsBorderTokens
+    val borders: OudsBorders
         @Composable
         @ReadOnlyComposable
-        get() = LocalBorderTokens.current
+        get() = LocalBorders.current
 
     val elevationTokens: OudsElevationTokens
         @Composable
@@ -92,7 +91,7 @@ fun OudsTheme(
 
     CompositionLocalProvider(
         LocalColorScheme provides colorScheme,
-        LocalBorderTokens provides themeContract.borderTokens,
+        LocalBorders provides themeContract.borderTokens.getBorders(),
         LocalElevationTokens provides themeContract.elevationTokens,
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
         LocalGridTokens provides themeContract.gridTokens,
