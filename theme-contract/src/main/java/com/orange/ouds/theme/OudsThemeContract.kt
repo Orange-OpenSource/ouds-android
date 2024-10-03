@@ -17,7 +17,7 @@ import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
-import com.orange.ouds.theme.tokens.semantic.OudsElevationTokens
+import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
@@ -43,8 +43,8 @@ interface OudsThemeContract : Parcelable {
     /**
      * Elevation semantic tokens values used in the theme
      */
-    val elevationTokens: OudsElevationTokens
-        get() = OudsElevationTokens()
+    val elevationTokens: OudsElevationSemanticTokens
+        get() = OudsElevationSemanticTokens()
 
     /**
      * Font family used in the theme

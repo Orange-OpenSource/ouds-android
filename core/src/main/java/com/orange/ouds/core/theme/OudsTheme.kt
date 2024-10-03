@@ -21,7 +21,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsElevationTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
@@ -30,7 +29,7 @@ private fun missingCompositionLocalError(compositionLocalName: String): Nothing 
 
 private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
 private val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
-private val LocalElevationTokens = staticCompositionLocalOf<OudsElevationTokens> { missingCompositionLocalError("LocalElevationTokens") }
+private val LocalElevation = staticCompositionLocalOf<OudsElevation> { missingCompositionLocalError("LocalElevation") }
 private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 private val LocalGridTokens = staticCompositionLocalOf<OudsGridTokens> { missingCompositionLocalError("LocalGridTokens") }
 private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { missingCompositionLocalError("LocalOpacityTokens") }
@@ -47,10 +46,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalBorders.current
 
-    val elevationTokens: OudsElevationTokens
+    val elevation: OudsElevation
         @Composable
         @ReadOnlyComposable
-        get() = LocalElevationTokens.current
+        get() = LocalElevation.current
 
     val typography: OudsTypography
         @Composable
@@ -92,7 +91,7 @@ fun OudsTheme(
     CompositionLocalProvider(
         LocalColorScheme provides colorScheme,
         LocalBorders provides themeContract.borderTokens.getBorders(),
-        LocalElevationTokens provides themeContract.elevationTokens,
+        LocalElevation provides themeContract.elevationTokens.getElevation(),
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
         LocalGridTokens provides themeContract.gridTokens,
         LocalOpacityTokens provides themeContract.opacityTokens,

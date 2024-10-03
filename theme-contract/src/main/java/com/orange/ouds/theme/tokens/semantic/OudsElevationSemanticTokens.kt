@@ -12,11 +12,10 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.tokens.global.raw.ElevationRawTokens
 
-data class OudsElevationTokens(
+data class OudsElevationSemanticTokens(
     val none: Dp = ElevationRawTokens.elevation0,
     val raised: Dp = ElevationRawTokens.elevation1,
     val overlayDefault: Dp = ElevationRawTokens.elevation2,
@@ -24,24 +23,3 @@ data class OudsElevationTokens(
     val drag: Dp = ElevationRawTokens.elevation4,
     val overlayEmphasized: Dp = ElevationRawTokens.elevation5,
 )
-
-enum class OudsElevationKeyToken {
-    None,
-    Raised,
-    OverlayDefault,
-    AllSticky,
-    Drag,
-    OverlayEmphasized
-}
-
-@Stable
-fun OudsElevationTokens.fromToken(token: OudsElevationKeyToken): Dp {
-    return when (token) {
-        OudsElevationKeyToken.None -> none
-        OudsElevationKeyToken.Raised -> raised
-        OudsElevationKeyToken.OverlayDefault -> overlayDefault
-        OudsElevationKeyToken.AllSticky -> allSticky
-        OudsElevationKeyToken.Drag -> drag
-        OudsElevationKeyToken.OverlayEmphasized -> overlayEmphasized
-    }
-}

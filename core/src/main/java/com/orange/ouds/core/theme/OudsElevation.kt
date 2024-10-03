@@ -1,0 +1,58 @@
+/*
+ * Software Name: OUDS Android
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
+ *
+ * Software description: Android library of reusable graphical components
+ */
+
+package com.orange.ouds.core.theme
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.Stable
+import androidx.compose.ui.unit.Dp
+import com.orange.ouds.theme.tokens.OudsElevationKeyToken
+import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
+
+data class OudsElevation(
+    val none: Dp,
+    val raised: Dp,
+    val overlayDefault: Dp,
+    val allSticky: Dp,
+    val drag: Dp,
+    val overlayEmphasized: Dp,
+)
+
+fun OudsElevationSemanticTokens.getElevation() = OudsElevation(
+    none = none,
+    raised = raised,
+    overlayDefault = overlayDefault,
+    allSticky = allSticky,
+    drag = drag,
+    overlayEmphasized = overlayEmphasized
+)
+
+@Stable
+fun OudsElevation.fromToken(token: OudsElevationKeyToken): Dp {
+    return when (token) {
+        OudsElevationKeyToken.None -> none
+        OudsElevationKeyToken.Raised -> raised
+        OudsElevationKeyToken.OverlayDefault -> overlayDefault
+        OudsElevationKeyToken.AllSticky -> allSticky
+        OudsElevationKeyToken.Drag -> drag
+        OudsElevationKeyToken.OverlayEmphasized -> overlayEmphasized
+    }
+}
+
+/**
+ * Converts an OUDS elevation token to the local elevation value provided by the theme.
+ */
+val OudsElevationKeyToken.value: Dp
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.elevation.fromToken(this)

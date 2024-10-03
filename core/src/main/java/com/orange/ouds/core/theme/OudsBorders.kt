@@ -98,7 +98,7 @@ fun OudsBorders.fromToken(token: OudsBorderStyleKeyToken): OudsBorderStyle {
 val OudsBorderRadiusKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.borderTokens.fromToken(this)
+    get() = OudsTheme.borders.fromToken(this)
 
 /**
  * Converts an OUDS border style token to the local [OudsBorderStyle] value provided by the theme.
@@ -106,7 +106,7 @@ val OudsBorderRadiusKeyToken.value: Dp
 val OudsBorderStyleKeyToken.value: OudsBorderStyle
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.borderTokens.fromToken(this)
+    get() = OudsTheme.borders.fromToken(this)
 
 /**
  * Converts an OUDS border width token to the local border width value provided by the theme.
@@ -114,4 +114,4 @@ val OudsBorderStyleKeyToken.value: OudsBorderStyle
 val OudsBorderWidthKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.borderTokens.fromToken(this)
+    get() = OudsTheme.borders.fromToken(this)
