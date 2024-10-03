@@ -21,7 +21,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
@@ -30,7 +29,7 @@ private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missi
 private val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
 private val LocalElevation = staticCompositionLocalOf<OudsElevation> { missingCompositionLocalError("LocalElevation") }
 private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
-private val LocalGridTokens = staticCompositionLocalOf<OudsGridTokens> { missingCompositionLocalError("LocalGridTokens") }
+private val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
 private val LocalOpacity = staticCompositionLocalOf<OudsOpacity> { missingCompositionLocalError("LocalOpacity") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
@@ -55,10 +54,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalTypography.current
 
-    val gridTokens: OudsGridTokens
+    val gridTokens: OudsGrids
         @Composable
         @ReadOnlyComposable
-        get() = LocalGridTokens.current
+        get() = LocalGrids.current
 
     val opacity: OudsOpacity
         @Composable
@@ -92,7 +91,7 @@ fun OudsTheme(
         LocalBorders provides themeContract.borderTokens.getBorders(),
         LocalElevation provides themeContract.elevationTokens.getElevation(),
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
-        LocalGridTokens provides themeContract.gridTokens,
+        LocalGrids provides themeContract.gridTokens.getGrids(),
         LocalOpacity provides themeContract.opacityTokens.getOpacity(),
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
