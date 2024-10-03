@@ -41,9 +41,9 @@ enum class OudsAdaptiveWindowType {
 
 data class OudsAdaptiveTokenValue<T>(val extraCompact: T, val compact: T, val medium: T) {
     fun getValue(adaptiveWindowType: OudsAdaptiveWindowType): T = when (adaptiveWindowType) {
-        OudsAdaptiveWindowType.EXTRA_COMPACT -> this.extraCompact
-        OudsAdaptiveWindowType.COMPACT -> this.compact
-        OudsAdaptiveWindowType.MEDIUM -> this.medium
+        OudsAdaptiveWindowType.EXTRA_COMPACT -> extraCompact
+        OudsAdaptiveWindowType.COMPACT -> compact
+        OudsAdaptiveWindowType.MEDIUM -> medium
     }
 }
 
