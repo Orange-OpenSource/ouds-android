@@ -22,7 +22,6 @@ import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
-import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
@@ -32,7 +31,7 @@ private val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompos
 private val LocalElevation = staticCompositionLocalOf<OudsElevation> { missingCompositionLocalError("LocalElevation") }
 private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 private val LocalGridTokens = staticCompositionLocalOf<OudsGridTokens> { missingCompositionLocalError("LocalGridTokens") }
-private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { missingCompositionLocalError("LocalOpacityTokens") }
+private val LocalOpacity = staticCompositionLocalOf<OudsOpacity> { missingCompositionLocalError("LocalOpacity") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
 object OudsTheme {
@@ -61,10 +60,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalGridTokens.current
 
-    val opacityTokens: OudsOpacityTokens
+    val opacity: OudsOpacity
         @Composable
         @ReadOnlyComposable
-        get() = LocalOpacityTokens.current
+        get() = LocalOpacity.current
 
     val componentsTokens: OudsComponentsTokens
         @Composable
@@ -94,7 +93,7 @@ fun OudsTheme(
         LocalElevation provides themeContract.elevationTokens.getElevation(),
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
         LocalGridTokens provides themeContract.gridTokens,
-        LocalOpacityTokens provides themeContract.opacityTokens,
+        LocalOpacity provides themeContract.opacityTokens.getOpacity(),
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
         MaterialTheme(colorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme) {

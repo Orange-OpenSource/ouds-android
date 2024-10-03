@@ -20,7 +20,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
-import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
+import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 
 interface OudsThemeContract : Parcelable {
 
@@ -68,8 +68,8 @@ interface OudsThemeContract : Parcelable {
     /**
      * Opacity semantic tokens values used in the theme
      */
-    val opacityTokens: OudsOpacityTokens
-        get() = OudsOpacityTokens()
+    val opacityTokens: OudsOpacitySemanticTokens
+        get() = OudsOpacitySemanticTokens()
 
     /**
      * Customization of the OUDS components if needed
