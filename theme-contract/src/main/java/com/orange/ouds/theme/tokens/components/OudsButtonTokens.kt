@@ -28,5 +28,5 @@ open class OudsButtonTokens(
     val focusedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val hoveredElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val disabledElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
-    val labelStyle: OudsTypographyKeyToken = OudsTypographyKeyToken.BodyLargeStrong
+    val labelStyle: OudsTypographyKeyToken = OudsTypographyKeyToken.BodyStrongLarge
 )

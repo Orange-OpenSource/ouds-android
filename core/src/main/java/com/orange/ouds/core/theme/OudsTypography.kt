@@ -28,24 +28,24 @@ data class OudsTypography(
     val displayLarge: OudsAdaptiveTokenValue<TextStyle>,
     val displayMedium: OudsAdaptiveTokenValue<TextStyle>,
     val displaySmall: OudsAdaptiveTokenValue<TextStyle>,
-    val headingXLarge: OudsAdaptiveTokenValue<TextStyle>,
+    val headingExtraLarge: OudsAdaptiveTokenValue<TextStyle>,
     val headingLarge: OudsAdaptiveTokenValue<TextStyle>,
     val headingMedium: OudsAdaptiveTokenValue<TextStyle>,
     val headingSmall: OudsAdaptiveTokenValue<TextStyle>,
-    val bodyLargeDefault: OudsAdaptiveTokenValue<TextStyle>,
-    val bodyMediumDefault: OudsAdaptiveTokenValue<TextStyle>,
-    val bodySmallDefault: OudsAdaptiveTokenValue<TextStyle>,
-    val bodyLargeStrong: OudsAdaptiveTokenValue<TextStyle>,
-    val bodyMediumStrong: OudsAdaptiveTokenValue<TextStyle>,
-    val bodySmallStrong: OudsAdaptiveTokenValue<TextStyle>,
-    val labelXLargeDefault: TextStyle,
-    val labelLargeDefault: TextStyle,
-    val labelMediumDefault: TextStyle,
-    val labelSmallDefault: TextStyle,
-    val labelXLargeStrong: TextStyle,
-    val labelLargeStrong: TextStyle,
-    val labelMediumStrong: TextStyle,
-    val labelSmallStrong: TextStyle,
+    val bodyDefaultLarge: OudsAdaptiveTokenValue<TextStyle>,
+    val bodyDefaultMedium: OudsAdaptiveTokenValue<TextStyle>,
+    val bodyDefaultSmall: OudsAdaptiveTokenValue<TextStyle>,
+    val bodyStrongLarge: OudsAdaptiveTokenValue<TextStyle>,
+    val bodyStrongMedium: OudsAdaptiveTokenValue<TextStyle>,
+    val bodyStrongSmall: OudsAdaptiveTokenValue<TextStyle>,
+    val labelDefaultExtraLarge: TextStyle,
+    val labelDefaultLarge: TextStyle,
+    val labelDefaultMedium: TextStyle,
+    val labelDefaultSmall: TextStyle,
+    val labelStrongExtraLarge: TextStyle,
+    val labelStrongLarge: TextStyle,
+    val labelStrongMedium: TextStyle,
+    val labelStrongSmall: TextStyle,
 )
 
 
@@ -110,7 +110,7 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
             letterSpacing = letterSpacingTabletDisplaySmall.sp
         ),
     ),
-    headingXLarge = OudsAdaptiveTokenValue(
+    headingExtraLarge = OudsAdaptiveTokenValue(
         TextStyle(
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingXLarge.sp,
@@ -190,7 +190,7 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
             letterSpacing = letterSpacingTabletHeadingSmall.sp
         ),
     ),
-    bodyLargeDefault = OudsAdaptiveTokenValue(
+    bodyDefaultLarge = OudsAdaptiveTokenValue(
         TextStyle(
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodyLarge.sp,
@@ -210,7 +210,7 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
             letterSpacing = letterSpacingTabletBodyLarge.sp
         ),
     ),
-    bodyMediumDefault = OudsAdaptiveTokenValue(
+    bodyDefaultMedium = OudsAdaptiveTokenValue(
         TextStyle(
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodyMedium.sp,
@@ -230,7 +230,7 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
             letterSpacing = letterSpacingTabletBodyMedium.sp
         ),
     ),
-    bodySmallDefault = OudsAdaptiveTokenValue(
+    bodyDefaultSmall = OudsAdaptiveTokenValue(
         TextStyle(
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodySmall.sp,
@@ -250,7 +250,7 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
             letterSpacing = letterSpacingTabletBodySmall.sp
         ),
     ),
-    bodyLargeStrong = OudsAdaptiveTokenValue(
+    bodyStrongLarge = OudsAdaptiveTokenValue(
         TextStyle(
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodyLarge.sp,
@@ -270,7 +270,7 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
             letterSpacing = letterSpacingTabletBodyLarge.sp
         ),
     ),
-    bodyMediumStrong = OudsAdaptiveTokenValue(
+    bodyStrongMedium = OudsAdaptiveTokenValue(
         TextStyle(
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodyMedium.sp,
@@ -290,7 +290,7 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
             letterSpacing = letterSpacingTabletBodyMedium.sp
         ),
     ),
-    bodySmallStrong = OudsAdaptiveTokenValue(
+    bodyStrongSmall = OudsAdaptiveTokenValue(
         TextStyle(
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodySmall.sp,
@@ -310,49 +310,49 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
             letterSpacing = letterSpacingTabletBodySmall.sp
         ),
     ),
-    labelXLargeDefault = TextStyle(
+    labelDefaultExtraLarge = TextStyle(
         fontWeight = FontWeight(weightLabelDefault),
         fontSize = sizeLabelXLarge.sp,
         lineHeight = lineHeightLabelXLarge.sp,
         letterSpacing = letterSpacingLabelXLarge.sp
     ),
-    labelLargeDefault = TextStyle(
+    labelDefaultLarge = TextStyle(
         fontWeight = FontWeight(weightLabelDefault),
         fontSize = sizeLabelLarge.sp,
         lineHeight = lineHeightLabelLarge.sp,
         letterSpacing = letterSpacingLabelLarge.sp
     ),
-    labelMediumDefault = TextStyle(
+    labelDefaultMedium = TextStyle(
         fontWeight = FontWeight(weightLabelDefault),
         fontSize = sizeLabelMedium.sp,
         lineHeight = lineHeightLabelMedium.sp,
         letterSpacing = letterSpacingLabelMedium.sp
     ),
-    labelSmallDefault = TextStyle(
+    labelDefaultSmall = TextStyle(
         fontWeight = FontWeight(weightLabelDefault),
         fontSize = sizeLabelSmall.sp,
         lineHeight = lineHeightLabelSmall.sp,
         letterSpacing = letterSpacingLabelSmall.sp
     ),
-    labelXLargeStrong = TextStyle(
+    labelStrongExtraLarge = TextStyle(
         fontWeight = FontWeight(weightLabelStrong),
         fontSize = sizeLabelXLarge.sp,
         lineHeight = lineHeightLabelXLarge.sp,
         letterSpacing = letterSpacingLabelXLarge.sp
     ),
-    labelLargeStrong = TextStyle(
+    labelStrongLarge = TextStyle(
         fontWeight = FontWeight(weightLabelStrong),
         fontSize = sizeLabelLarge.sp,
         lineHeight = lineHeightLabelLarge.sp,
         letterSpacing = letterSpacingLabelLarge.sp
     ),
-    labelMediumStrong = TextStyle(
+    labelStrongMedium = TextStyle(
         fontWeight = FontWeight(weightLabelStrong),
         fontSize = sizeLabelMedium.sp,
         lineHeight = lineHeightLabelMedium.sp,
         letterSpacing = letterSpacingLabelMedium.sp
     ),
-    labelSmallStrong = TextStyle(
+    labelStrongSmall = TextStyle(
         fontWeight = FontWeight(weightLabelStrong),
         fontSize = sizeLabelSmall.sp,
         lineHeight = lineHeightLabelSmall.sp,
@@ -366,24 +366,24 @@ fun OudsTypography.fromToken(token: OudsTypographyKeyToken, adaptiveWindowType: 
         OudsTypographyKeyToken.DisplayLarge -> displayLarge
         OudsTypographyKeyToken.DisplayMedium -> displayMedium
         OudsTypographyKeyToken.DisplaySmall -> displaySmall
-        OudsTypographyKeyToken.HeadingXLarge -> headingXLarge
+        OudsTypographyKeyToken.HeadingExtraLarge -> headingExtraLarge
         OudsTypographyKeyToken.HeadingLarge -> headingLarge
         OudsTypographyKeyToken.HeadingMedium -> headingMedium
         OudsTypographyKeyToken.HeadingSmall -> headingSmall
-        OudsTypographyKeyToken.BodyLargeDefault -> bodyLargeDefault
-        OudsTypographyKeyToken.BodyMediumDefault -> bodyMediumDefault
-        OudsTypographyKeyToken.BodySmallDefault -> bodySmallDefault
-        OudsTypographyKeyToken.BodyLargeStrong -> bodyLargeStrong
-        OudsTypographyKeyToken.BodyMediumStrong -> bodyMediumStrong
-        OudsTypographyKeyToken.BodySmallStrong -> bodySmallStrong
-        OudsTypographyKeyToken.LabelXLargeDefault -> labelXLargeDefault
-        OudsTypographyKeyToken.LabelLargeDefault -> labelLargeDefault
-        OudsTypographyKeyToken.LabelMediumDefault -> labelMediumDefault
-        OudsTypographyKeyToken.LabelSmallDefault -> labelSmallDefault
-        OudsTypographyKeyToken.LabelXLargeStrong -> labelXLargeStrong
-        OudsTypographyKeyToken.LabelLargeStrong -> labelLargeStrong
-        OudsTypographyKeyToken.LabelMediumStrong -> labelMediumStrong
-        OudsTypographyKeyToken.LabelSmallStrong -> labelSmallStrong
+        OudsTypographyKeyToken.BodyDefaultLarge -> bodyDefaultLarge
+        OudsTypographyKeyToken.BodyDefaultMedium -> bodyDefaultMedium
+        OudsTypographyKeyToken.BodyDefaultSmall -> bodyDefaultSmall
+        OudsTypographyKeyToken.BodyStrongLarge -> bodyStrongLarge
+        OudsTypographyKeyToken.BodyStrongMedium -> bodyStrongMedium
+        OudsTypographyKeyToken.BodyStrongSmall -> bodyStrongSmall
+        OudsTypographyKeyToken.LabelDefaultExtraLarge -> labelDefaultExtraLarge
+        OudsTypographyKeyToken.LabelDefaultLarge -> labelDefaultLarge
+        OudsTypographyKeyToken.LabelDefaultMedium -> labelDefaultMedium
+        OudsTypographyKeyToken.LabelDefaultSmall -> labelDefaultSmall
+        OudsTypographyKeyToken.LabelStrongExtraLarge -> labelStrongExtraLarge
+        OudsTypographyKeyToken.LabelStrongLarge -> labelStrongLarge
+        OudsTypographyKeyToken.LabelStrongMedium -> labelStrongMedium
+        OudsTypographyKeyToken.LabelStrongSmall -> labelStrongSmall
     }
 
     return if (typography is OudsAdaptiveTokenValue<*>) {
