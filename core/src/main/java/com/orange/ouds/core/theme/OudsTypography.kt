@@ -15,6 +15,7 @@ package com.orange.ouds.core.theme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.orange.ouds.theme.OudsAdaptiveTokenValue
@@ -49,21 +50,24 @@ data class OudsTypography(
 )
 
 
-fun OudsFontSemanticTokens.getTypography() = OudsTypography(
+fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypography(
     displayLarge = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeMobileDisplayLarge.sp,
             lineHeight = lineHeightMobileDisplayLarge.sp,
             letterSpacing = letterSpacingMobileDisplayLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeMobileDisplayLarge.sp,
             lineHeight = lineHeightMobileDisplayLarge.sp,
             letterSpacing = letterSpacingMobileDisplayLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeTabletDisplayLarge.sp,
             lineHeight = lineHeightTabletDisplayLarge.sp,
@@ -72,18 +76,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     displayMedium = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeMobileDisplayMedium.sp,
             lineHeight = lineHeightMobileDisplayMedium.sp,
             letterSpacing = letterSpacingMobileDisplayMedium.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeMobileDisplayMedium.sp,
             lineHeight = lineHeightMobileDisplayMedium.sp,
             letterSpacing = letterSpacingMobileDisplayMedium.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeTabletDisplayMedium.sp,
             lineHeight = lineHeightTabletDisplayMedium.sp,
@@ -92,18 +99,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     displaySmall = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeMobileDisplaySmall.sp,
             lineHeight = lineHeightMobileDisplaySmall.sp,
             letterSpacing = letterSpacingMobileDisplaySmall.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeMobileDisplaySmall.sp,
             lineHeight = lineHeightMobileDisplaySmall.sp,
             letterSpacing = letterSpacingMobileDisplaySmall.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
             fontSize = sizeTabletDisplaySmall.sp,
             lineHeight = lineHeightTabletDisplaySmall.sp,
@@ -112,18 +122,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     headingExtraLarge = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingXLarge.sp,
             lineHeight = lineHeightMobileHeadingXLarge.sp,
             letterSpacing = letterSpacingMobileHeadingXLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingXLarge.sp,
             lineHeight = lineHeightMobileHeadingXLarge.sp,
             letterSpacing = letterSpacingMobileHeadingXLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeTabletHeadingXLarge.sp,
             lineHeight = lineHeightTabletHeadingXLarge.sp,
@@ -132,18 +145,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     headingLarge = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingLarge.sp,
             lineHeight = lineHeightMobileHeadingLarge.sp,
             letterSpacing = letterSpacingMobileHeadingLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingLarge.sp,
             lineHeight = lineHeightMobileHeadingLarge.sp,
             letterSpacing = letterSpacingMobileHeadingLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeTabletHeadingLarge.sp,
             lineHeight = lineHeightTabletHeadingLarge.sp,
@@ -152,18 +168,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     headingMedium = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingMedium.sp,
             lineHeight = lineHeightMobileHeadingMedium.sp,
             letterSpacing = letterSpacingMobileHeadingMedium.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingMedium.sp,
             lineHeight = lineHeightMobileHeadingMedium.sp,
             letterSpacing = letterSpacingMobileHeadingMedium.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeTabletHeadingMedium.sp,
             lineHeight = lineHeightTabletHeadingMedium.sp,
@@ -172,18 +191,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     headingSmall = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingSmall.sp,
             lineHeight = lineHeightMobileHeadingSmall.sp,
             letterSpacing = letterSpacingMobileHeadingSmall.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeMobileHeadingSmall.sp,
             lineHeight = lineHeightMobileHeadingSmall.sp,
             letterSpacing = letterSpacingMobileHeadingSmall.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
             fontSize = sizeTabletHeadingSmall.sp,
             lineHeight = lineHeightTabletHeadingSmall.sp,
@@ -192,18 +214,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     bodyDefaultLarge = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodyLarge.sp,
             lineHeight = lineHeightMobileBodyLarge.sp,
             letterSpacing = letterSpacingMobileBodyLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodyLarge.sp,
             lineHeight = lineHeightMobileBodyLarge.sp,
             letterSpacing = letterSpacingMobileBodyLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeTabletBodyLarge.sp,
             lineHeight = lineHeightTabletBodyLarge.sp,
@@ -212,18 +237,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     bodyDefaultMedium = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodyMedium.sp,
             lineHeight = lineHeightMobileBodyMedium.sp,
             letterSpacing = letterSpacingMobileBodyMedium.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodyMedium.sp,
             lineHeight = lineHeightMobileBodyMedium.sp,
             letterSpacing = letterSpacingMobileBodyMedium.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeTabletBodyMedium.sp,
             lineHeight = lineHeightTabletBodyMedium.sp,
@@ -232,18 +260,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     bodyDefaultSmall = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodySmall.sp,
             lineHeight = lineHeightMobileBodySmall.sp,
             letterSpacing = letterSpacingMobileBodySmall.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeMobileBodySmall.sp,
             lineHeight = lineHeightMobileBodySmall.sp,
             letterSpacing = letterSpacingMobileBodySmall.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
             fontSize = sizeTabletBodySmall.sp,
             lineHeight = lineHeightTabletBodySmall.sp,
@@ -252,18 +283,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     bodyStrongLarge = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodyLarge.sp,
             lineHeight = lineHeightMobileBodyLarge.sp,
             letterSpacing = letterSpacingMobileBodyLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodyLarge.sp,
             lineHeight = lineHeightMobileBodyLarge.sp,
             letterSpacing = letterSpacingMobileBodyLarge.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeTabletBodyLarge.sp,
             lineHeight = lineHeightTabletBodyLarge.sp,
@@ -272,18 +306,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     bodyStrongMedium = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodyMedium.sp,
             lineHeight = lineHeightMobileBodyMedium.sp,
             letterSpacing = letterSpacingMobileBodyMedium.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodyMedium.sp,
             lineHeight = lineHeightMobileBodyMedium.sp,
             letterSpacing = letterSpacingMobileBodyMedium.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeTabletBodyMedium.sp,
             lineHeight = lineHeightTabletBodyMedium.sp,
@@ -292,18 +329,21 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
     ),
     bodyStrongSmall = OudsAdaptiveTokenValue(
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodySmall.sp,
             lineHeight = lineHeightMobileBodySmall.sp,
             letterSpacing = letterSpacingMobileBodySmall.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeMobileBodySmall.sp,
             lineHeight = lineHeightMobileBodySmall.sp,
             letterSpacing = letterSpacingMobileBodySmall.sp
         ),
         TextStyle(
+            fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
             fontSize = sizeTabletBodySmall.sp,
             lineHeight = lineHeightTabletBodySmall.sp,
@@ -311,48 +351,56 @@ fun OudsFontSemanticTokens.getTypography() = OudsTypography(
         ),
     ),
     labelDefaultExtraLarge = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelDefault),
         fontSize = sizeLabelXLarge.sp,
         lineHeight = lineHeightLabelXLarge.sp,
         letterSpacing = letterSpacingLabelXLarge.sp
     ),
     labelDefaultLarge = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelDefault),
         fontSize = sizeLabelLarge.sp,
         lineHeight = lineHeightLabelLarge.sp,
         letterSpacing = letterSpacingLabelLarge.sp
     ),
     labelDefaultMedium = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelDefault),
         fontSize = sizeLabelMedium.sp,
         lineHeight = lineHeightLabelMedium.sp,
         letterSpacing = letterSpacingLabelMedium.sp
     ),
     labelDefaultSmall = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelDefault),
         fontSize = sizeLabelSmall.sp,
         lineHeight = lineHeightLabelSmall.sp,
         letterSpacing = letterSpacingLabelSmall.sp
     ),
     labelStrongExtraLarge = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelStrong),
         fontSize = sizeLabelXLarge.sp,
         lineHeight = lineHeightLabelXLarge.sp,
         letterSpacing = letterSpacingLabelXLarge.sp
     ),
     labelStrongLarge = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelStrong),
         fontSize = sizeLabelLarge.sp,
         lineHeight = lineHeightLabelLarge.sp,
         letterSpacing = letterSpacingLabelLarge.sp
     ),
     labelStrongMedium = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelStrong),
         fontSize = sizeLabelMedium.sp,
         lineHeight = lineHeightLabelMedium.sp,
         letterSpacing = letterSpacingLabelMedium.sp
     ),
     labelStrongSmall = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelStrong),
         fontSize = sizeLabelSmall.sp,
         lineHeight = lineHeightLabelSmall.sp,

@@ -94,7 +94,7 @@ fun OudsTheme(
         LocalColorScheme provides colorScheme,
         LocalBorderTokens provides themeContract.borderTokens,
         LocalElevationTokens provides themeContract.elevationTokens,
-        LocalTypography provides themeContract.fontTokens.getTypography(),
+        LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
         LocalGridTokens provides themeContract.gridTokens,
         LocalOpacityTokens provides themeContract.opacityTokens,
         LocalComponentsTokens provides themeContract.componentsTokens

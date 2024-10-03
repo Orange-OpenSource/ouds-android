@@ -12,6 +12,8 @@
 
 package com.orange.ouds.theme.whitelabel
 
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
@@ -30,6 +32,9 @@ open class WhiteLabelTheme : OudsThemeContract {
 
     override val colorTokens: OudsColorTokens
         get() = whiteLabelSemanticColorTokens
+
+    override val fontFamily: FontFamily
+        get() = FontFamily(Font(R.font.oswald))
 
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(

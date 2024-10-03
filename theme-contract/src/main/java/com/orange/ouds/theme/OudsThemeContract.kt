@@ -13,6 +13,7 @@
 package com.orange.ouds.theme
 
 import android.os.Parcelable
+import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
@@ -44,6 +45,13 @@ interface OudsThemeContract : Parcelable {
      */
     val elevationTokens: OudsElevationTokens
         get() = OudsElevationTokens()
+
+    /**
+     * Font family used in the theme
+     * You can provide your own theme font family `FontFamily(Font(R.font.my_theme_font))`
+     */
+    val fontFamily: FontFamily
+        get() = FontFamily.Default
 
     /**
      * Font semantic tokens values used in the theme
