@@ -22,7 +22,6 @@ import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeTokens
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
@@ -34,7 +33,7 @@ private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missing
 private val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
 private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
 private val LocalSizeTokens = staticCompositionLocalOf<OudsSizeTokens> { missingCompositionLocalError("LocalSizeTokens") }
-private val LocalSpacingTokens = staticCompositionLocalOf<OudsSpacingTokens> { missingCompositionLocalError("LocalSpacingTokens") }
+private val LocalSpacing = staticCompositionLocalOf<OudsSpacings> { missingCompositionLocalError("LocalSpacing") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
 object OudsTheme {
@@ -73,10 +72,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSizeTokens.current
 
-    val spacingTokens: OudsSpacingTokens
+    val spacingTokens: OudsSpacings
         @Composable
         @ReadOnlyComposable
-        get() = LocalSpacingTokens.current
+        get() = LocalSpacing.current
 
     val componentsTokens: OudsComponentsTokens
         @Composable
@@ -108,7 +107,7 @@ fun OudsTheme(
         LocalGrids provides themeContract.gridTokens.getGrids(),
         LocalOpacities provides themeContract.opacityTokens.getOpacity(),
         LocalSizeTokens provides themeContract.sizeTokens,
-        LocalSpacingTokens provides themeContract.spacingTokens,
+        LocalSpacing provides themeContract.spacingTokens.getSpacings(),
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
         MaterialTheme(colorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme) {

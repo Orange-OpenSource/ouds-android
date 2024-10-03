@@ -17,11 +17,11 @@ import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.whitelabel.tokens.whiteLabelSemanticColorTokens
 import kotlinx.parcelize.Parcelize
 

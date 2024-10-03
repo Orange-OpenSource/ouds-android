@@ -20,13 +20,6 @@ import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.tokens.semantic.OudsSizeIconDecorativeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeIconWithTypeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeMaxWidthTypeKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingColumnGapKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingFixedKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingPaddingBlockKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingPaddingInlineKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingPaddingInsetKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingRowGapKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingScaledKeyToken
 import com.orange.ouds.theme.tokens.semantic.fromToken
 
 /**
@@ -50,58 +43,3 @@ val OudsSizeIconWithTypeKeyToken.value: Dp
 val OudsSizeMaxWidthTypeKeyToken.value: Dp
     @Composable
     get() = OudsTheme.sizeTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
-
-/**
- * Converts an OUDS column gap space token to the local column gap space value provided by the theme.
- */
-val OudsSpacingColumnGapKeyToken.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
-
-/**
- * Converts an OUDS fixed space token to the local space value provided by the theme.
- */
-val OudsSpacingFixedKeyToken.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
-
-/**
- * Converts an OUDS block padding token to the local block padding value provided by the theme.
- */
-val OudsSpacingPaddingBlockKeyToken.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
-
-/**
- * Converts an OUDS inline padding token to the local inline padding value provided by the theme.
- */
-val OudsSpacingPaddingInlineKeyToken.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
-
-/**
- * Converts an OUDS inset padding token to the local inset padding value provided by the theme.
- */
-val OudsSpacingPaddingInsetKeyToken.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
-
-/**
- * Converts an OUDS row gap space token to the local row gap space value provided by the theme.
- */
-val OudsSpacingRowGapKeyToken.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
-
-/**
- * Converts an OUDS scaled space token to the local space value provided by the theme depending on the window size.
- */
-val OudsSpacingScaledKeyToken.value: Dp
-    @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
