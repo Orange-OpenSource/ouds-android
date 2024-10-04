@@ -10,13 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.tokens.global.raw
+package com.orange.ouds.theme
 
-object ElevationRawTokens {
-    val elevation0 = 0f
-    val elevation1 = 1f
-    val elevation2 = 3f
-    val elevation3 = 6f
-    val elevation4 = 8f
-    val elevation5 = 12f
+enum class OudsGridKeyToken {
+    MinWidth,
+    MaxWidth,
+    ColumnGap,
+    Margin,
 }

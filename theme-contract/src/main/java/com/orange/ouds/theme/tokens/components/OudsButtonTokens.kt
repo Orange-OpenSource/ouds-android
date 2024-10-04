@@ -12,10 +12,10 @@
 
 package com.orange.ouds.theme.tokens.components
 
+import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
+import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsElevationKeyToken
 
 open class OudsButtonTokens(
     val containerColor: OudsColorKeyToken = OudsColorKeyToken.Primary,

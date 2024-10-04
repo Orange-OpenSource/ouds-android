@@ -27,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.theme.tokens.semantic.OudsGridKeyToken
+import com.orange.ouds.theme.OudsGridKeyToken
 
 @Composable
 fun ComponentsScreen() {

@@ -33,13 +33,13 @@ object GridRawTokens {
     const val gridMargin1700 = DimensionRawTokens.dimensionBase * 20
     const val gridMargin2500 = DimensionRawTokens.dimensionBase * 28
 
-    const val gridColumnGap10 = DimensionRawTokens.dimensionBase * 0.25
-    const val gridColumnGap100 = DimensionRawTokens.dimensionBase * 2
-    const val gridColumnGap200 = DimensionRawTokens.dimensionBase * 4
-    const val gridColumnGap300 = DimensionRawTokens.dimensionBase * 5
-    const val gridColumnGap400 = DimensionRawTokens.dimensionBase * 6
-    const val gridColumnGap600 = DimensionRawTokens.dimensionBase * 8
-    const val gridColumnGap800 = DimensionRawTokens.dimensionBase * 10
+    const val gridColumnGap10 = DimensionRawTokens.dimensionBase * 0.25f
+    const val gridColumnGap100 = DimensionRawTokens.dimensionBase * 2f
+    const val gridColumnGap200 = DimensionRawTokens.dimensionBase * 4f
+    const val gridColumnGap300 = DimensionRawTokens.dimensionBase * 5f
+    const val gridColumnGap400 = DimensionRawTokens.dimensionBase * 6f
+    const val gridColumnGap600 = DimensionRawTokens.dimensionBase * 8f
+    const val gridColumnGap800 = DimensionRawTokens.dimensionBase * 10f
 
     const val gridColumnCount100 = 1
     const val gridColumnCount200 = 2

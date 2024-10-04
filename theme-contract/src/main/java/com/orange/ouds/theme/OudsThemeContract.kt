@@ -15,12 +15,12 @@ package com.orange.ouds.theme
 import android.os.Parcelable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsBorderTokens
+import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
-import com.orange.ouds.theme.tokens.semantic.OudsElevationTokens
+import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
-import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
-import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
+import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 
 interface OudsThemeContract : Parcelable {
 
@@ -37,14 +37,14 @@ interface OudsThemeContract : Parcelable {
     /**
      * Border semantic tokens values used in the theme
      */
-    val borderTokens: OudsBorderTokens
-        get() = OudsBorderTokens()
+    val borderTokens: OudsBorderSemanticTokens
+        get() = OudsBorderSemanticTokens()
 
     /**
      * Elevation semantic tokens values used in the theme
      */
-    val elevationTokens: OudsElevationTokens
-        get() = OudsElevationTokens()
+    val elevationTokens: OudsElevationSemanticTokens
+        get() = OudsElevationSemanticTokens()
 
     /**
      * Font family used in the theme
@@ -62,14 +62,14 @@ interface OudsThemeContract : Parcelable {
     /**
      * Grid semantic tokens values used in the theme
      */
-    val gridTokens: OudsGridTokens
-        get() = OudsGridTokens()
+    val gridTokens: OudsGridSemanticTokens
+        get() = OudsGridSemanticTokens()
 
     /**
      * Opacity semantic tokens values used in the theme
      */
-    val opacityTokens: OudsOpacityTokens
-        get() = OudsOpacityTokens()
+    val opacityTokens: OudsOpacitySemanticTokens
+        get() = OudsOpacitySemanticTokens()
 
     /**
      * Customization of the OUDS components if needed

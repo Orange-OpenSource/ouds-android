@@ -21,20 +21,16 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsBorderTokens
-import com.orange.ouds.theme.tokens.semantic.OudsElevationTokens
-import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
-import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
 
 private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
-private val LocalBorderTokens = staticCompositionLocalOf<OudsBorderTokens> { missingCompositionLocalError("LocalBorderTokens") }
-private val LocalElevationTokens = staticCompositionLocalOf<OudsElevationTokens> { missingCompositionLocalError("LocalElevationTokens") }
+private val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
+private val LocalElevations = staticCompositionLocalOf<OudsElevations> { missingCompositionLocalError("LocalElevations") }
 private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
-private val LocalGridTokens = staticCompositionLocalOf<OudsGridTokens> { missingCompositionLocalError("LocalGridTokens") }
-private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { missingCompositionLocalError("LocalOpacityTokens") }
+private val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
+private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
 object OudsTheme {
@@ -43,30 +39,30 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalColorScheme.current
 
-    val borderTokens: OudsBorderTokens
+    val borders: OudsBorders
         @Composable
         @ReadOnlyComposable
-        get() = LocalBorderTokens.current
+        get() = LocalBorders.current
 
-    val elevationTokens: OudsElevationTokens
+    val elevations: OudsElevations
         @Composable
         @ReadOnlyComposable
-        get() = LocalElevationTokens.current
+        get() = LocalElevations.current
 
     val typography: OudsTypography
         @Composable
         @ReadOnlyComposable
         get() = LocalTypography.current
 
-    val gridTokens: OudsGridTokens
+    val grids: OudsGrids
         @Composable
         @ReadOnlyComposable
-        get() = LocalGridTokens.current
+        get() = LocalGrids.current
 
-    val opacityTokens: OudsOpacityTokens
+    val opacities: OudsOpacities
         @Composable
         @ReadOnlyComposable
-        get() = LocalOpacityTokens.current
+        get() = LocalOpacities.current
 
     val componentsTokens: OudsComponentsTokens
         @Composable
@@ -92,11 +88,11 @@ fun OudsTheme(
 
     CompositionLocalProvider(
         LocalColorScheme provides colorScheme,
-        LocalBorderTokens provides themeContract.borderTokens,
-        LocalElevationTokens provides themeContract.elevationTokens,
+        LocalBorders provides themeContract.borderTokens.getBorders(),
+        LocalElevations provides themeContract.elevationTokens.getElevation(),
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
-        LocalGridTokens provides themeContract.gridTokens,
-        LocalOpacityTokens provides themeContract.opacityTokens,
+        LocalGrids provides themeContract.gridTokens.getGrids(),
+        LocalOpacities provides themeContract.opacityTokens.getOpacity(),
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
         MaterialTheme(colorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme) {
