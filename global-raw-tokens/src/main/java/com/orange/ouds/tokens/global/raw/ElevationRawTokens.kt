@@ -12,13 +12,11 @@
 
 package com.orange.ouds.tokens.global.raw
 
-import androidx.compose.ui.unit.dp
-
 object ElevationRawTokens {
-    val elevation0 = 0.dp
-    val elevation1 = 1.dp
-    val elevation2 = 3.dp
-    val elevation3 = 6.dp
-    val elevation4 = 8.dp
-    val elevation5 = 12.dp
+    val elevation0 = 0f
+    val elevation1 = 1f
+    val elevation2 = 3f
+    val elevation3 = 6f
+    val elevation4 = 8f
+    val elevation5 = 12f
 }

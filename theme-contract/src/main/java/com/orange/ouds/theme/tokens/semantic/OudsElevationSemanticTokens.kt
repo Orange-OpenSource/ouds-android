@@ -12,14 +12,13 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import androidx.compose.ui.unit.Dp
 import com.orange.ouds.tokens.global.raw.ElevationRawTokens
 
 data class OudsElevationSemanticTokens(
-    val none: Dp = ElevationRawTokens.elevation0,
-    val raised: Dp = ElevationRawTokens.elevation1,
-    val overlayDefault: Dp = ElevationRawTokens.elevation2,
-    val allSticky: Dp = ElevationRawTokens.elevation3,
-    val drag: Dp = ElevationRawTokens.elevation4,
-    val overlayEmphasized: Dp = ElevationRawTokens.elevation5,
+    val none: Float = ElevationRawTokens.elevation0,
+    val raised: Float = ElevationRawTokens.elevation1,
+    val overlayDefault: Float = ElevationRawTokens.elevation2,
+    val allSticky: Float = ElevationRawTokens.elevation3,
+    val drag: Float = ElevationRawTokens.elevation4,
+    val overlayEmphasized: Float = ElevationRawTokens.elevation5,
 )

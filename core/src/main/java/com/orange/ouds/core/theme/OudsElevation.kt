@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 
@@ -29,12 +30,12 @@ data class OudsElevation(
 )
 
 fun OudsElevationSemanticTokens.getElevation() = OudsElevation(
-    none = none,
-    raised = raised,
-    overlayDefault = overlayDefault,
-    allSticky = allSticky,
-    drag = drag,
-    overlayEmphasized = overlayEmphasized
+    none = none.dp,
+    raised = raised.dp,
+    overlayDefault = overlayDefault.dp,
+    allSticky = allSticky.dp,
+    drag = drag.dp,
+    overlayEmphasized = overlayEmphasized.dp
 )
 
 @Stable
