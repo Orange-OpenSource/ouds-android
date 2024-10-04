@@ -54,7 +54,7 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalTypography.current
 
-    val gridTokens: OudsGrids
+    val grids: OudsGrids
         @Composable
         @ReadOnlyComposable
         get() = LocalGrids.current

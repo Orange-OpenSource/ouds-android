@@ -75,4 +75,4 @@ fun OudsGrids.fromToken(token: OudsGridKeyToken, adaptiveWindowType: OudsAdaptiv
  */
 val OudsGridKeyToken.value: Dp
     @Composable
-    get() = OudsTheme.gridTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+    get() = OudsTheme.grids.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
