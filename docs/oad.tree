@@ -4,7 +4,8 @@
 
 <instance-profile id="oad"
                  name="OUDS Android documentation"
-                 start-page="getting_started.md">
+                 start-page="overview.md">
 
-    <toc-element topic="getting_started.md"/>
+    <toc-element topic="overview.md"/>
+    <toc-element topic="getting-started.md"/>
 </instance-profile>
