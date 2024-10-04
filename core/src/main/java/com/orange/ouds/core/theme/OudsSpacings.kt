@@ -59,20 +59,20 @@ data class OudsSpacings(
     val paddingInlineTall: Dp,
     val paddingInlineTaller: Dp,
     val paddingInlineTallest: Dp,
-    val paddingInlineIsIconNone: Dp,
-    val paddingInlineIsIconShorter: Dp,
-    val paddingInlineIsIconShort: Dp,
-    val paddingInlineIsIconMedium: Dp,
-    val paddingInlineIsIconTall: Dp,
-    val paddingInlineIsIconTaller: Dp,
-    val paddingInlineIsIconTallest: Dp,
-    val paddingInlineIsArrowNone: Dp,
-    val paddingInlineIsArrowShorter: Dp,
-    val paddingInlineIsArrowShort: Dp,
-    val paddingInlineIsArrowMedium: Dp,
-    val paddingInlineIsArrowTall: Dp,
-    val paddingInlineIsArrowTaller: Dp,
-    val paddingInlineIsArrowTallest: Dp,
+    val paddingInlineWithIconNone: Dp,
+    val paddingInlineWithIconShorter: Dp,
+    val paddingInlineWithIconShort: Dp,
+    val paddingInlineWithIconMedium: Dp,
+    val paddingInlineWithIconTall: Dp,
+    val paddingInlineWithIconTaller: Dp,
+    val paddingInlineWithIconTallest: Dp,
+    val paddingInlineWithArrowNone: Dp,
+    val paddingInlineWithArrowShorter: Dp,
+    val paddingInlineWithArrowShort: Dp,
+    val paddingInlineWithArrowMedium: Dp,
+    val paddingInlineWithArrowTall: Dp,
+    val paddingInlineWithArrowTaller: Dp,
+    val paddingInlineWithArrowTallest: Dp,
     val paddingBlockNone: Dp,
     val paddingBlockShortest: Dp,
     val paddingBlockShorter: Dp,
@@ -80,13 +80,13 @@ data class OudsSpacings(
     val paddingBlockMedium: Dp,
     val paddingBlockTall: Dp,
     val paddingBlockTaller: Dp,
-    val paddingBlockIsIconNone: Dp,
-    val paddingBlockIsIconShorter: Dp,
-    val paddingBlockIsIconShort: Dp,
-    val paddingBlockIsIconMedium: Dp,
-    val paddingBlockIsIconTall: Dp,
-    val paddingBlockIsIconTaller: Dp,
-    val paddingBlockIsIconTallest: Dp,
+    val paddingBlockWithIconNone: Dp,
+    val paddingBlockWithIconShorter: Dp,
+    val paddingBlockWithIconShort: Dp,
+    val paddingBlockWithIconMedium: Dp,
+    val paddingBlockWithIconTall: Dp,
+    val paddingBlockWithIconTaller: Dp,
+    val paddingBlockWithIconTallest: Dp,
     val insetNone: Dp,
     val insetSmash: Dp,
     val insetShortest: Dp,
@@ -103,30 +103,30 @@ data class OudsSpacings(
     val columnGapMedium: Dp,
     val columnGapTall: Dp,
     val columnGapTaller: Dp,
-    val columnGapIsIconNone: Dp,
-    val columnGapIsIconShorter: Dp,
-    val columnGapIsIconShort: Dp,
-    val columnGapIsIconMedium: Dp,
-    val columnGapIsIconTall: Dp,
-    val columnGapIsIconTaller: Dp,
-    val columnGapIsArrowNone: Dp,
-    val columnGapIsArrowShorter: Dp,
-    val columnGapIsArrowShort: Dp,
-    val columnGapIsArrowMedium: Dp,
-    val columnGapIsArrowTall: Dp,
-    val columnGapIsArrowTaller: Dp,
+    val columnGapWithIconNone: Dp,
+    val columnGapWithIconShorter: Dp,
+    val columnGapWithIconShort: Dp,
+    val columnGapWithIconMedium: Dp,
+    val columnGapWithIconTall: Dp,
+    val columnGapWithIconTaller: Dp,
+    val columnGapWithArrowNone: Dp,
+    val columnGapWithArrowShorter: Dp,
+    val columnGapWithArrowShort: Dp,
+    val columnGapWithArrowMedium: Dp,
+    val columnGapWithArrowTall: Dp,
+    val columnGapWithArrowTaller: Dp,
     val rowGapNone: Dp,
     val rowGapShorter: Dp,
     val rowGapShort: Dp,
     val rowGapMedium: Dp,
     val rowGapTall: Dp,
     val rowGapTaller: Dp,
-    val rowGapIsIconNone: Dp,
-    val rowGapIsIconShorter: Dp,
-    val rowGapIsIconShort: Dp,
-    val rowGapIsIconMedium: Dp,
-    val rowGapIsIconTall: Dp,
-    val rowGapIsIconTaller: Dp,
+    val rowGapWithIconNone: Dp,
+    val rowGapWithIconShorter: Dp,
+    val rowGapWithIconShort: Dp,
+    val rowGapWithIconMedium: Dp,
+    val rowGapWithIconTall: Dp,
+    val rowGapWithIconTaller: Dp,
 )
 
 fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
@@ -143,54 +143,54 @@ fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
     fixedHuge = fixedHuge.dp,
     fixedJumbo = fixedJumbo.dp,
     scaledNone = OudsAdaptiveTokenValue(
-        scaledMobileNone.dp,
-        scaledTabletNone.dp,
-        scaledDesktopNone.dp
+        scaledNoneMobile.dp,
+        scaledNoneMobile.dp,
+        scaledNoneTablet.dp
     ),
     scaledSmash = OudsAdaptiveTokenValue(
-        scaledMobileSmash.dp,
-        scaledTabletSmash.dp,
-        scaledDesktopSmash.dp
+        scaledSmashMobile.dp,
+        scaledSmashMobile.dp,
+        scaledSmashTablet.dp
     ),
     scaledShortest = OudsAdaptiveTokenValue(
-        scaledMobileShortest.dp,
-        scaledTabletShortest.dp,
-        scaledDesktopShortest.dp
+        scaledShortestMobile.dp,
+        scaledShortestMobile.dp,
+        scaledShortestTablet.dp
     ),
     scaledShorter = OudsAdaptiveTokenValue(
-        scaledMobileShorter.dp,
-        scaledTabletShorter.dp,
-        scaledDesktopShorter.dp
+        scaledShorterMobile.dp,
+        scaledShorterMobile.dp,
+        scaledShorterTablet.dp
     ),
     scaledShort = OudsAdaptiveTokenValue(
-        scaledMobileShort.dp,
-        scaledTabletShort.dp,
-        scaledDesktopShort.dp
+        scaledShortMobile.dp,
+        scaledShortMobile.dp,
+        scaledShortTablet.dp
     ),
     scaledMedium = OudsAdaptiveTokenValue(
-        scaledMobileMedium.dp,
-        scaledTabletMedium.dp,
-        scaledDesktopMedium.dp
+        scaledMediumMobile.dp,
+        scaledMediumMobile.dp,
+        scaledMediumTablet.dp
     ),
     scaledTall = OudsAdaptiveTokenValue(
-        scaledMobileTall.dp,
-        scaledTabletTall.dp,
-        scaledDesktopTall.dp
+        scaledTallMobile.dp,
+        scaledTallMobile.dp,
+        scaledTallTablet.dp
     ),
     scaledTaller = OudsAdaptiveTokenValue(
-        scaledMobileTaller.dp,
-        scaledTabletTaller.dp,
-        scaledDesktopTaller.dp
+        scaledTallerMobile.dp,
+        scaledTallerMobile.dp,
+        scaledTallerTablet.dp
     ),
     scaledTallest = OudsAdaptiveTokenValue(
-        scaledMobileTallest.dp,
-        scaledTabletTallest.dp,
-        scaledDesktopTallest.dp
+        scaledTallestMobile.dp,
+        scaledTallestMobile.dp,
+        scaledTallestTablet.dp
     ),
     scaledSpacious = OudsAdaptiveTokenValue(
-        scaledMobileSpacious.dp,
-        scaledTabletSpacious.dp,
-        scaledDesktopSpacious.dp
+        scaledSpaciousMobile.dp,
+        scaledSpaciousMobile.dp,
+        scaledSpaciousTablet.dp
     ),
     paddingInlineNone = paddingInlineNone.dp,
     paddingInlineShorter = paddingInlineShorter.dp,
@@ -199,20 +199,20 @@ fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
     paddingInlineTall = paddingInlineTall.dp,
     paddingInlineTaller = paddingInlineTaller.dp,
     paddingInlineTallest = paddingInlineTallest.dp,
-    paddingInlineIsIconNone = paddingInlineIsIconNone.dp,
-    paddingInlineIsIconShorter = paddingInlineIsIconShorter.dp,
-    paddingInlineIsIconShort = paddingInlineIsIconShort.dp,
-    paddingInlineIsIconMedium = paddingInlineIsIconMedium.dp,
-    paddingInlineIsIconTall = paddingInlineIsIconTall.dp,
-    paddingInlineIsIconTaller = paddingInlineIsIconTaller.dp,
-    paddingInlineIsIconTallest = paddingInlineIsIconTallest.dp,
-    paddingInlineIsArrowNone = paddingInlineIsArrowNone.dp,
-    paddingInlineIsArrowShorter = paddingInlineIsArrowShorter.dp,
-    paddingInlineIsArrowShort = paddingInlineIsArrowShort.dp,
-    paddingInlineIsArrowMedium = paddingInlineIsArrowMedium.dp,
-    paddingInlineIsArrowTall = paddingInlineIsArrowTall.dp,
-    paddingInlineIsArrowTaller = paddingInlineIsArrowTaller.dp,
-    paddingInlineIsArrowTallest = paddingInlineIsArrowTallest.dp,
+    paddingInlineWithIconNone = paddingInlineWithIconNone.dp,
+    paddingInlineWithIconShorter = paddingInlineWithIconShorter.dp,
+    paddingInlineWithIconShort = paddingInlineWithIconShort.dp,
+    paddingInlineWithIconMedium = paddingInlineWithIconMedium.dp,
+    paddingInlineWithIconTall = paddingInlineWithIconTall.dp,
+    paddingInlineWithIconTaller = paddingInlineWithIconTaller.dp,
+    paddingInlineWithIconTallest = paddingInlineWithIconTallest.dp,
+    paddingInlineWithArrowNone = paddingInlineWithArrowNone.dp,
+    paddingInlineWithArrowShorter = paddingInlineWithArrowShorter.dp,
+    paddingInlineWithArrowShort = paddingInlineWithArrowShort.dp,
+    paddingInlineWithArrowMedium = paddingInlineWithArrowMedium.dp,
+    paddingInlineWithArrowTall = paddingInlineWithArrowTall.dp,
+    paddingInlineWithArrowTaller = paddingInlineWithArrowTaller.dp,
+    paddingInlineWithArrowTallest = paddingInlineWithArrowTallest.dp,
     paddingBlockNone = paddingBlockNone.dp,
     paddingBlockShortest = paddingBlockShortest.dp,
     paddingBlockShorter = paddingBlockShorter.dp,
@@ -220,13 +220,13 @@ fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
     paddingBlockMedium = paddingBlockMedium.dp,
     paddingBlockTall = paddingBlockTall.dp,
     paddingBlockTaller = paddingBlockTaller.dp,
-    paddingBlockIsIconNone = paddingBlockIsIconNone.dp,
-    paddingBlockIsIconShorter = paddingBlockIsIconShorter.dp,
-    paddingBlockIsIconShort = paddingBlockIsIconShort.dp,
-    paddingBlockIsIconMedium = paddingBlockIsIconMedium.dp,
-    paddingBlockIsIconTall = paddingBlockIsIconTall.dp,
-    paddingBlockIsIconTaller = paddingBlockIsIconTaller.dp,
-    paddingBlockIsIconTallest = paddingBlockIsIconTallest.dp,
+    paddingBlockWithIconNone = paddingBlockWithIconNone.dp,
+    paddingBlockWithIconShorter = paddingBlockWithIconShorter.dp,
+    paddingBlockWithIconShort = paddingBlockWithIconShort.dp,
+    paddingBlockWithIconMedium = paddingBlockWithIconMedium.dp,
+    paddingBlockWithIconTall = paddingBlockWithIconTall.dp,
+    paddingBlockWithIconTaller = paddingBlockWithIconTaller.dp,
+    paddingBlockWithIconTallest = paddingBlockWithIconTallest.dp,
     insetNone = insetNone.dp,
     insetSmash = insetSmash.dp,
     insetShortest = insetShortest.dp,
@@ -243,30 +243,30 @@ fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
     columnGapMedium = columnGapMedium.dp,
     columnGapTall = columnGapTall.dp,
     columnGapTaller = columnGapTaller.dp,
-    columnGapIsIconNone = columnGapIsIconNone.dp,
-    columnGapIsIconShorter = columnGapIsIconShorter.dp,
-    columnGapIsIconShort = columnGapIsIconShort.dp,
-    columnGapIsIconMedium = columnGapIsIconMedium.dp,
-    columnGapIsIconTall = columnGapIsIconTall.dp,
-    columnGapIsIconTaller = columnGapIsIconTaller.dp,
-    columnGapIsArrowNone = columnGapIsArrowNone.dp,
-    columnGapIsArrowShorter = columnGapIsArrowShorter.dp,
-    columnGapIsArrowShort = columnGapIsArrowShort.dp,
-    columnGapIsArrowMedium = columnGapIsArrowMedium.dp,
-    columnGapIsArrowTall = columnGapIsArrowTall.dp,
-    columnGapIsArrowTaller = columnGapIsArrowTaller.dp,
+    columnGapWithIconNone = columnGapWithIconNone.dp,
+    columnGapWithIconShorter = columnGapWithIconShorter.dp,
+    columnGapWithIconShort = columnGapWithIconShort.dp,
+    columnGapWithIconMedium = columnGapWithIconMedium.dp,
+    columnGapWithIconTall = columnGapWithIconTall.dp,
+    columnGapWithIconTaller = columnGapWithIconTaller.dp,
+    columnGapWithArrowNone = columnGapWithArrowNone.dp,
+    columnGapWithArrowShorter = columnGapWithArrowShorter.dp,
+    columnGapWithArrowShort = columnGapWithArrowShort.dp,
+    columnGapWithArrowMedium = columnGapWithArrowMedium.dp,
+    columnGapWithArrowTall = columnGapWithArrowTall.dp,
+    columnGapWithArrowTaller = columnGapWithArrowTaller.dp,
     rowGapNone = rowGapNone.dp,
     rowGapShorter = rowGapShorter.dp,
     rowGapShort = rowGapShort.dp,
     rowGapMedium = rowGapMedium.dp,
     rowGapTall = rowGapTall.dp,
     rowGapTaller = rowGapTaller.dp,
-    rowGapIsIconNone = rowGapIsIconNone.dp,
-    rowGapIsIconShorter = rowGapIsIconShorter.dp,
-    rowGapIsIconShort = rowGapIsIconShort.dp,
-    rowGapIsIconMedium = rowGapIsIconMedium.dp,
-    rowGapIsIconTall = rowGapIsIconTall.dp,
-    rowGapIsIconTaller = rowGapIsIconTaller.dp,
+    rowGapWithIconNone = rowGapWithIconNone.dp,
+    rowGapWithIconShorter = rowGapWithIconShorter.dp,
+    rowGapWithIconShort = rowGapWithIconShort.dp,
+    rowGapWithIconMedium = rowGapWithIconMedium.dp,
+    rowGapWithIconTall = rowGapWithIconTall.dp,
+    rowGapWithIconTaller = rowGapWithIconTaller.dp,
 )
 
 @Stable
@@ -319,20 +319,20 @@ fun OudsSpacings.fromToken(token: OudsSpacingPaddingInlineKeyToken): Dp {
         OudsSpacingPaddingInlineKeyToken.Tall -> paddingInlineTall
         OudsSpacingPaddingInlineKeyToken.Taller -> paddingInlineTaller
         OudsSpacingPaddingInlineKeyToken.Tallest -> paddingInlineTallest
-        OudsSpacingPaddingInlineKeyToken.IsIconNone -> paddingInlineIsIconNone
-        OudsSpacingPaddingInlineKeyToken.IsIconShorter -> paddingInlineIsIconShorter
-        OudsSpacingPaddingInlineKeyToken.IsIconShort -> paddingInlineIsIconShort
-        OudsSpacingPaddingInlineKeyToken.IsIconMedium -> paddingInlineIsIconMedium
-        OudsSpacingPaddingInlineKeyToken.IsIconTall -> paddingInlineIsIconTall
-        OudsSpacingPaddingInlineKeyToken.IsIconTaller -> paddingInlineIsIconTaller
-        OudsSpacingPaddingInlineKeyToken.IsIconTallest -> paddingInlineIsIconTallest
-        OudsSpacingPaddingInlineKeyToken.IsArrowNone -> paddingInlineIsArrowNone
-        OudsSpacingPaddingInlineKeyToken.IsArrowShorter -> paddingInlineIsArrowShorter
-        OudsSpacingPaddingInlineKeyToken.IsArrowShort -> paddingInlineIsArrowShort
-        OudsSpacingPaddingInlineKeyToken.IsArrowMedium -> paddingInlineIsArrowMedium
-        OudsSpacingPaddingInlineKeyToken.IsArrowTall -> paddingInlineIsArrowTall
-        OudsSpacingPaddingInlineKeyToken.IsArrowTaller -> paddingInlineIsArrowTaller
-        OudsSpacingPaddingInlineKeyToken.IsArrowTallest -> paddingInlineIsArrowTallest
+        OudsSpacingPaddingInlineKeyToken.WithIconNone -> paddingInlineWithIconNone
+        OudsSpacingPaddingInlineKeyToken.WithIconShorter -> paddingInlineWithIconShorter
+        OudsSpacingPaddingInlineKeyToken.WithIconShort -> paddingInlineWithIconShort
+        OudsSpacingPaddingInlineKeyToken.WithIconMedium -> paddingInlineWithIconMedium
+        OudsSpacingPaddingInlineKeyToken.WithIconTall -> paddingInlineWithIconTall
+        OudsSpacingPaddingInlineKeyToken.WithIconTaller -> paddingInlineWithIconTaller
+        OudsSpacingPaddingInlineKeyToken.WithIconTallest -> paddingInlineWithIconTallest
+        OudsSpacingPaddingInlineKeyToken.WithArrowNone -> paddingInlineWithArrowNone
+        OudsSpacingPaddingInlineKeyToken.WithArrowShorter -> paddingInlineWithArrowShorter
+        OudsSpacingPaddingInlineKeyToken.WithArrowShort -> paddingInlineWithArrowShort
+        OudsSpacingPaddingInlineKeyToken.WithArrowMedium -> paddingInlineWithArrowMedium
+        OudsSpacingPaddingInlineKeyToken.WithArrowTall -> paddingInlineWithArrowTall
+        OudsSpacingPaddingInlineKeyToken.WithArrowTaller -> paddingInlineWithArrowTaller
+        OudsSpacingPaddingInlineKeyToken.WithArrowTallest -> paddingInlineWithArrowTallest
     }
 }
 
@@ -346,13 +346,13 @@ fun OudsSpacings.fromToken(token: OudsSpacingPaddingBlockKeyToken): Dp {
         OudsSpacingPaddingBlockKeyToken.Medium -> paddingBlockMedium
         OudsSpacingPaddingBlockKeyToken.Tall -> paddingBlockTall
         OudsSpacingPaddingBlockKeyToken.Taller -> paddingBlockTaller
-        OudsSpacingPaddingBlockKeyToken.IsIconNone -> paddingBlockIsIconNone
-        OudsSpacingPaddingBlockKeyToken.IsIconShorter -> paddingBlockIsIconShorter
-        OudsSpacingPaddingBlockKeyToken.IsIconShort -> paddingBlockIsIconShort
-        OudsSpacingPaddingBlockKeyToken.IsIconMedium -> paddingBlockIsIconMedium
-        OudsSpacingPaddingBlockKeyToken.IsIconTall -> paddingBlockIsIconTall
-        OudsSpacingPaddingBlockKeyToken.IsIconTaller -> paddingBlockIsIconTaller
-        OudsSpacingPaddingBlockKeyToken.IsIconTallest -> paddingBlockIsIconTallest
+        OudsSpacingPaddingBlockKeyToken.WithIconNone -> paddingBlockWithIconNone
+        OudsSpacingPaddingBlockKeyToken.WithIconShorter -> paddingBlockWithIconShorter
+        OudsSpacingPaddingBlockKeyToken.WithIconShort -> paddingBlockWithIconShort
+        OudsSpacingPaddingBlockKeyToken.WithIconMedium -> paddingBlockWithIconMedium
+        OudsSpacingPaddingBlockKeyToken.WithIconTall -> paddingBlockWithIconTall
+        OudsSpacingPaddingBlockKeyToken.WithIconTaller -> paddingBlockWithIconTaller
+        OudsSpacingPaddingBlockKeyToken.WithIconTallest -> paddingBlockWithIconTallest
     }
 }
 
@@ -381,18 +381,18 @@ fun OudsSpacings.fromToken(token: OudsSpacingColumnGapKeyToken): Dp {
         OudsSpacingColumnGapKeyToken.Medium -> columnGapMedium
         OudsSpacingColumnGapKeyToken.Tall -> columnGapTall
         OudsSpacingColumnGapKeyToken.Taller -> columnGapTaller
-        OudsSpacingColumnGapKeyToken.IsIconNone -> columnGapIsIconNone
-        OudsSpacingColumnGapKeyToken.IsIconShorter -> columnGapIsIconShorter
-        OudsSpacingColumnGapKeyToken.IsIconShort -> columnGapIsIconShort
-        OudsSpacingColumnGapKeyToken.IsIconMedium -> columnGapIsIconMedium
-        OudsSpacingColumnGapKeyToken.IsIconTall -> columnGapIsIconTall
-        OudsSpacingColumnGapKeyToken.IsIconTaller -> columnGapIsIconTaller
-        OudsSpacingColumnGapKeyToken.IsArrowNone -> columnGapIsArrowNone
-        OudsSpacingColumnGapKeyToken.IsArrowShorter -> columnGapIsArrowShorter
-        OudsSpacingColumnGapKeyToken.IsArrowShort -> columnGapIsArrowShort
-        OudsSpacingColumnGapKeyToken.IsArrowMedium -> columnGapIsArrowMedium
-        OudsSpacingColumnGapKeyToken.IsArrowTall -> columnGapIsArrowTall
-        OudsSpacingColumnGapKeyToken.IsArrowTaller -> columnGapIsArrowTaller
+        OudsSpacingColumnGapKeyToken.WithIconNone -> columnGapWithIconNone
+        OudsSpacingColumnGapKeyToken.WithIconShorter -> columnGapWithIconShorter
+        OudsSpacingColumnGapKeyToken.WithIconShort -> columnGapWithIconShort
+        OudsSpacingColumnGapKeyToken.WithIconMedium -> columnGapWithIconMedium
+        OudsSpacingColumnGapKeyToken.WithIconTall -> columnGapWithIconTall
+        OudsSpacingColumnGapKeyToken.WithIconTaller -> columnGapWithIconTaller
+        OudsSpacingColumnGapKeyToken.WithArrowNone -> columnGapWithArrowNone
+        OudsSpacingColumnGapKeyToken.WithArrowShorter -> columnGapWithArrowShorter
+        OudsSpacingColumnGapKeyToken.WithArrowShort -> columnGapWithArrowShort
+        OudsSpacingColumnGapKeyToken.WithArrowMedium -> columnGapWithArrowMedium
+        OudsSpacingColumnGapKeyToken.WithArrowTall -> columnGapWithArrowTall
+        OudsSpacingColumnGapKeyToken.WithArrowTaller -> columnGapWithArrowTaller
     }
 }
 
@@ -405,12 +405,12 @@ fun OudsSpacings.fromToken(token: OudsSpacingRowGapKeyToken): Dp {
         OudsSpacingRowGapKeyToken.Medium -> rowGapMedium
         OudsSpacingRowGapKeyToken.Tall -> rowGapTall
         OudsSpacingRowGapKeyToken.Taller -> rowGapTaller
-        OudsSpacingRowGapKeyToken.IsIconNone -> rowGapIsIconNone
-        OudsSpacingRowGapKeyToken.IsIconShorter -> rowGapIsIconShorter
-        OudsSpacingRowGapKeyToken.IsIconShort -> rowGapIsIconShort
-        OudsSpacingRowGapKeyToken.IsIconMedium -> rowGapIsIconMedium
-        OudsSpacingRowGapKeyToken.IsIconTall -> rowGapIsIconTall
-        OudsSpacingRowGapKeyToken.IsIconTaller -> rowGapIsIconTaller
+        OudsSpacingRowGapKeyToken.WithIconNone -> rowGapWithIconNone
+        OudsSpacingRowGapKeyToken.WithIconShorter -> rowGapWithIconShorter
+        OudsSpacingRowGapKeyToken.WithIconShort -> rowGapWithIconShort
+        OudsSpacingRowGapKeyToken.WithIconMedium -> rowGapWithIconMedium
+        OudsSpacingRowGapKeyToken.WithIconTall -> rowGapWithIconTall
+        OudsSpacingRowGapKeyToken.WithIconTaller -> rowGapWithIconTaller
     }
 }
 
