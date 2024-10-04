@@ -20,22 +20,22 @@ import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.tokens.global.raw.GridRawTokens
 
 data class OudsGridTokens(
-    val minWidth: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
+    val minWidth: OudsAdaptiveTokenValue<Dp> = OudsAdaptiveTokenValue(
         GridRawTokens.gridMinWidthExtraCompact.dp,
         GridRawTokens.gridMinWidthCompact.dp,
         GridRawTokens.gridMinWidthMedium.dp
     ),
-    val maxWidth: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
+    val maxWidth: OudsAdaptiveTokenValue<Dp> = OudsAdaptiveTokenValue(
         GridRawTokens.gridMaxWidthExtraCompact.dp,
         GridRawTokens.gridMaxWidthCompact.dp,
         GridRawTokens.gridMaxWidthMedium.dp
     ),
-    val margin: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
+    val margin: OudsAdaptiveTokenValue<Dp> = OudsAdaptiveTokenValue(
         GridRawTokens.gridMargin100.dp,
         GridRawTokens.gridMargin300.dp,
         GridRawTokens.gridMargin500.dp
     ),
-    val columnGap: OudsAdaptiveTokenValue = OudsAdaptiveTokenValue(
+    val columnGap: OudsAdaptiveTokenValue<Dp> = OudsAdaptiveTokenValue(
         GridRawTokens.gridColumnGap100.dp,
         GridRawTokens.gridColumnGap200.dp,
         GridRawTokens.gridColumnGap400.dp

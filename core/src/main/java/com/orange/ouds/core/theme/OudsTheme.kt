@@ -26,11 +26,13 @@ import com.orange.ouds.theme.tokens.semantic.OudsElevationTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacityTokens
 
-private fun missingCompositionLocalError(compositionLocalName: String): Nothing = error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
+private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
+    error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
 
 private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
 private val LocalBorderTokens = staticCompositionLocalOf<OudsBorderTokens> { missingCompositionLocalError("LocalBorderTokens") }
 private val LocalElevationTokens = staticCompositionLocalOf<OudsElevationTokens> { missingCompositionLocalError("LocalElevationTokens") }
+private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 private val LocalGridTokens = staticCompositionLocalOf<OudsGridTokens> { missingCompositionLocalError("LocalGridTokens") }
 private val LocalOpacityTokens = staticCompositionLocalOf<OudsOpacityTokens> { missingCompositionLocalError("LocalOpacityTokens") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
@@ -50,6 +52,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalElevationTokens.current
+
+    val typography: OudsTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalTypography.current
 
     val gridTokens: OudsGridTokens
         @Composable
@@ -87,6 +94,7 @@ fun OudsTheme(
         LocalColorScheme provides colorScheme,
         LocalBorderTokens provides themeContract.borderTokens,
         LocalElevationTokens provides themeContract.elevationTokens,
+        LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
         LocalGridTokens provides themeContract.gridTokens,
         LocalOpacityTokens provides themeContract.opacityTokens,
         LocalComponentsTokens provides themeContract.componentsTokens

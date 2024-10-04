@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.tokens.components
 
+import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsElevationKeyToken
@@ -26,5 +27,6 @@ open class OudsButtonTokens(
     val pressedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val focusedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val hoveredElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
-    val disabledElevation: OudsElevationKeyToken = OudsElevationKeyToken.None
+    val disabledElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
+    val labelStyle: OudsTypographyKeyToken = OudsTypographyKeyToken.BodyStrongLarge
 )
