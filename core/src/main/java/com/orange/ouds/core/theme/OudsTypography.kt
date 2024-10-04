@@ -410,7 +410,7 @@ fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypograph
 
 @Stable
 fun OudsTypography.fromToken(token: OudsTypographyKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): TextStyle {
-    val typography = when (token) {
+    val typography: Any = when (token) {
         OudsTypographyKeyToken.DisplayLarge -> displayLarge
         OudsTypographyKeyToken.DisplayMedium -> displayMedium
         OudsTypographyKeyToken.DisplaySmall -> displaySmall
