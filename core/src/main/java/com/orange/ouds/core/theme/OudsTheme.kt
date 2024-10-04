@@ -27,10 +27,10 @@ private fun missingCompositionLocalError(compositionLocalName: String): Nothing 
 
 private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
 private val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
-private val LocalElevation = staticCompositionLocalOf<OudsElevation> { missingCompositionLocalError("LocalElevation") }
+private val LocalElevations = staticCompositionLocalOf<OudsElevations> { missingCompositionLocalError("LocalElevations") }
 private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 private val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
-private val LocalOpacity = staticCompositionLocalOf<OudsOpacity> { missingCompositionLocalError("LocalOpacity") }
+private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
 object OudsTheme {
@@ -44,10 +44,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalBorders.current
 
-    val elevation: OudsElevation
+    val elevations: OudsElevations
         @Composable
         @ReadOnlyComposable
-        get() = LocalElevation.current
+        get() = LocalElevations.current
 
     val typography: OudsTypography
         @Composable
@@ -59,10 +59,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalGrids.current
 
-    val opacity: OudsOpacity
+    val opacities: OudsOpacities
         @Composable
         @ReadOnlyComposable
-        get() = LocalOpacity.current
+        get() = LocalOpacities.current
 
     val componentsTokens: OudsComponentsTokens
         @Composable
@@ -89,10 +89,10 @@ fun OudsTheme(
     CompositionLocalProvider(
         LocalColorScheme provides colorScheme,
         LocalBorders provides themeContract.borderTokens.getBorders(),
-        LocalElevation provides themeContract.elevationTokens.getElevation(),
+        LocalElevations provides themeContract.elevationTokens.getElevation(),
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
         LocalGrids provides themeContract.gridTokens.getGrids(),
-        LocalOpacity provides themeContract.opacityTokens.getOpacity(),
+        LocalOpacities provides themeContract.opacityTokens.getOpacity(),
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
         MaterialTheme(colorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme) {

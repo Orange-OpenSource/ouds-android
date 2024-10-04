@@ -18,7 +18,7 @@ import androidx.compose.runtime.Stable
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 
-data class OudsOpacity(
+data class OudsOpacities(
     val transparent: Float,
     val weaker: Float,
     val weak: Float,
@@ -27,7 +27,7 @@ data class OudsOpacity(
     val opaque: Float,
 )
 
-fun OudsOpacitySemanticTokens.getOpacity() = OudsOpacity(
+fun OudsOpacitySemanticTokens.getOpacity() = OudsOpacities(
     transparent = transparent,
     weaker = weaker,
     weak = weak,
@@ -37,7 +37,7 @@ fun OudsOpacitySemanticTokens.getOpacity() = OudsOpacity(
 )
 
 @Stable
-fun OudsOpacity.fromToken(token: OudsOpacityKeyToken): Float {
+fun OudsOpacities.fromToken(token: OudsOpacityKeyToken): Float {
     return when (token) {
         OudsOpacityKeyToken.Transparent -> transparent
         OudsOpacityKeyToken.Weaker -> weaker
@@ -55,4 +55,4 @@ fun OudsOpacity.fromToken(token: OudsOpacityKeyToken): Float {
 val OudsOpacityKeyToken.value: Float
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.opacity.fromToken(this)
+    get() = OudsTheme.opacities.fromToken(this)

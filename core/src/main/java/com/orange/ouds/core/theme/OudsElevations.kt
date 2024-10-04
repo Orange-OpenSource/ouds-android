@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 
-data class OudsElevation(
+data class OudsElevations(
     val none: Dp,
     val raised: Dp,
     val overlayDefault: Dp,
@@ -29,7 +29,7 @@ data class OudsElevation(
     val overlayEmphasized: Dp,
 )
 
-fun OudsElevationSemanticTokens.getElevation() = OudsElevation(
+fun OudsElevationSemanticTokens.getElevation() = OudsElevations(
     none = none.dp,
     raised = raised.dp,
     overlayDefault = overlayDefault.dp,
@@ -39,7 +39,7 @@ fun OudsElevationSemanticTokens.getElevation() = OudsElevation(
 )
 
 @Stable
-fun OudsElevation.fromToken(token: OudsElevationKeyToken): Dp {
+fun OudsElevations.fromToken(token: OudsElevationKeyToken): Dp {
     return when (token) {
         OudsElevationKeyToken.None -> none
         OudsElevationKeyToken.Raised -> raised
@@ -56,4 +56,4 @@ fun OudsElevation.fromToken(token: OudsElevationKeyToken): Dp {
 val OudsElevationKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.elevation.fromToken(this)
+    get() = OudsTheme.elevations.fromToken(this)
