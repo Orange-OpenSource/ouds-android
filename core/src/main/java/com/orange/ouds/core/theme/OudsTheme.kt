@@ -21,7 +21,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsColorScheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsSizeTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
@@ -32,7 +31,7 @@ private val LocalElevations = staticCompositionLocalOf<OudsElevations> { missing
 private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 private val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
 private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
-private val LocalSizeTokens = staticCompositionLocalOf<OudsSizeTokens> { missingCompositionLocalError("LocalSizeTokens") }
+private val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
 private val LocalSpacing = staticCompositionLocalOf<OudsSpacings> { missingCompositionLocalError("LocalSpacing") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 
@@ -67,10 +66,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalOpacities.current
 
-    val sizeTokens: OudsSizeTokens
+    val sizes: OudsSizes
         @Composable
         @ReadOnlyComposable
-        get() = LocalSizeTokens.current
+        get() = LocalSizes.current
 
     val spacingTokens: OudsSpacings
         @Composable
@@ -106,7 +105,7 @@ fun OudsTheme(
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
         LocalGrids provides themeContract.gridTokens.getGrids(),
         LocalOpacities provides themeContract.opacityTokens.getOpacity(),
-        LocalSizeTokens provides themeContract.sizeTokens,
+        LocalSizes provides themeContract.sizeTokens.getSizes(),
         LocalSpacing provides themeContract.spacingTokens.getSpacings(),
         LocalComponentsTokens provides themeContract.componentsTokens
     ) {
