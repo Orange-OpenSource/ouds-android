@@ -1,6 +1,6 @@
 # Overview
 
-Orange is providing a full Design System to build Orange mobile application. The objective of the Orange Unified Design System (OUDS) is to propose a set of guidelines on how to apply the Orange Brand on mobile applications. The Orange design system also provides a series of components and modules that show in details how to use this in an Orange apps.
+Orange is providing a full Design System to build Orange mobile application. The objective of the Orange Unified Design System (OUDS) is to propose a set of guidelines on how to apply the Orange Brand on mobile applications. The Orange design system also provides a series of components and modules that show in details how to use this in Orange apps.
 
 The Orange Unified Design System has been implemented in a code library (OUDS Android) that provides:
 - a Jetpack Compose code library
