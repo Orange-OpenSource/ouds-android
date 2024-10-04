@@ -13,16 +13,16 @@
 package com.orange.ouds.tokens.global.raw
 
 object FontRawTokens {
-    const val fontWeightThin = 100
-    const val fontWeightExtraLight = 200
-    const val fontWeightLight = 300
-    const val fontWeightRegular = 400
-    const val fontWeightMedium = 500
-    const val fontWeightSemiBold = 600
-    const val fontWeightBold = 700
-    const val fontWeightExtraBold = 800
-    const val fontWeightBlack = 900
-    const val fontWeightExtraBlack = 950
+    const val fontWeight100 = 100
+    const val fontWeight200 = 200
+    const val fontWeight300 = 300
+    const val fontWeight400 = 400
+    const val fontWeight500 = 500
+    const val fontWeight600 = 600
+    const val fontWeight700 = 700
+    const val fontWeight800 = 800
+    const val fontWeight900 = 900
+    const val fontWeight950 = 950
 
     const val fontSize150 = 12
     const val fontSize175 = 13

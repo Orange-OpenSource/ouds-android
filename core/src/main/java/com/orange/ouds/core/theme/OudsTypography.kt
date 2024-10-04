@@ -55,307 +55,307 @@ fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypograph
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeMobileDisplayLarge.sp,
-            lineHeight = lineHeightMobileDisplayLarge.sp,
-            letterSpacing = letterSpacingMobileDisplayLarge.sp
+            fontSize = sizeDisplayLargeMobile.sp,
+            lineHeight = lineHeightDisplayLargeMobile.sp,
+            letterSpacing = letterSpacingDisplayLargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeMobileDisplayLarge.sp,
-            lineHeight = lineHeightMobileDisplayLarge.sp,
-            letterSpacing = letterSpacingMobileDisplayLarge.sp
+            fontSize = sizeDisplayLargeMobile.sp,
+            lineHeight = lineHeightDisplayLargeMobile.sp,
+            letterSpacing = letterSpacingDisplayLargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeTabletDisplayLarge.sp,
-            lineHeight = lineHeightTabletDisplayLarge.sp,
-            letterSpacing = letterSpacingTabletDisplayLarge.sp
+            fontSize = sizeDisplayLargeTablet.sp,
+            lineHeight = lineHeightDisplayLargeTablet.sp,
+            letterSpacing = letterSpacingDisplayLargeTablet.sp
         ),
     ),
     displayMedium = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeMobileDisplayMedium.sp,
-            lineHeight = lineHeightMobileDisplayMedium.sp,
-            letterSpacing = letterSpacingMobileDisplayMedium.sp
+            fontSize = sizeDisplayMediumMobile.sp,
+            lineHeight = lineHeightDisplayMediumMobile.sp,
+            letterSpacing = letterSpacingDisplayMediumMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeMobileDisplayMedium.sp,
-            lineHeight = lineHeightMobileDisplayMedium.sp,
-            letterSpacing = letterSpacingMobileDisplayMedium.sp
+            fontSize = sizeDisplayMediumMobile.sp,
+            lineHeight = lineHeightDisplayMediumMobile.sp,
+            letterSpacing = letterSpacingDisplayMediumMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeTabletDisplayMedium.sp,
-            lineHeight = lineHeightTabletDisplayMedium.sp,
-            letterSpacing = letterSpacingTabletDisplayMedium.sp
+            fontSize = sizeDisplayMediumTablet.sp,
+            lineHeight = lineHeightDisplayMediumTablet.sp,
+            letterSpacing = letterSpacingDisplayMediumTablet.sp
         ),
     ),
     displaySmall = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeMobileDisplaySmall.sp,
-            lineHeight = lineHeightMobileDisplaySmall.sp,
-            letterSpacing = letterSpacingMobileDisplaySmall.sp
+            fontSize = sizeDisplaySmallMobile.sp,
+            lineHeight = lineHeightDisplaySmallMobile.sp,
+            letterSpacing = letterSpacingDisplaySmallMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeMobileDisplaySmall.sp,
-            lineHeight = lineHeightMobileDisplaySmall.sp,
-            letterSpacing = letterSpacingMobileDisplaySmall.sp
+            fontSize = sizeDisplaySmallMobile.sp,
+            lineHeight = lineHeightDisplaySmallMobile.sp,
+            letterSpacing = letterSpacingDisplaySmallMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightDisplay),
-            fontSize = sizeTabletDisplaySmall.sp,
-            lineHeight = lineHeightTabletDisplaySmall.sp,
-            letterSpacing = letterSpacingTabletDisplaySmall.sp
+            fontSize = sizeDisplaySmallTablet.sp,
+            lineHeight = lineHeightDisplaySmallTablet.sp,
+            letterSpacing = letterSpacingDisplaySmallTablet.sp
         ),
     ),
     headingExtraLarge = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeMobileHeadingXLarge.sp,
-            lineHeight = lineHeightMobileHeadingXLarge.sp,
-            letterSpacing = letterSpacingMobileHeadingXLarge.sp
+            fontSize = sizeHeadingXlargeMobile.sp,
+            lineHeight = lineHeightHeadingXlargeMobile.sp,
+            letterSpacing = letterSpacingHeadingXlargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeMobileHeadingXLarge.sp,
-            lineHeight = lineHeightMobileHeadingXLarge.sp,
-            letterSpacing = letterSpacingMobileHeadingXLarge.sp
+            fontSize = sizeHeadingXlargeMobile.sp,
+            lineHeight = lineHeightHeadingXlargeMobile.sp,
+            letterSpacing = letterSpacingHeadingXlargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeTabletHeadingXLarge.sp,
-            lineHeight = lineHeightTabletHeadingXLarge.sp,
-            letterSpacing = letterSpacingTabletHeadingXLarge.sp
+            fontSize = sizeHeadingXlargeTablet.sp,
+            lineHeight = lineHeightHeadingXlargeTablet.sp,
+            letterSpacing = letterSpacingHeadingXlargeTablet.sp
         ),
     ),
     headingLarge = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeMobileHeadingLarge.sp,
-            lineHeight = lineHeightMobileHeadingLarge.sp,
-            letterSpacing = letterSpacingMobileHeadingLarge.sp
+            fontSize = sizeHeadingLargeMobile.sp,
+            lineHeight = lineHeightHeadingLargeMobile.sp,
+            letterSpacing = letterSpacingHeadingLargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeMobileHeadingLarge.sp,
-            lineHeight = lineHeightMobileHeadingLarge.sp,
-            letterSpacing = letterSpacingMobileHeadingLarge.sp
+            fontSize = sizeHeadingLargeMobile.sp,
+            lineHeight = lineHeightHeadingLargeMobile.sp,
+            letterSpacing = letterSpacingHeadingLargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeTabletHeadingLarge.sp,
-            lineHeight = lineHeightTabletHeadingLarge.sp,
-            letterSpacing = letterSpacingTabletHeadingLarge.sp
+            fontSize = sizeHeadingLargeTablet.sp,
+            lineHeight = lineHeightHeadingLargeTablet.sp,
+            letterSpacing = letterSpacingHeadingLargeTablet.sp
         ),
     ),
     headingMedium = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeMobileHeadingMedium.sp,
-            lineHeight = lineHeightMobileHeadingMedium.sp,
-            letterSpacing = letterSpacingMobileHeadingMedium.sp
+            fontSize = sizeHeadingMediumMobile.sp,
+            lineHeight = lineHeightHeadingMediumMobile.sp,
+            letterSpacing = letterSpacingHeadingMediumMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeMobileHeadingMedium.sp,
-            lineHeight = lineHeightMobileHeadingMedium.sp,
-            letterSpacing = letterSpacingMobileHeadingMedium.sp
+            fontSize = sizeHeadingMediumMobile.sp,
+            lineHeight = lineHeightHeadingMediumMobile.sp,
+            letterSpacing = letterSpacingHeadingMediumMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeTabletHeadingMedium.sp,
-            lineHeight = lineHeightTabletHeadingMedium.sp,
-            letterSpacing = letterSpacingTabletHeadingMedium.sp
+            fontSize = sizeHeadingMediumTablet.sp,
+            lineHeight = lineHeightHeadingMediumTablet.sp,
+            letterSpacing = letterSpacingHeadingMediumTablet.sp
         ),
     ),
     headingSmall = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeMobileHeadingSmall.sp,
-            lineHeight = lineHeightMobileHeadingSmall.sp,
-            letterSpacing = letterSpacingMobileHeadingSmall.sp
+            fontSize = sizeHeadingSmallMobile.sp,
+            lineHeight = lineHeightHeadingSmallMobile.sp,
+            letterSpacing = letterSpacingHeadingSmallMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeMobileHeadingSmall.sp,
-            lineHeight = lineHeightMobileHeadingSmall.sp,
-            letterSpacing = letterSpacingMobileHeadingSmall.sp
+            fontSize = sizeHeadingSmallMobile.sp,
+            lineHeight = lineHeightHeadingSmallMobile.sp,
+            letterSpacing = letterSpacingHeadingSmallMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightHeading),
-            fontSize = sizeTabletHeadingSmall.sp,
-            lineHeight = lineHeightTabletHeadingSmall.sp,
-            letterSpacing = letterSpacingTabletHeadingSmall.sp
+            fontSize = sizeHeadingSmallTablet.sp,
+            lineHeight = lineHeightHeadingSmallTablet.sp,
+            letterSpacing = letterSpacingHeadingSmallTablet.sp
         ),
     ),
     bodyDefaultLarge = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeMobileBodyLarge.sp,
-            lineHeight = lineHeightMobileBodyLarge.sp,
-            letterSpacing = letterSpacingMobileBodyLarge.sp
+            fontSize = sizeBodyLargeMobile.sp,
+            lineHeight = lineHeightBodyLargeMobile.sp,
+            letterSpacing = letterSpacingBodyLargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeMobileBodyLarge.sp,
-            lineHeight = lineHeightMobileBodyLarge.sp,
-            letterSpacing = letterSpacingMobileBodyLarge.sp
+            fontSize = sizeBodyLargeMobile.sp,
+            lineHeight = lineHeightBodyLargeMobile.sp,
+            letterSpacing = letterSpacingBodyLargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeTabletBodyLarge.sp,
-            lineHeight = lineHeightTabletBodyLarge.sp,
-            letterSpacing = letterSpacingTabletBodyLarge.sp
+            fontSize = sizeBodyLargeTablet.sp,
+            lineHeight = lineHeightBodyLargeTablet.sp,
+            letterSpacing = letterSpacingBodyLargeTablet.sp
         ),
     ),
     bodyDefaultMedium = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeMobileBodyMedium.sp,
-            lineHeight = lineHeightMobileBodyMedium.sp,
-            letterSpacing = letterSpacingMobileBodyMedium.sp
+            fontSize = sizeBodyMediumMobile.sp,
+            lineHeight = lineHeightBodyMediumMobile.sp,
+            letterSpacing = letterSpacingBodyMediumMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeMobileBodyMedium.sp,
-            lineHeight = lineHeightMobileBodyMedium.sp,
-            letterSpacing = letterSpacingMobileBodyMedium.sp
+            fontSize = sizeBodyMediumMobile.sp,
+            lineHeight = lineHeightBodyMediumMobile.sp,
+            letterSpacing = letterSpacingBodyMediumMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeTabletBodyMedium.sp,
-            lineHeight = lineHeightTabletBodyMedium.sp,
-            letterSpacing = letterSpacingTabletBodyMedium.sp
+            fontSize = sizeBodyMediumTablet.sp,
+            lineHeight = lineHeightBodyMediumTablet.sp,
+            letterSpacing = letterSpacingBodyMediumTablet.sp
         ),
     ),
     bodyDefaultSmall = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeMobileBodySmall.sp,
-            lineHeight = lineHeightMobileBodySmall.sp,
-            letterSpacing = letterSpacingMobileBodySmall.sp
+            fontSize = sizeBodySmallMobile.sp,
+            lineHeight = lineHeightBodySmallMobile.sp,
+            letterSpacing = letterSpacingBodySmallMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeMobileBodySmall.sp,
-            lineHeight = lineHeightMobileBodySmall.sp,
-            letterSpacing = letterSpacingMobileBodySmall.sp
+            fontSize = sizeBodySmallMobile.sp,
+            lineHeight = lineHeightBodySmallMobile.sp,
+            letterSpacing = letterSpacingBodySmallMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyDefault),
-            fontSize = sizeTabletBodySmall.sp,
-            lineHeight = lineHeightTabletBodySmall.sp,
-            letterSpacing = letterSpacingTabletBodySmall.sp
+            fontSize = sizeBodySmallTablet.sp,
+            lineHeight = lineHeightBodySmallTablet.sp,
+            letterSpacing = letterSpacingBodySmallTablet.sp
         ),
     ),
     bodyStrongLarge = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeMobileBodyLarge.sp,
-            lineHeight = lineHeightMobileBodyLarge.sp,
-            letterSpacing = letterSpacingMobileBodyLarge.sp
+            fontSize = sizeBodyLargeMobile.sp,
+            lineHeight = lineHeightBodyLargeMobile.sp,
+            letterSpacing = letterSpacingBodyLargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeMobileBodyLarge.sp,
-            lineHeight = lineHeightMobileBodyLarge.sp,
-            letterSpacing = letterSpacingMobileBodyLarge.sp
+            fontSize = sizeBodyLargeMobile.sp,
+            lineHeight = lineHeightBodyLargeMobile.sp,
+            letterSpacing = letterSpacingBodyLargeMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeTabletBodyLarge.sp,
-            lineHeight = lineHeightTabletBodyLarge.sp,
-            letterSpacing = letterSpacingTabletBodyLarge.sp
+            fontSize = sizeBodyLargeTablet.sp,
+            lineHeight = lineHeightBodyLargeTablet.sp,
+            letterSpacing = letterSpacingBodyLargeTablet.sp
         ),
     ),
     bodyStrongMedium = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeMobileBodyMedium.sp,
-            lineHeight = lineHeightMobileBodyMedium.sp,
-            letterSpacing = letterSpacingMobileBodyMedium.sp
+            fontSize = sizeBodyMediumMobile.sp,
+            lineHeight = lineHeightBodyMediumMobile.sp,
+            letterSpacing = letterSpacingBodyMediumMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeMobileBodyMedium.sp,
-            lineHeight = lineHeightMobileBodyMedium.sp,
-            letterSpacing = letterSpacingMobileBodyMedium.sp
+            fontSize = sizeBodyMediumMobile.sp,
+            lineHeight = lineHeightBodyMediumMobile.sp,
+            letterSpacing = letterSpacingBodyMediumMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeTabletBodyMedium.sp,
-            lineHeight = lineHeightTabletBodyMedium.sp,
-            letterSpacing = letterSpacingTabletBodyMedium.sp
+            fontSize = sizeBodyMediumTablet.sp,
+            lineHeight = lineHeightBodyMediumTablet.sp,
+            letterSpacing = letterSpacingBodyMediumTablet.sp
         ),
     ),
     bodyStrongSmall = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeMobileBodySmall.sp,
-            lineHeight = lineHeightMobileBodySmall.sp,
-            letterSpacing = letterSpacingMobileBodySmall.sp
+            fontSize = sizeBodySmallMobile.sp,
+            lineHeight = lineHeightBodySmallMobile.sp,
+            letterSpacing = letterSpacingBodySmallMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeMobileBodySmall.sp,
-            lineHeight = lineHeightMobileBodySmall.sp,
-            letterSpacing = letterSpacingMobileBodySmall.sp
+            fontSize = sizeBodySmallMobile.sp,
+            lineHeight = lineHeightBodySmallMobile.sp,
+            letterSpacing = letterSpacingBodySmallMobile.sp
         ),
         TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight(weightBodyStrong),
-            fontSize = sizeTabletBodySmall.sp,
-            lineHeight = lineHeightTabletBodySmall.sp,
-            letterSpacing = letterSpacingTabletBodySmall.sp
+            fontSize = sizeBodySmallTablet.sp,
+            lineHeight = lineHeightBodySmallTablet.sp,
+            letterSpacing = letterSpacingBodySmallTablet.sp
         ),
     ),
     labelDefaultExtraLarge = TextStyle(
         fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelDefault),
-        fontSize = sizeLabelXLarge.sp,
-        lineHeight = lineHeightLabelXLarge.sp,
-        letterSpacing = letterSpacingLabelXLarge.sp
+        fontSize = sizeLabelXlarge.sp,
+        lineHeight = lineHeightLabelXlarge.sp,
+        letterSpacing = letterSpacingLabelXlarge.sp
     ),
     labelDefaultLarge = TextStyle(
         fontFamily = fontFamily,
@@ -381,9 +381,9 @@ fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypograph
     labelStrongExtraLarge = TextStyle(
         fontFamily = fontFamily,
         fontWeight = FontWeight(weightLabelStrong),
-        fontSize = sizeLabelXLarge.sp,
-        lineHeight = lineHeightLabelXLarge.sp,
-        letterSpacing = letterSpacingLabelXLarge.sp
+        fontSize = sizeLabelXlarge.sp,
+        lineHeight = lineHeightLabelXlarge.sp,
+        letterSpacing = letterSpacingLabelXlarge.sp
     ),
     labelStrongLarge = TextStyle(
         fontFamily = fontFamily,
