@@ -25,6 +25,6 @@ data class OudsGridSemanticTokens(
     val marginCompact: Int = GridRawTokens.gridMargin300,
     val marginMedium: Int = GridRawTokens.gridMargin500,
     val columnGapExtraCompact: Float = GridRawTokens.gridColumnGap100,
-    val columnGapCompact: Float = GridRawTokens.gridColumnGap100,
+    val columnGapCompact: Float = GridRawTokens.gridColumnGap200,
     val columnGapMedium: Float = GridRawTokens.gridColumnGap400,
 )
