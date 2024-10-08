@@ -45,6 +45,20 @@ data class OudsSizes(
     val iconWithHeadingExtraLargeSizeShort: OudsAdaptiveTokenValue<Dp>,
     val iconWithHeadingExtraLargeSizeMedium: OudsAdaptiveTokenValue<Dp>,
     val iconWithHeadingExtraLargeSizeTall: OudsAdaptiveTokenValue<Dp>,
+    val iconWithLabelSmallSizeShort: Dp,
+    val iconWithLabelSmallSizeMedium: Dp,
+    val iconWithLabelSmallSizeTall: Dp,
+    val iconWithLabelMediumSizeShort: Dp,
+    val iconWithLabelMediumSizeMedium: Dp,
+    val iconWithLabelMediumSizeTall: Dp,
+    val iconWithLabelLargeSizeShorter: Dp,
+    val iconWithLabelLargeSizeShort: Dp,
+    val iconWithLabelLargeSizeMedium: Dp,
+    val iconWithLabelLargeSizeTall: Dp,
+    val iconWithLabelLargeSizeTaller: Dp,
+    val iconWithLabelExtraLargeSizeShort: Dp,
+    val iconWithLabelExtraLargeSizeMedium: Dp,
+    val iconWithLabelExtraLargeSizeTall: Dp,
     val iconWithBodySmallSizeShort: OudsAdaptiveTokenValue<Dp>,
     val iconWithBodySmallSizeMedium: OudsAdaptiveTokenValue<Dp>,
     val iconWithBodySmallSizeTall: OudsAdaptiveTokenValue<Dp>,
@@ -134,6 +148,20 @@ fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
         iconWithHeadingXlargeSizeTallMobile.dp,
         iconWithHeadingXlargeSizeTallTablet.dp
     ),
+    iconWithLabelSmallSizeShort = iconWithLabelSmallSizeShort.dp,
+    iconWithLabelSmallSizeMedium = iconWithLabelSmallSizeMedium.dp,
+    iconWithLabelSmallSizeTall = iconWithLabelSmallSizeTall.dp,
+    iconWithLabelMediumSizeShort = iconWithLabelMediumSizeShort.dp,
+    iconWithLabelMediumSizeMedium = iconWithLabelMediumSizeMedium.dp,
+    iconWithLabelMediumSizeTall = iconWithLabelMediumSizeTall.dp,
+    iconWithLabelLargeSizeShorter = iconWithLabelLargeSizeShorter.dp,
+    iconWithLabelLargeSizeShort = iconWithLabelLargeSizeShort.dp,
+    iconWithLabelLargeSizeMedium = iconWithLabelLargeSizeMedium.dp,
+    iconWithLabelLargeSizeTall = iconWithLabelLargeSizeTall.dp,
+    iconWithLabelLargeSizeTaller = iconWithLabelLargeSizeTaller.dp,
+    iconWithLabelExtraLargeSizeShort = iconWithLabelXlargeSizeShort.dp,
+    iconWithLabelExtraLargeSizeMedium = iconWithLabelXlargeSizeMedium.dp,
+    iconWithLabelExtraLargeSizeTall = iconWithLabelXlargeSizeTall.dp,
     iconWithBodySmallSizeShort = OudsAdaptiveTokenValue(
         iconWithBodySmallSizeShortMobile.dp,
         iconWithBodySmallSizeShortMobile.dp,
@@ -246,7 +274,7 @@ fun OudsSizes.fromToken(token: OudsSizeIconDecorativeKeyToken): Dp {
 
 @Stable
 fun OudsSizes.fromToken(token: OudsSizeIconWithTextKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
-    val dimensionSizeIconWithTypeToken = when (token) {
+    val dimensionSizeIconWithTextValue: Any = when (token) {
         OudsSizeIconWithTextKeyToken.HeadingSmallShort -> iconWithHeadingSmallSizeShort
         OudsSizeIconWithTextKeyToken.HeadingSmallMedium -> iconWithHeadingSmallSizeMedium
         OudsSizeIconWithTextKeyToken.HeadingSmallTall -> iconWithHeadingSmallSizeTall
@@ -259,6 +287,20 @@ fun OudsSizes.fromToken(token: OudsSizeIconWithTextKeyToken, adaptiveWindowType:
         OudsSizeIconWithTextKeyToken.HeadingExtraLargeShort -> iconWithHeadingExtraLargeSizeShort
         OudsSizeIconWithTextKeyToken.HeadingExtraLargeMedium -> iconWithHeadingExtraLargeSizeMedium
         OudsSizeIconWithTextKeyToken.HeadingExtraLargeTall -> iconWithHeadingExtraLargeSizeTall
+        OudsSizeIconWithTextKeyToken.LabelLargeShorter -> iconWithLabelLargeSizeShorter
+        OudsSizeIconWithTextKeyToken.LabelLargeShort -> iconWithLabelLargeSizeShort
+        OudsSizeIconWithTextKeyToken.LabelLargeMedium -> iconWithLabelLargeSizeMedium
+        OudsSizeIconWithTextKeyToken.LabelLargeTall -> iconWithLabelLargeSizeTall
+        OudsSizeIconWithTextKeyToken.LabelLargeTaller -> iconWithLabelLargeSizeTaller
+        OudsSizeIconWithTextKeyToken.LabelMediumShort -> iconWithLabelMediumSizeShort
+        OudsSizeIconWithTextKeyToken.LabelMediumMedium -> iconWithLabelMediumSizeMedium
+        OudsSizeIconWithTextKeyToken.LabelMediumTall -> iconWithLabelMediumSizeTall
+        OudsSizeIconWithTextKeyToken.LabelSmallShort -> iconWithLabelSmallSizeShort
+        OudsSizeIconWithTextKeyToken.LabelSmallMedium -> iconWithLabelSmallSizeMedium
+        OudsSizeIconWithTextKeyToken.LabelSmallTall -> iconWithLabelSmallSizeTall
+        OudsSizeIconWithTextKeyToken.LabelExtraLargeShort -> iconWithLabelExtraLargeSizeShort
+        OudsSizeIconWithTextKeyToken.LabelExtraLargeMedium -> iconWithLabelExtraLargeSizeMedium
+        OudsSizeIconWithTextKeyToken.LabelExtraLargeTall -> iconWithLabelExtraLargeSizeTall
         OudsSizeIconWithTextKeyToken.BodySmallShort -> iconWithBodySmallSizeShort
         OudsSizeIconWithTextKeyToken.BodySmallMedium -> iconWithBodySmallSizeMedium
         OudsSizeIconWithTextKeyToken.BodySmallTall -> iconWithBodySmallSizeTall
@@ -270,11 +312,11 @@ fun OudsSizes.fromToken(token: OudsSizeIconWithTextKeyToken, adaptiveWindowType:
         OudsSizeIconWithTextKeyToken.BodyLargeTall -> iconWithBodyLargeSizeTall
     }
 
-    return when (adaptiveWindowType) {
-        OudsAdaptiveWindowType.EXTRA_COMPACT -> dimensionSizeIconWithTypeToken.extraCompact
-        OudsAdaptiveWindowType.COMPACT -> dimensionSizeIconWithTypeToken.compact
-        OudsAdaptiveWindowType.MEDIUM -> dimensionSizeIconWithTypeToken.medium
-    }
+    return if (dimensionSizeIconWithTextValue is OudsAdaptiveTokenValue<*>) {
+        dimensionSizeIconWithTextValue.getValue(adaptiveWindowType)
+    } else {
+        dimensionSizeIconWithTextValue
+    } as Dp
 }
 
 @Stable
