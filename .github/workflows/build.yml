@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - beta
       - develop
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
@@ -17,6 +18,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -185,3 +187,30 @@ jobs:
         run: ./gradlew publishToGitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  semantic-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+
+      - name: Create Dryrun Branch
+        run: |
+          git checkout -b dryrun
+          git push --set-upstream origin dryrun -f
+
+      - name: Semantic release
+        run: |
+          npm ci
+          GITHUB_REF=dryrun npx semantic-release@24 --no-ci
+
+#      - name: Delete Dryrun Branch
+#        run: |
+#          git push --delete origin dryrun
