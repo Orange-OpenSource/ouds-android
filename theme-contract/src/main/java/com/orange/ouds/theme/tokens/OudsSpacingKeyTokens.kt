@@ -83,7 +83,7 @@ enum class OudsSpacingPaddingBlockKeyToken {
     WithIconTaller,
 }
 
-enum class OudsSpacingPaddingInsetKeyToken {
+enum class OudsSpacingInsetKeyToken {
     None,
     Smash,
     Shortest,

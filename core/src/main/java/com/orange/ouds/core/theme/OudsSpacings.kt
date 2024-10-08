@@ -22,9 +22,9 @@ import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.tokens.OudsSpacingColumnGapKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpacingInsetKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingPaddingBlockKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingPaddingInlineKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingPaddingInsetKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingRowGapKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingScaledKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSpacingSemanticTokens
@@ -363,18 +363,18 @@ fun OudsSpacings.fromToken(token: OudsSpacingPaddingBlockKeyToken): Dp {
 }
 
 @Stable
-fun OudsSpacings.fromToken(token: OudsSpacingPaddingInsetKeyToken): Dp {
+fun OudsSpacings.fromToken(token: OudsSpacingInsetKeyToken): Dp {
     return when (token) {
-        OudsSpacingPaddingInsetKeyToken.None -> insetNone
-        OudsSpacingPaddingInsetKeyToken.Smash -> insetSmash
-        OudsSpacingPaddingInsetKeyToken.Shortest -> insetShortest
-        OudsSpacingPaddingInsetKeyToken.Shorter -> insetShorter
-        OudsSpacingPaddingInsetKeyToken.Short -> insetShort
-        OudsSpacingPaddingInsetKeyToken.Medium -> insetMedium
-        OudsSpacingPaddingInsetKeyToken.Tall -> insetTall
-        OudsSpacingPaddingInsetKeyToken.Taller -> insetTaller
-        OudsSpacingPaddingInsetKeyToken.Tallest -> insetTallest
-        OudsSpacingPaddingInsetKeyToken.Spacious -> insetSpacious
+        OudsSpacingInsetKeyToken.None -> insetNone
+        OudsSpacingInsetKeyToken.Smash -> insetSmash
+        OudsSpacingInsetKeyToken.Shortest -> insetShortest
+        OudsSpacingInsetKeyToken.Shorter -> insetShorter
+        OudsSpacingInsetKeyToken.Short -> insetShort
+        OudsSpacingInsetKeyToken.Medium -> insetMedium
+        OudsSpacingInsetKeyToken.Tall -> insetTall
+        OudsSpacingInsetKeyToken.Taller -> insetTaller
+        OudsSpacingInsetKeyToken.Tallest -> insetTallest
+        OudsSpacingInsetKeyToken.Spacious -> insetSpacious
     }
 }
 
@@ -455,7 +455,7 @@ val OudsSpacingPaddingInlineKeyToken.value: Dp
 /**
  * Converts an OUDS inset padding token to the local inset padding value provided by the theme.
  */
-val OudsSpacingPaddingInsetKeyToken.value: Dp
+val OudsSpacingInsetKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.spacingTokens.fromToken(this)
