@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme
+package com.orange.ouds.theme.tokens
 
 enum class OudsGridKeyToken {
     MinWidth,

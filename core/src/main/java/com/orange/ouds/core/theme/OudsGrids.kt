@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.OudsAdaptiveTokenValue
 import com.orange.ouds.theme.OudsAdaptiveWindowType
-import com.orange.ouds.theme.OudsGridKeyToken
 import com.orange.ouds.theme.currentWindowWidth
+import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 
 data class OudsGrids(
