@@ -22,7 +22,7 @@ enum class OudsSizeIconDecorativeKeyToken {
     Tallest,
 }
 
-enum class OudsSizeIconWithTypeKeyToken {
+enum class OudsSizeIconWithTextKeyToken {
     HeadingSmallShort,
     HeadingSmallMedium,
     HeadingSmallTall,
@@ -46,7 +46,7 @@ enum class OudsSizeIconWithTypeKeyToken {
     BodyLargeTall,
 }
 
-enum class OudsSizeMaxWidthTypeKeyToken {
+enum class OudsSizeTextMaxWidthKeyToken {
     DisplaySmall,
     DisplayMedium,
     DisplayLarge,
