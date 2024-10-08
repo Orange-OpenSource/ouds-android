@@ -106,29 +106,29 @@ data class OudsSpacings(
     val columnGapTall: Dp,
     val columnGapTaller: Dp,
     val columnGapWithIconNone: Dp,
+    val columnGapWithIconShortest: Dp,
     val columnGapWithIconShorter: Dp,
     val columnGapWithIconShort: Dp,
     val columnGapWithIconMedium: Dp,
     val columnGapWithIconTall: Dp,
-    val columnGapWithIconTaller: Dp,
     val columnGapWithArrowNone: Dp,
+    val columnGapWithArrowShortest: Dp,
     val columnGapWithArrowShorter: Dp,
     val columnGapWithArrowShort: Dp,
     val columnGapWithArrowMedium: Dp,
     val columnGapWithArrowTall: Dp,
-    val columnGapWithArrowTaller: Dp,
     val rowGapNone: Dp,
+    val rowGapShortest: Dp,
     val rowGapShorter: Dp,
     val rowGapShort: Dp,
     val rowGapMedium: Dp,
     val rowGapTall: Dp,
-    val rowGapTaller: Dp,
     val rowGapWithIconNone: Dp,
+    val rowGapWithIconShortest: Dp,
     val rowGapWithIconShorter: Dp,
     val rowGapWithIconShort: Dp,
     val rowGapWithIconMedium: Dp,
     val rowGapWithIconTall: Dp,
-    val rowGapWithIconTaller: Dp,
 )
 
 fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
@@ -248,29 +248,29 @@ fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
     columnGapTall = columnGapTall.dp,
     columnGapTaller = columnGapTaller.dp,
     columnGapWithIconNone = columnGapWithIconNone.dp,
+    columnGapWithIconShortest = columnGapWithIconShortest.dp,
     columnGapWithIconShorter = columnGapWithIconShorter.dp,
     columnGapWithIconShort = columnGapWithIconShort.dp,
     columnGapWithIconMedium = columnGapWithIconMedium.dp,
     columnGapWithIconTall = columnGapWithIconTall.dp,
-    columnGapWithIconTaller = columnGapWithIconTaller.dp,
     columnGapWithArrowNone = columnGapWithArrowNone.dp,
+    columnGapWithArrowShortest = columnGapWithArrowShortest.dp,
     columnGapWithArrowShorter = columnGapWithArrowShorter.dp,
     columnGapWithArrowShort = columnGapWithArrowShort.dp,
     columnGapWithArrowMedium = columnGapWithArrowMedium.dp,
     columnGapWithArrowTall = columnGapWithArrowTall.dp,
-    columnGapWithArrowTaller = columnGapWithArrowTaller.dp,
     rowGapNone = rowGapNone.dp,
+    rowGapShortest = rowGapShortest.dp,
     rowGapShorter = rowGapShorter.dp,
     rowGapShort = rowGapShort.dp,
     rowGapMedium = rowGapMedium.dp,
     rowGapTall = rowGapTall.dp,
-    rowGapTaller = rowGapTaller.dp,
     rowGapWithIconNone = rowGapWithIconNone.dp,
+    rowGapWithIconShortest = rowGapWithIconShortest.dp,
     rowGapWithIconShorter = rowGapWithIconShorter.dp,
     rowGapWithIconShort = rowGapWithIconShort.dp,
     rowGapWithIconMedium = rowGapWithIconMedium.dp,
     rowGapWithIconTall = rowGapWithIconTall.dp,
-    rowGapWithIconTaller = rowGapWithIconTaller.dp,
 )
 
 @Stable
@@ -388,17 +388,17 @@ fun OudsSpacings.fromToken(token: OudsSpacingColumnGapKeyToken): Dp {
         OudsSpacingColumnGapKeyToken.Tall -> columnGapTall
         OudsSpacingColumnGapKeyToken.Taller -> columnGapTaller
         OudsSpacingColumnGapKeyToken.WithIconNone -> columnGapWithIconNone
+        OudsSpacingColumnGapKeyToken.WithIconShortest -> columnGapWithIconShortest
         OudsSpacingColumnGapKeyToken.WithIconShorter -> columnGapWithIconShorter
         OudsSpacingColumnGapKeyToken.WithIconShort -> columnGapWithIconShort
         OudsSpacingColumnGapKeyToken.WithIconMedium -> columnGapWithIconMedium
         OudsSpacingColumnGapKeyToken.WithIconTall -> columnGapWithIconTall
-        OudsSpacingColumnGapKeyToken.WithIconTaller -> columnGapWithIconTaller
         OudsSpacingColumnGapKeyToken.WithArrowNone -> columnGapWithArrowNone
+        OudsSpacingColumnGapKeyToken.WithArrowShortest -> columnGapWithArrowShortest
         OudsSpacingColumnGapKeyToken.WithArrowShorter -> columnGapWithArrowShorter
         OudsSpacingColumnGapKeyToken.WithArrowShort -> columnGapWithArrowShort
         OudsSpacingColumnGapKeyToken.WithArrowMedium -> columnGapWithArrowMedium
         OudsSpacingColumnGapKeyToken.WithArrowTall -> columnGapWithArrowTall
-        OudsSpacingColumnGapKeyToken.WithArrowTaller -> columnGapWithArrowTaller
     }
 }
 
@@ -406,17 +406,17 @@ fun OudsSpacings.fromToken(token: OudsSpacingColumnGapKeyToken): Dp {
 fun OudsSpacings.fromToken(token: OudsSpacingRowGapKeyToken): Dp {
     return when (token) {
         OudsSpacingRowGapKeyToken.None -> rowGapNone
+        OudsSpacingRowGapKeyToken.Shortest -> rowGapShortest
         OudsSpacingRowGapKeyToken.Shorter -> rowGapShorter
         OudsSpacingRowGapKeyToken.Short -> rowGapShort
         OudsSpacingRowGapKeyToken.Medium -> rowGapMedium
         OudsSpacingRowGapKeyToken.Tall -> rowGapTall
-        OudsSpacingRowGapKeyToken.Taller -> rowGapTaller
         OudsSpacingRowGapKeyToken.WithIconNone -> rowGapWithIconNone
+        OudsSpacingRowGapKeyToken.WithIconShortest -> rowGapWithIconShortest
         OudsSpacingRowGapKeyToken.WithIconShorter -> rowGapWithIconShorter
         OudsSpacingRowGapKeyToken.WithIconShort -> rowGapWithIconShort
         OudsSpacingRowGapKeyToken.WithIconMedium -> rowGapWithIconMedium
         OudsSpacingRowGapKeyToken.WithIconTall -> rowGapWithIconTall
-        OudsSpacingRowGapKeyToken.WithIconTaller -> rowGapWithIconTaller
     }
 }
 
