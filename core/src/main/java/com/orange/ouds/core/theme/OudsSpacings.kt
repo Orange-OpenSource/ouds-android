@@ -426,7 +426,7 @@ fun OudsSpacings.fromToken(token: OudsSpacingRowGapKeyToken): Dp {
 val OudsSpacingColumnGapKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
+    get() = OudsTheme.spacings.fromToken(this)
 
 /**
  * Converts an OUDS fixed space token to the local space value provided by the theme.
@@ -434,7 +434,7 @@ val OudsSpacingColumnGapKeyToken.value: Dp
 val OudsSpacingFixedKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
+    get() = OudsTheme.spacings.fromToken(this)
 
 /**
  * Converts an OUDS block padding token to the local block padding value provided by the theme.
@@ -442,7 +442,7 @@ val OudsSpacingFixedKeyToken.value: Dp
 val OudsSpacingPaddingBlockKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
+    get() = OudsTheme.spacings.fromToken(this)
 
 /**
  * Converts an OUDS inline padding token to the local inline padding value provided by the theme.
@@ -450,7 +450,7 @@ val OudsSpacingPaddingBlockKeyToken.value: Dp
 val OudsSpacingPaddingInlineKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
+    get() = OudsTheme.spacings.fromToken(this)
 
 /**
  * Converts an OUDS inset padding token to the local inset padding value provided by the theme.
@@ -458,7 +458,7 @@ val OudsSpacingPaddingInlineKeyToken.value: Dp
 val OudsSpacingInsetKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
+    get() = OudsTheme.spacings.fromToken(this)
 
 /**
  * Converts an OUDS row gap space token to the local row gap space value provided by the theme.
@@ -466,11 +466,11 @@ val OudsSpacingInsetKeyToken.value: Dp
 val OudsSpacingRowGapKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this)
+    get() = OudsTheme.spacings.fromToken(this)
 
 /**
  * Converts an OUDS scaled space token to the local space value provided by the theme depending on the window size.
  */
 val OudsSpacingScaledKeyToken.value: Dp
     @Composable
-    get() = OudsTheme.spacingTokens.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+    get() = OudsTheme.spacings.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))

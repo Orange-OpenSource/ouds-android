@@ -71,7 +71,7 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSizes.current
 
-    val spacingTokens: OudsSpacings
+    val spacings: OudsSpacings
         @Composable
         @ReadOnlyComposable
         get() = LocalSpacing.current
