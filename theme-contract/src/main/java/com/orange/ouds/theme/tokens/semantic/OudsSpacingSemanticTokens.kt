@@ -93,7 +93,7 @@ data class OudsSpacingSemanticTokens(
     val insetTall: Float = DimensionRawTokens.dimension200,
     val insetTaller: Float = DimensionRawTokens.dimension300,
     val insetTallest: Float = DimensionRawTokens.dimension400,
-    val insetSpacious: Float = DimensionRawTokens.dimension650,
+    val insetSpacious: Float = DimensionRawTokens.dimension500,
     val columnGapNone: Float = DimensionRawTokens.dimension0,
     val columnGapShorter: Float = DimensionRawTokens.dimension50,
     val columnGapShort: Float = DimensionRawTokens.dimension100,
