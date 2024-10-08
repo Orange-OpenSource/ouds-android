@@ -76,19 +76,19 @@ data class OudsSpacings(
     val paddingInlineWithArrowTaller: Dp,
     val paddingInlineWithArrowTallest: Dp,
     val paddingBlockNone: Dp,
-    val paddingBlockShortest: Dp,
     val paddingBlockShorter: Dp,
     val paddingBlockShort: Dp,
     val paddingBlockMedium: Dp,
     val paddingBlockTall: Dp,
     val paddingBlockTaller: Dp,
+    val paddingBlockTallest: Dp,
     val paddingBlockWithIconNone: Dp,
+    val paddingBlockWithIconShortest: Dp,
     val paddingBlockWithIconShorter: Dp,
     val paddingBlockWithIconShort: Dp,
     val paddingBlockWithIconMedium: Dp,
     val paddingBlockWithIconTall: Dp,
     val paddingBlockWithIconTaller: Dp,
-    val paddingBlockWithIconTallest: Dp,
     val insetNone: Dp,
     val insetSmash: Dp,
     val insetShortest: Dp,
@@ -218,19 +218,19 @@ fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
     paddingInlineWithArrowTaller = paddingInlineWithArrowTaller.dp,
     paddingInlineWithArrowTallest = paddingInlineWithArrowTallest.dp,
     paddingBlockNone = paddingBlockNone.dp,
-    paddingBlockShortest = paddingBlockShortest.dp,
     paddingBlockShorter = paddingBlockShorter.dp,
     paddingBlockShort = paddingBlockShort.dp,
     paddingBlockMedium = paddingBlockMedium.dp,
     paddingBlockTall = paddingBlockTall.dp,
     paddingBlockTaller = paddingBlockTaller.dp,
+    paddingBlockTallest = paddingBlockTallest.dp,
     paddingBlockWithIconNone = paddingBlockWithIconNone.dp,
+    paddingBlockWithIconShortest = paddingBlockWithIconShortest.dp,
     paddingBlockWithIconShorter = paddingBlockWithIconShorter.dp,
     paddingBlockWithIconShort = paddingBlockWithIconShort.dp,
     paddingBlockWithIconMedium = paddingBlockWithIconMedium.dp,
     paddingBlockWithIconTall = paddingBlockWithIconTall.dp,
     paddingBlockWithIconTaller = paddingBlockWithIconTaller.dp,
-    paddingBlockWithIconTallest = paddingBlockWithIconTallest.dp,
     insetNone = insetNone.dp,
     insetSmash = insetSmash.dp,
     insetShortest = insetShortest.dp,
@@ -346,19 +346,19 @@ fun OudsSpacings.fromToken(token: OudsSpacingPaddingInlineKeyToken): Dp {
 fun OudsSpacings.fromToken(token: OudsSpacingPaddingBlockKeyToken): Dp {
     return when (token) {
         OudsSpacingPaddingBlockKeyToken.None -> paddingBlockNone
-        OudsSpacingPaddingBlockKeyToken.Shortest -> paddingBlockShortest
         OudsSpacingPaddingBlockKeyToken.Shorter -> paddingBlockShorter
         OudsSpacingPaddingBlockKeyToken.Short -> paddingBlockShort
         OudsSpacingPaddingBlockKeyToken.Medium -> paddingBlockMedium
         OudsSpacingPaddingBlockKeyToken.Tall -> paddingBlockTall
         OudsSpacingPaddingBlockKeyToken.Taller -> paddingBlockTaller
+        OudsSpacingPaddingBlockKeyToken.Tallest -> paddingBlockTallest
         OudsSpacingPaddingBlockKeyToken.WithIconNone -> paddingBlockWithIconNone
+        OudsSpacingPaddingBlockKeyToken.WithIconShortest -> paddingBlockWithIconShortest
         OudsSpacingPaddingBlockKeyToken.WithIconShorter -> paddingBlockWithIconShorter
         OudsSpacingPaddingBlockKeyToken.WithIconShort -> paddingBlockWithIconShort
         OudsSpacingPaddingBlockKeyToken.WithIconMedium -> paddingBlockWithIconMedium
         OudsSpacingPaddingBlockKeyToken.WithIconTall -> paddingBlockWithIconTall
         OudsSpacingPaddingBlockKeyToken.WithIconTaller -> paddingBlockWithIconTaller
-        OudsSpacingPaddingBlockKeyToken.WithIconTallest -> paddingBlockWithIconTallest
     }
 }
 
