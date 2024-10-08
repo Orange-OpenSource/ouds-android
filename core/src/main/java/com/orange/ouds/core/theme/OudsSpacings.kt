@@ -60,6 +60,7 @@ data class OudsSpacings(
     val paddingInlineTaller: Dp,
     val paddingInlineTallest: Dp,
     val paddingInlineWithIconNone: Dp,
+    val paddingInlineWithIconShortest: Dp,
     val paddingInlineWithIconShorter: Dp,
     val paddingInlineWithIconShort: Dp,
     val paddingInlineWithIconMedium: Dp,
@@ -67,6 +68,7 @@ data class OudsSpacings(
     val paddingInlineWithIconTaller: Dp,
     val paddingInlineWithIconTallest: Dp,
     val paddingInlineWithArrowNone: Dp,
+    val paddingInlineWithArrowShortest: Dp,
     val paddingInlineWithArrowShorter: Dp,
     val paddingInlineWithArrowShort: Dp,
     val paddingInlineWithArrowMedium: Dp,
@@ -200,6 +202,7 @@ fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
     paddingInlineTaller = paddingInlineTaller.dp,
     paddingInlineTallest = paddingInlineTallest.dp,
     paddingInlineWithIconNone = paddingInlineWithIconNone.dp,
+    paddingInlineWithIconShortest = paddingInlineWithIconShortest.dp,
     paddingInlineWithIconShorter = paddingInlineWithIconShorter.dp,
     paddingInlineWithIconShort = paddingInlineWithIconShort.dp,
     paddingInlineWithIconMedium = paddingInlineWithIconMedium.dp,
@@ -207,6 +210,7 @@ fun OudsSpacingSemanticTokens.getSpacings() = OudsSpacings(
     paddingInlineWithIconTaller = paddingInlineWithIconTaller.dp,
     paddingInlineWithIconTallest = paddingInlineWithIconTallest.dp,
     paddingInlineWithArrowNone = paddingInlineWithArrowNone.dp,
+    paddingInlineWithArrowShortest = paddingInlineWithArrowShortest.dp,
     paddingInlineWithArrowShorter = paddingInlineWithArrowShorter.dp,
     paddingInlineWithArrowShort = paddingInlineWithArrowShort.dp,
     paddingInlineWithArrowMedium = paddingInlineWithArrowMedium.dp,
@@ -320,6 +324,7 @@ fun OudsSpacings.fromToken(token: OudsSpacingPaddingInlineKeyToken): Dp {
         OudsSpacingPaddingInlineKeyToken.Taller -> paddingInlineTaller
         OudsSpacingPaddingInlineKeyToken.Tallest -> paddingInlineTallest
         OudsSpacingPaddingInlineKeyToken.WithIconNone -> paddingInlineWithIconNone
+        OudsSpacingPaddingInlineKeyToken.WithIconShortest -> paddingInlineWithIconShortest
         OudsSpacingPaddingInlineKeyToken.WithIconShorter -> paddingInlineWithIconShorter
         OudsSpacingPaddingInlineKeyToken.WithIconShort -> paddingInlineWithIconShort
         OudsSpacingPaddingInlineKeyToken.WithIconMedium -> paddingInlineWithIconMedium
@@ -327,6 +332,7 @@ fun OudsSpacings.fromToken(token: OudsSpacingPaddingInlineKeyToken): Dp {
         OudsSpacingPaddingInlineKeyToken.WithIconTaller -> paddingInlineWithIconTaller
         OudsSpacingPaddingInlineKeyToken.WithIconTallest -> paddingInlineWithIconTallest
         OudsSpacingPaddingInlineKeyToken.WithArrowNone -> paddingInlineWithArrowNone
+        OudsSpacingPaddingInlineKeyToken.WithArrowShortest -> paddingInlineWithArrowShortest
         OudsSpacingPaddingInlineKeyToken.WithArrowShorter -> paddingInlineWithArrowShorter
         OudsSpacingPaddingInlineKeyToken.WithArrowShort -> paddingInlineWithArrowShort
         OudsSpacingPaddingInlineKeyToken.WithArrowMedium -> paddingInlineWithArrowMedium
