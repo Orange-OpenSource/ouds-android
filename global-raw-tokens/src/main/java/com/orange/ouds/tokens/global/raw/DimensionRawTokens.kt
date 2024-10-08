@@ -21,6 +21,7 @@ object DimensionRawTokens {
     const val dimension75 = dimensionBase * 1.5f
     const val dimension100 = dimensionBase * 2f
     const val dimension150 = dimensionBase * 3f
+    const val dimension125 = dimensionBase * 2.5f
     const val dimension200 = dimensionBase * 4f
     const val dimension250 = dimensionBase * 5f
     const val dimension300 = dimensionBase * 6f
@@ -34,6 +35,7 @@ object DimensionRawTokens {
     const val dimension700 = dimensionBase * 14f
     const val dimension750 = dimensionBase * 15f
     const val dimension800 = dimensionBase * 16f
+    const val dimension850 = dimensionBase * 17f
     const val dimension900 = dimensionBase * 18f
     const val dimension1000 = dimensionBase * 20f
     const val dimension1200 = dimensionBase * 24f
