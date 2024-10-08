@@ -42,9 +42,9 @@ data class OudsSizes(
     val iconWithHeadingLargeSizeShort: OudsAdaptiveTokenValue<Dp>,
     val iconWithHeadingLargeSizeMedium: OudsAdaptiveTokenValue<Dp>,
     val iconWithHeadingLargeSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingXlargeSizeShort: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingXlargeSizeMedium: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingXlargeSizeTall: OudsAdaptiveTokenValue<Dp>,
+    val iconWithHeadingExtraLargeSizeShort: OudsAdaptiveTokenValue<Dp>,
+    val iconWithHeadingExtraLargeSizeMedium: OudsAdaptiveTokenValue<Dp>,
+    val iconWithHeadingExtraLargeSizeTall: OudsAdaptiveTokenValue<Dp>,
     val iconWithBodySmallSizeShort: OudsAdaptiveTokenValue<Dp>,
     val iconWithBodySmallSizeMedium: OudsAdaptiveTokenValue<Dp>,
     val iconWithBodySmallSizeTall: OudsAdaptiveTokenValue<Dp>,
@@ -60,7 +60,7 @@ data class OudsSizes(
     val typeMaxWidthHeadingSmall: OudsAdaptiveTokenValue<Dp>,
     val typeMaxWidthHeadingMedium: OudsAdaptiveTokenValue<Dp>,
     val typeMaxWidthHeadingLarge: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthHeadingXlarge: OudsAdaptiveTokenValue<Dp>,
+    val typeMaxWidthHeadingExtraLarge: OudsAdaptiveTokenValue<Dp>,
     val typeMaxWidthBodySmall: OudsAdaptiveTokenValue<Dp>,
     val typeMaxWidthBodyMedium: OudsAdaptiveTokenValue<Dp>,
     val typeMaxWidthBodyLarge: OudsAdaptiveTokenValue<Dp>,
@@ -119,17 +119,17 @@ fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
         iconWithHeadingLargeSizeTallMobile.dp,
         iconWithHeadingLargeSizeTallTablet.dp
     ),
-    iconWithHeadingXlargeSizeShort = OudsAdaptiveTokenValue(
+    iconWithHeadingExtraLargeSizeShort = OudsAdaptiveTokenValue(
         iconWithHeadingXlargeSizeShortMobile.dp,
         iconWithHeadingXlargeSizeShortMobile.dp,
         iconWithHeadingXlargeSizeShortTablet.dp
     ),
-    iconWithHeadingXlargeSizeMedium = OudsAdaptiveTokenValue(
+    iconWithHeadingExtraLargeSizeMedium = OudsAdaptiveTokenValue(
         iconWithHeadingXlargeSizeMediumMobile.dp,
         iconWithHeadingXlargeSizeMediumMobile.dp,
         iconWithHeadingXlargeSizeMediumTablet.dp
     ),
-    iconWithHeadingXlargeSizeTall = OudsAdaptiveTokenValue(
+    iconWithHeadingExtraLargeSizeTall = OudsAdaptiveTokenValue(
         iconWithHeadingXlargeSizeTallMobile.dp,
         iconWithHeadingXlargeSizeTallMobile.dp,
         iconWithHeadingXlargeSizeTallTablet.dp
@@ -209,7 +209,7 @@ fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
         typeMaxWidthHeadingLargeMobile.dp,
         typeMaxWidthHeadingLargeTablet.dp
     ),
-    typeMaxWidthHeadingXlarge = OudsAdaptiveTokenValue(
+    typeMaxWidthHeadingExtraLarge = OudsAdaptiveTokenValue(
         typeMaxWidthHeadingXlargeMobile.dp,
         typeMaxWidthHeadingXlargeMobile.dp,
         typeMaxWidthHeadingXlargeTablet.dp
@@ -256,9 +256,9 @@ fun OudsSizes.fromToken(token: OudsSizeIconWithTextKeyToken, adaptiveWindowType:
         OudsSizeIconWithTextKeyToken.HeadingLargeShort -> iconWithHeadingLargeSizeShort
         OudsSizeIconWithTextKeyToken.HeadingLargeMedium -> iconWithBodyLargeSizeMedium
         OudsSizeIconWithTextKeyToken.HeadingLargeTall -> iconWithHeadingLargeSizeTall
-        OudsSizeIconWithTextKeyToken.HeadingXlargeShort -> iconWithHeadingXlargeSizeShort
-        OudsSizeIconWithTextKeyToken.HeadingXlargeMedium -> iconWithHeadingXlargeSizeMedium
-        OudsSizeIconWithTextKeyToken.HeadingXlargeTall -> iconWithHeadingXlargeSizeTall
+        OudsSizeIconWithTextKeyToken.HeadingExtraLargeShort -> iconWithHeadingExtraLargeSizeShort
+        OudsSizeIconWithTextKeyToken.HeadingExtraLargeMedium -> iconWithHeadingExtraLargeSizeMedium
+        OudsSizeIconWithTextKeyToken.HeadingExtraLargeTall -> iconWithHeadingExtraLargeSizeTall
         OudsSizeIconWithTextKeyToken.BodySmallShort -> iconWithBodySmallSizeShort
         OudsSizeIconWithTextKeyToken.BodySmallMedium -> iconWithBodySmallSizeMedium
         OudsSizeIconWithTextKeyToken.BodySmallTall -> iconWithBodySmallSizeTall
@@ -286,7 +286,7 @@ fun OudsSizes.fromToken(token: OudsSizeTextMaxWidthKeyToken, adaptiveWindowType:
         OudsSizeTextMaxWidthKeyToken.HeadingSmall -> typeMaxWidthHeadingSmall
         OudsSizeTextMaxWidthKeyToken.HeadingMedium -> typeMaxWidthHeadingMedium
         OudsSizeTextMaxWidthKeyToken.HeadingLarge -> typeMaxWidthHeadingLarge
-        OudsSizeTextMaxWidthKeyToken.HeadingXlarge -> typeMaxWidthHeadingXlarge
+        OudsSizeTextMaxWidthKeyToken.HeadingExtraLarge -> typeMaxWidthHeadingExtraLarge
         OudsSizeTextMaxWidthKeyToken.BodySmall -> typeMaxWidthBodySmall
         OudsSizeTextMaxWidthKeyToken.BodyMedium -> typeMaxWidthBodyMedium
         OudsSizeTextMaxWidthKeyToken.BodyLarge -> typeMaxWidthBodyLarge
