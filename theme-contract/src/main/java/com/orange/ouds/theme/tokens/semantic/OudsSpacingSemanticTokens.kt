@@ -61,7 +61,7 @@ data class OudsSpacingSemanticTokens(
     val paddingInlineWithIconMedium: Float = DimensionRawTokens.dimension200,
     val paddingInlineWithIconTall: Float = DimensionRawTokens.dimension250,
     val paddingInlineWithIconTaller: Float = DimensionRawTokens.dimension300,
-    val paddingInlineWithIconTallest: Float = DimensionRawTokens.dimension250,
+    val paddingInlineWithIconTallest: Float = DimensionRawTokens.dimension350,
     val paddingInlineWithArrowNone: Float = DimensionRawTokens.dimension0,
     val paddingInlineWithArrowShortest: Float = DimensionRawTokens.dimension25,
     val paddingInlineWithArrowShorter: Float = DimensionRawTokens.dimension50,
