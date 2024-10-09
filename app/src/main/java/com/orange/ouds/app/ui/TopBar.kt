@@ -29,6 +29,9 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.TopBarAction.ChangeMode
 import com.orange.ouds.app.ui.TopBarAction.ChangeTheme
 import com.orange.ouds.app.ui.utilities.isDarkModeEnabled
+import com.orange.ouds.core.theme.value
+import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
+import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 val TopBarDefaultActions = listOf(ChangeTheme, ChangeMode)
 
@@ -36,10 +39,19 @@ val TopBarDefaultActions = listOf(ChangeTheme, ChangeMode)
 @Composable
 fun TopBar(
     topBarState: TopBarState,
+    upPress: () -> Unit,
 ) {
     TopAppBar(
-        title = { Text(text = topBarState.title, modifier = Modifier.semantics { traversalIndex = -1f }) },
         modifier = Modifier.semantics { isTraversalGroup = true },
+        navigationIcon = topBarState.getNavigationIcon(upPress = upPress),
+        title = {
+            Text(
+                text = topBarState.title,
+                color = OudsColorKeyToken.OnSurface.value, //TODO use ContentDefault token when available
+                modifier = Modifier.semantics { traversalIndex = -1f },
+                style = OudsTypographyKeyToken.HeadingMedium.value
+            )
+        },
         actions = {
             topBarState.actions.forEach { topBarAction ->
                 topBarAction()

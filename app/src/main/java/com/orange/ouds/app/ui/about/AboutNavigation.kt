@@ -27,7 +27,7 @@ object AboutNavigationKey {
     const val MenuItemIdKey = "aboutMenuItemId"
 }
 
-fun NavGraphBuilder.addAboutGraph() {
+fun NavGraphBuilder.addAboutNavGraph() {
     composable(
         "${AboutDestinations.FileRoute}/{$MenuItemIdKey}",
         arguments = listOf(navArgument(MenuItemIdKey) { type = NavType.LongType })

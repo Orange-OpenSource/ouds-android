@@ -18,24 +18,27 @@ import androidx.navigation.compose.composable
 import com.orange.ouds.app.ui.BottomBarItem
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutScreen
-import com.orange.ouds.app.ui.about.addAboutGraph
+import com.orange.ouds.app.ui.about.addAboutNavGraph
 import com.orange.ouds.app.ui.components.ComponentsScreen
+import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.app.ui.tokens.TokensScreen
+import com.orange.ouds.app.ui.tokens.addTokensNavGraph
 
 /**
  * Root navigation graph of the application
  */
 fun NavGraphBuilder.appNavGraph(navController: NavController) {
-    addAboutGraph()
-    addBottomBarGraph(navController)
+    addTokensNavGraph()
+    addAboutNavGraph()
+    addBottomBarNavGraph(navController)
 }
 
 /**
  * Bottom bar navigation graph
  */
-private fun NavGraphBuilder.addBottomBarGraph(navController: NavController) {
-    composable(BottomBarItem.Tokens.route) { _ ->
-        TokensScreen()
+private fun NavGraphBuilder.addBottomBarNavGraph(navController: NavController) {
+    composable(BottomBarItem.Tokens.route) { from ->
+        TokensScreen(onTokenClick = { id -> navController.navigateToElement(TokensNavigation.TokenDetailRoute, id, from) })
     }
     composable(BottomBarItem.Components.route) { _ ->
         ComponentsScreen()

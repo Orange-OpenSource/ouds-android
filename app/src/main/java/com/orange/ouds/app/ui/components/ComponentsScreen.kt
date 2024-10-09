@@ -25,20 +25,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 
 @Composable
 fun ComponentsScreen() {
-    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        Text(modifier = Modifier.padding(bottom = 8.dp), text = "Components screen")
-
-        Box(
+    Screen {
+        Column(
             modifier = Modifier
-                .width(OudsGridKeyToken.Margin.value)
-                .height(OudsGridKeyToken.ColumnGap.value)
-                .background(OudsTheme.colorScheme.primary)
-        )
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(modifier = Modifier.padding(bottom = 8.dp), text = "Components screen")
+
+            Box(
+                modifier = Modifier
+                    .width(OudsGridKeyToken.Margin.value)
+                    .height(OudsGridKeyToken.ColumnGap.value)
+                    .background(OudsTheme.colorScheme.primary)
+            )
+        }
     }
 }
