@@ -275,41 +275,41 @@ fun OudsSizes.fromToken(token: OudsSizeIconDecorativeKeyToken): Dp {
 @Stable
 fun OudsSizes.fromToken(token: OudsSizeIconWithTextKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     val dimensionSizeIconWithTextValue: Any = when (token) {
-        OudsSizeIconWithTextKeyToken.HeadingSmallShort -> iconWithHeadingSmallSizeShort
-        OudsSizeIconWithTextKeyToken.HeadingSmallMedium -> iconWithHeadingSmallSizeMedium
-        OudsSizeIconWithTextKeyToken.HeadingSmallTall -> iconWithHeadingSmallSizeTall
-        OudsSizeIconWithTextKeyToken.HeadingMediumShort -> iconWithHeadingMediumSizeShort
-        OudsSizeIconWithTextKeyToken.HeadingMediumMedium -> iconWithHeadingMediumSizeMedium
-        OudsSizeIconWithTextKeyToken.HeadingMediumTall -> iconWithHeadingMediumSizeTall
-        OudsSizeIconWithTextKeyToken.HeadingLargeShort -> iconWithHeadingLargeSizeShort
-        OudsSizeIconWithTextKeyToken.HeadingLargeMedium -> iconWithBodyLargeSizeMedium
-        OudsSizeIconWithTextKeyToken.HeadingLargeTall -> iconWithHeadingLargeSizeTall
-        OudsSizeIconWithTextKeyToken.HeadingExtraLargeShort -> iconWithHeadingExtraLargeSizeShort
-        OudsSizeIconWithTextKeyToken.HeadingExtraLargeMedium -> iconWithHeadingExtraLargeSizeMedium
-        OudsSizeIconWithTextKeyToken.HeadingExtraLargeTall -> iconWithHeadingExtraLargeSizeTall
-        OudsSizeIconWithTextKeyToken.LabelLargeShorter -> iconWithLabelLargeSizeShorter
-        OudsSizeIconWithTextKeyToken.LabelLargeShort -> iconWithLabelLargeSizeShort
-        OudsSizeIconWithTextKeyToken.LabelLargeMedium -> iconWithLabelLargeSizeMedium
-        OudsSizeIconWithTextKeyToken.LabelLargeTall -> iconWithLabelLargeSizeTall
-        OudsSizeIconWithTextKeyToken.LabelLargeTaller -> iconWithLabelLargeSizeTaller
-        OudsSizeIconWithTextKeyToken.LabelMediumShort -> iconWithLabelMediumSizeShort
-        OudsSizeIconWithTextKeyToken.LabelMediumMedium -> iconWithLabelMediumSizeMedium
-        OudsSizeIconWithTextKeyToken.LabelMediumTall -> iconWithLabelMediumSizeTall
-        OudsSizeIconWithTextKeyToken.LabelSmallShort -> iconWithLabelSmallSizeShort
-        OudsSizeIconWithTextKeyToken.LabelSmallMedium -> iconWithLabelSmallSizeMedium
-        OudsSizeIconWithTextKeyToken.LabelSmallTall -> iconWithLabelSmallSizeTall
-        OudsSizeIconWithTextKeyToken.LabelExtraLargeShort -> iconWithLabelExtraLargeSizeShort
-        OudsSizeIconWithTextKeyToken.LabelExtraLargeMedium -> iconWithLabelExtraLargeSizeMedium
-        OudsSizeIconWithTextKeyToken.LabelExtraLargeTall -> iconWithLabelExtraLargeSizeTall
-        OudsSizeIconWithTextKeyToken.BodySmallShort -> iconWithBodySmallSizeShort
-        OudsSizeIconWithTextKeyToken.BodySmallMedium -> iconWithBodySmallSizeMedium
-        OudsSizeIconWithTextKeyToken.BodySmallTall -> iconWithBodySmallSizeTall
-        OudsSizeIconWithTextKeyToken.BodyMediumShort -> iconWithBodyMediumSizeShort
-        OudsSizeIconWithTextKeyToken.BodyMediumMedium -> iconWithBodyMediumSizeMedium
-        OudsSizeIconWithTextKeyToken.BodyMediumTall -> iconWithBodyMediumSizeTall
-        OudsSizeIconWithTextKeyToken.BodyLargeShort -> iconWithBodyLargeSizeShort
-        OudsSizeIconWithTextKeyToken.BodyLargeMedium -> iconWithBodyLargeSizeMedium
-        OudsSizeIconWithTextKeyToken.BodyLargeTall -> iconWithBodyLargeSizeTall
+        OudsSizeIconWithTextKeyToken.HeadingSmallSizeShort -> iconWithHeadingSmallSizeShort
+        OudsSizeIconWithTextKeyToken.HeadingSmallSizeMedium -> iconWithHeadingSmallSizeMedium
+        OudsSizeIconWithTextKeyToken.HeadingSmallSizeTall -> iconWithHeadingSmallSizeTall
+        OudsSizeIconWithTextKeyToken.HeadingMediumSizeShort -> iconWithHeadingMediumSizeShort
+        OudsSizeIconWithTextKeyToken.HeadingMediumSizeMedium -> iconWithHeadingMediumSizeMedium
+        OudsSizeIconWithTextKeyToken.HeadingMediumSizeTall -> iconWithHeadingMediumSizeTall
+        OudsSizeIconWithTextKeyToken.HeadingLargeSizeShort -> iconWithHeadingLargeSizeShort
+        OudsSizeIconWithTextKeyToken.HeadingLargeSizeMedium -> iconWithBodyLargeSizeMedium
+        OudsSizeIconWithTextKeyToken.HeadingLargeSizeTall -> iconWithHeadingLargeSizeTall
+        OudsSizeIconWithTextKeyToken.HeadingExtraLargeSizeShort -> iconWithHeadingExtraLargeSizeShort
+        OudsSizeIconWithTextKeyToken.HeadingExtraLargeSizeMedium -> iconWithHeadingExtraLargeSizeMedium
+        OudsSizeIconWithTextKeyToken.HeadingExtraLargeSizeTall -> iconWithHeadingExtraLargeSizeTall
+        OudsSizeIconWithTextKeyToken.LabelLargeSizeShorter -> iconWithLabelLargeSizeShorter
+        OudsSizeIconWithTextKeyToken.LabelLargeSizeShort -> iconWithLabelLargeSizeShort
+        OudsSizeIconWithTextKeyToken.LabelLargeSizeMedium -> iconWithLabelLargeSizeMedium
+        OudsSizeIconWithTextKeyToken.LabelLargeSizeTall -> iconWithLabelLargeSizeTall
+        OudsSizeIconWithTextKeyToken.LabelLargeSizeTaller -> iconWithLabelLargeSizeTaller
+        OudsSizeIconWithTextKeyToken.LabelMediumSizeShort -> iconWithLabelMediumSizeShort
+        OudsSizeIconWithTextKeyToken.LabelMediumSizeMedium -> iconWithLabelMediumSizeMedium
+        OudsSizeIconWithTextKeyToken.LabelMediumSizeTall -> iconWithLabelMediumSizeTall
+        OudsSizeIconWithTextKeyToken.LabelSmallSizeShort -> iconWithLabelSmallSizeShort
+        OudsSizeIconWithTextKeyToken.LabelSmallSizeMedium -> iconWithLabelSmallSizeMedium
+        OudsSizeIconWithTextKeyToken.LabelSmallSizeTall -> iconWithLabelSmallSizeTall
+        OudsSizeIconWithTextKeyToken.LabelExtraLargeSizeShort -> iconWithLabelExtraLargeSizeShort
+        OudsSizeIconWithTextKeyToken.LabelExtraLargeSizeMedium -> iconWithLabelExtraLargeSizeMedium
+        OudsSizeIconWithTextKeyToken.LabelExtraLargeSizeTall -> iconWithLabelExtraLargeSizeTall
+        OudsSizeIconWithTextKeyToken.BodySmallSizeShort -> iconWithBodySmallSizeShort
+        OudsSizeIconWithTextKeyToken.BodySmallSizeMedium -> iconWithBodySmallSizeMedium
+        OudsSizeIconWithTextKeyToken.BodySmallSizeTall -> iconWithBodySmallSizeTall
+        OudsSizeIconWithTextKeyToken.BodyMediumSizeShort -> iconWithBodyMediumSizeShort
+        OudsSizeIconWithTextKeyToken.BodyMediumSizeMedium -> iconWithBodyMediumSizeMedium
+        OudsSizeIconWithTextKeyToken.BodyMediumSizeTall -> iconWithBodyMediumSizeTall
+        OudsSizeIconWithTextKeyToken.BodyLargeSizeShort -> iconWithBodyLargeSizeShort
+        OudsSizeIconWithTextKeyToken.BodyLargeSizeMedium -> iconWithBodyLargeSizeMedium
+        OudsSizeIconWithTextKeyToken.BodyLargeSizeTall -> iconWithBodyLargeSizeTall
     }
 
     return if (dimensionSizeIconWithTextValue is OudsAdaptiveTokenValue<*>) {
