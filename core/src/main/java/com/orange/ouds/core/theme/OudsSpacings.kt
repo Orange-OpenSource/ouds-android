@@ -453,7 +453,7 @@ val OudsSpacingPaddingInlineKeyToken.value: Dp
     get() = OudsTheme.spacings.fromToken(this)
 
 /**
- * Converts an OUDS inset padding token to the local inset padding value provided by the theme.
+ * Converts an OUDS inset token to the local inset value provided by the theme.
  */
 val OudsSpacingInsetKeyToken.value: Dp
     @ReadOnlyComposable
