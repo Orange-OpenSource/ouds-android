@@ -67,8 +67,8 @@ sealed class Screen(
     // Bottom navigation screens
 
     data object Guidelines : Screen(
-        route = BottomBarItem.Guidelines.route,
-        title = UiString.StringResource(R.string.app_bottomBar_guidelines_label)
+        route = BottomBarItem.Tokens.route,
+        title = UiString.StringResource(R.string.app_bottomBar_tokens_label)
     )
 
     data object Components : Screen(

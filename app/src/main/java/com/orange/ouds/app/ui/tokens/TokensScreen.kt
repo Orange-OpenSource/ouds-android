@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.app.ui.guidelines
+package com.orange.ouds.app.ui.tokens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,9 +24,9 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.button.OudsButton
 
 @Composable
-fun GuidelinesScreen() {
+fun TokensScreen() {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        Text(modifier = Modifier.padding(bottom = 8.dp), text = "Guidelines screen")
+        Text(modifier = Modifier.padding(bottom = 8.dp), text = "Tokens screen")
         OudsButton(text = "OUDS button", onClick = { })
     }
 }

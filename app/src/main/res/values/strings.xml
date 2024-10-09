@@ -22,7 +22,7 @@
     <string name="app_themeDialog_label">Change theme</string>
 
     <!-- Bottom navigation -->
-    <string name="app_bottomBar_guidelines_label">Guidelines</string>
+    <string name="app_bottomBar_tokens_label">Tokens</string>
     <string name="app_bottomBar_components_label">Components</string>
     <string name="app_bottomBar_about_label">About</string>
 
