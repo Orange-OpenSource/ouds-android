@@ -12,18 +12,43 @@
 
 package com.orange.ouds.app.ui
 
+import androidx.compose.foundation.Image
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.ColorFilter
 import com.orange.ouds.app.ui.navigation.AppNavigationState
+import com.orange.ouds.core.theme.value
+import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 class TopBarState(
-    private val navigationState: AppNavigationState
+    private val navigationState: AppNavigationState,
 ) {
+    val showNavigationIcon: Boolean
+        @Composable get() = navigationState.currentScreen?.isHome() == false
+
     val title: String
         @Composable get() = navigationState.currentScreen?.title?.asString().orEmpty()
 
     val actions: List<@Composable () -> Unit>
         @Composable get() = navigationState.currentScreen?.getTopBarActions().orEmpty()
+
+    @Composable
+    fun getNavigationIcon(upPress: () -> Unit): @Composable () -> Unit = if (showNavigationIcon) {
+        {
+            IconButton(onClick = upPress) {
+                Image(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    colorFilter = ColorFilter.tint(OudsColorKeyToken.OnSurface.value)
+                )
+            }
+        }
+    } else {
+        { }
+    }
 }
 
 @Composable

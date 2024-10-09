@@ -15,6 +15,8 @@ package com.orange.ouds.app.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -46,6 +48,18 @@ class AppNavigationState(val navController: NavHostController) {
             navController.navigateToBottomBarRoute(route)
         }
     }
+
+    fun upPress() {
+        navController.navigateUp()
+    }
+}
+
+fun NavController.navigateToElement(route: String, elementId: Long?, from: NavBackStackEntry) {
+    // In order to discard duplicated navigation events, we check the Lifecycle
+    if (from.lifecycleIsResumed()) {
+        val fullRoute = if (elementId != null) "$route/$elementId" else route
+        navigate(fullRoute)
+    }
 }
 
 fun NavController.navigateToBottomBarRoute(route: String) {
@@ -56,9 +70,17 @@ fun NavController.navigateToBottomBarRoute(route: String) {
             saveState = true
         }
         // Avoid multiple copies of the same destination when
-        // reselecting the same item
+        // re-selecting the same item
         launchSingleTop = true
-        // Restore state when reselecting a previously selected item
+        // Restore state when re-selecting a previously selected item
         restoreState = true
     }
 }
+
+/**
+ * If the lifecycle is not resumed it means this NavBackStackEntry already processed a nav event.
+ *
+ * This is used to de-duplicate navigation events.
+ */
+private fun NavBackStackEntry.lifecycleIsResumed() =
+    lifecycle.currentState == Lifecycle.State.RESUMED

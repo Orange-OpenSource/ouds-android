@@ -23,15 +23,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.composable.Screen
 
 @Composable
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
-    LazyColumn {
-        items(AboutMenuItem.entries) { item ->
-            ListItem(
-                modifier = Modifier.clickable { onMenuItemClick(item.id) },
-                headlineContent = { Text(text = stringResource(id = item.labelRes)) }
-            )
+    Screen {
+        LazyColumn {
+            items(AboutMenuItem.entries) { item ->
+                ListItem(
+                    modifier = Modifier.clickable { onMenuItemClick(item.id) },
+                    headlineContent = { Text(text = stringResource(id = item.labelRes)) }
+                )
+            }
         }
     }
 }

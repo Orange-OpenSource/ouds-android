@@ -18,6 +18,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutMenuItem
 import com.orange.ouds.app.ui.about.AboutNavigationKey
+import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.foundation.UiString
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -32,6 +33,10 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
+            TokensNavigation.TokenDetailRoute -> {
+                args?.getLong(TokensNavigation.TokenIdKey)?.let { Screen.Token(it) }
+            }
+
             AboutDestinations.FileRoute -> {
                 args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
             }
@@ -59,14 +64,14 @@ sealed class Screen(
         val topBarActionClicked: Flow<TopBarAction> = _topBarActionClicked.asSharedFlow()
     }
 
-    fun isHome() = this in listOf(Guidelines, Components, About)
+    fun isHome() = this in listOf(Tokens, Components, About)
 
     @Composable
     fun getTopBarActions(): List<@Composable () -> Unit> = getDefaultActions { action -> _topBarActionClicked.tryEmit(action) }
 
     // Bottom navigation screens
 
-    data object Guidelines : Screen(
+    data object Tokens : Screen(
         route = BottomBarItem.Tokens.route,
         title = UiString.StringResource(R.string.app_bottomBar_tokens_label)
     )
@@ -79,6 +84,13 @@ sealed class Screen(
     data object About : Screen(
         route = BottomBarItem.About.route,
         title = UiString.StringResource(R.string.app_bottomBar_about_label)
+    )
+
+    // Tokens screens
+
+    data class Token(val tokenId: Long) : Screen(
+        route = TokensNavigation.TokenDetailRoute,
+        title = com.orange.ouds.app.ui.tokens.Token.fromId(tokenId)?.titleRes?.let { UiString.StringResource(it) }
     )
 
     // About screens

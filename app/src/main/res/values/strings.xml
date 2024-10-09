@@ -26,6 +26,10 @@
     <string name="app_bottomBar_components_label">Components</string>
     <string name="app_bottomBar_about_label">About</string>
 
+    <!-- Tokens screen -->
+    <string name="app_tokens_opacity_label">Opacity</string>
+    <string name="app_token_opacity_description_text">Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.</string>
+
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
     <string name="app_about_legalInformation_label">Legal information</string>
