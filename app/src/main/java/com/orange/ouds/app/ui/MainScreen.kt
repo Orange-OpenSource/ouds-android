@@ -109,7 +109,7 @@ fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = v
             ) { innerPadding ->
                 NavHost(
                     navController = mainState.navigationState.navController,
-                    startDestination = BottomBarItem.Guidelines.route,
+                    startDestination = BottomBarItem.Tokens.route,
                     modifier = Modifier.padding(innerPadding),
                     exitTransition = { ExitTransition.None },
                 ) {

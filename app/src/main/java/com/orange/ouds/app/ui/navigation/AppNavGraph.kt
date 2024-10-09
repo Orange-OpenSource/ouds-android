@@ -20,7 +20,7 @@ import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutScreen
 import com.orange.ouds.app.ui.about.addAboutGraph
 import com.orange.ouds.app.ui.components.ComponentsScreen
-import com.orange.ouds.app.ui.guidelines.GuidelinesScreen
+import com.orange.ouds.app.ui.tokens.TokensScreen
 
 /**
  * Root navigation graph of the application
@@ -34,8 +34,8 @@ fun NavGraphBuilder.appNavGraph(navController: NavController) {
  * Bottom bar navigation graph
  */
 private fun NavGraphBuilder.addBottomBarGraph(navController: NavController) {
-    composable(BottomBarItem.Guidelines.route) { _ ->
-        GuidelinesScreen()
+    composable(BottomBarItem.Tokens.route) { _ ->
+        TokensScreen()
     }
     composable(BottomBarItem.Components.route) { _ ->
         ComponentsScreen()
