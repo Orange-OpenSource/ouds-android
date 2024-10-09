@@ -14,6 +14,7 @@ package com.orange.ouds.core.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -41,6 +42,10 @@ fun OudsButton(
             enabled = enabled,
             shape = RoundedCornerShape(cornerRadius.value),
             modifier = modifier,
+            contentPadding = PaddingValues(
+                vertical = verticalContentPadding.value,
+                horizontal = horizontalContentPadding.value
+            ),
             interactionSource = remember { MutableInteractionSource() },
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = defaultElevation.value,

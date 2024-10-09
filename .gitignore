@@ -7,6 +7,7 @@
 .idea/compiler.xml
 .idea/gradle.xml
 .idea/libraries
+.idea/misc.xml
 .idea/modules.xml
 .idea/other.xml
 .idea/workspace.xml
@@ -14,6 +15,7 @@
 .idea/assetWizardSettings.xml
 .idea/deploymentTargetSelector.xml
 .idea/androidTestResultsUserPreferences.xml
+.idea/emulatorDisplays.xml
 
 # Gradle files
 .gradle

@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
@@ -43,7 +44,9 @@ open class WhiteLabelTheme : OudsThemeContract {
                 defaultElevation = OudsElevationKeyToken.OverlayDefault,
                 focusedElevation = OudsElevationKeyToken.OverlayDefault,
                 hoveredElevation = OudsElevationKeyToken.OverlayDefault,
-                labelStyle = OudsTypographyKeyToken.BodyDefaultLarge
+                labelStyle = OudsTypographyKeyToken.BodyDefaultLarge,
+                verticalContentPadding = OudsSpacingFixedKeyToken.Shortest,
+                horizontalContentPadding = OudsSpacingFixedKeyToken.Short
             )
         )
 }
