@@ -38,7 +38,6 @@ internal fun AboutFileScreen(@RawRes fileRes: Int, darkModeEnabled: Boolean) {
     val horizontalPadding = dimensionResource(id = R.dimen.screen_horizontal_margin).value
     val verticalPadding = dimensionResource(id = R.dimen.screen_vertical_margin).value
     Screen {
-
         AndroidView(
             factory = {
                 WebView(context).apply {

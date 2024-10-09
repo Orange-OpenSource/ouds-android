@@ -77,7 +77,7 @@ fun getDefaultActions(onActionClick: (TopBarAction) -> Unit): List<@Composable (
 @Composable
 private fun ChangeThemeAction(onClick: (TopBarAction) -> Unit) {
     IconButton(onClick = { onClick(ChangeTheme) }) {
-        Icon(painter = painterResource(id = R.drawable.ic_palette), contentDescription = stringResource(id = R.string.app_topBar_theme_button_a11y))
+        Icon(painter = painterResource(id = R.drawable.ic_solar_palette), contentDescription = stringResource(id = R.string.app_topBar_theme_button_a11y))
     }
 }
 
