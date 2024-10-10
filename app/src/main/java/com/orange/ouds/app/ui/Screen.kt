@@ -90,7 +90,7 @@ sealed class Screen(
 
     data class Token(val tokenId: Long) : Screen(
         route = TokensNavigation.TokenDetailRoute,
-        title = com.orange.ouds.app.ui.tokens.Token.fromId(tokenId)?.titleRes?.let { UiString.StringResource(it) }
+        title = com.orange.ouds.app.ui.tokens.TokenType.fromId(tokenId)?.titleRes?.let { UiString.StringResource(it) }
     )
 
     // About screens
