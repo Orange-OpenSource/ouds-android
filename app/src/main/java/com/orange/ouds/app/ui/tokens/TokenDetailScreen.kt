@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
@@ -40,7 +41,6 @@ fun TokenDetailScreen(tokenType: TokenType) {
         LazyColumn(
             modifier = Modifier
                 .background(OudsColorKeyToken.Background.value)
-                .padding(bottom = OudsSpacingFixedKeyToken.Medium.value)
         ) {
             item {
                 DetailScreenHeader(
@@ -58,7 +58,8 @@ fun TokenDetailScreen(tokenType: TokenType) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     when (tokenType) {
-                        is TokenType.Opacity -> tokenType.Illustration(token.value as Float)
+                        is TokenType.Opacity -> tokenType.Illustration(opacity = token.value as Float)
+                        is TokenType.Elevation -> tokenType.Illustration(elevation = token.value as Dp)
                     }
                     Column(
                         modifier = Modifier
