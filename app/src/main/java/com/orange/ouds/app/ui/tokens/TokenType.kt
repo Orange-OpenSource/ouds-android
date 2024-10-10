@@ -19,13 +19,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
@@ -49,6 +52,7 @@ sealed class TokenType(
     fun getTokens(): List<Token> {
         return when (this) {
             is Opacity -> OudsOpacityKeyToken.entries.map { Token(it.name, "${it.value}f", it.value) }
+            is Elevation -> OudsElevationKeyToken.entries.map { Token(it.name, "${it.value}", it.value) }
         }
     }
 
@@ -58,14 +62,31 @@ sealed class TokenType(
         R.string.app_token_opacity_description_text
     ) {
         @Composable
-        fun Illustration(tokenValue: Float) {
+        fun Illustration(opacity: Float) {
             Box {
                 Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = "")
                 Box(
                     modifier = Modifier
                         .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)
                         .size(48.dp)
-                        .background(color = OudsColorKeyToken.OnBackground.value.copy(alpha = tokenValue))
+                        .background(color = OudsColorKeyToken.OnBackground.value.copy(alpha = opacity))
+                )
+            }
+        }
+    }
+
+    data object Elevation : TokenType(
+        R.string.app_tokens_elevation_label,
+        R.drawable.ic_layers,
+        R.string.app_token_elevation_description_text
+    ) {
+        @Composable
+        fun Illustration(elevation: Dp) {
+            Surface(shadowElevation = elevation) {
+                Box(
+                    modifier = Modifier
+                        .size(64.dp)
+                        .background(color = OudsColorKeyToken.Surface.value),
                 )
             }
         }
