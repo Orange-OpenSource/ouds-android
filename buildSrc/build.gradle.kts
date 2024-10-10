@@ -18,6 +18,7 @@ plugins {
 repositories {
     google()
     mavenCentral()
+    gradlePluginPortal()
 }
 
 kotlin {
@@ -26,6 +27,8 @@ kotlin {
 
 dependencies {
     implementation(libs.android.gradle.plugin)
+    implementation(libs.git.changelog.gradle.plugin)
+    implementation(libs.git.changelog.lib)
     implementation(libs.google.auth.library.oauth2.http)
     // gRPC dependencies below fix an error that appeared with google-auth-library-oauth2-http 1.25.0
     // which uses grpc-api 1.66.0 whereas another dependency uses a previous and incompatible version of others gRPC modules
