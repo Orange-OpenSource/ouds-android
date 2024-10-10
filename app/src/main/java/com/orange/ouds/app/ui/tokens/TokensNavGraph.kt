@@ -31,9 +31,9 @@ fun NavGraphBuilder.addTokensNavGraph() {
         val arguments = requireNotNull(from.arguments)
         val routeTokenId = arguments.getLong(TokensNavigation.TokenIdKey)
 
-        val token = remember(routeTokenId) { Token.fromId(routeTokenId) }
-        token?.let {
-            TokenDetailScreen(token = token)
+        val tokenType = remember(routeTokenId) { TokenType.fromId(routeTokenId) }
+        tokenType?.let {
+            TokenDetailScreen(tokenType = tokenType)
         }
     }
 }

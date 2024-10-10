@@ -37,7 +37,7 @@ fun TokensScreen(onTokenClick: (Long) -> Unit) {
                 .padding(OudsSpacingFixedKeyToken.Medium.value),
             verticalArrangement = Arrangement.spacedBy(OudsSpacingFixedKeyToken.Medium.value)
         ) {
-            tokens.forEach { token ->
+            tokenTypes.forEach { token ->
                 LargeCard(
                     title = stringResource(id = token.titleRes),
                     imageRes = token.imageRes,
