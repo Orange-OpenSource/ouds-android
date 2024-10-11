@@ -16,6 +16,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -79,13 +80,19 @@ sealed class TokenType(
     ) {
         @Composable
         fun Illustration(opacity: Float) {
+            val squareColor = if (isSystemInDarkTheme()) Color.White else Color.Black
             Box {
                 Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = "")
                 Box(
                     modifier = Modifier
                         .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)
                         .size(48.dp)
-                        .background(color = (if (isSystemInDarkTheme()) Color.White else Color.Black).copy(alpha = opacity))
+                        .background(color = squareColor.copy(alpha = opacity))
+                        .run {
+                            if (opacity <= 0f) {
+                                border(width = 1.dp, color = squareColor)
+                            } else this
+                        }
                 )
             }
         }
