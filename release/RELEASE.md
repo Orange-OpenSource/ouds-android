@@ -14,13 +14,20 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 - Switch to this branch and launch the `prepareRelease` Gradle task:
 
     ```shell
-    ./gradlew prepareRelease -Pversion=X.Y.Z
+    ./gradlew prepareRelease
     ```
 
-  This task performs the following changes to the project:
+  This task finds the next semantic version based on conventional commits and performs the following changes to the project:
 
     - Update `version` project property in `gradle.properties`.
-    - Increment the app `versionCode` in associated `build.gradle.kts` file.<br /><br />
+    - Increment the app `versionCode` in associated `build.gradle.kts` file.
+    - Update content of `CHANGELOG.md`.
+
+  You can optionally launch `prepareRelease` with a version property to force the release version:
+
+    ```shell
+    ./gradlew prepareRelease -Pversion=X.Y.Z
+    ```
 
 - Verify the changes mentioned above, then commit and push.
 
@@ -72,7 +79,7 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
     - Add Sonatype Maven repository.
     - Remove all Android Studio modules except `app`.
-    - Replace project dependencies with module dependencies in `app`.<br /><br />
+    - Replace project dependencies with module dependencies in `app`.
 
 - Synchronize Gradle, build app, deploy and test on device.
 

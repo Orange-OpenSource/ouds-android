@@ -10,6 +10,8 @@ coreKtx = "1.13.1"
 firebaseAppDistribution = "5.0.0"
 firebaseBom = "33.4.0"
 firebaseCrashlytics = "3.0.2"
+gitChangelogGradlePlugin = "2.4.1"
+gitChangelogLib = "2.3.2"
 googleAuthLibraryOauth2Http = "1.28.0"
 googleServices = "4.4.2"
 dataStorePreferences = "1.1.1"
@@ -44,6 +46,8 @@ androidx-datastore-preferences = { group = "androidx.datastore", name = "datasto
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+git-changelog-gradle-plugin = { module = "se.bjurr.gitchangelog:git-changelog-gradle-plugin", version.ref = "gitChangelogGradlePlugin" }
+git-changelog-lib = { module = "se.bjurr.gitchangelog:git-changelog-lib", version.ref = "gitChangelogLib" }
 google-auth-library-oauth2-http = { module = "com.google.auth:google-auth-library-oauth2-http", version.ref = "googleAuthLibraryOauth2Http" }
 grpc-core = { module = "io.grpc:grpc-core", version.ref = "grpc" }
 grpc-netty = { module = "io.grpc:grpc-netty", version.ref = "grpc" }
