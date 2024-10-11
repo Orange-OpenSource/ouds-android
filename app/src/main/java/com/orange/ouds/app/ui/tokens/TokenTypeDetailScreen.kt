@@ -33,7 +33,7 @@ import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 @Composable
-fun TokenDetailScreen(tokenType: TokenType) {
+fun TokenTypeDetailScreen(tokenType: TokenType) {
     val tokens = tokenType.getTokens()
 
     Screen {

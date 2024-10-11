@@ -33,8 +33,8 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
-            TokensNavigation.TokenDetailRoute -> {
-                args?.getLong(TokensNavigation.TokenIdKey)?.let { Screen.Token(it) }
+            TokensNavigation.TokenTypeDetailRoute -> {
+                args?.getLong(TokensNavigation.TokenTypeIdKey)?.let { Screen.Token(it) }
             }
 
             AboutDestinations.FileRoute -> {
@@ -89,7 +89,7 @@ sealed class Screen(
     // Tokens screens
 
     data class Token(val tokenId: Long) : Screen(
-        route = TokensNavigation.TokenDetailRoute,
+        route = TokensNavigation.TokenTypeDetailRoute,
         title = com.orange.ouds.app.ui.tokens.TokenType.fromId(tokenId)?.titleRes?.let { UiString.StringResource(it) }
     )
 

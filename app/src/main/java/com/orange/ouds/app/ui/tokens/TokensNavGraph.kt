@@ -19,21 +19,21 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 
 object TokensNavigation {
-    const val TokenDetailRoute = "token"
-    const val TokenIdKey = "tokenId"
+    const val TokenTypeDetailRoute = "tokenType"
+    const val TokenTypeIdKey = "tokenTypeId"
 }
 
 fun NavGraphBuilder.addTokensNavGraph() {
     composable(
-        "${TokensNavigation.TokenDetailRoute}/{${TokensNavigation.TokenIdKey}}",
-        arguments = listOf(navArgument(TokensNavigation.TokenIdKey) { type = NavType.LongType })
+        "${TokensNavigation.TokenTypeDetailRoute}/{${TokensNavigation.TokenTypeIdKey}}",
+        arguments = listOf(navArgument(TokensNavigation.TokenTypeIdKey) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        val routeTokenId = arguments.getLong(TokensNavigation.TokenIdKey)
+        val routeTokenId = arguments.getLong(TokensNavigation.TokenTypeIdKey)
 
         val tokenType = remember(routeTokenId) { TokenType.fromId(routeTokenId) }
         tokenType?.let {
-            TokenDetailScreen(tokenType = tokenType)
+            TokenTypeDetailScreen(tokenType = tokenType)
         }
     }
 }

@@ -38,7 +38,7 @@ fun NavGraphBuilder.appNavGraph(navController: NavController) {
  */
 private fun NavGraphBuilder.addBottomBarNavGraph(navController: NavController) {
     composable(BottomBarItem.Tokens.route) { from ->
-        TokensScreen(onTokenClick = { id -> navController.navigateToElement(TokensNavigation.TokenDetailRoute, id, from) })
+        TokensScreen(onTokenClick = { id -> navController.navigateToElement(TokensNavigation.TokenTypeDetailRoute, id, from) })
     }
     composable(BottomBarItem.Components.route) { _ ->
         ComponentsScreen()
