@@ -51,7 +51,7 @@ fun TokenDetailScreen(tokenType: TokenType) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value, vertical = OudsSpacingFixedKeyToken.Shorter.value),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.Top
                 ) {
                     when (tokenType) {
                         is TokenType.Opacity -> tokenType.Illustration(opacity = token.value as Float)
