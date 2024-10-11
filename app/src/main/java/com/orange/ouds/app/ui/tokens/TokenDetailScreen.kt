@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.tokens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,7 +37,7 @@ fun TokenDetailScreen(tokenType: TokenType) {
     val tokens = tokenType.getTokens()
 
     Screen {
-        LazyColumn {
+        LazyColumn(contentPadding = PaddingValues(bottom = OudsSpacingFixedKeyToken.Medium.value)) {
             item {
                 DetailScreenHeader(
                     descriptionRes = tokenType.descriptionRes,
