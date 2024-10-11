@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
-import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 
@@ -44,8 +43,6 @@ fun TokensScreen(onTokenClick: (Long) -> Unit) {
                     onClick = { onTokenClick(token.id) }
                 )
             }
-
-            OudsButton(text = "OUDS button", onClick = { })
         }
     }
 }
