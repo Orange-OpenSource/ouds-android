@@ -16,6 +16,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,6 +24,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -69,7 +71,7 @@ sealed class TokenType(
                     modifier = Modifier
                         .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)
                         .size(48.dp)
-                        .background(color = OudsColorKeyToken.OnBackground.value.copy(alpha = opacity))
+                        .background(color = (if (isSystemInDarkTheme()) Color.White else Color.Black).copy(alpha = opacity))
                 )
             }
         }
@@ -86,7 +88,7 @@ sealed class TokenType(
                 Box(
                     modifier = Modifier
                         .size(64.dp)
-                        .background(color = OudsColorKeyToken.Surface.value),
+                        .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
                 )
             }
         }

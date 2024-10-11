@@ -25,7 +25,7 @@ fun Screen(content: @Composable () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(OudsColorKeyToken.Background.value)
+            .background(OudsColorKeyToken.Background.value) //TODO use BgDefaultPrimary token when available
     ) {
         content()
     }

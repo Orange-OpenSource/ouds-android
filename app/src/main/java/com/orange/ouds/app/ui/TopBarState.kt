@@ -42,7 +42,7 @@ class TopBarState(
                 Image(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Back",
-                    colorFilter = ColorFilter.tint(OudsColorKeyToken.OnSurface.value)
+                    colorFilter = ColorFilter.tint(OudsColorKeyToken.OnSurface.value) //TODO use ContentDefault token when available
                 )
             }
         }

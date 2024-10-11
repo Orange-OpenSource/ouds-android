@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.tokens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,17 +30,13 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 @Composable
 fun TokenDetailScreen(tokenType: TokenType) {
     val tokens = tokenType.getTokens()
 
     Screen {
-        LazyColumn(
-            modifier = Modifier
-                .background(OudsColorKeyToken.Background.value)
-        ) {
+        LazyColumn {
             item {
                 DetailScreenHeader(
                     descriptionRes = tokenType.descriptionRes,
