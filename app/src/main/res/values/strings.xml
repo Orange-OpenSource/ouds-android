@@ -13,8 +13,8 @@
 <resources>
     <string name="app_name">OudsPlayground</string>
 
-    <string name="app_common_floatFormat_label">%sf</string>
-    <string name="app_common_dpFormat_label">%s dp</string>
+    <string name="app_common_floatFormat_label" translatable="false">%sf</string>
+    <string name="app_common_dpFormat_label" translatable="false">%s dp</string>
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">ChangeTheme</string>
