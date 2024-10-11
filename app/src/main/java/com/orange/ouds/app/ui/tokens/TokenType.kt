@@ -26,6 +26,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
@@ -53,8 +54,21 @@ sealed class TokenType(
     @Composable
     fun getTokens(): List<Token> {
         return when (this) {
-            is Opacity -> OudsOpacityKeyToken.entries.map { Token(it.name, "${it.value}f", it.value) }
-            is Elevation -> OudsElevationKeyToken.entries.map { Token(it.name, "${it.value}", it.value) }
+            is Opacity -> OudsOpacityKeyToken.entries.map {
+                Token(
+                    it.name,
+                    String.format(stringResource(id = R.string.app_common_floatFormat_label), it.value),
+                    it.value
+                )
+            }
+
+            is Elevation -> OudsElevationKeyToken.entries.map {
+                Token(
+                    it.name,
+                    String.format(stringResource(id = R.string.app_common_dpFormat_label), it.value.toString().substringBeforeLast(".dp")),
+                    it.value
+                )
+            }
         }
     }
 
