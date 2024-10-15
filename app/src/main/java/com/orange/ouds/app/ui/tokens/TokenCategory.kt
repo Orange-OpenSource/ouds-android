@@ -47,7 +47,7 @@ sealed class TokenCategory(
 ) {
 
     companion object {
-        fun fromId(tokenId: Long?) = tokenCategories.firstOrNull { token -> token.id == tokenId }
+        fun fromId(tokenId: Long) = tokenCategories.firstOrNull { token -> token.id == tokenId }
     }
 
     val id: Long = TokenCategory::class.sealedSubclasses.indexOf(this::class).toLong()
