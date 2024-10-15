@@ -58,7 +58,7 @@ sealed class TokenCategory(
             is Opacity -> OudsOpacityKeyToken.entries.map {
                 Token(
                     it.name,
-                    String.format(stringResource(id = R.string.app_tokens_floatFormat_label), it.value),
+                    stringResource(id = R.string.app_tokens_floatFormat_label, it.value),
                     it.value
                 )
             }
@@ -66,7 +66,7 @@ sealed class TokenCategory(
             is Elevation -> OudsElevationKeyToken.entries.map {
                 Token(
                     it.name,
-                    String.format(stringResource(id = R.string.app_tokens_dpFormat_label), it.value.toString().substringBeforeLast(".dp")),
+                    stringResource(id = R.string.app_tokens_dpFormat_label, it.value.toString().substringBeforeLast(".dp")),
                     it.value
                 )
             }
