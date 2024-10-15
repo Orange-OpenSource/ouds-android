@@ -13,9 +13,6 @@
 <resources>
     <string name="app_name">OudsPlayground</string>
 
-    <string name="app_common_floatFormat_label" translatable="false">%sf</string>
-    <string name="app_common_dpFormat_label" translatable="false">%s dp</string>
-
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">ChangeTheme</string>
     <string name="app_topBar_darkMode_button_a11y">Change to dark mode</string>
@@ -29,13 +26,17 @@
     <string name="app_bottomBar_components_label">Components</string>
     <string name="app_bottomBar_about_label">About</string>
 
+    <!-- Tokens -->
+    <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
+    <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
+
     <!-- Tokens: opacity -->
     <string name="app_tokens_opacity_label">Opacity</string>
-    <string name="app_token_opacity_description_text">Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.</string>
+    <string name="app_tokens_opacity_description_text">Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.</string>
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label">Elevation</string>
-    <string name="app_token_elevation_description_text">Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.</string>
+    <string name="app_tokens_elevation_description_text">Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.</string>
 
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>

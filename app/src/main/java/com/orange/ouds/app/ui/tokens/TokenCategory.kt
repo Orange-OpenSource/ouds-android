@@ -58,7 +58,7 @@ sealed class TokenCategory(
             is Opacity -> OudsOpacityKeyToken.entries.map {
                 Token(
                     it.name,
-                    String.format(stringResource(id = R.string.app_common_floatFormat_label), it.value),
+                    String.format(stringResource(id = R.string.app_tokens_floatFormat_label), it.value),
                     it.value
                 )
             }
@@ -66,7 +66,7 @@ sealed class TokenCategory(
             is Elevation -> OudsElevationKeyToken.entries.map {
                 Token(
                     it.name,
-                    String.format(stringResource(id = R.string.app_common_dpFormat_label), it.value.toString().substringBeforeLast(".dp")),
+                    String.format(stringResource(id = R.string.app_tokens_dpFormat_label), it.value.toString().substringBeforeLast(".dp")),
                     it.value
                 )
             }
@@ -76,7 +76,7 @@ sealed class TokenCategory(
     data object Opacity : TokenCategory(
         R.string.app_tokens_opacity_label,
         R.drawable.ic_filter_effects,
-        R.string.app_token_opacity_description_text
+        R.string.app_tokens_opacity_description_text
     ) {
         @Composable
         fun Illustration(opacity: Float) {
@@ -101,7 +101,7 @@ sealed class TokenCategory(
     data object Elevation : TokenCategory(
         R.string.app_tokens_elevation_label,
         R.drawable.ic_layers,
-        R.string.app_token_elevation_description_text
+        R.string.app_tokens_elevation_description_text
     ) {
         @Composable
         fun Illustration(elevation: Dp) {
