@@ -18,6 +18,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutMenuItem
 import com.orange.ouds.app.ui.about.AboutNavigationKey
+import com.orange.ouds.app.ui.tokens.TokenCategory
 import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.foundation.UiString
 import kotlinx.coroutines.flow.Flow
@@ -90,7 +91,7 @@ sealed class Screen(
 
     data class TokenCategoryDetail(val tokenCategoryId: Long) : Screen(
         route = TokensNavigation.TokenCategoryDetailRoute,
-        title = com.orange.ouds.app.ui.tokens.TokenCategory.fromId(tokenCategoryId)?.titleRes?.let { UiString.StringResource(it) }
+        title = TokenCategory.fromId(tokenCategoryId)?.titleRes?.let { UiString.StringResource(it) }
     )
 
     // About screens
