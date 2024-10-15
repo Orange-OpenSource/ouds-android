@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.utilities.composable
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -39,7 +40,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 @Composable
 fun LargeCard(
     title: String,
-    imageRes: Int,
+    @DrawableRes imageRes: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
