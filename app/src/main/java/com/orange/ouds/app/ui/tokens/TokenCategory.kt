@@ -53,12 +53,11 @@ sealed class TokenCategory(
     val id: Long = TokenCategory::class.sealedSubclasses.indexOf(this::class).toLong()
 
     @Composable
-    fun getTokens(): List<Token> {
+    fun getTokens(): List<Token<Any>> {
         return when (this) {
             is Opacity -> OudsOpacityKeyToken.entries.map {
                 Token(
                     it.name,
-                    stringResource(id = R.string.app_tokens_floatFormat_label, it.value),
                     it.value
                 )
             }
@@ -66,7 +65,6 @@ sealed class TokenCategory(
             is Elevation -> OudsElevationKeyToken.entries.map {
                 Token(
                     it.name,
-                    stringResource(id = R.string.app_tokens_dpFormat_label, it.value.toString().substringBeforeLast(".dp")),
                     it.value
                 )
             }
@@ -117,4 +115,13 @@ sealed class TokenCategory(
 
 }
 
-data class Token(val name: String, val literalValue: String, val value: Any)
+data class Token<T>(val name: String, val value: T) {
+
+    val literalValue: String
+        @Composable
+        get() = when (value) {
+            is Float -> stringResource(id = R.string.app_tokens_floatFormat_label, value)
+            is Dp -> stringResource(id = R.string.app_tokens_dpFormat_label, value.toString().substringBeforeLast(".dp"))
+            else -> value.toString()
+        }
+}
