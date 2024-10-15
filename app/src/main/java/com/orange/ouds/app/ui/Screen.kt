@@ -34,7 +34,7 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
             TokensNavigation.TokenCategoryDetailRoute -> {
-                args?.getLong(TokensNavigation.TokenCategoryIdKey)?.let { Screen.Token(it) }
+                args?.getLong(TokensNavigation.TokenCategoryIdKey)?.let { Screen.TokenCategoryDetail(it) }
             }
 
             AboutDestinations.FileRoute -> {
@@ -88,9 +88,9 @@ sealed class Screen(
 
     // Tokens screens
 
-    data class Token(val tokenId: Long) : Screen(
+    data class TokenCategoryDetail(val tokenCategoryId: Long) : Screen(
         route = TokensNavigation.TokenCategoryDetailRoute,
-        title = com.orange.ouds.app.ui.tokens.TokenCategory.fromId(tokenId)?.titleRes?.let { UiString.StringResource(it) }
+        title = com.orange.ouds.app.ui.tokens.TokenCategory.fromId(tokenCategoryId)?.titleRes?.let { UiString.StringResource(it) }
     )
 
     // About screens

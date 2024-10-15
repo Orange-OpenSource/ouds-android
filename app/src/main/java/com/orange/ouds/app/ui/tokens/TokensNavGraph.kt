@@ -29,9 +29,9 @@ fun NavGraphBuilder.addTokensNavGraph() {
         arguments = listOf(navArgument(TokensNavigation.TokenCategoryIdKey) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        val routeTokenId = arguments.getLong(TokensNavigation.TokenCategoryIdKey)
+        val routeTokenCategoryId = arguments.getLong(TokensNavigation.TokenCategoryIdKey)
 
-        val tokenCategory = remember(routeTokenId) { TokenCategory.fromId(routeTokenId) }
+        val tokenCategory = remember(routeTokenCategoryId) { TokenCategory.fromId(routeTokenCategoryId) }
         tokenCategory?.let {
             TokenCategoryDetailScreen(tokenCategory = tokenCategory)
         }
