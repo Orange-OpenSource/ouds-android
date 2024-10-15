@@ -1,5 +1,5 @@
 /*
- * Software Name: Orange Design System
+ * Software Name: OUDS Android
  * SPDX-FileCopyrightText: Copyright (c) Orange SA
  * SPDX-License-Identifier: MIT
  *
