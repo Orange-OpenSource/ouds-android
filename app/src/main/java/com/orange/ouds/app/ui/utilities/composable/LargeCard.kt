@@ -48,7 +48,7 @@ fun LargeCard(
             Image(
                 painter = painterResource(imageRes),
                 colorFilter = ColorFilter.tint(OudsColorKeyToken.InverseOnSurface.value), //TODO use OnBgEmphasized token when available
-                contentDescription = "",
+                contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(184.dp) //TODO use token when available

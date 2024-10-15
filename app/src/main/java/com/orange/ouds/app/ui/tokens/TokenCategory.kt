@@ -82,7 +82,7 @@ sealed class TokenCategory(
         fun Illustration(opacity: Float) {
             val squareColor = if (isSystemInDarkTheme()) Color.White else Color.Black
             Box {
-                Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = "")
+                Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = null)
                 Box(
                     modifier = Modifier
                         .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)

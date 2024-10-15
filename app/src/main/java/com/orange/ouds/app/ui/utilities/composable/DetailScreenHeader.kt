@@ -41,7 +41,7 @@ fun DetailScreenHeader(
     Image(
         painter = painterResource(imageRes),
         colorFilter = ColorFilter.tint(OudsColorKeyToken.InverseOnSurface.value), //TODO use OnBgEmphasized token when available
-        contentDescription = "",
+        contentDescription = null,
         modifier = Modifier
             .fillMaxWidth()
             .height(186.dp)
