@@ -9,11 +9,14 @@ and reproducing the content of the NOTICE and DOCUMENTATION files.
 Any use or displaying shall constitute an infringement under intellectual property laws of France and international conventions.
 
 app/src/main/res/drawable/ic_component_atom.xml
-app/src/main/res/drawable/ic_guideline_dna.xml
+app/src/main/res/drawable/ic_design_token_figma.xml
+app/src/main/res/drawable/ic_filter_effects.xml
 app/src/main/res/drawable/ic_info.xml
-app/src/main/res/drawable/ic_palette.xml
-app/src/main/res/drawable/ic_ui_light_mode.xml
+app/src/main/res/drawable/ic_layers.xml
+app/src/main/res/drawable/ic_solar_palette.xml
 app/src/main/res/drawable/ic_ui_dark_mode.xml
+app/src/main/res/drawable/ic_ui_light_mode.xml
+app/src/main/res/drawable/il_opacity_union.xml
 
 docs/images/favicon-16x16.png
 docs/images/orange-logo.svg
