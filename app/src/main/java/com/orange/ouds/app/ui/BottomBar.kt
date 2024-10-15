@@ -55,7 +55,7 @@ enum class BottomBarItem(
     @DrawableRes val iconRes: Int,
     val route: String
 ) {
-    Guidelines(R.string.app_bottomBar_guidelines_label, R.drawable.ic_guideline_dna, "main/guidelines"),
+    Tokens(R.string.app_bottomBar_tokens_label, R.drawable.ic_design_token_figma, "main/tokens"),
     Components(R.string.app_bottomBar_components_label, R.drawable.ic_component_atom, "main/components"),
     About(R.string.app_bottomBar_about_label, R.drawable.ic_info, "main/about");
 }

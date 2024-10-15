@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -91,7 +90,7 @@ fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = v
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
             Scaffold(
-                topBar = { TopBar(mainState.topBarState) },
+                topBar = { TopBar(topBarState = mainState.topBarState, upPress = mainState.navigationState::upPress) },
                 bottomBar = {
                     AnimatedVisibility(
                         visible = mainState.showBottomBar,
@@ -109,9 +108,8 @@ fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = v
             ) { innerPadding ->
                 NavHost(
                     navController = mainState.navigationState.navController,
-                    startDestination = BottomBarItem.Guidelines.route,
-                    modifier = Modifier.padding(innerPadding),
-                    exitTransition = { ExitTransition.None },
+                    startDestination = BottomBarItem.Tokens.route,
+                    modifier = Modifier.padding(innerPadding)
                 ) {
                     appNavGraph(mainState.navigationState.navController)
                 }

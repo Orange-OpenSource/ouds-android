@@ -18,6 +18,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutMenuItem
 import com.orange.ouds.app.ui.about.AboutNavigationKey
+import com.orange.ouds.app.ui.tokens.TokenCategory
+import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.foundation.UiString
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -32,6 +34,10 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
+            TokensNavigation.TokenCategoryDetailRoute -> {
+                args?.getLong(TokensNavigation.TokenCategoryIdKey)?.let { Screen.TokenCategoryDetail(it) }
+            }
+
             AboutDestinations.FileRoute -> {
                 args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
             }
@@ -59,16 +65,16 @@ sealed class Screen(
         val topBarActionClicked: Flow<TopBarAction> = _topBarActionClicked.asSharedFlow()
     }
 
-    fun isHome() = this in listOf(Guidelines, Components, About)
+    fun isHome() = this in listOf(Tokens, Components, About)
 
     @Composable
     fun getTopBarActions(): List<@Composable () -> Unit> = getDefaultActions { action -> _topBarActionClicked.tryEmit(action) }
 
     // Bottom navigation screens
 
-    data object Guidelines : Screen(
-        route = BottomBarItem.Guidelines.route,
-        title = UiString.StringResource(R.string.app_bottomBar_guidelines_label)
+    data object Tokens : Screen(
+        route = BottomBarItem.Tokens.route,
+        title = UiString.StringResource(R.string.app_bottomBar_tokens_label)
     )
 
     data object Components : Screen(
@@ -79,6 +85,13 @@ sealed class Screen(
     data object About : Screen(
         route = BottomBarItem.About.route,
         title = UiString.StringResource(R.string.app_bottomBar_about_label)
+    )
+
+    // Tokens screens
+
+    data class TokenCategoryDetail(val tokenCategoryId: Long) : Screen(
+        route = TokensNavigation.TokenCategoryDetailRoute,
+        title = TokenCategory.fromId(tokenCategoryId)?.titleRes?.let { UiString.StringResource(it) }
     )
 
     // About screens
