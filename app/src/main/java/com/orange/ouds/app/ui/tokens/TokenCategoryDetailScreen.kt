@@ -73,7 +73,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
                             text = token.literalValue,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            style = OudsTypographyKeyToken.BodyDefaultLarge.value
+                            style = OudsTypographyKeyToken.BodyDefaultMedium.value
                         )
                     }
                 }
