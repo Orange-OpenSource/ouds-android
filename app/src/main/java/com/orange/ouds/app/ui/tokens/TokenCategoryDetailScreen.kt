@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -43,7 +44,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
                     descriptionRes = tokenCategory.descriptionRes,
                     imageRes = tokenCategory.imageRes
                 )
-                Spacer(modifier = Modifier.padding(top = OudsSpacingFixedKeyToken.Medium.value))
+                Spacer(modifier = Modifier.height(OudsSpacingFixedKeyToken.Medium.value))
             }
 
             items(tokens) { token ->
