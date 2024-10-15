@@ -37,20 +37,20 @@ import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
-val tokenTypes = TokenType::class.sealedSubclasses.mapNotNull { it.objectInstance }
+val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
 @Immutable
-sealed class TokenType(
+sealed class TokenCategory(
     @StringRes val titleRes: Int,
     @DrawableRes val imageRes: Int,
     @StringRes val descriptionRes: Int
 ) {
 
     companion object {
-        fun fromId(tokenId: Long?) = tokenTypes.firstOrNull { token -> token.id == tokenId }
+        fun fromId(tokenId: Long?) = tokenCategories.firstOrNull { token -> token.id == tokenId }
     }
 
-    val id: Long = TokenType::class.sealedSubclasses.indexOf(this::class).toLong()
+    val id: Long = TokenCategory::class.sealedSubclasses.indexOf(this::class).toLong()
 
     @Composable
     fun getTokens(): List<Token> {
@@ -73,7 +73,7 @@ sealed class TokenType(
         }
     }
 
-    data object Opacity : TokenType(
+    data object Opacity : TokenCategory(
         R.string.app_tokens_opacity_label,
         R.drawable.ic_filter_effects,
         R.string.app_token_opacity_description_text
@@ -98,7 +98,7 @@ sealed class TokenType(
         }
     }
 
-    data object Elevation : TokenType(
+    data object Elevation : TokenCategory(
         R.string.app_tokens_elevation_label,
         R.drawable.ic_layers,
         R.string.app_token_elevation_description_text

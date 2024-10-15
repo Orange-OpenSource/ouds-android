@@ -33,15 +33,15 @@ import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 @Composable
-fun TokenTypeDetailScreen(tokenType: TokenType) {
-    val tokens = tokenType.getTokens()
+fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
+    val tokens = tokenCategory.getTokens()
 
     Screen {
         LazyColumn(contentPadding = PaddingValues(bottom = OudsSpacingFixedKeyToken.Medium.value)) {
             item {
                 DetailScreenHeader(
-                    descriptionRes = tokenType.descriptionRes,
-                    imageRes = tokenType.imageRes
+                    descriptionRes = tokenCategory.descriptionRes,
+                    imageRes = tokenCategory.imageRes
                 )
                 Spacer(modifier = Modifier.padding(top = OudsSpacingFixedKeyToken.Medium.value))
             }
@@ -53,9 +53,9 @@ fun TokenTypeDetailScreen(tokenType: TokenType) {
                         .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value, vertical = OudsSpacingFixedKeyToken.Shorter.value),
                     verticalAlignment = Alignment.Top
                 ) {
-                    when (tokenType) {
-                        is TokenType.Opacity -> tokenType.Illustration(opacity = token.value as Float)
-                        is TokenType.Elevation -> tokenType.Illustration(elevation = token.value as Dp)
+                    when (tokenCategory) {
+                        is TokenCategory.Opacity -> tokenCategory.Illustration(opacity = token.value as Float)
+                        is TokenCategory.Elevation -> tokenCategory.Illustration(elevation = token.value as Dp)
                     }
                     Column(
                         modifier = Modifier
