@@ -60,7 +60,6 @@ fun LargeCard(
             ) {
                 Text(
                     text = title,
-                    modifier = modifier,
                     color = OudsColorKeyToken.OnSurface.value, //TODO use ContentDefault token when available
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
