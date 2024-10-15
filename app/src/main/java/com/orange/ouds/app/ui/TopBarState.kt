@@ -19,6 +19,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.stringResource
+import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.navigation.AppNavigationState
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
@@ -41,7 +43,7 @@ class TopBarState(
             IconButton(onClick = upPress) {
                 Image(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(id = R.string.app_common_back_a11y),
                     colorFilter = ColorFilter.tint(OudsColorKeyToken.OnSurface.value) //TODO use ContentDefault token when available
                 )
             }

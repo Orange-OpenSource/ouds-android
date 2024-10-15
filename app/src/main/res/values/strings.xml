@@ -13,6 +13,9 @@
 <resources>
     <string name="app_name">OudsPlayground</string>
 
+    <!-- Common -->
+    <string name="app_common_back_a11y">Back</string>
+
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">ChangeTheme</string>
     <string name="app_topBar_darkMode_button_a11y">Change to dark mode</string>
