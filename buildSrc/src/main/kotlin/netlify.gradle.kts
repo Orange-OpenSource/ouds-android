@@ -31,14 +31,15 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
         // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
         val branchName = Environment.getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
 
-        val args = mutableListOf("deploy", "--dir", documentationPath, "--site", netlifySiteId, "--auth", netlifyToken)
+        val args = mutableListOf("netlify", "deploy", "--dir", documentationPath, "--site", netlifySiteId, "--auth", netlifyToken)
         if (branchName == "develop") {
             args += "--prod"
         }
 
         val output = try {
-            execute("netlify", *args.toTypedArray()).also { println(it) }
+            execute("npx", *args.toTypedArray()).also { println(it) }
         } catch (exception: ExecException) {
+            println(exception.stackTraceToString())
             null
         }
 
