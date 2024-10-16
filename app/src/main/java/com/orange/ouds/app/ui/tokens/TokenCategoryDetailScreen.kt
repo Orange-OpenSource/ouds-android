@@ -70,11 +70,11 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
                             .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value, vertical = OudsSpacingFixedKeyToken.Shorter.value)
                     ) {
                         when (tokenProperty) {
-                            is TokenProperty.BorderWidth -> tokenProperty.Illustration(width = token.value as Dp)
                             is TokenProperty.BorderRadius -> tokenProperty.Illustration(radius = token.value as Dp)
                             is TokenProperty.BorderStyle -> tokenProperty.Illustration(style = token.value as OudsBorderStyle)
-                            is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
+                            is TokenProperty.BorderWidth -> tokenProperty.Illustration(width = token.value as Dp)
                             is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
+                            is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
                             is TokenProperty.Typography -> Unit
                         }
 
