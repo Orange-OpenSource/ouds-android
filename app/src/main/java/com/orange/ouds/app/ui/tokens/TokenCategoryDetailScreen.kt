@@ -77,8 +77,8 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
                             }
                             is TokenProperty.BorderRadius -> tokenProperty.Illustration(radius = token.value as Dp)
                             is TokenProperty.BorderStyle -> tokenProperty.Illustration(style = token.value as OudsBorderStyle)
-                            is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
                             is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
+                            is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
                             is TokenProperty.Typography -> Unit
                         }
 
