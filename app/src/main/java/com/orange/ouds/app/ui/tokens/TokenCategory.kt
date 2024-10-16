@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
@@ -43,6 +44,7 @@ import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -80,6 +82,13 @@ sealed class TokenCategory(
         R.drawable.ic_layers,
         R.string.app_tokens_elevation_description_text,
         listOf(TokenProperty.Elevation)
+    )
+
+    data object Typography : TokenCategory(
+        R.string.app_tokens_typography_label,
+        R.drawable.ic_typography,
+        R.string.app_tokens_typography_description_text,
+        listOf(TokenProperty.Typography)
     )
 
 }
@@ -195,6 +204,8 @@ sealed class TokenProperty(
         }
     }
 
+    data object Typography : TokenProperty(nameRes = null, tokens = { OudsTypographyKeyToken.entries.map { Token(it.name, it.value) } })
+
 }
 
 data class Token<T>(val name: String, val value: T) {
@@ -203,6 +214,7 @@ data class Token<T>(val name: String, val value: T) {
         get() = when (value) {
             is Float -> stringResource(id = R.string.app_tokens_floatFormat_label, value)
             is Dp -> stringResource(id = R.string.app_tokens_dpFormat_label, value.toString().replace(".0.dp", "").substringBeforeLast(".dp"))
+            is TextStyle -> stringResource(id = R.string.app_tokens_spFormat_label, value.fontSize.toString().replace(".0.sp", "").substringBeforeLast(".sp"))
             else -> value.toString()
         }
 }

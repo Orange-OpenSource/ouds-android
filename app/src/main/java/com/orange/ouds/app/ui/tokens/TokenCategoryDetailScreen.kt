@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
@@ -34,6 +35,7 @@ import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
+import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 @Composable
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
@@ -77,26 +79,33 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
                             is TokenProperty.BorderStyle -> tokenProperty.Illustration(style = token.value as OudsBorderStyle)
                             is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
                             is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
+                            is TokenProperty.Typography -> Unit
                         }
+
+                        val isTypographyProperty = tokenProperty is TokenProperty.Typography
 
                         Column(
                             modifier = Modifier
                                 .weight(1f)
-                                .padding(start = OudsSpacingFixedKeyToken.Medium.value)
+                                .padding(start = if (isTypographyProperty) OudsSpacingFixedKeyToken.None.value else OudsSpacingFixedKeyToken.Medium.value)
                         ) {
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = token.name,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OudsTypographyKeyToken.BodyStrongLarge.value
+                                style = if (isTypographyProperty) {
+                                    token.value as TextStyle
+                                } else {
+                                    OudsTypographyKeyToken.BodyStrongLarge.value
+                                }
                             )
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = token.literalValue,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OudsTypographyKeyToken.BodyDefaultMedium.value
+                                style = OudsTypographyKeyToken.BodyDefaultMedium.value.copy(color = OudsColorKeyToken.Tertiary.value) //TODO use ContentMuted token when available
                             )
                         }
                     }
