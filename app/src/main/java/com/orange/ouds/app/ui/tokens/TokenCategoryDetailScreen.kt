@@ -15,9 +15,7 @@ package com.orange.ouds.app.ui.tokens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -25,10 +23,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
@@ -43,7 +45,6 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
                     descriptionRes = tokenCategory.descriptionRes,
                     imageRes = tokenCategory.imageRes
                 )
-                Spacer(modifier = Modifier.height(OudsSpacingFixedKeyToken.Medium.value))
             }
 
             items(tokens) { token ->
@@ -81,3 +82,19 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
         }
     }
 }
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewTokenCategoryDetailScreen(
+    @PreviewParameter(TokenCategoryDetailScreenPreviewParameterProvider::class) parameter: TokenCategory
+) = OudsPreview {
+    TokenCategoryDetailScreen(parameter)
+}
+
+private class TokenCategoryDetailScreenPreviewParameterProvider : BasicPreviewParameterProvider<TokenCategory>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<TokenCategory>
+    get() = listOf(
+        TokenCategory.Opacity,
+        TokenCategory.Elevation
+    )
