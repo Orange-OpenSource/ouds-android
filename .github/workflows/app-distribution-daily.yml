@@ -2,7 +2,7 @@ name: app-distribution-daily
 
 on:
   schedule:
-    - cron: '31 7 * * MON-FRI'
+    - cron: '31 3 * * MON-FRI'
   workflow_dispatch:
 
 jobs:
