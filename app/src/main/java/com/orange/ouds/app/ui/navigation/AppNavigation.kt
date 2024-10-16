@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
@@ -22,8 +23,10 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.orange.ouds.app.ui.BottomBarItem
 import com.orange.ouds.app.ui.Screen
 import com.orange.ouds.app.ui.getScreen
+import com.orange.ouds.foundation.extensions.orElse
 
 @Composable
 fun rememberAppNavigationState(navController: NavHostController = rememberNavController()) = remember(navController) { AppNavigationState(navController) }
@@ -34,7 +37,11 @@ class AppNavigationState(val navController: NavHostController) {
         @Composable
         get() {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
-            return navBackStackEntry?.destination?.route
+            return navBackStackEntry?.destination?.route.orElse {
+                // The line below fixes an issue where some previews display an empty content
+                // This is due to the fact that previews uses the first value returned by this getter, which is null
+                if (LocalInspectionMode.current) BottomBarItem.Tokens.route else null
+            }
         }
 
     val currentScreen: Screen?

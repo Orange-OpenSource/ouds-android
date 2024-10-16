@@ -23,6 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ouds.app.R
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit) {
@@ -58,4 +60,10 @@ enum class BottomBarItem(
     Tokens(R.string.app_bottomBar_tokens_label, R.drawable.ic_design_token_figma, "main/tokens"),
     Components(R.string.app_bottomBar_components_label, R.drawable.ic_component_atom, "main/components"),
     About(R.string.app_bottomBar_about_label, R.drawable.ic_info, "main/about");
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewBottomBar() = OudsPreview {
+    BottomBar(currentRoute = "") {}
 }

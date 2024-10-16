@@ -16,6 +16,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -27,7 +28,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
@@ -37,21 +41,23 @@ fun DetailScreenHeader(
     @StringRes descriptionRes: Int,
     @DrawableRes imageRes: Int,
 ) {
-    Image(
-        painter = painterResource(imageRes),
-        colorFilter = ColorFilter.tint(OudsColorKeyToken.InverseOnSurface.value), //TODO use OnBgEmphasized token when available
-        contentDescription = null,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(186.dp)
-            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
-        contentScale = ContentScale.None
-    )
+    Column {
+        Image(
+            painter = painterResource(imageRes),
+            colorFilter = ColorFilter.tint(OudsColorKeyToken.InverseOnSurface.value), //TODO use OnBgEmphasized token when available
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(186.dp)
+                .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+            contentScale = ContentScale.None
+        )
 
-    DetailScreenDescription(
-        modifier = Modifier.padding(horizontal = OudsSpacingFixedKeyToken.Medium.value),
-        descriptionRes = descriptionRes
-    )
+        DetailScreenDescription(
+            modifier = Modifier.padding(all = OudsSpacingFixedKeyToken.Medium.value),
+            descriptionRes = descriptionRes
+        )
+    }
 }
 
 @Composable
@@ -60,9 +66,18 @@ private fun DetailScreenDescription(
     @StringRes descriptionRes: Int
 ) {
     Text(
+        modifier = modifier,
         text = stringResource(descriptionRes),
-        modifier = modifier.padding(top = OudsSpacingFixedKeyToken.Medium.value),
         color = OudsColorKeyToken.OnSurface.value, //TODO use ContentDefault token when available
         style = OudsTypographyKeyToken.BodyDefaultLarge.value
+    )
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewDetailScreenHeader() = OudsPreview {
+    DetailScreenHeader(
+        descriptionRes = R.string.app_tokens_elevation_description_text,
+        imageRes = R.drawable.ic_layers
     )
 }

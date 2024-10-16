@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 @Composable
@@ -29,4 +31,10 @@ fun Screen(content: @Composable () -> Unit) {
     ) {
         content()
     }
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewScreen() = OudsPreview {
+    Screen {}
 }

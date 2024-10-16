@@ -24,10 +24,20 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 
 @Composable
 fun TokensScreen(onTokenClick: (Long) -> Unit) {
+    TokensScreen(
+        tokenCategories = tokenCategories,
+        onTokenClick = onTokenClick
+    )
+}
+
+@Composable
+private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenClick: (Long) -> Unit) {
     Screen {
         Column(
             modifier = Modifier
@@ -45,4 +55,10 @@ fun TokensScreen(onTokenClick: (Long) -> Unit) {
             }
         }
     }
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewTokensScreen() = OudsPreview {
+    TokensScreen(tokenCategories = listOf(TokenCategory.Elevation, TokenCategory.Opacity)) {}
 }

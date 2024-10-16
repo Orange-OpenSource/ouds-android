@@ -28,7 +28,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
@@ -69,4 +72,14 @@ fun LargeCard(
 
         }
     }
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewLargeCard() = OudsPreview {
+    LargeCard(
+        title = "Title",
+        imageRes = R.drawable.ic_filter_effects,
+        onClick = {}
+    )
 }
