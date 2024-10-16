@@ -32,6 +32,7 @@
     <!-- Tokens -->
     <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
     <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
+    <string name="app_tokens_spFormat_label" translatable="false">%s sp</string>
 
     <!-- Tokens: border -->
     <string name="app_tokens_border_label">Border</string>
@@ -40,13 +41,17 @@
     <string name="app_tokens_border_radius_label">Radius</string>
     <string name="app_tokens_border_style_label">Style</string>
 
+    <!-- Tokens: elevation -->
+    <string name="app_tokens_elevation_label">Elevation</string>
+    <string name="app_tokens_elevation_description_text">Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.</string>
+
     <!-- Tokens: opacity -->
     <string name="app_tokens_opacity_label">Opacity</string>
     <string name="app_tokens_opacity_description_text">Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.</string>
 
-    <!-- Tokens: elevation -->
-    <string name="app_tokens_elevation_label">Elevation</string>
-    <string name="app_tokens_elevation_description_text">Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.</string>
+    <!-- Tokens: typography -->
+    <string name="app_tokens_typography_label">Typography</string>
+    <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
 
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
