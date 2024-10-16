@@ -8,6 +8,7 @@ in whole or part of, in any medium, except as required for reasonable and custom
 and reproducing the content of the NOTICE and DOCUMENTATION files.
 Any use or displaying shall constitute an infringement under intellectual property laws of France and international conventions.
 
+app/src/main/res/drawable/ic_border.xml
 app/src/main/res/drawable/ic_component_atom.xml
 app/src/main/res/drawable/ic_design_token_figma.xml
 app/src/main/res/drawable/ic_filter_effects.xml

@@ -38,7 +38,7 @@ fun TokensScreen(onTokenClick: (Long) -> Unit) {
         ) {
             tokenCategories.forEach { token ->
                 LargeCard(
-                    title = stringResource(id = token.titleRes),
+                    title = stringResource(id = token.nameRes),
                     imageRes = token.imageRes,
                     onClick = { onTokenClick(token.id) }
                 )
