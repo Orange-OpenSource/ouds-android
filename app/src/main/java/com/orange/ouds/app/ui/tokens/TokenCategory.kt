@@ -46,8 +46,6 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
-private val defaultIllustrationSize = 64.dp
-
 @Immutable
 sealed class TokenCategory(
     @StringRes val nameRes: Int,
