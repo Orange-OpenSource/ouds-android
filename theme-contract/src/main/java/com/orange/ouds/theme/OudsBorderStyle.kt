@@ -14,6 +14,7 @@ package com.orange.ouds.theme
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.RectangleShape
@@ -22,8 +23,8 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import java.util.Locale
 
 enum class OudsBorderStyle {
@@ -53,19 +54,22 @@ fun Modifier.dashedBorder(
     color: Color,
     shape: Shape = RectangleShape,
 ) = this.drawWithContent {
-    val outline = shape.createOutline(size, layoutDirection, density = this)
+    val innerSize = Size(size.width - width.toPx(), size.height - width.toPx())
+    val outline = shape.createOutline(innerSize, layoutDirection, density = this)
     val dashedStroke = Stroke(
         cap = StrokeCap.Butt,
         width = width.toPx(),
         pathEffect = PathEffect.dashPathEffect(
-            intervals = floatArrayOf(2.dp.toPx(), 2.dp.toPx())
+            intervals = floatArrayOf(width.toPx() * 2f, width.toPx() * 2f)
         )
     )
 
     drawContent()
-    drawOutline(
-        outline = outline,
-        style = dashedStroke,
-        brush = SolidColor(color)
-    )
+    translate(width.toPx() / 2f, width.toPx() / 2f) {
+        drawOutline(
+            outline = outline,
+            style = dashedStroke,
+            brush = SolidColor(color)
+        )
+    }
 }
