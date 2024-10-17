@@ -27,7 +27,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
@@ -173,7 +172,10 @@ sealed class TokenProperty(
             val modifier = when (style) {
                 OudsBorderStyle.None -> Modifier
                 OudsBorderStyle.Solid -> Modifier.border(width = 1.dp, color = OudsColorKeyToken.OnSurface.value) //TODO use ContentDefault token when available
-                OudsBorderStyle.Dashed -> Modifier.dashedBorder(color = OudsColorKeyToken.OnSurface.value, shape = RectangleShape)
+                OudsBorderStyle.Dashed -> Modifier.dashedBorder(
+                    width = 1.dp,
+                    color = OudsColorKeyToken.OnSurface.value //TODO use ContentDefault token when available
+                )
             }
             Box(
                 modifier = modifier

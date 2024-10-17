@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap
@@ -41,16 +42,16 @@ enum class OudsBorderStyle {
 }
 
 /**
- * Modify element to add a dashed border styled with appearance specified with a [color], a [shape] and a [width], and clip it.
+ * Modify element to add a dashed border styled with appearance specified with a [width], a [color] and a [shape], and clip it.
  *
+ * @param width Thickness of the border in dp
  * @param color Color to paint the border with
  * @param shape Shape of the border
- * @param width Thickness of the border in dp
  */
 fun Modifier.dashedBorder(
+    width: Dp,
     color: Color,
-    shape: Shape,
-    width: Dp = 1.dp
+    shape: Shape = RectangleShape,
 ) = this.drawWithContent {
     val outline = shape.createOutline(size, layoutDirection, density = this)
     val dashedStroke = Stroke(
