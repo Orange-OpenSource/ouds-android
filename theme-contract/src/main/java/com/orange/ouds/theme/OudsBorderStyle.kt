@@ -55,7 +55,7 @@ fun Modifier.dashedBorder(
 ) = this.drawWithContent {
     val outline = shape.createOutline(size, layoutDirection, density = this)
     val dashedStroke = Stroke(
-        cap = StrokeCap.Round,
+        cap = StrokeCap.Butt,
         width = width.toPx(),
         pathEffect = PathEffect.dashPathEffect(
             intervals = floatArrayOf(2.dp.toPx(), 2.dp.toPx())
