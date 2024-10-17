@@ -14,13 +14,17 @@ package com.orange.ouds.theme
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.PathEffect.Companion.stampedPathEffect
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.StampedPathEffectStyle
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.translate
@@ -28,7 +32,7 @@ import androidx.compose.ui.unit.Dp
 import java.util.Locale
 
 enum class OudsBorderStyle {
-    None, Solid, Dashed;
+    None, Solid, Dashed, Dotted;
 
     companion object {
         fun fromString(string: String): OudsBorderStyle {
@@ -57,7 +61,6 @@ fun Modifier.dashedBorder(
     val innerSize = Size(size.width - width.toPx(), size.height - width.toPx())
     val outline = shape.createOutline(innerSize, layoutDirection, density = this)
     val dashedStroke = Stroke(
-        cap = StrokeCap.Butt,
         width = width.toPx(),
         pathEffect = PathEffect.dashPathEffect(
             intervals = floatArrayOf(width.toPx() * 2f, width.toPx() * 2f)
@@ -69,6 +72,44 @@ fun Modifier.dashedBorder(
         drawOutline(
             outline = outline,
             style = dashedStroke,
+            brush = SolidColor(color)
+        )
+    }
+}
+
+/**
+ * Modify element to add a dotted border styled with appearance specified with a [width], a [color] and a [shape], and clip it.
+ *
+ * @param width Thickness of the border in dp
+ * @param color Color to paint the border with
+ * @param shape Shape of the border
+ */
+fun Modifier.dottedBorder(
+    width: Dp,
+    color: Color,
+    shape: Shape = RectangleShape,
+) = this.drawWithContent {
+    val dotRadius = width / 2
+    val circle = Path()
+    circle.addOval(Rect(center = Offset.Zero, radius = dotRadius.toPx()))
+
+    val innerSize = Size(size.width - width.toPx(), size.height - width.toPx())
+    val outline = shape.createOutline(innerSize, layoutDirection, density = this)
+    val dottedStroke = Stroke(
+        width = width.toPx(),
+        pathEffect = stampedPathEffect(
+            shape = circle,
+            advance = (dotRadius * 2).toPx() * 2f,
+            phase = 0f,
+            style = StampedPathEffectStyle.Translate
+        )
+    )
+
+    drawContent()
+    translate(width.toPx() / 2f, width.toPx() / 2f) {
+        drawOutline(
+            outline = outline,
+            style = dottedStroke,
             brush = SolidColor(color)
         )
     }

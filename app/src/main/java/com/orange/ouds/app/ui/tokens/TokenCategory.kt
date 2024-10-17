@@ -35,6 +35,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.dashedBorder
+import com.orange.ouds.theme.dottedBorder
 import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderStyleKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
@@ -170,13 +171,13 @@ sealed class TokenProperty(
     ) {
         @Composable
         fun Illustration(style: OudsBorderStyle) {
+            val borderColor = OudsColorKeyToken.OnSurface.value //TODO use ContentDefault token when available
+            val borderWidth = 1.dp
             val modifier = when (style) {
                 OudsBorderStyle.None -> Modifier
-                OudsBorderStyle.Solid -> Modifier.border(width = 1.dp, color = OudsColorKeyToken.OnSurface.value) //TODO use ContentDefault token when available
-                OudsBorderStyle.Dashed -> Modifier.dashedBorder(
-                    width = 1.dp,
-                    color = OudsColorKeyToken.OnSurface.value //TODO use ContentDefault token when available
-                )
+                OudsBorderStyle.Solid -> Modifier.border(width = borderWidth, color = borderColor)
+                OudsBorderStyle.Dashed -> Modifier.dashedBorder(width = borderWidth, color = borderColor)
+                OudsBorderStyle.Dotted -> Modifier.dottedBorder(width = borderWidth, color = borderColor)
             }
             Box(
                 modifier = modifier
