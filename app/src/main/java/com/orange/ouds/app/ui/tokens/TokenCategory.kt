@@ -86,11 +86,7 @@ sealed class TokenCategory(
                         .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)
                         .size(48.dp)
                         .background(color = squareColor.copy(alpha = opacity))
-                        .run {
-                            if (opacity <= 0f) {
-                                border(width = 1.dp, color = squareColor)
-                            } else this
-                        }
+                        .border(width = 1.dp, color = squareColor)
                 )
             }
         }
