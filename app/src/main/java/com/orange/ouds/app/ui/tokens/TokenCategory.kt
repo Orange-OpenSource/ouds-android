@@ -113,9 +113,9 @@ sealed class TokenProperty(
                     .size(defaultIllustrationSize)
                     .border(
                         width = 1.dp,
-                        color = OudsColorKeyToken.OnSurface.value,
+                        color = OudsColorKeyToken.OnSurface.value, //TODO use ContentDefault token when available
                         shape = RoundedCornerShape(radius)
-                    ) //TODO use ContentDefault token when available
+                    )
                     .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
             )
         }

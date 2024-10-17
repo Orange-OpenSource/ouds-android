@@ -54,7 +54,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
 
             items(tokenCategory.properties) { tokenProperty ->
                 Spacer(modifier = Modifier.height(OudsSpacingFixedKeyToken.Medium.value))
-                
+
                 tokenProperty.nameRes?.let {
                     Text(
                         modifier = Modifier
