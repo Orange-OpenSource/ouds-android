@@ -25,9 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.core.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.UiModePreviews
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun OudsButton(

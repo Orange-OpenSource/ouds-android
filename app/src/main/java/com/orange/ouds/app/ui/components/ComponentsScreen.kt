@@ -29,6 +29,8 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 
@@ -54,4 +56,10 @@ fun ComponentsScreen() {
             )
         }
     }
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewComponentsScreen() = OudsPreview {
+    ComponentsScreen()
 }
