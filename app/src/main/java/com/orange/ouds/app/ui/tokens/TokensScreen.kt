@@ -29,15 +29,15 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 
 @Composable
-fun TokensScreen(onTokenClick: (Long) -> Unit) {
+fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
     TokensScreen(
         tokenCategories = tokenCategories,
-        onTokenClick = onTokenClick
+        onTokenCategoryClick = onTokenCategoryClick
     )
 }
 
 @Composable
-private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenClick: (Long) -> Unit) {
+private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenCategoryClick: (Long) -> Unit) {
     Screen {
         Column(
             modifier = Modifier
@@ -50,7 +50,7 @@ private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenClick: (Lo
                 LargeCard(
                     title = stringResource(id = token.nameRes),
                     imageRes = token.imageRes,
-                    onClick = { onTokenClick(token.id) }
+                    onClick = { onTokenCategoryClick(token.id) }
                 )
             }
         }
