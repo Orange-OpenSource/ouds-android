@@ -23,9 +23,10 @@ data class OudsBorderSemanticTokens(
   val styleDefault: String = BorderRawTokens.borderStyleSolid,
   val styleDrag: String = BorderRawTokens.borderStyleDashed,
   val widthDefault: Float = BorderRawTokens.borderWidth25,
+  val widthFocus: Float = BorderRawTokens.borderWidth50,
+  val widthFocusInset: Float = BorderRawTokens.borderWidth75,
   val widthMedium: Float = BorderRawTokens.borderWidth50,
   val widthNone: Float = BorderRawTokens.borderWidth0,
-  val widthOutsideFocus: Float = BorderRawTokens.borderWidth50,
   val widthThick: Float = BorderRawTokens.borderWidth75,
   val widthThicker: Float = BorderRawTokens.borderWidth100,
   val widthThin: Float = BorderRawTokens.borderWidth25
