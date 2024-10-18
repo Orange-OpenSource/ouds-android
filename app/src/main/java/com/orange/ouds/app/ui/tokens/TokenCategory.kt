@@ -44,7 +44,7 @@ import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
-val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }.filter { !it.subcategory }
+val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
 @Immutable
 sealed class TokenCategory(
