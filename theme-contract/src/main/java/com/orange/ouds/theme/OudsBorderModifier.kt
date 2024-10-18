@@ -98,6 +98,13 @@ fun Modifier.dottedBorder(
     }
 }
 
+/**
+ * Modify element to add an outer border (drawn outside the element) with appearance specified with a [width], a [color] and a [shape].
+ *
+ * @param width Thickness of the border in dp
+ * @param color Color to paint the border with
+ * @param shape Shape of the border
+ */
 fun Modifier.outerBorder(
     width: Dp,
     color: Color,
