@@ -38,6 +38,12 @@
         "^androidx.compose.compiler"
       ],
       "groupName": "kotlin"
+    },
+    {
+      "matchPackagePatterns": [
+        "^se.bjurr.gitchangelog"
+      ],
+      "groupName": "gitchangelog"
     }
   ],
   "platformAutomerge": true
