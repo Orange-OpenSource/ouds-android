@@ -44,14 +44,16 @@ import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
-val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
+val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }.filter { !it.subcategory }
 
 @Immutable
 sealed class TokenCategory(
     @StringRes val nameRes: Int,
     @DrawableRes val imageRes: Int,
     @StringRes val descriptionRes: Int,
-    val properties: List<TokenProperty>
+    val properties: List<TokenProperty> = emptyList(),
+    val subcategories: List<TokenCategory> = emptyList(),
+    val subcategory: Boolean = false
 ) {
 
     companion object {
@@ -66,6 +68,27 @@ sealed class TokenCategory(
         R.string.app_tokens_border_description_text,
         listOf(TokenProperty.BorderWidth, TokenProperty.BorderRadius, TokenProperty.BorderStyle)
     )
+
+    data object Dimension : TokenCategory(
+        R.string.app_tokens_dimension_label,
+        R.drawable.ic_spacing,
+        R.string.app_tokens_dimension_description_text,
+        subcategories = listOf(Spacing, Size)
+    ) {
+        data object Spacing : TokenCategory(
+            R.string.app_tokens_spacing_label,
+            R.drawable.ic_spacing,
+            R.string.app_tokens_spacing_description_text,
+            subcategory = true
+        )
+
+        data object Size : TokenCategory(
+            R.string.app_tokens_size_label,
+            R.drawable.ic_spacing,
+            R.string.app_tokens_size_description_text,
+            subcategory = true
+        )
+    }
 
     data object Elevation : TokenCategory(
         R.string.app_tokens_elevation_label,
