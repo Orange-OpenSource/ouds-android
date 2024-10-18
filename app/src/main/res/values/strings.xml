@@ -33,6 +33,13 @@
     <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
     <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
 
+    <!-- Tokens: border -->
+    <string name="app_tokens_border_label">Border</string>
+    <string name="app_tokens_border_description_text">Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.</string>
+    <string name="app_tokens_border_width_label">Width</string>
+    <string name="app_tokens_border_radius_label">Radius</string>
+    <string name="app_tokens_border_style_label">Style</string>
+
     <!-- Tokens: opacity -->
     <string name="app_tokens_opacity_label">Opacity</string>
     <string name="app_tokens_opacity_description_text">Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.</string>

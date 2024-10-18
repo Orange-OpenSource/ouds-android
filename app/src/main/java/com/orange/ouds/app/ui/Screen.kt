@@ -91,7 +91,7 @@ sealed class Screen(
 
     data class TokenCategoryDetail(val tokenCategoryId: Long) : Screen(
         route = TokensNavigation.TokenCategoryDetailRoute,
-        title = TokenCategory.fromId(tokenCategoryId)?.titleRes?.let { UiString.StringResource(it) }
+        title = TokenCategory.fromId(tokenCategoryId)?.nameRes?.let { UiString.StringResource(it) }
     )
 
     // About screens
