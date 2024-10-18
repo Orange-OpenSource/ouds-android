@@ -27,7 +27,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 
 @Composable
-fun TokensScreen(onTokenClick: (Long) -> Unit) {
+fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
     Screen {
         Column(
             modifier = Modifier
@@ -40,7 +40,7 @@ fun TokensScreen(onTokenClick: (Long) -> Unit) {
                 LargeCard(
                     title = stringResource(id = token.nameRes),
                     imageRes = token.imageRes,
-                    onClick = { onTokenClick(token.id) }
+                    onClick = { onTokenCategoryClick(token.id) }
                 )
             }
         }

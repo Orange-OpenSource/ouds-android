@@ -40,6 +40,18 @@
     <string name="app_tokens_border_radius_label">Radius</string>
     <string name="app_tokens_border_style_label">Style</string>
 
+    <!-- Tokens: dimension -->
+    <string name="app_tokens_dimension_label">Dimension</string>
+    <string name="app_tokens_dimension_description_text">Dimension provides standard sizing and spacing to ensure visual consistency across the UI.</string>
+
+    <!-- Tokens: dimension/spacing -->
+    <string name="app_tokens_spacing_label">Spacing</string>
+    <string name="app_tokens_spacing_description_text">Space refers to the measurements used to define the spacing between UI elements.</string>
+
+    <!-- Tokens: dimension/spacing -->
+    <string name="app_tokens_size_label">Size</string>
+    <string name="app_tokens_size_description_text">Size refers to the specific measurements used to define the dimensions of UI elements within the design system.</string>
+
     <!-- Tokens: opacity -->
     <string name="app_tokens_opacity_label">Opacity</string>
     <string name="app_tokens_opacity_description_text">Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.</string>

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.tokens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -35,7 +36,7 @@ import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 @Composable
-fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
+fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: (Long) -> Unit) {
 
     Screen {
         LazyColumn(contentPadding = PaddingValues(bottom = OudsSpacingFixedKeyToken.Medium.value)) {
@@ -46,54 +47,75 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
                 )
             }
 
-            items(tokenCategory.properties) { tokenProperty ->
-                Spacer(modifier = Modifier.height(OudsSpacingFixedKeyToken.Medium.value))
-
-                tokenProperty.nameRes?.let {
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(OudsSpacingFixedKeyToken.Medium.value),
-                        text = stringResource(id = tokenProperty.nameRes),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        style = OudsTypographyKeyToken.HeadingMedium.value
-                    )
-                }
-
-                tokenProperty.tokens().forEach { token ->
+            if (tokenCategory.subcategories.isNotEmpty()) {
+                items(tokenCategory.subcategories) { subcategory ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value, vertical = OudsSpacingFixedKeyToken.Shorter.value)
+                            .padding(top = OudsSpacingFixedKeyToken.Medium.value)
+                            .clickable { onSubcategoryClick(subcategory.id) }
                     ) {
-                        when (tokenProperty) {
-                            is TokenProperty.BorderWidth -> tokenProperty.Illustration(width = token.value as Dp)
-                            is TokenProperty.BorderRadius -> tokenProperty.Illustration(radius = token.value as Dp)
-                            is TokenProperty.BorderStyle -> tokenProperty.Illustration(style = token.value as OudsBorderStyle)
-                            is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
-                            is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
-                        }
-
-                        Column(
+                        Text(
                             modifier = Modifier
-                                .weight(1f)
-                                .padding(start = OudsSpacingFixedKeyToken.Medium.value)
+                                .fillMaxWidth()
+                                .padding(OudsSpacingFixedKeyToken.Medium.value),
+                            text = stringResource(id = subcategory.nameRes),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = OudsTypographyKeyToken.HeadingMedium.value
+                        )
+                    }
+                }
+            } else {
+                items(tokenCategory.properties) { tokenProperty ->
+                    Spacer(modifier = Modifier.height(OudsSpacingFixedKeyToken.Medium.value))
+
+                    tokenProperty.nameRes?.let {
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(OudsSpacingFixedKeyToken.Medium.value),
+                            text = stringResource(id = tokenProperty.nameRes),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = OudsTypographyKeyToken.HeadingMedium.value
+                        )
+                    }
+
+                    tokenProperty.tokens().forEach { token ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value, vertical = OudsSpacingFixedKeyToken.Shorter.value)
                         ) {
-                            Text(
-                                modifier = Modifier.fillMaxWidth(),
-                                text = token.name,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                style = OudsTypographyKeyToken.BodyStrongLarge.value
-                            )
-                            Text(
-                                modifier = Modifier.fillMaxWidth(),
-                                text = token.literalValue,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                style = OudsTypographyKeyToken.BodyDefaultMedium.value
-                            )
+                            when (tokenProperty) {
+                                is TokenProperty.BorderWidth -> tokenProperty.Illustration(width = token.value as Dp)
+                                is TokenProperty.BorderRadius -> tokenProperty.Illustration(radius = token.value as Dp)
+                                is TokenProperty.BorderStyle -> tokenProperty.Illustration(style = token.value as OudsBorderStyle)
+                                is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
+                                is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
+                            }
+
+                            Column(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(start = OudsSpacingFixedKeyToken.Medium.value)
+                            ) {
+                                Text(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    text = token.name,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                    style = OudsTypographyKeyToken.BodyStrongLarge.value
+                                )
+                                Text(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    text = token.literalValue,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                    style = OudsTypographyKeyToken.BodyDefaultMedium.value
+                                )
+                            }
                         }
                     }
                 }
