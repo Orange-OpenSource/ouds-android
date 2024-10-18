@@ -46,7 +46,7 @@ private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenCategoryCl
                 .padding(OudsSpacingFixedKeyToken.Medium.value),
             verticalArrangement = Arrangement.spacedBy(OudsSpacingFixedKeyToken.Medium.value)
         ) {
-            tokenCategories.forEach { token ->
+            tokenCategories.filter { !it.subcategory }.forEach { token ->
                 LargeCard(
                     title = stringResource(id = token.nameRes),
                     imageRes = token.imageRes,
