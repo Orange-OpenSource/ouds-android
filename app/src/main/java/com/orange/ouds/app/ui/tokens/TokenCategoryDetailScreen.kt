@@ -31,6 +31,7 @@ import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.OudsBorderStyle
+import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
@@ -68,7 +69,10 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory) {
                             .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value, vertical = OudsSpacingFixedKeyToken.Shorter.value)
                     ) {
                         when (tokenProperty) {
-                            is TokenProperty.BorderWidth -> tokenProperty.Illustration(width = token.value as Dp)
+                            is TokenProperty.BorderWidth -> {
+                                val outside = token.name == OudsBorderWidthKeyToken.OutsideFocus.name
+                                tokenProperty.Illustration(width = token.value as Dp, outside = outside)
+                            }
                             is TokenProperty.BorderRadius -> tokenProperty.Illustration(radius = token.value as Dp)
                             is TokenProperty.BorderStyle -> tokenProperty.Illustration(style = token.value as OudsBorderStyle)
                             is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
