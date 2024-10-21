@@ -14,45 +14,8 @@ package com.orange.ouds.app.ui.tokens
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
-import com.orange.ouds.core.theme.value
-import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.theme.OudsBorderStyle
-import com.orange.ouds.theme.dashedBorder
-import com.orange.ouds.theme.dottedBorder
-import com.orange.ouds.theme.tokens.OudsBorderKeyToken
-import com.orange.ouds.theme.tokens.OudsElevationKeyToken
-import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
-import com.orange.ouds.theme.tokens.OudsSizeIconDecorativeKeyToken
-import com.orange.ouds.theme.tokens.OudsSizeIconWithTextKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
@@ -89,6 +52,10 @@ sealed class TokenCategory(
             R.string.app_tokens_spacing_label,
             R.drawable.ic_spacing,
             R.string.app_tokens_spacing_description_text,
+            listOf(
+                TokenProperty.SpacingScaled, TokenProperty.SpacingFixed, TokenProperty.SpacingPaddingInline, TokenProperty.SpacingPaddingStack,
+                TokenProperty.SpacingPaddingInset, TokenProperty.SpacingColumnGap, TokenProperty.SpacingRowGap
+            ),
             subcategory = true
         )
 
@@ -121,171 +88,4 @@ sealed class TokenCategory(
         R.string.app_tokens_typography_description_text,
         listOf(TokenProperty.Typography)
     )
-
-}
-
-sealed class TokenProperty(
-    @StringRes val nameRes: Int?,
-    val tokens: @Composable () -> List<Token<Any>>
-) {
-    protected companion object {
-        val defaultIllustrationSize = 64.dp
-    }
-
-    data object BorderRadius : TokenProperty(
-        nameRes = R.string.app_tokens_border_radius_label,
-        tokens = { OudsBorderKeyToken.Radius.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(radius: Dp) {
-            Box(
-                modifier = Modifier
-                    .size(defaultIllustrationSize)
-                    .border(
-                        width = 1.dp,
-                        color = OudsColorKeyToken.OnSurface.value, //TODO use ContentDefault token when available
-                        shape = RoundedCornerShape(radius)
-                    )
-                    .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
-            )
-        }
-    }
-
-    data object BorderStyle : TokenProperty(
-        nameRes = R.string.app_tokens_border_style_label,
-        tokens = { OudsBorderKeyToken.Style.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(style: OudsBorderStyle) {
-            val borderColor = OudsColorKeyToken.OnSurface.value //TODO use ContentDefault token when available
-            val borderWidth = 1.dp
-            val modifier = when (style) {
-                OudsBorderStyle.None -> Modifier
-                OudsBorderStyle.Solid -> Modifier.border(width = borderWidth, color = borderColor)
-                OudsBorderStyle.Dashed -> Modifier.dashedBorder(width = borderWidth, color = borderColor)
-                OudsBorderStyle.Dotted -> Modifier.dottedBorder(width = borderWidth, color = borderColor)
-            }
-            Box(
-                modifier = modifier
-                    .size(defaultIllustrationSize)
-                    .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
-            )
-        }
-    }
-
-    data object BorderWidth : TokenProperty(
-        nameRes = R.string.app_tokens_border_width_label,
-        tokens = { OudsBorderKeyToken.Width.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(width: Dp) {
-            val borderColor = OudsColorKeyToken.OnSurface.value //TODO use ContentDefault token when available
-            Box(
-                modifier = Modifier
-                    .size(defaultIllustrationSize)
-                    .border(width = width, color = borderColor)
-                    .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
-            )
-        }
-    }
-
-    data object Elevation : TokenProperty(
-        nameRes = null,
-        tokens = { OudsElevationKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(elevation: Dp) {
-            Surface(shadowElevation = elevation) {
-                Box(
-                    modifier = Modifier
-                        .size(defaultIllustrationSize)
-                        .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
-                )
-            }
-        }
-    }
-
-    data object Opacity : TokenProperty(
-        nameRes = null,
-        tokens = { OudsOpacityKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(opacity: Float) {
-            val squareColor = if (isSystemInDarkTheme()) Color.White else Color.Black
-            Box {
-                Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = null)
-                Box(
-                    modifier = Modifier
-                        .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)
-                        .size(48.dp)
-                        .background(color = squareColor.copy(alpha = opacity))
-                        .border(width = 1.dp, color = squareColor)
-                )
-            }
-        }
-    }
-
-    data object SizeIconDecorative : TokenProperty(
-        nameRes = R.string.app_tokens_size_iconDecorative_label,
-        tokens = { OudsSizeIconDecorativeKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(size: Dp) {
-            Box(
-                modifier = Modifier
-                    .size(80.dp)
-                    .background(color = OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(
-                    modifier = Modifier.size(size),
-                    painter = painterResource(R.drawable.ic_design_token_figma),
-                    tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
-                    contentDescription = null
-                )
-            }
-        }
-    }
-
-    data object SizeIconWithLabel : TokenProperty(
-        nameRes = R.string.app_tokens_size_iconWithLabel_label,
-        tokens = { OudsSizeIconWithTextKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(size: Dp, tokenName: String) {
-            val label = tokenName.substringBefore("Size")
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(OudsSpacingFixedKeyToken.Shorter.value),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    modifier = Modifier.size(size),
-                    painter = painterResource(R.drawable.ic_design_token_figma),
-                    tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
-                    contentDescription = null
-                )
-                Text(
-                    modifier = Modifier.weight(1f),
-                    text = label,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    style = OudsTypographyKeyToken.entries.firstOrNull { it.name == label }?.value.orElse { OudsTypographyKeyToken.BodyStrongLarge.value }
-                )
-            }
-        }
-    }
-
-    data object Typography : TokenProperty(nameRes = null, tokens = { OudsTypographyKeyToken.entries.map { Token(it.name, it.value) } })
-}
-
-data class Token<T>(val name: String, val value: T) {
-    val literalValue: String
-        @Composable
-        get() = when (value) {
-            is Dp -> stringResource(id = R.string.app_tokens_dpFormat_label, value.toString().replace(".0.dp", "").substringBeforeLast(".dp"))
-            is Float -> stringResource(id = R.string.app_tokens_floatFormat_label, value)
-            is TextStyle -> stringResource(id = R.string.app_tokens_spFormat_label, value.fontSize.toString().replace(".0.sp", "").substringBeforeLast(".sp"))
-            else -> value.toString()
-        }
 }
