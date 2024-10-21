@@ -18,22 +18,30 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.dashedBorder
 import com.orange.ouds.theme.dottedBorder
@@ -42,6 +50,8 @@ import com.orange.ouds.theme.tokens.OudsBorderStyleKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeIconDecorativeKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeIconWithTextKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
@@ -88,6 +98,7 @@ sealed class TokenCategory(
             R.string.app_tokens_size_label,
             R.drawable.ic_spacing,
             R.string.app_tokens_size_description_text,
+            listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithLabel),
             subcategory = true
         )
     }
@@ -211,6 +222,57 @@ sealed class TokenProperty(
                         .size(48.dp)
                         .background(color = squareColor.copy(alpha = opacity))
                         .border(width = 1.dp, color = squareColor)
+                )
+            }
+        }
+    }
+
+    data object SizeIconDecorative : TokenProperty(
+        nameRes = R.string.app_tokens_size_iconDecorative_label,
+        tokens = { OudsSizeIconDecorativeKeyToken.entries.map { Token(it.name, it.value) } }
+    ) {
+        @Composable
+        fun Illustration(size: Dp) {
+            Box(
+                modifier = Modifier
+                    .size(80.dp)
+                    .background(color = OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    modifier = Modifier.size(size),
+                    painter = painterResource(R.drawable.ic_design_token_figma),
+                    tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
+                    contentDescription = null
+                )
+            }
+        }
+    }
+
+    data object SizeIconWithLabel : TokenProperty(
+        nameRes = R.string.app_tokens_size_iconWithLabel_label,
+        tokens = { OudsSizeIconWithTextKeyToken.entries.map { Token(it.name, it.value) } }
+    ) {
+        @Composable
+        fun Illustration(size: Dp, tokenName: String) {
+            val label = tokenName.substringBefore("Size")
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(OudsSpacingFixedKeyToken.Shorter.value),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    modifier = Modifier.size(size),
+                    painter = painterResource(R.drawable.ic_design_token_figma),
+                    tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
+                    contentDescription = null
+                )
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = label,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    style = OudsTypographyKeyToken.entries.firstOrNull { it.name == label }?.value.orElse { OudsTypographyKeyToken.BodyStrongLarge.value }
                 )
             }
         }
