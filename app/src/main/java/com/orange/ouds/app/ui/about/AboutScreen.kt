@@ -24,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
@@ -46,4 +48,10 @@ enum class AboutMenuItem(val id: Int, @StringRes val labelRes: Int, @RawRes val 
     companion object {
         fun fromId(id: Int) = AboutMenuItem.entries.firstOrNull { it.id == id }
     }
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewAboutScreen() = OudsPreview {
+    AboutScreen {}
 }

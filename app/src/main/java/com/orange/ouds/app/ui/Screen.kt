@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui
 
 import android.os.Bundle
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalInspectionMode
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutMenuItem
@@ -21,13 +22,11 @@ import com.orange.ouds.app.ui.about.AboutNavigationKey
 import com.orange.ouds.app.ui.tokens.TokenCategory
 import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.foundation.UiString
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 
 /**
  * Returns the [Screen] corresponding to the given [route].
  */
+@Composable
 fun getScreen(route: String, args: Bundle?): Screen? {
     val matchElementRouteResult = Regex("^(.+)/\\{.+\\}$").find(route)
     return if (matchElementRouteResult != null) {
@@ -46,10 +45,19 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         }
     } else {
         // Simple route
-        val screens = Screen::class.sealedSubclasses.mapNotNull { it.objectInstance }
         screens.firstOrNull { screen -> screen.route == route }
     }
 }
+
+val screens: List<Screen>
+    @Composable
+    get() = if (LocalInspectionMode.current) {
+        // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
+        // See https://issuetracker.google.com/issues/240601093
+        listOf(Screen.Tokens, Screen.Components, Screen.About)
+    } else {
+        Screen::class.sealedSubclasses.mapNotNull { it.objectInstance }
+    }
 
 /**
  * Defines application common changing elements for each screen.
@@ -60,15 +68,7 @@ sealed class Screen(
     val title: UiString? = null,
 ) {
 
-    companion object {
-        private val _topBarActionClicked = MutableSharedFlow<TopBarAction>(extraBufferCapacity = 1)
-        val topBarActionClicked: Flow<TopBarAction> = _topBarActionClicked.asSharedFlow()
-    }
-
     fun isHome() = this in listOf(Tokens, Components, About)
-
-    @Composable
-    fun getTopBarActions(): List<@Composable () -> Unit> = getDefaultActions { action -> _topBarActionClicked.tryEmit(action) }
 
     // Bottom navigation screens
 

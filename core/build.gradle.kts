@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":foundation"))
     api(project(":theme-contract"))
     api(project(":theme-orange"))
 
