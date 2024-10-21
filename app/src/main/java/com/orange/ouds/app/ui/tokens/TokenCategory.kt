@@ -37,7 +37,6 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.dashedBorder
 import com.orange.ouds.theme.dottedBorder
-import com.orange.ouds.theme.outerBorder
 import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderStyleKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
@@ -147,18 +146,12 @@ sealed class TokenProperty(
         tokens = { OudsBorderWidthKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
-        fun Illustration(width: Dp, outside: Boolean = false) {
+        fun Illustration(width: Dp) {
             val borderColor = OudsColorKeyToken.OnSurface.value //TODO use ContentDefault token when available
             Box(
                 modifier = Modifier
                     .size(defaultIllustrationSize)
-                    .run {
-                        if (outside) {
-                            outerBorder(width = width, color = borderColor)
-                        } else {
-                            border(width = width, color = borderColor)
-                        }
-                    }
+                    .border(width = width, color = borderColor)
                     .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
             )
         }

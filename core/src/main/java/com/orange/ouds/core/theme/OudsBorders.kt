@@ -30,7 +30,8 @@ data class OudsBorders(
     val widthMedium: Dp,
     val widthThick: Dp,
     val widthThicker: Dp,
-    val widthOutsideFocus: Dp,
+    val widthFocus: Dp,
+    val widthFocusInset: Dp,
     val radiusNone: Dp,
     val radiusDefault: Dp,
     val radiusShort: Dp,
@@ -48,7 +49,8 @@ fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
     widthMedium = widthMedium.dp,
     widthThick = widthThick.dp,
     widthThicker = widthThicker.dp,
-    widthOutsideFocus = widthOutsideFocus.dp,
+    widthFocus = widthFocus.dp,
+    widthFocusInset = widthFocusInset.dp,
     radiusNone = radiusNone.dp,
     radiusDefault = radiusDefault.dp,
     radiusShort = radiusShort.dp,
@@ -68,7 +70,8 @@ fun OudsBorders.fromToken(token: OudsBorderWidthKeyToken): Dp {
         OudsBorderWidthKeyToken.Medium -> widthMedium
         OudsBorderWidthKeyToken.Thick -> widthThick
         OudsBorderWidthKeyToken.Thicker -> widthThicker
-        OudsBorderWidthKeyToken.OutsideFocus -> widthOutsideFocus
+        OudsBorderWidthKeyToken.Focus -> widthFocus
+        OudsBorderWidthKeyToken.FocusInset -> widthFocusInset
     }
 }
 

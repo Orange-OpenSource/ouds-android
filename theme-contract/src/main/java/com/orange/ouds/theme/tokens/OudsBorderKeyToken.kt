@@ -19,7 +19,8 @@ enum class OudsBorderWidthKeyToken {
     Medium,
     Thick,
     Thicker,
-    OutsideFocus
+    Focus,
+    FocusInset
 }
 
 enum class OudsBorderRadiusKeyToken {
