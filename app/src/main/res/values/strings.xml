@@ -49,9 +49,13 @@
     <string name="app_tokens_spacing_label">Spacing</string>
     <string name="app_tokens_spacing_description_text">Space refers to the measurements used to define the spacing between UI elements.</string>
 
-    <!-- Tokens: dimension/spacing -->
+    <!-- Tokens: dimension/size -->
     <string name="app_tokens_size_label">Size</string>
     <string name="app_tokens_size_description_text">Size refers to the specific measurements used to define the dimensions of UI elements within the design system.</string>
+    <string name="app_tokens_size_iconDecorative_label">Icon decorative</string>
+    <string name="app_tokens_size_iconWithLabel_label">Icon with label</string>
+    <string name="app_tokens_size_iconWithLabelTokenName_label">%1$s (%2$s)</string>
+
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label">Elevation</string>
