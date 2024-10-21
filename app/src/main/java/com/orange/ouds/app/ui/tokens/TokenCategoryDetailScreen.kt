@@ -159,6 +159,13 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
     is TokenProperty.SizeIconDecorative -> tokenProperty.Illustration(size = token.value as Dp)
     is TokenProperty.SizeIconWithLabel -> tokenProperty.Illustration(size = token.value as Dp, token.name)
+    is TokenProperty.SpacingColumnGap -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacingPaddingInline -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacingPaddingInset -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacingPaddingStack -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacingFixed -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacingRowGap -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacingScaled -> tokenProperty.Illustration(size = token.value as Dp)
     is TokenProperty.Typography -> Unit
 }
 

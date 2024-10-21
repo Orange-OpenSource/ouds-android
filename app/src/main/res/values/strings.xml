@@ -48,6 +48,13 @@
     <!-- Tokens: dimension/spacing -->
     <string name="app_tokens_spacing_label">Spacing</string>
     <string name="app_tokens_spacing_description_text">Space refers to the measurements used to define the spacing between UI elements.</string>
+    <string name="app_tokens_spacing_scaled_label">Scaled</string>
+    <string name="app_tokens_spacing_fixed_label">Fixed</string>
+    <string name="app_tokens_spacing_paddingInline_label">Padding inline</string>
+    <string name="app_tokens_spacing_paddingStack_label">Padding stack</string>
+    <string name="app_tokens_spacing_paddingInset_label">Padding inset</string>
+    <string name="app_tokens_spacing_columnGap_label">Column gap</string>
+    <string name="app_tokens_spacing_rowGap_label">Row gap</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_size_label">Size</string>
