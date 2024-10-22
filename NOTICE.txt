@@ -11,6 +11,7 @@ Any use or displaying shall constitute an infringement under intellectual proper
 app/src/main/res/drawable/ic_border.xml
 app/src/main/res/drawable/ic_component_atom.xml
 app/src/main/res/drawable/ic_design_token_figma.xml
+app/src/main/res/drawable/ic_design_token_figma_no_padding.xml
 app/src/main/res/drawable/ic_filter_effects.xml
 app/src/main/res/drawable/ic_info.xml
 app/src/main/res/drawable/ic_layers.xml
