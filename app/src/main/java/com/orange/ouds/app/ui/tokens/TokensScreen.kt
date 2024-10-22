@@ -31,7 +31,7 @@ import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 @Composable
 fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
     TokensScreen(
-        tokenCategories = tokenCategories,
+        tokenCategories = tokenCategories.filter { !it.subcategory },
         onTokenCategoryClick = onTokenCategoryClick
     )
 }
@@ -46,7 +46,7 @@ private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenCategoryCl
                 .padding(OudsSpacingFixedKeyToken.Medium.value),
             verticalArrangement = Arrangement.spacedBy(OudsSpacingFixedKeyToken.Medium.value)
         ) {
-            tokenCategories.filter { !it.subcategory }.forEach { token ->
+            tokenCategories.forEach { token ->
                 LargeCard(
                     title = stringResource(id = token.nameRes),
                     imageRes = token.imageRes,
