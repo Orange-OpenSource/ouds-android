@@ -12,6 +12,8 @@
 
 package com.orange.ouds.app.ui.tokens
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -55,6 +58,10 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                     descriptionRes = tokenCategory.descriptionRes,
                     imageRes = tokenCategory.imageRes
                 )
+
+                if (tokenCategory == TokenCategory.Grid) {
+                    GridIllustrations()
+                }
             }
 
             if (tokenCategory.subcategories.isNotEmpty()) {
@@ -177,6 +184,36 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 
+@Composable
+private fun GridIllustrations() {
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_column_margin),
+        contentDescription = null
+    )
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value)
+            .padding(top = OudsSpacingFixedKeyToken.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_min_width),
+        contentDescription = null
+    )
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value)
+            .padding(top = OudsSpacingFixedKeyToken.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_max_width),
+        contentDescription = null
+    )
+}
+
 @UiModePreviews.Default
 @Composable
 private fun PreviewTokenCategoryDetailScreen(
@@ -190,5 +227,6 @@ private class TokenCategoryDetailScreenPreviewParameterProvider : BasicPreviewPa
 private val previewParameterValues: List<TokenCategory>
     get() = listOf(
         TokenCategory.Opacity,
-        TokenCategory.Elevation
+        TokenCategory.Elevation,
+        TokenCategory.Grid
     )
