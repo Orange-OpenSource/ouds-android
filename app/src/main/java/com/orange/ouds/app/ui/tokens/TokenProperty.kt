@@ -68,47 +68,7 @@ sealed class TokenProperty(
     val tokens: @Composable () -> List<Token<Any>>
 ) {
     protected companion object {
-        val defaultIllustrationSize = 64.dp
-    }
-
-    data object Opacity : TokenProperty(
-        nameRes = null,
-        tokens = { OudsOpacityKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(opacity: Float) {
-            val squareColor = if (isSystemInDarkTheme()) Color.White else Color.Black
-            Box {
-                Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = null)
-                Box(
-                    modifier = Modifier
-                        .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)
-                        .size(48.dp)
-                        .background(color = squareColor.copy(alpha = opacity))
-                        .run {
-                            if (opacity <= 0f) {
-                                border(width = 1.dp, color = squareColor)
-                            } else this
-                        }
-                )
-            }
-        }
-    }
-
-    data object Elevation : TokenProperty(
-        nameRes = null,
-        tokens = { OudsElevationKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(elevation: Dp) {
-            Surface(shadowElevation = elevation) {
-                Box(
-                    modifier = Modifier
-                        .size(defaultIllustrationSize)
-                        .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
-                )
-            }
-        }
+        protected val defaultIllustrationSize = 64.dp
     }
 
     data object BorderRadius : TokenProperty(
@@ -125,21 +85,6 @@ sealed class TokenProperty(
                         color = OudsColorKeyToken.OnSurface.value,
                         shape = RoundedCornerShape(radius)
                     ) //TODO use ContentDefault token when available
-                    .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
-            )
-        }
-    }
-
-    data object BorderWidth : TokenProperty(
-        nameRes = R.string.app_tokens_border_width_label,
-        tokens = { OudsBorderWidthKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(width: Dp) {
-            Box(
-                modifier = Modifier
-                    .size(defaultIllustrationSize)
-                    .border(width = width, color = OudsColorKeyToken.OnSurface.value) //TODO use ContentDefault token when available
                     .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
             )
         }
@@ -164,6 +109,61 @@ sealed class TokenProperty(
                     .size(defaultIllustrationSize)
                     .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
             )
+        }
+    }
+
+    data object BorderWidth : TokenProperty(
+        nameRes = R.string.app_tokens_border_width_label,
+        tokens = { OudsBorderWidthKeyToken.entries.map { Token(it.name, it.value) } }
+    ) {
+        @Composable
+        fun Illustration(width: Dp) {
+            Box(
+                modifier = Modifier
+                    .size(defaultIllustrationSize)
+                    .border(width = width, color = OudsColorKeyToken.OnSurface.value) //TODO use ContentDefault token when available
+                    .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
+            )
+        }
+    }
+
+    data object Elevation : TokenProperty(
+        nameRes = null,
+        tokens = { OudsElevationKeyToken.entries.map { Token(it.name, it.value) } }
+    ) {
+        @Composable
+        fun Illustration(elevation: Dp) {
+            Surface(shadowElevation = elevation) {
+                Box(
+                    modifier = Modifier
+                        .size(defaultIllustrationSize)
+                        .background(color = OudsColorKeyToken.Surface.value), //TODO use BgDefaultSecondary token when available
+                )
+            }
+        }
+    }
+
+    data object Opacity : TokenProperty(
+        nameRes = null,
+        tokens = { OudsOpacityKeyToken.entries.map { Token(it.name, it.value) } }
+    ) {
+        @Composable
+        fun Illustration(opacity: Float) {
+            val squareColor = if (isSystemInDarkTheme()) Color.White else Color.Black
+            Box {
+                Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = null)
+                Box(
+                    modifier = Modifier
+                        .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)
+                        .size(48.dp)
+                        .background(color = squareColor.copy(alpha = opacity))
+                        .run {
+                            if (opacity <= 0f) {
+                                border(width = 1.dp, color = squareColor)
+                            } else this
+                        }
+                )
+            }
         }
     }
 
@@ -226,24 +226,20 @@ sealed class TokenProperty(
         fun Illustration(size: Dp) = SpacingIllustration(size = size, contentAlignment = Alignment.Center)
     }
 
+    data object SpacingFixed : TokenProperty(
+        nameRes = R.string.app_tokens_spacing_fixed_label,
+        tokens = { OudsSpacingFixedKeyToken.entries.map { Token(it.name, it.value) } }
+    ) {
+        @Composable
+        fun Illustration(size: Dp) = SpacingIllustration(size, contentAlignment = Alignment.Center)
+    }
+
     data object SpacingPaddingInline : TokenProperty(
         nameRes = R.string.app_tokens_spacing_paddingInline_label,
         tokens = { OudsSpacingPaddingInlineKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
         fun Illustration(size: Dp) = SpacingIllustration(size = size)
-    }
-
-    data object SpacingPaddingStack : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_paddingStack_label,
-        tokens = { OudsSpacingPaddingBlockKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-
-        @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(
-            size = size,
-            orientation = DimensionOrientation.Vertical
-        )
     }
 
     data object SpacingPaddingInset : TokenProperty(
@@ -274,12 +270,16 @@ sealed class TokenProperty(
         }
     }
 
-    data object SpacingFixed : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_fixed_label,
-        tokens = { OudsSpacingFixedKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpacingPaddingStack : TokenProperty(
+        nameRes = R.string.app_tokens_spacing_paddingStack_label,
+        tokens = { OudsSpacingPaddingBlockKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
+
         @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(size, contentAlignment = Alignment.Center)
+        fun Illustration(size: Dp) = SpacingIllustration(
+            size = size,
+            orientation = DimensionOrientation.Vertical
+        )
     }
 
     data object SpacingRowGap : TokenProperty(
