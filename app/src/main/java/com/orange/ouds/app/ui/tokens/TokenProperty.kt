@@ -66,7 +66,7 @@ sealed class TokenProperty(
     val tokens: @Composable () -> List<Token<Any>>
 ) {
     protected companion object {
-        val defaultIllustrationSize = 64.dp
+        protected val defaultIllustrationSize = 64.dp
     }
 
     data object BorderRadius : TokenProperty(
@@ -220,24 +220,20 @@ sealed class TokenProperty(
         fun Illustration(size: Dp) = SpacingIllustration(size = size, contentAlignment = Alignment.Center)
     }
 
+    data object SpacingFixed : TokenProperty(
+        nameRes = R.string.app_tokens_spacing_fixed_label,
+        tokens = { OudsSpacingFixedKeyToken.entries.map { Token(it.name, it.value) } }
+    ) {
+        @Composable
+        fun Illustration(size: Dp) = SpacingIllustration(size, contentAlignment = Alignment.Center)
+    }
+
     data object SpacingPaddingInline : TokenProperty(
         nameRes = R.string.app_tokens_spacing_paddingInline_label,
         tokens = { OudsSpacingPaddingInlineKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
         fun Illustration(size: Dp) = SpacingIllustration(size = size)
-    }
-
-    data object SpacingPaddingStack : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_paddingStack_label,
-        tokens = { OudsSpacingPaddingBlockKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-
-        @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(
-            size = size,
-            orientation = DimensionOrientation.Vertical
-        )
     }
 
     data object SpacingPaddingInset : TokenProperty(
@@ -268,12 +264,16 @@ sealed class TokenProperty(
         }
     }
 
-    data object SpacingFixed : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_fixed_label,
-        tokens = { OudsSpacingFixedKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpacingPaddingStack : TokenProperty(
+        nameRes = R.string.app_tokens_spacing_paddingStack_label,
+        tokens = { OudsSpacingPaddingBlockKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
+
         @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(size, contentAlignment = Alignment.Center)
+        fun Illustration(size: Dp) = SpacingIllustration(
+            size = size,
+            orientation = DimensionOrientation.Vertical
+        )
     }
 
     data object SpacingRowGap : TokenProperty(
