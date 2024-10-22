@@ -75,6 +75,13 @@ sealed class TokenCategory(
         listOf(TokenProperty.Elevation)
     )
 
+    data object Grid : TokenCategory(
+        R.string.app_tokens_grid_label,
+        R.drawable.ic_menu_grid,
+        R.string.app_tokens_grid_description_text,
+        listOf(TokenProperty.Grid)
+    )
+
     data object Opacity : TokenCategory(
         R.string.app_tokens_opacity_label,
         R.drawable.ic_filter_effects,
