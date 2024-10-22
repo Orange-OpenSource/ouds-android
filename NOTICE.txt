@@ -17,6 +17,7 @@ app/src/main/res/drawable/ic_dimension.xml
 app/src/main/res/drawable/ic_filter_effects.xml
 app/src/main/res/drawable/ic_info.xml
 app/src/main/res/drawable/ic_layers.xml
+app/src/main/res/drawable/ic_menu_grid.xml
 app/src/main/res/drawable/ic_solar_palette.xml
 app/src/main/res/drawable/ic_typography.xml
 app/src/main/res/drawable/ic_ui_dark_mode.xml
