@@ -109,7 +109,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                 )
                             }
                         } else {
-                            val isTypographyProperty = tokenProperty is TokenProperty.Typography
+                            val noIllustrationProperty = tokenProperty in listOf(TokenProperty.Typography, TokenProperty.Grid)
 
                             Row(
                                 modifier = Modifier
@@ -121,14 +121,14 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                 Column(
                                     modifier = Modifier
                                         .weight(1f)
-                                        .padding(start = if (isTypographyProperty) OudsSpaceKeyToken.Fixed.None.value else OudsSpaceKeyToken.Fixed.Medium.value)
+                                        .padding(start = if (noIllustrationProperty) OudsSpaceKeyToken.Fixed.None.value else OudsSpaceKeyToken.Fixed.Medium.value)
                                 ) {
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
                                         text = token.name,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
-                                        style = if (isTypographyProperty) {
+                                        style = if (tokenProperty == TokenProperty.Typography) {
                                             token.value as TextStyle
                                         } else {
                                             OudsTypographyKeyToken.BodyStrongLarge.value
@@ -169,7 +169,7 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.SpacePaddingInset -> tokenProperty.Illustration(size = token.value as Dp)
     is TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical)
     is TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
-    is TokenProperty.Typography -> Unit
+    is TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 
 @UiModePreviews.Default

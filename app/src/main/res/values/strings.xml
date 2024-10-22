@@ -67,6 +67,10 @@
     <string name="app_tokens_elevation_label">Elevation</string>
     <string name="app_tokens_elevation_description_text">Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.</string>
 
+    <!-- Tokens: grid -->
+    <string name="app_tokens_grid_label">Grid</string>
+    <string name="app_tokens_grid_description_text">Grids are used to position content and create consistent page layouts.</string>
+
     <!-- Tokens: opacity -->
     <string name="app_tokens_opacity_label">Opacity</string>
     <string name="app_tokens_opacity_description_text">Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.</string>
