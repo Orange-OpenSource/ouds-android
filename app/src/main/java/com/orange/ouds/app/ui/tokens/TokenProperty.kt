@@ -115,7 +115,7 @@ sealed class TokenProperty(
             }
         }
     }
-
+    
     data object SizeIconDecorative : TokenProperty(
         nameRes = R.string.app_tokens_dimension_size_iconDecorative_label,
         tokens = { OudsSizeIconDecorativeKeyToken.entries.map { Token(it.name, it.value) } }
