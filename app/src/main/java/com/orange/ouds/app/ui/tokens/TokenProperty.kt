@@ -34,6 +34,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -239,7 +240,30 @@ sealed class TokenProperty(
         tokens = { OudsSpacingPaddingInlineKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(size = size)
+        fun Illustration(size: Dp, tokenName: String) = when {
+            tokenName.contains("WithIcon") -> {
+                Row(
+                    modifier = Modifier
+                        .size(defaultIllustrationSize)
+                        .background(color = OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .width(width = size)
+                            .background(Color(0xFF26B2FF)) //TODO use AlwaysInfo token when available
+                    )
+                    Image(
+                        modifier = Modifier.padding(horizontal = 1.dp),
+                        painter = painterResource(R.drawable.ic_design_token_figma_no_padding),
+                        contentDescription = null,
+                        contentScale = ContentScale.None
+                    )
+                }
+            }
+            else -> SpacingIllustration(size = size)
+        }
     }
 
     data object SpacingPaddingInset : TokenProperty(
