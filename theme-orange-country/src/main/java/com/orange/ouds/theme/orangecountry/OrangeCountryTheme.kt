@@ -18,7 +18,7 @@ import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsBgColorSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import kotlinx.parcelize.Parcelize
 
@@ -30,7 +30,7 @@ class OrangeCountryTheme : OrangeTheme() {
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OudsColorSemanticTokens(
-            backgroundColorTokens = OudsBgColorSemanticTokens(
+            backgroundColorTokens = OudsColorBgSemanticTokens(
                 bgBrandPrimaryLight = Color(0xFF34D349),
                 bgBrandPrimaryDark = Color(0xFF069D1A)
             )
