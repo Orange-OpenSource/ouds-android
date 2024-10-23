@@ -40,15 +40,15 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.dashedBorder
 import com.orange.ouds.theme.dottedBorder
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 private val defaultIllustrationSize = 64.dp
 
 @Composable
 fun IllustrationBox(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = OudsColorKeyToken.OnSurface.value,
+    backgroundColor: Color = OudsColorKeyToken.BgEmphasized.value,
     contentAlignment: Alignment = Alignment.TopStart,
     content: @Composable BoxScope.() -> Unit = { }
 ) {
@@ -68,7 +68,7 @@ fun BorderIllustrationBox(
     shape: Shape = RectangleShape,
     style: OudsBorderStyle = OudsBorderStyle.Solid
 ) {
-    val borderColor = OudsColorKeyToken.OnSurface.value //TODO use ContentDefault token when available
+    val borderColor = OudsColorKeyToken.ContentDefault.value
     val modifier = when (style) {
         OudsBorderStyle.None -> Modifier
         OudsBorderStyle.Solid -> Modifier.border(width = width, color = borderColor, shape = shape)
@@ -95,7 +95,7 @@ fun SpaceIllustrationBox(
     }
     IllustrationBox(contentAlignment = contentAlignment) {
         Box(
-            modifier = dimensionBoxModifier.background(Color(0xFF26B2FF)) //TODO use AlwaysInfo token when available
+            modifier = dimensionBoxModifier.background(color = OudsColorKeyToken.AlwaysInfo.value)
         )
     }
 }
@@ -114,14 +114,14 @@ fun SpacePaddingInlineWithImageIllustrationRow(
     Row(
         modifier = modifier
             .size(defaultIllustrationSize)
-            .background(color = OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+            .background(color = OudsColorKeyToken.BgEmphasized.value),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
                 .fillMaxHeight()
                 .width(width = spaceSize)
-                .background(Color(0xFF26B2FF)) //TODO use AlwaysInfo token when available
+                .background(color = OudsColorKeyToken.AlwaysInfo.value)
         )
         Image(
             modifier = imageModifier,
@@ -138,7 +138,7 @@ fun GridIllustrations() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value)
-            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+            .background(OudsColorKeyToken.BgEmphasized.value),
         painter = painterResource(id = R.drawable.il_tokens_grid_column_margin),
         contentDescription = null
     )
@@ -147,7 +147,7 @@ fun GridIllustrations() {
             .fillMaxWidth()
             .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value)
             .padding(top = OudsSpaceFixedKeyToken.Medium.value)
-            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+            .background(OudsColorKeyToken.BgEmphasized.value),
         painter = painterResource(id = R.drawable.il_tokens_grid_min_width),
         contentDescription = null
     )
@@ -156,7 +156,7 @@ fun GridIllustrations() {
             .fillMaxWidth()
             .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value)
             .padding(top = OudsSpaceFixedKeyToken.Medium.value)
-            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+            .background(OudsColorKeyToken.BgEmphasized.value),
         painter = painterResource(id = R.drawable.il_tokens_grid_max_width),
         contentDescription = null
     )
