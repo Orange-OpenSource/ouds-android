@@ -13,16 +13,16 @@
 package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 open class OudsButtonTokens(
-    val containerColor: OudsColorKeyToken = OudsColorKeyToken.Primary,
-    val contentColor: OudsColorKeyToken = OudsColorKeyToken.OnPrimary,
-    val disabledContainerColor: OudsColorKeyToken = OudsColorKeyToken.Secondary,
-    val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.OnSecondary,
+    val containerColor: OudsColorKeyToken = OudsColorKeyToken.BgBrandPrimary,
+    val contentColor: OudsColorKeyToken = OudsColorKeyToken.ContentBrandPrimary,
+    val disabledContainerColor: OudsColorKeyToken = OudsColorKeyToken.ActionDisabled,
+    val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.ContentDisabled,
     val cornerRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     val defaultElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val pressedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,

@@ -34,7 +34,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 @Composable
 fun DetailScreenHeader(
@@ -44,12 +44,12 @@ fun DetailScreenHeader(
     Column {
         Image(
             painter = painterResource(imageRes),
-            colorFilter = ColorFilter.tint(OudsColorKeyToken.InverseOnSurface.value), //TODO use OnBgEmphasized token when available
+            colorFilter = ColorFilter.tint(OudsColorKeyToken.ContentDefaultOnBgEmphasized.value),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(186.dp)
-                .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+                .background(OudsColorKeyToken.BgEmphasized.value),
             contentScale = ContentScale.None
         )
 
@@ -68,7 +68,7 @@ private fun DetailScreenDescription(
     Text(
         modifier = modifier,
         text = stringResource(descriptionRes),
-        color = OudsColorKeyToken.OnSurface.value, //TODO use ContentDefault token when available
+        color = OudsColorKeyToken.ContentDefault.value,
         style = OudsTypographyKeyToken.BodyDefaultLarge.value
     )
 }
