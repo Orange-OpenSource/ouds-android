@@ -38,7 +38,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsBorderStyle
-import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
@@ -46,7 +46,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: (Long) -> Unit) {
 
     Screen {
-        LazyColumn(contentPadding = PaddingValues(bottom = OudsSpacingFixedKeyToken.Medium.value)) {
+        LazyColumn(contentPadding = PaddingValues(bottom = OudsSpaceFixedKeyToken.Medium.value)) {
             item {
                 DetailScreenHeader(
                     descriptionRes = tokenCategory.descriptionRes,
@@ -59,13 +59,13 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = OudsSpacingFixedKeyToken.Medium.value)
+                            .padding(top = OudsSpaceFixedKeyToken.Medium.value)
                             .clickable { onSubcategoryClick(subcategory.id) }
                     ) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(OudsSpacingFixedKeyToken.Medium.value),
+                                .padding(OudsSpaceFixedKeyToken.Medium.value),
                             text = stringResource(id = subcategory.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -75,13 +75,13 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                 }
             } else {
                 items(tokenCategory.properties) { tokenProperty ->
-                    Spacer(modifier = Modifier.height(OudsSpacingFixedKeyToken.Medium.value))
+                    Spacer(modifier = Modifier.height(OudsSpaceFixedKeyToken.Medium.value))
 
                     tokenProperty.nameRes?.let {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(OudsSpacingFixedKeyToken.Medium.value),
+                                .padding(OudsSpaceFixedKeyToken.Medium.value),
                             text = stringResource(id = tokenProperty.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -94,7 +94,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                             Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value, vertical = OudsSpacingFixedKeyToken.Shorter.value)
+                                    .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value, vertical = OudsSpaceFixedKeyToken.Shorter.value)
                             ) {
                                 TokenIllustration(tokenProperty = tokenProperty, token = token)
                                 Text(
@@ -112,14 +112,14 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = OudsSpacingFixedKeyToken.Medium.value, vertical = OudsSpacingFixedKeyToken.Shorter.value)
+                                    .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value, vertical = OudsSpaceFixedKeyToken.Shorter.value)
                             ) {
                                 TokenIllustration(tokenProperty = tokenProperty, token = token)
 
                                 Column(
                                     modifier = Modifier
                                         .weight(1f)
-                                        .padding(start = if (isTypographyProperty) OudsSpacingFixedKeyToken.None.value else OudsSpacingFixedKeyToken.Medium.value)
+                                        .padding(start = if (isTypographyProperty) OudsSpaceFixedKeyToken.None.value else OudsSpaceFixedKeyToken.Medium.value)
                                 ) {
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
@@ -159,13 +159,13 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
     is TokenProperty.SizeIconDecorative -> tokenProperty.Illustration(size = token.value as Dp)
     is TokenProperty.SizeIconWithLabel -> tokenProperty.Illustration(size = token.value as Dp, token.name)
-    is TokenProperty.SpacingColumnGap -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpacingPaddingInline -> tokenProperty.Illustration(size = token.value as Dp, token.name)
-    is TokenProperty.SpacingPaddingInset -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpacingPaddingStack -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpacingFixed -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpacingRowGap -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpacingScaled -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpaceColumnGap -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacePaddingInline -> tokenProperty.Illustration(size = token.value as Dp, token.name)
+    is TokenProperty.SpacePaddingInset -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacePaddingStack -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpaceFixed -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpaceRowGap -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpaceScaled -> tokenProperty.Illustration(size = token.value as Dp)
     is TokenProperty.Typography -> Unit
 }
 

@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-enum class OudsSpacingFixedKeyToken {
+enum class OudsSpaceFixedKeyToken {
     None,
     Smash,
     Shortest,
@@ -27,7 +27,7 @@ enum class OudsSpacingFixedKeyToken {
     Jumbo
 }
 
-enum class OudsSpacingScaledKeyToken {
+enum class OudsSpaceScaledKeyToken {
     None,
     Smash,
     Shortest,
@@ -40,7 +40,7 @@ enum class OudsSpacingScaledKeyToken {
     Spacious
 }
 
-enum class OudsSpacingPaddingInlineKeyToken {
+enum class OudsSpacePaddingInlineKeyToken {
     None,
     Shorter,
     Short,
@@ -66,7 +66,7 @@ enum class OudsSpacingPaddingInlineKeyToken {
     WithArrowTallest,
 }
 
-enum class OudsSpacingPaddingBlockKeyToken {
+enum class OudsSpacePaddingBlockKeyToken {
     None,
     Shorter,
     Short,
@@ -83,7 +83,7 @@ enum class OudsSpacingPaddingBlockKeyToken {
     WithIconTaller,
 }
 
-enum class OudsSpacingInsetKeyToken {
+enum class OudsSpaceInsetKeyToken {
     None,
     Smash,
     Shortest,
@@ -96,7 +96,7 @@ enum class OudsSpacingInsetKeyToken {
     Spacious,
 }
 
-enum class OudsSpacingColumnGapKeyToken {
+enum class OudsSpaceColumnGapKeyToken {
     None,
     Shorter,
     Short,
@@ -117,7 +117,7 @@ enum class OudsSpacingColumnGapKeyToken {
     WithArrowTall,
 }
 
-enum class OudsSpacingRowGapKeyToken {
+enum class OudsSpaceRowGapKeyToken {
     None,
     Shortest,
     Shorter,

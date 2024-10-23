@@ -44,24 +44,24 @@ sealed class TokenCategory(
 
     data object Dimension : TokenCategory(
         R.string.app_tokens_dimension_label,
-        R.drawable.ic_spacing,
+        R.drawable.ic_dimension,
         R.string.app_tokens_dimension_description_text,
-        subcategories = listOf(Spacing, Size)
+        subcategories = listOf(Space, Size)
     ) {
-        data object Spacing : TokenCategory(
-            R.string.app_tokens_spacing_label,
-            R.drawable.ic_spacing,
-            R.string.app_tokens_spacing_description_text,
+        data object Space : TokenCategory(
+            R.string.app_tokens_space_label,
+            R.drawable.ic_dimension,
+            R.string.app_tokens_space_description_text,
             listOf(
-                TokenProperty.SpacingScaled, TokenProperty.SpacingFixed, TokenProperty.SpacingPaddingInline, TokenProperty.SpacingPaddingStack,
-                TokenProperty.SpacingPaddingInset, TokenProperty.SpacingColumnGap, TokenProperty.SpacingRowGap
+                TokenProperty.SpaceScaled, TokenProperty.SpaceFixed, TokenProperty.SpacePaddingInline, TokenProperty.SpacePaddingStack,
+                TokenProperty.SpacePaddingInset, TokenProperty.SpaceColumnGap, TokenProperty.SpaceRowGap
             ),
             subcategory = true
         )
 
         data object Size : TokenCategory(
             R.string.app_tokens_size_label,
-            R.drawable.ic_spacing,
+            R.drawable.ic_dimension,
             R.string.app_tokens_size_description_text,
             listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithLabel),
             subcategory = true

@@ -54,13 +54,13 @@ import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeIconDecorativeKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeIconWithTextKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingColumnGapKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingInsetKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingPaddingBlockKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingPaddingInlineKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingRowGapKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingScaledKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceColumnGapKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceInsetKeyToken
+import com.orange.ouds.theme.tokens.OudsSpacePaddingBlockKeyToken
+import com.orange.ouds.theme.tokens.OudsSpacePaddingInlineKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceRowGapKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceScaledKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
@@ -155,7 +155,7 @@ sealed class TokenProperty(
                 Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = null)
                 Box(
                     modifier = Modifier
-                        .padding(top = OudsSpacingFixedKeyToken.Medium.value, start = OudsSpacingFixedKeyToken.Medium.value)
+                        .padding(top = OudsSpaceFixedKeyToken.Medium.value, start = OudsSpaceFixedKeyToken.Medium.value)
                         .size(48.dp)
                         .background(color = squareColor.copy(alpha = opacity))
                         .run {
@@ -199,7 +199,7 @@ sealed class TokenProperty(
             val label = tokenName.substringBefore("Size")
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(OudsSpacingFixedKeyToken.Shorter.value),
+                horizontalArrangement = Arrangement.spacedBy(OudsSpaceFixedKeyToken.Shorter.value),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
@@ -219,25 +219,25 @@ sealed class TokenProperty(
         }
     }
 
-    data object SpacingColumnGap : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_columnGap_label,
-        tokens = { OudsSpacingColumnGapKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpaceColumnGap : TokenProperty(
+        nameRes = R.string.app_tokens_space_columnGap_label,
+        tokens = { OudsSpaceColumnGapKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(size = size, contentAlignment = Alignment.Center)
+        fun Illustration(size: Dp) = SpaceIllustration(size = size, contentAlignment = Alignment.Center)
     }
 
-    data object SpacingFixed : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_fixed_label,
-        tokens = { OudsSpacingFixedKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpaceFixed : TokenProperty(
+        nameRes = R.string.app_tokens_space_fixed_label,
+        tokens = { OudsSpaceFixedKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(size, contentAlignment = Alignment.Center)
+        fun Illustration(size: Dp) = SpaceIllustration(size, contentAlignment = Alignment.Center)
     }
 
-    data object SpacingPaddingInline : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_paddingInline_label,
-        tokens = { OudsSpacingPaddingInlineKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpacePaddingInline : TokenProperty(
+        nameRes = R.string.app_tokens_space_paddingInline_label,
+        tokens = { OudsSpacePaddingInlineKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
         fun Illustration(size: Dp, tokenName: String) = when {
@@ -262,13 +262,13 @@ sealed class TokenProperty(
                     )
                 }
             }
-            else -> SpacingIllustration(size = size)
+            else -> SpaceIllustration(size = size)
         }
     }
 
-    data object SpacingPaddingInset : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_paddingInset_label,
-        tokens = { OudsSpacingInsetKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpacePaddingInset : TokenProperty(
+        nameRes = R.string.app_tokens_space_paddingInset_label,
+        tokens = { OudsSpaceInsetKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
 
         @Composable
@@ -294,43 +294,43 @@ sealed class TokenProperty(
         }
     }
 
-    data object SpacingPaddingStack : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_paddingStack_label,
-        tokens = { OudsSpacingPaddingBlockKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpacePaddingStack : TokenProperty(
+        nameRes = R.string.app_tokens_space_paddingStack_label,
+        tokens = { OudsSpacePaddingBlockKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
 
         @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(
+        fun Illustration(size: Dp) = SpaceIllustration(
             size = size,
             orientation = DimensionOrientation.Vertical
         )
     }
 
-    data object SpacingRowGap : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_rowGap_label,
-        tokens = { OudsSpacingRowGapKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpaceRowGap : TokenProperty(
+        nameRes = R.string.app_tokens_space_rowGap_label,
+        tokens = { OudsSpaceRowGapKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
 
         @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(
+        fun Illustration(size: Dp) = SpaceIllustration(
             size = size,
             orientation = DimensionOrientation.Vertical,
             contentAlignment = Alignment.Center
         )
     }
 
-    data object SpacingScaled : TokenProperty(
-        nameRes = R.string.app_tokens_spacing_scaled_label,
-        tokens = { OudsSpacingScaledKeyToken.entries.map { Token(it.name, it.value) } }
+    data object SpaceScaled : TokenProperty(
+        nameRes = R.string.app_tokens_space_scaled_label,
+        tokens = { OudsSpaceScaledKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
-        fun Illustration(size: Dp) = SpacingIllustration(size = size, contentAlignment = Alignment.Center)
+        fun Illustration(size: Dp) = SpaceIllustration(size = size, contentAlignment = Alignment.Center)
     }
 
     data object Typography : TokenProperty(nameRes = null, tokens = { OudsTypographyKeyToken.entries.map { Token(it.name, it.value) } })
 
     @Composable
-    protected fun SpacingIllustration(
+    protected fun SpaceIllustration(
         size: Dp,
         orientation: DimensionOrientation = DimensionOrientation.Horizontal,
         contentAlignment: Alignment = Alignment.TopStart
