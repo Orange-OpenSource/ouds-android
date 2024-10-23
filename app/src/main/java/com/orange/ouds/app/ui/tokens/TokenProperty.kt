@@ -45,6 +45,7 @@ import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderStyleKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
@@ -58,7 +59,6 @@ import com.orange.ouds.theme.tokens.OudsSpacePaddingInlineKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceRowGapKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceScaledKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 sealed class TokenProperty(
     @StringRes val nameRes: Int?,
@@ -86,7 +86,7 @@ sealed class TokenProperty(
         @Composable
         fun Illustration(elevation: Dp) {
             Surface(shadowElevation = elevation) {
-                IllustrationBox(backgroundColor = OudsColorKeyToken.Surface.value) //TODO use BgDefaultSecondary token when available
+                IllustrationBox(backgroundColor = OudsColorKeyToken.BgSecondary.value)
             }
         }
     }
@@ -115,7 +115,7 @@ sealed class TokenProperty(
             }
         }
     }
-    
+
     data object SizeIconDecorative : TokenProperty(
         nameRes = R.string.app_tokens_dimension_size_iconDecorative_label,
         tokens = { OudsSizeIconDecorativeKeyToken.entries.map { Token(it.name, it.value) } }

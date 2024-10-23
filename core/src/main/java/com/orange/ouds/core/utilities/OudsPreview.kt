@@ -17,6 +17,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.value
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
@@ -27,6 +29,6 @@ import com.orange.ouds.core.theme.OudsTheme
 @Composable
 fun OudsPreview(darkThemeEnabled: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     OudsTheme(themeContract = BuildConfig.PREVIEW_THEME, darkThemeEnabled) {
-        Surface(color = OudsTheme.colorScheme.background, content = content) // Add a surface to be able to see components
+        Surface(color = OudsColorKeyToken.BgPrimary.value, content = content) // Add a surface to be able to see components
     }
 }
