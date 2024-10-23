@@ -37,7 +37,6 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
-
 @Composable
 fun TopBar(
     topBarState: TopBarState,
