@@ -163,7 +163,7 @@ sealed class TokenProperty(
     }
 
     data object SizeIconDecorative : TokenProperty(
-        nameRes = R.string.app_tokens_size_iconDecorative_label,
+        nameRes = R.string.app_tokens_dimension_size_iconDecorative_label,
         tokens = { OudsSizeIconDecorativeKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
@@ -185,7 +185,7 @@ sealed class TokenProperty(
     }
 
     data object SizeIconWithLabel : TokenProperty(
-        nameRes = R.string.app_tokens_size_iconWithLabel_label,
+        nameRes = R.string.app_tokens_dimension_size_iconWithLabel_label,
         tokens = { OudsSizeIconWithTextKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
@@ -214,7 +214,7 @@ sealed class TokenProperty(
     }
 
     data object SpaceColumnGap : TokenProperty(
-        nameRes = R.string.app_tokens_space_columnGap_label,
+        nameRes = R.string.app_tokens_dimension_space_columnGap_label,
         tokens = { OudsSpaceColumnGapKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
@@ -222,7 +222,7 @@ sealed class TokenProperty(
     }
 
     data object SpaceFixed : TokenProperty(
-        nameRes = R.string.app_tokens_space_fixed_label,
+        nameRes = R.string.app_tokens_dimension_space_fixed_label,
         tokens = { OudsSpaceFixedKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
@@ -230,7 +230,7 @@ sealed class TokenProperty(
     }
 
     data object SpacePaddingInline : TokenProperty(
-        nameRes = R.string.app_tokens_space_paddingInline_label,
+        nameRes = R.string.app_tokens_dimension_space_paddingInline_label,
         tokens = { OudsSpacePaddingInlineKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
@@ -261,7 +261,7 @@ sealed class TokenProperty(
     }
 
     data object SpacePaddingInset : TokenProperty(
-        nameRes = R.string.app_tokens_space_paddingInset_label,
+        nameRes = R.string.app_tokens_dimension_space_paddingInset_label,
         tokens = { OudsSpaceInsetKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
 
@@ -289,7 +289,7 @@ sealed class TokenProperty(
     }
 
     data object SpacePaddingStack : TokenProperty(
-        nameRes = R.string.app_tokens_space_paddingStack_label,
+        nameRes = R.string.app_tokens_dimension_space_paddingStack_label,
         tokens = { OudsSpacePaddingBlockKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
 
@@ -301,7 +301,7 @@ sealed class TokenProperty(
     }
 
     data object SpaceRowGap : TokenProperty(
-        nameRes = R.string.app_tokens_space_rowGap_label,
+        nameRes = R.string.app_tokens_dimension_space_rowGap_label,
         tokens = { OudsSpaceRowGapKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
 
@@ -314,7 +314,7 @@ sealed class TokenProperty(
     }
 
     data object SpaceScaled : TokenProperty(
-        nameRes = R.string.app_tokens_space_scaled_label,
+        nameRes = R.string.app_tokens_dimension_space_scaled_label,
         tokens = { OudsSpaceScaledKeyToken.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable
