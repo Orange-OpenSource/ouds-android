@@ -49,9 +49,9 @@ sealed class TokenCategory(
         subcategories = listOf(Space, Size)
     ) {
         data object Space : TokenCategory(
-            R.string.app_tokens_space_label,
+            R.string.app_tokens_dimension_space_label,
             R.drawable.ic_dimension,
-            R.string.app_tokens_space_description_text,
+            R.string.app_tokens_dimension_space_description_text,
             listOf(
                 TokenProperty.SpaceScaled, TokenProperty.SpaceFixed, TokenProperty.SpacePaddingInline, TokenProperty.SpacePaddingStack,
                 TokenProperty.SpacePaddingInset, TokenProperty.SpaceColumnGap, TokenProperty.SpaceRowGap
@@ -60,9 +60,9 @@ sealed class TokenCategory(
         )
 
         data object Size : TokenCategory(
-            R.string.app_tokens_size_label,
+            R.string.app_tokens_dimension_size_label,
             R.drawable.ic_dimension,
-            R.string.app_tokens_size_description_text,
+            R.string.app_tokens_dimension_size_description_text,
             listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithLabel),
             subcategory = true
         )
