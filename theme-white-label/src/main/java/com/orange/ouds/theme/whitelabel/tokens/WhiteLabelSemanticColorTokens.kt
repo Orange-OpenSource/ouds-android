@@ -13,12 +13,12 @@
 package com.orange.ouds.theme.whitelabel.tokens
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.tokens.semantic.OudsBgColorSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 val whiteLabelSemanticColorTokens = with(WhiteLabelRawColorTokens) {
     OudsColorSemanticTokens(
-        backgroundColorTokens = OudsBgColorSemanticTokens(
+        backgroundColorTokens = OudsColorBgSemanticTokens(
             bgBrandPrimaryLight = Color(0xFF34D349),
             bgBrandPrimaryDark = Color(0xFF069D1A),
             bgSecondaryLight = secondary40,
