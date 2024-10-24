@@ -26,31 +26,31 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
 
 @Composable
-fun TokensScreen(onTokenClick: (Long) -> Unit) {
+fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
     TokensScreen(
-        tokenCategories = tokenCategories,
-        onTokenClick = onTokenClick
+        tokenCategories = tokenCategories.filter { !it.subcategory },
+        onTokenCategoryClick = onTokenCategoryClick
     )
 }
 
 @Composable
-private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenClick: (Long) -> Unit) {
+private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenCategoryClick: (Long) -> Unit) {
     Screen {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(OudsSpacingFixedKeyToken.Medium.value),
-            verticalArrangement = Arrangement.spacedBy(OudsSpacingFixedKeyToken.Medium.value)
+                .padding(OudsSpaceFixedKeyToken.Medium.value),
+            verticalArrangement = Arrangement.spacedBy(OudsSpaceFixedKeyToken.Medium.value)
         ) {
             tokenCategories.forEach { token ->
                 LargeCard(
                     title = stringResource(id = token.nameRes),
                     imageRes = token.imageRes,
-                    onClick = { onTokenClick(token.id) }
+                    onClick = { onTokenCategoryClick(token.id) }
                 )
             }
         }

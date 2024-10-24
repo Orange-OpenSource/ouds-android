@@ -16,13 +16,13 @@ import android.os.Parcelable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
-import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
 interface OudsThemeContract : Parcelable {
 
@@ -34,7 +34,8 @@ interface OudsThemeContract : Parcelable {
     /**
      * Color semantic tokens values used in the theme
      */
-    val colorTokens: OudsColorTokens
+    val colorTokens: OudsColorSemanticTokens
+        get() = OudsColorSemanticTokens()
 
     /**
      * Border semantic tokens values used in the theme
@@ -80,10 +81,10 @@ interface OudsThemeContract : Parcelable {
         get() = OudsSizeSemanticTokens()
 
     /**
-     * Spacing semantic tokens values used in the theme
+     * Space semantic tokens values used in the theme
      */
-    val spacingTokens: OudsSpacingSemanticTokens
-        get() = OudsSpacingSemanticTokens()
+    val spaceTokens: OudsSpaceSemanticTokens
+        get() = OudsSpaceSemanticTokens()
 
     /**
      * Customization of the OUDS components if needed

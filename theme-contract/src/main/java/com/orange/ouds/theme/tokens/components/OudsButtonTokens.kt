@@ -13,16 +13,18 @@
 package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
+import com.orange.ouds.theme.tokens.OudsColorActionKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
+import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 open class OudsButtonTokens(
-    val containerColor: OudsColorKeyToken = OudsColorKeyToken.Primary,
-    val contentColor: OudsColorKeyToken = OudsColorKeyToken.OnPrimary,
-    val disabledContainerColor: OudsColorKeyToken = OudsColorKeyToken.Secondary,
-    val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.OnSecondary,
+    val containerColor: OudsColorBackgroundKeyToken = OudsColorBackgroundKeyToken.BrandPrimary,
+    val contentColor: OudsColorContentKeyToken = OudsColorContentKeyToken.BrandPrimary,
+    val disabledContainerColor: OudsColorActionKeyToken = OudsColorActionKeyToken.Disabled,
+    val disabledContentColor: OudsColorContentKeyToken = OudsColorContentKeyToken.Disabled,
     val cornerRadius: OudsBorderRadiusKeyToken = OudsBorderRadiusKeyToken.None,
     val defaultElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val pressedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
@@ -30,6 +32,6 @@ open class OudsButtonTokens(
     val hoveredElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val disabledElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val labelStyle: OudsTypographyKeyToken = OudsTypographyKeyToken.BodyStrongLarge,
-    val verticalContentPadding: OudsSpacingFixedKeyToken = OudsSpacingFixedKeyToken.Smash,
-    val horizontalContentPadding: OudsSpacingFixedKeyToken = OudsSpacingFixedKeyToken.Tall
+    val verticalContentPadding: OudsSpaceFixedKeyToken = OudsSpaceFixedKeyToken.Smash,
+    val horizontalContentPadding: OudsSpaceFixedKeyToken = OudsSpaceFixedKeyToken.Tall
 )

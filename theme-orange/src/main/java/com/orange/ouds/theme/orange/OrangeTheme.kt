@@ -13,8 +13,6 @@
 package com.orange.ouds.theme.orange
 
 import com.orange.ouds.theme.OudsThemeContract
-import com.orange.ouds.theme.orange.tokens.orangeSemanticColorTokens
-import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
 import kotlinx.parcelize.Parcelize
 
 const val ORANGE_THEME_NAME = "Orange"
@@ -25,6 +23,4 @@ open class OrangeTheme : OudsThemeContract {
     override val name: String
         get() = ORANGE_THEME_NAME
 
-    override val colorTokens: OudsColorTokens
-        get() = orangeSemanticColorTokens
 }
