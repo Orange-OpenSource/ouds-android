@@ -269,3 +269,33 @@ fun SpaceIllustrationBox(
 enum class SpaceOrientation {
     Horizontal, Vertical
 }
+
+@Composable
+fun GridIllustrations() {
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_column_margin),
+        contentDescription = null
+    )
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
+            .padding(top = OudsSpaceKeyToken.Fixed.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_min_width),
+        contentDescription = null
+    )
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
+            .padding(top = OudsSpaceKeyToken.Fixed.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_max_width),
+        contentDescription = null
+    )
+}
