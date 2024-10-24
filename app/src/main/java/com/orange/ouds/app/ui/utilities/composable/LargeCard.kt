@@ -20,10 +20,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults.cardElevation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -32,9 +34,12 @@ import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
+import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
+import com.orange.ouds.theme.tokens.OudsColorElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 /**
  * Temporary large card used by the demo app
@@ -46,24 +51,24 @@ fun LargeCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Card(modifier = modifier, onClick = onClick) {
-        Column {
+    Card(modifier = modifier, shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsElevationKeyToken.Raised.value), onClick = onClick) {
+        Column(modifier = Modifier.background(OudsColorElevationKeyToken.Raised.value)) {
             Image(
                 painter = painterResource(imageRes),
-                colorFilter = ColorFilter.tint(OudsColorKeyToken.InverseOnSurface.value), //TODO use OnBgEmphasized token when available
+                colorFilter = ColorFilter.tint(OudsColorContentKeyToken.DefaultOnBgEmphasized.value),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(184.dp) //TODO use token when available
-                    .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+                    .height(184.dp)
+                    .background(OudsColorBackgroundKeyToken.Emphasized.value),
                 contentScale = ContentScale.None
             )
             Column(
-                modifier = Modifier.padding(OudsSpacingFixedKeyToken.Medium.value)
+                modifier = Modifier.padding(OudsSpaceFixedKeyToken.Medium.value)
             ) {
                 Text(
                     text = title,
-                    color = OudsColorKeyToken.OnSurface.value, //TODO use ContentDefault token when available
+                    color = OudsColorContentKeyToken.Default.value,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     style = OudsTypographyKeyToken.HeadingMedium.value

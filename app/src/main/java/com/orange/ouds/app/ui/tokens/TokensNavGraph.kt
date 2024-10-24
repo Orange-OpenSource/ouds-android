@@ -13,17 +13,19 @@
 package com.orange.ouds.app.ui.tokens
 
 import androidx.compose.runtime.remember
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.orange.ouds.app.ui.navigation.navigateToElement
 
 object TokensNavigation {
     const val TokenCategoryDetailRoute = "tokenCategory"
     const val TokenCategoryIdKey = "tokenCategoryId"
 }
 
-fun NavGraphBuilder.addTokensNavGraph() {
+fun NavGraphBuilder.addTokensNavGraph(navController: NavController) {
     composable(
         "${TokensNavigation.TokenCategoryDetailRoute}/{${TokensNavigation.TokenCategoryIdKey}}",
         arguments = listOf(navArgument(TokensNavigation.TokenCategoryIdKey) { type = NavType.LongType })
@@ -33,7 +35,12 @@ fun NavGraphBuilder.addTokensNavGraph() {
 
         val tokenCategory = remember(routeTokenCategoryId) { TokenCategory.fromId(routeTokenCategoryId) }
         tokenCategory?.let {
-            TokenCategoryDetailScreen(tokenCategory = tokenCategory)
+            TokenCategoryDetailScreen(
+                tokenCategory = tokenCategory,
+                onSubcategoryClick = { id ->
+                    navController.navigateToElement(TokensNavigation.TokenCategoryDetailRoute, id, from)
+                }
+            )
         }
     }
 }
