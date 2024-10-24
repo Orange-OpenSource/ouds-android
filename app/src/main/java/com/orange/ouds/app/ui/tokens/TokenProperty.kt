@@ -43,7 +43,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderStyleKeyToken
 import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
@@ -77,7 +77,7 @@ sealed class TokenProperty(
         @Composable
         fun Illustration(elevation: Dp) {
             Surface(shadowElevation = elevation) {
-                IllustrationBox(backgroundColor = OudsColorKeyToken.BgSecondary.value)
+                IllustrationBox(backgroundColor = OudsColorBackgroundKeyToken.Secondary.value)
             }
         }
     }
