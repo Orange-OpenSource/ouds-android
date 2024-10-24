@@ -14,7 +14,7 @@ package com.orange.ouds.theme.tokens.semantic
 
 import com.orange.ouds.tokens.global.raw.DimensionRawTokens
 
-data class OudsSpacingSemanticTokens(
+data class OudsSpaceSemanticTokens(
     val fixedNone: Float = DimensionRawTokens.dimension0,
     val fixedSmash: Float = DimensionRawTokens.dimension25,
     val fixedShortest: Float = DimensionRawTokens.dimension50,
