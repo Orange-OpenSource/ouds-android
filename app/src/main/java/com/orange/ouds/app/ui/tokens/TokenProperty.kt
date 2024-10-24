@@ -70,6 +70,46 @@ sealed class TokenProperty(
         tokens = { OudsBorderWidthKeyToken.entries.map { Token(it.name, it.value) } }
     )
 
+    data object ColorAction : TokenProperty(
+        nameRes = R.string.app_tokens_color_action_label,
+        tokens = { OudsColorKeyToken.Action.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorAlways : TokenProperty(
+        nameRes = R.string.app_tokens_color_always_label,
+        tokens = { OudsColorKeyToken.Always.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorBackground : TokenProperty(
+        nameRes = R.string.app_tokens_color_background_label,
+        tokens = { OudsColorKeyToken.Background.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorBrand : TokenProperty(
+        nameRes = R.string.app_tokens_color_brand_label,
+        tokens = { OudsColorKeyToken.Brand.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorContent : TokenProperty(
+        nameRes = R.string.app_tokens_color_content_label,
+        tokens = { OudsColorKeyToken.Content.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorElevation : TokenProperty(
+        nameRes = R.string.app_tokens_color_elevation_label,
+        tokens = { OudsColorKeyToken.Elevation.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorGradient : TokenProperty(
+        nameRes = R.string.app_tokens_color_gradient_label,
+        tokens = { OudsColorKeyToken.Gradient.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorDecorative : TokenProperty(
+        nameRes = R.string.app_tokens_color_decorative_label,
+        tokens = { OudsColorKeyToken.Decorative.entries.map { Token(it.name, it.value) } }
+    )
+
     data object Elevation : TokenProperty(
         nameRes = null,
         tokens = { OudsElevationKeyToken.entries.map { Token(it.name, it.value) } }

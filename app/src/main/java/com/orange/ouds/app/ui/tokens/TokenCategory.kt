@@ -42,6 +42,22 @@ sealed class TokenCategory(
         listOf(TokenProperty.BorderWidth, TokenProperty.BorderRadius, TokenProperty.BorderStyle)
     )
 
+    data object Color : TokenCategory(
+        R.string.app_tokens_color_label,
+        R.drawable.ic_palette,
+        R.string.app_tokens_color_description_text,
+        listOf(
+            TokenProperty.ColorAction,
+            TokenProperty.ColorAlways,
+            TokenProperty.ColorBackground,
+            TokenProperty.ColorBrand,
+            TokenProperty.ColorContent,
+            TokenProperty.ColorElevation,
+            TokenProperty.ColorGradient,
+            TokenProperty.ColorDecorative
+        )
+    )
+
     data object Dimension : TokenCategory(
         R.string.app_tokens_dimension_label,
         R.drawable.ic_dimension,
