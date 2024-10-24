@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
@@ -41,6 +42,46 @@ sealed class TokenProperty(
     data object BorderWidth : TokenProperty(
         nameRes = R.string.app_tokens_border_width_label,
         tokens = { OudsBorderKeyToken.Width.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorAction : TokenProperty(
+        nameRes = R.string.app_tokens_color_action_label,
+        tokens = { OudsColorKeyToken.Action.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorAlways : TokenProperty(
+        nameRes = R.string.app_tokens_color_always_label,
+        tokens = { OudsColorKeyToken.Always.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorBackground : TokenProperty(
+        nameRes = R.string.app_tokens_color_background_label,
+        tokens = { OudsColorKeyToken.Background.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorBrand : TokenProperty(
+        nameRes = R.string.app_tokens_color_brand_label,
+        tokens = { OudsColorKeyToken.Brand.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorContent : TokenProperty(
+        nameRes = R.string.app_tokens_color_content_label,
+        tokens = { OudsColorKeyToken.Content.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorElevation : TokenProperty(
+        nameRes = R.string.app_tokens_color_elevation_label,
+        tokens = { OudsColorKeyToken.Elevation.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorGradient : TokenProperty(
+        nameRes = R.string.app_tokens_color_gradient_label,
+        tokens = { OudsColorKeyToken.Gradient.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorDecorative : TokenProperty(
+        nameRes = R.string.app_tokens_color_decorative_label,
+        tokens = { OudsColorKeyToken.Decorative.entries.map { Token(it.name, it.value) } }
     )
 
     data object Elevation : TokenProperty(

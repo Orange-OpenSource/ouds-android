@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -126,7 +127,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
                                         text = token.name,
-                                        maxLines = 1,
+                                        maxLines = 2,
                                         overflow = TextOverflow.Ellipsis,
                                         style = if (tokenProperty == TokenProperty.Typography) {
                                             token.value as TextStyle
@@ -156,6 +157,8 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
     is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
     is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
+    is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBrand, TokenProperty.ColorContent,
+    TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> IllustrationBox(backgroundColor = token.value as Color)
     is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value as Float)
     is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value as Dp)
     is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value as Dp)
