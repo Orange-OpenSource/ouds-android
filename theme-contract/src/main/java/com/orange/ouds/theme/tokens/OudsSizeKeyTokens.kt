@@ -60,7 +60,7 @@ enum class OudsSizeIconWithTextKeyToken {
     BodyLargeSizeTall,
 }
 
-enum class OudsSizeTextMaxWidthKeyToken {
+enum class OudsSizeMaxWidthTypeKeyToken {
     DisplaySmall,
     DisplayMedium,
     DisplayLarge,
