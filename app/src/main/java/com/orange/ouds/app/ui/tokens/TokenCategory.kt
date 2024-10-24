@@ -50,6 +50,7 @@ sealed class TokenCategory(
             TokenProperty.ColorAction,
             TokenProperty.ColorAlways,
             TokenProperty.ColorBackground,
+            TokenProperty.ColorBorder,
             TokenProperty.ColorBrand,
             TokenProperty.ColorContent,
             TokenProperty.ColorElevation,

@@ -85,6 +85,11 @@ sealed class TokenProperty(
         tokens = { OudsColorKeyToken.Background.entries.map { Token(it.name, it.value) } }
     )
 
+    data object ColorBorder : TokenProperty(
+        nameRes = R.string.app_tokens_color_border_label,
+        tokens = { OudsColorKeyToken.Border.entries.map { Token(it.name, it.value) } }
+    )
+
     data object ColorBrand : TokenProperty(
         nameRes = R.string.app_tokens_color_brand_label,
         tokens = { OudsColorKeyToken.Brand.entries.map { Token(it.name, it.value) } }
