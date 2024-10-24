@@ -30,7 +30,7 @@ import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
 
@@ -51,7 +51,7 @@ fun ComponentsScreen() {
                     .padding(top = OudsSpaceFixedKeyToken.Medium.value)
                     .width(OudsGridKeyToken.Margin.value)
                     .height(OudsGridKeyToken.ColumnGap.value)
-                    .background(OudsColorKeyToken.BgBrandPrimary.value)
+                    .background(OudsColorBackgroundKeyToken.BrandPrimary.value)
             )
         }
     }

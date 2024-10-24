@@ -20,14 +20,14 @@ import androidx.compose.ui.Modifier
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
 
 @Composable
 fun Screen(content: @Composable () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(OudsColorKeyToken.BgPrimary.value)
+            .background(OudsColorBackgroundKeyToken.Primary.value)
     ) {
         content()
     }

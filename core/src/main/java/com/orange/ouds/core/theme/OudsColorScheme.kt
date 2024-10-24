@@ -19,7 +19,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsColorActionKeyToken
+import com.orange.ouds.theme.tokens.OudsColorAlwaysKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBorderKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBrandKeyToken
+import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
+import com.orange.ouds.theme.tokens.OudsColorDecorativeKeyToken
+import com.orange.ouds.theme.tokens.OudsColorElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsColorGlobalKeyToken
+import com.orange.ouds.theme.tokens.OudsColorGradientKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 data class OudsColorScheme(
@@ -721,210 +730,264 @@ val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
     )
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken): Color {
+fun OudsColorScheme.fromToken(token: OudsColorActionKeyToken): Color {
     return when (token) {
-        OudsColorKeyToken.TransparentDefault -> globalColors.transparentDefault
-        OudsColorKeyToken.ActionDisabled -> actionColors.disabled
-        OudsColorKeyToken.ActionDisabledOnBgEmphasized -> actionColors.disabledOnBgEmphasized
-        OudsColorKeyToken.ActionNegativeEnabled -> actionColors.negativeEnabled
-        OudsColorKeyToken.ActionNegativeFocus -> actionColors.negativeFocus
-        OudsColorKeyToken.ActionNegativeHover -> actionColors.negativeHover
-        OudsColorKeyToken.ActionNegativeLoading -> actionColors.negativeLoading
-        OudsColorKeyToken.ActionNegativePressed -> actionColors.negativePressed
-        OudsColorKeyToken.ActionPrimaryEnabled -> actionColors.primaryEnabled
-        OudsColorKeyToken.ActionPrimaryEnabledOnBgEmphasized -> actionColors.primaryEnabledOnBgEmphasized
-        OudsColorKeyToken.ActionPrimaryFocus -> actionColors.primaryFocus
-        OudsColorKeyToken.ActionPrimaryFocusOnBgEmphasized -> actionColors.primaryFocusOnBgEmphasized
-        OudsColorKeyToken.ActionPrimaryHover -> actionColors.primaryHover
-        OudsColorKeyToken.ActionPrimaryHoverOnBgEmphasized -> actionColors.primaryHoverOnBgEmphasized
-        OudsColorKeyToken.ActionPrimaryLoading -> actionColors.primaryLoading
-        OudsColorKeyToken.ActionPrimaryLoadingOnBgEmphasized -> actionColors.primaryLoadingOnBgEmphasized
-        OudsColorKeyToken.ActionPrimaryPressed -> actionColors.primaryPressed
-        OudsColorKeyToken.ActionPrimaryPressedOnBgEmphasized -> actionColors.primaryPressedOnBgEmphasized
-        OudsColorKeyToken.ActionSecondaryEnabled -> actionColors.secondaryEnabled
-        OudsColorKeyToken.ActionSecondaryEnabledOnBgEmphasized -> actionColors.secondaryEnabledOnBgEmphasized
-        OudsColorKeyToken.ActionSecondaryFocus -> actionColors.secondaryFocus
-        OudsColorKeyToken.ActionSecondaryFocusOnBgEmphasized -> actionColors.secondaryFocusOnBgEmphasized
-        OudsColorKeyToken.ActionSecondaryHover -> actionColors.secondaryHover
-        OudsColorKeyToken.ActionSecondaryHoverOnBgEmphasized -> actionColors.secondaryHoverOnBgEmphasized
-        OudsColorKeyToken.ActionSecondaryLoading -> actionColors.secondaryLoading
-        OudsColorKeyToken.ActionSecondaryLoadingOnBgEmphasized -> actionColors.secondaryLoadingOnBgEmphasized
-        OudsColorKeyToken.ActionSecondaryPressed -> actionColors.secondaryPressed
-        OudsColorKeyToken.ActionSecondaryPressedOnBgEmphasized -> actionColors.secondaryPressedOnBgEmphasized
-        OudsColorKeyToken.ActionSelected -> actionColors.selected
-        OudsColorKeyToken.ActionSelectedOnBgEmphasized -> actionColors.selectedOnBgEmphasized
-        OudsColorKeyToken.ActionVisited -> actionColors.visited
-        OudsColorKeyToken.ActionVisitedOnBgEmphasized -> actionColors.visitedOnBgEmphasized
-        OudsColorKeyToken.AlwaysAccent -> alwaysColors.accent
-        OudsColorKeyToken.AlwaysBlack -> alwaysColors.black
-        OudsColorKeyToken.AlwaysInfo -> alwaysColors.info
-        OudsColorKeyToken.AlwaysNegative -> alwaysColors.negative
-        OudsColorKeyToken.AlwaysOnAccent -> alwaysColors.onAccent
-        OudsColorKeyToken.AlwaysOnBlack -> alwaysColors.onBlack
-        OudsColorKeyToken.AlwaysOnInfo -> alwaysColors.onInfo
-        OudsColorKeyToken.AlwaysOnNegative -> alwaysColors.onNegative
-        OudsColorKeyToken.AlwaysOnPositive -> alwaysColors.onPositive
-        OudsColorKeyToken.AlwaysOnWarning -> alwaysColors.onWarning
-        OudsColorKeyToken.AlwaysOnWhite -> alwaysColors.onWhite
-        OudsColorKeyToken.AlwaysPositive -> alwaysColors.positive
-        OudsColorKeyToken.AlwaysWarning -> alwaysColors.warning
-        OudsColorKeyToken.AlwaysWhite -> alwaysColors.white
-        OudsColorKeyToken.BgBrandPrimary -> backgroundColors.brandPrimary
-        OudsColorKeyToken.BgEmphasized -> backgroundColors.emphasized
-        OudsColorKeyToken.BgPrimary -> backgroundColors.primary
-        OudsColorKeyToken.BgSecondary -> backgroundColors.secondary
-        OudsColorKeyToken.BgStatusAccentEmphasized -> backgroundColors.statusAccentEmphasized
-        OudsColorKeyToken.BgStatusAccentMuted -> backgroundColors.statusAccentMuted
-        OudsColorKeyToken.BgStatusAccentMutedOnBgEmphasized -> backgroundColors.statusAccentMutedOnBgEmphasized
-        OudsColorKeyToken.BgStatusInfoEmphasized -> backgroundColors.statusInfoEmphasized
-        OudsColorKeyToken.BgStatusInfoMuted -> backgroundColors.statusInfoMuted
-        OudsColorKeyToken.BgStatusInfoMutedOnBgEmphasized -> backgroundColors.statusInfoMutedOnBgEmphasized
-        OudsColorKeyToken.BgStatusNegativeEmphasized -> backgroundColors.statusNegativeEmphasized
-        OudsColorKeyToken.BgStatusNegativeMuted -> backgroundColors.statusNegativeMuted
-        OudsColorKeyToken.BgStatusNegativeMutedOnBgEmphasized -> backgroundColors.statusNegativeMutedOnBgEmphasized
-        OudsColorKeyToken.BgStatusNeutral -> backgroundColors.statusNeutral
-        OudsColorKeyToken.BgStatusNeutralOnBgEmphasized -> backgroundColors.statusNeutralOnBgEmphasized
-        OudsColorKeyToken.BgStatusPositiveEmphasized -> backgroundColors.statusPositiveEmphasized
-        OudsColorKeyToken.BgStatusPositiveMuted -> backgroundColors.statusPositiveMuted
-        OudsColorKeyToken.BgStatusPositiveMutedOnBgEmphasized -> backgroundColors.statusPositiveMutedOnBgEmphasized
-        OudsColorKeyToken.BgStatusWarningEmphasized -> backgroundColors.statusWarningEmphasized
-        OudsColorKeyToken.BgStatusWarningMuted -> backgroundColors.statusWarningMuted
-        OudsColorKeyToken.BgStatusWarningMutedOnBgEmphasized -> backgroundColors.statusWarningMutedOnBgEmphasized
-        OudsColorKeyToken.BgTertiary -> backgroundColors.tertiary
-        OudsColorKeyToken.BorderBrandPrimary -> borderColors.brandPrimary
-        OudsColorKeyToken.BorderBrandPrimaryOnBgEmphasized -> borderColors.brandPrimaryOnBgEmphasized
-        OudsColorKeyToken.BorderDefault -> borderColors.default
-        OudsColorKeyToken.BorderDefaultOnBgEmphasized -> borderColors.defaultOnBgEmphasized
-        OudsColorKeyToken.BorderEmphasized -> borderColors.emphasized
-        OudsColorKeyToken.BorderEmphasizedOnBgEmphasized -> borderColors.emphasizedOnBgEmphasized
-        OudsColorKeyToken.BorderFocus -> borderColors.focus
-        OudsColorKeyToken.BorderFocusInset -> borderColors.focusInset
-        OudsColorKeyToken.BorderFocusInsetOnBgEmphasized -> borderColors.focusInsetOnBgEmphasized
-        OudsColorKeyToken.BorderFocusOnBgEmphasized -> borderColors.focusOnBgEmphasized
-        OudsColorKeyToken.BorderOnBrandPrimary -> borderColors.onBrandPrimary
-        OudsColorKeyToken.BrandAccentDefault -> brandColors.accentDefault
-        OudsColorKeyToken.BrandAccentHigh -> brandColors.accentHigh
-        OudsColorKeyToken.BrandAccentHighest -> brandColors.accentHighest
-        OudsColorKeyToken.BrandAccentLowest -> brandColors.accentLowest
-        OudsColorKeyToken.BrandInfoDefault -> brandColors.infoDefault
-        OudsColorKeyToken.BrandInfoHighest -> brandColors.infoHighest
-        OudsColorKeyToken.BrandInfoLowest -> brandColors.infoLowest
-        OudsColorKeyToken.BrandNegativeDefault -> brandColors.negativeDefault
-        OudsColorKeyToken.BrandNegativeHigh -> brandColors.negativeHigh
-        OudsColorKeyToken.BrandNegativeHigher -> brandColors.negativeHigher
-        OudsColorKeyToken.BrandNegativeHighest -> brandColors.negativeHighest
-        OudsColorKeyToken.BrandNegativeLowest -> brandColors.negativeLowest
-        OudsColorKeyToken.BrandNeutralEmphasizedBlack -> brandColors.neutralEmphasizedBlack
-        OudsColorKeyToken.BrandNeutralEmphasizedHigh -> brandColors.neutralEmphasizedHigh
-        OudsColorKeyToken.BrandNeutralEmphasizedHigher -> brandColors.neutralEmphasizedHigher
-        OudsColorKeyToken.BrandNeutralEmphasizedHighest -> brandColors.neutralEmphasizedHighest
-        OudsColorKeyToken.BrandNeutralEmphasizedLow -> brandColors.neutralEmphasizedLow
-        OudsColorKeyToken.BrandNeutralEmphasizedLower -> brandColors.neutralEmphasizedLower
-        OudsColorKeyToken.BrandNeutralEmphasizedLowest -> brandColors.neutralEmphasizedLowest
-        OudsColorKeyToken.BrandNeutralEmphasizedMedium -> brandColors.neutralEmphasizedMedium
-        OudsColorKeyToken.BrandNeutralMutedHighest -> brandColors.neutralMutedHighest
-        OudsColorKeyToken.BrandNeutralMutedLow -> brandColors.neutralMutedLow
-        OudsColorKeyToken.BrandNeutralMutedLower -> brandColors.neutralMutedLower
-        OudsColorKeyToken.BrandNeutralMutedLowest -> brandColors.neutralMutedLowest
-        OudsColorKeyToken.BrandNeutralMutedMedium -> brandColors.neutralMutedMedium
-        OudsColorKeyToken.BrandNeutralMutedWhite -> brandColors.neutralMutedWhite
-        OudsColorKeyToken.BrandPositiveDefault -> brandColors.positiveDefault
-        OudsColorKeyToken.BrandPositiveHighest -> brandColors.positiveHighest
-        OudsColorKeyToken.BrandPositiveLowest -> brandColors.positiveLowest
-        OudsColorKeyToken.BrandPrimaryDefault -> brandColors.primaryDefault
-        OudsColorKeyToken.BrandPrimaryLow -> brandColors.primaryLow
-        OudsColorKeyToken.BrandWarningDefault -> brandColors.warningDefault
-        OudsColorKeyToken.BrandWarningHigh -> brandColors.warningHigh
-        OudsColorKeyToken.BrandWarningHighest -> brandColors.warningHighest
-        OudsColorKeyToken.BrandWarningLowest -> brandColors.warningLowest
-        OudsColorKeyToken.ContentBrandPrimary -> contentColors.brandPrimary
-        OudsColorKeyToken.ContentBrandPrimaryOnBgEmphasized -> contentColors.brandPrimaryOnBgEmphasized
-        OudsColorKeyToken.ContentDefault -> contentColors.default
-        OudsColorKeyToken.ContentDefaultOnBgEmphasized -> contentColors.defaultOnBgEmphasized
-        OudsColorKeyToken.ContentDisabled -> contentColors.disabled
-        OudsColorKeyToken.ContentDisabledOnBgEmphasized -> contentColors.disabledOnBgEmphasized
-        OudsColorKeyToken.ContentMuted -> contentColors.muted
-        OudsColorKeyToken.ContentMutedOnBgEmphasized -> contentColors.mutedOnBgEmphasized
-        OudsColorKeyToken.ContentOnActionDisabled -> contentColors.onActionDisabled
-        OudsColorKeyToken.ContentOnActionDisabledOnBgEmphasized -> contentColors.onActionDisabledOnBgEmphasized
-        OudsColorKeyToken.ContentOnActionNegative -> contentColors.onActionNegative
-        OudsColorKeyToken.ContentOnActionPrimaryEnabled -> contentColors.onActionPrimaryEnabled
-        OudsColorKeyToken.ContentOnActionPrimaryEnabledOnBgEmphasized -> contentColors.onActionPrimaryEnabledOnBgEmphasized
-        OudsColorKeyToken.ContentOnActionPrimaryFocus -> contentColors.onActionPrimaryFocus
-        OudsColorKeyToken.ContentOnActionPrimaryFocusOnBgEmphasized -> contentColors.onActionPrimaryFocusOnBgEmphasized
-        OudsColorKeyToken.ContentOnActionPrimaryHover -> contentColors.onActionPrimaryHover
-        OudsColorKeyToken.ContentOnActionPrimaryHoverOnBgEmphasized -> contentColors.onActionPrimaryHoverOnBgEmphasized
-        OudsColorKeyToken.ContentOnActionPrimaryLoading -> contentColors.onActionPrimaryLoading
-        OudsColorKeyToken.ContentOnActionPrimaryLoadingOnBgEmphasized -> contentColors.onActionPrimaryLoadingOnBgEmphasized
-        OudsColorKeyToken.ContentOnActionPrimaryPressed -> contentColors.onActionPrimaryPressed
-        OudsColorKeyToken.ContentOnActionPrimaryPressedOnBgEmphasized -> contentColors.onActionPrimaryPressedOnBgEmphasized
-        OudsColorKeyToken.ContentOnBrandPrimary -> contentColors.onBrandPrimary
-        OudsColorKeyToken.ContentOnStatusAccentEmphasized -> contentColors.onStatusAccentEmphasized
-        OudsColorKeyToken.ContentOnStatusAccentMuted -> contentColors.onStatusAccentMuted
-        OudsColorKeyToken.ContentOnStatusAccentMutedOnBgEmphasized -> contentColors.onStatusAccentMutedOnBgEmphasized
-        OudsColorKeyToken.ContentOnStatusInfoEmphasized -> contentColors.onStatusInfoEmphasized
-        OudsColorKeyToken.ContentOnStatusInfoMuted -> contentColors.onStatusInfoMuted
-        OudsColorKeyToken.ContentOnStatusInfoMutedOnBgEmphasized -> contentColors.onStatusInfoMutedOnBgEmphasized
-        OudsColorKeyToken.ContentOnStatusNegativeEmphasized -> contentColors.onStatusNegativeEmphasized
-        OudsColorKeyToken.ContentOnStatusNegativeMuted -> contentColors.onStatusNegativeMuted
-        OudsColorKeyToken.ContentOnStatusNegativeMutedOnBgEmphasized -> contentColors.onStatusNegativeMutedOnBgEmphasized
-        OudsColorKeyToken.ContentOnStatusPositiveEmphasized -> contentColors.onStatusPositiveEmphasized
-        OudsColorKeyToken.ContentOnStatusPositiveMuted -> contentColors.onStatusPositiveMuted
-        OudsColorKeyToken.ContentOnStatusPositiveMutedOnBgEmphasized -> contentColors.onStatusPositiveMutedOnBgEmphasized
-        OudsColorKeyToken.ContentOnStatusWarningEmphasized -> contentColors.onStatusWarningEmphasized
-        OudsColorKeyToken.ContentOnStatusWarningMuted -> contentColors.onStatusWarningMuted
-        OudsColorKeyToken.ContentOnStatusWarningMutedOnBgEmphasized -> contentColors.onStatusWarningMutedOnBgEmphasized
-        OudsColorKeyToken.ContentStatusInfo -> contentColors.statusInfo
-        OudsColorKeyToken.ContentStatusNegative -> contentColors.statusNegative
-        OudsColorKeyToken.ContentStatusPositive -> contentColors.statusPositive
-        OudsColorKeyToken.ContentStatusWarning -> contentColors.statusWarning
-        OudsColorKeyToken.ElevationDrag -> elevationColors.drag
-        OudsColorKeyToken.ElevationDragOnBgEmphasized -> elevationColors.dragOnBgEmphasized
-        OudsColorKeyToken.ElevationDragOnBgSecondary -> elevationColors.dragOnBgSecondary
-        OudsColorKeyToken.ElevationModal -> elevationColors.modal
-        OudsColorKeyToken.ElevationOverlayDefault -> elevationColors.overlayDefault
-        OudsColorKeyToken.ElevationOverlayDefaultOnBgEmphasized -> elevationColors.overlayDefaultOnBgEmphasized
-        OudsColorKeyToken.ElevationOverlayDefaultOnBgSecondary -> elevationColors.overlayDefaultOnBgSecondary
-        OudsColorKeyToken.ElevationOverlayEmphasized -> elevationColors.overlayEmphasized
-        OudsColorKeyToken.ElevationOverlayEmphasizedOnBgEmphasized -> elevationColors.overlayEmphasizedOnBgEmphasized
-        OudsColorKeyToken.ElevationOverlayEmphasizedOnBgSecondary -> elevationColors.overlayEmphasizedOnBgSecondary
-        OudsColorKeyToken.ElevationRaised -> elevationColors.raised
-        OudsColorKeyToken.ElevationRaisedOnBgEmphasized -> elevationColors.raisedOnBgEmphasized
-        OudsColorKeyToken.ElevationRaisedOnBgSecondary -> elevationColors.raisedOnBgSecondary
-        OudsColorKeyToken.GradientSkeletonMiddle -> gradientColors.skeletonMiddle
-        OudsColorKeyToken.GradientSkeletonMiddleOnBgEmphasized -> gradientColors.skeletonMiddleOnBgEmphasized
-        OudsColorKeyToken.GradientSkeletonStartEnd -> gradientColors.skeletonStartEnd
-        OudsColorKeyToken.GradientSkeletonStartEndOnBgEmphasized -> gradientColors.skeletonStartEndOnBgEmphasized
-        OudsColorKeyToken.DecorativeAccent1Default -> decorativeColors.accent1Default
-        OudsColorKeyToken.DecorativeAccent1Emphasized -> decorativeColors.accent1Emphasized
-        OudsColorKeyToken.DecorativeAccent1Muted -> decorativeColors.accent1Muted
-        OudsColorKeyToken.DecorativeAccent2Default -> decorativeColors.accent2Default
-        OudsColorKeyToken.DecorativeAccent2Emphasized -> decorativeColors.accent2Emphasized
-        OudsColorKeyToken.DecorativeAccent2Muted -> decorativeColors.accent2Muted
-        OudsColorKeyToken.DecorativeAccent3Default -> decorativeColors.accent3Default
-        OudsColorKeyToken.DecorativeAccent3Emphasized -> decorativeColors.accent3Emphasized
-        OudsColorKeyToken.DecorativeAccent3Muted -> decorativeColors.accent3Muted
-        OudsColorKeyToken.DecorativeAccent4Default -> decorativeColors.accent4Default
-        OudsColorKeyToken.DecorativeAccent4Emphasized -> decorativeColors.accent4Emphasized
-        OudsColorKeyToken.DecorativeAccent4Muted -> decorativeColors.accent4Muted
-        OudsColorKeyToken.DecorativeAccent5Default -> decorativeColors.accent5Default
-        OudsColorKeyToken.DecorativeAccent5Emphasized -> decorativeColors.accent5Emphasized
-        OudsColorKeyToken.DecorativeAccent5Muted -> decorativeColors.accent5Muted
-        OudsColorKeyToken.DecorativeBrandPrimary -> decorativeColors.brandPrimary
-        OudsColorKeyToken.DecorativeBrandSecondary -> decorativeColors.brandSecondary
-        OudsColorKeyToken.DecorativeBrandTertiary -> decorativeColors.brandTertiary
-        OudsColorKeyToken.DecorativeNeutralDefault -> decorativeColors.neutralDefault
-        OudsColorKeyToken.DecorativeNeutralEmphasized -> decorativeColors.neutralEmphasized
-        OudsColorKeyToken.DecorativeNeutralMuted -> decorativeColors.neutralMuted
-        OudsColorKeyToken.DecorativeSkinTint100 -> decorativeColors.skinTint100
-        OudsColorKeyToken.DecorativeSkinTint200 -> decorativeColors.skinTint200
-        OudsColorKeyToken.DecorativeSkinTint300 -> decorativeColors.skinTint300
-        OudsColorKeyToken.DecorativeSkinTint400 -> decorativeColors.skinTint400
-        OudsColorKeyToken.DecorativeSkinTint500 -> decorativeColors.skinTint500
-        OudsColorKeyToken.DecorativeSkinTint600 -> decorativeColors.skinTint600
-        OudsColorKeyToken.DecorativeSkinTint700 -> decorativeColors.skinTint700
-        OudsColorKeyToken.DecorativeSkinTint800 -> decorativeColors.skinTint800
-        OudsColorKeyToken.DecorativeSkinTint900 -> decorativeColors.skinTint900
+        OudsColorActionKeyToken.Disabled -> actionColors.disabled
+        OudsColorActionKeyToken.DisabledOnBgEmphasized -> actionColors.disabledOnBgEmphasized
+        OudsColorActionKeyToken.NegativeEnabled -> actionColors.negativeEnabled
+        OudsColorActionKeyToken.NegativeFocus -> actionColors.negativeFocus
+        OudsColorActionKeyToken.NegativeHover -> actionColors.negativeHover
+        OudsColorActionKeyToken.NegativeLoading -> actionColors.negativeLoading
+        OudsColorActionKeyToken.NegativePressed -> actionColors.negativePressed
+        OudsColorActionKeyToken.PrimaryEnabled -> actionColors.primaryEnabled
+        OudsColorActionKeyToken.PrimaryEnabledOnBgEmphasized -> actionColors.primaryEnabledOnBgEmphasized
+        OudsColorActionKeyToken.PrimaryFocus -> actionColors.primaryFocus
+        OudsColorActionKeyToken.PrimaryFocusOnBgEmphasized -> actionColors.primaryFocusOnBgEmphasized
+        OudsColorActionKeyToken.PrimaryHover -> actionColors.primaryHover
+        OudsColorActionKeyToken.PrimaryHoverOnBgEmphasized -> actionColors.primaryHoverOnBgEmphasized
+        OudsColorActionKeyToken.PrimaryLoading -> actionColors.primaryLoading
+        OudsColorActionKeyToken.PrimaryLoadingOnBgEmphasized -> actionColors.primaryLoadingOnBgEmphasized
+        OudsColorActionKeyToken.PrimaryPressed -> actionColors.primaryPressed
+        OudsColorActionKeyToken.PrimaryPressedOnBgEmphasized -> actionColors.primaryPressedOnBgEmphasized
+        OudsColorActionKeyToken.SecondaryEnabled -> actionColors.secondaryEnabled
+        OudsColorActionKeyToken.SecondaryEnabledOnBgEmphasized -> actionColors.secondaryEnabledOnBgEmphasized
+        OudsColorActionKeyToken.SecondaryFocus -> actionColors.secondaryFocus
+        OudsColorActionKeyToken.SecondaryFocusOnBgEmphasized -> actionColors.secondaryFocusOnBgEmphasized
+        OudsColorActionKeyToken.SecondaryHover -> actionColors.secondaryHover
+        OudsColorActionKeyToken.SecondaryHoverOnBgEmphasized -> actionColors.secondaryHoverOnBgEmphasized
+        OudsColorActionKeyToken.SecondaryLoading -> actionColors.secondaryLoading
+        OudsColorActionKeyToken.SecondaryLoadingOnBgEmphasized -> actionColors.secondaryLoadingOnBgEmphasized
+        OudsColorActionKeyToken.SecondaryPressed -> actionColors.secondaryPressed
+        OudsColorActionKeyToken.SecondaryPressedOnBgEmphasized -> actionColors.secondaryPressedOnBgEmphasized
+        OudsColorActionKeyToken.Selected -> actionColors.selected
+        OudsColorActionKeyToken.SelectedOnBgEmphasized -> actionColors.selectedOnBgEmphasized
+        OudsColorActionKeyToken.Visited -> actionColors.visited
+        OudsColorActionKeyToken.VisitedOnBgEmphasized -> actionColors.visitedOnBgEmphasized
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorAlwaysKeyToken): Color {
+    return when (token) {
+        OudsColorAlwaysKeyToken.Accent -> alwaysColors.accent
+        OudsColorAlwaysKeyToken.Black -> alwaysColors.black
+        OudsColorAlwaysKeyToken.Info -> alwaysColors.info
+        OudsColorAlwaysKeyToken.Negative -> alwaysColors.negative
+        OudsColorAlwaysKeyToken.OnAccent -> alwaysColors.onAccent
+        OudsColorAlwaysKeyToken.OnBlack -> alwaysColors.onBlack
+        OudsColorAlwaysKeyToken.OnInfo -> alwaysColors.onInfo
+        OudsColorAlwaysKeyToken.OnNegative -> alwaysColors.onNegative
+        OudsColorAlwaysKeyToken.OnPositive -> alwaysColors.onPositive
+        OudsColorAlwaysKeyToken.OnWarning -> alwaysColors.onWarning
+        OudsColorAlwaysKeyToken.OnWhite -> alwaysColors.onWhite
+        OudsColorAlwaysKeyToken.Positive -> alwaysColors.positive
+        OudsColorAlwaysKeyToken.Warning -> alwaysColors.warning
+        OudsColorAlwaysKeyToken.White -> alwaysColors.white
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorBackgroundKeyToken): Color {
+    return when (token) {
+        OudsColorBackgroundKeyToken.BrandPrimary -> backgroundColors.brandPrimary
+        OudsColorBackgroundKeyToken.Emphasized -> backgroundColors.emphasized
+        OudsColorBackgroundKeyToken.Primary -> backgroundColors.primary
+        OudsColorBackgroundKeyToken.Secondary -> backgroundColors.secondary
+        OudsColorBackgroundKeyToken.StatusAccentEmphasized -> backgroundColors.statusAccentEmphasized
+        OudsColorBackgroundKeyToken.StatusAccentMuted -> backgroundColors.statusAccentMuted
+        OudsColorBackgroundKeyToken.StatusAccentMutedOnBgEmphasized -> backgroundColors.statusAccentMutedOnBgEmphasized
+        OudsColorBackgroundKeyToken.StatusInfoEmphasized -> backgroundColors.statusInfoEmphasized
+        OudsColorBackgroundKeyToken.StatusInfoMuted -> backgroundColors.statusInfoMuted
+        OudsColorBackgroundKeyToken.StatusInfoMutedOnBgEmphasized -> backgroundColors.statusInfoMutedOnBgEmphasized
+        OudsColorBackgroundKeyToken.StatusNegativeEmphasized -> backgroundColors.statusNegativeEmphasized
+        OudsColorBackgroundKeyToken.StatusNegativeMuted -> backgroundColors.statusNegativeMuted
+        OudsColorBackgroundKeyToken.StatusNegativeMutedOnBgEmphasized -> backgroundColors.statusNegativeMutedOnBgEmphasized
+        OudsColorBackgroundKeyToken.StatusNeutral -> backgroundColors.statusNeutral
+        OudsColorBackgroundKeyToken.StatusNeutralOnBgEmphasized -> backgroundColors.statusNeutralOnBgEmphasized
+        OudsColorBackgroundKeyToken.StatusPositiveEmphasized -> backgroundColors.statusPositiveEmphasized
+        OudsColorBackgroundKeyToken.StatusPositiveMuted -> backgroundColors.statusPositiveMuted
+        OudsColorBackgroundKeyToken.StatusPositiveMutedOnBgEmphasized -> backgroundColors.statusPositiveMutedOnBgEmphasized
+        OudsColorBackgroundKeyToken.StatusWarningEmphasized -> backgroundColors.statusWarningEmphasized
+        OudsColorBackgroundKeyToken.StatusWarningMuted -> backgroundColors.statusWarningMuted
+        OudsColorBackgroundKeyToken.StatusWarningMutedOnBgEmphasized -> backgroundColors.statusWarningMutedOnBgEmphasized
+        OudsColorBackgroundKeyToken.Tertiary -> backgroundColors.tertiary
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorBorderKeyToken): Color {
+    return when (token) {
+        OudsColorBorderKeyToken.BrandPrimary -> borderColors.brandPrimary
+        OudsColorBorderKeyToken.BrandPrimaryOnBgEmphasized -> borderColors.brandPrimaryOnBgEmphasized
+        OudsColorBorderKeyToken.Default -> borderColors.default
+        OudsColorBorderKeyToken.DefaultOnBgEmphasized -> borderColors.defaultOnBgEmphasized
+        OudsColorBorderKeyToken.Emphasized -> borderColors.emphasized
+        OudsColorBorderKeyToken.EmphasizedOnBgEmphasized -> borderColors.emphasizedOnBgEmphasized
+        OudsColorBorderKeyToken.Focus -> borderColors.focus
+        OudsColorBorderKeyToken.FocusInset -> borderColors.focusInset
+        OudsColorBorderKeyToken.FocusInsetOnBgEmphasized -> borderColors.focusInsetOnBgEmphasized
+        OudsColorBorderKeyToken.FocusOnBgEmphasized -> borderColors.focusOnBgEmphasized
+        OudsColorBorderKeyToken.OnBrandPrimary -> borderColors.onBrandPrimary
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorBrandKeyToken): Color {
+    return when (token) {
+        OudsColorBrandKeyToken.AccentDefault -> brandColors.accentDefault
+        OudsColorBrandKeyToken.AccentHigh -> brandColors.accentHigh
+        OudsColorBrandKeyToken.AccentHighest -> brandColors.accentHighest
+        OudsColorBrandKeyToken.AccentLowest -> brandColors.accentLowest
+        OudsColorBrandKeyToken.InfoDefault -> brandColors.infoDefault
+        OudsColorBrandKeyToken.InfoHighest -> brandColors.infoHighest
+        OudsColorBrandKeyToken.InfoLowest -> brandColors.infoLowest
+        OudsColorBrandKeyToken.NegativeDefault -> brandColors.negativeDefault
+        OudsColorBrandKeyToken.NegativeHigh -> brandColors.negativeHigh
+        OudsColorBrandKeyToken.NegativeHigher -> brandColors.negativeHigher
+        OudsColorBrandKeyToken.NegativeHighest -> brandColors.negativeHighest
+        OudsColorBrandKeyToken.NegativeLowest -> brandColors.negativeLowest
+        OudsColorBrandKeyToken.NeutralEmphasizedBlack -> brandColors.neutralEmphasizedBlack
+        OudsColorBrandKeyToken.NeutralEmphasizedHigh -> brandColors.neutralEmphasizedHigh
+        OudsColorBrandKeyToken.NeutralEmphasizedHigher -> brandColors.neutralEmphasizedHigher
+        OudsColorBrandKeyToken.NeutralEmphasizedHighest -> brandColors.neutralEmphasizedHighest
+        OudsColorBrandKeyToken.NeutralEmphasizedLow -> brandColors.neutralEmphasizedLow
+        OudsColorBrandKeyToken.NeutralEmphasizedLower -> brandColors.neutralEmphasizedLower
+        OudsColorBrandKeyToken.NeutralEmphasizedLowest -> brandColors.neutralEmphasizedLowest
+        OudsColorBrandKeyToken.NeutralEmphasizedMedium -> brandColors.neutralEmphasizedMedium
+        OudsColorBrandKeyToken.NeutralMutedHighest -> brandColors.neutralMutedHighest
+        OudsColorBrandKeyToken.NeutralMutedLow -> brandColors.neutralMutedLow
+        OudsColorBrandKeyToken.NeutralMutedLower -> brandColors.neutralMutedLower
+        OudsColorBrandKeyToken.NeutralMutedLowest -> brandColors.neutralMutedLowest
+        OudsColorBrandKeyToken.NeutralMutedMedium -> brandColors.neutralMutedMedium
+        OudsColorBrandKeyToken.NeutralMutedWhite -> brandColors.neutralMutedWhite
+        OudsColorBrandKeyToken.PositiveDefault -> brandColors.positiveDefault
+        OudsColorBrandKeyToken.PositiveHighest -> brandColors.positiveHighest
+        OudsColorBrandKeyToken.PositiveLowest -> brandColors.positiveLowest
+        OudsColorBrandKeyToken.PrimaryDefault -> brandColors.primaryDefault
+        OudsColorBrandKeyToken.PrimaryLow -> brandColors.primaryLow
+        OudsColorBrandKeyToken.WarningDefault -> brandColors.warningDefault
+        OudsColorBrandKeyToken.WarningHigh -> brandColors.warningHigh
+        OudsColorBrandKeyToken.WarningHighest -> brandColors.warningHighest
+        OudsColorBrandKeyToken.WarningLowest -> brandColors.warningLowest
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorContentKeyToken): Color {
+    return when (token) {
+        OudsColorContentKeyToken.BrandPrimary -> contentColors.brandPrimary
+        OudsColorContentKeyToken.BrandPrimaryOnBgEmphasized -> contentColors.brandPrimaryOnBgEmphasized
+        OudsColorContentKeyToken.Default -> contentColors.default
+        OudsColorContentKeyToken.DefaultOnBgEmphasized -> contentColors.defaultOnBgEmphasized
+        OudsColorContentKeyToken.Disabled -> contentColors.disabled
+        OudsColorContentKeyToken.DisabledOnBgEmphasized -> contentColors.disabledOnBgEmphasized
+        OudsColorContentKeyToken.Muted -> contentColors.muted
+        OudsColorContentKeyToken.MutedOnBgEmphasized -> contentColors.mutedOnBgEmphasized
+        OudsColorContentKeyToken.OnActionDisabled -> contentColors.onActionDisabled
+        OudsColorContentKeyToken.OnActionDisabledOnBgEmphasized -> contentColors.onActionDisabledOnBgEmphasized
+        OudsColorContentKeyToken.OnActionNegative -> contentColors.onActionNegative
+        OudsColorContentKeyToken.OnActionPrimaryEnabled -> contentColors.onActionPrimaryEnabled
+        OudsColorContentKeyToken.OnActionPrimaryEnabledOnBgEmphasized -> contentColors.onActionPrimaryEnabledOnBgEmphasized
+        OudsColorContentKeyToken.OnActionPrimaryFocus -> contentColors.onActionPrimaryFocus
+        OudsColorContentKeyToken.OnActionPrimaryFocusOnBgEmphasized -> contentColors.onActionPrimaryFocusOnBgEmphasized
+        OudsColorContentKeyToken.OnActionPrimaryHover -> contentColors.onActionPrimaryHover
+        OudsColorContentKeyToken.OnActionPrimaryHoverOnBgEmphasized -> contentColors.onActionPrimaryHoverOnBgEmphasized
+        OudsColorContentKeyToken.OnActionPrimaryLoading -> contentColors.onActionPrimaryLoading
+        OudsColorContentKeyToken.OnActionPrimaryLoadingOnBgEmphasized -> contentColors.onActionPrimaryLoadingOnBgEmphasized
+        OudsColorContentKeyToken.OnActionPrimaryPressed -> contentColors.onActionPrimaryPressed
+        OudsColorContentKeyToken.OnActionPrimaryPressedOnBgEmphasized -> contentColors.onActionPrimaryPressedOnBgEmphasized
+        OudsColorContentKeyToken.OnBrandPrimary -> contentColors.onBrandPrimary
+        OudsColorContentKeyToken.OnStatusAccentEmphasized -> contentColors.onStatusAccentEmphasized
+        OudsColorContentKeyToken.OnStatusAccentMuted -> contentColors.onStatusAccentMuted
+        OudsColorContentKeyToken.OnStatusAccentMutedOnBgEmphasized -> contentColors.onStatusAccentMutedOnBgEmphasized
+        OudsColorContentKeyToken.OnStatusInfoEmphasized -> contentColors.onStatusInfoEmphasized
+        OudsColorContentKeyToken.OnStatusInfoMuted -> contentColors.onStatusInfoMuted
+        OudsColorContentKeyToken.OnStatusInfoMutedOnBgEmphasized -> contentColors.onStatusInfoMutedOnBgEmphasized
+        OudsColorContentKeyToken.OnStatusNegativeEmphasized -> contentColors.onStatusNegativeEmphasized
+        OudsColorContentKeyToken.OnStatusNegativeMuted -> contentColors.onStatusNegativeMuted
+        OudsColorContentKeyToken.OnStatusNegativeMutedOnBgEmphasized -> contentColors.onStatusNegativeMutedOnBgEmphasized
+        OudsColorContentKeyToken.OnStatusPositiveEmphasized -> contentColors.onStatusPositiveEmphasized
+        OudsColorContentKeyToken.OnStatusPositiveMuted -> contentColors.onStatusPositiveMuted
+        OudsColorContentKeyToken.OnStatusPositiveMutedOnBgEmphasized -> contentColors.onStatusPositiveMutedOnBgEmphasized
+        OudsColorContentKeyToken.OnStatusWarningEmphasized -> contentColors.onStatusWarningEmphasized
+        OudsColorContentKeyToken.OnStatusWarningMuted -> contentColors.onStatusWarningMuted
+        OudsColorContentKeyToken.OnStatusWarningMutedOnBgEmphasized -> contentColors.onStatusWarningMutedOnBgEmphasized
+        OudsColorContentKeyToken.StatusInfo -> contentColors.statusInfo
+        OudsColorContentKeyToken.StatusNegative -> contentColors.statusNegative
+        OudsColorContentKeyToken.StatusPositive -> contentColors.statusPositive
+        OudsColorContentKeyToken.StatusWarning -> contentColors.statusWarning
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorElevationKeyToken): Color {
+    return when (token) {
+        OudsColorElevationKeyToken.Drag -> elevationColors.drag
+        OudsColorElevationKeyToken.DragOnBgEmphasized -> elevationColors.dragOnBgEmphasized
+        OudsColorElevationKeyToken.DragOnBgSecondary -> elevationColors.dragOnBgSecondary
+        OudsColorElevationKeyToken.Modal -> elevationColors.modal
+        OudsColorElevationKeyToken.OverlayDefault -> elevationColors.overlayDefault
+        OudsColorElevationKeyToken.OverlayDefaultOnBgEmphasized -> elevationColors.overlayDefaultOnBgEmphasized
+        OudsColorElevationKeyToken.OverlayDefaultOnBgSecondary -> elevationColors.overlayDefaultOnBgSecondary
+        OudsColorElevationKeyToken.OverlayEmphasized -> elevationColors.overlayEmphasized
+        OudsColorElevationKeyToken.OverlayEmphasizedOnBgEmphasized -> elevationColors.overlayEmphasizedOnBgEmphasized
+        OudsColorElevationKeyToken.OverlayEmphasizedOnBgSecondary -> elevationColors.overlayEmphasizedOnBgSecondary
+        OudsColorElevationKeyToken.Raised -> elevationColors.raised
+        OudsColorElevationKeyToken.RaisedOnBgEmphasized -> elevationColors.raisedOnBgEmphasized
+        OudsColorElevationKeyToken.RaisedOnBgSecondary -> elevationColors.raisedOnBgSecondary
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorGradientKeyToken): Color {
+    return when (token) {
+        OudsColorGradientKeyToken.SkeletonMiddle -> gradientColors.skeletonMiddle
+        OudsColorGradientKeyToken.SkeletonMiddleOnBgEmphasized -> gradientColors.skeletonMiddleOnBgEmphasized
+        OudsColorGradientKeyToken.SkeletonStartEnd -> gradientColors.skeletonStartEnd
+        OudsColorGradientKeyToken.SkeletonStartEndOnBgEmphasized -> gradientColors.skeletonStartEndOnBgEmphasized
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorDecorativeKeyToken): Color {
+    return when (token) {
+        OudsColorDecorativeKeyToken.Accent1Default -> decorativeColors.accent1Default
+        OudsColorDecorativeKeyToken.Accent1Emphasized -> decorativeColors.accent1Emphasized
+        OudsColorDecorativeKeyToken.Accent1Muted -> decorativeColors.accent1Muted
+        OudsColorDecorativeKeyToken.Accent2Default -> decorativeColors.accent2Default
+        OudsColorDecorativeKeyToken.Accent2Emphasized -> decorativeColors.accent2Emphasized
+        OudsColorDecorativeKeyToken.Accent2Muted -> decorativeColors.accent2Muted
+        OudsColorDecorativeKeyToken.Accent3Default -> decorativeColors.accent3Default
+        OudsColorDecorativeKeyToken.Accent3Emphasized -> decorativeColors.accent3Emphasized
+        OudsColorDecorativeKeyToken.Accent3Muted -> decorativeColors.accent3Muted
+        OudsColorDecorativeKeyToken.Accent4Default -> decorativeColors.accent4Default
+        OudsColorDecorativeKeyToken.Accent4Emphasized -> decorativeColors.accent4Emphasized
+        OudsColorDecorativeKeyToken.Accent4Muted -> decorativeColors.accent4Muted
+        OudsColorDecorativeKeyToken.Accent5Default -> decorativeColors.accent5Default
+        OudsColorDecorativeKeyToken.Accent5Emphasized -> decorativeColors.accent5Emphasized
+        OudsColorDecorativeKeyToken.Accent5Muted -> decorativeColors.accent5Muted
+        OudsColorDecorativeKeyToken.BrandPrimary -> decorativeColors.brandPrimary
+        OudsColorDecorativeKeyToken.BrandSecondary -> decorativeColors.brandSecondary
+        OudsColorDecorativeKeyToken.BrandTertiary -> decorativeColors.brandTertiary
+        OudsColorDecorativeKeyToken.NeutralDefault -> decorativeColors.neutralDefault
+        OudsColorDecorativeKeyToken.NeutralEmphasized -> decorativeColors.neutralEmphasized
+        OudsColorDecorativeKeyToken.NeutralMuted -> decorativeColors.neutralMuted
+        OudsColorDecorativeKeyToken.SkinTint100 -> decorativeColors.skinTint100
+        OudsColorDecorativeKeyToken.SkinTint200 -> decorativeColors.skinTint200
+        OudsColorDecorativeKeyToken.SkinTint300 -> decorativeColors.skinTint300
+        OudsColorDecorativeKeyToken.SkinTint400 -> decorativeColors.skinTint400
+        OudsColorDecorativeKeyToken.SkinTint500 -> decorativeColors.skinTint500
+        OudsColorDecorativeKeyToken.SkinTint600 -> decorativeColors.skinTint600
+        OudsColorDecorativeKeyToken.SkinTint700 -> decorativeColors.skinTint700
+        OudsColorDecorativeKeyToken.SkinTint800 -> decorativeColors.skinTint800
+        OudsColorDecorativeKeyToken.SkinTint900 -> decorativeColors.skinTint900
+    }
+}
+
+@Stable
+fun OudsColorScheme.fromToken(token: OudsColorGlobalKeyToken): Color {
+    return when (token) {
+        OudsColorGlobalKeyToken.TransparentDefault -> globalColors.transparentDefault
     }
 }
 
@@ -995,9 +1058,73 @@ val OudsColorSemanticTokens.materialDarkColorScheme: ColorScheme
     )
 
 /**
- * Converts an OUDS color token to the local color value provided by the theme.
+ * Converts an OUDS action color token to the local color value provided by the theme.
  */
-val OudsColorKeyToken.value: Color
+val OudsColorActionKeyToken.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS always color token to the local color value provided by the theme.
+ */
+val OudsColorAlwaysKeyToken.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS background color token to the local color value provided by the theme.
+ */
+val OudsColorBackgroundKeyToken.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS border color token to the local color value provided by the theme.
+ */
+val OudsColorBorderKeyToken.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS brand color token to the local color value provided by the theme.
+ */
+val OudsColorBrandKeyToken.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS content color token to the local color value provided by the theme.
+ */
+val OudsColorContentKeyToken.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS elevation color token to the local color value provided by the theme.
+ */
+val OudsColorElevationKeyToken.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS gradient color token to the local color value provided by the theme.
+ */
+val OudsColorGradientKeyToken.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS decorative color token to the local color value provided by the theme.
+ */
+val OudsColorDecorativeKeyToken.value: Color
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.colorScheme.fromToken(this)
