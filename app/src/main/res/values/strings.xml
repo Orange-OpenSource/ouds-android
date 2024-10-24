@@ -47,6 +47,7 @@
     <string name="app_tokens_color_action_label">Action</string>
     <string name="app_tokens_color_always_label">Always</string>
     <string name="app_tokens_color_background_label">Background</string>
+    <string name="app_tokens_color_border_label">Border</string>
     <string name="app_tokens_color_brand_label">Brand</string>
     <string name="app_tokens_color_content_label">Content</string>
     <string name="app_tokens_color_elevation_label">Elevation</string>

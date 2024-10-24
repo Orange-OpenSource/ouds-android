@@ -48,12 +48,12 @@ import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
 import com.orange.ouds.theme.tokens.OudsColorAlwaysKeyToken
 import com.orange.ouds.theme.tokens.OudsColorActionKeyToken
 import com.orange.ouds.theme.tokens.OudsColorBrandKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
 import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
 import com.orange.ouds.theme.tokens.OudsColorBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorDecorativeKeyToken
 import com.orange.ouds.theme.tokens.OudsColorGradientKeyToken
 import com.orange.ouds.theme.tokens.OudsColorElevationKeyToken
-import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
@@ -100,6 +100,11 @@ sealed class TokenProperty(
     data object ColorBackground : TokenProperty(
         nameRes = R.string.app_tokens_color_background_label,
         tokens = { OudsColorBackgroundKeyToken.entries.map { Token(it.name, it.value) } }
+    )
+
+    data object ColorBorder : TokenProperty(
+        nameRes = R.string.app_tokens_color_border_label,
+        tokens = { OudsColorBorderKeyToken.entries.map { Token(it.name, it.value) } }
     )
 
     data object ColorBrand : TokenProperty(
