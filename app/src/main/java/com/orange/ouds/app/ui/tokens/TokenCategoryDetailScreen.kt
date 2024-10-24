@@ -43,6 +43,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsBorderStyle
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
 import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
