@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
@@ -31,12 +32,15 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.dashedBorder
 import com.orange.ouds.theme.dottedBorder
+import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 private val defaultIllustrationSize = 64.dp
@@ -126,4 +130,34 @@ fun SpacePaddingInlineWithImageIllustrationRow(
             contentScale = ContentScale.None
         )
     }
+}
+
+@Composable
+fun GridIllustrations() {
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_column_margin),
+        contentDescription = null
+    )
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value)
+            .padding(top = OudsSpaceFixedKeyToken.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_min_width),
+        contentDescription = null
+    )
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value)
+            .padding(top = OudsSpaceFixedKeyToken.Medium.value)
+            .background(OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        painter = painterResource(id = R.drawable.il_tokens_grid_max_width),
+        contentDescription = null
+    )
 }
