@@ -15,7 +15,7 @@ package com.orange.ouds.theme.orangecountry
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
@@ -38,6 +38,6 @@ class OrangeCountryTheme : OrangeTheme() {
 
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(
-            button = OudsButtonTokens(containerColor = OudsColorKeyToken.BgStatusAccentEmphasized, cornerRadius = OudsBorderKeyToken.Radius.Short)
+            button = OudsButtonTokens(containerColor = OudsColorBackgroundKeyToken.StatusAccentEmphasized, cornerRadius = OudsBorderKeyToken.Radius.Short)
         )
 }

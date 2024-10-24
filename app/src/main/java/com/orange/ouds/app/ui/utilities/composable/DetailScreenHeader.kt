@@ -32,9 +32,10 @@ import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
+import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
+import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 @Composable
 fun DetailScreenHeader(
@@ -44,12 +45,12 @@ fun DetailScreenHeader(
     Column {
         Image(
             painter = painterResource(imageRes),
-            colorFilter = ColorFilter.tint(OudsColorKeyToken.ContentDefaultOnBgEmphasized.value),
+            colorFilter = ColorFilter.tint(OudsColorContentKeyToken.DefaultOnBgEmphasized.value),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(186.dp)
-                .background(OudsColorKeyToken.BgEmphasized.value),
+                .background(OudsColorBackgroundKeyToken.Emphasized.value),
             contentScale = ContentScale.None
         )
 
@@ -68,7 +69,7 @@ private fun DetailScreenDescription(
     Text(
         modifier = modifier,
         text = stringResource(descriptionRes),
-        color = OudsColorKeyToken.ContentDefault.value,
+        color = OudsColorContentKeyToken.Default.value,
         style = OudsTypographyKeyToken.BodyDefaultLarge.value
     )
 }
