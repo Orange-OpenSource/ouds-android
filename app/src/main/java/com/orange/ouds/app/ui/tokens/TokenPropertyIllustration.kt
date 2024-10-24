@@ -84,7 +84,7 @@ fun BorderIllustrationBox(
         OudsBorderStyle.Dashed -> Modifier.dashedBorder(width = width, color = borderColor, shape = shape)
         OudsBorderStyle.Dotted -> Modifier.dottedBorder(width = width, color = borderColor, shape = shape)
     }
-    IllustrationBox(modifier = modifier, backgroundColor = Color.Transparent)
+    IllustrationBox(modifier = modifier, backgroundColor = OudsColorKeyToken.BgSecondary.value)
 }
 
 @Composable
