@@ -22,8 +22,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -152,20 +154,21 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
 
 @Composable
 private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) = when (tokenProperty) {
-    is TokenProperty.BorderWidth -> tokenProperty.Illustration(width = token.value as Dp)
-    is TokenProperty.BorderRadius -> tokenProperty.Illustration(radius = token.value as Dp)
-    is TokenProperty.BorderStyle -> tokenProperty.Illustration(style = token.value as OudsBorderStyle)
+    is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
+    is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
+    is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
     is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
     is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
     is TokenProperty.SizeIconDecorative -> tokenProperty.Illustration(size = token.value as Dp)
     is TokenProperty.SizeIconWithLabel -> tokenProperty.Illustration(size = token.value as Dp, token.name)
-    is TokenProperty.SpaceColumnGap -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
+        size = token.value as Dp,
+        contentAlignment = Alignment.Center
+    )
     is TokenProperty.SpacePaddingInline -> tokenProperty.Illustration(size = token.value as Dp, token.name)
     is TokenProperty.SpacePaddingInset -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpacePaddingStack -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpaceFixed -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpaceRowGap -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SpaceScaled -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical)
+    is TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
     is TokenProperty.Typography -> Unit
 }
 
@@ -174,7 +177,7 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
 private fun PreviewTokenCategoryDetailScreen(
     @PreviewParameter(TokenCategoryDetailScreenPreviewParameterProvider::class) parameter: TokenCategory
 ) = OudsPreview {
-    TokenCategoryDetailScreen(parameter, {})
+    TokenCategoryDetailScreen(parameter) {}
 }
 
 private class TokenCategoryDetailScreenPreviewParameterProvider : BasicPreviewParameterProvider<TokenCategory>(*previewParameterValues.toTypedArray())
