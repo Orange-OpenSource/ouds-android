@@ -26,7 +26,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -41,7 +40,6 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
@@ -64,26 +62,17 @@ sealed class TokenProperty(
     data object BorderRadius : TokenProperty(
         nameRes = R.string.app_tokens_border_radius_label,
         tokens = { OudsBorderKeyToken.Radius.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(radius: Dp) = BorderIllustrationBox(shape = RoundedCornerShape(radius))
-    }
+    )
 
     data object BorderStyle : TokenProperty(
         nameRes = R.string.app_tokens_border_style_label,
         tokens = { OudsBorderKeyToken.Style.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(style: OudsBorderStyle) = BorderIllustrationBox(style = style)
-    }
+    )
 
     data object BorderWidth : TokenProperty(
         nameRes = R.string.app_tokens_border_width_label,
         tokens = { OudsBorderKeyToken.Width.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(width: Dp) = BorderIllustrationBox(width = width)
-    }
+    )
 
     data object Elevation : TokenProperty(
         nameRes = null,
@@ -166,18 +155,12 @@ sealed class TokenProperty(
     data object SpaceColumnGap : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_columnGap_label,
         tokens = { OudsSpaceColumnGapKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(size: Dp) = SpaceIllustrationBox(size = size, contentAlignment = Alignment.Center)
-    }
+    )
 
     data object SpaceFixed : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_fixed_label,
         tokens = { OudsSpaceFixedKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(size: Dp) = SpaceIllustrationBox(size, contentAlignment = Alignment.Center)
-    }
+    )
 
     data object SpacePaddingInline : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_paddingInline_label,
@@ -225,30 +208,17 @@ sealed class TokenProperty(
     data object SpacePaddingStack : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_paddingStack_label,
         tokens = { OudsSpacePaddingBlockKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(size: Dp) = SpaceIllustrationBox(size = size, orientation = SpaceOrientation.Vertical)
-    }
+    )
 
     data object SpaceRowGap : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_rowGap_label,
         tokens = { OudsSpaceRowGapKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(size: Dp) = SpaceIllustrationBox(
-            size = size,
-            orientation = SpaceOrientation.Vertical,
-            contentAlignment = Alignment.Center
-        )
-    }
+    )
 
     data object SpaceScaled : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_scaled_label,
         tokens = { OudsSpaceScaledKeyToken.entries.map { Token(it.name, it.value) } }
-    ) {
-        @Composable
-        fun Illustration(size: Dp) = SpaceIllustrationBox(size = size, contentAlignment = Alignment.Center)
-    }
+    )
 
     data object Typography : TokenProperty(nameRes = null, tokens = { OudsTypographyKeyToken.entries.map { Token(it.name, it.value) } })
 
