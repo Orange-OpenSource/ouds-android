@@ -22,7 +22,7 @@ import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.tokens.OudsSizeIconDecorativeKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeIconWithTextKeyToken
-import com.orange.ouds.theme.tokens.OudsSizeTextMaxWidthKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeMaxWidthTypeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 
 data class OudsSizes(
@@ -68,16 +68,16 @@ data class OudsSizes(
     val iconWithBodyLargeSizeShort: OudsAdaptiveTokenValue<Dp>,
     val iconWithBodyLargeSizeMedium: OudsAdaptiveTokenValue<Dp>,
     val iconWithBodyLargeSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthDisplaySmall: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthDisplayMedium: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthDisplayLarge: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthHeadingSmall: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthHeadingMedium: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthHeadingLarge: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthHeadingExtraLarge: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthBodySmall: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthBodyMedium: OudsAdaptiveTokenValue<Dp>,
-    val typeMaxWidthBodyLarge: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeDisplaySmall: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeDisplayMedium: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeDisplayLarge: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeHeadingSmall: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeHeadingMedium: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeHeadingLarge: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeHeadingExtraLarge: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeBodySmall: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeBodyMedium: OudsAdaptiveTokenValue<Dp>,
+    val maxWidthTypeBodyLarge: OudsAdaptiveTokenValue<Dp>,
 )
 
 fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
@@ -207,55 +207,55 @@ fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
         iconWithBodyLargeSizeTallMobile.dp,
         iconWithBodyLargeSizeTallTablet.dp
     ),
-    typeMaxWidthDisplaySmall = OudsAdaptiveTokenValue(
-        typeMaxWidthDisplaySmallMobile.dp,
-        typeMaxWidthDisplaySmallMobile.dp,
-        typeMaxWidthDisplaySmallTablet.dp
+    maxWidthTypeDisplaySmall = OudsAdaptiveTokenValue(
+        maxWidthTypeDisplaySmallMobile.dp,
+        maxWidthTypeDisplaySmallMobile.dp,
+        maxWidthTypeDisplaySmallTablet.dp
     ),
-    typeMaxWidthDisplayMedium = OudsAdaptiveTokenValue(
-        typeMaxWidthDisplayMediumMobile.dp,
-        typeMaxWidthDisplayMediumMobile.dp,
-        typeMaxWidthDisplayMediumTablet.dp
+    maxWidthTypeDisplayMedium = OudsAdaptiveTokenValue(
+        maxWidthTypeDisplayMediumMobile.dp,
+        maxWidthTypeDisplayMediumMobile.dp,
+        maxWidthTypeDisplayMediumTablet.dp
     ),
-    typeMaxWidthDisplayLarge = OudsAdaptiveTokenValue(
-        typeMaxWidthDisplayLargeMobile.dp,
-        typeMaxWidthDisplayLargeMobile.dp,
-        typeMaxWidthDisplayLargeTablet.dp
+    maxWidthTypeDisplayLarge = OudsAdaptiveTokenValue(
+        maxWidthTypeDisplayLargeMobile.dp,
+        maxWidthTypeDisplayLargeMobile.dp,
+        maxWidthTypeDisplayLargeTablet.dp
     ),
-    typeMaxWidthHeadingSmall = OudsAdaptiveTokenValue(
-        typeMaxWidthHeadingSmallMobile.dp,
-        typeMaxWidthHeadingSmallMobile.dp,
-        typeMaxWidthHeadingSmallTablet.dp
+    maxWidthTypeHeadingSmall = OudsAdaptiveTokenValue(
+        maxWidthTypeHeadingSmallMobile.dp,
+        maxWidthTypeHeadingSmallMobile.dp,
+        maxWidthTypeHeadingSmallTablet.dp
     ),
-    typeMaxWidthHeadingMedium = OudsAdaptiveTokenValue(
-        typeMaxWidthHeadingMediumMobile.dp,
-        typeMaxWidthHeadingMediumMobile.dp,
-        typeMaxWidthHeadingMediumTablet.dp
+    maxWidthTypeHeadingMedium = OudsAdaptiveTokenValue(
+        maxWidthTypeHeadingMediumMobile.dp,
+        maxWidthTypeHeadingMediumMobile.dp,
+        maxWidthTypeHeadingMediumTablet.dp
     ),
-    typeMaxWidthHeadingLarge = OudsAdaptiveTokenValue(
-        typeMaxWidthHeadingLargeMobile.dp,
-        typeMaxWidthHeadingLargeMobile.dp,
-        typeMaxWidthHeadingLargeTablet.dp
+    maxWidthTypeHeadingLarge = OudsAdaptiveTokenValue(
+        maxWidthTypeHeadingLargeMobile.dp,
+        maxWidthTypeHeadingLargeMobile.dp,
+        maxWidthTypeHeadingLargeTablet.dp
     ),
-    typeMaxWidthHeadingExtraLarge = OudsAdaptiveTokenValue(
-        typeMaxWidthHeadingXlargeMobile.dp,
-        typeMaxWidthHeadingXlargeMobile.dp,
-        typeMaxWidthHeadingXlargeTablet.dp
+    maxWidthTypeHeadingExtraLarge = OudsAdaptiveTokenValue(
+        maxWidthTypeHeadingXlargeMobile.dp,
+        maxWidthTypeHeadingXlargeMobile.dp,
+        maxWidthTypeHeadingXlargeTablet.dp
     ),
-    typeMaxWidthBodySmall = OudsAdaptiveTokenValue(
-        typeMaxWidthBodySmallMobile.dp,
-        typeMaxWidthBodySmallMobile.dp,
-        typeMaxWidthBodySmallTablet.dp
+    maxWidthTypeBodySmall = OudsAdaptiveTokenValue(
+        maxWidthTypeBodySmallMobile.dp,
+        maxWidthTypeBodySmallMobile.dp,
+        maxWidthTypeBodySmallTablet.dp
     ),
-    typeMaxWidthBodyMedium = OudsAdaptiveTokenValue(
-        typeMaxWidthBodyMediumMobile.dp,
-        typeMaxWidthBodyMediumMobile.dp,
-        typeMaxWidthBodyMediumTablet.dp
+    maxWidthTypeBodyMedium = OudsAdaptiveTokenValue(
+        maxWidthTypeBodyMediumMobile.dp,
+        maxWidthTypeBodyMediumMobile.dp,
+        maxWidthTypeBodyMediumTablet.dp
     ),
-    typeMaxWidthBodyLarge = OudsAdaptiveTokenValue(
-        typeMaxWidthBodyLargeMobile.dp,
-        typeMaxWidthBodyLargeMobile.dp,
-        typeMaxWidthBodyLargeTablet.dp
+    maxWidthTypeBodyLarge = OudsAdaptiveTokenValue(
+        maxWidthTypeBodyLargeMobile.dp,
+        maxWidthTypeBodyLargeMobile.dp,
+        maxWidthTypeBodyLargeTablet.dp
     ),
 )
 
@@ -320,18 +320,18 @@ fun OudsSizes.fromToken(token: OudsSizeIconWithTextKeyToken, adaptiveWindowType:
 }
 
 @Stable
-fun OudsSizes.fromToken(token: OudsSizeTextMaxWidthKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+fun OudsSizes.fromToken(token: OudsSizeMaxWidthTypeKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     val dimensionMaxWidthTypeToken = when (token) {
-        OudsSizeTextMaxWidthKeyToken.DisplaySmall -> typeMaxWidthDisplaySmall
-        OudsSizeTextMaxWidthKeyToken.DisplayMedium -> typeMaxWidthDisplayMedium
-        OudsSizeTextMaxWidthKeyToken.DisplayLarge -> typeMaxWidthDisplayLarge
-        OudsSizeTextMaxWidthKeyToken.HeadingSmall -> typeMaxWidthHeadingSmall
-        OudsSizeTextMaxWidthKeyToken.HeadingMedium -> typeMaxWidthHeadingMedium
-        OudsSizeTextMaxWidthKeyToken.HeadingLarge -> typeMaxWidthHeadingLarge
-        OudsSizeTextMaxWidthKeyToken.HeadingExtraLarge -> typeMaxWidthHeadingExtraLarge
-        OudsSizeTextMaxWidthKeyToken.BodySmall -> typeMaxWidthBodySmall
-        OudsSizeTextMaxWidthKeyToken.BodyMedium -> typeMaxWidthBodyMedium
-        OudsSizeTextMaxWidthKeyToken.BodyLarge -> typeMaxWidthBodyLarge
+        OudsSizeMaxWidthTypeKeyToken.DisplaySmall -> maxWidthTypeDisplaySmall
+        OudsSizeMaxWidthTypeKeyToken.DisplayMedium -> maxWidthTypeDisplayMedium
+        OudsSizeMaxWidthTypeKeyToken.DisplayLarge -> maxWidthTypeDisplayLarge
+        OudsSizeMaxWidthTypeKeyToken.HeadingSmall -> maxWidthTypeHeadingSmall
+        OudsSizeMaxWidthTypeKeyToken.HeadingMedium -> maxWidthTypeHeadingMedium
+        OudsSizeMaxWidthTypeKeyToken.HeadingLarge -> maxWidthTypeHeadingLarge
+        OudsSizeMaxWidthTypeKeyToken.HeadingExtraLarge -> maxWidthTypeHeadingExtraLarge
+        OudsSizeMaxWidthTypeKeyToken.BodySmall -> maxWidthTypeBodySmall
+        OudsSizeMaxWidthTypeKeyToken.BodyMedium -> maxWidthTypeBodyMedium
+        OudsSizeMaxWidthTypeKeyToken.BodyLarge -> maxWidthTypeBodyLarge
     }
 
     return when (adaptiveWindowType) {
@@ -359,6 +359,6 @@ val OudsSizeIconWithTextKeyToken.value: Dp
 /**
  * Converts an OUDS max width with typography token to the local max width with typography value provided by the theme depending on the window size.
  */
-val OudsSizeTextMaxWidthKeyToken.value: Dp
+val OudsSizeMaxWidthTypeKeyToken.value: Dp
     @Composable
     get() = OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
