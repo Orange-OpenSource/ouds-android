@@ -28,7 +28,7 @@ import com.orange.ouds.app.ui.tokens.addTokensNavGraph
  * Root navigation graph of the application
  */
 fun NavGraphBuilder.appNavGraph(navController: NavController) {
-    addTokensNavGraph()
+    addTokensNavGraph(navController)
     addAboutNavGraph()
     addBottomBarNavGraph(navController)
 }
@@ -38,7 +38,7 @@ fun NavGraphBuilder.appNavGraph(navController: NavController) {
  */
 private fun NavGraphBuilder.addBottomBarNavGraph(navController: NavController) {
     composable(BottomBarItem.Tokens.route) { from ->
-        TokensScreen(onTokenClick = { id -> navController.navigateToElement(TokensNavigation.TokenCategoryDetailRoute, id, from) })
+        TokensScreen(onTokenCategoryClick = { id -> navController.navigateToElement(TokensNavigation.TokenCategoryDetailRoute, id, from) })
     }
     composable(BottomBarItem.Components.route) { _ ->
         ComponentsScreen()

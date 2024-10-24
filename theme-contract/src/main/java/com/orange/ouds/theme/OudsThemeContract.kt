@@ -22,7 +22,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
-import com.orange.ouds.theme.tokens.semantic.OudsSpacingSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
 interface OudsThemeContract : Parcelable {
 
@@ -80,10 +80,10 @@ interface OudsThemeContract : Parcelable {
         get() = OudsSizeSemanticTokens()
 
     /**
-     * Spacing semantic tokens values used in the theme
+     * Space semantic tokens values used in the theme
      */
-    val spacingTokens: OudsSpacingSemanticTokens
-        get() = OudsSpacingSemanticTokens()
+    val spaceTokens: OudsSpaceSemanticTokens
+        get() = OudsSpaceSemanticTokens()
 
     /**
      * Customization of the OUDS components if needed
