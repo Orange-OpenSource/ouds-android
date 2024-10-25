@@ -40,7 +40,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsBorderStyle
-import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
@@ -109,7 +109,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                     style = OudsTypographyKeyToken.BodyDefaultMedium.value,
-                                    color = OudsColorContentKeyToken.Muted.value
+                                    color = OudsColorKeyToken.Content.Muted.value
                                 )
                             }
                         } else {
@@ -143,7 +143,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                         text = token.literalValue,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
-                                        style = OudsTypographyKeyToken.BodyDefaultMedium.value.copy(color = OudsColorContentKeyToken.Muted.value)
+                                        style = OudsTypographyKeyToken.BodyDefaultMedium.value.copy(color = OudsColorKeyToken.Content.Muted.value)
                                     )
                                 }
                             }

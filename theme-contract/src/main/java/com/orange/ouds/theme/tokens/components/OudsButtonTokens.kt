@@ -13,18 +13,16 @@
 package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
-import com.orange.ouds.theme.tokens.OudsColorActionKeyToken
-import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
-import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 open class OudsButtonTokens(
-    val containerColor: OudsColorBackgroundKeyToken = OudsColorBackgroundKeyToken.BrandPrimary,
-    val contentColor: OudsColorContentKeyToken = OudsColorContentKeyToken.BrandPrimary,
-    val disabledContainerColor: OudsColorActionKeyToken = OudsColorActionKeyToken.Disabled,
-    val disabledContentColor: OudsColorContentKeyToken = OudsColorContentKeyToken.Disabled,
+    val containerColor: OudsColorKeyToken.Background = OudsColorKeyToken.Background.BrandPrimary,
+    val contentColor: OudsColorKeyToken.Content = OudsColorKeyToken.Content.BrandPrimary,
+    val disabledContainerColor: OudsColorKeyToken.Action = OudsColorKeyToken.Action.Disabled,
+    val disabledContentColor: OudsColorKeyToken.Content = OudsColorKeyToken.Content.Disabled,
     val cornerRadius: OudsBorderRadiusKeyToken = OudsBorderRadiusKeyToken.None,
     val defaultElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val pressedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,

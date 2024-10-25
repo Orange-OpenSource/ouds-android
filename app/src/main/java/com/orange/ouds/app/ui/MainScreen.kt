@@ -57,7 +57,7 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orangecountry.OrangeCountryTheme
-import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.whitelabel.WhiteLabelTheme
 
@@ -155,7 +155,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
     Dialog(onDismissRequest = dismissDialog) {
         Column(
             modifier = Modifier
-                .background(OudsColorBackgroundKeyToken.Secondary.value)
+                .background(OudsColorKeyToken.Background.Secondary.value)
                 .selectableGroup()
         ) {
             Text(

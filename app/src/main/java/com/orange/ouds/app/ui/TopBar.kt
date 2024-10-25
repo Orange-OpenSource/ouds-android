@@ -34,7 +34,7 @@ import com.orange.ouds.app.ui.utilities.isDarkModeEnabled
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 
@@ -70,7 +70,7 @@ private fun TopBar(
                     Image(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(id = R.string.app_common_back_a11y),
-                        colorFilter = ColorFilter.tint(OudsColorContentKeyToken.Default.value)
+                        colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.Default.value)
                     )
                 }
             }
@@ -78,7 +78,7 @@ private fun TopBar(
         title = {
             Text(
                 text = title,
-                color = OudsColorContentKeyToken.Default.value,
+                color = OudsColorKeyToken.Content.Default.value,
                 modifier = Modifier.semantics { traversalIndex = -1f },
                 style = OudsTypographyKeyToken.HeadingMedium.value
             )
