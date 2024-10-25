@@ -34,9 +34,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorBackgroundKeyToken
-import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
-import com.orange.ouds.theme.tokens.OudsColorElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
@@ -52,15 +50,15 @@ fun LargeCard(
     modifier: Modifier = Modifier,
 ) {
     Card(modifier = modifier, shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsElevationKeyToken.Raised.value), onClick = onClick) {
-        Column(modifier = Modifier.background(OudsColorElevationKeyToken.Raised.value)) {
+        Column(modifier = Modifier.background(OudsColorKeyToken.Elevation.Raised.value)) {
             Image(
                 painter = painterResource(imageRes),
-                colorFilter = ColorFilter.tint(OudsColorContentKeyToken.DefaultOnBgEmphasized.value),
+                colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.DefaultOnBgEmphasized.value),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(184.dp)
-                    .background(OudsColorBackgroundKeyToken.Emphasized.value),
+                    .background(OudsColorKeyToken.Background.Emphasized.value),
                 contentScale = ContentScale.None
             )
             Column(
@@ -68,7 +66,7 @@ fun LargeCard(
             ) {
                 Text(
                     text = title,
-                    color = OudsColorContentKeyToken.Default.value,
+                    color = OudsColorKeyToken.Content.Default.value,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     style = OudsTypographyKeyToken.HeadingMedium.value

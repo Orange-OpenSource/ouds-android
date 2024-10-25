@@ -28,7 +28,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorContentKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 @Composable
 fun OudsButton(
@@ -66,7 +66,7 @@ fun OudsButton(
                 modifier = modifier,
                 text = text,
                 style = labelStyle.value,
-                color = OudsColorContentKeyToken.OnActionPrimaryEnabled.value
+                color = OudsColorKeyToken.Content.OnActionPrimaryEnabled.value
             )
         }
     }
