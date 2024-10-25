@@ -40,9 +40,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
-import com.orange.ouds.theme.tokens.OudsBorderStyleKeyToken
-import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
+import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
@@ -57,17 +55,17 @@ sealed class TokenProperty(
 ) {
     data object BorderRadius : TokenProperty(
         nameRes = R.string.app_tokens_border_radius_label,
-        tokens = { OudsBorderRadiusKeyToken.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsBorderKeyToken.Radius.entries.map { Token(it.name, it.value) } }
     )
 
     data object BorderStyle : TokenProperty(
         nameRes = R.string.app_tokens_border_style_label,
-        tokens = { OudsBorderStyleKeyToken.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsBorderKeyToken.Style.entries.map { Token(it.name, it.value) } }
     )
 
     data object BorderWidth : TokenProperty(
         nameRes = R.string.app_tokens_border_width_label,
-        tokens = { OudsBorderWidthKeyToken.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsBorderKeyToken.Width.entries.map { Token(it.name, it.value) } }
     )
 
     data object ColorAction : TokenProperty(

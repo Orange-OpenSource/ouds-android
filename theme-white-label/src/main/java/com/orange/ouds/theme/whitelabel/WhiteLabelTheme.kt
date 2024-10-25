@@ -15,7 +15,7 @@ package com.orange.ouds.theme.whitelabel
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsThemeContract
-import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
+import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
@@ -40,7 +40,7 @@ open class WhiteLabelTheme : OudsThemeContract {
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(
             button = OudsButtonTokens(
-                cornerRadius = OudsBorderRadiusKeyToken.Pill,
+                cornerRadius = OudsBorderKeyToken.Radius.Pill,
                 defaultElevation = OudsElevationKeyToken.OverlayDefault,
                 focusedElevation = OudsElevationKeyToken.OverlayDefault,
                 hoveredElevation = OudsElevationKeyToken.OverlayDefault,
