@@ -32,7 +32,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 @Composable
 fun ComponentsScreen() {
@@ -49,7 +49,7 @@ fun ComponentsScreen() {
 
             Box(
                 modifier = Modifier
-                    .padding(top = OudsSpaceFixedKeyToken.Medium.value)
+                    .padding(top = OudsSpaceKeyToken.Fixed.Medium.value)
                     .width(OudsGridKeyToken.Margin.value)
                     .height(OudsGridKeyToken.ColumnGap.value)
                     .background(OudsTheme.colorScheme.primary)

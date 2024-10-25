@@ -40,7 +40,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsBorderStyle
-import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
@@ -48,7 +48,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: (Long) -> Unit) {
 
     Screen {
-        LazyColumn(contentPadding = PaddingValues(bottom = OudsSpaceFixedKeyToken.Medium.value)) {
+        LazyColumn(contentPadding = PaddingValues(bottom = OudsSpaceKeyToken.Fixed.Medium.value)) {
             item {
                 DetailScreenHeader(
                     descriptionRes = tokenCategory.descriptionRes,
@@ -61,13 +61,13 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = OudsSpaceFixedKeyToken.Medium.value)
+                            .padding(top = OudsSpaceKeyToken.Fixed.Medium.value)
                             .clickable { onSubcategoryClick(subcategory.id) }
                     ) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(OudsSpaceFixedKeyToken.Medium.value),
+                                .padding(OudsSpaceKeyToken.Fixed.Medium.value),
                             text = stringResource(id = subcategory.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -77,13 +77,13 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                 }
             } else {
                 items(tokenCategory.properties) { tokenProperty ->
-                    Spacer(modifier = Modifier.height(OudsSpaceFixedKeyToken.Medium.value))
+                    Spacer(modifier = Modifier.height(OudsSpaceKeyToken.Fixed.Medium.value))
 
                     tokenProperty.nameRes?.let {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(OudsSpaceFixedKeyToken.Medium.value),
+                                .padding(OudsSpaceKeyToken.Fixed.Medium.value),
                             text = stringResource(id = tokenProperty.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -96,7 +96,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                             Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value, vertical = OudsSpaceFixedKeyToken.Shorter.value)
+                                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value)
                             ) {
                                 TokenIllustration(tokenProperty = tokenProperty, token = token)
                                 Text(
@@ -114,14 +114,14 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value, vertical = OudsSpaceFixedKeyToken.Shorter.value)
+                                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value)
                             ) {
                                 TokenIllustration(tokenProperty = tokenProperty, token = token)
 
                                 Column(
                                     modifier = Modifier
                                         .weight(1f)
-                                        .padding(start = if (isTypographyProperty) OudsSpaceFixedKeyToken.None.value else OudsSpaceFixedKeyToken.Medium.value)
+                                        .padding(start = if (isTypographyProperty) OudsSpaceKeyToken.Fixed.None.value else OudsSpaceKeyToken.Fixed.Medium.value)
                                 ) {
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),

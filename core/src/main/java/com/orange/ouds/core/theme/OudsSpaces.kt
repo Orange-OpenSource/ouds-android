@@ -20,13 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.OudsAdaptiveTokenValue
 import com.orange.ouds.theme.OudsAdaptiveWindowType
 import com.orange.ouds.theme.currentWindowWidth
-import com.orange.ouds.theme.tokens.OudsSpaceColumnGapKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceInsetKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacePaddingBlockKeyToken
-import com.orange.ouds.theme.tokens.OudsSpacePaddingInlineKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceRowGapKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceScaledKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
 data class OudsSpaces(
@@ -274,36 +268,36 @@ fun OudsSpaceSemanticTokens.getSpaces() = OudsSpaces(
 )
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceFixedKeyToken): Dp {
+fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Fixed): Dp {
     return when (token) {
-        OudsSpaceFixedKeyToken.None -> fixedNone
-        OudsSpaceFixedKeyToken.Smash -> fixedSmash
-        OudsSpaceFixedKeyToken.Shortest -> fixedShortest
-        OudsSpaceFixedKeyToken.Shorter -> fixedShorter
-        OudsSpaceFixedKeyToken.Short -> fixedShort
-        OudsSpaceFixedKeyToken.Medium -> fixedMedium
-        OudsSpaceFixedKeyToken.Tall -> fixedTall
-        OudsSpaceFixedKeyToken.Taller -> fixedTaller
-        OudsSpaceFixedKeyToken.Tallest -> fixedTallest
-        OudsSpaceFixedKeyToken.Spacious -> fixedSpacious
-        OudsSpaceFixedKeyToken.Huge -> fixedHuge
-        OudsSpaceFixedKeyToken.Jumbo -> fixedJumbo
+        OudsSpaceKeyToken.Fixed.None -> fixedNone
+        OudsSpaceKeyToken.Fixed.Smash -> fixedSmash
+        OudsSpaceKeyToken.Fixed.Shortest -> fixedShortest
+        OudsSpaceKeyToken.Fixed.Shorter -> fixedShorter
+        OudsSpaceKeyToken.Fixed.Short -> fixedShort
+        OudsSpaceKeyToken.Fixed.Medium -> fixedMedium
+        OudsSpaceKeyToken.Fixed.Tall -> fixedTall
+        OudsSpaceKeyToken.Fixed.Taller -> fixedTaller
+        OudsSpaceKeyToken.Fixed.Tallest -> fixedTallest
+        OudsSpaceKeyToken.Fixed.Spacious -> fixedSpacious
+        OudsSpaceKeyToken.Fixed.Huge -> fixedHuge
+        OudsSpaceKeyToken.Fixed.Jumbo -> fixedJumbo
     }
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceScaledKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     val dimensionAdaptableSpaceToken = when (token) {
-        OudsSpaceScaledKeyToken.None -> scaledNone
-        OudsSpaceScaledKeyToken.Smash -> scaledSmash
-        OudsSpaceScaledKeyToken.Shortest -> scaledShortest
-        OudsSpaceScaledKeyToken.Shorter -> scaledShorter
-        OudsSpaceScaledKeyToken.Short -> scaledShort
-        OudsSpaceScaledKeyToken.Medium -> scaledMedium
-        OudsSpaceScaledKeyToken.Tall -> scaledTall
-        OudsSpaceScaledKeyToken.Taller -> scaledTaller
-        OudsSpaceScaledKeyToken.Tallest -> scaledTallest
-        OudsSpaceScaledKeyToken.Spacious -> scaledSpacious
+        OudsSpaceKeyToken.Scaled.None -> scaledNone
+        OudsSpaceKeyToken.Scaled.Smash -> scaledSmash
+        OudsSpaceKeyToken.Scaled.Shortest -> scaledShortest
+        OudsSpaceKeyToken.Scaled.Shorter -> scaledShorter
+        OudsSpaceKeyToken.Scaled.Short -> scaledShort
+        OudsSpaceKeyToken.Scaled.Medium -> scaledMedium
+        OudsSpaceKeyToken.Scaled.Tall -> scaledTall
+        OudsSpaceKeyToken.Scaled.Taller -> scaledTaller
+        OudsSpaceKeyToken.Scaled.Tallest -> scaledTallest
+        OudsSpaceKeyToken.Scaled.Spacious -> scaledSpacious
     }
 
     return when (adaptiveWindowType) {
@@ -314,116 +308,116 @@ fun OudsSpaces.fromToken(token: OudsSpaceScaledKeyToken, adaptiveWindowType: Oud
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpacePaddingInlineKeyToken): Dp {
+fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
     return when (token) {
-        OudsSpacePaddingInlineKeyToken.None -> paddingInlineNone
-        OudsSpacePaddingInlineKeyToken.Shorter -> paddingInlineShorter
-        OudsSpacePaddingInlineKeyToken.Short -> paddingInlineShort
-        OudsSpacePaddingInlineKeyToken.Medium -> paddingInlineMedium
-        OudsSpacePaddingInlineKeyToken.Tall -> paddingInlineTall
-        OudsSpacePaddingInlineKeyToken.Taller -> paddingInlineTaller
-        OudsSpacePaddingInlineKeyToken.Tallest -> paddingInlineTallest
-        OudsSpacePaddingInlineKeyToken.WithIconNone -> paddingInlineWithIconNone
-        OudsSpacePaddingInlineKeyToken.WithIconShortest -> paddingInlineWithIconShortest
-        OudsSpacePaddingInlineKeyToken.WithIconShorter -> paddingInlineWithIconShorter
-        OudsSpacePaddingInlineKeyToken.WithIconShort -> paddingInlineWithIconShort
-        OudsSpacePaddingInlineKeyToken.WithIconMedium -> paddingInlineWithIconMedium
-        OudsSpacePaddingInlineKeyToken.WithIconTall -> paddingInlineWithIconTall
-        OudsSpacePaddingInlineKeyToken.WithIconTaller -> paddingInlineWithIconTaller
-        OudsSpacePaddingInlineKeyToken.WithIconTallest -> paddingInlineWithIconTallest
-        OudsSpacePaddingInlineKeyToken.WithArrowNone -> paddingInlineWithArrowNone
-        OudsSpacePaddingInlineKeyToken.WithArrowShortest -> paddingInlineWithArrowShortest
-        OudsSpacePaddingInlineKeyToken.WithArrowShorter -> paddingInlineWithArrowShorter
-        OudsSpacePaddingInlineKeyToken.WithArrowShort -> paddingInlineWithArrowShort
-        OudsSpacePaddingInlineKeyToken.WithArrowMedium -> paddingInlineWithArrowMedium
-        OudsSpacePaddingInlineKeyToken.WithArrowTall -> paddingInlineWithArrowTall
-        OudsSpacePaddingInlineKeyToken.WithArrowTaller -> paddingInlineWithArrowTaller
-        OudsSpacePaddingInlineKeyToken.WithArrowTallest -> paddingInlineWithArrowTallest
+        OudsSpaceKeyToken.PaddingInline.None -> paddingInlineNone
+        OudsSpaceKeyToken.PaddingInline.Shorter -> paddingInlineShorter
+        OudsSpaceKeyToken.PaddingInline.Short -> paddingInlineShort
+        OudsSpaceKeyToken.PaddingInline.Medium -> paddingInlineMedium
+        OudsSpaceKeyToken.PaddingInline.Tall -> paddingInlineTall
+        OudsSpaceKeyToken.PaddingInline.Taller -> paddingInlineTaller
+        OudsSpaceKeyToken.PaddingInline.Tallest -> paddingInlineTallest
+        OudsSpaceKeyToken.PaddingInline.WithIconNone -> paddingInlineWithIconNone
+        OudsSpaceKeyToken.PaddingInline.WithIconShortest -> paddingInlineWithIconShortest
+        OudsSpaceKeyToken.PaddingInline.WithIconShorter -> paddingInlineWithIconShorter
+        OudsSpaceKeyToken.PaddingInline.WithIconShort -> paddingInlineWithIconShort
+        OudsSpaceKeyToken.PaddingInline.WithIconMedium -> paddingInlineWithIconMedium
+        OudsSpaceKeyToken.PaddingInline.WithIconTall -> paddingInlineWithIconTall
+        OudsSpaceKeyToken.PaddingInline.WithIconTaller -> paddingInlineWithIconTaller
+        OudsSpaceKeyToken.PaddingInline.WithIconTallest -> paddingInlineWithIconTallest
+        OudsSpaceKeyToken.PaddingInline.WithArrowNone -> paddingInlineWithArrowNone
+        OudsSpaceKeyToken.PaddingInline.WithArrowShortest -> paddingInlineWithArrowShortest
+        OudsSpaceKeyToken.PaddingInline.WithArrowShorter -> paddingInlineWithArrowShorter
+        OudsSpaceKeyToken.PaddingInline.WithArrowShort -> paddingInlineWithArrowShort
+        OudsSpaceKeyToken.PaddingInline.WithArrowMedium -> paddingInlineWithArrowMedium
+        OudsSpaceKeyToken.PaddingInline.WithArrowTall -> paddingInlineWithArrowTall
+        OudsSpaceKeyToken.PaddingInline.WithArrowTaller -> paddingInlineWithArrowTaller
+        OudsSpaceKeyToken.PaddingInline.WithArrowTallest -> paddingInlineWithArrowTallest
     }
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpacePaddingBlockKeyToken): Dp {
+fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
     return when (token) {
-        OudsSpacePaddingBlockKeyToken.None -> paddingBlockNone
-        OudsSpacePaddingBlockKeyToken.Shorter -> paddingBlockShorter
-        OudsSpacePaddingBlockKeyToken.Short -> paddingBlockShort
-        OudsSpacePaddingBlockKeyToken.Medium -> paddingBlockMedium
-        OudsSpacePaddingBlockKeyToken.Tall -> paddingBlockTall
-        OudsSpacePaddingBlockKeyToken.Taller -> paddingBlockTaller
-        OudsSpacePaddingBlockKeyToken.Tallest -> paddingBlockTallest
-        OudsSpacePaddingBlockKeyToken.WithIconNone -> paddingBlockWithIconNone
-        OudsSpacePaddingBlockKeyToken.WithIconShortest -> paddingBlockWithIconShortest
-        OudsSpacePaddingBlockKeyToken.WithIconShorter -> paddingBlockWithIconShorter
-        OudsSpacePaddingBlockKeyToken.WithIconShort -> paddingBlockWithIconShort
-        OudsSpacePaddingBlockKeyToken.WithIconMedium -> paddingBlockWithIconMedium
-        OudsSpacePaddingBlockKeyToken.WithIconTall -> paddingBlockWithIconTall
-        OudsSpacePaddingBlockKeyToken.WithIconTaller -> paddingBlockWithIconTaller
+        OudsSpaceKeyToken.PaddingBlock.None -> paddingBlockNone
+        OudsSpaceKeyToken.PaddingBlock.Shorter -> paddingBlockShorter
+        OudsSpaceKeyToken.PaddingBlock.Short -> paddingBlockShort
+        OudsSpaceKeyToken.PaddingBlock.Medium -> paddingBlockMedium
+        OudsSpaceKeyToken.PaddingBlock.Tall -> paddingBlockTall
+        OudsSpaceKeyToken.PaddingBlock.Taller -> paddingBlockTaller
+        OudsSpaceKeyToken.PaddingBlock.Tallest -> paddingBlockTallest
+        OudsSpaceKeyToken.PaddingBlock.WithIconNone -> paddingBlockWithIconNone
+        OudsSpaceKeyToken.PaddingBlock.WithIconShortest -> paddingBlockWithIconShortest
+        OudsSpaceKeyToken.PaddingBlock.WithIconShorter -> paddingBlockWithIconShorter
+        OudsSpaceKeyToken.PaddingBlock.WithIconShort -> paddingBlockWithIconShort
+        OudsSpaceKeyToken.PaddingBlock.WithIconMedium -> paddingBlockWithIconMedium
+        OudsSpaceKeyToken.PaddingBlock.WithIconTall -> paddingBlockWithIconTall
+        OudsSpaceKeyToken.PaddingBlock.WithIconTaller -> paddingBlockWithIconTaller
     }
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceInsetKeyToken): Dp {
+fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
     return when (token) {
-        OudsSpaceInsetKeyToken.None -> insetNone
-        OudsSpaceInsetKeyToken.Smash -> insetSmash
-        OudsSpaceInsetKeyToken.Shortest -> insetShortest
-        OudsSpaceInsetKeyToken.Shorter -> insetShorter
-        OudsSpaceInsetKeyToken.Short -> insetShort
-        OudsSpaceInsetKeyToken.Medium -> insetMedium
-        OudsSpaceInsetKeyToken.Tall -> insetTall
-        OudsSpaceInsetKeyToken.Taller -> insetTaller
-        OudsSpaceInsetKeyToken.Tallest -> insetTallest
-        OudsSpaceInsetKeyToken.Spacious -> insetSpacious
+        OudsSpaceKeyToken.Inset.None -> insetNone
+        OudsSpaceKeyToken.Inset.Smash -> insetSmash
+        OudsSpaceKeyToken.Inset.Shortest -> insetShortest
+        OudsSpaceKeyToken.Inset.Shorter -> insetShorter
+        OudsSpaceKeyToken.Inset.Short -> insetShort
+        OudsSpaceKeyToken.Inset.Medium -> insetMedium
+        OudsSpaceKeyToken.Inset.Tall -> insetTall
+        OudsSpaceKeyToken.Inset.Taller -> insetTaller
+        OudsSpaceKeyToken.Inset.Tallest -> insetTallest
+        OudsSpaceKeyToken.Inset.Spacious -> insetSpacious
     }
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceColumnGapKeyToken): Dp {
+fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
     return when (token) {
-        OudsSpaceColumnGapKeyToken.None -> columnGapNone
-        OudsSpaceColumnGapKeyToken.Shorter -> columnGapShorter
-        OudsSpaceColumnGapKeyToken.Short -> columnGapShort
-        OudsSpaceColumnGapKeyToken.Medium -> columnGapMedium
-        OudsSpaceColumnGapKeyToken.Tall -> columnGapTall
-        OudsSpaceColumnGapKeyToken.Taller -> columnGapTaller
-        OudsSpaceColumnGapKeyToken.WithIconNone -> columnGapWithIconNone
-        OudsSpaceColumnGapKeyToken.WithIconShortest -> columnGapWithIconShortest
-        OudsSpaceColumnGapKeyToken.WithIconShorter -> columnGapWithIconShorter
-        OudsSpaceColumnGapKeyToken.WithIconShort -> columnGapWithIconShort
-        OudsSpaceColumnGapKeyToken.WithIconMedium -> columnGapWithIconMedium
-        OudsSpaceColumnGapKeyToken.WithIconTall -> columnGapWithIconTall
-        OudsSpaceColumnGapKeyToken.WithArrowNone -> columnGapWithArrowNone
-        OudsSpaceColumnGapKeyToken.WithArrowShortest -> columnGapWithArrowShortest
-        OudsSpaceColumnGapKeyToken.WithArrowShorter -> columnGapWithArrowShorter
-        OudsSpaceColumnGapKeyToken.WithArrowShort -> columnGapWithArrowShort
-        OudsSpaceColumnGapKeyToken.WithArrowMedium -> columnGapWithArrowMedium
-        OudsSpaceColumnGapKeyToken.WithArrowTall -> columnGapWithArrowTall
+        OudsSpaceKeyToken.ColumnGap.None -> columnGapNone
+        OudsSpaceKeyToken.ColumnGap.Shorter -> columnGapShorter
+        OudsSpaceKeyToken.ColumnGap.Short -> columnGapShort
+        OudsSpaceKeyToken.ColumnGap.Medium -> columnGapMedium
+        OudsSpaceKeyToken.ColumnGap.Tall -> columnGapTall
+        OudsSpaceKeyToken.ColumnGap.Taller -> columnGapTaller
+        OudsSpaceKeyToken.ColumnGap.WithIconNone -> columnGapWithIconNone
+        OudsSpaceKeyToken.ColumnGap.WithIconShortest -> columnGapWithIconShortest
+        OudsSpaceKeyToken.ColumnGap.WithIconShorter -> columnGapWithIconShorter
+        OudsSpaceKeyToken.ColumnGap.WithIconShort -> columnGapWithIconShort
+        OudsSpaceKeyToken.ColumnGap.WithIconMedium -> columnGapWithIconMedium
+        OudsSpaceKeyToken.ColumnGap.WithIconTall -> columnGapWithIconTall
+        OudsSpaceKeyToken.ColumnGap.WithArrowNone -> columnGapWithArrowNone
+        OudsSpaceKeyToken.ColumnGap.WithArrowShortest -> columnGapWithArrowShortest
+        OudsSpaceKeyToken.ColumnGap.WithArrowShorter -> columnGapWithArrowShorter
+        OudsSpaceKeyToken.ColumnGap.WithArrowShort -> columnGapWithArrowShort
+        OudsSpaceKeyToken.ColumnGap.WithArrowMedium -> columnGapWithArrowMedium
+        OudsSpaceKeyToken.ColumnGap.WithArrowTall -> columnGapWithArrowTall
     }
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceRowGapKeyToken): Dp {
+fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
     return when (token) {
-        OudsSpaceRowGapKeyToken.None -> rowGapNone
-        OudsSpaceRowGapKeyToken.Shortest -> rowGapShortest
-        OudsSpaceRowGapKeyToken.Shorter -> rowGapShorter
-        OudsSpaceRowGapKeyToken.Short -> rowGapShort
-        OudsSpaceRowGapKeyToken.Medium -> rowGapMedium
-        OudsSpaceRowGapKeyToken.Tall -> rowGapTall
-        OudsSpaceRowGapKeyToken.WithIconNone -> rowGapWithIconNone
-        OudsSpaceRowGapKeyToken.WithIconShortest -> rowGapWithIconShortest
-        OudsSpaceRowGapKeyToken.WithIconShorter -> rowGapWithIconShorter
-        OudsSpaceRowGapKeyToken.WithIconShort -> rowGapWithIconShort
-        OudsSpaceRowGapKeyToken.WithIconMedium -> rowGapWithIconMedium
-        OudsSpaceRowGapKeyToken.WithIconTall -> rowGapWithIconTall
+        OudsSpaceKeyToken.RowGap.None -> rowGapNone
+        OudsSpaceKeyToken.RowGap.Shortest -> rowGapShortest
+        OudsSpaceKeyToken.RowGap.Shorter -> rowGapShorter
+        OudsSpaceKeyToken.RowGap.Short -> rowGapShort
+        OudsSpaceKeyToken.RowGap.Medium -> rowGapMedium
+        OudsSpaceKeyToken.RowGap.Tall -> rowGapTall
+        OudsSpaceKeyToken.RowGap.WithIconNone -> rowGapWithIconNone
+        OudsSpaceKeyToken.RowGap.WithIconShortest -> rowGapWithIconShortest
+        OudsSpaceKeyToken.RowGap.WithIconShorter -> rowGapWithIconShorter
+        OudsSpaceKeyToken.RowGap.WithIconShort -> rowGapWithIconShort
+        OudsSpaceKeyToken.RowGap.WithIconMedium -> rowGapWithIconMedium
+        OudsSpaceKeyToken.RowGap.WithIconTall -> rowGapWithIconTall
     }
 }
 
 /**
  * Converts an OUDS column gap space token to the local column gap space value provided by the theme.
  */
-val OudsSpaceColumnGapKeyToken.value: Dp
+val OudsSpaceKeyToken.ColumnGap.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.spaces.fromToken(this)
@@ -431,7 +425,7 @@ val OudsSpaceColumnGapKeyToken.value: Dp
 /**
  * Converts an OUDS fixed space token to the local space value provided by the theme.
  */
-val OudsSpaceFixedKeyToken.value: Dp
+val OudsSpaceKeyToken.Fixed.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.spaces.fromToken(this)
@@ -439,7 +433,7 @@ val OudsSpaceFixedKeyToken.value: Dp
 /**
  * Converts an OUDS block padding token to the local block padding value provided by the theme.
  */
-val OudsSpacePaddingBlockKeyToken.value: Dp
+val OudsSpaceKeyToken.PaddingBlock.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.spaces.fromToken(this)
@@ -447,7 +441,7 @@ val OudsSpacePaddingBlockKeyToken.value: Dp
 /**
  * Converts an OUDS inline padding token to the local inline padding value provided by the theme.
  */
-val OudsSpacePaddingInlineKeyToken.value: Dp
+val OudsSpaceKeyToken.PaddingInline.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.spaces.fromToken(this)
@@ -455,7 +449,7 @@ val OudsSpacePaddingInlineKeyToken.value: Dp
 /**
  * Converts an OUDS inset token to the local inset value provided by the theme.
  */
-val OudsSpaceInsetKeyToken.value: Dp
+val OudsSpaceKeyToken.Inset.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.spaces.fromToken(this)
@@ -463,7 +457,7 @@ val OudsSpaceInsetKeyToken.value: Dp
 /**
  * Converts an OUDS row gap space token to the local row gap space value provided by the theme.
  */
-val OudsSpaceRowGapKeyToken.value: Dp
+val OudsSpaceKeyToken.RowGap.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.spaces.fromToken(this)
@@ -471,6 +465,6 @@ val OudsSpaceRowGapKeyToken.value: Dp
 /**
  * Converts an OUDS scaled space token to the local space value provided by the theme depending on the window size.
  */
-val OudsSpaceScaledKeyToken.value: Dp
+val OudsSpaceKeyToken.Scaled.value: Dp
     @Composable
     get() = OudsTheme.spaces.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))

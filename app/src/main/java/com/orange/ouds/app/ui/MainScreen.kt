@@ -57,7 +57,7 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orangecountry.OrangeCountryTheme
-import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.whitelabel.WhiteLabelTheme
 
 @Composable
@@ -160,8 +160,8 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             Text(
                 text = stringResource(R.string.app_themeDialog_label),
                 modifier = Modifier
-                    .padding(top = OudsSpaceFixedKeyToken.Medium.value, bottom = OudsSpaceFixedKeyToken.Short.value)
-                    .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value),
+                    .padding(top = OudsSpaceKeyToken.Fixed.Medium.value, bottom = OudsSpaceKeyToken.Fixed.Short.value)
+                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value),
                 style = MaterialTheme.typography.titleLarge
             )
             themeManager.availableThemes.forEach { theme ->
@@ -181,7 +181,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
                             },
                             role = Role.RadioButton
                         )
-                        .padding(horizontal = OudsSpaceFixedKeyToken.Medium.value),
+                        .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     RadioButton(
@@ -191,7 +191,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
                     Text(
                         text = theme.name,
                         style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.padding(start = OudsSpaceFixedKeyToken.Medium.value)
+                        modifier = Modifier.padding(start = OudsSpaceKeyToken.Fixed.Medium.value)
                     )
                 }
             }

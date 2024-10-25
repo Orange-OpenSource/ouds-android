@@ -26,7 +26,7 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsSpaceFixedKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 @Composable
 fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
@@ -43,8 +43,8 @@ private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenCategoryCl
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(OudsSpaceFixedKeyToken.Medium.value),
-            verticalArrangement = Arrangement.spacedBy(OudsSpaceFixedKeyToken.Medium.value)
+                .padding(OudsSpaceKeyToken.Fixed.Medium.value),
+            verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
         ) {
             tokenCategories.forEach { token ->
                 LargeCard(
