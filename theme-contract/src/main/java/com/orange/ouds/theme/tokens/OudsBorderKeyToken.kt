@@ -12,27 +12,29 @@
 
 package com.orange.ouds.theme.tokens
 
-enum class OudsBorderWidthKeyToken {
-    None,
-    Default,
-    Thin,
-    Medium,
-    Thick,
-    Thicker,
-    Focus,
-    FocusInset
-}
+class OudsBorderKeyToken {
+    enum class Width {
+        None,
+        Default,
+        Thin,
+        Medium,
+        Thick,
+        Thicker,
+        Focus,
+        FocusInset
+    }
 
-enum class OudsBorderRadiusKeyToken {
-    None,
-    Default,
-    Short,
-    Medium,
-    Tall,
-    Pill
-}
+    enum class Radius {
+        None,
+        Default,
+        Short,
+        Medium,
+        Tall,
+        Pill
+    }
 
-enum class OudsBorderStyleKeyToken {
-    Default,
-    Drag
+    enum class Style {
+        Default,
+        Drag
+    }
 }

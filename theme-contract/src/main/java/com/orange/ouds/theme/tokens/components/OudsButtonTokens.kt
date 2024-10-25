@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
+import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsSpacingFixedKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
@@ -23,7 +23,7 @@ open class OudsButtonTokens(
     val contentColor: OudsColorKeyToken = OudsColorKeyToken.OnPrimary,
     val disabledContainerColor: OudsColorKeyToken = OudsColorKeyToken.Secondary,
     val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.OnSecondary,
-    val cornerRadius: OudsBorderRadiusKeyToken = OudsBorderRadiusKeyToken.None,
+    val cornerRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     val defaultElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val pressedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val focusedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
