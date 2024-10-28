@@ -2,10 +2,17 @@ name: app-distribution-review
 
 on:
   workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
 
 jobs:
   app-distribution-review:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && startsWith(github.event.pull_request.head.ref, 'tokenator-update-tokens-'))
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
