@@ -90,9 +90,9 @@ tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
             // Firebase App Distribution tags are not annotated
             val lastTag = findLastTag("^$gitTagPrefix-.*$", null, false)
             if (lastTag != null) {
-                println("Found last App Distribution tag with prefix \"$gitTagPrefix\": \"$lastTag\".")
+                logger.lifecycle("Found last App Distribution tag with prefix \"$gitTagPrefix\": \"$lastTag\".")
             } else {
-                println("Could not find an App Distribution tag with prefix \"$gitTagPrefix\".")
+                logger.lifecycle("Could not find an App Distribution tag with prefix \"$gitTagPrefix\".")
             }
             generateReleaseNotes(lastTag)
         } else {
@@ -109,9 +109,9 @@ tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
         }
 
         if (releaseNotes.isEmpty()) {
-            println("Generated App Distribution release notes is empty.")
+            logger.lifecycle("Generated App Distribution release notes is empty.")
         } else {
-            println("Generated App Distribution release notes:\n${releaseNotes.replace("(?m)^".toRegex(), " * ")}")
+            logger.lifecycle("Generated App Distribution release notes:\n${releaseNotes.replace("(?m)^".toRegex(), " * ")}")
         }
 
         // Create a file and export release notes as an extra property
@@ -157,7 +157,7 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
             val versionCode = Environment.getVariables("GITHUB_RUN_NUMBER").first().toInt()
             val release = getAppDistributionReleases().firstOrNull { it.buildVersion == versionCode }
             if (release != null) {
-                println("Found App Distribution release with version code $versionCode.")
+                logger.lifecycle("Found App Distribution release with version code $versionCode.")
                 gitHubApi {
                     // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
                     // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
@@ -167,13 +167,13 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                     val pullRequests = getPullRequests()
                     val pullRequest = pullRequests.firstOrNull { it.branchName == branchName }
                     if (pullRequest != null) {
-                        println("Found pull request #${pullRequest.number} for branch $branchName.")
+                        logger.lifecycle("Found pull request #${pullRequest.number} for branch $branchName.")
                         // Generate QR code with download URL of App Distribution release
                         val qrCode = generateQrCode(release)
 
                         // There is now way to attach a file to a comment in an issue or pull request using the GitHub API
                         // A workaround is to add the QR code to the repository and add a link in the comment which references the QR code on the repository
-                        println("Add QR code for '${pullRequest.title} (#${pullRequest.number})' to repository.")
+                        logger.lifecycle("Add QR code for '${pullRequest.title} (#${pullRequest.number})' to repository.")
                         // Add QR code to repository on 'qrcodes' branch
                         val sha = createFile(
                             qrCode,
@@ -183,7 +183,7 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                         )
 
                         // Add a comment with a link to the QR code in the repository
-                        println("Create comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
+                        logger.lifecycle("Create comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
                         val link = "![qrcode](https://github.com/Orange-OpenSource/ouds-android/raw/$sha/qrcodes/${qrCode.name})"
                         val body =
                             "Flash the QR code below to download and install the OUDS Playground app which contains the changes of this pull request:\\n$link"

@@ -37,9 +37,9 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
         }
 
         val output = try {
-            execute("npx", *args.toTypedArray()).also { println(it) }
+            execute("npx", *args.toTypedArray()).also { logger.lifecycle(it) }
         } catch (exception: ExecException) {
-            println(exception.stackTraceToString())
+            logger.lifecycle(exception.stackTraceToString())
             null
         }
 
@@ -65,7 +65,7 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
                 val pullRequests = getPullRequests()
                 val pullRequest = pullRequests.firstOrNull { it.branchName == branchName }
                 if (pullRequest != null) {
-                    println("Found pull request #${pullRequest.number} for branch $branchName.")
+                    logger.lifecycle("Found pull request #${pullRequest.number} for branch $branchName.")
                     val body = "$netlifyCommentPreamble\\n" + if (output != null) {
                         "### 🟢 Netlify deploy for commit $commitSha succeeded\\n\\nDeploy preview: $netlifyDeployPreviewUrl\\nDeploy log: $netlifyDeployLogUrl"
                     } else {
@@ -76,10 +76,10 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
                     val issueComments = getIssueComments(pullRequest.number)
                     val netlifyComment = issueComments.firstOrNull { it.body.startsWith(netlifyCommentPreamble) }
                     if (netlifyComment != null) {
-                        println("Update comment with Netlify deploy info to '${pullRequest.title} (#${pullRequest.number})'.")
+                        logger.lifecycle("Update comment with Netlify deploy info to '${pullRequest.title} (#${pullRequest.number})'.")
                         updateIssueComment(netlifyComment.id, body)
                     } else {
-                        println("Create comment with Netlify deploy info to '${pullRequest.title} (#${pullRequest.number})'.")
+                        logger.lifecycle("Create comment with Netlify deploy info to '${pullRequest.title} (#${pullRequest.number})'.")
                         createIssueComment(pullRequest.number, body)
                     }
                 } else if (exception == null) {

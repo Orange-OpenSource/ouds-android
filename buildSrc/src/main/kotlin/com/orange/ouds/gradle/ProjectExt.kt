@@ -36,8 +36,8 @@ inline fun <reified T> Project.requireTypedProperty(propertyName: String): T {
 
 fun Project.execute(executable: String, vararg args: String): String {
     val formattedArgs = args.joinToString(" ") { if (it.contains(" ")) "\"$it\"" else it }
-    println("\u001B[38;2;255;121;0;1m$executable $formattedArgs\u001B[0m")
-    
+    logger.lifecycle("\u001B[38;2;255;121;0;1m$executable $formattedArgs\u001B[0m")
+
     val output = ByteArrayOutputStream()
     exec {
         standardOutput = output
@@ -65,7 +65,7 @@ fun Project.curl(vararg args: String): String {
     val httpStatusCode = splitOutput.last().toInt()
     // Reconstruct output without the status code and print it
     val outputWithoutStatus = splitOutput.dropLast(1).joinToString("\n")
-    println(outputWithoutStatus)
+    logger.lifecycle(outputWithoutStatus)
     if (httpStatusCode < 200 || httpStatusCode >= 300) {
         throw GradleException("Received HTTP error code $httpStatusCode.")
     }

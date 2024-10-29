@@ -10,6 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.findTypedProperty
 
@@ -112,3 +113,5 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.kotlin.reflect)
 }
+
+project.tasks.preBuild.dependsOn(":checkNotice")
