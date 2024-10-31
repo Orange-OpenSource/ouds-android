@@ -7,9 +7,47 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:756919609448:android:22744c13139c261a54f3dd",
+        "android_client_info": {
+          "package_name": "com.orange.ouds.alpha.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAqxL90WNlSvstZOmrIZIMwS68GunWRDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:756919609448:android:635d277f6d88a44154f3dd",
         "android_client_info": {
           "package_name": "com.orange.ouds.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAqxL90WNlSvstZOmrIZIMwS68GunWRDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756919609448:android:ceefd1e4efd5d68654f3dd",
+        "android_client_info": {
+          "package_name": "com.orange.ouds.beta.app"
         }
       },
       "oauth_client": [],

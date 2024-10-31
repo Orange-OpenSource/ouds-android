@@ -1,4 +1,4 @@
-name: app-distribution-review
+name: app-distribution-alpha
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
       - unlabeled
 
 jobs:
-  app-distribution-review:
+  app-distribution-alpha:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && startsWith(github.event.pull_request.head.ref, 'tokenator-update-tokens-'))
     steps:
@@ -44,11 +44,11 @@ jobs:
         uses: ./.github/actions/app-distribution
         with:
           append-git-sha-to-version-name: 'true'
-          application-id: 'com.orange.ouds.review.app'
+          variant: 'alphaRelease'
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}
-          git-tag-prefix: 'ci/review-app'
+          git-tag-prefix: 'ci/alpha-app'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          group: 'ouds-android-review'
+          group: 'ouds-android-alpha'
 
       - name: Publish Firebase App Distribution QR code
         run: ./gradlew publishAppDistributionQrCode

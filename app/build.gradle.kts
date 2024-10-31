@@ -32,7 +32,6 @@ android {
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = project.findTypedProperty<String>("applicationId") ?: "com.orange.ouds.app"
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 1
@@ -75,6 +74,23 @@ android {
             if (storeFile != null) {
                 signingConfig = this@android.signingConfigs.getByName(signingConfigName)
             }
+        }
+    }
+
+    val versionFlavorDimension = "version"
+    flavorDimensions.add(versionFlavorDimension)
+    productFlavors {
+        create("alpha") {
+            dimension = versionFlavorDimension
+            applicationId = "com.orange.ouds.alpha.app"
+        }
+        create("beta") {
+            dimension = versionFlavorDimension
+            applicationId = "com.orange.ouds.beta.app"
+        }
+        create("prod") {
+            dimension = versionFlavorDimension
+            applicationId = "com.orange.ouds.app"
         }
     }
 

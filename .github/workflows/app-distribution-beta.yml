@@ -1,4 +1,4 @@
-name: app-distribution-daily
+name: app-distribution-beta
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  app-distribution-daily:
+  app-distribution-beta:
     runs-on: ubuntu-latest
     if: github.repository == 'Orange-OpenSource/ouds-android'
     steps:
@@ -33,8 +33,8 @@ jobs:
         uses: ./.github/actions/app-distribution
         with:
           append-git-sha-to-version-name: 'true'
-          application-id: 'com.orange.ouds.test.app'
+          variant: 'betaRelease'
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}
-          git-tag-prefix: 'ci/daily-app'
+          git-tag-prefix: 'ci/beta-app'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          group: 'ouds-android-test'
+          group: 'ouds-android-beta'

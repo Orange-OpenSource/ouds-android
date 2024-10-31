@@ -71,7 +71,7 @@ fun updateChangelog(version: String) {
 
     val gitChangelogApi = createGitChangelogApi()
         .withUntaggedName(version) // Group unreleased commits under the new version tag
-        .withIgnoreTagsIfNameMatches("^refs/tags/ci/(daily|review)-.*") // Ignore ci/daily and ci/review tags
+        .withIgnoreTagsIfNameMatches("^refs/tags/ci/.*") // Ignore CI tags
         .withTemplatePath("CHANGELOG.mustache") // Use a Mustache template to generate changelog
         .withHandlebarsHelper("commitDescriptionWithPullRequestUrl", Helper<Commit> { commit, options ->
             // This Handlebars helper returns an enriched commit description
