@@ -54,8 +54,19 @@ sealed class TokenCategory(
             R.drawable.ic_dimension,
             R.string.app_tokens_dimension_space_description_text,
             listOf(
-                TokenProperty.SpaceScaled, TokenProperty.SpaceFixed, TokenProperty.SpacePaddingInline, TokenProperty.SpacePaddingStack,
-                TokenProperty.SpacePaddingInset, TokenProperty.SpaceColumnGap, TokenProperty.SpaceRowGap
+                TokenProperty.SpaceScaled,
+                TokenProperty.SpaceFixed,
+                TokenProperty.SpacePaddingInline,
+                TokenProperty.SpacePaddingInlineWithIcon,
+                TokenProperty.SpacePaddingInlineWithArrow,
+                TokenProperty.SpacePaddingStack,
+                TokenProperty.SpacePaddingStackWithIcon,
+                TokenProperty.SpacePaddingInset,
+                TokenProperty.SpaceColumnGap,
+                TokenProperty.SpaceColumnGapWithIcon,
+                TokenProperty.SpaceColumnGapWithArrow,
+                TokenProperty.SpaceRowGap,
+                TokenProperty.SpaceRowGapWithIcon
             ),
         )
 

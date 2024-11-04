@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.tokens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -165,10 +166,14 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
         size = token.value as Dp,
         contentAlignment = Alignment.Center
     )
-    is TokenProperty.SpacePaddingInline -> SpacePaddingInlineIllustration(size = token.value as Dp, token.name)
+    is TokenProperty.SpacePaddingInline -> SpaceIllustrationBox(size = token.value as Dp)
+    is TokenProperty.SpacePaddingInlineWithIcon, TokenProperty.SpaceColumnGapWithIcon -> SpaceWithIconIllustrationRow(size = token.value as Dp)
+    is TokenProperty.SpacePaddingInlineWithArrow, TokenProperty.SpaceColumnGapWithArrow -> SpaceWithArrowIllustrationRow(size = token.value as Dp)
     is TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value as Dp)
     is TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical)
     is TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
+    is TokenProperty.SpaceRowGapWithIcon -> SpaceWithIconIllustrationColumn(size = token.value as Dp, verticalArrangement = Arrangement.Bottom)
+    is TokenProperty.SpacePaddingStackWithIcon -> SpaceWithIconIllustrationColumn(size = token.value as Dp)
     is TokenProperty.Typography -> Unit
 }
 

@@ -51,10 +51,16 @@
     <string name="app_tokens_dimension_space_scaled_label">Scaled</string>
     <string name="app_tokens_dimension_space_fixed_label">Fixed</string>
     <string name="app_tokens_dimension_space_paddingInline_label">Padding inline</string>
+    <string name="app_tokens_dimension_space_paddingInlineWithIcon_label">Padding inline with icon</string>
+    <string name="app_tokens_dimension_space_paddingInlineWithArrow_label">Padding inline with arrow</string>
     <string name="app_tokens_dimension_space_paddingStack_label">Padding stack</string>
+    <string name="app_tokens_dimension_space_paddingStackWithIcon_label">Padding stack with icon</string>
     <string name="app_tokens_dimension_space_paddingInset_label">Padding inset</string>
     <string name="app_tokens_dimension_space_columnGap_label">Column gap</string>
+    <string name="app_tokens_dimension_space_columnGapWithIcon_label">Column gap with icon</string>
+    <string name="app_tokens_dimension_space_columnGapWithArrow_label">Column gap with arrow</string>
     <string name="app_tokens_dimension_space_rowGap_label">Row gap</string>
+    <string name="app_tokens_dimension_space_rowGapWithIcon_label">Row gap with icon</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_label">Size</string>

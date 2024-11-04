@@ -19,6 +19,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -145,21 +146,60 @@ fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
 }
 
 @Composable
-fun SpacePaddingInlineIllustration(size: Dp, tokenName: String) = when {
-    tokenName.contains("WithIcon") -> SpacePaddingInlineWithImageIllustrationRow(
+fun SpaceWithIconIllustrationColumn(size: Dp, verticalArrangement: Arrangement.Vertical = Arrangement.Top) {
+    Column(
+        modifier = Modifier
+            .size(defaultIllustrationSize)
+            .background(color = OudsColorKeyToken.OnSurface.value), //TODO use BgEmphasizedPrimary token when available
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = verticalArrangement
+    ) {
+        val image: @Composable () -> Unit = {
+            Image(
+                painter = painterResource(R.drawable.ic_design_token_figma_no_padding),
+                contentDescription = null,
+                contentScale = ContentScale.None
+            )
+        }
+
+        val space: @Composable () -> Unit = {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(height = size)
+                    .background(Color(0xFF26B2FF)) //TODO use AlwaysInfo token when available
+            )
+        }
+
+        if (verticalArrangement == Arrangement.Bottom) {
+            image()
+            space()
+        } else {
+            space()
+            image()
+        }
+    }
+}
+
+@Composable
+fun SpaceWithIconIllustrationRow(size: Dp) {
+    SpacePaddingInlineWithImageIllustrationRow(
         spaceSize = size,
         imagePainter = painterResource(R.drawable.ic_design_token_figma_no_padding),
         imageModifier = Modifier.padding(horizontal = 1.dp)
     )
-    tokenName.contains("WithArrow") -> SpacePaddingInlineWithImageIllustrationRow(
-        spaceSize = size,
-        imagePainter = painterResource(R.drawable.ic_chevron_down)
-    )
-    else -> SpaceIllustrationBox(size = size)
 }
 
 @Composable
-fun SpacePaddingInlineWithImageIllustrationRow(
+fun SpaceWithArrowIllustrationRow(size: Dp) {
+    SpacePaddingInlineWithImageIllustrationRow(
+        spaceSize = size,
+        imagePainter = painterResource(R.drawable.ic_chevron_down)
+    )
+}
+
+@Composable
+private fun SpacePaddingInlineWithImageIllustrationRow(
     spaceSize: Dp,
     imagePainter: Painter,
     modifier: Modifier = Modifier,
