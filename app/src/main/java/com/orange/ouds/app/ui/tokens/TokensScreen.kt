@@ -31,7 +31,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 @Composable
 fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
     TokensScreen(
-        tokenCategories = tokenCategories.filter { !it.subcategory },
+        tokenCategories = tokenCategories.filter { !it.isSubcategory },
         onTokenCategoryClick = onTokenCategoryClick
     )
 }

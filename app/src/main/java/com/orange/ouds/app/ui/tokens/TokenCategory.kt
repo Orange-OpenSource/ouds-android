@@ -26,7 +26,6 @@ sealed class TokenCategory(
     @StringRes val descriptionRes: Int,
     val properties: List<TokenProperty> = emptyList(),
     val subcategories: List<TokenCategory> = emptyList(),
-    val subcategory: Boolean = false
 ) {
 
     companion object {
@@ -34,6 +33,8 @@ sealed class TokenCategory(
     }
 
     val id: Long = TokenCategory::class.sealedSubclasses.indexOf(this::class).toLong()
+    val isSubcategory: Boolean
+        get() = tokenCategories.any { it.subcategories.contains(this) }
 
     data object Border : TokenCategory(
         R.string.app_tokens_border_label,
@@ -56,7 +57,6 @@ sealed class TokenCategory(
                 TokenProperty.SpaceScaled, TokenProperty.SpaceFixed, TokenProperty.SpacePaddingInline, TokenProperty.SpacePaddingStack,
                 TokenProperty.SpacePaddingInset, TokenProperty.SpaceColumnGap, TokenProperty.SpaceRowGap
             ),
-            subcategory = true
         )
 
         data object Size : TokenCategory(
@@ -64,7 +64,6 @@ sealed class TokenCategory(
             R.drawable.ic_dimension,
             R.string.app_tokens_dimension_size_description_text,
             listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithLabel),
-            subcategory = true
         )
     }
 
