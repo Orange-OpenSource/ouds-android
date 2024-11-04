@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -139,7 +140,7 @@ sealed class TokenProperty(
                     text = label,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    style = OudsTypographyKeyToken.entries.firstOrNull { it.name == label }?.value.orElse { OudsTypographyKeyToken.BodyStrongLarge.value }
+                    style = OudsTypographyKeyToken.entries.firstOrNull { it.name.replace("Strong", "") == label }?.value.orElse { LocalTextStyle.current }
                 )
             }
         }
