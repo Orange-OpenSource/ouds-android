@@ -48,23 +48,29 @@ object OudsSpaceKeyToken {
         Medium,
         Tall,
         Taller,
-        Tallest,
-        WithIconNone,
-        WithIconShortest,
-        WithIconShorter,
-        WithIconShort,
-        WithIconMedium,
-        WithIconTall,
-        WithIconTaller,
-        WithIconTallest,
-        WithArrowNone,
-        WithArrowShortest,
-        WithArrowShorter,
-        WithArrowShort,
-        WithArrowMedium,
-        WithArrowTall,
-        WithArrowTaller,
-        WithArrowTallest,
+        Tallest;
+
+        enum class WithIcon {
+            None,
+            Shortest,
+            Shorter,
+            Short,
+            Medium,
+            Tall,
+            Taller,
+            Tallest,
+        }
+
+        enum class WithArrow {
+            None,
+            Shortest,
+            Shorter,
+            Short,
+            Medium,
+            Tall,
+            Taller,
+            Tallest,
+        }
     }
 
     enum class PaddingBlock {
@@ -74,14 +80,17 @@ object OudsSpaceKeyToken {
         Medium,
         Tall,
         Taller,
-        Tallest,
-        WithIconNone,
-        WithIconShortest,
-        WithIconShorter,
-        WithIconShort,
-        WithIconMedium,
-        WithIconTall,
-        WithIconTaller,
+        Tallest;
+
+        enum class WithIcon {
+            None,
+            Shortest,
+            Shorter,
+            Short,
+            Medium,
+            Tall,
+            Taller,
+        }
     }
 
     enum class Inset {
@@ -103,19 +112,25 @@ object OudsSpaceKeyToken {
         Short,
         Medium,
         Tall,
-        Taller,
-        WithIconNone,
-        WithIconShortest,
-        WithIconShorter,
-        WithIconShort,
-        WithIconMedium,
-        WithIconTall,
-        WithArrowNone,
-        WithArrowShortest,
-        WithArrowShorter,
-        WithArrowShort,
-        WithArrowMedium,
-        WithArrowTall,
+        Taller;
+
+        enum class WithIcon {
+            None,
+            Shortest,
+            Shorter,
+            Short,
+            Medium,
+            Tall,
+        }
+
+        enum class WithArrow {
+            None,
+            Shortest,
+            Shorter,
+            Short,
+            Medium,
+            Tall,
+        }
     }
 
     enum class RowGap {
@@ -124,12 +139,15 @@ object OudsSpaceKeyToken {
         Shorter,
         Short,
         Medium,
-        Tall,
-        WithIconNone,
-        WithIconShortest,
-        WithIconShorter,
-        WithIconShort,
-        WithIconMedium,
-        WithIconTall,
+        Tall;
+
+        enum class WithIcon {
+            None,
+            Shortest,
+            Shorter,
+            Short,
+            Medium,
+            Tall,
+        }
     }
 }

@@ -147,7 +147,23 @@ sealed class TokenProperty(
 
     data object SpaceColumnGap : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_columnGap_label,
-        tokens = { OudsSpaceKeyToken.ColumnGap.entries.map { Token(it.name, it.value) } }
+        tokens = {
+            mutableListOf<Token<Any>>().apply {
+                addAll(OudsSpaceKeyToken.ColumnGap.entries.map { Token(it.name, it.value) })
+                addAll(OudsSpaceKeyToken.ColumnGap.WithIcon.entries.map {
+                    Token(
+                        "${OudsSpaceKeyToken.ColumnGap.WithIcon::class.simpleName}.${it.name}",
+                        it.value
+                    )
+                })
+                addAll(OudsSpaceKeyToken.ColumnGap.WithArrow.entries.map {
+                    Token(
+                        "${OudsSpaceKeyToken.ColumnGap.WithArrow::class.simpleName}.${it.name}",
+                        it.value
+                    )
+                })
+            }
+        }
     )
 
     data object SpaceFixed : TokenProperty(
@@ -157,7 +173,23 @@ sealed class TokenProperty(
 
     data object SpacePaddingInline : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_paddingInline_label,
-        tokens = { OudsSpaceKeyToken.PaddingInline.entries.map { Token(it.name, it.value) } }
+        tokens = {
+            mutableListOf<Token<Any>>().apply {
+                addAll(OudsSpaceKeyToken.PaddingInline.entries.map { Token(it.name, it.value) })
+                addAll(OudsSpaceKeyToken.PaddingInline.WithIcon.entries.map {
+                    Token(
+                        "${OudsSpaceKeyToken.PaddingInline.WithIcon::class.simpleName}.${it.name}",
+                        it.value
+                    )
+                })
+                addAll(OudsSpaceKeyToken.PaddingInline.WithArrow.entries.map {
+                    Token(
+                        "${OudsSpaceKeyToken.PaddingInline.WithArrow::class.simpleName}.${it.name}",
+                        it.value
+                    )
+                })
+            }.toList()
+        }
     ) {
         @Composable
         fun Illustration(size: Dp, tokenName: String) = when {
@@ -200,12 +232,27 @@ sealed class TokenProperty(
 
     data object SpacePaddingStack : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_paddingStack_label,
-        tokens = { OudsSpaceKeyToken.PaddingBlock.entries.map { Token(it.name, it.value) } }
+        tokens = {
+            mutableListOf<Token<Any>>().apply {
+                addAll(OudsSpaceKeyToken.PaddingBlock.entries.map { Token(it.name, it.value) })
+                addAll(OudsSpaceKeyToken.PaddingBlock.WithIcon.entries.map {
+                    Token(
+                        "${OudsSpaceKeyToken.PaddingBlock.WithIcon::class.simpleName}.${it.name}",
+                        it.value
+                    )
+                })
+            }
+        }
     )
 
     data object SpaceRowGap : TokenProperty(
         nameRes = R.string.app_tokens_dimension_space_rowGap_label,
-        tokens = { OudsSpaceKeyToken.RowGap.entries.map { Token(it.name, it.value) } }
+        tokens = {
+            mutableListOf<Token<Any>>().apply {
+                addAll(OudsSpaceKeyToken.RowGap.entries.map { Token(it.name, it.value) })
+                addAll(OudsSpaceKeyToken.RowGap.WithIcon.entries.map { Token("${OudsSpaceKeyToken.RowGap.WithIcon::class.simpleName}.${it.name}", it.value) })
+            }
+        }
     )
 
     data object SpaceScaled : TokenProperty(
