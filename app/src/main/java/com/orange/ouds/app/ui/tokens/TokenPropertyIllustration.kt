@@ -53,9 +53,8 @@ fun IllustrationBox(
             .size(defaultIllustrationSize)
             .background(color = backgroundColor),
         contentAlignment = contentAlignment,
-    ) {
-        content()
-    }
+        content = content
+    )
 }
 
 @Composable
