@@ -60,5 +60,13 @@ private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenCategoryCl
 @UiModePreviews.Default
 @Composable
 private fun PreviewTokensScreen() = OudsPreview {
-    TokensScreen(tokenCategories = listOf(TokenCategory.Elevation, TokenCategory.Opacity)) {}
+    TokensScreen(
+        tokenCategories = listOf(
+            TokenCategory.Border,
+            TokenCategory.Dimension,
+            TokenCategory.Elevation,
+            TokenCategory.Opacity,
+            TokenCategory.Typography
+        )
+    ) {}
 }
