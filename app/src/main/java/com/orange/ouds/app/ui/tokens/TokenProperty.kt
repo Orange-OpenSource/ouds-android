@@ -116,8 +116,8 @@ sealed class TokenProperty(
         }
     }
 
-    data object SizeIconWithLabel : TokenProperty(
-        nameRes = R.string.app_tokens_dimension_size_iconWithLabel_label,
+    data object SizeIconWithText : TokenProperty(
+        nameRes = R.string.app_tokens_dimension_size_iconWithText_label,
         tokens = { OudsSizeKeyToken.IconWithText.entries.map { Token(it.name, it.value) } }
     ) {
         @Composable

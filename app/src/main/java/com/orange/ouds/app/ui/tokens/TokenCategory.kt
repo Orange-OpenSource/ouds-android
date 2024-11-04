@@ -63,7 +63,7 @@ sealed class TokenCategory(
             R.string.app_tokens_dimension_size_label,
             R.drawable.ic_dimension,
             R.string.app_tokens_dimension_size_description_text,
-            listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithLabel),
+            listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText),
         )
     }
 

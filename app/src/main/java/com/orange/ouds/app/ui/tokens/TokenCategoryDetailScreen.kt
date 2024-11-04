@@ -92,7 +92,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                     }
 
                     tokenProperty.tokens().forEach { token ->
-                        if (tokenProperty == TokenProperty.SizeIconWithLabel) {
+                        if (tokenProperty == TokenProperty.SizeIconWithText) {
                             Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -160,7 +160,7 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
     is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
     is TokenProperty.SizeIconDecorative -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SizeIconWithLabel -> tokenProperty.Illustration(size = token.value as Dp, token.name)
+    is TokenProperty.SizeIconWithText -> tokenProperty.Illustration(size = token.value as Dp, token.name)
     is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
         size = token.value as Dp,
         contentAlignment = Alignment.Center
