@@ -157,16 +157,16 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
     is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
     is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
-    is TokenProperty.Opacity -> tokenProperty.Illustration(opacity = token.value as Float)
-    is TokenProperty.Elevation -> tokenProperty.Illustration(elevation = token.value as Dp)
-    is TokenProperty.SizeIconDecorative -> tokenProperty.Illustration(size = token.value as Dp)
-    is TokenProperty.SizeIconWithText -> tokenProperty.Illustration(size = token.value as Dp, token.name)
+    is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value as Float)
+    is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value as Dp)
+    is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value as Dp)
+    is TokenProperty.SizeIconWithText -> SizeIconWithTextIllustrationRow(size = token.value as Dp, token.name)
     is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
         size = token.value as Dp,
         contentAlignment = Alignment.Center
     )
-    is TokenProperty.SpacePaddingInline -> tokenProperty.Illustration(size = token.value as Dp, token.name)
-    is TokenProperty.SpacePaddingInset -> tokenProperty.Illustration(size = token.value as Dp)
+    is TokenProperty.SpacePaddingInline -> SpacePaddingInlineIllustration(size = token.value as Dp, token.name)
+    is TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value as Dp)
     is TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical)
     is TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
     is TokenProperty.Typography -> Unit
