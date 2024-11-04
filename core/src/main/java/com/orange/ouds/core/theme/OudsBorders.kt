@@ -18,9 +18,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.theme.OudsBorderStyle
-import com.orange.ouds.theme.tokens.OudsBorderRadiusKeyToken
-import com.orange.ouds.theme.tokens.OudsBorderStyleKeyToken
-import com.orange.ouds.theme.tokens.OudsBorderWidthKeyToken
+import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 
 data class OudsBorders(
@@ -62,43 +60,43 @@ fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
 )
 
 @Stable
-fun OudsBorders.fromToken(token: OudsBorderWidthKeyToken): Dp {
+fun OudsBorders.fromToken(token: OudsBorderKeyToken.Width): Dp {
     return when (token) {
-        OudsBorderWidthKeyToken.None -> widthNone
-        OudsBorderWidthKeyToken.Default -> widthDefault
-        OudsBorderWidthKeyToken.Thin -> widthThin
-        OudsBorderWidthKeyToken.Medium -> widthMedium
-        OudsBorderWidthKeyToken.Thick -> widthThick
-        OudsBorderWidthKeyToken.Thicker -> widthThicker
-        OudsBorderWidthKeyToken.Focus -> widthFocus
-        OudsBorderWidthKeyToken.FocusInset -> widthFocusInset
+        OudsBorderKeyToken.Width.None -> widthNone
+        OudsBorderKeyToken.Width.Default -> widthDefault
+        OudsBorderKeyToken.Width.Thin -> widthThin
+        OudsBorderKeyToken.Width.Medium -> widthMedium
+        OudsBorderKeyToken.Width.Thick -> widthThick
+        OudsBorderKeyToken.Width.Thicker -> widthThicker
+        OudsBorderKeyToken.Width.Focus -> widthFocus
+        OudsBorderKeyToken.Width.FocusInset -> widthFocusInset
     }
 }
 
 @Stable
-fun OudsBorders.fromToken(token: OudsBorderRadiusKeyToken): Dp {
+fun OudsBorders.fromToken(token: OudsBorderKeyToken.Radius): Dp {
     return when (token) {
-        OudsBorderRadiusKeyToken.None -> radiusNone
-        OudsBorderRadiusKeyToken.Default -> radiusDefault
-        OudsBorderRadiusKeyToken.Short -> radiusShort
-        OudsBorderRadiusKeyToken.Medium -> radiusMedium
-        OudsBorderRadiusKeyToken.Tall -> radiusTall
-        OudsBorderRadiusKeyToken.Pill -> radiusPill
+        OudsBorderKeyToken.Radius.None -> radiusNone
+        OudsBorderKeyToken.Radius.Default -> radiusDefault
+        OudsBorderKeyToken.Radius.Short -> radiusShort
+        OudsBorderKeyToken.Radius.Medium -> radiusMedium
+        OudsBorderKeyToken.Radius.Tall -> radiusTall
+        OudsBorderKeyToken.Radius.Pill -> radiusPill
     }
 }
 
 @Stable
-fun OudsBorders.fromToken(token: OudsBorderStyleKeyToken): OudsBorderStyle {
+fun OudsBorders.fromToken(token: OudsBorderKeyToken.Style): OudsBorderStyle {
     return when (token) {
-        OudsBorderStyleKeyToken.Default -> styleDefault
-        OudsBorderStyleKeyToken.Drag -> styleDrag
+        OudsBorderKeyToken.Style.Default -> styleDefault
+        OudsBorderKeyToken.Style.Drag -> styleDrag
     }
 }
 
 /**
  * Converts an OUDS border radius token to the local border radius value provided by the theme.
  */
-val OudsBorderRadiusKeyToken.value: Dp
+val OudsBorderKeyToken.Radius.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.borders.fromToken(this)
@@ -106,7 +104,7 @@ val OudsBorderRadiusKeyToken.value: Dp
 /**
  * Converts an OUDS border style token to the local [OudsBorderStyle] value provided by the theme.
  */
-val OudsBorderStyleKeyToken.value: OudsBorderStyle
+val OudsBorderKeyToken.Style.value: OudsBorderStyle
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.borders.fromToken(this)
@@ -114,7 +112,7 @@ val OudsBorderStyleKeyToken.value: OudsBorderStyle
 /**
  * Converts an OUDS border width token to the local border width value provided by the theme.
  */
-val OudsBorderWidthKeyToken.value: Dp
+val OudsBorderKeyToken.Width.value: Dp
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.borders.fromToken(this)
