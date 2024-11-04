@@ -24,290 +24,410 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 
 data class OudsSizes(
-    val iconDecorativeShortest: Dp,
-    val iconDecorativeShorter: Dp,
-    val iconDecorativeShort: Dp,
-    val iconDecorativeMedium: Dp,
-    val iconDecorativeTall: Dp,
-    val iconDecorativeTaller: Dp,
-    val iconDecorativeTallest: Dp,
-    val iconWithHeadingSmallSizeShort: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingSmallSizeMedium: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingSmallSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingMediumSizeShort: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingMediumSizeMedium: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingMediumSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingLargeSizeShort: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingLargeSizeMedium: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingLargeSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingExtraLargeSizeShort: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingExtraLargeSizeMedium: OudsAdaptiveTokenValue<Dp>,
-    val iconWithHeadingExtraLargeSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val iconWithLabelSmallSizeShort: Dp,
-    val iconWithLabelSmallSizeMedium: Dp,
-    val iconWithLabelSmallSizeTall: Dp,
-    val iconWithLabelMediumSizeShort: Dp,
-    val iconWithLabelMediumSizeMedium: Dp,
-    val iconWithLabelMediumSizeTall: Dp,
-    val iconWithLabelLargeSizeShorter: Dp,
-    val iconWithLabelLargeSizeShort: Dp,
-    val iconWithLabelLargeSizeMedium: Dp,
-    val iconWithLabelLargeSizeTall: Dp,
-    val iconWithLabelLargeSizeTaller: Dp,
-    val iconWithLabelExtraLargeSizeShort: Dp,
-    val iconWithLabelExtraLargeSizeMedium: Dp,
-    val iconWithLabelExtraLargeSizeTall: Dp,
-    val iconWithBodySmallSizeShort: OudsAdaptiveTokenValue<Dp>,
-    val iconWithBodySmallSizeMedium: OudsAdaptiveTokenValue<Dp>,
-    val iconWithBodySmallSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val iconWithBodyMediumSizeShort: OudsAdaptiveTokenValue<Dp>,
-    val iconWithBodyMediumSizeMedium: OudsAdaptiveTokenValue<Dp>,
-    val iconWithBodyMediumSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val iconWithBodyLargeSizeShort: OudsAdaptiveTokenValue<Dp>,
-    val iconWithBodyLargeSizeMedium: OudsAdaptiveTokenValue<Dp>,
-    val iconWithBodyLargeSizeTall: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeDisplaySmall: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeDisplayMedium: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeDisplayLarge: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeHeadingSmall: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeHeadingMedium: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeHeadingLarge: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeHeadingExtraLarge: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeBodySmall: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeBodyMedium: OudsAdaptiveTokenValue<Dp>,
-    val maxWidthTypeBodyLarge: OudsAdaptiveTokenValue<Dp>,
-)
+    val icon: Icon,
+    val maxWidthType: MaxWidthType
+) {
+    data class Icon(
+        val decorative: Decorative,
+        val withHeading: WithHeading,
+        val withLabel: WithLabel,
+        val withBody: WithBody
+    ) {
+        data class Decorative(
+            val shortest: Dp,
+            val shorter: Dp,
+            val short: Dp,
+            val medium: Dp,
+            val tall: Dp,
+            val taller: Dp,
+            val tallest: Dp,
+        )
+
+        data class WithHeading(
+            val small: Small,
+            val medium: Medium,
+            val large: Large,
+            val extraLarge: ExtraLarge
+        ) {
+            data class Small(
+                val sizeShort: OudsAdaptiveTokenValue<Dp>,
+                val sizeMedium: OudsAdaptiveTokenValue<Dp>,
+                val sizeTall: OudsAdaptiveTokenValue<Dp>,
+            )
+
+            data class Medium(
+                val sizeShort: OudsAdaptiveTokenValue<Dp>,
+                val sizeMedium: OudsAdaptiveTokenValue<Dp>,
+                val sizeTall: OudsAdaptiveTokenValue<Dp>,
+            )
+
+            data class Large(
+                val sizeShort: OudsAdaptiveTokenValue<Dp>,
+                val sizeMedium: OudsAdaptiveTokenValue<Dp>,
+                val sizeTall: OudsAdaptiveTokenValue<Dp>,
+            )
+
+            data class ExtraLarge(
+                val sizeShort: OudsAdaptiveTokenValue<Dp>,
+                val sizeMedium: OudsAdaptiveTokenValue<Dp>,
+                val sizeTall: OudsAdaptiveTokenValue<Dp>,
+            )
+        }
+
+        data class WithLabel(
+            val small: Small,
+            val medium: Medium,
+            val large: Large,
+            val extraLarge: ExtraLarge
+        ) {
+            data class Small(
+                val sizeShort: Dp,
+                val sizeMedium: Dp,
+                val sizeTall: Dp,
+            )
+
+            data class Medium(
+                val sizeShort: Dp,
+                val sizeMedium: Dp,
+                val sizeTall: Dp,
+            )
+
+            data class Large(
+                val sizeShorter: Dp,
+                val sizeShort: Dp,
+                val sizeMedium: Dp,
+                val sizeTall: Dp,
+                val sizeTaller: Dp,
+            )
+
+            data class ExtraLarge(
+                val sizeShort: Dp,
+                val sizeMedium: Dp,
+                val sizeTall: Dp,
+            )
+        }
+
+        data class WithBody(
+            val small: Small,
+            val medium: Medium,
+            val large: Large,
+        ) {
+            data class Small(
+                val sizeShort: OudsAdaptiveTokenValue<Dp>,
+                val sizeMedium: OudsAdaptiveTokenValue<Dp>,
+                val sizeTall: OudsAdaptiveTokenValue<Dp>,
+            )
+
+            data class Medium(
+                val sizeShort: OudsAdaptiveTokenValue<Dp>,
+                val sizeMedium: OudsAdaptiveTokenValue<Dp>,
+                val sizeTall: OudsAdaptiveTokenValue<Dp>,
+            )
+
+            data class Large(
+                val sizeShort: OudsAdaptiveTokenValue<Dp>,
+                val sizeMedium: OudsAdaptiveTokenValue<Dp>,
+                val sizeTall: OudsAdaptiveTokenValue<Dp>,
+            )
+        }
+    }
+
+    data class MaxWidthType(
+        val display: Display,
+        val heading: Heading,
+        val body: Body
+    ) {
+        data class Display(
+            val small: OudsAdaptiveTokenValue<Dp>,
+            val medium: OudsAdaptiveTokenValue<Dp>,
+            val large: OudsAdaptiveTokenValue<Dp>,
+        )
+
+        data class Heading(
+            val small: OudsAdaptiveTokenValue<Dp>,
+            val medium: OudsAdaptiveTokenValue<Dp>,
+            val large: OudsAdaptiveTokenValue<Dp>,
+            val extraLarge: OudsAdaptiveTokenValue<Dp>,
+        )
+
+        data class Body(
+            val small: OudsAdaptiveTokenValue<Dp>,
+            val medium: OudsAdaptiveTokenValue<Dp>,
+            val large: OudsAdaptiveTokenValue<Dp>,
+        )
+    }
+}
 
 fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
-    iconDecorativeShortest = iconDecorativeShortest.dp,
-    iconDecorativeShorter = iconDecorativeShorter.dp,
-    iconDecorativeShort = iconDecorativeShort.dp,
-    iconDecorativeMedium = iconDecorativeMedium.dp,
-    iconDecorativeTall = iconDecorativeTall.dp,
-    iconDecorativeTaller = iconDecorativeTaller.dp,
-    iconDecorativeTallest = iconDecorativeTallest.dp,
-    iconWithHeadingSmallSizeShort = OudsAdaptiveTokenValue(
-        iconWithHeadingSmallSizeShortMobile.dp,
-        iconWithHeadingSmallSizeShortMobile.dp,
-        iconWithHeadingSmallSizeShortTablet.dp
+    icon = OudsSizes.Icon(
+        decorative = OudsSizes.Icon.Decorative(
+            shortest = iconDecorativeShortest.dp,
+            shorter = iconDecorativeShorter.dp,
+            short = iconDecorativeShort.dp,
+            medium = iconDecorativeMedium.dp,
+            tall = iconDecorativeTall.dp,
+            taller = iconDecorativeTaller.dp,
+            tallest = iconDecorativeTallest.dp,
+        ),
+        withHeading = OudsSizes.Icon.WithHeading(
+            small = OudsSizes.Icon.WithHeading.Small(
+                sizeShort = OudsAdaptiveTokenValue(
+                    iconWithHeadingSmallSizeShortMobile.dp,
+                    iconWithHeadingSmallSizeShortMobile.dp,
+                    iconWithHeadingSmallSizeShortTablet.dp
+                ),
+                sizeMedium = OudsAdaptiveTokenValue(
+                    iconWithHeadingSmallSizeMediumMobile.dp,
+                    iconWithHeadingSmallSizeMediumMobile.dp,
+                    iconWithHeadingSmallSizeMediumTablet.dp
+                ),
+                sizeTall = OudsAdaptiveTokenValue(
+                    iconWithHeadingSmallSizeTallMobile.dp,
+                    iconWithHeadingSmallSizeTallMobile.dp,
+                    iconWithHeadingSmallSizeTallTablet.dp
+                ),
+            ),
+            medium = OudsSizes.Icon.WithHeading.Medium(
+                sizeShort = OudsAdaptiveTokenValue(
+                    iconWithHeadingMediumSizeShortMobile.dp,
+                    iconWithHeadingMediumSizeShortMobile.dp,
+                    iconWithHeadingMediumSizeShortTablet.dp
+                ),
+                sizeMedium = OudsAdaptiveTokenValue(
+                    iconWithHeadingMediumSizeMediumMobile.dp,
+                    iconWithHeadingMediumSizeMediumMobile.dp,
+                    iconWithHeadingMediumSizeMediumTablet.dp
+                ),
+                sizeTall = OudsAdaptiveTokenValue(
+                    iconWithHeadingMediumSizeTallMobile.dp,
+                    iconWithHeadingMediumSizeTallMobile.dp,
+                    iconWithHeadingMediumSizeTallTablet.dp
+                ),
+            ),
+            large = OudsSizes.Icon.WithHeading.Large(
+                sizeShort = OudsAdaptiveTokenValue(
+                    iconWithHeadingLargeSizeShortMobile.dp,
+                    iconWithHeadingLargeSizeShortMobile.dp,
+                    iconWithHeadingLargeSizeShortTablet.dp
+                ),
+                sizeMedium = OudsAdaptiveTokenValue(
+                    iconWithHeadingLargeSizeMediumMobile.dp,
+                    iconWithHeadingLargeSizeMediumMobile.dp,
+                    iconWithHeadingLargeSizeMediumTablet.dp
+                ),
+                sizeTall = OudsAdaptiveTokenValue(
+                    iconWithHeadingLargeSizeTallMobile.dp,
+                    iconWithHeadingLargeSizeTallMobile.dp,
+                    iconWithHeadingLargeSizeTallTablet.dp
+                ),
+            ),
+            extraLarge = OudsSizes.Icon.WithHeading.ExtraLarge(
+                sizeShort = OudsAdaptiveTokenValue(
+                    iconWithHeadingXlargeSizeShortMobile.dp,
+                    iconWithHeadingXlargeSizeShortMobile.dp,
+                    iconWithHeadingXlargeSizeShortTablet.dp
+                ),
+                sizeMedium = OudsAdaptiveTokenValue(
+                    iconWithHeadingXlargeSizeMediumMobile.dp,
+                    iconWithHeadingXlargeSizeMediumMobile.dp,
+                    iconWithHeadingXlargeSizeMediumTablet.dp
+                ),
+                sizeTall = OudsAdaptiveTokenValue(
+                    iconWithHeadingXlargeSizeTallMobile.dp,
+                    iconWithHeadingXlargeSizeTallMobile.dp,
+                    iconWithHeadingXlargeSizeTallTablet.dp
+                ),
+            )
+        ),
+        withLabel = OudsSizes.Icon.WithLabel(
+            small = OudsSizes.Icon.WithLabel.Small(
+                sizeShort = iconWithLabelSmallSizeShort.dp,
+                sizeMedium = iconWithLabelSmallSizeMedium.dp,
+                sizeTall = iconWithLabelSmallSizeTall.dp,
+            ),
+            medium = OudsSizes.Icon.WithLabel.Medium(
+                sizeShort = iconWithLabelMediumSizeShort.dp,
+                sizeMedium = iconWithLabelMediumSizeMedium.dp,
+                sizeTall = iconWithLabelMediumSizeTall.dp,
+            ),
+            large = OudsSizes.Icon.WithLabel.Large(
+                sizeShorter = iconWithLabelLargeSizeShorter.dp,
+                sizeShort = iconWithLabelLargeSizeShort.dp,
+                sizeMedium = iconWithLabelLargeSizeMedium.dp,
+                sizeTall = iconWithLabelLargeSizeTall.dp,
+                sizeTaller = iconWithLabelLargeSizeTaller.dp,
+            ),
+            extraLarge = OudsSizes.Icon.WithLabel.ExtraLarge(
+                sizeShort = iconWithLabelXlargeSizeShort.dp,
+                sizeMedium = iconWithLabelXlargeSizeMedium.dp,
+                sizeTall = iconWithLabelXlargeSizeTall.dp,
+            )
+        ),
+        withBody = OudsSizes.Icon.WithBody(
+            small = OudsSizes.Icon.WithBody.Small(
+                sizeShort = OudsAdaptiveTokenValue(
+                    iconWithBodySmallSizeShortMobile.dp,
+                    iconWithBodySmallSizeShortMobile.dp,
+                    iconWithBodySmallSizeShortTablet.dp
+                ),
+                sizeMedium = OudsAdaptiveTokenValue(
+                    iconWithBodySmallSizeMediumMobile.dp,
+                    iconWithBodySmallSizeMediumMobile.dp,
+                    iconWithBodySmallSizeMediumTablet.dp
+                ),
+                sizeTall = OudsAdaptiveTokenValue(
+                    iconWithBodySmallSizeTallMobile.dp,
+                    iconWithBodySmallSizeTallMobile.dp,
+                    iconWithBodySmallSizeTallTablet.dp
+                ),
+            ),
+            medium = OudsSizes.Icon.WithBody.Medium(
+                sizeShort = OudsAdaptiveTokenValue(
+                    iconWithBodyMediumSizeShortMobile.dp,
+                    iconWithBodyMediumSizeShortMobile.dp,
+                    iconWithBodyMediumSizeShortTablet.dp
+                ),
+                sizeMedium = OudsAdaptiveTokenValue(
+                    iconWithBodyMediumSizeMediumMobile.dp,
+                    iconWithBodyMediumSizeMediumMobile.dp,
+                    iconWithBodyMediumSizeMediumTablet.dp
+                ),
+                sizeTall = OudsAdaptiveTokenValue(
+                    iconWithBodyMediumSizeTallMobile.dp,
+                    iconWithBodyMediumSizeTallMobile.dp,
+                    iconWithBodyMediumSizeTallTablet.dp
+                ),
+            ),
+            large = OudsSizes.Icon.WithBody.Large(
+                sizeShort = OudsAdaptiveTokenValue(
+                    iconWithBodyLargeSizeShortMobile.dp,
+                    iconWithBodyLargeSizeShortMobile.dp,
+                    iconWithBodyLargeSizeShortTablet.dp
+                ),
+                sizeMedium = OudsAdaptiveTokenValue(
+                    iconWithBodyLargeSizeMediumMobile.dp,
+                    iconWithBodyLargeSizeMediumMobile.dp,
+                    iconWithBodyLargeSizeMediumTablet.dp
+                ),
+                sizeTall = OudsAdaptiveTokenValue(
+                    iconWithBodyLargeSizeTallMobile.dp,
+                    iconWithBodyLargeSizeTallMobile.dp,
+                    iconWithBodyLargeSizeTallTablet.dp
+                ),
+            ),
+        ),
     ),
-    iconWithHeadingSmallSizeMedium = OudsAdaptiveTokenValue(
-        iconWithHeadingSmallSizeMediumMobile.dp,
-        iconWithHeadingSmallSizeMediumMobile.dp,
-        iconWithHeadingSmallSizeMediumTablet.dp
-    ),
-    iconWithHeadingSmallSizeTall = OudsAdaptiveTokenValue(
-        iconWithHeadingSmallSizeTallMobile.dp,
-        iconWithHeadingSmallSizeTallMobile.dp,
-        iconWithHeadingSmallSizeTallTablet.dp
-    ),
-    iconWithHeadingMediumSizeShort = OudsAdaptiveTokenValue(
-        iconWithHeadingMediumSizeShortMobile.dp,
-        iconWithHeadingMediumSizeShortMobile.dp,
-        iconWithHeadingMediumSizeShortTablet.dp
-    ),
-    iconWithHeadingMediumSizeMedium = OudsAdaptiveTokenValue(
-        iconWithHeadingMediumSizeMediumMobile.dp,
-        iconWithHeadingMediumSizeMediumMobile.dp,
-        iconWithHeadingMediumSizeMediumTablet.dp
-    ),
-    iconWithHeadingMediumSizeTall = OudsAdaptiveTokenValue(
-        iconWithHeadingMediumSizeTallMobile.dp,
-        iconWithHeadingMediumSizeTallMobile.dp,
-        iconWithHeadingMediumSizeTallTablet.dp
-    ),
-    iconWithHeadingLargeSizeShort = OudsAdaptiveTokenValue(
-        iconWithHeadingLargeSizeShortMobile.dp,
-        iconWithHeadingLargeSizeShortMobile.dp,
-        iconWithHeadingLargeSizeShortTablet.dp
-    ),
-    iconWithHeadingLargeSizeMedium = OudsAdaptiveTokenValue(
-        iconWithHeadingLargeSizeMediumMobile.dp,
-        iconWithHeadingLargeSizeMediumMobile.dp,
-        iconWithHeadingLargeSizeMediumTablet.dp
-    ),
-    iconWithHeadingLargeSizeTall = OudsAdaptiveTokenValue(
-        iconWithHeadingLargeSizeTallMobile.dp,
-        iconWithHeadingLargeSizeTallMobile.dp,
-        iconWithHeadingLargeSizeTallTablet.dp
-    ),
-    iconWithHeadingExtraLargeSizeShort = OudsAdaptiveTokenValue(
-        iconWithHeadingXlargeSizeShortMobile.dp,
-        iconWithHeadingXlargeSizeShortMobile.dp,
-        iconWithHeadingXlargeSizeShortTablet.dp
-    ),
-    iconWithHeadingExtraLargeSizeMedium = OudsAdaptiveTokenValue(
-        iconWithHeadingXlargeSizeMediumMobile.dp,
-        iconWithHeadingXlargeSizeMediumMobile.dp,
-        iconWithHeadingXlargeSizeMediumTablet.dp
-    ),
-    iconWithHeadingExtraLargeSizeTall = OudsAdaptiveTokenValue(
-        iconWithHeadingXlargeSizeTallMobile.dp,
-        iconWithHeadingXlargeSizeTallMobile.dp,
-        iconWithHeadingXlargeSizeTallTablet.dp
-    ),
-    iconWithLabelSmallSizeShort = iconWithLabelSmallSizeShort.dp,
-    iconWithLabelSmallSizeMedium = iconWithLabelSmallSizeMedium.dp,
-    iconWithLabelSmallSizeTall = iconWithLabelSmallSizeTall.dp,
-    iconWithLabelMediumSizeShort = iconWithLabelMediumSizeShort.dp,
-    iconWithLabelMediumSizeMedium = iconWithLabelMediumSizeMedium.dp,
-    iconWithLabelMediumSizeTall = iconWithLabelMediumSizeTall.dp,
-    iconWithLabelLargeSizeShorter = iconWithLabelLargeSizeShorter.dp,
-    iconWithLabelLargeSizeShort = iconWithLabelLargeSizeShort.dp,
-    iconWithLabelLargeSizeMedium = iconWithLabelLargeSizeMedium.dp,
-    iconWithLabelLargeSizeTall = iconWithLabelLargeSizeTall.dp,
-    iconWithLabelLargeSizeTaller = iconWithLabelLargeSizeTaller.dp,
-    iconWithLabelExtraLargeSizeShort = iconWithLabelXlargeSizeShort.dp,
-    iconWithLabelExtraLargeSizeMedium = iconWithLabelXlargeSizeMedium.dp,
-    iconWithLabelExtraLargeSizeTall = iconWithLabelXlargeSizeTall.dp,
-    iconWithBodySmallSizeShort = OudsAdaptiveTokenValue(
-        iconWithBodySmallSizeShortMobile.dp,
-        iconWithBodySmallSizeShortMobile.dp,
-        iconWithBodySmallSizeShortTablet.dp
-    ),
-    iconWithBodySmallSizeMedium = OudsAdaptiveTokenValue(
-        iconWithBodySmallSizeMediumMobile.dp,
-        iconWithBodySmallSizeMediumMobile.dp,
-        iconWithBodySmallSizeMediumTablet.dp
-    ),
-    iconWithBodySmallSizeTall = OudsAdaptiveTokenValue(
-        iconWithBodySmallSizeTallMobile.dp,
-        iconWithBodySmallSizeTallMobile.dp,
-        iconWithBodySmallSizeTallTablet.dp
-    ),
-    iconWithBodyMediumSizeShort = OudsAdaptiveTokenValue(
-        iconWithBodyMediumSizeShortMobile.dp,
-        iconWithBodyMediumSizeShortMobile.dp,
-        iconWithBodyMediumSizeShortTablet.dp
-    ),
-    iconWithBodyMediumSizeMedium = OudsAdaptiveTokenValue(
-        iconWithBodyMediumSizeMediumMobile.dp,
-        iconWithBodyMediumSizeMediumMobile.dp,
-        iconWithBodyMediumSizeMediumTablet.dp
-    ),
-    iconWithBodyMediumSizeTall = OudsAdaptiveTokenValue(
-        iconWithBodyMediumSizeTallMobile.dp,
-        iconWithBodyMediumSizeTallMobile.dp,
-        iconWithBodyMediumSizeTallTablet.dp
-    ),
-    iconWithBodyLargeSizeShort = OudsAdaptiveTokenValue(
-        iconWithBodyLargeSizeShortMobile.dp,
-        iconWithBodyLargeSizeShortMobile.dp,
-        iconWithBodyLargeSizeShortTablet.dp
-    ),
-    iconWithBodyLargeSizeMedium = OudsAdaptiveTokenValue(
-        iconWithBodyLargeSizeMediumMobile.dp,
-        iconWithBodyLargeSizeMediumMobile.dp,
-        iconWithBodyLargeSizeMediumTablet.dp
-    ),
-    iconWithBodyLargeSizeTall = OudsAdaptiveTokenValue(
-        iconWithBodyLargeSizeTallMobile.dp,
-        iconWithBodyLargeSizeTallMobile.dp,
-        iconWithBodyLargeSizeTallTablet.dp
-    ),
-    maxWidthTypeDisplaySmall = OudsAdaptiveTokenValue(
-        maxWidthTypeDisplaySmallMobile.dp,
-        maxWidthTypeDisplaySmallMobile.dp,
-        maxWidthTypeDisplaySmallTablet.dp
-    ),
-    maxWidthTypeDisplayMedium = OudsAdaptiveTokenValue(
-        maxWidthTypeDisplayMediumMobile.dp,
-        maxWidthTypeDisplayMediumMobile.dp,
-        maxWidthTypeDisplayMediumTablet.dp
-    ),
-    maxWidthTypeDisplayLarge = OudsAdaptiveTokenValue(
-        maxWidthTypeDisplayLargeMobile.dp,
-        maxWidthTypeDisplayLargeMobile.dp,
-        maxWidthTypeDisplayLargeTablet.dp
-    ),
-    maxWidthTypeHeadingSmall = OudsAdaptiveTokenValue(
-        maxWidthTypeHeadingSmallMobile.dp,
-        maxWidthTypeHeadingSmallMobile.dp,
-        maxWidthTypeHeadingSmallTablet.dp
-    ),
-    maxWidthTypeHeadingMedium = OudsAdaptiveTokenValue(
-        maxWidthTypeHeadingMediumMobile.dp,
-        maxWidthTypeHeadingMediumMobile.dp,
-        maxWidthTypeHeadingMediumTablet.dp
-    ),
-    maxWidthTypeHeadingLarge = OudsAdaptiveTokenValue(
-        maxWidthTypeHeadingLargeMobile.dp,
-        maxWidthTypeHeadingLargeMobile.dp,
-        maxWidthTypeHeadingLargeTablet.dp
-    ),
-    maxWidthTypeHeadingExtraLarge = OudsAdaptiveTokenValue(
-        maxWidthTypeHeadingXlargeMobile.dp,
-        maxWidthTypeHeadingXlargeMobile.dp,
-        maxWidthTypeHeadingXlargeTablet.dp
-    ),
-    maxWidthTypeBodySmall = OudsAdaptiveTokenValue(
-        maxWidthTypeBodySmallMobile.dp,
-        maxWidthTypeBodySmallMobile.dp,
-        maxWidthTypeBodySmallTablet.dp
-    ),
-    maxWidthTypeBodyMedium = OudsAdaptiveTokenValue(
-        maxWidthTypeBodyMediumMobile.dp,
-        maxWidthTypeBodyMediumMobile.dp,
-        maxWidthTypeBodyMediumTablet.dp
-    ),
-    maxWidthTypeBodyLarge = OudsAdaptiveTokenValue(
-        maxWidthTypeBodyLargeMobile.dp,
-        maxWidthTypeBodyLargeMobile.dp,
-        maxWidthTypeBodyLargeTablet.dp
-    ),
+    maxWidthType = OudsSizes.MaxWidthType(
+        display = OudsSizes.MaxWidthType.Display(
+            small = OudsAdaptiveTokenValue(
+                maxWidthTypeDisplaySmallMobile.dp,
+                maxWidthTypeDisplaySmallMobile.dp,
+                maxWidthTypeDisplaySmallTablet.dp
+            ),
+            medium = OudsAdaptiveTokenValue(
+                maxWidthTypeDisplayMediumMobile.dp,
+                maxWidthTypeDisplayMediumMobile.dp,
+                maxWidthTypeDisplayMediumTablet.dp
+            ),
+            large = OudsAdaptiveTokenValue(
+                maxWidthTypeDisplayLargeMobile.dp,
+                maxWidthTypeDisplayLargeMobile.dp,
+                maxWidthTypeDisplayLargeTablet.dp
+            ),
+        ),
+        heading = OudsSizes.MaxWidthType.Heading(
+            small = OudsAdaptiveTokenValue(
+                maxWidthTypeHeadingSmallMobile.dp,
+                maxWidthTypeHeadingSmallMobile.dp,
+                maxWidthTypeHeadingSmallTablet.dp
+            ),
+            medium = OudsAdaptiveTokenValue(
+                maxWidthTypeHeadingMediumMobile.dp,
+                maxWidthTypeHeadingMediumMobile.dp,
+                maxWidthTypeHeadingMediumTablet.dp
+            ),
+            large = OudsAdaptiveTokenValue(
+                maxWidthTypeHeadingLargeMobile.dp,
+                maxWidthTypeHeadingLargeMobile.dp,
+                maxWidthTypeHeadingLargeTablet.dp
+            ),
+            extraLarge = OudsAdaptiveTokenValue(
+                maxWidthTypeHeadingXlargeMobile.dp,
+                maxWidthTypeHeadingXlargeMobile.dp,
+                maxWidthTypeHeadingXlargeTablet.dp
+            ),
+        ),
+        body = OudsSizes.MaxWidthType.Body(
+            small = OudsAdaptiveTokenValue(
+                maxWidthTypeBodySmallMobile.dp,
+                maxWidthTypeBodySmallMobile.dp,
+                maxWidthTypeBodySmallTablet.dp
+            ),
+            medium = OudsAdaptiveTokenValue(
+                maxWidthTypeBodyMediumMobile.dp,
+                maxWidthTypeBodyMediumMobile.dp,
+                maxWidthTypeBodyMediumTablet.dp
+            ),
+            large = OudsAdaptiveTokenValue(
+                maxWidthTypeBodyLargeMobile.dp,
+                maxWidthTypeBodyLargeMobile.dp,
+                maxWidthTypeBodyLargeTablet.dp
+            ),
+        )
+    )
 )
 
 @Stable
 fun OudsSizes.fromToken(token: OudsSizeKeyToken.IconDecorative): Dp {
     return when (token) {
-        OudsSizeKeyToken.IconDecorative.Shortest -> iconDecorativeShortest
-        OudsSizeKeyToken.IconDecorative.Shorter -> iconDecorativeShorter
-        OudsSizeKeyToken.IconDecorative.Short -> iconDecorativeShort
-        OudsSizeKeyToken.IconDecorative.Medium -> iconDecorativeMedium
-        OudsSizeKeyToken.IconDecorative.Tall -> iconDecorativeTall
-        OudsSizeKeyToken.IconDecorative.Taller -> iconDecorativeTaller
-        OudsSizeKeyToken.IconDecorative.Tallest -> iconDecorativeTallest
+        OudsSizeKeyToken.IconDecorative.Shortest -> icon.decorative.shortest
+        OudsSizeKeyToken.IconDecorative.Shorter -> icon.decorative.shorter
+        OudsSizeKeyToken.IconDecorative.Short -> icon.decorative.short
+        OudsSizeKeyToken.IconDecorative.Medium -> icon.decorative.medium
+        OudsSizeKeyToken.IconDecorative.Tall -> icon.decorative.tall
+        OudsSizeKeyToken.IconDecorative.Taller -> icon.decorative.taller
+        OudsSizeKeyToken.IconDecorative.Tallest -> icon.decorative.tallest
     }
 }
 
 @Stable
 fun OudsSizes.fromToken(token: OudsSizeKeyToken.IconWithText, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     val dimensionSizeIconWithTextValue: Any = when (token) {
-        OudsSizeKeyToken.IconWithText.HeadingSmallSizeShort -> iconWithHeadingSmallSizeShort
-        OudsSizeKeyToken.IconWithText.HeadingSmallSizeMedium -> iconWithHeadingSmallSizeMedium
-        OudsSizeKeyToken.IconWithText.HeadingSmallSizeTall -> iconWithHeadingSmallSizeTall
-        OudsSizeKeyToken.IconWithText.HeadingMediumSizeShort -> iconWithHeadingMediumSizeShort
-        OudsSizeKeyToken.IconWithText.HeadingMediumSizeMedium -> iconWithHeadingMediumSizeMedium
-        OudsSizeKeyToken.IconWithText.HeadingMediumSizeTall -> iconWithHeadingMediumSizeTall
-        OudsSizeKeyToken.IconWithText.HeadingLargeSizeShort -> iconWithHeadingLargeSizeShort
-        OudsSizeKeyToken.IconWithText.HeadingLargeSizeMedium -> iconWithBodyLargeSizeMedium
-        OudsSizeKeyToken.IconWithText.HeadingLargeSizeTall -> iconWithHeadingLargeSizeTall
-        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeShort -> iconWithHeadingExtraLargeSizeShort
-        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeMedium -> iconWithHeadingExtraLargeSizeMedium
-        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeTall -> iconWithHeadingExtraLargeSizeTall
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeShorter -> iconWithLabelLargeSizeShorter
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeShort -> iconWithLabelLargeSizeShort
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeMedium -> iconWithLabelLargeSizeMedium
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeTall -> iconWithLabelLargeSizeTall
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeTaller -> iconWithLabelLargeSizeTaller
-        OudsSizeKeyToken.IconWithText.LabelMediumSizeShort -> iconWithLabelMediumSizeShort
-        OudsSizeKeyToken.IconWithText.LabelMediumSizeMedium -> iconWithLabelMediumSizeMedium
-        OudsSizeKeyToken.IconWithText.LabelMediumSizeTall -> iconWithLabelMediumSizeTall
-        OudsSizeKeyToken.IconWithText.LabelSmallSizeShort -> iconWithLabelSmallSizeShort
-        OudsSizeKeyToken.IconWithText.LabelSmallSizeMedium -> iconWithLabelSmallSizeMedium
-        OudsSizeKeyToken.IconWithText.LabelSmallSizeTall -> iconWithLabelSmallSizeTall
-        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeShort -> iconWithLabelExtraLargeSizeShort
-        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeMedium -> iconWithLabelExtraLargeSizeMedium
-        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeTall -> iconWithLabelExtraLargeSizeTall
-        OudsSizeKeyToken.IconWithText.BodySmallSizeShort -> iconWithBodySmallSizeShort
-        OudsSizeKeyToken.IconWithText.BodySmallSizeMedium -> iconWithBodySmallSizeMedium
-        OudsSizeKeyToken.IconWithText.BodySmallSizeTall -> iconWithBodySmallSizeTall
-        OudsSizeKeyToken.IconWithText.BodyMediumSizeShort -> iconWithBodyMediumSizeShort
-        OudsSizeKeyToken.IconWithText.BodyMediumSizeMedium -> iconWithBodyMediumSizeMedium
-        OudsSizeKeyToken.IconWithText.BodyMediumSizeTall -> iconWithBodyMediumSizeTall
-        OudsSizeKeyToken.IconWithText.BodyLargeSizeShort -> iconWithBodyLargeSizeShort
-        OudsSizeKeyToken.IconWithText.BodyLargeSizeMedium -> iconWithBodyLargeSizeMedium
-        OudsSizeKeyToken.IconWithText.BodyLargeSizeTall -> iconWithBodyLargeSizeTall
+        OudsSizeKeyToken.IconWithText.HeadingSmallSizeShort -> icon.withHeading.small.sizeShort
+        OudsSizeKeyToken.IconWithText.HeadingSmallSizeMedium -> icon.withHeading.small.sizeMedium
+        OudsSizeKeyToken.IconWithText.HeadingSmallSizeTall -> icon.withHeading.small.sizeTall
+        OudsSizeKeyToken.IconWithText.HeadingMediumSizeShort -> icon.withHeading.medium.sizeShort
+        OudsSizeKeyToken.IconWithText.HeadingMediumSizeMedium -> icon.withHeading.medium.sizeMedium
+        OudsSizeKeyToken.IconWithText.HeadingMediumSizeTall -> icon.withHeading.medium.sizeTall
+        OudsSizeKeyToken.IconWithText.HeadingLargeSizeShort -> icon.withHeading.large.sizeShort
+        OudsSizeKeyToken.IconWithText.HeadingLargeSizeMedium -> icon.withHeading.large.sizeMedium
+        OudsSizeKeyToken.IconWithText.HeadingLargeSizeTall -> icon.withHeading.large.sizeTall
+        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeShort -> icon.withHeading.extraLarge.sizeShort
+        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeMedium -> icon.withHeading.extraLarge.sizeMedium
+        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeTall -> icon.withHeading.extraLarge.sizeTall
+        OudsSizeKeyToken.IconWithText.LabelLargeSizeShorter -> icon.withLabel.large.sizeShorter
+        OudsSizeKeyToken.IconWithText.LabelLargeSizeShort -> icon.withLabel.large.sizeShort
+        OudsSizeKeyToken.IconWithText.LabelLargeSizeMedium -> icon.withLabel.large.sizeMedium
+        OudsSizeKeyToken.IconWithText.LabelLargeSizeTall -> icon.withLabel.large.sizeTall
+        OudsSizeKeyToken.IconWithText.LabelLargeSizeTaller -> icon.withLabel.large.sizeTaller
+        OudsSizeKeyToken.IconWithText.LabelMediumSizeShort -> icon.withLabel.medium.sizeShort
+        OudsSizeKeyToken.IconWithText.LabelMediumSizeMedium -> icon.withLabel.medium.sizeMedium
+        OudsSizeKeyToken.IconWithText.LabelMediumSizeTall -> icon.withLabel.medium.sizeTall
+        OudsSizeKeyToken.IconWithText.LabelSmallSizeShort -> icon.withLabel.small.sizeShort
+        OudsSizeKeyToken.IconWithText.LabelSmallSizeMedium -> icon.withLabel.small.sizeMedium
+        OudsSizeKeyToken.IconWithText.LabelSmallSizeTall -> icon.withLabel.small.sizeTall
+        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeShort -> icon.withLabel.extraLarge.sizeShort
+        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeMedium -> icon.withLabel.extraLarge.sizeMedium
+        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeTall -> icon.withLabel.extraLarge.sizeTall
+        OudsSizeKeyToken.IconWithText.BodySmallSizeShort -> icon.withBody.small.sizeShort
+        OudsSizeKeyToken.IconWithText.BodySmallSizeMedium -> icon.withBody.small.sizeMedium
+        OudsSizeKeyToken.IconWithText.BodySmallSizeTall -> icon.withBody.small.sizeTall
+        OudsSizeKeyToken.IconWithText.BodyMediumSizeShort -> icon.withBody.medium.sizeShort
+        OudsSizeKeyToken.IconWithText.BodyMediumSizeMedium -> icon.withBody.medium.sizeMedium
+        OudsSizeKeyToken.IconWithText.BodyMediumSizeTall -> icon.withBody.medium.sizeTall
+        OudsSizeKeyToken.IconWithText.BodyLargeSizeShort -> icon.withBody.large.sizeShort
+        OudsSizeKeyToken.IconWithText.BodyLargeSizeMedium -> icon.withBody.large.sizeMedium
+        OudsSizeKeyToken.IconWithText.BodyLargeSizeTall -> icon.withBody.large.sizeTall
     }
 
     return if (dimensionSizeIconWithTextValue is OudsAdaptiveTokenValue<*>) {
@@ -320,16 +440,16 @@ fun OudsSizes.fromToken(token: OudsSizeKeyToken.IconWithText, adaptiveWindowType
 @Stable
 fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidthType, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     val dimensionMaxWidthTypeToken = when (token) {
-        OudsSizeKeyToken.MaxWidthType.DisplaySmall -> maxWidthTypeDisplaySmall
-        OudsSizeKeyToken.MaxWidthType.DisplayMedium -> maxWidthTypeDisplayMedium
-        OudsSizeKeyToken.MaxWidthType.DisplayLarge -> maxWidthTypeDisplayLarge
-        OudsSizeKeyToken.MaxWidthType.HeadingSmall -> maxWidthTypeHeadingSmall
-        OudsSizeKeyToken.MaxWidthType.HeadingMedium -> maxWidthTypeHeadingMedium
-        OudsSizeKeyToken.MaxWidthType.HeadingLarge -> maxWidthTypeHeadingLarge
-        OudsSizeKeyToken.MaxWidthType.HeadingExtraLarge -> maxWidthTypeHeadingExtraLarge
-        OudsSizeKeyToken.MaxWidthType.BodySmall -> maxWidthTypeBodySmall
-        OudsSizeKeyToken.MaxWidthType.BodyMedium -> maxWidthTypeBodyMedium
-        OudsSizeKeyToken.MaxWidthType.BodyLarge -> maxWidthTypeBodyLarge
+        OudsSizeKeyToken.MaxWidthType.DisplaySmall -> maxWidthType.display.small
+        OudsSizeKeyToken.MaxWidthType.DisplayMedium -> maxWidthType.display.medium
+        OudsSizeKeyToken.MaxWidthType.DisplayLarge -> maxWidthType.display.large
+        OudsSizeKeyToken.MaxWidthType.HeadingSmall -> maxWidthType.heading.small
+        OudsSizeKeyToken.MaxWidthType.HeadingMedium -> maxWidthType.heading.medium
+        OudsSizeKeyToken.MaxWidthType.HeadingLarge -> maxWidthType.heading.large
+        OudsSizeKeyToken.MaxWidthType.HeadingExtraLarge -> maxWidthType.heading.extraLarge
+        OudsSizeKeyToken.MaxWidthType.BodySmall -> maxWidthType.body.small
+        OudsSizeKeyToken.MaxWidthType.BodyMedium -> maxWidthType.body.medium
+        OudsSizeKeyToken.MaxWidthType.BodyLarge -> maxWidthType.body.large
     }
 
     return when (adaptiveWindowType) {
