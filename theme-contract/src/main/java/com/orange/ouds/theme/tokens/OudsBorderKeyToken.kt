@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-class OudsBorderKeyToken {
+object OudsBorderKeyToken {
     enum class Width {
         None,
         Default,
