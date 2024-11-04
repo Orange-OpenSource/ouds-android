@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-class OudsSizeKeyToken {
+object OudsSizeKeyToken {
     enum class IconDecorative {
         Shortest,
         Shorter,

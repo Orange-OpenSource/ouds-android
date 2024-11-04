@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-class OudsSpaceKeyToken {
+object OudsSpaceKeyToken {
     enum class Fixed {
         None,
         Smash,
