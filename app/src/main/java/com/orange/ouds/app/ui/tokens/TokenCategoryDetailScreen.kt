@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.tokens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -158,7 +159,14 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
     is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
     is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorBrand, TokenProperty.ColorContent,
-    TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> IllustrationBox(backgroundColor = token.value as Color)
+    TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> {
+        val color = token.value as Color
+        if ((isSystemInDarkTheme() && color == Color.Black) || (!isSystemInDarkTheme() && color == Color.White)) {
+            BorderIllustrationBox(backgroundColor = color)
+        } else {
+            IllustrationBox(backgroundColor = color)
+        }
+    }
     is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value as Float)
     is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value as Dp)
     is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value as Dp)
