@@ -21,7 +21,7 @@ data class OudsColorGradientSemanticTokens(
     val gradientSkeletonStartEndLight: Color = ColorRawTokens.colorFunctionalLightGray80,
     val gradientSkeletonStartEndOnBgEmphasizedLight: Color = ColorRawTokens.colorFunctionalDarkGray720,
     val gradientSkeletonMiddleDark: Color = ColorRawTokens.colorFunctionalDarkGray720,
-    val gradientSkeletonMiddleOnBgEmphasizedDark: Color = ColorRawTokens.colorFunctionalDarkGray560,
+    val gradientSkeletonMiddleOnBgEmphasizedDark: Color = ColorRawTokens.colorFunctionalDarkGray480,
     val gradientSkeletonStartEndDark: Color = ColorRawTokens.colorFunctionalDarkGray800,
-    val gradientSkeletonStartEndOnBgEmphasizedDark: Color = ColorRawTokens.colorFunctionalDarkGray640,
+    val gradientSkeletonStartEndOnBgEmphasizedDark: Color = ColorRawTokens.colorFunctionalDarkGray560,
 )
