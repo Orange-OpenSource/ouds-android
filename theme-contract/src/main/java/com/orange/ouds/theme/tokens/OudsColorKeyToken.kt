@@ -12,12 +12,13 @@
 
 package com.orange.ouds.theme.tokens
 
-object OudsColorKeyToken {
-    enum class Transparent {
+sealed interface OudsColorKeyToken {
+
+    enum class Transparent : OudsColorKeyToken {
         TransparentDefault,
     }
 
-    enum class Action {
+    enum class Action : OudsColorKeyToken {
         Disabled,
         DisabledOnBgEmphasized,
         NegativeEnabled,
@@ -51,7 +52,7 @@ object OudsColorKeyToken {
         VisitedOnBgEmphasized,
     }
 
-    enum class Always {
+    enum class Always : OudsColorKeyToken {
         Accent,
         Black,
         Info,
@@ -68,7 +69,7 @@ object OudsColorKeyToken {
         White,
     }
 
-    enum class Background {
+    enum class Background : OudsColorKeyToken {
         BrandPrimary,
         Emphasized,
         Primary,
@@ -93,7 +94,7 @@ object OudsColorKeyToken {
         Tertiary,
     }
 
-    enum class Border {
+    enum class Border : OudsColorKeyToken {
         BrandPrimary,
         BrandPrimaryOnBgEmphasized,
         Default,
@@ -107,7 +108,7 @@ object OudsColorKeyToken {
         OnBrandPrimary,
     }
 
-    enum class Brand {
+    enum class Brand : OudsColorKeyToken {
         AccentDefault,
         AccentHigh,
         AccentHighest,
@@ -145,7 +146,7 @@ object OudsColorKeyToken {
         WarningLowest,
     }
 
-    enum class Content {
+    enum class Content : OudsColorKeyToken {
         BrandPrimary,
         BrandPrimaryOnBgEmphasized,
         Default,
@@ -189,7 +190,7 @@ object OudsColorKeyToken {
         StatusWarning,
     }
 
-    enum class Elevation {
+    enum class Elevation : OudsColorKeyToken {
         Drag,
         DragOnBgEmphasized,
         DragOnBgSecondary,
@@ -205,14 +206,14 @@ object OudsColorKeyToken {
         RaisedOnBgSecondary,
     }
 
-    enum class Gradient {
+    enum class Gradient : OudsColorKeyToken {
         SkeletonMiddle,
         SkeletonMiddleOnBgEmphasized,
         SkeletonStartEnd,
         SkeletonStartEndOnBgEmphasized,
     }
 
-    enum class Decorative {
+    enum class Decorative : OudsColorKeyToken {
         Accent1Default,
         Accent1Emphasized,
         Accent1Muted,

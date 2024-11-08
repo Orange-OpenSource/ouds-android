@@ -1085,81 +1085,20 @@ val OudsColorSemanticTokens.materialDarkColorScheme: ColorScheme
     )
 
 /**
- * Converts an OUDS action color token to the local color value provided by the theme.
+ * Converts an OUDS color token to the local color value provided by the theme.
  */
-val OudsColorKeyToken.Action.value: Color
+val OudsColorKeyToken.value: Color
     @ReadOnlyComposable
     @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS always color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Always.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS background color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Background.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS border color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Border.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS brand color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Brand.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS content color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Content.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS elevation color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Elevation.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS gradient color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Gradient.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS decorative color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Decorative.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
-
-/**
- * Converts an OUDS transparent color token to the local color value provided by the theme.
- */
-val OudsColorKeyToken.Transparent.value: Color
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.colorScheme.fromToken(this)
+    get() = when (this) {
+        is OudsColorKeyToken.Action -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Always -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Background -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Border -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Brand -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Content -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Decorative -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Elevation -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Transparent -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Gradient -> OudsTheme.colorScheme.fromToken(this)
+    }
