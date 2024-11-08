@@ -12,23 +12,32 @@
 
 package com.orange.ouds.theme.orangecountry
 
+import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orangecountry.tokens.orangeCountrySemanticColorTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsColorTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 class OrangeCountryTheme : OrangeTheme() {
 
     override val name: String
         get() = "Orange country"
 
-    override val colorTokens: OudsColorTokens
-        get() = orangeCountrySemanticColorTokens
+    override val colorTokens: OudsColorSemanticTokens
+        get() = OudsColorSemanticTokens(
+            backgroundColorTokens = OudsColorBgSemanticTokens(
+                bgBrandPrimaryLight = Color(0xFF34D349),
+                bgBrandPrimaryDark = Color(0xFF069D1A)
+            )
+        )
 
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(
-            button = OudsButtonTokens(cornerRadius = OudsBorderKeyToken.Radius.Short)
+            button = OudsButtonTokens(containerColor = OudsColorKeyToken.Background.StatusAccentEmphasized, cornerRadius = OudsBorderKeyToken.Radius.Short)
         )
 }

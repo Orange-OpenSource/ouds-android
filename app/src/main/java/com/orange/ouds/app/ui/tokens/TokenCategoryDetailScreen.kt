@@ -41,9 +41,9 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsBorderStyle
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import com.orange.ouds.theme.tokens.semantic.OudsColorKeyToken
 
 @Composable
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: (Long) -> Unit) {
@@ -110,7 +110,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                     style = OudsTypographyKeyToken.BodyDefaultMedium.value,
-                                    color = OudsColorKeyToken.OnSurfaceVariant.value //TODO use ContentMuted token when available
+                                    color = OudsColorKeyToken.Content.Muted.value
                                 )
                             }
                         } else {
@@ -139,8 +139,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                         text = token.literalValue,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
-                                        style = OudsTypographyKeyToken.BodyDefaultMedium.value.copy(color = OudsColorKeyToken.Tertiary.value), //TODO use ContentMuted token when available
-                                        color = OudsColorKeyToken.OnSurfaceVariant.value //TODO use ContentMuted token when available
+                                        style = OudsTypographyKeyToken.BodyDefaultMedium.value.copy(color = OudsColorKeyToken.Content.Muted.value)
                                     )
                                 }
                             }

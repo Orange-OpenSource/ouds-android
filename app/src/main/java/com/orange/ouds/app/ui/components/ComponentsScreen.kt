@@ -27,10 +27,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.component.button.OudsButton
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
@@ -38,8 +38,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 fun ComponentsScreen() {
     Screen {
         Column(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -52,7 +51,7 @@ fun ComponentsScreen() {
                     .padding(top = OudsSpaceKeyToken.Fixed.Medium.value)
                     .width(OudsGridKeyToken.Margin.value)
                     .height(OudsGridKeyToken.ColumnGap.value)
-                    .background(OudsTheme.colorScheme.primary)
+                    .background(OudsColorKeyToken.Background.BrandPrimary.value)
             )
         }
     }
