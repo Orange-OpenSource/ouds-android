@@ -499,479 +499,515 @@ val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
         transparentColors = OudsColorScheme.Transparent(
             transparentDefault = transparentColorTokens.transparentDefaultDark,
         ),
-        actionColors = OudsColorScheme.Action(
-            disabled = actionColorTokens.actionDisabledDark,
-            disabledOnBgEmphasized = actionColorTokens.actionDisabledOnBgEmphasizedDark,
-            negativeEnabled = actionColorTokens.actionNegativeEnabledDark,
-            negativeFocus = actionColorTokens.actionNegativeFocusDark,
-            negativeHover = actionColorTokens.actionNegativeHoverDark,
-            negativeLoading = actionColorTokens.actionNegativeLoadingDark,
-            negativePressed = actionColorTokens.actionNegativePressedDark,
-            primaryEnabled = actionColorTokens.actionPrimaryEnabledDark,
-            primaryEnabledOnBgEmphasized = actionColorTokens.actionPrimaryEnabledOnBgEmphasizedDark,
-            primaryFocus = actionColorTokens.actionPrimaryFocusDark,
-            primaryFocusOnBgEmphasized = actionColorTokens.actionPrimaryFocusOnBgEmphasizedDark,
-            primaryHover = actionColorTokens.actionPrimaryHoverDark,
-            primaryHoverOnBgEmphasized = actionColorTokens.actionPrimaryHoverOnBgEmphasizedDark,
-            primaryLoading = actionColorTokens.actionPrimaryLoadingDark,
-            primaryLoadingOnBgEmphasized = actionColorTokens.actionPrimaryLoadingOnBgEmphasizedDark,
-            primaryPressed = actionColorTokens.actionPrimaryPressedDark,
-            primaryPressedOnBgEmphasized = actionColorTokens.actionPrimaryPressedOnBgEmphasizedDark,
-            secondaryEnabled = actionColorTokens.actionSecondaryEnabledDark,
-            secondaryEnabledOnBgEmphasized = actionColorTokens.actionSecondaryEnabledOnBgEmphasizedDark,
-            secondaryFocus = actionColorTokens.actionSecondaryFocusDark,
-            secondaryFocusOnBgEmphasized = actionColorTokens.actionSecondaryFocusOnBgEmphasizedDark,
-            secondaryHover = actionColorTokens.actionSecondaryHoverDark,
-            secondaryHoverOnBgEmphasized = actionColorTokens.actionSecondaryHoverOnBgEmphasizedDark,
-            secondaryLoading = actionColorTokens.actionSecondaryLoadingDark,
-            secondaryLoadingOnBgEmphasized = actionColorTokens.actionSecondaryLoadingOnBgEmphasizedDark,
-            secondaryPressed = actionColorTokens.actionSecondaryPressedDark,
-            secondaryPressedOnBgEmphasized = actionColorTokens.actionSecondaryPressedOnBgEmphasizedDark,
-            selected = actionColorTokens.actionSelectedDark,
-            selectedOnBgEmphasized = actionColorTokens.actionSelectedOnBgEmphasizedDark,
-            visited = actionColorTokens.actionVisitedDark,
-            visitedOnBgEmphasized = actionColorTokens.actionVisitedOnBgEmphasizedDark,
-        ),
-        alwaysColors = OudsColorScheme.Always(
-            accent = alwaysColorTokens.alwaysAccentDark,
-            black = alwaysColorTokens.alwaysBlackDark,
-            info = alwaysColorTokens.alwaysInfoDark,
-            negative = alwaysColorTokens.alwaysNegativeDark,
-            onAccent = alwaysColorTokens.alwaysOnAccentDark,
-            onBlack = alwaysColorTokens.alwaysOnBlackDark,
-            onInfo = alwaysColorTokens.alwaysOnInfoDark,
-            onNegative = alwaysColorTokens.alwaysOnNegativeDark,
-            onPositive = alwaysColorTokens.alwaysOnPositiveDark,
-            onWarning = alwaysColorTokens.alwaysOnWarningDark,
-            onWhite = alwaysColorTokens.alwaysOnWhiteDark,
-            positive = alwaysColorTokens.alwaysPositiveDark,
-            warning = alwaysColorTokens.alwaysWarningDark,
-            white = alwaysColorTokens.alwaysWhiteDark,
-        ),
-        backgroundColors = OudsColorScheme.Background(
-            brandPrimary = backgroundColorTokens.bgBrandPrimaryDark,
-            emphasized = backgroundColorTokens.bgEmphasizedDark,
-            primary = backgroundColorTokens.bgPrimaryDark,
-            secondary = backgroundColorTokens.bgSecondaryDark,
-            statusAccentEmphasized = backgroundColorTokens.bgStatusAccentEmphasizedDark,
-            statusAccentMuted = backgroundColorTokens.bgStatusAccentMutedDark,
-            statusAccentMutedOnBgEmphasized = backgroundColorTokens.bgStatusAccentMutedOnBgEmphasizedDark,
-            statusInfoEmphasized = backgroundColorTokens.bgStatusInfoEmphasizedDark,
-            statusInfoMuted = backgroundColorTokens.bgStatusInfoMutedDark,
-            statusInfoMutedOnBgEmphasized = backgroundColorTokens.bgStatusInfoMutedOnBgEmphasizedDark,
-            statusNegativeEmphasized = backgroundColorTokens.bgStatusNegativeEmphasizedDark,
-            statusNegativeMuted = backgroundColorTokens.bgStatusNegativeMutedDark,
-            statusNegativeMutedOnBgEmphasized = backgroundColorTokens.bgStatusNegativeMutedOnBgEmphasizedDark,
-            statusNeutral = backgroundColorTokens.bgStatusNeutralDark,
-            statusNeutralOnBgEmphasized = backgroundColorTokens.bgStatusNeutralOnBgEmphasizedDark,
-            statusPositiveEmphasized = backgroundColorTokens.bgStatusPositiveEmphasizedDark,
-            statusPositiveMuted = backgroundColorTokens.bgStatusPositiveMutedDark,
-            statusPositiveMutedOnBgEmphasized = backgroundColorTokens.bgStatusPositiveMutedOnBgEmphasizedDark,
-            statusWarningEmphasized = backgroundColorTokens.bgStatusWarningEmphasizedDark,
-            statusWarningMuted = backgroundColorTokens.bgStatusWarningMutedDark,
-            statusWarningMutedOnBgEmphasized = backgroundColorTokens.bgStatusWarningMutedOnBgEmphasizedDark,
-            tertiary = backgroundColorTokens.bgTertiaryDark,
-        ),
-        borderColors = OudsColorScheme.Border(
-            brandPrimary = borderColorTokens.borderBrandPrimaryDark,
-            brandPrimaryOnBgEmphasized = borderColorTokens.borderBrandPrimaryOnBgEmphasizedDark,
-            default = borderColorTokens.borderDefaultDark,
-            defaultOnBgEmphasized = borderColorTokens.borderDefaultOnBgEmphasizedDark,
-            emphasized = borderColorTokens.borderEmphasizedDark,
-            emphasizedOnBgEmphasized = borderColorTokens.borderEmphasizedOnBgEmphasizedDark,
-            focus = borderColorTokens.borderFocusDark,
-            focusInset = borderColorTokens.borderFocusInsetDark,
-            focusInsetOnBgEmphasized = borderColorTokens.borderFocusInsetOnBgEmphasizedDark,
-            focusOnBgEmphasized = borderColorTokens.borderFocusOnBgEmphasizedDark,
-            onBrandPrimary = borderColorTokens.borderOnBrandPrimaryDark,
-        ),
-        brandColors = OudsColorScheme.Brand(
-            accentDefault = brandColorTokens.brandAccentDefaultDark,
-            accentHigh = brandColorTokens.brandAccentHighDark,
-            accentHighest = brandColorTokens.brandAccentHighestDark,
-            accentLowest = brandColorTokens.brandAccentLowestDark,
-            infoDefault = brandColorTokens.brandInfoDefaultDark,
-            infoHighest = brandColorTokens.brandInfoHighestDark,
-            infoLowest = brandColorTokens.brandInfoLowestDark,
-            negativeDefault = brandColorTokens.brandNegativeDefaultDark,
-            negativeHigh = brandColorTokens.brandNegativeHighDark,
-            negativeHigher = brandColorTokens.brandNegativeHigherDark,
-            negativeHighest = brandColorTokens.brandNegativeHighestDark,
-            negativeLowest = brandColorTokens.brandNegativeLowestDark,
-            neutralEmphasizedBlack = brandColorTokens.brandNeutralEmphasizedBlackDark,
-            neutralEmphasizedHigh = brandColorTokens.brandNeutralEmphasizedHighDark,
-            neutralEmphasizedHigher = brandColorTokens.brandNeutralEmphasizedHigherDark,
-            neutralEmphasizedHighest = brandColorTokens.brandNeutralEmphasizedHighestDark,
-            neutralEmphasizedLow = brandColorTokens.brandNeutralEmphasizedLowDark,
-            neutralEmphasizedLower = brandColorTokens.brandNeutralEmphasizedLowerDark,
-            neutralEmphasizedLowest = brandColorTokens.brandNeutralEmphasizedLowestDark,
-            neutralEmphasizedMedium = brandColorTokens.brandNeutralEmphasizedMediumDark,
-            neutralMutedHighest = brandColorTokens.brandNeutralMutedHighestDark,
-            neutralMutedLow = brandColorTokens.brandNeutralMutedLowDark,
-            neutralMutedLower = brandColorTokens.brandNeutralMutedLowerDark,
-            neutralMutedLowest = brandColorTokens.brandNeutralMutedLowestDark,
-            neutralMutedMedium = brandColorTokens.brandNeutralMutedMediumDark,
-            neutralMutedWhite = brandColorTokens.brandNeutralMutedWhiteDark,
-            positiveDefault = brandColorTokens.brandPositiveDefaultDark,
-            positiveHighest = brandColorTokens.brandPositiveHighestDark,
-            positiveLowest = brandColorTokens.brandPositiveLowestDark,
-            primaryDefault = brandColorTokens.brandPrimaryDefaultDark,
-            primaryLow = brandColorTokens.brandPrimaryLowDark,
-            warningDefault = brandColorTokens.brandWarningDefaultDark,
-            warningHigh = brandColorTokens.brandWarningHighDark,
-            warningHighest = brandColorTokens.brandWarningHighestDark,
-            warningLowest = brandColorTokens.brandWarningLowestDark,
-        ),
-        contentColors = OudsColorScheme.Content(
-            brandPrimary = contentColorTokens.contentBrandPrimaryDark,
-            brandPrimaryOnBgEmphasized = contentColorTokens.contentBrandPrimaryOnBgEmphasizedDark,
-            default = contentColorTokens.contentDefaultDark,
-            defaultOnBgEmphasized = contentColorTokens.contentDefaultOnBgEmphasizedDark,
-            disabled = contentColorTokens.contentDisabledDark,
-            disabledOnBgEmphasized = contentColorTokens.contentDisabledOnBgEmphasizedDark,
-            muted = contentColorTokens.contentMutedDark,
-            mutedOnBgEmphasized = contentColorTokens.contentMutedOnBgEmphasizedDark,
-            onActionDisabled = contentColorTokens.contentOnActionDisabledDark,
-            onActionDisabledOnBgEmphasized = contentColorTokens.contentOnActionDisabledOnBgEmphasizedDark,
-            onActionNegative = contentColorTokens.contentOnActionNegativeDark,
-            onActionPrimaryEnabled = contentColorTokens.contentOnActionPrimaryEnabledDark,
-            onActionPrimaryEnabledOnBgEmphasized = contentColorTokens.contentOnActionPrimaryEnabledOnBgEmphasizedDark,
-            onActionPrimaryFocus = contentColorTokens.contentOnActionPrimaryFocusDark,
-            onActionPrimaryFocusOnBgEmphasized = contentColorTokens.contentOnActionPrimaryFocusOnBgEmphasizedDark,
-            onActionPrimaryHover = contentColorTokens.contentOnActionPrimaryHoverDark,
-            onActionPrimaryHoverOnBgEmphasized = contentColorTokens.contentOnActionPrimaryHoverOnBgEmphasizedDark,
-            onActionPrimaryLoading = contentColorTokens.contentOnActionPrimaryLoadingDark,
-            onActionPrimaryLoadingOnBgEmphasized = contentColorTokens.contentOnActionPrimaryLoadingOnBgEmphasizedDark,
-            onActionPrimaryPressed = contentColorTokens.contentOnActionPrimaryPressedDark,
-            onActionPrimaryPressedOnBgEmphasized = contentColorTokens.contentOnActionPrimaryPressedOnBgEmphasizedDark,
-            onBrandPrimary = contentColorTokens.contentOnBrandPrimaryDark,
-            onStatusAccentEmphasized = contentColorTokens.contentOnStatusAccentEmphasizedDark,
-            onStatusAccentMuted = contentColorTokens.contentOnStatusAccentMutedDark,
-            onStatusAccentMutedOnBgEmphasized = contentColorTokens.contentOnStatusAccentMutedOnBgEmphasizedDark,
-            onStatusInfoEmphasized = contentColorTokens.contentOnStatusInfoEmphasizedDark,
-            onStatusInfoMuted = contentColorTokens.contentOnStatusInfoMutedDark,
-            onStatusInfoMutedOnBgEmphasized = contentColorTokens.contentOnStatusInfoMutedOnBgEmphasizedDark,
-            onStatusNegativeEmphasized = contentColorTokens.contentOnStatusNegativeEmphasizedDark,
-            onStatusNegativeMuted = contentColorTokens.contentOnStatusNegativeMutedDark,
-            onStatusNegativeMutedOnBgEmphasized = contentColorTokens.contentOnStatusNegativeMutedOnBgEmphasizedDark,
-            onStatusPositiveEmphasized = contentColorTokens.contentOnStatusPositiveEmphasizedDark,
-            onStatusPositiveMuted = contentColorTokens.contentOnStatusPositiveMutedDark,
-            onStatusPositiveMutedOnBgEmphasized = contentColorTokens.contentOnStatusPositiveMutedOnBgEmphasizedDark,
-            onStatusWarningEmphasized = contentColorTokens.contentOnStatusWarningEmphasizedDark,
-            onStatusWarningMuted = contentColorTokens.contentOnStatusWarningMutedDark,
-            onStatusWarningMutedOnBgEmphasized = contentColorTokens.contentOnStatusWarningMutedOnBgEmphasizedDark,
-            statusInfo = contentColorTokens.contentStatusInfoDark,
-            statusNegative = contentColorTokens.contentStatusNegativeDark,
-            statusPositive = contentColorTokens.contentStatusPositiveDark,
-            statusWarning = contentColorTokens.contentStatusWarningDark,
-        ),
-        elevationColors = OudsColorScheme.Elevation(
-            drag = elevationColorTokens.elevationDragDark,
-            dragOnBgEmphasized = elevationColorTokens.elevationDragOnBgEmphasizedDark,
-            dragOnBgSecondary = elevationColorTokens.elevationDragOnBgSecondaryDark,
-            modal = elevationColorTokens.elevationModalDark,
-            overlayDefault = elevationColorTokens.elevationOverlayDefaultDark,
-            overlayDefaultOnBgEmphasized = elevationColorTokens.elevationOverlayDefaultOnBgEmphasizedDark,
-            overlayDefaultOnBgSecondary = elevationColorTokens.elevationOverlayDefaultOnBgSecondaryDark,
-            overlayEmphasized = elevationColorTokens.elevationOverlayEmphasizedDark,
-            overlayEmphasizedOnBgEmphasized = elevationColorTokens.elevationOverlayEmphasizedOnBgEmphasizedDark,
-            overlayEmphasizedOnBgSecondary = elevationColorTokens.elevationOverlayEmphasizedOnBgSecondaryDark,
-            raised = elevationColorTokens.elevationRaisedDark,
-            raisedOnBgEmphasized = elevationColorTokens.elevationRaisedOnBgEmphasizedDark,
-            raisedOnBgSecondary = elevationColorTokens.elevationRaisedOnBgSecondaryDark,
-        ),
-        gradientColors = OudsColorScheme.Gradient(
-            skeletonMiddle = gradientColorTokens.gradientSkeletonMiddleDark,
-            skeletonMiddleOnBgEmphasized = gradientColorTokens.gradientSkeletonMiddleOnBgEmphasizedDark,
-            skeletonStartEnd = gradientColorTokens.gradientSkeletonStartEndDark,
-            skeletonStartEndOnBgEmphasized = gradientColorTokens.gradientSkeletonStartEndOnBgEmphasizedDark,
-        ),
-        decorativeColors = OudsColorScheme.Decorative(
-            accent1Default = decorativeColorTokens.decorativeAccent1DefaultDark,
-            accent1Emphasized = decorativeColorTokens.decorativeAccent1EmphasizedDark,
-            accent1Muted = decorativeColorTokens.decorativeAccent1MutedDark,
-            accent2Default = decorativeColorTokens.decorativeAccent2DefaultDark,
-            accent2Emphasized = decorativeColorTokens.decorativeAccent2EmphasizedDark,
-            accent2Muted = decorativeColorTokens.decorativeAccent2MutedDark,
-            accent3Default = decorativeColorTokens.decorativeAccent3DefaultDark,
-            accent3Emphasized = decorativeColorTokens.decorativeAccent3EmphasizedDark,
-            accent3Muted = decorativeColorTokens.decorativeAccent3MutedDark,
-            accent4Default = decorativeColorTokens.decorativeAccent4DefaultDark,
-            accent4Emphasized = decorativeColorTokens.decorativeAccent4EmphasizedDark,
-            accent4Muted = decorativeColorTokens.decorativeAccent4MutedDark,
-            accent5Default = decorativeColorTokens.decorativeAccent5DefaultDark,
-            accent5Emphasized = decorativeColorTokens.decorativeAccent5EmphasizedDark,
-            accent5Muted = decorativeColorTokens.decorativeAccent5MutedDark,
-            brandPrimary = decorativeColorTokens.decorativeBrandPrimaryDark,
-            brandSecondary = decorativeColorTokens.decorativeBrandSecondaryDark,
-            brandTertiary = decorativeColorTokens.decorativeBrandTertiaryDark,
-            neutralDefault = decorativeColorTokens.decorativeNeutralDefaultDark,
-            neutralEmphasized = decorativeColorTokens.decorativeNeutralEmphasizedDark,
-            neutralMuted = decorativeColorTokens.decorativeNeutralMutedDark,
-            skinTint100 = decorativeColorTokens.decorativeSkinTint100Dark,
-            skinTint200 = decorativeColorTokens.decorativeSkinTint200Dark,
-            skinTint300 = decorativeColorTokens.decorativeSkinTint300Dark,
-            skinTint400 = decorativeColorTokens.decorativeSkinTint400Dark,
-            skinTint500 = decorativeColorTokens.decorativeSkinTint500Dark,
-            skinTint600 = decorativeColorTokens.decorativeSkinTint600Dark,
-            skinTint700 = decorativeColorTokens.decorativeSkinTint700Dark,
-            skinTint800 = decorativeColorTokens.decorativeSkinTint800Dark,
-            skinTint900 = decorativeColorTokens.decorativeSkinTint900Dark,
-        ),
+        actionColors = with(actionColorTokens) {
+            OudsColorScheme.Action(
+                disabled = actionDisabledDark,
+                disabledOnBgEmphasized = actionDisabledOnBgEmphasizedDark,
+                negativeEnabled = actionNegativeEnabledDark,
+                negativeFocus = actionNegativeFocusDark,
+                negativeHover = actionNegativeHoverDark,
+                negativeLoading = actionNegativeLoadingDark,
+                negativePressed = actionNegativePressedDark,
+                primaryEnabled = actionPrimaryEnabledDark,
+                primaryEnabledOnBgEmphasized = actionPrimaryEnabledOnBgEmphasizedDark,
+                primaryFocus = actionPrimaryFocusDark,
+                primaryFocusOnBgEmphasized = actionPrimaryFocusOnBgEmphasizedDark,
+                primaryHover = actionPrimaryHoverDark,
+                primaryHoverOnBgEmphasized = actionPrimaryHoverOnBgEmphasizedDark,
+                primaryLoading = actionPrimaryLoadingDark,
+                primaryLoadingOnBgEmphasized = actionPrimaryLoadingOnBgEmphasizedDark,
+                primaryPressed = actionPrimaryPressedDark,
+                primaryPressedOnBgEmphasized = actionPrimaryPressedOnBgEmphasizedDark,
+                secondaryEnabled = actionSecondaryEnabledDark,
+                secondaryEnabledOnBgEmphasized = actionSecondaryEnabledOnBgEmphasizedDark,
+                secondaryFocus = actionSecondaryFocusDark,
+                secondaryFocusOnBgEmphasized = actionSecondaryFocusOnBgEmphasizedDark,
+                secondaryHover = actionSecondaryHoverDark,
+                secondaryHoverOnBgEmphasized = actionSecondaryHoverOnBgEmphasizedDark,
+                secondaryLoading = actionSecondaryLoadingDark,
+                secondaryLoadingOnBgEmphasized = actionSecondaryLoadingOnBgEmphasizedDark,
+                secondaryPressed = actionSecondaryPressedDark,
+                secondaryPressedOnBgEmphasized = actionSecondaryPressedOnBgEmphasizedDark,
+                selected = actionSelectedDark,
+                selectedOnBgEmphasized = actionSelectedOnBgEmphasizedDark,
+                visited = actionVisitedDark,
+                visitedOnBgEmphasized = actionVisitedOnBgEmphasizedDark,
+            )
+        },
+        alwaysColors = with(alwaysColorTokens) {
+            OudsColorScheme.Always(
+                accent = alwaysAccentDark,
+                black = alwaysBlackDark,
+                info = alwaysInfoDark,
+                negative = alwaysNegativeDark,
+                onAccent = alwaysOnAccentDark,
+                onBlack = alwaysOnBlackDark,
+                onInfo = alwaysOnInfoDark,
+                onNegative = alwaysOnNegativeDark,
+                onPositive = alwaysOnPositiveDark,
+                onWarning = alwaysOnWarningDark,
+                onWhite = alwaysOnWhiteDark,
+                positive = alwaysPositiveDark,
+                warning = alwaysWarningDark,
+                white = alwaysWhiteDark,
+            )
+        },
+        backgroundColors = with(backgroundColorTokens) {
+            OudsColorScheme.Background(
+                brandPrimary = bgBrandPrimaryDark,
+                emphasized = bgEmphasizedDark,
+                primary = bgPrimaryDark,
+                secondary = bgSecondaryDark,
+                statusAccentEmphasized = bgStatusAccentEmphasizedDark,
+                statusAccentMuted = bgStatusAccentMutedDark,
+                statusAccentMutedOnBgEmphasized = bgStatusAccentMutedOnBgEmphasizedDark,
+                statusInfoEmphasized = bgStatusInfoEmphasizedDark,
+                statusInfoMuted = bgStatusInfoMutedDark,
+                statusInfoMutedOnBgEmphasized = bgStatusInfoMutedOnBgEmphasizedDark,
+                statusNegativeEmphasized = bgStatusNegativeEmphasizedDark,
+                statusNegativeMuted = bgStatusNegativeMutedDark,
+                statusNegativeMutedOnBgEmphasized = bgStatusNegativeMutedOnBgEmphasizedDark,
+                statusNeutral = bgStatusNeutralDark,
+                statusNeutralOnBgEmphasized = bgStatusNeutralOnBgEmphasizedDark,
+                statusPositiveEmphasized = bgStatusPositiveEmphasizedDark,
+                statusPositiveMuted = bgStatusPositiveMutedDark,
+                statusPositiveMutedOnBgEmphasized = bgStatusPositiveMutedOnBgEmphasizedDark,
+                statusWarningEmphasized = bgStatusWarningEmphasizedDark,
+                statusWarningMuted = bgStatusWarningMutedDark,
+                statusWarningMutedOnBgEmphasized = bgStatusWarningMutedOnBgEmphasizedDark,
+                tertiary = bgTertiaryDark,
+            )
+        },
+        borderColors = with(borderColorTokens) {
+            OudsColorScheme.Border(
+                brandPrimary = borderBrandPrimaryDark,
+                brandPrimaryOnBgEmphasized = borderBrandPrimaryOnBgEmphasizedDark,
+                default = borderDefaultDark,
+                defaultOnBgEmphasized = borderDefaultOnBgEmphasizedDark,
+                emphasized = borderEmphasizedDark,
+                emphasizedOnBgEmphasized = borderEmphasizedOnBgEmphasizedDark,
+                focus = borderFocusDark,
+                focusInset = borderFocusInsetDark,
+                focusInsetOnBgEmphasized = borderFocusInsetOnBgEmphasizedDark,
+                focusOnBgEmphasized = borderFocusOnBgEmphasizedDark,
+                onBrandPrimary = borderOnBrandPrimaryDark,
+            )
+        },
+        brandColors = with(brandColorTokens) {
+            OudsColorScheme.Brand(
+                accentDefault = brandAccentDefaultDark,
+                accentHigh = brandAccentHighDark,
+                accentHighest = brandAccentHighestDark,
+                accentLowest = brandAccentLowestDark,
+                infoDefault = brandInfoDefaultDark,
+                infoHighest = brandInfoHighestDark,
+                infoLowest = brandInfoLowestDark,
+                negativeDefault = brandNegativeDefaultDark,
+                negativeHigh = brandNegativeHighDark,
+                negativeHigher = brandNegativeHigherDark,
+                negativeHighest = brandNegativeHighestDark,
+                negativeLowest = brandNegativeLowestDark,
+                neutralEmphasizedBlack = brandNeutralEmphasizedBlackDark,
+                neutralEmphasizedHigh = brandNeutralEmphasizedHighDark,
+                neutralEmphasizedHigher = brandNeutralEmphasizedHigherDark,
+                neutralEmphasizedHighest = brandNeutralEmphasizedHighestDark,
+                neutralEmphasizedLow = brandNeutralEmphasizedLowDark,
+                neutralEmphasizedLower = brandNeutralEmphasizedLowerDark,
+                neutralEmphasizedLowest = brandNeutralEmphasizedLowestDark,
+                neutralEmphasizedMedium = brandNeutralEmphasizedMediumDark,
+                neutralMutedHighest = brandNeutralMutedHighestDark,
+                neutralMutedLow = brandNeutralMutedLowDark,
+                neutralMutedLower = brandNeutralMutedLowerDark,
+                neutralMutedLowest = brandNeutralMutedLowestDark,
+                neutralMutedMedium = brandNeutralMutedMediumDark,
+                neutralMutedWhite = brandNeutralMutedWhiteDark,
+                positiveDefault = brandPositiveDefaultDark,
+                positiveHighest = brandPositiveHighestDark,
+                positiveLowest = brandPositiveLowestDark,
+                primaryDefault = brandPrimaryDefaultDark,
+                primaryLow = brandPrimaryLowDark,
+                warningDefault = brandWarningDefaultDark,
+                warningHigh = brandWarningHighDark,
+                warningHighest = brandWarningHighestDark,
+                warningLowest = brandWarningLowestDark,
+            )
+        },
+        contentColors = with(contentColorTokens) {
+            OudsColorScheme.Content(
+                brandPrimary = contentBrandPrimaryDark,
+                brandPrimaryOnBgEmphasized = contentBrandPrimaryOnBgEmphasizedDark,
+                default = contentDefaultDark,
+                defaultOnBgEmphasized = contentDefaultOnBgEmphasizedDark,
+                disabled = contentDisabledDark,
+                disabledOnBgEmphasized = contentDisabledOnBgEmphasizedDark,
+                muted = contentMutedDark,
+                mutedOnBgEmphasized = contentMutedOnBgEmphasizedDark,
+                onActionDisabled = contentOnActionDisabledDark,
+                onActionDisabledOnBgEmphasized = contentOnActionDisabledOnBgEmphasizedDark,
+                onActionNegative = contentOnActionNegativeDark,
+                onActionPrimaryEnabled = contentOnActionPrimaryEnabledDark,
+                onActionPrimaryEnabledOnBgEmphasized = contentOnActionPrimaryEnabledOnBgEmphasizedDark,
+                onActionPrimaryFocus = contentOnActionPrimaryFocusDark,
+                onActionPrimaryFocusOnBgEmphasized = contentOnActionPrimaryFocusOnBgEmphasizedDark,
+                onActionPrimaryHover = contentOnActionPrimaryHoverDark,
+                onActionPrimaryHoverOnBgEmphasized = contentOnActionPrimaryHoverOnBgEmphasizedDark,
+                onActionPrimaryLoading = contentOnActionPrimaryLoadingDark,
+                onActionPrimaryLoadingOnBgEmphasized = contentOnActionPrimaryLoadingOnBgEmphasizedDark,
+                onActionPrimaryPressed = contentOnActionPrimaryPressedDark,
+                onActionPrimaryPressedOnBgEmphasized = contentOnActionPrimaryPressedOnBgEmphasizedDark,
+                onBrandPrimary = contentOnBrandPrimaryDark,
+                onStatusAccentEmphasized = contentOnStatusAccentEmphasizedDark,
+                onStatusAccentMuted = contentOnStatusAccentMutedDark,
+                onStatusAccentMutedOnBgEmphasized = contentOnStatusAccentMutedOnBgEmphasizedDark,
+                onStatusInfoEmphasized = contentOnStatusInfoEmphasizedDark,
+                onStatusInfoMuted = contentOnStatusInfoMutedDark,
+                onStatusInfoMutedOnBgEmphasized = contentOnStatusInfoMutedOnBgEmphasizedDark,
+                onStatusNegativeEmphasized = contentOnStatusNegativeEmphasizedDark,
+                onStatusNegativeMuted = contentOnStatusNegativeMutedDark,
+                onStatusNegativeMutedOnBgEmphasized = contentOnStatusNegativeMutedOnBgEmphasizedDark,
+                onStatusPositiveEmphasized = contentOnStatusPositiveEmphasizedDark,
+                onStatusPositiveMuted = contentOnStatusPositiveMutedDark,
+                onStatusPositiveMutedOnBgEmphasized = contentOnStatusPositiveMutedOnBgEmphasizedDark,
+                onStatusWarningEmphasized = contentOnStatusWarningEmphasizedDark,
+                onStatusWarningMuted = contentOnStatusWarningMutedDark,
+                onStatusWarningMutedOnBgEmphasized = contentOnStatusWarningMutedOnBgEmphasizedDark,
+                statusInfo = contentStatusInfoDark,
+                statusNegative = contentStatusNegativeDark,
+                statusPositive = contentStatusPositiveDark,
+                statusWarning = contentStatusWarningDark,
+            )
+        },
+        elevationColors = with(elevationColorTokens) {
+            OudsColorScheme.Elevation(
+                drag = elevationDragDark,
+                dragOnBgEmphasized = elevationDragOnBgEmphasizedDark,
+                dragOnBgSecondary = elevationDragOnBgSecondaryDark,
+                modal = elevationModalDark,
+                overlayDefault = elevationOverlayDefaultDark,
+                overlayDefaultOnBgEmphasized = elevationOverlayDefaultOnBgEmphasizedDark,
+                overlayDefaultOnBgSecondary = elevationOverlayDefaultOnBgSecondaryDark,
+                overlayEmphasized = elevationOverlayEmphasizedDark,
+                overlayEmphasizedOnBgEmphasized = elevationOverlayEmphasizedOnBgEmphasizedDark,
+                overlayEmphasizedOnBgSecondary = elevationOverlayEmphasizedOnBgSecondaryDark,
+                raised = elevationRaisedDark,
+                raisedOnBgEmphasized = elevationRaisedOnBgEmphasizedDark,
+                raisedOnBgSecondary = elevationRaisedOnBgSecondaryDark,
+            )
+        },
+        gradientColors = with(gradientColorTokens) {
+            OudsColorScheme.Gradient(
+                skeletonMiddle = gradientSkeletonMiddleDark,
+                skeletonMiddleOnBgEmphasized = gradientSkeletonMiddleOnBgEmphasizedDark,
+                skeletonStartEnd = gradientSkeletonStartEndDark,
+                skeletonStartEndOnBgEmphasized = gradientSkeletonStartEndOnBgEmphasizedDark,
+            )
+        },
+        decorativeColors = with(decorativeColorTokens) {
+            OudsColorScheme.Decorative(
+                accent1Default = decorativeAccent1DefaultDark,
+                accent1Emphasized = decorativeAccent1EmphasizedDark,
+                accent1Muted = decorativeAccent1MutedDark,
+                accent2Default = decorativeAccent2DefaultDark,
+                accent2Emphasized = decorativeAccent2EmphasizedDark,
+                accent2Muted = decorativeAccent2MutedDark,
+                accent3Default = decorativeAccent3DefaultDark,
+                accent3Emphasized = decorativeAccent3EmphasizedDark,
+                accent3Muted = decorativeAccent3MutedDark,
+                accent4Default = decorativeAccent4DefaultDark,
+                accent4Emphasized = decorativeAccent4EmphasizedDark,
+                accent4Muted = decorativeAccent4MutedDark,
+                accent5Default = decorativeAccent5DefaultDark,
+                accent5Emphasized = decorativeAccent5EmphasizedDark,
+                accent5Muted = decorativeAccent5MutedDark,
+                brandPrimary = decorativeBrandPrimaryDark,
+                brandSecondary = decorativeBrandSecondaryDark,
+                brandTertiary = decorativeBrandTertiaryDark,
+                neutralDefault = decorativeNeutralDefaultDark,
+                neutralEmphasized = decorativeNeutralEmphasizedDark,
+                neutralMuted = decorativeNeutralMutedDark,
+                skinTint100 = decorativeSkinTint100Dark,
+                skinTint200 = decorativeSkinTint200Dark,
+                skinTint300 = decorativeSkinTint300Dark,
+                skinTint400 = decorativeSkinTint400Dark,
+                skinTint500 = decorativeSkinTint500Dark,
+                skinTint600 = decorativeSkinTint600Dark,
+                skinTint700 = decorativeSkinTint700Dark,
+                skinTint800 = decorativeSkinTint800Dark,
+                skinTint900 = decorativeSkinTint900Dark,
+            )
+        },
     )
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Action): Color {
-    return when (token) {
-        OudsColorKeyToken.Action.Disabled -> actionColors.disabled
-        OudsColorKeyToken.Action.DisabledOnBgEmphasized -> actionColors.disabledOnBgEmphasized
-        OudsColorKeyToken.Action.NegativeEnabled -> actionColors.negativeEnabled
-        OudsColorKeyToken.Action.NegativeFocus -> actionColors.negativeFocus
-        OudsColorKeyToken.Action.NegativeHover -> actionColors.negativeHover
-        OudsColorKeyToken.Action.NegativeLoading -> actionColors.negativeLoading
-        OudsColorKeyToken.Action.NegativePressed -> actionColors.negativePressed
-        OudsColorKeyToken.Action.PrimaryEnabled -> actionColors.primaryEnabled
-        OudsColorKeyToken.Action.PrimaryEnabledOnBgEmphasized -> actionColors.primaryEnabledOnBgEmphasized
-        OudsColorKeyToken.Action.PrimaryFocus -> actionColors.primaryFocus
-        OudsColorKeyToken.Action.PrimaryFocusOnBgEmphasized -> actionColors.primaryFocusOnBgEmphasized
-        OudsColorKeyToken.Action.PrimaryHover -> actionColors.primaryHover
-        OudsColorKeyToken.Action.PrimaryHoverOnBgEmphasized -> actionColors.primaryHoverOnBgEmphasized
-        OudsColorKeyToken.Action.PrimaryLoading -> actionColors.primaryLoading
-        OudsColorKeyToken.Action.PrimaryLoadingOnBgEmphasized -> actionColors.primaryLoadingOnBgEmphasized
-        OudsColorKeyToken.Action.PrimaryPressed -> actionColors.primaryPressed
-        OudsColorKeyToken.Action.PrimaryPressedOnBgEmphasized -> actionColors.primaryPressedOnBgEmphasized
-        OudsColorKeyToken.Action.SecondaryEnabled -> actionColors.secondaryEnabled
-        OudsColorKeyToken.Action.SecondaryEnabledOnBgEmphasized -> actionColors.secondaryEnabledOnBgEmphasized
-        OudsColorKeyToken.Action.SecondaryFocus -> actionColors.secondaryFocus
-        OudsColorKeyToken.Action.SecondaryFocusOnBgEmphasized -> actionColors.secondaryFocusOnBgEmphasized
-        OudsColorKeyToken.Action.SecondaryHover -> actionColors.secondaryHover
-        OudsColorKeyToken.Action.SecondaryHoverOnBgEmphasized -> actionColors.secondaryHoverOnBgEmphasized
-        OudsColorKeyToken.Action.SecondaryLoading -> actionColors.secondaryLoading
-        OudsColorKeyToken.Action.SecondaryLoadingOnBgEmphasized -> actionColors.secondaryLoadingOnBgEmphasized
-        OudsColorKeyToken.Action.SecondaryPressed -> actionColors.secondaryPressed
-        OudsColorKeyToken.Action.SecondaryPressedOnBgEmphasized -> actionColors.secondaryPressedOnBgEmphasized
-        OudsColorKeyToken.Action.Selected -> actionColors.selected
-        OudsColorKeyToken.Action.SelectedOnBgEmphasized -> actionColors.selectedOnBgEmphasized
-        OudsColorKeyToken.Action.Visited -> actionColors.visited
-        OudsColorKeyToken.Action.VisitedOnBgEmphasized -> actionColors.visitedOnBgEmphasized
+    return with(actionColors) {
+        when (token) {
+            OudsColorKeyToken.Action.Disabled -> disabled
+            OudsColorKeyToken.Action.DisabledOnBgEmphasized -> disabledOnBgEmphasized
+            OudsColorKeyToken.Action.NegativeEnabled -> negativeEnabled
+            OudsColorKeyToken.Action.NegativeFocus -> negativeFocus
+            OudsColorKeyToken.Action.NegativeHover -> negativeHover
+            OudsColorKeyToken.Action.NegativeLoading -> negativeLoading
+            OudsColorKeyToken.Action.NegativePressed -> negativePressed
+            OudsColorKeyToken.Action.PrimaryEnabled -> primaryEnabled
+            OudsColorKeyToken.Action.PrimaryEnabledOnBgEmphasized -> primaryEnabledOnBgEmphasized
+            OudsColorKeyToken.Action.PrimaryFocus -> primaryFocus
+            OudsColorKeyToken.Action.PrimaryFocusOnBgEmphasized -> primaryFocusOnBgEmphasized
+            OudsColorKeyToken.Action.PrimaryHover -> primaryHover
+            OudsColorKeyToken.Action.PrimaryHoverOnBgEmphasized -> primaryHoverOnBgEmphasized
+            OudsColorKeyToken.Action.PrimaryLoading -> primaryLoading
+            OudsColorKeyToken.Action.PrimaryLoadingOnBgEmphasized -> primaryLoadingOnBgEmphasized
+            OudsColorKeyToken.Action.PrimaryPressed -> primaryPressed
+            OudsColorKeyToken.Action.PrimaryPressedOnBgEmphasized -> primaryPressedOnBgEmphasized
+            OudsColorKeyToken.Action.SecondaryEnabled -> secondaryEnabled
+            OudsColorKeyToken.Action.SecondaryEnabledOnBgEmphasized -> secondaryEnabledOnBgEmphasized
+            OudsColorKeyToken.Action.SecondaryFocus -> secondaryFocus
+            OudsColorKeyToken.Action.SecondaryFocusOnBgEmphasized -> secondaryFocusOnBgEmphasized
+            OudsColorKeyToken.Action.SecondaryHover -> secondaryHover
+            OudsColorKeyToken.Action.SecondaryHoverOnBgEmphasized -> secondaryHoverOnBgEmphasized
+            OudsColorKeyToken.Action.SecondaryLoading -> secondaryLoading
+            OudsColorKeyToken.Action.SecondaryLoadingOnBgEmphasized -> secondaryLoadingOnBgEmphasized
+            OudsColorKeyToken.Action.SecondaryPressed -> secondaryPressed
+            OudsColorKeyToken.Action.SecondaryPressedOnBgEmphasized -> secondaryPressedOnBgEmphasized
+            OudsColorKeyToken.Action.Selected -> selected
+            OudsColorKeyToken.Action.SelectedOnBgEmphasized -> selectedOnBgEmphasized
+            OudsColorKeyToken.Action.Visited -> visited
+            OudsColorKeyToken.Action.VisitedOnBgEmphasized -> visitedOnBgEmphasized
+        }
     }
 }
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Always): Color {
-    return when (token) {
-        OudsColorKeyToken.Always.Accent -> alwaysColors.accent
-        OudsColorKeyToken.Always.Black -> alwaysColors.black
-        OudsColorKeyToken.Always.Info -> alwaysColors.info
-        OudsColorKeyToken.Always.Negative -> alwaysColors.negative
-        OudsColorKeyToken.Always.OnAccent -> alwaysColors.onAccent
-        OudsColorKeyToken.Always.OnBlack -> alwaysColors.onBlack
-        OudsColorKeyToken.Always.OnInfo -> alwaysColors.onInfo
-        OudsColorKeyToken.Always.OnNegative -> alwaysColors.onNegative
-        OudsColorKeyToken.Always.OnPositive -> alwaysColors.onPositive
-        OudsColorKeyToken.Always.OnWarning -> alwaysColors.onWarning
-        OudsColorKeyToken.Always.OnWhite -> alwaysColors.onWhite
-        OudsColorKeyToken.Always.Positive -> alwaysColors.positive
-        OudsColorKeyToken.Always.Warning -> alwaysColors.warning
-        OudsColorKeyToken.Always.White -> alwaysColors.white
+    return with(alwaysColors) {
+        when (token) {
+            OudsColorKeyToken.Always.Accent -> accent
+            OudsColorKeyToken.Always.Black -> black
+            OudsColorKeyToken.Always.Info -> info
+            OudsColorKeyToken.Always.Negative -> negative
+            OudsColorKeyToken.Always.OnAccent -> onAccent
+            OudsColorKeyToken.Always.OnBlack -> onBlack
+            OudsColorKeyToken.Always.OnInfo -> onInfo
+            OudsColorKeyToken.Always.OnNegative -> onNegative
+            OudsColorKeyToken.Always.OnPositive -> onPositive
+            OudsColorKeyToken.Always.OnWarning -> onWarning
+            OudsColorKeyToken.Always.OnWhite -> onWhite
+            OudsColorKeyToken.Always.Positive -> positive
+            OudsColorKeyToken.Always.Warning -> warning
+            OudsColorKeyToken.Always.White -> white
+        }
     }
 }
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Background): Color {
-    return when (token) {
-        OudsColorKeyToken.Background.BrandPrimary -> backgroundColors.brandPrimary
-        OudsColorKeyToken.Background.Emphasized -> backgroundColors.emphasized
-        OudsColorKeyToken.Background.Primary -> backgroundColors.primary
-        OudsColorKeyToken.Background.Secondary -> backgroundColors.secondary
-        OudsColorKeyToken.Background.StatusAccentEmphasized -> backgroundColors.statusAccentEmphasized
-        OudsColorKeyToken.Background.StatusAccentMuted -> backgroundColors.statusAccentMuted
-        OudsColorKeyToken.Background.StatusAccentMutedOnBgEmphasized -> backgroundColors.statusAccentMutedOnBgEmphasized
-        OudsColorKeyToken.Background.StatusInfoEmphasized -> backgroundColors.statusInfoEmphasized
-        OudsColorKeyToken.Background.StatusInfoMuted -> backgroundColors.statusInfoMuted
-        OudsColorKeyToken.Background.StatusInfoMutedOnBgEmphasized -> backgroundColors.statusInfoMutedOnBgEmphasized
-        OudsColorKeyToken.Background.StatusNegativeEmphasized -> backgroundColors.statusNegativeEmphasized
-        OudsColorKeyToken.Background.StatusNegativeMuted -> backgroundColors.statusNegativeMuted
-        OudsColorKeyToken.Background.StatusNegativeMutedOnBgEmphasized -> backgroundColors.statusNegativeMutedOnBgEmphasized
-        OudsColorKeyToken.Background.StatusNeutral -> backgroundColors.statusNeutral
-        OudsColorKeyToken.Background.StatusNeutralOnBgEmphasized -> backgroundColors.statusNeutralOnBgEmphasized
-        OudsColorKeyToken.Background.StatusPositiveEmphasized -> backgroundColors.statusPositiveEmphasized
-        OudsColorKeyToken.Background.StatusPositiveMuted -> backgroundColors.statusPositiveMuted
-        OudsColorKeyToken.Background.StatusPositiveMutedOnBgEmphasized -> backgroundColors.statusPositiveMutedOnBgEmphasized
-        OudsColorKeyToken.Background.StatusWarningEmphasized -> backgroundColors.statusWarningEmphasized
-        OudsColorKeyToken.Background.StatusWarningMuted -> backgroundColors.statusWarningMuted
-        OudsColorKeyToken.Background.StatusWarningMutedOnBgEmphasized -> backgroundColors.statusWarningMutedOnBgEmphasized
-        OudsColorKeyToken.Background.Tertiary -> backgroundColors.tertiary
+    return with(backgroundColors) {
+        when (token) {
+            OudsColorKeyToken.Background.BrandPrimary -> brandPrimary
+            OudsColorKeyToken.Background.Emphasized -> emphasized
+            OudsColorKeyToken.Background.Primary -> primary
+            OudsColorKeyToken.Background.Secondary -> secondary
+            OudsColorKeyToken.Background.StatusAccentEmphasized -> statusAccentEmphasized
+            OudsColorKeyToken.Background.StatusAccentMuted -> statusAccentMuted
+            OudsColorKeyToken.Background.StatusAccentMutedOnBgEmphasized -> statusAccentMutedOnBgEmphasized
+            OudsColorKeyToken.Background.StatusInfoEmphasized -> statusInfoEmphasized
+            OudsColorKeyToken.Background.StatusInfoMuted -> statusInfoMuted
+            OudsColorKeyToken.Background.StatusInfoMutedOnBgEmphasized -> statusInfoMutedOnBgEmphasized
+            OudsColorKeyToken.Background.StatusNegativeEmphasized -> statusNegativeEmphasized
+            OudsColorKeyToken.Background.StatusNegativeMuted -> statusNegativeMuted
+            OudsColorKeyToken.Background.StatusNegativeMutedOnBgEmphasized -> statusNegativeMutedOnBgEmphasized
+            OudsColorKeyToken.Background.StatusNeutral -> statusNeutral
+            OudsColorKeyToken.Background.StatusNeutralOnBgEmphasized -> statusNeutralOnBgEmphasized
+            OudsColorKeyToken.Background.StatusPositiveEmphasized -> statusPositiveEmphasized
+            OudsColorKeyToken.Background.StatusPositiveMuted -> statusPositiveMuted
+            OudsColorKeyToken.Background.StatusPositiveMutedOnBgEmphasized -> statusPositiveMutedOnBgEmphasized
+            OudsColorKeyToken.Background.StatusWarningEmphasized -> statusWarningEmphasized
+            OudsColorKeyToken.Background.StatusWarningMuted -> statusWarningMuted
+            OudsColorKeyToken.Background.StatusWarningMutedOnBgEmphasized -> statusWarningMutedOnBgEmphasized
+            OudsColorKeyToken.Background.Tertiary -> tertiary
+        }
     }
 }
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
-    return when (token) {
-        OudsColorKeyToken.Border.BrandPrimary -> borderColors.brandPrimary
-        OudsColorKeyToken.Border.BrandPrimaryOnBgEmphasized -> borderColors.brandPrimaryOnBgEmphasized
-        OudsColorKeyToken.Border.Default -> borderColors.default
-        OudsColorKeyToken.Border.DefaultOnBgEmphasized -> borderColors.defaultOnBgEmphasized
-        OudsColorKeyToken.Border.Emphasized -> borderColors.emphasized
-        OudsColorKeyToken.Border.EmphasizedOnBgEmphasized -> borderColors.emphasizedOnBgEmphasized
-        OudsColorKeyToken.Border.Focus -> borderColors.focus
-        OudsColorKeyToken.Border.FocusInset -> borderColors.focusInset
-        OudsColorKeyToken.Border.FocusInsetOnBgEmphasized -> borderColors.focusInsetOnBgEmphasized
-        OudsColorKeyToken.Border.FocusOnBgEmphasized -> borderColors.focusOnBgEmphasized
-        OudsColorKeyToken.Border.OnBrandPrimary -> borderColors.onBrandPrimary
+    return with(borderColors) {
+        when (token) {
+            OudsColorKeyToken.Border.BrandPrimary -> brandPrimary
+            OudsColorKeyToken.Border.BrandPrimaryOnBgEmphasized -> brandPrimaryOnBgEmphasized
+            OudsColorKeyToken.Border.Default -> default
+            OudsColorKeyToken.Border.DefaultOnBgEmphasized -> defaultOnBgEmphasized
+            OudsColorKeyToken.Border.Emphasized -> emphasized
+            OudsColorKeyToken.Border.EmphasizedOnBgEmphasized -> emphasizedOnBgEmphasized
+            OudsColorKeyToken.Border.Focus -> focus
+            OudsColorKeyToken.Border.FocusInset -> focusInset
+            OudsColorKeyToken.Border.FocusInsetOnBgEmphasized -> focusInsetOnBgEmphasized
+            OudsColorKeyToken.Border.FocusOnBgEmphasized -> focusOnBgEmphasized
+            OudsColorKeyToken.Border.OnBrandPrimary -> onBrandPrimary
+        }
     }
 }
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Brand): Color {
-    return when (token) {
-        OudsColorKeyToken.Brand.AccentDefault -> brandColors.accentDefault
-        OudsColorKeyToken.Brand.AccentHigh -> brandColors.accentHigh
-        OudsColorKeyToken.Brand.AccentHighest -> brandColors.accentHighest
-        OudsColorKeyToken.Brand.AccentLowest -> brandColors.accentLowest
-        OudsColorKeyToken.Brand.InfoDefault -> brandColors.infoDefault
-        OudsColorKeyToken.Brand.InfoHighest -> brandColors.infoHighest
-        OudsColorKeyToken.Brand.InfoLowest -> brandColors.infoLowest
-        OudsColorKeyToken.Brand.NegativeDefault -> brandColors.negativeDefault
-        OudsColorKeyToken.Brand.NegativeHigh -> brandColors.negativeHigh
-        OudsColorKeyToken.Brand.NegativeHigher -> brandColors.negativeHigher
-        OudsColorKeyToken.Brand.NegativeHighest -> brandColors.negativeHighest
-        OudsColorKeyToken.Brand.NegativeLowest -> brandColors.negativeLowest
-        OudsColorKeyToken.Brand.NeutralEmphasizedBlack -> brandColors.neutralEmphasizedBlack
-        OudsColorKeyToken.Brand.NeutralEmphasizedHigh -> brandColors.neutralEmphasizedHigh
-        OudsColorKeyToken.Brand.NeutralEmphasizedHigher -> brandColors.neutralEmphasizedHigher
-        OudsColorKeyToken.Brand.NeutralEmphasizedHighest -> brandColors.neutralEmphasizedHighest
-        OudsColorKeyToken.Brand.NeutralEmphasizedLow -> brandColors.neutralEmphasizedLow
-        OudsColorKeyToken.Brand.NeutralEmphasizedLower -> brandColors.neutralEmphasizedLower
-        OudsColorKeyToken.Brand.NeutralEmphasizedLowest -> brandColors.neutralEmphasizedLowest
-        OudsColorKeyToken.Brand.NeutralEmphasizedMedium -> brandColors.neutralEmphasizedMedium
-        OudsColorKeyToken.Brand.NeutralMutedHighest -> brandColors.neutralMutedHighest
-        OudsColorKeyToken.Brand.NeutralMutedLow -> brandColors.neutralMutedLow
-        OudsColorKeyToken.Brand.NeutralMutedLower -> brandColors.neutralMutedLower
-        OudsColorKeyToken.Brand.NeutralMutedLowest -> brandColors.neutralMutedLowest
-        OudsColorKeyToken.Brand.NeutralMutedMedium -> brandColors.neutralMutedMedium
-        OudsColorKeyToken.Brand.NeutralMutedWhite -> brandColors.neutralMutedWhite
-        OudsColorKeyToken.Brand.PositiveDefault -> brandColors.positiveDefault
-        OudsColorKeyToken.Brand.PositiveHighest -> brandColors.positiveHighest
-        OudsColorKeyToken.Brand.PositiveLowest -> brandColors.positiveLowest
-        OudsColorKeyToken.Brand.PrimaryDefault -> brandColors.primaryDefault
-        OudsColorKeyToken.Brand.PrimaryLow -> brandColors.primaryLow
-        OudsColorKeyToken.Brand.WarningDefault -> brandColors.warningDefault
-        OudsColorKeyToken.Brand.WarningHigh -> brandColors.warningHigh
-        OudsColorKeyToken.Brand.WarningHighest -> brandColors.warningHighest
-        OudsColorKeyToken.Brand.WarningLowest -> brandColors.warningLowest
+    return with(brandColors) {
+        when (token) {
+            OudsColorKeyToken.Brand.AccentDefault -> accentDefault
+            OudsColorKeyToken.Brand.AccentHigh -> accentHigh
+            OudsColorKeyToken.Brand.AccentHighest -> accentHighest
+            OudsColorKeyToken.Brand.AccentLowest -> accentLowest
+            OudsColorKeyToken.Brand.InfoDefault -> infoDefault
+            OudsColorKeyToken.Brand.InfoHighest -> infoHighest
+            OudsColorKeyToken.Brand.InfoLowest -> infoLowest
+            OudsColorKeyToken.Brand.NegativeDefault -> negativeDefault
+            OudsColorKeyToken.Brand.NegativeHigh -> negativeHigh
+            OudsColorKeyToken.Brand.NegativeHigher -> negativeHigher
+            OudsColorKeyToken.Brand.NegativeHighest -> negativeHighest
+            OudsColorKeyToken.Brand.NegativeLowest -> negativeLowest
+            OudsColorKeyToken.Brand.NeutralEmphasizedBlack -> neutralEmphasizedBlack
+            OudsColorKeyToken.Brand.NeutralEmphasizedHigh -> neutralEmphasizedHigh
+            OudsColorKeyToken.Brand.NeutralEmphasizedHigher -> neutralEmphasizedHigher
+            OudsColorKeyToken.Brand.NeutralEmphasizedHighest -> neutralEmphasizedHighest
+            OudsColorKeyToken.Brand.NeutralEmphasizedLow -> neutralEmphasizedLow
+            OudsColorKeyToken.Brand.NeutralEmphasizedLower -> neutralEmphasizedLower
+            OudsColorKeyToken.Brand.NeutralEmphasizedLowest -> neutralEmphasizedLowest
+            OudsColorKeyToken.Brand.NeutralEmphasizedMedium -> neutralEmphasizedMedium
+            OudsColorKeyToken.Brand.NeutralMutedHighest -> neutralMutedHighest
+            OudsColorKeyToken.Brand.NeutralMutedLow -> neutralMutedLow
+            OudsColorKeyToken.Brand.NeutralMutedLower -> neutralMutedLower
+            OudsColorKeyToken.Brand.NeutralMutedLowest -> neutralMutedLowest
+            OudsColorKeyToken.Brand.NeutralMutedMedium -> neutralMutedMedium
+            OudsColorKeyToken.Brand.NeutralMutedWhite -> neutralMutedWhite
+            OudsColorKeyToken.Brand.PositiveDefault -> positiveDefault
+            OudsColorKeyToken.Brand.PositiveHighest -> positiveHighest
+            OudsColorKeyToken.Brand.PositiveLowest -> positiveLowest
+            OudsColorKeyToken.Brand.PrimaryDefault -> primaryDefault
+            OudsColorKeyToken.Brand.PrimaryLow -> primaryLow
+            OudsColorKeyToken.Brand.WarningDefault -> warningDefault
+            OudsColorKeyToken.Brand.WarningHigh -> warningHigh
+            OudsColorKeyToken.Brand.WarningHighest -> warningHighest
+            OudsColorKeyToken.Brand.WarningLowest -> warningLowest
+        }
     }
 }
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
-    return when (token) {
-        OudsColorKeyToken.Content.BrandPrimary -> contentColors.brandPrimary
-        OudsColorKeyToken.Content.BrandPrimaryOnBgEmphasized -> contentColors.brandPrimaryOnBgEmphasized
-        OudsColorKeyToken.Content.Default -> contentColors.default
-        OudsColorKeyToken.Content.DefaultOnBgEmphasized -> contentColors.defaultOnBgEmphasized
-        OudsColorKeyToken.Content.Disabled -> contentColors.disabled
-        OudsColorKeyToken.Content.DisabledOnBgEmphasized -> contentColors.disabledOnBgEmphasized
-        OudsColorKeyToken.Content.Muted -> contentColors.muted
-        OudsColorKeyToken.Content.MutedOnBgEmphasized -> contentColors.mutedOnBgEmphasized
-        OudsColorKeyToken.Content.OnActionDisabled -> contentColors.onActionDisabled
-        OudsColorKeyToken.Content.OnActionDisabledOnBgEmphasized -> contentColors.onActionDisabledOnBgEmphasized
-        OudsColorKeyToken.Content.OnActionNegative -> contentColors.onActionNegative
-        OudsColorKeyToken.Content.OnActionPrimaryEnabled -> contentColors.onActionPrimaryEnabled
-        OudsColorKeyToken.Content.OnActionPrimaryEnabledOnBgEmphasized -> contentColors.onActionPrimaryEnabledOnBgEmphasized
-        OudsColorKeyToken.Content.OnActionPrimaryFocus -> contentColors.onActionPrimaryFocus
-        OudsColorKeyToken.Content.OnActionPrimaryFocusOnBgEmphasized -> contentColors.onActionPrimaryFocusOnBgEmphasized
-        OudsColorKeyToken.Content.OnActionPrimaryHover -> contentColors.onActionPrimaryHover
-        OudsColorKeyToken.Content.OnActionPrimaryHoverOnBgEmphasized -> contentColors.onActionPrimaryHoverOnBgEmphasized
-        OudsColorKeyToken.Content.OnActionPrimaryLoading -> contentColors.onActionPrimaryLoading
-        OudsColorKeyToken.Content.OnActionPrimaryLoadingOnBgEmphasized -> contentColors.onActionPrimaryLoadingOnBgEmphasized
-        OudsColorKeyToken.Content.OnActionPrimaryPressed -> contentColors.onActionPrimaryPressed
-        OudsColorKeyToken.Content.OnActionPrimaryPressedOnBgEmphasized -> contentColors.onActionPrimaryPressedOnBgEmphasized
-        OudsColorKeyToken.Content.OnBrandPrimary -> contentColors.onBrandPrimary
-        OudsColorKeyToken.Content.OnStatusAccentEmphasized -> contentColors.onStatusAccentEmphasized
-        OudsColorKeyToken.Content.OnStatusAccentMuted -> contentColors.onStatusAccentMuted
-        OudsColorKeyToken.Content.OnStatusAccentMutedOnBgEmphasized -> contentColors.onStatusAccentMutedOnBgEmphasized
-        OudsColorKeyToken.Content.OnStatusInfoEmphasized -> contentColors.onStatusInfoEmphasized
-        OudsColorKeyToken.Content.OnStatusInfoMuted -> contentColors.onStatusInfoMuted
-        OudsColorKeyToken.Content.OnStatusInfoMutedOnBgEmphasized -> contentColors.onStatusInfoMutedOnBgEmphasized
-        OudsColorKeyToken.Content.OnStatusNegativeEmphasized -> contentColors.onStatusNegativeEmphasized
-        OudsColorKeyToken.Content.OnStatusNegativeMuted -> contentColors.onStatusNegativeMuted
-        OudsColorKeyToken.Content.OnStatusNegativeMutedOnBgEmphasized -> contentColors.onStatusNegativeMutedOnBgEmphasized
-        OudsColorKeyToken.Content.OnStatusPositiveEmphasized -> contentColors.onStatusPositiveEmphasized
-        OudsColorKeyToken.Content.OnStatusPositiveMuted -> contentColors.onStatusPositiveMuted
-        OudsColorKeyToken.Content.OnStatusPositiveMutedOnBgEmphasized -> contentColors.onStatusPositiveMutedOnBgEmphasized
-        OudsColorKeyToken.Content.OnStatusWarningEmphasized -> contentColors.onStatusWarningEmphasized
-        OudsColorKeyToken.Content.OnStatusWarningMuted -> contentColors.onStatusWarningMuted
-        OudsColorKeyToken.Content.OnStatusWarningMutedOnBgEmphasized -> contentColors.onStatusWarningMutedOnBgEmphasized
-        OudsColorKeyToken.Content.StatusInfo -> contentColors.statusInfo
-        OudsColorKeyToken.Content.StatusNegative -> contentColors.statusNegative
-        OudsColorKeyToken.Content.StatusPositive -> contentColors.statusPositive
-        OudsColorKeyToken.Content.StatusWarning -> contentColors.statusWarning
+    return with(contentColors) {
+        when (token) {
+            OudsColorKeyToken.Content.BrandPrimary -> brandPrimary
+            OudsColorKeyToken.Content.BrandPrimaryOnBgEmphasized -> brandPrimaryOnBgEmphasized
+            OudsColorKeyToken.Content.Default -> default
+            OudsColorKeyToken.Content.DefaultOnBgEmphasized -> defaultOnBgEmphasized
+            OudsColorKeyToken.Content.Disabled -> disabled
+            OudsColorKeyToken.Content.DisabledOnBgEmphasized -> disabledOnBgEmphasized
+            OudsColorKeyToken.Content.Muted -> muted
+            OudsColorKeyToken.Content.MutedOnBgEmphasized -> mutedOnBgEmphasized
+            OudsColorKeyToken.Content.OnActionDisabled -> onActionDisabled
+            OudsColorKeyToken.Content.OnActionDisabledOnBgEmphasized -> onActionDisabledOnBgEmphasized
+            OudsColorKeyToken.Content.OnActionNegative -> onActionNegative
+            OudsColorKeyToken.Content.OnActionPrimaryEnabled -> onActionPrimaryEnabled
+            OudsColorKeyToken.Content.OnActionPrimaryEnabledOnBgEmphasized -> onActionPrimaryEnabledOnBgEmphasized
+            OudsColorKeyToken.Content.OnActionPrimaryFocus -> onActionPrimaryFocus
+            OudsColorKeyToken.Content.OnActionPrimaryFocusOnBgEmphasized -> onActionPrimaryFocusOnBgEmphasized
+            OudsColorKeyToken.Content.OnActionPrimaryHover -> onActionPrimaryHover
+            OudsColorKeyToken.Content.OnActionPrimaryHoverOnBgEmphasized -> onActionPrimaryHoverOnBgEmphasized
+            OudsColorKeyToken.Content.OnActionPrimaryLoading -> onActionPrimaryLoading
+            OudsColorKeyToken.Content.OnActionPrimaryLoadingOnBgEmphasized -> onActionPrimaryLoadingOnBgEmphasized
+            OudsColorKeyToken.Content.OnActionPrimaryPressed -> onActionPrimaryPressed
+            OudsColorKeyToken.Content.OnActionPrimaryPressedOnBgEmphasized -> onActionPrimaryPressedOnBgEmphasized
+            OudsColorKeyToken.Content.OnBrandPrimary -> onBrandPrimary
+            OudsColorKeyToken.Content.OnStatusAccentEmphasized -> onStatusAccentEmphasized
+            OudsColorKeyToken.Content.OnStatusAccentMuted -> onStatusAccentMuted
+            OudsColorKeyToken.Content.OnStatusAccentMutedOnBgEmphasized -> onStatusAccentMutedOnBgEmphasized
+            OudsColorKeyToken.Content.OnStatusInfoEmphasized -> onStatusInfoEmphasized
+            OudsColorKeyToken.Content.OnStatusInfoMuted -> onStatusInfoMuted
+            OudsColorKeyToken.Content.OnStatusInfoMutedOnBgEmphasized -> onStatusInfoMutedOnBgEmphasized
+            OudsColorKeyToken.Content.OnStatusNegativeEmphasized -> onStatusNegativeEmphasized
+            OudsColorKeyToken.Content.OnStatusNegativeMuted -> onStatusNegativeMuted
+            OudsColorKeyToken.Content.OnStatusNegativeMutedOnBgEmphasized -> onStatusNegativeMutedOnBgEmphasized
+            OudsColorKeyToken.Content.OnStatusPositiveEmphasized -> onStatusPositiveEmphasized
+            OudsColorKeyToken.Content.OnStatusPositiveMuted -> onStatusPositiveMuted
+            OudsColorKeyToken.Content.OnStatusPositiveMutedOnBgEmphasized -> onStatusPositiveMutedOnBgEmphasized
+            OudsColorKeyToken.Content.OnStatusWarningEmphasized -> onStatusWarningEmphasized
+            OudsColorKeyToken.Content.OnStatusWarningMuted -> onStatusWarningMuted
+            OudsColorKeyToken.Content.OnStatusWarningMutedOnBgEmphasized -> onStatusWarningMutedOnBgEmphasized
+            OudsColorKeyToken.Content.StatusInfo -> statusInfo
+            OudsColorKeyToken.Content.StatusNegative -> statusNegative
+            OudsColorKeyToken.Content.StatusPositive -> statusPositive
+            OudsColorKeyToken.Content.StatusWarning -> statusWarning
+        }
     }
 }
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Elevation): Color {
-    return when (token) {
-        OudsColorKeyToken.Elevation.Drag -> elevationColors.drag
-        OudsColorKeyToken.Elevation.DragOnBgEmphasized -> elevationColors.dragOnBgEmphasized
-        OudsColorKeyToken.Elevation.DragOnBgSecondary -> elevationColors.dragOnBgSecondary
-        OudsColorKeyToken.Elevation.Modal -> elevationColors.modal
-        OudsColorKeyToken.Elevation.OverlayDefault -> elevationColors.overlayDefault
-        OudsColorKeyToken.Elevation.OverlayDefaultOnBgEmphasized -> elevationColors.overlayDefaultOnBgEmphasized
-        OudsColorKeyToken.Elevation.OverlayDefaultOnBgSecondary -> elevationColors.overlayDefaultOnBgSecondary
-        OudsColorKeyToken.Elevation.OverlayEmphasized -> elevationColors.overlayEmphasized
-        OudsColorKeyToken.Elevation.OverlayEmphasizedOnBgEmphasized -> elevationColors.overlayEmphasizedOnBgEmphasized
-        OudsColorKeyToken.Elevation.OverlayEmphasizedOnBgSecondary -> elevationColors.overlayEmphasizedOnBgSecondary
-        OudsColorKeyToken.Elevation.Raised -> elevationColors.raised
-        OudsColorKeyToken.Elevation.RaisedOnBgEmphasized -> elevationColors.raisedOnBgEmphasized
-        OudsColorKeyToken.Elevation.RaisedOnBgSecondary -> elevationColors.raisedOnBgSecondary
+    return with(elevationColors) {
+        when (token) {
+            OudsColorKeyToken.Elevation.Drag -> drag
+            OudsColorKeyToken.Elevation.DragOnBgEmphasized -> dragOnBgEmphasized
+            OudsColorKeyToken.Elevation.DragOnBgSecondary -> dragOnBgSecondary
+            OudsColorKeyToken.Elevation.Modal -> modal
+            OudsColorKeyToken.Elevation.OverlayDefault -> overlayDefault
+            OudsColorKeyToken.Elevation.OverlayDefaultOnBgEmphasized -> overlayDefaultOnBgEmphasized
+            OudsColorKeyToken.Elevation.OverlayDefaultOnBgSecondary -> overlayDefaultOnBgSecondary
+            OudsColorKeyToken.Elevation.OverlayEmphasized -> overlayEmphasized
+            OudsColorKeyToken.Elevation.OverlayEmphasizedOnBgEmphasized -> overlayEmphasizedOnBgEmphasized
+            OudsColorKeyToken.Elevation.OverlayEmphasizedOnBgSecondary -> overlayEmphasizedOnBgSecondary
+            OudsColorKeyToken.Elevation.Raised -> raised
+            OudsColorKeyToken.Elevation.RaisedOnBgEmphasized -> raisedOnBgEmphasized
+            OudsColorKeyToken.Elevation.RaisedOnBgSecondary -> raisedOnBgSecondary
+        }
     }
 }
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Gradient): Color {
-    return when (token) {
-        OudsColorKeyToken.Gradient.SkeletonMiddle -> gradientColors.skeletonMiddle
-        OudsColorKeyToken.Gradient.SkeletonMiddleOnBgEmphasized -> gradientColors.skeletonMiddleOnBgEmphasized
-        OudsColorKeyToken.Gradient.SkeletonStartEnd -> gradientColors.skeletonStartEnd
-        OudsColorKeyToken.Gradient.SkeletonStartEndOnBgEmphasized -> gradientColors.skeletonStartEndOnBgEmphasized
+    return with(gradientColors) {
+        when (token) {
+            OudsColorKeyToken.Gradient.SkeletonMiddle -> skeletonMiddle
+            OudsColorKeyToken.Gradient.SkeletonMiddleOnBgEmphasized -> skeletonMiddleOnBgEmphasized
+            OudsColorKeyToken.Gradient.SkeletonStartEnd -> skeletonStartEnd
+            OudsColorKeyToken.Gradient.SkeletonStartEndOnBgEmphasized -> skeletonStartEndOnBgEmphasized
+        }
     }
 }
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Color {
-    return when (token) {
-        OudsColorKeyToken.Decorative.Accent1Default -> decorativeColors.accent1Default
-        OudsColorKeyToken.Decorative.Accent1Emphasized -> decorativeColors.accent1Emphasized
-        OudsColorKeyToken.Decorative.Accent1Muted -> decorativeColors.accent1Muted
-        OudsColorKeyToken.Decorative.Accent2Default -> decorativeColors.accent2Default
-        OudsColorKeyToken.Decorative.Accent2Emphasized -> decorativeColors.accent2Emphasized
-        OudsColorKeyToken.Decorative.Accent2Muted -> decorativeColors.accent2Muted
-        OudsColorKeyToken.Decorative.Accent3Default -> decorativeColors.accent3Default
-        OudsColorKeyToken.Decorative.Accent3Emphasized -> decorativeColors.accent3Emphasized
-        OudsColorKeyToken.Decorative.Accent3Muted -> decorativeColors.accent3Muted
-        OudsColorKeyToken.Decorative.Accent4Default -> decorativeColors.accent4Default
-        OudsColorKeyToken.Decorative.Accent4Emphasized -> decorativeColors.accent4Emphasized
-        OudsColorKeyToken.Decorative.Accent4Muted -> decorativeColors.accent4Muted
-        OudsColorKeyToken.Decorative.Accent5Default -> decorativeColors.accent5Default
-        OudsColorKeyToken.Decorative.Accent5Emphasized -> decorativeColors.accent5Emphasized
-        OudsColorKeyToken.Decorative.Accent5Muted -> decorativeColors.accent5Muted
-        OudsColorKeyToken.Decorative.BrandPrimary -> decorativeColors.brandPrimary
-        OudsColorKeyToken.Decorative.BrandSecondary -> decorativeColors.brandSecondary
-        OudsColorKeyToken.Decorative.BrandTertiary -> decorativeColors.brandTertiary
-        OudsColorKeyToken.Decorative.NeutralDefault -> decorativeColors.neutralDefault
-        OudsColorKeyToken.Decorative.NeutralEmphasized -> decorativeColors.neutralEmphasized
-        OudsColorKeyToken.Decorative.NeutralMuted -> decorativeColors.neutralMuted
-        OudsColorKeyToken.Decorative.SkinTint100 -> decorativeColors.skinTint100
-        OudsColorKeyToken.Decorative.SkinTint200 -> decorativeColors.skinTint200
-        OudsColorKeyToken.Decorative.SkinTint300 -> decorativeColors.skinTint300
-        OudsColorKeyToken.Decorative.SkinTint400 -> decorativeColors.skinTint400
-        OudsColorKeyToken.Decorative.SkinTint500 -> decorativeColors.skinTint500
-        OudsColorKeyToken.Decorative.SkinTint600 -> decorativeColors.skinTint600
-        OudsColorKeyToken.Decorative.SkinTint700 -> decorativeColors.skinTint700
-        OudsColorKeyToken.Decorative.SkinTint800 -> decorativeColors.skinTint800
-        OudsColorKeyToken.Decorative.SkinTint900 -> decorativeColors.skinTint900
+    return with(decorativeColors) {
+        when (token) {
+            OudsColorKeyToken.Decorative.Accent1Default -> accent1Default
+            OudsColorKeyToken.Decorative.Accent1Emphasized -> accent1Emphasized
+            OudsColorKeyToken.Decorative.Accent1Muted -> accent1Muted
+            OudsColorKeyToken.Decorative.Accent2Default -> accent2Default
+            OudsColorKeyToken.Decorative.Accent2Emphasized -> accent2Emphasized
+            OudsColorKeyToken.Decorative.Accent2Muted -> accent2Muted
+            OudsColorKeyToken.Decorative.Accent3Default -> accent3Default
+            OudsColorKeyToken.Decorative.Accent3Emphasized -> accent3Emphasized
+            OudsColorKeyToken.Decorative.Accent3Muted -> accent3Muted
+            OudsColorKeyToken.Decorative.Accent4Default -> accent4Default
+            OudsColorKeyToken.Decorative.Accent4Emphasized -> accent4Emphasized
+            OudsColorKeyToken.Decorative.Accent4Muted -> accent4Muted
+            OudsColorKeyToken.Decorative.Accent5Default -> accent5Default
+            OudsColorKeyToken.Decorative.Accent5Emphasized -> accent5Emphasized
+            OudsColorKeyToken.Decorative.Accent5Muted -> accent5Muted
+            OudsColorKeyToken.Decorative.BrandPrimary -> brandPrimary
+            OudsColorKeyToken.Decorative.BrandSecondary -> brandSecondary
+            OudsColorKeyToken.Decorative.BrandTertiary -> brandTertiary
+            OudsColorKeyToken.Decorative.NeutralDefault -> neutralDefault
+            OudsColorKeyToken.Decorative.NeutralEmphasized -> neutralEmphasized
+            OudsColorKeyToken.Decorative.NeutralMuted -> neutralMuted
+            OudsColorKeyToken.Decorative.SkinTint100 -> skinTint100
+            OudsColorKeyToken.Decorative.SkinTint200 -> skinTint200
+            OudsColorKeyToken.Decorative.SkinTint300 -> skinTint300
+            OudsColorKeyToken.Decorative.SkinTint400 -> skinTint400
+            OudsColorKeyToken.Decorative.SkinTint500 -> skinTint500
+            OudsColorKeyToken.Decorative.SkinTint600 -> skinTint600
+            OudsColorKeyToken.Decorative.SkinTint700 -> skinTint700
+            OudsColorKeyToken.Decorative.SkinTint800 -> skinTint800
+            OudsColorKeyToken.Decorative.SkinTint900 -> skinTint900
+        }
     }
 }
 
