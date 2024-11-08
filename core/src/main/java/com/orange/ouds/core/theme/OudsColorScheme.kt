@@ -1155,3 +1155,11 @@ val OudsColorKeyToken.Decorative.value: Color
     @ReadOnlyComposable
     @Composable
     get() = OudsTheme.colorScheme.fromToken(this)
+
+/**
+ * Converts an OUDS transparent color token to the local color value provided by the theme.
+ */
+val OudsColorKeyToken.Transparent.value: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = OudsTheme.colorScheme.fromToken(this)
