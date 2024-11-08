@@ -114,20 +114,15 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                 )
                             }
                         } else {
-                            val noIllustrationProperty = tokenProperty in listOf(TokenProperty.Typography, TokenProperty.Grid)
-
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value)
+                                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value),
+                                horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
                             ) {
                                 TokenIllustration(tokenProperty = tokenProperty, token = token)
 
-                                Column(
-                                    modifier = Modifier
-                                        .weight(1f)
-                                        .padding(start = if (noIllustrationProperty) OudsSpaceKeyToken.Fixed.None.value else OudsSpaceKeyToken.Fixed.Medium.value)
-                                ) {
+                                Column(modifier = Modifier.weight(1f)) {
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
                                         text = token.name,
