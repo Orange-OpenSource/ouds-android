@@ -57,7 +57,7 @@ sealed class TokenProperty(
         nameRes = null,
         tokens = { OudsOpacityKeyToken.entries.map { Token(it.name, it.value) } }
     )
-    
+
     data object SizeIconDecorative : TokenProperty(
         nameRes = R.string.app_tokens_dimension_size_iconDecorative_label,
         tokens = { OudsSizeKeyToken.IconDecorative.entries.map { Token(it.name, it.value) } }
@@ -134,5 +134,4 @@ sealed class TokenProperty(
     )
 
     data object Typography : TokenProperty(nameRes = null, tokens = { OudsTypographyKeyToken.entries.map { Token(it.name, it.value) } })
-
 }
