@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-class OudsColorKeyToken {
+object OudsColorKeyToken {
     enum class Transparent {
         TransparentDefault,
     }
