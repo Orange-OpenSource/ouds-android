@@ -18,6 +18,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
@@ -47,11 +48,16 @@ sealed class TokenProperty(
         tokens = { OudsElevationKeyToken.entries.map { Token(it.name, it.value) } }
     )
 
+    data object Grid : TokenProperty(
+        nameRes = null,
+        tokens = { OudsGridKeyToken.entries.map { Token(it.name, it.value) } }
+    )
+
     data object Opacity : TokenProperty(
         nameRes = null,
         tokens = { OudsOpacityKeyToken.entries.map { Token(it.name, it.value) } }
     )
-
+    
     data object SizeIconDecorative : TokenProperty(
         nameRes = R.string.app_tokens_dimension_size_iconDecorative_label,
         tokens = { OudsSizeKeyToken.IconDecorative.entries.map { Token(it.name, it.value) } }
