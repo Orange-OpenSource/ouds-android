@@ -67,7 +67,7 @@
     <string name="app_tokens_dimension_size_description_text">Size refers to the specific measurements used to define the dimensions of UI elements within the design system.</string>
     <string name="app_tokens_dimension_size_iconDecorative_label">Icon decorative</string>
     <string name="app_tokens_dimension_size_iconWithText_label">Icon with text</string>
-    <string name="app_tokens_dimension_size_iconWithLabelTokenName_label">%1$s (%2$s)</string>
+    <string name="app_tokens_dimension_size_iconWithTextTokenName_label">%1$s (%2$s)</string>
 
 
     <!-- Tokens: elevation -->

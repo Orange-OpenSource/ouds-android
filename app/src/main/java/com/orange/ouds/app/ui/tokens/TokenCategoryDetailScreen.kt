@@ -102,7 +102,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                                 TokenIllustration(tokenProperty = tokenProperty, token = token)
                                 Text(
                                     modifier = Modifier.fillMaxWidth(),
-                                    text = stringResource(id = R.string.app_tokens_dimension_size_iconWithLabelTokenName_label, token.name, token.literalValue),
+                                    text = stringResource(id = R.string.app_tokens_dimension_size_iconWithTextTokenName_label, token.name, token.literalValue),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                     style = OudsTypographyKeyToken.BodyDefaultMedium.value,
