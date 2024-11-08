@@ -183,7 +183,7 @@ fun SpaceWithIconIllustrationColumn(size: Dp, verticalArrangement: Arrangement.V
 
 @Composable
 fun SpaceWithIconIllustrationRow(size: Dp) {
-    SpacePaddingInlineWithImageIllustrationRow(
+    SpaceWithImageIllustrationRow(
         spaceSize = size,
         imagePainter = painterResource(R.drawable.ic_design_token_figma_no_padding),
         imageModifier = Modifier.padding(horizontal = 1.dp)
@@ -192,14 +192,14 @@ fun SpaceWithIconIllustrationRow(size: Dp) {
 
 @Composable
 fun SpaceWithArrowIllustrationRow(size: Dp) {
-    SpacePaddingInlineWithImageIllustrationRow(
+    SpaceWithImageIllustrationRow(
         spaceSize = size,
         imagePainter = painterResource(R.drawable.ic_chevron_down)
     )
 }
 
 @Composable
-private fun SpacePaddingInlineWithImageIllustrationRow(
+private fun SpaceWithImageIllustrationRow(
     spaceSize: Dp,
     imagePainter: Painter,
     modifier: Modifier = Modifier,
