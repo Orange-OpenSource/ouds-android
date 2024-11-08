@@ -32,24 +32,24 @@ data class OudsGrids(
 
 fun OudsGridSemanticTokens.getGrids() = OudsGrids(
     minWidth = OudsAdaptiveTokenValue(
-        minWidthExtraCompact.dp,
-        minWidthCompact.dp,
-        minWidthMedium.dp
+        extraCompactMinWidth.dp,
+        compactMinWidth.dp,
+        mediumMinWidth.dp
     ),
     maxWidth = OudsAdaptiveTokenValue(
-        maxWidthExtraCompact.dp,
-        maxWidthCompact.dp,
-        maxWidthMedium.dp,
+        extraCompactMaxWidth.dp,
+        compactMaxWidth.dp,
+        mediumMaxWidth.dp,
     ),
     margin = OudsAdaptiveTokenValue(
-        marginExtraCompact.dp,
-        marginCompact.dp,
-        marginMedium.dp,
+        extraCompactMargin.dp,
+        compactMargin.dp,
+        mediumMargin.dp,
     ),
     columnGap = OudsAdaptiveTokenValue(
-        columnGapExtraCompact.dp,
-        columnGapCompact.dp,
-        columnGapMedium.dp,
+        extraCompactColumnGap.dp,
+        compactColumnGap.dp,
+        mediumColumnGap.dp,
     )
 )
 
