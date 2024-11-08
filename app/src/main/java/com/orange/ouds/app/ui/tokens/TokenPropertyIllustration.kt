@@ -34,6 +34,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
@@ -84,7 +85,7 @@ fun BorderIllustrationBox(
         OudsBorderStyle.Dashed -> Modifier.dashedBorder(width = width, color = borderColor, shape = shape)
         OudsBorderStyle.Dotted -> Modifier.dottedBorder(width = width, color = borderColor, shape = shape)
     }
-    IllustrationBox(modifier = modifier, backgroundColor = OudsColorKeyToken.Background.Secondary.value)
+    IllustrationBox(modifier = modifier.clip(shape), backgroundColor = OudsColorKeyToken.Background.Secondary.value)
 }
 
 @Composable
