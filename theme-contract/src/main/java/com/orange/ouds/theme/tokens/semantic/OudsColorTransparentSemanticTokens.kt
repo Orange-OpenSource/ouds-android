@@ -15,7 +15,7 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
-data class OudsColorGlobalSemanticTokens(
+data class OudsColorTransparentSemanticTokens(
     val transparentDefaultLight: Color = ColorRawTokens.colorTransparentBlack0,
     val transparentDefaultDark: Color = ColorRawTokens.colorTransparentBlack0,
 )

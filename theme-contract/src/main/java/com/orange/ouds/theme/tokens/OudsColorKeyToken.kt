@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.tokens
 
 class OudsColorKeyToken {
-    enum class Global {
+    enum class Transparent {
         TransparentDefault,
     }
 

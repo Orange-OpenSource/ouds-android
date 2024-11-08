@@ -23,7 +23,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 data class OudsColorScheme(
-    val globalColors: Global,
+    val transparentColors: Transparent,
     val actionColors: Action,
     val alwaysColors: Always,
     val backgroundColors: Background,
@@ -35,7 +35,7 @@ data class OudsColorScheme(
     val decorativeColors: Decorative,
 ) {
 
-    data class Global(
+    data class Transparent(
         val transparentDefault: Color
     )
 
@@ -270,8 +270,8 @@ data class OudsColorScheme(
 
 val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
     get() = OudsColorScheme(
-        globalColors = OudsColorScheme.Global(
-            transparentDefault = globalColorTokens.transparentDefaultLight,
+        transparentColors = OudsColorScheme.Transparent(
+            transparentDefault = transparentColorTokens.transparentDefaultLight,
         ),
         actionColors = OudsColorScheme.Action(
             disabled = actionColorTokens.actionDisabledLight,
@@ -496,8 +496,8 @@ val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
 
 val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
     get() = OudsColorScheme(
-        globalColors = OudsColorScheme.Global(
-            transparentDefault = globalColorTokens.transparentDefaultDark,
+        transparentColors = OudsColorScheme.Transparent(
+            transparentDefault = transparentColorTokens.transparentDefaultDark,
         ),
         actionColors = OudsColorScheme.Action(
             disabled = actionColorTokens.actionDisabledDark,
@@ -976,9 +976,9 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Global): Color {
+fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Transparent): Color {
     return when (token) {
-        OudsColorKeyToken.Global.TransparentDefault -> globalColors.transparentDefault
+        OudsColorKeyToken.Transparent.TransparentDefault -> transparentColors.transparentDefault
     }
 }
 

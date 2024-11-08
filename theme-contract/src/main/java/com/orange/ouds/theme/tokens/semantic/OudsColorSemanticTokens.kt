@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.tokens.semantic
 
 data class OudsColorSemanticTokens(
-    val globalColorTokens: OudsColorGlobalSemanticTokens = OudsColorGlobalSemanticTokens(),
+    val transparentColorTokens: OudsColorTransparentSemanticTokens = OudsColorTransparentSemanticTokens(),
     val actionColorTokens: OudsColorActionSemanticTokens = OudsColorActionSemanticTokens(),
     val alwaysColorTokens: OudsColorAlwaysSemanticTokens = OudsColorAlwaysSemanticTokens(),
     val backgroundColorTokens: OudsColorBgSemanticTokens = OudsColorBgSemanticTokens(),
