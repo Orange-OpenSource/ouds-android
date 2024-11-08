@@ -76,7 +76,8 @@ fun IllustrationBox(
 fun BorderIllustrationBox(
     width: Dp = 1.dp,
     shape: Shape = RectangleShape,
-    style: OudsBorderStyle = OudsBorderStyle.Solid
+    style: OudsBorderStyle = OudsBorderStyle.Solid,
+    backgroundColor: Color = OudsColorKeyToken.Background.Secondary.value
 ) {
     val borderColor = OudsColorKeyToken.Content.Default.value
     val modifier = when (style) {
@@ -85,7 +86,7 @@ fun BorderIllustrationBox(
         OudsBorderStyle.Dashed -> Modifier.dashedBorder(width = width, color = borderColor, shape = shape)
         OudsBorderStyle.Dotted -> Modifier.dottedBorder(width = width, color = borderColor, shape = shape)
     }
-    IllustrationBox(modifier = modifier.clip(shape), backgroundColor = OudsColorKeyToken.Background.Secondary.value)
+    IllustrationBox(modifier = modifier.clip(shape), backgroundColor = backgroundColor)
 }
 
 @Composable

@@ -41,6 +41,19 @@
     <string name="app_tokens_border_radius_label">Radius</string>
     <string name="app_tokens_border_style_label">Style</string>
 
+    <!-- Tokens: color -->
+    <string name="app_tokens_color_label">Color</string>
+    <string name="app_tokens_color_description_text">Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.</string>
+    <string name="app_tokens_color_action_label">Action</string>
+    <string name="app_tokens_color_always_label">Always</string>
+    <string name="app_tokens_color_background_label">Background</string>
+    <string name="app_tokens_color_border_label">Border</string>
+    <string name="app_tokens_color_brand_label">Brand</string>
+    <string name="app_tokens_color_content_label">Content</string>
+    <string name="app_tokens_color_elevation_label">Elevation</string>
+    <string name="app_tokens_color_gradient_label">Gradient</string>
+    <string name="app_tokens_color_decorative_label">Decorative</string>
+
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_label">Dimension</string>
     <string name="app_tokens_dimension_description_text">Dimension provides standard sizing and spacing to ensure visual consistency across the UI.</string>
@@ -68,7 +81,6 @@
     <string name="app_tokens_dimension_size_iconDecorative_label">Icon decorative</string>
     <string name="app_tokens_dimension_size_iconWithText_label">Icon with text</string>
     <string name="app_tokens_dimension_size_iconWithTextTokenName_label">%1$s (%2$s)</string>
-
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label">Elevation</string>
