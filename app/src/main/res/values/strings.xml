@@ -41,6 +41,35 @@
     <string name="app_tokens_border_radius_label">Radius</string>
     <string name="app_tokens_border_style_label">Style</string>
 
+    <!-- Tokens: dimension -->
+    <string name="app_tokens_dimension_label">Dimension</string>
+    <string name="app_tokens_dimension_description_text">Dimension provides standard sizing and spacing to ensure visual consistency across the UI.</string>
+
+    <!-- Tokens: dimension/space -->
+    <string name="app_tokens_dimension_space_label">Space</string>
+    <string name="app_tokens_dimension_space_description_text">Space refers to the measurements used to define the spacing between UI elements.</string>
+    <string name="app_tokens_dimension_space_scaled_label">Scaled</string>
+    <string name="app_tokens_dimension_space_fixed_label">Fixed</string>
+    <string name="app_tokens_dimension_space_paddingInline_label">Padding inline</string>
+    <string name="app_tokens_dimension_space_paddingInlineWithIcon_label">Padding inline with icon</string>
+    <string name="app_tokens_dimension_space_paddingInlineWithArrow_label">Padding inline with arrow</string>
+    <string name="app_tokens_dimension_space_paddingStack_label">Padding stack</string>
+    <string name="app_tokens_dimension_space_paddingStackWithIcon_label">Padding stack with icon</string>
+    <string name="app_tokens_dimension_space_paddingInset_label">Padding inset</string>
+    <string name="app_tokens_dimension_space_columnGap_label">Column gap</string>
+    <string name="app_tokens_dimension_space_columnGapWithIcon_label">Column gap with icon</string>
+    <string name="app_tokens_dimension_space_columnGapWithArrow_label">Column gap with arrow</string>
+    <string name="app_tokens_dimension_space_rowGap_label">Row gap</string>
+    <string name="app_tokens_dimension_space_rowGapWithIcon_label">Row gap with icon</string>
+
+    <!-- Tokens: dimension/size -->
+    <string name="app_tokens_dimension_size_label">Size</string>
+    <string name="app_tokens_dimension_size_description_text">Size refers to the specific measurements used to define the dimensions of UI elements within the design system.</string>
+    <string name="app_tokens_dimension_size_iconDecorative_label">Icon decorative</string>
+    <string name="app_tokens_dimension_size_iconWithText_label">Icon with text</string>
+    <string name="app_tokens_dimension_size_iconWithTextTokenName_label">%1$s (%2$s)</string>
+
+
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label">Elevation</string>
     <string name="app_tokens_elevation_description_text">Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.</string>
