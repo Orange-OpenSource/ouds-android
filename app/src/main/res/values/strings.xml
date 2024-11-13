@@ -33,6 +33,7 @@
     <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
     <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
     <string name="app_tokens_spFormat_label" translatable="false">%s sp</string>
+    <string name="app_tokens_header_text">Leverage agile frameworks to provide a robust synopsis for high-level overviews.</string>
 
     <!-- Tokens: border -->
     <string name="app_tokens_border_label">Border</string>
