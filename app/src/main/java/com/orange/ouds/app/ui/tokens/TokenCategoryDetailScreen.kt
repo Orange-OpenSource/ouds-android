@@ -194,6 +194,16 @@ private fun TokenPropertyHeader(tokenProperty: TokenProperty<*>, modifier: Modif
     }
 }
 
+@Composable
+private fun TokenPropertyHeader(tokenProperty: TokenProperty<*>, modifier: Modifier = Modifier) {
+    @Suppress("UNCHECKED_CAST")
+    when (tokenProperty.categoryClass) {
+        TokenCategory.Grid::class -> GridHeader(modifier = modifier)
+        TokenCategory.Dimension.Space::class -> SpaceHeader(modifier = modifier, spaceTokenProperty = tokenProperty as TokenProperty<TokenCategory.Dimension.Space>)
+        else -> {}
+    }
+}
+
 @UiModePreviews.Default
 @Composable
 private fun PreviewTokenCategoryDetailScreen(
