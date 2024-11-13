@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui.tokens
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,16 +29,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.core.graphics.ColorUtils
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsBorderStyle
@@ -161,7 +163,10 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorBrand, TokenProperty.ColorContent,
     TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> {
         val color = token.value as Color
-        if ((isSystemInDarkTheme() && color == Color.Black) || (!isSystemInDarkTheme() && color == Color.White)) {
+        val backgroundColor = OudsColorKeyToken.Background.Primary.value
+        val contrastRatio = tryOrNull { ColorUtils.calculateContrast(color.toArgb(), backgroundColor.toArgb()) }
+        // Minimum contrast ratio of 3:1 is mentioned here: https://www.w3.org/TR/WCAG21/#non-text-contrast
+        if (contrastRatio != null && contrastRatio < 3.0) {
             BorderIllustrationBox(backgroundColor = color)
         } else {
             IllustrationBox(backgroundColor = color)
