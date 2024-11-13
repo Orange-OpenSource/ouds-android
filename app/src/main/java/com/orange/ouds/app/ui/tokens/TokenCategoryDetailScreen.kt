@@ -48,7 +48,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 @Composable
-fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: (Long) -> Unit) {
+fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClick: (Long) -> Unit) {
 
     Screen {
         LazyColumn(contentPadding = PaddingValues(bottom = OudsSpaceKeyToken.Fixed.Medium.value)) {
@@ -57,10 +57,6 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                     descriptionRes = tokenCategory.descriptionRes,
                     imageRes = tokenCategory.imageRes
                 )
-
-                if (tokenCategory == TokenCategory.Grid) {
-                    GridIllustrations()
-                }
             }
 
             if (tokenCategory.subcategories.isNotEmpty()) {
@@ -90,13 +86,20 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(OudsSpaceKeyToken.Fixed.Medium.value),
+                                .padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
                             text = stringResource(id = tokenProperty.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
                             style = OudsTypographyKeyToken.HeadingMedium.value
                         )
                     }
+
+                    TokenPropertyHeader(
+                        modifier = Modifier
+                            .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
+                            .padding(bottom = OudsSpaceKeyToken.Fixed.Medium.value),
+                        tokenProperty = tokenProperty
+                    )
 
                     tokenProperty.tokens().forEach { token ->
                         if (tokenProperty == TokenProperty.SizeIconWithText) {
@@ -154,7 +157,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
 }
 
 @Composable
-private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) = when (tokenProperty) {
+private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<Any>) = when (tokenProperty) {
     is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
     is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
     is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
@@ -186,19 +189,35 @@ private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) =
     is TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 
+@Composable
+private fun TokenPropertyHeader(tokenProperty: TokenProperty<*>, modifier: Modifier = Modifier) {
+    @Suppress("UNCHECKED_CAST")
+    when (tokenProperty.categoryClass) {
+        TokenCategory.Grid::class -> GridHeader(modifier = modifier)
+        TokenCategory.Dimension.Space::class -> SpaceHeader(modifier = modifier, spaceTokenProperty = tokenProperty as TokenProperty<TokenCategory.Dimension.Space>)
+        else -> {}
+    }
+}
+
 @UiModePreviews.Default
 @Composable
 private fun PreviewTokenCategoryDetailScreen(
-    @PreviewParameter(TokenCategoryDetailScreenPreviewParameterProvider::class) parameter: TokenCategory
+    @PreviewParameter(TokenCategoryDetailScreenPreviewParameterProvider::class) parameter: TokenCategory<*>
 ) = OudsPreview {
     TokenCategoryDetailScreen(parameter) {}
 }
 
-private class TokenCategoryDetailScreenPreviewParameterProvider : BasicPreviewParameterProvider<TokenCategory>(*previewParameterValues.toTypedArray())
+private class TokenCategoryDetailScreenPreviewParameterProvider : BasicPreviewParameterProvider<TokenCategory<*>>(*previewParameterValues.toTypedArray())
 
-private val previewParameterValues: List<TokenCategory>
+private val previewParameterValues: List<TokenCategory<*>>
     get() = listOf(
-        TokenCategory.Opacity,
-        TokenCategory.Elevation,
-        TokenCategory.Grid
+        TokenCategory.Border,
+//        TokenCategory.Color,
+//        TokenCategory.Dimension,
+//        TokenCategory.Dimension.Size,
+//        TokenCategory.Dimension.Space,
+//        TokenCategory.Elevation,
+//        TokenCategory.Grid,
+//        TokenCategory.Opacity,
+//        TokenCategory.Typography,
     )

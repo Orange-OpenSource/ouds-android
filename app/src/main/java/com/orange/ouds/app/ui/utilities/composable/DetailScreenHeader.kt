@@ -54,7 +54,9 @@ fun DetailScreenHeader(
         )
 
         DetailScreenDescription(
-            modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
+            modifier = Modifier
+                .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
+                .padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
             descriptionRes = descriptionRes
         )
     }

@@ -24,160 +24,197 @@ import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
+import kotlin.reflect.KClass
 
-sealed class TokenProperty(
+sealed class TokenProperty<T>(
     @StringRes val nameRes: Int?,
-    val tokens: @Composable () -> List<Token<Any>>
-) {
-    data object BorderRadius : TokenProperty(
+    val tokens: @Composable () -> List<Token<Any>>,
+    val categoryClass: KClass<T>
+) where T : TokenCategory<T> {
+
+    data object BorderRadius : TokenProperty<TokenCategory.Border>(
         nameRes = R.string.app_tokens_border_radius_label,
-        tokens = { OudsBorderKeyToken.Radius.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsBorderKeyToken.Radius.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Border::class
     )
 
-    data object BorderStyle : TokenProperty(
+    data object BorderStyle : TokenProperty<TokenCategory.Border>(
         nameRes = R.string.app_tokens_border_style_label,
-        tokens = { OudsBorderKeyToken.Style.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsBorderKeyToken.Style.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Border::class
     )
 
-    data object BorderWidth : TokenProperty(
+    data object BorderWidth : TokenProperty<TokenCategory.Border>(
         nameRes = R.string.app_tokens_border_width_label,
-        tokens = { OudsBorderKeyToken.Width.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsBorderKeyToken.Width.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Border::class
     )
 
-    data object ColorAction : TokenProperty(
+    data object ColorAction : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_action_label,
-        tokens = { OudsColorKeyToken.Action.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Action.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorAlways : TokenProperty(
+    data object ColorAlways : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_always_label,
-        tokens = { OudsColorKeyToken.Always.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Always.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorBackground : TokenProperty(
+    data object ColorBackground : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_background_label,
-        tokens = { OudsColorKeyToken.Background.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Background.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorBorder : TokenProperty(
+    data object ColorBorder : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_border_label,
-        tokens = { OudsColorKeyToken.Border.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Border.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorBrand : TokenProperty(
+    data object ColorBrand : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_brand_label,
-        tokens = { OudsColorKeyToken.Brand.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Brand.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorContent : TokenProperty(
+    data object ColorContent : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_content_label,
-        tokens = { OudsColorKeyToken.Content.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Content.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorElevation : TokenProperty(
+    data object ColorElevation : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_elevation_label,
-        tokens = { OudsColorKeyToken.Elevation.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Elevation.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorGradient : TokenProperty(
+    data object ColorGradient : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_gradient_label,
-        tokens = { OudsColorKeyToken.Gradient.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Gradient.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorDecorative : TokenProperty(
+    data object ColorDecorative : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_decorative_label,
-        tokens = { OudsColorKeyToken.Decorative.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsColorKeyToken.Decorative.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Color::class
     )
 
-    data object Elevation : TokenProperty(
+    data object Elevation : TokenProperty<TokenCategory.Elevation>(
         nameRes = null,
-        tokens = { OudsElevationKeyToken.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsElevationKeyToken.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Elevation::class
     )
 
-    data object Grid : TokenProperty(
+    data object Grid : TokenProperty<TokenCategory.Grid>(
         nameRes = null,
-        tokens = { OudsGridKeyToken.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsGridKeyToken.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Grid::class
     )
 
-    data object Opacity : TokenProperty(
+    data object Opacity : TokenProperty<TokenCategory.Opacity>(
         nameRes = null,
-        tokens = { OudsOpacityKeyToken.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsOpacityKeyToken.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Opacity::class
     )
 
-    data object SizeIconDecorative : TokenProperty(
+    data object SizeIconDecorative : TokenProperty<TokenCategory.Dimension.Size>(
         nameRes = R.string.app_tokens_dimension_size_iconDecorative_label,
-        tokens = { OudsSizeKeyToken.IconDecorative.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSizeKeyToken.IconDecorative.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Size::class
     )
 
-    data object SizeIconWithText : TokenProperty(
+    data object SizeIconWithText : TokenProperty<TokenCategory.Dimension.Size>(
         nameRes = R.string.app_tokens_dimension_size_iconWithText_label,
-        tokens = { OudsSizeKeyToken.IconWithText.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSizeKeyToken.IconWithText.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Size::class
     )
 
-    data object SpaceColumnGap : TokenProperty(
+    data object SpaceColumnGap : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_columnGap_label,
-        tokens = { OudsSpaceKeyToken.ColumnGap.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.ColumnGap.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpaceColumnGapWithIcon : TokenProperty(
+    data object SpaceColumnGapWithIcon : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_columnGapWithIcon_label,
-        tokens = { OudsSpaceKeyToken.ColumnGap.WithIcon.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.ColumnGap.WithIcon.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpaceColumnGapWithArrow : TokenProperty(
+    data object SpaceColumnGapWithArrow : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_columnGapWithArrow_label,
-        tokens = { OudsSpaceKeyToken.ColumnGap.WithArrow.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.ColumnGap.WithArrow.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpaceFixed : TokenProperty(
+    data object SpaceFixed : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_fixed_label,
-        tokens = { OudsSpaceKeyToken.Fixed.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.Fixed.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingInline : TokenProperty(
+    data object SpacePaddingInline : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingInline_label,
-        tokens = { OudsSpaceKeyToken.PaddingInline.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.PaddingInline.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingInlineWithIcon : TokenProperty(
+    data object SpacePaddingInlineWithIcon : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingInlineWithIcon_label,
-        tokens = { OudsSpaceKeyToken.PaddingInline.WithIcon.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.PaddingInline.WithIcon.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingInlineWithArrow : TokenProperty(
+    data object SpacePaddingInlineWithArrow : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingInlineWithArrow_label,
-        tokens = { OudsSpaceKeyToken.PaddingInline.WithArrow.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.PaddingInline.WithArrow.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingInset : TokenProperty(
+    data object SpacePaddingInset : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingInset_label,
-        tokens = { OudsSpaceKeyToken.Inset.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.Inset.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingStack : TokenProperty(
+    data object SpacePaddingStack : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingStack_label,
-        tokens = { OudsSpaceKeyToken.PaddingBlock.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.PaddingBlock.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingStackWithIcon : TokenProperty(
+    data object SpacePaddingStackWithIcon : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingStackWithIcon_label,
-        tokens = { OudsSpaceKeyToken.PaddingBlock.WithIcon.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.PaddingBlock.WithIcon.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpaceRowGap : TokenProperty(
+    data object SpaceRowGap : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_rowGap_label,
-        tokens = { OudsSpaceKeyToken.RowGap.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.RowGap.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpaceRowGapWithIcon : TokenProperty(
+    data object SpaceRowGapWithIcon : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_rowGapWithIcon_label,
-        tokens = { OudsSpaceKeyToken.RowGap.WithIcon.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.RowGap.WithIcon.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpaceScaled : TokenProperty(
+    data object SpaceScaled : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_scaled_label,
-        tokens = { OudsSpaceKeyToken.Scaled.entries.map { Token(it.name, it.value) } }
+        tokens = { OudsSpaceKeyToken.Scaled.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object Typography : TokenProperty(nameRes = null, tokens = { OudsTypographyKeyToken.entries.map { Token(it.name, it.value) } })
+    data object Typography : TokenProperty<TokenCategory.Typography>(
+        nameRes = null,
+        tokens = { OudsTypographyKeyToken.entries.map { Token(it.name, it.value) } },
+        categoryClass = TokenCategory.Typography::class
+    )
 }
