@@ -82,7 +82,7 @@ fun SpaceHeader(
 
 @Composable
 private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>) {
-    val dashedBorderWidth = 2.dp
+    val dashedBorderWidth = 1.dp
 
     val externalSpaceValues = when (spaceTokenProperty) {
         TokenProperty.SpaceScaled -> PaddingValues(start = OudsSpaceKeyToken.Fixed.Shorter.value, top = OudsSpaceKeyToken.Fixed.Shortest.value)
