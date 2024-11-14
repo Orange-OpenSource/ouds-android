@@ -29,19 +29,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.core.graphics.ColorUtils
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsBorderStyle
@@ -157,38 +154,28 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory, onSubcategoryClick: 
 
 @Composable
 private fun TokenIllustration(tokenProperty: TokenProperty, token: Token<Any>) = when (tokenProperty) {
-    is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
-    is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
-    is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
-    is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorBrand, TokenProperty.ColorContent,
-    TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> {
-        val color = token.value as Color
-        val backgroundColor = OudsColorKeyToken.Background.Primary.value
-        val contrastRatio = tryOrNull { ColorUtils.calculateContrast(color.toArgb(), backgroundColor.toArgb()) }
-        // Minimum contrast ratio of 3:1 is mentioned here: https://www.w3.org/TR/WCAG21/#non-text-contrast
-        if (contrastRatio != null && contrastRatio < 3.0) {
-            BorderIllustrationBox(backgroundColor = color)
-        } else {
-            IllustrationBox(backgroundColor = color)
-        }
-    }
-    is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value as Float)
-    is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value as Dp)
-    is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value as Dp)
-    is TokenProperty.SizeIconWithText -> SizeIconWithTextIllustrationRow(size = token.value as Dp, token.name)
-    is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
+    TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
+    TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
+    TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
+    TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorBrand, TokenProperty.ColorContent,
+    TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> BorderIllustrationBox(backgroundColor = token.value as Color)
+    TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value as Float)
+    TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value as Dp)
+    TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value as Dp)
+    TokenProperty.SizeIconWithText -> SizeIconWithTextIllustrationRow(size = token.value as Dp, token.name)
+    TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
         size = token.value as Dp,
         contentAlignment = Alignment.Center
     )
-    is TokenProperty.SpacePaddingInline -> SpaceIllustrationBox(size = token.value as Dp)
-    is TokenProperty.SpacePaddingInlineWithIcon, TokenProperty.SpaceColumnGapWithIcon -> SpaceWithIconIllustrationRow(size = token.value as Dp)
-    is TokenProperty.SpacePaddingInlineWithArrow, TokenProperty.SpaceColumnGapWithArrow -> SpaceWithArrowIllustrationRow(size = token.value as Dp)
-    is TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value as Dp)
-    is TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical)
-    is TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
-    is TokenProperty.SpaceRowGapWithIcon -> SpaceWithIconIllustrationColumn(size = token.value as Dp, verticalArrangement = Arrangement.Bottom)
-    is TokenProperty.SpacePaddingStackWithIcon -> SpaceWithIconIllustrationColumn(size = token.value as Dp)
-    is TokenProperty.Typography, TokenProperty.Grid -> Unit
+    TokenProperty.SpacePaddingInline -> SpaceIllustrationBox(size = token.value as Dp)
+    TokenProperty.SpacePaddingInlineWithIcon, TokenProperty.SpaceColumnGapWithIcon -> SpaceWithIconIllustrationRow(size = token.value as Dp)
+    TokenProperty.SpacePaddingInlineWithArrow, TokenProperty.SpaceColumnGapWithArrow -> SpaceWithArrowIllustrationRow(size = token.value as Dp)
+    TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value as Dp)
+    TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical)
+    TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
+    TokenProperty.SpaceRowGapWithIcon -> SpaceWithIconIllustrationColumn(size = token.value as Dp, verticalArrangement = Arrangement.Bottom)
+    TokenProperty.SpacePaddingStackWithIcon -> SpaceWithIconIllustrationColumn(size = token.value as Dp)
+    TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 
 @UiModePreviews.Default
