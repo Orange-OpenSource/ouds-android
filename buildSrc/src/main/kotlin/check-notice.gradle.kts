@@ -70,17 +70,32 @@ tasks.register<DefaultTask>("checkNotice") {
         }
 
         // Check if resources listed in NOTICE.txt exist
-        noticeResources.forEach { noticeResource ->
-            if (!noticeResource.exists()) {
-                throw GradleException("File ${noticeResource.path.removePrefix("${rootDir.path}/")} is listed in NOTICE.txt but does not exist.")
-            }
-        }
+        val surplusResources = noticeResources.filter { !it.exists() }
 
         // Check if resources are missing in NOTICE.txt
-        resources.forEach { resource ->
-            if (!noticeResources.contains(resource)) {
-                throw GradleException("File ${resource.path.removePrefix("${rootDir.path}/")} is not listed in NOTICE.txt.")
+        val missingResources = resources.filter { !noticeResources.contains(it) }
+
+        if (surplusResources.isNotEmpty() || missingResources.isNotEmpty()) {
+            val message = buildString {
+                if (surplusResources.isNotEmpty()) {
+                    appendLine(
+                        """
+                        |One or more files are listed in NOTICE.txt but do not exist:
+                        |${surplusResources.joinToString("\n") { "  ${it.path.removePrefix("${rootDir.path}/")}" }}
+                        """.trimMargin()
+                    )
+                }
+                if (missingResources.isNotEmpty()) {
+                    appendLine(
+                        """
+                        |One or more files are not listed in NOTICE.txt:
+                        |${missingResources.joinToString("\n") { "  ${it.path.removePrefix("${rootDir.path}/")}" }}
+                        """.trimMargin()
+                    )
+                }
             }
+
+            throw GradleException(message)
         }
 
         logger.lifecycle("NOTICE.txt is up to date.")

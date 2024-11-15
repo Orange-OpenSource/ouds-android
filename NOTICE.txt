@@ -8,6 +8,10 @@ in whole or part of, in any medium, except as required for reasonable and custom
 and reproducing the content of the NOTICE and DOCUMENTATION files.
 Any use or displaying shall constitute an infringement under intellectual property laws of France and international conventions.
 
+app/src/alpha/res/drawable-v24/ic_launcher_background.xml
+app/src/alpha/res/drawable/ic_launcher_foreground.xml
+app/src/beta/res/drawable-v24/ic_launcher_background.xml
+app/src/beta/res/drawable/ic_launcher_foreground.xml
 app/src/main/res/drawable/ic_border.xml
 app/src/main/res/drawable/ic_chevron_down.xml
 app/src/main/res/drawable/ic_component_atom.xml
@@ -54,6 +58,8 @@ app/src/main/res/drawable-night-xxhdpi/il_tokens_grid_min_width.png
 app/src/main/res/drawable-night-xxxhdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-night-xxxhdpi/il_tokens_grid_max_width.png
 app/src/main/res/drawable-night-xxxhdpi/il_tokens_grid_min_width.png
+app/src/prod/res/drawable/ic_launcher_background.xml
+app/src/prod/res/drawable/ic_launcher_foreground.xml
 
 docs/images/favicon-16x16.png
 docs/images/orange-logo.svg

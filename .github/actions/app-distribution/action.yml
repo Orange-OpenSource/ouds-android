@@ -7,9 +7,9 @@ inputs:
     description: Indicates if short Git SHA should be appended to the version name
     required: false
     default: 'false'
-  application-id:
-    description: Application ID
-    required: false
+  variant:
+    description: Variant
+    required: true
   firebase-token:
     description: Firebase token
     required: true
@@ -34,7 +34,7 @@ runs:
         BRANCH_SHA=${{ github.event.pull_request.head.sha }}
         COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
         [ ${{ inputs.append-git-sha-to-version-name }} == 'true' ] && VERSION_NAME_SUFFIX=-${COMMIT_SHA::7} || VERSION_NAME_SUFFIX=''
-        ./gradlew :app:appDistributionUpload -PversionNameSuffix=$VERSION_NAME_SUFFIX -PversionCode=$GITHUB_RUN_NUMBER -PappDistributionVariants=release -PapplicationId=${{ inputs.application-id }} -PappDistributionGitTagPrefix=${{ inputs.git-tag-prefix }} -PappDistributionGroup=${{ inputs.group }} -PappDistributionGitTagSha=$COMMIT_SHA --stacktrace
+        ./gradlew :app:appDistributionUpload -PversionNameSuffix=$VERSION_NAME_SUFFIX -PversionCode=$GITHUB_RUN_NUMBER -PappDistributionVariants=${{ inputs.variant }} -PappDistributionGitTagPrefix=${{ inputs.git-tag-prefix }} -PappDistributionGroup=${{ inputs.group }} -PappDistributionGitTagSha=$COMMIT_SHA --stacktrace
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
         FIREBASE_TOKEN: ${{ inputs.firebase-token }}
