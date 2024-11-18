@@ -53,7 +53,7 @@ fun LargeCard(
         Column(modifier = Modifier.background(OudsColorKeyToken.Elevation.Raised.value)) {
             Image(
                 painter = painterResource(imageRes),
-                colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.DefaultOnBgEmphasized.value),
+                colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.Default.OnBgEmphasized.value),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()

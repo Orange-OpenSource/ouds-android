@@ -66,7 +66,7 @@ fun OudsButton(
                 modifier = modifier,
                 text = text,
                 style = labelStyle.value,
-                color = OudsColorKeyToken.Content.OnActionPrimaryEnabled.value
+                color = OudsColorKeyToken.Content.OnAction.Primary.Enabled.value
             )
         }
     }

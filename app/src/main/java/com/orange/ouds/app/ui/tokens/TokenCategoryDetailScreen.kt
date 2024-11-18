@@ -156,7 +156,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
 }
 
 @Composable
-private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<Any>) = when (tokenProperty) {
+private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) = when (tokenProperty) {
     is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
     is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
     is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
@@ -190,16 +190,6 @@ private fun TokenPropertyHeader(tokenProperty: TokenProperty<*>, modifier: Modif
             modifier = modifier,
             spaceTokenProperty = tokenProperty as TokenProperty<TokenCategory.Dimension.Space>
         )
-        else -> {}
-    }
-}
-
-@Composable
-private fun TokenPropertyHeader(tokenProperty: TokenProperty<*>, modifier: Modifier = Modifier) {
-    @Suppress("UNCHECKED_CAST")
-    when (tokenProperty.categoryClass) {
-        TokenCategory.Grid::class -> GridHeader(modifier = modifier)
-        TokenCategory.Dimension.Space::class -> SpaceHeader(modifier = modifier, spaceTokenProperty = tokenProperty as TokenProperty<TokenCategory.Dimension.Space>)
         else -> {}
     }
 }

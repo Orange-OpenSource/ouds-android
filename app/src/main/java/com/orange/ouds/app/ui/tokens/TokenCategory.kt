@@ -54,9 +54,9 @@ sealed class TokenCategory<T>(
             TokenProperty.ColorBorder,
             TokenProperty.ColorBrand,
             TokenProperty.ColorContent,
+            TokenProperty.ColorDecorative,
             TokenProperty.ColorElevation,
             TokenProperty.ColorGradient,
-            TokenProperty.ColorDecorative
         )
     )
 

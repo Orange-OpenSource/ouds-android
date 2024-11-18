@@ -106,7 +106,7 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
     }
 
     val modifier = Modifier
-        .dashedBorder(width = dashedBorderWidth, color = OudsColorKeyToken.Content.DefaultOnBgEmphasized.value)
+        .dashedBorder(width = dashedBorderWidth, color = OudsColorKeyToken.Content.Default.OnBgEmphasized.value)
         .padding(all = dashedBorderWidth)
         .background(color = OudsColorKeyToken.Always.Info.value)
         .padding(externalSpaceValues)
@@ -180,7 +180,7 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
         Text(
             modifier = modifier.background(color = OudsColorKeyToken.Background.Emphasized.value),
             text = stringResource(id = textResId),
-            color = OudsColorKeyToken.Content.DefaultOnBgEmphasized.value,
+            color = OudsColorKeyToken.Content.Default.OnBgEmphasized.value,
             style = OudsTypographyKeyToken.BodyDefaultMedium.value
         )
     }
