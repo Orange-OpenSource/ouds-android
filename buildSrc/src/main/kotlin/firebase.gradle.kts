@@ -10,12 +10,14 @@
  * Software description: Android library of reusable graphical components 
  */
 
+import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.client.j2se.MatrixToImageWriter
 import com.google.zxing.qrcode.QRCodeWriter
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.FirebaseAppDistributionRelease
+import com.orange.ouds.gradle.GoogleServices
 import com.orange.ouds.gradle.findLastTag
 import com.orange.ouds.gradle.findTypedProperty
 import com.orange.ouds.gradle.firebaseApi
@@ -152,51 +154,61 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
     mustRunAfter("appDistributionUpload")
 
     doLast {
-        firebaseApi("1:756919609448:android:08045c141d8ea56d54f3dd") {
-            // Find App Distribution release corresponding to version code
-            val versionCode = Environment.getVariables("GITHUB_RUN_NUMBER").first().toInt()
-            val release = getAppDistributionReleases().firstOrNull { it.buildVersion == versionCode }
-            if (release != null) {
-                logger.lifecycle("Found App Distribution release with version code $versionCode.")
-                gitHubApi {
-                    // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
-                    // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
-                    // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
-                    val branchName = Environment.getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
-                    // Find pull request for current branch
-                    val pullRequests = getPullRequests()
-                    val pullRequest = pullRequests.firstOrNull { it.branchName == branchName }
-                    if (pullRequest != null) {
-                        logger.lifecycle("Found pull request #${pullRequest.number} for branch $branchName.")
-                        // Generate QR code with download URL of App Distribution release
-                        val qrCode = generateQrCode(release)
+        val variant = project.findTypedProperty<String>("variant")
+        val androidExtension = rootProject.subprojects.firstNotNullOf { it.extensions.getByName("android") as? BaseAppModuleExtension }
+        val applicationId = androidExtension.applicationVariants.firstOrNull { it.name == variant }?.applicationId
+        val googleServices = GoogleServices("${rootProject.projectDir}/app/google-services.json")
+        val app = googleServices.apps.firstOrNull { it.packageName == applicationId }
+        if (app != null) {
+            firebaseApi(app.id) {
+                // Find App Distribution release corresponding to version code
+                val versionCode = Environment.getVariables("GITHUB_RUN_NUMBER").first().toInt()
+                val release = getAppDistributionReleases().firstOrNull { it.buildVersion == versionCode }
+                if (release != null) {
+                    logger.lifecycle("Found App Distribution release with version code $versionCode.")
+                    gitHubApi {
+                        // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
+                        // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
+                        // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
+                        val branchName = Environment.getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
+                        // Find pull request for current branch
+                        val pullRequests = getPullRequests()
+                        val pullRequest = pullRequests.firstOrNull { it.branchName == branchName }
+                        if (pullRequest != null) {
+                            logger.lifecycle("Found pull request #${pullRequest.number} for branch $branchName.")
+                            // Generate QR code with download URL of App Distribution release
+                            val qrCode = generateQrCode(release)
 
-                        // There is now way to attach a file to a comment in an issue or pull request using the GitHub API
-                        // A workaround is to add the QR code to the repository and add a link in the comment which references the QR code on the repository
-                        logger.lifecycle("Add QR code for '${pullRequest.title} (#${pullRequest.number})' to repository.")
-                        // Add QR code to repository on 'qrcodes' branch
-                        val sha = createFile(
-                            qrCode,
-                            "qrcodes/${qrCode.name}",
-                            "Add QR code for '${pullRequest.title} (#${pullRequest.number})'",
-                            "qrcodes"
-                        )
+                            // There is now way to attach a file to a comment in an issue or pull request using the GitHub API
+                            // A workaround is to add the QR code to the repository and add a link in the comment which references the QR code on the repository
+                            logger.lifecycle("Add QR code for '${pullRequest.title} (#${pullRequest.number})' to repository.")
+                            // Add QR code to repository on 'qrcodes' branch
+                            val sha = createFile(
+                                qrCode,
+                                "qrcodes/${qrCode.name}",
+                                "Add QR code for '${pullRequest.title} (#${pullRequest.number})'",
+                                "qrcodes"
+                            )
 
-                        // Add a comment with a link to the QR code in the repository
-                        logger.lifecycle("Create comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
-                        val link = "![qrcode](https://github.com/Orange-OpenSource/ouds-android/raw/$sha/qrcodes/${qrCode.name})"
-                        val body =
-                            "Flash the QR code below to download and install the OUDS Playground app which contains the changes of this pull request:\\n$link"
-                        // Although we use the "issues/{issue_number}/comments" GitHub API, this will comment the pull request because a pull request is an issue
-                        // The "pulls/{pull_number}/comments" is used to add review comments on a pull request
-                        createIssueComment(pullRequest.number, body)
-                    } else {
-                        throw GradleException("Could not find a pull request for branch $branchName.")
+                            // Add a comment with a link to the QR code in the repository
+                            logger.lifecycle("Create comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
+                            val link = "![qrcode](https://github.com/Orange-OpenSource/ouds-android/raw/$sha/qrcodes/${qrCode.name})"
+                            val body = "### :iphone: Alpha release available\\n\\n" +
+                                    "Scan the QR code below to download and install the OUDS Playground app which contains the changes of this pull request.\\n" +
+                                    "**Please note that the link behind this QR code will expire in one hour.**\\n$link"
+                            // Although we use the "issues/{issue_number}/comments" GitHub API, this will comment the pull request because a pull request is an issue
+                            // The "pulls/{pull_number}/comments" is used to add review comments on a pull request
+                            createIssueComment(pullRequest.number, body)
+                        } else {
+                            throw GradleException("Could not find a pull request for branch $branchName.")
+                        }
                     }
+                } else {
+                    throw GradleException("Could not find an App Distribution release with version code $versionCode.")
                 }
-            } else {
-                throw GradleException("Could not find an App Distribution release with version code $versionCode.")
             }
+        } else {
+            throw GradleException("Could not find an app with package name $applicationId in google-services.json.")
         }
     }
 }
