@@ -79,7 +79,7 @@ fun BorderIllustrationBox(
     style: OudsBorderStyle = OudsBorderStyle.Solid,
     backgroundColor: Color = OudsColorKeyToken.Background.Secondary.value
 ) {
-    val borderColor = OudsColorKeyToken.Content.Default.value
+    val borderColor = OudsColorKeyToken.Border.Default.value
     val modifier = when (style) {
         OudsBorderStyle.None -> Modifier
         OudsBorderStyle.Solid -> Modifier.border(width = width, color = borderColor, shape = shape)
