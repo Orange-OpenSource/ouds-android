@@ -37,7 +37,7 @@ fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
 }
 
 @Composable
-private fun TokensScreen(tokenCategories: List<TokenCategory>, onTokenCategoryClick: (Long) -> Unit) {
+private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategoryClick: (Long) -> Unit) {
     Screen {
         Column(
             modifier = Modifier
