@@ -33,7 +33,6 @@
     <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
     <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
     <string name="app_tokens_spFormat_label" translatable="false">%s sp</string>
-    <string name="app_tokens_header_text">Leverage agile frameworks to provide a robust synopsis for high-level overviews.</string>
 
     <!-- Tokens: border -->
     <string name="app_tokens_border_label">Border</string>
@@ -63,18 +62,31 @@
     <string name="app_tokens_dimension_space_label">Space</string>
     <string name="app_tokens_dimension_space_description_text">Space refers to the measurements used to define the spacing between UI elements.</string>
     <string name="app_tokens_dimension_space_scaled_label">Scaled</string>
+    <string name="app_tokens_dimension_space_scaledHeader_text">Scaled spacing refers to spacing that adjusts dynamically based on factors like container size, screen resolution, or layout elements.</string>
     <string name="app_tokens_dimension_space_fixed_label">Fixed</string>
+    <string name="app_tokens_dimension_space_fixedHeader_text">Fixed spacing refers to a constant distance between elements that remains the same regardless of factors like container size, screen resolution, or layout changes.</string>
     <string name="app_tokens_dimension_space_paddingInline_label">Padding inline</string>
+    <string name="app_tokens_dimension_space_paddingInlineHeader_text">Padding inline includes the left and right padding of an object or a group of objects.</string>
     <string name="app_tokens_dimension_space_paddingInlineWithIcon_label">Padding inline with icon</string>
+    <string name="app_tokens_dimension_space_paddingInlineWithIconHeader_text">Padding inline with icon includes the padding of a group of objects that includes an icon.</string>
     <string name="app_tokens_dimension_space_paddingInlineWithArrow_label">Padding inline with arrow</string>
+    <string name="app_tokens_dimension_space_paddingInlineWithArrowHeader_text">Padding inline with arrow includes the padding of a group of objects that includes an arrow.</string>
     <string name="app_tokens_dimension_space_paddingStack_label">Padding stack</string>
+    <string name="app_tokens_dimension_space_paddingStackHeader_text">Padding stack includes the top and bottom padding.</string>
     <string name="app_tokens_dimension_space_paddingStackWithIcon_label">Padding stack with icon</string>
+    <string name="app_tokens_dimension_space_paddingStackWithIconHeader_text">Padding stack with icon includes the padding of a group of objects that includes an icon.</string>
     <string name="app_tokens_dimension_space_paddingInset_label">Padding inset</string>
+    <string name="app_tokens_dimension_space_paddingInsetHeader_text">Padding Inset includes the left, right, top, and bottom padding, with all parameters being equal.</string>
     <string name="app_tokens_dimension_space_columnGap_label">Column gap</string>
+    <string name="app_tokens_dimension_space_columnGapHeader_text">Gap inline includes the vertical spacing between objects.</string>
     <string name="app_tokens_dimension_space_columnGapWithIcon_label">Column gap with icon</string>
+    <string name="app_tokens_dimension_space_columnGapWithIconHeader_text">Gap inline with icon includes the vertical spacing between objects, one of which is an icon.</string>
     <string name="app_tokens_dimension_space_columnGapWithArrow_label">Column gap with arrow</string>
+    <string name="app_tokens_dimension_space_columnGapWithArrowHeader_text">Gap inline with arrow includes the vertical spacing between objects, one of which is an arrow.</string>
     <string name="app_tokens_dimension_space_rowGap_label">Row gap</string>
+    <string name="app_tokens_dimension_space_rowGapHeader_text">Gap stack includes the horizontal spacing between objects.</string>
     <string name="app_tokens_dimension_space_rowGapWithIcon_label">Row gap with icon</string>
+    <string name="app_tokens_dimension_space_rowGapWithIconHeader_text">Gap stack with icon includes the horizontal spacing between objects, one of which is an icon.</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_label">Size</string>

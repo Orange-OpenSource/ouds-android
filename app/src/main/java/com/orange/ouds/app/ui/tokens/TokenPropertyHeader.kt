@@ -129,7 +129,7 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
             verticalArrangement = arrangement
         ) {
             if (spaceTokenProperty == TokenProperty.SpaceRowGap) {
-                SpaceHeaderText()
+                SpaceHeaderText(spaceTokenProperty = spaceTokenProperty)
             } else {
                 SpaceHeaderImage(
                     modifier = Modifier.fillMaxWidth(),
@@ -137,7 +137,7 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
                     alignment = Alignment.CenterStart
                 )
             }
-            SpaceHeaderText()
+            SpaceHeaderText(spaceTokenProperty = spaceTokenProperty)
         }
     } else {
         Row(
@@ -145,27 +145,45 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
             horizontalArrangement = arrangement
         ) {
             if (spaceTokenProperty == TokenProperty.SpaceColumnGap) {
-                SpaceHeaderText(modifier = Modifier.weight(0.5f))
-                SpaceHeaderText(modifier = Modifier.weight(0.5f))
+                SpaceHeaderText(modifier = Modifier.weight(0.5f), spaceTokenProperty = spaceTokenProperty)
+                SpaceHeaderText(modifier = Modifier.weight(0.5f), spaceTokenProperty = spaceTokenProperty)
             } else {
                 SpaceHeaderImage(
                     modifier = Modifier.fillMaxHeight(),
                     spaceTokenProperty = spaceTokenProperty
                 )
-                SpaceHeaderText()
+                SpaceHeaderText(spaceTokenProperty = spaceTokenProperty)
             }
         }
     }
 }
 
 @Composable
-private fun SpaceHeaderText(modifier: Modifier = Modifier) {
-    Text(
-        modifier = modifier.background(color = OudsColorKeyToken.Background.Emphasized.value),
-        text = stringResource(id = R.string.app_tokens_header_text),
-        color = OudsColorKeyToken.Content.DefaultOnBgEmphasized.value,
-        style = OudsTypographyKeyToken.BodyDefaultMedium.value
-    )
+private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>, modifier: Modifier = Modifier) {
+    val textResId = when (spaceTokenProperty) {
+        TokenProperty.SpaceColumnGap -> R.string.app_tokens_dimension_space_columnGapHeader_text
+        TokenProperty.SpaceColumnGapWithArrow -> R.string.app_tokens_dimension_space_columnGapWithArrowHeader_text
+        TokenProperty.SpaceColumnGapWithIcon -> R.string.app_tokens_dimension_space_columnGapWithIconHeader_text
+        TokenProperty.SpaceFixed -> R.string.app_tokens_dimension_space_fixedHeader_text
+        TokenProperty.SpacePaddingInline -> R.string.app_tokens_dimension_space_paddingInlineHeader_text
+        TokenProperty.SpacePaddingInlineWithArrow -> R.string.app_tokens_dimension_space_paddingInlineWithArrowHeader_text
+        TokenProperty.SpacePaddingInlineWithIcon -> R.string.app_tokens_dimension_space_paddingInlineWithIconHeader_text
+        TokenProperty.SpacePaddingInset -> R.string.app_tokens_dimension_space_paddingInsetHeader_text
+        TokenProperty.SpacePaddingStack -> R.string.app_tokens_dimension_space_paddingStackHeader_text
+        TokenProperty.SpacePaddingStackWithIcon -> R.string.app_tokens_dimension_space_paddingStackWithIconHeader_text
+        TokenProperty.SpaceRowGap -> R.string.app_tokens_dimension_space_rowGapHeader_text
+        TokenProperty.SpaceRowGapWithIcon -> R.string.app_tokens_dimension_space_rowGapWithIconHeader_text
+        TokenProperty.SpaceScaled -> R.string.app_tokens_dimension_space_scaledHeader_text
+        else -> null
+    }
+    if (textResId != null) {
+        Text(
+            modifier = modifier.background(color = OudsColorKeyToken.Background.Emphasized.value),
+            text = stringResource(id = textResId),
+            color = OudsColorKeyToken.Content.DefaultOnBgEmphasized.value,
+            style = OudsTypographyKeyToken.BodyDefaultMedium.value
+        )
+    }
 }
 
 @Composable
