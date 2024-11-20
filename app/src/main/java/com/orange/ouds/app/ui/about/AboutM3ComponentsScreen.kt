@@ -424,7 +424,7 @@ private fun CardsSample() {
         }
 
         ElevatedCard(modifier = Modifier.fillMaxWidth().height(cardHeight)) {
-            Box(modifier = Modifier.fillMaxSize()) { Text(text = "Outlined card", modifier = Modifier.align(Alignment.Center)) }
+            Box(modifier = Modifier.fillMaxSize()) { Text(text = "Elevated card", modifier = Modifier.align(Alignment.Center)) }
         }
     }
 }
