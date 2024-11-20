@@ -90,8 +90,8 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
         TokenProperty.SpacePaddingInlineWithArrow,
         TokenProperty.SpacePaddingInlineWithIcon -> PaddingValues(start = OudsSpaceKeyToken.Fixed.Shorter.value)
         TokenProperty.SpacePaddingInline -> PaddingValues(horizontal = OudsSpaceKeyToken.Fixed.Shorter.value)
-        TokenProperty.SpacePaddingStack,
-        TokenProperty.SpacePaddingStackWithIcon -> PaddingValues(vertical = OudsSpaceKeyToken.Fixed.Shorter.value)
+        TokenProperty.SpacePaddingStack -> PaddingValues(vertical = OudsSpaceKeyToken.Fixed.Shorter.value)
+        TokenProperty.SpacePaddingStackWithIcon -> PaddingValues(top = OudsSpaceKeyToken.Fixed.Shorter.value)
         TokenProperty.SpacePaddingInset -> PaddingValues(all = OudsSpaceKeyToken.Fixed.Shorter.value)
         else -> PaddingValues(all = 0.dp)
     }
