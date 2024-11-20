@@ -76,7 +76,7 @@
     <string name="app_tokens_dimension_space_paddingStackWithIcon_label">Padding stack with icon</string>
     <string name="app_tokens_dimension_space_paddingStackWithIconHeader_text">Padding stack with icon includes the padding of a group of objects that includes an icon.</string>
     <string name="app_tokens_dimension_space_paddingInset_label">Padding inset</string>
-    <string name="app_tokens_dimension_space_paddingInsetHeader_text">Padding Inset includes the left, right, top, and bottom padding, with all parameters being equal.</string>
+    <string name="app_tokens_dimension_space_paddingInsetHeader_text">Padding inset includes the left, right, top, and bottom padding, with all parameters being equal.</string>
     <string name="app_tokens_dimension_space_columnGap_label">Column gap</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">Gap inline includes the vertical spacing between objects.</string>
     <string name="app_tokens_dimension_space_columnGapWithIcon_label">Column gap with icon</string>
