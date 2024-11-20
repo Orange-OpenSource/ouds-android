@@ -146,6 +146,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -169,7 +170,7 @@ fun AboutM3ComponentsScreen() {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(bottom = OudsSpaceKeyToken.Fixed.Medium.value)
+                        .padding(bottom = OudsTheme.spaces.fixed.medium)
                         .verticalScroll(rememberScrollState())
                 ) {
 
@@ -180,7 +181,7 @@ fun AboutM3ComponentsScreen() {
 
                     // BUTTONS
                     SectionColumn(title = "Buttons") {
-                        Column(verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value)) {
+                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
                             CommonButtonsSample()
                             CommonButtonsSample(enabled = false)
                             FloatingActionButtonsSample()
@@ -228,7 +229,7 @@ fun AboutM3ComponentsScreen() {
 
                     // NAVIGATION
                     SectionColumn(title = "Navigation") {
-                        Column(verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value)) {
+                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
                             NavigationBarSample()
                             FilledTonalButton(onClick = { scope.launch { drawerState.open() } }) { Text("Open Navigation Drawer") }
                             NavigationRailSample()
@@ -238,7 +239,7 @@ fun AboutM3ComponentsScreen() {
                     // PROGRESS INDICATORS
                     SectionColumn(title = "Progress indicators") {
                         LinearProgressIndicator()
-                        CircularProgressIndicator(modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Short.value))
+                        CircularProgressIndicator(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.short))
                     }
 
                     // RADIO BUTTONS
@@ -280,7 +281,7 @@ fun AboutM3ComponentsScreen() {
 
                     // TEXT FIELDS
                     SectionColumn("Text fields") {
-                        Column(verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value)) {
+                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
                             TextFieldsSample()
                             TextFieldsSample(isError = true)
                             TextFieldsSample(enabled = false)
@@ -342,8 +343,8 @@ private fun AppBarsSample() {
 @Composable
 private fun CommonButtonsSample(enabled: Boolean = true) {
     FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value),
-        verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Shortest.value)
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
+        verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shortest)
     ) {
         Button(onClick = { /* do something */ }, enabled = enabled) { Text("Filled") }
         FilledTonalButton(onClick = { /* do something */ }, enabled = enabled) { Text("Tonal") }
@@ -357,8 +358,8 @@ private fun CommonButtonsSample(enabled: Boolean = true) {
 @Composable
 private fun FloatingActionButtonsSample() {
     FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value),
-        verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value)
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
+        verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)
     ) {
         FloatingActionButton(onClick = { /* do something */ }) { Icon(Icons.Filled.Add, "Floating action button.") }
         SmallFloatingActionButton(onClick = { /* do something */ }) { Icon(Icons.Filled.Add, "Floating action button.") }
@@ -413,7 +414,7 @@ private fun SegmentedButtonsSample() {
 @Composable
 private fun CardsSample() {
     val cardHeight = 60.dp
-    Column(verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Shorter.value)) {
+    Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)) {
         Card(modifier = Modifier.fillMaxWidth().height(cardHeight)) {
             Box(modifier = Modifier.fillMaxSize()) { Text(text = "Filled card", modifier = Modifier.align(Alignment.Center)) }
         }
@@ -431,7 +432,7 @@ private fun CardsSample() {
 @Composable
 private fun CheckboxesSample(enabled: Boolean = true) {
     val checkedState = remember { mutableStateOf(true) }
-    Row(horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
         Checkbox(checked = checkedState.value, enabled = enabled, onCheckedChange = { checkedState.value = it })
         Checkbox(checked = !checkedState.value, enabled = enabled, onCheckedChange = { checkedState.value = !it })
     }
@@ -448,7 +449,7 @@ private fun ChipsSample(enabled: Boolean = true) {
     }
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value),
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
     ) {
         AssistChip(
             onClick = { /* Do something! */ },
@@ -489,7 +490,7 @@ private fun ChipsSample(enabled: Boolean = true) {
 
 @Composable
 private fun FilterChipsRow(enabled: Boolean, selected: Boolean) {
-    Row(horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
         var filterChipSelected by remember { mutableStateOf(selected) }
 
         FilterChip(
@@ -759,7 +760,7 @@ private fun BottomSheetScaffoldSample(
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Text("Sheet content")
                 FilledTonalButton(
-                    modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Short.value, bottom = OudsSpaceKeyToken.Fixed.Huge.value),
+                    modifier = Modifier.padding(top = OudsTheme.spaces.fixed.short, bottom = OudsTheme.spaces.fixed.huge),
                     onClick = { scope.launch { scaffoldState.bottomSheetState.partialExpand() } }
                 ) {
                     Text("Collapse sheet")
@@ -813,7 +814,7 @@ private fun SwitchesSample(enabled: Boolean = true) {
         )
     }
 
-    Row(horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
         Switch(
             checked = checked,
             onCheckedChange = { checked = it },
@@ -847,7 +848,7 @@ private fun TabsSample() {
         Tabs(state = state, onTabClick = { index -> state = index })
     }
 
-    SecondaryTabRow(modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Short.value), selectedTabIndex = state) {
+    SecondaryTabRow(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.short), selectedTabIndex = state) {
         Tabs(state = state, onTabClick = { index -> state = index })
     }
 }
@@ -903,10 +904,10 @@ private fun TextFieldsSample(enabled: Boolean = true, isError: Boolean = false) 
 private fun ColumnScope.SectionColumn(title: String, hasContentHorizontalPadding: Boolean = true, content: @Composable () -> Unit) {
     Text(
         text = title,
-        style = OudsTypographyKeyToken.HeadingMedium.value,
-        modifier = Modifier.padding(bottom = OudsSpaceKeyToken.Fixed.Short.value, top = OudsSpaceKeyToken.Fixed.Taller.value).padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
+        style = OudsTheme.typography.heading.medium,
+        modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller).padding(horizontal = OudsTheme.spaces.fixed.medium)
     )
-    Column(modifier = if (hasContentHorizontalPadding) Modifier.padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value) else Modifier) {
+    Column(modifier = if (hasContentHorizontalPadding) Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium) else Modifier) {
         content()
     }
 }
