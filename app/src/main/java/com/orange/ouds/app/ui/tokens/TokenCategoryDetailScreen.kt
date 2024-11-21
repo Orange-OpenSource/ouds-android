@@ -32,6 +32,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -91,7 +93,10 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .background(color = OudsColorKeyToken.Background.Primary.value)
-                                    .padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
+                                    .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+                                    .semantics {
+                                        heading()
+                                    },
                                 text = stringResource(id = tokenProperty.nameRes),
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
@@ -134,7 +139,10 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                             ) {
                                 TokenIllustration(tokenProperty = tokenProperty, token = token)
 
-                                Column(modifier = Modifier.weight(1f)) {
+                                Column(modifier = Modifier
+                                    .weight(1f)
+                                    .semantics(mergeDescendants = true) {}
+                                ) {
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
                                         text = token.name,
