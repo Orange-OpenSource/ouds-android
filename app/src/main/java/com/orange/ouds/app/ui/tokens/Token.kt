@@ -19,15 +19,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
 
-data class Token<T>(val name: String, val value: T) {
+data class Token<T>(val name: String, val value: @Composable () -> T) {
     val literalValue: String
         @Composable
-        get() = when (value) {
+        get() = when (val value = value()) {
             is Color -> value.toHexString()
             is Float -> stringResource(id = R.string.app_tokens_floatFormat_label, value)
             is Dp -> stringResource(id = R.string.app_tokens_dpFormat_label, value.toString().replace(".0.dp", "").substringBeforeLast(".dp"))
-            is TextStyle -> stringResource(id = R.string.app_tokens_spFormat_label, value.fontSize.toString().replace(".0.sp", "").substringBeforeLast(".sp"))
-            else -> value.toString()
+            is TextStyle -> stringResource(
+                id = R.string.app_tokens_spFormat_label,
+                value.fontSize.toString().replace(".0.sp", "").substringBeforeLast(".sp")
+            )
+            is Enum<*> -> value.name
+            else -> this.value.toString()
         }
 }
 
