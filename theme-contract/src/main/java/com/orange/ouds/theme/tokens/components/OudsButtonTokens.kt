@@ -19,8 +19,8 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 open class OudsButtonTokens(
-    val containerColor: OudsColorKeyToken = OudsColorKeyToken.Background.BrandPrimary,
-    val contentColor: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
+    val containerColor: OudsColorKeyToken = OudsColorKeyToken.Background.Brand.Primary,
+    val contentColor: OudsColorKeyToken = OudsColorKeyToken.Content.Brand.Primary,
     val disabledContainerColor: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
     val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.Content.Disabled,
     val cornerRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,

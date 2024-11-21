@@ -156,7 +156,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
 }
 
 @Composable
-private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<Any>) = when (tokenProperty) {
+private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) = when (tokenProperty) {
     is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
     is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
     is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)

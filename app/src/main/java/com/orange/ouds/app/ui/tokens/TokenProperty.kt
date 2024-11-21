@@ -28,7 +28,7 @@ import kotlin.reflect.KClass
 
 sealed class TokenProperty<T>(
     @StringRes val nameRes: Int?,
-    val tokens: @Composable () -> List<Token<Any>>,
+    val tokens: @Composable () -> List<Token<*>>,
     val categoryClass: KClass<T>
 ) where T : TokenCategory<T> {
 
@@ -52,55 +52,55 @@ sealed class TokenProperty<T>(
 
     data object ColorAction : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_action_label,
-        tokens = { OudsColorKeyToken.Action.entries.map { Token(it.name, it.value) } },
+        tokens = { OudsColorKeyToken.Action::class.getTokens<OudsColorKeyToken>() },
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorAlways : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_always_label,
-        tokens = { OudsColorKeyToken.Always.entries.map { Token(it.name, it.value) } },
+        tokens = { OudsColorKeyToken.Always::class.getTokens<OudsColorKeyToken>() },
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorBackground : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_background_label,
-        tokens = { OudsColorKeyToken.Background.entries.map { Token(it.name, it.value) } },
+        tokens = { OudsColorKeyToken.Background::class.getTokens<OudsColorKeyToken>() },
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorBorder : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_border_label,
-        tokens = { OudsColorKeyToken.Border.entries.map { Token(it.name, it.value) } },
+        tokens = { OudsColorKeyToken.Border::class.getTokens<OudsColorKeyToken>() },
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorBrand : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_brand_label,
-        tokens = { OudsColorKeyToken.Brand.entries.map { Token(it.name, it.value) } },
+        tokens = { OudsColorKeyToken.Brand::class.getTokens<OudsColorKeyToken>() },
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorContent : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_content_label,
-        tokens = { OudsColorKeyToken.Content.entries.map { Token(it.name, it.value) } },
-        categoryClass = TokenCategory.Color::class
-    )
-
-    data object ColorElevation : TokenProperty<TokenCategory.Color>(
-        nameRes = R.string.app_tokens_color_elevation_label,
-        tokens = { OudsColorKeyToken.Elevation.entries.map { Token(it.name, it.value) } },
-        categoryClass = TokenCategory.Color::class
-    )
-
-    data object ColorGradient : TokenProperty<TokenCategory.Color>(
-        nameRes = R.string.app_tokens_color_gradient_label,
-        tokens = { OudsColorKeyToken.Gradient.entries.map { Token(it.name, it.value) } },
+        tokens = { OudsColorKeyToken.Content::class.getTokens<OudsColorKeyToken>() },
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorDecorative : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_decorative_label,
-        tokens = { OudsColorKeyToken.Decorative.entries.map { Token(it.name, it.value) } },
+        tokens = { OudsColorKeyToken.Decorative::class.getTokens<OudsColorKeyToken>() },
+        categoryClass = TokenCategory.Color::class
+    )
+
+    data object ColorElevation : TokenProperty<TokenCategory.Color>(
+        nameRes = R.string.app_tokens_color_elevation_label,
+        tokens = { OudsColorKeyToken.Elevation::class.getTokens<OudsColorKeyToken>() },
+        categoryClass = TokenCategory.Color::class
+    )
+
+    data object ColorGradient : TokenProperty<TokenCategory.Color>(
+        nameRes = R.string.app_tokens_color_gradient_label,
+        tokens = { OudsColorKeyToken.Gradient::class.getTokens<OudsColorKeyToken>() },
         categoryClass = TokenCategory.Color::class
     )
 
@@ -217,4 +217,30 @@ sealed class TokenProperty<T>(
         tokens = { OudsTypographyKeyToken.entries.map { Token(it.name, it.value) } },
         categoryClass = TokenCategory.Typography::class
     )
+}
+
+@PublishedApi
+internal fun KClass<*>.getRelativeName(parent: KClass<*>): String {
+    return qualifiedName.orEmpty().removePrefix("${parent.qualifiedName.orEmpty()}.")
+}
+
+@PublishedApi
+internal inline fun <reified T> KClass<*>.getNestedObjects(): List<T> {
+    return getNestedClassesRecursive().mapNotNull { it.objectInstance }.filterIsInstance<T>()
+}
+
+@PublishedApi
+internal fun KClass<*>.getNestedClassesRecursive(): List<KClass<*>> {
+    return nestedClasses + nestedClasses.flatMap { it.getNestedClassesRecursive() }
+}
+
+@Composable
+inline fun <reified T : Any> KClass<*>.getTokens(): List<Token<*>> {
+    return getNestedObjects<T>().mapNotNull { keyToken ->
+        val value = when (keyToken) {
+            is OudsColorKeyToken -> keyToken.value
+            else -> null
+        }
+        value?.let { Token(keyToken::class.getRelativeName(this).removeSuffix(".Companion"), it) }
+    }.sortedBy { it.name }
 }
