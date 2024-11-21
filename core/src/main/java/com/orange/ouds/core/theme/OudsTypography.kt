@@ -411,27 +411,27 @@ fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypograph
 @Stable
 fun OudsTypography.fromToken(token: OudsTypographyKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): TextStyle {
     val typography: Any = when (token) {
-        OudsTypographyKeyToken.DisplayLarge -> displayLarge
-        OudsTypographyKeyToken.DisplayMedium -> displayMedium
-        OudsTypographyKeyToken.DisplaySmall -> displaySmall
-        OudsTypographyKeyToken.HeadingExtraLarge -> headingExtraLarge
-        OudsTypographyKeyToken.HeadingLarge -> headingLarge
-        OudsTypographyKeyToken.HeadingMedium -> headingMedium
-        OudsTypographyKeyToken.HeadingSmall -> headingSmall
-        OudsTypographyKeyToken.BodyDefaultLarge -> bodyDefaultLarge
-        OudsTypographyKeyToken.BodyDefaultMedium -> bodyDefaultMedium
-        OudsTypographyKeyToken.BodyDefaultSmall -> bodyDefaultSmall
-        OudsTypographyKeyToken.BodyStrongLarge -> bodyStrongLarge
-        OudsTypographyKeyToken.BodyStrongMedium -> bodyStrongMedium
-        OudsTypographyKeyToken.BodyStrongSmall -> bodyStrongSmall
-        OudsTypographyKeyToken.LabelDefaultExtraLarge -> labelDefaultExtraLarge
-        OudsTypographyKeyToken.LabelDefaultLarge -> labelDefaultLarge
-        OudsTypographyKeyToken.LabelDefaultMedium -> labelDefaultMedium
-        OudsTypographyKeyToken.LabelDefaultSmall -> labelDefaultSmall
-        OudsTypographyKeyToken.LabelStrongExtraLarge -> labelStrongExtraLarge
-        OudsTypographyKeyToken.LabelStrongLarge -> labelStrongLarge
-        OudsTypographyKeyToken.LabelStrongMedium -> labelStrongMedium
-        OudsTypographyKeyToken.LabelStrongSmall -> labelStrongSmall
+        OudsTypographyKeyToken.Display.Large -> displayLarge
+        OudsTypographyKeyToken.Display.Medium -> displayMedium
+        OudsTypographyKeyToken.Display.Small -> displaySmall
+        OudsTypographyKeyToken.Heading.ExtraLarge -> headingExtraLarge
+        OudsTypographyKeyToken.Heading.Large -> headingLarge
+        OudsTypographyKeyToken.Heading.Medium -> headingMedium
+        OudsTypographyKeyToken.Heading.Small -> headingSmall
+        OudsTypographyKeyToken.Body.Default.Large -> bodyDefaultLarge
+        OudsTypographyKeyToken.Body.Default.Medium -> bodyDefaultMedium
+        OudsTypographyKeyToken.Body.Default.Small -> bodyDefaultSmall
+        OudsTypographyKeyToken.Body.Strong.Large -> bodyStrongLarge
+        OudsTypographyKeyToken.Body.Strong.Medium -> bodyStrongMedium
+        OudsTypographyKeyToken.Body.Strong.Small -> bodyStrongSmall
+        OudsTypographyKeyToken.Label.Default.ExtraLarge -> labelDefaultExtraLarge
+        OudsTypographyKeyToken.Label.Default.Large -> labelDefaultLarge
+        OudsTypographyKeyToken.Label.Default.Medium -> labelDefaultMedium
+        OudsTypographyKeyToken.Label.Default.Small -> labelDefaultSmall
+        OudsTypographyKeyToken.Label.Strong.ExtraLarge -> labelStrongExtraLarge
+        OudsTypographyKeyToken.Label.Strong.Large -> labelStrongLarge
+        OudsTypographyKeyToken.Label.Strong.Medium -> labelStrongMedium
+        OudsTypographyKeyToken.Label.Strong.Small -> labelStrongSmall
     }
 
     return if (typography is OudsAdaptiveTokenValue<*>) {

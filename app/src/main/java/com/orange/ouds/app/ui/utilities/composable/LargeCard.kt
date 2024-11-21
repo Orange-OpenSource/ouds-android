@@ -69,7 +69,7 @@ fun LargeCard(
                     color = OudsColorKeyToken.Content.Default.value,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
-                    style = OudsTypographyKeyToken.HeadingMedium.value
+                    style = OudsTypographyKeyToken.Heading.Medium.value
                 )
             }
 

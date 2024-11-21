@@ -13,7 +13,6 @@
 package com.orange.ouds.core.theme
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -366,7 +365,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Fixed): Dp {
 
 @Stable
 fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
-    val dimensionAdaptableSpaceToken = when (token) {
+    return when (token) {
         OudsSpaceKeyToken.Scaled.None -> scaled.none
         OudsSpaceKeyToken.Scaled.Smash -> scaled.smash
         OudsSpaceKeyToken.Scaled.Shortest -> scaled.shortest
@@ -377,13 +376,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled, adaptiveWindowType: Ou
         OudsSpaceKeyToken.Scaled.Taller -> scaled.taller
         OudsSpaceKeyToken.Scaled.Tallest -> scaled.tallest
         OudsSpaceKeyToken.Scaled.Spacious -> scaled.spacious
-    }
-
-    return when (adaptiveWindowType) {
-        OudsAdaptiveWindowType.EXTRA_COMPACT -> dimensionAdaptableSpaceToken.extraCompact
-        OudsAdaptiveWindowType.COMPACT -> dimensionAdaptableSpaceToken.compact
-        OudsAdaptiveWindowType.MEDIUM -> dimensionAdaptableSpaceToken.medium
-    }
+    }.getValue(adaptiveWindowType)
 }
 
 @Stable
@@ -396,12 +389,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
         OudsSpaceKeyToken.PaddingInline.Tall -> paddingInline.tall
         OudsSpaceKeyToken.PaddingInline.Taller -> paddingInline.taller
         OudsSpaceKeyToken.PaddingInline.Tallest -> paddingInline.tallest
-    }
-}
 
-@Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline.WithIcon): Dp {
-    return when (token) {
         OudsSpaceKeyToken.PaddingInline.WithIcon.None -> paddingInline.withIcon.none
         OudsSpaceKeyToken.PaddingInline.WithIcon.Shortest -> paddingInline.withIcon.shortest
         OudsSpaceKeyToken.PaddingInline.WithIcon.Shorter -> paddingInline.withIcon.shorter
@@ -410,12 +398,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline.WithIcon): Dp {
         OudsSpaceKeyToken.PaddingInline.WithIcon.Tall -> paddingInline.withIcon.tall
         OudsSpaceKeyToken.PaddingInline.WithIcon.Taller -> paddingInline.withIcon.taller
         OudsSpaceKeyToken.PaddingInline.WithIcon.Tallest -> paddingInline.withIcon.tallest
-    }
-}
 
-@Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline.WithArrow): Dp {
-    return when (token) {
         OudsSpaceKeyToken.PaddingInline.WithArrow.None -> paddingInline.withArrow.none
         OudsSpaceKeyToken.PaddingInline.WithArrow.Shortest -> paddingInline.withArrow.shortest
         OudsSpaceKeyToken.PaddingInline.WithArrow.Shorter -> paddingInline.withArrow.shorter
@@ -437,12 +420,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
         OudsSpaceKeyToken.PaddingBlock.Tall -> paddingBlock.tall
         OudsSpaceKeyToken.PaddingBlock.Taller -> paddingBlock.taller
         OudsSpaceKeyToken.PaddingBlock.Tallest -> paddingBlock.tallest
-    }
-}
 
-@Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock.WithIcon): Dp {
-    return when (token) {
         OudsSpaceKeyToken.PaddingBlock.WithIcon.None -> paddingBlock.withIcon.none
         OudsSpaceKeyToken.PaddingBlock.WithIcon.Shortest -> paddingBlock.withIcon.shortest
         OudsSpaceKeyToken.PaddingBlock.WithIcon.Shorter -> paddingBlock.withIcon.shorter
@@ -478,24 +456,14 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
         OudsSpaceKeyToken.ColumnGap.Medium -> columnGap.medium
         OudsSpaceKeyToken.ColumnGap.Tall -> columnGap.tall
         OudsSpaceKeyToken.ColumnGap.Taller -> columnGap.taller
-    }
-}
 
-@Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap.WithIcon): Dp {
-    return when (token) {
         OudsSpaceKeyToken.ColumnGap.WithIcon.None -> columnGap.withIcon.none
         OudsSpaceKeyToken.ColumnGap.WithIcon.Shortest -> columnGap.withIcon.shortest
         OudsSpaceKeyToken.ColumnGap.WithIcon.Shorter -> columnGap.withIcon.shorter
         OudsSpaceKeyToken.ColumnGap.WithIcon.Short -> columnGap.withIcon.short
         OudsSpaceKeyToken.ColumnGap.WithIcon.Medium -> columnGap.withIcon.medium
         OudsSpaceKeyToken.ColumnGap.WithIcon.Tall -> columnGap.withIcon.tall
-    }
-}
 
-@Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap.WithArrow): Dp {
-    return when (token) {
         OudsSpaceKeyToken.ColumnGap.WithArrow.None -> columnGap.withArrow.none
         OudsSpaceKeyToken.ColumnGap.WithArrow.Shortest -> columnGap.withArrow.shortest
         OudsSpaceKeyToken.ColumnGap.WithArrow.Shorter -> columnGap.withArrow.shorter
@@ -514,12 +482,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
         OudsSpaceKeyToken.RowGap.Short -> rowGap.short
         OudsSpaceKeyToken.RowGap.Medium -> rowGap.medium
         OudsSpaceKeyToken.RowGap.Tall -> rowGap.tall
-    }
-}
 
-@Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap.WithIcon): Dp {
-    return when (token) {
         OudsSpaceKeyToken.RowGap.WithIcon.None -> rowGap.withIcon.none
         OudsSpaceKeyToken.RowGap.WithIcon.Shortest -> rowGap.withIcon.shortest
         OudsSpaceKeyToken.RowGap.WithIcon.Shorter -> rowGap.withIcon.shorter
@@ -530,106 +493,16 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap.WithIcon): Dp {
 }
 
 /**
- * Converts an OUDS column gap space token to the local column gap space value provided by the theme.
+ * Converts an OUDS space token to the local space value provided by the theme.
  */
-val OudsSpaceKeyToken.ColumnGap.value: Dp
-    @ReadOnlyComposable
+val OudsSpaceKeyToken.value: Dp
     @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS column gap with icon space token to the local column gap with icon space value provided by the theme.
- */
-val OudsSpaceKeyToken.ColumnGap.WithIcon.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS column gap with arrow space token to the local column gap with arrow space value provided by the theme.
- */
-val OudsSpaceKeyToken.ColumnGap.WithArrow.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-
-/**
- * Converts an OUDS fixed space token to the local space value provided by the theme.
- */
-val OudsSpaceKeyToken.Fixed.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS block padding token to the local block padding value provided by the theme.
- */
-val OudsSpaceKeyToken.PaddingBlock.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS block with icon padding token to the local block with icon padding value provided by the theme.
- */
-val OudsSpaceKeyToken.PaddingBlock.WithIcon.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-
-/**
- * Converts an OUDS inline padding token to the local inline padding value provided by the theme.
- */
-val OudsSpaceKeyToken.PaddingInline.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS inline padding with icon token to the local inline padding with icon value provided by the theme.
- */
-val OudsSpaceKeyToken.PaddingInline.WithIcon.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS inline padding with arrow token to the local inline padding with arrow value provided by the theme.
- */
-val OudsSpaceKeyToken.PaddingInline.WithArrow.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS inset token to the local inset value provided by the theme.
- */
-val OudsSpaceKeyToken.Inset.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS row gap space token to the local row gap space value provided by the theme.
- */
-val OudsSpaceKeyToken.RowGap.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS row gap with icon space token to the local row gap with icon space value provided by the theme.
- */
-val OudsSpaceKeyToken.RowGap.WithIcon.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this)
-
-/**
- * Converts an OUDS scaled space token to the local space value provided by the theme depending on the window size.
- */
-val OudsSpaceKeyToken.Scaled.value: Dp
-    @Composable
-    get() = OudsTheme.spaces.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+    get() = when (this) {
+        is OudsSpaceKeyToken.ColumnGap -> OudsTheme.spaces.fromToken(this)
+        is OudsSpaceKeyToken.Fixed -> OudsTheme.spaces.fromToken(this)
+        is OudsSpaceKeyToken.Inset -> OudsTheme.spaces.fromToken(this)
+        is OudsSpaceKeyToken.PaddingBlock -> OudsTheme.spaces.fromToken(this)
+        is OudsSpaceKeyToken.PaddingInline -> OudsTheme.spaces.fromToken(this)
+        is OudsSpaceKeyToken.RowGap -> OudsTheme.spaces.fromToken(this)
+        is OudsSpaceKeyToken.Scaled -> OudsTheme.spaces.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+    }

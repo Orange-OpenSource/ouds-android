@@ -29,7 +29,7 @@ open class OudsButtonTokens(
     val focusedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val hoveredElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val disabledElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
-    val labelStyle: OudsTypographyKeyToken = OudsTypographyKeyToken.BodyStrongLarge,
+    val labelStyle: OudsTypographyKeyToken = OudsTypographyKeyToken.Body.Strong.Large,
     val verticalContentPadding: OudsSpaceKeyToken.Fixed = OudsSpaceKeyToken.Fixed.Smash,
     val horizontalContentPadding: OudsSpaceKeyToken.Fixed = OudsSpaceKeyToken.Fixed.Tall
 )

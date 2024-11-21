@@ -13,7 +13,6 @@
 package com.orange.ouds.core.theme
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -378,105 +377,149 @@ fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
 )
 
 @Stable
-fun OudsSizes.fromToken(token: OudsSizeKeyToken.IconDecorative): Dp {
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.Decorative): Dp {
     return when (token) {
-        OudsSizeKeyToken.IconDecorative.Shortest -> icon.decorative.shortest
-        OudsSizeKeyToken.IconDecorative.Shorter -> icon.decorative.shorter
-        OudsSizeKeyToken.IconDecorative.Short -> icon.decorative.short
-        OudsSizeKeyToken.IconDecorative.Medium -> icon.decorative.medium
-        OudsSizeKeyToken.IconDecorative.Tall -> icon.decorative.tall
-        OudsSizeKeyToken.IconDecorative.Taller -> icon.decorative.taller
-        OudsSizeKeyToken.IconDecorative.Tallest -> icon.decorative.tallest
+        OudsSizeKeyToken.Icon.Decorative.Shortest -> icon.decorative.shortest
+        OudsSizeKeyToken.Icon.Decorative.Shorter -> icon.decorative.shorter
+        OudsSizeKeyToken.Icon.Decorative.Short -> icon.decorative.short
+        OudsSizeKeyToken.Icon.Decorative.Medium -> icon.decorative.medium
+        OudsSizeKeyToken.Icon.Decorative.Tall -> icon.decorative.tall
+        OudsSizeKeyToken.Icon.Decorative.Taller -> icon.decorative.taller
+        OudsSizeKeyToken.Icon.Decorative.Tallest -> icon.decorative.tallest
     }
 }
 
 @Stable
-fun OudsSizes.fromToken(token: OudsSizeKeyToken.IconWithText, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
-    val dimensionSizeIconWithTextValue: Any = when (token) {
-        OudsSizeKeyToken.IconWithText.HeadingSmallSizeShort -> icon.withHeading.small.sizeShort
-        OudsSizeKeyToken.IconWithText.HeadingSmallSizeMedium -> icon.withHeading.small.sizeMedium
-        OudsSizeKeyToken.IconWithText.HeadingSmallSizeTall -> icon.withHeading.small.sizeTall
-        OudsSizeKeyToken.IconWithText.HeadingMediumSizeShort -> icon.withHeading.medium.sizeShort
-        OudsSizeKeyToken.IconWithText.HeadingMediumSizeMedium -> icon.withHeading.medium.sizeMedium
-        OudsSizeKeyToken.IconWithText.HeadingMediumSizeTall -> icon.withHeading.medium.sizeTall
-        OudsSizeKeyToken.IconWithText.HeadingLargeSizeShort -> icon.withHeading.large.sizeShort
-        OudsSizeKeyToken.IconWithText.HeadingLargeSizeMedium -> icon.withHeading.large.sizeMedium
-        OudsSizeKeyToken.IconWithText.HeadingLargeSizeTall -> icon.withHeading.large.sizeTall
-        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeShort -> icon.withHeading.extraLarge.sizeShort
-        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeMedium -> icon.withHeading.extraLarge.sizeMedium
-        OudsSizeKeyToken.IconWithText.HeadingExtraLargeSizeTall -> icon.withHeading.extraLarge.sizeTall
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeShorter -> icon.withLabel.large.sizeShorter
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeShort -> icon.withLabel.large.sizeShort
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeMedium -> icon.withLabel.large.sizeMedium
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeTall -> icon.withLabel.large.sizeTall
-        OudsSizeKeyToken.IconWithText.LabelLargeSizeTaller -> icon.withLabel.large.sizeTaller
-        OudsSizeKeyToken.IconWithText.LabelMediumSizeShort -> icon.withLabel.medium.sizeShort
-        OudsSizeKeyToken.IconWithText.LabelMediumSizeMedium -> icon.withLabel.medium.sizeMedium
-        OudsSizeKeyToken.IconWithText.LabelMediumSizeTall -> icon.withLabel.medium.sizeTall
-        OudsSizeKeyToken.IconWithText.LabelSmallSizeShort -> icon.withLabel.small.sizeShort
-        OudsSizeKeyToken.IconWithText.LabelSmallSizeMedium -> icon.withLabel.small.sizeMedium
-        OudsSizeKeyToken.IconWithText.LabelSmallSizeTall -> icon.withLabel.small.sizeTall
-        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeShort -> icon.withLabel.extraLarge.sizeShort
-        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeMedium -> icon.withLabel.extraLarge.sizeMedium
-        OudsSizeKeyToken.IconWithText.LabelExtraLargeSizeTall -> icon.withLabel.extraLarge.sizeTall
-        OudsSizeKeyToken.IconWithText.BodySmallSizeShort -> icon.withBody.small.sizeShort
-        OudsSizeKeyToken.IconWithText.BodySmallSizeMedium -> icon.withBody.small.sizeMedium
-        OudsSizeKeyToken.IconWithText.BodySmallSizeTall -> icon.withBody.small.sizeTall
-        OudsSizeKeyToken.IconWithText.BodyMediumSizeShort -> icon.withBody.medium.sizeShort
-        OudsSizeKeyToken.IconWithText.BodyMediumSizeMedium -> icon.withBody.medium.sizeMedium
-        OudsSizeKeyToken.IconWithText.BodyMediumSizeTall -> icon.withBody.medium.sizeTall
-        OudsSizeKeyToken.IconWithText.BodyLargeSizeShort -> icon.withBody.large.sizeShort
-        OudsSizeKeyToken.IconWithText.BodyLargeSizeMedium -> icon.withBody.large.sizeMedium
-        OudsSizeKeyToken.IconWithText.BodyLargeSizeTall -> icon.withBody.large.sizeTall
-    }
-
-    return if (dimensionSizeIconWithTextValue is OudsAdaptiveTokenValue<*>) {
-        dimensionSizeIconWithTextValue.getValue(adaptiveWindowType)
-    } else {
-        dimensionSizeIconWithTextValue
-    } as Dp
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithHeadingExtraLarge, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithHeadingExtraLarge.SizeShort -> icon.withHeading.extraLarge.sizeShort
+        OudsSizeKeyToken.Icon.WithHeadingExtraLarge.SizeMedium -> icon.withHeading.extraLarge.sizeMedium
+        OudsSizeKeyToken.Icon.WithHeadingExtraLarge.SizeTall -> icon.withHeading.extraLarge.sizeTall
+    }.getValue(adaptiveWindowType)
 }
 
 @Stable
-fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidthType, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
-    val dimensionMaxWidthTypeToken = when (token) {
-        OudsSizeKeyToken.MaxWidthType.DisplaySmall -> maxWidthType.display.small
-        OudsSizeKeyToken.MaxWidthType.DisplayMedium -> maxWidthType.display.medium
-        OudsSizeKeyToken.MaxWidthType.DisplayLarge -> maxWidthType.display.large
-        OudsSizeKeyToken.MaxWidthType.HeadingSmall -> maxWidthType.heading.small
-        OudsSizeKeyToken.MaxWidthType.HeadingMedium -> maxWidthType.heading.medium
-        OudsSizeKeyToken.MaxWidthType.HeadingLarge -> maxWidthType.heading.large
-        OudsSizeKeyToken.MaxWidthType.HeadingExtraLarge -> maxWidthType.heading.extraLarge
-        OudsSizeKeyToken.MaxWidthType.BodySmall -> maxWidthType.body.small
-        OudsSizeKeyToken.MaxWidthType.BodyMedium -> maxWidthType.body.medium
-        OudsSizeKeyToken.MaxWidthType.BodyLarge -> maxWidthType.body.large
-    }
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithHeadingLarge, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithHeadingLarge.SizeShort -> icon.withHeading.large.sizeShort
+        OudsSizeKeyToken.Icon.WithHeadingLarge.SizeMedium -> icon.withHeading.large.sizeMedium
+        OudsSizeKeyToken.Icon.WithHeadingLarge.SizeTall -> icon.withHeading.large.sizeTall
+    }.getValue(adaptiveWindowType)
+}
 
-    return when (adaptiveWindowType) {
-        OudsAdaptiveWindowType.EXTRA_COMPACT -> dimensionMaxWidthTypeToken.extraCompact
-        OudsAdaptiveWindowType.COMPACT -> dimensionMaxWidthTypeToken.compact
-        OudsAdaptiveWindowType.MEDIUM -> dimensionMaxWidthTypeToken.medium
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithHeadingMedium, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithHeadingMedium.SizeShort -> icon.withHeading.medium.sizeShort
+        OudsSizeKeyToken.Icon.WithHeadingMedium.SizeMedium -> icon.withHeading.medium.sizeMedium
+        OudsSizeKeyToken.Icon.WithHeadingMedium.SizeTall -> icon.withHeading.medium.sizeTall
+    }.getValue(adaptiveWindowType)
+}
+
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithHeadingSmall, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithHeadingSmall.SizeShort -> icon.withHeading.small.sizeShort
+        OudsSizeKeyToken.Icon.WithHeadingSmall.SizeMedium -> icon.withHeading.small.sizeMedium
+        OudsSizeKeyToken.Icon.WithHeadingSmall.SizeTall -> icon.withHeading.small.sizeTall
+    }.getValue(adaptiveWindowType)
+}
+
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithBodyLarge, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithBodyLarge.SizeShort -> icon.withBody.large.sizeShort
+        OudsSizeKeyToken.Icon.WithBodyLarge.SizeMedium -> icon.withBody.large.sizeMedium
+        OudsSizeKeyToken.Icon.WithBodyLarge.SizeTall -> icon.withBody.large.sizeTall
+    }.getValue(adaptiveWindowType)
+}
+
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithBodyMedium, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithBodyMedium.SizeShort -> icon.withBody.medium.sizeShort
+        OudsSizeKeyToken.Icon.WithBodyMedium.SizeMedium -> icon.withBody.medium.sizeMedium
+        OudsSizeKeyToken.Icon.WithBodyMedium.SizeTall -> icon.withBody.medium.sizeTall
+    }.getValue(adaptiveWindowType)
+}
+
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithBodySmall, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithBodySmall.SizeShort -> icon.withBody.small.sizeShort
+        OudsSizeKeyToken.Icon.WithBodySmall.SizeMedium -> icon.withBody.small.sizeMedium
+        OudsSizeKeyToken.Icon.WithBodySmall.SizeTall -> icon.withBody.small.sizeTall
+    }.getValue(adaptiveWindowType)
+}
+
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabelExtraLarge): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithLabelExtraLarge.SizeShort -> icon.withLabel.extraLarge.sizeShort
+        OudsSizeKeyToken.Icon.WithLabelExtraLarge.SizeMedium -> icon.withLabel.extraLarge.sizeMedium
+        OudsSizeKeyToken.Icon.WithLabelExtraLarge.SizeTall -> icon.withLabel.extraLarge.sizeTall
     }
 }
 
-/**
- * Converts an OUDS decorative icon size token to the local decorative icon size value provided by the theme.
- */
-val OudsSizeKeyToken.IconDecorative.value: Dp
-    @ReadOnlyComposable
-    @Composable
-    get() = OudsTheme.sizes.fromToken(this)
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabelLarge): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithLabelLarge.SizeShorter -> icon.withLabel.large.sizeShorter
+        OudsSizeKeyToken.Icon.WithLabelLarge.SizeShort -> icon.withLabel.large.sizeShort
+        OudsSizeKeyToken.Icon.WithLabelLarge.SizeMedium -> icon.withLabel.large.sizeMedium
+        OudsSizeKeyToken.Icon.WithLabelLarge.SizeTall -> icon.withLabel.large.sizeTall
+        OudsSizeKeyToken.Icon.WithLabelLarge.SizeTaller -> icon.withLabel.large.sizeTaller
+    }
+}
 
-/**
- * Converts an OUDS icon size with typography token to the local icon size with typography value provided by the theme depending on the window size.
- */
-val OudsSizeKeyToken.IconWithText.value: Dp
-    @Composable
-    get() = OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabelMedium): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithLabelMedium.SizeShort -> icon.withLabel.medium.sizeShort
+        OudsSizeKeyToken.Icon.WithLabelMedium.SizeMedium -> icon.withLabel.medium.sizeMedium
+        OudsSizeKeyToken.Icon.WithLabelMedium.SizeTall -> icon.withLabel.medium.sizeTall
+    }
+}
 
-/**
- * Converts an OUDS max width with typography token to the local max width with typography value provided by the theme depending on the window size.
- */
-val OudsSizeKeyToken.MaxWidthType.value: Dp
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabelSmall): Dp {
+    return when (token) {
+        OudsSizeKeyToken.Icon.WithLabelSmall.SizeShort -> icon.withLabel.small.sizeShort
+        OudsSizeKeyToken.Icon.WithLabelSmall.SizeMedium -> icon.withLabel.small.sizeMedium
+        OudsSizeKeyToken.Icon.WithLabelSmall.SizeTall -> icon.withLabel.small.sizeTall
+    }
+}
+
+@Stable
+fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+    return when (token) {
+        OudsSizeKeyToken.MaxWidth.Type.DisplaySmall -> maxWidthType.display.small
+        OudsSizeKeyToken.MaxWidth.Type.DisplayMedium -> maxWidthType.display.medium
+        OudsSizeKeyToken.MaxWidth.Type.DisplayLarge -> maxWidthType.display.large
+        OudsSizeKeyToken.MaxWidth.Type.HeadingSmall -> maxWidthType.heading.small
+        OudsSizeKeyToken.MaxWidth.Type.HeadingMedium -> maxWidthType.heading.medium
+        OudsSizeKeyToken.MaxWidth.Type.HeadingLarge -> maxWidthType.heading.large
+        OudsSizeKeyToken.MaxWidth.Type.HeadingExtraLarge -> maxWidthType.heading.extraLarge
+        OudsSizeKeyToken.MaxWidth.Type.BodySmall -> maxWidthType.body.small
+        OudsSizeKeyToken.MaxWidth.Type.BodyMedium -> maxWidthType.body.medium
+        OudsSizeKeyToken.MaxWidth.Type.BodyLarge -> maxWidthType.body.large
+    }.getValue(adaptiveWindowType)
+}
+
+val OudsSizeKeyToken.value: Dp
     @Composable
-    get() = OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+    get() = when (this) {
+        is OudsSizeKeyToken.Icon.Decorative -> OudsTheme.sizes.fromToken(this)
+        is OudsSizeKeyToken.Icon.WithHeadingExtraLarge -> OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+        is OudsSizeKeyToken.Icon.WithHeadingLarge -> OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+        is OudsSizeKeyToken.Icon.WithHeadingMedium -> OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+        is OudsSizeKeyToken.Icon.WithHeadingSmall -> OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+        is OudsSizeKeyToken.Icon.WithBodyLarge -> OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+        is OudsSizeKeyToken.Icon.WithBodyMedium -> OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+        is OudsSizeKeyToken.Icon.WithBodySmall -> OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+        is OudsSizeKeyToken.Icon.WithLabelExtraLarge -> OudsTheme.sizes.fromToken(this)
+        is OudsSizeKeyToken.Icon.WithLabelLarge -> OudsTheme.sizes.fromToken(this)
+        is OudsSizeKeyToken.Icon.WithLabelMedium -> OudsTheme.sizes.fromToken(this)
+        is OudsSizeKeyToken.Icon.WithLabelSmall -> OudsTheme.sizes.fromToken(this)
+        is OudsSizeKeyToken.MaxWidth -> OudsTheme.sizes.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+    }

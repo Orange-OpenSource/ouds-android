@@ -35,3 +35,5 @@ inline fun <R> tryOrNull(block: () -> R): R? {
         null
     }
 }
+
+inline fun <reified V> Any.asOrNull(): V? = this as? V

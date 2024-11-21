@@ -12,11 +12,12 @@
 
 package com.orange.ouds.theme.tokens
 
-enum class OudsElevationKeyToken {
-    None,
-    Raised,
-    OverlayDefault,
-    AllSticky,
-    Drag,
-    OverlayEmphasized
+sealed interface OudsElevationKeyToken {
+
+    data object None : OudsElevationKeyToken
+    data object Raised : OudsElevationKeyToken
+    data object OverlayDefault : OudsElevationKeyToken
+    data object AllSticky : OudsElevationKeyToken
+    data object Drag : OudsElevationKeyToken
+    data object OverlayEmphasized : OudsElevationKeyToken
 }
