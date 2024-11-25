@@ -15,6 +15,12 @@ package com.orange.ouds.app.ui.tokens
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -31,10 +37,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -52,7 +61,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.AnnotatedString
@@ -237,6 +245,7 @@ private fun TokenPropertyHeader(tokenProperty: TokenProperty<*>, modifier: Modif
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
     val context = LocalContext.current
@@ -244,20 +253,29 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     val linkStateDescription = stringResource(if (isExpanded) R.string.app_common_expanded_a11y else R.string.app_common_collapsed_a11y)
     val linkContentDescription = stringResource(R.string.app_tokens_viewCodeExample_label)
+    val transition = updateTransition(targetState = isExpanded, label = "StarButtonTransition")
+    val linkArrowRotation by transition.animateFloat(
+        label = "LinkArrowRotation",
+        transitionSpec = {
+            tween(durationMillis = 300, easing = FastOutSlowInEasing)
+        }
+    ) { expanded ->
+        if (expanded) 180f else 0f
+    }
 
-    Column(modifier = modifier) {
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .clearAndSetSemantics {
-                contentDescription = linkContentDescription
-                stateDescription = linkStateDescription
-                onClick {
-                    isExpanded = !isExpanded
-                    true
-                }
-            }) {
+    Column(modifier = modifier.padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)) {
+        CompositionLocalProvider(LocalRippleConfiguration provides null) {
             Row(
-                modifier = Modifier.padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Short.value),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = OudsSpaceKeyToken.Fixed.Short.value)
+                    .clickable {
+                        isExpanded = !isExpanded
+                    }
+                    .clearAndSetSemantics {
+                        contentDescription = linkContentDescription
+                        stateDescription = linkStateDescription
+                    },
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.PaddingInline.WithArrow.Short.value)
             ) {
@@ -266,17 +284,16 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                     style = OudsTypographyKeyToken.Label.Strong.Large.value
                 )
                 Icon(
-                    modifier = Modifier.rotate(if (isExpanded) 180f else 0f),
+                    modifier = Modifier.rotate(linkArrowRotation),
                     painter = painterResource(R.drawable.ic_chevron_down),
                     tint = OudsColorKeyToken.Brand.Primary.Default.value,
                     contentDescription = null
                 )
             }
         }
-        AnimatedVisibility(visible = isExpanded) {
+        AnimatedVisibility(visible = isExpanded, enter = fadeIn(tween(delayMillis = 150)) + expandVertically()) {
             Box(
                 modifier = Modifier
-                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
                     .background(color = OudsColorKeyToken.Background.Secondary.value)
                     .border(width = 1.dp, color = OudsColorKeyToken.Border.Default.value, shape = RectangleShape)
             ) {
