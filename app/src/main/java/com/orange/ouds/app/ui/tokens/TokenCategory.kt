@@ -36,8 +36,7 @@ sealed class TokenCategory<T>(
     val valueCodeExample: String? = null,
     val properties: List<TokenProperty<T>> = emptyList(),
     val subcategories: List<TokenCategory<*>> = emptyList(),
-
-    ) where T : TokenCategory<T> {
+) where T : TokenCategory<T> {
 
     companion object {
         fun fromId(tokenId: Long) = tokenCategories.firstOrNull { token -> token.id == tokenId }
