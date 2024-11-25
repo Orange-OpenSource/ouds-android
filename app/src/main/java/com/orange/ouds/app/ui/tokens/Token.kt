@@ -22,13 +22,13 @@ import com.orange.ouds.app.R
 data class Token<T>(val name: String, val value: @Composable () -> T) {
     val literalValue: String
         @Composable
-        get() = when (val v = value()) {
-            is Color -> v.toHexString()
-            is Float -> stringResource(id = R.string.app_tokens_floatFormat_label, v)
-            is Dp -> stringResource(id = R.string.app_tokens_dpFormat_label, v.toString().replace(".0.dp", "").substringBeforeLast(".dp"))
+        get() = when (val value = value()) {
+            is Color -> value.toHexString()
+            is Float -> stringResource(id = R.string.app_tokens_floatFormat_label, value)
+            is Dp -> stringResource(id = R.string.app_tokens_dpFormat_label, value.toString().replace(".0.dp", "").substringBeforeLast(".dp"))
             is TextStyle -> stringResource(
                 id = R.string.app_tokens_spFormat_label,
-                v.fontSize.toString().replace(".0.sp", "").substringBeforeLast(".sp")
+                value.fontSize.toString().replace(".0.sp", "").substringBeforeLast(".sp")
             )
             else -> value.toString()
         }
