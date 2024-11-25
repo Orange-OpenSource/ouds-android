@@ -87,21 +87,16 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     }
                     stickyHeader {
                         tokenProperty.nameRes?.let {
-                            Row(
+                            Text(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .background(color = OudsColorKeyToken.Background.Primary.value)
-                            ) {
-                                Text(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
-                                    text = stringResource(id = tokenProperty.nameRes),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    style = OudsTypographyKeyToken.HeadingMedium.value
-                                )
-                            }
+                                    .padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
+                                text = stringResource(id = tokenProperty.nameRes),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                style = OudsTypographyKeyToken.HeadingMedium.value
+                            )
                         }
                     }
                     item {
