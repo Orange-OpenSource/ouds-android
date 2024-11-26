@@ -44,7 +44,7 @@ open class WhiteLabelTheme : OudsThemeContract {
                 defaultElevation = OudsElevationKeyToken.OverlayDefault,
                 focusedElevation = OudsElevationKeyToken.OverlayDefault,
                 hoveredElevation = OudsElevationKeyToken.OverlayDefault,
-                labelStyle = OudsTypographyKeyToken.BodyDefaultLarge,
+                labelStyle = OudsTypographyKeyToken.Body.Default.Large,
                 verticalContentPadding = OudsSpaceKeyToken.Fixed.Shortest,
                 horizontalContentPadding = OudsSpaceKeyToken.Fixed.Short
             )

@@ -80,7 +80,7 @@ private fun TopBar(
                 text = title,
                 color = OudsColorKeyToken.Content.Default.value,
                 modifier = Modifier.semantics { traversalIndex = -1f },
-                style = OudsTypographyKeyToken.HeadingMedium.value
+                style = OudsTypographyKeyToken.Heading.Medium.value
             )
         },
         actions = {

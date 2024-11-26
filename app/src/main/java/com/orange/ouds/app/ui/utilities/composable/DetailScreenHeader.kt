@@ -71,7 +71,7 @@ private fun DetailScreenDescription(
         modifier = modifier,
         text = stringResource(descriptionRes),
         color = OudsColorKeyToken.Content.Default.value,
-        style = OudsTypographyKeyToken.BodyDefaultLarge.value
+        style = OudsTypographyKeyToken.Body.Default.Large.value
     )
 }
 

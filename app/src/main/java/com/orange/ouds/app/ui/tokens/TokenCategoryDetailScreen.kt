@@ -73,7 +73,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                             text = stringResource(id = subcategory.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            style = OudsTypographyKeyToken.HeadingMedium.value
+                            style = OudsTypographyKeyToken.Heading.Medium.value
                         )
                     }
                 }
@@ -89,7 +89,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                             text = stringResource(id = tokenProperty.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            style = OudsTypographyKeyToken.HeadingMedium.value
+                            style = OudsTypographyKeyToken.Heading.Medium.value
                         )
                     }
 
@@ -113,7 +113,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                     text = stringResource(id = R.string.app_tokens_dimension_size_iconWithTextTokenName_label, token.name, token.literalValue),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
-                                    style = OudsTypographyKeyToken.BodyDefaultMedium.value,
+                                    style = OudsTypographyKeyToken.Body.Default.Medium.value,
                                     color = OudsColorKeyToken.Content.Muted.value
                                 )
                             }
@@ -135,7 +135,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                         style = if (tokenProperty == TokenProperty.Typography) {
                                             token.value as TextStyle
                                         } else {
-                                            OudsTypographyKeyToken.BodyStrongLarge.value
+                                            OudsTypographyKeyToken.Body.Strong.Large.value
                                         }
                                     )
                                     Text(
@@ -143,7 +143,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                         text = token.literalValue,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
-                                        style = OudsTypographyKeyToken.BodyDefaultMedium.value.copy(color = OudsColorKeyToken.Content.Muted.value)
+                                        style = OudsTypographyKeyToken.Body.Default.Medium.value.copy(color = OudsColorKeyToken.Content.Muted.value)
                                     )
                                 }
                             }

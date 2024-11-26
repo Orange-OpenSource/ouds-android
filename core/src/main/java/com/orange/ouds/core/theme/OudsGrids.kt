@@ -55,18 +55,12 @@ fun OudsGridSemanticTokens.getGrids() = OudsGrids(
 
 @Stable
 fun OudsGrids.fromToken(token: OudsGridKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
-    val gridToken = when (token) {
+    return when (token) {
         OudsGridKeyToken.MinWidth -> minWidth
         OudsGridKeyToken.MaxWidth -> maxWidth
         OudsGridKeyToken.ColumnGap -> columnGap
         OudsGridKeyToken.Margin -> margin
-    }
-
-    return when (adaptiveWindowType) {
-        OudsAdaptiveWindowType.EXTRA_COMPACT -> gridToken.extraCompact
-        OudsAdaptiveWindowType.COMPACT -> gridToken.compact
-        OudsAdaptiveWindowType.MEDIUM -> gridToken.medium
-    }
+    }.getValue(adaptiveWindowType)
 }
 
 /**

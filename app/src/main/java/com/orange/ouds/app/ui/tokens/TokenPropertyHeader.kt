@@ -181,7 +181,7 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
             modifier = modifier.background(color = OudsColorKeyToken.Background.Emphasized.value),
             text = stringResource(id = textResId),
             color = OudsColorKeyToken.Content.Default.OnBgEmphasized.value,
-            style = OudsTypographyKeyToken.BodyDefaultMedium.value
+            style = OudsTypographyKeyToken.Body.Default.Medium.value
         )
     }
 }

@@ -12,26 +12,48 @@
 
 package com.orange.ouds.theme.tokens
 
-enum class OudsTypographyKeyToken {
-    DisplayLarge,
-    DisplayMedium,
-    DisplaySmall,
-    HeadingExtraLarge,
-    HeadingLarge,
-    HeadingMedium,
-    HeadingSmall,
-    BodyDefaultLarge,
-    BodyDefaultMedium,
-    BodyDefaultSmall,
-    BodyStrongLarge,
-    BodyStrongMedium,
-    BodyStrongSmall,
-    LabelDefaultExtraLarge,
-    LabelDefaultLarge,
-    LabelDefaultMedium,
-    LabelDefaultSmall,
-    LabelStrongExtraLarge,
-    LabelStrongLarge,
-    LabelStrongMedium,
-    LabelStrongSmall
+sealed interface OudsTypographyKeyToken {
+
+    sealed interface Display : OudsTypographyKeyToken {
+        data object Large : Display
+        data object Medium : Display
+        data object Small : Display
+    }
+
+    sealed interface Heading : OudsTypographyKeyToken {
+        data object ExtraLarge : Heading
+        data object Large : Heading
+        data object Medium : Heading
+        data object Small : Heading
+    }
+
+    sealed interface Body : OudsTypographyKeyToken {
+        sealed interface Default : Body {
+            data object Large : Default
+            data object Medium : Default
+            data object Small : Default
+        }
+
+        sealed interface Strong : Body {
+            data object Large : Strong
+            data object Medium : Strong
+            data object Small : Strong
+        }
+    }
+
+    sealed interface Label : OudsTypographyKeyToken {
+        sealed interface Default : Label {
+            data object ExtraLarge : Default
+            data object Large : Default
+            data object Medium : Default
+            data object Small : Default
+        }
+
+        sealed interface Strong : Label {
+            data object ExtraLarge : Strong
+            data object Large : Strong
+            data object Medium : Strong
+            data object Small : Strong
+        }
+    }
 }

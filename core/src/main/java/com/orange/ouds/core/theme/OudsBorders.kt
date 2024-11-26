@@ -69,7 +69,7 @@ fun OudsBorders.fromToken(token: OudsBorderKeyToken.Width): Dp {
         OudsBorderKeyToken.Width.Thick -> widthThick
         OudsBorderKeyToken.Width.Thicker -> widthThicker
         OudsBorderKeyToken.Width.Focus -> widthFocus
-        OudsBorderKeyToken.Width.FocusInset -> widthFocusInset
+        OudsBorderKeyToken.Width.Focus.Inset -> widthFocusInset
     }
 }
 

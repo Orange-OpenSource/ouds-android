@@ -12,9 +12,10 @@
 
 package com.orange.ouds.theme.tokens
 
-enum class OudsGridKeyToken {
-    MinWidth,
-    MaxWidth,
-    ColumnGap,
-    Margin,
+sealed interface OudsGridKeyToken {
+    
+    data object MinWidth : OudsGridKeyToken
+    data object MaxWidth : OudsGridKeyToken
+    data object ColumnGap : OudsGridKeyToken
+    data object Margin : OudsGridKeyToken
 }

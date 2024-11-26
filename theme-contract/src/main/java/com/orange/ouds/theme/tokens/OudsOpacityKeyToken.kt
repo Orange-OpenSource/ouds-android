@@ -12,11 +12,12 @@
 
 package com.orange.ouds.theme.tokens
 
-enum class OudsOpacityKeyToken {
-    Transparent,
-    Weaker,
-    Weak,
-    Medium,
-    Strong,
-    Opaque
+sealed interface OudsOpacityKeyToken {
+    
+    data object Transparent : OudsOpacityKeyToken
+    data object Weaker : OudsOpacityKeyToken
+    data object Weak : OudsOpacityKeyToken
+    data object Medium : OudsOpacityKeyToken
+    data object Strong : OudsOpacityKeyToken
+    data object Opaque : OudsOpacityKeyToken
 }

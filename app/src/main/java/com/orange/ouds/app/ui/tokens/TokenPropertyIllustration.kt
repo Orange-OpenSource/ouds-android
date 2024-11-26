@@ -41,11 +41,14 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.getTokens
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.dashedBorder
@@ -125,7 +128,6 @@ fun SizeIconDecorativeIllustrationBox(size: Dp) {
 
 @Composable
 fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
-    val label = tokenName.substringBefore("Size")
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Shorter.value),
@@ -137,12 +139,19 @@ fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
             tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
             contentDescription = null
         )
+        val style = OudsTypographyKeyToken::class.getTokens()
+            .asOrNull<List<Token<TextStyle>>>()
+            ?.firstOrNull { typographyToken ->
+                tokenName.split(".").firstOrNull() == typographyToken.name.replace("Strong", "").replace(".", "")
+            }
+            ?.value
+            .orElse { LocalTextStyle.current }
         Text(
             modifier = Modifier.weight(1f),
-            text = label,
+            text = tokenName,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = OudsTypographyKeyToken.entries.firstOrNull { it.name.replace("Strong", "") == label }?.value.orElse { LocalTextStyle.current }
+            style = style
         )
     }
 }
