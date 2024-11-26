@@ -12,47 +12,47 @@
 
 package com.orange.ouds.app.ui.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
-import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 @Composable
-fun ComponentsScreen() {
+fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
+    ComponentsScreen(
+        components = components,
+        onComponentClick = onComponentClick
+    )
+}
+
+@Composable
+private fun ComponentsScreen(components: List<Component>, onComponentClick: (Long) -> Unit) {
     Screen {
         Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(OudsSpaceKeyToken.Fixed.Medium.value),
+            verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
         ) {
-            Text(modifier = Modifier.padding(bottom = 8.dp), text = "Components screen")
-
-            OudsButton(text = "OUDS button", onClick = { })
-
-            Box(
-                modifier = Modifier
-                    .padding(top = OudsSpaceKeyToken.Fixed.Medium.value)
-                    .width(OudsGridKeyToken.Margin.value)
-                    .height(OudsGridKeyToken.ColumnGap.value)
-                    .background(OudsColorKeyToken.Content.BrandPrimary.value)
-            )
+            components.forEach { component ->
+                LargeCard(
+                    title = stringResource(id = component.nameRes),
+                    imageRes = component.imageRes,
+                    onClick = { onComponentClick(component.id) }
+                )
+            }
         }
     }
 }
@@ -60,5 +60,7 @@ fun ComponentsScreen() {
 @UiModePreviews.Default
 @Composable
 private fun PreviewComponentsScreen() = OudsPreview {
-    ComponentsScreen()
+    ComponentsScreen(
+        components = listOf(Component.Button)
+    ) {}
 }

@@ -104,6 +104,12 @@
     <string name="app_tokens_typography_label">Typography</string>
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
 
+    <!-- Components -->
+
+    <!-- Components: button -->
+    <string name="app_components_button_label">Button</string>
+    <string name="app_components_button_description_text">Buttons allow users to make choices or perform an action. They have multiple styles for various needs.</string>
+
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
     <string name="app_about_legalInformation_label">Legal information</string>

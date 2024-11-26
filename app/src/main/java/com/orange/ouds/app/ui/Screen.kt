@@ -19,6 +19,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutMenuItem
 import com.orange.ouds.app.ui.about.AboutNavigationKey
+import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.ComponentsNavigation
 import com.orange.ouds.app.ui.tokens.TokenCategory
 import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.foundation.UiString
@@ -92,6 +94,13 @@ sealed class Screen(
     data class TokenCategoryDetail(val tokenCategoryId: Long) : Screen(
         route = TokensNavigation.TokenCategoryDetailRoute,
         title = TokenCategory.fromId(tokenCategoryId)?.nameRes?.let { UiString.StringResource(it) }
+    )
+
+    // Components screens
+
+    data class ComponentDetailScreen(val componentId: Long) : Screen(
+        route = ComponentsNavigation.ComponentDetailRoute,
+        title = Component.fromId(componentId)?.nameRes?.let { UiString.StringResource(it) }
     )
 
     // About screens
