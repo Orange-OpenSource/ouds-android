@@ -17,7 +17,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.button.ButtonExample
+import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
@@ -26,7 +26,7 @@ sealed class Component(
     @StringRes val nameRes: Int,
     @DrawableRes val imageRes: Int,
     @StringRes val descriptionRes: Int,
-    val example: @Composable () -> Unit
+    val demoScreen: @Composable () -> Unit
 ) {
 
     companion object {
@@ -39,6 +39,6 @@ sealed class Component(
         R.string.app_components_button_label,
         R.drawable.il_components_button,
         R.string.app_components_button_description_text,
-        { ButtonExample() }
+        { ButtonDemoScreen() }
     )
 }

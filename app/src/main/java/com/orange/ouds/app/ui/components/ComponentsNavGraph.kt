@@ -33,7 +33,7 @@ fun NavGraphBuilder.addComponentsNavGraph() {
 
         val component = remember(routeComponentId) { Component.fromId(routeComponentId) }
         component?.let {
-            ComponentDetailScreen(component = component)
+            component.demoScreen()
         }
     }
 }

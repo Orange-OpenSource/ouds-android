@@ -35,14 +35,9 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
-            TokensNavigation.TokenCategoryDetailRoute -> {
-                args?.getLong(TokensNavigation.TokenCategoryIdKey)?.let { Screen.TokenCategoryDetail(it) }
-            }
-
-            AboutDestinations.FileRoute -> {
-                args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
-            }
-
+            TokensNavigation.TokenCategoryDetailRoute -> args?.getLong(TokensNavigation.TokenCategoryIdKey)?.let { Screen.TokenCategoryDetail(it) }
+            ComponentsNavigation.ComponentDetailRoute -> args?.getLong(ComponentsNavigation.ComponentIdKey)?.let { Screen.ComponentDetail(it) }
+            AboutDestinations.FileRoute -> args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
             else -> null
         }
     } else {
@@ -98,7 +93,7 @@ sealed class Screen(
 
     // Components screens
 
-    data class ComponentDetailScreen(val componentId: Long) : Screen(
+    data class ComponentDetail(val componentId: Long) : Screen(
         route = ComponentsNavigation.ComponentDetailRoute,
         title = Component.fromId(componentId)?.nameRes?.let { UiString.StringResource(it) }
     )
