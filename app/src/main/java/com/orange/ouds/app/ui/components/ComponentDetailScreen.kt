@@ -30,7 +30,7 @@ fun ComponentDetailScreen(component: Component) {
     Screen {
         Column {
             DetailScreenDescription(modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value), descriptionRes = component.descriptionRes)
-            component.example()
+            component.demoScreen()
         }
     }
 }
