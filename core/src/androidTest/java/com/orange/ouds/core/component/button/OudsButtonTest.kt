@@ -12,12 +12,14 @@
 
 package com.orange.ouds.core.component.button
 
-import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 
 internal class OudsButtonTest {
 
@@ -25,19 +27,20 @@ internal class OudsButtonTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsButtonRendersAsExpected() {
+    fun oudsButtonClickSucceeds() {
         with(composeTestRule) {
-            val text = "Click"
-            val onClick = {}
+            val text = "Text"
+            val onClick = mock<() -> Unit>()
 
             setOudsContent {
                 OudsButton(
                     text = text,
-                    onClick = onClick,
+                    onClick = onClick
                 )
             }
 
-            onNodeWithText(text).assertIsDisplayed()
+            onNodeWithText(text).performClick()
+            verify(onClick).invoke()
         }
     }
 }

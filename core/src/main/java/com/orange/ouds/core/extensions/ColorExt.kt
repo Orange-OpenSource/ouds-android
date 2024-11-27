@@ -10,9 +10,10 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.tokens.components
+package com.orange.ouds.core.extensions
 
-class OudsComponentsTokens(
-    val button: OudsButtonTokens = OudsButtonTokens(),
-    val skeleton: OudsSkeletonTokens = OudsSkeletonTokens()
-)
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+
+@Composable
+internal fun Color.enabled(enabled: Boolean) = if (enabled) this else copy(alpha = 0.38f)

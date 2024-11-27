@@ -10,9 +10,15 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.tokens.components
+package com.orange.ouds.core.component.button
 
-class OudsComponentsTokens(
-    val button: OudsButtonTokens = OudsButtonTokens(),
-    val skeleton: OudsSkeletonTokens = OudsSkeletonTokens()
-)
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+
+internal object OudsIconButtonDefaults {
+
+    val tint: Color
+        @Composable
+        get() = LocalContentColor.current
+}

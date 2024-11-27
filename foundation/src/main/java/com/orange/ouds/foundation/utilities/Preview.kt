@@ -46,14 +46,9 @@ annotation class UiModePreviews {
     companion object {
         private const val LightName = "Light"
         private const val DarkName = "Dark"
-        private const val ButtonWidthDp = 200
     }
 
     @Preview(name = LightName)
     @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES)
     annotation class Default
-
-    @Preview(name = LightName, widthDp = ButtonWidthDp)
-    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, widthDp = ButtonWidthDp)
-    annotation class Button
 }

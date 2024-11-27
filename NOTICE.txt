@@ -61,6 +61,8 @@ app/src/main/res/drawable-night-xxxhdpi/il_tokens_grid_min_width.png
 app/src/prod/res/drawable/ic_launcher_background.xml
 app/src/prod/res/drawable/ic_launcher_foreground.xml
 
+core/src/main/res/drawable/loading_indicator_circular.xml
+
 docs/images/favicon-16x16.png
 docs/images/orange-logo.svg
 
