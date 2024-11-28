@@ -45,6 +45,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
@@ -125,8 +126,9 @@ fun CustomizationBottomSheetScaffold(
         )
     }
 
-    OnResumeEffect {
+    LifecycleResumeEffect(Unit) {
         tryExpandBottomSheet(coroutineScope, bottomSheetScaffoldState.bottomSheetState)
+        onPauseOrDispose {}
     }
 }
 
