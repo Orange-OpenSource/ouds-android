@@ -12,11 +12,7 @@
 
 package com.orange.ouds.core.component.button
 
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
+import android.os.Parcelable
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -33,8 +29,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,14 +43,13 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -69,6 +64,7 @@ import com.orange.ouds.theme.outerBorder
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
+import kotlinx.parcelize.Parcelize
 
 /**
  * An OUDS button which displays only text.
@@ -193,7 +189,7 @@ private fun OudsButton(
             modifier = modifier
                 .widthIn(min = buttonTokens.sizeMinWidth.dp)
                 .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
-                .buttonBorder(hierarchy = hierarchy, state = state, shape = shape),
+                .border(hierarchy = hierarchy, state = state, shape = shape),
             enabled = state != OudsButton.State.Disabled && state != OudsButton.State.Loading && state != OudsButton.State.Skeleton,
             shape = shape,
             colors = buttonColors(hierarchy = hierarchy, buttonState = state),
@@ -204,21 +200,9 @@ private fun OudsButton(
             Box(contentAlignment = Alignment.Center) {
                 val isLoadingIndicatorVisible = state == OudsButton.State.Loading
                 if (isLoadingIndicatorVisible) {
-                    val infiniteTransition = rememberInfiniteTransition("LoadingIndicatorInfiniteTransition")
-                    val angle by infiniteTransition.animateFloat(
-                        initialValue = 0f,
-                        targetValue = 360f,
-                        animationSpec = infiniteRepeatable(tween(1000, easing = LinearEasing)),
-                        label = "LoadingIndicatorAngleAnimation"
-                    )
-                    Icon(
-                        modifier = Modifier
-                            .size(buttonTokens.sizeLoader.value)
-                            .graphicsLayer { rotationZ = angle },
-                        contentDescription = null,
-                        painter = painterResource(id = R.drawable.loading_indicator_circular),
-                        tint = contentColor(hierarchy = hierarchy, state = state)
-                    )
+                    val loadingStyle = style as? OudsButton.Style.Loading
+                    val progress = if (previewState == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
+                    LoadingIndicator(hierarchy = hierarchy, progress)
                 }
 
                 Row(
@@ -261,13 +245,13 @@ private fun rememberOudsButtonState(
             interactionState == InteractionState.Focused -> OudsButton.State.Focused
             else -> OudsButton.State.Enabled
         }
-        OudsButton.Style.Loading -> OudsButton.State.Loading
+        is OudsButton.Style.Loading -> OudsButton.State.Loading
         OudsButton.Style.Skeleton -> OudsButton.State.Skeleton
     }
 }
 
 @Composable
-private fun Modifier.buttonBorder(hierarchy: OudsButton.Hierarchy, state: OudsButton.State, shape: Shape): Modifier {
+private fun Modifier.border(hierarchy: OudsButton.Hierarchy, state: OudsButton.State, shape: Shape): Modifier {
     val borderWidth = borderWidth(hierarchy = hierarchy, state = state)
     val borderColor = borderColor(hierarchy = hierarchy, state = state)
 
@@ -464,6 +448,33 @@ private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues
     }
 }
 
+@Composable
+private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?) {
+    val modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeLoader.value)
+    val color = contentColor(hierarchy = hierarchy, state = OudsButton.State.Loading)
+    val strokeWidth = 3.dp
+    val trackColor = Color.Transparent
+    val strokeCap = StrokeCap.Square
+    if (progress != null) {
+        CircularProgressIndicator(
+            progress = { progress },
+            modifier = modifier,
+            color = color,
+            strokeWidth = strokeWidth,
+            trackColor = trackColor,
+            strokeCap = strokeCap
+        )
+    } else {
+        CircularProgressIndicator(
+            modifier = modifier,
+            color = color,
+            strokeWidth = strokeWidth,
+            trackColor = trackColor,
+            strokeCap = strokeCap
+        )
+    }
+}
+
 /**
  * Contains the default values used by OUDS buttons.
  */
@@ -532,10 +543,31 @@ object OudsButton {
     }
 
     /**
-     * Represents the style of an OUDS button.
+     * Represents the different styles of an OUDS button.
      */
-    enum class Style {
-        Default, Loading, Skeleton
+    sealed class Style : Parcelable {
+
+        /**
+         * The button displays an icon and/or a text and supports user interactions if it is enabled.
+         */
+        @Parcelize
+        data object Default : Style()
+
+        /**
+         * The button displays a circular loading indicator.
+         *
+         * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
+         *   Values outside of this range are coerced into the range.
+         *   Set this value to `null` to display a circular indeterminate progress indicator.
+         */
+        @Parcelize
+        data class Loading(val progress: Float?) : Style()
+
+        /**
+         * This button displays a skeleton.
+         */
+        @Parcelize
+        data object Skeleton : Style()
     }
 
     internal enum class State {

@@ -12,6 +12,7 @@
 
 plugins {
     id("library")
+    id(libs.plugins.kotlin.parcelize.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.paparazzi)
 }

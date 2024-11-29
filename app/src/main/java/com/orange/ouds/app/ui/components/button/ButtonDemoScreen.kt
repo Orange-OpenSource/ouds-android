@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -43,12 +44,19 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 selectedChipIndex = OudsButton.Hierarchy.entries.indexOf(hierarchy),
                 onSelectionChange = { id -> hierarchy = OudsButton.Hierarchy.entries[id] }
             )
+            val styles = remember {
+                listOf(
+                    OudsButton.Style.Default,
+                    OudsButton.Style.Loading(progress = null),
+                    OudsButton.Style.Skeleton
+                )
+            }
             CustomizationChoiceChipsColumn(
                 modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
                 label = stringResource(R.string.app_components_button_style_label),
-                chipsLabels = OudsButton.Style.entries.map { it.name },
-                selectedChipIndex = OudsButton.Style.entries.indexOf(style),
-                onSelectionChange = { id -> style = OudsButton.Style.entries[id] }
+                chipsLabels = styles.map { it::class.simpleName.orEmpty() },
+                selectedChipIndex = styles.indexOf(style),
+                onSelectionChange = { id -> style = styles[id] }
             )
             CustomizationChoiceChipsColumn(
                 modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
