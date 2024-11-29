@@ -253,7 +253,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     val linkStateDescription = stringResource(if (isExpanded) R.string.app_common_expanded_a11y else R.string.app_common_collapsed_a11y)
     val linkContentDescription = stringResource(R.string.app_tokens_viewCodeExample_label)
-    val transition = updateTransition(targetState = isExpanded, label = "StarButtonTransition")
+    val transition = updateTransition(targetState = isExpanded, label = "LinkArrowTransition")
     val linkArrowRotation by transition.animateFloat(
         label = "LinkArrowRotation",
         transitionSpec = {
