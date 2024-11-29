@@ -24,7 +24,6 @@
     <string name="app_common_customize_label">Customize</string>
     <string name="app_common_enabled_label">Enabled</string>
     <string name="app_common_onColoredBackground_label">On colored background</string>
-    <string name="app_common_loading_label">Loading</string>
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">ChangeTheme</string>
