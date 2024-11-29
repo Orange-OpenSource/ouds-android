@@ -12,6 +12,8 @@
 
 package com.orange.ouds.app.ui.tokens
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,6 +32,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -46,6 +50,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClick: (Long) -> Unit) {
 
@@ -78,29 +83,37 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     }
                 }
             } else {
-                items(tokenCategory.properties) { tokenProperty ->
-                    Spacer(modifier = Modifier.height(OudsSpaceKeyToken.Fixed.Medium.value))
-
-                    tokenProperty.nameRes?.let {
-                        Text(
+                tokenCategory.properties.forEach { tokenProperty ->
+                    item {
+                        Spacer(modifier = Modifier.height(OudsSpaceKeyToken.Fixed.Medium.value))
+                    }
+                    stickyHeader {
+                        tokenProperty.nameRes?.let {
+                            Text(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(color = OudsColorKeyToken.Background.Primary.value)
+                                    .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+                                    .semantics {
+                                        heading()
+                                    },
+                                text = stringResource(id = tokenProperty.nameRes),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                style = OudsTypographyKeyToken.Heading.Medium.value
+                            )
+                        }
+                    }
+                    item {
+                        TokenPropertyHeader(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
-                            text = stringResource(id = tokenProperty.nameRes),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            style = OudsTypographyKeyToken.Heading.Medium.value
+                                .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
+                                .padding(bottom = OudsSpaceKeyToken.Fixed.Medium.value),
+                            tokenProperty = tokenProperty
                         )
                     }
 
-                    TokenPropertyHeader(
-                        modifier = Modifier
-                            .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
-                            .padding(bottom = OudsSpaceKeyToken.Fixed.Medium.value),
-                        tokenProperty = tokenProperty
-                    )
-
-                    tokenProperty.tokens().forEach { token ->
+                    items(tokenProperty.tokens) { token ->
                         if (tokenProperty == TokenProperty.SizeIconWithText) {
                             Column(
                                 modifier = Modifier
@@ -126,14 +139,17 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                             ) {
                                 TokenIllustration(tokenProperty = tokenProperty, token = token)
 
-                                Column(modifier = Modifier.weight(1f)) {
+                                Column(modifier = Modifier
+                                    .weight(1f)
+                                    .semantics(mergeDescendants = true) {}
+                                ) {
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
                                         text = token.name,
                                         maxLines = 2,
                                         overflow = TextOverflow.Ellipsis,
                                         style = if (tokenProperty == TokenProperty.Typography) {
-                                            token.value as TextStyle
+                                            token.value() as TextStyle
                                         } else {
                                             OudsTypographyKeyToken.Body.Strong.Large.value
                                         }
@@ -157,27 +173,27 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
 
 @Composable
 private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) = when (tokenProperty) {
-    is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value as Dp)
-    is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value as Dp))
-    is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value as OudsBorderStyle)
+    is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value() as Dp)
+    is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value() as Dp))
+    is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value() as OudsBorderStyle)
     is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorBrand, TokenProperty.ColorContent,
-    TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> BorderIllustrationBox(backgroundColor = token.value as Color)
-    is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value as Float)
-    is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value as Dp)
-    is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value as Dp)
-    is TokenProperty.SizeIconWithText -> SizeIconWithTextIllustrationRow(size = token.value as Dp, token.name)
+    TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> BorderIllustrationBox(backgroundColor = token.value() as Color)
+    is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value() as Float)
+    is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value() as Dp)
+    is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value() as Dp)
+    is TokenProperty.SizeIconWithText -> SizeIconWithTextIllustrationRow(size = token.value() as Dp, token.name)
     is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
-        size = token.value as Dp,
+        size = token.value() as Dp,
         contentAlignment = Alignment.Center
     )
-    TokenProperty.SpacePaddingInline -> SpaceIllustrationBox(size = token.value as Dp)
-    TokenProperty.SpacePaddingInlineWithIcon, TokenProperty.SpaceColumnGapWithIcon -> SpaceWithIconIllustrationRow(size = token.value as Dp)
-    TokenProperty.SpacePaddingInlineWithArrow, TokenProperty.SpaceColumnGapWithArrow -> SpaceWithArrowIllustrationRow(size = token.value as Dp)
-    TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value as Dp)
-    TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical)
-    TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
-    TokenProperty.SpaceRowGapWithIcon -> SpaceWithIconIllustrationColumn(size = token.value as Dp, verticalArrangement = Arrangement.Bottom)
-    TokenProperty.SpacePaddingStackWithIcon -> SpaceWithIconIllustrationColumn(size = token.value as Dp)
+    TokenProperty.SpacePaddingInline -> SpaceIllustrationBox(size = token.value() as Dp)
+    TokenProperty.SpacePaddingInlineWithIcon, TokenProperty.SpaceColumnGapWithIcon -> SpaceWithIconIllustrationRow(size = token.value() as Dp)
+    TokenProperty.SpacePaddingInlineWithArrow, TokenProperty.SpaceColumnGapWithArrow -> SpaceWithArrowIllustrationRow(size = token.value() as Dp)
+    TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value() as Dp)
+    TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value() as Dp, orientation = SpaceOrientation.Vertical)
+    TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value() as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
+    TokenProperty.SpaceRowGapWithIcon -> SpaceWithIconIllustrationColumn(size = token.value() as Dp, verticalArrangement = Arrangement.Bottom)
+    TokenProperty.SpacePaddingStackWithIcon -> SpaceWithIconIllustrationColumn(size = token.value() as Dp)
     TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 

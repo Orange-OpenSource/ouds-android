@@ -144,7 +144,7 @@ fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
             ?.firstOrNull { typographyToken ->
                 tokenName.split(".").firstOrNull() == typographyToken.name.replace("Strong", "").replace(".", "")
             }
-            ?.value
+            ?.value?.invoke()
             .orElse { LocalTextStyle.current }
         Text(
             modifier = Modifier.weight(1f),

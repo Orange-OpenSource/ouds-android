@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.utilities
 
-import androidx.compose.runtime.Composable
 import com.orange.ouds.app.ui.tokens.Token
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.foundation.extensions.asOrNull
@@ -27,26 +26,29 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import kotlin.reflect.KClass
 
-@Composable
 fun KClass<*>.getTokens(
     recursive: Boolean = true,
     tokenName: (KClass<*>) -> String = { it.getTokenName(this) }
 ): List<Token<*>> {
-    return getNestedObjects(getRootKeyTokenSuperclass(), recursive).mapNotNull { keyToken ->
-        val value: Any? = when (keyToken) {
-            is OudsBorderKeyToken.Radius -> keyToken.value
-            is OudsBorderKeyToken.Style -> keyToken.value
-            is OudsBorderKeyToken.Width -> keyToken.value
-            is OudsColorKeyToken -> keyToken.value
-            is OudsElevationKeyToken -> keyToken.value
-            is OudsGridKeyToken -> keyToken.value
-            is OudsOpacityKeyToken -> keyToken.value
-            is OudsSizeKeyToken -> keyToken.value
-            is OudsSpaceKeyToken -> keyToken.value
-            is OudsTypographyKeyToken -> keyToken.value
-            else -> null
-        }
-        value?.let { Token(tokenName(keyToken::class), it) }
+    return getNestedObjects(getRootKeyTokenSuperclass(), recursive).map { keyToken ->
+        Token(
+            name = tokenName(keyToken::class),
+            value = {
+                when (keyToken) {
+                    is OudsBorderKeyToken.Radius -> keyToken.value
+                    is OudsBorderKeyToken.Style -> keyToken.value
+                    is OudsBorderKeyToken.Width -> keyToken.value
+                    is OudsColorKeyToken -> keyToken.value
+                    is OudsElevationKeyToken -> keyToken.value
+                    is OudsGridKeyToken -> keyToken.value
+                    is OudsOpacityKeyToken -> keyToken.value
+                    is OudsSizeKeyToken -> keyToken.value
+                    is OudsSpaceKeyToken -> keyToken.value
+                    is OudsTypographyKeyToken -> keyToken.value
+                    else -> null
+                }
+            }
+        )
     }
 }
 
