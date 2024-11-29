@@ -23,7 +23,6 @@
     <string name="app_common_bottomSheetCollapsed_a11y">Bottom sheet collapsed</string>
     <string name="app_common_customize_label">Customize</string>
     <string name="app_common_enabled_label">Enabled</string>
-    <string name="app_common_loading_label">Loading</string>
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">ChangeTheme</string>
@@ -115,10 +114,10 @@
     <string name="app_components_button_label">Button</string>
     <string name="app_components_button_description_text">Buttons allow users to make choices or perform an action. They have multiple styles for various needs.</string>
     <string name="app_components_button_hierarchy_label">Hierarchy</string>
+    <string name="app_components_button_style_label">Style</string>
     <string name="app_components_button_layout_label">Layout</string>
     <string name="app_components_button_textOnlyLayout_label">Text only</string>
     <string name="app_components_button_iconAndTextLayout_label">Icon + text</string>
-    <string name="app_components_button_textAndIconLayout_label">Text + icon</string>
     <string name="app_components_button_iconOnlyLayout_label">Icon only</string>
 
     <!-- About screen -->

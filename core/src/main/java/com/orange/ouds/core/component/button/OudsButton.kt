@@ -558,7 +558,7 @@ internal fun PreviewOudsButton(
     with(parameter) {
         val text = if (hasText) hierarchy.name else null
         val icon = if (hasIcon) OudsButton.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
-        val chunkedStates = parameter.states.chunked(2)
+        val chunkedStates = states.chunked(2)
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             chunkedStates.forEach { states ->
                 Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {

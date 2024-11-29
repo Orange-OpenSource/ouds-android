@@ -33,6 +33,9 @@ fun Screen(content: @Composable () -> Unit) {
     }
 }
 
+@Composable
+fun <T : Any> DemoScreen(demoState: T, content: @Composable T.() -> Unit) = Screen { demoState.content() }
+
 @UiModePreviews.Default
 @Composable
 private fun PreviewScreen() = OudsPreview {

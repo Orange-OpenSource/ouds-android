@@ -37,13 +37,13 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 @Composable
-fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
+fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit, enabled: Boolean = true) {
     ListItem(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onCheckedChange(!checked) },
+            .clickable(enabled = enabled) { onCheckedChange(!checked) },
         headlineContent = { Text(text = label, style = OudsTypographyKeyToken.Heading.Medium.value) },
-        trailingContent = { Switch(checked = checked, onCheckedChange = null) }
+        trailingContent = { Switch(checked = checked, onCheckedChange = null, enabled = enabled) }
     )
 }
 
