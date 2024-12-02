@@ -46,7 +46,6 @@ jobs:
           append-git-sha-to-version-name: 'true'
           variant: 'alphaRelease'
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}
-          git-tag-prefix: 'ci/alpha-app'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           group: 'ouds-android-alpha'
 

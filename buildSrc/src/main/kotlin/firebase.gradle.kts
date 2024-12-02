@@ -83,11 +83,7 @@ tasks.register<DefaultTask>("appDistributionUpload") {
 tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
     doLast {
         // Generate release notes
-        // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
-        // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
-        // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
-        val branchName = Environment.getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
-        var releaseNotes = if (branchName == "develop") {
+        var releaseNotes = if (Environment.branchName == "develop") {
             // Retrieve latest Firebase App Distribution tag
             // Firebase App Distribution tags are not annotated
             val lastTag = findLastTag("^$gitTagPrefix-.*$", null, false)
@@ -100,7 +96,7 @@ tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
         } else {
             gitHubApi {
                 val pullRequests = getPullRequests()
-                val pullRequest = pullRequests.firstOrNull { it.branchName == branchName }
+                val pullRequest = pullRequests.firstOrNull { it.branchName == Environment.branchName }
                 pullRequest?.let { "${pullRequest.title} (#${pullRequest.number})" }.orEmpty()
             }
         }
@@ -130,9 +126,9 @@ tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
  */
 tasks.register<DefaultTask>("gitTagAppDistribution") {
     onlyIf {
-        // Do not execute this task if any Firebase App Distribution upload failed or if appDistributionVariants is empty
+        // Do not execute this task if any Firebase App Distribution upload failed or if appDistributionVariants is empty or if branch is not develop
         val uploadFailed = appDistributionTasks.any { it.state.failure != null }
-        !uploadFailed && appDistributionTasks.isNotEmpty()
+        !uploadFailed && appDistributionTasks.isNotEmpty() && Environment.branchName == "develop"
     }
 
     mustRunAfter(*appDistributionTasks.toTypedArray())
@@ -167,15 +163,11 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                 if (release != null) {
                     logger.lifecycle("Found App Distribution release with version code $versionCode.")
                     gitHubApi {
-                        // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
-                        // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
-                        // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
-                        val branchName = Environment.getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
                         // Find pull request for current branch
                         val pullRequests = getPullRequests()
-                        val pullRequest = pullRequests.firstOrNull { it.branchName == branchName }
+                        val pullRequest = pullRequests.firstOrNull { it.branchName == Environment.branchName }
                         if (pullRequest != null) {
-                            logger.lifecycle("Found pull request #${pullRequest.number} for branch $branchName.")
+                            logger.lifecycle("Found pull request #${pullRequest.number} for branch ${Environment.branchName} .")
                             // Generate QR code with download URL of App Distribution release
                             val qrCode = generateQrCode(release)
 
@@ -200,7 +192,7 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                             // The "pulls/{pull_number}/comments" is used to add review comments on a pull request
                             createIssueComment(pullRequest.number, body)
                         } else {
-                            throw GradleException("Could not find a pull request for branch $branchName.")
+                            throw GradleException("Could not find a pull request for branch ${Environment.branchName}.")
                         }
                     }
                 } else {
