@@ -16,6 +16,15 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.getTokenName
+import com.orange.ouds.theme.tokens.OudsBorderKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsGridKeyToken
+import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
+import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
@@ -24,6 +33,7 @@ sealed class TokenCategory<T>(
     @StringRes val nameRes: Int,
     @DrawableRes val imageRes: Int,
     @StringRes val descriptionRes: Int,
+    val valueCodeExample: String? = null,
     val properties: List<TokenProperty<T>> = emptyList(),
     val subcategories: List<TokenCategory<*>> = emptyList(),
 ) where T : TokenCategory<T> {
@@ -40,13 +50,15 @@ sealed class TokenCategory<T>(
         R.string.app_tokens_border_label,
         R.drawable.ic_border,
         R.string.app_tokens_border_description_text,
-        listOf(TokenProperty.BorderWidth, TokenProperty.BorderRadius, TokenProperty.BorderStyle)
+        getTokenValueCode<OudsBorderKeyToken.Width.None>(),
+        listOf(TokenProperty.BorderWidth, TokenProperty.BorderRadius, TokenProperty.BorderStyle),
     )
 
     data object Color : TokenCategory<Color>(
         R.string.app_tokens_color_label,
         R.drawable.ic_palette,
         R.string.app_tokens_color_description_text,
+        getTokenValueCode<OudsColorKeyToken.Action.Disabled>(),
         listOf(
             TokenProperty.ColorAction,
             TokenProperty.ColorAlways,
@@ -70,6 +82,7 @@ sealed class TokenCategory<T>(
             R.string.app_tokens_dimension_space_label,
             R.drawable.ic_dimension,
             R.string.app_tokens_dimension_space_description_text,
+            getTokenValueCode<OudsSpaceKeyToken.Scaled.None>(),
             listOf(
                 TokenProperty.SpaceScaled,
                 TokenProperty.SpaceFixed,
@@ -91,6 +104,7 @@ sealed class TokenCategory<T>(
             R.string.app_tokens_dimension_size_label,
             R.drawable.ic_dimension,
             R.string.app_tokens_dimension_size_description_text,
+            getTokenValueCode<OudsSizeKeyToken.Icon.Decorative.Shortest>(),
             listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText),
         )
     }
@@ -99,6 +113,7 @@ sealed class TokenCategory<T>(
         R.string.app_tokens_elevation_label,
         R.drawable.ic_layers,
         R.string.app_tokens_elevation_description_text,
+        getTokenValueCode<OudsElevationKeyToken.None>(),
         listOf(TokenProperty.Elevation)
     )
 
@@ -106,6 +121,7 @@ sealed class TokenCategory<T>(
         R.string.app_tokens_grid_label,
         R.drawable.ic_menu_grid,
         R.string.app_tokens_grid_description_text,
+        getTokenValueCode<OudsGridKeyToken.MinWidth>(),
         listOf(TokenProperty.Grid)
     )
 
@@ -113,6 +129,7 @@ sealed class TokenCategory<T>(
         R.string.app_tokens_opacity_label,
         R.drawable.ic_filter_effects,
         R.string.app_tokens_opacity_description_text,
+        getTokenValueCode<OudsOpacityKeyToken.Transparent>(),
         listOf(TokenProperty.Opacity)
     )
 
@@ -120,6 +137,9 @@ sealed class TokenCategory<T>(
         R.string.app_tokens_typography_label,
         R.drawable.ic_typography,
         R.string.app_tokens_typography_description_text,
+        getTokenValueCode<OudsTypographyKeyToken.Display.Large>(),
         listOf(TokenProperty.Typography)
     )
 }
+
+private inline fun <reified T> getTokenValueCode() = "${T::class.getTokenName()}.value"

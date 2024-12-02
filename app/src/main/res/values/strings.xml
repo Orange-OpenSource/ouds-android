@@ -15,6 +15,10 @@
 
     <!-- Common -->
     <string name="app_common_back_a11y">Back</string>
+    <string name="app_common_copyCode_a11y">Copy code</string>
+    <string name="app_common_codeCopied_text">Code copied to the clipboard</string>
+    <string name="app_common_collapsed_a11y">Collapsed</string>
+    <string name="app_common_expanded_a11y">Expanded</string>
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">ChangeTheme</string>
@@ -33,6 +37,7 @@
     <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
     <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
     <string name="app_tokens_spFormat_label" translatable="false">%s sp</string>
+    <string name="app_tokens_viewCodeExample_label">View token code example</string>
 
     <!-- Tokens: border -->
     <string name="app_tokens_border_label">Border</string>

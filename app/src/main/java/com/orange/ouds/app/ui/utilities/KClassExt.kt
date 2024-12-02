@@ -52,9 +52,11 @@ fun KClass<*>.getTokens(
     }
 }
 
-fun KClass<*>.getTokenName(fromParent: KClass<*>): String {
+fun KClass<*>.getTokenName(fromParent: KClass<*>? = null): String {
+    val prefix = if (fromParent != null) "${fromParent.qualifiedName.orEmpty()}." else "${java.`package`?.name.orEmpty()}."
+    
     return qualifiedName.orEmpty()
-        .removePrefix("${fromParent.qualifiedName.orEmpty()}.")
+        .removePrefix(prefix)
         .removeSuffix(".Companion")
 }
 

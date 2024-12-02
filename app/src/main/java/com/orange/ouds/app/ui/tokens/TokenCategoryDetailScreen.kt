@@ -12,10 +12,21 @@
 
 package com.orange.ouds.app.ui.tokens
 
+import android.content.Context
+import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -26,18 +37,39 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.ClipboardManager
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
@@ -61,6 +93,9 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     descriptionRes = tokenCategory.descriptionRes,
                     imageRes = tokenCategory.imageRes
                 )
+                tokenCategory.valueCodeExample?.let { codeExample ->
+                    CodeColumn(modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Shortest.value), codeExample = codeExample)
+                }
             }
 
             if (tokenCategory.subcategories.isNotEmpty()) {
@@ -208,6 +243,82 @@ private fun TokenPropertyHeader(tokenProperty: TokenProperty<*>, modifier: Modif
         )
         else -> {}
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
+    var isExpanded by rememberSaveable { mutableStateOf(false) }
+    val linkStateDescription = stringResource(if (isExpanded) R.string.app_common_expanded_a11y else R.string.app_common_collapsed_a11y)
+    val linkContentDescription = stringResource(R.string.app_tokens_viewCodeExample_label)
+    val transition = updateTransition(targetState = isExpanded, label = "LinkArrowTransition")
+    val linkArrowRotation by transition.animateFloat(
+        label = "LinkArrowRotation",
+        transitionSpec = {
+            tween(durationMillis = 300, easing = FastOutSlowInEasing)
+        }
+    ) { expanded ->
+        if (expanded) 180f else 0f
+    }
+
+    Column(modifier = modifier.padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)) {
+        CompositionLocalProvider(LocalRippleConfiguration provides null) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = OudsSpaceKeyToken.Fixed.Short.value)
+                    .clickable {
+                        isExpanded = !isExpanded
+                    }
+                    .clearAndSetSemantics {
+                        contentDescription = linkContentDescription
+                        stateDescription = linkStateDescription
+                    },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.PaddingInline.WithArrow.Short.value)
+            ) {
+                Text(
+                    text = stringResource(R.string.app_tokens_viewCodeExample_label),
+                    style = OudsTypographyKeyToken.Label.Strong.Large.value
+                )
+                Icon(
+                    modifier = Modifier.rotate(linkArrowRotation),
+                    painter = painterResource(R.drawable.ic_chevron_down),
+                    tint = OudsColorKeyToken.Brand.Primary.Default.value,
+                    contentDescription = null
+                )
+            }
+        }
+        AnimatedVisibility(visible = isExpanded, enter = fadeIn(tween(delayMillis = 150)) + expandVertically()) {
+            Box(
+                modifier = Modifier
+                    .background(color = OudsColorKeyToken.Background.Secondary.value)
+                    .border(width = 1.dp, color = OudsColorKeyToken.Border.Default.value, shape = RectangleShape)
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Short.value),
+                    verticalAlignment = Alignment.Top
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(vertical = OudsSpaceKeyToken.Fixed.Medium.value)
+                            .padding(start = OudsSpaceKeyToken.Fixed.Medium.value), text = codeExample, style = TextStyle(fontFamily = FontFamily.Monospace)
+                    )
+                    IconButton(onClick = { copyCodeToClipboard(context, codeExample, clipboardManager) }) {
+                        Icon(painter = painterResource(R.drawable.ic_copy), contentDescription = stringResource(R.string.app_common_copyCode_a11y))
+                    }
+                }
+            }
+        }
+    }
+}
+
+private fun copyCodeToClipboard(context: Context, code: String, clipboardManager: ClipboardManager) {
+    clipboardManager.setText(AnnotatedString(code))
+    Toast.makeText(context, context.getString(R.string.app_common_codeCopied_text), Toast.LENGTH_SHORT).show()
 }
 
 @UiModePreviews.Default
