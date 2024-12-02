@@ -26,13 +26,8 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
         val netlifyToken = requireTypedProperty<String>("netlifyToken")
         val commitSha = requireTypedProperty<String>("commitSha")
 
-        // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
-        // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
-        // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
-        val branchName = Environment.getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
-
         val args = mutableListOf("netlify", "deploy", "--dir", documentationPath, "--site", netlifySiteId, "--auth", netlifyToken)
-        if (branchName == "develop") {
+        if (Environment.branchName == "develop") {
             args += "--prod"
         }
 
@@ -59,13 +54,13 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
         // Save deploy preview URL in a file in order to update GitHub Netlify environment URL later on
         File("netlify_deploy_preview_url.txt").writeText(netlifyDeployPreviewUrl.orEmpty())
 
-        if (branchName != "develop") {
+        if (Environment.branchName != "develop") {
             gitHubApi {
                 // Find pull request for current branch
                 val pullRequests = getPullRequests()
-                val pullRequest = pullRequests.firstOrNull { it.branchName == branchName }
+                val pullRequest = pullRequests.firstOrNull { it.branchName == Environment.branchName }
                 if (pullRequest != null) {
-                    logger.lifecycle("Found pull request #${pullRequest.number} for branch $branchName.")
+                    logger.lifecycle("Found pull request #${pullRequest.number} for branch ${Environment.branchName}.")
                     val body = "$netlifyCommentPreamble\\n" + if (output != null) {
                         "### 🟢 Netlify deploy for commit $commitSha succeeded\\n\\nDeploy preview: $netlifyDeployPreviewUrl\\nDeploy log: $netlifyDeployLogUrl"
                     } else {
@@ -83,7 +78,7 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
                         createIssueComment(pullRequest.number, body)
                     }
                 } else if (exception == null) {
-                    exception = GradleException("Could not find a pull request for branch $branchName.")
+                    exception = GradleException("Could not find a pull request for branch ${Environment.branchName}.")
                 }
             }
         }

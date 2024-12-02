@@ -17,6 +17,15 @@ import org.gradle.api.GradleException
 object Environment {
 
     /**
+     * The Git branch name extracted from the environment variables.
+     */
+    val branchName: String?
+        // GITHUB_HEAD_REF is equal to the branch name for a pull request and is empty otherwise
+        // GITHUB_REF_NAME is equal to X/merge for a pull request (where X is the pull request number) or to the branch name otherwise
+        // That's why we use GITHUB_HEAD_REF for a pull request and GITHUB_REF_NAME otherwise
+        get() = getVariablesOrNull("GITHUB_HEAD_REF", "GITHUB_REF_NAME").firstOrNull { it?.isNotBlank() == true }
+
+    /**
      * Returns the values for the given environment variables names.
      * Throws an exception if at least one environment variable is missing.
      *
