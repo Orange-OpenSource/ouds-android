@@ -504,7 +504,7 @@ object OudsButton {
      * It is non-clickable and no content description is needed cause a button label is always present.
      */
     class Icon private constructor(
-        val graphicsObject: Any
+        graphicsObject: Any
     ) : OudsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, "") {
 
         @ConsistentCopyVisibility
