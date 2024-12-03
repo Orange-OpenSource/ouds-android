@@ -88,9 +88,10 @@ fun OudsButton(
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy
 ) {
     OudsButton(
-        nullableIcon = null,
-        nullableText = text,
+        icon = null,
+        text = text,
         onClick = onClick,
+        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
@@ -120,9 +121,10 @@ fun OudsButton(
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy
 ) {
     OudsButton(
-        nullableIcon = icon,
-        nullableText = null,
+        icon = icon,
+        text = null,
         onClick = onClick,
+        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
@@ -154,9 +156,10 @@ fun OudsButton(
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy
 ) {
     OudsButton(
-        nullableIcon = icon,
-        nullableText = text,
+        icon = icon,
+        text = text,
         onClick = onClick,
+        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
@@ -167,20 +170,20 @@ fun OudsButton(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun OudsButton(
-    nullableIcon: OudsButton.Icon?,
-    nullableText: String?,
+    icon: OudsButton.Icon?,
+    text: String?,
     onClick: () -> Unit,
+    previewState: OudsButton.State?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButton.Style.Default,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy,
-    previewState: OudsButton.State? = null
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy
 ) {
     val buttonTokens = OudsTheme.componentsTokens.button
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
-    val maxHeight = if (nullableIcon != null && nullableText == null) buttonTokens.sizeMaxHeight.dp else Dp.Unspecified
+    val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeight.dp else Dp.Unspecified
     val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
@@ -194,7 +197,7 @@ private fun OudsButton(
             shape = shape,
             colors = buttonColors(hierarchy = hierarchy, buttonState = state),
             elevation = null,
-            contentPadding = contentPadding(icon = nullableIcon, text = nullableText),
+            contentPadding = contentPadding(icon = icon, text = text),
             interactionSource = interactionSource
         ) {
             Box(contentAlignment = Alignment.Center) {
@@ -210,18 +213,18 @@ private fun OudsButton(
                     horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (nullableIcon != null) {
-                        val size = if (nullableText == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
+                    if (icon != null) {
+                        val size = if (text == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
                         val tint = contentColor(hierarchy = hierarchy, state = state)
-                        nullableIcon.Content(
+                        icon.Content(
                             modifier = Modifier.size(size.value),
                             extraParameters = OudsButton.Icon.ExtraParameters(tint = tint)
                         )
                     }
-                    if (nullableText != null) {
+                    if (text != null) {
                         Text(
                             modifier = modifier,
-                            text = nullableText,
+                            text = text,
                             style = OudsTypographyKeyToken.Label.Strong.Large.value
                         )
                     }
@@ -595,7 +598,7 @@ internal fun PreviewOudsButton(
             chunkedStates.forEach { states ->
                 Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     states.forEach { state ->
-                        OudsButton(nullableIcon = icon, nullableText = text, onClick = {}, hierarchy = hierarchy, previewState = state)
+                        OudsButton(icon = icon, text = text, onClick = {}, hierarchy = hierarchy, previewState = state)
                     }
                 }
             }
