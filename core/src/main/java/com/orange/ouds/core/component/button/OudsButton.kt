@@ -199,6 +199,7 @@ private fun OudsButton(
                 .widthIn(min = buttonTokens.sizeMinWidth.dp)
                 .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
                 .border(hierarchy = hierarchy, state = state, shape = shape)
+                .outerBorder(state = state, shape = shape)
                 .semantics {
                     this.stateDescription = stateDescription
                 },
@@ -272,17 +273,22 @@ private fun Modifier.border(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
     val borderColor = borderColor(hierarchy = hierarchy, state = state)
 
     return if (borderWidth != null && borderColor != null) {
-        if (state != OudsButton.State.Focused) {
-            border(width = borderWidth, color = borderColor, shape = shape)
-        } else {
-            outerBorder(
-                width = borderWidth,
-                color = borderColor,
-                shape = shape,
-                insetWidth = OudsBorderKeyToken.Width.FocusInset.value,
-                insetColor = OudsColorKeyToken.Border.FocusInset.value
-            )
-        }
+        border(width = borderWidth, color = borderColor, shape = shape)
+    } else {
+        this
+    }
+}
+
+@Composable
+private fun Modifier.outerBorder(state: OudsButton.State, shape: Shape): Modifier {
+    return if (state == OudsButton.State.Focused) {
+        outerBorder(
+            width = OudsBorderKeyToken.Width.Focus.value,
+            color = OudsColorKeyToken.Border.Focus.value,
+            shape = shape,
+            insetWidth = OudsBorderKeyToken.Width.FocusInset.value,
+            insetColor = OudsColorKeyToken.Border.FocusInset.value
+        )
     } else {
         this
     }
@@ -298,7 +304,7 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading -> borderWidthDefaultInteraction
-                OudsButton.State.Focused -> OudsBorderKeyToken.Width.Focus
+                OudsButton.State.Focused -> OudsBorderKeyToken.Width.FocusInset
                 OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
@@ -307,11 +313,11 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading -> borderWidthMinimalInteraction
-                OudsButton.State.Focused -> OudsBorderKeyToken.Width.Focus
+                OudsButton.State.Focused -> OudsBorderKeyToken.Width.FocusInset
                 OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Strong,
-            OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsBorderKeyToken.Width.Focus else null
+            OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsBorderKeyToken.Width.FocusInset else null
         }?.value
     }
 }
@@ -326,7 +332,7 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Pressed -> colorBorderDefaultPressed
                 OudsButton.State.Loading -> colorBorderDefaultLoading
                 OudsButton.State.Disabled -> colorBorderDefaultDisabled
-                OudsButton.State.Focused -> OudsColorKeyToken.Border.Focus
+                OudsButton.State.Focused -> colorBorderDefaultFocus
                 OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
@@ -335,11 +341,11 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Pressed -> colorBorderMinimalPressed
                 OudsButton.State.Loading -> colorBorderMinimalLoading
                 OudsButton.State.Disabled -> colorBorderMinimalDisabled
-                OudsButton.State.Focused -> OudsColorKeyToken.Border.Focus
+                OudsButton.State.Focused -> colorBorderMinimalFocus
                 OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Strong,
-            OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsColorKeyToken.Border.Focus else null
+            OudsButton.Hierarchy.Negative -> null
         }?.value
     }
 }
