@@ -201,15 +201,15 @@ private fun OudsButton(
             interactionSource = interactionSource
         ) {
             Box(contentAlignment = Alignment.Center) {
-                val isLoadingIndicatorVisible = state == OudsButton.State.Loading
-                if (isLoadingIndicatorVisible) {
+                if (state == OudsButton.State.Loading) {
                     val loadingStyle = style as? OudsButton.Style.Loading
                     val progress = if (previewState == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
                     LoadingIndicator(hierarchy = hierarchy, progress)
                 }
 
+                val alpha = if (state in remember { listOf(OudsButton.State.Loading, OudsButton.State.Skeleton) }) 0f else 1f
                 Row(
-                    modifier = Modifier.alpha(if (isLoadingIndicatorVisible) 0f else 1f),
+                    modifier = Modifier.alpha(alpha = alpha),
                     horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
