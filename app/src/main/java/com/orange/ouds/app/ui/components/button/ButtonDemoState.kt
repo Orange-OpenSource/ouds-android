@@ -26,8 +26,8 @@ import com.orange.ouds.core.component.button.OudsButtonDefaults
 @Composable
 fun rememberButtonDemoState(
     enabled: Boolean = true,
-    style: OudsButton.Style = OudsButtonDefaults.style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy,
+    style: OudsButton.Style = OudsButtonDefaults.Style,
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.TextOnly
 ) = rememberSaveable(enabled, style, hierarchy, layout, saver = ButtonDemoState.Saver) {
     ButtonDemoState(enabled, style, hierarchy, layout)

@@ -84,8 +84,8 @@ fun OudsButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    style: OudsButton.Style = OudsButtonDefaults.style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy
+    style: OudsButton.Style = OudsButtonDefaults.Style,
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
 ) {
     OudsButton(
         icon = null,
@@ -117,8 +117,8 @@ fun OudsButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    style: OudsButton.Style = OudsButtonDefaults.style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy
+    style: OudsButton.Style = OudsButtonDefaults.Style,
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
 ) {
     OudsButton(
         icon = icon,
@@ -152,8 +152,8 @@ fun OudsButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    style: OudsButton.Style = OudsButtonDefaults.style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy
+    style: OudsButton.Style = OudsButtonDefaults.Style,
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
 ) {
     OudsButton(
         icon = icon,
@@ -177,7 +177,7 @@ private fun OudsButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButton.Style.Default,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
 ) {
     val buttonTokens = OudsTheme.componentsTokens.button
     val interactionSource = remember { MutableInteractionSource() }
@@ -486,12 +486,12 @@ object OudsButtonDefaults {
     /**
      * The default hierarchy.
      */
-    val hierarchy = OudsButton.Hierarchy.Default
+    val Hierarchy = OudsButton.Hierarchy.Default
 
     /**
      * The default style.
      */
-    val style = OudsButton.Style.Default
+    val Style = OudsButton.Style.Default
 }
 
 /**
