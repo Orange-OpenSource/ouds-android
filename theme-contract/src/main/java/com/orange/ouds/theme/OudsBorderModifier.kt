@@ -105,8 +105,8 @@ fun Modifier.dottedBorder(
  * @param width The width of the border in dp. Use [Dp.Hairline] for a hairline border.
  * @param color The color to paint the border with.
  * @param shape The shape of the border.
- * @param width The width of the border inset in dp. Use [Dp.Hairline] for a hairline border inset.
- * @param color The color to paint the border inset with.
+ * @param insetWidth The width of the border inset in dp. Use [Dp.Hairline] for a hairline border inset.
+ * @param insetColor The color to paint the border inset with.
  */
 fun Modifier.outerBorder(
     width: Dp,
