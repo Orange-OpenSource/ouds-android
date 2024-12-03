@@ -193,7 +193,7 @@ private fun OudsButton(
                 .widthIn(min = buttonTokens.sizeMinWidth.dp)
                 .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
                 .border(hierarchy = hierarchy, state = state, shape = shape),
-            enabled = state != OudsButton.State.Disabled && state != OudsButton.State.Loading && state != OudsButton.State.Skeleton,
+            enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading, OudsButton.State.Skeleton) },
             shape = shape,
             colors = buttonColors(hierarchy = hierarchy, buttonState = state),
             elevation = null,
