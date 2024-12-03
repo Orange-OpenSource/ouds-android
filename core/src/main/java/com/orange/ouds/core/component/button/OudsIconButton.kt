@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component.button
 
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,4 +31,11 @@ internal fun OudsIconButton(
     IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
         OudsIcon(graphicsObject = graphicsObject, contentDescription = contentDescription, tint = tint, enabled = enabled)
     }
+}
+
+internal object OudsIconButtonDefaults {
+
+    val tint: Color
+        @Composable
+        get() = LocalContentColor.current
 }
