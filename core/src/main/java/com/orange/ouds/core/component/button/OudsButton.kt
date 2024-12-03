@@ -558,7 +558,7 @@ object OudsButtonDefaults {
  * Contains classes to build an [com.orange.ouds.core.component.button.OudsButton].
  */
 object OudsButton {
-    
+
     /**
      * A button icon in an [OudsButton].
      * It is non-clickable and no content description is needed cause a button label is always present.
