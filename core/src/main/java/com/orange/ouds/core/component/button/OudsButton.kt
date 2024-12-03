@@ -47,9 +47,13 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -187,12 +191,16 @@ private fun OudsButton(
     val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
+        val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
         Button(
             onClick = onClick,
             modifier = modifier
                 .widthIn(min = buttonTokens.sizeMinWidth.dp)
                 .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
-                .border(hierarchy = hierarchy, state = state, shape = shape),
+                .border(hierarchy = hierarchy, state = state, shape = shape)
+                .semantics {
+                    this.stateDescription = stateDescription
+                },
             enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading, OudsButton.State.Skeleton) },
             shape = shape,
             colors = buttonColors(hierarchy = hierarchy, buttonState = state),
