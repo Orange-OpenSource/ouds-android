@@ -1,5 +1,7 @@
 package com.orange.ouds.app.ui.components.button
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,6 +21,8 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.core.component.button.OudsButton
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -72,13 +76,29 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
                 descriptionRes = Component.Button.descriptionRes
             )
-            val text = hierarchy.name
-            val icon = OudsButton.Icon(painterResource(id = R.drawable.ic_heart))
-            val modifier = Modifier.align(Alignment.CenterHorizontally)
+            ButtonDemo(state = this@DemoScreen)
+            OudsThemeTweak(OudsTheme.Tweak.Invert) {
+                ButtonDemo(state = this@DemoScreen)
+            }
+        }
+    }
+}
+
+@Composable
+private fun ButtonDemo(state: ButtonDemoState) {
+    Box(
+        modifier = Modifier
+            .background(OudsTheme.colorScheme.backgroundColors.primary)
+            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+            .fillMaxWidth(),
+        contentAlignment = Alignment.Center
+    ) {
+        val text = stringResource(id = R.string.app_components_button_label)
+        val icon = OudsButton.Icon(painterResource(id = R.drawable.ic_heart))
+        with(state) {
             when (layout) {
                 ButtonDemoState.Layout.TextOnly -> {
                     OudsButton(
-                        modifier = modifier,
                         text = text,
                         onClick = {},
                         enabled = enabled,
@@ -88,7 +108,6 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 }
                 ButtonDemoState.Layout.IconAndText -> {
                     OudsButton(
-                        modifier = modifier,
                         icon = icon,
                         text = text,
                         onClick = {},
@@ -99,7 +118,6 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 }
                 ButtonDemoState.Layout.IconOnly -> {
                     OudsButton(
-                        modifier = modifier,
                         icon = icon,
                         onClick = {},
                         enabled = enabled,
@@ -114,6 +132,6 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewButtonExampleScreen() = OudsPreview {
+private fun PreviewButtonDemoScreen() = OudsPreview {
     ButtonDemoScreen()
 }
