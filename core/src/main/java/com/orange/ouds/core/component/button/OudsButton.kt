@@ -567,7 +567,7 @@ object OudsButton {
         data class Loading(val progress: Float?) : Style()
 
         /**
-         * This button displays a skeleton.
+         * The button displays a skeleton.
          */
         @Parcelize
         data object Skeleton : Style()
