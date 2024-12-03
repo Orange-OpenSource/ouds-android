@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.orange.ouds.core.extensions.enabled
 
 @Composable
 internal fun OudsIcon(
@@ -29,11 +28,10 @@ internal fun OudsIcon(
     tint: Color = OudsIconDefaults.tint,
     enabled: Boolean = true,
 ) {
-    val iconTint = tint.enabled(enabled = enabled)
     when (graphicsObject) {
-        is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-        is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-        is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
+        is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = tint)
+        is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = tint)
+        is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = tint)
         else -> {}
     }
 }
