@@ -94,7 +94,7 @@ private fun ButtonDemo(state: ButtonDemoState) {
         contentAlignment = Alignment.Center
     ) {
         val text = stringResource(id = R.string.app_components_button_label)
-        val icon = OudsButton.Icon(painterResource(id = R.drawable.ic_heart))
+        val icon = OudsButton.Icon(painterResource(id = R.drawable.ic_heart), stringResource(id = R.string.app_components_button_icon_a11y))
         with(state) {
             when (layout) {
                 ButtonDemoState.Layout.TextOnly -> {

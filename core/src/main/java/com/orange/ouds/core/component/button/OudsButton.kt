@@ -48,6 +48,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -225,7 +226,11 @@ private fun OudsButton(
                         val size = if (text == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
                         val tint = contentColor(hierarchy = hierarchy, state = state)
                         icon.Content(
-                            modifier = Modifier.size(size.value),
+                            modifier = Modifier
+                                .size(size.value)
+                                .semantics {
+                                    contentDescription = if (text == null) icon.contentDescription else ""
+                                },
                             extraParameters = OudsButton.Icon.ExtraParameters(tint = tint)
                         )
                     }
@@ -512,8 +517,9 @@ object OudsButton {
      * It is non-clickable and no content description is needed cause a button label is always present.
      */
     class Icon private constructor(
-        graphicsObject: Any
-    ) : OudsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, "") {
+        graphicsObject: Any,
+        val contentDescription: String
+    ) : OudsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
         @ConsistentCopyVisibility
         data class ExtraParameters internal constructor(
@@ -524,22 +530,25 @@ object OudsButton {
          * Creates an instance of [OudsButton.Icon].
          *
          * @param painter Painter of the icon.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
          */
-        constructor(painter: Painter) : this(painter as Any)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OudsButton.Icon].
          *
          * @param imageVector Image vector of the icon.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
          */
-        constructor(imageVector: ImageVector) : this(imageVector as Any)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OudsButton.Icon].
          *
          * @param bitmap Image bitmap of the icon.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
          */
-        constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         override val tint: Color?
             @Composable
@@ -600,7 +609,7 @@ internal fun PreviewOudsButton(
 ) = OudsPreview(modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val text = if (hasText) hierarchy.name else null
-        val icon = if (hasIcon) OudsButton.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
+        val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
         val chunkedStates = states.chunked(2)
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             chunkedStates.forEach { states ->

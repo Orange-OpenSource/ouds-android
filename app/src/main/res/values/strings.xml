@@ -119,6 +119,7 @@
     <string name="app_components_button_textOnlyLayout_label">Text only</string>
     <string name="app_components_button_iconAndTextLayout_label">Icon + text</string>
     <string name="app_components_button_iconOnlyLayout_label">Icon only</string>
+    <string name="app_components_button_icon_a11y">Icon</string>
 
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
