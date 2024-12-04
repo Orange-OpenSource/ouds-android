@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.orange.ouds.core.component.button.OudsIconButton
 import com.orange.ouds.core.component.icon.OudsIcon
 import com.orange.ouds.core.component.icon.OudsIconDefaults
 import com.orange.ouds.foundation.extensions.orElse
@@ -29,9 +28,7 @@ import com.orange.ouds.foundation.extensions.orElse
 abstract class OudsComponentIcon<T> protected constructor(
     extraParametersClass: Class<T>,
     private val graphicsObject: Any,
-    private val contentDescription: String,
-    private var enabled: Boolean = true,
-    private val onClick: (() -> Unit)? = null,
+    private val contentDescription: String
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters {
 
     val painter: Painter? = graphicsObject as? Painter
@@ -45,47 +42,28 @@ abstract class OudsComponentIcon<T> protected constructor(
     protected constructor(
         extraParametersClass: Class<T>,
         painter: Painter,
-        contentDescription: String,
-        enabled: Boolean = true,
-        onClick: (() -> Unit)? = null,
-    ) : this(extraParametersClass, painter as Any, contentDescription, enabled, onClick)
+        contentDescription: String
+    ) : this(extraParametersClass, painter as Any, contentDescription)
 
     protected constructor(
         extraParametersClass: Class<T>,
         imageVector: ImageVector,
-        contentDescription: String,
-        enabled: Boolean = true,
-        onClick: (() -> Unit)? = null
-    ) : this(extraParametersClass, imageVector as Any, contentDescription, enabled, onClick)
+        contentDescription: String
+    ) : this(extraParametersClass, imageVector as Any, contentDescription)
 
     protected constructor(
         extraParametersClass: Class<T>,
         bitmap: ImageBitmap,
-        contentDescription: String,
-        enabled: Boolean = true,
-        onClick: (() -> Unit)? = null
-    ) : this(extraParametersClass, bitmap as Any, contentDescription, enabled, onClick)
+        contentDescription: String
+    ) : this(extraParametersClass, bitmap as Any, contentDescription)
 
     @Composable
     override fun Content(modifier: Modifier) {
-        val tint = tint.orElse { OudsIconDefaults.tint }
-        onClick?.let { onClick ->
-            OudsIconButton(
-                onClick = onClick,
-                graphicsObject = graphicsObject,
-                contentDescription = contentDescription,
-                tint = tint,
-                modifier = modifier,
-                enabled = enabled
-            )
-        }.orElse {
-            OudsIcon(
-                graphicsObject = graphicsObject,
-                contentDescription = contentDescription,
-                modifier = modifier,
-                tint = tint,
-                enabled = enabled
-            )
-        }
+        OudsIcon(
+            graphicsObject = graphicsObject,
+            contentDescription = contentDescription,
+            modifier = modifier,
+            tint = tint.orElse { OudsIconDefaults.tint }
+        )
     }
 }

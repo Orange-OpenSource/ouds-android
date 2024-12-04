@@ -26,8 +26,7 @@ internal fun OudsIcon(
     graphicsObject: Any,
     contentDescription: String,
     modifier: Modifier = Modifier,
-    tint: Color = OudsIconDefaults.tint,
-    enabled: Boolean = true,
+    tint: Color = OudsIconDefaults.tint
 ) {
     when (graphicsObject) {
         is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = tint)
