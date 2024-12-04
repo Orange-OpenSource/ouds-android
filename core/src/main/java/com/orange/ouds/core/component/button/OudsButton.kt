@@ -38,6 +38,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
@@ -49,6 +50,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -470,9 +472,12 @@ private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?) {
-    val modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeLoader.value)
+    val modifier = Modifier
+        .size(OudsTheme.componentsTokens.button.sizeLoader.value)
+        .semantics { invisibleToUser() }
     val color = contentColor(hierarchy = hierarchy, state = OudsButton.State.Loading)
     val strokeWidth = 3.dp
     val trackColor = Color.Transparent
