@@ -17,32 +17,12 @@ import com.orange.ouds.tokens.global.raw.ColorRawTokens
 import com.orange.ouds.tokens.global.raw.OrangeBrandColorRawTokens
 
 data class OudsColorAlwaysSemanticTokens(
-  val alwaysAccentLight: Color = ColorRawTokens.colorFunctionalSun500,
   val alwaysBlackLight: Color = ColorRawTokens.colorFunctionalBlack,
-  val alwaysInfoLight: Color = ColorRawTokens.colorFunctionalDodgerBlue500,
-  val alwaysNegativeLight: Color = ColorRawTokens.colorFunctionalScarlet600,
-  val alwaysOnAccentLight: Color = ColorRawTokens.colorFunctionalBlack,
   val alwaysOnBlackLight: Color = ColorRawTokens.colorFunctionalWhite,
-  val alwaysOnInfoLight: Color = ColorRawTokens.colorFunctionalBlack,
-  val alwaysOnNegativeLight: Color = ColorRawTokens.colorFunctionalWhite,
-  val alwaysOnPositiveLight: Color = ColorRawTokens.colorFunctionalBlack,
-  val alwaysOnWarningLight: Color = ColorRawTokens.colorFunctionalBlack,
   val alwaysOnWhiteLight: Color = ColorRawTokens.colorFunctionalBlack,
-  val alwaysPositiveLight: Color = ColorRawTokens.colorFunctionalMalachite500,
-  val alwaysWarningLight: Color = ColorRawTokens.colorFunctionalSun500,
   val alwaysWhiteLight: Color = ColorRawTokens.colorFunctionalWhite,
-  val alwaysAccentDark: Color = ColorRawTokens.colorFunctionalSun500,
   val alwaysBlackDark: Color = ColorRawTokens.colorFunctionalBlack,
-  val alwaysInfoDark: Color = ColorRawTokens.colorFunctionalDodgerBlue500,
-  val alwaysNegativeDark: Color = ColorRawTokens.colorFunctionalScarlet600,
-  val alwaysOnAccentDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
   val alwaysOnBlackDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-  val alwaysOnInfoDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
-  val alwaysOnNegativeDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-  val alwaysOnPositiveDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
-  val alwaysOnWarningDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
-  val alwaysOnWhiteDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
-  val alwaysPositiveDark: Color = ColorRawTokens.colorFunctionalMalachite500,
-  val alwaysWarningDark: Color = ColorRawTokens.colorFunctionalSun500,
+  val alwaysOnWhiteDark: Color = ColorRawTokens.colorFunctionalBlack,
   val alwaysWhiteDark: Color = ColorRawTokens.colorFunctionalWhite
 )
