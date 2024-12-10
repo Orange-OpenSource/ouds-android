@@ -31,6 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -49,11 +51,11 @@ fun LargeCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Card(modifier = modifier, shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsElevationKeyToken.Raised.value), onClick = onClick) {
-        Column(modifier = Modifier.background(OudsColorKeyToken.Elevation.Raised.value)) {
+    Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsElevationKeyToken.Raised.value), onClick = onClick) {
+        Column(modifier = Modifier.background(OudsColorKeyToken.Background.Primary.value)) {
             Image(
                 painter = painterResource(imageRes),
-                colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.Default.OnBgEmphasized.value),
+                colorFilter = ColorFilter.tint(OudsColorKeyToken.Always.White.value),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -62,7 +64,7 @@ fun LargeCard(
                 contentScale = ContentScale.None
             )
             Column(
-                modifier = Modifier.padding(OudsSpaceKeyToken.Fixed.Medium.value)
+                modifier = Modifier.fillMaxWidth().background(OudsColorKeyToken.Action.Support.Enabled.value).padding(OudsSpaceKeyToken.Fixed.Medium.value)
             ) {
                 Text(
                     text = title,

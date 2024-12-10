@@ -20,20 +20,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -71,12 +71,14 @@ fun SpaceHeader(
     spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>,
     modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier = modifier
-            .background(color = OudsColorKeyToken.Background.Emphasized.value)
-            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
-    ) {
-        SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
+    OudsThemeTweak(tweak = OudsTheme.Tweak.ForceDark) { //TODO This does not give the expected result in light mode because the background should be black. To fix when demo app Figma file is updated with new tokens.
+        Box(
+            modifier = modifier
+                .background(color = OudsColorKeyToken.Background.Emphasized.value)
+                .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+        ) {
+            SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
+        }
     }
 }
 
@@ -86,38 +88,30 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
 
     val externalSpaceValues = when (spaceTokenProperty) {
         TokenProperty.SpaceScaled -> PaddingValues(start = OudsSpaceKeyToken.Fixed.Shorter.value, top = OudsSpaceKeyToken.Fixed.Shortest.value)
-        TokenProperty.SpaceFixed,
-        TokenProperty.SpacePaddingInlineWithArrow,
-        TokenProperty.SpacePaddingInlineWithIcon -> PaddingValues(start = OudsSpaceKeyToken.Fixed.Shorter.value)
+        TokenProperty.SpaceFixed -> PaddingValues(start = OudsSpaceKeyToken.Fixed.Shorter.value)
         TokenProperty.SpacePaddingInline -> PaddingValues(horizontal = OudsSpaceKeyToken.Fixed.Shorter.value)
         TokenProperty.SpacePaddingStack -> PaddingValues(vertical = OudsSpaceKeyToken.Fixed.Shorter.value)
-        TokenProperty.SpacePaddingStackWithIcon -> PaddingValues(top = OudsSpaceKeyToken.Fixed.Shorter.value)
         TokenProperty.SpacePaddingInset -> PaddingValues(all = OudsSpaceKeyToken.Fixed.Shorter.value)
         else -> PaddingValues(all = 0.dp)
     }
 
     val internalSpaceColor = when (spaceTokenProperty) {
         TokenProperty.SpaceColumnGap,
-        TokenProperty.SpaceColumnGapWithIcon,
-        TokenProperty.SpaceColumnGapWithArrow,
-        TokenProperty.SpaceRowGap,
-        TokenProperty.SpaceRowGapWithIcon -> OudsColorKeyToken.Always.Info.value
+        TokenProperty.SpaceRowGap -> OudsColorKeyToken.Content.Status.Info.value
         else -> OudsColorKeyToken.Background.Emphasized.value
     }
 
     val modifier = Modifier
-        .dashedBorder(width = dashedBorderWidth, color = OudsColorKeyToken.Content.Default.OnBgEmphasized.value)
+        .dashedBorder(width = dashedBorderWidth, color = OudsColorKeyToken.Content.Default.value)
         .padding(all = dashedBorderWidth)
-        .background(color = OudsColorKeyToken.Always.Info.value)
+        .background(color = OudsColorKeyToken.Content.Status.Info.value)
         .padding(externalSpaceValues)
         .background(internalSpaceColor)
 
     val column = remember {
         spaceTokenProperty in listOf(
             TokenProperty.SpaceRowGap,
-            TokenProperty.SpaceRowGapWithIcon,
             TokenProperty.SpacePaddingStack,
-            TokenProperty.SpacePaddingStackWithIcon
         )
     }
 
@@ -130,12 +124,6 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
         ) {
             if (spaceTokenProperty == TokenProperty.SpaceRowGap) {
                 SpaceHeaderText(spaceTokenProperty = spaceTokenProperty)
-            } else {
-                SpaceHeaderImage(
-                    modifier = Modifier.fillMaxWidth(),
-                    spaceTokenProperty = spaceTokenProperty,
-                    alignment = Alignment.CenterStart
-                )
             }
             SpaceHeaderText(spaceTokenProperty = spaceTokenProperty)
         }
@@ -148,10 +136,6 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
                 SpaceHeaderText(modifier = Modifier.weight(0.5f), spaceTokenProperty = spaceTokenProperty)
                 SpaceHeaderText(modifier = Modifier.weight(0.5f), spaceTokenProperty = spaceTokenProperty)
             } else {
-                SpaceHeaderImage(
-                    modifier = Modifier.fillMaxHeight(),
-                    spaceTokenProperty = spaceTokenProperty
-                )
                 SpaceHeaderText(spaceTokenProperty = spaceTokenProperty)
             }
         }
@@ -162,17 +146,11 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
 private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>, modifier: Modifier = Modifier) {
     val textResId = when (spaceTokenProperty) {
         TokenProperty.SpaceColumnGap -> R.string.app_tokens_dimension_space_columnGapHeader_text
-        TokenProperty.SpaceColumnGapWithArrow -> R.string.app_tokens_dimension_space_columnGapWithArrowHeader_text
-        TokenProperty.SpaceColumnGapWithIcon -> R.string.app_tokens_dimension_space_columnGapWithIconHeader_text
         TokenProperty.SpaceFixed -> R.string.app_tokens_dimension_space_fixedHeader_text
         TokenProperty.SpacePaddingInline -> R.string.app_tokens_dimension_space_paddingInlineHeader_text
-        TokenProperty.SpacePaddingInlineWithArrow -> R.string.app_tokens_dimension_space_paddingInlineWithArrowHeader_text
-        TokenProperty.SpacePaddingInlineWithIcon -> R.string.app_tokens_dimension_space_paddingInlineWithIconHeader_text
         TokenProperty.SpacePaddingInset -> R.string.app_tokens_dimension_space_paddingInsetHeader_text
         TokenProperty.SpacePaddingStack -> R.string.app_tokens_dimension_space_paddingStackHeader_text
-        TokenProperty.SpacePaddingStackWithIcon -> R.string.app_tokens_dimension_space_paddingStackWithIconHeader_text
         TokenProperty.SpaceRowGap -> R.string.app_tokens_dimension_space_rowGapHeader_text
-        TokenProperty.SpaceRowGapWithIcon -> R.string.app_tokens_dimension_space_rowGapWithIconHeader_text
         TokenProperty.SpaceScaled -> R.string.app_tokens_dimension_space_scaledHeader_text
         else -> null
     }
@@ -180,45 +158,8 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
         Text(
             modifier = modifier.background(color = OudsColorKeyToken.Background.Emphasized.value),
             text = stringResource(id = textResId),
-            color = OudsColorKeyToken.Content.Default.OnBgEmphasized.value,
+            color = OudsColorKeyToken.Content.Default.value,
             style = OudsTypographyKeyToken.Body.Default.Medium.value
-        )
-    }
-}
-
-@Composable
-private fun SpaceHeaderImage(
-    spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>,
-    modifier: Modifier = Modifier,
-    alignment: Alignment = Alignment.Center
-) {
-    val imageResId = when (spaceTokenProperty) {
-        TokenProperty.SpacePaddingInlineWithIcon,
-        TokenProperty.SpacePaddingStackWithIcon,
-        TokenProperty.SpaceColumnGapWithIcon,
-        TokenProperty.SpaceRowGapWithIcon -> R.drawable.ic_design_token_figma_no_padding
-        TokenProperty.SpacePaddingInlineWithArrow,
-        TokenProperty.SpaceColumnGapWithArrow -> R.drawable.ic_chevron_down
-        else -> null
-    }
-
-    if (imageResId != null) {
-        val paddingValue = 1.dp
-        val paddingValues = when (spaceTokenProperty) {
-            TokenProperty.SpacePaddingInlineWithIcon -> PaddingValues(start = paddingValue)
-            TokenProperty.SpacePaddingStackWithIcon -> PaddingValues(top = paddingValue)
-            TokenProperty.SpaceColumnGapWithIcon -> PaddingValues(end = paddingValue)
-            TokenProperty.SpaceRowGapWithIcon -> PaddingValues(bottom = paddingValue)
-            else -> PaddingValues(all = 0.dp)
-        }
-
-        Image(
-            modifier = modifier
-                .background(color = OudsColorKeyToken.Background.Emphasized.value)
-                .padding(paddingValues = paddingValues),
-            painter = painterResource(id = imageResId),
-            contentDescription = null,
-            alignment = alignment
         )
     }
 }
@@ -244,14 +185,8 @@ private val previewParameterValues: List<TokenProperty<TokenCategory.Dimension.S
         TokenProperty.SpaceScaled,
 //        TokenProperty.SpaceFixed,
 //        TokenProperty.SpacePaddingInline,
-//        TokenProperty.SpacePaddingInlineWithIcon,
-//        TokenProperty.SpacePaddingInlineWithArrow,
 //        TokenProperty.SpacePaddingStack,
-//        TokenProperty.SpacePaddingStackWithIcon,
 //        TokenProperty.SpacePaddingInset,
 //        TokenProperty.SpaceColumnGap,
-//        TokenProperty.SpaceColumnGapWithIcon,
-//        TokenProperty.SpaceColumnGapWithArrow,
 //        TokenProperty.SpaceRowGap,
-//        TokenProperty.SpaceRowGapWithIcon
     )
