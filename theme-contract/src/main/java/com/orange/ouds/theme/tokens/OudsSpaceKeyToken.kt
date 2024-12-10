@@ -44,54 +44,29 @@ sealed interface OudsSpaceKeyToken {
 
     sealed interface PaddingInline : OudsSpaceKeyToken {
         data object None : PaddingInline
+        data object Smash : PaddingInline
+        data object Shortest : PaddingInline
         data object Shorter : PaddingInline
         data object Short : PaddingInline
         data object Medium : PaddingInline
         data object Tall : PaddingInline
         data object Taller : PaddingInline
         data object Tallest : PaddingInline
-
-        sealed interface WithIcon : PaddingInline {
-            data object None : WithIcon
-            data object Shortest : WithIcon
-            data object Shorter : WithIcon
-            data object Short : WithIcon
-            data object Medium : WithIcon
-            data object Tall : WithIcon
-            data object Taller : WithIcon
-            data object Tallest : WithIcon
-        }
-
-        sealed interface WithArrow : PaddingInline {
-            data object None : WithArrow
-            data object Shortest : WithArrow
-            data object Shorter : WithArrow
-            data object Short : WithArrow
-            data object Medium : WithArrow
-            data object Tall : WithArrow
-            data object Taller : WithArrow
-            data object Tallest : WithArrow
-        }
+        data object Huge : PaddingInline
     }
 
     sealed interface PaddingBlock : OudsSpaceKeyToken {
         data object None : PaddingBlock
+        data object Smash : PaddingBlock
+        data object Shortest : PaddingBlock
         data object Shorter : PaddingBlock
         data object Short : PaddingBlock
         data object Medium : PaddingBlock
         data object Tall : PaddingBlock
         data object Taller : PaddingBlock
         data object Tallest : PaddingBlock
-
-        sealed interface WithIcon : PaddingBlock {
-            data object None : WithIcon
-            data object Shortest : WithIcon
-            data object Shorter : WithIcon
-            data object Short : WithIcon
-            data object Medium : WithIcon
-            data object Tall : WithIcon
-            data object Taller : WithIcon
-        }
+        data object Spacious : PaddingBlock
+        data object Huge : PaddingBlock
     }
 
     sealed interface Inset : OudsSpaceKeyToken {
@@ -109,46 +84,23 @@ sealed interface OudsSpaceKeyToken {
 
     sealed interface ColumnGap : OudsSpaceKeyToken {
         data object None : ColumnGap
+        data object Smash : ColumnGap
+        data object Shortest : ColumnGap
         data object Shorter : ColumnGap
         data object Short : ColumnGap
         data object Medium : ColumnGap
         data object Tall : ColumnGap
         data object Taller : ColumnGap
-
-        sealed interface WithIcon : ColumnGap {
-            data object None : WithIcon
-            data object Shortest : WithIcon
-            data object Shorter : WithIcon
-            data object Short : WithIcon
-            data object Medium : WithIcon
-            data object Tall : WithIcon
-        }
-
-        sealed interface WithArrow : ColumnGap {
-            data object None : WithArrow
-            data object Shortest : WithArrow
-            data object Shorter : WithArrow
-            data object Short : WithArrow
-            data object Medium : WithArrow
-            data object Tall : WithArrow
-        }
+        data object Tallest : ColumnGap
     }
 
     sealed interface RowGap : OudsSpaceKeyToken {
         data object None : RowGap
+        data object Smash : RowGap
         data object Shortest : RowGap
         data object Shorter : RowGap
         data object Short : RowGap
         data object Medium : RowGap
         data object Tall : RowGap
-
-        sealed interface WithIcon : RowGap {
-            data object None : WithIcon
-            data object Shortest : WithIcon
-            data object Shorter : WithIcon
-            data object Short : WithIcon
-            data object Medium : WithIcon
-            data object Tall : WithIcon
-        }
     }
 }

@@ -31,13 +31,13 @@ class OrangeCountryTheme : OrangeTheme() {
     override val colorTokens: OudsColorSemanticTokens
         get() = OudsColorSemanticTokens(
             backgroundColorTokens = OudsColorBgSemanticTokens(
-                bgBrandPrimaryLight = Color(0xFF34D349),
-                bgBrandPrimaryDark = Color(0xFF069D1A)
+                bgPrimaryLight = Color(0xFF34D349),
+                bgPrimaryDark = Color(0xFF069D1A)
             )
         )
 
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(
-            button = OudsButtonTokens(containerColor = OudsColorKeyToken.Background.Status.Accent.Emphasized, cornerRadius = OudsBorderKeyToken.Radius.Short)
+            button = OudsButtonTokens(containerColor = OudsColorKeyToken.Surface.Status.Warning.Muted, cornerRadius = OudsBorderKeyToken.Radius.Short)
         )
 }

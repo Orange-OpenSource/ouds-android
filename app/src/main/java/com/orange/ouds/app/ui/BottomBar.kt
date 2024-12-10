@@ -23,13 +23,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ouds.app.R
+import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 @Composable
 fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit) {
     val items = BottomBarItem.entries.toTypedArray()
     NavigationBar(
+        containerColor = OudsColorKeyToken.Background.Secondary.value, //TODO Temporary color. Waiting for Material colors from Maxime.
         content = {
             items.forEach { item ->
                 NavigationBarItem(

@@ -15,15 +15,13 @@ package com.orange.ouds.theme.tokens
 
 sealed interface OudsColorKeyToken {
 
-    sealed interface Transparent : OudsColorKeyToken {
-        data object Default : Transparent
-    }
-
     sealed interface Action : OudsColorKeyToken {
-        sealed interface Disabled : Action {
-            companion object : Disabled
-            data object OnBgEmphasized : Disabled
-        }
+        data object Disabled : Action
+        data object Enabled : Action
+        data object Focus : Action
+        data object Highlighted : Action
+        data object Hover : Action
+        data object Loading : Action
 
         sealed interface Negative : Action {
             data object Enabled : Negative
@@ -33,85 +31,24 @@ sealed interface OudsColorKeyToken {
             data object Pressed : Negative
         }
 
-        sealed interface Primary : Action {
-            sealed interface Enabled : Primary {
-                companion object : Enabled
-                data object OnBgEmphasized : Enabled
-            }
+        data object Pressed : Action
+        data object Selected : Action
 
-            sealed interface Focus : Primary {
-                companion object : Focus
-                data object OnBgEmphasized : Focus
-            }
-
-            sealed interface Hover : Primary {
-                companion object : Hover
-                data object OnBgEmphasized : Hover
-            }
-
-            sealed interface Loading : Primary {
-                companion object : Loading
-                data object OnBgEmphasized : Loading
-            }
-
-            sealed interface Pressed : Primary {
-                companion object : Pressed
-                data object OnBgEmphasized : Pressed
-            }
+        sealed interface Support : Action {
+            data object Enabled : Support
+            data object Focus : Support
+            data object Hover : Support
+            data object Loading : Support
+            data object Pressed : Support
         }
 
-        sealed interface Secondary : Action {
-            sealed interface Enabled : Secondary {
-                companion object : Enabled
-                data object OnBgEmphasized : Enabled
-            }
-
-            sealed interface Focus : Secondary {
-                companion object : Focus
-                data object OnBgEmphasized : Focus
-            }
-
-            sealed interface Hover : Secondary {
-                companion object : Hover
-                data object OnBgEmphasized : Hover
-            }
-
-            sealed interface Loading : Secondary {
-                companion object : Loading
-                data object OnBgEmphasized : Loading
-            }
-
-            sealed interface Pressed : Secondary {
-                companion object : Pressed
-                data object OnBgEmphasized : Pressed
-            }
-        }
-
-        sealed interface Selected : Action {
-            companion object : Selected
-            data object OnBgEmphasized : Selected
-        }
-
-        sealed interface Visited : Action {
-            companion object : Visited
-            data object OnBgEmphasized : Visited
-        }
+        data object Visited : Action
     }
 
     sealed interface Always : OudsColorKeyToken {
-        data object Accent : Always
         data object Black : Always
-        data object Info : Always
-        data object Negative : Always
-        data object OnAccent : Always
         data object OnBlack : Always
-        data object OnInfo : Always
-        data object OnNegative : Always
-        data object OnPositive : Always
-        data object OnWarning : Always
         data object OnWhite : Always
-        data object Positive : Always
-        data object Warning : Always
         data object White : Always
     }
 
@@ -120,86 +57,19 @@ sealed interface OudsColorKeyToken {
         data object Primary : Background
         data object Secondary : Background
         data object Tertiary : Background
-
-        sealed interface Brand : Background {
-            data object Primary : Brand
-        }
-
-        sealed interface Status : Background {
-            sealed interface Accent : Status {
-                data object Emphasized : Accent
-                sealed interface Muted : Accent {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
-
-            sealed interface Info : Background {
-                data object Emphasized : Info
-                sealed interface Muted : Info {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
-
-            sealed interface Negative : Background {
-                data object Emphasized : Negative
-                sealed interface Muted : Negative {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
-
-            sealed interface Neutral : Background {
-                companion object : Neutral
-                data object OnBgEmphasized : Neutral
-            }
-
-            sealed interface Positive : Background {
-                data object Emphasized : Positive
-                sealed interface Muted : Positive {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
-
-            sealed interface Warning : Background {
-                data object Emphasized : Warning
-                sealed interface Muted : Warning {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
-        }
     }
 
     sealed interface Border : OudsColorKeyToken {
         sealed interface Brand : Border {
-            sealed interface Primary : Brand {
-                companion object : Primary
-                data object OnBgEmphasized : Primary
-            }
+            data object Primary : Brand
         }
 
-        sealed interface Default : Border {
-            companion object : Default
-            data object OnBgEmphasized : Default
-        }
-
-        sealed interface Emphasized : Border {
-            companion object : Emphasized
-            data object OnBgEmphasized : Emphasized
-        }
+        data object Default : Border
+        data object Emphasized : Border
 
         sealed interface Focus : Border {
             companion object : Focus
-
-            sealed interface Inset : Focus {
-                companion object : Inset
-                data object OnBgEmphasized : Inset
-            }
-
-            data object OnBgEmphasized : Focus
+            data object Inset : Focus
         }
 
         sealed interface OnBrand : Border {
@@ -207,172 +77,41 @@ sealed interface OudsColorKeyToken {
         }
     }
 
-    sealed interface Brand : OudsColorKeyToken {
-        sealed interface Accent : Brand {
-            data object Default : Accent
-            data object High : Accent
-            data object Highest : Accent
-            data object Lowest : Accent
-        }
-
-        sealed interface Info : Brand {
-            data object Default : Info
-            data object Highest : Info
-            data object Lowest : Info
-        }
-
-        sealed interface Negative : Brand {
-            data object Default : Negative
-            data object High : Negative
-            data object Higher : Negative
-            data object Highest : Negative
-            data object Lowest : Negative
-        }
-
-        sealed interface Neutral : Brand {
-            sealed interface Emphasized : Neutral {
-                data object Black : Emphasized
-                data object High : Emphasized
-                data object Higher : Emphasized
-                data object Highest : Emphasized
-                data object Low : Emphasized
-                data object Lower : Emphasized
-                data object Lowest : Emphasized
-                data object Medium : Emphasized
-            }
-
-            sealed interface Muted : Neutral {
-                data object Highest : Muted
-                data object Low : Muted
-                data object Lower : Muted
-                data object Lowest : Muted
-                data object Medium : Muted
-                data object White : Muted
-            }
-        }
-
-        sealed interface Positive : Brand {
-            data object Default : Positive
-            data object Highest : Positive
-            data object Lowest : Positive
-        }
-
-        sealed interface Primary : Brand {
-            data object Default : Primary
-            data object Low : Primary
-        }
-
-        sealed interface Warning : Brand {
-            data object Default : Warning
-            data object High : Warning
-            data object Highest : Warning
-            data object Lowest : Warning
-        }
-    }
-
     sealed interface Content : OudsColorKeyToken {
         sealed interface Brand : Content {
-            sealed interface Primary : Brand {
-                companion object : Primary
-                data object OnBgEmphasized : Primary
-            }
+            data object Primary : Brand
         }
 
-        sealed interface Default : Content {
-            companion object : Default
-            data object OnBgEmphasized : Default
-        }
-
-        sealed interface Disabled : Content {
-            companion object : Disabled
-            data object OnBgEmphasized : Disabled
-        }
-
-        sealed interface Muted : Content {
-            companion object : Muted
-            data object OnBgEmphasized : Muted
-        }
+        data object Default : Content
+        data object Disabled : Content
+        data object Muted : Content
 
         sealed interface OnAction : Content {
-            sealed interface Disabled : OnAction {
-                companion object : Disabled
-                data object OnBgEmphasized : Disabled
-            }
-
+            data object Disabled : OnAction
+            data object Enabled : OnAction
+            data object Focus : OnAction
+            data object Highlighted : OnAction
+            data object Hover : OnAction
+            data object Loading : OnAction
             data object Negative : OnAction
-
-            sealed interface Primary : OnAction {
-                sealed interface Enabled : Primary {
-                    companion object : Enabled
-                    data object OnBgEmphasized : Enabled
-                }
-
-                sealed interface Focus : Primary {
-                    companion object : Focus
-                    data object OnBgEmphasized : Focus
-                }
-
-                sealed interface Hover : Primary {
-                    companion object : Hover
-                    data object OnBgEmphasized : Hover
-                }
-
-                sealed interface Loading : Primary {
-                    companion object : Loading
-                    data object OnBgEmphasized : Loading
-                }
-
-                sealed interface Pressed : Primary {
-                    companion object : Pressed
-                    data object OnBgEmphasized : Pressed
-                }
-            }
+            data object Pressed : OnAction
         }
 
         sealed interface OnBrand : Content {
             data object Primary : OnBrand
         }
 
+        sealed interface OnOverlay : Content {
+            data object Emphasized : OnOverlay
+        }
+
         sealed interface OnStatus : Content {
-            sealed interface Accent : OnStatus {
-                data object Emphasized : Accent
-                sealed interface Muted : Accent {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
+            sealed interface Emphasized : OnStatus {
+                companion object : Emphasized
+                data object Neutral : Emphasized
             }
 
-            sealed interface Info : OnStatus {
-                data object Emphasized : Info
-                sealed interface Muted : Info {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
-
-            sealed interface Negative : OnStatus {
-                data object Emphasized : Negative
-                sealed interface Muted : Negative {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
-
-            sealed interface Positive : OnStatus {
-                data object Emphasized : Positive
-                sealed interface Muted : Positive {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
-
-            sealed interface Warning : OnStatus {
-                data object Emphasized : Warning
-                sealed interface Muted : Warning {
-                    companion object : Muted
-                    data object OnBgEmphasized : Muted
-                }
-            }
+            data object Muted : OnStatus
         }
 
         sealed interface Status : Content {
@@ -380,50 +119,6 @@ sealed interface OudsColorKeyToken {
             data object Negative : Status
             data object Positive : Status
             data object Warning : Status
-        }
-    }
-
-    sealed interface Elevation : OudsColorKeyToken {
-        sealed interface Drag : Elevation {
-            companion object : Drag
-            data object OnBgEmphasized : Drag
-            data object OnBgSecondary : Drag
-        }
-
-        data object Modal : Elevation
-
-        sealed interface Overlay : Elevation {
-            sealed interface Default : Overlay {
-                companion object : Default
-                data object OnBgEmphasized : Default
-                data object OnBgSecondary : Default
-            }
-
-            sealed interface Emphasized : Overlay {
-                companion object : Emphasized
-                data object OnBgEmphasized : Emphasized
-                data object OnBgSecondary : Emphasized
-            }
-        }
-
-        sealed interface Raised : Elevation {
-            companion object : Raised
-            data object OnBgEmphasized : Raised
-            data object OnBgSecondary : Raised
-        }
-    }
-
-    sealed interface Gradient : OudsColorKeyToken {
-        sealed interface Skeleton : Gradient {
-            sealed interface Middle : Skeleton {
-                companion object : Skeleton
-                data object OnBgEmphasized : Skeleton
-            }
-
-            sealed interface StartEnd : Skeleton {
-                companion object : Skeleton
-                data object OnBgEmphasized : Skeleton
-            }
         }
     }
 
@@ -484,4 +179,55 @@ sealed interface OudsColorKeyToken {
             data object Tint900 : Skin
         }
     }
+
+    sealed interface Opacity : OudsColorKeyToken {
+        data object InvisibleBlack : Opacity
+        data object InvisibleWhite : Opacity
+    }
+
+    sealed interface Overlay : OudsColorKeyToken {
+        data object Default : Overlay
+        data object Drag : Overlay
+        data object Emphasized : Overlay
+        data object Modal : Overlay
+    }
+
+    sealed interface Surface : OudsColorKeyToken {
+        sealed interface Brand : Surface {
+            data object Primary : Brand
+        }
+
+        sealed interface Status : Surface {
+            sealed interface Accent : Status {
+                data object Emphasized : Accent
+                data object Muted : Accent
+            }
+
+            sealed interface Info : Status {
+                data object Emphasized : Info
+                data object Muted : Info
+            }
+
+            sealed interface Negative : Status {
+                data object Emphasized : Negative
+                data object Muted : Negative
+            }
+
+            sealed interface Neutral : Status {
+                data object Emphasized : Neutral
+                data object Muted : Neutral
+            }
+
+            sealed interface Positive : Status {
+                data object Emphasized : Positive
+                data object Muted : Positive
+            }
+
+            sealed interface Warning : Status {
+                data object Emphasized : Warning
+                data object Muted : Warning
+            }
+        }
+    }
+
 }
