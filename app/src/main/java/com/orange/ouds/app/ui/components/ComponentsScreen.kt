@@ -51,7 +51,7 @@ fun ComponentsScreen() {
                     .padding(top = OudsSpaceKeyToken.Fixed.Medium.value)
                     .width(OudsGridKeyToken.Margin.value)
                     .height(OudsGridKeyToken.ColumnGap.value)
-                    .background(OudsColorKeyToken.Background.Brand.Primary.value)
+                    .background(OudsColorKeyToken.Background.Primary.value)
             )
         }
     }

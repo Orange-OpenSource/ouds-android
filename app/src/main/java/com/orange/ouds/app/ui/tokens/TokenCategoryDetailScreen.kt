@@ -211,8 +211,8 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
     is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value() as Dp)
     is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value() as Dp))
     is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value() as OudsBorderStyle)
-    is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorBrand, TokenProperty.ColorContent,
-    TokenProperty.ColorElevation, TokenProperty.ColorGradient, TokenProperty.ColorDecorative -> BorderIllustrationBox(backgroundColor = token.value() as Color)
+    is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorContent,
+    TokenProperty.ColorDecorative, TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> BorderIllustrationBox(backgroundColor = token.value() as Color)
     is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value() as Float)
     is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value() as Dp)
     is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value() as Dp)
@@ -222,13 +222,9 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
         contentAlignment = Alignment.Center
     )
     TokenProperty.SpacePaddingInline -> SpaceIllustrationBox(size = token.value() as Dp)
-    TokenProperty.SpacePaddingInlineWithIcon, TokenProperty.SpaceColumnGapWithIcon -> SpaceWithIconIllustrationRow(size = token.value() as Dp)
-    TokenProperty.SpacePaddingInlineWithArrow, TokenProperty.SpaceColumnGapWithArrow -> SpaceWithArrowIllustrationRow(size = token.value() as Dp)
     TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value() as Dp)
     TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value() as Dp, orientation = SpaceOrientation.Vertical)
     TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value() as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
-    TokenProperty.SpaceRowGapWithIcon -> SpaceWithIconIllustrationColumn(size = token.value() as Dp, verticalArrangement = Arrangement.Bottom)
-    TokenProperty.SpacePaddingStackWithIcon -> SpaceWithIconIllustrationColumn(size = token.value() as Dp)
     TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 
@@ -277,7 +273,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                         stateDescription = linkStateDescription
                     },
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.PaddingInline.WithArrow.Short.value)
+                horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.PaddingInline.Short.value)
             ) {
                 Text(
                     text = stringResource(R.string.app_tokens_viewCodeExample_label),
@@ -286,7 +282,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                 Icon(
                     modifier = Modifier.rotate(linkArrowRotation),
                     painter = painterResource(R.drawable.ic_chevron_down),
-                    tint = OudsColorKeyToken.Brand.Primary.Default.value,
+                    tint = OudsColorKeyToken.Content.Brand.Primary.value,
                     contentDescription = null
                 )
             }

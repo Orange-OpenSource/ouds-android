@@ -74,12 +74,6 @@ sealed class TokenProperty<T>(
         categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorBrand : TokenProperty<TokenCategory.Color>(
-        nameRes = R.string.app_tokens_color_brand_label,
-        tokens = OudsColorKeyToken.Brand::class.getTokens(),
-        categoryClass = TokenCategory.Color::class
-    )
-
     data object ColorContent : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_content_label,
         tokens = OudsColorKeyToken.Content::class.getTokens(),
@@ -92,15 +86,15 @@ sealed class TokenProperty<T>(
         categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorElevation : TokenProperty<TokenCategory.Color>(
-        nameRes = R.string.app_tokens_color_elevation_label,
-        tokens = OudsColorKeyToken.Elevation::class.getTokens(),
+    data object ColorOverlay : TokenProperty<TokenCategory.Color>(
+        nameRes = R.string.app_tokens_color_overlay_label,
+        tokens = OudsColorKeyToken.Overlay::class.getTokens(),
         categoryClass = TokenCategory.Color::class
     )
 
-    data object ColorGradient : TokenProperty<TokenCategory.Color>(
-        nameRes = R.string.app_tokens_color_gradient_label,
-        tokens = OudsColorKeyToken.Gradient::class.getTokens(),
+    data object ColorSurface : TokenProperty<TokenCategory.Color>(
+        nameRes = R.string.app_tokens_color_surface_label,
+        tokens = OudsColorKeyToken.Surface::class.getTokens(),
         categoryClass = TokenCategory.Color::class
     )
 
@@ -154,18 +148,6 @@ sealed class TokenProperty<T>(
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpaceColumnGapWithIcon : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_columnGapWithIcon_label,
-        tokens = OudsSpaceKeyToken.ColumnGap.WithIcon::class.getTokens(),
-        categoryClass = TokenCategory.Dimension.Space::class
-    )
-
-    data object SpaceColumnGapWithArrow : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_columnGapWithArrow_label,
-        tokens = OudsSpaceKeyToken.ColumnGap.WithArrow::class.getTokens(),
-        categoryClass = TokenCategory.Dimension.Space::class
-    )
-
     data object SpaceFixed : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_fixed_label,
         tokens = OudsSpaceKeyToken.Fixed::class.getTokens(),
@@ -175,18 +157,6 @@ sealed class TokenProperty<T>(
     data object SpacePaddingInline : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingInline_label,
         tokens = OudsSpaceKeyToken.PaddingInline::class.getTokens(recursive = false),
-        categoryClass = TokenCategory.Dimension.Space::class
-    )
-
-    data object SpacePaddingInlineWithIcon : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_paddingInlineWithIcon_label,
-        tokens = OudsSpaceKeyToken.PaddingInline.WithIcon::class.getTokens(),
-        categoryClass = TokenCategory.Dimension.Space::class
-    )
-
-    data object SpacePaddingInlineWithArrow : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_paddingInlineWithArrow_label,
-        tokens = OudsSpaceKeyToken.PaddingInline.WithArrow::class.getTokens(),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
@@ -202,21 +172,9 @@ sealed class TokenProperty<T>(
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingStackWithIcon : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_paddingStackWithIcon_label,
-        tokens = OudsSpaceKeyToken.PaddingBlock.WithIcon::class.getTokens(),
-        categoryClass = TokenCategory.Dimension.Space::class
-    )
-
     data object SpaceRowGap : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_rowGap_label,
         tokens = OudsSpaceKeyToken.RowGap::class.getTokens(recursive = false),
-        categoryClass = TokenCategory.Dimension.Space::class
-    )
-
-    data object SpaceRowGapWithIcon : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_rowGapWithIcon_label,
-        tokens = OudsSpaceKeyToken.RowGap.WithIcon::class.getTokens(),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 

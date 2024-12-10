@@ -19,8 +19,8 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 val whiteLabelSemanticColorTokens = with(WhiteLabelRawColorTokens) {
     OudsColorSemanticTokens(
         backgroundColorTokens = OudsColorBgSemanticTokens(
-            bgBrandPrimaryLight = Color(0xFF34D349),
-            bgBrandPrimaryDark = Color(0xFF069D1A),
+            bgPrimaryLight = Color(0xFF34D349),
+            bgPrimaryDark = Color(0xFF069D1A),
             bgSecondaryLight = secondary40,
             bgSecondaryDark = secondary80,
         )
