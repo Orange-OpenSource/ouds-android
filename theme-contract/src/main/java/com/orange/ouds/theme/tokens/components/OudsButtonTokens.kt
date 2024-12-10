@@ -20,9 +20,9 @@ import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 open class OudsButtonTokens(
     val containerColor: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
-    val contentColor: OudsColorKeyToken = OudsColorKeyToken.Content.Brand.Primary,
+    val contentColor: OudsColorKeyToken = OudsColorKeyToken.Content.OnAction.Enabled,
     val disabledContainerColor: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
-    val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.Content.Disabled,
+    val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.Content.OnAction.Disabled,
     val cornerRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     val defaultElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
     val pressedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
