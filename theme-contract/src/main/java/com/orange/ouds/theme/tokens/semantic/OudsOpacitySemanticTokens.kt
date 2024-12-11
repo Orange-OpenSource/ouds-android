@@ -15,10 +15,10 @@ package com.orange.ouds.theme.tokens.semantic
 import com.orange.ouds.tokens.global.raw.OpacityRawTokens
 
 data class OudsOpacitySemanticTokens(
-  val medium: Float = OpacityRawTokens.opacity500,
-  val opaque: Float = OpacityRawTokens.opacity900,
-  val strong: Float = OpacityRawTokens.opacity700,
-  val transparent: Float = OpacityRawTokens.opacity0,
-  val weak: Float = OpacityRawTokens.opacity300,
-  val weaker: Float = OpacityRawTokens.opacity100
+    val invisible: Float = OpacityRawTokens.opacity0,
+    val medium: Float = OpacityRawTokens.opacity320,
+    val opaque: Float = OpacityRawTokens.opacity1000,
+    val strong: Float = OpacityRawTokens.opacity640,
+    val weak: Float = OpacityRawTokens.opacity160,
+    val weaker: Float = OpacityRawTokens.opacity40
 )

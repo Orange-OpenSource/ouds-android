@@ -36,6 +36,7 @@ object BorderRawTokens {
   const val borderWidth50 = borderBase * 0.5f // 2
   const val borderWidth75 = borderBase * 0.75f // 3
   const val borderWidth100 = borderBase * 1f // 4
+  const val borderWidth125 = borderBase * 1.25f // 5
   const val borderWidth150 = borderBase * 1.5f // 6
   const val borderWidth200 = borderBase * 2f // 8
 }

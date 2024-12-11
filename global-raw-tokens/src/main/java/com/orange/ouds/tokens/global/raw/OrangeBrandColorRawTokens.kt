@@ -21,7 +21,7 @@ object OrangeBrandColorRawTokens {
   val colorOrange300 = Color(0xffffa554)
   val colorOrange400 = Color(0xffff9433)
   val colorOrange500 = Color(0xffff7900)
-  val colorOrange550 = Color(0xfff16e00)
+  val colorOrange550 = Color(0xfff15e00)
   val colorOrange600 = Color(0xffe86e00)
   val colorOrange700 = Color(0xffb55600)
   val colorOrange800 = Color(0xff8c4300)
