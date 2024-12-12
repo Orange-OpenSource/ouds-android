@@ -40,31 +40,23 @@ fun OudsButton(
         Button(
             onClick = onClick,
             enabled = enabled,
-            shape = RoundedCornerShape(cornerRadius.value),
+            shape = RoundedCornerShape(borderRadius.value),
             modifier = modifier,
             contentPadding = PaddingValues(
-                vertical = verticalContentPadding.value,
-                horizontal = horizontalContentPadding.value
+                vertical = spacePaddingBlock.value,
+                horizontal = spacePaddingBlock.value
             ),
             interactionSource = remember { MutableInteractionSource() },
-            elevation = ButtonDefaults.buttonElevation(
-                defaultElevation = defaultElevation.value,
-                pressedElevation = pressedElevation.value,
-                focusedElevation = focusedElevation.value,
-                hoveredElevation = hoveredElevation.value,
-                disabledElevation = disabledElevation.value,
-            ),
             colors = ButtonDefaults.buttonColors(
-                containerColor = containerColor.value,
-                contentColor = contentColor.value,
-                disabledContainerColor = disabledContainerColor.value,
-                disabledContentColor = disabledContentColor.value,
+                containerColor = colorBgDefaultEnabled.value,
+                contentColor = colorContentDefaultEnabled.value,
+                disabledContainerColor = colorBgDefaultDisabled.value,
+                disabledContentColor = colorContentDefaultDisabled.value,
             )
         ) {
             Text(
                 modifier = modifier,
-                text = text,
-                style = labelStyle.value,
+                text = text
             )
         }
     }

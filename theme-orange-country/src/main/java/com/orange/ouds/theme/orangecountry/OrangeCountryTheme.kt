@@ -38,6 +38,6 @@ class OrangeCountryTheme : OrangeTheme() {
 
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(
-            button = OudsButtonTokens(containerColor = OudsColorKeyToken.Surface.Status.Warning.Muted, cornerRadius = OudsBorderKeyToken.Radius.Short)
+            button = OudsButtonTokens(colorBgDefaultEnabled = OudsColorKeyToken.Surface.Status.Warning.Muted, borderRadius = OudsBorderKeyToken.Radius.Short)
         )
 }

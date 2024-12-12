@@ -511,11 +511,11 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Background): Color {
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
     return with(borderColors) {
         when (token) {
-            OudsColorKeyToken.Border.Brand.Primary -> brandPrimary
+            OudsColorKeyToken.Border.BrandPrimary -> brandPrimary
             OudsColorKeyToken.Border.Default -> default
             OudsColorKeyToken.Border.Emphasized -> emphasized
             OudsColorKeyToken.Border.Focus -> focus
-            OudsColorKeyToken.Border.Focus.Inset -> focusInset
+            OudsColorKeyToken.Border.FocusInset -> focusInset
             OudsColorKeyToken.Border.OnBrand.Primary -> onBrandPrimary
         }
     }
@@ -525,7 +525,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
     return with(contentColors) {
         when (token) {
-            OudsColorKeyToken.Content.Brand.Primary -> brandPrimary
+            OudsColorKeyToken.Content.BrandPrimary -> brandPrimary
             OudsColorKeyToken.Content.Default -> default
             OudsColorKeyToken.Content.Disabled -> disabled
             OudsColorKeyToken.Content.Muted -> muted
@@ -540,7 +540,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
             OudsColorKeyToken.Content.OnBrand.Primary -> onBrandPrimary
             OudsColorKeyToken.Content.OnOverlay.Emphasized -> onOverlayEmphasized
             OudsColorKeyToken.Content.OnStatus.Emphasized -> onStatusEmphasized
-            OudsColorKeyToken.Content.OnStatus.Emphasized.Neutral -> onStatusEmphasizedNeutral
+            OudsColorKeyToken.Content.OnStatus.EmphasizedNeutral -> onStatusEmphasizedNeutral
             OudsColorKeyToken.Content.OnStatus.Muted -> onStatusMuted
             OudsColorKeyToken.Content.Status.Info -> statusInfo
             OudsColorKeyToken.Content.Status.Negative -> statusNegative
@@ -554,21 +554,21 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Color {
     return with(decorativeColors) {
         when (token) {
-            OudsColorKeyToken.Decorative.Accent.One.Default -> accent1Default
-            OudsColorKeyToken.Decorative.Accent.One.Emphasized -> accent1Emphasized
-            OudsColorKeyToken.Decorative.Accent.One.Muted -> accent1Muted
-            OudsColorKeyToken.Decorative.Accent.Two.Default -> accent2Default
-            OudsColorKeyToken.Decorative.Accent.Two.Emphasized -> accent2Emphasized
-            OudsColorKeyToken.Decorative.Accent.Two.Muted -> accent2Muted
-            OudsColorKeyToken.Decorative.Accent.Three.Default -> accent3Default
-            OudsColorKeyToken.Decorative.Accent.Three.Emphasized -> accent3Emphasized
-            OudsColorKeyToken.Decorative.Accent.Three.Muted -> accent3Muted
-            OudsColorKeyToken.Decorative.Accent.Four.Default -> accent4Default
-            OudsColorKeyToken.Decorative.Accent.Four.Emphasized -> accent4Emphasized
-            OudsColorKeyToken.Decorative.Accent.Four.Muted -> accent4Muted
-            OudsColorKeyToken.Decorative.Accent.Five.Default -> accent5Default
-            OudsColorKeyToken.Decorative.Accent.Five.Emphasized -> accent5Emphasized
-            OudsColorKeyToken.Decorative.Accent.Five.Muted -> accent5Muted
+            OudsColorKeyToken.Decorative.Accent1.Default -> accent1Default
+            OudsColorKeyToken.Decorative.Accent1.Emphasized -> accent1Emphasized
+            OudsColorKeyToken.Decorative.Accent1.Muted -> accent1Muted
+            OudsColorKeyToken.Decorative.Accent2.Default -> accent2Default
+            OudsColorKeyToken.Decorative.Accent2.Emphasized -> accent2Emphasized
+            OudsColorKeyToken.Decorative.Accent2.Muted -> accent2Muted
+            OudsColorKeyToken.Decorative.Accent3.Default -> accent3Default
+            OudsColorKeyToken.Decorative.Accent3.Emphasized -> accent3Emphasized
+            OudsColorKeyToken.Decorative.Accent3.Muted -> accent3Muted
+            OudsColorKeyToken.Decorative.Accent4.Default -> accent4Default
+            OudsColorKeyToken.Decorative.Accent4.Emphasized -> accent4Emphasized
+            OudsColorKeyToken.Decorative.Accent4.Muted -> accent4Muted
+            OudsColorKeyToken.Decorative.Accent5.Default -> accent5Default
+            OudsColorKeyToken.Decorative.Accent5.Emphasized -> accent5Emphasized
+            OudsColorKeyToken.Decorative.Accent5.Muted -> accent5Muted
             OudsColorKeyToken.Decorative.Brand.Primary -> brandPrimary
             OudsColorKeyToken.Decorative.Brand.Secondary -> brandSecondary
             OudsColorKeyToken.Decorative.Brand.Tertiary -> brandTertiary
@@ -612,8 +612,8 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Surface): Color {
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Opacity): Color {
     return when (token) {
-        OudsColorKeyToken.Opacity.InvisibleBlack -> opacityColors.invisibleBlack
-        OudsColorKeyToken.Opacity.InvisibleWhite -> opacityColors.invisibleWhite
+        OudsColorKeyToken.Opacity.Invisible.Black -> opacityColors.invisibleBlack
+        OudsColorKeyToken.Opacity.Invisible.White -> opacityColors.invisibleWhite
     }
 }
 
