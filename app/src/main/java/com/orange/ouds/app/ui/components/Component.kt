@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
+import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -40,5 +41,12 @@ sealed class Component(
         LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
         R.string.app_components_button_description_text,
         { ButtonDemoScreen() }
+    )
+
+    data object Link : Component(
+        R.string.app_components_link_label,
+        LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
+        R.string.app_components_link_description_text,
+        { LinkDemoScreen() }
     )
 }

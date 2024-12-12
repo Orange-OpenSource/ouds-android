@@ -98,8 +98,8 @@ class ButtonDemoState(
         get() = hierarchy != OudsButton.Hierarchy.Negative
 
     enum class Layout(@StringRes val labelRes: Int) {
-        TextOnly(R.string.app_components_button_textOnlyLayout_label),
-        IconAndText(R.string.app_components_button_iconAndTextLayout_label),
+        TextOnly(R.string.app_components_common_textOnlyLayout_label),
+        IconAndText(R.string.app_components_common_iconAndTextLayout_label),
         IconOnly(R.string.app_components_button_iconOnlyLayout_label)
     }
 }
