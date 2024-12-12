@@ -31,8 +31,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
-import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -49,7 +47,6 @@ fun LargeCard(
     title: String,
     @DrawableRes imageRes: Int,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsElevationKeyToken.Raised.value), onClick = onClick) {
         Column(modifier = Modifier.background(OudsColorKeyToken.Background.Primary.value)) {
@@ -64,7 +61,10 @@ fun LargeCard(
                 contentScale = ContentScale.None
             )
             Column(
-                modifier = Modifier.fillMaxWidth().background(OudsColorKeyToken.Action.Support.Enabled.value).padding(OudsSpaceKeyToken.Fixed.Medium.value)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(OudsColorKeyToken.Action.Support.Enabled.value)
+                    .padding(OudsSpaceKeyToken.Fixed.Medium.value)
             ) {
                 Text(
                     text = title,
