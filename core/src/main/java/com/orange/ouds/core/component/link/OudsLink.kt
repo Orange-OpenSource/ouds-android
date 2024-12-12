@@ -45,6 +45,9 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -67,7 +70,7 @@ import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import kotlinx.parcelize.Parcelize
 
 /**
- * An OUDS link which displays an optional icon and a text.
+ * An OUDS link which displays a text and an optional icon.
  */
 @Composable
 fun OudsLink(
@@ -75,8 +78,8 @@ fun OudsLink(
     icon: OudsLink.Icon?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    size: OudsLink.Size = OudsLinkDefaults.size,
-    style: OudsLink.Style = OudsLinkDefaults.style,
+    size: OudsLink.Size = OudsLinkDefaults.Size,
+    style: OudsLink.Style = OudsLinkDefaults.Style,
     enabled: Boolean = true,
     onColoredBackground: Boolean = false
 ) {
@@ -102,8 +105,8 @@ fun OudsLink(
     arrow: OudsLink.Arrow,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    size: OudsLink.Size = OudsLinkDefaults.size,
-    style: OudsLink.Style = OudsLinkDefaults.style,
+    size: OudsLink.Size = OudsLinkDefaults.Size,
+    style: OudsLink.Style = OudsLinkDefaults.Style,
     enabled: Boolean = true,
     onColoredBackground: Boolean = false
 ) {
@@ -128,8 +131,8 @@ private fun OudsLink(
     arrow: OudsLink.Arrow?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    size: OudsLink.Size = OudsLinkDefaults.size,
-    style: OudsLink.Style = OudsLinkDefaults.style,
+    size: OudsLink.Size = OudsLinkDefaults.Size,
+    style: OudsLink.Style = OudsLinkDefaults.Style,
     enabled: Boolean = true,
     onColoredBackground: Boolean = false,
     previewState: OudsLink.State? = null
@@ -138,6 +141,7 @@ private fun OudsLink(
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsLinkState(enabled = enabled, style = style, interactionState = interactionState) }
+    val isTextOnly = icon == null && arrow == null
 
     val minWidth: Dp
     val minHeight: Dp
@@ -171,7 +175,7 @@ private fun OudsLink(
         ) {
             val columnGap: Dp
             val iconSize: Dp
-            val textStyle: TextStyle
+            var textStyle: TextStyle
             with(linkTokens) {
                 when (size) {
                     OudsLink.Size.Medium -> {
@@ -185,6 +189,10 @@ private fun OudsLink(
                         textStyle = OudsTypographyKeyToken.Label.Strong.Medium.value
                     }
                 }
+            }
+
+            if (isTextOnly || state in listOf(OudsLink.State.Hovered, OudsLink.State.Pressed, OudsLink.State.Focused)) {
+                textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
             }
 
             val iconTint = if (arrow != null) {
@@ -323,12 +331,12 @@ object OudsLinkDefaults {
     /**
      * The default size.
      */
-    val size = OudsLink.Size.Medium
+    val Size = OudsLink.Size.Medium
 
     /**
      * The default style.
      */
-    val style = OudsLink.Style.Default
+    val Style = OudsLink.Style.Default
 }
 
 /**
