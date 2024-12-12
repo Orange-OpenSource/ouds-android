@@ -282,7 +282,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                 Icon(
                     modifier = Modifier.rotate(linkArrowRotation),
                     painter = painterResource(R.drawable.ic_chevron_down),
-                    tint = OudsColorKeyToken.Content.Brand.Primary.value,
+                    tint = OudsColorKeyToken.Content.BrandPrimary.value,
                     contentDescription = null
                 )
             }
