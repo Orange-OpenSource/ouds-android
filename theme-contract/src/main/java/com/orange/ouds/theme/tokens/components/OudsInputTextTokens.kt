@@ -31,7 +31,7 @@ open class OudsInputTextTokens(
     val colorBorderDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
     val colorBorderDefaultLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Loading,
     val colorBorderDefaultPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    val colorBorderDefaultEnabled: OudsColorKeyToken = OudsColorKeyToken.Border.DefaultInverse,
+    val colorBorderDefaultEnabled: OudsColorKeyToken = OudsColorKeyToken.Border.Default,
     val colorBorderDefaultHover: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
     val colorContentDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Content.Disabled,
     val colorContentDefaultEnabled: OudsColorKeyToken = OudsColorKeyToken.Content.Default,

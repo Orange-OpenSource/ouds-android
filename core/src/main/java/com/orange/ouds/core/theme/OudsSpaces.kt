@@ -71,6 +71,7 @@ data class OudsSpaces(
         val taller: Dp,
         val tallest: Dp,
         val huge: Dp,
+        val spacious: Dp,
     )
 
     data class PaddingBlock(
@@ -201,6 +202,7 @@ fun OudsSpaceSemanticTokens.getSpaces() = OudsSpaces(
         taller = paddingInlineTaller.dp,
         tallest = paddingInlineTallest.dp,
         huge = paddingInlineHuge.dp,
+        spacious = paddingInlineSpacious.dp,
     ),
     paddingBlock = OudsSpaces.PaddingBlock(
         none = paddingBlockNone.dp,
@@ -296,6 +298,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
         OudsSpaceKeyToken.PaddingInline.Taller -> paddingInline.taller
         OudsSpaceKeyToken.PaddingInline.Tallest -> paddingInline.tallest
         OudsSpaceKeyToken.PaddingInline.Huge -> paddingInline.huge
+        OudsSpaceKeyToken.PaddingInline.Spacious -> paddingInline.spacious
     }
 }
 
@@ -313,7 +316,6 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
         OudsSpaceKeyToken.PaddingBlock.Tallest -> paddingBlock.tallest
         OudsSpaceKeyToken.PaddingBlock.Spacious -> paddingBlock.spacious
         OudsSpaceKeyToken.PaddingBlock.Huge -> paddingBlock.huge
-
     }
 }
 
