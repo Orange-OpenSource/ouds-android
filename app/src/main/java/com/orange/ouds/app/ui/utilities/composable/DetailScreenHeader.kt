@@ -44,16 +44,16 @@ fun DetailScreenHeader(
     @DrawableRes imageRes: Int,
 ) {
     Column {
-            Image(
-                painter = painterResource(imageRes),
-                colorFilter = ColorFilter.tint(OudsColorKeyToken.Always.White.value),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(186.dp)
-                    .background(OudsColorKeyToken.Background.Emphasized.value),
-                contentScale = ContentScale.None
-            )
+        Image(
+            painter = painterResource(imageRes),
+            colorFilter = ColorFilter.tint(OudsColorKeyToken.Always.White.value),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(186.dp)
+                .background(OudsColorKeyToken.Background.Emphasized.value),
+            contentScale = ContentScale.None
+        )
 
         DetailScreenDescription(
             modifier = Modifier
