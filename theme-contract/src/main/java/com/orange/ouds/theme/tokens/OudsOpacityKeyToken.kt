@@ -13,8 +13,8 @@
 package com.orange.ouds.theme.tokens
 
 sealed interface OudsOpacityKeyToken {
-    
-    data object Transparent : OudsOpacityKeyToken
+
+    data object Invisible : OudsOpacityKeyToken
     data object Weaker : OudsOpacityKeyToken
     data object Weak : OudsOpacityKeyToken
     data object Medium : OudsOpacityKeyToken

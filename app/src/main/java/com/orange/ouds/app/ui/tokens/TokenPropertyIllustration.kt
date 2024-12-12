@@ -82,7 +82,7 @@ fun BorderIllustrationBox(
     style: OudsBorderStyle = OudsBorderStyle.Solid,
     backgroundColor: Color = OudsColorKeyToken.Background.Secondary.value
 ) {
-    val borderColor = OudsColorKeyToken.Border.Default.value
+    val borderColor = OudsColorKeyToken.Border.Emphasized.value
     val modifier = when (style) {
         OudsBorderStyle.None -> Modifier
         OudsBorderStyle.Solid -> Modifier.border(width = width, color = borderColor, shape = shape)
@@ -157,100 +157,19 @@ fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
 }
 
 @Composable
-fun SpaceWithIconIllustrationColumn(size: Dp, verticalArrangement: Arrangement.Vertical = Arrangement.Top) {
-    Column(
-        modifier = Modifier
-            .size(defaultIllustrationSize)
-            .background(color = OudsColorKeyToken.Background.Emphasized.value),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = verticalArrangement
-    ) {
-        val image: @Composable () -> Unit = {
-            Image(
-                painter = painterResource(R.drawable.ic_design_token_figma_no_padding),
-                contentDescription = null,
-                contentScale = ContentScale.None
-            )
-        }
-
-        val space: @Composable () -> Unit = {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(height = size)
-                    .background(OudsColorKeyToken.Always.Info.value)
-            )
-        }
-
-        if (verticalArrangement == Arrangement.Bottom) {
-            image()
-            space()
-        } else {
-            space()
-            image()
-        }
-    }
-}
-
-@Composable
-fun SpaceWithIconIllustrationRow(size: Dp) {
-    SpaceWithImageIllustrationRow(
-        spaceSize = size,
-        imagePainter = painterResource(R.drawable.ic_design_token_figma_no_padding),
-        imageModifier = Modifier.padding(horizontal = 1.dp)
-    )
-}
-
-@Composable
-fun SpaceWithArrowIllustrationRow(size: Dp) {
-    SpaceWithImageIllustrationRow(
-        spaceSize = size,
-        imagePainter = painterResource(R.drawable.ic_chevron_down)
-    )
-}
-
-@Composable
-private fun SpaceWithImageIllustrationRow(
-    spaceSize: Dp,
-    imagePainter: Painter,
-    modifier: Modifier = Modifier,
-    imageModifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier
-            .size(defaultIllustrationSize)
-            .background(color = OudsColorKeyToken.Background.Emphasized.value),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxHeight()
-                .width(width = spaceSize)
-                .background(OudsColorKeyToken.Always.Info.value)
-        )
-        Image(
-            modifier = imageModifier,
-            painter = imagePainter,
-            contentDescription = null,
-            contentScale = ContentScale.None
-        )
-    }
-}
-
-@Composable
 fun SpacePaddingInsetIllustrationBox(size: Dp) {
     IllustrationBox {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(height = size)
-                .background(OudsColorKeyToken.Always.Info.value)
+                .background(OudsColorKeyToken.Content.Status.Info.value)
         )
         Box(
             modifier = Modifier
                 .fillMaxHeight()
                 .width(width = size)
-                .background(OudsColorKeyToken.Always.Info.value)
+                .background(OudsColorKeyToken.Content.Status.Info.value)
         )
     }
 }
@@ -272,7 +191,7 @@ fun SpaceIllustrationBox(
     }
     IllustrationBox(contentAlignment = contentAlignment) {
         Box(
-            modifier = dimensionBoxModifier.background(color = OudsColorKeyToken.Always.Info.value)
+            modifier = dimensionBoxModifier.background(color = OudsColorKeyToken.Content.Status.Info.value)
         )
     }
 }

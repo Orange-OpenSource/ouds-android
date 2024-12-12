@@ -29,6 +29,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -44,7 +46,7 @@ fun DetailScreenHeader(
     Column {
         Image(
             painter = painterResource(imageRes),
-            colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.Default.OnBgEmphasized.value),
+            colorFilter = ColorFilter.tint(OudsColorKeyToken.Always.White.value),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()

@@ -16,81 +16,81 @@ sealed interface OudsSizeKeyToken {
 
     sealed interface Icon : OudsSizeKeyToken {
         sealed interface Decorative : Icon {
-            data object Shortest : Decorative
-            data object Shorter : Decorative
-            data object Short : Decorative
+            data object ExtraExtraSmall : Decorative
+            data object ExtraSmall : Decorative
+            data object Small : Decorative
             data object Medium : Decorative
-            data object Tall : Decorative
-            data object Taller : Decorative
-            data object Tallest : Decorative
+            data object Large : Decorative
+            data object ExtraLarge : Decorative
+            data object ExtraExtraLarge : Decorative
         }
 
         sealed interface WithHeadingExtraLarge : Icon {
-            data object SizeShort : WithHeadingExtraLarge
+            data object SizeSmall : WithHeadingExtraLarge
             data object SizeMedium : WithHeadingExtraLarge
-            data object SizeTall : WithHeadingExtraLarge
+            data object SizeLarge : WithHeadingExtraLarge
         }
 
         sealed interface WithHeadingLarge : Icon {
-            data object SizeShort : WithHeadingLarge
+            data object SizeSmall : WithHeadingLarge
             data object SizeMedium : WithHeadingLarge
-            data object SizeTall : WithHeadingLarge
+            data object SizeLarge : WithHeadingLarge
         }
 
         sealed interface WithHeadingMedium : Icon {
-            data object SizeShort : WithHeadingMedium
+            data object SizeSmall : WithHeadingMedium
             data object SizeMedium : WithHeadingMedium
-            data object SizeTall : WithHeadingMedium
+            data object SizeLarge : WithHeadingMedium
         }
 
         sealed interface WithHeadingSmall : Icon {
-            data object SizeShort : WithHeadingSmall
+            data object SizeSmall : WithHeadingSmall
             data object SizeMedium : WithHeadingSmall
-            data object SizeTall : WithHeadingSmall
+            data object SizeLarge : WithHeadingSmall
         }
 
         sealed interface WithBodyLarge : Icon {
-            data object SizeShort : WithBodyLarge
+            data object SizeSmall : WithBodyLarge
             data object SizeMedium : WithBodyLarge
-            data object SizeTall : WithBodyLarge
+            data object SizeLarge : WithBodyLarge
         }
 
         sealed interface WithBodyMedium : Icon {
-            data object SizeShort : WithBodyMedium
+            data object SizeSmall : WithBodyMedium
             data object SizeMedium : WithBodyMedium
-            data object SizeTall : WithBodyMedium
+            data object SizeLarge : WithBodyMedium
         }
 
         sealed interface WithBodySmall : Icon {
-            data object SizeShort : WithBodySmall
+            data object SizeSmall : WithBodySmall
             data object SizeMedium : WithBodySmall
-            data object SizeTall : WithBodySmall
+            data object SizeLarge : WithBodySmall
         }
 
         sealed interface WithLabelExtraLarge : Icon {
-            data object SizeShort : WithLabelExtraLarge
+            data object SizeSmall : WithLabelExtraLarge
             data object SizeMedium : WithLabelExtraLarge
-            data object SizeTall : WithLabelExtraLarge
+            data object SizeLarge : WithLabelExtraLarge
         }
 
         sealed interface WithLabelLarge : Icon {
-            data object SizeShorter : WithLabelLarge
-            data object SizeShort : WithLabelLarge
+            data object SizeExtraSmall : WithLabelLarge
+            data object SizeSmall : WithLabelLarge
             data object SizeMedium : WithLabelLarge
-            data object SizeTall : WithLabelLarge
-            data object SizeTaller : WithLabelLarge
+            data object SizeLarge : WithLabelLarge
+            data object SizeExtraLarge : WithLabelLarge
         }
 
         sealed interface WithLabelMedium : Icon {
-            data object SizeShort : WithLabelMedium
+            data object SizeSmall : WithLabelMedium
             data object SizeMedium : WithLabelMedium
-            data object SizeTall : WithLabelMedium
+            data object SizeLarge : WithLabelMedium
         }
 
         sealed interface WithLabelSmall : Icon {
-            data object SizeShort : WithLabelSmall
+            data object SizeSmall : WithLabelSmall
             data object SizeMedium : WithLabelSmall
-            data object SizeTall : WithLabelSmall
+            data object SizeLarge : WithLabelSmall
         }
     }
 

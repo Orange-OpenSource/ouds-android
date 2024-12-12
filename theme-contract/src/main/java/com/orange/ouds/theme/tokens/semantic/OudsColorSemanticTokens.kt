@@ -13,14 +13,13 @@
 package com.orange.ouds.theme.tokens.semantic
 
 data class OudsColorSemanticTokens(
-    val transparentColorTokens: OudsColorTransparentSemanticTokens = OudsColorTransparentSemanticTokens(),
     val actionColorTokens: OudsColorActionSemanticTokens = OudsColorActionSemanticTokens(),
     val alwaysColorTokens: OudsColorAlwaysSemanticTokens = OudsColorAlwaysSemanticTokens(),
     val backgroundColorTokens: OudsColorBgSemanticTokens = OudsColorBgSemanticTokens(),
     val borderColorTokens: OudsColorBorderSemanticTokens = OudsColorBorderSemanticTokens(),
-    val brandColorTokens: OudsColorBrandSemanticTokens = OudsColorBrandSemanticTokens(),
     val contentColorTokens: OudsColorContentSemanticTokens = OudsColorContentSemanticTokens(),
-    val elevationColorTokens: OudsColorElevationSemanticTokens = OudsColorElevationSemanticTokens(),
-    val gradientColorTokens: OudsColorGradientSemanticTokens = OudsColorGradientSemanticTokens(),
     val decorativeColorTokens: OudsColorDecorativeSemanticTokens = OudsColorDecorativeSemanticTokens(),
+    val opacityColorTokens: OudsColorOpacitySemanticTokens = OudsColorOpacitySemanticTokens(),
+    val overlayColorTokens: OudsColorOverlaySemanticTokens = OudsColorOverlaySemanticTokens(),
+    val surfaceColorTokens: OudsColorSurfaceSemanticTokens = OudsColorSurfaceSemanticTokens()
 )

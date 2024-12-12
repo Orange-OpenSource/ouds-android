@@ -64,11 +64,10 @@ sealed class TokenCategory<T>(
             TokenProperty.ColorAlways,
             TokenProperty.ColorBackground,
             TokenProperty.ColorBorder,
-            TokenProperty.ColorBrand,
             TokenProperty.ColorContent,
             TokenProperty.ColorDecorative,
-            TokenProperty.ColorElevation,
-            TokenProperty.ColorGradient,
+            TokenProperty.ColorOverlay,
+            TokenProperty.ColorSurface,
         )
     )
 
@@ -87,16 +86,10 @@ sealed class TokenCategory<T>(
                 TokenProperty.SpaceScaled,
                 TokenProperty.SpaceFixed,
                 TokenProperty.SpacePaddingInline,
-                TokenProperty.SpacePaddingInlineWithIcon,
-                TokenProperty.SpacePaddingInlineWithArrow,
                 TokenProperty.SpacePaddingStack,
-                TokenProperty.SpacePaddingStackWithIcon,
                 TokenProperty.SpacePaddingInset,
                 TokenProperty.SpaceColumnGap,
-                TokenProperty.SpaceColumnGapWithIcon,
-                TokenProperty.SpaceColumnGapWithArrow,
                 TokenProperty.SpaceRowGap,
-                TokenProperty.SpaceRowGapWithIcon
             ),
         )
 
@@ -104,7 +97,7 @@ sealed class TokenCategory<T>(
             R.string.app_tokens_dimension_size_label,
             R.drawable.ic_dimension,
             R.string.app_tokens_dimension_size_description_text,
-            getTokenValueCode<OudsSizeKeyToken.Icon.Decorative.Shortest>(),
+            getTokenValueCode<OudsSizeKeyToken.Icon.Decorative.ExtraExtraSmall>(),
             listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText),
         )
     }
@@ -129,7 +122,7 @@ sealed class TokenCategory<T>(
         R.string.app_tokens_opacity_label,
         R.drawable.ic_filter_effects,
         R.string.app_tokens_opacity_description_text,
-        getTokenValueCode<OudsOpacityKeyToken.Transparent>(),
+        getTokenValueCode<OudsOpacityKeyToken.Invisible>(),
         listOf(TokenProperty.Opacity)
     )
 
