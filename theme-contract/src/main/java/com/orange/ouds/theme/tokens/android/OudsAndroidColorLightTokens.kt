@@ -32,6 +32,8 @@ object OudsAndroidColorLightTokens {
     val background: Color = ColorRawTokens.colorFunctionalWhite
     val onBackground: Color = ColorRawTokens.colorFunctionalBlack
     val surface: Color = ColorRawTokens.colorFunctionalWhite
+    val surfaceVariant: Color = ColorRawTokens.colorFunctionalWhite
+    val surfaceTint: Color = ColorRawTokens.colorFunctionalWhite
     val onSurface: Color = ColorRawTokens.colorFunctionalBlack
     val onSurfaceVariant: Color = ColorRawTokens.colorOpacityBlack680
     val surfaceBright: Color = ColorRawTokens.colorFunctionalWhite

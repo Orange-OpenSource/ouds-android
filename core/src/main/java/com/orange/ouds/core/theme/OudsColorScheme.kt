@@ -23,6 +23,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken.Background
 import com.orange.ouds.theme.tokens.android.OudsAndroidColorDarkTokens
 import com.orange.ouds.theme.tokens.android.OudsAndroidColorLightTokens
+import com.orange.ouds.theme.tokens.android.OudsAndroidColorLightTokens.surfaceVariant
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 data class OudsColorScheme(
@@ -649,9 +650,9 @@ val materialLightColorScheme: ColorScheme
             surface = surface,
             onSurface = onSurface,
             surfaceDim = surfaceDim,
-            surfaceVariant = surface,
+            surfaceVariant = surfaceVariant,
             onSurfaceVariant = onSurfaceVariant,
-            surfaceTint = surface,
+            surfaceTint = surfaceTint,
             inverseSurface = inverseSurface,
             inverseOnSurface = inverseOnSurface,
             error = error,
@@ -691,9 +692,9 @@ val materialDarkColorScheme: ColorScheme
             surface = surface,
             onSurface = onSurface,
             surfaceDim = surfaceDim,
-            surfaceVariant = surface,
+            surfaceVariant = surfaceVariant,
             onSurfaceVariant = onSurfaceVariant,
-            surfaceTint = surface,
+            surfaceTint = surfaceTint,
             inverseSurface = inverseSurface,
             inverseOnSurface = inverseOnSurface,
             error = error,
