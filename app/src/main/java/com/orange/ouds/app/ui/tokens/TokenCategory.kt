@@ -97,7 +97,7 @@ sealed class TokenCategory<T>(
             R.string.app_tokens_dimension_size_label,
             R.drawable.ic_dimension,
             R.string.app_tokens_dimension_size_description_text,
-            getTokenValueCode<OudsSizeKeyToken.Icon.Decorative.Small>(),
+            getTokenValueCode<OudsSizeKeyToken.Icon.Decorative.ExtraExtraSmall>(),
             listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText),
         )
     }
