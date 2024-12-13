@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.utilities
 
 import com.orange.ouds.app.ui.tokens.Token
+import com.orange.ouds.app.ui.tokens.order
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.orElse
@@ -30,7 +31,23 @@ fun KClass<*>.getTokens(
     recursive: Boolean = true,
     tokenName: (KClass<*>) -> String = { it.getTokenName(this) }
 ): List<Token<*>> {
-    return getNestedObjects(getRootKeyTokenSuperclass(), recursive).map { keyToken ->
+    return getNestedObjects(getRootKeyTokenSuperclass(), recursive).sortedBy {
+        when (it) {
+            is OudsBorderKeyToken.Radius -> it.order
+            is OudsBorderKeyToken.Width -> it.order
+            is OudsElevationKeyToken -> it.order
+            is OudsOpacityKeyToken -> it.order
+            is OudsSizeKeyToken.Icon -> it.order
+            is OudsSpaceKeyToken.ColumnGap -> it.order
+            is OudsSpaceKeyToken.Fixed -> it.order
+            is OudsSpaceKeyToken.Inset -> it.order
+            is OudsSpaceKeyToken.PaddingBlock -> it.order
+            is OudsSpaceKeyToken.PaddingInline -> it.order
+            is OudsSpaceKeyToken.RowGap -> it.order
+            is OudsSpaceKeyToken.Scaled -> it.order
+            else -> 0
+        }
+    }.map { keyToken ->
         Token(
             name = tokenName(keyToken::class),
             value = {
