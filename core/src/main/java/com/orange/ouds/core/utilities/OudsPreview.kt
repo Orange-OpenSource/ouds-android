@@ -23,6 +23,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /**
+ * @suppress
  * Configures the Compose OUDS preview environment in Android Studio.
  *
  * @param modifier The modifier for the preview content.
@@ -42,4 +43,8 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
             content()
         }
     }
+}
+
+fun test() {
+
 }

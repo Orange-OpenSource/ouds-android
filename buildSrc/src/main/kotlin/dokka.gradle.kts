@@ -10,23 +10,18 @@
  * Software description: Android library of reusable graphical components
  */
 
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+
 plugins {
-    id("library")
-    alias(libs.plugins.compose.compiler)
-    id("dokka")
+    id("org.jetbrains.dokka")
 }
 
-android {
-    namespace = "com.orange.ouds.theme"
+tasks.withType<DokkaTaskPartial>().configureEach {
+    failOnWarning.set(true)
 
-    buildFeatures {
-        compose = true
+    dokkaSourceSets {
+        configureEach {
+            includes.from("Module.md")
+        }
     }
-}
-
-dependencies {
-    implementation(project(":global-raw-tokens"))
-    api(platform(libs.androidx.compose.bom))
-    api(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material3.adaptive)
 }
