@@ -17,7 +17,9 @@ sealed interface OudsElevationKeyToken {
     data object None : OudsElevationKeyToken
     data object Raised : OudsElevationKeyToken
     data object OverlayDefault : OudsElevationKeyToken
-    data object AllSticky : OudsElevationKeyToken
+    data object StickyDefault : OudsElevationKeyToken
+    data object StickyEmphasized : OudsElevationKeyToken
+    data object StickyNavigationScrolled : OudsElevationKeyToken
     data object Drag : OudsElevationKeyToken
     data object OverlayEmphasized : OudsElevationKeyToken
 }

@@ -24,7 +24,9 @@ data class OudsElevations(
     val none: Dp,
     val raised: Dp,
     val overlayDefault: Dp,
-    val allSticky: Dp,
+    val stickyDefault: Dp,
+    val stickyEmphasized: Dp,
+    val stickyNavigationScrolled: Dp,
     val drag: Dp,
     val overlayEmphasized: Dp,
 )
@@ -33,7 +35,9 @@ fun OudsElevationSemanticTokens.getElevation() = OudsElevations(
     none = none.dp,
     raised = raised.dp,
     overlayDefault = overlayDefault.dp,
-    allSticky = allSticky.dp,
+    stickyDefault = stickyDefault.dp,
+    stickyEmphasized = stickyEmphasized.dp,
+    stickyNavigationScrolled = stickyNavigationScrolled.dp,
     drag = drag.dp,
     overlayEmphasized = overlayEmphasized.dp
 )
@@ -44,7 +48,9 @@ fun OudsElevations.fromToken(token: OudsElevationKeyToken): Dp {
         OudsElevationKeyToken.None -> none
         OudsElevationKeyToken.Raised -> raised
         OudsElevationKeyToken.OverlayDefault -> overlayDefault
-        OudsElevationKeyToken.AllSticky -> allSticky
+        OudsElevationKeyToken.StickyDefault -> stickyDefault
+        OudsElevationKeyToken.StickyEmphasized -> stickyEmphasized
+        OudsElevationKeyToken.StickyNavigationScrolled -> stickyNavigationScrolled
         OudsElevationKeyToken.Drag -> drag
         OudsElevationKeyToken.OverlayEmphasized -> overlayEmphasized
     }
