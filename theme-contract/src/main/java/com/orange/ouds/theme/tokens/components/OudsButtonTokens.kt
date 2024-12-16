@@ -1,35 +1,139 @@
-/*
- * Software Name: OUDS Android
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
- * SPDX-License-Identifier: MIT
- *
- * This software is distributed under the MIT license,
- * the text of which is available at https://opensource.org/license/MIT/
- * or see the "LICENSE" file for more details.
- *
- * Software description: Android library of reusable graphical components
- */
+//
+// Software Name: OUDS Android
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Android library of reusable graphical components
+//
 
 package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsElevationKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
+import com.orange.ouds.tokens.global.raw.DimensionRawTokens
 
 open class OudsButtonTokens(
-    val containerColor: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
-    val contentColor: OudsColorKeyToken = OudsColorKeyToken.Content.OnAction.Enabled,
-    val disabledContainerColor: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
-    val disabledContentColor: OudsColorKeyToken = OudsColorKeyToken.Content.OnAction.Disabled,
-    val cornerRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
-    val defaultElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
-    val pressedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
-    val focusedElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
-    val hoveredElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
-    val disabledElevation: OudsElevationKeyToken = OudsElevationKeyToken.None,
-    val labelStyle: OudsTypographyKeyToken = OudsTypographyKeyToken.Body.Strong.Large,
-    val verticalContentPadding: OudsSpaceKeyToken.Fixed = OudsSpaceKeyToken.Fixed.Smash,
-    val horizontalContentPadding: OudsSpaceKeyToken.Fixed = OudsSpaceKeyToken.Fixed.Tall
+    val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
+    val borderWidthDefault: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Default,
+    val borderWidthDefaultInteraction: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
+    val borderWidthMinimal: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.None,
+    val borderWidthMinimalInteraction: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.None,
+    val colorBgDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgDefaultDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgDefaultEnabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgDefaultEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgDefaultFocus: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgDefaultFocusMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Higher,
+    val colorBgDefaultHover: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgDefaultHoverMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Higher,
+    val colorBgDefaultLoading: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgDefaultLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.White.Higher,
+    val colorBgDefaultPressed: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgDefaultPressedMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.White.Higher,
+    val colorBgMinimalDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgMinimalDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgMinimalEnabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgMinimalEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBgMinimalFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Focus,
+    val colorBgMinimalFocusMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Higher,
+    val colorBgMinimalHover: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Hover,
+    val colorBgMinimalHoverMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Higher,
+    val colorBgMinimalLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Loading,
+    val colorBgMinimalLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.White.Higher,
+    val colorBgMinimalPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Pressed,
+    val colorBgMinimalPressedMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.White.Higher,
+    val colorBgStrongDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Medium,
+    val colorBgStrongEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorBgStrongFocusMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Higher,
+    val colorBgStrongHoverMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Higher,
+    val colorBgStrongLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.White.Higher,
+    val colorBgStrongPressedMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.White.Higher,
+    val colorBorderDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
+    val colorBorderDefaultDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderDefaultEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
+    val colorBorderDefaultEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorBorderDefaultFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
+    val colorBorderDefaultFocusMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderDefaultHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
+    val colorBorderDefaultHoverMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderDefaultLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Loading,
+    val colorBorderDefaultLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderDefaultPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
+    val colorBorderDefaultPressedMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalEnabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalFocus: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalFocusMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalHover: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalHoverMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalLoading: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalPressed: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderMinimalPressedMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderStrongDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderStrongEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderStrongFocusMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderStrongHoverMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderStrongLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorBorderStrongPressedMono: OudsColorKeyToken = OudsColorKeyToken.Opacity.Invisible.Black,
+    val colorContentDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
+    val colorContentDefaultDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Medium,
+    val colorContentDefaultEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
+    val colorContentDefaultEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorContentDefaultFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
+    val colorContentDefaultFocusMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Muted.White,
+    val colorContentDefaultHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
+    val colorContentDefaultHoverMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Muted.White,
+    val colorContentDefaultLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Loading,
+    val colorContentDefaultLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorContentDefaultPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
+    val colorContentDefaultPressedMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorContentMinimalDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
+    val colorContentMinimalDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.Black.Medium,
+    val colorContentMinimalEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
+    val colorContentMinimalEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorContentMinimalFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
+    val colorContentMinimalFocusMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Muted.White,
+    val colorContentMinimalHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
+    val colorContentMinimalHoverMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Muted.White,
+    val colorContentMinimalLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Loading,
+    val colorContentMinimalLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorContentMinimalPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
+    val colorContentMinimalPressedMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorContentStrongDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
+    val colorContentStrongDisabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Opacity.White.High,
+    val colorContentStrongEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
+    val colorContentStrongEnabledMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Muted.White,
+    val colorContentStrongFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
+    val colorContentStrongFocusMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Muted.White,
+    val colorContentStrongHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
+    val colorContentStrongHoverMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Muted.White,
+    val colorContentStrongLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Loading,
+    val colorContentStrongLoadingMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val colorContentStrongPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
+    val colorContentStrongPressedMono: OudsColorKeyToken = OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
+    val sizeIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
+    val sizeIconOnly: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
+    val sizeLoader: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
+    val sizeMaxHeight: Float = DimensionRawTokens.dimension600,
+    val sizeMinHeight: Float = DimensionRawTokens.dimension600,
+    val sizeMinWidth: Float = DimensionRawTokens.dimension600,
+    val spaceColumnGapArrow: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Shorter,
+    val spaceColumnGapIcon: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Short,
+    val spaceInsetIconAlone: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.Medium,
+    val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.Medium,
+    val spacePaddingInlineArrowEnd: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Tall,
+    val spacePaddingInlineArrowStart: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Tall,
+    val spacePaddingInlineEndIconStart: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Spacious,
+    val spacePaddingInlineIconNone: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Huge,
+    val spacePaddingInlineIconStart: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Taller,
+    val spacePaddingInlineStartIconEnd: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Spacious
 )
