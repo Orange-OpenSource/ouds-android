@@ -211,5 +211,92 @@ sealed interface OudsColorKeyToken {
             data object Tint900 : Skin
         }
     }
+
+    sealed interface Repository : OudsColorKeyToken {
+        sealed interface Accent : Repository {
+            data object Default : Accent
+            data object Highest : Accent
+            data object Low : Accent
+            data object Lowest : Accent
+        }
+
+        sealed interface Info : Repository {
+            data object Default : Info
+            data object Highest : Info
+            data object Low : Info
+            data object Lowest : Info
+        }
+
+        sealed interface Negative : Repository {
+            data object Default : Negative
+            data object High : Negative
+            data object Higher : Negative
+            data object Highest : Negative
+            data object Low : Negative
+            data object Lower : Negative
+            data object Lowest : Negative
+        }
+
+        sealed interface Neutral : Repository {
+            sealed interface Emphasized : Neutral {
+                data object Black : Emphasized
+                data object High : Emphasized
+                data object Higher : Emphasized
+                data object Highest : Emphasized
+                data object Medium : Emphasized
+            }
+
+            sealed interface Muted : Neutral {
+                data object Lower : Muted
+                data object Lowest : Muted
+                data object White : Muted
+            }
+        }
+
+        sealed interface Opacity : Repository {
+            sealed interface Black : Opacity {
+                data object Higher : Black
+                data object Highest : Black
+                data object Low : Black
+                data object Lower : Black
+                data object Lowest : Black
+                data object Medium : Black
+                data object Transparent : Black
+            }
+
+            data object Info : Opacity
+            data object Negative : Opacity
+            data object Positive : Opacity
+            data object Warning : Opacity
+            sealed interface White : Opacity {
+                data object High : White
+                data object Higher : White
+                data object Highest : White
+                data object Low : White
+                data object Lower : White
+                data object Lowest : White
+                data object Transparent : White
+            }
+        }
+
+        sealed interface Positive : Repository {
+            data object Default : Positive
+            data object Highest : Positive
+            data object Low : Positive
+            data object Lowest : Positive
+        }
+
+        sealed interface Primary : Repository {
+            data object Default : Primary
+            data object Low : Primary
+        }
+
+        sealed interface Warning : Repository {
+            data object Default : Warning
+            data object Highest : Warning
+            data object Low : Warning
+            data object Lowest : Warning
+        }
+    }
 }
 
