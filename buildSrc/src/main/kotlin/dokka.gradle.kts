@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 
 plugins {
@@ -22,6 +24,9 @@ tasks.withType<DokkaTaskPartial>().configureEach {
     dokkaSourceSets {
         configureEach {
             includes.from("Module.md")
+            pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+                customStyleSheets = listOf(file("docs/assets/orange-style.css"))
+            }
         }
     }
 }

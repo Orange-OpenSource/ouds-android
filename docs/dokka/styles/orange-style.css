@@ -1,0 +1,24 @@
+/* --- root styles --- */
+:root {
+    --footer-font-color: black;
+    --footer-go-to-top-color: white;
+
+    --active-section-color: #ff7900;
+    --active-tab-border-color: #ff7900;
+    --sidemenu-section-active-color: #ff7900;
+
+    --default-font-family: Helvetica Neue, Roboto, Arial, sans-serif;
+}
+
+.library-name--link {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.sideMenuPart[data-active] > .overview > a {
+    font-weight: 700;
+}
+
+.sidebar--inner {
+    font-size: 13px;
+}

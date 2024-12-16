@@ -35,12 +35,13 @@ checkNotice {
 }
 
 tasks.dokkaHtmlMultiModule {
-    outputDirectory.set(projectDir.resolve("dokka"))
-    includes.from("Root.md")
+    outputDirectory.set(projectDir.resolve("docs/dokka"))
+    includes.from("docs/index.md")
     // used as project name in the header
     moduleName.set("OUDS Android")
     pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-        //customAssets = listOf(projectDir.resolve("assets/favicon.png"))
+        customAssets = listOf(file("docs/assets/logo-icon.svg"))
+        customStyleSheets = listOf(file("docs/assets/orange-style.css"))
         footerMessage = "Copyright © Orange 2024"
     }
 }

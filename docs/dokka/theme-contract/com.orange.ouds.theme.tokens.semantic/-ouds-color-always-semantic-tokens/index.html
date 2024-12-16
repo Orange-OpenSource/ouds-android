@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OudsColorAlwaysSemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            OUDS Android
+                    </a>            </div>
+            <div class="library-version">0.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":theme-contract:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-contract::com.orange.ouds.theme.tokens.semantic/OudsColorAlwaysSemanticTokens///PointingToDeclaration//612768829">
+  <div class="breadcrumbs"><a href="../../index.html">theme-contract</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.tokens.semantic</a><span class="delimiter">/</span><span class="current">OudsColorAlwaysSemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Ouds</span><wbr><span>Color</span><wbr><span>Always</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">OudsColorAlwaysSemanticTokens</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>alwaysBlackLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>alwaysOnBlackLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>alwaysOnWhiteLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>alwaysWhiteLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>alwaysBlackDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>alwaysOnBlackDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>alwaysOnWhiteDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>alwaysWhiteDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite</span></span><span class="token punctuation">)</span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="362110445%2FConstructors%2F612768829" anchor-label="OudsColorAlwaysSemanticTokens" id="362110445%2FConstructors%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-ouds-color-always-semantic-tokens.html"><span>Ouds</span><wbr><span>Color</span><wbr><span>Always</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="362110445%2FConstructors%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">alwaysBlackLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">alwaysOnBlackLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter ">alwaysOnWhiteLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">alwaysWhiteLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter ">alwaysBlackDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">alwaysOnBlackDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter ">alwaysOnWhiteDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">alwaysWhiteDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-808380311%2FProperties%2F612768829" anchor-label="alwaysBlackDark" id="-808380311%2FProperties%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="always-black-dark.html"><span>always</span><wbr><span>Black</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-808380311%2FProperties%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="always-black-dark.html">alwaysBlackDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-730043323%2FProperties%2F612768829" anchor-label="alwaysBlackLight" id="-730043323%2FProperties%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="always-black-light.html"><span>always</span><wbr><span>Black</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-730043323%2FProperties%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="always-black-light.html">alwaysBlackLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1503582616%2FProperties%2F612768829" anchor-label="alwaysOnBlackDark" id="-1503582616%2FProperties%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="always-on-black-dark.html"><span>always</span><wbr><span>On</span><wbr><span>Black</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1503582616%2FProperties%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="always-on-black-dark.html">alwaysOnBlackDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-806478298%2FProperties%2F612768829" anchor-label="alwaysOnBlackLight" id="-806478298%2FProperties%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="always-on-black-light.html"><span>always</span><wbr><span>On</span><wbr><span>Black</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-806478298%2FProperties%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="always-on-black-light.html">alwaysOnBlackLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1401459326%2FProperties%2F612768829" anchor-label="alwaysOnWhiteDark" id="1401459326%2FProperties%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="always-on-white-dark.html"><span>always</span><wbr><span>On</span><wbr><span>White</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1401459326%2FProperties%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="always-on-white-dark.html">alwaysOnWhiteDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-944491312%2FProperties%2F612768829" anchor-label="alwaysOnWhiteLight" id="-944491312%2FProperties%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="always-on-white-light.html"><span>always</span><wbr><span>On</span><wbr><span>White</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-944491312%2FProperties%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="always-on-white-light.html">alwaysOnWhiteLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2096661631%2FProperties%2F612768829" anchor-label="alwaysWhiteDark" id="2096661631%2FProperties%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="always-white-dark.html"><span>always</span><wbr><span>White</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2096661631%2FProperties%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="always-white-dark.html">alwaysWhiteDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-868056337%2FProperties%2F612768829" anchor-label="alwaysWhiteLight" id="-868056337%2FProperties%2F612768829" data-filterable-set=":theme-contract:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract:dokkaHtmlPartial/release" data-filterable-set=":theme-contract:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="always-white-light.html"><span>always</span><wbr><span>White</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-868056337%2FProperties%2F612768829"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="always-white-light.html">alwaysWhiteLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
