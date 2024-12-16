@@ -143,7 +143,7 @@ tasks.register<DefaultTask>("gitTagAppDistribution") {
 }
 
 /**
- * Publishes a comment in the pull request that includes a QR code to download and install the OUDS Playground app.
+ * Publishes a comment in the pull request that includes a QR code to download and install the Design System Toolbox app.
  * That app contains the changes of the pull request.
  */
 tasks.register<DefaultTask>("publishAppDistributionQrCode") {
@@ -186,7 +186,7 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                             logger.lifecycle("Create comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
                             val link = "![qrcode](https://github.com/Orange-OpenSource/ouds-android/raw/$sha/qrcodes/${qrCode.name})"
                             val body = "### :iphone: Alpha release available\\n\\n" +
-                                    "Scan the QR code below to download and install the OUDS Playground app which contains the changes of this pull request.\\n" +
+                                    "Scan the QR code below to download and install the Design System Toolbox app which contains the changes of this pull request.\\n" +
                                     "**Please note that the link behind this QR code will expire in one hour.**\\n$link"
                             // Although we use the "issues/{issue_number}/comments" GitHub API, this will comment the pull request because a pull request is an issue
                             // The "pulls/{pull_number}/comments" is used to add review comments on a pull request

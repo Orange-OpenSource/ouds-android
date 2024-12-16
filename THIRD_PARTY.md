@@ -18,7 +18,7 @@ Copyright 2017 The Android Open Source Project
 [https://github.com/material-components/material-components-android](https://github.com/material-components/material-components-android)
 Apache License 2.0
 
-## In the OUDS Playground app
+## In the Design System Toolbox app
 
 ### OUDS libraries
 

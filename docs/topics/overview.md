@@ -4,8 +4,8 @@ Orange is providing a full Design System to build Orange mobile application. The
 
 The Orange Unified Design System has been implemented in a code library (OUDS Android) that provides:
 - a Jetpack Compose code library
-- a playground app that can be launched to show the tokens, components and modules
-- this playground app also shows how to use the lib or style existing components
+- a demo app that can be launched to show the tokens, components and modules
+- this demo app also shows how to use the lib or style existing components
 
 Using these resources will allow you to create Orange branded applications faster and will inherit all the work that was done to make sure that all presented codes are fully tested with regard to the brand and the accessibility compliance.
 
