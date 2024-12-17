@@ -11,7 +11,7 @@
   -->
 
 <resources>
-    <string name="app_name">OudsPlayground</string>
+    <string name="app_name">DesignToolbox</string>
 
     <!-- Common -->
     <string name="app_common_back_a11y">Back</string>

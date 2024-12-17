@@ -7,7 +7,7 @@
         <color-preset>contrast</color-preset>
         <custom-favicons>../images/favicon-16x16.png</custom-favicons>
         <header-logo>orange-logo.svg</header-logo>
-        <download-title>Get OUDS Playground</download-title>
+        <download-title>Get Design System Toolbox</download-title>
         <download-page>https://example.com</download-page>
         <showDownloadButton>false</showDownloadButton>
         <analytics-body-html-file>tarteaucitron.html</analytics-body-html-file>
