@@ -16,8 +16,10 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
 data class OudsColorOpacitySemanticTokens(
-    val opacityInvisibleBlackLight: Color = ColorRawTokens.colorOpacityBlack0,
-    val opacityInvisibleWhiteLight: Color = ColorRawTokens.colorOpacityWhite0,
-    val opacityInvisibleBlackDark: Color = ColorRawTokens.colorOpacityWhite0,
-    val opacityInvisibleWhiteDark: Color = ColorRawTokens.colorOpacityWhite0
+    val opacityLowerLight: Color = ColorRawTokens.colorOpacityBlack80,
+    val opacityLowestLight: Color = ColorRawTokens.colorOpacityBlack40,
+    val opacityTransparentLight: Color = ColorRawTokens.colorOpacityBlack0,
+    val opacityLowerDark: Color = ColorRawTokens.colorOpacityWhite80,
+    val opacityLowestDark: Color = ColorRawTokens.colorOpacityWhite40,
+    val opacityTransparentDark: Color = ColorRawTokens.colorOpacityWhite0
 )

@@ -1,111 +1,113 @@
-/*
- * Software Name: OUDS Android
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
- * SPDX-License-Identifier: MIT
- *
- * This software is distributed under the MIT license,
- * the text of which is available at https://opensource.org/license/MIT/
- * or see the "LICENSE" file for more details.
- *
- * Software description: Android library of reusable graphical components
- */
+//
+// Software Name: OUDS Android
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Android library of reusable graphical components
+//
 
 package com.orange.ouds.theme.tokens
 
 sealed interface OudsSizeKeyToken {
-
     sealed interface Icon : OudsSizeKeyToken {
         sealed interface Decorative : Icon {
-            data object ExtraExtraSmall : Decorative
-            data object ExtraSmall : Decorative
-            data object Small : Decorative
-            data object Medium : Decorative
-            data object Large : Decorative
-            data object ExtraLarge : Decorative
             data object ExtraExtraLarge : Decorative
+            data object ExtraExtraSmall : Decorative
+            data object Large : Decorative
+            data object Medium : Decorative
+            data object Small : Decorative
+            data object ExtraLarge : Decorative
+            data object ExtraSmall : Decorative
         }
-
-        sealed interface WithHeadingExtraLarge : Icon {
-            data object SizeSmall : WithHeadingExtraLarge
-            data object SizeMedium : WithHeadingExtraLarge
-            data object SizeLarge : WithHeadingExtraLarge
+        sealed interface WithBody : Icon {
+            sealed interface Large : WithBody {
+                data object SizeLarge : Large
+                data object SizeMedium : Large
+                data object SizeSmall : Large
+            }
+            sealed interface Medium : WithBody {
+                data object SizeLarge : Medium
+                data object SizeMedium : Medium
+                data object SizeSmall : Medium
+            }
+            sealed interface Small : WithBody {
+                data object SizeLarge : Small
+                data object SizeMedium : Small
+                data object SizeSmall : Small
+            }
         }
-
-        sealed interface WithHeadingLarge : Icon {
-            data object SizeSmall : WithHeadingLarge
-            data object SizeMedium : WithHeadingLarge
-            data object SizeLarge : WithHeadingLarge
+        sealed interface WithHeading : Icon {
+            sealed interface Large : WithHeading {
+                data object SizeLarge : Large
+                data object SizeMedium : Large
+                data object SizeSmall : Large
+            }
+            sealed interface Medium : WithHeading {
+                data object SizeLarge : Medium
+                data object SizeMedium : Medium
+                data object SizeSmall : Medium
+            }
+            sealed interface Small : WithHeading {
+                data object SizeLarge : Small
+                data object SizeMedium : Small
+                data object SizeSmall : Small
+            }
+            sealed interface ExtraLarge : WithHeading {
+                data object SizeLarge : ExtraLarge
+                data object SizeMedium : ExtraLarge
+                data object SizeSmall : ExtraLarge
+            }
         }
-
-        sealed interface WithHeadingMedium : Icon {
-            data object SizeSmall : WithHeadingMedium
-            data object SizeMedium : WithHeadingMedium
-            data object SizeLarge : WithHeadingMedium
-        }
-
-        sealed interface WithHeadingSmall : Icon {
-            data object SizeSmall : WithHeadingSmall
-            data object SizeMedium : WithHeadingSmall
-            data object SizeLarge : WithHeadingSmall
-        }
-
-        sealed interface WithBodyLarge : Icon {
-            data object SizeSmall : WithBodyLarge
-            data object SizeMedium : WithBodyLarge
-            data object SizeLarge : WithBodyLarge
-        }
-
-        sealed interface WithBodyMedium : Icon {
-            data object SizeSmall : WithBodyMedium
-            data object SizeMedium : WithBodyMedium
-            data object SizeLarge : WithBodyMedium
-        }
-
-        sealed interface WithBodySmall : Icon {
-            data object SizeSmall : WithBodySmall
-            data object SizeMedium : WithBodySmall
-            data object SizeLarge : WithBodySmall
-        }
-
-        sealed interface WithLabelExtraLarge : Icon {
-            data object SizeSmall : WithLabelExtraLarge
-            data object SizeMedium : WithLabelExtraLarge
-            data object SizeLarge : WithLabelExtraLarge
-        }
-
-        sealed interface WithLabelLarge : Icon {
-            data object SizeExtraSmall : WithLabelLarge
-            data object SizeSmall : WithLabelLarge
-            data object SizeMedium : WithLabelLarge
-            data object SizeLarge : WithLabelLarge
-            data object SizeExtraLarge : WithLabelLarge
-        }
-
-        sealed interface WithLabelMedium : Icon {
-            data object SizeSmall : WithLabelMedium
-            data object SizeMedium : WithLabelMedium
-            data object SizeLarge : WithLabelMedium
-        }
-
-        sealed interface WithLabelSmall : Icon {
-            data object SizeSmall : WithLabelSmall
-            data object SizeMedium : WithLabelSmall
-            data object SizeLarge : WithLabelSmall
+        sealed interface WithLabel : Icon {
+            sealed interface Large : WithLabel {
+                data object SizeLarge : Large
+                data object SizeMedium : Large
+                data object SizeSmall : Large
+                data object SizeExtraLarge : Large
+                data object SizeExtraSmall : Large
+            }
+            sealed interface Medium : WithLabel {
+                data object SizeLarge : Medium
+                data object SizeMedium : Medium
+                data object SizeSmall : Medium
+                data object SizeExtraSmall : Medium
+            }
+            sealed interface Small : WithLabel {
+                data object SizeLarge : Small
+                data object SizeMedium : Small
+                data object SizeSmall : Small
+                data object SizeExtraSmall : Small
+            }
+            sealed interface ExtraLarge : WithLabel {
+                data object SizeLarge : ExtraLarge
+                data object SizeMedium : ExtraLarge
+                data object SizeSmall : ExtraLarge
+            }
         }
     }
-
     sealed interface MaxWidth : OudsSizeKeyToken {
         sealed interface Type : MaxWidth {
-            data object DisplaySmall : Type
-            data object DisplayMedium : Type
-            data object DisplayLarge : Type
-            data object HeadingSmall : Type
-            data object HeadingMedium : Type
-            data object HeadingLarge : Type
-            data object HeadingExtraLarge : Type
-            data object BodySmall : Type
-            data object BodyMedium : Type
-            data object BodyLarge : Type
+            sealed interface Body : Type {
+                data object Large : Body
+                data object Medium : Body
+                data object Small : Body
+            }
+            sealed interface Display : Type {
+                data object Large : Display
+                data object Medium : Display
+                data object Small : Display
+            }
+            sealed interface Heading : Type {
+                data object Large : Heading
+                data object Medium : Heading
+                data object Small : Heading
+                data object ExtraLarge : Heading
+            }
         }
     }
 }
+
