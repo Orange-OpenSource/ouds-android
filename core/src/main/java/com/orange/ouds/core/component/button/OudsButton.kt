@@ -367,42 +367,42 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
     return with(OudsTheme.componentsTokens.button) {
         when (hierarchy) {
             OudsButton.Hierarchy.Default -> when (state) {
-                OudsButton.State.Enabled -> colorBgDefaultEnabled.value
-                OudsButton.State.Focused -> colorBgDefaultFocus.value
-                OudsButton.State.Hovered -> colorBgDefaultHover.value
-                OudsButton.State.Pressed -> colorBgDefaultPressed.value
-                OudsButton.State.Loading -> colorBgDefaultLoading.value
-                OudsButton.State.Disabled -> colorBgDefaultDisabled.value
+                OudsButton.State.Enabled -> colorBgDefaultEnabled
+                OudsButton.State.Focused -> colorBgDefaultFocus
+                OudsButton.State.Hovered -> colorBgDefaultHover
+                OudsButton.State.Pressed -> colorBgDefaultPressed
+                OudsButton.State.Loading -> colorBgDefaultLoading
+                OudsButton.State.Disabled -> colorBgDefaultDisabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
-                OudsButton.State.Enabled -> colorBgMinimalEnabled.value
-                OudsButton.State.Focused -> colorBgMinimalFocus.value
-                OudsButton.State.Hovered -> colorBgMinimalHover.value
-                OudsButton.State.Pressed -> colorBgMinimalPressed.value
-                OudsButton.State.Loading -> colorBgMinimalLoading.value
-                OudsButton.State.Disabled -> colorBgMinimalDisabled.value
+                OudsButton.State.Enabled -> colorBgMinimalEnabled
+                OudsButton.State.Focused -> colorBgMinimalFocus
+                OudsButton.State.Hovered -> colorBgMinimalHover
+                OudsButton.State.Pressed -> colorBgMinimalPressed
+                OudsButton.State.Loading -> colorBgMinimalLoading
+                OudsButton.State.Disabled -> colorBgMinimalDisabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }
             OudsButton.Hierarchy.Strong -> when (state) {
-                OudsButton.State.Enabled -> OudsColorKeyToken.Action.Enabled.value
-                OudsButton.State.Focused -> OudsColorKeyToken.Action.Focus.value
-                OudsButton.State.Hovered -> OudsColorKeyToken.Action.Hover.value
-                OudsButton.State.Pressed -> OudsColorKeyToken.Action.Pressed.value
-                OudsButton.State.Loading -> OudsColorKeyToken.Action.Loading.value
-                OudsButton.State.Disabled -> OudsColorKeyToken.Action.Disabled.value
+                OudsButton.State.Enabled -> OudsColorKeyToken.Action.Enabled
+                OudsButton.State.Focused -> OudsColorKeyToken.Action.Focus
+                OudsButton.State.Hovered -> OudsColorKeyToken.Action.Hover
+                OudsButton.State.Pressed -> OudsColorKeyToken.Action.Pressed
+                OudsButton.State.Loading -> OudsColorKeyToken.Action.Loading
+                OudsButton.State.Disabled -> OudsColorKeyToken.Action.Disabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }
             OudsButton.Hierarchy.Negative -> when (state) {
-                OudsButton.State.Enabled -> OudsColorKeyToken.Action.Negative.Enabled.value
-                OudsButton.State.Focused -> OudsColorKeyToken.Action.Negative.Focus.value
-                OudsButton.State.Hovered -> OudsColorKeyToken.Action.Negative.Hover.value
-                OudsButton.State.Pressed -> OudsColorKeyToken.Action.Negative.Pressed.value
-                OudsButton.State.Loading -> OudsColorKeyToken.Action.Negative.Loading.value
-                OudsButton.State.Disabled -> OudsColorKeyToken.Action.Disabled.value
+                OudsButton.State.Enabled -> OudsColorKeyToken.Action.Negative.Enabled
+                OudsButton.State.Focused -> OudsColorKeyToken.Action.Negative.Focus
+                OudsButton.State.Hovered -> OudsColorKeyToken.Action.Negative.Hover
+                OudsButton.State.Pressed -> OudsColorKeyToken.Action.Negative.Pressed
+                OudsButton.State.Loading -> OudsColorKeyToken.Action.Negative.Loading
+                OudsButton.State.Disabled -> OudsColorKeyToken.Action.Disabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }
-        }
+        }.value
     }
 }
 
@@ -411,30 +411,30 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
     return with(OudsTheme.componentsTokens.button) {
         when (hierarchy) {
             OudsButton.Hierarchy.Default -> when (state) {
-                OudsButton.State.Enabled -> colorContentDefaultEnabled.value
-                OudsButton.State.Focused -> colorContentDefaultFocus.value
-                OudsButton.State.Hovered -> colorContentDefaultHover.value
-                OudsButton.State.Pressed -> colorContentDefaultPressed.value
-                OudsButton.State.Loading -> colorContentDefaultLoading.value
-                OudsButton.State.Disabled -> colorContentDefaultDisabled.value
+                OudsButton.State.Enabled -> colorContentDefaultEnabled
+                OudsButton.State.Focused -> colorContentDefaultFocus
+                OudsButton.State.Hovered -> colorContentDefaultHover
+                OudsButton.State.Pressed -> colorContentDefaultPressed
+                OudsButton.State.Loading -> colorContentDefaultLoading
+                OudsButton.State.Disabled -> colorContentDefaultDisabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
-                OudsButton.State.Enabled -> colorContentMinimalEnabled.value
-                OudsButton.State.Focused -> colorContentMinimalFocus.value
-                OudsButton.State.Hovered -> colorContentMinimalHover.value
-                OudsButton.State.Pressed -> colorContentMinimalPressed.value
-                OudsButton.State.Loading -> colorContentMinimalLoading.value
-                OudsButton.State.Disabled -> colorContentMinimalDisabled.value
+                OudsButton.State.Enabled -> colorContentMinimalEnabled
+                OudsButton.State.Focused -> colorContentMinimalFocus
+                OudsButton.State.Hovered -> colorContentMinimalHover
+                OudsButton.State.Pressed -> colorContentMinimalPressed
+                OudsButton.State.Loading -> colorContentMinimalLoading
+                OudsButton.State.Disabled -> colorContentMinimalDisabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }
             OudsButton.Hierarchy.Strong -> when (state) {
-                OudsButton.State.Enabled -> OudsColorKeyToken.Content.OnAction.Enabled.value
-                OudsButton.State.Focused -> OudsColorKeyToken.Content.OnAction.Focus.value
-                OudsButton.State.Hovered -> OudsColorKeyToken.Content.OnAction.Hover.value
-                OudsButton.State.Pressed -> OudsColorKeyToken.Content.OnAction.Pressed.value
-                OudsButton.State.Loading -> OudsColorKeyToken.Content.OnAction.Loading.value
-                OudsButton.State.Disabled -> OudsColorKeyToken.Content.OnAction.Disabled.value
+                OudsButton.State.Enabled -> OudsColorKeyToken.Content.OnAction.Enabled
+                OudsButton.State.Focused -> OudsColorKeyToken.Content.OnAction.Focus
+                OudsButton.State.Hovered -> OudsColorKeyToken.Content.OnAction.Hover
+                OudsButton.State.Pressed -> OudsColorKeyToken.Content.OnAction.Pressed
+                OudsButton.State.Loading -> OudsColorKeyToken.Content.OnAction.Loading
+                OudsButton.State.Disabled -> OudsColorKeyToken.Content.OnAction.Disabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }
             OudsButton.Hierarchy.Negative -> when (state) {
@@ -442,11 +442,11 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading,
-                OudsButton.State.Focused -> OudsColorKeyToken.Content.OnAction.Negative.value
-                OudsButton.State.Disabled -> OudsColorKeyToken.Content.OnAction.Disabled.value
+                OudsButton.State.Focused -> OudsColorKeyToken.Content.OnAction.Negative
+                OudsButton.State.Disabled -> OudsColorKeyToken.Content.OnAction.Disabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }
-        }
+        }.value
     }
 }
 
