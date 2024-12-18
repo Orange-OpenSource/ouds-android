@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.utilities
 
 import com.orange.ouds.app.ui.tokens.Token
+import com.orange.ouds.app.ui.tokens.order
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.orElse
@@ -30,7 +31,23 @@ fun KClass<*>.getTokens(
     recursive: Boolean = true,
     tokenName: (KClass<*>) -> String = { it.getTokenName(this) }
 ): List<Token<*>> {
-    return getNestedObjects(getRootKeyTokenSuperclass(), recursive).map { keyToken ->
+    return getNestedObjects(getRootKeyTokenSuperclass(), recursive).sortedBy { keyToken ->
+        when (keyToken) {
+            is OudsBorderKeyToken.Radius -> keyToken.order
+            is OudsBorderKeyToken.Width -> keyToken.order
+            is OudsElevationKeyToken -> keyToken.order
+            is OudsOpacityKeyToken -> keyToken.order
+            is OudsSizeKeyToken.Icon -> keyToken.order
+            is OudsSpaceKeyToken.ColumnGap -> keyToken.order
+            is OudsSpaceKeyToken.Fixed -> keyToken.order
+            is OudsSpaceKeyToken.Inset -> keyToken.order
+            is OudsSpaceKeyToken.PaddingBlock -> keyToken.order
+            is OudsSpaceKeyToken.PaddingInline -> keyToken.order
+            is OudsSpaceKeyToken.RowGap -> keyToken.order
+            is OudsSpaceKeyToken.Scaled -> keyToken.order
+            else -> 0
+        }
+    }.map { keyToken ->
         Token(
             name = tokenName(keyToken::class),
             value = {
@@ -54,7 +71,7 @@ fun KClass<*>.getTokens(
 
 fun KClass<*>.getTokenName(fromParent: KClass<*>? = null): String {
     val prefix = if (fromParent != null) "${fromParent.qualifiedName.orEmpty()}." else "${java.`package`?.name.orEmpty()}."
-    
+
     return qualifiedName.orEmpty()
         .removePrefix(prefix)
         .removeSuffix(".Companion")

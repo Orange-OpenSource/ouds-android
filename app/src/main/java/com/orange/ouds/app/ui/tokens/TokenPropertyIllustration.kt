@@ -19,7 +19,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,8 +37,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -139,10 +136,11 @@ fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
             tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
             contentDescription = null
         )
+        val tokenTypography = tokenName.split('.').take(2).joinToString(".")
         val style = OudsTypographyKeyToken::class.getTokens()
             .asOrNull<List<Token<TextStyle>>>()
             ?.firstOrNull { typographyToken ->
-                tokenName.split(".").firstOrNull() == typographyToken.name.replace("Strong", "").replace(".", "")
+                typographyToken.name.replace(".Strong", "") == tokenTypography
             }
             ?.value?.invoke()
             .orElse { LocalTextStyle.current }

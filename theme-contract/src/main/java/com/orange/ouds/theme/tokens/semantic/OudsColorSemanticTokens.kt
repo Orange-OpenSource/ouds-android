@@ -22,4 +22,6 @@ data class OudsColorSemanticTokens(
     val opacityColorTokens: OudsColorOpacitySemanticTokens = OudsColorOpacitySemanticTokens(),
     val overlayColorTokens: OudsColorOverlaySemanticTokens = OudsColorOverlaySemanticTokens(),
     val surfaceColorTokens: OudsColorSurfaceSemanticTokens = OudsColorSurfaceSemanticTokens()
-)
+) {
+    val repositoryColorTokens: OudsColorRepositorySemanticTokens = OudsColorRepositorySemanticTokens()
+}

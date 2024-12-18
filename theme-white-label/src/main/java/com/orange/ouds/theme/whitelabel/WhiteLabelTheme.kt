@@ -16,9 +16,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
-import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
@@ -40,13 +38,8 @@ open class WhiteLabelTheme : OudsThemeContract {
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(
             button = OudsButtonTokens(
-                cornerRadius = OudsBorderKeyToken.Radius.Pill,
-                defaultElevation = OudsElevationKeyToken.OverlayDefault,
-                focusedElevation = OudsElevationKeyToken.OverlayDefault,
-                hoveredElevation = OudsElevationKeyToken.OverlayDefault,
-                labelStyle = OudsTypographyKeyToken.Body.Default.Large,
-                verticalContentPadding = OudsSpaceKeyToken.Fixed.Shortest,
-                horizontalContentPadding = OudsSpaceKeyToken.Fixed.Short
+                borderRadius = OudsBorderKeyToken.Radius.Pill,
+                spacePaddingBlock = OudsSpaceKeyToken.PaddingBlock.Shortest
             )
         )
 }
