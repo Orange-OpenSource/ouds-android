@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-sealed interface OudsGridKeyToken {
+sealed interface OudsGridKeyToken : OudsKeyToken {
     data object ColumnGap : OudsGridKeyToken
     data object Margin : OudsGridKeyToken
     data object MaxWidth : OudsGridKeyToken

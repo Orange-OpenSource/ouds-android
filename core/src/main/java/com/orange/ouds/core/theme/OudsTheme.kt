@@ -21,6 +21,7 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
@@ -40,6 +41,7 @@ private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCo
 private val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
 private val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingCompositionLocalError("LocalSpaces") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
+internal val LocalContrastedSurface = staticCompositionLocalOf<OudsColorKeyToken.Surface?> { null }
 
 object OudsTheme {
 
@@ -111,7 +113,6 @@ fun OudsTheme(
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-
     val colorScheme = if (darkThemeEnabled) themeContract.colorTokens.darkColorScheme else themeContract.colorTokens.lightColorScheme
     val materialColorScheme = if (darkThemeEnabled) materialDarkColorScheme else materialLightColorScheme
 

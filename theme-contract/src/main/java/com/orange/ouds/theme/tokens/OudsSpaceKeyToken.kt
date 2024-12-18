@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-sealed interface OudsSpaceKeyToken {
+sealed interface OudsSpaceKeyToken : OudsKeyToken {
     sealed interface ColumnGap : OudsSpaceKeyToken {
         data object Medium : ColumnGap
         data object None : ColumnGap

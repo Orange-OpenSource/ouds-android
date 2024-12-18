@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-sealed interface OudsOpacityKeyToken {
+sealed interface OudsOpacityKeyToken : OudsKeyToken {
     data object Invisible : OudsOpacityKeyToken
     data object Medium : OudsOpacityKeyToken
     data object Opaque : OudsOpacityKeyToken
