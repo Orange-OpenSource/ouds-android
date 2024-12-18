@@ -20,10 +20,8 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsColorKeyToken.Background
 import com.orange.ouds.theme.tokens.android.OudsAndroidColorDarkTokens
 import com.orange.ouds.theme.tokens.android.OudsAndroidColorLightTokens
-import com.orange.ouds.theme.tokens.android.OudsAndroidColorLightTokens.surfaceVariant
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 data class OudsColorScheme(
@@ -664,13 +662,13 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Always): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: Background): Color {
+fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Background): Color {
     return with(backgroundColors) {
         when (token) {
-            Background.Emphasized -> emphasized
-            Background.Primary -> primary
-            Background.Secondary -> secondary
-            Background.Tertiary -> tertiary
+            OudsColorKeyToken.Background.Emphasized -> emphasized
+            OudsColorKeyToken.Background.Primary -> primary
+            OudsColorKeyToken.Background.Secondary -> secondary
+            OudsColorKeyToken.Background.Tertiary -> tertiary
         }
     }
 }
@@ -950,7 +948,7 @@ val OudsColorKeyToken.value: Color
     get() = when (this) {
         is OudsColorKeyToken.Action -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Always -> OudsTheme.colorScheme.fromToken(this)
-        is Background -> OudsTheme.colorScheme.fromToken(this)
+        is OudsColorKeyToken.Background -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Border -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Content -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Decorative -> OudsTheme.colorScheme.fromToken(this)
