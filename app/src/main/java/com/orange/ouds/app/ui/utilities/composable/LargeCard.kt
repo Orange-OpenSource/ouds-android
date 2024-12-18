@@ -24,6 +24,7 @@ import androidx.compose.material3.CardDefaults.cardElevation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
@@ -47,12 +48,13 @@ fun LargeCard(
     title: String,
     @DrawableRes imageRes: Int,
     onClick: () -> Unit,
+    imageTint: Color? = null
 ) {
     Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsElevationKeyToken.Raised.value), onClick = onClick) {
         Column(modifier = Modifier.background(OudsColorKeyToken.Background.Primary.value)) {
             Image(
                 painter = painterResource(imageRes),
-                colorFilter = ColorFilter.tint(OudsColorKeyToken.Always.White.value),
+                colorFilter = imageTint?.let { ColorFilter.tint(imageTint) },
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -85,6 +87,7 @@ private fun PreviewLargeCard() = OudsPreview {
     LargeCard(
         title = "Title",
         imageRes = R.drawable.ic_filter_effects,
-        onClick = {}
+        onClick = {},
+        imageTint = Color.White
     )
 }

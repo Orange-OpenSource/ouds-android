@@ -26,6 +26,7 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 @Composable
@@ -50,7 +51,8 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
                 LargeCard(
                     title = stringResource(id = token.nameRes),
                     imageRes = token.imageRes,
-                    onClick = { onTokenCategoryClick(token.id) }
+                    onClick = { onTokenCategoryClick(token.id) },
+                    imageTint = OudsColorKeyToken.Always.White.value
                 )
             }
         }

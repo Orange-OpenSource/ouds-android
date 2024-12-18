@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Software Name: OUDS Android
   ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
   ~ SPDX-License-Identifier: MIT
@@ -19,6 +19,10 @@
     <string name="app_common_codeCopied_text">Code copied to the clipboard</string>
     <string name="app_common_collapsed_a11y">Collapsed</string>
     <string name="app_common_expanded_a11y">Expanded</string>
+    <string name="app_common_bottomSheetExpanded_a11y">Bottom sheet expanded</string>
+    <string name="app_common_bottomSheetCollapsed_a11y">Bottom sheet collapsed</string>
+    <string name="app_common_customize_label">Customize</string>
+    <string name="app_common_enabled_label">Enabled</string>
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">ChangeTheme</string>
@@ -103,6 +107,19 @@
     <!-- Tokens: typography -->
     <string name="app_tokens_typography_label">Typography</string>
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
+
+    <!-- Components -->
+
+    <!-- Components: button -->
+    <string name="app_components_button_label">Button</string>
+    <string name="app_components_button_description_text">Buttons allow users to make choices or perform an action. They have multiple styles for various needs.</string>
+    <string name="app_components_button_hierarchy_label">Hierarchy</string>
+    <string name="app_components_button_style_label">Style</string>
+    <string name="app_components_button_layout_label">Layout</string>
+    <string name="app_components_button_textOnlyLayout_label">Text only</string>
+    <string name="app_components_button_iconAndTextLayout_label">Icon + text</string>
+    <string name="app_components_button_iconOnlyLayout_label">Icon only</string>
+    <string name="app_components_button_icon_a11y">Icon</string>
 
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>

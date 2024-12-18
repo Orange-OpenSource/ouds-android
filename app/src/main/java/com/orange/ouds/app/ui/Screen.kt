@@ -19,6 +19,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutMenuItem
 import com.orange.ouds.app.ui.about.AboutNavigationKey
+import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.ComponentsNavigation
 import com.orange.ouds.app.ui.tokens.TokenCategory
 import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.foundation.UiString
@@ -33,14 +35,9 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
-            TokensNavigation.TokenCategoryDetailRoute -> {
-                args?.getLong(TokensNavigation.TokenCategoryIdKey)?.let { Screen.TokenCategoryDetail(it) }
-            }
-
-            AboutDestinations.FileRoute -> {
-                args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
-            }
-
+            TokensNavigation.TokenCategoryDetailRoute -> args?.getLong(TokensNavigation.TokenCategoryIdKey)?.let { Screen.TokenCategoryDetail(it) }
+            ComponentsNavigation.ComponentDetailRoute -> args?.getLong(ComponentsNavigation.ComponentIdKey)?.let { Screen.ComponentDetail(it) }
+            AboutDestinations.FileRoute -> args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
             else -> null
         }
     } else {
@@ -92,6 +89,13 @@ sealed class Screen(
     data class TokenCategoryDetail(val tokenCategoryId: Long) : Screen(
         route = TokensNavigation.TokenCategoryDetailRoute,
         title = TokenCategory.fromId(tokenCategoryId)?.nameRes?.let { UiString.StringResource(it) }
+    )
+
+    // Components screens
+
+    data class ComponentDetail(val componentId: Long) : Screen(
+        route = ComponentsNavigation.ComponentDetailRoute,
+        title = Component.fromId(componentId)?.nameRes?.let { UiString.StringResource(it) }
     )
 
     // About screens

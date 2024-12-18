@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StampedPathEffectStyle
 import androidx.compose.ui.graphics.drawOutline
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.unit.Dp
@@ -101,25 +102,33 @@ fun Modifier.dottedBorder(
 /**
  * Modify element to add an outer border (drawn outside the element) with appearance specified with a [width], a [color] and a [shape].
  *
- * @param width Thickness of the border in dp
- * @param color Color to paint the border with
- * @param shape Shape of the border
+ * @param width The width of the border in dp. Use [Dp.Hairline] for a hairline border.
+ * @param color The color to paint the border with.
+ * @param shape The shape of the border.
+ * @param insetWidth The width of the border inset in dp. Use [Dp.Hairline] for a hairline border inset.
+ * @param insetColor The color to paint the border inset with.
  */
 fun Modifier.outerBorder(
     width: Dp,
     color: Color,
-    shape: Shape = RectangleShape
+    shape: Shape = RectangleShape,
+    insetWidth: Dp = Dp.Unspecified,
+    insetColor: Color = Color.Unspecified
 ) = drawWithContent {
-    val outerSize = Size(size.width + width.toPx(), size.height + width.toPx())
-    val outline = shape.createOutline(outerSize, layoutDirection, density = this)
-    val stroke = Stroke(width = width.toPx())
-
     drawContent()
-    translate(-width.toPx() / 2f, -width.toPx() / 2f) {
-        drawOutline(
-            outline = outline,
-            style = stroke,
-            brush = SolidColor(color)
-        )
+    drawOuterBorder(width, color, shape)
+    drawOuterBorder(insetWidth, insetColor, shape)
+}
+
+private fun DrawScope.drawOuterBorder(width: Dp, color: Color, shape: Shape) {
+    if (width != Dp.Unspecified) {
+        val outerSize = Size(size.width + width.toPx(), size.height + width.toPx())
+        translate(-width.toPx() / 2f, -width.toPx() / 2f) {
+            drawOutline(
+                outline = shape.createOutline(outerSize, layoutDirection, this),
+                style = Stroke(width.toPx()),
+                brush = SolidColor(color)
+            )
+        }
     }
 }

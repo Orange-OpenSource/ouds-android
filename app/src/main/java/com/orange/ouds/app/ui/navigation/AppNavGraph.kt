@@ -19,7 +19,9 @@ import com.orange.ouds.app.ui.BottomBarItem
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutScreen
 import com.orange.ouds.app.ui.about.addAboutNavGraph
+import com.orange.ouds.app.ui.components.ComponentsNavigation
 import com.orange.ouds.app.ui.components.ComponentsScreen
+import com.orange.ouds.app.ui.components.addComponentsNavGraph
 import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.app.ui.tokens.TokensScreen
 import com.orange.ouds.app.ui.tokens.addTokensNavGraph
@@ -29,6 +31,7 @@ import com.orange.ouds.app.ui.tokens.addTokensNavGraph
  */
 fun NavGraphBuilder.appNavGraph(navController: NavController) {
     addTokensNavGraph(navController)
+    addComponentsNavGraph()
     addAboutNavGraph()
     addBottomBarNavGraph(navController)
 }
@@ -38,10 +41,10 @@ fun NavGraphBuilder.appNavGraph(navController: NavController) {
  */
 private fun NavGraphBuilder.addBottomBarNavGraph(navController: NavController) {
     composable(BottomBarItem.Tokens.route) { from ->
-        TokensScreen(onTokenCategoryClick = { id -> navController.navigateToElement(TokensNavigation.TokenCategoryDetailRoute, id, from) })
+        TokensScreen { id -> navController.navigateToElement(TokensNavigation.TokenCategoryDetailRoute, id, from) }
     }
-    composable(BottomBarItem.Components.route) { _ ->
-        ComponentsScreen()
+    composable(BottomBarItem.Components.route) { from ->
+        ComponentsScreen { id -> navController.navigateToElement(ComponentsNavigation.ComponentDetailRoute, id, from) }
     }
     composable(BottomBarItem.About.route) { _ ->
         AboutScreen { id -> navController.navigate("${AboutDestinations.FileRoute}/$id") }

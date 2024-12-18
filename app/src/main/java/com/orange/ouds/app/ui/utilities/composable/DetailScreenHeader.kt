@@ -65,7 +65,7 @@ fun DetailScreenHeader(
 }
 
 @Composable
-private fun DetailScreenDescription(
+fun DetailScreenDescription(
     modifier: Modifier = Modifier,
     @StringRes descriptionRes: Int
 ) {
