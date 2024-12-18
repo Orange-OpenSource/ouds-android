@@ -836,21 +836,25 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Surface): Color {
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Opacity): Color {
-    return when (token) {
-        OudsColorKeyToken.Opacity.Lower -> opacityColors.lower
-        OudsColorKeyToken.Opacity.Lowest -> opacityColors.lowest
-        OudsColorKeyToken.Opacity.Transparent -> opacityColors.transparent
+    return with(opacityColors) {
+        when (token) {
+            OudsColorKeyToken.Opacity.Lower -> lower
+            OudsColorKeyToken.Opacity.Lowest -> lowest
+            OudsColorKeyToken.Opacity.Transparent -> transparent
+        }
     }
 }
 
 
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
-    return when (token) {
-        OudsColorKeyToken.Overlay.Default -> overlayColors.default
-        OudsColorKeyToken.Overlay.Drag -> overlayColors.drag
-        OudsColorKeyToken.Overlay.Emphasized -> overlayColors.emphasized
-        OudsColorKeyToken.Overlay.Modal -> overlayColors.modal
+    return with(overlayColors) {
+        when (token) {
+            OudsColorKeyToken.Overlay.Default -> default
+            OudsColorKeyToken.Overlay.Drag -> drag
+            OudsColorKeyToken.Overlay.Emphasized -> emphasized
+            OudsColorKeyToken.Overlay.Modal -> modal
+        }
     }
 }
 
