@@ -136,11 +136,11 @@ fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
             tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
             contentDescription = null
         )
+        val tokenTypography = tokenName.split('.').take(2).joinToString(".")
         val style = OudsTypographyKeyToken::class.getTokens()
             .asOrNull<List<Token<TextStyle>>>()
             ?.firstOrNull { typographyToken ->
-                val tokenNameTreeValues = tokenName.split('.')
-                typographyToken.name.replace(".Strong", "") == "${tokenNameTreeValues[0]}.${tokenNameTreeValues[1]}"
+                typographyToken.name.replace(".Strong", "") == tokenTypography
             }
             ?.value?.invoke()
             .orElse { LocalTextStyle.current }
