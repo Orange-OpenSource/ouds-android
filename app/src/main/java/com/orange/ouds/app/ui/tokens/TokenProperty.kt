@@ -204,13 +204,13 @@ val OudsBorderKeyToken.Radius.order: Int
 val OudsBorderKeyToken.Width.order: Int
     get() = when (this) {
         OudsBorderKeyToken.Width.None -> 0
-        OudsBorderKeyToken.Width.Default -> 2
-        OudsBorderKeyToken.Width.Thin -> 3
-        OudsBorderKeyToken.Width.Medium -> 4
-        OudsBorderKeyToken.Width.Thick -> 5
-        OudsBorderKeyToken.Width.Thicker -> 6
-        OudsBorderKeyToken.Width.Focus -> 7
-        OudsBorderKeyToken.Width.FocusInset -> 8
+        OudsBorderKeyToken.Width.Default -> 1
+        OudsBorderKeyToken.Width.Thin -> 2
+        OudsBorderKeyToken.Width.Medium -> 3
+        OudsBorderKeyToken.Width.Thick -> 4
+        OudsBorderKeyToken.Width.Thicker -> 5
+        OudsBorderKeyToken.Width.Focus -> 6
+        OudsBorderKeyToken.Width.FocusInset -> 7
     }
 
 val OudsElevationKeyToken.order: Int
@@ -231,8 +231,8 @@ val OudsOpacityKeyToken.order: Int
         OudsOpacityKeyToken.Weaker -> 1
         OudsOpacityKeyToken.Weak -> 2
         OudsOpacityKeyToken.Medium -> 3
-        OudsOpacityKeyToken.Strong -> 5
-        OudsOpacityKeyToken.Opaque -> 6
+        OudsOpacityKeyToken.Strong -> 4
+        OudsOpacityKeyToken.Opaque -> 5
     }
 
 val OudsSizeKeyToken.Icon.order: Int
