@@ -31,20 +31,20 @@ fun KClass<*>.getTokens(
     recursive: Boolean = true,
     tokenName: (KClass<*>) -> String = { it.getTokenName(this) }
 ): List<Token<*>> {
-    return getNestedObjects(getRootKeyTokenSuperclass(), recursive).sortedBy {
-        when (it) {
-            is OudsBorderKeyToken.Radius -> it.order
-            is OudsBorderKeyToken.Width -> it.order
-            is OudsElevationKeyToken -> it.order
-            is OudsOpacityKeyToken -> it.order
-            is OudsSizeKeyToken.Icon -> it.order
-            is OudsSpaceKeyToken.ColumnGap -> it.order
-            is OudsSpaceKeyToken.Fixed -> it.order
-            is OudsSpaceKeyToken.Inset -> it.order
-            is OudsSpaceKeyToken.PaddingBlock -> it.order
-            is OudsSpaceKeyToken.PaddingInline -> it.order
-            is OudsSpaceKeyToken.RowGap -> it.order
-            is OudsSpaceKeyToken.Scaled -> it.order
+    return getNestedObjects(getRootKeyTokenSuperclass(), recursive).sortedBy { keyToken ->
+        when (keyToken) {
+            is OudsBorderKeyToken.Radius -> keyToken.order
+            is OudsBorderKeyToken.Width -> keyToken.order
+            is OudsElevationKeyToken -> keyToken.order
+            is OudsOpacityKeyToken -> keyToken.order
+            is OudsSizeKeyToken.Icon -> keyToken.order
+            is OudsSpaceKeyToken.ColumnGap -> keyToken.order
+            is OudsSpaceKeyToken.Fixed -> keyToken.order
+            is OudsSpaceKeyToken.Inset -> keyToken.order
+            is OudsSpaceKeyToken.PaddingBlock -> keyToken.order
+            is OudsSpaceKeyToken.PaddingInline -> keyToken.order
+            is OudsSpaceKeyToken.RowGap -> keyToken.order
+            is OudsSpaceKeyToken.Scaled -> keyToken.order
             else -> 0
         }
     }.map { keyToken ->
@@ -71,7 +71,7 @@ fun KClass<*>.getTokens(
 
 fun KClass<*>.getTokenName(fromParent: KClass<*>? = null): String {
     val prefix = if (fromParent != null) "${fromParent.qualifiedName.orEmpty()}." else "${java.`package`?.name.orEmpty()}."
-    
+
     return qualifiedName.orEmpty()
         .removePrefix(prefix)
         .removeSuffix(".Companion")
