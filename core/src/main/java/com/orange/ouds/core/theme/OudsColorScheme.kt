@@ -142,8 +142,9 @@ data class OudsColorScheme(
     )
 
     data class Opacity(
-        val invisibleBlack: Color,
-        val invisibleWhite: Color
+        val transparent: Color,
+        val lowest: Color,
+        val lower: Color,
     )
 
     data class Overlay(
@@ -337,8 +338,9 @@ val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
         },
         opacityColors = with(opacityColorTokens) {
             OudsColorScheme.Opacity(
-                invisibleBlack = opacityInvisibleBlackLight,
-                invisibleWhite = opacityInvisibleWhiteLight,
+                transparent = opacityTransparentLight,
+                lowest = opacityLowestLight,
+                lower = opacityLowerLight,
             )
         },
         overlayColors = with(overlayColorTokens) {
@@ -535,8 +537,9 @@ val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
         },
         opacityColors = with(opacityColorTokens) {
             OudsColorScheme.Opacity(
-                invisibleBlack = opacityInvisibleBlackDark,
-                invisibleWhite = opacityInvisibleWhiteDark,
+                transparent = opacityTransparentDark,
+                lowest = opacityLowestDark,
+                lower = opacityLowerDark,
             )
         },
         overlayColors = with(overlayColorTokens) {
@@ -661,13 +664,13 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Always): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Background): Color {
+fun OudsColorScheme.fromToken(token: Background): Color {
     return with(backgroundColors) {
         when (token) {
-            OudsColorKeyToken.Background.Emphasized -> emphasized
-            OudsColorKeyToken.Background.Primary -> primary
-            OudsColorKeyToken.Background.Secondary -> secondary
-            OudsColorKeyToken.Background.Tertiary -> tertiary
+            Background.Emphasized -> emphasized
+            Background.Primary -> primary
+            Background.Secondary -> secondary
+            Background.Tertiary -> tertiary
         }
     }
 }
@@ -836,8 +839,9 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Surface): Color {
 @Stable
 fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Opacity): Color {
     return when (token) {
-        OudsColorKeyToken.Opacity.Invisible.Black -> opacityColors.invisibleBlack
-        OudsColorKeyToken.Opacity.Invisible.White -> opacityColors.invisibleWhite
+        OudsColorKeyToken.Opacity.Lower -> opacityColors.lower
+        OudsColorKeyToken.Opacity.Lowest -> opacityColors.lowest
+        OudsColorKeyToken.Opacity.Transparent -> opacityColors.transparent
     }
 }
 
@@ -946,7 +950,7 @@ val OudsColorKeyToken.value: Color
     get() = when (this) {
         is OudsColorKeyToken.Action -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Always -> OudsTheme.colorScheme.fromToken(this)
-        is OudsColorKeyToken.Background -> OudsTheme.colorScheme.fromToken(this)
+        is Background -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Border -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Content -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Decorative -> OudsTheme.colorScheme.fromToken(this)

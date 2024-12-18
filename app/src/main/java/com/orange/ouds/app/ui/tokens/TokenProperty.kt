@@ -218,9 +218,11 @@ val OudsElevationKeyToken.order: Int
         OudsElevationKeyToken.None -> 0
         OudsElevationKeyToken.Raised -> 1
         OudsElevationKeyToken.OverlayDefault -> 2
-        OudsElevationKeyToken.AllSticky -> 3
-        OudsElevationKeyToken.Drag -> 4
-        OudsElevationKeyToken.OverlayEmphasized -> 5
+        OudsElevationKeyToken.StickyDefault -> 3
+        OudsElevationKeyToken.StickyEmphasized -> 4
+        OudsElevationKeyToken.StickyNavigationScrolled -> 5
+        OudsElevationKeyToken.Drag -> 6
+        OudsElevationKeyToken.OverlayEmphasized -> 7
     }
 
 val OudsOpacityKeyToken.order: Int
@@ -263,12 +265,14 @@ val OudsSizeKeyToken.Icon.order: Int
         OudsSizeKeyToken.Icon.WithBody.Large.SizeSmall -> 70
         OudsSizeKeyToken.Icon.WithBody.Large.SizeMedium -> 71
         OudsSizeKeyToken.Icon.WithBody.Large.SizeLarge -> 72
-        OudsSizeKeyToken.Icon.WithLabel.Small.SizeSmall -> 80
-        OudsSizeKeyToken.Icon.WithLabel.Small.SizeMedium -> 81
-        OudsSizeKeyToken.Icon.WithLabel.Small.SizeLarge -> 82
-        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall -> 90
-        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeMedium -> 91
-        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeLarge -> 92
+        OudsSizeKeyToken.Icon.WithLabel.Small.SizeExtraSmall -> 80
+        OudsSizeKeyToken.Icon.WithLabel.Small.SizeSmall -> 81
+        OudsSizeKeyToken.Icon.WithLabel.Small.SizeMedium -> 82
+        OudsSizeKeyToken.Icon.WithLabel.Small.SizeLarge -> 83
+        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeExtraSmall -> 90
+        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall -> 91
+        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeMedium -> 92
+        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeLarge -> 93
         OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall -> 100
         OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall -> 101
         OudsSizeKeyToken.Icon.WithLabel.Large.SizeMedium -> 102

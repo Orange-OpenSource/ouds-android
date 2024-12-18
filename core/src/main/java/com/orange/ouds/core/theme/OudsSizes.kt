@@ -80,12 +80,14 @@ data class OudsSizes(
             val extraLarge: ExtraLarge
         ) {
             data class Small(
+                val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
             data class Medium(
+                val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
@@ -240,11 +242,13 @@ fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
         ),
         withLabel = OudsSizes.Icon.WithLabel(
             small = OudsSizes.Icon.WithLabel.Small(
+                sizeExtraSmall = iconWithLabelSmallSizeXs.dp,
                 sizeSmall = iconWithLabelSmallSizeSm.dp,
                 sizeMedium = iconWithLabelSmallSizeMd.dp,
                 sizeLarge = iconWithLabelSmallSizeLg.dp,
             ),
             medium = OudsSizes.Icon.WithLabel.Medium(
+                sizeExtraSmall = iconWithLabelMediumSizeXs.dp,
                 sizeSmall = iconWithLabelMediumSizeSm.dp,
                 sizeMedium = iconWithLabelMediumSizeMd.dp,
                 sizeLarge = iconWithLabelMediumSizeLg.dp,
@@ -475,6 +479,7 @@ fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel.Large): Dp {
 @Stable
 fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel.Medium): Dp {
     return when (token) {
+        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeExtraSmall -> icon.withLabel.medium.sizeExtraSmall
         OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall -> icon.withLabel.medium.sizeSmall
         OudsSizeKeyToken.Icon.WithLabel.Medium.SizeMedium -> icon.withLabel.medium.sizeMedium
         OudsSizeKeyToken.Icon.WithLabel.Medium.SizeLarge -> icon.withLabel.medium.sizeLarge
@@ -484,6 +489,7 @@ fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel.Medium): Dp {
 @Stable
 fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel.Small): Dp {
     return when (token) {
+        OudsSizeKeyToken.Icon.WithLabel.Small.SizeExtraSmall -> icon.withLabel.small.sizeExtraSmall
         OudsSizeKeyToken.Icon.WithLabel.Small.SizeSmall -> icon.withLabel.small.sizeSmall
         OudsSizeKeyToken.Icon.WithLabel.Small.SizeMedium -> icon.withLabel.small.sizeMedium
         OudsSizeKeyToken.Icon.WithLabel.Small.SizeLarge -> icon.withLabel.small.sizeLarge
