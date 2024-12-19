@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.components.button
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -33,11 +34,11 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.core.component.button.OudsButton
+import com.orange.ouds.core.component.coloredbox.OudsColoredBox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,6 +51,11 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 checked = enabled,
                 onCheckedChange = { enabled = it },
                 enabled = style == OudsButton.Style.Default
+            )
+            CustomizationSwitchListItem(
+                label = stringResource(R.string.app_common_onColoredBackground_label),
+                checked = onColoredBox,
+                onCheckedChange = { onColoredBox = it }
             )
             CustomizationChoiceChipsColumn(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
@@ -87,8 +93,10 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 descriptionRes = Component.Button.descriptionRes
             )
             ButtonDemo(state = this@DemoScreen)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                ButtonDemo(state = this@DemoScreen)
+            if (!onColoredBox) {
+                OudsThemeTweak(OudsTheme.Tweak.Invert) {
+                    ButtonDemo(state = this@DemoScreen)
+                }
             }
         }
     }
@@ -96,12 +104,11 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
 
 @Composable
 private fun ButtonDemo(state: ButtonDemoState) {
-    Box(
+    ButtonDemoBox(
+        colored = state.onColoredBox,
         modifier = Modifier
-            .background(OudsTheme.colorScheme.background.primary)
             .padding(all = OudsTheme.spaces.fixed.medium)
-            .fillMaxWidth(),
-        contentAlignment = Alignment.Center
+            .fillMaxWidth()
     ) {
         val text = stringResource(id = R.string.app_components_button_label)
         val icon = OudsButton.Icon(painterResource(id = R.drawable.ic_heart), stringResource(id = R.string.app_components_button_icon_a11y))
@@ -137,6 +144,27 @@ private fun ButtonDemo(state: ButtonDemoState) {
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun ButtonDemoBox(colored: Boolean, modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
+    val contentAlignment = Alignment.Center
+    if (colored) {
+        OudsColoredBox(
+            modifier = modifier,
+            color = OudsColoredBox.Color.BrandPrimary,
+            contentAlignment = contentAlignment,
+            content = content
+        )
+    } else {
+        Box(
+            modifier = Modifier
+                .background(OudsTheme.colorScheme.background.primary)
+                .then(modifier),
+            contentAlignment = contentAlignment,
+            content = content
+        )
     }
 }
 
