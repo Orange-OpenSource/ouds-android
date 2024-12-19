@@ -45,7 +45,7 @@ sealed class Component(
 
     data object Link : Component(
         R.string.app_components_link_label,
-        LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
+        LightDarkResourceId(R.drawable.il_components_link, R.drawable.il_components_link),
         R.string.app_components_link_description_text,
         { LinkDemoScreen() }
     )
