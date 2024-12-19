@@ -160,7 +160,7 @@ private fun OudsLink(
             modifier = modifier
                 .widthIn(min = minWidth)
                 .heightIn(min = minHeight)
-                .border(state = state),
+                .outerBorder(state = state),
             enabled = state !in listOf(OudsLink.State.Disabled, OudsLink.State.Skeleton),
             shape = RectangleShape,
             colors = buttonColors(linkState = state, onColoredBackground = onColoredBackground),
@@ -246,7 +246,7 @@ private fun rememberOudsLinkState(
 }
 
 @Composable
-private fun Modifier.border(state: OudsLink.State): Modifier {
+private fun Modifier.outerBorder(state: OudsLink.State): Modifier {
     return if (state == OudsLink.State.Focused) {
         outerBorder(
             width = OudsBorderKeyToken.Width.Focus.value,
