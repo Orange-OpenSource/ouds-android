@@ -24,7 +24,9 @@ import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 
-
+/**
+ * @suppress
+ */
 data class OudsTypography(
     val displayLarge: OudsAdaptiveTokenValue<TextStyle>,
     val displayMedium: OudsAdaptiveTokenValue<TextStyle>,
@@ -49,7 +51,9 @@ data class OudsTypography(
     val labelStrongSmall: TextStyle,
 )
 
-
+/**
+ * @suppress
+ */
 fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypography(
     displayLarge = OudsAdaptiveTokenValue(
         TextStyle(
@@ -409,7 +413,7 @@ fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypograph
 )
 
 @Stable
-fun OudsTypography.fromToken(token: OudsTypographyKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): TextStyle {
+private fun OudsTypography.fromToken(token: OudsTypographyKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): TextStyle {
     val typography: Any = when (token) {
         OudsTypographyKeyToken.Display.Large -> displayLarge
         OudsTypographyKeyToken.Display.Medium -> displayMedium

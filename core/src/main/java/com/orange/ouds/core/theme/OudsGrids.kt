@@ -22,6 +22,9 @@ import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 
+/**
+ * @suppress
+ */
 data class OudsGrids(
     val minWidth: OudsAdaptiveTokenValue<Dp>,
     val maxWidth: OudsAdaptiveTokenValue<Dp>,
@@ -29,7 +32,9 @@ data class OudsGrids(
     val columnGap: OudsAdaptiveTokenValue<Dp>
 )
 
-
+/**
+ * @suppress
+ */
 fun OudsGridSemanticTokens.getGrids() = OudsGrids(
     minWidth = OudsAdaptiveTokenValue(
         extraCompactMinWidth.dp,
@@ -54,7 +59,7 @@ fun OudsGridSemanticTokens.getGrids() = OudsGrids(
 )
 
 @Stable
-fun OudsGrids.fromToken(token: OudsGridKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+private fun OudsGrids.fromToken(token: OudsGridKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     return when (token) {
         OudsGridKeyToken.MinWidth -> minWidth
         OudsGridKeyToken.MaxWidth -> maxWidth

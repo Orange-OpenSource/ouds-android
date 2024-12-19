@@ -24,6 +24,9 @@ import com.orange.ouds.theme.tokens.android.OudsAndroidColorDarkTokens
 import com.orange.ouds.theme.tokens.android.OudsAndroidColorLightTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
+/**
+ * @suppress
+ */
 data class OudsColorScheme(
     val actionColors: Action,
     val alwaysColors: Always,
@@ -224,6 +227,9 @@ data class OudsColorScheme(
 
 }
 
+/**
+ * @suppress
+ */
 val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
     get() = OudsColorScheme(
         actionColors = with(actionColorTokens) {
@@ -423,6 +429,9 @@ val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
         },
     )
 
+/**
+ * @suppress
+ */
 val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
     get() = OudsColorScheme(
         actionColors = with(actionColorTokens) {
@@ -623,7 +632,7 @@ val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
     )
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Action): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Action): Color {
     return with(actionColors) {
         when (token) {
             OudsColorKeyToken.Action.Disabled -> disabled
@@ -650,7 +659,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Action): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Always): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Always): Color {
     return with(alwaysColors) {
         when (token) {
             OudsColorKeyToken.Always.Black -> black
@@ -662,7 +671,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Always): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Background): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Background): Color {
     return with(backgroundColors) {
         when (token) {
             OudsColorKeyToken.Background.Emphasized -> emphasized
@@ -674,7 +683,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Background): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
     return with(borderColors) {
         when (token) {
             OudsColorKeyToken.Border.BrandPrimary -> brandPrimary
@@ -688,7 +697,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
     return with(contentColors) {
         when (token) {
             OudsColorKeyToken.Content.BrandPrimary -> brandPrimary
@@ -717,7 +726,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Color {
     return with(decorativeColors) {
         when (token) {
             OudsColorKeyToken.Decorative.Accent1.Default -> accent1Default
@@ -859,6 +868,9 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
 }
 
 //TODO Material colors must be able to be overridden by a theme
+/**
+ * @suppress
+ */
 val materialLightColorScheme: ColorScheme
     get() = with(OudsAndroidColorLightTokens) {
         lightColorScheme(
@@ -901,6 +913,9 @@ val materialLightColorScheme: ColorScheme
         )
     }
 
+/**
+ * @suppress
+ */
 val materialDarkColorScheme: ColorScheme
     get() = with(OudsAndroidColorDarkTokens) {
         darkColorScheme(

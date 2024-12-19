@@ -22,6 +22,9 @@ import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
+/**
+ * @suppress
+ */
 data class OudsSpaces(
     val fixed: Fixed,
     val scaled: Scaled,
@@ -124,6 +127,9 @@ data class OudsSpaces(
     )
 }
 
+/**
+ * @suppress
+ */
 fun OudsSpaceSemanticTokens.getSpaces() = OudsSpaces(
     fixed = OudsSpaces.Fixed(
         none = fixedNone.dp,
@@ -252,7 +258,7 @@ fun OudsSpaceSemanticTokens.getSpaces() = OudsSpaces(
 )
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Fixed): Dp {
+private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Fixed): Dp {
     return when (token) {
         OudsSpaceKeyToken.Fixed.None -> fixed.none
         OudsSpaceKeyToken.Fixed.Smash -> fixed.smash
@@ -270,7 +276,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Fixed): Dp {
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     return when (token) {
         OudsSpaceKeyToken.Scaled.None -> scaled.none
         OudsSpaceKeyToken.Scaled.Smash -> scaled.smash
@@ -286,7 +292,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled, adaptiveWindowType: Ou
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
+private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
     return when (token) {
         OudsSpaceKeyToken.PaddingInline.None -> paddingInline.none
         OudsSpaceKeyToken.PaddingInline.Smash -> paddingInline.smash
@@ -303,7 +309,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
+private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
     return when (token) {
         OudsSpaceKeyToken.PaddingBlock.None -> paddingBlock.none
         OudsSpaceKeyToken.PaddingBlock.Smash -> paddingBlock.smash
@@ -320,7 +326,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
+private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
     return when (token) {
         OudsSpaceKeyToken.Inset.None -> inset.none
         OudsSpaceKeyToken.Inset.Smash -> inset.smash
@@ -336,7 +342,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
+private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
     return when (token) {
         OudsSpaceKeyToken.ColumnGap.None -> columnGap.none
         OudsSpaceKeyToken.ColumnGap.Smash -> columnGap.smash
@@ -351,7 +357,7 @@ fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
 }
 
 @Stable
-fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
+private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
     return when (token) {
         OudsSpaceKeyToken.RowGap.None -> rowGap.none
         OudsSpaceKeyToken.RowGap.Smash -> rowGap.smash

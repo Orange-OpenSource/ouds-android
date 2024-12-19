@@ -22,6 +22,9 @@ import com.orange.ouds.theme.currentWindowWidth
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 
+/**
+ * @suppress
+ */
 data class OudsSizes(
     val icon: Icon,
     val maxWidthType: MaxWidthType
@@ -159,6 +162,9 @@ data class OudsSizes(
     }
 }
 
+/**
+ * @suppress
+ */
 fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
     icon = OudsSizes.Icon(
         decorative = OudsSizes.Icon.Decorative(
@@ -381,7 +387,7 @@ fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
 )
 
 @Stable
-fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.Decorative): Dp {
+private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.Decorative): Dp {
     return when (token) {
         OudsSizeKeyToken.Icon.Decorative.ExtraExtraSmall -> icon.decorative.extraExtraSmall
         OudsSizeKeyToken.Icon.Decorative.ExtraSmall -> icon.decorative.extraSmall
@@ -497,7 +503,7 @@ fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel.Small): Dp {
 }
 
 @Stable
-fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
     return when (token) {
         OudsSizeKeyToken.MaxWidth.Type.Display.Small -> maxWidthType.display.small
         OudsSizeKeyToken.MaxWidth.Type.Display.Medium -> maxWidthType.display.medium

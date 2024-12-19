@@ -44,7 +44,3 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
         }
     }
 }
-
-fun test() {
-
-}

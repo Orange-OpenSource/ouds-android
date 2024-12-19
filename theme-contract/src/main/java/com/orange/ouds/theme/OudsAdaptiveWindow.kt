@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 
 /**
- * A class to represent the adaptive windows types managed in OUDS.
+ * Adaptive windows types managed in OUDS.
  */
 enum class OudsAdaptiveWindowType {
     EXTRA_COMPACT, COMPACT, MEDIUM;
@@ -39,7 +39,17 @@ enum class OudsAdaptiveWindowType {
     }
 }
 
+/**
+ * Allows to manage adaptive display. It contains multiple values for a token according to the display type.
+ *
+ * @property extraCompact Token value used for extra compact screens
+ * @property compact Token value used for compact screens
+ * @property medium Token value used for medium screens
+ */
 data class OudsAdaptiveTokenValue<T>(val extraCompact: T, val compact: T, val medium: T) {
+    /**
+     * Returns the value corresponding to the given [adaptiveWindowType].
+     */
     fun getValue(adaptiveWindowType: OudsAdaptiveWindowType): T = when (adaptiveWindowType) {
         OudsAdaptiveWindowType.EXTRA_COMPACT -> extraCompact
         OudsAdaptiveWindowType.COMPACT -> compact

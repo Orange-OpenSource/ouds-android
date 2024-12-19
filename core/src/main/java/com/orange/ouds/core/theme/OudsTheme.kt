@@ -42,6 +42,9 @@ private val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingComposit
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 internal val LocalColoredBox = staticCompositionLocalOf<Boolean> { false }
 
+/**
+ * @suppress
+ */
 object OudsTheme {
 
     /**
@@ -100,7 +103,9 @@ object OudsTheme {
 }
 
 /**
- * OUDS theme is the theme to apply to your screens in an Orange Jetpack Compose application.
+ * [OudsTheme] is the theme to apply to your screens in an Jetpack Compose application. Use it at the top of
+ * your application in replacement of the `MaterialTheme`.
+ * Cause OUDS support multi-theme, you should pass a [themeContract] as theme configuration to use an OUDS supported theme.
  *
  * @param themeContract Theme contract which contain the configuration of the OudsTheme: colors, typography...
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
@@ -141,6 +146,9 @@ fun OudsTheme(
 /**
  * Tweaks the current OUDS theme and displays given [content] according to the selected [tweak].
  * Note: This composable is directly related to [OudsTheme] and MUST be used inside it.
+ *
+ * @param tweak Tweak applied to the current [OudsTheme]
+ * @param content Theme tweak nested content. OudsThemeTweak will be applied to this content.
  */
 @Composable
 fun OudsThemeTweak(tweak: OudsTheme.Tweak, content: @Composable () -> Unit) {
