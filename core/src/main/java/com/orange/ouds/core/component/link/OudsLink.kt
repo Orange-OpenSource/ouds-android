@@ -45,8 +45,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -254,8 +252,8 @@ private fun Modifier.border(state: OudsLink.State): Modifier {
             width = OudsBorderKeyToken.Width.Focus.value,
             color = OudsColorKeyToken.Border.Focus.value,
             shape = RectangleShape,
-            insetWidth = OudsBorderKeyToken.Width.Focus.Inset.value,
-            insetColor = OudsColorKeyToken.Border.Focus.Inset.value
+            insetWidth = OudsBorderKeyToken.Width.FocusInset.value,
+            insetColor = OudsColorKeyToken.Border.FocusInset.value
         )
     } else {
         this
@@ -266,16 +264,21 @@ private fun Modifier.border(state: OudsLink.State): Modifier {
 private fun buttonColors(linkState: OudsLink.State, onColoredBackground: Boolean): ButtonColors {
     with(OudsTheme.componentsTokens.link) {
         return ButtonDefaults.buttonColors(
-            containerColor = if (linkState == OudsLink.State.Skeleton) {
-                OudsColorKeyToken.Gradient.Skeleton.StartEnd
-            } else {
-                OudsColorKeyToken.Transparent.Default
-            }.value,
+            containerColor = containerColor(state = linkState),
             contentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground),
-            disabledContainerColor = OudsColorKeyToken.Transparent.Default.value,
-            disabledContentColor = if (onColoredBackground) OudsColorKeyToken.Action.Disabled.value else colorContentDisabledMono.value
+            disabledContainerColor = containerColor(state = linkState),
+            disabledContentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground)
         )
     }
+}
+
+@Composable
+private fun containerColor(state: OudsLink.State): Color {
+   return if (state == OudsLink.State.Skeleton) {
+        OudsTheme.componentsTokens.skeleton.colorBg
+    } else {
+        OudsColorKeyToken.Opacity.Transparent
+    }.value
 }
 
 
@@ -289,7 +292,7 @@ private fun contentColor(state: OudsLink.State, onColoredBackground: Boolean): C
                 OudsLink.State.Hovered -> colorContentHoverMono
                 OudsLink.State.Pressed -> colorContentPressedMono
                 OudsLink.State.Disabled -> colorContentDisabledMono
-                OudsLink.State.Skeleton -> OudsColorKeyToken.Transparent.Default
+                OudsLink.State.Skeleton -> OudsColorKeyToken.Opacity.Transparent
             }
         } else {
             when (state) {
@@ -298,7 +301,7 @@ private fun contentColor(state: OudsLink.State, onColoredBackground: Boolean): C
                 OudsLink.State.Hovered -> colorContentHover
                 OudsLink.State.Pressed -> colorContentPressed
                 OudsLink.State.Disabled -> OudsColorKeyToken.Action.Disabled
-                OudsLink.State.Skeleton -> OudsColorKeyToken.Transparent.Default
+                OudsLink.State.Skeleton -> OudsColorKeyToken.Opacity.Transparent
             }
         }
     }.value
@@ -316,7 +319,7 @@ private fun arrowColor(state: OudsLink.State, onColoredBackground: Boolean): Col
                 OudsLink.State.Hovered -> colorArrowHover
                 OudsLink.State.Pressed -> colorArrowPressed
                 OudsLink.State.Disabled -> OudsColorKeyToken.Action.Disabled
-                OudsLink.State.Skeleton -> OudsColorKeyToken.Transparent.Default
+                OudsLink.State.Skeleton -> OudsColorKeyToken.Opacity.Transparent
             }.value
         }
     }
