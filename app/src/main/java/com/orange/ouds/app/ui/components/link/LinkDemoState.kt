@@ -26,16 +26,14 @@ import com.orange.ouds.core.component.link.OudsLinkDefaults
 @Composable
 fun rememberLinkDemoState(
     enabled: Boolean = true,
-    style: OudsLink.Style = OudsLinkDefaults.Style,
     size: OudsLink.Size = OudsLinkDefaults.Size,
     layout: LinkDemoState.Layout = LinkDemoState.Layout.TextOnly
-) = rememberSaveable(enabled, style, size, layout, saver = LinkDemoState.Saver) {
-    LinkDemoState(enabled, style, size, layout)
+) = rememberSaveable(enabled, size, layout, saver = LinkDemoState.Saver) {
+    LinkDemoState(enabled, size, layout)
 }
 
 class LinkDemoState(
     enabled: Boolean,
-    style: OudsLink.Style,
     size: OudsLink.Size,
     layout: Layout
 ) {
@@ -44,14 +42,12 @@ class LinkDemoState(
 
         val Saver = run {
             val enabledKey = "enabled"
-            val styleKey = "style"
             val sizeKey = "size"
             val layoutKey = "layout"
             mapSaver(
                 save = { state ->
                     mapOf(
                         enabledKey to state.enabled,
-                        styleKey to state.style,
                         sizeKey to state.size,
                         layoutKey to state.layout
                     )
@@ -59,7 +55,6 @@ class LinkDemoState(
                 restore = { map ->
                     LinkDemoState(
                         map[enabledKey] as Boolean,
-                        map[styleKey] as OudsLink.Style,
                         map[sizeKey] as OudsLink.Size,
                         map[layoutKey] as Layout
                     )
@@ -69,8 +64,6 @@ class LinkDemoState(
     }
 
     var enabled: Boolean by mutableStateOf(enabled)
-
-    var style: OudsLink.Style by mutableStateOf(style)
 
     var size: OudsLink.Size by mutableStateOf(size)
 

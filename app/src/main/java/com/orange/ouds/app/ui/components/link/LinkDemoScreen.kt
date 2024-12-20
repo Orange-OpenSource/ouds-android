@@ -50,15 +50,6 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 label = stringResource(R.string.app_common_enabled_label),
                 checked = enabled,
                 onCheckedChange = { enabled = it },
-                enabled = style == OudsLink.Style.Default
-            )
-            val styles = remember { listOf(OudsLink.Style.Default, OudsLink.Style.Skeleton) }
-            CustomizationChoiceChipsColumn(
-                modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
-                label = stringResource(R.string.app_components_common_style_label),
-                chipsLabels = styles.map { it::class.simpleName.orEmpty() },
-                selectedChipIndex = styles.indexOf(style),
-                onSelectionChange = { id -> style = styles[id] }
             )
             val sizes = remember { listOf(OudsLink.Size.Small, OudsLink.Size.Medium) }
             CustomizationChoiceChipsColumn(
@@ -108,7 +99,6 @@ private fun LinkDemo(state: LinkDemoState) {
                         icon = null,
                         onClick = {},
                         enabled = enabled,
-                        style = style,
                         size = size
                     )
                 }
@@ -118,7 +108,6 @@ private fun LinkDemo(state: LinkDemoState) {
                         icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
                         onClick = {},
                         enabled = enabled,
-                        style = style,
                         size = size
                     )
                 }
@@ -128,7 +117,6 @@ private fun LinkDemo(state: LinkDemoState) {
                         arrow = OudsLink.Arrow.Back,
                         onClick = {},
                         enabled = enabled,
-                        style = style,
                         size = size
                     )
                 }
@@ -138,7 +126,6 @@ private fun LinkDemo(state: LinkDemoState) {
                         arrow = OudsLink.Arrow.Next,
                         onClick = {},
                         enabled = enabled,
-                        style = style,
                         size = size
                     )
                 }

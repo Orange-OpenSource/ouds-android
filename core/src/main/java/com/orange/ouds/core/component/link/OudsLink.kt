@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component.link
 
-import android.os.Parcelable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -65,10 +64,17 @@ import com.orange.ouds.theme.outerBorder
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
-import kotlinx.parcelize.Parcelize
 
 /**
  * An OUDS link which displays a text and an optional icon.
+ *
+ * @param text Text displayed in the link.
+ * @param icon Icon displayed in the link.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the button.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param onColoredBackground Controls the style of the button which changes to monochrome when it is displayed on a colored background.
  */
 @Composable
 fun OudsLink(
@@ -77,7 +83,6 @@ fun OudsLink(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
-    style: OudsLink.Style = OudsLinkDefaults.Style,
     enabled: Boolean = true,
     onColoredBackground: Boolean = false
 ) {
@@ -88,7 +93,6 @@ fun OudsLink(
         onClick = onClick,
         modifier = modifier,
         size = size,
-        style = style,
         enabled = enabled,
         onColoredBackground = onColoredBackground
     )
@@ -96,6 +100,16 @@ fun OudsLink(
 
 /**
  * An OUDS link which displays an [arrow] before ([OudsLink.Arrow.Back]) or after ([OudsLink.Arrow.Next]) a text.
+ *
+ * @param text Text displayed in the link.
+ * @param arrow Arrow displayed in the link.
+ *   When [OudsLink.Arrow.Back], the arrow is displayed before the text.
+ *   When [OudsLink.Arrow.Next], the arrow is displayed after the text.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the button.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param onColoredBackground Controls the style of the button which changes to monochrome when it is displayed on a colored background.
  */
 @Composable
 fun OudsLink(
@@ -104,7 +118,6 @@ fun OudsLink(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
-    style: OudsLink.Style = OudsLinkDefaults.Style,
     enabled: Boolean = true,
     onColoredBackground: Boolean = false
 ) {
@@ -115,7 +128,6 @@ fun OudsLink(
         onClick = onClick,
         modifier = modifier,
         size = size,
-        style = style,
         enabled = enabled,
         onColoredBackground = onColoredBackground
     )
@@ -130,7 +142,6 @@ private fun OudsLink(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
-    style: OudsLink.Style = OudsLinkDefaults.Style,
     enabled: Boolean = true,
     onColoredBackground: Boolean = false,
     previewState: OudsLink.State? = null
@@ -138,7 +149,7 @@ private fun OudsLink(
     val linkTokens = OudsTheme.componentsTokens.link
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsLinkState(enabled = enabled, style = style, interactionState = interactionState) }
+    val state = previewState.orElse { rememberOudsLinkState(enabled = enabled, interactionState = interactionState) }
     val isTextOnly = icon == null && arrow == null
 
     val minWidth: Dp
@@ -161,7 +172,7 @@ private fun OudsLink(
                 .widthIn(min = minWidth)
                 .heightIn(min = minHeight)
                 .outerBorder(state = state),
-            enabled = state !in listOf(OudsLink.State.Disabled, OudsLink.State.Skeleton),
+            enabled = state != OudsLink.State.Disabled,
             shape = RectangleShape,
             colors = buttonColors(linkState = state, onColoredBackground = onColoredBackground),
             elevation = null,
@@ -230,18 +241,14 @@ private fun OudsLink(
 @Composable
 private fun rememberOudsLinkState(
     enabled: Boolean,
-    style: OudsLink.Style,
     interactionState: InteractionState
-): OudsLink.State = remember(enabled, style, interactionState) {
-    when (style) {
-        OudsLink.Style.Default -> when {
-            !enabled -> OudsLink.State.Disabled
-            interactionState == InteractionState.Hovered -> OudsLink.State.Hovered
-            interactionState == InteractionState.Pressed -> OudsLink.State.Pressed
-            interactionState == InteractionState.Focused -> OudsLink.State.Focused
-            else -> OudsLink.State.Enabled
-        }
-        OudsLink.Style.Skeleton -> OudsLink.State.Skeleton
+): OudsLink.State = remember(enabled, interactionState) {
+    when {
+        !enabled -> OudsLink.State.Disabled
+        interactionState == InteractionState.Hovered -> OudsLink.State.Hovered
+        interactionState == InteractionState.Pressed -> OudsLink.State.Pressed
+        interactionState == InteractionState.Focused -> OudsLink.State.Focused
+        else -> OudsLink.State.Enabled
     }
 }
 
@@ -264,23 +271,17 @@ private fun Modifier.outerBorder(state: OudsLink.State): Modifier {
 private fun buttonColors(linkState: OudsLink.State, onColoredBackground: Boolean): ButtonColors {
     with(OudsTheme.componentsTokens.link) {
         return ButtonDefaults.buttonColors(
-            containerColor = containerColor(state = linkState),
+            containerColor = containerColor,
             contentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground),
-            disabledContainerColor = containerColor(state = linkState),
+            disabledContainerColor = containerColor,
             disabledContentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground)
         )
     }
 }
 
-@Composable
-private fun containerColor(state: OudsLink.State): Color {
-   return if (state == OudsLink.State.Skeleton) {
-        OudsTheme.componentsTokens.skeleton.colorBg
-    } else {
-        OudsColorKeyToken.Opacity.Transparent
-    }.value
-}
-
+private val containerColor: Color
+    @Composable
+    get() = OudsColorKeyToken.Opacity.Transparent.value
 
 @Composable
 private fun contentColor(state: OudsLink.State, onColoredBackground: Boolean): Color {
@@ -292,7 +293,6 @@ private fun contentColor(state: OudsLink.State, onColoredBackground: Boolean): C
                 OudsLink.State.Hovered -> colorContentHoverMono
                 OudsLink.State.Pressed -> colorContentPressedMono
                 OudsLink.State.Disabled -> colorContentDisabledMono
-                OudsLink.State.Skeleton -> OudsColorKeyToken.Opacity.Transparent
             }
         } else {
             when (state) {
@@ -301,7 +301,6 @@ private fun contentColor(state: OudsLink.State, onColoredBackground: Boolean): C
                 OudsLink.State.Hovered -> colorContentHover
                 OudsLink.State.Pressed -> colorContentPressed
                 OudsLink.State.Disabled -> OudsColorKeyToken.Action.Disabled
-                OudsLink.State.Skeleton -> OudsColorKeyToken.Opacity.Transparent
             }
         }
     }.value
@@ -319,7 +318,6 @@ private fun arrowColor(state: OudsLink.State, onColoredBackground: Boolean): Col
                 OudsLink.State.Hovered -> colorArrowHover
                 OudsLink.State.Pressed -> colorArrowPressed
                 OudsLink.State.Disabled -> OudsColorKeyToken.Action.Disabled
-                OudsLink.State.Skeleton -> OudsColorKeyToken.Opacity.Transparent
             }.value
         }
     }
@@ -336,10 +334,6 @@ object OudsLinkDefaults {
      */
     val Size = OudsLink.Size.Medium
 
-    /**
-     * The default style.
-     */
-    val Style = OudsLink.Style.Default
 }
 
 /**
@@ -412,26 +406,8 @@ object OudsLink {
         }
     }
 
-    /**
-     * Represents the different styles of an OUDS link.
-     */
-    sealed class Style : Parcelable {
-
-        /**
-         * The link displays a text and/or an icon and supports user interactions if it is enabled.
-         */
-        @Parcelize
-        data object Default : Style()
-
-        /**
-         * The link displays a skeleton.
-         */
-        @Parcelize
-        data object Skeleton : Style()
-    }
-
     internal enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused, Skeleton
+        Enabled, Hovered, Pressed, Disabled, Focused
     }
 }
 
@@ -487,8 +463,7 @@ internal data class OudsLinkPreviewParameter(
         OudsLink.State.Hovered,
         OudsLink.State.Pressed,
         OudsLink.State.Disabled,
-        OudsLink.State.Focused,
-        OudsLink.State.Skeleton
+        OudsLink.State.Focused
     )
 )
 
