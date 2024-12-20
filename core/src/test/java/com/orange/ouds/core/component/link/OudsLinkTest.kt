@@ -10,24 +10,24 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component.button
+package com.orange.ouds.core.component.link
 
 import com.orange.ouds.core.component.OudsComponentTest
 import org.junit.Test
 import org.junit.runners.Parameterized
 
-internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter) : OudsComponentTest() {
+internal class OudsLinkTest(private val parameter: OudsLinkPreviewParameter) : OudsComponentTest() {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsButtonPreviewParameterProvider().values.toList()
+        internal fun data() = OudsLinkPreviewParameterProvider().values.toList()
     }
 
     @Test
-    fun takeOudsButtonLightThemeSnapshot() {
+    fun takeOudsLinkLightThemeSnapshot() {
         paparazzi.snapshot {
-            PreviewOudsButton(
+            PreviewOudsLink(
                 darkThemeEnabled = false,
                 parameter = parameter
             )
@@ -35,9 +35,9 @@ internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter)
     }
 
     @Test
-    fun takeOudsButtonDarkThemeSnapshot() {
+    fun takeOudsLinkDarkThemeSnapshot() {
         paparazzi.snapshot {
-            PreviewOudsButton(
+            PreviewOudsLink(
                 darkThemeEnabled = true,
                 parameter = parameter
             )
