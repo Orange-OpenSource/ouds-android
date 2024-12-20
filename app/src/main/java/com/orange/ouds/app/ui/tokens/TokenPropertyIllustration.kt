@@ -43,7 +43,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.getTokens
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.orElse
@@ -137,7 +136,7 @@ fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
             contentDescription = null
         )
         val tokenTypography = tokenName.split('.').take(2).joinToString(".")
-        val style = OudsTypographyKeyToken::class.getTokens()
+        val style = getTokens<OudsTypographyKeyToken>()
             .asOrNull<List<Token<TextStyle>>>()
             ?.firstOrNull { typographyToken ->
                 typographyToken.name.replace(".Strong", "") == tokenTypography

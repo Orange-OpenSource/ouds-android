@@ -14,12 +14,13 @@ package com.orange.ouds.app.ui.tokens
 
 import androidx.annotation.StringRes
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.getTokenName
-import com.orange.ouds.app.ui.utilities.getTokens
+import com.orange.ouds.app.ui.utilities.getSealedSubclasses
+import com.orange.ouds.core.theme.value
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
+import com.orange.ouds.theme.tokens.OudsKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
@@ -34,91 +35,91 @@ sealed class TokenProperty<T>(
 
     data object BorderRadius : TokenProperty<TokenCategory.Border>(
         nameRes = R.string.app_tokens_border_radius_label,
-        tokens = OudsBorderKeyToken.Radius::class.getTokens(),
+        tokens = getTokens<OudsBorderKeyToken.Radius>(),
         categoryClass = TokenCategory.Border::class
     )
 
     data object BorderStyle : TokenProperty<TokenCategory.Border>(
         nameRes = R.string.app_tokens_border_style_label,
-        tokens = OudsBorderKeyToken.Style::class.getTokens(),
+        tokens = getTokens<OudsBorderKeyToken.Style>(),
         categoryClass = TokenCategory.Border::class
     )
 
     data object BorderWidth : TokenProperty<TokenCategory.Border>(
         nameRes = R.string.app_tokens_border_width_label,
-        tokens = OudsBorderKeyToken.Width::class.getTokens(),
+        tokens = getTokens<OudsBorderKeyToken.Width>(),
         categoryClass = TokenCategory.Border::class
     )
 
     data object ColorAction : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_action_label,
-        tokens = OudsColorKeyToken.Action::class.getTokens(),
+        tokens = getTokens<OudsColorKeyToken.Action>(),
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorAlways : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_always_label,
-        tokens = OudsColorKeyToken.Always::class.getTokens(),
+        tokens = getTokens<OudsColorKeyToken.Always>(),
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorBackground : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_background_label,
-        tokens = OudsColorKeyToken.Background::class.getTokens(),
+        tokens = getTokens<OudsColorKeyToken.Background>(),
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorBorder : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_border_label,
-        tokens = OudsColorKeyToken.Border::class.getTokens(),
+        tokens = getTokens<OudsColorKeyToken.Border>(),
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorContent : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_content_label,
-        tokens = OudsColorKeyToken.Content::class.getTokens(),
+        tokens = getTokens<OudsColorKeyToken.Content>(),
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorDecorative : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_decorative_label,
-        tokens = OudsColorKeyToken.Decorative::class.getTokens(),
+        tokens = getTokens<OudsColorKeyToken.Decorative>(),
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorOverlay : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_overlay_label,
-        tokens = OudsColorKeyToken.Overlay::class.getTokens(),
+        tokens = getTokens<OudsColorKeyToken.Overlay>(),
         categoryClass = TokenCategory.Color::class
     )
 
     data object ColorSurface : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_surface_label,
-        tokens = OudsColorKeyToken.Surface::class.getTokens(),
+        tokens = getTokens<OudsColorKeyToken.Surface>(),
         categoryClass = TokenCategory.Color::class
     )
 
     data object Elevation : TokenProperty<TokenCategory.Elevation>(
         nameRes = null,
-        tokens = OudsElevationKeyToken::class.getTokens(),
+        tokens = getTokens<OudsElevationKeyToken>(),
         categoryClass = TokenCategory.Elevation::class
     )
 
     data object Grid : TokenProperty<TokenCategory.Grid>(
         nameRes = null,
-        tokens = OudsGridKeyToken::class.getTokens(),
+        tokens = getTokens<OudsGridKeyToken>(),
         categoryClass = TokenCategory.Grid::class
     )
 
     data object Opacity : TokenProperty<TokenCategory.Opacity>(
         nameRes = null,
-        tokens = OudsOpacityKeyToken::class.getTokens(),
+        tokens = getTokens<OudsOpacityKeyToken>(),
         categoryClass = TokenCategory.Opacity::class
     )
 
     data object SizeIconDecorative : TokenProperty<TokenCategory.Dimension.Size>(
         nameRes = R.string.app_tokens_dimension_size_iconDecorative_label,
-        tokens = OudsSizeKeyToken.Icon.Decorative::class.getTokens(),
+        tokens = getTokens<OudsSizeKeyToken.Icon.Decorative>(),
         categoryClass = TokenCategory.Dimension.Size::class
     )
 
@@ -137,58 +138,116 @@ sealed class TokenProperty<T>(
             OudsSizeKeyToken.Icon.WithLabel.Medium::class,
             OudsSizeKeyToken.Icon.WithLabel.Small::class,
         ).flatMap { keyTokenClass ->
-            keyTokenClass.getTokens(tokenName = { it.getTokenName(OudsSizeKeyToken.Icon::class).removePrefix("With") })
+            getTokens(keyTokenClass, tokenName = { it.getRelativeName(OudsSizeKeyToken.Icon::class).removePrefix("With") })
         },
         categoryClass = TokenCategory.Dimension.Size::class
     )
 
     data object SpaceColumnGap : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_columnGap_label,
-        tokens = OudsSpaceKeyToken.ColumnGap::class.getTokens(recursive = false),
+        tokens = getTokens<OudsSpaceKeyToken.ColumnGap>(recursive = false),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
     data object SpaceFixed : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_fixed_label,
-        tokens = OudsSpaceKeyToken.Fixed::class.getTokens(),
+        tokens = getTokens<OudsSpaceKeyToken.Fixed>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
     data object SpacePaddingInline : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingInline_label,
-        tokens = OudsSpaceKeyToken.PaddingInline::class.getTokens(recursive = false),
+        tokens = getTokens<OudsSpaceKeyToken.PaddingInline>(recursive = false),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
     data object SpacePaddingInset : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingInset_label,
-        tokens = OudsSpaceKeyToken.Inset::class.getTokens(),
+        tokens = getTokens<OudsSpaceKeyToken.Inset>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
     data object SpacePaddingStack : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_paddingStack_label,
-        tokens = OudsSpaceKeyToken.PaddingBlock::class.getTokens(recursive = false),
+        tokens = getTokens<OudsSpaceKeyToken.PaddingBlock>(recursive = false),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
     data object SpaceRowGap : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_rowGap_label,
-        tokens = OudsSpaceKeyToken.RowGap::class.getTokens(recursive = false),
+        tokens = getTokens<OudsSpaceKeyToken.RowGap>(recursive = false),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
     data object SpaceScaled : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_scaled_label,
-        tokens = OudsSpaceKeyToken.Scaled::class.getTokens(),
+        tokens = getTokens<OudsSpaceKeyToken.Scaled>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
     data object Typography : TokenProperty<TokenCategory.Typography>(
         nameRes = null,
-        tokens = OudsTypographyKeyToken::class.getTokens(),
+        tokens = getTokens<OudsTypographyKeyToken>(),
         categoryClass = TokenCategory.Typography::class
     )
+}
+
+inline fun <reified T> getTokens(
+    recursive: Boolean = true,
+    noinline tokenName: (T) -> String = { it.getRelativeName(T::class) }
+): List<Token<*>> where T : OudsKeyToken {
+    return getTokens(T::class, recursive, tokenName)
+}
+
+fun <T> getTokens(
+    clazz: KClass<T>,
+    recursive: Boolean = true,
+    tokenName: (T) -> String = { it.getRelativeName(clazz) }
+): List<Token<*>> where T : OudsKeyToken {
+    return clazz.getSealedSubclasses(recursive)
+        .mapNotNull { it.objectInstance }
+        .sortedBy { keyToken ->
+            when (keyToken) {
+                is OudsBorderKeyToken.Radius -> keyToken.order
+                is OudsBorderKeyToken.Width -> keyToken.order
+                is OudsElevationKeyToken -> keyToken.order
+                is OudsOpacityKeyToken -> keyToken.order
+                is OudsSizeKeyToken.Icon -> keyToken.order
+                is OudsSpaceKeyToken.ColumnGap -> keyToken.order
+                is OudsSpaceKeyToken.Fixed -> keyToken.order
+                is OudsSpaceKeyToken.Inset -> keyToken.order
+                is OudsSpaceKeyToken.PaddingBlock -> keyToken.order
+                is OudsSpaceKeyToken.PaddingInline -> keyToken.order
+                is OudsSpaceKeyToken.RowGap -> keyToken.order
+                is OudsSpaceKeyToken.Scaled -> keyToken.order
+                else -> 0
+            }
+        }.map { keyToken ->
+            Token(
+                name = tokenName(keyToken),
+                value = {
+                    when (keyToken) {
+                        is OudsBorderKeyToken.Radius -> keyToken.value
+                        is OudsBorderKeyToken.Style -> keyToken.value
+                        is OudsBorderKeyToken.Width -> keyToken.value
+                        is OudsColorKeyToken -> keyToken.value
+                        is OudsElevationKeyToken -> keyToken.value
+                        is OudsGridKeyToken -> keyToken.value
+                        is OudsOpacityKeyToken -> keyToken.value
+                        is OudsSizeKeyToken -> keyToken.value
+                        is OudsSpaceKeyToken -> keyToken.value
+                        is OudsTypographyKeyToken -> keyToken.value
+                        else -> null
+                    }
+                }
+            )
+        }
+}
+
+fun <T, S> T.getRelativeName(parent: KClass<S>): String where T : S, S : OudsKeyToken {
+    val parentPackageName = parent.java.`package`?.name.orEmpty()
+    val prefix = parent.qualifiedName.orEmpty().removePrefix("$parentPackageName.")
+    return name.removePrefix("$prefix.")
 }
 
 val OudsBorderKeyToken.Radius.order: Int
