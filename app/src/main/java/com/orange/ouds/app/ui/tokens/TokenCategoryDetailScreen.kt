@@ -133,6 +133,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                         heading()
                                     },
                                 text = stringResource(id = tokenProperty.nameRes),
+                                color = OudsColorKeyToken.Content.Default.value,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                                 style = OudsTypographyKeyToken.Heading.Medium.value
@@ -277,7 +278,8 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
             ) {
                 Text(
                     text = stringResource(R.string.app_tokens_viewCodeExample_label),
-                    style = OudsTypographyKeyToken.Label.Strong.Large.value
+                    style = OudsTypographyKeyToken.Label.Strong.Large.value,
+                    color = OudsColorKeyToken.Content.Default.value
                 )
                 Icon(
                     modifier = Modifier.rotate(linkArrowRotation),
@@ -301,7 +303,9 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                         modifier = Modifier
                             .weight(1f)
                             .padding(vertical = OudsSpaceKeyToken.Fixed.Medium.value)
-                            .padding(start = OudsSpaceKeyToken.Fixed.Medium.value), text = codeExample, style = TextStyle(fontFamily = FontFamily.Monospace)
+                            .padding(start = OudsSpaceKeyToken.Fixed.Medium.value),
+                        text = codeExample, style = TextStyle(fontFamily = FontFamily.Monospace),
+                        color = OudsColorKeyToken.Content.Default.value
                     )
                     IconButton(onClick = { copyCodeToClipboard(context, codeExample, clipboardManager) }) {
                         Icon(painter = painterResource(R.drawable.ic_copy), contentDescription = stringResource(R.string.app_common_copyCode_a11y))
