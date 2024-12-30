@@ -58,7 +58,7 @@ private val defaultIllustrationSize = 64.dp
 @Composable
 fun IllustrationBox(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = OudsColorKeyToken.Background.Emphasized.value,
+    backgroundColor: Color = OudsColorKeyToken.Surface.Status.Neutral.Muted.value,
     contentAlignment: Alignment = Alignment.TopStart,
     content: @Composable BoxScope.() -> Unit = { }
 ) {
@@ -116,7 +116,7 @@ fun SizeIconDecorativeIllustrationBox(size: Dp) {
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.ic_design_token_figma),
-            tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
+            tint = OudsColorKeyToken.Content.Status.Info.value,
             contentDescription = null
         )
     }
@@ -132,7 +132,7 @@ fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.ic_design_token_figma),
-            tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
+            tint = OudsColorKeyToken.Content.Status.Info.value,
             contentDescription = null
         )
         val tokenTypography = tokenName.split('.').take(2).joinToString(".")

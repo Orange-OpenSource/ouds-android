@@ -58,7 +58,7 @@ fun GridHeader(modifier: Modifier = Modifier) {
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(OudsColorKeyToken.Background.Emphasized.value),
+                    .background(OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
                 painter = painterResource(id = resourceId),
                 contentDescription = null
             )
@@ -71,14 +71,12 @@ fun SpaceHeader(
     spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>,
     modifier: Modifier = Modifier
 ) {
-    OudsThemeTweak(tweak = OudsTheme.Tweak.ForceDark) { //TODO This does not give the expected result in light mode because the background should be black. To fix when demo app Figma file is updated with new tokens.
-        Box(
-            modifier = modifier
-                .background(color = OudsColorKeyToken.Background.Emphasized.value)
-                .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
-        ) {
-            SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
-        }
+    Box(
+        modifier = modifier
+            .background(color = OudsColorKeyToken.Surface.Status.Neutral.Muted.value)
+            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+    ) {
+        SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
     }
 }
 
@@ -98,7 +96,7 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
     val internalSpaceColor = when (spaceTokenProperty) {
         TokenProperty.SpaceColumnGap,
         TokenProperty.SpaceRowGap -> OudsColorKeyToken.Content.Status.Info.value
-        else -> OudsColorKeyToken.Background.Emphasized.value
+        else -> OudsColorKeyToken.Background.Primary.value
     }
 
     val modifier = Modifier
@@ -156,7 +154,7 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
     }
     if (textResId != null) {
         Text(
-            modifier = modifier.background(color = OudsColorKeyToken.Background.Emphasized.value),
+            modifier = modifier.background(color = OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
             text = stringResource(id = textResId),
             color = OudsColorKeyToken.Content.Default.value,
             style = OudsTypographyKeyToken.Body.Default.Medium.value
