@@ -149,60 +149,70 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                         )
                     }
 
-                    items(tokenProperty.tokens) { token ->
-                        if (tokenProperty == TokenProperty.SizeIconWithText) {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value)
-                            ) {
-                                TokenIllustration(tokenProperty = tokenProperty, token = token)
-                                Text(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    text = stringResource(id = R.string.app_tokens_dimension_size_iconWithTextTokenName_label, token.name, token.literalValue),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    style = OudsTypographyKeyToken.Body.Default.Medium.value,
-                                    color = OudsColorKeyToken.Content.Muted.value
+                    if (tokenProperty == TokenProperty.SizeIconWithText) {
+                        tokenProperty.tokens.groupBy { it.name.substringBeforeLast('.') }.forEach { entry ->
+                            item {
+                                val headerToken = entry.value.last()
+                                SizeIconWithTextHeader(
+                                    modifier = Modifier.padding(
+                                        horizontal = OudsSpaceKeyToken.Fixed.Medium.value,
+                                        vertical = OudsSpaceKeyToken.Fixed.Shorter.value
+                                    ),
+                                    size = headerToken.value() as Dp,
+                                    tokenName = headerToken.name
                                 )
                             }
-                        } else {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value),
-                                horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
-                            ) {
-                                TokenIllustration(tokenProperty = tokenProperty, token = token)
-
-                                Column(modifier = Modifier
-                                    .weight(1f)
-                                    .semantics(mergeDescendants = true) {}
-                                ) {
-                                    Text(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        text = token.name,
-                                        maxLines = 2,
-                                        overflow = TextOverflow.Ellipsis,
-                                        style = if (tokenProperty == TokenProperty.Typography) {
-                                            token.value() as TextStyle
-                                        } else {
-                                            OudsTypographyKeyToken.Body.Strong.Large.value
-                                        }
-                                    )
-                                    Text(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        text = token.literalValue,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis,
-                                        style = OudsTypographyKeyToken.Body.Default.Medium.value.copy(color = OudsColorKeyToken.Content.Muted.value)
-                                    )
-                                }
+                            items(entry.value) { token ->
+                                TokenRow(tokenProperty = tokenProperty, token = token)
                             }
+                        }
+                    } else {
+                        items(tokenProperty.tokens) { token ->
+                            TokenRow(tokenProperty = tokenProperty, token = token)
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: Token<*>) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value),
+        horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
+    ) {
+        TokenIllustration(tokenProperty = tokenProperty, token = token)
+
+        Column(modifier = Modifier
+            .weight(1f)
+            .semantics(mergeDescendants = true) {}
+        ) {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = if (tokenProperty == TokenProperty.SizeIconWithText) {
+                    token.name.substringAfterLast('.')
+                } else {
+                    token.name
+                },
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                style = if (tokenProperty == TokenProperty.Typography) {
+                    token.value() as TextStyle
+                } else {
+                    OudsTypographyKeyToken.Body.Strong.Large.value
+                }
+            )
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = token.literalValue,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = OudsTypographyKeyToken.Body.Default.Medium.value.copy(color = OudsColorKeyToken.Content.Muted.value)
+            )
         }
     }
 }
@@ -217,7 +227,7 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
     is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value() as Float)
     is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value() as Dp)
     is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value() as Dp)
-    is TokenProperty.SizeIconWithText -> SizeIconWithTextIllustrationRow(size = token.value() as Dp, token.name)
+    is TokenProperty.SizeIconWithText -> SizeIconDecorativeIllustrationBox(size = token.value() as Dp)
     is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
         size = token.value() as Dp,
         contentAlignment = Alignment.Center
