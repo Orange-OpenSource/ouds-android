@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.utilities.composable
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,20 +53,22 @@ fun LargeCard(
 ) {
     Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsElevationKeyToken.Raised.value), onClick = onClick) {
         Column(modifier = Modifier.background(OudsColorKeyToken.Background.Primary.value)) {
-            Image(
-                painter = painterResource(imageRes),
-                colorFilter = imageTint?.let { ColorFilter.tint(imageTint) },
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(184.dp)
-                    .background(OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
-                contentScale = ContentScale.None
-            )
+            Box(modifier = Modifier.background(OudsColorKeyToken.Overlay.Default.value)) {
+                Image(
+                    painter = painterResource(imageRes),
+                    colorFilter = imageTint?.let { ColorFilter.tint(imageTint) },
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(184.dp)
+                        .background(OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
+                    contentScale = ContentScale.None
+                )
+            }
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(OudsColorKeyToken.Background.Primary.value)
+                    .background(OudsColorKeyToken.Overlay.Default.value)
                     .padding(OudsSpaceKeyToken.Fixed.Medium.value)
             ) {
                 Text(
