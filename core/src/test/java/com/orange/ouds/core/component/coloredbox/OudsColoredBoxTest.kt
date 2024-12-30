@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component.contrastedsurface
+package com.orange.ouds.core.component.coloredbox
 
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
@@ -21,21 +21,21 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsContrastedSurfaceTest(private val parameter: OudsColorKeyToken.Surface) {
+internal class OudsColoredBoxTest(private val parameter: OudsColorKeyToken.Surface) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsContrastedSurfacePreviewParameterProvider().values.toList()
+        internal fun data() = OudsColoredBoxPreviewParameterProvider().values.toList()
     }
 
     @get:Rule
     val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.0)
 
     @Test
-    fun takeOudsContrastedSurfaceLightThemeSnapshot() {
+    fun takeOudsColoredBoxLightThemeSnapshot() {
         paparazzi.snapshot {
-            PreviewOudsContrastedSurface(
+            PreviewOudsColoredBox(
                 darkThemeEnabled = false,
                 parameter = parameter
             )
@@ -43,9 +43,9 @@ internal class OudsContrastedSurfaceTest(private val parameter: OudsColorKeyToke
     }
 
     @Test
-    fun takeOudsContrastedSurfaceDarkThemeSnapshot() {
+    fun takeOudsColoredBoxDarkThemeSnapshot() {
         paparazzi.snapshot {
-            PreviewOudsContrastedSurface(
+            PreviewOudsColoredBox(
                 darkThemeEnabled = true,
                 parameter = parameter
             )

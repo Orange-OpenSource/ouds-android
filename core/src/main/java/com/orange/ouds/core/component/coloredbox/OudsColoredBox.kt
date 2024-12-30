@@ -10,21 +10,23 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component.contrastedsurface
+package com.orange.ouds.core.component.coloredbox
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Surface
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.button.OudsButton
-import com.orange.ouds.core.theme.LocalContrastedSurface
+import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -33,29 +35,40 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 /**
- * An OUDS colored surface is a [Surface] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
+ * An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
  *
  * Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
  * Some tokens associated with these colors can be customized and are identified with the `Mono` suffix (for instance `colorBgDefaultEnabledMono` in `OudsButtonTokens`).
 
  * @param color The background color.
- * @param modifier Modifier to be applied to the layout corresponding to the colored surface.
- * @param shape Defines the surface's shape as well its shadow.
- * @param content The content of this colored surface.
+ * @param modifier Modifier to be applied to the layout corresponding to the colored box.
+ * @param contentAlignment The default alignment inside the Box.
+ * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.
+ * @param content The content of this colored box.
  */
 @Composable
-fun OudsContrastedSurface(
+fun OudsColoredBox(
     color: OudsColorKeyToken.Surface,
     modifier: Modifier = Modifier,
-    shape: Shape = RectangleShape,
-    content: @Composable () -> Unit
+    contentAlignment: Alignment = Alignment.TopStart,
+    propagateMinConstraints: Boolean = false,
+    content: @Composable BoxScope.() -> Unit
 ) {
-    CompositionLocalProvider(LocalContrastedSurface provides color) {
-        Surface(
-            modifier = modifier,
-            shape = shape,
-            color = color.value,
-            contentColor = contentColorFor(color),
+    CompositionLocalProvider(
+        LocalContentColor provides contentColorFor(color),
+        LocalColoredBox provides true
+    ) {
+        // Filter the background modifiers in order to force the background color
+        // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
+        val filteredModifier = modifier.foldIn<Modifier>(Modifier) { result, element ->
+            if (element::class.simpleName != "BackgroundElement") result.then(element) else result
+        }
+        Box(
+            modifier = Modifier
+                .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
+                .then(filteredModifier),
+            contentAlignment = contentAlignment,
+            propagateMinConstraints = propagateMinConstraints,
             content = content
         )
     }
@@ -83,13 +96,13 @@ private fun contentColorFor(color: OudsColorKeyToken.Surface): Color {
 @Suppress("PreviewShouldNotBeCalledRecursively")
 @UiModePreviews.Default
 @Composable
-private fun PreviewOudsContrastedSurface(@PreviewParameter(OudsContrastedSurfacePreviewParameterProvider::class) parameter: OudsColorKeyToken.Surface) {
-    PreviewOudsContrastedSurface(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) parameter: OudsColorKeyToken.Surface) {
+    PreviewOudsColoredBox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsContrastedSurface(darkThemeEnabled: Boolean, parameter: OudsColorKeyToken.Surface) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    OudsContrastedSurface(color = parameter) {
+internal fun PreviewOudsColoredBox(darkThemeEnabled: Boolean, parameter: OudsColorKeyToken.Surface) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+    OudsColoredBox(color = parameter) {
         Text(
             modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
             text = parameter.name.removePrefix("OudsColorKeyToken."),
@@ -97,7 +110,7 @@ internal fun PreviewOudsContrastedSurface(darkThemeEnabled: Boolean, parameter: 
     }
 }
 
-internal class OudsContrastedSurfacePreviewParameterProvider : BasicPreviewParameterProvider<OudsColorKeyToken.Surface>(*previewParameterValues.toTypedArray())
+internal class OudsColoredBoxPreviewParameterProvider : BasicPreviewParameterProvider<OudsColorKeyToken.Surface>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsColorKeyToken.Surface>
     get() = listOf(
