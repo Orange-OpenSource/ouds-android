@@ -44,7 +44,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
@@ -86,7 +85,7 @@ import kotlinx.parcelize.Parcelize
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [style] is equal to [OudsButton.Style.Loading] or [OudsButton.Style.Skeleton].
+ *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  */
@@ -119,7 +118,7 @@ fun OudsButton(
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [style] is equal to [OudsButton.Style.Loading] or [OudsButton.Style.Skeleton].
+ *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  */
@@ -153,7 +152,7 @@ fun OudsButton(
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [style] is equal to [OudsButton.Style.Loading] or [OudsButton.Style.Skeleton].
+ *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  */
@@ -210,7 +209,7 @@ private fun OudsButton(
                 .semantics {
                     this.stateDescription = stateDescription
                 },
-            enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading, OudsButton.State.Skeleton) },
+            enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading) },
             shape = shape,
             colors = buttonColors(hierarchy = hierarchy, buttonState = state),
             elevation = null,
@@ -224,7 +223,7 @@ private fun OudsButton(
                     LoadingIndicator(hierarchy = hierarchy, progress)
                 }
 
-                val alpha = if (state in remember { listOf(OudsButton.State.Loading, OudsButton.State.Skeleton) }) 0f else 1f
+                val alpha = if (state == OudsButton.State.Loading) 0f else 1f
                 Row(
                     modifier = Modifier.alpha(alpha = alpha),
                     horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
@@ -270,7 +269,6 @@ private fun rememberOudsButtonState(
             else -> OudsButton.State.Enabled
         }
         is OudsButton.Style.Loading -> OudsButton.State.Loading
-        OudsButton.Style.Skeleton -> OudsButton.State.Skeleton
     }
 }
 
@@ -312,7 +310,6 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading -> if (LocalColoredBox.current) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
                 OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
-                OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
                 OudsButton.State.Enabled,
@@ -321,7 +318,6 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading -> borderWidthMinimalInteraction.value
                 OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
-                OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Strong,
             OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsTheme.borders.width.focusInset else null
@@ -340,7 +336,6 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorBorderDefaultLoadingMono else colorBorderDefaultLoading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBorderDefaultDisabledMono else colorBorderDefaultDisabled
                 OudsButton.State.Focused -> if (LocalColoredBox.current) colorBorderDefaultFocusMono else colorBorderDefaultFocus
-                OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
                 OudsButton.State.Enabled -> if (LocalColoredBox.current) colorBorderMinimalEnabledMono else colorBorderMinimalEnabled
@@ -349,7 +344,6 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorBorderMinimalLoadingMono else colorBorderMinimalLoading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBorderMinimalDisabledMono else colorBorderMinimalDisabled
                 OudsButton.State.Focused -> if (LocalColoredBox.current) colorBorderMinimalFocusMono else colorBorderMinimalFocus
-                OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Strong -> if (LocalColoredBox.current) {
                 when (state) {
@@ -359,7 +353,6 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                     OudsButton.State.Loading -> colorBorderStrongLoadingMono
                     OudsButton.State.Disabled -> colorBorderStrongDisabledMono
                     OudsButton.State.Focused -> colorBorderStrongFocusMono
-                    OudsButton.State.Skeleton -> null
                 }
             } else {
                 null
@@ -390,7 +383,6 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
                 OudsButton.State.Pressed -> if (LocalColoredBox.current) colorBgDefaultPressedMono else colorBgDefaultPressed
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorBgDefaultLoadingMono else colorBgDefaultLoading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBgDefaultDisabledMono else colorBgDefaultDisabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }.value
             OudsButton.Hierarchy.Minimal -> when (state) {
                 OudsButton.State.Enabled -> if (LocalColoredBox.current) colorBgMinimalEnabledMono else colorBgMinimalEnabled
@@ -399,7 +391,6 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
                 OudsButton.State.Pressed -> if (LocalColoredBox.current) colorBgMinimalPressedMono else colorBgMinimalPressed
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorBgMinimalLoadingMono else colorBgMinimalLoading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBgMinimalDisabledMono else colorBgMinimalDisabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }.value
             OudsButton.Hierarchy.Strong -> when (state) {
                 OudsButton.State.Enabled -> if (LocalColoredBox.current) colorBgStrongEnabledMono.value else OudsTheme.colorScheme.action.enabled
@@ -408,7 +399,6 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
                 OudsButton.State.Pressed -> if (LocalColoredBox.current) colorBgStrongPressedMono.value else OudsTheme.colorScheme.action.pressed
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorBgStrongLoadingMono.value else OudsTheme.colorScheme.action.loading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBgStrongDisabledMono.value else OudsTheme.colorScheme.action.disabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg.value
             }
             OudsButton.Hierarchy.Negative -> when (state) {
                 OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
@@ -417,7 +407,6 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
                 OudsButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
                 OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
                 OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg.value
             }
         }
     }
@@ -434,7 +423,6 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Pressed -> if (LocalColoredBox.current) colorContentDefaultPressedMono else colorContentDefaultPressed
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorContentDefaultLoadingMono else colorContentDefaultLoading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorContentDefaultDisabledMono else colorContentDefaultDisabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }.value
             OudsButton.Hierarchy.Minimal -> when (state) {
                 OudsButton.State.Enabled -> if (LocalColoredBox.current) colorContentMinimalEnabledMono else colorContentMinimalEnabled
@@ -443,7 +431,6 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Pressed -> if (LocalColoredBox.current) colorContentMinimalPressedMono else colorContentMinimalPressed
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorContentMinimalLoadingMono else colorContentMinimalLoading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorContentMinimalDisabledMono else colorContentMinimalDisabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }.value
             OudsButton.Hierarchy.Strong -> when (state) {
                 OudsButton.State.Enabled -> if (LocalColoredBox.current) colorContentStrongEnabledMono.value else OudsTheme.colorScheme.content.onAction.enabled
@@ -452,7 +439,6 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Pressed -> if (LocalColoredBox.current) colorContentStrongPressedMono.value else OudsTheme.colorScheme.content.onAction.pressed
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorContentStrongLoadingMono.value else OudsTheme.colorScheme.content.onAction.loading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorContentStrongDisabledMono.value else OudsTheme.colorScheme.content.onAction.disabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg.value
             }
             OudsButton.Hierarchy.Negative -> when (state) {
                 OudsButton.State.Enabled,
@@ -461,7 +447,6 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Loading,
                 OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.negative
                 OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg.value
             }
         }
     }
@@ -489,7 +474,6 @@ private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?) {
     val modifier = Modifier
@@ -610,16 +594,10 @@ object OudsButton {
          */
         @Parcelize
         data class Loading(val progress: Float?) : Style()
-
-        /**
-         * The button displays a skeleton.
-         */
-        @Parcelize
-        data object Skeleton : Style()
     }
 
     internal enum class State {
-        Enabled, Hovered, Pressed, Loading, Disabled, Focused, Skeleton
+        Enabled, Hovered, Pressed, Loading, Disabled, Focused
     }
 }
 
@@ -724,9 +702,8 @@ internal data class OudsButtonPreviewParameter(
         OudsButton.State.Pressed,
         OudsButton.State.Loading,
         OudsButton.State.Disabled,
-        OudsButton.State.Focused,
-        OudsButton.State.Skeleton
-    ).filter { surfaceKeyTokenGroup == null || it != OudsButton.State.Skeleton }
+        OudsButton.State.Focused
+    )
 }
 
 internal class OudsButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())

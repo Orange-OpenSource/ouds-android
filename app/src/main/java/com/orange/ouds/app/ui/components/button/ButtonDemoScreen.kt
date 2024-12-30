@@ -68,7 +68,6 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 listOf(
                     OudsButton.Style.Default,
                     OudsButton.Style.Loading(progress = null),
-                    OudsButton.Style.Skeleton
                 )
             }
             CustomizationChoiceChipsColumn(
