@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.value
@@ -103,7 +104,10 @@ private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParamet
 }
 
 @Composable
-internal fun PreviewOudsColoredBox(darkThemeEnabled: Boolean, parameter: OudsColorKeyToken.Surface) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+internal fun PreviewOudsColoredBox(
+    darkThemeEnabled: Boolean,
+    parameter: OudsColorKeyToken.Surface
+) = OudsPreview(modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
     OudsColoredBox(color = parameter) {
         Text(
             modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
