@@ -17,7 +17,7 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.coloredbox.OudsColoredBox
 
 @Composable
-internal fun SimpleOudsColoredBox() {
+internal fun OudsColoredBoxSample() {
     OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
         // From this point the theme is automatically adjusted to maximize the contrast with OudsColoredBox.Color.StatusInfoEmphasized
         Text("Text")

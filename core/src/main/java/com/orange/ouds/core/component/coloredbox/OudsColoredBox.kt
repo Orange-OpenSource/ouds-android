@@ -48,7 +48,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
  * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.
  * @param content The content of this colored box.
  *
- * @sample com.orange.ouds.core.component.samples.SimpleOudsColoredBox
+ * @sample com.orange.ouds.core.component.samples.OudsColoredBoxSample
  */
 @Composable
 fun OudsColoredBox(

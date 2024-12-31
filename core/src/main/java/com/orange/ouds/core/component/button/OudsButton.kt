@@ -88,6 +88,8 @@ import kotlinx.parcelize.Parcelize
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
  * @param hierarchy The button hierarchy.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextSample
  */
 @Composable
 fun OudsButton(
@@ -121,6 +123,8 @@ fun OudsButton(
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
  * @param hierarchy The button hierarchy.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconSample
  */
 @Composable
 fun OudsButton(
@@ -155,6 +159,8 @@ fun OudsButton(
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
  * @param hierarchy The button hierarchy.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextSample
  */
 @Composable
 fun OudsButton(
