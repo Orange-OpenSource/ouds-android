@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.button.OudsButton
+import com.orange.ouds.core.component.link.OudsLink
 import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
@@ -40,7 +41,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 /**
  * An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
  *
- * Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
+ * Moreover, the colors of several OUDS components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
  * @param color The background color.
