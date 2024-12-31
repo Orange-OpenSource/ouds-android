@@ -52,6 +52,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -201,7 +202,8 @@ private fun OudsButton(
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
-    val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeight.dp else Dp.Unspecified
+    val iconScale = if (icon != null && text == null) LocalContext.current.resources.configuration.fontScale else 1.0f
+    val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeight.dp * iconScale else Dp.Unspecified
     val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
@@ -227,7 +229,7 @@ private fun OudsButton(
                 if (state == OudsButton.State.Loading) {
                     val loadingStyle = style as? OudsButton.Style.Loading
                     val progress = if (previewState == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
-                    LoadingIndicator(hierarchy = hierarchy, progress)
+                    LoadingIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
                 }
 
                 val alpha = if (state == OudsButton.State.Loading) 0f else 1f
@@ -241,7 +243,7 @@ private fun OudsButton(
                         val tint = contentColor(hierarchy = hierarchy, state = state)
                         icon.Content(
                             modifier = Modifier
-                                .size(size.value)
+                                .size(size.value * iconScale)
                                 .semantics {
                                     contentDescription = if (text == null) icon.contentDescription else ""
                                 },
@@ -483,12 +485,12 @@ private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues
 }
 
 @Composable
-private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?) {
+private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?, scale: Float) {
     val modifier = Modifier
-        .size(OudsTheme.componentsTokens.button.sizeLoader.value)
+        .size(OudsTheme.componentsTokens.button.sizeLoader.value * scale)
         .semantics { invisibleToUser() }
     val color = contentColor(hierarchy = hierarchy, state = OudsButton.State.Loading)
-    val strokeWidth = 3.dp
+    val strokeWidth = 3.dp * scale
     val trackColor = Color.Transparent
     val strokeCap = StrokeCap.Square
     if (progress != null) {
