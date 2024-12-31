@@ -764,7 +764,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Colo
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Color {
     return with(repositoryColors) {
         when (token) {
             OudsColorKeyToken.Repository.Accent.Default -> accentDefault
@@ -823,7 +823,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Surface): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Surface): Color {
     return with(surfaceColors) {
         when (token) {
             OudsColorKeyToken.Surface.Brand.Primary -> brandPrimary
@@ -844,7 +844,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Surface): Color {
 }
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Opacity): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Opacity): Color {
     return with(opacityColors) {
         when (token) {
             OudsColorKeyToken.Opacity.Lower -> lower
@@ -856,7 +856,7 @@ fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Opacity): Color {
 
 
 @Stable
-fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
+private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
     return with(overlayColors) {
         when (token) {
             OudsColorKeyToken.Overlay.Default -> default

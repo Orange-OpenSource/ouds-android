@@ -145,6 +145,7 @@ fun OudsTheme(
 
 /**
  * Tweaks the current OUDS theme and displays given [content] according to the selected [tweak].
+ *
  * Note: This composable is directly related to [OudsTheme] and MUST be used inside it.
  *
  * @param tweak Tweak applied to the current [OudsTheme]

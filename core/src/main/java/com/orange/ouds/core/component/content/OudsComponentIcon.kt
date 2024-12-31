@@ -24,6 +24,8 @@ import com.orange.ouds.foundation.extensions.orElse
 
 /**
  * An icon in a component.
+ *
+ * @suppress
  */
 abstract class OudsComponentIcon<T> protected constructor(
     extraParametersClass: Class<T>,
