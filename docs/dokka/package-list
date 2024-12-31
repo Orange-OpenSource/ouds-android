@@ -3,6 +3,8 @@ $dokka.linkExtension:html
 
 module:core
 com.orange.ouds.core.component.button
+com.orange.ouds.core.component.coloredbox
+com.orange.ouds.core.component.samples
 com.orange.ouds.core.theme
 module:theme-contract
 com.orange.ouds.theme
