@@ -32,12 +32,14 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChipsColum
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
+import com.orange.ouds.core.component.coloredbox.OudsColoredBox
 import com.orange.ouds.core.component.link.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,6 +52,11 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 label = stringResource(R.string.app_common_enabled_label),
                 checked = enabled,
                 onCheckedChange = { enabled = it },
+            )
+            CustomizationSwitchListItem(
+                label = stringResource(R.string.app_components_common_onColoredBackground_label),
+                checked = onColoredBackground,
+                onCheckedChange = { onColoredBackground = it },
             )
             val sizes = remember { listOf(OudsLink.Size.Small, OudsLink.Size.Medium) }
             CustomizationChoiceChipsColumn(
@@ -73,62 +80,82 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
                 descriptionRes = Component.Link.descriptionRes
             )
-            LinkDemo(state = this@DemoScreen)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                LinkDemo(state = this@DemoScreen)
+            val demoBoxModifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value).fillMaxWidth()
+            if (!onColoredBackground) {
+                LinkDemoBox(state = this@DemoScreen, modifier = demoBoxModifier)
+                OudsThemeTweak(OudsTheme.Tweak.Invert) {
+                    LinkDemoBox(state = this@DemoScreen, modifier = demoBoxModifier)
+                }
+            } else {
+                LinkDemoColoredBox(state = this@DemoScreen, modifier = demoBoxModifier)
             }
         }
     }
 }
 
 @Composable
-private fun LinkDemo(state: LinkDemoState) {
+private fun LinkDemoBox(state: LinkDemoState, modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .background(OudsTheme.colorScheme.backgroundColors.primary)
-            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
-            .fillMaxWidth(),
+            .then(modifier),
         contentAlignment = Alignment.Center
     ) {
-        val text = stringResource(id = R.string.app_components_link_label)
-        with(state) {
-            when (layout) {
-                LinkDemoState.Layout.TextOnly -> {
-                    OudsLink(
-                        text = text,
-                        icon = null,
-                        onClick = {},
-                        enabled = enabled,
-                        size = size
-                    )
-                }
-                LinkDemoState.Layout.IconAndText -> {
-                    OudsLink(
-                        text = text,
-                        icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
-                        onClick = {},
-                        enabled = enabled,
-                        size = size
-                    )
-                }
-                LinkDemoState.Layout.ArrowBack -> {
-                    OudsLink(
-                        text = text,
-                        arrow = OudsLink.Arrow.Back,
-                        onClick = {},
-                        enabled = enabled,
-                        size = size
-                    )
-                }
-                LinkDemoState.Layout.ArrowNext -> {
-                    OudsLink(
-                        text = text,
-                        arrow = OudsLink.Arrow.Next,
-                        onClick = {},
-                        enabled = enabled,
-                        size = size
-                    )
-                }
+        LinkDemo(state = state)
+    }
+}
+
+@Composable
+private fun LinkDemoColoredBox(state: LinkDemoState, modifier: Modifier = Modifier) {
+    OudsColoredBox(
+        color = OudsColorKeyToken.Surface.Brand.Primary,
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        LinkDemo(state = state)
+    }
+}
+
+@Composable
+private fun LinkDemo(state: LinkDemoState) {
+    val text = stringResource(id = R.string.app_components_link_label)
+    with(state) {
+        when (layout) {
+            LinkDemoState.Layout.TextOnly -> {
+                OudsLink(
+                    text = text,
+                    icon = null,
+                    onClick = {},
+                    enabled = enabled,
+                    size = size
+                )
+            }
+            LinkDemoState.Layout.IconAndText -> {
+                OudsLink(
+                    text = text,
+                    icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
+                    onClick = {},
+                    enabled = enabled,
+                    size = size
+                )
+            }
+            LinkDemoState.Layout.ArrowBack -> {
+                OudsLink(
+                    text = text,
+                    arrow = OudsLink.Arrow.Back,
+                    onClick = {},
+                    enabled = enabled,
+                    size = size
+                )
+            }
+            LinkDemoState.Layout.ArrowNext -> {
+                OudsLink(
+                    text = text,
+                    arrow = OudsLink.Arrow.Next,
+                    onClick = {},
+                    enabled = enabled,
+                    size = size
+                )
             }
         }
     }

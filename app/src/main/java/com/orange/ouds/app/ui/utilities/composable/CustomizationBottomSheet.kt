@@ -16,6 +16,7 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -92,7 +93,8 @@ fun CustomizationBottomSheetScaffold(
                     .fillMaxWidth()
                     .height(BottomSheetDefaults.SheetPeekHeight)
                     .padding(horizontal = OudsTheme.spaces.fixed.medium),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
             ) {
                 val degrees = if (bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) 0f else -180f
                 val angle by animateFloatAsState(targetValue = degrees, label = "ComponentCustomizationBottomSheetScaffoldIconRotation")
@@ -105,7 +107,7 @@ fun CustomizationBottomSheetScaffold(
                 Text(
                     modifier = Modifier.padding(start = OudsTheme.spaces.fixed.medium),
                     text = stringResource(id = titleResId),
-                    style = OudsTheme.typography.heading.medium
+                    style = OudsTheme.typography.body.strong.large
                 )
             }
 

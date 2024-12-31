@@ -32,7 +32,11 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import com.orange.ouds.core.theme.OudsTheme
+
+private val labelTextStyle: @Composable () -> TextStyle
+    get() = { OudsTheme.typography.body.strong.large }
 
 @Composable
 fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit, enabled: Boolean = true) {
@@ -40,7 +44,7 @@ fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange
         modifier = Modifier
             .fillMaxWidth()
             .clickable(enabled = enabled) { onCheckedChange(!checked) },
-        headlineContent = { Text(text = label, style = OudsTheme.typography.heading.medium) },
+        headlineContent = { Text(text = label, style = labelTextStyle()) },
         trailingContent = { Switch(checked = checked, onCheckedChange = null, enabled = enabled) }
     )
 }
@@ -54,7 +58,7 @@ fun CustomizationChoiceChipsColumn(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = OudsTheme.typography.heading.medium)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle())
         Row(
             Modifier
                 .fillMaxWidth()

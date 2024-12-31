@@ -113,6 +113,7 @@
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_iconAndTextLayout_label">Icon + text</string>
     <string name="app_components_common_style_label">Style</string>
+    <string name="app_components_common_onColoredBackground_label">On colored background</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>
