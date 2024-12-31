@@ -39,12 +39,14 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
  *
  * Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
  * Some tokens associated with these colors can be customized and are identified with the `Mono` suffix (for instance `colorBgDefaultEnabledMono` in `OudsButtonTokens`).
-
+ *
  * @param color The background color.
  * @param modifier Modifier to be applied to the layout corresponding to the colored box.
- * @param contentAlignment The default alignment inside the Box.
+ * @param contentAlignment The default alignment inside the colored box.
  * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.
  * @param content The content of this colored box.
+ *
+ * @sample com.orange.ouds.core.component.samples.SimpleOudsColoredBox
  */
 @Composable
 fun OudsColoredBox(
