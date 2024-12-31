@@ -10,14 +10,13 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.app.ui.utilities
+package com.orange.ouds.theme.tokens
 
-import kotlin.reflect.KClass
+sealed interface OudsKeyToken {
 
-fun <T : Any> KClass<T>.getSealedSubclasses(recursive: Boolean = true): List<KClass<out T>> {
-    return if (recursive) {
-        sealedSubclasses + sealedSubclasses.flatMap { it.getSealedSubclasses(recursive = true) }
-    } else {
-        sealedSubclasses.toList()
-    }
+    val name: String
+        get() {
+            val packageName = this::class.java.`package`?.name.orEmpty()
+            return this::class.qualifiedName.orEmpty().removePrefix("$packageName.")
+        }
 }

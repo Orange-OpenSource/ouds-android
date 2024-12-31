@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-sealed interface OudsTypographyKeyToken {
+sealed interface OudsTypographyKeyToken : OudsKeyToken {
 
     sealed interface Display : OudsTypographyKeyToken {
         data object Large : Display

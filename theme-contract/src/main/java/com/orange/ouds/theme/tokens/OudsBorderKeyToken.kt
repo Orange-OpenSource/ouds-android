@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-sealed interface OudsBorderKeyToken {
+sealed interface OudsBorderKeyToken : OudsKeyToken {
     sealed interface Radius : OudsBorderKeyToken {
         data object Default : Radius
         data object Medium : Radius

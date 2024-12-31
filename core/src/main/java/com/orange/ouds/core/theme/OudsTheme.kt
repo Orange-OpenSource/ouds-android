@@ -40,6 +40,7 @@ private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCo
 private val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
 private val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingCompositionLocalError("LocalSpaces") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
+internal val LocalColoredBox = staticCompositionLocalOf<Boolean> { false }
 
 object OudsTheme {
 
@@ -111,7 +112,6 @@ fun OudsTheme(
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-
     val colorScheme = if (darkThemeEnabled) themeContract.colorTokens.darkColorScheme else themeContract.colorTokens.lightColorScheme
     val materialColorScheme = if (darkThemeEnabled) materialDarkColorScheme else materialLightColorScheme
 

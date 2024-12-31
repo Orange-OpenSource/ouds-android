@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-sealed interface OudsElevationKeyToken {
+sealed interface OudsElevationKeyToken : OudsKeyToken {
 
     data object None : OudsElevationKeyToken
     data object Raised : OudsElevationKeyToken
