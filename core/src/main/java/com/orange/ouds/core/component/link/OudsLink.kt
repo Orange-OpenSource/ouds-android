@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component.link
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +24,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalRippleConfiguration
@@ -49,11 +47,13 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.coloredbox.OudsColoredBox
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.link.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -74,7 +74,6 @@ import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the button.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
- * @param onColoredBackground Controls the style of the button which changes to monochrome when it is displayed on a colored background.
  */
 @Composable
 fun OudsLink(
@@ -84,7 +83,6 @@ fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
     enabled: Boolean = true,
-    onColoredBackground: Boolean = false
 ) {
     OudsLink(
         text = text,
@@ -94,7 +92,6 @@ fun OudsLink(
         modifier = modifier,
         size = size,
         enabled = enabled,
-        onColoredBackground = onColoredBackground
     )
 }
 
@@ -109,7 +106,6 @@ fun OudsLink(
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the button.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
- * @param onColoredBackground Controls the style of the button which changes to monochrome when it is displayed on a colored background.
  */
 @Composable
 fun OudsLink(
@@ -119,7 +115,6 @@ fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
     enabled: Boolean = true,
-    onColoredBackground: Boolean = false
 ) {
     OudsLink(
         text = text,
@@ -129,7 +124,6 @@ fun OudsLink(
         modifier = modifier,
         size = size,
         enabled = enabled,
-        onColoredBackground = onColoredBackground
     )
 }
 
@@ -143,7 +137,6 @@ private fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
     enabled: Boolean = true,
-    onColoredBackground: Boolean = false,
     previewState: OudsLink.State? = null
 ) {
     val linkTokens = OudsTheme.componentsTokens.link
@@ -174,7 +167,7 @@ private fun OudsLink(
                 .outerBorder(state = state),
             enabled = state != OudsLink.State.Disabled,
             shape = RectangleShape,
-            colors = buttonColors(linkState = state, onColoredBackground = onColoredBackground),
+            colors = buttonColors(linkState = state, onColoredBackground = LocalColoredBox.current),
             elevation = null,
             contentPadding = PaddingValues(
                 horizontal = linkTokens.spacePaddingInline.value,
@@ -205,9 +198,9 @@ private fun OudsLink(
             }
 
             val iconTint = if (arrow != null) {
-                arrowColor(state = state, onColoredBackground = onColoredBackground)
+                arrowColor(state = state, onColoredBackground = LocalColoredBox.current)
             } else {
-                contentColor(state = state, onColoredBackground = onColoredBackground)
+                contentColor(state = state, onColoredBackground = LocalColoredBox.current)
             }
 
             Row(
@@ -268,16 +261,12 @@ private fun Modifier.outerBorder(state: OudsLink.State): Modifier {
 }
 
 @Composable
-private fun buttonColors(linkState: OudsLink.State, onColoredBackground: Boolean): ButtonColors {
-    with(OudsTheme.componentsTokens.link) {
-        return ButtonDefaults.buttonColors(
-            containerColor = containerColor,
-            contentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground),
-            disabledContainerColor = containerColor,
-            disabledContentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground)
-        )
-    }
-}
+private fun buttonColors(linkState: OudsLink.State, onColoredBackground: Boolean) = ButtonDefaults.buttonColors(
+    containerColor = containerColor,
+    contentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground),
+    disabledContainerColor = containerColor,
+    disabledContentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground)
+)
 
 private val containerColor: Color
     @Composable
@@ -390,12 +379,6 @@ object OudsLink {
          */
         constructor(bitmap: ImageBitmap) : this(bitmap as Any)
 
-        private constructor(arrowPainter: Painter, modifier: Modifier) : this(arrowPainter as Any)
-
-        enum class Position {
-            Start, End
-        }
-
         override val tint: Color?
             @Composable
             get() = extraParameters.tint
@@ -425,13 +408,9 @@ internal fun PreviewOudsLink(
     parameter: OudsLinkPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        Box(
-            modifier = Modifier
-                .background(color = if (onColoredBackground) Color(0xFFFF7900) else Color.Transparent)
-                .padding(16.dp)
-        ) {
-            val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
-            val chunkedStates = states.chunked(2)
+        val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
+        val chunkedStates = states.chunked(2)
+        val linkPreview: @Composable () -> Unit = {
             Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 chunkedStates.forEach { states ->
                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -442,7 +421,6 @@ internal fun PreviewOudsLink(
                                 arrow = arrow,
                                 onClick = {},
                                 size = size,
-                                onColoredBackground = onColoredBackground,
                                 previewState = state
                             )
                         }
@@ -450,6 +428,18 @@ internal fun PreviewOudsLink(
                 }
             }
         }
+
+        val boxModifier = Modifier.padding(16.dp)
+        if (onColoredBackground) {
+            OudsColoredBox(color = OudsColorKeyToken.Surface.Brand.Primary, modifier = boxModifier) {
+                linkPreview()
+            }
+        } else {
+            Box(modifier = boxModifier) {
+                linkPreview()
+            }
+        }
+
     }
 }
 
