@@ -1,0 +1,279 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Skin</title>
+<link href="../../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../../../images/logo-icon.svg">
+<link href="../../../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../../../index.html">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">0.1.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":theme-contract/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-contract/release" data-filter=":theme-contract/release">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-contract::com.orange.ouds.theme.tokens/OudsColorKeyToken.Decorative.Skin///PointingToDeclaration//-702406111">
+  <div class="breadcrumbs"><a href="../../../../index.html">theme-contract</a><span class="delimiter">/</span><a href="../../../index.html">com.orange.ouds.theme.tokens</a><span class="delimiter">/</span><a href="../../index.html">OudsColorKeyToken</a><span class="delimiter">/</span><a href="../index.html">Decorative</a><span class="delimiter">/</span><span class="current">Skin</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Skin</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">Skin</a> : <a href="../index.html">OudsColorKeyToken.Decorative</a></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint100/index.html">Tint100</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint200/index.html">Tint200</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint300/index.html">Tint300</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint400/index.html">Tint400</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint500/index.html">Tint500</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint600/index.html">Tint600</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint700/index.html">Tint700</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint800/index.html">Tint800</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-tint900/index.html">Tint900</a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="970784718%2FClasslikes%2F-702406111" anchor-label="Tint100" id="970784718%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint100/index.html"><span><span>Tint100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="970784718%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint100/index.html">Tint100</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="716048173%2FClasslikes%2F-702406111" anchor-label="Tint200" id="716048173%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint200/index.html"><span><span>Tint200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="716048173%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint200/index.html">Tint200</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="461311628%2FClasslikes%2F-702406111" anchor-label="Tint300" id="461311628%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint300/index.html"><span><span>Tint300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="461311628%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint300/index.html">Tint300</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="206575083%2FClasslikes%2F-702406111" anchor-label="Tint400" id="206575083%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint400/index.html"><span><span>Tint400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="206575083%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint400/index.html">Tint400</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-48161462%2FClasslikes%2F-702406111" anchor-label="Tint500" id="-48161462%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint500/index.html"><span><span>Tint500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-48161462%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint500/index.html">Tint500</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-302898007%2FClasslikes%2F-702406111" anchor-label="Tint600" id="-302898007%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint600/index.html"><span><span>Tint600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-302898007%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint600/index.html">Tint600</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-557634552%2FClasslikes%2F-702406111" anchor-label="Tint700" id="-557634552%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint700/index.html"><span><span>Tint700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-557634552%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint700/index.html">Tint700</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-812371097%2FClasslikes%2F-702406111" anchor-label="Tint800" id="-812371097%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint800/index.html"><span><span>Tint800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-812371097%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint800/index.html">Tint800</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1067107642%2FClasslikes%2F-702406111" anchor-label="Tint900" id="-1067107642%2FClasslikes%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tint900/index.html"><span><span>Tint900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1067107642%2FClasslikes%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-tint900/index.html">Tint900</a> : <a href="index.html">OudsColorKeyToken.Decorative.Skin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1011115804%2FProperties%2F-702406111" anchor-label="name" id="1011115804%2FProperties%2F-702406111" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../../-ouds-key-token/name.html"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1011115804%2FProperties%2F-702406111"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../../../-ouds-key-token/name.html">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>Copyright © Orange 2024</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

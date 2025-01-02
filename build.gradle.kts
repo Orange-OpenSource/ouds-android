@@ -49,6 +49,6 @@ dokka {
 
     dokkaPublications.html {
         includes.from("docs/index.md")
-        outputDirectory.set(layout.buildDirectory.dir("docs/dokka"))
+        outputDirectory.set(projectDir.resolve("docs/dokka"))
     }
 }
