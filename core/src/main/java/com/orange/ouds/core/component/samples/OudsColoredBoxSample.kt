@@ -17,6 +17,9 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.coloredbox.OudsColoredBox
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
+/**
+ * @suppress
+ */
 @Composable
 fun SimpleOudsColoredBox() {
     OudsColoredBox(color = OudsColorKeyToken.Surface.Status.Info.Emphasized) {

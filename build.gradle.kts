@@ -15,6 +15,7 @@ import org.jetbrains.dokka.base.DokkaBaseConfiguration
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
+    kotlin("jvm")
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.firebase.appdistribution) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
@@ -28,20 +29,26 @@ plugins {
 
 dependencies {
     dokkaPlugin(libs.android.documentation.plugin)
+    dokka(project(":core"))
+    dokka(project(":theme-contract"))
 }
 
 checkNotice {
     additionalResourcePaths += "$rootDir/docs/images"
 }
 
-tasks.dokkaHtmlMultiModule {
-    outputDirectory.set(projectDir.resolve("docs/dokka"))
-    includes.from("docs/index.md")
+dokka {
     // used as project name in the header
     moduleName.set("OUDS Android")
-    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-        customAssets = listOf(file("docs/assets/logo-icon.svg"))
-        customStyleSheets = listOf(file("docs/assets/orange-style.css"))
-        footerMessage = "Copyright © Orange 2024"
+
+    pluginsConfiguration.html {
+        customAssets.from("docs/assets/logo-icon.svg")
+        customStyleSheets.from("docs/assets/orange-style.css")
+        footerMessage.set("Copyright © Orange 2024")
+    }
+
+    dokkaPublications.html {
+        includes.from("docs/index.md")
+        outputDirectory.set(layout.buildDirectory.dir("docs/dokka"))
     }
 }
