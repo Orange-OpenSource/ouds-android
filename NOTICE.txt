@@ -72,6 +72,8 @@ app/src/main/res/drawable-xxxhdpi/il_tokens_grid_min_width_dark.png
 app/src/prod/res/drawable/ic_launcher_background.xml
 app/src/prod/res/drawable/ic_launcher_foreground.xml
 
+core/src/main/res/drawable/ic_error_severe.xml
+
 docs/assets/logo-icon.svg
 
 End of the parts list under Orange SA Copyright
