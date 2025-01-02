@@ -145,18 +145,11 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
         else -> PaddingValues(all = 0.dp)
     }
 
-    val internalSpaceColor = when (spaceTokenProperty) {
-        TokenProperty.SpaceColumnGap,
-        TokenProperty.SpaceRowGap -> OudsColorKeyToken.Content.Status.Info.value
-        else -> OudsColorKeyToken.Background.Primary.value
-    }
-
     val modifier = Modifier
         .dashedBorder(width = dashedBorderWidth, color = OudsColorKeyToken.Content.Default.value)
         .padding(all = dashedBorderWidth)
         .background(color = OudsColorKeyToken.Content.Status.Info.value)
         .padding(externalSpaceValues)
-        .background(internalSpaceColor)
 
     val column = remember {
         spaceTokenProperty in listOf(
