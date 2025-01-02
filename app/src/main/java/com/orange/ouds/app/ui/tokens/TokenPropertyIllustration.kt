@@ -102,7 +102,7 @@ fun OpacityIllustrationBox(opacity: Float) {
 }
 
 @Composable
-fun SizeIconDecorativeIllustrationBox(size: Dp) {
+fun SizeIconIllustrationBox(size: Dp) {
     IllustrationBox(modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center) {
         Icon(
             modifier = Modifier.size(size),

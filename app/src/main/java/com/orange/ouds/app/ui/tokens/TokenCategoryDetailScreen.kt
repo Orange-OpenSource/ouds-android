@@ -226,8 +226,8 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
     TokenProperty.ColorDecorative, TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> BorderIllustrationBox(backgroundColor = token.value() as Color)
     is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value() as Float)
     is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value() as Dp)
-    is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value() as Dp)
-    is TokenProperty.SizeIconWithText -> SizeIconDecorativeIllustrationBox(size = token.value() as Dp)
+    is TokenProperty.SizeIconDecorative -> SizeIconIllustrationBox(size = token.value() as Dp)
+    is TokenProperty.SizeIconWithText -> SizeIconIllustrationBox(size = token.value() as Dp)
     is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
         size = token.value() as Dp,
         contentAlignment = Alignment.Center
