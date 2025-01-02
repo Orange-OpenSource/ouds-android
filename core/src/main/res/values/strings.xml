@@ -13,4 +13,5 @@
 <resources>
     <!-- OudsButton -->
     <string name="core_button_loading_a11y">Loading</string>
+    <string name="core_button_notOnColoredBackground_label">not on a\ncolored bg</string>
 </resources>
