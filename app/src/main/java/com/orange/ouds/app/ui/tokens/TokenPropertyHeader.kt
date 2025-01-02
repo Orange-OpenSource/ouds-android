@@ -40,7 +40,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.getTokens
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.asOrNull
@@ -99,7 +98,7 @@ fun SizeIconWithTextHeader(
         val style = if (LocalInspectionMode.current) {
             OudsTypographyKeyToken.Heading.Small.value
         } else {
-            OudsTypographyKeyToken::class.getTokens()
+            getTokens<OudsTypographyKeyToken>()
                 .asOrNull<List<Token<TextStyle>>>()
                 ?.firstOrNull { typographyToken ->
                     typographyToken.name.replace(".Strong", "") == tokenName
