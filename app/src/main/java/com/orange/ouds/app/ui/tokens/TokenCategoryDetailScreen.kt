@@ -152,14 +152,13 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     if (tokenProperty == TokenProperty.SizeIconWithText) {
                         tokenProperty.tokens.groupBy { it.name.substringBeforeLast('.') }.forEach { entry ->
                             item {
-                                val headerToken = entry.value.last()
                                 SizeIconWithTextHeader(
                                     modifier = Modifier.padding(
                                         horizontal = OudsSpaceKeyToken.Fixed.Medium.value,
                                         vertical = OudsSpaceKeyToken.Fixed.Shorter.value
                                     ),
-                                    size = headerToken.value() as Dp,
-                                    tokenName = headerToken.name
+                                    size = entry.value.last().value() as Dp,
+                                    tokenName = entry.key
                                 )
                             }
                             items(entry.value) { token ->

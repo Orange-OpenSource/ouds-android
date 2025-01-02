@@ -96,21 +96,20 @@ fun SizeIconWithTextHeader(
             contentDescription = null
         )
 
-        val tokenTypography = tokenName.split('.').take(2).joinToString(".")
         val style = if (LocalInspectionMode.current) {
             OudsTypographyKeyToken.Heading.Small.value
         } else {
             OudsTypographyKeyToken::class.getTokens()
                 .asOrNull<List<Token<TextStyle>>>()
                 ?.firstOrNull { typographyToken ->
-                    typographyToken.name.replace(".Strong", "") == tokenTypography
+                    typographyToken.name.replace(".Strong", "") == tokenName
                 }
                 ?.value?.invoke()
                 .orElse { LocalTextStyle.current }
         }
         Text(
             modifier = Modifier.weight(1f),
-            text = tokenName.substringBeforeLast('.'),
+            text = tokenName,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = style,
@@ -226,7 +225,7 @@ private fun PreviewGridHeader() = OudsPreview {
 @UiModePreviews.Default
 @Composable
 private fun PreviewSizeIconWithTextHeader() = OudsPreview {
-    SizeIconWithTextHeader(size = OudsSizeKeyToken.Icon.WithHeading.Small.SizeLarge.value, tokenName = "Heading.Small.SizeLarge")
+    SizeIconWithTextHeader(size = OudsSizeKeyToken.Icon.WithHeading.Small.SizeLarge.value, tokenName = "Heading.Small")
 }
 
 @UiModePreviews.Default
