@@ -21,15 +21,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -682,13 +679,8 @@ internal enum class SurfaceKeyTokenGroup {
 private fun RainbowColoredBox(surfaceKeyTokenGroup: SurfaceKeyTokenGroup, columnCount: Int, content: @Composable BoxScope.() -> Unit) {
     // The color parameter below can be whichever surface
     // because the actual colors will be drawn as a rainbow in order to display multiple colored boxes at once
-    OudsColoredBox(
-        modifier = Modifier
-            .width(IntrinsicSize.Max)
-            .height(IntrinsicSize.Max),
-        color = OudsColoredBox.Color.BrandPrimary
-    ) {
-        Row(modifier = Modifier.fillMaxSize()) {
+    OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary) {
+        Row(modifier = Modifier.matchParentSize()) {
             val colors = buildList {
                 repeat(columnCount) {
                     addAll(
@@ -716,7 +708,7 @@ private fun RainbowColoredBox(surfaceKeyTokenGroup: SurfaceKeyTokenGroup, column
                 Box(
                     modifier = Modifier
                         .background(color = color.value)
-                        .fillMaxSize()
+                        .fillMaxHeight()
                         .weight(1.0f)
                 )
             }
