@@ -15,11 +15,6 @@ on:
       - labeled
       - unlabeled
 
-env:
-  INSTANCE: 'docs/oad'
-  ARTIFACT: 'webHelpOAD2-all.zip'
-  DOCKER_VERSION: '241.18775'
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,52 +24,32 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build docs using Writerside Docker builder
-        uses: JetBrains/writerside-github-action@v4
-        with:
-          instance: ${{ env.INSTANCE }}
-          artifact: ${{ env.ARTIFACT }}
-          docker-version: ${{ env.DOCKER_VERSION }}
+      - name: Build documentation with Dokka
+        run: ./gradlew dokkaGenerate
 
-      - name: Save artifact with build results
+      - name: Upload documentation artifacts
         uses: actions/upload-artifact@v4
         with:
           name: docs
-          path: |
-            artifacts/${{ env.ARTIFACT }}
-            artifacts/report.json
-          retention-days: 7
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: docs
-          path: artifacts
-
-      - name: Test documentation
-        uses: JetBrains/writerside-checker-action@v1
-        with:
-          instance: ${{ env.INSTANCE }}
+          path: docs/dokka
 
   github-pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: [ build, test ]
+    needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: docs
-
-      - name: Unzip artifact
-        run: unzip -O UTF-8 -qq '${{ env.ARTIFACT }}' -d dir
+          path: docs
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -82,7 +57,7 @@ jobs:
       - name: Package and upload Pages artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:
-          path: dir
+          path: docs
 
       - name: Deploy to GitHub Pages
         id: deployment
@@ -92,7 +67,7 @@ jobs:
     environment:
       name: netlify
       url: ${{ steps.deployment.outputs.deploy_preview_url }}
-    needs: [ build, test ]
+    needs: build
     runs-on: ubuntu-latest
     if: github.event_name != 'push' || github.ref != 'refs/heads/master'
     steps:
@@ -112,9 +87,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs
-
-      - name: Unzip artifact
-        run: unzip -O UTF-8 -qq '${{ env.ARTIFACT }}' -d dir
+          path: docs
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -131,7 +104,7 @@ jobs:
           # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
           BRANCH_SHA=${{ github.event.pull_request.head.sha }}
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
-          ./gradlew publishDocumentationToNetlify -PdocumentationPath=dir -PnetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -PnetlifyToken=${{ secrets.NETLIFY_TOKEN }} -PcommitSha=$COMMIT_SHA
+          ./gradlew publishDocumentationToNetlify -PdocumentationPath=docs -PnetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -PnetlifyToken=${{ secrets.NETLIFY_TOKEN }} -PcommitSha=$COMMIT_SHA
           # Set environment URL
           echo deploy_preview_url=$(cat netlify_deploy_preview_url.txt) >> $GITHUB_OUTPUT
         env:
