@@ -158,7 +158,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                         vertical = OudsSpaceKeyToken.Fixed.Shorter.value
                                     ),
                                     size = entry.value.last().value() as Dp,
-                                    tokenName = entry.key
+                                    typographyTokenName = entry.key
                                 )
                             }
                             items(entry.value) { token ->

@@ -78,7 +78,7 @@ fun GridHeader(modifier: Modifier = Modifier) {
 @Composable
 fun SizeIconWithTextHeader(
     size: Dp,
-    tokenName: String,
+    typographyTokenName: String,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -101,14 +101,14 @@ fun SizeIconWithTextHeader(
             getTokens<OudsTypographyKeyToken>()
                 .asOrNull<List<Token<TextStyle>>>()
                 ?.firstOrNull { typographyToken ->
-                    typographyToken.name.replace(".Strong", "") == tokenName
+                    typographyToken.name.replace(".Strong", "") == typographyTokenName
                 }
                 ?.value?.invoke()
                 .orElse { LocalTextStyle.current }
         }
         Text(
             modifier = Modifier.weight(1f),
-            text = tokenName,
+            text = typographyTokenName,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = style,
@@ -217,7 +217,7 @@ private fun PreviewGridHeader() = OudsPreview {
 @UiModePreviews.Default
 @Composable
 private fun PreviewSizeIconWithTextHeader() = OudsPreview {
-    SizeIconWithTextHeader(size = OudsSizeKeyToken.Icon.WithHeading.Small.SizeLarge.value, tokenName = "Heading.Small")
+    SizeIconWithTextHeader(size = OudsSizeKeyToken.Icon.WithHeading.Small.SizeLarge.value, typographyTokenName = "Heading.Small")
 }
 
 @UiModePreviews.Default
