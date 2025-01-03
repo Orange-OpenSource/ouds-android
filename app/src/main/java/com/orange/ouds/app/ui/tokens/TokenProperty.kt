@@ -126,17 +126,17 @@ sealed class TokenProperty<T>(
     data object SizeIconWithText : TokenProperty<TokenCategory.Dimension.Size>(
         nameRes = R.string.app_tokens_dimension_size_iconWithText_label,
         tokens = listOf(
-            OudsSizeKeyToken.Icon.WithHeading.ExtraLarge::class,
-            OudsSizeKeyToken.Icon.WithHeading.Large::class,
-            OudsSizeKeyToken.Icon.WithHeading.Medium::class,
-            OudsSizeKeyToken.Icon.WithHeading.Small::class,
-            OudsSizeKeyToken.Icon.WithBody.Large::class,
-            OudsSizeKeyToken.Icon.WithBody.Medium::class,
-            OudsSizeKeyToken.Icon.WithBody.Small::class,
-            OudsSizeKeyToken.Icon.WithLabel.ExtraLarge::class,
-            OudsSizeKeyToken.Icon.WithLabel.Large::class,
-            OudsSizeKeyToken.Icon.WithLabel.Medium::class,
             OudsSizeKeyToken.Icon.WithLabel.Small::class,
+            OudsSizeKeyToken.Icon.WithLabel.Medium::class,
+            OudsSizeKeyToken.Icon.WithLabel.Large::class,
+            OudsSizeKeyToken.Icon.WithLabel.ExtraLarge::class,
+            OudsSizeKeyToken.Icon.WithBody.Small::class,
+            OudsSizeKeyToken.Icon.WithBody.Medium::class,
+            OudsSizeKeyToken.Icon.WithBody.Large::class,
+            OudsSizeKeyToken.Icon.WithHeading.Small::class,
+            OudsSizeKeyToken.Icon.WithHeading.Medium::class,
+            OudsSizeKeyToken.Icon.WithHeading.Large::class,
+            OudsSizeKeyToken.Icon.WithHeading.ExtraLarge::class,
         ).flatMap { keyTokenClass ->
             getTokens(keyTokenClass, tokenName = { it.getRelativeName(OudsSizeKeyToken.Icon::class).removePrefix("With") })
         },

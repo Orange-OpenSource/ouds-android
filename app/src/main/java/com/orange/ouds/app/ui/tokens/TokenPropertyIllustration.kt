@@ -16,10 +16,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,9 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,27 +34,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.foundation.extensions.asOrNull
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.dashedBorder
 import com.orange.ouds.theme.dottedBorder
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 private val defaultIllustrationSize = 64.dp
 
 @Composable
 fun IllustrationBox(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = OudsColorKeyToken.Background.Emphasized.value,
+    backgroundColor: Color = OudsColorKeyToken.Surface.Status.Neutral.Muted.value,
     contentAlignment: Alignment = Alignment.TopStart,
     content: @Composable BoxScope.() -> Unit = { }
 ) {
@@ -111,44 +102,13 @@ fun OpacityIllustrationBox(opacity: Float) {
 }
 
 @Composable
-fun SizeIconDecorativeIllustrationBox(size: Dp) {
+fun SizeIconIllustrationBox(size: Dp) {
     IllustrationBox(modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center) {
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.ic_design_token_figma),
-            tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
+            tint = OudsColorKeyToken.Content.Status.Info.value,
             contentDescription = null
-        )
-    }
-}
-
-@Composable
-fun SizeIconWithTextIllustrationRow(size: Dp, tokenName: String) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Shorter.value),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            modifier = Modifier.size(size),
-            painter = painterResource(R.drawable.ic_design_token_figma),
-            tint = Color(0xFF26B2FF), //TODO use AlwaysInfo token when available
-            contentDescription = null
-        )
-        val tokenTypography = tokenName.split('.').take(2).joinToString(".")
-        val style = getTokens<OudsTypographyKeyToken>()
-            .asOrNull<List<Token<TextStyle>>>()
-            ?.firstOrNull { typographyToken ->
-                typographyToken.name.replace(".Strong", "") == tokenTypography
-            }
-            ?.value?.invoke()
-            .orElse { LocalTextStyle.current }
-        Text(
-            modifier = Modifier.weight(1f),
-            text = tokenName,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            style = style
         )
     }
 }

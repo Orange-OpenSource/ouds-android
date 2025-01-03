@@ -46,12 +46,12 @@ fun DetailScreenHeader(
     Column {
         Image(
             painter = painterResource(imageRes),
-            colorFilter = ColorFilter.tint(OudsColorKeyToken.Always.White.value),
+            colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.Default.value),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(186.dp)
-                .background(OudsColorKeyToken.Background.Emphasized.value),
+                .background(OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
             contentScale = ContentScale.None
         )
 

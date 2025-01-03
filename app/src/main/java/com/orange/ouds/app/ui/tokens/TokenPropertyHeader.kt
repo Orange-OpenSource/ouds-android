@@ -23,23 +23,32 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
-import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.extensions.asOrNull
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.dashedBorder
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
@@ -58,7 +67,7 @@ fun GridHeader(modifier: Modifier = Modifier) {
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(OudsColorKeyToken.Background.Emphasized.value),
+                    .background(OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
                 painter = painterResource(id = resourceId),
                 contentDescription = null
             )
@@ -67,18 +76,58 @@ fun GridHeader(modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun SizeIconWithTextHeader(
+    size: Dp,
+    typographyTokenName: String,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .background(color = OudsColorKeyToken.Surface.Status.Neutral.Muted.value)
+            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
+        horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Shorter.value),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            modifier = Modifier.size(size),
+            painter = painterResource(R.drawable.ic_design_token_figma),
+            tint = OudsColorKeyToken.Content.Status.Info.value,
+            contentDescription = null
+        )
+
+        val style = if (LocalInspectionMode.current) {
+            OudsTypographyKeyToken.Heading.Small.value
+        } else {
+            getTokens<OudsTypographyKeyToken>()
+                .asOrNull<List<Token<TextStyle>>>()
+                ?.firstOrNull { typographyToken ->
+                    typographyToken.name.replace(".Strong", "") == typographyTokenName
+                }
+                ?.value?.invoke()
+                .orElse { LocalTextStyle.current }
+        }
+        Text(
+            modifier = Modifier.weight(1f),
+            text = typographyTokenName,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            style = style,
+            color = OudsColorKeyToken.Content.Default.value
+        )
+    }
+}
+
+@Composable
 fun SpaceHeader(
     spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>,
     modifier: Modifier = Modifier
 ) {
-    OudsThemeTweak(tweak = OudsTheme.Tweak.ForceDark) { //TODO This does not give the expected result in light mode because the background should be black. To fix when demo app Figma file is updated with new tokens.
-        Box(
-            modifier = modifier
-                .background(color = OudsColorKeyToken.Background.Emphasized.value)
-                .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
-        ) {
-            SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
-        }
+    Box(
+        modifier = modifier
+            .background(color = OudsColorKeyToken.Surface.Status.Neutral.Muted.value)
+            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+    ) {
+        SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
     }
 }
 
@@ -95,18 +144,11 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
         else -> PaddingValues(all = 0.dp)
     }
 
-    val internalSpaceColor = when (spaceTokenProperty) {
-        TokenProperty.SpaceColumnGap,
-        TokenProperty.SpaceRowGap -> OudsColorKeyToken.Content.Status.Info.value
-        else -> OudsColorKeyToken.Background.Emphasized.value
-    }
-
     val modifier = Modifier
         .dashedBorder(width = dashedBorderWidth, color = OudsColorKeyToken.Content.Default.value)
         .padding(all = dashedBorderWidth)
         .background(color = OudsColorKeyToken.Content.Status.Info.value)
         .padding(externalSpaceValues)
-        .background(internalSpaceColor)
 
     val column = remember {
         spaceTokenProperty in listOf(
@@ -156,7 +198,9 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
     }
     if (textResId != null) {
         Text(
-            modifier = modifier.background(color = OudsColorKeyToken.Background.Emphasized.value),
+            modifier = modifier
+                .background(color = OudsColorKeyToken.Background.Primary.value)
+                .background(color = OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
             text = stringResource(id = textResId),
             color = OudsColorKeyToken.Content.Default.value,
             style = OudsTypographyKeyToken.Body.Default.Medium.value
@@ -168,6 +212,12 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
 @Composable
 private fun PreviewGridHeader() = OudsPreview {
     GridHeader()
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewSizeIconWithTextHeader() = OudsPreview {
+    SizeIconWithTextHeader(size = OudsSizeKeyToken.Icon.WithHeading.Small.SizeLarge.value, typographyTokenName = "Heading.Small")
 }
 
 @UiModePreviews.Default

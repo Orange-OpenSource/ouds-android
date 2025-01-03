@@ -133,6 +133,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                         heading()
                                     },
                                 text = stringResource(id = tokenProperty.nameRes),
+                                color = OudsColorKeyToken.Content.Default.value,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                                 style = OudsTypographyKeyToken.Heading.Medium.value
@@ -148,60 +149,69 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                         )
                     }
 
-                    items(tokenProperty.tokens) { token ->
-                        if (tokenProperty == TokenProperty.SizeIconWithText) {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value)
-                            ) {
-                                TokenIllustration(tokenProperty = tokenProperty, token = token)
-                                Text(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    text = stringResource(id = R.string.app_tokens_dimension_size_iconWithTextTokenName_label, token.name, token.literalValue),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    style = OudsTypographyKeyToken.Body.Default.Medium.value,
-                                    color = OudsColorKeyToken.Content.Muted.value
+                    if (tokenProperty == TokenProperty.SizeIconWithText) {
+                        tokenProperty.tokens.groupBy { it.name.substringBeforeLast('.') }.forEach { entry ->
+                            item {
+                                SizeIconWithTextHeader(
+                                    modifier = Modifier.padding(
+                                        horizontal = OudsSpaceKeyToken.Fixed.Medium.value,
+                                        vertical = OudsSpaceKeyToken.Fixed.Shorter.value
+                                    ),
+                                    size = entry.value.last().value() as Dp,
+                                    typographyTokenName = entry.key
                                 )
                             }
-                        } else {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value),
-                                horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
-                            ) {
-                                TokenIllustration(tokenProperty = tokenProperty, token = token)
-
-                                Column(modifier = Modifier
-                                    .weight(1f)
-                                    .semantics(mergeDescendants = true) {}
-                                ) {
-                                    Text(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        text = token.name,
-                                        maxLines = 2,
-                                        overflow = TextOverflow.Ellipsis,
-                                        style = if (tokenProperty == TokenProperty.Typography) {
-                                            token.value() as TextStyle
-                                        } else {
-                                            OudsTypographyKeyToken.Body.Strong.Large.value
-                                        }
-                                    )
-                                    Text(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        text = token.literalValue,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis,
-                                        style = OudsTypographyKeyToken.Body.Default.Medium.value.copy(color = OudsColorKeyToken.Content.Muted.value)
-                                    )
-                                }
+                            items(entry.value) { token ->
+                                TokenRow(tokenProperty = tokenProperty, token = token)
                             }
+                        }
+                    } else {
+                        items(tokenProperty.tokens) { token ->
+                            TokenRow(tokenProperty = tokenProperty, token = token)
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: Token<*>) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value),
+        horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
+    ) {
+        TokenIllustration(tokenProperty = tokenProperty, token = token)
+
+        Column(modifier = Modifier
+            .weight(1f)
+            .semantics(mergeDescendants = true) {}
+        ) {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = if (tokenProperty == TokenProperty.SizeIconWithText) {
+                    token.name.substringAfterLast('.')
+                } else {
+                    token.name
+                },
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                style = if (tokenProperty == TokenProperty.Typography) {
+                    token.value() as TextStyle
+                } else {
+                    OudsTypographyKeyToken.Body.Strong.Large.value
+                }
+            )
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = token.literalValue,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = OudsTypographyKeyToken.Body.Default.Medium.value.copy(color = OudsColorKeyToken.Content.Muted.value)
+            )
         }
     }
 }
@@ -215,8 +225,8 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
     TokenProperty.ColorDecorative, TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> BorderIllustrationBox(backgroundColor = token.value() as Color)
     is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value() as Float)
     is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value() as Dp)
-    is TokenProperty.SizeIconDecorative -> SizeIconDecorativeIllustrationBox(size = token.value() as Dp)
-    is TokenProperty.SizeIconWithText -> SizeIconWithTextIllustrationRow(size = token.value() as Dp, token.name)
+    is TokenProperty.SizeIconDecorative -> SizeIconIllustrationBox(size = token.value() as Dp)
+    is TokenProperty.SizeIconWithText -> SizeIconIllustrationBox(size = token.value() as Dp)
     is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
         size = token.value() as Dp,
         contentAlignment = Alignment.Center
@@ -277,7 +287,8 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
             ) {
                 Text(
                     text = stringResource(R.string.app_tokens_viewCodeExample_label),
-                    style = OudsTypographyKeyToken.Label.Strong.Large.value
+                    style = OudsTypographyKeyToken.Label.Strong.Large.value,
+                    color = OudsColorKeyToken.Content.Default.value
                 )
                 Icon(
                     modifier = Modifier.rotate(linkArrowRotation),
@@ -301,7 +312,9 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                         modifier = Modifier
                             .weight(1f)
                             .padding(vertical = OudsSpaceKeyToken.Fixed.Medium.value)
-                            .padding(start = OudsSpaceKeyToken.Fixed.Medium.value), text = codeExample, style = TextStyle(fontFamily = FontFamily.Monospace)
+                            .padding(start = OudsSpaceKeyToken.Fixed.Medium.value),
+                        text = codeExample, style = TextStyle(fontFamily = FontFamily.Monospace),
+                        color = OudsColorKeyToken.Content.Default.value
                     )
                     IconButton(onClick = { copyCodeToClipboard(context, codeExample, clipboardManager) }) {
                         Icon(painter = painterResource(R.drawable.ic_copy), contentDescription = stringResource(R.string.app_common_copyCode_a11y))

@@ -59,13 +59,14 @@ fun LargeCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(184.dp)
-                    .background(OudsColorKeyToken.Background.Emphasized.value),
+                    .background(OudsColorKeyToken.Overlay.Default.value)
+                    .background(OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
                 contentScale = ContentScale.None
             )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(OudsColorKeyToken.Action.Support.Enabled.value)
+                    .background(OudsColorKeyToken.Overlay.Default.value)
                     .padding(OudsSpaceKeyToken.Fixed.Medium.value)
             ) {
                 Text(
@@ -88,6 +89,6 @@ private fun PreviewLargeCard() = OudsPreview {
         title = "Title",
         imageRes = R.drawable.ic_filter_effects,
         onClick = {},
-        imageTint = Color.White
+        imageTint = OudsColorKeyToken.Content.Default.value
     )
 }
