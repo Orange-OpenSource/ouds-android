@@ -10,9 +10,6 @@
  * Software description: Android library of reusable graphical components
  */
 
-import org.jetbrains.dokka.base.DokkaBase
-import org.jetbrains.dokka.base.DokkaBaseConfiguration
-
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     kotlin("jvm")
@@ -28,7 +25,7 @@ plugins {
 }
 
 dependencies {
-    dokkaPlugin(libs.android.documentation.plugin)
+    dokkaPlugin(libs.dokka.android.documentation.plugin)
     dokka(project(":core"))
     dokka(project(":theme-contract"))
 }
