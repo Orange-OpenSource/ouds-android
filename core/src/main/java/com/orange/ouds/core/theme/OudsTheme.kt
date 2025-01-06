@@ -43,7 +43,7 @@ private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsToken
 internal val LocalColoredBox = staticCompositionLocalOf<Boolean> { false }
 
 /**
- * @suppress
+ * Object that stores tokens values for the current theme.
  */
 object OudsTheme {
 
