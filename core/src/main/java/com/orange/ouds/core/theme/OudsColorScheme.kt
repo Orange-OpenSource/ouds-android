@@ -426,10 +426,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
         },
     )
 
-/**
- * @suppress
- */
-val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
+internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
     get() = OudsColorScheme(
         actionColors = with(actionColorTokens) {
             OudsColorScheme.Action(
@@ -865,10 +862,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
 }
 
 //TODO Material colors must be able to be overridden by a theme
-/**
- * @suppress
- */
-val materialLightColorScheme: ColorScheme
+internal val materialLightColorScheme: ColorScheme
     get() = with(OudsAndroidColorLightTokens) {
         lightColorScheme(
             primary = primary,
@@ -910,10 +904,7 @@ val materialLightColorScheme: ColorScheme
         )
     }
 
-/**
- * @suppress
- */
-val materialDarkColorScheme: ColorScheme
+internal val materialDarkColorScheme: ColorScheme
     get() = with(OudsAndroidColorDarkTokens) {
         darkColorScheme(
             primary = primary,
