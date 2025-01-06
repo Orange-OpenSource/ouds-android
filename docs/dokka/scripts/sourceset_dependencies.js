@@ -1,1 +1,0 @@
-sourceset_dependencies = '{":theme-contract/debug":[],":theme-contract/main":[],":theme-contract/release":[],":core/debug":[],":core/main":[],":core/release":[]}'
