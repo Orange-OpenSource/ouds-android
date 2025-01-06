@@ -8,7 +8,7 @@ The OUDS Android library is compatible with **Android 5.0 (API level 21) and hig
 
 ## 2. Use OudsTheme
 
-`OudsTheme` is a Material theme extension for Jetpack Compose applications. Cause OUDS support multi-theme, you must specify the theme to use for your
+`OudsTheme` is a Material theme extension for Jetpack Compose applications. Cause OUDS supports multi-theme, you must specify the theme to use for your
 application.
 
 Use `OudsTheme` in your screens by providing the `OrangeTheme` for example as theme contract to use the Orange theme.
