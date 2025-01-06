@@ -33,7 +33,7 @@ internal fun <T> getLocalExtraParameters(clazz: Class<T>): ProvidableComposition
 }
 
 /**
- * The content of a component.
+ * Content of a component.
  *
  * Subclasses of [OudsComponentContent] should be used instead of composable methods when passing parameters to components.
  * This prevents using generic composable methods that can encapsulate any kind of views and thus helps developers to follow UI guidelines more easily.
@@ -42,6 +42,8 @@ internal fun <T> getLocalExtraParameters(clazz: Class<T>): ProvidableComposition
  *
  * @param extraParametersClass The extra parameters class.
  * @param T The type of extra parameters.
+ *
+ * @suppress
  */
 abstract class OudsComponentContent<T> internal constructor(private val extraParametersClass: Class<T>) where T : OudsComponentContent.ExtraParameters {
 

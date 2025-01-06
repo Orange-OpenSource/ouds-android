@@ -24,6 +24,11 @@ import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
+/**
+ * An interface to create an OUDS supported theme.
+ *
+ * Any values that are not set will inherit the Orange theme.
+ */
 interface OudsThemeContract : Parcelable {
 
     /**

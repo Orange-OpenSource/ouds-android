@@ -14,10 +14,16 @@ package com.orange.ouds.theme
 
 import java.util.Locale
 
+/**
+ * Available border styles in OUDS.
+ */
 enum class OudsBorderStyle {
     None, Solid, Dashed, Dotted;
 
     companion object {
+        /**
+         * Returns the [OudsBorderStyle] corresponding to the given [string].
+         */
         fun fromString(string: String): OudsBorderStyle {
             return try {
                 OudsBorderStyle.valueOf(string.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() })

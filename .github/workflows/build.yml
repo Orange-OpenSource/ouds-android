@@ -63,7 +63,7 @@ jobs:
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
           ./gradlew assembleProd -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
-      - name: Store tests artifacts
+      - name: Upload tests artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -74,43 +74,43 @@ jobs:
             core/build/reports/androidTests
             core/build/reports/tests
 
-      - name: Store app artifacts
+      - name: Upload app artifacts
         uses: actions/upload-artifact@v4
         with:
           name: app
           path: app/build/outputs/apk/*/*/*.apk
 
-      - name: Store core artifacts
+      - name: Upload core artifacts
         uses: actions/upload-artifact@v4
         with:
           name: core
           path: core/build/outputs/aar/*.aar
 
-      - name: Store foundation artifacts
+      - name: Upload foundation artifacts
         uses: actions/upload-artifact@v4
         with:
           name: foundation
           path: foundation/build/outputs/aar/*.aar
 
-      - name: Store global-raw-tokens artifacts
+      - name: Upload global-raw-tokens artifacts
         uses: actions/upload-artifact@v4
         with:
           name: global-raw-tokens
           path: global-raw-tokens/build/outputs/aar/*.aar
 
-      - name: Store theme-contract artifacts
+      - name: Upload theme-contract artifacts
         uses: actions/upload-artifact@v4
         with:
           name: theme-contract
           path: theme-contract/build/outputs/aar/*.aar
 
-      - name: Store theme-orange artifacts
+      - name: Upload theme-orange artifacts
         uses: actions/upload-artifact@v4
         with:
           name: theme-orange
           path: theme-orange/build/outputs/aar/*.aar
 
-      - name: Store theme-white-label artifacts
+      - name: Upload theme-white-label artifacts
         uses: actions/upload-artifact@v4
         with:
           name: theme-white-label

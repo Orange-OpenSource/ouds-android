@@ -21,6 +21,9 @@ import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 
+/**
+ * @suppress
+ */
 data class OudsBorders(
     val widthNone: Dp,
     val widthDefault: Dp,
@@ -40,7 +43,7 @@ data class OudsBorders(
     val styleDrag: OudsBorderStyle,
 )
 
-fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
+internal fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
     widthNone = widthNone.dp,
     widthDefault = widthDefault.dp,
     widthThin = widthThin.dp,
@@ -60,7 +63,7 @@ fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
 )
 
 @Stable
-fun OudsBorders.fromToken(token: OudsBorderKeyToken.Width): Dp {
+private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Width): Dp {
     return when (token) {
         OudsBorderKeyToken.Width.None -> widthNone
         OudsBorderKeyToken.Width.Default -> widthDefault
@@ -74,7 +77,7 @@ fun OudsBorders.fromToken(token: OudsBorderKeyToken.Width): Dp {
 }
 
 @Stable
-fun OudsBorders.fromToken(token: OudsBorderKeyToken.Radius): Dp {
+private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Radius): Dp {
     return when (token) {
         OudsBorderKeyToken.Radius.None -> radiusNone
         OudsBorderKeyToken.Radius.Default -> radiusDefault
@@ -86,7 +89,7 @@ fun OudsBorders.fromToken(token: OudsBorderKeyToken.Radius): Dp {
 }
 
 @Stable
-fun OudsBorders.fromToken(token: OudsBorderKeyToken.Style): OudsBorderStyle {
+private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Style): OudsBorderStyle {
     return when (token) {
         OudsBorderKeyToken.Style.Default -> styleDefault
         OudsBorderKeyToken.Style.Drag -> styleDrag

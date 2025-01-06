@@ -28,6 +28,8 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
  * @param modifier The modifier for the preview content.
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
  * @param content The content of the preview.
+ *
+ * @suppress
  */
 @Composable
 fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
