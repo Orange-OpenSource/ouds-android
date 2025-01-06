@@ -162,10 +162,7 @@ data class OudsSizes(
     }
 }
 
-/**
- * @suppress
- */
-fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
+internal fun OudsSizeSemanticTokens.getSizes() = OudsSizes(
     icon = OudsSizes.Icon(
         decorative = OudsSizes.Icon.Decorative(
             extraExtraSmall = iconDecorative2xs.dp,

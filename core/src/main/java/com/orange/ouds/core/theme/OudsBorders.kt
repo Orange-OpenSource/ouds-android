@@ -43,10 +43,7 @@ data class OudsBorders(
     val styleDrag: OudsBorderStyle,
 )
 
-/**
- * @suppress
- */
-fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
+internal fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
     widthNone = widthNone.dp,
     widthDefault = widthDefault.dp,
     widthThin = widthThin.dp,

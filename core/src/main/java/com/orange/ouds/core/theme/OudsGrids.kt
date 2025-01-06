@@ -32,10 +32,7 @@ data class OudsGrids(
     val columnGap: OudsAdaptiveTokenValue<Dp>
 )
 
-/**
- * @suppress
- */
-fun OudsGridSemanticTokens.getGrids() = OudsGrids(
+internal fun OudsGridSemanticTokens.getGrids() = OudsGrids(
     minWidth = OudsAdaptiveTokenValue(
         extraCompactMinWidth.dp,
         compactMinWidth.dp,

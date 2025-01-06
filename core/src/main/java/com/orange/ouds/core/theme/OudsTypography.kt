@@ -51,10 +51,7 @@ data class OudsTypography(
     val labelStrongSmall: TextStyle,
 )
 
-/**
- * @suppress
- */
-fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypography(
+internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily) = OudsTypography(
     displayLarge = OudsAdaptiveTokenValue(
         TextStyle(
             fontFamily = fontFamily,

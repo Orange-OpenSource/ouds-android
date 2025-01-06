@@ -227,10 +227,7 @@ data class OudsColorScheme(
 
 }
 
-/**
- * @suppress
- */
-val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
+internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
     get() = OudsColorScheme(
         actionColors = with(actionColorTokens) {
             OudsColorScheme.Action(

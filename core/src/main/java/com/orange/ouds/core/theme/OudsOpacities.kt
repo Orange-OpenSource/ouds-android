@@ -30,10 +30,7 @@ data class OudsOpacities(
     val opaque: Float,
 )
 
-/**
- * @suppress
- */
-fun OudsOpacitySemanticTokens.getOpacity() = OudsOpacities(
+internal fun OudsOpacitySemanticTokens.getOpacity() = OudsOpacities(
     invisible = invisible,
     weaker = weaker,
     weak = weak,

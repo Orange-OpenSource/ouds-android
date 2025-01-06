@@ -34,10 +34,7 @@ data class OudsElevations(
     val overlayEmphasized: Dp,
 )
 
-/**
- * @suppress
- */
-fun OudsElevationSemanticTokens.getElevation() = OudsElevations(
+internal fun OudsElevationSemanticTokens.getElevation() = OudsElevations(
     none = none.dp,
     raised = raised.dp,
     overlayDefault = overlayDefault.dp,

@@ -127,10 +127,7 @@ data class OudsSpaces(
     )
 }
 
-/**
- * @suppress
- */
-fun OudsSpaceSemanticTokens.getSpaces() = OudsSpaces(
+internal fun OudsSpaceSemanticTokens.getSpaces() = OudsSpaces(
     fixed = OudsSpaces.Fixed(
         none = fixedNone.dp,
         smash = fixedSmash.dp,
