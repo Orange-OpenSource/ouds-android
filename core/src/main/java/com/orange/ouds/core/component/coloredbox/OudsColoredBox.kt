@@ -35,12 +35,13 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 
 /**
  * An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
  *
  * Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
- * Some tokens associated with these colors can be customized and are identified with the `Mono` suffix (for instance `colorBgDefaultEnabledMono` in `OudsButtonTokens`).
+ * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
  * @param color The background color.
  * @param modifier Modifier to be applied to the layout corresponding to the colored box.
