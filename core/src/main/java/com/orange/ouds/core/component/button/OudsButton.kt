@@ -73,7 +73,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.dashedBorder
 import com.orange.ouds.theme.outerBorder
 import kotlinx.parcelize.Parcelize
 
@@ -90,7 +89,8 @@ import kotlinx.parcelize.Parcelize
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
- * @param hierarchy The button hierarchy. Please note that a button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed in an [OudsColoredBox].
+ * @param hierarchy The button hierarchy.
+ *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextSample
  */
@@ -128,8 +128,8 @@ fun OudsButton(
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
- * @param hierarchy The button hierarchy. Please note that a button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed in an [OudsColoredBox].
- *
+ * @param hierarchy The button hierarchy.
+ *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconSample
  */
 @Composable
@@ -167,7 +167,8 @@ fun OudsButton(
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
  * @param style The button style.
- * @param hierarchy The button hierarchy. Please note that a button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed in an [OudsColoredBox].
+ * @param hierarchy The button hierarchy.
+ *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextSample
  */
@@ -205,31 +206,27 @@ private fun OudsButton(
     style: OudsButton.Style = OudsButton.Style.Default,
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
 ) {
-    val isForbidden = hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current
-    val displayedIcon = when {
-        isForbidden && icon != null && text == null -> OudsButton.Icon(painterResource(id = R.drawable.ic_error_severe), "")
-        isForbidden -> null
-        else -> icon
+    if (hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current) {
+        throw IllegalStateException("An OudsButton with OudsButton.Hierarchy.Negative hierarchy has been detected as a direct or indirect child of an OudsColoredBox, which is not allowed.")
     }
-    val displayedText = if (isForbidden && text != null) stringResource(id = R.string.core_button_notOnColoredBackground_label) else text
+
     val buttonTokens = OudsTheme.componentsTokens.button
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
-    val iconScale = if (displayedIcon != null && displayedText == null) LocalContext.current.resources.configuration.fontScale else 1.0f
-    val maxHeight = if (displayedIcon != null && displayedText == null) buttonTokens.sizeMaxHeight.dp * iconScale else Dp.Unspecified
+    val iconScale = if (icon != null && text == null) LocalContext.current.resources.configuration.fontScale else 1.0f
+    val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeight.dp * iconScale else Dp.Unspecified
     val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
-        val isLoadingIndicatorVisible = state == OudsButton.State.Loading && !isForbidden
-        val stateDescription = if (isLoadingIndicatorVisible) stringResource(id = R.string.core_button_loading_a11y) else ""
+        val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
         Button(
             onClick = onClick,
             modifier = modifier
                 .widthIn(min = buttonTokens.sizeMinWidth.dp)
                 .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
                 .border(hierarchy = hierarchy, state = state, shape = shape)
-                .outerBorder(hierarchy = hierarchy, state = state, shape = shape)
+                .outerBorder(state = state, shape = shape)
                 .semantics {
                     this.stateDescription = stateDescription
                 },
@@ -237,38 +234,38 @@ private fun OudsButton(
             shape = shape,
             colors = buttonColors(hierarchy = hierarchy, buttonState = state),
             elevation = null,
-            contentPadding = contentPadding(icon = displayedIcon, text = displayedText),
+            contentPadding = contentPadding(icon = icon, text = text),
             interactionSource = interactionSource
         ) {
             Box(contentAlignment = Alignment.Center) {
-                if (isLoadingIndicatorVisible) {
+                if (state == OudsButton.State.Loading) {
                     val loadingStyle = style as? OudsButton.Style.Loading
                     val progress = if (previewState == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
                     LoadingIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
                 }
 
-                val alpha = if (isLoadingIndicatorVisible) 0f else 1f
+                val alpha = if (state == OudsButton.State.Loading) 0f else 1f
                 Row(
                     modifier = Modifier.alpha(alpha = alpha),
                     horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (displayedIcon != null) {
-                        val size = if (displayedText == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
+                    if (icon != null) {
+                        val size = if (text == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
                         val tint = contentColor(hierarchy = hierarchy, state = state)
-                        displayedIcon.Content(
+                        icon.Content(
                             modifier = Modifier
                                 .size(size.value * iconScale)
                                 .semantics {
-                                    contentDescription = if (displayedText == null) displayedIcon.contentDescription else ""
+                                    contentDescription = if (text == null) icon.contentDescription else ""
                                 },
                             extraParameters = OudsButton.Icon.ExtraParameters(tint = tint)
                         )
                     }
-                    if (displayedText != null) {
+                    if (text != null) {
                         Text(
                             modifier = modifier,
-                            text = displayedText,
+                            text = text,
                             style = OudsTheme.typography.label.strong.large,
                             textAlign = TextAlign.Center
                         )
@@ -303,19 +300,15 @@ private fun Modifier.border(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
     val borderColor = borderColor(hierarchy = hierarchy, state = state)
 
     return if (borderWidth != null && borderColor != null) {
-        if (hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current) {
-            dashedBorder(width = borderWidth, color = borderColor, shape = shape, intervals = listOf(10.dp, 5.dp))
-        } else {
-            border(width = borderWidth, color = borderColor, shape = shape)
-        }
+        border(width = borderWidth, color = borderColor, shape = shape)
     } else {
         this
     }
 }
 
 @Composable
-private fun Modifier.outerBorder(hierarchy: OudsButton.Hierarchy, state: OudsButton.State, shape: Shape): Modifier {
-    return if (state == OudsButton.State.Focused && (hierarchy != OudsButton.Hierarchy.Negative || !LocalColoredBox.current)) {
+private fun Modifier.outerBorder(state: OudsButton.State, shape: Shape): Modifier {
+    return if (state == OudsButton.State.Focused) {
         outerBorder(
             width = OudsTheme.borders.width.focus,
             color = OudsTheme.colorScheme.border.focus,
@@ -348,12 +341,8 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Loading -> borderWidthMinimalInteraction.value
                 OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
             }
-            OudsButton.Hierarchy.Strong -> if (state == OudsButton.State.Focused) OudsTheme.borders.width.focusInset else null
-            OudsButton.Hierarchy.Negative -> if (!LocalColoredBox.current) {
-                if (state == OudsButton.State.Focused) OudsTheme.borders.width.focusInset else null
-            } else {
-                1.dp
-            }
+            OudsButton.Hierarchy.Strong,
+            OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsTheme.borders.width.focusInset else null
         }
     }
 }
@@ -390,7 +379,7 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
             } else {
                 null
             }?.value
-            OudsButton.Hierarchy.Negative -> if (LocalColoredBox.current) OudsTheme.colorScheme.always.black else null
+            OudsButton.Hierarchy.Negative -> null
         }
     }
 }
@@ -433,17 +422,13 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorBgStrongLoadingMono.value else OudsTheme.colorScheme.action.loading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBgStrongDisabledMono.value else OudsTheme.colorScheme.action.disabled
             }
-            OudsButton.Hierarchy.Negative -> if (!LocalColoredBox.current) {
-                when (state) {
-                    OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-                    OudsButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
-                    OudsButton.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-                    OudsButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
-                    OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
-                    OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
-                }
-            } else {
-                Color(red = 0.0f, green = 0.0f, blue = 0.0f, alpha = 0.68f)
+            OudsButton.Hierarchy.Negative -> when (state) {
+                OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
+                OudsButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
+                OudsButton.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
+                OudsButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
+                OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
+                OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }
     }
@@ -477,17 +462,13 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Loading -> if (LocalColoredBox.current) colorContentStrongLoadingMono.value else OudsTheme.colorScheme.content.onAction.loading
                 OudsButton.State.Disabled -> if (LocalColoredBox.current) colorContentStrongDisabledMono.value else OudsTheme.colorScheme.content.onAction.disabled
             }
-            OudsButton.Hierarchy.Negative -> if (!LocalColoredBox.current) {
-                when (state) {
-                    OudsButton.State.Enabled,
-                    OudsButton.State.Hovered,
-                    OudsButton.State.Pressed,
-                    OudsButton.State.Loading,
-                    OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.negative
-                    OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
-                }
-            } else {
-                OudsTheme.colorScheme.always.white
+            OudsButton.Hierarchy.Negative -> when (state) {
+                OudsButton.State.Enabled,
+                OudsButton.State.Hovered,
+                OudsButton.State.Pressed,
+                OudsButton.State.Loading,
+                OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.negative
+                OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
             }
         }
     }
@@ -753,8 +734,10 @@ private val previewParameterValues: List<OudsButtonPreviewParameter>
                 OudsButtonPreviewParameter(hierarchy, hasText = false, hasIcon = true),
             )
             addAll(parameters)
-            //addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.Brand) })
-            addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.StatusEmphasized) })
-            //addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.StatusMuted) })
+            if (hierarchy != OudsButton.Hierarchy.Negative) {
+                //addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.Brand) })
+                addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.StatusEmphasized) })
+                //addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.StatusMuted) })
+            }
         }
     }
