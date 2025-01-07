@@ -15,9 +15,10 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import com.orange.ouds.core.component.button.OudsButton
+import com.orange.ouds.core.component.coloredbox.OudsColoredBox
 
 @Composable
-fun OudsButtonWithTextSample() {
+internal fun OudsButtonWithTextSample() {
     OudsButton(
         text = "Text",
         onClick = { /* Do something! */ }
@@ -25,7 +26,18 @@ fun OudsButtonWithTextSample() {
 }
 
 @Composable
-fun OudsButtonWithIconSample() {
+internal fun OudsButtonWithTextOnColoredBackgroundSample() {
+    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+        // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
+        OudsButton(
+            text = "Text",
+            onClick = { /* Do something! */ }
+        )
+    }
+}
+
+@Composable
+internal fun OudsButtonWithIconSample() {
     OudsButton(
         icon = OudsButton.Icon(
             painterResource(id = android.R.drawable.star_on),
@@ -36,7 +48,21 @@ fun OudsButtonWithIconSample() {
 }
 
 @Composable
-fun OudsButtonWithIconAndTextSample() {
+internal fun OudsButtonWithIconOnColoredBackgroundSample() {
+    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+        // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
+        OudsButton(
+            icon = OudsButton.Icon(
+                painterResource(id = android.R.drawable.star_on),
+                "Content description"
+            ),
+            onClick = { /* Do something! */ }
+        )
+    }
+}
+
+@Composable
+internal fun OudsButtonWithIconAndTextSample() {
     OudsButton(
         icon = OudsButton.Icon(
             painterResource(id = android.R.drawable.star_on),
@@ -45,4 +71,19 @@ fun OudsButtonWithIconAndTextSample() {
         text = "Text",
         onClick = { /* Do something! */ }
     )
+}
+
+@Composable
+internal fun OudsButtonWithIconAndTextOnColoredBackgroundSample() {
+    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+        // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
+        OudsButton(
+            icon = OudsButton.Icon(
+                painterResource(id = android.R.drawable.star_on),
+                "Content description"
+            ),
+            text = "Text",
+            onClick = { /* Do something! */ }
+        )
+    }
 }

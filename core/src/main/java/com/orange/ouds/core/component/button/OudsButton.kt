@@ -93,6 +93,8 @@ import kotlinx.parcelize.Parcelize
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
@@ -130,7 +132,10 @@ fun OudsButton(
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
@@ -171,6 +176,8 @@ fun OudsButton(
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
