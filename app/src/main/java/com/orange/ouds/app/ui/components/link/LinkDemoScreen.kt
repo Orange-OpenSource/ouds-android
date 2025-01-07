@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.components.link
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -55,8 +56,8 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
             )
             CustomizationSwitchListItem(
                 label = stringResource(R.string.app_components_common_onColoredBackground_label),
-                checked = onColoredBackground,
-                onCheckedChange = { onColoredBackground = it },
+                checked = onColoredBox,
+                onCheckedChange = { onColoredBox = it },
             )
             val sizes = remember { listOf(OudsLink.Size.Small, OudsLink.Size.Medium) }
             CustomizationChoiceChipsColumn(
@@ -80,84 +81,85 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
                 descriptionRes = Component.Link.descriptionRes
             )
-            val demoBoxModifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value).fillMaxWidth()
-            if (!onColoredBackground) {
-                LinkDemoBox(state = this@DemoScreen, modifier = demoBoxModifier)
+            LinkDemo(state = this@DemoScreen)
+            if (!onColoredBox) {
                 OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                    LinkDemoBox(state = this@DemoScreen, modifier = demoBoxModifier)
+                    LinkDemo(state = this@DemoScreen)
                 }
-            } else {
-                LinkDemoColoredBox(state = this@DemoScreen, modifier = demoBoxModifier)
             }
         }
-    }
-}
-
-@Composable
-private fun LinkDemoBox(state: LinkDemoState, modifier: Modifier = Modifier) {
-    Box(
-        modifier = Modifier
-            .background(OudsTheme.colorScheme.backgroundColors.primary)
-            .then(modifier),
-        contentAlignment = Alignment.Center
-    ) {
-        LinkDemo(state = state)
-    }
-}
-
-@Composable
-private fun LinkDemoColoredBox(state: LinkDemoState, modifier: Modifier = Modifier) {
-    OudsColoredBox(
-        color = OudsColorKeyToken.Surface.Brand.Primary,
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        LinkDemo(state = state)
     }
 }
 
 @Composable
 private fun LinkDemo(state: LinkDemoState) {
-    val text = stringResource(id = R.string.app_components_link_label)
-    with(state) {
-        when (layout) {
-            LinkDemoState.Layout.TextOnly -> {
-                OudsLink(
-                    text = text,
-                    icon = null,
-                    onClick = {},
-                    enabled = enabled,
-                    size = size
-                )
-            }
-            LinkDemoState.Layout.IconAndText -> {
-                OudsLink(
-                    text = text,
-                    icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
-                    onClick = {},
-                    enabled = enabled,
-                    size = size
-                )
-            }
-            LinkDemoState.Layout.ArrowBack -> {
-                OudsLink(
-                    text = text,
-                    arrow = OudsLink.Arrow.Back,
-                    onClick = {},
-                    enabled = enabled,
-                    size = size
-                )
-            }
-            LinkDemoState.Layout.ArrowNext -> {
-                OudsLink(
-                    text = text,
-                    arrow = OudsLink.Arrow.Next,
-                    onClick = {},
-                    enabled = enabled,
-                    size = size
-                )
+    LinkDemoBox(
+        colored = state.onColoredBox,
+        modifier = Modifier
+            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+            .fillMaxWidth()
+    ) {
+        val text = stringResource(id = R.string.app_components_link_label)
+        with(state) {
+            when (layout) {
+                LinkDemoState.Layout.TextOnly -> {
+                    OudsLink(
+                        text = text,
+                        icon = null,
+                        onClick = {},
+                        enabled = enabled,
+                        size = size
+                    )
+                }
+                LinkDemoState.Layout.IconAndText -> {
+                    OudsLink(
+                        text = text,
+                        icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
+                        onClick = {},
+                        enabled = enabled,
+                        size = size
+                    )
+                }
+                LinkDemoState.Layout.ArrowBack -> {
+                    OudsLink(
+                        text = text,
+                        arrow = OudsLink.Arrow.Back,
+                        onClick = {},
+                        enabled = enabled,
+                        size = size
+                    )
+                }
+                LinkDemoState.Layout.ArrowNext -> {
+                    OudsLink(
+                        text = text,
+                        arrow = OudsLink.Arrow.Next,
+                        onClick = {},
+                        enabled = enabled,
+                        size = size
+                    )
+                }
             }
         }
+    }
+}
+
+@Composable
+private fun LinkDemoBox(colored: Boolean, modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
+    if (colored) {
+        OudsColoredBox(
+            color = OudsColorKeyToken.Surface.Brand.Primary,
+            modifier = modifier,
+            contentAlignment = Alignment.Center,
+            content = content
+        )
+    } else {
+        Box(
+            modifier = Modifier
+                .background(OudsTheme.colorScheme.backgroundColors.primary)
+                .then(other = modifier),
+            contentAlignment = Alignment.Center,
+            content = content
+        )
     }
 }
 
