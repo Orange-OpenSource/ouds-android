@@ -58,11 +58,6 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 onCheckedChange = { onColoredBox = it },
                 enabled = onColoredBoxSwitchEnabled
             )
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_common_onColoredBackground_label),
-                checked = onColoredBox,
-                onCheckedChange = { onColoredBox = it }
-            )
             CustomizationChoiceChipsColumn(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_button_hierarchy_label),
