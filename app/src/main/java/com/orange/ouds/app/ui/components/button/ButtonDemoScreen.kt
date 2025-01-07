@@ -50,12 +50,13 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 label = stringResource(R.string.app_common_enabled_label),
                 checked = enabled,
                 onCheckedChange = { enabled = it },
-                enabled = style == OudsButton.Style.Default
+                enabled = enabledSwitchEnabled
             )
             CustomizationSwitchListItem(
                 label = stringResource(R.string.app_common_onColoredBackground_label),
                 checked = onColoredBox,
-                onCheckedChange = { onColoredBox = it }
+                onCheckedChange = { onColoredBox = it },
+                enabled = onColoredBoxSwitchEnabled
             )
             CustomizationChoiceChipsColumn(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
