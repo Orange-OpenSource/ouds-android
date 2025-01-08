@@ -32,13 +32,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
-import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsElevationKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 /**
  * Temporary large card used by the demo app
@@ -50,8 +46,8 @@ fun LargeCard(
     onClick: () -> Unit,
     imageTint: Color? = null
 ) {
-    Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsElevationKeyToken.Raised.value), onClick = onClick) {
-        Column(modifier = Modifier.background(OudsColorKeyToken.Background.Primary.value)) {
+    Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsTheme.elevations.raised), onClick = onClick) {
+        Column(modifier = Modifier.background(OudsTheme.colorScheme.backgroundColors.primary)) {
             Image(
                 painter = painterResource(imageRes),
                 colorFilter = imageTint?.let { ColorFilter.tint(imageTint) },
@@ -59,22 +55,22 @@ fun LargeCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(184.dp)
-                    .background(OudsColorKeyToken.Overlay.Default.value)
-                    .background(OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
+                    .background(OudsTheme.colorScheme.overlayColors.default)
+                    .background(OudsTheme.colorScheme.surfaceColors.statusNeutralMuted),
                 contentScale = ContentScale.None
             )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(OudsColorKeyToken.Overlay.Default.value)
-                    .padding(OudsSpaceKeyToken.Fixed.Medium.value)
+                    .background(OudsTheme.colorScheme.overlayColors.default)
+                    .padding(OudsTheme.spaces.fixed.medium)
             ) {
                 Text(
                     text = title,
-                    color = OudsColorKeyToken.Content.Default.value,
+                    color = OudsTheme.colorScheme.contentColors.default,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
-                    style = OudsTypographyKeyToken.Heading.Medium.value
+                    style = OudsTheme.typography.headingMedium
                 )
             }
 
@@ -89,6 +85,6 @@ private fun PreviewLargeCard() = OudsPreview {
         title = "Title",
         imageRes = R.drawable.ic_filter_effects,
         onClick = {},
-        imageTint = OudsColorKeyToken.Content.Default.value
+        imageTint = OudsTheme.colorScheme.contentColors.default
     )
 }

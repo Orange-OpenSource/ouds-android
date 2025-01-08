@@ -16,9 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.theme.OudsAdaptiveTokenValue
-import com.orange.ouds.theme.OudsAdaptiveWindowType
-import com.orange.ouds.theme.currentWindowWidth
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
@@ -51,16 +49,16 @@ data class OudsSpaces(
     )
 
     data class Scaled(
-        val none: OudsAdaptiveTokenValue<Dp>,
-        val smash: OudsAdaptiveTokenValue<Dp>,
-        val shortest: OudsAdaptiveTokenValue<Dp>,
-        val shorter: OudsAdaptiveTokenValue<Dp>,
-        val short: OudsAdaptiveTokenValue<Dp>,
-        val medium: OudsAdaptiveTokenValue<Dp>,
-        val tall: OudsAdaptiveTokenValue<Dp>,
-        val taller: OudsAdaptiveTokenValue<Dp>,
-        val tallest: OudsAdaptiveTokenValue<Dp>,
-        val spacious: OudsAdaptiveTokenValue<Dp>
+        val none: Dp,
+        val smash: Dp,
+        val shortest: Dp,
+        val shorter: Dp,
+        val short: Dp,
+        val medium: Dp,
+        val tall: Dp,
+        val taller: Dp,
+        val tallest: Dp,
+        val spacious: Dp
     )
 
     data class PaddingInline(
@@ -127,132 +125,94 @@ data class OudsSpaces(
     )
 }
 
-internal fun OudsSpaceSemanticTokens.getSpaces() = OudsSpaces(
-    fixed = OudsSpaces.Fixed(
-        none = fixedNone.dp,
-        smash = fixedSmash.dp,
-        shortest = fixedShortest.dp,
-        shorter = fixedShorter.dp,
-        short = fixedShort.dp,
-        medium = fixedMedium.dp,
-        tall = fixedTall.dp,
-        taller = fixedTaller.dp,
-        tallest = fixedTallest.dp,
-        spacious = fixedSpacious.dp,
-        huge = fixedHuge.dp,
-        jumbo = fixedJumbo.dp,
-    ),
-    scaled = OudsSpaces.Scaled(
-        none = OudsAdaptiveTokenValue(
-            scaledNoneMobile.dp,
-            scaledNoneMobile.dp,
-            scaledNoneTablet.dp
+internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
+    OudsSpaces(
+        fixed = OudsSpaces.Fixed(
+            none = fixedNone.dp,
+            smash = fixedSmash.dp,
+            shortest = fixedShortest.dp,
+            shorter = fixedShorter.dp,
+            short = fixedShort.dp,
+            medium = fixedMedium.dp,
+            tall = fixedTall.dp,
+            taller = fixedTaller.dp,
+            tallest = fixedTallest.dp,
+            spacious = fixedSpacious.dp,
+            huge = fixedHuge.dp,
+            jumbo = fixedJumbo.dp,
         ),
-        smash = OudsAdaptiveTokenValue(
-            scaledSmashMobile.dp,
-            scaledSmashMobile.dp,
-            scaledSmashTablet.dp
+        scaled = OudsSpaces.Scaled(
+            none = getTokenValue(scaledNoneMobile, scaledNoneTablet).dp,
+            smash = getTokenValue(scaledSmashMobile, scaledSmashTablet).dp,
+            shortest = getTokenValue(scaledShortestMobile, scaledShortestTablet).dp,
+            shorter = getTokenValue(scaledShorterMobile, scaledShorterTablet).dp,
+            short = getTokenValue(scaledShortMobile, scaledShortTablet).dp,
+            medium = getTokenValue(scaledMediumMobile, scaledMediumTablet).dp,
+            tall = getTokenValue(scaledTallMobile, scaledTallTablet).dp,
+            taller = getTokenValue(scaledTallerMobile, scaledTallerTablet).dp,
+            tallest = getTokenValue(scaledTallestMobile, scaledTallestTablet).dp,
+            spacious = getTokenValue(scaledSpaciousMobile, scaledSpaciousTablet).dp,
         ),
-        shortest = OudsAdaptiveTokenValue(
-            scaledShortestMobile.dp,
-            scaledShortestMobile.dp,
-            scaledShortestTablet.dp
+        paddingInline = OudsSpaces.PaddingInline(
+            none = paddingInlineNone.dp,
+            smash = paddingInlineSmash.dp,
+            shortest = paddingInlineShortest.dp,
+            shorter = paddingInlineShorter.dp,
+            short = paddingInlineShort.dp,
+            medium = paddingInlineMedium.dp,
+            tall = paddingInlineTall.dp,
+            taller = paddingInlineTaller.dp,
+            tallest = paddingInlineTallest.dp,
+            huge = paddingInlineHuge.dp,
+            spacious = paddingInlineSpacious.dp,
         ),
-        shorter = OudsAdaptiveTokenValue(
-            scaledShorterMobile.dp,
-            scaledShorterMobile.dp,
-            scaledShorterTablet.dp
+        paddingBlock = OudsSpaces.PaddingBlock(
+            none = paddingBlockNone.dp,
+            smash = paddingBlockSmash.dp,
+            shortest = paddingBlockShortest.dp,
+            shorter = paddingBlockShorter.dp,
+            short = paddingBlockShort.dp,
+            medium = paddingBlockMedium.dp,
+            tall = paddingBlockTall.dp,
+            taller = paddingBlockTaller.dp,
+            tallest = paddingBlockTallest.dp,
+            spacious = paddingBlockSpacious.dp,
+            huge = paddingBlockHuge.dp,
         ),
-        short = OudsAdaptiveTokenValue(
-            scaledShortMobile.dp,
-            scaledShortMobile.dp,
-            scaledShortTablet.dp
+        inset = OudsSpaces.Inset(
+            none = insetNone.dp,
+            smash = insetSmash.dp,
+            shortest = insetShortest.dp,
+            shorter = insetShorter.dp,
+            short = insetShort.dp,
+            medium = insetMedium.dp,
+            tall = insetTall.dp,
+            taller = insetTaller.dp,
+            tallest = insetTallest.dp,
+            spacious = insetSpacious.dp,
         ),
-        medium = OudsAdaptiveTokenValue(
-            scaledMediumMobile.dp,
-            scaledMediumMobile.dp,
-            scaledMediumTablet.dp
+        columnGap = OudsSpaces.ColumnGap(
+            none = columnGapNone.dp,
+            smash = columnGapSmash.dp,
+            shortest = columnGapShortest.dp,
+            shorter = columnGapShorter.dp,
+            short = columnGapShort.dp,
+            medium = columnGapMedium.dp,
+            tall = columnGapTall.dp,
+            taller = columnGapTaller.dp,
+            tallest = columnGapTallest.dp,
         ),
-        tall = OudsAdaptiveTokenValue(
-            scaledTallMobile.dp,
-            scaledTallMobile.dp,
-            scaledTallTablet.dp
-        ),
-        taller = OudsAdaptiveTokenValue(
-            scaledTallerMobile.dp,
-            scaledTallerMobile.dp,
-            scaledTallerTablet.dp
-        ),
-        tallest = OudsAdaptiveTokenValue(
-            scaledTallestMobile.dp,
-            scaledTallestMobile.dp,
-            scaledTallestTablet.dp
-        ),
-        spacious = OudsAdaptiveTokenValue(
-            scaledSpaciousMobile.dp,
-            scaledSpaciousMobile.dp,
-            scaledSpaciousTablet.dp
-        ),
-    ),
-    paddingInline = OudsSpaces.PaddingInline(
-        none = paddingInlineNone.dp,
-        smash = paddingInlineSmash.dp,
-        shortest = paddingInlineShortest.dp,
-        shorter = paddingInlineShorter.dp,
-        short = paddingInlineShort.dp,
-        medium = paddingInlineMedium.dp,
-        tall = paddingInlineTall.dp,
-        taller = paddingInlineTaller.dp,
-        tallest = paddingInlineTallest.dp,
-        huge = paddingInlineHuge.dp,
-        spacious = paddingInlineSpacious.dp,
-    ),
-    paddingBlock = OudsSpaces.PaddingBlock(
-        none = paddingBlockNone.dp,
-        smash = paddingBlockSmash.dp,
-        shortest = paddingBlockShortest.dp,
-        shorter = paddingBlockShorter.dp,
-        short = paddingBlockShort.dp,
-        medium = paddingBlockMedium.dp,
-        tall = paddingBlockTall.dp,
-        taller = paddingBlockTaller.dp,
-        tallest = paddingBlockTallest.dp,
-        spacious = paddingBlockSpacious.dp,
-        huge = paddingBlockHuge.dp,
-    ),
-    inset = OudsSpaces.Inset(
-        none = insetNone.dp,
-        smash = insetSmash.dp,
-        shortest = insetShortest.dp,
-        shorter = insetShorter.dp,
-        short = insetShort.dp,
-        medium = insetMedium.dp,
-        tall = insetTall.dp,
-        taller = insetTaller.dp,
-        tallest = insetTallest.dp,
-        spacious = insetSpacious.dp,
-    ),
-    columnGap = OudsSpaces.ColumnGap(
-        none = columnGapNone.dp,
-        smash = columnGapSmash.dp,
-        shortest = columnGapShortest.dp,
-        shorter = columnGapShorter.dp,
-        short = columnGapShort.dp,
-        medium = columnGapMedium.dp,
-        tall = columnGapTall.dp,
-        taller = columnGapTaller.dp,
-        tallest = columnGapTallest.dp,
-    ),
-    rowGap = OudsSpaces.RowGap(
-        none = rowGapNone.dp,
-        smash = rowGapSmash.dp,
-        shortest = rowGapShortest.dp,
-        shorter = rowGapShorter.dp,
-        short = rowGapShort.dp,
-        medium = rowGapMedium.dp,
-        tall = rowGapTall.dp,
+        rowGap = OudsSpaces.RowGap(
+            none = rowGapNone.dp,
+            smash = rowGapSmash.dp,
+            shortest = rowGapShortest.dp,
+            shorter = rowGapShorter.dp,
+            short = rowGapShort.dp,
+            medium = rowGapMedium.dp,
+            tall = rowGapTall.dp,
+        )
     )
-)
+}
 
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Fixed): Dp {
@@ -273,7 +233,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Fixed): Dp {
 }
 
 @Stable
-private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled): Dp {
     return when (token) {
         OudsSpaceKeyToken.Scaled.None -> scaled.none
         OudsSpaceKeyToken.Scaled.Smash -> scaled.smash
@@ -285,7 +245,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled, adaptiveWindow
         OudsSpaceKeyToken.Scaled.Taller -> scaled.taller
         OudsSpaceKeyToken.Scaled.Tallest -> scaled.tallest
         OudsSpaceKeyToken.Scaled.Spacious -> scaled.spacious
-    }.getValue(adaptiveWindowType)
+    }
 }
 
 @Stable
@@ -369,6 +329,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
 /**
  * Converts an OUDS space token to the local space value provided by the theme.
  */
+@InternalOudsApi
 val OudsSpaceKeyToken.value: Dp
     @Composable
     get() = when (this) {
@@ -378,5 +339,5 @@ val OudsSpaceKeyToken.value: Dp
         is OudsSpaceKeyToken.PaddingBlock -> OudsTheme.spaces.fromToken(this)
         is OudsSpaceKeyToken.PaddingInline -> OudsTheme.spaces.fromToken(this)
         is OudsSpaceKeyToken.RowGap -> OudsTheme.spaces.fromToken(this)
-        is OudsSpaceKeyToken.Scaled -> OudsTheme.spaces.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+        is OudsSpaceKeyToken.Scaled -> OudsTheme.spaces.fromToken(this)
     }

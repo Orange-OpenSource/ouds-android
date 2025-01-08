@@ -32,9 +32,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.orange.ouds.core.theme.value
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
+import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
 fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit, enabled: Boolean = true) {
@@ -42,7 +40,7 @@ fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange
         modifier = Modifier
             .fillMaxWidth()
             .clickable(enabled = enabled) { onCheckedChange(!checked) },
-        headlineContent = { Text(text = label, style = OudsTypographyKeyToken.Heading.Medium.value) },
+        headlineContent = { Text(text = label, style = OudsTheme.typography.headingMedium) },
         trailingContent = { Switch(checked = checked, onCheckedChange = null, enabled = enabled) }
     )
 }
@@ -56,14 +54,14 @@ fun CustomizationChoiceChipsColumn(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value), text = label, style = OudsTypographyKeyToken.Heading.Medium.value)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = OudsTheme.typography.headingMedium)
         Row(
             Modifier
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
-                .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value, vertical = OudsSpaceKeyToken.Fixed.Shorter.value),
-            horizontalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Shorter.value)
+                .padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)
         ) {
             chipsLabels.forEachIndexed { id, label ->
                 val isSelected = selectedChipIndex == id

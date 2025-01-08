@@ -17,17 +17,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 @Composable
 fun Screen(content: @Composable () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(OudsColorKeyToken.Background.Primary.value)
+            .background(OudsTheme.colorScheme.backgroundColors.primary)
     ) {
         content()
     }

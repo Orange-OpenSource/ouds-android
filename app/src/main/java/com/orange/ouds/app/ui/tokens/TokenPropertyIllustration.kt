@@ -37,19 +37,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
-import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.dashedBorder
 import com.orange.ouds.theme.dottedBorder
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 private val defaultIllustrationSize = 64.dp
 
 @Composable
 fun IllustrationBox(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = OudsColorKeyToken.Surface.Status.Neutral.Muted.value,
+    backgroundColor: Color = OudsTheme.colorScheme.surfaceColors.statusNeutralMuted,
     contentAlignment: Alignment = Alignment.TopStart,
     content: @Composable BoxScope.() -> Unit = { }
 ) {
@@ -67,9 +65,9 @@ fun BorderIllustrationBox(
     width: Dp = 1.dp,
     shape: Shape = RectangleShape,
     style: OudsBorderStyle = OudsBorderStyle.Solid,
-    backgroundColor: Color = OudsColorKeyToken.Background.Secondary.value
+    backgroundColor: Color = OudsTheme.colorScheme.backgroundColors.secondary
 ) {
-    val borderColor = OudsColorKeyToken.Border.Emphasized.value
+    val borderColor = OudsTheme.colorScheme.borderColors.emphasized
     val modifier = when (style) {
         OudsBorderStyle.None -> Modifier
         OudsBorderStyle.Solid -> Modifier.border(width = width, color = borderColor, shape = shape)
@@ -82,7 +80,7 @@ fun BorderIllustrationBox(
 @Composable
 fun ElevationIllustrationSurface(elevation: Dp) {
     Surface(shadowElevation = elevation) {
-        IllustrationBox(backgroundColor = OudsColorKeyToken.Background.Secondary.value)
+        IllustrationBox(backgroundColor = OudsTheme.colorScheme.backgroundColors.secondary)
     }
 }
 
@@ -93,7 +91,7 @@ fun OpacityIllustrationBox(opacity: Float) {
         Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = null)
         Box(
             modifier = Modifier
-                .padding(top = OudsSpaceKeyToken.Fixed.Medium.value, start = OudsSpaceKeyToken.Fixed.Medium.value)
+                .padding(top = OudsTheme.spaces.fixed.medium, start = OudsTheme.spaces.fixed.medium)
                 .size(48.dp)
                 .background(color = squareColor.copy(alpha = opacity))
                 .border(width = 1.dp, color = squareColor)
@@ -107,7 +105,7 @@ fun SizeIconIllustrationBox(size: Dp) {
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.ic_design_token_figma),
-            tint = OudsColorKeyToken.Content.Status.Info.value,
+            tint = OudsTheme.colorScheme.contentColors.statusInfo,
             contentDescription = null
         )
     }
@@ -120,13 +118,13 @@ fun SpacePaddingInsetIllustrationBox(size: Dp) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(height = size)
-                .background(OudsColorKeyToken.Content.Status.Info.value)
+                .background(OudsTheme.colorScheme.contentColors.statusInfo)
         )
         Box(
             modifier = Modifier
                 .fillMaxHeight()
                 .width(width = size)
-                .background(OudsColorKeyToken.Content.Status.Info.value)
+                .background(OudsTheme.colorScheme.contentColors.statusInfo)
         )
     }
 }
@@ -148,7 +146,7 @@ fun SpaceIllustrationBox(
     }
     IllustrationBox(contentAlignment = contentAlignment) {
         Box(
-            modifier = dimensionBoxModifier.background(color = OudsColorKeyToken.Content.Status.Info.value)
+            modifier = dimensionBoxModifier.background(color = OudsTheme.colorScheme.contentColors.statusInfo)
         )
     }
 }

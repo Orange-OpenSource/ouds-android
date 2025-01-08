@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.android.OudsAndroidColorDarkTokens
 import com.orange.ouds.theme.tokens.android.OudsAndroidColorLightTokens
@@ -949,6 +950,7 @@ internal val materialDarkColorScheme: ColorScheme
 /**
  * Converts an OUDS color token to the local color value provided by the theme.
  */
+@InternalOudsApi
 val OudsColorKeyToken.value: Color
     @ReadOnlyComposable
     @Composable

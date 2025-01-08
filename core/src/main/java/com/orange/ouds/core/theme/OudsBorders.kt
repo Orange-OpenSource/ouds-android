@@ -17,6 +17,7 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsBorderStyle
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
@@ -99,6 +100,7 @@ private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Style): OudsBorderSt
 /**
  * Converts an OUDS border radius token to the local border radius value provided by the theme.
  */
+@InternalOudsApi
 val OudsBorderKeyToken.Radius.value: Dp
     @ReadOnlyComposable
     @Composable
@@ -107,6 +109,7 @@ val OudsBorderKeyToken.Radius.value: Dp
 /**
  * Converts an OUDS border style token to the local [OudsBorderStyle] value provided by the theme.
  */
+@InternalOudsApi
 val OudsBorderKeyToken.Style.value: OudsBorderStyle
     @ReadOnlyComposable
     @Composable
@@ -115,6 +118,7 @@ val OudsBorderKeyToken.Style.value: OudsBorderStyle
 /**
  * Converts an OUDS border width token to the local border width value provided by the theme.
  */
+@InternalOudsApi
 val OudsBorderKeyToken.Width.value: Dp
     @ReadOnlyComposable
     @Composable

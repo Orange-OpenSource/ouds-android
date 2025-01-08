@@ -49,7 +49,6 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.app.ui.utilities.isDarkModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -57,8 +56,6 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orangecountry.OrangeCountryTheme
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.whitelabel.WhiteLabelTheme
 
 @Composable
@@ -155,14 +152,14 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
     Dialog(onDismissRequest = dismissDialog) {
         Column(
             modifier = Modifier
-                .background(OudsColorKeyToken.Background.Secondary.value)
+                .background(OudsTheme.colorScheme.backgroundColors.secondary)
                 .selectableGroup()
         ) {
             Text(
                 text = stringResource(R.string.app_themeDialog_label),
                 modifier = Modifier
-                    .padding(top = OudsSpaceKeyToken.Fixed.Medium.value, bottom = OudsSpaceKeyToken.Fixed.Short.value)
-                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value),
+                    .padding(top = OudsTheme.spaces.fixed.medium, bottom = OudsTheme.spaces.fixed.short)
+                    .padding(horizontal = OudsTheme.spaces.fixed.medium),
                 style = MaterialTheme.typography.titleLarge
             )
             themeManager.availableThemes.forEach { theme ->
@@ -182,7 +179,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
                             },
                             role = Role.RadioButton
                         )
-                        .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value),
+                        .padding(horizontal = OudsTheme.spaces.fixed.medium),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     RadioButton(
@@ -192,7 +189,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
                     Text(
                         text = theme.name,
                         style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.padding(start = OudsSpaceKeyToken.Fixed.Medium.value)
+                        modifier = Modifier.padding(start = OudsTheme.spaces.fixed.medium)
                     )
                 }
             }

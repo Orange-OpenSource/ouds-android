@@ -9,7 +9,7 @@
  *
  * Software description: Android library of reusable graphical components
  */
- 
+
 package com.orange.ouds.app.ui.components.button
 
 import androidx.compose.foundation.background
@@ -35,10 +35,8 @@ import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,7 +52,7 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 enabled = style == OudsButton.Style.Default
             )
             CustomizationChoiceChipsColumn(
-                modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_button_hierarchy_label),
                 chipsLabels = OudsButton.Hierarchy.entries.map { it.name },
                 selectedChipIndex = OudsButton.Hierarchy.entries.indexOf(hierarchy),
@@ -68,14 +66,14 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 )
             }
             CustomizationChoiceChipsColumn(
-                modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_button_style_label),
                 chipsLabels = styles.map { it::class.simpleName.orEmpty() },
                 selectedChipIndex = styles.indexOf(style),
                 onSelectionChange = { id -> style = styles[id] }
             )
             CustomizationChoiceChipsColumn(
-                modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_button_layout_label),
                 chipsLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
                 selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
@@ -85,7 +83,7 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
+                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
                 descriptionRes = Component.Button.descriptionRes
             )
             ButtonDemo(state = this@DemoScreen)
@@ -101,7 +99,7 @@ private fun ButtonDemo(state: ButtonDemoState) {
     Box(
         modifier = Modifier
             .background(OudsTheme.colorScheme.backgroundColors.primary)
-            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+            .padding(all = OudsTheme.spaces.fixed.medium)
             .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {

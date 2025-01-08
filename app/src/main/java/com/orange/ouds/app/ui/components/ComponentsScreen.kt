@@ -23,10 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
-import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 @Composable
 fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
@@ -43,8 +42,8 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(OudsSpaceKeyToken.Fixed.Medium.value),
-            verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
+                .padding(OudsTheme.spaces.fixed.medium),
+            verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
         ) {
             components.forEach { component ->
                 LargeCard(

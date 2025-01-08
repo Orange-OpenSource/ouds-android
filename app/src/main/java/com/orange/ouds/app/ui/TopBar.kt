@@ -31,11 +31,9 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.isDarkModeEnabled
-import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 
 @Composable
@@ -70,7 +68,7 @@ private fun TopBar(
                     Image(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(id = R.string.app_common_back_a11y),
-                        colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.Default.value)
+                        colorFilter = ColorFilter.tint(OudsTheme.colorScheme.contentColors.default)
                     )
                 }
             }
@@ -78,9 +76,9 @@ private fun TopBar(
         title = {
             Text(
                 text = title,
-                color = OudsColorKeyToken.Content.Default.value,
+                color = OudsTheme.colorScheme.contentColors.default,
                 modifier = Modifier.semantics { traversalIndex = -1f },
-                style = OudsTypographyKeyToken.Heading.Medium.value
+                style = OudsTheme.typography.headingMedium
             )
         },
         actions = {

@@ -16,6 +16,7 @@ import androidx.annotation.StringRes
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.getSealedSubclasses
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
@@ -199,6 +200,7 @@ inline fun <reified T> getTokens(
     return getTokens(T::class, recursive, tokenName)
 }
 
+@OptIn(InternalOudsApi::class)
 fun <T> getTokens(
     clazz: KClass<T>,
     recursive: Boolean = true,

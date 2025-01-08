@@ -47,10 +47,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
-import com.orange.ouds.core.theme.value
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
+import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -94,7 +91,7 @@ fun CustomizationBottomSheetScaffold(
                     }
                     .fillMaxWidth()
                     .height(BottomSheetDefaults.SheetPeekHeight)
-                    .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value),
+                    .padding(horizontal = OudsTheme.spaces.fixed.medium),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 val degrees = if (bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) 0f else -180f
@@ -103,12 +100,12 @@ fun CustomizationBottomSheetScaffold(
                     modifier = Modifier.rotate(angle),
                     painter = painterResource(id = R.drawable.ic_chevron_down),
                     contentDescription = null,
-                    tint = OudsColorKeyToken.Content.Default.value
+                    tint = OudsTheme.colorScheme.contentColors.default
                 )
                 Text(
-                    modifier = Modifier.padding(start = OudsSpaceKeyToken.Fixed.Medium.value),
+                    modifier = Modifier.padding(start = OudsTheme.spaces.fixed.medium),
                     text = stringResource(id = titleResId),
-                    style = OudsTypographyKeyToken.Heading.Medium.value
+                    style = OudsTheme.typography.headingMedium
                 )
             }
 
@@ -121,7 +118,7 @@ fun CustomizationBottomSheetScaffold(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(OudsColorKeyToken.Background.Primary.value),
+                .background(OudsTheme.colorScheme.backgroundColors.primary),
             content = content
         )
     }
