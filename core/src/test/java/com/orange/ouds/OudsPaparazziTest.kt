@@ -10,11 +10,13 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component
+package com.orange.ouds
 
-import com.orange.ouds.OudsPaparazziTest
-import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
+import app.cash.paparazzi.Paparazzi
+import com.android.ide.common.rendering.api.SessionParams
+import org.junit.Rule
 
-@RunWith(Parameterized::class)
-internal abstract class OudsComponentTest : OudsPaparazziTest()
+internal abstract class OudsPaparazziTest {
+    @get:Rule
+    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.01)
+}

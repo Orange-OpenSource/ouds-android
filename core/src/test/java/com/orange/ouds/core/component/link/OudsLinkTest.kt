@@ -12,35 +12,50 @@
 
 package com.orange.ouds.core.component.link
 
+import com.orange.ouds.OudsPaparazziTest
 import com.orange.ouds.core.component.OudsComponentTest
 import org.junit.Test
+import org.junit.experimental.runners.Enclosed
+import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-internal class OudsLinkTest(private val parameter: OudsLinkPreviewParameter) : OudsComponentTest() {
+@RunWith(Enclosed::class)
+internal class OudsLinkTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsLinkPreviewParameterProvider().values.toList()
-    }
+    class ParameterizedOudsLinkTest(private val parameter: OudsLinkPreviewParameter) : OudsComponentTest() {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsLinkPreviewParameterProvider().values.toList()
+        }
 
-    @Test
-    fun takeOudsLinkLightThemeSnapshot() {
-        paparazzi.snapshot {
-            PreviewOudsLink(
-                darkThemeEnabled = false,
-                parameter = parameter
-            )
+        @Test
+        fun takeOudsLinkLightThemeSnapshot() {
+            paparazzi.snapshot {
+                PreviewOudsLink(
+                    darkThemeEnabled = false,
+                    parameter = parameter
+                )
+            }
+        }
+
+        @Test
+        fun takeOudsLinkDarkThemeSnapshot() {
+            paparazzi.snapshot {
+                PreviewOudsLink(
+                    darkThemeEnabled = true,
+                    parameter = parameter
+                )
+            }
         }
     }
 
-    @Test
-    fun takeOudsLinkDarkThemeSnapshot() {
-        paparazzi.snapshot {
-            PreviewOudsLink(
-                darkThemeEnabled = true,
-                parameter = parameter
-            )
+    class NonParameterizedOudsLinkTest: OudsPaparazziTest() {
+        @Test
+        fun takeOudsLinkOnTwoLinesSnapshot() {
+            paparazzi.snapshot {
+                PreviewOudsLinkOnTwoLines()
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -43,6 +44,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -235,7 +237,9 @@ private fun OudsLink(
                     OudsLink.Icon(painterResource(R.drawable.ic_form_chevron_left)).Content(
                         modifier = Modifier
                             .size(iconSize)
-                            .rotate(180f),
+                            .rotate(180f)
+                            .fillMaxHeight()
+                            .align(Alignment.Bottom),
                         extraParameters = ExtraParameters(tint = iconTint)
                     )
                 }
@@ -414,6 +418,24 @@ object OudsLink {
 private fun PreviewOudsLink(@PreviewParameter(OudsLinkPreviewParameterProvider::class) parameter: OudsLinkPreviewParameter) {
     PreviewOudsLink(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
+
+@Preview
+@Composable
+internal fun PreviewOudsLinkOnTwoLines() {
+    OudsPreview {
+        val text = "Link\non two lines"
+        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            listOf(OudsLink.Arrow.Back, OudsLink.Arrow.Next).forEach { arrow ->
+                OudsLink(
+                    text = text,
+                    arrow = arrow,
+                    onClick = {},
+                )
+            }
+        }
+    }
+}
+
 
 @Composable
 internal fun PreviewOudsLink(
