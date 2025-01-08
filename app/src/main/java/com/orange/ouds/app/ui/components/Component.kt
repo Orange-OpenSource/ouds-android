@@ -12,19 +12,19 @@
 
 package com.orange.ouds.app.ui.components
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
+import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
 @Immutable
 sealed class Component(
     @StringRes val nameRes: Int,
-    @DrawableRes val imageRes: Int,
+    val imageRes: LightDarkResourceId,
     @StringRes val descriptionRes: Int,
     val demoScreen: @Composable () -> Unit
 ) {
@@ -37,7 +37,7 @@ sealed class Component(
 
     data object Button : Component(
         R.string.app_components_button_label,
-        R.drawable.il_components_button,
+        LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
         R.string.app_components_button_description_text,
         { ButtonDemoScreen() }
     )

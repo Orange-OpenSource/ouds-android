@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.utilities.composable
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -27,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -42,14 +42,14 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 @Composable
 fun LargeCard(
     title: String,
-    @DrawableRes imageRes: Int,
+    painter: Painter,
     onClick: () -> Unit,
     imageTint: Color? = null
 ) {
     Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsTheme.elevations.raised), onClick = onClick) {
         Column(modifier = Modifier.background(OudsTheme.colorScheme.background.primary)) {
             Image(
-                painter = painterResource(imageRes),
+                painter = painter,
                 colorFilter = imageTint?.let { ColorFilter.tint(imageTint) },
                 contentDescription = null,
                 modifier = Modifier
@@ -82,7 +82,7 @@ fun LargeCard(
 private fun PreviewLargeCard() = OudsPreview {
     LargeCard(
         title = "Title",
-        imageRes = R.drawable.ic_filter_effects,
+        painter = painterResource(R.drawable.ic_filter_effects),
         onClick = {},
         imageTint = OudsTheme.colorScheme.content.default
     )

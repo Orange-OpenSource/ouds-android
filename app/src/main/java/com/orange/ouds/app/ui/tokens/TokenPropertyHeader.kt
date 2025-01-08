@@ -38,6 +38,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.LightDarkResourceId
+import com.orange.ouds.app.ui.utilities.painterResource
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -51,9 +53,9 @@ fun GridHeader(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
     ) {
         val resourceIds = listOf(
-            R.drawable.il_tokens_grid_column_margin,
-            R.drawable.il_tokens_grid_min_width,
-            R.drawable.il_tokens_grid_max_width
+            LightDarkResourceId(R.drawable.il_tokens_grid_column_margin, R.drawable.il_tokens_grid_column_margin_dark),
+            LightDarkResourceId(R.drawable.il_tokens_grid_min_width, R.drawable.il_tokens_grid_min_width_dark),
+            LightDarkResourceId(R.drawable.il_tokens_grid_max_width, R.drawable.il_tokens_grid_max_width_dark)
         )
         resourceIds.forEach { resourceId ->
             Image(
