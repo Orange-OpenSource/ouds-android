@@ -23,7 +23,11 @@ import com.orange.ouds.gradle.findTypedProperty
 import com.orange.ouds.gradle.firebaseApi
 import com.orange.ouds.gradle.generateReleaseNotes
 import com.orange.ouds.gradle.gitHubApi
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.util.EnumMap
+import java.util.Locale
 import kotlin.io.path.Path
 
 object AppDistribution {
@@ -185,9 +189,11 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                             // Add a comment with a link to the QR code in the repository
                             logger.lifecycle("Create comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
                             val link = "![qrcode](https://github.com/Orange-OpenSource/ouds-android/raw/$sha/qrcodes/${qrCode.name})"
+                            val formatter = DateTimeFormatter.RFC_1123_DATE_TIME.withZone(ZoneOffset.UTC).localizedBy(Locale.ENGLISH)
+                            val expirationDateTime = formatter?.let { ZonedDateTime.now().plusHours(1).format(it) }.orEmpty()
                             val body = "### :iphone: Alpha release available\\n\\n" +
                                     "Scan the QR code below to download and install the Design System Toolbox app which contains the changes of this pull request.\\n" +
-                                    "**Please note that the link behind this QR code will expire in one hour.**\\n$link"
+                                    "**Please note that the link behind this QR code will expire on $expirationDateTime.**\\n$link"
                             // Although we use the "issues/{issue_number}/comments" GitHub API, this will comment the pull request because a pull request is an issue
                             // The "pulls/{pull_number}/comments" is used to add review comments on a pull request
                             createIssueComment(pullRequest.number, body)
