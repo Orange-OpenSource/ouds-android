@@ -239,7 +239,7 @@ private fun OudsButton(
                         Text(
                             modifier = modifier,
                             text = text,
-                            style = OudsTheme.typography.labelStrongLarge
+                            style = OudsTheme.typography.label.strong.large
                         )
                     }
                 }
@@ -283,11 +283,11 @@ private fun Modifier.border(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
 private fun Modifier.outerBorder(state: OudsButton.State, shape: Shape): Modifier {
     return if (state == OudsButton.State.Focused) {
         outerBorder(
-            width = OudsTheme.borders.widthFocus,
-            color = OudsTheme.colorScheme.borderColors.focus,
+            width = OudsTheme.borders.width.focus,
+            color = OudsTheme.colorScheme.border.focus,
             shape = shape,
-            insetWidth = OudsTheme.borders.widthFocusInset,
-            insetColor = OudsTheme.colorScheme.borderColors.focusInset
+            insetWidth = OudsTheme.borders.width.focusInset,
+            insetColor = OudsTheme.colorScheme.border.focusInset
         )
     } else {
         this
@@ -304,7 +304,7 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading -> borderWidthDefaultInteraction.value
-                OudsButton.State.Focused -> OudsTheme.borders.widthFocusInset
+                OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
                 OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
@@ -313,11 +313,11 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading -> borderWidthMinimalInteraction.value
-                OudsButton.State.Focused -> OudsTheme.borders.widthFocusInset
+                OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
                 OudsButton.State.Skeleton -> null
             }
             OudsButton.Hierarchy.Strong,
-            OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsTheme.borders.widthFocusInset else null
+            OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsTheme.borders.width.focusInset else null
         }
     }
 }
@@ -392,12 +392,12 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }.value
             OudsButton.Hierarchy.Negative -> when (state) {
-                OudsButton.State.Enabled -> OudsTheme.colorScheme.actionColors.negativeEnabled
-                OudsButton.State.Focused -> OudsTheme.colorScheme.actionColors.negativeFocus
-                OudsButton.State.Hovered -> OudsTheme.colorScheme.actionColors.negativeHover
-                OudsButton.State.Pressed -> OudsTheme.colorScheme.actionColors.negativePressed
-                OudsButton.State.Loading -> OudsTheme.colorScheme.actionColors.negativeLoading
-                OudsButton.State.Disabled -> OudsTheme.colorScheme.actionColors.disabled
+                OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
+                OudsButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
+                OudsButton.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
+                OudsButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
+                OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
+                OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg.value
             }
         }
@@ -427,12 +427,12 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }.value
             OudsButton.Hierarchy.Strong -> when (state) {
-                OudsButton.State.Enabled -> OudsTheme.colorScheme.contentColors.onActionEnabled
-                OudsButton.State.Focused -> OudsTheme.colorScheme.contentColors.onActionFocus
-                OudsButton.State.Hovered -> OudsTheme.colorScheme.contentColors.onActionHover
-                OudsButton.State.Pressed -> OudsTheme.colorScheme.contentColors.onActionPressed
-                OudsButton.State.Loading -> OudsTheme.colorScheme.contentColors.onActionLoading
-                OudsButton.State.Disabled -> OudsTheme.colorScheme.contentColors.onActionDisabled
+                OudsButton.State.Enabled -> OudsTheme.colorScheme.content.onAction.enabled
+                OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.focus
+                OudsButton.State.Hovered -> OudsTheme.colorScheme.content.onAction.hover
+                OudsButton.State.Pressed -> OudsTheme.colorScheme.content.onAction.pressed
+                OudsButton.State.Loading -> OudsTheme.colorScheme.content.onAction.loading
+                OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg.value
             }
             OudsButton.Hierarchy.Negative -> when (state) {
@@ -440,8 +440,8 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading,
-                OudsButton.State.Focused -> OudsTheme.colorScheme.contentColors.onActionNegative
-                OudsButton.State.Disabled -> OudsTheme.colorScheme.contentColors.onActionDisabled
+                OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.negative
+                OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg.value
             }
         }

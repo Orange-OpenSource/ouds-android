@@ -68,7 +68,7 @@ private fun TopBar(
                     Image(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(id = R.string.app_common_back_a11y),
-                        colorFilter = ColorFilter.tint(OudsTheme.colorScheme.contentColors.default)
+                        colorFilter = ColorFilter.tint(OudsTheme.colorScheme.content.default)
                     )
                 }
             }
@@ -76,9 +76,9 @@ private fun TopBar(
         title = {
             Text(
                 text = title,
-                color = OudsTheme.colorScheme.contentColors.default,
+                color = OudsTheme.colorScheme.content.default,
                 modifier = Modifier.semantics { traversalIndex = -1f },
-                style = OudsTheme.typography.headingMedium
+                style = OudsTheme.typography.heading.medium
             )
         },
         actions = {

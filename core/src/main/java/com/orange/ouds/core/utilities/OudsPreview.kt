@@ -36,7 +36,7 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
         // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
         Box(
             modifier = Modifier
-                .background(OudsTheme.colorScheme.backgroundColors.primary)
+                .background(OudsTheme.colorScheme.background.primary)
                 .then(modifier)
         ) {
             content()

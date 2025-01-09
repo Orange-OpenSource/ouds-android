@@ -26,7 +26,7 @@ fun Screen(content: @Composable () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(OudsTheme.colorScheme.backgroundColors.primary)
+            .background(OudsTheme.colorScheme.background.primary)
     ) {
         content()
     }

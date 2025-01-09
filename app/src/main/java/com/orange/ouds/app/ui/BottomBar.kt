@@ -31,7 +31,7 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit) {
     val items = BottomBarItem.entries.toTypedArray()
     NavigationBar(
-        containerColor = OudsTheme.colorScheme.backgroundColors.secondary, //TODO Temporary color. Waiting for Material colors from Maxime.
+        containerColor = OudsTheme.colorScheme.background.secondary, //TODO Temporary color. Waiting for Material colors from Maxime.
         content = {
             items.forEach { item ->
                 NavigationBarItem(

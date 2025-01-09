@@ -98,7 +98,7 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
 private fun ButtonDemo(state: ButtonDemoState) {
     Box(
         modifier = Modifier
-            .background(OudsTheme.colorScheme.backgroundColors.primary)
+            .background(OudsTheme.colorScheme.background.primary)
             .padding(all = OudsTheme.spaces.fixed.medium)
             .fillMaxWidth(),
         contentAlignment = Alignment.Center

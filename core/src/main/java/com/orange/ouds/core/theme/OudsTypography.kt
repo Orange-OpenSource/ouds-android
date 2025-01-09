@@ -26,177 +26,225 @@ import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
  * @suppress
  */
 data class OudsTypography(
-    val displayLarge: TextStyle,
-    val displayMedium: TextStyle,
-    val displaySmall: TextStyle,
-    val headingExtraLarge: TextStyle,
-    val headingLarge: TextStyle,
-    val headingMedium: TextStyle,
-    val headingSmall: TextStyle,
-    val bodyDefaultLarge: TextStyle,
-    val bodyDefaultMedium: TextStyle,
-    val bodyDefaultSmall: TextStyle,
-    val bodyStrongLarge: TextStyle,
-    val bodyStrongMedium: TextStyle,
-    val bodyStrongSmall: TextStyle,
-    val labelDefaultExtraLarge: TextStyle,
-    val labelDefaultLarge: TextStyle,
-    val labelDefaultMedium: TextStyle,
-    val labelDefaultSmall: TextStyle,
-    val labelStrongExtraLarge: TextStyle,
-    val labelStrongLarge: TextStyle,
-    val labelStrongMedium: TextStyle,
-    val labelStrongSmall: TextStyle,
-)
+    val display: Display,
+    val heading: Heading,
+    val body: Body,
+    val label: Label
+) {
+    data class Display(
+        val large: TextStyle,
+        val medium: TextStyle,
+        val small: TextStyle
+    )
+
+    data class Heading(
+        val extraLarge: TextStyle,
+        val large: TextStyle,
+        val medium: TextStyle,
+        val small: TextStyle
+    )
+
+    data class Body(
+        val default: Default,
+        val strong: Strong
+    ) {
+        data class Default(
+            val large: TextStyle,
+            val medium: TextStyle,
+            val small: TextStyle
+        )
+
+        data class Strong(
+            val large: TextStyle,
+            val medium: TextStyle,
+            val small: TextStyle
+        )
+    }
+
+    data class Label(
+        val default: Default,
+        val strong: Strong
+    ) {
+        data class Default(
+            val extraLarge: TextStyle,
+            val large: TextStyle,
+            val medium: TextStyle,
+            val small: TextStyle
+        )
+
+        data class Strong(
+            val extraLarge: TextStyle,
+            val large: TextStyle,
+            val medium: TextStyle,
+            val small: TextStyle
+        )
+    }
+}
 
 internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     OudsTypography(
-        displayLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightDisplay),
-            fontSize = getTokenValue(sizeDisplayLargeMobile, sizeDisplayLargeTablet).sp,
-            lineHeight = getTokenValue(lineHeightDisplayLargeMobile, lineHeightDisplayLargeTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingDisplayLargeMobile, letterSpacingDisplayLargeTablet).sp
+        display = OudsTypography.Display(
+            large = TextStyle(
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(weightDisplay),
+                fontSize = getTokenValue(sizeDisplayLargeMobile, sizeDisplayLargeTablet).sp,
+                lineHeight = getTokenValue(lineHeightDisplayLargeMobile, lineHeightDisplayLargeTablet).sp,
+                letterSpacing = getTokenValue(letterSpacingDisplayLargeMobile, letterSpacingDisplayLargeTablet).sp
+            ),
+            medium = TextStyle(
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(weightDisplay),
+                fontSize = getTokenValue(sizeDisplayMediumMobile, sizeDisplayMediumTablet).sp,
+                lineHeight = getTokenValue(lineHeightDisplayMediumMobile, lineHeightDisplayMediumTablet).sp,
+                letterSpacing = getTokenValue(letterSpacingDisplayMediumMobile, letterSpacingDisplayMediumTablet).sp
+            ),
+            small = TextStyle(
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(weightDisplay),
+                fontSize = getTokenValue(sizeDisplaySmallMobile, sizeDisplaySmallTablet).sp,
+                lineHeight = getTokenValue(lineHeightDisplaySmallMobile, lineHeightDisplaySmallTablet).sp,
+                letterSpacing = getTokenValue(letterSpacingDisplaySmallMobile, letterSpacingDisplaySmallTablet).sp
+            ),
         ),
-        displayMedium = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightDisplay),
-            fontSize = getTokenValue(sizeDisplayMediumMobile, sizeDisplayMediumTablet).sp,
-            lineHeight = getTokenValue(lineHeightDisplayMediumMobile, lineHeightDisplayMediumTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingDisplayMediumMobile, letterSpacingDisplayMediumTablet).sp
+        heading = OudsTypography.Heading(
+            extraLarge = TextStyle(
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(weightHeading),
+                fontSize = getTokenValue(sizeHeadingXlargeMobile, sizeHeadingXlargeTablet).sp,
+                lineHeight = getTokenValue(lineHeightHeadingXlargeMobile, lineHeightHeadingXlargeTablet).sp,
+                letterSpacing = getTokenValue(letterSpacingHeadingXlargeMobile, letterSpacingHeadingXlargeTablet).sp
+            ),
+            large = TextStyle(
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(weightHeading),
+                fontSize = getTokenValue(sizeHeadingLargeMobile, sizeHeadingLargeTablet).sp,
+                lineHeight = getTokenValue(lineHeightHeadingLargeMobile, lineHeightHeadingLargeTablet).sp,
+                letterSpacing = getTokenValue(letterSpacingHeadingLargeMobile, letterSpacingHeadingLargeTablet).sp
+            ),
+            medium = TextStyle(
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(weightHeading),
+                fontSize = getTokenValue(sizeHeadingMediumMobile, sizeHeadingMediumTablet).sp,
+                lineHeight = getTokenValue(lineHeightHeadingMediumMobile, lineHeightHeadingMediumTablet).sp,
+                letterSpacing = getTokenValue(letterSpacingHeadingMediumMobile, letterSpacingHeadingMediumTablet).sp
+            ),
+            small = TextStyle(
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(weightHeading),
+                fontSize = getTokenValue(sizeHeadingSmallMobile, sizeHeadingSmallTablet).sp,
+                lineHeight = getTokenValue(lineHeightHeadingSmallMobile, lineHeightHeadingSmallTablet).sp,
+                letterSpacing = getTokenValue(letterSpacingHeadingSmallMobile, letterSpacingHeadingSmallTablet).sp
+            ),
         ),
-        displaySmall = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightDisplay),
-            fontSize = getTokenValue(sizeDisplaySmallMobile, sizeDisplaySmallTablet).sp,
-            lineHeight = getTokenValue(lineHeightDisplaySmallMobile, lineHeightDisplaySmallTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingDisplaySmallMobile, letterSpacingDisplaySmallTablet).sp
+        body = OudsTypography.Body(
+            default = OudsTypography.Body.Default(
+                large = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightBodyDefault),
+                    fontSize = getTokenValue(sizeBodyLargeMobile, sizeBodyLargeTablet).sp,
+                    lineHeight = getTokenValue(lineHeightBodyLargeMobile, lineHeightBodyLargeTablet).sp,
+                    letterSpacing = getTokenValue(letterSpacingBodyLargeMobile, letterSpacingBodyLargeTablet).sp
+                ),
+                medium = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightBodyDefault),
+                    fontSize = getTokenValue(sizeBodyMediumMobile, sizeBodyMediumTablet).sp,
+                    lineHeight = getTokenValue(lineHeightBodyMediumMobile, lineHeightBodyMediumTablet).sp,
+                    letterSpacing = getTokenValue(letterSpacingBodyMediumMobile, letterSpacingBodyMediumTablet).sp
+                ),
+                small = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightBodyDefault),
+                    fontSize = getTokenValue(sizeBodySmallMobile, sizeBodySmallTablet).sp,
+                    lineHeight = getTokenValue(lineHeightBodySmallMobile, lineHeightBodySmallTablet).sp,
+                    letterSpacing = getTokenValue(letterSpacingBodySmallMobile, letterSpacingBodySmallTablet).sp
+                ),
+            ),
+            strong = OudsTypography.Body.Strong(
+                large = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightBodyStrong),
+                    fontSize = getTokenValue(sizeBodyLargeMobile, sizeBodyLargeTablet).sp,
+                    lineHeight = getTokenValue(lineHeightBodyLargeMobile, lineHeightBodyLargeTablet).sp,
+                    letterSpacing = getTokenValue(letterSpacingBodyLargeMobile, letterSpacingBodyLargeTablet).sp
+                ),
+                medium = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightBodyStrong),
+                    fontSize = getTokenValue(sizeBodyMediumMobile, sizeBodyMediumTablet).sp,
+                    lineHeight = getTokenValue(lineHeightBodyMediumMobile, lineHeightBodyMediumTablet).sp,
+                    letterSpacing = getTokenValue(letterSpacingBodyMediumMobile, letterSpacingBodyMediumTablet).sp
+                ),
+                small = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightBodyStrong),
+                    fontSize = getTokenValue(sizeBodySmallMobile, sizeBodySmallTablet).sp,
+                    lineHeight = getTokenValue(lineHeightBodySmallMobile, lineHeightBodySmallTablet).sp,
+                    letterSpacing = getTokenValue(letterSpacingBodySmallMobile, letterSpacingBodySmallTablet).sp
+                ),
+            )
         ),
-        headingExtraLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightHeading),
-            fontSize = getTokenValue(sizeHeadingXlargeMobile, sizeHeadingXlargeTablet).sp,
-            lineHeight = getTokenValue(lineHeightHeadingXlargeMobile, lineHeightHeadingXlargeTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingHeadingXlargeMobile, letterSpacingHeadingXlargeTablet).sp
-        ),
-        headingLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightHeading),
-            fontSize = getTokenValue(sizeHeadingLargeMobile, sizeHeadingLargeTablet).sp,
-            lineHeight = getTokenValue(lineHeightHeadingLargeMobile, lineHeightHeadingLargeTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingHeadingLargeMobile, letterSpacingHeadingLargeTablet).sp
-        ),
-        headingMedium = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightHeading),
-            fontSize = getTokenValue(sizeHeadingMediumMobile, sizeHeadingMediumTablet).sp,
-            lineHeight = getTokenValue(lineHeightHeadingMediumMobile, lineHeightHeadingMediumTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingHeadingMediumMobile, letterSpacingHeadingMediumTablet).sp
-        ),
-        headingSmall = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightHeading),
-            fontSize = getTokenValue(sizeHeadingSmallMobile, sizeHeadingSmallTablet).sp,
-            lineHeight = getTokenValue(lineHeightHeadingSmallMobile, lineHeightHeadingSmallTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingHeadingSmallMobile, letterSpacingHeadingSmallTablet).sp
-        ),
-        bodyDefaultLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightBodyDefault),
-            fontSize = getTokenValue(sizeBodyLargeMobile, sizeBodyLargeTablet).sp,
-            lineHeight = getTokenValue(lineHeightBodyLargeMobile, lineHeightBodyLargeTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingBodyLargeMobile, letterSpacingBodyLargeTablet).sp
-        ),
-        bodyDefaultMedium = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightBodyDefault),
-            fontSize = getTokenValue(sizeBodyMediumMobile, sizeBodyMediumTablet).sp,
-            lineHeight = getTokenValue(lineHeightBodyMediumMobile, lineHeightBodyMediumTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingBodyMediumMobile, letterSpacingBodyMediumTablet).sp
-        ),
-        bodyDefaultSmall = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightBodyDefault),
-            fontSize = getTokenValue(sizeBodySmallMobile, sizeBodySmallTablet).sp,
-            lineHeight = getTokenValue(lineHeightBodySmallMobile, lineHeightBodySmallTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingBodySmallMobile, letterSpacingBodySmallTablet).sp
-        ),
-        bodyStrongLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightBodyStrong),
-            fontSize = getTokenValue(sizeBodyLargeMobile, sizeBodyLargeTablet).sp,
-            lineHeight = getTokenValue(lineHeightBodyLargeMobile, lineHeightBodyLargeTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingBodyLargeMobile, letterSpacingBodyLargeTablet).sp
-        ),
-        bodyStrongMedium = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightBodyStrong),
-            fontSize = getTokenValue(sizeBodyMediumMobile, sizeBodyMediumTablet).sp,
-            lineHeight = getTokenValue(lineHeightBodyMediumMobile, lineHeightBodyMediumTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingBodyMediumMobile, letterSpacingBodyMediumTablet).sp
-        ),
-        bodyStrongSmall = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightBodyStrong),
-            fontSize = getTokenValue(sizeBodySmallMobile, sizeBodySmallTablet).sp,
-            lineHeight = getTokenValue(lineHeightBodySmallMobile, lineHeightBodySmallTablet).sp,
-            letterSpacing = getTokenValue(letterSpacingBodySmallMobile, letterSpacingBodySmallTablet).sp
-        ),
-        labelDefaultExtraLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightLabelDefault),
-            fontSize = sizeLabelXlarge.sp,
-            lineHeight = lineHeightLabelXlarge.sp,
-            letterSpacing = letterSpacingLabelXlarge.sp
-        ),
-        labelDefaultLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightLabelDefault),
-            fontSize = sizeLabelLarge.sp,
-            lineHeight = lineHeightLabelLarge.sp,
-            letterSpacing = letterSpacingLabelLarge.sp
-        ),
-        labelDefaultMedium = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightLabelDefault),
-            fontSize = sizeLabelMedium.sp,
-            lineHeight = lineHeightLabelMedium.sp,
-            letterSpacing = letterSpacingLabelMedium.sp
-        ),
-        labelDefaultSmall = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightLabelDefault),
-            fontSize = sizeLabelSmall.sp,
-            lineHeight = lineHeightLabelSmall.sp,
-            letterSpacing = letterSpacingLabelSmall.sp
-        ),
-        labelStrongExtraLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightLabelStrong),
-            fontSize = sizeLabelXlarge.sp,
-            lineHeight = lineHeightLabelXlarge.sp,
-            letterSpacing = letterSpacingLabelXlarge.sp
-        ),
-        labelStrongLarge = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightLabelStrong),
-            fontSize = sizeLabelLarge.sp,
-            lineHeight = lineHeightLabelLarge.sp,
-            letterSpacing = letterSpacingLabelLarge.sp
-        ),
-        labelStrongMedium = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightLabelStrong),
-            fontSize = sizeLabelMedium.sp,
-            lineHeight = lineHeightLabelMedium.sp,
-            letterSpacing = letterSpacingLabelMedium.sp
-        ),
-        labelStrongSmall = TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = FontWeight(weightLabelStrong),
-            fontSize = sizeLabelSmall.sp,
-            lineHeight = lineHeightLabelSmall.sp,
-            letterSpacing = letterSpacingLabelSmall.sp
+        label = OudsTypography.Label(
+            default = OudsTypography.Label.Default(
+                extraLarge = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightLabelDefault),
+                    fontSize = sizeLabelXlarge.sp,
+                    lineHeight = lineHeightLabelXlarge.sp,
+                    letterSpacing = letterSpacingLabelXlarge.sp
+                ),
+                large = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightLabelDefault),
+                    fontSize = sizeLabelLarge.sp,
+                    lineHeight = lineHeightLabelLarge.sp,
+                    letterSpacing = letterSpacingLabelLarge.sp
+                ),
+                medium = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightLabelDefault),
+                    fontSize = sizeLabelMedium.sp,
+                    lineHeight = lineHeightLabelMedium.sp,
+                    letterSpacing = letterSpacingLabelMedium.sp
+                ),
+                small = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightLabelDefault),
+                    fontSize = sizeLabelSmall.sp,
+                    lineHeight = lineHeightLabelSmall.sp,
+                    letterSpacing = letterSpacingLabelSmall.sp
+                ),
+            ),
+            strong = OudsTypography.Label.Strong(
+                extraLarge = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightLabelStrong),
+                    fontSize = sizeLabelXlarge.sp,
+                    lineHeight = lineHeightLabelXlarge.sp,
+                    letterSpacing = letterSpacingLabelXlarge.sp
+                ),
+                large = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightLabelStrong),
+                    fontSize = sizeLabelLarge.sp,
+                    lineHeight = lineHeightLabelLarge.sp,
+                    letterSpacing = letterSpacingLabelLarge.sp
+                ),
+                medium = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightLabelStrong),
+                    fontSize = sizeLabelMedium.sp,
+                    lineHeight = lineHeightLabelMedium.sp,
+                    letterSpacing = letterSpacingLabelMedium.sp
+                ),
+                small = TextStyle(
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight(weightLabelStrong),
+                    fontSize = sizeLabelSmall.sp,
+                    lineHeight = lineHeightLabelSmall.sp,
+                    letterSpacing = letterSpacingLabelSmall.sp
+                ),
+            )
         ),
     )
 }
@@ -204,27 +252,27 @@ internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, window
 @Stable
 private fun OudsTypography.fromToken(token: OudsTypographyKeyToken): TextStyle {
     return when (token) {
-        OudsTypographyKeyToken.Display.Large -> displayLarge
-        OudsTypographyKeyToken.Display.Medium -> displayMedium
-        OudsTypographyKeyToken.Display.Small -> displaySmall
-        OudsTypographyKeyToken.Heading.ExtraLarge -> headingExtraLarge
-        OudsTypographyKeyToken.Heading.Large -> headingLarge
-        OudsTypographyKeyToken.Heading.Medium -> headingMedium
-        OudsTypographyKeyToken.Heading.Small -> headingSmall
-        OudsTypographyKeyToken.Body.Default.Large -> bodyDefaultLarge
-        OudsTypographyKeyToken.Body.Default.Medium -> bodyDefaultMedium
-        OudsTypographyKeyToken.Body.Default.Small -> bodyDefaultSmall
-        OudsTypographyKeyToken.Body.Strong.Large -> bodyStrongLarge
-        OudsTypographyKeyToken.Body.Strong.Medium -> bodyStrongMedium
-        OudsTypographyKeyToken.Body.Strong.Small -> bodyStrongSmall
-        OudsTypographyKeyToken.Label.Default.ExtraLarge -> labelDefaultExtraLarge
-        OudsTypographyKeyToken.Label.Default.Large -> labelDefaultLarge
-        OudsTypographyKeyToken.Label.Default.Medium -> labelDefaultMedium
-        OudsTypographyKeyToken.Label.Default.Small -> labelDefaultSmall
-        OudsTypographyKeyToken.Label.Strong.ExtraLarge -> labelStrongExtraLarge
-        OudsTypographyKeyToken.Label.Strong.Large -> labelStrongLarge
-        OudsTypographyKeyToken.Label.Strong.Medium -> labelStrongMedium
-        OudsTypographyKeyToken.Label.Strong.Small -> labelStrongSmall
+        OudsTypographyKeyToken.Display.Large -> display.large
+        OudsTypographyKeyToken.Display.Medium -> display.medium
+        OudsTypographyKeyToken.Display.Small -> display.small
+        OudsTypographyKeyToken.Heading.ExtraLarge -> heading.extraLarge
+        OudsTypographyKeyToken.Heading.Large -> heading.large
+        OudsTypographyKeyToken.Heading.Medium -> heading.medium
+        OudsTypographyKeyToken.Heading.Small -> heading.small
+        OudsTypographyKeyToken.Body.Default.Large -> body.default.large
+        OudsTypographyKeyToken.Body.Default.Medium -> body.default.medium
+        OudsTypographyKeyToken.Body.Default.Small -> body.default.small
+        OudsTypographyKeyToken.Body.Strong.Large -> body.strong.large
+        OudsTypographyKeyToken.Body.Strong.Medium -> body.strong.medium
+        OudsTypographyKeyToken.Body.Strong.Small -> body.strong.small
+        OudsTypographyKeyToken.Label.Default.ExtraLarge -> label.default.extraLarge
+        OudsTypographyKeyToken.Label.Default.Large -> label.default.large
+        OudsTypographyKeyToken.Label.Default.Medium -> label.default.medium
+        OudsTypographyKeyToken.Label.Default.Small -> label.default.small
+        OudsTypographyKeyToken.Label.Strong.ExtraLarge -> label.strong.extraLarge
+        OudsTypographyKeyToken.Label.Strong.Large -> label.strong.large
+        OudsTypographyKeyToken.Label.Strong.Medium -> label.strong.medium
+        OudsTypographyKeyToken.Label.Strong.Small -> label.strong.small
     }
 }
 

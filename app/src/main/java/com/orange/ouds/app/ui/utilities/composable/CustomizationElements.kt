@@ -40,7 +40,7 @@ fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange
         modifier = Modifier
             .fillMaxWidth()
             .clickable(enabled = enabled) { onCheckedChange(!checked) },
-        headlineContent = { Text(text = label, style = OudsTheme.typography.headingMedium) },
+        headlineContent = { Text(text = label, style = OudsTheme.typography.heading.medium) },
         trailingContent = { Switch(checked = checked, onCheckedChange = null, enabled = enabled) }
     )
 }
@@ -54,7 +54,7 @@ fun CustomizationChoiceChipsColumn(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = OudsTheme.typography.headingMedium)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = OudsTheme.typography.heading.medium)
         Row(
             Modifier
                 .fillMaxWidth()

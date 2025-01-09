@@ -47,7 +47,7 @@ fun LargeCard(
     imageTint: Color? = null
 ) {
     Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsTheme.elevations.raised), onClick = onClick) {
-        Column(modifier = Modifier.background(OudsTheme.colorScheme.backgroundColors.primary)) {
+        Column(modifier = Modifier.background(OudsTheme.colorScheme.background.primary)) {
             Image(
                 painter = painterResource(imageRes),
                 colorFilter = imageTint?.let { ColorFilter.tint(imageTint) },
@@ -55,25 +55,24 @@ fun LargeCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(184.dp)
-                    .background(OudsTheme.colorScheme.overlayColors.default)
-                    .background(OudsTheme.colorScheme.surfaceColors.statusNeutralMuted),
+                    .background(OudsTheme.colorScheme.overlay.default)
+                    .background(OudsTheme.colorScheme.surface.status.neutral.muted),
                 contentScale = ContentScale.None
             )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(OudsTheme.colorScheme.overlayColors.default)
+                    .background(OudsTheme.colorScheme.overlay.default)
                     .padding(OudsTheme.spaces.fixed.medium)
             ) {
                 Text(
                     text = title,
-                    color = OudsTheme.colorScheme.contentColors.default,
+                    color = OudsTheme.colorScheme.content.default,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
-                    style = OudsTheme.typography.headingMedium
+                    style = OudsTheme.typography.heading.medium
                 )
             }
-
         }
     }
 }
@@ -85,6 +84,6 @@ private fun PreviewLargeCard() = OudsPreview {
         title = "Title",
         imageRes = R.drawable.ic_filter_effects,
         onClick = {},
-        imageTint = OudsTheme.colorScheme.contentColors.default
+        imageTint = OudsTheme.colorScheme.content.default
     )
 }

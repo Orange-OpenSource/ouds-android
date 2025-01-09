@@ -26,74 +26,92 @@ import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
  * @suppress
  */
 data class OudsBorders(
-    val widthNone: Dp,
-    val widthDefault: Dp,
-    val widthThin: Dp,
-    val widthMedium: Dp,
-    val widthThick: Dp,
-    val widthThicker: Dp,
-    val widthFocus: Dp,
-    val widthFocusInset: Dp,
-    val radiusNone: Dp,
-    val radiusDefault: Dp,
-    val radiusShort: Dp,
-    val radiusMedium: Dp,
-    val radiusTall: Dp,
-    val radiusPill: Dp,
-    val styleDefault: OudsBorderStyle,
-    val styleDrag: OudsBorderStyle,
-)
+    val width: Width,
+    val radius: Radius,
+    val style: Style
+) {
+    data class Width(
+        val none: Dp,
+        val default: Dp,
+        val thin: Dp,
+        val medium: Dp,
+        val thick: Dp,
+        val thicker: Dp,
+        val focus: Dp,
+        val focusInset: Dp
+    )
+
+    data class Radius(
+        val none: Dp,
+        val default: Dp,
+        val short: Dp,
+        val medium: Dp,
+        val tall: Dp,
+        val pill: Dp
+    )
+
+    data class Style(
+        val default: OudsBorderStyle,
+        val drag: OudsBorderStyle
+    )
+}
 
 internal fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
-    widthNone = widthNone.dp,
-    widthDefault = widthDefault.dp,
-    widthThin = widthThin.dp,
-    widthMedium = widthMedium.dp,
-    widthThick = widthThick.dp,
-    widthThicker = widthThicker.dp,
-    widthFocus = widthFocus.dp,
-    widthFocusInset = widthFocusInset.dp,
-    radiusNone = radiusNone.dp,
-    radiusDefault = radiusDefault.dp,
-    radiusShort = radiusShort.dp,
-    radiusMedium = radiusMedium.dp,
-    radiusTall = radiusTall.dp,
-    radiusPill = radiusPill.dp,
-    styleDefault = OudsBorderStyle.fromString(styleDefault),
-    styleDrag = OudsBorderStyle.fromString(styleDrag)
+    width = OudsBorders.Width(
+        none = widthNone.dp,
+        default = widthDefault.dp,
+        thin = widthThin.dp,
+        medium = widthMedium.dp,
+        thick = widthThick.dp,
+        thicker = widthThicker.dp,
+        focus = widthFocus.dp,
+        focusInset = widthFocusInset.dp
+    ),
+    radius = OudsBorders.Radius(
+        none = radiusNone.dp,
+        default = radiusDefault.dp,
+        short = radiusShort.dp,
+        medium = radiusMedium.dp,
+        tall = radiusTall.dp,
+        pill = radiusPill.dp
+    ),
+    style = OudsBorders.Style(
+        default = OudsBorderStyle.fromString(styleDefault),
+        drag = OudsBorderStyle.fromString(styleDrag)
+    )
 )
 
 @Stable
 private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Width): Dp {
     return when (token) {
-        OudsBorderKeyToken.Width.None -> widthNone
-        OudsBorderKeyToken.Width.Default -> widthDefault
-        OudsBorderKeyToken.Width.Thin -> widthThin
-        OudsBorderKeyToken.Width.Medium -> widthMedium
-        OudsBorderKeyToken.Width.Thick -> widthThick
-        OudsBorderKeyToken.Width.Thicker -> widthThicker
-        OudsBorderKeyToken.Width.Focus -> widthFocus
-        OudsBorderKeyToken.Width.FocusInset -> widthFocusInset
+        OudsBorderKeyToken.Width.None -> width.none
+        OudsBorderKeyToken.Width.Default -> width.default
+        OudsBorderKeyToken.Width.Thin -> width.thin
+        OudsBorderKeyToken.Width.Medium -> width.medium
+        OudsBorderKeyToken.Width.Thick -> width.thick
+        OudsBorderKeyToken.Width.Thicker -> width.thicker
+        OudsBorderKeyToken.Width.Focus -> width.focus
+        OudsBorderKeyToken.Width.FocusInset -> width.focusInset
     }
 }
 
 @Stable
 private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Radius): Dp {
     return when (token) {
-        OudsBorderKeyToken.Radius.None -> radiusNone
-        OudsBorderKeyToken.Radius.Default -> radiusDefault
-        OudsBorderKeyToken.Radius.Short -> radiusShort
-        OudsBorderKeyToken.Radius.Medium -> radiusMedium
-        OudsBorderKeyToken.Radius.Tall -> radiusTall
-        OudsBorderKeyToken.Radius.Pill -> radiusPill
+        OudsBorderKeyToken.Radius.None -> radius.none
+        OudsBorderKeyToken.Radius.Default -> radius.default
+        OudsBorderKeyToken.Radius.Short -> radius.short
+        OudsBorderKeyToken.Radius.Medium -> radius.medium
+        OudsBorderKeyToken.Radius.Tall -> radius.tall
+        OudsBorderKeyToken.Radius.Pill -> radius.pill
     }
 }
 
 @Stable
 private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Style): OudsBorderStyle {
     return when (token) {
-        OudsBorderKeyToken.Style.Default -> styleDefault
-        OudsBorderKeyToken.Style.Drag -> styleDrag
+        OudsBorderKeyToken.Style.Default -> style.default
+        OudsBorderKeyToken.Style.Drag -> style.drag
     }
 }
 

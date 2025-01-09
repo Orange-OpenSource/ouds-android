@@ -64,7 +64,7 @@ fun GridHeader(modifier: Modifier = Modifier) {
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(OudsTheme.colorScheme.surfaceColors.statusNeutralMuted),
+                    .background(OudsTheme.colorScheme.surface.status.neutral.muted),
                 painter = painterResource(id = resourceId),
                 contentDescription = null
             )
@@ -80,7 +80,7 @@ fun SizeIconWithTextHeader(
 ) {
     Row(
         modifier = modifier
-            .background(color = OudsTheme.colorScheme.surfaceColors.statusNeutralMuted)
+            .background(color = OudsTheme.colorScheme.surface.status.neutral.muted)
             .padding(all = OudsTheme.spaces.fixed.medium),
         horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter),
         verticalAlignment = Alignment.CenterVertically
@@ -88,12 +88,12 @@ fun SizeIconWithTextHeader(
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.ic_design_token_figma),
-            tint = OudsTheme.colorScheme.contentColors.statusInfo,
+            tint = OudsTheme.colorScheme.content.status.info,
             contentDescription = null
         )
 
         val style = if (LocalInspectionMode.current) {
-            OudsTheme.typography.headingSmall
+            OudsTheme.typography.heading.small
         } else {
             getTokens<OudsTypographyKeyToken>()
                 .asOrNull<List<Token<TextStyle>>>()
@@ -109,7 +109,7 @@ fun SizeIconWithTextHeader(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = style,
-            color = OudsTheme.colorScheme.contentColors.default
+            color = OudsTheme.colorScheme.content.default
         )
     }
 }
@@ -121,7 +121,7 @@ fun SpaceHeader(
 ) {
     Box(
         modifier = modifier
-            .background(color = OudsTheme.colorScheme.surfaceColors.statusNeutralMuted)
+            .background(color = OudsTheme.colorScheme.surface.status.neutral.muted)
             .padding(all = OudsTheme.spaces.fixed.medium)
     ) {
         SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
@@ -142,9 +142,9 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
     }
 
     val modifier = Modifier
-        .dashedBorder(width = dashedBorderWidth, color = OudsTheme.colorScheme.contentColors.default)
+        .dashedBorder(width = dashedBorderWidth, color = OudsTheme.colorScheme.content.default)
         .padding(all = dashedBorderWidth)
-        .background(color = OudsTheme.colorScheme.contentColors.statusInfo)
+        .background(color = OudsTheme.colorScheme.content.status.info)
         .padding(externalSpaceValues)
 
     val column = remember {
@@ -196,11 +196,11 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
     if (textResId != null) {
         Text(
             modifier = modifier
-                .background(color = OudsTheme.colorScheme.backgroundColors.primary)
-                .background(color = OudsTheme.colorScheme.surfaceColors.statusNeutralMuted),
+                .background(color = OudsTheme.colorScheme.background.primary)
+                .background(color = OudsTheme.colorScheme.surface.status.neutral.muted),
             text = stringResource(id = textResId),
-            color = OudsTheme.colorScheme.contentColors.default,
-            style = OudsTheme.typography.bodyDefaultMedium
+            color = OudsTheme.colorScheme.content.default,
+            style = OudsTheme.typography.body.default.medium
         )
     }
 }

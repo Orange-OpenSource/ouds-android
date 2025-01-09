@@ -100,12 +100,12 @@ fun CustomizationBottomSheetScaffold(
                     modifier = Modifier.rotate(angle),
                     painter = painterResource(id = R.drawable.ic_chevron_down),
                     contentDescription = null,
-                    tint = OudsTheme.colorScheme.contentColors.default
+                    tint = OudsTheme.colorScheme.content.default
                 )
                 Text(
                     modifier = Modifier.padding(start = OudsTheme.spaces.fixed.medium),
                     text = stringResource(id = titleResId),
-                    style = OudsTheme.typography.headingMedium
+                    style = OudsTheme.typography.heading.medium
                 )
             }
 
@@ -118,7 +118,7 @@ fun CustomizationBottomSheetScaffold(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(OudsTheme.colorScheme.backgroundColors.primary),
+                .background(OudsTheme.colorScheme.background.primary),
             content = content
         )
     }

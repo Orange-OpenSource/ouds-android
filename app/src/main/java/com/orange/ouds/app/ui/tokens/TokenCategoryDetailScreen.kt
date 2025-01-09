@@ -110,7 +110,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                             text = stringResource(id = subcategory.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            style = OudsTheme.typography.headingMedium
+                            style = OudsTheme.typography.heading.medium
                         )
                     }
                 }
@@ -124,16 +124,16 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                             Text(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .background(color = OudsTheme.colorScheme.backgroundColors.primary)
+                                    .background(color = OudsTheme.colorScheme.background.primary)
                                     .padding(all = OudsTheme.spaces.fixed.medium)
                                     .semantics {
                                         heading()
                                     },
                                 text = stringResource(id = tokenProperty.nameRes),
-                                color = OudsTheme.colorScheme.contentColors.default,
+                                color = OudsTheme.colorScheme.content.default,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OudsTheme.typography.headingMedium
+                                style = OudsTheme.typography.heading.medium
                             )
                         }
                     }
@@ -199,7 +199,7 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
                 style = if (tokenProperty == TokenProperty.Typography) {
                     token.value() as TextStyle
                 } else {
-                    OudsTheme.typography.bodyStrongLarge
+                    OudsTheme.typography.body.strong.large
                 }
             )
             Text(
@@ -207,7 +207,7 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
                 text = token.literalValue,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                style = OudsTheme.typography.bodyDefaultMedium.copy(color = OudsTheme.colorScheme.contentColors.muted)
+                style = OudsTheme.typography.body.default.medium.copy(color = OudsTheme.colorScheme.content.muted)
             )
         }
     }
@@ -284,13 +284,13 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
             ) {
                 Text(
                     text = stringResource(R.string.app_tokens_viewCodeExample_label),
-                    style = OudsTheme.typography.labelStrongLarge,
-                    color = OudsTheme.colorScheme.contentColors.default
+                    style = OudsTheme.typography.label.strong.large,
+                    color = OudsTheme.colorScheme.content.default
                 )
                 Icon(
                     modifier = Modifier.rotate(linkArrowRotation),
                     painter = painterResource(R.drawable.ic_chevron_down),
-                    tint = OudsTheme.colorScheme.contentColors.brandPrimary,
+                    tint = OudsTheme.colorScheme.content.brandPrimary,
                     contentDescription = null
                 )
             }
@@ -298,8 +298,8 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
         AnimatedVisibility(visible = isExpanded, enter = fadeIn(tween(delayMillis = 150)) + expandVertically()) {
             Box(
                 modifier = Modifier
-                    .background(color = OudsTheme.colorScheme.backgroundColors.secondary)
-                    .border(width = 1.dp, color = OudsTheme.colorScheme.borderColors.default, shape = RectangleShape)
+                    .background(color = OudsTheme.colorScheme.background.secondary)
+                    .border(width = 1.dp, color = OudsTheme.colorScheme.border.default, shape = RectangleShape)
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
@@ -311,7 +311,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                             .padding(vertical = OudsTheme.spaces.fixed.medium)
                             .padding(start = OudsTheme.spaces.fixed.medium),
                         text = codeExample, style = TextStyle(fontFamily = FontFamily.Monospace),
-                        color = OudsTheme.colorScheme.contentColors.default
+                        color = OudsTheme.colorScheme.content.default
                     )
                     IconButton(onClick = { copyCodeToClipboard(context, codeExample, clipboardManager) }) {
                         Icon(painter = painterResource(R.drawable.ic_copy), contentDescription = stringResource(R.string.app_common_copyCode_a11y))

@@ -25,7 +25,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
  */
 data class OudsSizes(
     val icon: Icon,
-    val maxWidthType: MaxWidthType
+    val maxWidth: MaxWidth
 ) {
     data class Icon(
         val decorative: Decorative,
@@ -134,29 +134,33 @@ data class OudsSizes(
         }
     }
 
-    data class MaxWidthType(
-        val display: Display,
-        val heading: Heading,
-        val body: Body
+    data class MaxWidth(
+        val type: Type
     ) {
-        data class Display(
-            val small: Dp,
-            val medium: Dp,
-            val large: Dp,
-        )
+        data class Type(
+            val display: Display,
+            val heading: Heading,
+            val body: Body
+        ) {
+            data class Display(
+                val small: Dp,
+                val medium: Dp,
+                val large: Dp
+            )
 
-        data class Heading(
-            val small: Dp,
-            val medium: Dp,
-            val large: Dp,
-            val extraLarge: Dp,
-        )
+            data class Heading(
+                val small: Dp,
+                val medium: Dp,
+                val large: Dp,
+                val extraLarge: Dp
+            )
 
-        data class Body(
-            val small: Dp,
-            val medium: Dp,
-            val large: Dp,
-        )
+            data class Body(
+                val small: Dp,
+                val medium: Dp,
+                val large: Dp
+            )
+        }
     }
 }
 
@@ -238,22 +242,24 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
                 ),
             ),
         ),
-        maxWidthType = OudsSizes.MaxWidthType(
-            display = OudsSizes.MaxWidthType.Display(
-                small = getTokenValue(maxWidthTypeDisplaySmallMobile, maxWidthTypeDisplaySmallTablet).dp,
-                medium = getTokenValue(maxWidthTypeDisplayMediumMobile, maxWidthTypeDisplayMediumTablet).dp,
-                large = getTokenValue(maxWidthTypeDisplayLargeMobile, maxWidthTypeDisplayLargeTablet).dp,
-            ),
-            heading = OudsSizes.MaxWidthType.Heading(
-                small = getTokenValue(maxWidthTypeHeadingSmallMobile, maxWidthTypeHeadingSmallTablet).dp,
-                medium = getTokenValue(maxWidthTypeHeadingMediumMobile, maxWidthTypeHeadingMediumTablet).dp,
-                large = getTokenValue(maxWidthTypeHeadingLargeMobile, maxWidthTypeHeadingLargeTablet).dp,
-                extraLarge = getTokenValue(maxWidthTypeHeadingXlargeMobile, maxWidthTypeHeadingXlargeTablet).dp,
-            ),
-            body = OudsSizes.MaxWidthType.Body(
-                small = getTokenValue(maxWidthTypeBodySmallMobile, maxWidthTypeBodySmallTablet).dp,
-                medium = getTokenValue(maxWidthTypeBodyMediumMobile, maxWidthTypeBodyMediumTablet).dp,
-                large = getTokenValue(maxWidthTypeBodyLargeMobile, maxWidthTypeBodyLargeTablet).dp,
+        maxWidth = OudsSizes.MaxWidth(
+            type = OudsSizes.MaxWidth.Type(
+                display = OudsSizes.MaxWidth.Type.Display(
+                    small = getTokenValue(maxWidthTypeDisplaySmallMobile, maxWidthTypeDisplaySmallTablet).dp,
+                    medium = getTokenValue(maxWidthTypeDisplayMediumMobile, maxWidthTypeDisplayMediumTablet).dp,
+                    large = getTokenValue(maxWidthTypeDisplayLargeMobile, maxWidthTypeDisplayLargeTablet).dp,
+                ),
+                heading = OudsSizes.MaxWidth.Type.Heading(
+                    small = getTokenValue(maxWidthTypeHeadingSmallMobile, maxWidthTypeHeadingSmallTablet).dp,
+                    medium = getTokenValue(maxWidthTypeHeadingMediumMobile, maxWidthTypeHeadingMediumTablet).dp,
+                    large = getTokenValue(maxWidthTypeHeadingLargeMobile, maxWidthTypeHeadingLargeTablet).dp,
+                    extraLarge = getTokenValue(maxWidthTypeHeadingXlargeMobile, maxWidthTypeHeadingXlargeTablet).dp,
+                ),
+                body = OudsSizes.MaxWidth.Type.Body(
+                    small = getTokenValue(maxWidthTypeBodySmallMobile, maxWidthTypeBodySmallTablet).dp,
+                    medium = getTokenValue(maxWidthTypeBodyMediumMobile, maxWidthTypeBodyMediumTablet).dp,
+                    large = getTokenValue(maxWidthTypeBodyLargeMobile, maxWidthTypeBodyLargeTablet).dp,
+                )
             )
         )
     )
@@ -261,85 +267,95 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
 
 @Stable
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.Decorative): Dp {
-    return when (token) {
-        OudsSizeKeyToken.Icon.Decorative.ExtraExtraSmall -> icon.decorative.extraExtraSmall
-        OudsSizeKeyToken.Icon.Decorative.ExtraSmall -> icon.decorative.extraSmall
-        OudsSizeKeyToken.Icon.Decorative.Small -> icon.decorative.small
-        OudsSizeKeyToken.Icon.Decorative.Medium -> icon.decorative.medium
-        OudsSizeKeyToken.Icon.Decorative.Large -> icon.decorative.large
-        OudsSizeKeyToken.Icon.Decorative.ExtraLarge -> icon.decorative.extraLarge
-        OudsSizeKeyToken.Icon.Decorative.ExtraExtraLarge -> icon.decorative.extraExtraLarge
+    return with(icon.decorative) {
+        when (token) {
+            OudsSizeKeyToken.Icon.Decorative.ExtraExtraSmall -> extraExtraSmall
+            OudsSizeKeyToken.Icon.Decorative.ExtraSmall -> extraSmall
+            OudsSizeKeyToken.Icon.Decorative.Small -> small
+            OudsSizeKeyToken.Icon.Decorative.Medium -> medium
+            OudsSizeKeyToken.Icon.Decorative.Large -> large
+            OudsSizeKeyToken.Icon.Decorative.ExtraLarge -> extraLarge
+            OudsSizeKeyToken.Icon.Decorative.ExtraExtraLarge -> extraExtraLarge
+        }
     }
 }
 
 @Stable
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithHeading): Dp {
-    return when (token) {
-        OudsSizeKeyToken.Icon.WithHeading.ExtraLarge.SizeSmall -> icon.withHeading.extraLarge.sizeSmall
-        OudsSizeKeyToken.Icon.WithHeading.ExtraLarge.SizeMedium -> icon.withHeading.extraLarge.sizeMedium
-        OudsSizeKeyToken.Icon.WithHeading.ExtraLarge.SizeLarge -> icon.withHeading.extraLarge.sizeLarge
-        OudsSizeKeyToken.Icon.WithHeading.Large.SizeSmall -> icon.withHeading.large.sizeSmall
-        OudsSizeKeyToken.Icon.WithHeading.Large.SizeMedium -> icon.withHeading.large.sizeMedium
-        OudsSizeKeyToken.Icon.WithHeading.Large.SizeLarge -> icon.withHeading.large.sizeLarge
-        OudsSizeKeyToken.Icon.WithHeading.Medium.SizeSmall -> icon.withHeading.medium.sizeSmall
-        OudsSizeKeyToken.Icon.WithHeading.Medium.SizeMedium -> icon.withHeading.medium.sizeMedium
-        OudsSizeKeyToken.Icon.WithHeading.Medium.SizeLarge -> icon.withHeading.medium.sizeLarge
-        OudsSizeKeyToken.Icon.WithHeading.Small.SizeSmall -> icon.withHeading.small.sizeSmall
-        OudsSizeKeyToken.Icon.WithHeading.Small.SizeMedium -> icon.withHeading.small.sizeMedium
-        OudsSizeKeyToken.Icon.WithHeading.Small.SizeLarge -> icon.withHeading.small.sizeLarge
+    return with(icon.withHeading) {
+        when (token) {
+            OudsSizeKeyToken.Icon.WithHeading.ExtraLarge.SizeSmall -> extraLarge.sizeSmall
+            OudsSizeKeyToken.Icon.WithHeading.ExtraLarge.SizeMedium -> extraLarge.sizeMedium
+            OudsSizeKeyToken.Icon.WithHeading.ExtraLarge.SizeLarge -> extraLarge.sizeLarge
+            OudsSizeKeyToken.Icon.WithHeading.Large.SizeSmall -> large.sizeSmall
+            OudsSizeKeyToken.Icon.WithHeading.Large.SizeMedium -> large.sizeMedium
+            OudsSizeKeyToken.Icon.WithHeading.Large.SizeLarge -> large.sizeLarge
+            OudsSizeKeyToken.Icon.WithHeading.Medium.SizeSmall -> medium.sizeSmall
+            OudsSizeKeyToken.Icon.WithHeading.Medium.SizeMedium -> medium.sizeMedium
+            OudsSizeKeyToken.Icon.WithHeading.Medium.SizeLarge -> medium.sizeLarge
+            OudsSizeKeyToken.Icon.WithHeading.Small.SizeSmall -> small.sizeSmall
+            OudsSizeKeyToken.Icon.WithHeading.Small.SizeMedium -> small.sizeMedium
+            OudsSizeKeyToken.Icon.WithHeading.Small.SizeLarge -> small.sizeLarge
+        }
     }
 }
 
 @Stable
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithBody): Dp {
-    return when (token) {
-        OudsSizeKeyToken.Icon.WithBody.Large.SizeSmall -> icon.withBody.large.sizeSmall
-        OudsSizeKeyToken.Icon.WithBody.Large.SizeMedium -> icon.withBody.large.sizeMedium
-        OudsSizeKeyToken.Icon.WithBody.Large.SizeLarge -> icon.withBody.large.sizeLarge
-        OudsSizeKeyToken.Icon.WithBody.Medium.SizeSmall -> icon.withBody.medium.sizeSmall
-        OudsSizeKeyToken.Icon.WithBody.Medium.SizeMedium -> icon.withBody.medium.sizeMedium
-        OudsSizeKeyToken.Icon.WithBody.Medium.SizeLarge -> icon.withBody.medium.sizeLarge
-        OudsSizeKeyToken.Icon.WithBody.Small.SizeSmall -> icon.withBody.small.sizeSmall
-        OudsSizeKeyToken.Icon.WithBody.Small.SizeMedium -> icon.withBody.small.sizeMedium
-        OudsSizeKeyToken.Icon.WithBody.Small.SizeLarge -> icon.withBody.small.sizeLarge
+    return with(icon.withBody) {
+        when (token) {
+            OudsSizeKeyToken.Icon.WithBody.Large.SizeSmall -> large.sizeSmall
+            OudsSizeKeyToken.Icon.WithBody.Large.SizeMedium -> large.sizeMedium
+            OudsSizeKeyToken.Icon.WithBody.Large.SizeLarge -> large.sizeLarge
+            OudsSizeKeyToken.Icon.WithBody.Medium.SizeSmall -> medium.sizeSmall
+            OudsSizeKeyToken.Icon.WithBody.Medium.SizeMedium -> medium.sizeMedium
+            OudsSizeKeyToken.Icon.WithBody.Medium.SizeLarge -> medium.sizeLarge
+            OudsSizeKeyToken.Icon.WithBody.Small.SizeSmall -> small.sizeSmall
+            OudsSizeKeyToken.Icon.WithBody.Small.SizeMedium -> small.sizeMedium
+            OudsSizeKeyToken.Icon.WithBody.Small.SizeLarge -> small.sizeLarge
+        }
     }
 }
 
 @Stable
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel): Dp {
-    return when (token) {
-        OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeSmall -> icon.withLabel.extraLarge.sizeSmall
-        OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeMedium -> icon.withLabel.extraLarge.sizeMedium
-        OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeLarge -> icon.withLabel.extraLarge.sizeLarge
-        OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall -> icon.withLabel.large.sizeExtraSmall
-        OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall -> icon.withLabel.large.sizeSmall
-        OudsSizeKeyToken.Icon.WithLabel.Large.SizeMedium -> icon.withLabel.large.sizeMedium
-        OudsSizeKeyToken.Icon.WithLabel.Large.SizeLarge -> icon.withLabel.large.sizeLarge
-        OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraLarge -> icon.withLabel.large.sizeExtraLarge
-        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeExtraSmall -> icon.withLabel.medium.sizeExtraSmall
-        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall -> icon.withLabel.medium.sizeSmall
-        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeMedium -> icon.withLabel.medium.sizeMedium
-        OudsSizeKeyToken.Icon.WithLabel.Medium.SizeLarge -> icon.withLabel.medium.sizeLarge
-        OudsSizeKeyToken.Icon.WithLabel.Small.SizeExtraSmall -> icon.withLabel.small.sizeExtraSmall
-        OudsSizeKeyToken.Icon.WithLabel.Small.SizeSmall -> icon.withLabel.small.sizeSmall
-        OudsSizeKeyToken.Icon.WithLabel.Small.SizeMedium -> icon.withLabel.small.sizeMedium
-        OudsSizeKeyToken.Icon.WithLabel.Small.SizeLarge -> icon.withLabel.small.sizeLarge
+    return with(icon.withLabel) {
+        when (token) {
+            OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeSmall -> extraLarge.sizeSmall
+            OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeMedium -> extraLarge.sizeMedium
+            OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeLarge -> extraLarge.sizeLarge
+            OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall -> large.sizeExtraSmall
+            OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall -> large.sizeSmall
+            OudsSizeKeyToken.Icon.WithLabel.Large.SizeMedium -> large.sizeMedium
+            OudsSizeKeyToken.Icon.WithLabel.Large.SizeLarge -> large.sizeLarge
+            OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraLarge -> large.sizeExtraLarge
+            OudsSizeKeyToken.Icon.WithLabel.Medium.SizeExtraSmall -> medium.sizeExtraSmall
+            OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall -> medium.sizeSmall
+            OudsSizeKeyToken.Icon.WithLabel.Medium.SizeMedium -> medium.sizeMedium
+            OudsSizeKeyToken.Icon.WithLabel.Medium.SizeLarge -> medium.sizeLarge
+            OudsSizeKeyToken.Icon.WithLabel.Small.SizeExtraSmall -> small.sizeExtraSmall
+            OudsSizeKeyToken.Icon.WithLabel.Small.SizeSmall -> small.sizeSmall
+            OudsSizeKeyToken.Icon.WithLabel.Small.SizeMedium -> small.sizeMedium
+            OudsSizeKeyToken.Icon.WithLabel.Small.SizeLarge -> small.sizeLarge
+        }
     }
 }
 
 @Stable
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
-    return when (token) {
-        OudsSizeKeyToken.MaxWidth.Type.Display.Small -> maxWidthType.display.small
-        OudsSizeKeyToken.MaxWidth.Type.Display.Medium -> maxWidthType.display.medium
-        OudsSizeKeyToken.MaxWidth.Type.Display.Large -> maxWidthType.display.large
-        OudsSizeKeyToken.MaxWidth.Type.Heading.Small -> maxWidthType.heading.small
-        OudsSizeKeyToken.MaxWidth.Type.Heading.Medium -> maxWidthType.heading.medium
-        OudsSizeKeyToken.MaxWidth.Type.Heading.Large -> maxWidthType.heading.large
-        OudsSizeKeyToken.MaxWidth.Type.Heading.ExtraLarge -> maxWidthType.heading.extraLarge
-        OudsSizeKeyToken.MaxWidth.Type.Body.Small -> maxWidthType.body.small
-        OudsSizeKeyToken.MaxWidth.Type.Body.Medium -> maxWidthType.body.medium
-        OudsSizeKeyToken.MaxWidth.Type.Body.Large -> maxWidthType.body.large
+    return with(maxWidth.type) {
+        when (token) {
+            OudsSizeKeyToken.MaxWidth.Type.Display.Small -> display.small
+            OudsSizeKeyToken.MaxWidth.Type.Display.Medium -> display.medium
+            OudsSizeKeyToken.MaxWidth.Type.Display.Large -> display.large
+            OudsSizeKeyToken.MaxWidth.Type.Heading.Small -> heading.small
+            OudsSizeKeyToken.MaxWidth.Type.Heading.Medium -> heading.medium
+            OudsSizeKeyToken.MaxWidth.Type.Heading.Large -> heading.large
+            OudsSizeKeyToken.MaxWidth.Type.Heading.ExtraLarge -> heading.extraLarge
+            OudsSizeKeyToken.MaxWidth.Type.Body.Small -> body.small
+            OudsSizeKeyToken.MaxWidth.Type.Body.Medium -> body.medium
+            OudsSizeKeyToken.MaxWidth.Type.Body.Large -> body.large
+        }
     }
 }
 

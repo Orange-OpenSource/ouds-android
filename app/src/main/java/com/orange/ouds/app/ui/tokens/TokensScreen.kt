@@ -50,7 +50,7 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
                     title = stringResource(id = token.nameRes),
                     imageRes = token.imageRes,
                     onClick = { onTokenCategoryClick(token.id) },
-                    imageTint = OudsTheme.colorScheme.contentColors.default
+                    imageTint = OudsTheme.colorScheme.content.default
                 )
             }
         }

@@ -47,7 +47,7 @@ private val defaultIllustrationSize = 64.dp
 @Composable
 fun IllustrationBox(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = OudsTheme.colorScheme.surfaceColors.statusNeutralMuted,
+    backgroundColor: Color = OudsTheme.colorScheme.surface.status.neutral.muted,
     contentAlignment: Alignment = Alignment.TopStart,
     content: @Composable BoxScope.() -> Unit = { }
 ) {
@@ -65,9 +65,9 @@ fun BorderIllustrationBox(
     width: Dp = 1.dp,
     shape: Shape = RectangleShape,
     style: OudsBorderStyle = OudsBorderStyle.Solid,
-    backgroundColor: Color = OudsTheme.colorScheme.backgroundColors.secondary
+    backgroundColor: Color = OudsTheme.colorScheme.background.secondary
 ) {
-    val borderColor = OudsTheme.colorScheme.borderColors.emphasized
+    val borderColor = OudsTheme.colorScheme.border.emphasized
     val modifier = when (style) {
         OudsBorderStyle.None -> Modifier
         OudsBorderStyle.Solid -> Modifier.border(width = width, color = borderColor, shape = shape)
@@ -80,7 +80,7 @@ fun BorderIllustrationBox(
 @Composable
 fun ElevationIllustrationSurface(elevation: Dp) {
     Surface(shadowElevation = elevation) {
-        IllustrationBox(backgroundColor = OudsTheme.colorScheme.backgroundColors.secondary)
+        IllustrationBox(backgroundColor = OudsTheme.colorScheme.background.secondary)
     }
 }
 
@@ -105,7 +105,7 @@ fun SizeIconIllustrationBox(size: Dp) {
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.ic_design_token_figma),
-            tint = OudsTheme.colorScheme.contentColors.statusInfo,
+            tint = OudsTheme.colorScheme.content.status.info,
             contentDescription = null
         )
     }
@@ -118,13 +118,13 @@ fun SpacePaddingInsetIllustrationBox(size: Dp) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(height = size)
-                .background(OudsTheme.colorScheme.contentColors.statusInfo)
+                .background(OudsTheme.colorScheme.content.status.info)
         )
         Box(
             modifier = Modifier
                 .fillMaxHeight()
                 .width(width = size)
-                .background(OudsTheme.colorScheme.contentColors.statusInfo)
+                .background(OudsTheme.colorScheme.content.status.info)
         )
     }
 }
@@ -146,7 +146,7 @@ fun SpaceIllustrationBox(
     }
     IllustrationBox(contentAlignment = contentAlignment) {
         Box(
-            modifier = dimensionBoxModifier.background(color = OudsTheme.colorScheme.contentColors.statusInfo)
+            modifier = dimensionBoxModifier.background(color = OudsTheme.colorScheme.content.status.info)
         )
     }
 }

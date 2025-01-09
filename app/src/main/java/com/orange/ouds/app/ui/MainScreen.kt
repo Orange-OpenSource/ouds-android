@@ -152,7 +152,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
     Dialog(onDismissRequest = dismissDialog) {
         Column(
             modifier = Modifier
-                .background(OudsTheme.colorScheme.backgroundColors.secondary)
+                .background(OudsTheme.colorScheme.background.secondary)
                 .selectableGroup()
         ) {
             Text(

@@ -41,12 +41,12 @@ fun DetailScreenHeader(
     Column {
         Image(
             painter = painterResource(imageRes),
-            colorFilter = ColorFilter.tint(OudsTheme.colorScheme.contentColors.default),
+            colorFilter = ColorFilter.tint(OudsTheme.colorScheme.content.default),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(186.dp)
-                .background(OudsTheme.colorScheme.surfaceColors.statusNeutralMuted),
+                .background(OudsTheme.colorScheme.surface.status.neutral.muted),
             contentScale = ContentScale.None
         )
 
@@ -67,8 +67,8 @@ fun DetailScreenDescription(
     Text(
         modifier = modifier,
         text = stringResource(descriptionRes),
-        color = OudsTheme.colorScheme.contentColors.default,
-        style = OudsTheme.typography.bodyDefaultLarge
+        color = OudsTheme.colorScheme.content.default,
+        style = OudsTheme.typography.body.default.large
     )
 }
 
