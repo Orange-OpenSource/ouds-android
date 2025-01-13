@@ -14,8 +14,11 @@ package com.orange.ouds.core.component.coloredbox
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
@@ -28,6 +31,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.theme.LocalColoredBox
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -58,42 +63,45 @@ fun OudsColoredBox(
     content: @Composable BoxScope.() -> Unit
 ) {
     CompositionLocalProvider(
-        LocalContentColor provides contentColorFor(color),
         LocalColoredBox provides true
     ) {
-        // Filter the background modifiers in order to force the background color
-        // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
-        val filteredModifier = modifier.foldIn<Modifier>(Modifier) { result, element ->
-            if (element::class.simpleName != "BackgroundElement") result.then(element) else result
-        }
-        Box(
-            modifier = Modifier
-                .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
-                .then(filteredModifier),
-            contentAlignment = contentAlignment,
-            propagateMinConstraints = propagateMinConstraints,
-            content = content
-        )
+            // Filter the background modifiers in order to force the background color
+            // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
+            val filteredModifier = modifier.foldIn<Modifier>(Modifier) { result, element ->
+                if (element::class.simpleName != "BackgroundElement") result.then(element) else result
+            }
+            Box(
+                modifier = Modifier
+                    .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
+                    .then(filteredModifier),
+                contentAlignment = contentAlignment,
+                propagateMinConstraints = propagateMinConstraints,
+                content = {
+                    OudsThemeTweak(tweakFor(color)) {
+                        content()
+                    }
+                }
+            )
     }
 }
 
 @Composable
-private fun contentColorFor(color: OudsColorKeyToken.Surface): Color {
+private fun tweakFor(color: OudsColorKeyToken.Surface): OudsTheme.Tweak {
     return when (color) {
-        OudsColorKeyToken.Surface.Brand.Primary -> OudsColorKeyToken.Content.OnBrand.Primary
+        OudsColorKeyToken.Surface.Brand.Primary,
         OudsColorKeyToken.Surface.Status.Accent.Emphasized,
         OudsColorKeyToken.Surface.Status.Info.Emphasized,
-        OudsColorKeyToken.Surface.Status.Negative.Emphasized,
         OudsColorKeyToken.Surface.Status.Positive.Emphasized,
-        OudsColorKeyToken.Surface.Status.Warning.Emphasized -> OudsColorKeyToken.Content.OnStatus.Emphasized
-        OudsColorKeyToken.Surface.Status.Neutral.Emphasized -> OudsColorKeyToken.Content.OnStatus.EmphasizedNeutral
+        OudsColorKeyToken.Surface.Status.Warning.Emphasized -> OudsTheme.Tweak.ForceLight
+        OudsColorKeyToken.Surface.Status.Negative.Emphasized,
+        OudsColorKeyToken.Surface.Status.Neutral.Emphasized -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceLight else OudsTheme.Tweak.ForceDark
         OudsColorKeyToken.Surface.Status.Accent.Muted,
         OudsColorKeyToken.Surface.Status.Info.Muted,
         OudsColorKeyToken.Surface.Status.Negative.Muted,
         OudsColorKeyToken.Surface.Status.Positive.Muted,
         OudsColorKeyToken.Surface.Status.Neutral.Muted,
-        OudsColorKeyToken.Surface.Status.Warning.Muted -> OudsColorKeyToken.Content.OnStatus.Muted
-    }.value
+        OudsColorKeyToken.Surface.Status.Warning.Muted ->  if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
+    }
 }
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
@@ -109,10 +117,16 @@ internal fun PreviewOudsColoredBox(
     parameter: OudsColorKeyToken.Surface
 ) = OudsPreview(modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
     OudsColoredBox(color = parameter) {
-        Text(
+        Column(
             modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
-            text = parameter.name.removePrefix("OudsColorKeyToken."),
-        )
+            verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
+        ) {
+            Text(
+                text = parameter.name.removePrefix("OudsColorKeyToken."),
+                color = OudsColorKeyToken.Content.Default.value
+            )
+            OudsButton(text = "OudsButton", onClick = {})
+        }
     }
 }
 
