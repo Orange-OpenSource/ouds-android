@@ -96,7 +96,7 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
-    val componentsTokens: OudsComponentsTokens
+    internal val componentsTokens: OudsComponentsTokens
         @Composable
         @ReadOnlyComposable
         get() = LocalComponentsTokens.current
