@@ -18,15 +18,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.button.OudsButton
@@ -65,23 +62,23 @@ fun OudsColoredBox(
     CompositionLocalProvider(
         LocalColoredBox provides true
     ) {
-            // Filter the background modifiers in order to force the background color
-            // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
-            val filteredModifier = modifier.foldIn<Modifier>(Modifier) { result, element ->
-                if (element::class.simpleName != "BackgroundElement") result.then(element) else result
-            }
-            Box(
-                modifier = Modifier
-                    .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
-                    .then(filteredModifier),
-                contentAlignment = contentAlignment,
-                propagateMinConstraints = propagateMinConstraints,
-                content = {
-                    OudsThemeTweak(tweakFor(color)) {
-                        content()
-                    }
+        // Filter the background modifiers in order to force the background color
+        // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
+        val filteredModifier = modifier.foldIn<Modifier>(Modifier) { result, element ->
+            if (element::class.simpleName != "BackgroundElement") result.then(element) else result
+        }
+        Box(
+            modifier = Modifier
+                .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
+                .then(filteredModifier),
+            contentAlignment = contentAlignment,
+            propagateMinConstraints = propagateMinConstraints,
+            content = {
+                OudsThemeTweak(tweakFor(color)) {
+                    content()
                 }
-            )
+            }
+        )
     }
 }
 
@@ -100,7 +97,7 @@ private fun tweakFor(color: OudsColorKeyToken.Surface): OudsTheme.Tweak {
         OudsColorKeyToken.Surface.Status.Negative.Muted,
         OudsColorKeyToken.Surface.Status.Positive.Muted,
         OudsColorKeyToken.Surface.Status.Neutral.Muted,
-        OudsColorKeyToken.Surface.Status.Warning.Muted ->  if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
+        OudsColorKeyToken.Surface.Status.Warning.Muted -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
     }
 }
 
