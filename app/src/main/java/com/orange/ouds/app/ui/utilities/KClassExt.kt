@@ -14,10 +14,5 @@ package com.orange.ouds.app.ui.utilities
 
 import kotlin.reflect.KClass
 
-fun <T : Any> KClass<T>.getSealedSubclasses(recursive: Boolean = true): List<KClass<out T>> {
-    return if (recursive) {
-        sealedSubclasses + sealedSubclasses.flatMap { it.getSealedSubclasses(recursive = true) }
-    } else {
-        sealedSubclasses.toList()
-    }
-}
+val <T : Any> KClass<T>.allNestedClasses: List<KClass<*>>
+    get() = nestedClasses + nestedClasses.flatMap { it.allNestedClasses }

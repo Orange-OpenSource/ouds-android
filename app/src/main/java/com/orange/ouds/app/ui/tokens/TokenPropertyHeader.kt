@@ -25,13 +25,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -42,12 +40,9 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.extensions.asOrNull
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.dashedBorder
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 @Composable
 fun GridHeader(modifier: Modifier = Modifier) {
@@ -75,7 +70,7 @@ fun GridHeader(modifier: Modifier = Modifier) {
 @Composable
 fun SizeIconWithTextHeader(
     size: Dp,
-    typographyTokenName: String,
+    typographyToken: Token<TextStyle>,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -91,24 +86,18 @@ fun SizeIconWithTextHeader(
             tint = OudsTheme.colorScheme.content.status.info,
             contentDescription = null
         )
-
-        val style = if (LocalInspectionMode.current) {
-            OudsTheme.typography.heading.small
-        } else {
-            getTokens<OudsTypographyKeyToken>()
-                .asOrNull<List<Token<TextStyle>>>()
-                ?.firstOrNull { typographyToken ->
-                    typographyToken.name.replace(".Strong", "") == typographyTokenName
-                }
-                ?.value?.invoke()
-                .orElse { LocalTextStyle.current }
-        }
+        val text = typographyToken.name
+            .replace("([a-z])([A-Z])".toRegex()) { "${it.groupValues[1]}.${it.groupValues[2].lowercase()}" }
+            .split(".")
+            .filter { it != "typography" && it != "strong" }
+            .joinToString(" ")
+            .replaceFirstChar { it.uppercaseChar() }
         Text(
             modifier = Modifier.weight(1f),
-            text = typographyTokenName,
+            text = text,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = style,
+            style = typographyToken.value(),
             color = OudsTheme.colorScheme.content.default
         )
     }
@@ -214,7 +203,10 @@ private fun PreviewGridHeader() = OudsPreview {
 @UiModePreviews.Default
 @Composable
 private fun PreviewSizeIconWithTextHeader() = OudsPreview {
-    SizeIconWithTextHeader(size = OudsTheme.sizes.icon.withHeading.small.sizeLarge, typographyTokenName = "Heading.Small")
+    SizeIconWithTextHeader(
+        size = OudsTheme.sizes.icon.withHeading.small.sizeLarge,
+        typographyToken = Token("typography.label.strong.extraLarge", "", { OudsTheme.typography.label.strong.extraLarge })
+    )
 }
 
 @UiModePreviews.Default

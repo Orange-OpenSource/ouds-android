@@ -74,7 +74,9 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.OudsTypography
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsBorderStyle
@@ -148,15 +150,25 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
 
                     if (tokenProperty == TokenProperty.SizeIconWithText) {
                         tokenProperty.tokens.groupBy { it.name.substringBeforeLast('.') }.forEach { entry ->
-                            item {
-                                SizeIconWithTextHeader(
-                                    modifier = Modifier.padding(
-                                        horizontal = OudsTheme.spaces.fixed.medium,
-                                        vertical = OudsTheme.spaces.fixed.shorter
-                                    ),
-                                    size = entry.value.last().value() as Dp,
-                                    typographyTokenName = entry.key
-                                )
+                            val typographyTokenIdentifier = entry.key.removePrefix("sizes.icon.with").replaceFirstChar { it.lowercaseChar() }
+                            val typographyToken = getTokens<OudsTypography>()
+                                .asOrNull<List<Token<TextStyle>>>()
+                                ?.firstOrNull { typographyToken ->
+                                    // For instance if entry key is sizes.icon.withLabel.large,
+                                    // typography token identifier will be label.large which will match typography token named typography.label.strong.large
+                                    typographyToken.name.removePrefix("typography.").replace("strong.", "") == typographyTokenIdentifier
+                                }
+                            if (typographyToken != null) {
+                                item {
+                                    SizeIconWithTextHeader(
+                                        modifier = Modifier.padding(
+                                            horizontal = OudsTheme.spaces.fixed.medium,
+                                            vertical = OudsTheme.spaces.fixed.shorter
+                                        ),
+                                        typographyToken = typographyToken,
+                                        size = entry.value.last().value() as Dp
+                                    )
+                                }
                             }
                             items(entry.value) { token ->
                                 TokenRow(tokenProperty = tokenProperty, token = token)
@@ -190,9 +202,9 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = if (tokenProperty == TokenProperty.SizeIconWithText) {
-                    token.name.substringAfterLast('.')
+                    token.relativeName.substringAfterLast('.')
                 } else {
-                    token.name
+                    token.relativeName
                 },
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,

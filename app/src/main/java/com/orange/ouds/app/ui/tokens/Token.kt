@@ -19,7 +19,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
 
-data class Token<T>(val name: String, val value: @Composable () -> T) {
+data class Token<T>(val name: String, val relativeName: String, val value: @Composable () -> T) {
+
     val literalValue: String
         @Composable
         get() = when (val value = value()) {
