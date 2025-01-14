@@ -35,7 +35,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 /**
  * An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
@@ -115,12 +114,12 @@ internal fun PreviewOudsColoredBox(
 ) = OudsPreview(modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
     OudsColoredBox(color = parameter) {
         Column(
-            modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
-            verticalArrangement = Arrangement.spacedBy(OudsSpaceKeyToken.Fixed.Medium.value)
+            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
+            verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
         ) {
             Text(
                 text = parameter.name.removePrefix("OudsColorKeyToken."),
-                color = OudsColorKeyToken.Content.Default.value
+                color = OudsTheme.colorScheme.content.default
             )
             OudsButton(text = "OudsButton", onClick = {})
         }
