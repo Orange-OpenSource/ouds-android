@@ -6,12 +6,12 @@
 
 This repository contains the OUDS Android library that provides Orange Android components, but also a demo application showcasing these different components.
 
-OUDS stands for "Orange Unified Design System", its aim is to merge all the requirements of Orange brands and affiliates to provide a unique Design System, unified across all platforms and all countries.
+OUDS stands for "Orange Unified Design System". Its aim is to merge all the requirements of Orange brands and affiliates to provide a unique Design System, unified across all platforms and all countries.
 It should replace internal frameworks and also [ODS](https://github.com/Orange-OpenSource/ods-android) in the near future.
 
 ## Documentation
 
-Documentation for OUDS Android is available on [android.unified-design-system.orange.com](https://android.unified-design-system.orange.com/)
+Documentation for OUDS Android is available at [android.unified-design-system.orange.com](https://android.unified-design-system.orange.com/)
 
 <!-- TODO ## Get started with OUDS Android -->
 
