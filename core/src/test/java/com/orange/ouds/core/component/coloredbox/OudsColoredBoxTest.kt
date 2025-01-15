@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsColoredBoxTest(private val parameter: OudsColorKeyToken.Surface) {
+internal class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color) {
 
     companion object {
         @JvmStatic

@@ -16,9 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.theme.OudsAdaptiveTokenValue
-import com.orange.ouds.theme.OudsAdaptiveWindowType
-import com.orange.ouds.theme.currentWindowWidth
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 
@@ -26,49 +24,36 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
  * @suppress
  */
 data class OudsGrids(
-    val minWidth: OudsAdaptiveTokenValue<Dp>,
-    val maxWidth: OudsAdaptiveTokenValue<Dp>,
-    val margin: OudsAdaptiveTokenValue<Dp>,
-    val columnGap: OudsAdaptiveTokenValue<Dp>
+    val minWidth: Dp,
+    val maxWidth: Dp,
+    val margin: Dp,
+    val columnGap: Dp
 )
 
-internal fun OudsGridSemanticTokens.getGrids() = OudsGrids(
-    minWidth = OudsAdaptiveTokenValue(
-        extraCompactMinWidth.dp,
-        compactMinWidth.dp,
-        mediumMinWidth.dp
-    ),
-    maxWidth = OudsAdaptiveTokenValue(
-        extraCompactMaxWidth.dp,
-        compactMaxWidth.dp,
-        mediumMaxWidth.dp,
-    ),
-    margin = OudsAdaptiveTokenValue(
-        extraCompactMargin.dp,
-        compactMargin.dp,
-        mediumMargin.dp,
-    ),
-    columnGap = OudsAdaptiveTokenValue(
-        extraCompactColumnGap.dp,
-        compactColumnGap.dp,
-        mediumColumnGap.dp,
+internal fun OudsGridSemanticTokens.getGrids(windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
+    OudsGrids(
+        minWidth = getTokenValue(extraCompactMinWidth, compactMinWidth, mediumMinWidth).dp,
+        maxWidth = getTokenValue(extraCompactMaxWidth, compactMaxWidth, mediumMaxWidth).dp,
+        margin = getTokenValue(extraCompactMargin, compactMargin, mediumMargin).dp,
+        columnGap = getTokenValue(extraCompactColumnGap, compactColumnGap, mediumColumnGap).dp
     )
-)
+}
 
 @Stable
-private fun OudsGrids.fromToken(token: OudsGridKeyToken, adaptiveWindowType: OudsAdaptiveWindowType): Dp {
+private fun OudsGrids.fromToken(token: OudsGridKeyToken): Dp {
     return when (token) {
         OudsGridKeyToken.MinWidth -> minWidth
         OudsGridKeyToken.MaxWidth -> maxWidth
         OudsGridKeyToken.ColumnGap -> columnGap
         OudsGridKeyToken.Margin -> margin
-    }.getValue(adaptiveWindowType)
+    }
 }
 
 /**
  * Converts an OUDS grid token to the local grid value provided by the theme.
  * Note that grid token value returned varies depending on the window size.
  */
+@InternalOudsApi
 val OudsGridKeyToken.value: Dp
     @Composable
-    get() = OudsTheme.grids.fromToken(this, OudsAdaptiveWindowType.fromWindowWidth(currentWindowWidth()))
+    get() = OudsTheme.grids.fromToken(this)

@@ -12,6 +12,9 @@
 
 package com.orange.ouds.theme.tokens
 
+import com.orange.ouds.foundation.InternalOudsApi
+
+@InternalOudsApi
 sealed interface OudsOpacityKeyToken : OudsKeyToken {
     data object Invisible : OudsOpacityKeyToken
     data object Medium : OudsOpacityKeyToken

@@ -22,11 +22,17 @@ android {
     buildFeatures {
         compose = true
     }
+
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs.add("-opt-in=com.orange.ouds.foundation.InternalOudsApi")
+        }
+    }
 }
 
 dependencies {
+    implementation(project(":foundation"))
     implementation(project(":global-raw-tokens"))
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material3.adaptive)
 }

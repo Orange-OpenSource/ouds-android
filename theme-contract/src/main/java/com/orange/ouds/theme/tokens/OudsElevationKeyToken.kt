@@ -12,6 +12,9 @@
 
 package com.orange.ouds.theme.tokens
 
+import com.orange.ouds.foundation.InternalOudsApi
+
+@InternalOudsApi
 sealed interface OudsElevationKeyToken : OudsKeyToken {
 
     data object None : OudsElevationKeyToken

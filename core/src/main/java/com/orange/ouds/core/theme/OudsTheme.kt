@@ -96,7 +96,7 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
-    val componentsTokens: OudsComponentsTokens
+    internal val componentsTokens: OudsComponentsTokens
         @Composable
         @ReadOnlyComposable
         get() = LocalComponentsTokens.current
@@ -119,6 +119,7 @@ fun OudsTheme(
 ) {
     val colorScheme = if (darkThemeEnabled) themeContract.colorTokens.darkColorScheme else themeContract.colorTokens.lightColorScheme
     val materialColorScheme = if (darkThemeEnabled) materialDarkColorScheme else materialLightColorScheme
+    val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
 
     CompositionLocalProvider(
         LocalDarkThemeEnabled provides darkThemeEnabled,
@@ -129,11 +130,11 @@ fun OudsTheme(
         LocalMaterialDarkColorScheme provides materialDarkColorScheme,
         LocalBorders provides themeContract.borderTokens.getBorders(),
         LocalElevations provides themeContract.elevationTokens.getElevation(),
-        LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily),
-        LocalGrids provides themeContract.gridTokens.getGrids(),
+        LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily, windowWidthSizeClass),
+        LocalGrids provides themeContract.gridTokens.getGrids(windowWidthSizeClass),
         LocalOpacities provides themeContract.opacityTokens.getOpacity(),
-        LocalSizes provides themeContract.sizeTokens.getSizes(),
-        LocalSpaces provides themeContract.spaceTokens.getSpaces(),
+        LocalSizes provides themeContract.sizeTokens.getSizes(windowWidthSizeClass),
+        LocalSpaces provides themeContract.spaceTokens.getSpaces(windowWidthSizeClass),
         LocalComponentsTokens provides themeContract.componentsTokens,
     ) {
         MaterialTheme(

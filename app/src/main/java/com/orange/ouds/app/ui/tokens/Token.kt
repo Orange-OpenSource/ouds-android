@@ -19,7 +19,17 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
 
-data class Token<T>(val name: String, val value: @Composable () -> T) {
+/**
+ * A design system token that will be displayed in tokens screens.
+ *
+ * @property name The full name of the token.
+ * @property relativeName The name of the token relative to the section in which it is displayed in [TokenCategoryDetailScreen].
+ *   For instance the token named "OudsTheme.colorScheme.action.negative.enabled" will be displayed in the "Action" section
+ *   of the color tokens screen as "negative.enabled".
+ * @property value A composable method that returns the value of the token.
+ */
+data class Token<T>(val name: String, val relativeName: String, val value: @Composable () -> T) {
+
     val literalValue: String
         @Composable
         get() = when (val value = value()) {

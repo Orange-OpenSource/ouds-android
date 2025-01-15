@@ -15,6 +15,7 @@ package com.orange.ouds.core.theme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 
@@ -55,6 +56,7 @@ private fun OudsOpacities.fromToken(token: OudsOpacityKeyToken): Float {
 /**
  * Converts an OUDS opacity token to the local opacity value provided by the theme.
  */
+@InternalOudsApi
 val OudsOpacityKeyToken.value: Float
     @ReadOnlyComposable
     @Composable

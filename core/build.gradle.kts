@@ -36,6 +36,12 @@ android {
         buildConfig = true
         compose = true
     }
+
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs.add("-opt-in=com.orange.ouds.foundation.InternalOudsApi")
+        }
+    }
 }
 
 dependencies {
@@ -45,6 +51,7 @@ dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3.adaptive)
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.material)

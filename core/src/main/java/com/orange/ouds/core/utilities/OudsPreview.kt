@@ -19,8 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
@@ -38,7 +36,7 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
         // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
         Box(
             modifier = Modifier
-                .background(OudsColorKeyToken.Background.Primary.value)
+                .background(OudsTheme.colorScheme.background.primary)
                 .then(modifier)
         ) {
             content()

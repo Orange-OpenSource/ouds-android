@@ -30,13 +30,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeTweak
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 
 @Composable
 fun DetailScreenHeader(
@@ -46,19 +41,19 @@ fun DetailScreenHeader(
     Column {
         Image(
             painter = painterResource(imageRes),
-            colorFilter = ColorFilter.tint(OudsColorKeyToken.Content.Default.value),
+            colorFilter = ColorFilter.tint(OudsTheme.colorScheme.content.default),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(186.dp)
-                .background(OudsColorKeyToken.Surface.Status.Neutral.Muted.value),
+                .background(OudsTheme.colorScheme.surface.status.neutral.muted),
             contentScale = ContentScale.None
         )
 
         DetailScreenDescription(
             modifier = Modifier
-                .padding(horizontal = OudsSpaceKeyToken.Fixed.Medium.value)
-                .padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
+                .padding(horizontal = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium),
             descriptionRes = descriptionRes
         )
     }
@@ -72,8 +67,8 @@ fun DetailScreenDescription(
     Text(
         modifier = modifier,
         text = stringResource(descriptionRes),
-        color = OudsColorKeyToken.Content.Default.value,
-        style = OudsTypographyKeyToken.Body.Default.Large.value
+        color = OudsTheme.colorScheme.content.default,
+        style = OudsTheme.typography.body.default.large
     )
 }
 
