@@ -200,11 +200,22 @@ fun <T : Any> getTokens(clazz: KClass<T>): List<Token<*>> {
     val className = clazz.qualifiedName.orEmpty().removePrefix("$packageName.")
     val rootClassName = className.substringBefore(".")
     val rootClass = Class.forName("$packageName.$rootClassName").kotlin
-    val rootPath = rootClassName.removePrefix("Ouds").replaceFirstChar { it.lowercaseChar() }
+    val rootPath = getPath(rootClass)
 
     return getTokenPaths(rootClass, clazz.takeIf { it != rootClass }, rootPath).map { tokenPath ->
         Token(tokenPath, getTokenRelativeName(tokenPath, clazz), { getTokenValue(tokenPath) })
     }
+}
+
+private fun getPath(clazz: KClass<*>): String {
+    val packageName = clazz.java.`package`?.name.orEmpty()
+    val className = clazz.qualifiedName.orEmpty().removePrefix("$packageName.")
+
+    return className.removePrefix("Ouds")
+        .split(".")
+        .joinToString(".") { string ->
+            string.replaceFirstChar { it.lowercaseChar() }
+        }
 }
 
 /**
@@ -244,17 +255,9 @@ private fun getTokenPaths(clazz: KClass<*>, fromClass: KClass<*>?, parentPath: S
         }
 }
 
-private fun getTokenRelativeName(tokenPath: String, parent: KClass<*>): String {
-    val parentPackageName = parent.java.`package`?.name.orEmpty()
-    val parentClassName = parent.qualifiedName.orEmpty().removePrefix("$parentPackageName.")
-
-    val path = parentClassName.removePrefix("Ouds")
-        .split(".")
-        .joinToString(".") { string ->
-            string.replaceFirstChar { it.lowercaseChar() }
-        }
-
-    return tokenPath.removePrefix("$path.")
+private fun getTokenRelativeName(tokenPath: String, parentClass: KClass<*>): String {
+    val parentPath = getPath(parentClass)
+    return tokenPath.removePrefix("$parentPath.")
 }
 
 @Composable
