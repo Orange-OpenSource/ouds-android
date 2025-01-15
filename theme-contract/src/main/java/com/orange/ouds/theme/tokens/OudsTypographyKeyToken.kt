@@ -12,6 +12,9 @@
 
 package com.orange.ouds.theme.tokens
 
+import com.orange.ouds.foundation.InternalOudsApi
+
+@InternalOudsApi
 sealed interface OudsTypographyKeyToken : OudsKeyToken {
 
     sealed interface Display : OudsTypographyKeyToken {
