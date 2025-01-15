@@ -68,7 +68,6 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.outerBorder
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -383,14 +382,14 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
                 OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
             }.value
             OudsButton.Hierarchy.Strong -> when (state) {
-                OudsButton.State.Enabled -> OudsColorKeyToken.Action.Enabled
-                OudsButton.State.Focused -> OudsColorKeyToken.Action.Focus
-                OudsButton.State.Hovered -> OudsColorKeyToken.Action.Hover
-                OudsButton.State.Pressed -> OudsColorKeyToken.Action.Pressed
-                OudsButton.State.Loading -> OudsColorKeyToken.Action.Loading
-                OudsButton.State.Disabled -> OudsColorKeyToken.Action.Disabled
-                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg
-            }.value
+                OudsButton.State.Enabled -> OudsTheme.colorScheme.action.enabled
+                OudsButton.State.Focused -> OudsTheme.colorScheme.action.focus
+                OudsButton.State.Hovered -> OudsTheme.colorScheme.action.hover
+                OudsButton.State.Pressed -> OudsTheme.colorScheme.action.pressed
+                OudsButton.State.Loading -> OudsTheme.colorScheme.action.loading
+                OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
+                OudsButton.State.Skeleton -> OudsTheme.componentsTokens.skeleton.colorBg.value
+            }
             OudsButton.Hierarchy.Negative -> when (state) {
                 OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
                 OudsButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
