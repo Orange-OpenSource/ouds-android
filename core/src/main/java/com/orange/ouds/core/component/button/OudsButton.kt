@@ -241,7 +241,7 @@ private fun OudsButton(
             shape = shape,
             colors = buttonColors(hierarchy = hierarchy, buttonState = state),
             elevation = null,
-            contentPadding = contentPadding(icon = icon, text = text, loading = state == OudsButton.State.Loading),
+            contentPadding = PaddingValues(all = 0.dp),
             interactionSource = interactionSource
         ) {
             Box(contentAlignment = Alignment.Center) {
@@ -253,7 +253,9 @@ private fun OudsButton(
 
                 val alpha = if (state == OudsButton.State.Loading) 0f else 1f
                 Row(
-                    modifier = Modifier.alpha(alpha = alpha),
+                    modifier = Modifier
+                        .alpha(alpha = alpha)
+                        .padding(contentPadding(icon = icon, text = text)),
                     horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -482,11 +484,10 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
 }
 
 @Composable
-private fun contentPadding(icon: OudsButton.Icon?, text: String?, loading: Boolean): PaddingValues {
+private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues {
     return with(OudsTheme.componentsTokens.button) {
         when {
-            // When loading the start & end padding must be the same in order to center the loading indicator inside the button
-            icon != null && text != null && !loading -> PaddingValues(
+            icon != null && text != null -> PaddingValues(
                 start = spacePaddingInlineIconStart.value,
                 top = spacePaddingBlock.value,
                 end = spacePaddingInlineEndIconStart.value,
