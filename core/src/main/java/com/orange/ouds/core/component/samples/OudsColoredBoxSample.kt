@@ -15,12 +15,11 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.coloredbox.OudsColoredBox
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 @Composable
 internal fun SimpleOudsColoredBox() {
-    OudsColoredBox(color = OudsColorKeyToken.Surface.Status.Info.Emphasized) {
-        // From this point LocalContentColor is automatically adjusted to maximize the contrast with OudsColorKeyToken.Surface.Status.Info.Emphasized
+    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+        // From this point the theme is automatically adjusted to maximize the contrast with OudsColoredBox.Color.StatusInfoEmphasized
         Text("Text")
     }
 }

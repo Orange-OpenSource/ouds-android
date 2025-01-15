@@ -32,7 +32,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
@@ -52,7 +52,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
  */
 @Composable
 fun OudsColoredBox(
-    color: OudsColorKeyToken.Surface,
+    color: OudsColoredBox.Color,
     modifier: Modifier = Modifier,
     contentAlignment: Alignment = Alignment.TopStart,
     propagateMinConstraints: Boolean = false,
@@ -73,7 +73,7 @@ fun OudsColoredBox(
             contentAlignment = contentAlignment,
             propagateMinConstraints = propagateMinConstraints,
             content = {
-                OudsThemeTweak(tweakFor(color)) {
+                OudsThemeTweak(tweak(color)) {
                     content()
                 }
             }
@@ -81,36 +81,103 @@ fun OudsColoredBox(
     }
 }
 
+/**
+ * Contains classes to build an [com.orange.ouds.core.component.coloredbox.OudsColoredBox].
+ */
+object OudsColoredBox {
+
+    /**
+     * Represents the possible background colors of an [OudsColoredBox].
+     */
+    enum class Color {
+        BrandPrimary,
+        StatusAccentEmphasized,
+        StatusAccentMuted,
+        StatusInfoEmphasized,
+        StatusInfoMuted,
+        StatusNegativeEmphasized,
+        StatusNegativeMuted,
+        StatusNeutralEmphasized,
+        StatusNeutralMuted,
+        StatusPositiveEmphasized,
+        StatusPositiveMuted,
+        StatusWarningEmphasized,
+        StatusWarningMuted;
+
+        companion object {
+
+            // This method is unused but it allows to be notified with a build error if surface key tokens are updated
+            private fun fromKeyToken(keyToken: OudsColorKeyToken.Surface): Color {
+                return when (keyToken) {
+                    OudsColorKeyToken.Surface.Brand.Primary -> BrandPrimary
+                    OudsColorKeyToken.Surface.Status.Accent.Emphasized -> StatusAccentEmphasized
+                    OudsColorKeyToken.Surface.Status.Accent.Muted -> StatusAccentMuted
+                    OudsColorKeyToken.Surface.Status.Info.Emphasized -> StatusInfoEmphasized
+                    OudsColorKeyToken.Surface.Status.Info.Muted -> StatusInfoMuted
+                    OudsColorKeyToken.Surface.Status.Negative.Emphasized -> StatusNegativeEmphasized
+                    OudsColorKeyToken.Surface.Status.Negative.Muted -> StatusNegativeMuted
+                    OudsColorKeyToken.Surface.Status.Neutral.Emphasized -> StatusNeutralEmphasized
+                    OudsColorKeyToken.Surface.Status.Neutral.Muted -> StatusNeutralMuted
+                    OudsColorKeyToken.Surface.Status.Positive.Emphasized -> StatusPositiveEmphasized
+                    OudsColorKeyToken.Surface.Status.Positive.Muted -> StatusPositiveMuted
+                    OudsColorKeyToken.Surface.Status.Warning.Emphasized -> StatusWarningEmphasized
+                    OudsColorKeyToken.Surface.Status.Warning.Muted -> StatusWarningMuted
+                }
+            }
+        }
+
+        val value: androidx.compose.ui.graphics.Color
+            @Composable
+            get() {
+                return when (this) {
+                    BrandPrimary -> OudsColorKeyToken.Surface.Brand.Primary
+                    StatusAccentEmphasized -> OudsColorKeyToken.Surface.Status.Accent.Emphasized
+                    StatusAccentMuted -> OudsColorKeyToken.Surface.Status.Accent.Muted
+                    StatusInfoEmphasized -> OudsColorKeyToken.Surface.Status.Info.Emphasized
+                    StatusInfoMuted -> OudsColorKeyToken.Surface.Status.Info.Muted
+                    StatusNegativeEmphasized -> OudsColorKeyToken.Surface.Status.Negative.Emphasized
+                    StatusNegativeMuted -> OudsColorKeyToken.Surface.Status.Negative.Muted
+                    StatusNeutralEmphasized -> OudsColorKeyToken.Surface.Status.Neutral.Emphasized
+                    StatusNeutralMuted -> OudsColorKeyToken.Surface.Status.Neutral.Muted
+                    StatusPositiveEmphasized -> OudsColorKeyToken.Surface.Status.Positive.Emphasized
+                    StatusPositiveMuted -> OudsColorKeyToken.Surface.Status.Positive.Muted
+                    StatusWarningEmphasized -> OudsColorKeyToken.Surface.Status.Warning.Emphasized
+                    StatusWarningMuted -> OudsColorKeyToken.Surface.Status.Warning.Muted
+                }.value
+            }
+    }
+}
+
 @Composable
-private fun tweakFor(color: OudsColorKeyToken.Surface): OudsTheme.Tweak {
+private fun tweak(color: OudsColoredBox.Color): OudsTheme.Tweak {
     return when (color) {
-        OudsColorKeyToken.Surface.Brand.Primary,
-        OudsColorKeyToken.Surface.Status.Accent.Emphasized,
-        OudsColorKeyToken.Surface.Status.Info.Emphasized,
-        OudsColorKeyToken.Surface.Status.Positive.Emphasized,
-        OudsColorKeyToken.Surface.Status.Warning.Emphasized -> OudsTheme.Tweak.ForceLight
-        OudsColorKeyToken.Surface.Status.Negative.Emphasized,
-        OudsColorKeyToken.Surface.Status.Neutral.Emphasized -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceLight else OudsTheme.Tweak.ForceDark
-        OudsColorKeyToken.Surface.Status.Accent.Muted,
-        OudsColorKeyToken.Surface.Status.Info.Muted,
-        OudsColorKeyToken.Surface.Status.Negative.Muted,
-        OudsColorKeyToken.Surface.Status.Positive.Muted,
-        OudsColorKeyToken.Surface.Status.Neutral.Muted,
-        OudsColorKeyToken.Surface.Status.Warning.Muted -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
+        OudsColoredBox.Color.BrandPrimary,
+        OudsColoredBox.Color.StatusAccentEmphasized,
+        OudsColoredBox.Color.StatusInfoEmphasized,
+        OudsColoredBox.Color.StatusPositiveEmphasized,
+        OudsColoredBox.Color.StatusWarningEmphasized -> OudsTheme.Tweak.ForceLight
+        OudsColoredBox.Color.StatusNegativeEmphasized,
+        OudsColoredBox.Color.StatusNeutralEmphasized -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceLight else OudsTheme.Tweak.ForceDark
+        OudsColoredBox.Color.StatusAccentMuted,
+        OudsColoredBox.Color.StatusInfoMuted,
+        OudsColoredBox.Color.StatusNegativeMuted,
+        OudsColoredBox.Color.StatusPositiveMuted,
+        OudsColoredBox.Color.StatusNeutralMuted,
+        OudsColoredBox.Color.StatusWarningMuted -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
     }
 }
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
 @UiModePreviews.Default
 @Composable
-private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) parameter: OudsColorKeyToken.Surface) {
+private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) parameter: OudsColoredBox.Color) {
     PreviewOudsColoredBox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
 internal fun PreviewOudsColoredBox(
     darkThemeEnabled: Boolean,
-    parameter: OudsColorKeyToken.Surface
+    parameter: OudsColoredBox.Color
 ) = OudsPreview(modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
     OudsColoredBox(color = parameter) {
         Column(
@@ -118,7 +185,7 @@ internal fun PreviewOudsColoredBox(
             verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
         ) {
             Text(
-                text = parameter.name.removePrefix("OudsColorKeyToken."),
+                text = parameter.name,
                 color = OudsTheme.colorScheme.content.default
             )
             OudsButton(text = "OudsButton", onClick = {})
@@ -126,21 +193,5 @@ internal fun PreviewOudsColoredBox(
     }
 }
 
-internal class OudsColoredBoxPreviewParameterProvider : BasicPreviewParameterProvider<OudsColorKeyToken.Surface>(*previewParameterValues.toTypedArray())
+internal class OudsColoredBoxPreviewParameterProvider : EnumPreviewParameterProvider(OudsColoredBox.Color::class.java)
 
-private val previewParameterValues: List<OudsColorKeyToken.Surface>
-    get() = listOf(
-        OudsColorKeyToken.Surface.Brand.Primary,
-        OudsColorKeyToken.Surface.Status.Accent.Emphasized,
-        OudsColorKeyToken.Surface.Status.Accent.Muted,
-        OudsColorKeyToken.Surface.Status.Info.Emphasized,
-        OudsColorKeyToken.Surface.Status.Info.Muted,
-        OudsColorKeyToken.Surface.Status.Negative.Emphasized,
-        OudsColorKeyToken.Surface.Status.Negative.Muted,
-        OudsColorKeyToken.Surface.Status.Neutral.Emphasized,
-        OudsColorKeyToken.Surface.Status.Neutral.Muted,
-        OudsColorKeyToken.Surface.Status.Positive.Emphasized,
-        OudsColorKeyToken.Surface.Status.Positive.Muted,
-        OudsColorKeyToken.Surface.Status.Warning.Emphasized,
-        OudsColorKeyToken.Surface.Status.Warning.Muted,
-    )
