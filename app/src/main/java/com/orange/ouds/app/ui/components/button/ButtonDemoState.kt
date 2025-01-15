@@ -26,15 +26,17 @@ import com.orange.ouds.core.component.button.OudsButtonDefaults
 @Composable
 fun rememberButtonDemoState(
     enabled: Boolean = true,
+    onColoredBox: Boolean = false,
     style: OudsButton.Style = OudsButtonDefaults.Style,
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.TextOnly
 ) = rememberSaveable(enabled, style, hierarchy, layout, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(enabled, style, hierarchy, layout)
+    ButtonDemoState(enabled, onColoredBox, style, hierarchy, layout)
 }
 
 class ButtonDemoState(
     enabled: Boolean,
+    onColoredBox: Boolean,
     style: OudsButton.Style,
     hierarchy: OudsButton.Hierarchy,
     layout: Layout
@@ -44,6 +46,7 @@ class ButtonDemoState(
 
         val Saver = run {
             val enabledKey = "enabled"
+            val onColoredBoxKey = "onColoredBox"
             val styleKey = "style"
             val hierarchyKey = "hierarchy"
             val layoutKey = "layout"
@@ -51,6 +54,7 @@ class ButtonDemoState(
                 save = { state ->
                     mapOf(
                         enabledKey to state.enabled,
+                        onColoredBoxKey to state.onColoredBox,
                         styleKey to state.style,
                         hierarchyKey to state.hierarchy,
                         layoutKey to state.layout
@@ -59,6 +63,7 @@ class ButtonDemoState(
                 restore = { map ->
                     ButtonDemoState(
                         map[enabledKey] as Boolean,
+                        map[onColoredBoxKey] as Boolean,
                         map[styleKey] as OudsButton.Style,
                         map[hierarchyKey] as OudsButton.Hierarchy,
                         map[layoutKey] as Layout
@@ -70,11 +75,27 @@ class ButtonDemoState(
 
     var enabled: Boolean by mutableStateOf(enabled)
 
+    var onColoredBox: Boolean by mutableStateOf(onColoredBox)
+
     var style: OudsButton.Style by mutableStateOf(style)
 
-    var hierarchy: OudsButton.Hierarchy by mutableStateOf(hierarchy)
+    private var _hierarchy: OudsButton.Hierarchy by mutableStateOf(hierarchy)
+    var hierarchy: OudsButton.Hierarchy
+        get() = _hierarchy
+        set(value) {
+            _hierarchy = value
+            if (value == OudsButton.Hierarchy.Negative) {
+                onColoredBox = false
+            }
+        }
 
     var layout: Layout by mutableStateOf(layout)
+
+    val enabledSwitchEnabled: Boolean
+        get() = style == OudsButton.Style.Default
+
+    val onColoredBoxSwitchEnabled: Boolean
+        get() = hierarchy != OudsButton.Hierarchy.Negative
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_button_textOnlyLayout_label),

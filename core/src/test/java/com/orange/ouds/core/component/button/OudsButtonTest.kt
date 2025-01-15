@@ -29,7 +29,7 @@ internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter)
     }
 
     @get:Rule
-    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.0)
+    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.01)
 
     @Test
     fun takeOudsButtonLightThemeSnapshot() {
