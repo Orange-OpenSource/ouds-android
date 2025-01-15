@@ -15,7 +15,6 @@ package com.orange.ouds.app.ui.tokens
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.allNestedClasses
 import com.orange.ouds.core.theme.OudsBorders
 import com.orange.ouds.core.theme.OudsColorScheme
 import com.orange.ouds.core.theme.OudsElevations
@@ -203,13 +202,23 @@ fun <T : Any> getTokens(clazz: KClass<T>): List<Token<*>> {
     val rootClass = Class.forName("$packageName.$rootClassName").kotlin
     val rootPath = rootClassName.removePrefix("Ouds").replaceFirstChar { it.lowercaseChar() }
 
-    return getTokenPaths(rootClass, clazz, rootPath).map { tokenPath ->
-        Token(tokenPath, getTokenRelativeName(tokenPath, clazz), getTokenValue(tokenPath))
+    return getTokenPaths(rootClass, clazz.takeIf { it != rootClass }, rootPath).map { tokenPath ->
+        Token(tokenPath, getTokenRelativeName(tokenPath, clazz), { getTokenValue(tokenPath) })
     }
 }
 
-private fun getTokenPaths(rootClass: KClass<*>, fromClass: KClass<*>?, parentPath: String): List<String> {
-    return rootClass.primaryConstructor
+/**
+ * Recursively browses the class tree starting from [clazz] to build token paths, only taking into account tokens that are children of [fromClass].
+ * A token path is a string that identifies a token in the [OudsTheme] object, for instance "sizes.icon.withHeading.medium.sizeSmall".
+ *
+ * @param clazz The class to browse.
+ * @param fromClass The class from which the token paths will be taken into account. For instance, using [OudsColorScheme.Action]
+ *   will generate tokens for all children objects of [OudsColorScheme.Action] in the class tree. Other tokens in [OudsColorScheme] such as tokens in
+ *   [OudsColorScheme.Background] will be skipped. Pass `null` to take all tokens into account.
+ * @param parentPath The path of the parent object in the class tree.
+ */
+private fun getTokenPaths(clazz: KClass<*>, fromClass: KClass<*>?, parentPath: String): List<String> {
+    return clazz.primaryConstructor
         ?.parameters // Use primary constructor parameters instead of declaredMemberProperties because parameters are sorted as they are declared
         .orEmpty()
         .flatMap { parameter ->
@@ -218,17 +227,18 @@ private fun getTokenPaths(rootClass: KClass<*>, fromClass: KClass<*>?, parentPat
             val path = "$pathPrefix${parameter.name.orEmpty()}" // Append parent path
             when {
                 // parameter is a nested class, we'll continue browsing the class tree
-                // When fromClass is encountered we call getTokenPaths recursively with a null fromClass parameter to indicate that we can now take token paths into account
-                parameterClass in rootClass.allNestedClasses -> {
+                // When fromClass is encountered we call getTokenPaths recursively with a null fromClass parameter
+                // to indicate that we can now take token paths into account
+                parameterClass in clazz.nestedClasses -> {
                     getTokenPaths(
                         parameterClass,
-                        fromClass.takeIf { parameterClass != fromClass && rootClass != fromClass },
+                        fromClass.takeIf { parameterClass != fromClass },
                         path
                     )
                 }
-                // parameter is a token value, we take the token path into account if fromClass is null
+                // parameter is not a nested class thus a token value, we take the token path into account if fromClass is null
                 // meaning we already encountered fromClass when browsing the class tree
-                fromClass == null || rootClass == fromClass -> listOf(path)
+                fromClass == null -> listOf(path)
                 else -> emptyList()
             }
         }
@@ -247,34 +257,37 @@ private fun getTokenRelativeName(tokenPath: String, parent: KClass<*>): String {
     return tokenPath.removePrefix("$path.")
 }
 
-private fun getTokenValue(tokenPath: String): @Composable () -> Any? {
-    return {
-        val rootPropertyName = tokenPath.substringBefore(".")
-        val rootProperty = with(OudsTheme) {
-            when (rootPropertyName) {
-                "borders" -> borders
-                "colorScheme" -> colorScheme
-                "elevations" -> elevations
-                "grids" -> grids
-                "opacities" -> opacities
-                "sizes" -> sizes
-                "spaces" -> spaces
-                "typography" -> typography
-                else -> null
+@Composable
+private fun getTokenValue(tokenPath: String): Any? {
+    val rootPropertyName = tokenPath.substringBefore(".")
+    // We can't use reflection to get OudsTheme property with rootPropertyName because Composable getters are built differently by the JVM
+    // They should be of type KProperty1 but the get method requires 3 parameters instead
+    val rootProperty = with(OudsTheme) {
+        when (rootPropertyName) {
+            "borders" -> borders
+            "colorScheme" -> colorScheme
+            "elevations" -> elevations
+            "grids" -> grids
+            "opacities" -> opacities
+            "sizes" -> sizes
+            "spaces" -> spaces
+            "typography" -> typography
+            else -> null
+        }
+    }
+
+    var value: Any? = rootProperty
+    tokenPath.substringAfter(".")
+        .split(".")
+        // Loop through each element in the path to get the value using reflection starting from rootProperty
+        .forEach { element ->
+            value = value?.let { value ->
+                value::class.declaredMemberProperties
+                    .firstOrNull { it.name == element }
+                    ?.asOrNull<KProperty1<Any?, Any?>>()
+                    ?.get(value)
             }
         }
 
-        tokenPath.substringAfter(".")
-            .split(".")
-            .fold(rootProperty) { accumulator: Any?, element ->
-                if (accumulator != null) {
-                    accumulator::class.declaredMemberProperties
-                        .firstOrNull { it.name == element }
-                        ?.asOrNull<KProperty1<Any?, Any?>>()
-                        ?.get(accumulator)
-                } else {
-                    null
-                }
-            }
-    }
+    return value
 }
