@@ -662,57 +662,13 @@ internal fun PreviewOudsButton(
                 }
             }
         }
-        if (surfaceKeyTokenGroup != null) {
-            RainbowColoredBox(surfaceKeyTokenGroup = surfaceKeyTokenGroup, columnCount = columnCount, content = { content() })
+        if (onColoredBox) {
+            OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary) {
+                content()
+            }
         } else {
             content()
         }
-    }
-}
-
-internal enum class SurfaceKeyTokenGroup {
-    Brand, StatusEmphasized, StatusMuted
-}
-
-@Composable
-private fun RainbowColoredBox(surfaceKeyTokenGroup: SurfaceKeyTokenGroup, columnCount: Int, content: @Composable BoxScope.() -> Unit) {
-    // The color parameter below can be whichever surface
-    // because the actual colors will be drawn as a rainbow in order to display multiple colored boxes at once
-    OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary) {
-        Row(modifier = Modifier.matchParentSize()) {
-            val colors = buildList {
-                repeat(columnCount) {
-                    addAll(
-                        when (surfaceKeyTokenGroup) {
-                            SurfaceKeyTokenGroup.Brand -> listOf(
-                                OudsColoredBox.Color.BrandPrimary
-                            )
-                            SurfaceKeyTokenGroup.StatusEmphasized -> listOf(
-                                OudsColoredBox.Color.StatusPositiveEmphasized,
-                                OudsColoredBox.Color.StatusNegativeEmphasized,
-                                OudsColoredBox.Color.StatusWarningEmphasized,
-                                OudsColoredBox.Color.StatusInfoEmphasized
-                            )
-                            SurfaceKeyTokenGroup.StatusMuted -> listOf(
-                                OudsColoredBox.Color.StatusPositiveMuted,
-                                OudsColoredBox.Color.StatusNegativeMuted,
-                                OudsColoredBox.Color.StatusWarningMuted,
-                                OudsColoredBox.Color.StatusInfoMuted
-                            )
-                        }
-                    )
-                }
-            }
-            colors.map { color ->
-                Box(
-                    modifier = Modifier
-                        .background(color = color.value)
-                        .fillMaxHeight()
-                        .weight(1.0f)
-                )
-            }
-        }
-        content()
     }
 }
 
@@ -720,7 +676,7 @@ internal data class OudsButtonPreviewParameter(
     val hierarchy: OudsButton.Hierarchy,
     val hasText: Boolean,
     val hasIcon: Boolean,
-    val surfaceKeyTokenGroup: SurfaceKeyTokenGroup? = null,
+    val onColoredBox: Boolean = false
 ) {
     val states: List<OudsButton.State> = listOf(
         OudsButton.State.Enabled,
@@ -744,9 +700,7 @@ private val previewParameterValues: List<OudsButtonPreviewParameter>
             )
             addAll(parameters)
             if (hierarchy != OudsButton.Hierarchy.Negative) {
-                //addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.Brand) })
-                addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.StatusEmphasized) })
-                //addAll(parameters.map { it.copy(surfaceKeyTokenGroup = SurfaceKeyTokenGroup.StatusMuted) })
+                addAll(parameters.map { it.copy(onColoredBox = true) })
             }
         }
     }
