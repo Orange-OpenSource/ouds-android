@@ -191,6 +191,11 @@ internal fun PreviewOudsColoredBox(
                 color = OudsTheme.colorScheme.content.default
             )
             OudsButton(text = "OudsButton", onClick = {})
+            OudsLink(
+                text = "Link",
+                arrow = OudsLink.Arrow.Next,
+                onClick = { },
+            )
         }
     }
 }
