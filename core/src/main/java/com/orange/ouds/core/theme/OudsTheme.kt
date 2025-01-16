@@ -40,7 +40,7 @@ private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCo
 private val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
 private val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingCompositionLocalError("LocalSpaces") }
 private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
-internal val LocalColoredBox = staticCompositionLocalOf<Boolean> { false }
+internal val LocalMonoComponents = staticCompositionLocalOf<Boolean> { false }
 
 /**
  * Object that stores tokens values for the current theme.

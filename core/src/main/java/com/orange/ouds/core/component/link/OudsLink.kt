@@ -55,7 +55,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.link.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalColoredBox
+import com.orange.ouds.core.theme.LocalMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -182,7 +182,7 @@ private fun OudsLink(
                 .outerBorder(state = state),
             enabled = state != OudsLink.State.Disabled,
             shape = RectangleShape,
-            colors = buttonColors(linkState = state, onColoredBackground = LocalColoredBox.current),
+            colors = buttonColors(linkState = state, monochrome = LocalMonoComponents.current),
             elevation = null,
             contentPadding = PaddingValues(
                 horizontal = linkTokens.spacePaddingInline.value,
@@ -213,9 +213,9 @@ private fun OudsLink(
             }
 
             val iconTint = if (arrow != null) {
-                arrowColor(state = state, onColoredBackground = LocalColoredBox.current)
+                arrowColor(state = state, monochrome = LocalMonoComponents.current)
             } else {
-                contentColor(state = state, onColoredBackground = LocalColoredBox.current)
+                contentColor(state = state, monochrome = LocalMonoComponents.current)
             }
 
             Row(
@@ -278,11 +278,11 @@ private fun Modifier.outerBorder(state: OudsLink.State): Modifier {
 }
 
 @Composable
-private fun buttonColors(linkState: OudsLink.State, onColoredBackground: Boolean) = ButtonDefaults.buttonColors(
+private fun buttonColors(linkState: OudsLink.State, monochrome: Boolean) = ButtonDefaults.buttonColors(
     containerColor = containerColor,
-    contentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground),
+    contentColor = contentColor(state = linkState, monochrome = monochrome),
     disabledContainerColor = containerColor,
-    disabledContentColor = contentColor(state = linkState, onColoredBackground = onColoredBackground)
+    disabledContentColor = contentColor(state = linkState, monochrome = monochrome)
 )
 
 private val containerColor: Color
@@ -290,9 +290,9 @@ private val containerColor: Color
     get() = OudsColorKeyToken.Opacity.Transparent.value
 
 @Composable
-private fun contentColor(state: OudsLink.State, onColoredBackground: Boolean): Color {
+private fun contentColor(state: OudsLink.State, monochrome: Boolean): Color {
     return with(OudsTheme.componentsTokens.link) {
-        if (onColoredBackground) {
+        if (monochrome) {
             when (state) {
                 OudsLink.State.Enabled -> colorContentEnabledMono
                 OudsLink.State.Focused -> colorContentFocusMono
@@ -313,10 +313,10 @@ private fun contentColor(state: OudsLink.State, onColoredBackground: Boolean): C
 }
 
 @Composable
-private fun arrowColor(state: OudsLink.State, onColoredBackground: Boolean): Color {
+private fun arrowColor(state: OudsLink.State, monochrome: Boolean): Color {
     return with(OudsTheme.componentsTokens.link) {
-        if (onColoredBackground) {
-            contentColor(state = state, onColoredBackground = true)
+        if (monochrome) {
+            contentColor(state = state, monochrome = true)
         } else {
             when (state) {
                 OudsLink.State.Enabled -> colorArrowEnabled

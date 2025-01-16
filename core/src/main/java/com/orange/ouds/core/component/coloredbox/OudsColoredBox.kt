@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.component.link.OudsLink
-import com.orange.ouds.core.theme.LocalColoredBox
+import com.orange.ouds.core.theme.LocalMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
@@ -61,7 +61,7 @@ fun OudsColoredBox(
     content: @Composable BoxScope.() -> Unit
 ) {
     CompositionLocalProvider(
-        LocalColoredBox provides true
+        LocalMonoComponents provides useMonoComponents(color)
     ) {
         // Filter the background modifiers in order to force the background color
         // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
@@ -147,6 +147,24 @@ object OudsColoredBox {
                     StatusWarningMuted -> OudsColorKeyToken.Surface.Status.Warning.Muted
                 }.value
             }
+    }
+}
+
+private fun useMonoComponents(color: OudsColoredBox.Color): Boolean {
+    return when (color) {
+        OudsColoredBox.Color.BrandPrimary,
+        OudsColoredBox.Color.StatusAccentEmphasized,
+        OudsColoredBox.Color.StatusInfoEmphasized,
+        OudsColoredBox.Color.StatusPositiveEmphasized,
+        OudsColoredBox.Color.StatusWarningEmphasized,
+        OudsColoredBox.Color.StatusNegativeEmphasized,
+        OudsColoredBox.Color.StatusNeutralEmphasized -> true
+        OudsColoredBox.Color.StatusAccentMuted,
+        OudsColoredBox.Color.StatusInfoMuted,
+        OudsColoredBox.Color.StatusNegativeMuted,
+        OudsColoredBox.Color.StatusPositiveMuted,
+        OudsColoredBox.Color.StatusNeutralMuted,
+        OudsColoredBox.Color.StatusWarningMuted -> false
     }
 }
 

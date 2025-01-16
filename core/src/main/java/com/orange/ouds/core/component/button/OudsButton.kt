@@ -63,7 +63,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalColoredBox
+import com.orange.ouds.core.theme.LocalMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -217,7 +217,7 @@ private fun OudsButton(
     style: OudsButton.Style = OudsButton.Style.Default,
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
 ) {
-    if (hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current) {
+    if (hierarchy == OudsButton.Hierarchy.Negative && LocalMonoComponents.current) {
         throw IllegalStateException("An OudsButton with OudsButton.Hierarchy.Negative hierarchy has been detected as a direct or indirect child of an OudsColoredBox, which is not allowed.")
     }
 
@@ -343,7 +343,7 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Disabled -> borderWidthDefault.value
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
-                OudsButton.State.Loading -> if (LocalColoredBox.current) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
                 OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
@@ -365,22 +365,22 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
     return with(OudsTheme.componentsTokens.button) {
         when (hierarchy) {
             OudsButton.Hierarchy.Default -> when (state) {
-                OudsButton.State.Enabled -> if (LocalColoredBox.current) colorBorderDefaultEnabledMono else colorBorderDefaultEnabled
-                OudsButton.State.Hovered -> if (LocalColoredBox.current) colorBorderDefaultHoverMono else colorBorderDefaultHover
-                OudsButton.State.Pressed -> if (LocalColoredBox.current) colorBorderDefaultPressedMono else colorBorderDefaultPressed
-                OudsButton.State.Loading -> if (LocalColoredBox.current) colorBorderDefaultLoadingMono else colorBorderDefaultLoading
-                OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBorderDefaultDisabledMono else colorBorderDefaultDisabled
-                OudsButton.State.Focused -> if (LocalColoredBox.current) colorBorderDefaultFocusMono else colorBorderDefaultFocus
+                OudsButton.State.Enabled -> if (LocalMonoComponents.current) colorBorderDefaultEnabledMono else colorBorderDefaultEnabled
+                OudsButton.State.Hovered -> if (LocalMonoComponents.current) colorBorderDefaultHoverMono else colorBorderDefaultHover
+                OudsButton.State.Pressed -> if (LocalMonoComponents.current) colorBorderDefaultPressedMono else colorBorderDefaultPressed
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) colorBorderDefaultLoadingMono else colorBorderDefaultLoading
+                OudsButton.State.Disabled -> if (LocalMonoComponents.current) colorBorderDefaultDisabledMono else colorBorderDefaultDisabled
+                OudsButton.State.Focused -> if (LocalMonoComponents.current) colorBorderDefaultFocusMono else colorBorderDefaultFocus
             }.value
             OudsButton.Hierarchy.Minimal -> when (state) {
-                OudsButton.State.Enabled -> if (LocalColoredBox.current) colorBorderMinimalEnabledMono else colorBorderMinimalEnabled
-                OudsButton.State.Hovered -> if (LocalColoredBox.current) colorBorderMinimalHoverMono else colorBorderMinimalHover
-                OudsButton.State.Pressed -> if (LocalColoredBox.current) colorBorderMinimalPressedMono else colorBorderMinimalPressed
-                OudsButton.State.Loading -> if (LocalColoredBox.current) colorBorderMinimalLoadingMono else colorBorderMinimalLoading
-                OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBorderMinimalDisabledMono else colorBorderMinimalDisabled
-                OudsButton.State.Focused -> if (LocalColoredBox.current) colorBorderMinimalFocusMono else colorBorderMinimalFocus
+                OudsButton.State.Enabled -> if (LocalMonoComponents.current) colorBorderMinimalEnabledMono else colorBorderMinimalEnabled
+                OudsButton.State.Hovered -> if (LocalMonoComponents.current) colorBorderMinimalHoverMono else colorBorderMinimalHover
+                OudsButton.State.Pressed -> if (LocalMonoComponents.current) colorBorderMinimalPressedMono else colorBorderMinimalPressed
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) colorBorderMinimalLoadingMono else colorBorderMinimalLoading
+                OudsButton.State.Disabled -> if (LocalMonoComponents.current) colorBorderMinimalDisabledMono else colorBorderMinimalDisabled
+                OudsButton.State.Focused -> if (LocalMonoComponents.current) colorBorderMinimalFocusMono else colorBorderMinimalFocus
             }.value
-            OudsButton.Hierarchy.Strong -> if (LocalColoredBox.current) {
+            OudsButton.Hierarchy.Strong -> if (LocalMonoComponents.current) {
                 when (state) {
                     OudsButton.State.Enabled -> colorBorderStrongEnabledMono
                     OudsButton.State.Hovered -> colorBorderStrongHoverMono
@@ -412,28 +412,28 @@ private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.St
     return with(OudsTheme.componentsTokens.button) {
         when (hierarchy) {
             OudsButton.Hierarchy.Default -> when (state) {
-                OudsButton.State.Enabled -> if (LocalColoredBox.current) colorBgDefaultEnabledMono else colorBgDefaultEnabled
-                OudsButton.State.Focused -> if (LocalColoredBox.current) colorBgDefaultFocusMono else colorBgDefaultFocus
-                OudsButton.State.Hovered -> if (LocalColoredBox.current) colorBgDefaultHoverMono else colorBgDefaultHover
-                OudsButton.State.Pressed -> if (LocalColoredBox.current) colorBgDefaultPressedMono else colorBgDefaultPressed
-                OudsButton.State.Loading -> if (LocalColoredBox.current) colorBgDefaultLoadingMono else colorBgDefaultLoading
-                OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBgDefaultDisabledMono else colorBgDefaultDisabled
+                OudsButton.State.Enabled -> if (LocalMonoComponents.current) colorBgDefaultEnabledMono else colorBgDefaultEnabled
+                OudsButton.State.Focused -> if (LocalMonoComponents.current) colorBgDefaultFocusMono else colorBgDefaultFocus
+                OudsButton.State.Hovered -> if (LocalMonoComponents.current) colorBgDefaultHoverMono else colorBgDefaultHover
+                OudsButton.State.Pressed -> if (LocalMonoComponents.current) colorBgDefaultPressedMono else colorBgDefaultPressed
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) colorBgDefaultLoadingMono else colorBgDefaultLoading
+                OudsButton.State.Disabled -> if (LocalMonoComponents.current) colorBgDefaultDisabledMono else colorBgDefaultDisabled
             }.value
             OudsButton.Hierarchy.Minimal -> when (state) {
-                OudsButton.State.Enabled -> if (LocalColoredBox.current) colorBgMinimalEnabledMono else colorBgMinimalEnabled
-                OudsButton.State.Focused -> if (LocalColoredBox.current) colorBgMinimalFocusMono else colorBgMinimalFocus
-                OudsButton.State.Hovered -> if (LocalColoredBox.current) colorBgMinimalHoverMono else colorBgMinimalHover
-                OudsButton.State.Pressed -> if (LocalColoredBox.current) colorBgMinimalPressedMono else colorBgMinimalPressed
-                OudsButton.State.Loading -> if (LocalColoredBox.current) colorBgMinimalLoadingMono else colorBgMinimalLoading
-                OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBgMinimalDisabledMono else colorBgMinimalDisabled
+                OudsButton.State.Enabled -> if (LocalMonoComponents.current) colorBgMinimalEnabledMono else colorBgMinimalEnabled
+                OudsButton.State.Focused -> if (LocalMonoComponents.current) colorBgMinimalFocusMono else colorBgMinimalFocus
+                OudsButton.State.Hovered -> if (LocalMonoComponents.current) colorBgMinimalHoverMono else colorBgMinimalHover
+                OudsButton.State.Pressed -> if (LocalMonoComponents.current) colorBgMinimalPressedMono else colorBgMinimalPressed
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) colorBgMinimalLoadingMono else colorBgMinimalLoading
+                OudsButton.State.Disabled -> if (LocalMonoComponents.current) colorBgMinimalDisabledMono else colorBgMinimalDisabled
             }.value
             OudsButton.Hierarchy.Strong -> when (state) {
-                OudsButton.State.Enabled -> if (LocalColoredBox.current) colorBgStrongEnabledMono.value else OudsTheme.colorScheme.action.enabled
-                OudsButton.State.Focused -> if (LocalColoredBox.current) colorBgStrongFocusMono.value else OudsTheme.colorScheme.action.focus
-                OudsButton.State.Hovered -> if (LocalColoredBox.current) colorBgStrongHoverMono.value else OudsTheme.colorScheme.action.hover
-                OudsButton.State.Pressed -> if (LocalColoredBox.current) colorBgStrongPressedMono.value else OudsTheme.colorScheme.action.pressed
-                OudsButton.State.Loading -> if (LocalColoredBox.current) colorBgStrongLoadingMono.value else OudsTheme.colorScheme.action.loading
-                OudsButton.State.Disabled -> if (LocalColoredBox.current) colorBgStrongDisabledMono.value else OudsTheme.colorScheme.action.disabled
+                OudsButton.State.Enabled -> if (LocalMonoComponents.current) colorBgStrongEnabledMono.value else OudsTheme.colorScheme.action.enabled
+                OudsButton.State.Focused -> if (LocalMonoComponents.current) colorBgStrongFocusMono.value else OudsTheme.colorScheme.action.focus
+                OudsButton.State.Hovered -> if (LocalMonoComponents.current) colorBgStrongHoverMono.value else OudsTheme.colorScheme.action.hover
+                OudsButton.State.Pressed -> if (LocalMonoComponents.current) colorBgStrongPressedMono.value else OudsTheme.colorScheme.action.pressed
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) colorBgStrongLoadingMono.value else OudsTheme.colorScheme.action.loading
+                OudsButton.State.Disabled -> if (LocalMonoComponents.current) colorBgStrongDisabledMono.value else OudsTheme.colorScheme.action.disabled
             }
             OudsButton.Hierarchy.Negative -> when (state) {
                 OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
@@ -452,28 +452,28 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
     return with(OudsTheme.componentsTokens.button) {
         when (hierarchy) {
             OudsButton.Hierarchy.Default -> when (state) {
-                OudsButton.State.Enabled -> if (LocalColoredBox.current) colorContentDefaultEnabledMono else colorContentDefaultEnabled
-                OudsButton.State.Focused -> if (LocalColoredBox.current) colorContentDefaultFocusMono else colorContentDefaultFocus
-                OudsButton.State.Hovered -> if (LocalColoredBox.current) colorContentDefaultHoverMono else colorContentDefaultHover
-                OudsButton.State.Pressed -> if (LocalColoredBox.current) colorContentDefaultPressedMono else colorContentDefaultPressed
-                OudsButton.State.Loading -> if (LocalColoredBox.current) colorContentDefaultLoadingMono else colorContentDefaultLoading
-                OudsButton.State.Disabled -> if (LocalColoredBox.current) colorContentDefaultDisabledMono else colorContentDefaultDisabled
+                OudsButton.State.Enabled -> if (LocalMonoComponents.current) colorContentDefaultEnabledMono else colorContentDefaultEnabled
+                OudsButton.State.Focused -> if (LocalMonoComponents.current) colorContentDefaultFocusMono else colorContentDefaultFocus
+                OudsButton.State.Hovered -> if (LocalMonoComponents.current) colorContentDefaultHoverMono else colorContentDefaultHover
+                OudsButton.State.Pressed -> if (LocalMonoComponents.current) colorContentDefaultPressedMono else colorContentDefaultPressed
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) colorContentDefaultLoadingMono else colorContentDefaultLoading
+                OudsButton.State.Disabled -> if (LocalMonoComponents.current) colorContentDefaultDisabledMono else colorContentDefaultDisabled
             }.value
             OudsButton.Hierarchy.Minimal -> when (state) {
-                OudsButton.State.Enabled -> if (LocalColoredBox.current) colorContentMinimalEnabledMono else colorContentMinimalEnabled
-                OudsButton.State.Focused -> if (LocalColoredBox.current) colorContentMinimalFocusMono else colorContentMinimalFocus
-                OudsButton.State.Hovered -> if (LocalColoredBox.current) colorContentMinimalHoverMono else colorContentMinimalHover
-                OudsButton.State.Pressed -> if (LocalColoredBox.current) colorContentMinimalPressedMono else colorContentMinimalPressed
-                OudsButton.State.Loading -> if (LocalColoredBox.current) colorContentMinimalLoadingMono else colorContentMinimalLoading
-                OudsButton.State.Disabled -> if (LocalColoredBox.current) colorContentMinimalDisabledMono else colorContentMinimalDisabled
+                OudsButton.State.Enabled -> if (LocalMonoComponents.current) colorContentMinimalEnabledMono else colorContentMinimalEnabled
+                OudsButton.State.Focused -> if (LocalMonoComponents.current) colorContentMinimalFocusMono else colorContentMinimalFocus
+                OudsButton.State.Hovered -> if (LocalMonoComponents.current) colorContentMinimalHoverMono else colorContentMinimalHover
+                OudsButton.State.Pressed -> if (LocalMonoComponents.current) colorContentMinimalPressedMono else colorContentMinimalPressed
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) colorContentMinimalLoadingMono else colorContentMinimalLoading
+                OudsButton.State.Disabled -> if (LocalMonoComponents.current) colorContentMinimalDisabledMono else colorContentMinimalDisabled
             }.value
             OudsButton.Hierarchy.Strong -> when (state) {
-                OudsButton.State.Enabled -> if (LocalColoredBox.current) colorContentStrongEnabledMono.value else OudsTheme.colorScheme.content.onAction.enabled
-                OudsButton.State.Focused -> if (LocalColoredBox.current) colorContentStrongFocusMono.value else OudsTheme.colorScheme.content.onAction.focus
-                OudsButton.State.Hovered -> if (LocalColoredBox.current) colorContentStrongHoverMono.value else OudsTheme.colorScheme.content.onAction.hover
-                OudsButton.State.Pressed -> if (LocalColoredBox.current) colorContentStrongPressedMono.value else OudsTheme.colorScheme.content.onAction.pressed
-                OudsButton.State.Loading -> if (LocalColoredBox.current) colorContentStrongLoadingMono.value else OudsTheme.colorScheme.content.onAction.loading
-                OudsButton.State.Disabled -> if (LocalColoredBox.current) colorContentStrongDisabledMono.value else OudsTheme.colorScheme.content.onAction.disabled
+                OudsButton.State.Enabled -> if (LocalMonoComponents.current) colorContentStrongEnabledMono.value else OudsTheme.colorScheme.content.onAction.enabled
+                OudsButton.State.Focused -> if (LocalMonoComponents.current) colorContentStrongFocusMono.value else OudsTheme.colorScheme.content.onAction.focus
+                OudsButton.State.Hovered -> if (LocalMonoComponents.current) colorContentStrongHoverMono.value else OudsTheme.colorScheme.content.onAction.hover
+                OudsButton.State.Pressed -> if (LocalMonoComponents.current) colorContentStrongPressedMono.value else OudsTheme.colorScheme.content.onAction.pressed
+                OudsButton.State.Loading -> if (LocalMonoComponents.current) colorContentStrongLoadingMono.value else OudsTheme.colorScheme.content.onAction.loading
+                OudsButton.State.Disabled -> if (LocalMonoComponents.current) colorContentStrongDisabledMono.value else OudsTheme.colorScheme.content.onAction.disabled
             }
             OudsButton.Hierarchy.Negative -> when (state) {
                 OudsButton.State.Enabled,
