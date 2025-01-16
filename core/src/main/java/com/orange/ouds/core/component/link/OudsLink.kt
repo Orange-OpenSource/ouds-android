@@ -466,7 +466,7 @@ internal fun PreviewOudsLink(
 
         val boxModifier = Modifier.padding(16.dp)
         if (onColoredBackground) {
-            OudsColoredBox(color = OudsColorKeyToken.Surface.Brand.Primary, modifier = boxModifier) {
+            OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary, modifier = boxModifier) {
                 linkPreview()
             }
         } else {

@@ -37,11 +37,8 @@ import com.orange.ouds.core.component.coloredbox.OudsColoredBox
 import com.orange.ouds.core.component.link.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -61,14 +58,14 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
             )
             val sizes = remember { listOf(OudsLink.Size.Small, OudsLink.Size.Medium) }
             CustomizationChoiceChipsColumn(
-                modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_link_size_label),
                 chipsLabels = sizes.map { it.name },
                 selectedChipIndex = sizes.indexOf(size),
                 onSelectionChange = { id -> size = sizes[id] }
             )
             CustomizationChoiceChipsColumn(
-                modifier = Modifier.padding(top = OudsSpaceKeyToken.Fixed.Medium.value),
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_common_layout_label),
                 chipsLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
                 selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
@@ -78,7 +75,7 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsSpaceKeyToken.Fixed.Medium.value),
+                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
                 descriptionRes = Component.Link.descriptionRes
             )
             LinkDemo(state = this@DemoScreen)
@@ -96,7 +93,7 @@ private fun LinkDemo(state: LinkDemoState) {
     LinkDemoBox(
         colored = state.onColoredBox,
         modifier = Modifier
-            .padding(all = OudsSpaceKeyToken.Fixed.Medium.value)
+            .padding(all = OudsTheme.spaces.fixed.medium)
             .fillMaxWidth()
     ) {
         val text = stringResource(id = R.string.app_components_link_label)
@@ -147,7 +144,7 @@ private fun LinkDemo(state: LinkDemoState) {
 private fun LinkDemoBox(colored: Boolean, modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
     if (colored) {
         OudsColoredBox(
-            color = OudsColorKeyToken.Surface.Brand.Primary,
+            color = OudsColoredBox.Color.BrandPrimary,
             modifier = modifier,
             contentAlignment = Alignment.Center,
             content = content
@@ -155,7 +152,7 @@ private fun LinkDemoBox(colored: Boolean, modifier: Modifier = Modifier, content
     } else {
         Box(
             modifier = Modifier
-                .background(OudsTheme.colorScheme.backgroundColors.primary)
+                .background(OudsTheme.colorScheme.background.primary)
                 .then(other = modifier),
             contentAlignment = Alignment.Center,
             content = content
