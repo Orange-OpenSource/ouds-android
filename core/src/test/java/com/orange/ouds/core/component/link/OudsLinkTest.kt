@@ -16,16 +16,15 @@ import com.orange.ouds.OudsPaparazziTest
 import org.junit.Test
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
 internal class OudsLinkTest {
 
-    @RunWith(Parameterized::class)
-    class ParameterizedOudsLinkTest(private val parameter: OudsLinkPreviewParameter) : OudsPaparazziTest() {
+    @RunWith(org.junit.runners.Parameterized::class)
+    class Parameterized(private val parameter: OudsLinkPreviewParameter) : OudsPaparazziTest() {
         companion object {
             @JvmStatic
-            @Parameterized.Parameters
+            @org.junit.runners.Parameterized.Parameters
             internal fun data() = OudsLinkPreviewParameterProvider().values.toList()
         }
 
@@ -50,7 +49,7 @@ internal class OudsLinkTest {
         }
     }
 
-    class NonParameterizedOudsLinkTest: OudsPaparazziTest() {
+    class NonParameterized: OudsPaparazziTest() {
         @Test
         fun takeOudsLinkOnTwoLinesSnapshot() {
             paparazzi.snapshot {
