@@ -17,7 +17,7 @@ import androidx.compose.ui.res.painterResource
 import com.orange.ouds.core.component.link.OudsLink
 
 @Composable
-fun OudsLinkSample() {
+internal fun OudsLinkSample() {
     OudsLink(
         text = "Link",
         icon = OudsLink.Icon(painterResource(id = android.R.drawable.star_on)),
@@ -26,7 +26,7 @@ fun OudsLinkSample() {
 }
 
 @Composable
-fun OudsLinkWithArrowSample() {
+internal fun OudsLinkWithArrowSample() {
     OudsLink(
         text = "Link",
         arrow = OudsLink.Arrow.Next,
