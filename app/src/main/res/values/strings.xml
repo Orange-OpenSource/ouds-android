@@ -109,7 +109,7 @@
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
 
     <!-- Components -->
-    <string name="app_components_common_layout_label">Style</string>
+    <string name="app_components_common_layout_label">Layout</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_iconAndTextLayout_label">Icon + text</string>
     <string name="app_components_common_style_label">Style</string>
