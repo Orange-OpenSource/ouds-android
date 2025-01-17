@@ -210,7 +210,7 @@ private fun OudsLink(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (icon != null || arrow == OudsLink.Arrow.Back) {
-                    (icon ?: OudsLink.Icon(painterResource(R.drawable.ic_form_chevron_left))).Content(
+                    icon.orElse { OudsLink.Icon(painterResource(R.drawable.ic_form_chevron_left)) }.Content(
                         modifier = Modifier.size(iconSize),
                         extraParameters = ExtraParameters(tint = iconTint)
                     )
