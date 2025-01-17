@@ -43,14 +43,14 @@ class LinkDemoState(
     companion object {
         val Saver = run {
             val enabledKey = "enabled"
-            val onColoredBackgroundKey = "onColoredBackground"
+            val onColoredBoxKey = "onColoredBox"
             val sizeKey = "size"
             val layoutKey = "layout"
             mapSaver(
                 save = { state ->
                     mapOf(
                         enabledKey to state.enabled,
-                        onColoredBackgroundKey to state.onColoredBox,
+                        onColoredBoxKey to state.onColoredBox,
                         sizeKey to state.size,
                         layoutKey to state.layout
                     )
@@ -58,7 +58,7 @@ class LinkDemoState(
                 restore = { map ->
                     LinkDemoState(
                         map[enabledKey] as Boolean,
-                        map[onColoredBackgroundKey] as Boolean,
+                        map[onColoredBoxKey] as Boolean,
                         map[sizeKey] as OudsLink.Size,
                         map[layoutKey] as Layout
                     )
