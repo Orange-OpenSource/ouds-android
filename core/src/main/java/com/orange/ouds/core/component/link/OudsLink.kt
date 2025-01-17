@@ -385,11 +385,6 @@ object OudsLink {
         override val tint: Color?
             @Composable
             get() = extraParameters.tint
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            super.Content(modifier)
-        }
     }
 
     internal enum class State {
