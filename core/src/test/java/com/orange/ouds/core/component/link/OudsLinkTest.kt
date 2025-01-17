@@ -13,7 +13,6 @@
 package com.orange.ouds.core.component.link
 
 import com.orange.ouds.OudsPaparazziTest
-import com.orange.ouds.core.component.OudsComponentTest
 import org.junit.Test
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
@@ -22,7 +21,8 @@ import org.junit.runners.Parameterized
 @RunWith(Enclosed::class)
 internal class OudsLinkTest {
 
-    class ParameterizedOudsLinkTest(private val parameter: OudsLinkPreviewParameter) : OudsComponentTest() {
+    @RunWith(Parameterized::class)
+    class ParameterizedOudsLinkTest(private val parameter: OudsLinkPreviewParameter) : OudsPaparazziTest() {
         companion object {
             @JvmStatic
             @Parameterized.Parameters

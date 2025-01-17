@@ -12,11 +12,13 @@
 
 package com.orange.ouds.core.component.button
 
-import com.orange.ouds.core.component.OudsComponentTest
+import com.orange.ouds.OudsPaparazziTest
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter) : OudsComponentTest() {
+@RunWith(Parameterized::class)
+internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter) : OudsPaparazziTest() {
 
     companion object {
         @JvmStatic
