@@ -159,8 +159,8 @@ private fun useMonoComponents(color: OudsColoredBox.Color): Boolean {
         OudsColoredBox.Color.StatusInfoEmphasized,
         OudsColoredBox.Color.StatusPositiveEmphasized,
         OudsColoredBox.Color.StatusWarningEmphasized,
-        OudsColoredBox.Color.StatusNegativeEmphasized,
-        OudsColoredBox.Color.StatusNeutralEmphasized -> true
+        OudsColoredBox.Color.StatusNegativeEmphasized -> true
+        OudsColoredBox.Color.StatusNeutralEmphasized,
         OudsColoredBox.Color.StatusAccentMuted,
         OudsColoredBox.Color.StatusInfoMuted,
         OudsColoredBox.Color.StatusNegativeMuted,
