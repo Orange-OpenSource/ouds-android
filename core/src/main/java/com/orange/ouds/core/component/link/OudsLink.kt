@@ -72,8 +72,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
  * An OUDS link which displays a text and an optional icon.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance `colorContentEnabledMono`
- * in [OudsLinkTokens]).
+ * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance `[OudsLinkTokens.colorContentEnabledMono]).
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  *
@@ -108,8 +107,7 @@ fun OudsLink(
  * An OUDS link which displays an [arrow] before ([OudsLink.Arrow.Back]) or after ([OudsLink.Arrow.Next]) a text.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance `colorContentEnabledMono`
- * in [OudsLinkTokens]).
+ * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
  *
