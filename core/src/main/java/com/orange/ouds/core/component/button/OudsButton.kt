@@ -79,7 +79,7 @@ import kotlinx.parcelize.Parcelize
  *
  * An OUDS button which displays text only.
  *
- * The colors of this button are automatically adjusted when it is displayed in an [OudsColoredBox].
+ * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
  * @param text Text displayed in the button.
@@ -122,7 +122,7 @@ fun OudsButton(
  *
  * An OUDS button which displays an icon only.
  *
- * The colors of this button are automatically adjusted when it is displayed in an [OudsColoredBox].
+ * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
  * @param icon Icon displayed in the button.
@@ -165,7 +165,7 @@ fun OudsButton(
  *
  * An OUDS button which displays an icon and text.
  *
- * The colors of this button are automatically adjusted when it is displayed in an [OudsColoredBox].
+ * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
  * @param icon Icon displayed in the button.
