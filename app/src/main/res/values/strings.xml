@@ -128,8 +128,6 @@
     <string name="app_components_link_arrowBack_label">Arrow back</string>
     <string name="app_components_link_arrowNext_label">Arrow next</string>
     <string name="app_components_link_size_label">Size</string>
-    <string name="app_components_link_smallSize_label">Small</string>
-    <string name="app_components_link_mediumSize_label">Medium</string>
 
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
