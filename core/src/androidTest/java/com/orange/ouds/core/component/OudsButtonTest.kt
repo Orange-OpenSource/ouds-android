@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component.link
+package com.orange.ouds.core.component
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -21,21 +21,20 @@ import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 
-internal class OudsLinkTest {
+internal class OudsButtonTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsLinkClickSucceeds() {
+    fun oudsButtonClickSucceeds() {
         with(composeTestRule) {
             val text = "Text"
             val onClick = mock<() -> Unit>()
 
             setOudsContent {
-                OudsLink(
+                OudsButton(
                     text = text,
-                    icon = null,
                     onClick = onClick
                 )
             }

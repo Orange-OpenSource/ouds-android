@@ -14,7 +14,7 @@ package com.orange.ouds.core.component.samples
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.coloredbox.OudsColoredBox
+import com.orange.ouds.core.component.OudsColoredBox
 
 @Composable
 internal fun OudsColoredBoxSample() {

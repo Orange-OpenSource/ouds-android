@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component.link
+package com.orange.ouds.core.component
 
 import com.orange.ouds.OudsPaparazziTest
 import org.junit.Test

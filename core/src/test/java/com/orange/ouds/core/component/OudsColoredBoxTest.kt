@@ -10,13 +10,9 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component.coloredbox
+package com.orange.ouds.core.component
 
-import app.cash.paparazzi.Paparazzi
-import com.android.ide.common.rendering.api.SessionParams
 import com.orange.ouds.OudsPaparazziTest
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized

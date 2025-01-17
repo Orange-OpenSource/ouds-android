@@ -20,8 +20,8 @@ import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.R
-import com.orange.ouds.core.component.link.OudsLink
-import com.orange.ouds.core.component.link.OudsLinkDefaults
+import com.orange.ouds.core.component.OudsLink
+import com.orange.ouds.core.component.OudsLinkDefaults
 
 @Composable
 fun rememberLinkDemoState(
