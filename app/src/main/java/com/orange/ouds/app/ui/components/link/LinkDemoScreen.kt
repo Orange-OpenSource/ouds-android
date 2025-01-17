@@ -56,7 +56,7 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 checked = onColoredBox,
                 onCheckedChange = { onColoredBox = it },
             )
-            val sizes = remember { listOf(OudsLink.Size.Small, OudsLink.Size.Medium) }
+            val sizes = OudsLink.Size.entries
             CustomizationChoiceChipsColumn(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_link_size_label),
