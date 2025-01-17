@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.button.OudsButton
 import com.orange.ouds.core.component.link.OudsLink
+import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
@@ -61,6 +62,7 @@ fun OudsColoredBox(
     content: @Composable BoxScope.() -> Unit
 ) {
     CompositionLocalProvider(
+        LocalColoredBox provides true,
         LocalUseMonoComponents provides useMonoComponents(color)
     ) {
         // Filter the background modifiers in order to force the background color

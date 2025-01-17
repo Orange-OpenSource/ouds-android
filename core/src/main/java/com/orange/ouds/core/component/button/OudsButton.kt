@@ -63,6 +63,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -217,7 +218,7 @@ private fun OudsButton(
     style: OudsButton.Style = OudsButton.Style.Default,
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
 ) {
-    if (hierarchy == OudsButton.Hierarchy.Negative && LocalUseMonoComponents.current) {
+    if (hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current) {
         throw IllegalStateException("An OudsButton with OudsButton.Hierarchy.Negative hierarchy has been detected as a direct or indirect child of an OudsColoredBox, which is not allowed.")
     }
 
