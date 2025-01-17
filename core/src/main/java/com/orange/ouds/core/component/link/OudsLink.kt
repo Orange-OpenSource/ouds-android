@@ -55,7 +55,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.link.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalMonoComponents
+import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -182,7 +182,7 @@ private fun OudsLink(
                 .outerBorder(state = state),
             enabled = state != OudsLink.State.Disabled,
             shape = RectangleShape,
-            colors = buttonColors(linkState = state, monochrome = LocalMonoComponents.current),
+            colors = buttonColors(linkState = state, monochrome = LocalUseMonoComponents.current),
             elevation = null,
             contentPadding = PaddingValues(
                 horizontal = linkTokens.spacePaddingInline.value,
@@ -213,9 +213,9 @@ private fun OudsLink(
             }
 
             val iconTint = if (arrow != null) {
-                arrowColor(state = state, monochrome = LocalMonoComponents.current)
+                arrowColor(state = state, monochrome = LocalUseMonoComponents.current)
             } else {
-                contentColor(state = state, monochrome = LocalMonoComponents.current)
+                contentColor(state = state, monochrome = LocalUseMonoComponents.current)
             }
 
             Row(
