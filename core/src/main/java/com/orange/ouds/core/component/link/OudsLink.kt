@@ -341,7 +341,6 @@ object OudsLink {
         Small, Medium
     }
 
-
     /**
      * Represents the arrow of an OUDS link.
      */
