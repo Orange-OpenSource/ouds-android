@@ -49,19 +49,19 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
-import com.orange.ouds.core.component.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.outerBorder
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 
 /**

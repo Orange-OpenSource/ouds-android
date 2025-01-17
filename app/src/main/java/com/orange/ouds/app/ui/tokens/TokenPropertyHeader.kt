@@ -41,10 +41,10 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 import com.orange.ouds.app.ui.utilities.painterResource
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.dashedBorder
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.dashedBorder
 
 @Composable
 fun GridHeader(modifier: Modifier = Modifier) {
