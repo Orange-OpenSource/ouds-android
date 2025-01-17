@@ -80,7 +80,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
  * @param icon Icon displayed in the link.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
- * @param size Size of the button.
+ * @param size Size of the link.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  */
 @Composable
@@ -117,7 +117,7 @@ fun OudsLink(
  *   When [OudsLink.Arrow.Next], the arrow is displayed after the text.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
- * @param size Size of the button.
+ * @param size Size of the link.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  */
 @Composable
