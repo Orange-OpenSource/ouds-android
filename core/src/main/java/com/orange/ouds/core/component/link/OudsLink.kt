@@ -158,17 +158,9 @@ private fun OudsLink(
     val state = previewState.orElse { rememberOudsLinkState(enabled = enabled, interactionState = interactionState) }
     val isTextOnly = icon == null && arrow == null
 
-    val minWidth: Dp
-    val minHeight: Dp
-    when (size) {
-        OudsLink.Size.Medium -> {
-            minWidth = linkTokens.sizeMinWidthMedium.dp
-            minHeight = linkTokens.sizeMinHeightMedium.dp
-        }
-        OudsLink.Size.Small -> {
-            minWidth = linkTokens.sizeMinWidthSmall.dp
-            minHeight = linkTokens.sizeMinHeightSmall.dp
-        }
+    val (minWidth, minHeight) = when (size) {
+        OudsLink.Size.Medium -> linkTokens.sizeMinWidthMedium.dp to linkTokens.sizeMinHeightMedium.dp
+        OudsLink.Size.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
     }
 
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
