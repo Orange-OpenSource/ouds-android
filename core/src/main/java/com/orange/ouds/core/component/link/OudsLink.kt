@@ -63,9 +63,6 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.outerBorder
-import com.orange.ouds.theme.tokens.OudsBorderKeyToken
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 
 /**
@@ -188,12 +185,12 @@ private fun OudsLink(
                     OudsLink.Size.Medium -> {
                         columnGap = if (arrow != null) spaceColumnGapArrowMedium.value else spaceColumnGapIconMedium.value
                         iconSize = sizeIconMedium.value
-                        textStyle = OudsTypographyKeyToken.Label.Strong.Large.value
+                        textStyle = OudsTheme.typography.label.strong.large
                     }
                     OudsLink.Size.Small -> {
                         columnGap = if (arrow != null) spaceColumnGapArrowSmall.value else spaceColumnGapIconSmall.value
                         iconSize = sizeIconSmall.value
-                        textStyle = OudsTypographyKeyToken.Label.Strong.Medium.value
+                        textStyle = OudsTheme.typography.label.strong.medium
                     }
                 }
             }
@@ -256,11 +253,11 @@ private fun rememberOudsLinkState(
 private fun Modifier.outerBorder(state: OudsLink.State): Modifier {
     return if (state == OudsLink.State.Focused) {
         outerBorder(
-            width = OudsBorderKeyToken.Width.Focus.value,
-            color = OudsColorKeyToken.Border.Focus.value,
+            width = OudsTheme.borders.width.focus,
+            color = OudsTheme.colorScheme.border.focus,
             shape = RectangleShape,
-            insetWidth = OudsBorderKeyToken.Width.FocusInset.value,
-            insetColor = OudsColorKeyToken.Border.FocusInset.value
+            insetWidth = OudsTheme.borders.width.focusInset,
+            insetColor = OudsTheme.colorScheme.border.focusInset
         )
     } else {
         this
@@ -277,7 +274,7 @@ private fun buttonColors(linkState: OudsLink.State, monochrome: Boolean) = Butto
 
 private val containerColor: Color
     @Composable
-    get() = OudsColorKeyToken.Opacity.Transparent.value
+    get() = OudsTheme.colorScheme.opacity.transparent
 
 @Composable
 private fun contentColor(state: OudsLink.State, monochrome: Boolean): Color {
@@ -289,17 +286,17 @@ private fun contentColor(state: OudsLink.State, monochrome: Boolean): Color {
                 OudsLink.State.Hovered -> colorContentHoverMono
                 OudsLink.State.Pressed -> colorContentPressedMono
                 OudsLink.State.Disabled -> colorContentDisabledMono
-            }
+            }.value
         } else {
             when (state) {
-                OudsLink.State.Enabled -> colorContentEnabled
-                OudsLink.State.Focused -> colorContentFocus
-                OudsLink.State.Hovered -> colorContentHover
-                OudsLink.State.Pressed -> colorContentPressed
-                OudsLink.State.Disabled -> OudsColorKeyToken.Action.Disabled
+                OudsLink.State.Enabled -> colorContentEnabled.value
+                OudsLink.State.Focused -> colorContentFocus.value
+                OudsLink.State.Hovered -> colorContentHover.value
+                OudsLink.State.Pressed -> colorContentPressed.value
+                OudsLink.State.Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }
-    }.value
+    }
 }
 
 @Composable
@@ -309,12 +306,12 @@ private fun arrowColor(state: OudsLink.State, monochrome: Boolean): Color {
             contentColor(state = state, monochrome = true)
         } else {
             when (state) {
-                OudsLink.State.Enabled -> colorArrowEnabled
-                OudsLink.State.Focused -> colorArrowFocus
-                OudsLink.State.Hovered -> colorArrowHover
-                OudsLink.State.Pressed -> colorArrowPressed
-                OudsLink.State.Disabled -> OudsColorKeyToken.Action.Disabled
-            }.value
+                OudsLink.State.Enabled -> colorArrowEnabled.value
+                OudsLink.State.Focused -> colorArrowFocus.value
+                OudsLink.State.Hovered -> colorArrowHover.value
+                OudsLink.State.Pressed -> colorArrowPressed.value
+                OudsLink.State.Disabled -> OudsTheme.colorScheme.action.disabled
+            }
         }
     }
 }
