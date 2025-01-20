@@ -1,9 +1,9 @@
 [versions]
-activityCompose = "1.9.3"
+activityCompose = "1.10.0"
 appcompat = "1.7.0"
-androidCompileSdk = "34"
+androidCompileSdk = "35"
 androidMinSdk = "21"
-androidTargetSdk = "34"
+androidTargetSdk = "35"
 browser = "1.8.0"
 composeBom = "2025.01.00"
 coreKtx = "1.15.0"

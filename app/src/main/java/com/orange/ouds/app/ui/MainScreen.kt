@@ -12,6 +12,11 @@
 
 package com.orange.ouds.app.ui
 
+import android.graphics.Color
+import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.compose.LocalActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -84,6 +89,9 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
     val configuration = LocalConfiguration.current.apply {
         isDarkModeEnabled = mainState.themeState.darkModeEnabled
     }
+
+    val activity = LocalActivity.current as? ComponentActivity
+    activity?.enableEdgeToEdge(SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { configuration.isDarkModeEnabled })
 
     var changeThemeDialogVisible by remember { mutableStateOf(false) }
 
