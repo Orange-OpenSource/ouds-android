@@ -13,13 +13,12 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
-data class OudsColorOpacitySemanticTokens(
-    val opacityLowerLight: Color = ColorRawTokens.colorOpacityBlack80,
-    val opacityLowestLight: Color = ColorRawTokens.colorOpacityBlack40,
-    val opacityTransparentLight: Color = ColorRawTokens.colorOpacityBlack0,
-    val opacityLowerDark: Color = ColorRawTokens.colorOpacityWhite80,
-    val opacityLowestDark: Color = ColorRawTokens.colorOpacityWhite40,
-    val opacityTransparentDark: Color = ColorRawTokens.colorOpacityWhite0
-)
+interface OudsColorOpacitySemanticTokens {
+    val opacityLowerLight: Color
+    val opacityLowestLight: Color
+    val opacityTransparentLight: Color
+    val opacityLowerDark: Color
+    val opacityLowestDark: Color
+    val opacityTransparentDark: Color
+}

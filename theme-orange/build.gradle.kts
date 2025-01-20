@@ -26,4 +26,5 @@ android {
 
 dependencies {
     implementation(project(":theme-contract"))
+    implementation(project(":global-raw-tokens"))
 }

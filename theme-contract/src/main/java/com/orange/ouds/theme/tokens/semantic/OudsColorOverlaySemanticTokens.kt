@@ -13,15 +13,14 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
-data class OudsColorOverlaySemanticTokens(
-    val overlayDefaultLight: Color = ColorRawTokens.colorFunctionalWhite,
-    val overlayDragLight: Color = ColorRawTokens.colorOpacityBlack40,
-    val overlayEmphasizedLight: Color = ColorRawTokens.colorFunctionalDarkGray720,
-    val overlayModalLight: Color = ColorRawTokens.colorFunctionalWhite,
-    val overlayDefaultDark: Color = ColorRawTokens.colorOpacityWhite80,
-    val overlayDragDark: Color = ColorRawTokens.colorOpacityWhite200,
-    val overlayEmphasizedDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val overlayModalDark: Color = ColorRawTokens.colorFunctionalDarkGray640
-)
+interface OudsColorOverlaySemanticTokens {
+    val overlayDefaultLight: Color
+    val overlayDragLight: Color
+    val overlayEmphasizedLight: Color
+    val overlayModalLight: Color
+    val overlayDefaultDark: Color
+    val overlayDragDark: Color
+    val overlayEmphasizedDark: Color
+    val overlayModalDark: Color
+}

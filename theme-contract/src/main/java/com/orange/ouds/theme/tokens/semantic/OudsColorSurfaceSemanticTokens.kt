@@ -13,34 +13,32 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
-import com.orange.ouds.tokens.global.raw.OrangeBrandColorRawTokens
 
-data class OudsColorSurfaceSemanticTokens(
-    val surfaceBrandPrimaryLight: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val surfaceBrandPrimaryDark: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val surfaceStatusAccentEmphasizedLight: Color = ColorRawTokens.colorFunctionalSun500,
-    val surfaceStatusAccentMutedLight: Color = ColorRawTokens.colorOpacitySun,
-    val surfaceStatusAccentEmphasizedDark: Color = ColorRawTokens.colorFunctionalSun300,
-    val surfaceStatusAccentMutedDark: Color = OrangeBrandColorRawTokens.colorWarmGray900,
-    val surfaceStatusInfoEmphasizedLight: Color = ColorRawTokens.colorFunctionalDodgerBlue500,
-    val surfaceStatusInfoMutedLight: Color = ColorRawTokens.colorOpacityDodgerBlue,
-    val surfaceStatusInfoEmphasizedDark: Color = ColorRawTokens.colorFunctionalDodgerBlue300,
-    val surfaceStatusInfoMutedDark: Color = ColorRawTokens.colorFunctionalDodgerBlue900,
-    val surfaceStatusNegativeEmphasizedLight: Color = ColorRawTokens.colorFunctionalScarlet600,
-    val surfaceStatusNegativeMutedLight: Color = ColorRawTokens.colorOpacityScarlet,
-    val surfaceStatusNegativeEmphasizedDark: Color = ColorRawTokens.colorFunctionalScarlet300,
-    val surfaceStatusNegativeMutedDark: Color = ColorRawTokens.colorFunctionalScarlet900,
-    val surfaceStatusNeutralEmphasizedLight: Color = ColorRawTokens.colorOpacityBlack840,
-    val surfaceStatusNeutralMutedLight: Color = ColorRawTokens.colorOpacityBlack40,
-    val surfaceStatusNeutralEmphasizedDark: Color = ColorRawTokens.colorOpacityWhite800,
-    val surfaceStatusNeutralMutedDark: Color = ColorRawTokens.colorOpacityWhite80,
-    val surfaceStatusPositiveEmphasizedLight: Color = ColorRawTokens.colorFunctionalMalachite500,
-    val surfaceStatusPositiveMutedLight: Color = ColorRawTokens.colorOpacityMalachite,
-    val surfaceStatusPositiveEmphasizedDark: Color = ColorRawTokens.colorFunctionalMalachite300,
-    val surfaceStatusPositiveMutedDark: Color = ColorRawTokens.colorFunctionalMalachite900,
-    val surfaceStatusWarningEmphasizedLight: Color = ColorRawTokens.colorFunctionalSun500,
-    val surfaceStatusWarningMutedLight: Color = ColorRawTokens.colorOpacitySun,
-    val surfaceStatusWarningEmphasizedDark: Color = ColorRawTokens.colorFunctionalSun300,
-    val surfaceStatusWarningMutedDark: Color = ColorRawTokens.colorFunctionalSun900
-)
+interface OudsColorSurfaceSemanticTokens {
+    val surfaceBrandPrimaryLight: Color
+    val surfaceBrandPrimaryDark: Color
+    val surfaceStatusAccentEmphasizedLight: Color
+    val surfaceStatusAccentMutedLight: Color
+    val surfaceStatusAccentEmphasizedDark: Color
+    val surfaceStatusAccentMutedDark: Color
+    val surfaceStatusInfoEmphasizedLight: Color
+    val surfaceStatusInfoMutedLight: Color
+    val surfaceStatusInfoEmphasizedDark: Color
+    val surfaceStatusInfoMutedDark: Color
+    val surfaceStatusNegativeEmphasizedLight: Color
+    val surfaceStatusNegativeMutedLight: Color
+    val surfaceStatusNegativeEmphasizedDark: Color
+    val surfaceStatusNegativeMutedDark: Color
+    val surfaceStatusNeutralEmphasizedLight: Color
+    val surfaceStatusNeutralMutedLight: Color
+    val surfaceStatusNeutralEmphasizedDark: Color
+    val surfaceStatusNeutralMutedDark: Color
+    val surfaceStatusPositiveEmphasizedLight: Color
+    val surfaceStatusPositiveMutedLight: Color
+    val surfaceStatusPositiveEmphasizedDark: Color
+    val surfaceStatusPositiveMutedDark: Color
+    val surfaceStatusWarningEmphasizedLight: Color
+    val surfaceStatusWarningMutedLight: Color
+    val surfaceStatusWarningEmphasizedDark: Color
+    val surfaceStatusWarningMutedDark: Color
+}

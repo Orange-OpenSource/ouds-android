@@ -12,16 +12,15 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-data class OudsColorSemanticTokens(
-    val actionColorTokens: OudsColorActionSemanticTokens = OudsColorActionSemanticTokens(),
-    val alwaysColorTokens: OudsColorAlwaysSemanticTokens = OudsColorAlwaysSemanticTokens(),
-    val backgroundColorTokens: OudsColorBgSemanticTokens = OudsColorBgSemanticTokens(),
-    val borderColorTokens: OudsColorBorderSemanticTokens = OudsColorBorderSemanticTokens(),
-    val contentColorTokens: OudsColorContentSemanticTokens = OudsColorContentSemanticTokens(),
-    val decorativeColorTokens: OudsColorDecorativeSemanticTokens = OudsColorDecorativeSemanticTokens(),
-    val opacityColorTokens: OudsColorOpacitySemanticTokens = OudsColorOpacitySemanticTokens(),
-    val overlayColorTokens: OudsColorOverlaySemanticTokens = OudsColorOverlaySemanticTokens(),
-    val surfaceColorTokens: OudsColorSurfaceSemanticTokens = OudsColorSurfaceSemanticTokens()
-) {
-    val repositoryColorTokens: OudsColorRepositorySemanticTokens = OudsColorRepositorySemanticTokens()
+interface OudsColorSemanticTokens {
+    val actionColorTokens: OudsColorActionSemanticTokens
+    val alwaysColorTokens: OudsColorAlwaysSemanticTokens
+    val backgroundColorTokens: OudsColorBgSemanticTokens
+    val borderColorTokens: OudsColorBorderSemanticTokens
+    val contentColorTokens: OudsColorContentSemanticTokens
+    val decorativeColorTokens: OudsColorDecorativeSemanticTokens
+    val opacityColorTokens: OudsColorOpacitySemanticTokens
+    val overlayColorTokens: OudsColorOverlaySemanticTokens
+    val surfaceColorTokens: OudsColorSurfaceSemanticTokens
+    val repositoryColorTokens: OudsColorRepositorySemanticTokens
 }

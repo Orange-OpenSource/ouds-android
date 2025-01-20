@@ -13,46 +13,44 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
-import com.orange.ouds.tokens.global.raw.OrangeBrandColorRawTokens
 
-data class OudsColorActionSemanticTokens(
-    val actionDisabledLight: Color = ColorRawTokens.colorOpacityBlack200,
-    val actionEnabledLight: Color = ColorRawTokens.colorFunctionalBlack,
-    val actionFocusLight: Color = ColorRawTokens.colorOpacityBlack680,
-    val actionHighlightedLight: Color = ColorRawTokens.colorFunctionalBlack,
-    val actionHoverLight: Color = ColorRawTokens.colorOpacityBlack680,
-    val actionLoadingLight: Color = OrangeBrandColorRawTokens.colorOrange550,
-    val actionNegativeEnabledLight: Color = ColorRawTokens.colorFunctionalScarlet600,
-    val actionNegativeFocusLight: Color = ColorRawTokens.colorFunctionalScarlet700,
-    val actionNegativeHoverLight: Color = ColorRawTokens.colorFunctionalScarlet700,
-    val actionNegativeLoadingLight: Color = ColorRawTokens.colorFunctionalScarlet800,
-    val actionNegativePressedLight: Color = ColorRawTokens.colorFunctionalScarlet800,
-    val actionNegativeEnabledDark: Color = ColorRawTokens.colorFunctionalScarlet300,
-    val actionNegativeFocusDark: Color = ColorRawTokens.colorFunctionalScarlet200,
-    val actionNegativeHoverDark: Color = ColorRawTokens.colorFunctionalScarlet200,
-    val actionNegativeLoadingDark: Color = ColorRawTokens.colorFunctionalScarlet100,
-    val actionNegativePressedDark: Color = ColorRawTokens.colorFunctionalScarlet100,
-    val actionPressedLight: Color = OrangeBrandColorRawTokens.colorOrange550,
-    val actionSelectedLight: Color = OrangeBrandColorRawTokens.colorOrange550,
-    val actionSupportEnabledLight: Color = ColorRawTokens.colorOpacityBlack40,
-    val actionSupportFocusLight: Color = ColorRawTokens.colorOpacityBlack80,
-    val actionSupportHoverLight: Color = ColorRawTokens.colorOpacityBlack80,
-    val actionSupportLoadingLight: Color = ColorRawTokens.colorOpacityBlack80,
-    val actionSupportPressedLight: Color = ColorRawTokens.colorOpacityBlack80,
-    val actionSupportEnabledDark: Color = ColorRawTokens.colorOpacityWhite40,
-    val actionSupportFocusDark: Color = ColorRawTokens.colorOpacityWhite80,
-    val actionSupportHoverDark: Color = ColorRawTokens.colorOpacityWhite80,
-    val actionSupportLoadingDark: Color = ColorRawTokens.colorOpacityWhite80,
-    val actionSupportPressedDark: Color = ColorRawTokens.colorOpacityWhite80,
-    val actionVisitedLight: Color = ColorRawTokens.colorDecorativeAmethyst600,
-    val actionDisabledDark: Color = ColorRawTokens.colorOpacityWhite200,
-    val actionEnabledDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val actionFocusDark: Color = ColorRawTokens.colorOpacityWhite640,
-    val actionHighlightedDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val actionHoverDark: Color = ColorRawTokens.colorOpacityWhite640,
-    val actionLoadingDark: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val actionPressedDark: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val actionSelectedDark: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val actionVisitedDark: Color = ColorRawTokens.colorDecorativeAmethyst400
-)
+interface OudsColorActionSemanticTokens {
+    val actionDisabledLight: Color
+    val actionEnabledLight: Color
+    val actionFocusLight: Color
+    val actionHighlightedLight: Color
+    val actionHoverLight: Color
+    val actionLoadingLight: Color
+    val actionNegativeEnabledLight: Color
+    val actionNegativeFocusLight: Color
+    val actionNegativeHoverLight: Color
+    val actionNegativeLoadingLight: Color
+    val actionNegativePressedLight: Color
+    val actionNegativeEnabledDark: Color
+    val actionNegativeFocusDark: Color
+    val actionNegativeHoverDark: Color
+    val actionNegativeLoadingDark: Color
+    val actionNegativePressedDark: Color
+    val actionPressedLight: Color
+    val actionSelectedLight: Color
+    val actionSupportEnabledLight: Color
+    val actionSupportFocusLight: Color
+    val actionSupportHoverLight: Color
+    val actionSupportLoadingLight: Color
+    val actionSupportPressedLight: Color
+    val actionSupportEnabledDark: Color
+    val actionSupportFocusDark: Color
+    val actionSupportHoverDark: Color
+    val actionSupportLoadingDark: Color
+    val actionSupportPressedDark: Color
+    val actionVisitedLight: Color
+    val actionDisabledDark: Color
+    val actionEnabledDark: Color
+    val actionFocusDark: Color
+    val actionHighlightedDark: Color
+    val actionHoverDark: Color
+    val actionLoadingDark: Color
+    val actionPressedDark: Color
+    val actionSelectedDark: Color
+    val actionVisitedDark: Color
+}

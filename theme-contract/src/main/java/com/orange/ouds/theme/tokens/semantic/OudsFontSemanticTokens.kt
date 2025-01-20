@@ -12,87 +12,85 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import com.orange.ouds.tokens.global.raw.FontRawTokens
-
-data class OudsFontSemanticTokens(
-    val letterSpacingBodyLargeMobile: Float = FontRawTokens.fontLetterSpacing250,
-    val letterSpacingBodyLargeTablet: Float = FontRawTokens.fontLetterSpacing250,
-    val letterSpacingBodyMediumMobile: Float = FontRawTokens.fontLetterSpacing200,
-    val letterSpacingBodyMediumTablet: Float = FontRawTokens.fontLetterSpacing200,
-    val letterSpacingBodySmallMobile: Float = FontRawTokens.fontLetterSpacing150,
-    val letterSpacingBodySmallTablet: Float = FontRawTokens.fontLetterSpacing150,
-    val letterSpacingDisplayLargeMobile: Float = FontRawTokens.fontLetterSpacing850,
-    val letterSpacingDisplayLargeTablet: Float = FontRawTokens.fontLetterSpacing1450,
-    val letterSpacingDisplayMediumMobile: Float = FontRawTokens.fontLetterSpacing750,
-    val letterSpacingDisplayMediumTablet: Float = FontRawTokens.fontLetterSpacing1050,
-    val letterSpacingDisplaySmallMobile: Float = FontRawTokens.fontLetterSpacing650,
-    val letterSpacingDisplaySmallTablet: Float = FontRawTokens.fontLetterSpacing850,
-    val letterSpacingHeadingLargeMobile: Float = FontRawTokens.fontLetterSpacing450,
-    val letterSpacingHeadingLargeTablet: Float = FontRawTokens.fontLetterSpacing550,
-    val letterSpacingHeadingMediumMobile: Float = FontRawTokens.fontLetterSpacing350,
-    val letterSpacingHeadingMediumTablet: Float = FontRawTokens.fontLetterSpacing450,
-    val letterSpacingHeadingSmallMobile: Float = FontRawTokens.fontLetterSpacing300,
-    val letterSpacingHeadingSmallTablet: Float = FontRawTokens.fontLetterSpacing350,
-    val letterSpacingHeadingXlargeMobile: Float = FontRawTokens.fontLetterSpacing550,
-    val letterSpacingHeadingXlargeTablet: Float = FontRawTokens.fontLetterSpacing750,
-    val letterSpacingLabelLarge: Float = FontRawTokens.fontLetterSpacing250,
-    val letterSpacingLabelMedium: Float = FontRawTokens.fontLetterSpacing200,
-    val letterSpacingLabelSmall: Float = FontRawTokens.fontLetterSpacing150,
-    val letterSpacingLabelXlarge: Float = FontRawTokens.fontLetterSpacing300,
-    val lineHeightBodyLargeMobile: Int = FontRawTokens.fontLineHeight450,
-    val lineHeightBodyLargeTablet: Int = FontRawTokens.fontLineHeight450,
-    val lineHeightBodyMediumMobile: Int = FontRawTokens.fontLineHeight350,
-    val lineHeightBodyMediumTablet: Int = FontRawTokens.fontLineHeight350,
-    val lineHeightBodySmallMobile: Int = FontRawTokens.fontLineHeight250,
-    val lineHeightBodySmallTablet: Int = FontRawTokens.fontLineHeight250,
-    val lineHeightDisplayLargeMobile: Int = FontRawTokens.fontLineHeight1050,
-    val lineHeightDisplayLargeTablet: Int = FontRawTokens.fontLineHeight1850,
-    val lineHeightDisplayMediumMobile: Int = FontRawTokens.fontLineHeight950,
-    val lineHeightDisplayMediumTablet: Int = FontRawTokens.fontLineHeight1250,
-    val lineHeightDisplaySmallMobile: Int = FontRawTokens.fontLineHeight850,
-    val lineHeightDisplaySmallTablet: Int = FontRawTokens.fontLineHeight1050,
-    val lineHeightHeadingLargeMobile: Int = FontRawTokens.fontLineHeight650,
-    val lineHeightHeadingLargeTablet: Int = FontRawTokens.fontLineHeight750,
-    val lineHeightHeadingMediumMobile: Int = FontRawTokens.fontLineHeight550,
-    val lineHeightHeadingMediumTablet: Int = FontRawTokens.fontLineHeight650,
-    val lineHeightHeadingSmallMobile: Int = FontRawTokens.fontLineHeight450,
-    val lineHeightHeadingSmallTablet: Int = FontRawTokens.fontLineHeight550,
-    val lineHeightHeadingXlargeMobile: Int = FontRawTokens.fontLineHeight750,
-    val lineHeightHeadingXlargeTablet: Int = FontRawTokens.fontLineHeight950,
-    val lineHeightLabelLarge: Int = FontRawTokens.fontLineHeight450,
-    val lineHeightLabelMedium: Int = FontRawTokens.fontLineHeight350,
-    val lineHeightLabelSmall: Int = FontRawTokens.fontLineHeight250,
-    val lineHeightLabelXlarge: Int = FontRawTokens.fontLineHeight450,
-    val sizeBodyLargeMobile: Int = FontRawTokens.fontSize250,
-    val sizeBodyLargeTablet: Int = FontRawTokens.fontSize250,
-    val sizeBodyMediumMobile: Int = FontRawTokens.fontSize200,
-    val sizeBodyMediumTablet: Int = FontRawTokens.fontSize200,
-    val sizeBodySmallMobile: Int = FontRawTokens.fontSize150,
-    val sizeBodySmallTablet: Int = FontRawTokens.fontSize150,
-    val sizeDisplayLargeMobile: Int = FontRawTokens.fontSize850,
-    val sizeDisplayLargeTablet: Int = FontRawTokens.fontSize1450,
-    val sizeDisplayMediumMobile: Int = FontRawTokens.fontSize750,
-    val sizeDisplayMediumTablet: Int = FontRawTokens.fontSize1050,
-    val sizeDisplaySmallMobile: Int = FontRawTokens.fontSize650,
-    val sizeDisplaySmallTablet: Int = FontRawTokens.fontSize850,
-    val sizeHeadingLargeMobile: Int = FontRawTokens.fontSize450,
-    val sizeHeadingLargeTablet: Int = FontRawTokens.fontSize550,
-    val sizeHeadingMediumMobile: Int = FontRawTokens.fontSize350,
-    val sizeHeadingMediumTablet: Int = FontRawTokens.fontSize450,
-    val sizeHeadingSmallMobile: Int = FontRawTokens.fontSize300,
-    val sizeHeadingSmallTablet: Int = FontRawTokens.fontSize350,
-    val sizeHeadingXlargeMobile: Int = FontRawTokens.fontSize550,
-    val sizeHeadingXlargeTablet: Int = FontRawTokens.fontSize750,
-    val sizeLabelLarge: Int = FontRawTokens.fontSize250,
-    val sizeLabelMedium: Int = FontRawTokens.fontSize200,
-    val sizeLabelSmall: Int = FontRawTokens.fontSize150,
-    val sizeLabelXlarge: Int = FontRawTokens.fontSize300,
-    val weightBodyDefault: Int = FontRawTokens.fontWeight400,
-    val weightBodyStrong: Int = FontRawTokens.fontWeight700,
-    val weightDisplay: Int = FontRawTokens.fontWeight700,
-    val weightHeading: Int = FontRawTokens.fontWeight700,
-    val weightLabelDefault: Int = FontRawTokens.fontWeight400,
-    val weightLabelStrong: Int = FontRawTokens.fontWeight700,
-    val weightDefault: Int = FontRawTokens.fontWeight400,
-    val weightStrong: Int = FontRawTokens.fontWeight700
-)
+interface OudsFontSemanticTokens {
+    val letterSpacingBodyLargeMobile: Float
+    val letterSpacingBodyLargeTablet: Float
+    val letterSpacingBodyMediumMobile: Float
+    val letterSpacingBodyMediumTablet: Float
+    val letterSpacingBodySmallMobile: Float
+    val letterSpacingBodySmallTablet: Float
+    val letterSpacingDisplayLargeMobile: Float
+    val letterSpacingDisplayLargeTablet: Float
+    val letterSpacingDisplayMediumMobile: Float
+    val letterSpacingDisplayMediumTablet: Float
+    val letterSpacingDisplaySmallMobile: Float
+    val letterSpacingDisplaySmallTablet: Float
+    val letterSpacingHeadingLargeMobile: Float
+    val letterSpacingHeadingLargeTablet: Float
+    val letterSpacingHeadingMediumMobile: Float
+    val letterSpacingHeadingMediumTablet: Float
+    val letterSpacingHeadingSmallMobile: Float
+    val letterSpacingHeadingSmallTablet: Float
+    val letterSpacingHeadingXlargeMobile: Float
+    val letterSpacingHeadingXlargeTablet: Float
+    val letterSpacingLabelLarge: Float
+    val letterSpacingLabelMedium: Float
+    val letterSpacingLabelSmall: Float
+    val letterSpacingLabelXlarge: Float
+    val lineHeightBodyLargeMobile: Int
+    val lineHeightBodyLargeTablet: Int
+    val lineHeightBodyMediumMobile: Int
+    val lineHeightBodyMediumTablet: Int
+    val lineHeightBodySmallMobile: Int
+    val lineHeightBodySmallTablet: Int
+    val lineHeightDisplayLargeMobile: Int
+    val lineHeightDisplayLargeTablet: Int
+    val lineHeightDisplayMediumMobile: Int
+    val lineHeightDisplayMediumTablet: Int
+    val lineHeightDisplaySmallMobile: Int
+    val lineHeightDisplaySmallTablet: Int
+    val lineHeightHeadingLargeMobile: Int
+    val lineHeightHeadingLargeTablet: Int
+    val lineHeightHeadingMediumMobile: Int
+    val lineHeightHeadingMediumTablet: Int
+    val lineHeightHeadingSmallMobile: Int
+    val lineHeightHeadingSmallTablet: Int
+    val lineHeightHeadingXlargeMobile: Int
+    val lineHeightHeadingXlargeTablet: Int
+    val lineHeightLabelLarge: Int
+    val lineHeightLabelMedium: Int
+    val lineHeightLabelSmall: Int
+    val lineHeightLabelXlarge: Int
+    val sizeBodyLargeMobile: Int
+    val sizeBodyLargeTablet: Int
+    val sizeBodyMediumMobile: Int
+    val sizeBodyMediumTablet: Int
+    val sizeBodySmallMobile: Int
+    val sizeBodySmallTablet: Int
+    val sizeDisplayLargeMobile: Int
+    val sizeDisplayLargeTablet: Int
+    val sizeDisplayMediumMobile: Int
+    val sizeDisplayMediumTablet: Int
+    val sizeDisplaySmallMobile: Int
+    val sizeDisplaySmallTablet: Int
+    val sizeHeadingLargeMobile: Int
+    val sizeHeadingLargeTablet: Int
+    val sizeHeadingMediumMobile: Int
+    val sizeHeadingMediumTablet: Int
+    val sizeHeadingSmallMobile: Int
+    val sizeHeadingSmallTablet: Int
+    val sizeHeadingXlargeMobile: Int
+    val sizeHeadingXlargeTablet: Int
+    val sizeLabelLarge: Int
+    val sizeLabelMedium: Int
+    val sizeLabelSmall: Int
+    val sizeLabelXlarge: Int
+    val weightBodyDefault: Int
+    val weightBodyStrong: Int
+    val weightDisplay: Int
+    val weightHeading: Int
+    val weightLabelDefault: Int
+    val weightLabelStrong: Int
+    val weightDefault: Int
+    val weightStrong: Int
+}

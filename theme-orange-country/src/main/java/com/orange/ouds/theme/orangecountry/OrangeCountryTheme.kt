@@ -14,11 +14,12 @@ package com.orange.ouds.theme.orangecountry
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorBgSemanticTokens
+import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorSemanticTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import kotlinx.parcelize.Parcelize
 
@@ -29,8 +30,8 @@ class OrangeCountryTheme : OrangeTheme() {
         get() = "Orange country"
 
     override val colorTokens: OudsColorSemanticTokens
-        get() = OudsColorSemanticTokens(
-            backgroundColorTokens = OudsColorBgSemanticTokens(
+        get() = OrangeColorSemanticTokens(
+            backgroundColorTokens = OrangeColorBgSemanticTokens(
                 bgPrimaryLight = Color(0xFF34D349),
                 bgPrimaryDark = Color(0xFF069D1A)
             )
