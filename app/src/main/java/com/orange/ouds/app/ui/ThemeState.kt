@@ -25,7 +25,6 @@ val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("Composit
 interface ThemeManager {
     val availableThemes: List<OudsThemeContract>
     var currentTheme: OudsThemeContract
-    var darkModeEnabled: Boolean
 }
 
 /**
@@ -34,19 +33,15 @@ interface ThemeManager {
 class ThemeState(
     override val availableThemes: List<OudsThemeContract>,
     currentTheme: MutableState<OudsThemeContract>,
-    darkModeEnabled: MutableState<Boolean>
 ) : ThemeManager {
 
     override var currentTheme by currentTheme
-
-    override var darkModeEnabled by darkModeEnabled
 }
 
 @Composable
 fun rememberThemeState(
     availableThemes: List<OudsThemeContract>,
-    currentTheme: MutableState<OudsThemeContract>,
-    darkModeEnabled: MutableState<Boolean>,
-) = remember(availableThemes, currentTheme, darkModeEnabled) {
-    ThemeState(availableThemes, currentTheme, darkModeEnabled)
+    currentTheme: MutableState<OudsThemeContract>
+) = remember(availableThemes, currentTheme) {
+    ThemeState(availableThemes, currentTheme)
 }

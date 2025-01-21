@@ -119,6 +119,7 @@ dependencies {
     implementation(project(":theme-white-label"))
 
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.browser)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)

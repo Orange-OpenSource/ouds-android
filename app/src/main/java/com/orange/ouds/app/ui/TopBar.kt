@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,14 +24,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.isDarkModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -106,10 +105,9 @@ private fun ChangeThemeAction(onClick: (TopBarAction) -> Unit) {
 
 @Composable
 private fun ChangeModeAction(onClick: (TopBarAction) -> Unit) {
-    val configuration = LocalConfiguration.current
-
-    val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
-    val iconDesc = if (configuration.isDarkModeEnabled) R.string.app_topBar_lightMode_button_a11y else R.string.app_topBar_darkMode_button_a11y
+    val isSystemInDarkTheme = isSystemInDarkTheme()
+    val painterRes = if (isSystemInDarkTheme) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
+    val iconDesc = if (isSystemInDarkTheme) R.string.app_topBar_lightMode_button_a11y else R.string.app_topBar_darkMode_button_a11y
 
     IconButton(onClick = { onClick(TopBarAction.ChangeMode) }) {
         Icon(painter = painterResource(id = painterRes), contentDescription = stringResource(id = iconDesc))
