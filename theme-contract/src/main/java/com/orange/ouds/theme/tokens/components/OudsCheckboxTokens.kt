@@ -10,12 +10,8 @@
 // Software description: Android library of reusable graphical components
 //
 
-package com.orange.ouds.theme.tokens
+package com.orange.ouds.theme.tokens.components
 
-sealed interface OudsGridKeyToken {
-    data object ColumnGap : OudsGridKeyToken
-    data object Margin : OudsGridKeyToken
-    data object MaxWidth : OudsGridKeyToken
-    data object MinWidth : OudsGridKeyToken
-}
-
+open class OudsCheckboxTokens(
+  
+)
