@@ -1170,7 +1170,7 @@ val OudsColorSemanticTokens.materialLightColorScheme: ColorScheme
         surfaceDim = repositoryColorTokens.repositoryNeutralMutedLowestLight,
         surface = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
         surfaceBright = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        onSurface = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
+        onSurface = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
         onSurfaceVariant = repositoryColorTokens.repositoryOpacityBlackHigherLight,
         surfaceContainerLowest = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
         surfaceContainerLow = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
@@ -1184,7 +1184,7 @@ val OudsColorSemanticTokens.materialLightColorScheme: ColorScheme
         outlineVariant = repositoryColorTokens.repositoryOpacityBlackLowLight,
         scrim = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
         background = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        onBackground = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
+        onBackground = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
         surfaceVariant = repositoryColorTokens.repositoryNeutralMutedLowestLight,
         surfaceTint = repositoryColorTokens.repositoryNeutralMutedLowestLight,
     )
