@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation(project(":foundation"))
     api(project(":theme-contract"))
-    api(project(":theme-orange"))
+    compileOnly(project(":theme-orange")) // Only useful for previews
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
