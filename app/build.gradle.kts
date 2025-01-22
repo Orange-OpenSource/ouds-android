@@ -12,7 +12,9 @@
 
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.orange.ouds.gradle.Environment
+import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.findTypedProperty
+import com.orange.ouds.gradle.updateChangelog
 
 plugins {
     id("firebase")
@@ -133,3 +135,17 @@ dependencies {
 }
 
 project.tasks.preBuild.dependsOn(":checkNotice")
+
+tasks.register<DefaultTask>("updateAppChangelog") {
+    doLast {
+        updateChangelog(null)
+        copy {
+            from("../CHANGELOG.md").into("src/main/res/raw").rename { it.lowercase() }
+        }
+        execute("git", "checkout", "CHANGELOG.md")
+    }
+}
+
+gradle.projectsEvaluated {
+    tasks.named("preBuild").dependsOn(tasks.named("updateAppChangelog"))
+}

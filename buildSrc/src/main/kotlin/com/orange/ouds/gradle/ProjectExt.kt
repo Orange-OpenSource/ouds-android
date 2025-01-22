@@ -12,13 +12,21 @@
 
 package com.orange.ouds.gradle
 
+import com.github.jknack.handlebars.Helper
 import com.google.auth.oauth2.GoogleCredentials
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.provider.ValueSource
 import org.gradle.api.provider.ValueSourceParameters
 import org.gradle.process.ExecOperations
+import se.bjurr.gitchangelog.api.GitChangelogApi
+import se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder
+import se.bjurr.gitchangelog.api.model.Changelog
+import se.bjurr.gitchangelog.api.model.Commit
+import se.bjurr.gitchangelog.api.model.Tag
+import se.bjurr.gitchangelog.internal.semantic.ConventionalCommitParser
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.FileInputStream
 import javax.inject.Inject
 
@@ -159,4 +167,61 @@ private abstract class ExecuteValueSource : ValueSource<String, ExecuteValueSour
 private interface ExecuteValueSourceParameters : ValueSourceParameters {
     var executable: String
     var args: List<String>
+}
+
+private const val CHANGELOG_UNRELEASED_TAG_NAME = "Unreleased"
+
+fun Project.updateChangelog(version: String?) {
+    val changelogHeader = """
+            |# OUDS Android library changelog
+            |
+            |All notable changes done in OUDS Android library will be documented in this file.
+            |
+            |The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+            |and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+            |
+            |
+        """.trimMargin()
+
+    val untaggedName = version ?: CHANGELOG_UNRELEASED_TAG_NAME
+    val gitChangelogApi = createGitChangelogApi()
+        .withUntaggedName(untaggedName) // Group unreleased commits under the new version tag
+        .withIgnoreTagsIfNameMatches("^refs/tags/ci/.*") // Ignore CI tags
+        .withTemplatePath("CHANGELOG.mustache") // Use a Mustache template to generate changelog
+        .withHandlebarsHelper("commitDescriptionWithPullRequestUrl", Helper<Commit> { commit, options ->
+            // This Handlebars helper returns an enriched commit description
+            // It searches for a pull request number in the commit description and replace it with a link to the pull request on GitHub
+            val commitDescription = ConventionalCommitParser.commitDescription(commit.message)
+            return@Helper commitDescription.replace("\\(#(\\d+)\\)$".toRegex()) { matchResult ->
+                val pullRequestNumber = matchResult.groupValues[1]
+                val changelog = options.get<Changelog>("root")
+                val pullRequestUrl = "https://github.com/${changelog.ownerName}/${changelog.repoName}/issues/${pullRequestNumber}"
+                "([#$pullRequestNumber]($pullRequestUrl))"
+            }
+        })
+        .withHandlebarsHelper("tagChangesUrl", Helper<Tag> { tag, options ->
+            // This Handlebars helper returns a GitHub URL which lists the changes for the tag
+            val changelog = options.get<Changelog>("root")
+            val baseUrl = "https://github.com/${changelog.ownerName}/${changelog.repoName}"
+            val previousTag = changelog.tags
+                .filter { it.name != untaggedName && (it.tagTimeLong < tag.tagTimeLong || tag.name == untaggedName) }
+                .maxByOrNull { it.tagTimeLong }
+            val referenceName = if (tag.name == CHANGELOG_UNRELEASED_TAG_NAME) "develop" else tag.name
+            return@Helper if (previousTag != null) {
+                "$baseUrl/compare/${previousTag.name}...$referenceName"
+            } else {
+                "$baseUrl/tree/$referenceName"
+            }
+        })
+
+    val changelog = changelogHeader + gitChangelogApi.render().trim()
+    File("CHANGELOG.md").writeText(changelog)
+}
+
+internal fun Project.createGitChangelogApi(): GitChangelogApi {
+    return gitChangelogApiBuilder()
+        .withFromRepo(project.rootDir)
+        .withSemanticMajorVersionPattern("BREAKING CHANGE")
+        .withSemanticMinorVersionPattern("^feat")
+        .withSemanticPatchVersionPattern("^fix")
 }

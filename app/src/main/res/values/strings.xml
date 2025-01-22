@@ -135,5 +135,6 @@
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
     <string name="app_about_legalInformation_label">Legal information</string>
     <string name="app_about_materialComponents_label">Material 3 components</string>
+    <string name="app_about_changelog_label">Changelog</string>
 
 </resources>

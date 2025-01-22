@@ -32,3 +32,6 @@ node_modules/
 
 # Dokka generated files
 docs/dokka/
+
+# App
+app/src/main/res/raw/changelog.md

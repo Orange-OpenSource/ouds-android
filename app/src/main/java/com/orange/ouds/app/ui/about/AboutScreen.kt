@@ -32,9 +32,10 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
 private val oudsAboutMenuItems = listOf(
-    AboutFileMenuItem(1, R.string.app_about_legalInformation_label, R.raw.about_legal_information),
-    AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, R.raw.about_privacy_policy),
-    AboutRouteMenuItem(3, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute)
+    AboutFileMenuItem(1, R.string.app_about_legalInformation_label, AboutFileMenuItem.File(R.raw.about_legal_information, AboutFileMenuItem.File.Format.Html)),
+    AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, AboutFileMenuItem.File(R.raw.about_privacy_policy, AboutFileMenuItem.File.Format.Html)),
+    AboutFileMenuItem(3, R.string.app_about_changelog_label, AboutFileMenuItem.File(R.raw.changelog, AboutFileMenuItem.File.Format.Markdown)),
+    AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute)
 )
 
 sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
@@ -44,7 +45,16 @@ sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
     }
 }
 
-class AboutFileMenuItem(id: Int, @StringRes labelRes: Int, @RawRes val fileRes: Int) : AboutMenuItem(id, labelRes)
+class AboutFileMenuItem(id: Int, @StringRes labelRes: Int, val file: File) : AboutMenuItem(id, labelRes) {
+
+    class File(@RawRes val resource: Int, val format: Format) {
+
+        enum class Format {
+            Html, Markdown
+        }
+    }
+}
+
 class AboutRouteMenuItem(id: Int, @StringRes labelRes: Int, val route: String) : AboutMenuItem(id, labelRes)
 
 @Composable
