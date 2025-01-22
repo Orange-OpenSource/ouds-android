@@ -12,10 +12,8 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
-
 @InternalOudsApi
-sealed interface OudsBorderKeyToken : OudsKeyToken {
+sealed interface OudsBorderKeyToken {
     sealed interface Radius : OudsBorderKeyToken {
         data object Default : Radius
         data object Medium : Radius

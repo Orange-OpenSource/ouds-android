@@ -12,10 +12,8 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
-
 @InternalOudsApi
-sealed interface OudsSizeKeyToken : OudsKeyToken {
+sealed interface OudsSizeKeyToken {
     sealed interface Icon : OudsSizeKeyToken {
         sealed interface Decorative : Icon {
             data object ExtraExtraLarge : Decorative

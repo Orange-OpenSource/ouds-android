@@ -123,7 +123,7 @@ open class OudsButtonTokens(
     val sizeMinWidth: Float = DimensionRawTokens.dimension600,
     val spaceColumnGapArrow: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Shorter,
     val spaceColumnGapIcon: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Short,
-    val spaceInsetIconAlone: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.Medium,
+    val spaceInsetIconOnly: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.Medium,
     val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.Medium,
     val spacePaddingInlineArrowEnd: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Tall,
     val spacePaddingInlineArrowStart: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Tall,

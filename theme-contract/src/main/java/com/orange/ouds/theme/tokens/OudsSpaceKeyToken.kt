@@ -12,10 +12,8 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
-
 @InternalOudsApi
-sealed interface OudsSpaceKeyToken : OudsKeyToken {
+sealed interface OudsSpaceKeyToken {
     sealed interface ColumnGap : OudsSpaceKeyToken {
         data object Medium : ColumnGap
         data object None : ColumnGap
