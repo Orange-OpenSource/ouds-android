@@ -15,8 +15,12 @@ package com.orange.ouds.gradle
 import com.google.auth.oauth2.GoogleCredentials
 import org.gradle.api.GradleException
 import org.gradle.api.Project
+import org.gradle.api.provider.ValueSource
+import org.gradle.api.provider.ValueSourceParameters
+import org.gradle.process.ExecOperations
 import java.io.ByteArrayOutputStream
 import java.io.FileInputStream
+import javax.inject.Inject
 
 /**
  * Returns the value of the given property or null if not found.
@@ -38,14 +42,12 @@ fun Project.execute(executable: String, vararg args: String): String {
     val formattedArgs = args.joinToString(" ") { if (it.contains(" ")) "\"$it\"" else it }
     logger.lifecycle("\u001B[38;2;255;121;0;1m$executable $formattedArgs\u001B[0m")
 
-    val output = ByteArrayOutputStream()
-    exec {
-        standardOutput = output
-        this.executable = executable
-        this.args = args.toList()
+    val provider = providers.of(ExecuteValueSource::class.java) {
+        parameters.executable = executable
+        parameters.args = args.toList()
     }
 
-    return output.toString()
+    return provider.get()
 }
 
 /**
@@ -136,3 +138,25 @@ val Project.artifactId: String
 
 val Project.isPublished: Boolean
     get() = extensions.findByType(MavenCentralPublishPluginExtension::class.java)?.enabled == true
+
+private abstract class ExecuteValueSource : ValueSource<String, ExecuteValueSourceParameters> {
+
+    @get:Inject
+    abstract val execOperations: ExecOperations
+
+    override fun obtain(): String {
+        val output = ByteArrayOutputStream()
+        execOperations.exec {
+            standardOutput = output
+            executable = parameters.executable
+            args = parameters.args
+        }
+
+        return output.toString()
+    }
+}
+
+private interface ExecuteValueSourceParameters : ValueSourceParameters {
+    var executable: String
+    var args: List<String>
+}
