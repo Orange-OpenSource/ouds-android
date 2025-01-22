@@ -13,17 +13,14 @@
 package com.orange.ouds.core.component.button
 
 import android.os.Parcelable
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -74,9 +71,12 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.outerBorder
+import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import kotlinx.parcelize.Parcelize
 
 /**
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ *
  * An OUDS button which displays text only.
  *
  * The colors of this button are automatically adjusted when it is displayed in an [OudsColoredBox].
@@ -118,6 +118,8 @@ fun OudsButton(
 }
 
 /**
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ *
  * An OUDS button which displays an icon only.
  *
  * The colors of this button are automatically adjusted when it is displayed in an [OudsColoredBox].
@@ -159,6 +161,8 @@ fun OudsButton(
 }
 
 /**
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ *
  * An OUDS button which displays an icon and text.
  *
  * The colors of this button are automatically adjusted when it is displayed in an [OudsColoredBox].
