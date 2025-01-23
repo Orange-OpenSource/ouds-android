@@ -79,8 +79,6 @@ app/src/main/res/drawable-xxxhdpi/il_tokens_grid_max_width.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_max_width_dark.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_min_width.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_min_width_dark.png
-app/src/main/res/drawable/il_components_button.xml
-app/src/main/res/drawable/il_components_button_dark.xml
 app/src/prod/res/drawable/ic_launcher_background.xml
 app/src/prod/res/drawable/ic_launcher_foreground.xml
 
