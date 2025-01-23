@@ -73,14 +73,14 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
             }
             CustomizationChoiceChipsColumn(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-                label = stringResource(R.string.app_components_button_style_label),
+                label = stringResource(R.string.app_components_common_style_label),
                 chipsLabels = styles.map { it::class.simpleName.orEmpty() },
                 selectedChipIndex = styles.indexOf(style),
                 onSelectionChange = { id -> style = styles[id] }
             )
             CustomizationChoiceChipsColumn(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-                label = stringResource(R.string.app_components_button_layout_label),
+                label = stringResource(R.string.app_components_common_layout_label),
                 chipsLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
                 selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
                 onSelectionChange = { id -> layout = ButtonDemoState.Layout.entries[id] }

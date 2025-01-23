@@ -31,6 +31,8 @@ app/src/main/res/drawable/ic_ui_light_mode.xml
 app/src/main/res/drawable/il_opacity_union.xml
 app/src/main/res/drawable-hdpi/il_components_button.png
 app/src/main/res/drawable-hdpi/il_components_button_dark.png
+app/src/main/res/drawable-hdpi/il_components_link.png
+app/src/main/res/drawable-hdpi/il_components_link_dark.png
 app/src/main/res/drawable-hdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-hdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-hdpi/il_tokens_grid_max_width.png
@@ -39,6 +41,8 @@ app/src/main/res/drawable-hdpi/il_tokens_grid_min_width.png
 app/src/main/res/drawable-hdpi/il_tokens_grid_min_width_dark.png
 app/src/main/res/drawable-mdpi/il_components_button.png
 app/src/main/res/drawable-mdpi/il_components_button_dark.png
+app/src/main/res/drawable-mdpi/il_components_link.png
+app/src/main/res/drawable-mdpi/il_components_link_dark.png
 app/src/main/res/drawable-mdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-mdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-mdpi/il_tokens_grid_max_width.png
@@ -47,6 +51,8 @@ app/src/main/res/drawable-mdpi/il_tokens_grid_min_width.png
 app/src/main/res/drawable-mdpi/il_tokens_grid_min_width_dark.png
 app/src/main/res/drawable-xhdpi/il_components_button.png
 app/src/main/res/drawable-xhdpi/il_components_button_dark.png
+app/src/main/res/drawable-xhdpi/il_components_link.png
+app/src/main/res/drawable-xhdpi/il_components_link_dark.png
 app/src/main/res/drawable-xhdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-xhdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-xhdpi/il_tokens_grid_max_width.png
@@ -55,6 +61,8 @@ app/src/main/res/drawable-xhdpi/il_tokens_grid_min_width.png
 app/src/main/res/drawable-xhdpi/il_tokens_grid_min_width_dark.png
 app/src/main/res/drawable-xxhdpi/il_components_button.png
 app/src/main/res/drawable-xxhdpi/il_components_button_dark.png
+app/src/main/res/drawable-xxhdpi/il_components_link.png
+app/src/main/res/drawable-xxhdpi/il_components_link_dark.png
 app/src/main/res/drawable-xxhdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-xxhdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-xxhdpi/il_tokens_grid_max_width.png
@@ -63,6 +71,8 @@ app/src/main/res/drawable-xxhdpi/il_tokens_grid_min_width.png
 app/src/main/res/drawable-xxhdpi/il_tokens_grid_min_width_dark.png
 app/src/main/res/drawable-xxxhdpi/il_components_button.png
 app/src/main/res/drawable-xxxhdpi/il_components_button_dark.png
+app/src/main/res/drawable-xxxhdpi/il_components_link.png
+app/src/main/res/drawable-xxxhdpi/il_components_link_dark.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_max_width.png
@@ -71,6 +81,8 @@ app/src/main/res/drawable-xxxhdpi/il_tokens_grid_min_width.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_min_width_dark.png
 app/src/prod/res/drawable/ic_launcher_background.xml
 app/src/prod/res/drawable/ic_launcher_foreground.xml
+
+core/src/main/res/drawable/ic_form_chevron_left.xml
 
 docs/assets/logo-icon.svg
 

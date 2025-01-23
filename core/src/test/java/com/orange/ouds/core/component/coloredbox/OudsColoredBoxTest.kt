@@ -14,6 +14,7 @@ package com.orange.ouds.core.component.coloredbox
 
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
+import com.orange.ouds.OudsPaparazziTest
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import org.junit.Rule
 import org.junit.Test
@@ -21,16 +22,13 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color) {
+internal class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color) : OudsPaparazziTest() {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
         internal fun data() = OudsColoredBoxPreviewParameterProvider().values.toList()
     }
-
-    @get:Rule
-    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.01)
 
     @Test
     fun takeOudsColoredBoxLightThemeSnapshot() {

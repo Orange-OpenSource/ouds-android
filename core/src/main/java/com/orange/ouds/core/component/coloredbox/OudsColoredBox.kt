@@ -27,7 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.button.OudsButton
+import com.orange.ouds.core.component.link.OudsLink
 import com.orange.ouds.core.theme.LocalColoredBox
+import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
@@ -40,7 +42,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 /**
  * An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
  *
- * Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
+ * Moreover, the colors of several OUDS components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
  * @param color The background color.
@@ -60,7 +62,8 @@ fun OudsColoredBox(
     content: @Composable BoxScope.() -> Unit
 ) {
     CompositionLocalProvider(
-        LocalColoredBox provides true
+        LocalColoredBox provides true,
+        LocalUseMonoComponents provides useMonoComponents(color)
     ) {
         // Filter the background modifiers in order to force the background color
         // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
@@ -149,6 +152,24 @@ object OudsColoredBox {
     }
 }
 
+private fun useMonoComponents(color: OudsColoredBox.Color): Boolean {
+    return when (color) {
+        OudsColoredBox.Color.BrandPrimary,
+        OudsColoredBox.Color.StatusAccentEmphasized,
+        OudsColoredBox.Color.StatusInfoEmphasized,
+        OudsColoredBox.Color.StatusPositiveEmphasized,
+        OudsColoredBox.Color.StatusWarningEmphasized,
+        OudsColoredBox.Color.StatusNegativeEmphasized -> true
+        OudsColoredBox.Color.StatusNeutralEmphasized,
+        OudsColoredBox.Color.StatusAccentMuted,
+        OudsColoredBox.Color.StatusInfoMuted,
+        OudsColoredBox.Color.StatusNegativeMuted,
+        OudsColoredBox.Color.StatusPositiveMuted,
+        OudsColoredBox.Color.StatusNeutralMuted,
+        OudsColoredBox.Color.StatusWarningMuted -> false
+    }
+}
+
 @Composable
 private fun tweak(color: OudsColoredBox.Color): OudsTheme.Tweak {
     return when (color) {
@@ -190,6 +211,11 @@ internal fun PreviewOudsColoredBox(
                 color = OudsTheme.colorScheme.content.default
             )
             OudsButton(text = "OudsButton", onClick = {})
+            OudsLink(
+                text = "Link",
+                arrow = OudsLink.Arrow.Next,
+                onClick = { },
+            )
         }
     }
 }

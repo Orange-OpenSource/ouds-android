@@ -109,17 +109,25 @@
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
 
     <!-- Components -->
+    <string name="app_components_common_layout_label">Layout</string>
+    <string name="app_components_common_textOnlyLayout_label">Text only</string>
+    <string name="app_components_common_iconAndTextLayout_label">Icon + text</string>
+    <string name="app_components_common_style_label">Style</string>
+    <string name="app_components_common_onColoredBackground_label">On colored background</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>
     <string name="app_components_button_description_text">Buttons allow users to make choices or perform an action. They have multiple styles for various needs.</string>
     <string name="app_components_button_hierarchy_label">Hierarchy</string>
-    <string name="app_components_button_style_label">Style</string>
-    <string name="app_components_button_layout_label">Layout</string>
-    <string name="app_components_button_textOnlyLayout_label">Text only</string>
-    <string name="app_components_button_iconAndTextLayout_label">Icon + text</string>
     <string name="app_components_button_iconOnlyLayout_label">Icon only</string>
     <string name="app_components_button_icon_a11y">Icon</string>
+
+    <!-- Components: link -->
+    <string name="app_components_link_label">Link</string>
+    <string name="app_components_link_description_text">Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).</string>
+    <string name="app_components_link_back_label">Back</string>
+    <string name="app_components_link_next_label">Next</string>
+    <string name="app_components_link_size_label">Size</string>
 
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>

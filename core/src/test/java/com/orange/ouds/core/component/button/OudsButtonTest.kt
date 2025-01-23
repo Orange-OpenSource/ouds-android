@@ -12,24 +12,19 @@
 
 package com.orange.ouds.core.component.button
 
-import app.cash.paparazzi.Paparazzi
-import com.android.ide.common.rendering.api.SessionParams
-import org.junit.Rule
+import com.orange.ouds.OudsPaparazziTest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter) {
+internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter) : OudsPaparazziTest() {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
         internal fun data() = OudsButtonPreviewParameterProvider().values.toList()
     }
-
-    @get:Rule
-    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.01)
 
     @Test
     fun takeOudsButtonLightThemeSnapshot() {
