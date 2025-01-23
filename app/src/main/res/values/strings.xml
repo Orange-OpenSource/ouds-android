@@ -125,8 +125,8 @@
     <!-- Components: link -->
     <string name="app_components_link_label">Link</string>
     <string name="app_components_link_description_text">Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).</string>
-    <string name="app_components_link_arrowBack_label">Arrow back</string>
-    <string name="app_components_link_arrowNext_label">Arrow next</string>
+    <string name="app_components_link_back_label">Back</string>
+    <string name="app_components_link_next_label">Next</string>
     <string name="app_components_link_size_label">Size</string>
 
     <!-- About screen -->
