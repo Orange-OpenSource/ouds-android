@@ -13,35 +13,51 @@
 package com.orange.ouds.app.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ouds.theme.OudsThemeContract
-
-val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("CompositionLocal LocalThemeManager not present") }
-
-interface ThemeManager {
-    val availableThemes: List<OudsThemeContract>
-    var currentTheme: OudsThemeContract
-}
 
 /**
  * Theme state source of truth.
  */
 class ThemeState(
-    override val availableThemes: List<OudsThemeContract>,
-    currentTheme: MutableState<OudsThemeContract>,
-) : ThemeManager {
+    val availableThemes: List<OudsThemeContract>,
+    currentTheme: OudsThemeContract
+) {
 
-    override var currentTheme by currentTheme
+    companion object {
+
+        val Saver = run {
+            val availableThemesKey = "availableThemes"
+            val currentThemeKey = "currentTheme"
+            mapSaver(
+                save = { state ->
+                    mapOf(
+                        availableThemesKey to state.availableThemes,
+                        currentThemeKey to state.currentTheme,
+                    )
+                },
+                restore = { map ->
+                    @Suppress("UNCHECKED_CAST")
+                    ThemeState(
+                        map[availableThemesKey] as List<OudsThemeContract>,
+                        map[currentThemeKey] as OudsThemeContract,
+                    )
+                }
+            )
+        }
+    }
+
+    var currentTheme by mutableStateOf(currentTheme)
 }
 
 @Composable
 fun rememberThemeState(
     availableThemes: List<OudsThemeContract>,
-    currentTheme: MutableState<OudsThemeContract>
-) = remember(availableThemes, currentTheme) {
+    currentTheme: OudsThemeContract
+) = rememberSaveable(availableThemes, currentTheme, saver = ThemeState.Saver) {
     ThemeState(availableThemes, currentTheme)
 }

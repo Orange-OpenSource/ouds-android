@@ -39,7 +39,6 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -82,7 +81,7 @@ fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = v
 private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, onThemeSelected: (String) -> Unit) {
     val mainState = rememberMainState(
         themeState = rememberThemeState(
-            currentTheme = rememberSaveable { mutableStateOf(getCurrentTheme(userThemeName, themes)) },
+            currentTheme = getCurrentTheme(userThemeName, themes),
             availableThemes = themes
         )
     )
@@ -93,59 +92,55 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
 
     var changeThemeDialogVisible by remember { mutableStateOf(false) }
 
-    CompositionLocalProvider(
-        LocalThemeManager provides mainState.themeState,
+    OudsTheme(
+        themeContract = mainState.themeState.currentTheme,
+        darkThemeEnabled = isSystemInDarkTheme
     ) {
-        OudsTheme(
-            themeContract = mainState.themeState.currentTheme,
-            darkThemeEnabled = isSystemInDarkTheme
-        ) {
-            Scaffold(
-                topBar = {
-                    val context = LocalContext.current
-                    TopBar(
-                        topBarState = mainState.topBarState,
-                        upPress = mainState.navigationState::upPress,
-                        onActionClick = { action ->
-                            when (action) {
-                                TopBarAction.ChangeTheme -> changeThemeDialogVisible = true
-                                TopBarAction.ChangeMode -> setApplicationNightModeEnabled(!isSystemInDarkTheme, context)
-                            }
+        Scaffold(
+            topBar = {
+                val context = LocalContext.current
+                TopBar(
+                    topBarState = mainState.topBarState,
+                    upPress = mainState.navigationState::upPress,
+                    onActionClick = { action ->
+                        when (action) {
+                            TopBarAction.ChangeTheme -> changeThemeDialogVisible = true
+                            TopBarAction.ChangeMode -> setApplicationNightModeEnabled(!isSystemInDarkTheme, context)
+                        }
+                    }
+                )
+            },
+            bottomBar = {
+                AnimatedVisibility(
+                    visible = mainState.showBottomBar,
+                    enter = fadeIn(tween(100)),
+                    exit = fadeOut(tween(100))
+                ) {
+                    BottomBar(
+                        currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                        navigateToRoute = { route ->
+                            mainState.navigationState.navigateToBottomBarRoute(route)
                         }
                     )
-                },
-                bottomBar = {
-                    AnimatedVisibility(
-                        visible = mainState.showBottomBar,
-                        enter = fadeIn(tween(100)),
-                        exit = fadeOut(tween(100))
-                    ) {
-                        BottomBar(
-                            currentRoute = mainState.navigationState.currentRoute.orEmpty(),
-                            navigateToRoute = { route ->
-                                mainState.navigationState.navigateToBottomBarRoute(route)
-                            }
-                        )
-                    }
                 }
-            ) { innerPadding ->
-                NavHost(
-                    navController = mainState.navigationState.navController,
-                    startDestination = BottomBarItem.Tokens.route,
-                    modifier = Modifier.padding(innerPadding)
-                ) {
-                    appNavGraph(mainState.navigationState.navController)
-                }
+            }
+        ) { innerPadding ->
+            NavHost(
+                navController = mainState.navigationState.navController,
+                startDestination = BottomBarItem.Tokens.route,
+                modifier = Modifier.padding(innerPadding)
+            ) {
+                appNavGraph(mainState.navigationState.navController)
+            }
 
-                if (changeThemeDialogVisible) {
-                    ChangeThemeDialog(
-                        themeManager = mainState.themeState,
-                        dismissDialog = {
-                            changeThemeDialogVisible = false
-                        },
-                        onThemeSelected = onThemeSelected
-                    )
-                }
+            if (changeThemeDialogVisible) {
+                ChangeThemeDialog(
+                    themeState = mainState.themeState,
+                    dismissDialog = {
+                        changeThemeDialogVisible = false
+                    },
+                    onThemeSelected = onThemeSelected
+                )
             }
         }
     }
@@ -163,8 +158,8 @@ private fun setApplicationNightModeEnabled(night: Boolean, context: Context) {
 }
 
 @Composable
-private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> Unit, onThemeSelected: (String) -> Unit) {
-    var selectedThemeName by rememberSaveable { mutableStateOf(themeManager.currentTheme.name) }
+private fun ChangeThemeDialog(themeState: ThemeState, dismissDialog: () -> Unit, onThemeSelected: (String) -> Unit) {
+    var selectedThemeName by rememberSaveable { mutableStateOf(themeState.currentTheme.name) }
 
     //TODO Use OudsDialog when available
     Dialog(onDismissRequest = dismissDialog) {
@@ -180,7 +175,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
                     .padding(horizontal = OudsTheme.spaces.fixed.medium),
                 style = MaterialTheme.typography.titleLarge
             )
-            themeManager.availableThemes.forEach { theme ->
+            themeState.availableThemes.forEach { theme ->
                 Row(
                     Modifier
                         .fillMaxWidth()
@@ -189,8 +184,8 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
                             selected = theme.name == selectedThemeName,
                             onClick = {
                                 selectedThemeName = theme.name
-                                if (theme != themeManager.currentTheme) {
-                                    themeManager.currentTheme = theme
+                                if (theme != themeState.currentTheme) {
+                                    themeState.currentTheme = theme
                                     onThemeSelected(theme.name)
                                 }
                                 dismissDialog()
