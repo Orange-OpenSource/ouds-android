@@ -21,8 +21,6 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.android.OudsAndroidColorDarkTokens
-import com.orange.ouds.theme.tokens.android.OudsAndroidColorLightTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 /**
