@@ -167,8 +167,8 @@ fun AboutMaterialComponentsScreen() {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(bottom = OudsTheme.spaces.fixed.medium)
                         .verticalScroll(rememberScrollState())
+                        .padding(bottom = OudsTheme.spaces.fixed.medium)
                 ) {
 
                     // APP BARS
