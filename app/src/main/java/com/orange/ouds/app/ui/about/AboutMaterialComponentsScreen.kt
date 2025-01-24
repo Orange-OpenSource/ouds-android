@@ -527,20 +527,19 @@ private fun FilterChipsRow(enabled: Boolean, selected: Boolean) {
 @Composable
 private fun DialogSample() {
     val openDialog = remember { mutableStateOf(false) }
+    val closeDialog = { openDialog.value = false }
     FilledTonalButton(onClick = { openDialog.value = true }) { Text("Open dialog") }
 
     if (openDialog.value) {
         AlertDialog(
-            onDismissRequest = {
-                openDialog.value = false
-            },
+            onDismissRequest = closeDialog,
             title = { Text(text = "Title") },
             text = { Text(text = "Turned on by default") },
             confirmButton = {
-                TextButton(onClick = { openDialog.value = false }) { Text("Confirm") }
+                TextButton(onClick = closeDialog) { Text("Confirm") }
             },
             dismissButton = {
-                TextButton(onClick = { openDialog.value = false }) { Text("Dismiss") }
+                TextButton(onClick = closeDialog) { Text("Dismiss") }
             }
         )
     }
