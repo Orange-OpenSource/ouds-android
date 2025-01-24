@@ -576,7 +576,6 @@ private fun ListItemsSample() {
         leadingContent = favoriteIcon,
         trailingContent = trailingContent
     )
-
 }
 
 @Composable
@@ -584,11 +583,7 @@ private fun MenusSample() {
     var expanded by remember { mutableStateOf(false) }
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(text = "Click to expand")
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .wrapContentSize(Alignment.TopStart)
-        ) {
+        Box(modifier = Modifier.fillMaxSize()) {
             IconButton(onClick = { expanded = true }) {
                 Icon(Icons.Default.MoreVert, contentDescription = "Localized description")
             }
