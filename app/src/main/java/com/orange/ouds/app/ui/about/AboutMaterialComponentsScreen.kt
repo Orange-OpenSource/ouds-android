@@ -804,24 +804,24 @@ private fun SwitchesSample(enabled: Boolean = true) {
     Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
         Switch(
             checked = checked,
-            onCheckedChange = { checked = it },
+            onCheckedChange = { checked = !checked },
             enabled = enabled
         )
         Switch(
             checked = !checked,
-            onCheckedChange = { checked = it },
+            onCheckedChange = { checked = !checked },
             enabled = enabled
         )
         Switch(
             checked = checked,
-            onCheckedChange = { checked = it },
+            onCheckedChange = { checked = !checked },
             thumbContent = { if (checked) checkIcon() },
             enabled = enabled
         )
         Switch(
             checked = !checked,
-            onCheckedChange = { checked = it },
-            thumbContent = { if (checked) checkIcon() },
+            onCheckedChange = { checked = !checked },
+            thumbContent = { if (!checked) checkIcon() },
             enabled = enabled
         )
     }
