@@ -132,6 +132,6 @@
     <!-- About screen -->
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
     <string name="app_about_legalInformation_label">Legal information</string>
-    <string name="app_about_defaultM3Components_label">Default M3 components</string>
+    <string name="app_about_defaultMaterialComponents_label">Default Material 3 components</string>
 
 </resources>

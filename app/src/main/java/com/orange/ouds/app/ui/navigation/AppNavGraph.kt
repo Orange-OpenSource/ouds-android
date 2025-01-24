@@ -53,7 +53,7 @@ private fun NavGraphBuilder.addBottomBarNavGraph(navController: NavController) {
         AboutScreen { id ->
             when (AboutMenuItem.fromId(id)) {
                 is AboutFileMenuItem -> navController.navigate("${AboutDestinations.FileRoute}/$id")
-                is AboutRouteMenuItem -> navController.navigate(AboutDestinations.M3ComponentsRoute)
+                is AboutRouteMenuItem -> navController.navigate(AboutDestinations.MaterialComponentsRoute)
                 else -> {}
             }
 

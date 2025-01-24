@@ -147,18 +147,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutM3ComponentsScreen() {
+fun AboutMaterialComponentsScreen() {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scaffoldState = rememberBottomSheetScaffoldState()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -914,6 +911,6 @@ private fun ColumnScope.SectionColumn(title: String, hasContentHorizontalPadding
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewAboutM3ComponentsScreen() = OudsPreview {
-    AboutM3ComponentsScreen()
+private fun PreviewAboutMaterialComponentsScreen() = OudsPreview {
+    AboutMaterialComponentsScreen()
 }
