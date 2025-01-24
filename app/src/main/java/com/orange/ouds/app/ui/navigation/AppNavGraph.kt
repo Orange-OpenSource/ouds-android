@@ -17,6 +17,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ouds.app.ui.BottomBarItem
 import com.orange.ouds.app.ui.about.AboutDestinations
+import com.orange.ouds.app.ui.about.AboutFileMenuItem
+import com.orange.ouds.app.ui.about.AboutMenuItem
+import com.orange.ouds.app.ui.about.AboutRouteMenuItem
 import com.orange.ouds.app.ui.about.AboutScreen
 import com.orange.ouds.app.ui.about.addAboutNavGraph
 import com.orange.ouds.app.ui.components.ComponentsNavigation
@@ -46,7 +49,14 @@ private fun NavGraphBuilder.addBottomBarNavGraph(navController: NavController) {
     composable(BottomBarItem.Components.route) { from ->
         ComponentsScreen { id -> navController.navigateToElement(ComponentsNavigation.ComponentDetailRoute, id, from) }
     }
-    composable(BottomBarItem.About.route) { _ ->
-        AboutScreen { id -> navController.navigate("${AboutDestinations.FileRoute}/$id") }
+    composable(BottomBarItem.About.route) { from ->
+        AboutScreen { id ->
+            when (val aboutMenuItem = AboutMenuItem.fromId(id)) {
+                is AboutFileMenuItem -> navController.navigateToElement(AboutDestinations.FileRoute, id.toLong(), from)
+                is AboutRouteMenuItem -> navController.navigate(aboutMenuItem.route)
+                else -> null
+            }
+
+        }
     }
 }

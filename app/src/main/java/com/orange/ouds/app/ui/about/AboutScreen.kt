@@ -27,26 +27,31 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
+private val oudsAboutMenuItems = listOf(
+    AboutFileMenuItem(1, R.string.app_about_legalInformation_label, R.raw.about_legal_information),
+    AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, R.raw.about_privacy_policy),
+    AboutRouteMenuItem(3, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute)
+)
+
+sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
+    companion object {
+        fun fromId(id: Int) = oudsAboutMenuItems.firstOrNull { it.id == id }
+    }
+}
+class AboutFileMenuItem(id: Int, @StringRes labelRes: Int, @RawRes val fileRes: Int) : AboutMenuItem(id, labelRes)
+class AboutRouteMenuItem(id: Int, @StringRes labelRes: Int, val route: String) : AboutMenuItem(id, labelRes)
+
 @Composable
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
     Screen {
         LazyColumn {
-            items(AboutMenuItem.entries) { item ->
+            items(oudsAboutMenuItems) { item ->
                 ListItem(
                     modifier = Modifier.clickable { onMenuItemClick(item.id) },
                     headlineContent = { Text(text = stringResource(id = item.labelRes)) }
                 )
             }
         }
-    }
-}
-
-enum class AboutMenuItem(val id: Int, @StringRes val labelRes: Int, @RawRes val fileRes: Int) {
-    LegalInformation(1, R.string.app_about_legalInformation_label, R.raw.about_legal_information),
-    PrivacyPolicy(2, R.string.app_about_privacyPolicy_label, R.raw.about_privacy_policy);
-
-    companion object {
-        fun fromId(id: Int) = AboutMenuItem.entries.firstOrNull { it.id == id }
     }
 }
 

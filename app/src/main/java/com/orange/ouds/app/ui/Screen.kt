@@ -104,4 +104,9 @@ sealed class Screen(
         route = AboutDestinations.FileRoute,
         title = AboutMenuItem.fromId(menuItemId.toInt())?.labelRes?.let { UiString.StringResource(it) }
     )
+    
+    data object AboutMaterialComponents : Screen(
+        route = AboutDestinations.MaterialComponentsRoute,
+        title = UiString.StringResource(R.string.app_about_materialComponents_label)
+    )
 }

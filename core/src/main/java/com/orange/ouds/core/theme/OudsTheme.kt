@@ -119,7 +119,7 @@ fun OudsTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (darkThemeEnabled) themeContract.colorTokens.darkColorScheme else themeContract.colorTokens.lightColorScheme
-    val materialColorScheme = if (darkThemeEnabled) materialDarkColorScheme else materialLightColorScheme
+    val materialColorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme
     val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
 
     CompositionLocalProvider(
@@ -127,8 +127,8 @@ fun OudsTheme(
         LocalColorScheme provides colorScheme,
         LocalLightColorScheme provides themeContract.colorTokens.lightColorScheme,
         LocalDarkColorScheme provides themeContract.colorTokens.darkColorScheme,
-        LocalMaterialLightColorScheme provides materialLightColorScheme,
-        LocalMaterialDarkColorScheme provides materialDarkColorScheme,
+        LocalMaterialLightColorScheme provides themeContract.colorTokens.materialLightColorScheme,
+        LocalMaterialDarkColorScheme provides themeContract.colorTokens.materialDarkColorScheme,
         LocalBorders provides themeContract.borderTokens.getBorders(),
         LocalElevations provides themeContract.elevationTokens.getElevation(),
         LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily, windowWidthSizeClass),
