@@ -714,17 +714,18 @@ private fun NavigationRailSample() {
 @Composable
 private fun RadioButtonsSample(enabled: Boolean = true) {
     var state by remember { mutableStateOf(true) }
+    val modifier = Modifier.semantics { contentDescription = "Localized Description" }
     Row(Modifier.selectableGroup()) {
         RadioButton(
             selected = state,
-            onClick = { state = false },
-            modifier = Modifier.semantics { contentDescription = "Localized Description" },
+            onClick = { state = !state },
+            modifier = modifier,
             enabled = enabled
         )
         RadioButton(
             selected = !state,
-            onClick = { state = false },
-            modifier = Modifier.semantics { contentDescription = "Localized Description" },
+            onClick = { state = !state },
+            modifier = modifier,
             enabled = enabled
         )
     }
