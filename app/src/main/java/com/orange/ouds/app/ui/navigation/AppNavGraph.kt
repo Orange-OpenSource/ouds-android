@@ -49,12 +49,12 @@ private fun NavGraphBuilder.addBottomBarNavGraph(navController: NavController) {
     composable(BottomBarItem.Components.route) { from ->
         ComponentsScreen { id -> navController.navigateToElement(ComponentsNavigation.ComponentDetailRoute, id, from) }
     }
-    composable(BottomBarItem.About.route) { _ ->
+    composable(BottomBarItem.About.route) { from ->
         AboutScreen { id ->
-            when (AboutMenuItem.fromId(id)) {
-                is AboutFileMenuItem -> navController.navigate("${AboutDestinations.FileRoute}/$id")
-                is AboutRouteMenuItem -> navController.navigate(AboutDestinations.MaterialComponentsRoute)
-                else -> {}
+            when (val aboutMenuItem = AboutMenuItem.fromId(id)) {
+                is AboutFileMenuItem -> navController.navigateToElement(AboutDestinations.FileRoute, id.toLong(), from)
+                is AboutRouteMenuItem -> navController.navigate(aboutMenuItem.route)
+                else -> null
             }
 
         }
