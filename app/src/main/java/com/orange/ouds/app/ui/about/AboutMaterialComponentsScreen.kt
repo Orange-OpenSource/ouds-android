@@ -178,12 +178,10 @@ fun AboutMaterialComponentsScreen() {
 
                     // BUTTONS
                     SectionColumn(title = "Buttons") {
-                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
-                            CommonButtonsSample()
-                            CommonButtonsSample(enabled = false)
-                            FloatingActionButtonsSample()
-                            SegmentedButtonsSample()
-                        }
+                        CommonButtonsSample()
+                        CommonButtonsSample(enabled = false)
+                        FloatingActionButtonsSample()
+                        SegmentedButtonsSample()
                     }
 
                     // CARDS
@@ -215,7 +213,7 @@ fun AboutMaterialComponentsScreen() {
                     }
 
                     // LIST ITEM
-                    SectionColumn(title = "List items", hasContentHorizontalPadding = false) {
+                    SectionColumn(title = "List items", horizontalPadding = false, verticalSpacing = false) {
                         ListItemsSample()
                     }
 
@@ -226,17 +224,15 @@ fun AboutMaterialComponentsScreen() {
 
                     // NAVIGATION
                     SectionColumn(title = "Navigation") {
-                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
-                            NavigationBarSample()
-                            FilledTonalButton(onClick = { scope.launch { drawerState.open() } }) { Text("Open Navigation Drawer") }
-                            NavigationRailSample()
-                        }
+                        NavigationBarSample()
+                        FilledTonalButton(onClick = { scope.launch { drawerState.open() } }) { Text("Open Navigation Drawer") }
+                        NavigationRailSample()
                     }
 
                     // PROGRESS INDICATORS
                     SectionColumn(title = "Progress indicators") {
                         LinearProgressIndicator()
-                        CircularProgressIndicator(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.short))
+                        CircularProgressIndicator()
                     }
 
                     // RADIO BUTTONS
@@ -278,11 +274,9 @@ fun AboutMaterialComponentsScreen() {
 
                     // TEXT FIELDS
                     SectionColumn("Text fields") {
-                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
-                            TextFieldsSample()
-                            TextFieldsSample(isError = true)
-                            TextFieldsSample(enabled = false)
-                        }
+                        TextFieldsSample()
+                        TextFieldsSample(isError = true)
+                        TextFieldsSample(enabled = false)
                     }
                 }
             }
@@ -437,52 +431,54 @@ private fun CheckboxesSample(enabled: Boolean = true) {
 
 @Composable
 private fun ChipsSample(enabled: Boolean = true) {
-    val settingsIcon: @Composable () -> Unit = {
-        Icon(
-            Icons.Filled.Settings,
-            contentDescription = "Localized description",
-            Modifier.size(AssistChipDefaults.IconSize)
-        )
-    }
-
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
-    ) {
-        AssistChip(
-            onClick = { /* Do something! */ },
-            label = { Text("Assist Chip") },
-            leadingIcon = settingsIcon,
-            enabled = enabled
-        )
-
-        ElevatedAssistChip(
-            onClick = { /* Do something! */ },
-            label = { Text("Elevated Assist Chip") },
-            leadingIcon = settingsIcon,
-            enabled = enabled
-        )
-    }
-
-    FilterChipsRow(enabled = enabled, selected = false)
-    FilterChipsRow(enabled = enabled, selected = true)
-
-    var inputChipSelected by remember { mutableStateOf(false) }
-
-    InputChip(
-        selected = inputChipSelected,
-        onClick = { inputChipSelected = !inputChipSelected },
-        label = { Text("Input Chip") },
-        avatar = {
+    Column {
+        val settingsIcon: @Composable () -> Unit = {
             Icon(
-                Icons.Filled.Person,
+                Icons.Filled.Settings,
                 contentDescription = "Localized description",
-                Modifier.size(InputChipDefaults.AvatarSize)
+                Modifier.size(AssistChipDefaults.IconSize)
             )
-        },
-        enabled = enabled
-    )
+        }
 
-    SuggestionChip(onClick = { /* Do something! */ }, label = { Text("Suggestion Chip") }, enabled = enabled)
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
+        ) {
+            AssistChip(
+                onClick = { /* Do something! */ },
+                label = { Text("Assist Chip") },
+                leadingIcon = settingsIcon,
+                enabled = enabled
+            )
+
+            ElevatedAssistChip(
+                onClick = { /* Do something! */ },
+                label = { Text("Elevated Assist Chip") },
+                leadingIcon = settingsIcon,
+                enabled = enabled
+            )
+        }
+
+        FilterChipsRow(enabled = enabled, selected = false)
+        FilterChipsRow(enabled = enabled, selected = true)
+
+        var inputChipSelected by remember { mutableStateOf(false) }
+
+        InputChip(
+            selected = inputChipSelected,
+            onClick = { inputChipSelected = !inputChipSelected },
+            label = { Text("Input Chip") },
+            avatar = {
+                Icon(
+                    Icons.Filled.Person,
+                    contentDescription = "Localized description",
+                    Modifier.size(InputChipDefaults.AvatarSize)
+                )
+            },
+            enabled = enabled
+        )
+
+        SuggestionChip(onClick = { /* Do something! */ }, label = { Text("Suggestion Chip") }, enabled = enabled)
+    }
 }
 
 @Composable
@@ -845,7 +841,7 @@ private fun TabsSample() {
         Tabs(state = state, onTabClick = { index -> state = index })
     }
 
-    SecondaryTabRow(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.short), selectedTabIndex = state) {
+    SecondaryTabRow(selectedTabIndex = state) {
         Tabs(state = state, onTabClick = { index -> state = index })
     }
 }
@@ -898,13 +894,16 @@ private fun TextFieldsSample(enabled: Boolean = true, isError: Boolean = false) 
 }
 
 @Composable
-private fun ColumnScope.SectionColumn(title: String, hasContentHorizontalPadding: Boolean = true, content: @Composable () -> Unit) {
+private fun ColumnScope.SectionColumn(title: String, horizontalPadding: Boolean = true, verticalSpacing: Boolean = true, content: @Composable () -> Unit) {
     Text(
         text = title,
         style = OudsTheme.typography.heading.medium,
         modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller).padding(horizontal = OudsTheme.spaces.fixed.medium)
     )
-    Column(modifier = if (hasContentHorizontalPadding) Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium) else Modifier) {
+    Column(
+        modifier = if (horizontalPadding) Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium) else Modifier,
+        verticalArrangement = if (verticalSpacing) Arrangement.spacedBy(OudsTheme.spaces.fixed.short) else Arrangement.Top
+    ) {
         content()
     }
 }
