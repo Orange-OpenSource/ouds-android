@@ -888,7 +888,7 @@ private fun TextFieldsSample(enabled: Boolean = true, isError: Boolean = false) 
 }
 
 @Composable
-private fun ColumnScope.SectionColumn(title: String, horizontalPadding: Boolean = true, verticalSpacing: Boolean = true, content: @Composable () -> Unit) {
+private fun SectionColumn(title: String, horizontalPadding: Boolean = true, verticalSpacing: Boolean = true, content: @Composable () -> Unit) {
     Text(
         text = title,
         style = OudsTheme.typography.heading.medium,
