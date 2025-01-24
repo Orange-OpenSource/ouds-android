@@ -459,7 +459,6 @@ private fun ChipsSample(enabled: Boolean = true) {
         }
 
         FilterChipsRow(enabled = enabled, selected = false)
-        FilterChipsRow(enabled = enabled, selected = true)
 
         var inputChipSelected by remember { mutableStateOf(false) }
 
