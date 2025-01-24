@@ -30,7 +30,7 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(1, R.string.app_about_legalInformation_label, R.raw.about_legal_information),
     AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, R.raw.about_privacy_policy),
-    AboutRouteMenuItem(3, R.string.app_about_defaultMaterialComponents_label, AboutDestinations.MaterialComponentsRoute)
+    AboutRouteMenuItem(3, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute)
 )
 
 sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
