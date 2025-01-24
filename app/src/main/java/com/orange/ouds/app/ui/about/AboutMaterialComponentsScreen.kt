@@ -854,8 +854,8 @@ private fun Tabs(state: Int, onTabClick: (Int) -> Unit) {
 
 @Composable
 private fun TextFieldsSample(enabled: Boolean = true, isError: Boolean = false) {
-    val text: MutableState<String> = rememberSaveable { mutableStateOf("") }
-    val textForOutlined: MutableState<String> = rememberSaveable { mutableStateOf("") }
+    var text by rememberSaveable { mutableStateOf("") }
+    var textForOutlined by rememberSaveable { mutableStateOf("") }
 
     val label: @Composable () -> Unit = { Text(text = "Label") }
     val placeholder: @Composable () -> Unit = { Text(text = "Placeholder") }
@@ -864,8 +864,8 @@ private fun TextFieldsSample(enabled: Boolean = true, isError: Boolean = false) 
 
     TextField(
         modifier = Modifier.fillMaxWidth(),
-        value = text.value,
-        onValueChange = { text.value = it },
+        value = text,
+        onValueChange = { text = it },
         label = label,
         placeholder = placeholder,
         leadingIcon = icon,
@@ -876,8 +876,8 @@ private fun TextFieldsSample(enabled: Boolean = true, isError: Boolean = false) 
 
     OutlinedTextField(
         modifier = Modifier.fillMaxWidth(),
-        value = textForOutlined.value,
-        onValueChange = { textForOutlined.value = it },
+        value = textForOutlined,
+        onValueChange = { textForOutlined = it },
         label = label,
         placeholder = placeholder,
         trailingIcon = icon,
