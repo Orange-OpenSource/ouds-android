@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.about
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -35,7 +34,7 @@ fun NavGraphBuilder.addAboutNavGraph() {
     ) { navBackStackEntry ->
         val aboutMenuItemId = requireNotNull(navBackStackEntry.arguments).getLong(MenuItemIdKey).toInt()
         val aboutItem = AboutMenuItem.fromId(aboutMenuItemId)
-        (aboutItem as? AboutFileMenuItem)?.let { AboutFileScreen(it.fileRes, isSystemInDarkTheme()) }
+        (aboutItem as? AboutFileMenuItem)?.let { AboutFileScreen(it.fileRes) }
     }
 
     composable(AboutDestinations.MaterialComponentsRoute) { _ ->
