@@ -17,9 +17,9 @@ import androidx.annotation.RawRes
 import com.orange.ouds.app.R
 import com.orange.ouds.foundation.extensions.contentAsString
 
-internal fun WebView.injectLightDarkModeCss(isDarkModeEnabled: Boolean) {
+internal fun WebView.injectLightDarkModeCss(darkMode: Boolean) {
     injectCss(R.raw.base_style)
-    val css = if (isDarkModeEnabled) R.raw.dark_style else R.raw.light_style
+    val css = if (darkMode) R.raw.dark_style else R.raw.light_style
     injectCss(css)
 }
 

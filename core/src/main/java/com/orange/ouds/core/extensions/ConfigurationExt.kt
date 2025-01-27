@@ -10,14 +10,14 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.app.ui.utilities
+package com.orange.ouds.core.extensions
 
 import android.content.res.Configuration
 import android.content.res.Configuration.UI_MODE_NIGHT_MASK
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 
-var Configuration.isDarkModeEnabled: Boolean
+internal var Configuration.isNightModeEnabled: Boolean
     get() {
         return uiMode and UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES
     }

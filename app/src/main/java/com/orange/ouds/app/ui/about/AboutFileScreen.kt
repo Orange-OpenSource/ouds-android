@@ -18,6 +18,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.RawRes
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -33,10 +34,11 @@ private const val FileResourceDir = "raw"
 private const val FilePath = "file:///android_res/$FileResourceDir/"
 
 @Composable
-internal fun AboutFileScreen(@RawRes fileRes: Int, darkModeEnabled: Boolean) {
+internal fun AboutFileScreen(@RawRes fileRes: Int) {
     val context = LocalContext.current
     val horizontalPadding = dimensionResource(id = R.dimen.screen_horizontal_margin).value
     val verticalPadding = dimensionResource(id = R.dimen.screen_vertical_margin).value
+    val isSystemInDarkTheme = isSystemInDarkTheme()
     Screen {
         AndroidView(
             factory = {
@@ -47,7 +49,7 @@ internal fun AboutFileScreen(@RawRes fileRes: Int, darkModeEnabled: Boolean) {
                         override fun onPageFinished(view: WebView?, url: String?) {
                             super.onPageFinished(view, url)
                             view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();")
-                            view?.injectLightDarkModeCss(darkModeEnabled)
+                            view?.injectLightDarkModeCss(isSystemInDarkTheme)
                         }
 
                         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
@@ -69,7 +71,7 @@ internal fun AboutFileScreen(@RawRes fileRes: Int, darkModeEnabled: Boolean) {
                 }
             },
             update = {
-                it.injectLightDarkModeCss(darkModeEnabled)
+                it.injectLightDarkModeCss(isSystemInDarkTheme)
             })
     }
 }

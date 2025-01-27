@@ -12,11 +12,15 @@
 
 package com.orange.ouds.app.ui
 
+import android.app.UiModeManager
+import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.LocalActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -43,16 +47,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.core.content.getSystemService
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.navigation.appNavGraph
-import com.orange.ouds.app.ui.utilities.isDarkModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -76,22 +80,16 @@ fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = v
 
 @Composable
 private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, onThemeSelected: (String) -> Unit) {
-    val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
         themeState = rememberThemeState(
             currentTheme = rememberSaveable { mutableStateOf(getCurrentTheme(userThemeName, themes)) },
-            darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
             availableThemes = themes
         )
     )
 
-    // Change isSystemInDarkTheme() value to make switching theme working with custom color
-    val configuration = LocalConfiguration.current.apply {
-        isDarkModeEnabled = mainState.themeState.darkModeEnabled
-    }
-
+    val isSystemInDarkTheme = isSystemInDarkTheme()
     val activity = LocalActivity.current as? ComponentActivity
-    activity?.enableEdgeToEdge(SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { configuration.isDarkModeEnabled })
+    activity?.enableEdgeToEdge(SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isSystemInDarkTheme })
 
     var changeThemeDialogVisible by remember { mutableStateOf(false) }
 
@@ -100,17 +98,18 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
     ) {
         OudsTheme(
             themeContract = mainState.themeState.currentTheme,
-            darkThemeEnabled = configuration.isDarkModeEnabled
+            darkThemeEnabled = isSystemInDarkTheme
         ) {
             Scaffold(
                 topBar = {
+                    val context = LocalContext.current
                     TopBar(
                         topBarState = mainState.topBarState,
                         upPress = mainState.navigationState::upPress,
                         onActionClick = { action ->
                             when (action) {
                                 TopBarAction.ChangeTheme -> changeThemeDialogVisible = true
-                                TopBarAction.ChangeMode -> mainState.themeState.darkModeEnabled = !configuration.isDarkModeEnabled
+                                TopBarAction.ChangeMode -> setApplicationNightModeEnabled(!isSystemInDarkTheme, context)
                             }
                         }
                     )
@@ -149,6 +148,17 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
                 }
             }
         }
+    }
+}
+
+private fun setApplicationNightModeEnabled(night: Boolean, context: Context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val uiModeManager = context.getSystemService<UiModeManager>()
+        val mode = if (night) UiModeManager.MODE_NIGHT_YES else UiModeManager.MODE_NIGHT_NO
+        uiModeManager?.setApplicationNightMode(mode)
+    } else {
+        val mode = if (night) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 }
 

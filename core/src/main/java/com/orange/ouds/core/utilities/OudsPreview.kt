@@ -16,8 +16,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import com.orange.ouds.core.BuildConfig
+import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 
 /**
@@ -31,15 +34,22 @@ import com.orange.ouds.core.theme.OudsTheme
  */
 @Composable
 fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    OudsTheme(themeContract = BuildConfig.PREVIEW_THEME, darkThemeEnabled) {
-        // Add a box to be able to see components
-        // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
-        Box(
-            modifier = Modifier
-                .background(OudsTheme.colorScheme.background.primary)
-                .then(modifier)
-        ) {
-            content()
+    // Updating the configuration is only needed for UI tests
+    // It is not needed for Android Studio previews because the uiMode parameter of the @Preview annotation already configures the UI mode properly
+    val configuration = LocalConfiguration.current.apply {
+        isNightModeEnabled = darkThemeEnabled
+    }
+    CompositionLocalProvider(value = LocalConfiguration provides configuration) {
+        OudsTheme(themeContract = BuildConfig.PREVIEW_THEME, darkThemeEnabled) {
+            // Add a box to be able to see components
+            // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
+            Box(
+                modifier = Modifier
+                    .background(OudsTheme.colorScheme.background.primary)
+                    .then(modifier)
+            ) {
+                content()
+            }
         }
     }
 }
