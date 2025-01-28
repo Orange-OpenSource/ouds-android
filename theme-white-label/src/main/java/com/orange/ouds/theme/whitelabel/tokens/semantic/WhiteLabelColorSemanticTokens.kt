@@ -12,18 +12,27 @@
 
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
+import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorBorderSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorContentSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorDecorativeSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 
 data class WhiteLabelColorSemanticTokens(
-    override val actionColorTokens: WhiteLabelColorActionSemanticTokens = WhiteLabelColorActionSemanticTokens(),
-    override val alwaysColorTokens: WhiteLabelColorAlwaysSemanticTokens = WhiteLabelColorAlwaysSemanticTokens(),
-    override val backgroundColorTokens: WhiteLabelColorBgSemanticTokens = WhiteLabelColorBgSemanticTokens(),
-    override val borderColorTokens: WhiteLabelColorBorderSemanticTokens = WhiteLabelColorBorderSemanticTokens(),
-    override val contentColorTokens: WhiteLabelColorContentSemanticTokens = WhiteLabelColorContentSemanticTokens(),
-    override val decorativeColorTokens: WhiteLabelColorDecorativeSemanticTokens = WhiteLabelColorDecorativeSemanticTokens(),
-    override val opacityColorTokens: WhiteLabelColorOpacitySemanticTokens = WhiteLabelColorOpacitySemanticTokens(),
-    override val overlayColorTokens: WhiteLabelColorOverlaySemanticTokens = WhiteLabelColorOverlaySemanticTokens(),
-    override val surfaceColorTokens: WhiteLabelColorSurfaceSemanticTokens = WhiteLabelColorSurfaceSemanticTokens(),
+    override val actionColorTokens: OudsColorActionSemanticTokens = WhiteLabelColorActionSemanticTokens(),
+    override val alwaysColorTokens: OudsColorAlwaysSemanticTokens = WhiteLabelColorAlwaysSemanticTokens(),
+    override val backgroundColorTokens: OudsColorBgSemanticTokens = WhiteLabelColorBgSemanticTokens(),
+    override val borderColorTokens: OudsColorBorderSemanticTokens = WhiteLabelColorBorderSemanticTokens(),
+    override val contentColorTokens: OudsColorContentSemanticTokens = WhiteLabelColorContentSemanticTokens(),
+    override val decorativeColorTokens: OudsColorDecorativeSemanticTokens = WhiteLabelColorDecorativeSemanticTokens(),
+    override val opacityColorTokens: OudsColorOpacitySemanticTokens = WhiteLabelColorOpacitySemanticTokens(),
+    override val overlayColorTokens: OudsColorOverlaySemanticTokens = WhiteLabelColorOverlaySemanticTokens(),
+    override val surfaceColorTokens: OudsColorSurfaceSemanticTokens = WhiteLabelColorSurfaceSemanticTokens(),
     override val repositoryColorTokens: OudsColorRepositorySemanticTokens = WhiteLabelColorRepositorySemanticTokens()
 ) : OudsColorSemanticTokens
