@@ -14,7 +14,6 @@ package com.orange.ouds.theme.orange
 
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeBorderSemanticTokens
-import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorRepositorySemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeElevationSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeFontSemanticTokens
@@ -41,7 +40,7 @@ open class OrangeTheme : OudsThemeContract {
         get() = ORANGE_THEME_NAME
 
     override val colorTokens: OudsColorSemanticTokens
-        get() = OrangeColorSemanticTokens(repositoryColorTokens = OrangeColorRepositorySemanticTokens())
+        get() = OrangeColorSemanticTokens()
 
     override val borderTokens: OudsBorderSemanticTokens
         get() = OrangeBorderSemanticTokens()

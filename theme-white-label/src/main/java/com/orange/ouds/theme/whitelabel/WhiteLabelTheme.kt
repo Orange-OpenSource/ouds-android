@@ -28,7 +28,6 @@ import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelBorderSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorRepositorySemanticTokens
 import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorSemanticTokens
 import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelElevationSemanticTokens
 import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelFontSemanticTokens
@@ -45,7 +44,7 @@ open class WhiteLabelTheme : OudsThemeContract {
         get() = "White label"
 
     override val colorTokens: OudsColorSemanticTokens
-        get() = WhiteLabelColorSemanticTokens(repositoryColorTokens = WhiteLabelColorRepositorySemanticTokens())
+        get() = WhiteLabelColorSemanticTokens()
 
     override val borderTokens: OudsBorderSemanticTokens
         get() = WhiteLabelBorderSemanticTokens()
