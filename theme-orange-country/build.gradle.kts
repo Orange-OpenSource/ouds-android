@@ -22,6 +22,12 @@ android {
     buildFeatures {
         compose = true
     }
+
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs.add("-opt-in=com.orange.ouds.foundation.InternalOudsApi")
+        }
+    }
 }
 
 mavenCentralPublish {
@@ -29,6 +35,8 @@ mavenCentralPublish {
 }
 
 dependencies {
+    implementation(project(":foundation"))
+
     implementation(project(":theme-contract"))
     implementation(project(":theme-orange"))
 }
