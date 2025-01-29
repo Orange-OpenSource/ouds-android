@@ -12,6 +12,8 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
+import com.orange.ouds.foundation.InternalOudsApi
+
 interface OudsColorSemanticTokens {
     val actionColorTokens: OudsColorActionSemanticTokens
     val alwaysColorTokens: OudsColorAlwaysSemanticTokens
@@ -22,5 +24,7 @@ interface OudsColorSemanticTokens {
     val opacityColorTokens: OudsColorOpacitySemanticTokens
     val overlayColorTokens: OudsColorOverlaySemanticTokens
     val surfaceColorTokens: OudsColorSurfaceSemanticTokens
+
+    @InternalOudsApi
     val repositoryColorTokens: OudsColorRepositorySemanticTokens
 }
