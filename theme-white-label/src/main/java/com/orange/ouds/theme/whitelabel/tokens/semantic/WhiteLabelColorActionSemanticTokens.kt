@@ -14,8 +14,8 @@ package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.raw.ColorRawTokens
 import com.orange.ouds.theme.whitelabel.tokens.raw.WhiteLabelColorRawTokens
+import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
 data class WhiteLabelColorActionSemanticTokens(
     override val actionDisabledLight: Color = ColorRawTokens.colorOpacityBlack200,

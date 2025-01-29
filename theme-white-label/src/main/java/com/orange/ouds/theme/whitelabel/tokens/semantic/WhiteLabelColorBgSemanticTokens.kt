@@ -14,8 +14,8 @@ package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.raw.ColorRawTokens
 import com.orange.ouds.theme.whitelabel.tokens.raw.WhiteLabelColorRawTokens
+import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
 data class WhiteLabelColorBgSemanticTokens(
     override val bgEmphasizedLight: Color = ColorRawTokens.colorFunctionalDarkGray880,

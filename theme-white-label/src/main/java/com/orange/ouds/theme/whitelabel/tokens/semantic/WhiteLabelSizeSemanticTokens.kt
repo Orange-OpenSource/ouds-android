@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.global.raw.DimensionRawTokens
 
 data class WhiteLabelSizeSemanticTokens(
     override val iconDecorative2xl: Float = DimensionRawTokens.dimension900,

@@ -14,7 +14,7 @@ package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
 data class WhiteLabelColorAlwaysSemanticTokens(
     override val alwaysBlackLight: Color = ColorRawTokens.colorFunctionalBlack,
@@ -25,4 +25,4 @@ data class WhiteLabelColorAlwaysSemanticTokens(
     override val alwaysOnBlackDark: Color = ColorRawTokens.colorFunctionalLightGray160,
     override val alwaysOnWhiteDark: Color = ColorRawTokens.colorFunctionalBlack,
     override val alwaysWhiteDark: Color = ColorRawTokens.colorFunctionalWhite
-) :  OudsColorAlwaysSemanticTokens
+) : OudsColorAlwaysSemanticTokens

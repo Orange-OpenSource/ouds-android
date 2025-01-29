@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.raw.FontRawTokens
+import com.orange.ouds.tokens.global.raw.FontRawTokens
 
 data class WhiteLabelFontSemanticTokens(
     override val letterSpacingBodyLargeMobile: Float = FontRawTokens.fontLetterSpacing250,
