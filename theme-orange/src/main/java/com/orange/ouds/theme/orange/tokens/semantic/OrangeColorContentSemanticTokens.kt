@@ -15,7 +15,7 @@ package com.orange.ouds.theme.orange.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorContentSemanticTokens
 import com.orange.ouds.tokens.global.raw.ColorRawTokens
-import com.orange.ouds.tokens.global.raw.OrangeBrandColorRawTokens
+import com.orange.ouds.theme.orange.tokens.raw.OrangeBrandColorRawTokens
 
 data class OrangeColorContentSemanticTokens(
     override val contentBrandPrimaryLight: Color = OrangeBrandColorRawTokens.colorOrange550,
