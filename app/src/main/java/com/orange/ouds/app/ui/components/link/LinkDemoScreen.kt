@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -33,8 +32,8 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChipsColum
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
-import com.orange.ouds.core.component.coloredbox.OudsColoredBox
-import com.orange.ouds.core.component.link.OudsLink
+import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview

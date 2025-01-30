@@ -37,10 +37,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.theme.OudsBorderStyle
-import com.orange.ouds.theme.dashedBorder
-import com.orange.ouds.theme.dottedBorder
+import com.orange.ouds.core.theme.dashedBorder
+import com.orange.ouds.core.theme.dottedBorder
 
 private val defaultIllustrationSize = 64.dp
 

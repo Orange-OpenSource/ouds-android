@@ -13,68 +13,66 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
-import com.orange.ouds.tokens.global.raw.OrangeBrandColorRawTokens
 
-data class OudsColorDecorativeSemanticTokens(
-    val decorativeAccent1DefaultLight: Color = ColorRawTokens.colorDecorativeEmerald500,
-    val decorativeAccent1EmphasizedLight: Color = ColorRawTokens.colorDecorativeEmerald700,
-    val decorativeAccent1MutedLight: Color = ColorRawTokens.colorDecorativeEmerald200,
-    val decorativeAccent1DefaultDark: Color = ColorRawTokens.colorDecorativeEmerald500,
-    val decorativeAccent1EmphasizedDark: Color = ColorRawTokens.colorDecorativeEmerald700,
-    val decorativeAccent1MutedDark: Color = ColorRawTokens.colorDecorativeEmerald200,
-    val decorativeAccent2DefaultLight: Color = ColorRawTokens.colorDecorativeSky400,
-    val decorativeAccent2EmphasizedLight: Color = ColorRawTokens.colorDecorativeSky700,
-    val decorativeAccent2MutedLight: Color = ColorRawTokens.colorDecorativeSky200,
-    val decorativeAccent2DefaultDark: Color = ColorRawTokens.colorDecorativeSky400,
-    val decorativeAccent2EmphasizedDark: Color = ColorRawTokens.colorDecorativeSky700,
-    val decorativeAccent2MutedDark: Color = ColorRawTokens.colorDecorativeSky200,
-    val decorativeAccent3DefaultLight: Color = ColorRawTokens.colorFunctionalSun500,
-    val decorativeAccent3EmphasizedLight: Color = ColorRawTokens.colorDecorativeAmber500,
-    val decorativeAccent3MutedLight: Color = ColorRawTokens.colorFunctionalSun200,
-    val decorativeAccent3DefaultDark: Color = ColorRawTokens.colorFunctionalSun500,
-    val decorativeAccent3EmphasizedDark: Color = ColorRawTokens.colorDecorativeAmber500,
-    val decorativeAccent3MutedDark: Color = ColorRawTokens.colorFunctionalSun200,
-    val decorativeAccent4DefaultLight: Color = ColorRawTokens.colorDecorativeAmethyst400,
-    val decorativeAccent4EmphasizedLight: Color = ColorRawTokens.colorDecorativeAmethyst800,
-    val decorativeAccent4MutedLight: Color = ColorRawTokens.colorDecorativeAmethyst200,
-    val decorativeAccent4DefaultDark: Color = ColorRawTokens.colorDecorativeAmethyst400,
-    val decorativeAccent4EmphasizedDark: Color = ColorRawTokens.colorDecorativeAmethyst800,
-    val decorativeAccent4MutedDark: Color = ColorRawTokens.colorDecorativeAmethyst200,
-    val decorativeAccent5DefaultLight: Color = ColorRawTokens.colorDecorativeShockingPink200,
-    val decorativeAccent5EmphasizedLight: Color = ColorRawTokens.colorDecorativeShockingPink300,
-    val decorativeAccent5MutedLight: Color = ColorRawTokens.colorDecorativeShockingPink100,
-    val decorativeAccent5DefaultDark: Color = ColorRawTokens.colorDecorativeShockingPink200,
-    val decorativeAccent5EmphasizedDark: Color = ColorRawTokens.colorDecorativeShockingPink300,
-    val decorativeAccent5MutedDark: Color = ColorRawTokens.colorDecorativeShockingPink100,
-    val decorativeBrandPrimaryLight: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val decorativeBrandSecondaryLight: Color = ColorRawTokens.colorFunctionalBlack,
-    val decorativeBrandTertiaryLight: Color = ColorRawTokens.colorFunctionalWhite,
-    val decorativeBrandPrimaryDark: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val decorativeBrandSecondaryDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val decorativeBrandTertiaryDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
-    val decorativeNeutralDefaultLight: Color = ColorRawTokens.colorFunctionalDarkGray400,
-    val decorativeNeutralEmphasizedLight: Color = ColorRawTokens.colorFunctionalDarkGray640,
-    val decorativeNeutralMutedLight: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val decorativeNeutralDefaultDark: Color = ColorRawTokens.colorFunctionalLightGray560,
-    val decorativeNeutralEmphasizedDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val decorativeNeutralMutedDark: Color = ColorRawTokens.colorFunctionalDarkGray720,
-    val decorativeSkinTint100Light: Color = ColorRawTokens.colorDecorativeDeepPeach100,
-    val decorativeSkinTint200Light: Color = ColorRawTokens.colorDecorativeDeepPeach200,
-    val decorativeSkinTint300Light: Color = ColorRawTokens.colorDecorativeDeepPeach300,
-    val decorativeSkinTint400Light: Color = ColorRawTokens.colorDecorativeDeepPeach400,
-    val decorativeSkinTint500Light: Color = ColorRawTokens.colorDecorativeDeepPeach500,
-    val decorativeSkinTint600Light: Color = ColorRawTokens.colorDecorativeDeepPeach600,
-    val decorativeSkinTint700Light: Color = ColorRawTokens.colorDecorativeDeepPeach700,
-    val decorativeSkinTint800Light: Color = ColorRawTokens.colorDecorativeDeepPeach800,
-    val decorativeSkinTint900Light: Color = ColorRawTokens.colorDecorativeDeepPeach900,
-    val decorativeSkinTint100Dark: Color = ColorRawTokens.colorDecorativeDeepPeach100,
-    val decorativeSkinTint200Dark: Color = ColorRawTokens.colorDecorativeDeepPeach200,
-    val decorativeSkinTint300Dark: Color = ColorRawTokens.colorDecorativeDeepPeach300,
-    val decorativeSkinTint400Dark: Color = ColorRawTokens.colorDecorativeDeepPeach400,
-    val decorativeSkinTint500Dark: Color = ColorRawTokens.colorDecorativeDeepPeach500,
-    val decorativeSkinTint600Dark: Color = ColorRawTokens.colorDecorativeDeepPeach600,
-    val decorativeSkinTint700Dark: Color = ColorRawTokens.colorDecorativeDeepPeach700,
-    val decorativeSkinTint800Dark: Color = ColorRawTokens.colorDecorativeDeepPeach800,
-    val decorativeSkinTint900Dark: Color = ColorRawTokens.colorDecorativeDeepPeach900
-)
+interface OudsColorDecorativeSemanticTokens {
+    val decorativeAccent1DefaultLight: Color
+    val decorativeAccent1EmphasizedLight: Color
+    val decorativeAccent1MutedLight: Color
+    val decorativeAccent1DefaultDark: Color
+    val decorativeAccent1EmphasizedDark: Color
+    val decorativeAccent1MutedDark: Color
+    val decorativeAccent2DefaultLight: Color
+    val decorativeAccent2EmphasizedLight: Color
+    val decorativeAccent2MutedLight: Color
+    val decorativeAccent2DefaultDark: Color
+    val decorativeAccent2EmphasizedDark: Color
+    val decorativeAccent2MutedDark: Color
+    val decorativeAccent3DefaultLight: Color
+    val decorativeAccent3EmphasizedLight: Color
+    val decorativeAccent3MutedLight: Color
+    val decorativeAccent3DefaultDark: Color
+    val decorativeAccent3EmphasizedDark: Color
+    val decorativeAccent3MutedDark: Color
+    val decorativeAccent4DefaultLight: Color
+    val decorativeAccent4EmphasizedLight: Color
+    val decorativeAccent4MutedLight: Color
+    val decorativeAccent4DefaultDark: Color
+    val decorativeAccent4EmphasizedDark: Color
+    val decorativeAccent4MutedDark: Color
+    val decorativeAccent5DefaultLight: Color
+    val decorativeAccent5EmphasizedLight: Color
+    val decorativeAccent5MutedLight: Color
+    val decorativeAccent5DefaultDark: Color
+    val decorativeAccent5EmphasizedDark: Color
+    val decorativeAccent5MutedDark: Color
+    val decorativeBrandPrimaryLight: Color
+    val decorativeBrandSecondaryLight: Color
+    val decorativeBrandTertiaryLight: Color
+    val decorativeBrandPrimaryDark: Color
+    val decorativeBrandSecondaryDark: Color
+    val decorativeBrandTertiaryDark: Color
+    val decorativeNeutralDefaultLight: Color
+    val decorativeNeutralEmphasizedLight: Color
+    val decorativeNeutralMutedLight: Color
+    val decorativeNeutralDefaultDark: Color
+    val decorativeNeutralEmphasizedDark: Color
+    val decorativeNeutralMutedDark: Color
+    val decorativeSkinTint100Light: Color
+    val decorativeSkinTint200Light: Color
+    val decorativeSkinTint300Light: Color
+    val decorativeSkinTint400Light: Color
+    val decorativeSkinTint500Light: Color
+    val decorativeSkinTint600Light: Color
+    val decorativeSkinTint700Light: Color
+    val decorativeSkinTint800Light: Color
+    val decorativeSkinTint900Light: Color
+    val decorativeSkinTint100Dark: Color
+    val decorativeSkinTint200Dark: Color
+    val decorativeSkinTint300Dark: Color
+    val decorativeSkinTint400Dark: Color
+    val decorativeSkinTint500Dark: Color
+    val decorativeSkinTint600Dark: Color
+    val decorativeSkinTint700Dark: Color
+    val decorativeSkinTint800Dark: Color
+    val decorativeSkinTint900Dark: Color
+}

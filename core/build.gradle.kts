@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation(project(":foundation"))
     api(project(":theme-contract"))
-    api(project(":theme-orange"))
+    compileOnly(project(":theme-orange")) // Only useful for previews
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.material)
 
+    testImplementation(project(":theme-orange"))
+    androidTestImplementation(project(":theme-orange"))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.kotlin.reflect)
     androidTestImplementation(libs.mockito.android)

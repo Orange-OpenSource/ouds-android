@@ -12,87 +12,85 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens
-
-data class OudsSpaceSemanticTokens(
-    val columnGapMedium: Float = DimensionRawTokens.dimension150,
-    val columnGapNone: Float = DimensionRawTokens.dimension0,
-    val columnGapShort: Float = DimensionRawTokens.dimension100,
-    val columnGapShorter: Float = DimensionRawTokens.dimension75,
-    val columnGapShortest: Float = DimensionRawTokens.dimension50,
-    val columnGapSmash: Float = DimensionRawTokens.dimension25,
-    val columnGapTall: Float = DimensionRawTokens.dimension200,
-    val columnGapTaller: Float = DimensionRawTokens.dimension250,
-    val columnGapTallest: Float = DimensionRawTokens.dimension300,
-    val fixedHuge: Float = DimensionRawTokens.dimension700,
-    val fixedJumbo: Float = DimensionRawTokens.dimension800,
-    val fixedMedium: Float = DimensionRawTokens.dimension200,
-    val fixedNone: Float = DimensionRawTokens.dimension0,
-    val fixedShort: Float = DimensionRawTokens.dimension150,
-    val fixedShorter: Float = DimensionRawTokens.dimension100,
-    val fixedShortest: Float = DimensionRawTokens.dimension50,
-    val fixedSmash: Float = DimensionRawTokens.dimension25,
-    val fixedSpacious: Float = DimensionRawTokens.dimension600,
-    val fixedTall: Float = DimensionRawTokens.dimension300,
-    val fixedTaller: Float = DimensionRawTokens.dimension400,
-    val fixedTallest: Float = DimensionRawTokens.dimension500,
-    val insetMedium: Float = DimensionRawTokens.dimension150,
-    val insetNone: Float = DimensionRawTokens.dimension0,
-    val insetShort: Float = DimensionRawTokens.dimension100,
-    val insetShorter: Float = DimensionRawTokens.dimension75,
-    val insetShortest: Float = DimensionRawTokens.dimension50,
-    val insetSmash: Float = DimensionRawTokens.dimension25,
-    val insetSpacious: Float = DimensionRawTokens.dimension500,
-    val insetTall: Float = DimensionRawTokens.dimension200,
-    val insetTaller: Float = DimensionRawTokens.dimension300,
-    val insetTallest: Float = DimensionRawTokens.dimension400,
-    val paddingBlockHuge: Float = DimensionRawTokens.dimension400,
-    val paddingBlockMedium: Float = DimensionRawTokens.dimension150,
-    val paddingBlockNone: Float = DimensionRawTokens.dimension0,
-    val paddingBlockShort: Float = DimensionRawTokens.dimension100,
-    val paddingBlockShorter: Float = DimensionRawTokens.dimension75,
-    val paddingBlockShortest: Float = DimensionRawTokens.dimension50,
-    val paddingBlockSmash: Float = DimensionRawTokens.dimension25,
-    val paddingBlockSpacious: Float = DimensionRawTokens.dimension350,
-    val paddingBlockTall: Float = DimensionRawTokens.dimension200,
-    val paddingBlockTaller: Float = DimensionRawTokens.dimension250,
-    val paddingBlockTallest: Float = DimensionRawTokens.dimension300,
-    val paddingInlineHuge: Float = DimensionRawTokens.dimension400,
-    val paddingInlineMedium: Float = DimensionRawTokens.dimension150,
-    val paddingInlineNone: Float = DimensionRawTokens.dimension0,
-    val paddingInlineShort: Float = DimensionRawTokens.dimension100,
-    val paddingInlineShorter: Float = DimensionRawTokens.dimension75,
-    val paddingInlineShortest: Float = DimensionRawTokens.dimension50,
-    val paddingInlineSmash: Float = DimensionRawTokens.dimension25,
-    val paddingInlineSpacious: Float = DimensionRawTokens.dimension350,
-    val paddingInlineTall: Float = DimensionRawTokens.dimension200,
-    val paddingInlineTaller: Float = DimensionRawTokens.dimension250,
-    val paddingInlineTallest: Float = DimensionRawTokens.dimension300,
-    val rowGapMedium: Float = DimensionRawTokens.dimension150,
-    val rowGapNone: Float = DimensionRawTokens.dimension0,
-    val rowGapShort: Float = DimensionRawTokens.dimension100,
-    val rowGapShorter: Float = DimensionRawTokens.dimension75,
-    val rowGapShortest: Float = DimensionRawTokens.dimension50,
-    val rowGapSmash: Float = DimensionRawTokens.dimension25,
-    val rowGapTall: Float = DimensionRawTokens.dimension200,
-    val scaledMediumMobile: Float = DimensionRawTokens.dimension200,
-    val scaledMediumTablet: Float = DimensionRawTokens.dimension300,
-    val scaledNoneMobile: Float = DimensionRawTokens.dimension0,
-    val scaledNoneTablet: Float = DimensionRawTokens.dimension0,
-    val scaledShortMobile: Float = DimensionRawTokens.dimension150,
-    val scaledShortTablet: Float = DimensionRawTokens.dimension200,
-    val scaledShorterMobile: Float = DimensionRawTokens.dimension100,
-    val scaledShorterTablet: Float = DimensionRawTokens.dimension150,
-    val scaledShortestMobile: Float = DimensionRawTokens.dimension50,
-    val scaledShortestTablet: Float = DimensionRawTokens.dimension100,
-    val scaledSmashMobile: Float = DimensionRawTokens.dimension25,
-    val scaledSmashTablet: Float = DimensionRawTokens.dimension50,
-    val scaledSpaciousMobile: Float = DimensionRawTokens.dimension600,
-    val scaledSpaciousTablet: Float = DimensionRawTokens.dimension700,
-    val scaledTallMobile: Float = DimensionRawTokens.dimension300,
-    val scaledTallTablet: Float = DimensionRawTokens.dimension400,
-    val scaledTallerMobile: Float = DimensionRawTokens.dimension400,
-    val scaledTallerTablet: Float = DimensionRawTokens.dimension500,
-    val scaledTallestMobile: Float = DimensionRawTokens.dimension500,
-    val scaledTallestTablet: Float = DimensionRawTokens.dimension600
-)
+interface OudsSpaceSemanticTokens {
+    val columnGapMedium: Float
+    val columnGapNone: Float
+    val columnGapShort: Float
+    val columnGapShorter: Float
+    val columnGapShortest: Float
+    val columnGapSmash: Float
+    val columnGapTall: Float
+    val columnGapTaller: Float
+    val columnGapTallest: Float
+    val fixedHuge: Float
+    val fixedJumbo: Float
+    val fixedMedium: Float
+    val fixedNone: Float
+    val fixedShort: Float
+    val fixedShorter: Float
+    val fixedShortest: Float
+    val fixedSmash: Float
+    val fixedSpacious: Float
+    val fixedTall: Float
+    val fixedTaller: Float
+    val fixedTallest: Float
+    val insetMedium: Float
+    val insetNone: Float
+    val insetShort: Float
+    val insetShorter: Float
+    val insetShortest: Float
+    val insetSmash: Float
+    val insetSpacious: Float
+    val insetTall: Float
+    val insetTaller: Float
+    val insetTallest: Float
+    val paddingBlockHuge: Float
+    val paddingBlockMedium: Float
+    val paddingBlockNone: Float
+    val paddingBlockShort: Float
+    val paddingBlockShorter: Float
+    val paddingBlockShortest: Float
+    val paddingBlockSmash: Float
+    val paddingBlockSpacious: Float
+    val paddingBlockTall: Float
+    val paddingBlockTaller: Float
+    val paddingBlockTallest: Float
+    val paddingInlineHuge: Float
+    val paddingInlineMedium: Float
+    val paddingInlineNone: Float
+    val paddingInlineShort: Float
+    val paddingInlineShorter: Float
+    val paddingInlineShortest: Float
+    val paddingInlineSmash: Float
+    val paddingInlineSpacious: Float
+    val paddingInlineTall: Float
+    val paddingInlineTaller: Float
+    val paddingInlineTallest: Float
+    val rowGapMedium: Float
+    val rowGapNone: Float
+    val rowGapShort: Float
+    val rowGapShorter: Float
+    val rowGapShortest: Float
+    val rowGapSmash: Float
+    val rowGapTall: Float
+    val scaledMediumMobile: Float
+    val scaledMediumTablet: Float
+    val scaledNoneMobile: Float
+    val scaledNoneTablet: Float
+    val scaledShortMobile: Float
+    val scaledShortTablet: Float
+    val scaledShorterMobile: Float
+    val scaledShorterTablet: Float
+    val scaledShortestMobile: Float
+    val scaledShortestTablet: Float
+    val scaledSmashMobile: Float
+    val scaledSmashTablet: Float
+    val scaledSpaciousMobile: Float
+    val scaledSpaciousTablet: Float
+    val scaledTallMobile: Float
+    val scaledTallTablet: Float
+    val scaledTallerMobile: Float
+    val scaledTallerTablet: Float
+    val scaledTallestMobile: Float
+    val scaledTallestTablet: Float
+}

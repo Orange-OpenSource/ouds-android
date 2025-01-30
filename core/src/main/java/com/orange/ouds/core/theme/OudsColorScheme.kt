@@ -35,7 +35,7 @@ data class OudsColorScheme(
     val decorative: Decorative,
     val opacity: Opacity,
     val overlay: Overlay,
-    val repository: Repository,
+    internal val repository: Repository,
     val surface: Surface
 ) {
 
@@ -1207,7 +1207,7 @@ val OudsColorSemanticTokens.materialDarkColorScheme: ColorScheme
         onErrorContainer = repositoryColorTokens.repositoryNeutralMutedLowerDark,
         surfaceDim = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
         surface = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
-        surfaceBright =repositoryColorTokens.repositoryNeutralEmphasizedMediumDark,
+        surfaceBright = repositoryColorTokens.repositoryNeutralEmphasizedMediumDark,
         onSurface = repositoryColorTokens.repositoryNeutralMutedLowerDark,
         onSurfaceVariant = repositoryColorTokens.repositoryOpacityWhiteHighDark,
         surfaceContainerLowest = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,

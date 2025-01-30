@@ -13,15 +13,14 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
-data class OudsColorAlwaysSemanticTokens(
-    val alwaysBlackLight: Color = ColorRawTokens.colorFunctionalBlack,
-    val alwaysOnBlackLight: Color = ColorRawTokens.colorFunctionalWhite,
-    val alwaysOnWhiteLight: Color = ColorRawTokens.colorFunctionalBlack,
-    val alwaysWhiteLight: Color = ColorRawTokens.colorFunctionalWhite,
-    val alwaysBlackDark: Color = ColorRawTokens.colorFunctionalBlack,
-    val alwaysOnBlackDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val alwaysOnWhiteDark: Color = ColorRawTokens.colorFunctionalBlack,
-    val alwaysWhiteDark: Color = ColorRawTokens.colorFunctionalWhite
-)
+interface OudsColorAlwaysSemanticTokens {
+    val alwaysBlackLight: Color
+    val alwaysOnBlackLight: Color
+    val alwaysOnWhiteLight: Color
+    val alwaysWhiteLight: Color
+    val alwaysBlackDark: Color
+    val alwaysOnBlackDark: Color
+    val alwaysOnWhiteDark: Color
+    val alwaysWhiteDark: Color
+}

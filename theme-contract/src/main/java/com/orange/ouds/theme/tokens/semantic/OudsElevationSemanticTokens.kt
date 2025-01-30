@@ -12,15 +12,14 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import com.orange.ouds.tokens.global.raw.ElevationRawTokens
 
-data class OudsElevationSemanticTokens(
-    val drag: Float = ElevationRawTokens.elevation4,
-    val none: Float = ElevationRawTokens.elevation0,
-    val overlayDefault: Float = ElevationRawTokens.elevation2,
-    val overlayEmphasized: Float = ElevationRawTokens.elevation5,
-    val raised: Float = ElevationRawTokens.elevation1,
-    val stickyDefault: Float = ElevationRawTokens.elevation3,
-    val stickyEmphasized: Float = ElevationRawTokens.elevation3,
-    val stickyNavigationScrolled: Float = ElevationRawTokens.elevation3
-)
+interface OudsElevationSemanticTokens {
+    val drag: Float
+    val none: Float
+    val overlayDefault: Float
+    val overlayEmphasized: Float
+    val raised: Float
+    val stickyDefault: Float
+    val stickyEmphasized: Float
+    val stickyNavigationScrolled: Float
+}

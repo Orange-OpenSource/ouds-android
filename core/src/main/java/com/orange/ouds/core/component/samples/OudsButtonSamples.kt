@@ -12,10 +12,11 @@
 
 package com.orange.ouds.core.component.samples
 
+import android.R
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
-import com.orange.ouds.core.component.button.OudsButton
-import com.orange.ouds.core.component.coloredbox.OudsColoredBox
+import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsColoredBox
 
 @Composable
 internal fun OudsButtonWithTextSample() {
@@ -40,7 +41,7 @@ internal fun OudsButtonWithTextOnColoredBackgroundSample() {
 internal fun OudsButtonWithIconSample() {
     OudsButton(
         icon = OudsButton.Icon(
-            painterResource(id = android.R.drawable.star_on),
+            painterResource(id = R.drawable.star_on),
             "Content description"
         ),
         onClick = { /* Do something! */ }
@@ -53,7 +54,7 @@ internal fun OudsButtonWithIconOnColoredBackgroundSample() {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                painterResource(id = android.R.drawable.star_on),
+                painterResource(id = R.drawable.star_on),
                 "Content description"
             ),
             onClick = { /* Do something! */ }
@@ -65,7 +66,7 @@ internal fun OudsButtonWithIconOnColoredBackgroundSample() {
 internal fun OudsButtonWithIconAndTextSample() {
     OudsButton(
         icon = OudsButton.Icon(
-            painterResource(id = android.R.drawable.star_on),
+            painterResource(id = R.drawable.star_on),
             "Content description"
         ),
         text = "Text",
@@ -79,7 +80,7 @@ internal fun OudsButtonWithIconAndTextOnColoredBackgroundSample() {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                painterResource(id = android.R.drawable.star_on),
+                painterResource(id = R.drawable.star_on),
                 "Content description"
             ),
             text = "Text",

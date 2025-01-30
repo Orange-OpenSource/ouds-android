@@ -13,110 +13,108 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
-import com.orange.ouds.tokens.global.raw.OrangeBrandColorRawTokens
 
-data class OudsColorRepositorySemanticTokens(
-    val repositoryAccentDefaultLight: Color = ColorRawTokens.colorFunctionalSun500,
-    val repositoryAccentHighestLight: Color = OrangeBrandColorRawTokens.colorWarmGray900,
-    val repositoryAccentLowLight: Color = ColorRawTokens.colorFunctionalSun300,
-    val repositoryAccentLowestLight: Color = OrangeBrandColorRawTokens.colorWarmGray100,
-    val repositoryAccentDefaultDark: Color = ColorRawTokens.colorFunctionalSun500,
-    val repositoryAccentHighestDark: Color = OrangeBrandColorRawTokens.colorWarmGray900,
-    val repositoryAccentLowDark: Color = ColorRawTokens.colorFunctionalSun300,
-    val repositoryAccentLowestDark: Color = OrangeBrandColorRawTokens.colorWarmGray100,
-    val repositoryInfoDefaultLight: Color = ColorRawTokens.colorFunctionalDodgerBlue500,
-    val repositoryInfoHighestLight: Color = ColorRawTokens.colorFunctionalDodgerBlue900,
-    val repositoryInfoLowLight: Color = ColorRawTokens.colorFunctionalDodgerBlue300,
-    val repositoryInfoLowestLight: Color = ColorRawTokens.colorFunctionalDodgerBlue100,
-    val repositoryInfoDefaultDark: Color = ColorRawTokens.colorFunctionalDodgerBlue500,
-    val repositoryInfoHighestDark: Color = ColorRawTokens.colorFunctionalDodgerBlue900,
-    val repositoryInfoLowDark: Color = ColorRawTokens.colorFunctionalDodgerBlue300,
-    val repositoryInfoLowestDark: Color = ColorRawTokens.colorFunctionalDodgerBlue100,
-    val repositoryNegativeDefaultLight: Color = ColorRawTokens.colorFunctionalScarlet600,
-    val repositoryNegativeHighLight: Color = ColorRawTokens.colorFunctionalScarlet700,
-    val repositoryNegativeHigherLight: Color = ColorRawTokens.colorFunctionalScarlet800,
-    val repositoryNegativeHighestLight: Color = ColorRawTokens.colorFunctionalScarlet900,
-    val repositoryNegativeLowLight: Color = ColorRawTokens.colorFunctionalScarlet300,
-    val repositoryNegativeLowerLight: Color = ColorRawTokens.colorFunctionalScarlet200,
-    val repositoryNegativeLowestLight: Color = ColorRawTokens.colorFunctionalScarlet100,
-    val repositoryNegativeDefaultDark: Color = ColorRawTokens.colorFunctionalScarlet600,
-    val repositoryNegativeHighDark: Color = ColorRawTokens.colorFunctionalScarlet700,
-    val repositoryNegativeHigherDark: Color = ColorRawTokens.colorFunctionalScarlet800,
-    val repositoryNegativeHighestDark: Color = ColorRawTokens.colorFunctionalScarlet900,
-    val repositoryNegativeLowDark: Color = ColorRawTokens.colorFunctionalScarlet300,
-    val repositoryNegativeLowerDark: Color = ColorRawTokens.colorFunctionalScarlet200,
-    val repositoryNegativeLowestDark: Color = ColorRawTokens.colorFunctionalScarlet100,
-    val repositoryNeutralEmphasizedBlackLight: Color = ColorRawTokens.colorFunctionalBlack,
-    val repositoryNeutralEmphasizedHighLight: Color = ColorRawTokens.colorFunctionalDarkGray720,
-    val repositoryNeutralEmphasizedHigherLight: Color = ColorRawTokens.colorFunctionalDarkGray800,
-    val repositoryNeutralEmphasizedHighestLight: Color = ColorRawTokens.colorFunctionalDarkGray880,
-    val repositoryNeutralEmphasizedMediumLight: Color = ColorRawTokens.colorFunctionalDarkGray640,
-    val repositoryNeutralEmphasizedBlackDark: Color = ColorRawTokens.colorFunctionalBlack,
-    val repositoryNeutralEmphasizedHighDark: Color = ColorRawTokens.colorFunctionalDarkGray720,
-    val repositoryNeutralEmphasizedHigherDark: Color = ColorRawTokens.colorFunctionalDarkGray800,
-    val repositoryNeutralEmphasizedHighestDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
-    val repositoryNeutralEmphasizedMediumDark: Color = ColorRawTokens.colorFunctionalDarkGray640,
-    val repositoryNeutralMutedLowerLight: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val repositoryNeutralMutedLowestLight: Color = ColorRawTokens.colorFunctionalLightGray80,
-    val repositoryNeutralMutedWhiteLight: Color = ColorRawTokens.colorFunctionalWhite,
-    val repositoryNeutralMutedLowerDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    val repositoryNeutralMutedLowestDark: Color = ColorRawTokens.colorFunctionalLightGray80,
-    val repositoryNeutralMutedWhiteDark: Color = ColorRawTokens.colorFunctionalWhite,
-    val repositoryOpacityBlackHigherLight: Color = ColorRawTokens.colorOpacityBlack680,
-    val repositoryOpacityBlackHighestLight: Color = ColorRawTokens.colorOpacityBlack840,
-    val repositoryOpacityBlackLowLight: Color = ColorRawTokens.colorOpacityBlack200,
-    val repositoryOpacityBlackLowerLight: Color = ColorRawTokens.colorOpacityBlack80,
-    val repositoryOpacityBlackLowestLight: Color = ColorRawTokens.colorOpacityBlack40,
-    val repositoryOpacityBlackMediumLight: Color = ColorRawTokens.colorOpacityBlack280,
-    val repositoryOpacityBlackTransparentLight: Color = ColorRawTokens.colorOpacityBlack0,
-    val repositoryOpacityBlackHigherDark: Color = ColorRawTokens.colorOpacityBlack680,
-    val repositoryOpacityBlackHighestDark: Color = ColorRawTokens.colorOpacityBlack840,
-    val repositoryOpacityBlackLowDark: Color = ColorRawTokens.colorOpacityBlack200,
-    val repositoryOpacityBlackLowerDark: Color = ColorRawTokens.colorOpacityBlack80,
-    val repositoryOpacityBlackLowestDark: Color = ColorRawTokens.colorOpacityBlack40,
-    val repositoryOpacityBlackMediumDark: Color = ColorRawTokens.colorOpacityBlack280,
-    val repositoryOpacityBlackTransparentDark: Color = ColorRawTokens.colorOpacityBlack0,
-    val repositoryOpacityInfoLight: Color = ColorRawTokens.colorOpacityDodgerBlue,
-    val repositoryOpacityNegativeLight: Color = ColorRawTokens.colorOpacityScarlet,
-    val repositoryOpacityPositiveLight: Color = ColorRawTokens.colorOpacityMalachite,
-    val repositoryOpacityWarningLight: Color = ColorRawTokens.colorOpacitySun,
-    val repositoryOpacityWhiteHighLight: Color = ColorRawTokens.colorOpacityWhite640,
-    val repositoryOpacityWhiteHigherLight: Color = ColorRawTokens.colorOpacityWhite800,
-    val repositoryOpacityWhiteHighestLight: Color = ColorRawTokens.colorOpacityWhite920,
-    val repositoryOpacityWhiteLowLight: Color = ColorRawTokens.colorOpacityWhite200,
-    val repositoryOpacityWhiteLowerLight: Color = ColorRawTokens.colorOpacityWhite80,
-    val repositoryOpacityWhiteLowestLight: Color = ColorRawTokens.colorOpacityWhite40,
-    val repositoryOpacityWhiteTransparentLight: Color = ColorRawTokens.colorOpacityWhite0,
-    val repositoryOpacityWhiteHighDark: Color = ColorRawTokens.colorOpacityWhite640,
-    val repositoryOpacityWhiteHigherDark: Color = ColorRawTokens.colorOpacityWhite800,
-    val repositoryOpacityWhiteHighestDark: Color = ColorRawTokens.colorOpacityWhite920,
-    val repositoryOpacityWhiteLowDark: Color = ColorRawTokens.colorOpacityWhite200,
-    val repositoryOpacityWhiteLowerDark: Color = ColorRawTokens.colorOpacityWhite80,
-    val repositoryOpacityWhiteLowestDark: Color = ColorRawTokens.colorOpacityWhite40,
-    val repositoryOpacityWhiteTransparentDark: Color = ColorRawTokens.colorOpacityWhite0,
-    val repositoryOpacityInfoDark: Color = ColorRawTokens.colorOpacityDodgerBlue,
-    val repositoryOpacityNegativeDark: Color = ColorRawTokens.colorOpacityScarlet,
-    val repositoryOpacityPositiveDark: Color = ColorRawTokens.colorOpacityMalachite,
-    val repositoryOpacityWarningDark: Color = ColorRawTokens.colorOpacitySun,
-    val repositoryPositiveDefaultLight: Color = ColorRawTokens.colorFunctionalMalachite500,
-    val repositoryPositiveHighestLight: Color = ColorRawTokens.colorFunctionalMalachite900,
-    val repositoryPositiveLowLight: Color = ColorRawTokens.colorFunctionalMalachite300,
-    val repositoryPositiveLowestLight: Color = ColorRawTokens.colorFunctionalMalachite100,
-    val repositoryPositiveDefaultDark: Color = ColorRawTokens.colorFunctionalMalachite500,
-    val repositoryPositiveHighestDark: Color = ColorRawTokens.colorFunctionalMalachite900,
-    val repositoryPositiveLowDark: Color = ColorRawTokens.colorFunctionalMalachite300,
-    val repositoryPositiveLowestDark: Color = ColorRawTokens.colorFunctionalMalachite100,
-    val repositoryPrimaryDefaultLight: Color = OrangeBrandColorRawTokens.colorOrange550,
-    val repositoryPrimaryLowLight: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val repositoryPrimaryDefaultDark: Color = OrangeBrandColorRawTokens.colorOrange550,
-    val repositoryPrimaryLowDark: Color = OrangeBrandColorRawTokens.colorOrange500,
-    val repositoryWarningDefaultLight: Color = ColorRawTokens.colorFunctionalSun500,
-    val repositoryWarningHighestLight: Color = ColorRawTokens.colorFunctionalSun900,
-    val repositoryWarningLowLight: Color = ColorRawTokens.colorFunctionalSun300,
-    val repositoryWarningLowestLight: Color = ColorRawTokens.colorFunctionalSun100,
-    val repositoryWarningDefaultDark: Color = ColorRawTokens.colorFunctionalSun500,
-    val repositoryWarningHighestDark: Color = ColorRawTokens.colorFunctionalSun900,
-    val repositoryWarningLowDark: Color = ColorRawTokens.colorFunctionalSun300,
-    val repositoryWarningLowestDark: Color = ColorRawTokens.colorFunctionalSun100
-)
+interface OudsColorRepositorySemanticTokens {
+    val repositoryAccentDefaultLight: Color
+    val repositoryAccentHighestLight: Color
+    val repositoryAccentLowLight: Color
+    val repositoryAccentLowestLight: Color
+    val repositoryAccentDefaultDark: Color
+    val repositoryAccentHighestDark: Color
+    val repositoryAccentLowDark: Color
+    val repositoryAccentLowestDark: Color
+    val repositoryInfoDefaultLight: Color
+    val repositoryInfoHighestLight: Color
+    val repositoryInfoLowLight: Color
+    val repositoryInfoLowestLight: Color
+    val repositoryInfoDefaultDark: Color
+    val repositoryInfoHighestDark: Color
+    val repositoryInfoLowDark: Color
+    val repositoryInfoLowestDark: Color
+    val repositoryNegativeDefaultLight: Color
+    val repositoryNegativeHighLight: Color
+    val repositoryNegativeHigherLight: Color
+    val repositoryNegativeHighestLight: Color
+    val repositoryNegativeLowLight: Color
+    val repositoryNegativeLowerLight: Color
+    val repositoryNegativeLowestLight: Color
+    val repositoryNegativeDefaultDark: Color
+    val repositoryNegativeHighDark: Color
+    val repositoryNegativeHigherDark: Color
+    val repositoryNegativeHighestDark: Color
+    val repositoryNegativeLowDark: Color
+    val repositoryNegativeLowerDark: Color
+    val repositoryNegativeLowestDark: Color
+    val repositoryNeutralEmphasizedBlackLight: Color
+    val repositoryNeutralEmphasizedHighLight: Color
+    val repositoryNeutralEmphasizedHigherLight: Color
+    val repositoryNeutralEmphasizedHighestLight: Color
+    val repositoryNeutralEmphasizedMediumLight: Color
+    val repositoryNeutralEmphasizedBlackDark: Color
+    val repositoryNeutralEmphasizedHighDark: Color
+    val repositoryNeutralEmphasizedHigherDark: Color
+    val repositoryNeutralEmphasizedHighestDark: Color
+    val repositoryNeutralEmphasizedMediumDark: Color
+    val repositoryNeutralMutedLowerLight: Color
+    val repositoryNeutralMutedLowestLight: Color
+    val repositoryNeutralMutedWhiteLight: Color
+    val repositoryNeutralMutedLowerDark: Color
+    val repositoryNeutralMutedLowestDark: Color
+    val repositoryNeutralMutedWhiteDark: Color
+    val repositoryOpacityBlackHigherLight: Color
+    val repositoryOpacityBlackHighestLight: Color
+    val repositoryOpacityBlackLowLight: Color
+    val repositoryOpacityBlackLowerLight: Color
+    val repositoryOpacityBlackLowestLight: Color
+    val repositoryOpacityBlackMediumLight: Color
+    val repositoryOpacityBlackTransparentLight: Color
+    val repositoryOpacityBlackHigherDark: Color
+    val repositoryOpacityBlackHighestDark: Color
+    val repositoryOpacityBlackLowDark: Color
+    val repositoryOpacityBlackLowerDark: Color
+    val repositoryOpacityBlackLowestDark: Color
+    val repositoryOpacityBlackMediumDark: Color
+    val repositoryOpacityBlackTransparentDark: Color
+    val repositoryOpacityInfoLight: Color
+    val repositoryOpacityNegativeLight: Color
+    val repositoryOpacityPositiveLight: Color
+    val repositoryOpacityWarningLight: Color
+    val repositoryOpacityWhiteHighLight: Color
+    val repositoryOpacityWhiteHigherLight: Color
+    val repositoryOpacityWhiteHighestLight: Color
+    val repositoryOpacityWhiteLowLight: Color
+    val repositoryOpacityWhiteLowerLight: Color
+    val repositoryOpacityWhiteLowestLight: Color
+    val repositoryOpacityWhiteTransparentLight: Color
+    val repositoryOpacityWhiteHighDark: Color
+    val repositoryOpacityWhiteHigherDark: Color
+    val repositoryOpacityWhiteHighestDark: Color
+    val repositoryOpacityWhiteLowDark: Color
+    val repositoryOpacityWhiteLowerDark: Color
+    val repositoryOpacityWhiteLowestDark: Color
+    val repositoryOpacityWhiteTransparentDark: Color
+    val repositoryOpacityInfoDark: Color
+    val repositoryOpacityNegativeDark: Color
+    val repositoryOpacityPositiveDark: Color
+    val repositoryOpacityWarningDark: Color
+    val repositoryPositiveDefaultLight: Color
+    val repositoryPositiveHighestLight: Color
+    val repositoryPositiveLowLight: Color
+    val repositoryPositiveLowestLight: Color
+    val repositoryPositiveDefaultDark: Color
+    val repositoryPositiveHighestDark: Color
+    val repositoryPositiveLowDark: Color
+    val repositoryPositiveLowestDark: Color
+    val repositoryPrimaryDefaultLight: Color
+    val repositoryPrimaryLowLight: Color
+    val repositoryPrimaryDefaultDark: Color
+    val repositoryPrimaryLowDark: Color
+    val repositoryWarningDefaultLight: Color
+    val repositoryWarningHighestLight: Color
+    val repositoryWarningLowLight: Color
+    val repositoryWarningLowestLight: Color
+    val repositoryWarningDefaultDark: Color
+    val repositoryWarningHighestDark: Color
+    val repositoryWarningLowDark: Color
+    val repositoryWarningLowestDark: Color
+}

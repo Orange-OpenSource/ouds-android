@@ -73,13 +73,13 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsTypography
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
-import com.orange.ouds.theme.OudsBorderStyle
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

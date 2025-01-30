@@ -15,6 +15,7 @@ package com.orange.ouds.theme
 import android.os.Parcelable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
@@ -37,22 +38,24 @@ interface OudsThemeContract : Parcelable {
     val name: String
 
     /**
+     * Material color matching used in the theme
+     */
+    val materialColorTokens: OudsMaterialColorTokens
+
+    /**
      * Color semantic tokens values used in the theme
      */
     val colorTokens: OudsColorSemanticTokens
-        get() = OudsColorSemanticTokens()
 
     /**
      * Border semantic tokens values used in the theme
      */
     val borderTokens: OudsBorderSemanticTokens
-        get() = OudsBorderSemanticTokens()
 
     /**
      * Elevation semantic tokens values used in the theme
      */
     val elevationTokens: OudsElevationSemanticTokens
-        get() = OudsElevationSemanticTokens()
 
     /**
      * Font family used in the theme
@@ -65,31 +68,26 @@ interface OudsThemeContract : Parcelable {
      * Font semantic tokens values used in the theme
      */
     val fontTokens: OudsFontSemanticTokens
-        get() = OudsFontSemanticTokens()
 
     /**
      * Grid semantic tokens values used in the theme
      */
     val gridTokens: OudsGridSemanticTokens
-        get() = OudsGridSemanticTokens()
 
     /**
      * Opacity semantic tokens values used in the theme
      */
     val opacityTokens: OudsOpacitySemanticTokens
-        get() = OudsOpacitySemanticTokens()
 
     /**
      * Size semantic tokens values used in the theme
      */
     val sizeTokens: OudsSizeSemanticTokens
-        get() = OudsSizeSemanticTokens()
 
     /**
      * Space semantic tokens values used in the theme
      */
     val spaceTokens: OudsSpaceSemanticTokens
-        get() = OudsSpaceSemanticTokens()
 
     /**
      * Customization of the OUDS components if needed

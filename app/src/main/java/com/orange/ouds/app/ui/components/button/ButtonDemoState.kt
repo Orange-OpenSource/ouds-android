@@ -20,8 +20,8 @@ import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.R
-import com.orange.ouds.core.component.button.OudsButton
-import com.orange.ouds.core.component.button.OudsButtonDefaults
+import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonDefaults
 
 @Composable
 fun rememberButtonDemoState(

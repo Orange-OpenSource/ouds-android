@@ -12,92 +12,90 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens
-
-data class OudsSizeSemanticTokens(
-    val iconDecorative2xl: Float = DimensionRawTokens.dimension900,
-    val iconDecorative2xs: Float = DimensionRawTokens.dimension200,
-    val iconDecorativeLg: Float = DimensionRawTokens.dimension600,
-    val iconDecorativeMd: Float = DimensionRawTokens.dimension500,
-    val iconDecorativeSm: Float = DimensionRawTokens.dimension400,
-    val iconDecorativeXl: Float = DimensionRawTokens.dimension700,
-    val iconDecorativeXs: Float = DimensionRawTokens.dimension300,
-    val iconWithBodyLargeSizeLgMobile: Float = DimensionRawTokens.dimension350,
-    val iconWithBodyLargeSizeLgTablet: Float = DimensionRawTokens.dimension350,
-    val iconWithBodyLargeSizeMdMobile: Float = DimensionRawTokens.dimension300,
-    val iconWithBodyLargeSizeMdTablet: Float = DimensionRawTokens.dimension300,
-    val iconWithBodyLargeSizeSmMobile: Float = DimensionRawTokens.dimension250,
-    val iconWithBodyLargeSizeSmTablet: Float = DimensionRawTokens.dimension250,
-    val iconWithBodyMediumSizeLgMobile: Float = DimensionRawTokens.dimension300,
-    val iconWithBodyMediumSizeLgTablet: Float = DimensionRawTokens.dimension300,
-    val iconWithBodyMediumSizeMdMobile: Float = DimensionRawTokens.dimension250,
-    val iconWithBodyMediumSizeMdTablet: Float = DimensionRawTokens.dimension250,
-    val iconWithBodyMediumSizeSmMobile: Float = DimensionRawTokens.dimension200,
-    val iconWithBodyMediumSizeSmTablet: Float = DimensionRawTokens.dimension200,
-    val iconWithBodySmallSizeLgMobile: Float = DimensionRawTokens.dimension250,
-    val iconWithBodySmallSizeLgTablet: Float = DimensionRawTokens.dimension250,
-    val iconWithBodySmallSizeMdMobile: Float = DimensionRawTokens.dimension200,
-    val iconWithBodySmallSizeMdTablet: Float = DimensionRawTokens.dimension200,
-    val iconWithBodySmallSizeSmMobile: Float = DimensionRawTokens.dimension150,
-    val iconWithBodySmallSizeSmTablet: Float = DimensionRawTokens.dimension150,
-    val iconWithHeadingLargeSizeLgMobile: Float = DimensionRawTokens.dimension600,
-    val iconWithHeadingLargeSizeLgTablet: Float = DimensionRawTokens.dimension650,
-    val iconWithHeadingLargeSizeMdMobile: Float = DimensionRawTokens.dimension550,
-    val iconWithHeadingLargeSizeMdTablet: Float = DimensionRawTokens.dimension600,
-    val iconWithHeadingLargeSizeSmMobile: Float = DimensionRawTokens.dimension500,
-    val iconWithHeadingLargeSizeSmTablet: Float = DimensionRawTokens.dimension550,
-    val iconWithHeadingMediumSizeLgMobile: Float = DimensionRawTokens.dimension550,
-    val iconWithHeadingMediumSizeLgTablet: Float = DimensionRawTokens.dimension600,
-    val iconWithHeadingMediumSizeMdMobile: Float = DimensionRawTokens.dimension500,
-    val iconWithHeadingMediumSizeMdTablet: Float = DimensionRawTokens.dimension550,
-    val iconWithHeadingMediumSizeSmMobile: Float = DimensionRawTokens.dimension400,
-    val iconWithHeadingMediumSizeSmTablet: Float = DimensionRawTokens.dimension500,
-    val iconWithHeadingSmallSizeLgMobile: Float = DimensionRawTokens.dimension550,
-    val iconWithHeadingSmallSizeLgTablet: Float = DimensionRawTokens.dimension550,
-    val iconWithHeadingSmallSizeMdMobile: Float = DimensionRawTokens.dimension500,
-    val iconWithHeadingSmallSizeMdTablet: Float = DimensionRawTokens.dimension500,
-    val iconWithHeadingSmallSizeSmMobile: Float = DimensionRawTokens.dimension400,
-    val iconWithHeadingSmallSizeSmTablet: Float = DimensionRawTokens.dimension400,
-    val iconWithHeadingXlargeSizeLgMobile: Float = DimensionRawTokens.dimension650,
-    val iconWithHeadingXlargeSizeLgTablet: Float = DimensionRawTokens.dimension800,
-    val iconWithHeadingXlargeSizeMdMobile: Float = DimensionRawTokens.dimension600,
-    val iconWithHeadingXlargeSizeMdTablet: Float = DimensionRawTokens.dimension700,
-    val iconWithHeadingXlargeSizeSmMobile: Float = DimensionRawTokens.dimension550,
-    val iconWithHeadingXlargeSizeSmTablet: Float = DimensionRawTokens.dimension650,
-    val iconWithLabelLargeSizeLg: Float = DimensionRawTokens.dimension400,
-    val iconWithLabelLargeSizeMd: Float = DimensionRawTokens.dimension350,
-    val iconWithLabelLargeSizeSm: Float = DimensionRawTokens.dimension300,
-    val iconWithLabelLargeSizeXl: Float = DimensionRawTokens.dimension550,
-    val iconWithLabelLargeSizeXs: Float = DimensionRawTokens.dimension250,
-    val iconWithLabelMediumSizeLg: Float = DimensionRawTokens.dimension300,
-    val iconWithLabelMediumSizeMd: Float = DimensionRawTokens.dimension250,
-    val iconWithLabelMediumSizeSm: Float = DimensionRawTokens.dimension200,
-    val iconWithLabelMediumSizeXs: Float = DimensionRawTokens.dimension150,
-    val iconWithLabelSmallSizeLg: Float = DimensionRawTokens.dimension250,
-    val iconWithLabelSmallSizeMd: Float = DimensionRawTokens.dimension200,
-    val iconWithLabelSmallSizeSm: Float = DimensionRawTokens.dimension150,
-    val iconWithLabelSmallSizeXs: Float = DimensionRawTokens.dimension100,
-    val iconWithLabelXlargeSizeLg: Float = DimensionRawTokens.dimension550,
-    val iconWithLabelXlargeSizeMd: Float = DimensionRawTokens.dimension500,
-    val iconWithLabelXlargeSizeSm: Float = DimensionRawTokens.dimension400,
-    val maxWidthTypeBodyLargeMobile: Float = DimensionRawTokens.dimension6000,
-    val maxWidthTypeBodyLargeTablet: Float = DimensionRawTokens.dimension6000,
-    val maxWidthTypeBodyMediumMobile: Float = DimensionRawTokens.dimension6000,
-    val maxWidthTypeBodyMediumTablet: Float = DimensionRawTokens.dimension6000,
-    val maxWidthTypeBodySmallMobile: Float = DimensionRawTokens.dimension6000,
-    val maxWidthTypeBodySmallTablet: Float = DimensionRawTokens.dimension6000,
-    val maxWidthTypeDisplayLargeMobile: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeDisplayLargeTablet: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeDisplayMediumMobile: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeDisplayMediumTablet: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeDisplaySmallMobile: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeDisplaySmallTablet: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeHeadingLargeMobile: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeHeadingLargeTablet: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeHeadingMediumMobile: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeHeadingMediumTablet: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeHeadingSmallMobile: Float = DimensionRawTokens.dimension6000,
-    val maxWidthTypeHeadingSmallTablet: Float = DimensionRawTokens.dimension6000,
-    val maxWidthTypeHeadingXlargeMobile: Float = DimensionRawTokens.dimension9000,
-    val maxWidthTypeHeadingXlargeTablet: Float = DimensionRawTokens.dimension9000
-)
+interface OudsSizeSemanticTokens {
+    val iconDecorative2xl: Float
+    val iconDecorative2xs: Float
+    val iconDecorativeLg: Float
+    val iconDecorativeMd: Float
+    val iconDecorativeSm: Float
+    val iconDecorativeXl: Float
+    val iconDecorativeXs: Float
+    val iconWithBodyLargeSizeLgMobile: Float
+    val iconWithBodyLargeSizeLgTablet: Float
+    val iconWithBodyLargeSizeMdMobile: Float
+    val iconWithBodyLargeSizeMdTablet: Float
+    val iconWithBodyLargeSizeSmMobile: Float
+    val iconWithBodyLargeSizeSmTablet: Float
+    val iconWithBodyMediumSizeLgMobile: Float
+    val iconWithBodyMediumSizeLgTablet: Float
+    val iconWithBodyMediumSizeMdMobile: Float
+    val iconWithBodyMediumSizeMdTablet: Float
+    val iconWithBodyMediumSizeSmMobile: Float
+    val iconWithBodyMediumSizeSmTablet: Float
+    val iconWithBodySmallSizeLgMobile: Float
+    val iconWithBodySmallSizeLgTablet: Float
+    val iconWithBodySmallSizeMdMobile: Float
+    val iconWithBodySmallSizeMdTablet: Float
+    val iconWithBodySmallSizeSmMobile: Float
+    val iconWithBodySmallSizeSmTablet: Float
+    val iconWithHeadingLargeSizeLgMobile: Float
+    val iconWithHeadingLargeSizeLgTablet: Float
+    val iconWithHeadingLargeSizeMdMobile: Float
+    val iconWithHeadingLargeSizeMdTablet: Float
+    val iconWithHeadingLargeSizeSmMobile: Float
+    val iconWithHeadingLargeSizeSmTablet: Float
+    val iconWithHeadingMediumSizeLgMobile: Float
+    val iconWithHeadingMediumSizeLgTablet: Float
+    val iconWithHeadingMediumSizeMdMobile: Float
+    val iconWithHeadingMediumSizeMdTablet: Float
+    val iconWithHeadingMediumSizeSmMobile: Float
+    val iconWithHeadingMediumSizeSmTablet: Float
+    val iconWithHeadingSmallSizeLgMobile: Float
+    val iconWithHeadingSmallSizeLgTablet: Float
+    val iconWithHeadingSmallSizeMdMobile: Float
+    val iconWithHeadingSmallSizeMdTablet: Float
+    val iconWithHeadingSmallSizeSmMobile: Float
+    val iconWithHeadingSmallSizeSmTablet: Float
+    val iconWithHeadingXlargeSizeLgMobile: Float
+    val iconWithHeadingXlargeSizeLgTablet: Float
+    val iconWithHeadingXlargeSizeMdMobile: Float
+    val iconWithHeadingXlargeSizeMdTablet: Float
+    val iconWithHeadingXlargeSizeSmMobile: Float
+    val iconWithHeadingXlargeSizeSmTablet: Float
+    val iconWithLabelLargeSizeLg: Float
+    val iconWithLabelLargeSizeMd: Float
+    val iconWithLabelLargeSizeSm: Float
+    val iconWithLabelLargeSizeXl: Float
+    val iconWithLabelLargeSizeXs: Float
+    val iconWithLabelMediumSizeLg: Float
+    val iconWithLabelMediumSizeMd: Float
+    val iconWithLabelMediumSizeSm: Float
+    val iconWithLabelMediumSizeXs: Float
+    val iconWithLabelSmallSizeLg: Float
+    val iconWithLabelSmallSizeMd: Float
+    val iconWithLabelSmallSizeSm: Float
+    val iconWithLabelSmallSizeXs: Float
+    val iconWithLabelXlargeSizeLg: Float
+    val iconWithLabelXlargeSizeMd: Float
+    val iconWithLabelXlargeSizeSm: Float
+    val maxWidthTypeBodyLargeMobile: Float
+    val maxWidthTypeBodyLargeTablet: Float
+    val maxWidthTypeBodyMediumMobile: Float
+    val maxWidthTypeBodyMediumTablet: Float
+    val maxWidthTypeBodySmallMobile: Float
+    val maxWidthTypeBodySmallTablet: Float
+    val maxWidthTypeDisplayLargeMobile: Float
+    val maxWidthTypeDisplayLargeTablet: Float
+    val maxWidthTypeDisplayMediumMobile: Float
+    val maxWidthTypeDisplayMediumTablet: Float
+    val maxWidthTypeDisplaySmallMobile: Float
+    val maxWidthTypeDisplaySmallTablet: Float
+    val maxWidthTypeHeadingLargeMobile: Float
+    val maxWidthTypeHeadingLargeTablet: Float
+    val maxWidthTypeHeadingMediumMobile: Float
+    val maxWidthTypeHeadingMediumTablet: Float
+    val maxWidthTypeHeadingSmallMobile: Float
+    val maxWidthTypeHeadingSmallTablet: Float
+    val maxWidthTypeHeadingXlargeMobile: Float
+    val maxWidthTypeHeadingXlargeTablet: Float
+}

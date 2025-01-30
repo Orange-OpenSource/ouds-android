@@ -13,16 +13,14 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
-import com.orange.ouds.tokens.global.raw.OrangeBrandColorRawTokens
 
-data class OudsColorBgSemanticTokens(
-    val bgEmphasizedLight: Color = ColorRawTokens.colorFunctionalDarkGray880,
-    val bgPrimaryLight: Color = ColorRawTokens.colorFunctionalWhite,
-    val bgSecondaryLight: Color = ColorRawTokens.colorFunctionalLightGray80,
-    val bgTertiaryLight: Color = OrangeBrandColorRawTokens.colorWarmGray100,
-    val bgEmphasizedDark: Color = ColorRawTokens.colorFunctionalDarkGray640,
-    val bgPrimaryDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
-    val bgSecondaryDark: Color = ColorRawTokens.colorFunctionalDarkGray800,
-    val bgTertiaryDark: Color = OrangeBrandColorRawTokens.colorWarmGray900
-)
+interface OudsColorBgSemanticTokens {
+    val bgEmphasizedLight: Color
+    val bgPrimaryLight: Color
+    val bgSecondaryLight: Color
+    val bgTertiaryLight: Color
+    val bgEmphasizedDark: Color
+    val bgPrimaryDark: Color
+    val bgSecondaryDark: Color
+    val bgTertiaryDark: Color
+}

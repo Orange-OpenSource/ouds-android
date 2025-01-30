@@ -12,14 +12,14 @@
 
 package com.orange.ouds.core.component.content
 
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.orange.ouds.core.component.icon.OudsIcon
-import com.orange.ouds.core.component.icon.OudsIconDefaults
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -61,11 +61,13 @@ abstract class OudsComponentIcon<T> protected constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        OudsIcon(
-            graphicsObject = graphicsObject,
-            contentDescription = contentDescription,
-            modifier = modifier,
-            tint = tint.orElse { OudsIconDefaults.tint }
-        )
+        val iconTint = tint.orElse { LocalContentColor.current }
+
+        when (graphicsObject) {
+            is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
+            is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
+            is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
+            else -> {}
+        }
     }
 }

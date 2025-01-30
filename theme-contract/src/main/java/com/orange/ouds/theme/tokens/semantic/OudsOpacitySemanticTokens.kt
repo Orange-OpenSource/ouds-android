@@ -14,11 +14,11 @@ package com.orange.ouds.theme.tokens.semantic
 
 import com.orange.ouds.tokens.global.raw.OpacityRawTokens
 
-data class OudsOpacitySemanticTokens(
-    val invisible: Float = OpacityRawTokens.opacity0,
-    val medium: Float = OpacityRawTokens.opacity320,
-    val opaque: Float = OpacityRawTokens.opacity1000,
-    val strong: Float = OpacityRawTokens.opacity640,
-    val weak: Float = OpacityRawTokens.opacity160,
-    val weaker: Float = OpacityRawTokens.opacity40
-)
+interface OudsOpacitySemanticTokens {
+    val invisible: Float
+    val medium: Float
+    val opaque: Float
+    val strong: Float
+    val weak: Float
+    val weaker: Float
+}

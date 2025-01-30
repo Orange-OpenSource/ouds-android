@@ -33,8 +33,8 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChipsColum
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
-import com.orange.ouds.core.component.button.OudsButton
-import com.orange.ouds.core.component.coloredbox.OudsColoredBox
+import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
