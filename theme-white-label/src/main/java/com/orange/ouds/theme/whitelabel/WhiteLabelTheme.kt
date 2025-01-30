@@ -19,6 +19,7 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
@@ -27,6 +28,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
+import com.orange.ouds.theme.whitelabel.tokens.material.WhiteLabelMaterialColorTokens
 import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelBorderSemanticTokens
 import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorSemanticTokens
 import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelElevationSemanticTokens
@@ -42,6 +44,9 @@ open class WhiteLabelTheme : OudsThemeContract {
 
     override val name: String
         get() = "White label"
+
+    override val materialColorTokens: OudsMaterialColorTokens
+        get() = WhiteLabelMaterialColorTokens()
 
     override val colorTokens: OudsColorSemanticTokens
         get() = WhiteLabelColorSemanticTokens()
