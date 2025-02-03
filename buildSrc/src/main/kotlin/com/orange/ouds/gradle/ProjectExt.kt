@@ -214,7 +214,7 @@ fun Project.updateChangelog(version: String?) {
             }
         })
 
-    val changelog = changelogHeader + gitChangelogApi.render().trim()
+    val changelog = changelogHeader + gitChangelogApi.render().trim().replace("&#x60;", "`")
     File("CHANGELOG.md").writeText(changelog)
 }
 

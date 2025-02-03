@@ -20,6 +20,7 @@ internal object Markdown {
         return markdown.replaceEscapedCharacters()
             .replaceLinks()
             .replaceCode()
+            .replaceBold()
             .replaceHeadings()
             .replaceNewlines()
     }
@@ -31,10 +32,12 @@ internal object Markdown {
 
     private fun CharSequence.replaceLinks(): String {
         return replace("<([^>]*)>".toRegex(), "<a href=\"$1\">$1</a>")
-            .replace("\\[(.[^]]*)]\\(([^)]*)\\)".toRegex(), "<a href=\"$2\">$1</a>")
+            .replace("\\[([^]]*)]\\(([^)]*)\\)".toRegex(), "<a href=\"$2\">$1</a>")
     }
 
     private fun CharSequence.replaceCode() = replace("`([^`]*)`".toRegex(), "<code>$1</code>")
+
+    private fun CharSequence.replaceBold() = replace("\\*\\*([^*]*)\\*\\*".toRegex(), "<strong>$1</strong>")
 
     private fun CharSequence.replaceHeadings(): String {
         var result = toString()
