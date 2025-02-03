@@ -1,0 +1,40 @@
+name: app-distribution-beta
+
+on:
+  schedule:
+    - cron: '31 3 * * MON-FRI'
+  workflow_dispatch:
+
+jobs:
+  app-distribution-beta:
+    runs-on: ubuntu-latest
+    if: github.repository == 'Orange-OpenSource/ouds-android'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Upload APK to Firebase App Distribution
+        uses: ./.github/actions/app-distribution
+        with:
+          append-git-sha-to-version-name: 'true'
+          variant: 'betaRelease'
+          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
+          git-tag-prefix: 'ci/beta-app'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          group: 'ouds-android-beta'

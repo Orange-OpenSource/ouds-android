@@ -1,0 +1,34 @@
+# Android Studio / IntelliJ
+/captures
+.externalNativeBuild
+.cxx
+*.iml
+.idea/caches
+.idea/compiler.xml
+.idea/gradle.xml
+.idea/libraries
+.idea/misc.xml
+.idea/modules.xml
+.idea/other.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/deploymentTargetSelector.xml
+.idea/androidTestResultsUserPreferences.xml
+.idea/emulatorDisplays.xml
+
+# Gradle files
+.gradle
+build/
+
+# Local configuration file
+local.properties
+
+# MacOS
+.DS_Store
+
+# Node.js
+node_modules/
+
+# Dokka generated files
+docs/dokka/

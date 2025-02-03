@@ -1,0 +1,111 @@
+name: build-docs
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  workflow_dispatch:
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build documentation with Dokka
+        run: ./gradlew dokkaGenerate
+
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs
+          path: docs/dokka
+
+  github-pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+          path: docs
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Package and upload Pages artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  netlify:
+    environment:
+      name: netlify
+      url: ${{ steps.deployment.outputs.deploy_preview_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name != 'push' || github.ref != 'refs/heads/master'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+          path: docs
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install Netlify CLI
+        run: npm ci
+
+      - name: Deploy to Netlify
+        id: deployment
+        run: |
+          # Git SHA is equal to github.event.pull_request.head.sha for pull requests
+          # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
+          BRANCH_SHA=${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
+          ./gradlew publishDocumentationToNetlify -PdocumentationPath=docs -PnetlifySiteId=${{ secrets.NETLIFY_SITE_ID }} -PnetlifyToken=${{ secrets.NETLIFY_TOKEN }} -PcommitSha=$COMMIT_SHA
+          # Set environment URL
+          echo deploy_preview_url=$(cat netlify_deploy_preview_url.txt) >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

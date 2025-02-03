@@ -1,0 +1,187 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run instrumented tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew :core:connectedCheck
+
+      - name: Run snapshot tests
+        run: ./gradlew :core:verifyPaparazziDebug
+
+      - name: Run Android Linter
+        run: ./gradlew lintProdDebug lintProdRelease
+
+      - name: Build
+        run: |
+          # Git SHA is equal to github.event.pull_request.head.sha for pull requests
+          # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
+          BRANCH_SHA=${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
+          ./gradlew assembleProd -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
+
+      - name: Upload tests artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests
+          path: |
+            core/build/paparazzi
+            core/build/reports/paparazzi
+            core/build/reports/androidTests
+            core/build/reports/tests
+
+      - name: Upload app artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: app/build/outputs/apk/*/*/*.apk
+
+      - name: Upload core artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: core
+          path: core/build/outputs/aar/*.aar
+
+      - name: Upload foundation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundation
+          path: foundation/build/outputs/aar/*.aar
+
+      - name: Upload global-raw-tokens artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-raw-tokens
+          path: global-raw-tokens/build/outputs/aar/*.aar
+
+      - name: Upload theme-contract artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-contract
+          path: theme-contract/build/outputs/aar/*.aar
+
+      - name: Upload theme-orange artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-orange
+          path: theme-orange/build/outputs/aar/*.aar
+
+      - name: Upload theme-white-label artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-white-label
+          path: theme-white-label/build/outputs/aar/*.aar
+
+  maven-central-release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    needs: build
+    environment:
+      name: maven-central-release
+      url: https://mvnrepository.com/artifact/com.orange.ouds.android
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Publish release to Maven Central
+        env:
+          GNUPG_SIGNING_KEY_ID: ${{ secrets.GNUPG_SIGNING_KEY_ID }}
+          GNUPG_SIGNING_PASSWORD: ${{ secrets.GNUPG_SIGNING_PASSWORD }}
+          GNUPG_SIGNING_SECRET_KEY: ${{ secrets.GNUPG_SIGNING_SECRET_KEY }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+        run: ./gradlew publish
+
+  github-release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    needs: build
+    environment:
+      name: github-release
+      url: https://github.com/Orange-OpenSource/ouds-android/releases
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Publish release to GitHub
+        run: ./gradlew publishToGitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

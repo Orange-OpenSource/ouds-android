@@ -1,0 +1,34 @@
+{{#tags}}
+## [{{name}}]({{tagChangesUrl .}}){{#ifEquals tagTime ""}}{{else}} ({{tagDate}}){{/ifEquals}}
+  {{#ifContainsBreaking commits}}
+
+### Breaking changes
+
+    {{#commits}}
+      {{#ifCommitBreaking .}}
+-{{#eachCommitScope .}} **{{.}}**{{/eachCommitScope}} {{commitDescriptionWithPullRequestUrl .}}
+      {{/ifCommitBreaking}}
+    {{/commits}}
+  {{/ifContainsBreaking}}
+  {{#ifContainsType commits type='feat'}}
+
+### Features
+
+    {{#commits}}
+      {{#ifCommitType . type='feat'}}
+-{{#eachCommitScope .}} **{{.}}**{{/eachCommitScope}} {{commitDescriptionWithPullRequestUrl .}}
+      {{/ifCommitType}}
+    {{/commits}}
+  {{/ifContainsType}}
+  {{#ifContainsType commits type='fix'}}
+
+### Bug Fixes
+
+    {{#commits}}
+      {{#ifCommitType . type='fix'}}
+-{{#eachCommitScope .}} **{{.}}**{{/eachCommitScope}} {{commitDescriptionWithPullRequestUrl .}}
+      {{/ifCommitType}}
+    {{/commits}}
+  {{/ifContainsType}}
+
+{{/tags}}

@@ -1,0 +1,86 @@
+<!--
+  ~ Software Name: OUDS Android
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="108dp"
+    android:viewportHeight="1080"
+    android:viewportWidth="1080"
+    android:width="108dp">
+
+    <path
+        android:fillAlpha="0.4"
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M540.8,279L323.6,409.1l0.2,260.3L540.7,799.4l217.2,-130.1L757.9,409.1ZM565,554 L588.9,539.7L588.9,741.9l-23.8,14.3L565,554ZM540.8,307.9L709.3,409.1 540.8,510.4 372.1,409.2ZM613.3,727.3L613.3,525l23.8,-14.3L637.1,713ZM661.5,496 L685.3,481.7L685.3,684l-23.8,14.3v-202.3ZM709.7,669.4L709.7,467l23.8,-14.3L733.5,655.1Z"
+        android:strokeColor="#fff"
+        android:strokeLineJoin="round"
+        android:strokeWidth="5" />
+
+    <path
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M757.7,410.8L540.6,540.1Z"
+        android:strokeColor="#f8f9fc"
+        android:strokeWidth="5" />
+
+    <path
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M323.8,410.8L540.3,539.7Z"
+        android:strokeColor="#f8f9fc"
+        android:strokeWidth="5" />
+
+    <path
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M710.2,641.7l22.8,13.5Z"
+        android:strokeColor="#f8f9fc"
+        android:strokeWidth="5" />
+
+    <path
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M662.6,671.6L685.5,685.2Z"
+        android:strokeColor="#f8f9fc"
+        android:strokeWidth="5" />
+
+    <path
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M614.2,700.6l23.2,13.8Z"
+        android:strokeColor="#f8f9fc"
+        android:strokeWidth="5" />
+
+    <path
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M565.7,729.4l23,13.7Z"
+        android:strokeColor="#f8f9fc"
+        android:strokeWidth="5" />
+
+    <path
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M540.8,800.4v0Z"
+        android:strokeColor="#fff"
+        android:strokeWidth="5" />
+
+    <path
+        android:fillAlpha="0.3"
+        android:fillColor="#fff"
+        android:fillType="evenOdd"
+        android:pathData="M451.3,658.8l1.1,0.7 0.2,2.1c2.1,12.8 10.7,24.4 24.1,32.5a9.8,9.8 0,0 0,4.5 1.6c7.5,3.6 13.1,2.4 13.1,-3.7a13.9,13.9 0,0 0,-5.8 -10.7A40.1,40.1 0,0 0,484 678c-6.5,-3.9 -8.4,-8 -8.4,-17.8V588.8a23.6,23.6 0,0 0,-11.6 -19.9c-7.1,-4.3 -11.7,-2 -11.7,5.6V580.7l-1.2,-0.7a79.6,79.6 0,0 0,-33.7 -40c-26,-15.7 -43.1,-4.1 -43.1,29.6V578.1c0,33.8 16.7,65 43.2,81C433.9,669 446.5,668.8 451.3,658.8ZM424.6,643.3c-15.6,-9.4 -25.6,-29.2 -25.6,-50.9v-7.4c0,-22.6 9.2,-30.3 25,-20.7 16.9,10.2 27.2,30.1 27.2,52.3v7.4C451.3,645.4 440.9,653.1 424.6,643.3Z"
+        android:strokeColor="#fff"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4" />
+
+</vector>

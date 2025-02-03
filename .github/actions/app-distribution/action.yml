@@ -1,0 +1,40 @@
+name: app-distribution
+
+description: Upload APK to Firebase App Distribution
+
+inputs:
+  append-git-sha-to-version-name:
+    description: Indicates if short Git SHA should be appended to the version name
+    required: false
+    default: 'false'
+  variant:
+    description: Variant
+    required: true
+  firebase-token:
+    description: Firebase token
+    required: true
+  git-tag-prefix:
+    description: Prefix for the Git tag that will be added when APK is uploaded
+    required: false
+  github-token:
+    description: GitHub token
+    required: true
+  group:
+    description: Group of testers that will be notified of the uploaded APK
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Upload APK to Firebase App Distribution
+      shell: bash
+      run: |
+        # Git SHA is equal to github.event.pull_request.head.sha for pull requests
+        # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
+        BRANCH_SHA=${{ github.event.pull_request.head.sha }}
+        COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
+        [ ${{ inputs.append-git-sha-to-version-name }} == 'true' ] && VERSION_NAME_SUFFIX=-${COMMIT_SHA::7} || VERSION_NAME_SUFFIX=''
+        ./gradlew :app:appDistributionUpload -PversionNameSuffix=$VERSION_NAME_SUFFIX -PversionCode=$GITHUB_RUN_NUMBER -PappDistributionVariants=${{ inputs.variant }} -PappDistributionGitTagPrefix=${{ inputs.git-tag-prefix }} -PappDistributionGroup=${{ inputs.group }} -PappDistributionGitTagSha=$COMMIT_SHA --stacktrace
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        FIREBASE_TOKEN: ${{ inputs.firebase-token }}
