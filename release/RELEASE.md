@@ -37,7 +37,7 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
 ## Release
 
-- Create a new pull request named `Release X.Y.Z` on GitHub to merge `develop` into `main`.
+- Create a new pull request named `chore: release X.Y.Z` on GitHub to merge `develop` into `main`.
 
 - Review and merge this pull request on GitHub.
 
@@ -87,7 +87,8 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
 ### Publish release to GitHub
 
-- Go to [GitHub Actions](https://github.com/Orange-OpenSource/ouds-android/actions), open the release workflow, click `Review deployments`, select `github-release` and click `Approve and deploy`.
+- Go to [GitHub Actions](https://github.com/Orange-OpenSource/ouds-android/actions), open the release workflow, click `Review deployments`, select
+  `github-release` and click `Approve and deploy`.
 
 - Go to [GitHub Releases](https://github.com/Orange-OpenSource/ouds-android/releases).
 
