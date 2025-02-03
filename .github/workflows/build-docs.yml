@@ -39,7 +39,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
       pages: write      # to deploy to Pages
@@ -69,7 +69,7 @@ jobs:
       url: ${{ steps.deployment.outputs.deploy_preview_url }}
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name != 'push' || github.ref != 'refs/heads/master'
+    if: github.event_name != 'push' || github.ref != 'refs/heads/main'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
