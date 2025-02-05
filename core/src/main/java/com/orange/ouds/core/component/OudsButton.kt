@@ -226,7 +226,7 @@ private fun OudsButton(
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
     val iconScale = if (icon != null && text == null) LocalContext.current.resources.configuration.fontScale else 1.0f
-    val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeight.dp * iconScale else Dp.Unspecified
+    val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeightIconOnly.dp * iconScale else Dp.Unspecified
     val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
@@ -480,7 +480,7 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading,
-                OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.negative
+                OudsButton.State.Focused -> OudsTheme.colorScheme.content.onStatus.emphasizedAlt
                 OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
             }
         }
@@ -498,7 +498,7 @@ private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues
                 bottom = spacePaddingBlock.value
             )
             icon != null && text == null -> PaddingValues(
-                horizontal = spaceInsetIconAlone.value,
+                horizontal = spaceInsetIconOnly.value,
                 vertical = spacePaddingBlock.value
             )
             else -> PaddingValues(
