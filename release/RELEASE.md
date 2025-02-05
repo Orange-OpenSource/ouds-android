@@ -87,8 +87,7 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
 ### Publish release to GitHub
 
-- Go to [GitHub Actions](https://github.com/Orange-OpenSource/ouds-android/actions), open the release workflow, click `Review deployments`, select
-  `github-release` and click `Approve and deploy`.
+- Go to [GitHub Actions](https://github.com/Orange-OpenSource/ouds-android/actions), open the release workflow, click `Review deployments`, select `github-release` and click `Approve and deploy`.
 
 - Go to [GitHub Releases](https://github.com/Orange-OpenSource/ouds-android/releases).
 
