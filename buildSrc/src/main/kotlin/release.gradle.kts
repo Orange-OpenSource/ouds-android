@@ -118,6 +118,12 @@ tasks.register<DefaultTask>("testSonatypeRepository") {
             // Remove published Android Studio modules from settings.gradle.kts
             File("settings.gradle.kts").replace("include\\(\":${publishedSubproject.name}\"\\)(\\n)?".toRegex(), "")
 
+            // Replace project dependencies used for dokka with artifact dependencies in build.gradle.kts
+            File("build.gradle.kts").replace(
+                "dokka\\(project\\(\":${publishedSubproject.name}\"\\)\\)".toRegex(),
+                "dokka(\"com.orange.ouds.android:${publishedSubproject.artifactId}:$version\")"
+            )
+
             // Replace project dependencies with artifact dependencies in build.gradle.kts files of non published modules
             nonPublishedSubprojects.forEach { nonPublishedSubproject ->
                 File("${nonPublishedSubproject.name}/build.gradle.kts").replace(
