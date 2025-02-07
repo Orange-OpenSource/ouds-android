@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
+import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 
@@ -41,6 +42,13 @@ sealed class Component(
         LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
         R.string.app_components_button_description_text,
         { ButtonDemoScreen() }
+    )
+
+    data object Checkbox : Component(
+        R.string.app_components_checkbox_label,
+        LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
+        R.string.app_components_checkbox_description_text,
+        { CheckboxDemoScreen() }
     )
 
     data object Link : Component(

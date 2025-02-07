@@ -123,6 +123,12 @@
     <string name="app_components_button_iconOnlyLayout_label">Icon only</string>
     <string name="app_components_button_icon_a11y">Icon</string>
 
+    <!-- Components: checkbox -->
+    <string name="app_components_checkbox_label">Checkbox</string>
+    <string name="app_components_checkbox_description_text">Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.</string>
+    <string name="app_components_checkbox_error_label">Error</string>
+
+
     <!-- Components: link -->
     <string name="app_components_link_label">Link</string>
     <string name="app_components_link_description_text">Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).</string>
