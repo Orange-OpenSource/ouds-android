@@ -83,6 +83,8 @@ app/src/prod/res/drawable/ic_launcher_background.xml
 app/src/prod/res/drawable/ic_launcher_foreground.xml
 
 core/src/main/res/drawable/ic_form_chevron_left.xml
+core/src/main/res/drawable/ic_less.xml
+core/src/main/res/drawable/ic_tick.xml
 
 docs/assets/logo-icon.svg
 
