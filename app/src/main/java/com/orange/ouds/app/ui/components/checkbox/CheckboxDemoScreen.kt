@@ -27,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.state.ToggleableState
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
@@ -34,6 +35,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.core.component.OudsCheckbox
+import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
@@ -74,7 +76,7 @@ fun CheckboxDemoScreen() = DemoScreen(rememberCheckboxDemoState()) {
 
 @Composable
 private fun CheckboxDemo(state: CheckboxDemoState) {
-    var checked by remember { mutableStateOf(false) }
+    var toggleableState by remember { mutableStateOf(ToggleableState.Off) }
 
     Box(
         modifier = Modifier
@@ -83,9 +85,15 @@ private fun CheckboxDemo(state: CheckboxDemoState) {
             .fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {
-        OudsCheckbox(
-            checked = checked,
-            onCheckedChange = { checked = it },
+        OudsTriStateCheckbox(
+            state = toggleableState,
+            onClick = {
+                toggleableState = when (toggleableState) {
+                    ToggleableState.On -> ToggleableState.Off
+                    ToggleableState.Off -> ToggleableState.Indeterminate
+                    ToggleableState.Indeterminate -> ToggleableState.On
+                }
+            },
             enabled = state.enabled,
             error = state.error
         )
