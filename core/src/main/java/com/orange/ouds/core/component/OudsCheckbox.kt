@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+package com.orange.ouds.core.component
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -321,8 +323,8 @@ private fun Modifier.border(state: OudsCheckbox.State) = if (state == OudsCheckb
 /**
  * Contains classes to build an [com.orange.ouds.core.component.OudsCheckbox].
  */
-object OudsCheckbox {
-    internal enum class State {
+internal object OudsCheckbox {
+    enum class State {
         Enabled, Hovered, Pressed, Disabled, Focused
     }
 }

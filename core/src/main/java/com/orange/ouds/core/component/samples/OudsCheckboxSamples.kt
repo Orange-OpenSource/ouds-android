@@ -12,14 +12,14 @@
 
 package com.orange.ouds.core.component.samples
 
-import OudsCheckbox
-import OudsTriStateCheckbox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.state.ToggleableState
+import com.orange.ouds.core.component.OudsCheckbox
+import com.orange.ouds.core.component.OudsTriStateCheckbox
 
 @Composable
 internal fun OudsCheckboxSample() {
