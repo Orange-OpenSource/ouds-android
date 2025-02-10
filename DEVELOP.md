@@ -2,12 +2,27 @@
 
 ## Documentation
 
-OUDS Android documentation is generated using [Writerside](https://www.jetbrains.com/writerside/).
-In order to modify the OUDS Android documentation or test it locally, you need to [download and install it](https://www.jetbrains.com/writerside/download/).
+OUDS Android documentation is generated using [Dokka](https://github.com/Kotlin/dokka).
 
-When installed, launch Writerside and open the `ouds-android/docs` directory.
+You can test the documentation locally by launching the `dokkaGenerate` Gradle task.
 
-In the Writerside table of content, click on "Getting started". The Writerside Preview panel is on the right with an "Open in browser" button to test
-documentation display in a browser.
+```
+./gradlew dokkaGenerate
+```
 
-More technical information about Writerside is available [here](https://www.jetbrains.com/help/writerside/getting-started.html).
+When generated, open `ouds-android/docs/dokka/index.html` in your browser.
+
+## Tests
+
+Each component offered by OUDS Android has two kinds of tests: Android instrumented tests and [Paparazzi](https://github.com/cashapp/paparazzi) tests.
+
+The instrumented tests are in `ouds-android/core/src/androidTest` and allow to test interactions and behaviors.
+
+The [Paparazzi](https://github.com/cashapp/paparazzi) tests are in `ouds-android/core/src/test`. They generate snapshots of the components in their various
+state (pressed, hover, focused, disabled, ...). These snapshots are compared on CI in order to identify possible regressions.  
+You can generate components snapshots by launching the `recordPaparazzi` or the `cleanRecordPaparazzi` Gradle task.
+
+```
+./gradlew recordPaparazzi
+```
+
