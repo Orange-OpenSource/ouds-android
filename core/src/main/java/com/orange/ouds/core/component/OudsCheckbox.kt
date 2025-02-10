@@ -1,3 +1,15 @@
+/*
+ * Software Name: OUDS Android
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
+ *
+ * Software description: Android library of reusable graphical components
+ */
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -41,18 +53,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
-
-/*
- * Software Name: OUDS Android
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
- * SPDX-License-Identifier: MIT
- *
- * This software is distributed under the MIT license,
- * the text of which is available at https://opensource.org/license/MIT/
- * or see the "LICENSE" file for more details.
- *
- * Software description: Android library of reusable graphical components
- */
 
 /**
  *
@@ -143,6 +143,8 @@ private fun OudsCheckbox(
     modifier: Modifier,
     enabled: Boolean = true
 ) {
+    if (error && !enabled) throw IllegalStateException("An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated has been detected, which is not allowed.")
+
     val context = LocalContext.current
     val checkboxTokens = OudsTheme.componentsTokens.checkRadio
     val interactionSource = remember { MutableInteractionSource() }
@@ -228,7 +230,7 @@ private fun borderColor(state: OudsCheckbox.State, selected: Boolean, error: Boo
     return if (error) {
         when (state) {
             OudsCheckbox.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled //TODO error/disabled should not be possible
+            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled // Not allowed, exception thrown at the beginning of OudsCheckbox
             OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
             OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
             OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.negative.focus
@@ -250,7 +252,7 @@ private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
         if (error) {
             when (state) {
                 OudsCheckbox.State.Enabled -> colorContentAssetErrorEnabled
-                OudsCheckbox.State.Disabled -> colorContentAssetDisabled //TODO error/disabled should not be possible
+                OudsCheckbox.State.Disabled -> colorContentAssetDisabled // Not allowed, exception thrown at the beginning of OudsCheckbox
                 OudsCheckbox.State.Hovered -> colorContentAssetErrorHover
                 OudsCheckbox.State.Pressed -> colorContentAssetErrorPressed
                 OudsCheckbox.State.Focused -> colorContentAssetErrorFocus
@@ -281,7 +283,7 @@ private fun selectorBackgroundColor(state: OudsCheckbox.State, selected: Boolean
     return if (error) {
         when (state) {
             OudsCheckbox.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled // TODO error/disabled should not be possible
+            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled // Not allowed, exception thrown at the beginning of OudsCheckbox
             OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
             OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
             OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.negative.focus
