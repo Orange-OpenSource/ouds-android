@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import OudsCheckbox
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsOff
@@ -30,7 +29,7 @@ internal class OudsCheckboxTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    @Test(timeout = 5000)
+    @Test
     fun oudsCheckboxCheckedChangeSucceeds() {
         with(composeTestRule) {
             val testTag = "OudsCheckbox"
