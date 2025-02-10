@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.checkbox
 
-import OudsCheckbox
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,6 +33,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaff
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
+import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
