@@ -23,8 +23,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -140,6 +143,7 @@ private fun OudsCheckbox(
     modifier: Modifier,
     enabled: Boolean = true
 ) {
+    val context = LocalContext.current
     val checkboxTokens = OudsTheme.componentsTokens.checkRadio
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -153,7 +157,13 @@ private fun OudsCheckbox(
             .heightIn(min = checkboxTokens.sizeMinHeightSelectorOnly.dp, max = checkboxTokens.sizeMaxHeightSelectorOnly.dp)
             .background(color = backgroundColor(state = state))
             .border(state = state)
-            .then(modifier),
+            .semantics {
+                stateDescription = when (value) {
+                    ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
+                    ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
+                    ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
+                }
+            },
         contentAlignment = Alignment.Center
     ) {
         Box(
@@ -315,7 +325,6 @@ object OudsCheckbox {
     }
 }
 
-
 @UiModePreviews.Default
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
@@ -338,17 +347,19 @@ internal fun PreviewOudsCheckbox(
                         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                             states.forEach { state ->
                                 var toggleableState by remember { mutableStateOf(toggleableState) }
-                                OudsCheckbox(value = toggleableState, error = error, previewState = state, modifier = Modifier.triStateToggleable(
-                                    state = toggleableState,
-                                    onClick = {
-                                        toggleableState = when (toggleableState) {
-                                            ToggleableState.On -> ToggleableState.Off
-                                            ToggleableState.Off -> ToggleableState.Indeterminate
-                                            ToggleableState.Indeterminate -> ToggleableState.On
-                                        }
-                                    },
-                                    role = Role.Checkbox
-                                ))
+                                OudsCheckbox(
+                                    value = toggleableState, error = error, previewState = state, modifier = Modifier.triStateToggleable(
+                                        state = toggleableState,
+                                        onClick = {
+                                            toggleableState = when (toggleableState) {
+                                                ToggleableState.On -> ToggleableState.Off
+                                                ToggleableState.Off -> ToggleableState.Indeterminate
+                                                ToggleableState.Indeterminate -> ToggleableState.On
+                                            }
+                                        },
+                                        role = Role.Checkbox
+                                    )
+                                )
                             }
                         }
                     }
