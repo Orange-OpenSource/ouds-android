@@ -12,9 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import OudsCheckboxPreviewParameter
-import OudsCheckboxPreviewParameterProvider
-import PreviewOudsCheckbox
 import com.orange.ouds.OudsPaparazziTest
 import org.junit.Test
 import org.junit.runner.RunWith
