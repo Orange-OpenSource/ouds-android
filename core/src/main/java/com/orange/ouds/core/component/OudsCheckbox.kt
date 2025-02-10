@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -116,9 +117,13 @@ fun OudsTriStateCheckbox(
     enabled: Boolean = true,
     error: Boolean = false
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+
     val toggleableModifier =
         if (onClick != null) {
             Modifier.triStateToggleable(
+                interactionSource = interactionSource,
+                indication = LocalIndication.current,
                 state = state,
                 onClick = onClick,
                 enabled = enabled,
@@ -130,6 +135,7 @@ fun OudsTriStateCheckbox(
 
     OudsCheckbox(
         value = state,
+        interactionSource = interactionSource,
         modifier = modifier.then(toggleableModifier),
         previewState = null,
         enabled = enabled,
@@ -140,6 +146,7 @@ fun OudsTriStateCheckbox(
 @Composable
 private fun OudsCheckbox(
     value: ToggleableState,
+    interactionSource: MutableInteractionSource,
     error: Boolean,
     previewState: OudsCheckbox.State?,
     modifier: Modifier,
@@ -147,10 +154,9 @@ private fun OudsCheckbox(
 ) {
     if (error && !enabled) throw IllegalStateException("An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated has been detected, which is not allowed.")
 
+    val interactionState by interactionSource.collectInteractionStateAsState()
     val context = LocalContext.current
     val checkboxTokens = OudsTheme.componentsTokens.checkRadio
-    val interactionSource = remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsCheckboxState(enabled = enabled, interactionState = interactionState) }
     val shape = RoundedCornerShape(checkboxTokens.borderRadiusCheckbox.value)
     val selected = value != ToggleableState.Off
@@ -168,7 +174,7 @@ private fun OudsCheckbox(
                     ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
                 }
             },
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Box(
             modifier = Modifier
@@ -352,7 +358,11 @@ internal fun PreviewOudsCheckbox(
                             states.forEach { state ->
                                 var toggleableState by remember { mutableStateOf(toggleableState) }
                                 OudsCheckbox(
-                                    value = toggleableState, error = error, previewState = state, modifier = Modifier.triStateToggleable(
+                                    value = toggleableState,
+                                    interactionSource = remember { MutableInteractionSource() },
+                                    error = error,
+                                    previewState = state,
+                                    modifier = Modifier.triStateToggleable(
                                         state = toggleableState,
                                         onClick = {
                                             toggleableState = when (toggleableState) {
