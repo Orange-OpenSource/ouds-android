@@ -31,6 +31,7 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChipsColumn
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextFieldColumn
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.core.component.OudsButton
@@ -85,6 +86,10 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
                 onSelectionChange = { id -> layout = ButtonDemoState.Layout.entries[id] }
             )
+            CustomizationTextFieldColumn(
+                label = stringResource(R.string.app_components_common_text_label),
+                value = text,
+                onValueChange = { value -> text = value })
         }
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
@@ -110,7 +115,6 @@ private fun ButtonDemo(state: ButtonDemoState) {
             .padding(all = OudsTheme.spaces.fixed.medium)
             .fillMaxWidth()
     ) {
-        val text = stringResource(id = R.string.app_components_button_label)
         val icon = OudsButton.Icon(painterResource(id = R.drawable.ic_heart), stringResource(id = R.string.app_components_button_icon_a11y))
         with(state) {
             when (layout) {
