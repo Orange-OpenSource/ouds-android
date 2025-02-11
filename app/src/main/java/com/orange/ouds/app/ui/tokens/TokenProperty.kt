@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.tokens
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.core.theme.OudsBorders
 import com.orange.ouds.core.theme.OudsColorScheme
 import com.orange.ouds.core.theme.OudsElevations
@@ -197,8 +198,7 @@ inline fun <reified T : Any> getTokens() = getTokens(T::class)
 
 fun <T : Any> getTokens(clazz: KClass<T>): List<Token<*>> {
     val packageName = clazz.java.`package`?.name.orEmpty()
-    val className = clazz.qualifiedName.orEmpty().removePrefix("$packageName.")
-    val rootClassName = className.substringBefore(".")
+    val rootClassName = clazz.java.nestedName.substringBefore(".")
     val rootClass = Class.forName("$packageName.$rootClassName").kotlin
     val rootPath = getPath(rootClass)
 
@@ -208,10 +208,8 @@ fun <T : Any> getTokens(clazz: KClass<T>): List<Token<*>> {
 }
 
 private fun getPath(clazz: KClass<*>): String {
-    val packageName = clazz.java.`package`?.name.orEmpty()
-    val className = clazz.qualifiedName.orEmpty().removePrefix("$packageName.")
-
-    return className.removePrefix("Ouds")
+    return clazz.java.nestedName
+        .removePrefix("Ouds")
         .split(".")
         .joinToString(".") { string ->
             string.replaceFirstChar { it.lowercaseChar() }
