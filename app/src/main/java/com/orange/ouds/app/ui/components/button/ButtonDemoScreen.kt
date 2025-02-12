@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -28,6 +30,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.coloredBoxCall
+import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
@@ -92,7 +96,11 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 onValueChange = { value -> text = value })
         }
     ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+        ) {
             DetailScreenDescription(
                 modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
                 descriptionRes = Component.Button.descriptionRes
@@ -103,6 +111,12 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                     ButtonDemo(state = this@DemoScreen)
                 }
             }
+            ButtonDemoCodeSnippet(
+                state = this@DemoScreen,
+                modifier = Modifier
+                    .padding(all = OudsTheme.spaces.fixed.medium)
+                    .padding(top = OudsTheme.spaces.fixed.medium)
+            )
         }
     }
 }
@@ -115,7 +129,10 @@ private fun ButtonDemo(state: ButtonDemoState) {
             .padding(all = OudsTheme.spaces.fixed.medium)
             .fillMaxWidth()
     ) {
-        val icon = OudsButton.Icon(painterResource(id = R.drawable.ic_heart), stringResource(id = R.string.app_components_button_icon_a11y))
+        val icon = OudsButton.Icon(
+            painter = painterResource(id = R.drawable.ic_heart),
+            contentDescription = stringResource(id = R.string.app_components_button_icon_a11y)
+        )
         with(state) {
             when (layout) {
                 ButtonDemoState.Layout.TextOnly -> {
@@ -169,6 +186,34 @@ private fun ButtonDemoBox(colored: Boolean, modifier: Modifier = Modifier, conte
             contentAlignment = contentAlignment,
             content = content
         )
+    }
+}
+
+@Composable
+private fun ButtonDemoCodeSnippet(state: ButtonDemoState, modifier: Modifier = Modifier) {
+    val text = stringResource(id = R.string.app_components_button_label)
+    CodeSnippet(modifier = modifier) {
+        coloredBoxCall(state.onColoredBox) {
+            functionCall("OudsButton") {
+                if (state.layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
+                    constructorCallArgument<OudsButton.Icon>("icon") {
+                        functionCallArgument("painter", "painterResource") {
+                            typedArgument("id", R.drawable.ic_heart)
+                        }
+                        functionCallArgument("contentDescription", "stringResource") {
+                            typedArgument("id", R.string.app_components_button_icon_a11y)
+                        }
+                    }
+                }
+                if (state.layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
+                    typedArgument("text", text)
+                }
+                lambdaArgument("onClick")
+                typedArgument("enabled", state.enabled)
+                typedArgument("style", state.style)
+                typedArgument("hierarchy", state.hierarchy)
+            }
+        }
     }
 }
 
