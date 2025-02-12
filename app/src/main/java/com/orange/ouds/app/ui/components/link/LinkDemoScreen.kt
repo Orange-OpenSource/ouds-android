@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -27,6 +29,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.coloredBoxCall
+import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
@@ -78,7 +82,11 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 onValueChange = { value -> text = value })
         }
     ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+        ) {
             DetailScreenDescription(
                 modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
                 descriptionRes = Component.Link.descriptionRes
@@ -89,6 +97,12 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                     LinkDemo(state = this@DemoScreen)
                 }
             }
+            LinkDemoCodeSnippet(
+                state = this@DemoScreen,
+                modifier = Modifier
+                    .padding(all = OudsTheme.spaces.fixed.medium)
+                    .padding(top = OudsTheme.spaces.fixed.medium)
+            )
         }
     }
 }
@@ -161,6 +175,33 @@ private fun LinkDemoBox(colored: Boolean, modifier: Modifier = Modifier, content
             contentAlignment = Alignment.Center,
             content = content
         )
+    }
+}
+
+@Composable
+private fun LinkDemoCodeSnippet(state: LinkDemoState, modifier: Modifier = Modifier) {
+    val text = stringResource(id = R.string.app_components_link_label)
+    CodeSnippet(modifier = modifier) {
+        coloredBoxCall(state.onColoredBox) {
+            functionCall("OudsLink") {
+                typedArgument("text", text)
+                when (state.layout) {
+                    LinkDemoState.Layout.TextOnly -> {}
+                    LinkDemoState.Layout.IconAndText -> {
+                        constructorCallArgument<OudsLink.Icon>("icon") {
+                            functionCallArgument("painter", "painterResource") {
+                                typedArgument("id", R.drawable.ic_heart)
+                            }
+                        }
+                    }
+                    LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLink.Arrow.Back)
+                    LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLink.Arrow.Next)
+                }
+                lambdaArgument("onClick")
+                typedArgument("enabled", state.enabled)
+                typedArgument("size", state.size)
+            }
+        }
     }
 }
 
