@@ -14,6 +14,7 @@ import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.findTypedProperty
+import com.orange.ouds.gradle.gitHubApi
 import com.orange.ouds.gradle.updateChangelog
 
 plugins {
@@ -40,7 +41,6 @@ android {
         versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 2
         versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -146,6 +146,23 @@ tasks.register<DefaultTask>("updateAppChangelog") {
     }
 }
 
+fun updateBuildConfig() {
+    val gitHubWorkflow = Environment.getVariablesOrNull("GITHUB_WORKFLOW").first()
+    val pullRequestNumber = if (gitHubWorkflow == "app-distribution-alpha") {
+        gitHubApi {
+            val pullRequests = getPullRequests()
+            pullRequests.firstOrNull { it.branchName == Environment.branchName }?.number
+        }
+    } else {
+        null
+    }
+
+    android.defaultConfig {
+        buildConfigField("String", "PULL_REQUEST_NUMBER", if (pullRequestNumber != null) "\"$pullRequestNumber\"" else "null")
+    }
+}
+
 gradle.projectsEvaluated {
-    tasks.named("preBuild").dependsOn(tasks.named("updateAppChangelog"))
+    tasks["preBuild"].dependsOn(tasks["updateAppChangelog"])
+    updateBuildConfig()
 }
