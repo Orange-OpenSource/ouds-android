@@ -23,7 +23,6 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -79,7 +78,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                                 val pullRequest = buildAnnotatedString {
                                     append(stringResource(R.string.app_about_pullRequest_label))
                                     withLink(LinkAnnotation.Url("https://github.com/Orange-OpenSource/ouds-android/pull/$pullRequestNumber")) {
-                                        withStyle(SpanStyle(Color.Blue)) {
+                                        withStyle(SpanStyle(OudsTheme.colorScheme.content.brandPrimary)) {
                                             append(stringResource(R.string.app_about_pullRequestNumber_label, pullRequestNumber))
                                         }
                                     }
