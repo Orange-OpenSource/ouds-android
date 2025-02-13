@@ -33,8 +33,8 @@ fun NavGraphBuilder.addAboutNavGraph() {
         arguments = listOf(navArgument(MenuItemIdKey) { type = NavType.LongType })
     ) { navBackStackEntry ->
         val aboutMenuItemId = requireNotNull(navBackStackEntry.arguments).getLong(MenuItemIdKey).toInt()
-        val aboutItem = AboutMenuItem.fromId(aboutMenuItemId)
-        (aboutItem as? AboutFileMenuItem)?.let { AboutFileScreen(it.fileRes) }
+        val aboutFileMenuItem = AboutMenuItem.fromId(aboutMenuItemId) as? AboutFileMenuItem
+        aboutFileMenuItem?.let { AboutFileScreen(it) }
     }
 
     composable(AboutDestinations.MaterialComponentsRoute) { _ ->

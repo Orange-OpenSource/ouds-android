@@ -129,9 +129,13 @@
     <string name="app_components_link_next_label">Next</string>
     <string name="app_components_link_size_label">Size</string>
 
-    <!-- About screen -->
+    <!-- About -->
+    <string name="app_about_name_label">Design System Toolbox</string>
+    <string name="app_about_pullRequest_label">Pull request\u0020</string>
+    <string name="app_about_pullRequestNumber_label">#%s</string>
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
     <string name="app_about_legalInformation_label">Legal information</string>
     <string name="app_about_materialComponents_label">Material 3 components</string>
+    <string name="app_about_changelog_label">Changelog</string>
 
 </resources>
