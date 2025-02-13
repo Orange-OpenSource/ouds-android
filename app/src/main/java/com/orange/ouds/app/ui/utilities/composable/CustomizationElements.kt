@@ -52,7 +52,7 @@ fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange
 }
 
 @Composable
-fun CustomizationChoiceChipsColumn(
+fun CustomizationChoiceChips(
     label: String,
     chipsLabels: List<String>,
     selectedChipIndex: Int,
@@ -93,7 +93,7 @@ fun CustomizationChoiceChipsColumn(
 }
 
 @Composable
-fun CustomizationTextFieldColumn(
+fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
