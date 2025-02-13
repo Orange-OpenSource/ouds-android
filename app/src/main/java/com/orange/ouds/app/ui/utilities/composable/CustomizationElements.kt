@@ -106,7 +106,7 @@ fun CustomizationTextField(
                 .fillMaxWidth()
                 .padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
             value = value,
-            onValueChange = { newValue -> onValueChange(newValue) },
+            onValueChange = onValueChange,
             singleLine = true,
         )
     }
