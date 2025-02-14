@@ -236,7 +236,7 @@ private fun OudsButton(
     }
 
     val buttonTokens = OudsTheme.componentsTokens.button
-    val buttonInteractionSource = remember { interactionSource.orElse { MutableInteractionSource() } }
+    val buttonInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by buttonInteractionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
     val iconScale = if (icon != null && text == null) LocalContext.current.resources.configuration.fontScale else 1.0f
