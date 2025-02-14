@@ -30,6 +30,10 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
+import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
@@ -184,21 +188,19 @@ private fun LinkDemoCodeSnippet(state: LinkDemoState, modifier: Modifier = Modif
     CodeSnippet(modifier = modifier) {
         coloredBoxCall(state.onColoredBox) {
             functionCall(OudsLink::class.simpleName.orEmpty()) {
-                typedArgument("text", text)
+                textArgument(text)
                 when (state.layout) {
                     LinkDemoState.Layout.TextOnly -> {}
                     LinkDemoState.Layout.IconAndText -> {
                         constructorCallArgument<OudsLink.Icon>("icon") {
-                            functionCallArgument("painter", "painterResource") {
-                                typedArgument("id", R.drawable.ic_heart)
-                            }
+                            painterArgument(R.drawable.ic_heart)
                         }
                     }
                     LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLink.Arrow.Back)
                     LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLink.Arrow.Next)
                 }
-                lambdaArgument("onClick")
-                typedArgument("enabled", state.enabled)
+                onClickArgument()
+                enabledArgument(state.enabled)
                 typedArgument("size", state.size)
             }
         }
