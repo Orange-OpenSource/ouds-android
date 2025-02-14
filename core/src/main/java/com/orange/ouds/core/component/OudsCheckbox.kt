@@ -152,7 +152,7 @@ private fun OudsCheckbox(
     modifier: Modifier,
     enabled: Boolean = true
 ) {
-    if (error && !enabled) throw IllegalStateException("An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated has been detected, which is not allowed.")
+    if (error && !enabled) throw IllegalStateException("An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed.")
 
     val interactionState by interactionSource.collectInteractionStateAsState()
     val context = LocalContext.current

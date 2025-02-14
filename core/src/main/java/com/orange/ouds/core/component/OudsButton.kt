@@ -218,7 +218,7 @@ private fun OudsButton(
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
 ) {
     if (hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current) {
-        throw IllegalStateException("An OudsButton with OudsButton.Hierarchy.Negative hierarchy has been detected as a direct or indirect child of an OudsColoredBox, which is not allowed.")
+        throw IllegalStateException("An OudsButton with OudsButton.Hierarchy.Negative hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed.")
     }
 
     val buttonTokens = OudsTheme.componentsTokens.button
