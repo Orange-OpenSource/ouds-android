@@ -32,7 +32,7 @@ import kotlin.properties.Delegates
 @DslMarker
 annotation class CodeDslMarker
 
-private val CODE_INDENT = "  "
+private const val CODE_INDENT = "  "
 
 interface Formattable {
 
