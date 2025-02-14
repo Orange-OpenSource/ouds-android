@@ -101,7 +101,7 @@ fun OudsCheckbox(
  * becomes an indeterminate checkbox.
  *
  * @param state Controls whether TriStateCheckbox is checked, unchecked or in indeterminate state.
- * @param onClick Callback invoked when checkbox is being clicked, therefore the change of ToggleableState state is requested. If null, then this is passive
+ * @param onClick Callback invoked when checkbox is being clicked, therefore the change of [ToggleableState] state is requested. If null, then this is passive
  * and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
