@@ -34,14 +34,14 @@ annotation class CodeDslMarker
 
 private val CODE_INDENT = "  "
 
-interface CodeFormattable {
+interface Formattable {
 
     fun format(context: Context): String
 }
 
 fun code(init: Code.Builder.() -> Unit) = Code.Builder().apply(init).build()
 
-data class Code(val elements: List<CodeFormattable>) : CodeFormattable {
+data class Code(val elements: List<Formattable>) : Formattable {
 
     override fun format(context: Context): String {
         return elements.joinToString("\n") { it.format(context) }
@@ -50,7 +50,7 @@ data class Code(val elements: List<CodeFormattable>) : CodeFormattable {
     @CodeDslMarker
     class Builder {
 
-        private var elements: MutableList<CodeFormattable> = mutableListOf()
+        private var elements: MutableList<Formattable> = mutableListOf()
 
         fun functionCall(name: String, init: FunctionCall.Builder.() -> Unit = {}) {
             val functionCall = FunctionCall.Builder()
@@ -80,7 +80,7 @@ data class Code(val elements: List<CodeFormattable>) : CodeFormattable {
     }
 }
 
-data class Comment(val text: String, val isMultiline: Boolean) : CodeFormattable {
+data class Comment(val text: String, val isMultiline: Boolean) : Formattable {
 
     override fun format(context: Context): String = if (isMultiline) "/* ${text.replace("\n", "\n   ")} */" else "// $text"
 
@@ -95,7 +95,7 @@ data class Comment(val text: String, val isMultiline: Boolean) : CodeFormattable
     }
 }
 
-data class FunctionCall(val name: String, val elements: List<CodeFormattable>, val isMultiline: Boolean, val trailingLambda: Boolean) : CodeFormattable {
+data class FunctionCall(val name: String, val elements: List<Formattable>, val isMultiline: Boolean, val trailingLambda: Boolean) : Formattable {
 
     override fun format(context: Context): String {
         val isMultiline = isMultiline && elements.isNotEmpty()
@@ -121,7 +121,7 @@ data class FunctionCall(val name: String, val elements: List<CodeFormattable>, v
         var name: String by Delegates.notNull()
 
         @PublishedApi
-        internal var elements: MutableList<CodeFormattable> = mutableListOf()
+        internal var elements: MutableList<Formattable> = mutableListOf()
 
         var isMultiline = true
 
@@ -165,7 +165,7 @@ data class FunctionCall(val name: String, val elements: List<CodeFormattable>, v
     }
 }
 
-data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : CodeFormattable {
+data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : Formattable {
 
     override fun format(context: Context): String {
         val valueString = when (value) {
@@ -177,7 +177,7 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : C
                 if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else value.toString()
             }
             is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButton.Hierarchy.Strong instead of Strong
-            is CodeFormattable -> value.format(context)
+            is Formattable -> value.format(context)
             else -> {
                 val valueClass = value?.let { it::class }.orElse { null }
                 if (valueClass?.isData == true) {
@@ -194,12 +194,12 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : C
 }
 
 @JvmInline
-private value class RawArgumentValue(val value: String) : CodeFormattable {
+private value class RawArgumentValue(val value: String) : Formattable {
 
     override fun format(context: Context): String = value
 }
 
-data class Lambda(val code: Code) : CodeFormattable {
+data class Lambda(val code: Code) : Formattable {
 
     override fun format(context: Context): String {
         val formattedCode = code.format(context)
@@ -207,7 +207,7 @@ data class Lambda(val code: Code) : CodeFormattable {
     }
 }
 
-class Newline : CodeFormattable {
+class Newline : Formattable {
 
     override fun format(context: Context): String = "" // There is no need to return "\n" because code elements are already joined using "\n"
 }
