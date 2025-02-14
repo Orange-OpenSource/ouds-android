@@ -31,6 +31,11 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
@@ -197,19 +202,15 @@ private fun ButtonDemoCodeSnippet(state: ButtonDemoState, modifier: Modifier = M
             functionCall(OudsButton::class.simpleName.orEmpty()) {
                 if (state.layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
                     constructorCallArgument<OudsButton.Icon>("icon") {
-                        functionCallArgument("painter", "painterResource") {
-                            typedArgument("id", R.drawable.ic_heart)
-                        }
-                        functionCallArgument("contentDescription", "stringResource") {
-                            typedArgument("id", R.string.app_components_button_icon_a11y)
-                        }
+                        painterArgument(R.drawable.ic_heart)
+                        contentDescriptionArgument(R.string.app_components_button_icon_a11y)
                     }
                 }
                 if (state.layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
-                    typedArgument("text", text)
+                    textArgument(text)
                 }
-                lambdaArgument("onClick")
-                typedArgument("enabled", state.enabled)
+                onClickArgument()
+                enabledArgument(state.enabled)
                 typedArgument("style", state.style)
                 typedArgument("hierarchy", state.hierarchy)
             }
