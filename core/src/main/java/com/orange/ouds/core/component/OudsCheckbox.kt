@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -31,9 +32,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -69,6 +68,9 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
  * @param error Controls the error state of the checkbox.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox.
+ * You can use this to change the checkbox's appearance or preview the checkbox in different states. Note that if `null` is provided,
+ * interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxSample
  */
@@ -78,7 +80,8 @@ fun OudsCheckbox(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    error: Boolean = false
+    error: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsTriStateCheckbox(
         state = ToggleableState(checked),
@@ -87,7 +90,8 @@ fun OudsCheckbox(
         } else null,
         modifier = modifier,
         enabled = enabled,
-        error = error
+        error = error,
+        interactionSource = interactionSource
     )
 }
 
@@ -106,7 +110,10 @@ fun OudsCheckbox(
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
  * @param error Controls the error state of the checkbox.
- *
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox.
+ * You can use this to change the checkbox's appearance or preview the checkbox in different states. Note that if `null` is provided,
+ * interactions will still happen internally.
+ * 
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxSample
  */
 @Composable
@@ -115,14 +122,15 @@ fun OudsTriStateCheckbox(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    error: Boolean = false
+    error: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
+    val checkboxInteractionSource = remember { interactionSource.orElse { MutableInteractionSource() } }
 
     val toggleableModifier =
         if (onClick != null) {
             Modifier.triStateToggleable(
-                interactionSource = interactionSource,
+                interactionSource = checkboxInteractionSource,
                 indication = LocalIndication.current,
                 state = state,
                 onClick = onClick,
@@ -135,7 +143,7 @@ fun OudsTriStateCheckbox(
 
     OudsCheckbox(
         value = state,
-        interactionSource = interactionSource,
+        interactionSource = checkboxInteractionSource,
         modifier = modifier.then(toggleableModifier),
         previewState = null,
         enabled = enabled,
