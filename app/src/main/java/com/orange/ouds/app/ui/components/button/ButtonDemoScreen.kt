@@ -194,7 +194,7 @@ private fun ButtonDemoCodeSnippet(state: ButtonDemoState, modifier: Modifier = M
     val text = stringResource(id = R.string.app_components_button_label)
     CodeSnippet(modifier = modifier) {
         coloredBoxCall(state.onColoredBox) {
-            functionCall("OudsButton") {
+            functionCall(OudsButton::class.simpleName.orEmpty()) {
                 if (state.layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
                     constructorCallArgument<OudsButton.Icon>("icon") {
                         functionCallArgument("painter", "painterResource") {
