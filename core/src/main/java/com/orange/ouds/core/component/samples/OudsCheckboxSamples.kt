@@ -23,9 +23,11 @@ import com.orange.ouds.core.component.OudsTriStateCheckbox
 
 @Composable
 internal fun OudsCheckboxSample() {
+    var checked by remember { mutableStateOf(false) }
+
     OudsCheckbox(
-        checked = false,
-        onCheckedChange = { _ -> /* Do something! */ }
+        checked = checked,
+        onCheckedChange = { value -> checked = value }
     )
 }
 
