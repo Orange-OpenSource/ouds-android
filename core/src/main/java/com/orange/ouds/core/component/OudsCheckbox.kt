@@ -25,7 +25,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -163,7 +163,7 @@ private fun OudsCheckbox(
 
     Box(
         modifier = modifier
-            .width(checkboxTokens.sizeMinWidthSelectorOnly.dp)
+            .widthIn(checkboxTokens.sizeMinWidthSelectorOnly.dp)
             .heightIn(min = checkboxTokens.sizeMinHeightSelectorOnly.dp, max = checkboxTokens.sizeMaxHeightSelectorOnly.dp)
             .background(color = backgroundColor(state = state))
             .border(state = state)
