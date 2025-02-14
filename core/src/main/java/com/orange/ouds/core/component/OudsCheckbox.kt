@@ -179,7 +179,7 @@ private fun OudsCheckbox(
         Box(
             modifier = Modifier
                 .size(checkboxTokens.sizeSelector.value)
-                .border(state = state, selected = selected, error = error, shape = shape)
+                .selectorBorder(state = state, selected = selected, error = error, shape = shape)
                 .background(color = selectorBackgroundColor(state = state, selected = selected, error = error)),
             contentAlignment = Alignment.Center
         ) {
@@ -216,13 +216,13 @@ private fun rememberOudsCheckboxState(
 }
 
 @Composable
-private fun Modifier.border(state: OudsCheckbox.State, selected: Boolean, error: Boolean, shape: Shape): Modifier {
-    val borderWidth = borderWidth(state = state, selected = selected)
-    return border(width = borderWidth, color = borderColor(state = state, selected = selected, error = error), shape = shape).padding(all = borderWidth)
+private fun Modifier.selectorBorder(state: OudsCheckbox.State, selected: Boolean, error: Boolean, shape: Shape): Modifier {
+    val selectorBorderWidth = selectorBorderWidth(state = state, selected = selected)
+    return border(width = selectorBorderWidth, color = selectorBorderColor(state = state, selected = selected, error = error), shape = shape).padding(all = selectorBorderWidth)
 }
 
 @Composable
-private fun borderWidth(state: OudsCheckbox.State, selected: Boolean): Dp {
+private fun selectorBorderWidth(state: OudsCheckbox.State, selected: Boolean): Dp {
     return with(OudsTheme.componentsTokens.checkRadio) {
         when (state) {
             OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
@@ -234,7 +234,7 @@ private fun borderWidth(state: OudsCheckbox.State, selected: Boolean): Dp {
 }
 
 @Composable
-private fun borderColor(state: OudsCheckbox.State, selected: Boolean, error: Boolean): Color {
+private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, error: Boolean): Color {
     return if (error) {
         when (state) {
             OudsCheckbox.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
