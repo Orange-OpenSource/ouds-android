@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -78,7 +79,7 @@ fun CheckboxDemoScreen() = DemoScreen(rememberCheckboxDemoState()) {
 
 @Composable
 private fun CheckboxDemo(state: CheckboxDemoState) {
-    var toggleableState by remember { mutableStateOf(ToggleableState.Off) }
+    var toggleableState by rememberSaveable { mutableStateOf(ToggleableState.Off) }
 
     Box(
         modifier = Modifier
