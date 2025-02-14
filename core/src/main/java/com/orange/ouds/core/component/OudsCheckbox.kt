@@ -155,7 +155,7 @@ private fun OudsCheckbox(
     interactionSource: MutableInteractionSource,
     error: Boolean,
     previewState: OudsCheckbox.State?,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
     if (error && !enabled) throw IllegalStateException("An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed.")
@@ -366,12 +366,7 @@ internal fun PreviewOudsCheckbox(
                                 value = toggleableState,
                                 interactionSource = remember { MutableInteractionSource() },
                                 error = error,
-                                previewState = state,
-                                modifier = Modifier.triStateToggleable(
-                                    state = toggleableState,
-                                    onClick = {},
-                                    role = Role.Checkbox
-                                )
+                                previewState = state
                             )
                         }
                     }
