@@ -12,7 +12,10 @@
 
 package com.orange.ouds.app.ui.components
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.core.component.OudsColoredBox
 
 fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() -> Unit) {
@@ -26,3 +29,21 @@ fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() 
         content()
     }
 }
+
+fun FunctionCall.Builder.painterArgument(@DrawableRes id: Int) {
+    functionCallArgument("painter", "painterResource") {
+        typedArgument("id", id)
+    }
+}
+
+fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) {
+    functionCallArgument("contentDescription", "stringResource") {
+        typedArgument("id", id)
+    }
+}
+
+fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument("onClick", init)
+
+fun FunctionCall.Builder.textArgument(text: String?) = typedArgument("text", text)
+
+fun FunctionCall.Builder.enabledArgument(boolean: Boolean) = typedArgument("enabled", boolean)
