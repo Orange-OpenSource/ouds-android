@@ -218,7 +218,11 @@ private fun rememberOudsCheckboxState(
 @Composable
 private fun Modifier.selectorBorder(state: OudsCheckbox.State, selected: Boolean, error: Boolean, shape: Shape): Modifier {
     val selectorBorderWidth = selectorBorderWidth(state = state, selected = selected)
-    return border(width = selectorBorderWidth, color = selectorBorderColor(state = state, selected = selected, error = error), shape = shape).padding(all = selectorBorderWidth)
+    return border(
+        width = selectorBorderWidth,
+        color = selectorBorderColor(state = state, selected = selected, error = error),
+        shape = shape
+    ).padding(all = selectorBorderWidth)
 }
 
 @Composable
@@ -326,9 +330,6 @@ private fun Modifier.border(state: OudsCheckbox.State) = if (state == OudsCheckb
     this
 }
 
-/**
- * Contains classes to build an [com.orange.ouds.core.component.OudsCheckbox].
- */
 internal object OudsCheckbox {
     enum class State {
         Enabled, Hovered, Pressed, Disabled, Focused
