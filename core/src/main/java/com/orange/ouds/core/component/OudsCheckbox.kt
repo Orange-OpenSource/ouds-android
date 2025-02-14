@@ -238,7 +238,7 @@ private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, er
     return if (error) {
         when (state) {
             OudsCheckbox.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled // Not allowed, exception thrown at the beginning of OudsCheckbox
+            OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
             OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
             OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
             OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.negative.focus
@@ -259,11 +259,11 @@ private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
     return with(OudsTheme.componentsTokens.checkRadio) {
         if (error) {
             when (state) {
-                OudsCheckbox.State.Enabled -> colorContentAssetErrorEnabled
-                OudsCheckbox.State.Disabled -> colorContentAssetDisabled // Not allowed, exception thrown at the beginning of OudsCheckbox
-                OudsCheckbox.State.Hovered -> colorContentAssetErrorHover
-                OudsCheckbox.State.Pressed -> colorContentAssetErrorPressed
-                OudsCheckbox.State.Focused -> colorContentAssetErrorFocus
+                OudsCheckbox.State.Enabled -> colorContentAssetErrorEnabled.value
+                OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
+                OudsCheckbox.State.Hovered -> colorContentAssetErrorHover.value
+                OudsCheckbox.State.Pressed -> colorContentAssetErrorPressed.value
+                OudsCheckbox.State.Focused -> colorContentAssetErrorFocus.value
             }
         } else {
             when (state) {
@@ -272,8 +272,8 @@ private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
                 OudsCheckbox.State.Hovered -> colorContentAssetHover
                 OudsCheckbox.State.Pressed -> colorContentAssetPressed
                 OudsCheckbox.State.Focused -> colorContentAssetFocus
-            }
-        }.value
+            }.value
+        }
     }
 }
 
@@ -291,7 +291,7 @@ private fun selectorBackgroundColor(state: OudsCheckbox.State, selected: Boolean
     return if (error) {
         when (state) {
             OudsCheckbox.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled // Not allowed, exception thrown at the beginning of OudsCheckbox
+            OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
             OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
             OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
             OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.negative.focus
