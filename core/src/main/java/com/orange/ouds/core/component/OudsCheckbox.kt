@@ -68,9 +68,8 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
  * @param error Controls the error state of the checkbox.
- * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox.
- * You can use this to change the checkbox's appearance or preview the checkbox in different states. Note that if `null` is provided,
- * interactions will still happen internally.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
+ * is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxSample
  */
@@ -110,10 +109,9 @@ fun OudsCheckbox(
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
  * @param error Controls the error state of the checkbox.
- * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox.
- * You can use this to change the checkbox's appearance or preview the checkbox in different states. Note that if `null` is provided,
- * interactions will still happen internally.
- * 
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
+ * is provided, interactions will still happen internally.
+ *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxSample
  */
 @Composable

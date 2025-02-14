@@ -92,8 +92,8 @@ import kotlinx.parcelize.Parcelize
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. You can use this to
- * change the button's appearance or preview the button in different states. Note that if `null` is provided, interactions will still happen internally.
+ * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ * is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextSample
  *
@@ -139,8 +139,8 @@ fun OudsButton(
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. You can use this to
- * change the button's appearance or preview the button in different states. Note that if `null` is provided, interactions will still happen internally.
+ * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ * is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconSample
  *
@@ -187,8 +187,8 @@ fun OudsButton(
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. You can use this to
- * change the button's appearance or preview the button in different states. Note that if `null` is provided, interactions will still happen internally.
+ * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ * is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextSample
  *
