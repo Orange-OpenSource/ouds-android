@@ -350,38 +350,28 @@ internal fun PreviewOudsCheckbox(
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val columnCount = 2
-        val content: @Composable () -> Unit = {
-            Box(modifier = Modifier.padding(16.dp)) {
-                val chunkedStates = states.chunked(columnCount)
-                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    chunkedStates.forEach { states ->
-                        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                            states.forEach { state ->
-                                var toggleableState by remember { mutableStateOf(toggleableState) }
-                                OudsCheckbox(
-                                    value = toggleableState,
-                                    interactionSource = remember { MutableInteractionSource() },
-                                    error = error,
-                                    previewState = state,
-                                    modifier = Modifier.triStateToggleable(
-                                        state = toggleableState,
-                                        onClick = {
-                                            toggleableState = when (toggleableState) {
-                                                ToggleableState.On -> ToggleableState.Off
-                                                ToggleableState.Off -> ToggleableState.Indeterminate
-                                                ToggleableState.Indeterminate -> ToggleableState.On
-                                            }
-                                        },
-                                        role = Role.Checkbox
-                                    )
+        Box(modifier = Modifier.padding(16.dp)) {
+            val chunkedStates = states.chunked(columnCount)
+            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                chunkedStates.forEach { states ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        states.forEach { state ->
+                            OudsCheckbox(
+                                value = toggleableState,
+                                interactionSource = remember { MutableInteractionSource() },
+                                error = error,
+                                previewState = state,
+                                modifier = Modifier.triStateToggleable(
+                                    state = toggleableState,
+                                    onClick = {},
+                                    role = Role.Checkbox
                                 )
-                            }
+                            )
                         }
                     }
                 }
             }
         }
-        content()
     }
 }
 
