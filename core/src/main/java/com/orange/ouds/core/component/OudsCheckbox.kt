@@ -123,7 +123,7 @@ fun OudsTriStateCheckbox(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val checkboxInteractionSource = remember { interactionSource.orElse { MutableInteractionSource() } }
+    val checkboxInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
 
     val toggleableModifier =
         if (onClick != null) {
