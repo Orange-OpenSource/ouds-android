@@ -28,8 +28,9 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
-import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChipsColumn
+import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.core.component.OudsColoredBox
@@ -56,20 +57,25 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 onCheckedChange = { onColoredBox = it },
             )
             val sizes = OudsLink.Size.entries
-            CustomizationChoiceChipsColumn(
+            CustomizationChoiceChips(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_link_size_label),
                 chipsLabels = sizes.map { it.name },
                 selectedChipIndex = sizes.indexOf(size),
                 onSelectionChange = { id -> size = sizes[id] }
             )
-            CustomizationChoiceChipsColumn(
+            CustomizationChoiceChips(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_common_layout_label),
                 chipsLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
                 selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
                 onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
             )
+            CustomizationTextField(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+                label = stringResource(R.string.app_components_common_text_label),
+                value = text,
+                onValueChange = { value -> text = value })
         }
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
@@ -95,7 +101,6 @@ private fun LinkDemo(state: LinkDemoState) {
             .padding(all = OudsTheme.spaces.fixed.medium)
             .fillMaxWidth()
     ) {
-        val text = stringResource(id = R.string.app_components_link_label)
         with(state) {
             when (layout) {
                 LinkDemoState.Layout.TextOnly -> {

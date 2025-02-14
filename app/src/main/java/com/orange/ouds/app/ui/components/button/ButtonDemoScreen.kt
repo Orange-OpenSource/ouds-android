@@ -29,8 +29,9 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
-import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChipsColumn
+import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.core.component.OudsButton
@@ -58,7 +59,7 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 onCheckedChange = { onColoredBox = it },
                 enabled = onColoredBoxSwitchEnabled
             )
-            CustomizationChoiceChipsColumn(
+            CustomizationChoiceChips(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_button_hierarchy_label),
                 chipsLabels = OudsButton.Hierarchy.entries.map { it.name },
@@ -71,20 +72,24 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                     OudsButton.Style.Loading(progress = null),
                 )
             }
-            CustomizationChoiceChipsColumn(
+            CustomizationChoiceChips(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_common_style_label),
                 chipsLabels = styles.map { it::class.simpleName.orEmpty() },
                 selectedChipIndex = styles.indexOf(style),
                 onSelectionChange = { id -> style = styles[id] }
             )
-            CustomizationChoiceChipsColumn(
+            CustomizationChoiceChips(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_common_layout_label),
                 chipsLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
                 selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
                 onSelectionChange = { id -> layout = ButtonDemoState.Layout.entries[id] }
             )
+            CustomizationTextField(
+                label = stringResource(R.string.app_components_common_text_label),
+                value = text,
+                onValueChange = { value -> text = value })
         }
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
@@ -110,7 +115,6 @@ private fun ButtonDemo(state: ButtonDemoState) {
             .padding(all = OudsTheme.spaces.fixed.medium)
             .fillMaxWidth()
     ) {
-        val text = stringResource(id = R.string.app_components_button_label)
         val icon = OudsButton.Icon(painterResource(id = R.drawable.ic_heart), stringResource(id = R.string.app_components_button_icon_a11y))
         with(state) {
             when (layout) {

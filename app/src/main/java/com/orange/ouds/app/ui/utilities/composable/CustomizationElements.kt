@@ -30,6 +30,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -51,7 +52,7 @@ fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange
 }
 
 @Composable
-fun CustomizationChoiceChipsColumn(
+fun CustomizationChoiceChips(
     label: String,
     chipsLabels: List<String>,
     selectedChipIndex: Int,
@@ -88,5 +89,25 @@ fun CustomizationChoiceChipsColumn(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun CustomizationTextField(
+    label: String,
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+            value = value,
+            onValueChange = onValueChange,
+            singleLine = true,
+        )
     }
 }
