@@ -183,7 +183,7 @@ private fun LinkDemoCodeSnippet(state: LinkDemoState, modifier: Modifier = Modif
     val text = stringResource(id = R.string.app_components_link_label)
     CodeSnippet(modifier = modifier) {
         coloredBoxCall(state.onColoredBox) {
-            functionCall("OudsLink") {
+            functionCall(OudsLink::class.simpleName.orEmpty()) {
                 typedArgument("text", text)
                 when (state.layout) {
                     LinkDemoState.Layout.TextOnly -> {}

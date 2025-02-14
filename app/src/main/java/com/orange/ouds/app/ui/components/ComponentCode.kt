@@ -17,7 +17,7 @@ import com.orange.ouds.core.component.OudsColoredBox
 
 fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() -> Unit) {
     if (onColoredBox) {
-        functionCall("OudsColoredBox") {
+        functionCall(OudsColoredBox::class.simpleName.orEmpty()) {
             trailingLambda = true
             typedArgument("color", OudsColoredBox.Color.BrandPrimary)
             lambdaArgument("content", content)
