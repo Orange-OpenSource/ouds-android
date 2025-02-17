@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import android.os.Parcelable
 import androidx.compose.foundation.border
+import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -91,6 +92,8 @@ import kotlinx.parcelize.Parcelize
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ * is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextSample
  *
@@ -103,7 +106,8 @@ fun OudsButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButtonDefaults.Style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
         icon = null,
@@ -113,7 +117,8 @@ fun OudsButton(
         modifier = modifier,
         enabled = enabled,
         style = style,
-        hierarchy = hierarchy
+        hierarchy = hierarchy,
+        interactionSource = interactionSource
     )
 }
 
@@ -134,6 +139,8 @@ fun OudsButton(
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ * is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconSample
  *
@@ -146,7 +153,8 @@ fun OudsButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButtonDefaults.Style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
         icon = icon,
@@ -156,7 +164,8 @@ fun OudsButton(
         modifier = modifier,
         enabled = enabled,
         style = style,
-        hierarchy = hierarchy
+        hierarchy = hierarchy,
+        interactionSource = interactionSource
     )
 }
 
@@ -178,6 +187,8 @@ fun OudsButton(
  * @param style The button style.
  * @param hierarchy The button hierarchy.
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ * is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextSample
  *
@@ -191,7 +202,8 @@ fun OudsButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButtonDefaults.Style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
         icon = icon,
@@ -201,7 +213,8 @@ fun OudsButton(
         modifier = modifier,
         enabled = enabled,
         style = style,
-        hierarchy = hierarchy
+        hierarchy = hierarchy,
+        interactionSource = interactionSource
     )
 }
 
@@ -215,15 +228,16 @@ private fun OudsButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButton.Style.Default,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    interactionSource: MutableInteractionSource? = null
 ) {
     if (hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current) {
-        throw IllegalStateException("An OudsButton with OudsButton.Hierarchy.Negative hierarchy has been detected as a direct or indirect child of an OudsColoredBox, which is not allowed.")
+        throw IllegalStateException("An OudsButton with OudsButton.Hierarchy.Negative hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed.")
     }
 
     val buttonTokens = OudsTheme.componentsTokens.button
-    val interactionSource = remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
+    val buttonInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val interactionState by buttonInteractionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
     val iconScale = if (icon != null && text == null) LocalContext.current.resources.configuration.fontScale else 1.0f
     val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeightIconOnly.dp * iconScale else Dp.Unspecified
@@ -246,7 +260,7 @@ private fun OudsButton(
             colors = buttonColors(hierarchy = hierarchy, buttonState = state),
             elevation = null,
             contentPadding = PaddingValues(all = 0.dp),
-            interactionSource = interactionSource
+            interactionSource = buttonInteractionSource
         ) {
             Box(contentAlignment = Alignment.Center) {
                 if (state == OudsButton.State.Loading) {
