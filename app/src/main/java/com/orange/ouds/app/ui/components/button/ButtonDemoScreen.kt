@@ -198,21 +198,23 @@ private fun ButtonDemoBox(colored: Boolean, modifier: Modifier = Modifier, conte
 private fun ButtonDemoCodeSnippet(state: ButtonDemoState, modifier: Modifier = Modifier) {
     val text = stringResource(id = R.string.app_components_button_label)
     CodeSnippet(modifier = modifier) {
-        coloredBoxCall(state.onColoredBox) {
-            functionCall(OudsButton::class.simpleName.orEmpty()) {
-                if (state.layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
-                    constructorCallArgument<OudsButton.Icon>("icon") {
-                        painterArgument(R.drawable.ic_heart)
-                        contentDescriptionArgument(R.string.app_components_button_icon_a11y)
+        with(state) {
+            coloredBoxCall(onColoredBox) {
+                functionCall(OudsButton::class.simpleName.orEmpty()) {
+                    if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
+                        constructorCallArgument<OudsButton.Icon>("icon") {
+                            painterArgument(R.drawable.ic_heart)
+                            contentDescriptionArgument(R.string.app_components_button_icon_a11y)
+                        }
                     }
+                    if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
+                        textArgument(text)
+                    }
+                    onClickArgument()
+                    enabledArgument(enabled)
+                    typedArgument("style", style)
+                    typedArgument("hierarchy", hierarchy)
                 }
-                if (state.layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
-                    textArgument(text)
-                }
-                onClickArgument()
-                enabledArgument(state.enabled)
-                typedArgument("style", state.style)
-                typedArgument("hierarchy", state.hierarchy)
             }
         }
     }

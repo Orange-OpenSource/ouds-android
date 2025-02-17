@@ -186,22 +186,24 @@ private fun LinkDemoBox(colored: Boolean, modifier: Modifier = Modifier, content
 private fun LinkDemoCodeSnippet(state: LinkDemoState, modifier: Modifier = Modifier) {
     val text = stringResource(id = R.string.app_components_link_label)
     CodeSnippet(modifier = modifier) {
-        coloredBoxCall(state.onColoredBox) {
-            functionCall(OudsLink::class.simpleName.orEmpty()) {
-                textArgument(text)
-                when (state.layout) {
-                    LinkDemoState.Layout.TextOnly -> {}
-                    LinkDemoState.Layout.IconAndText -> {
-                        constructorCallArgument<OudsLink.Icon>("icon") {
-                            painterArgument(R.drawable.ic_heart)
+        with(state) {
+            coloredBoxCall(onColoredBox) {
+                functionCall(OudsLink::class.simpleName.orEmpty()) {
+                    textArgument(text)
+                    when (layout) {
+                        LinkDemoState.Layout.TextOnly -> {}
+                        LinkDemoState.Layout.IconAndText -> {
+                            constructorCallArgument<OudsLink.Icon>("icon") {
+                                painterArgument(R.drawable.ic_heart)
+                            }
                         }
+                        LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLink.Arrow.Back)
+                        LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLink.Arrow.Next)
                     }
-                    LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLink.Arrow.Back)
-                    LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLink.Arrow.Next)
+                    onClickArgument()
+                    enabledArgument(enabled)
+                    typedArgument("size", size)
                 }
-                onClickArgument()
-                enabledArgument(state.enabled)
-                typedArgument("size", state.size)
             }
         }
     }
