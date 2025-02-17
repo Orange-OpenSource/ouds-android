@@ -16,6 +16,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -85,11 +86,13 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 value = text,
                 onValueChange = { value -> text = value })
         }
-    ) {
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
+                .consumeWindowInsets(innerPadding)
+                .padding(innerPadding)
         ) {
             DetailScreenDescription(
                 modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),

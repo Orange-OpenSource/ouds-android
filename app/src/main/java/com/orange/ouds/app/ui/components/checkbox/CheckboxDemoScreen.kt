@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.components.checkbox
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -60,11 +61,13 @@ fun CheckboxDemoScreen() = DemoScreen(rememberCheckboxDemoState()) {
                 enabled = errorSwitchEnabled
             )
         }
-    ) {
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
+                .consumeWindowInsets(innerPadding)
+                .padding(innerPadding)
         ) {
             DetailScreenDescription(
                 modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
