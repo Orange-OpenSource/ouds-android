@@ -128,7 +128,9 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
             NavHost(
                 navController = mainState.navigationState.navController,
                 startDestination = BottomBarItem.Tokens.route,
-                modifier = Modifier.padding(innerPadding)
+                modifier = Modifier
+                    .consumeWindowInsets(innerPadding)
+                    .padding(innerPadding)
             ) {
                 appNavGraph(mainState.navigationState.navController)
             }
