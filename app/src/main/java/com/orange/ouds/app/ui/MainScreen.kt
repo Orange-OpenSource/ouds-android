@@ -21,14 +21,11 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.LocalActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -88,7 +85,10 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
 
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val activity = LocalActivity.current as? ComponentActivity
-    activity?.enableEdgeToEdge(SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isSystemInDarkTheme })
+    activity?.enableEdgeToEdge(
+        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isSystemInDarkTheme },
+        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isSystemInDarkTheme }
+    )
 
     var changeThemeDialogVisible by remember { mutableStateOf(false) }
 
@@ -111,18 +111,13 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
                 )
             },
             bottomBar = {
-                AnimatedVisibility(
-                    visible = mainState.showBottomBar,
-                    enter = fadeIn(tween(100)),
-                    exit = fadeOut(tween(100))
-                ) {
-                    BottomBar(
-                        currentRoute = mainState.navigationState.currentRoute.orEmpty(),
-                        navigateToRoute = { route ->
-                            mainState.navigationState.navigateToBottomBarRoute(route)
-                        }
-                    )
-                }
+                BottomBar(
+                    currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                    navigateToRoute = { route ->
+                        mainState.navigationState.navigateToBottomBarRoute(route)
+                    },
+                    visible = mainState.showBottomBar
+                )
             }
         ) { innerPadding ->
             NavHost(
