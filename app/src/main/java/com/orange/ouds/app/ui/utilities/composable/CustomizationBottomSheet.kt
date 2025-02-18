@@ -14,15 +14,12 @@ package com.orange.ouds.app.ui.utilities.composable
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -38,7 +35,10 @@ import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -59,7 +59,7 @@ fun CustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     titleResId: Int = R.string.app_common_customize_label,
     bottomSheetContent: @Composable ColumnScope.() -> Unit,
-    content: @Composable BoxScope.() -> Unit
+    content: @Composable (PaddingValues) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val bottomSheetHeaderStateDescription = when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
@@ -75,6 +75,7 @@ fun CustomizationBottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
         sheetSwipeEnabled = false,
         sheetDragHandle = null,
+        containerColor = OudsTheme.colorScheme.background.primary,
         sheetContent = {
             Row(
                 modifier = Modifier
@@ -114,19 +115,16 @@ fun CustomizationBottomSheetScaffold(
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 bottomSheetContent()
             }
-        }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-                .background(OudsTheme.colorScheme.background.primary),
-            content = content
-        )
-    }
+        },
+        content = content
+    )
 
+    var shouldExpand by rememberSaveable { mutableStateOf(true) }
     LifecycleResumeEffect(Unit) {
-        tryExpandBottomSheet(coroutineScope, bottomSheetScaffoldState.bottomSheetState)
+        if (shouldExpand) {
+            shouldExpand = false
+            tryExpandBottomSheet(coroutineScope, bottomSheetScaffoldState.bottomSheetState)
+        }
         onPauseOrDispose {}
     }
 }
