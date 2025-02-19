@@ -85,6 +85,10 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                                 }
                                 Text(text = pullRequest, style = OudsTheme.typography.body.default.medium)
                             }
+                            Text(
+                                text = stringResource(R.string.app_about_tokensVersion_label, BuildConfig.TOKENS_VERSION),
+                                style = OudsTheme.typography.body.default.medium
+                            )
                         }
                     }
                 )
