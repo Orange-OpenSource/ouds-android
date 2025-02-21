@@ -118,30 +118,32 @@ fun OudsTheme(
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkThemeEnabled) themeContract.colorTokens.darkColorScheme else themeContract.colorTokens.lightColorScheme
-    val materialColorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme
-    val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
+    with(themeContract) {
+        val colorScheme = if (darkThemeEnabled) colorTokens.darkColorScheme else colorTokens.lightColorScheme
+        val materialColorScheme = if (darkThemeEnabled) materialColorTokens.materialDarkColorScheme else materialColorTokens.materialLightColorScheme
+        val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
 
-    CompositionLocalProvider(
-        LocalDarkThemeEnabled provides darkThemeEnabled,
-        LocalColorScheme provides colorScheme,
-        LocalLightColorScheme provides themeContract.colorTokens.lightColorScheme,
-        LocalDarkColorScheme provides themeContract.colorTokens.darkColorScheme,
-        LocalMaterialLightColorScheme provides themeContract.colorTokens.materialLightColorScheme,
-        LocalMaterialDarkColorScheme provides themeContract.colorTokens.materialDarkColorScheme,
-        LocalBorders provides themeContract.borderTokens.getBorders(),
-        LocalElevations provides themeContract.elevationTokens.getElevation(),
-        LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily, windowWidthSizeClass),
-        LocalGrids provides themeContract.gridTokens.getGrids(windowWidthSizeClass),
-        LocalOpacities provides themeContract.opacityTokens.getOpacity(),
-        LocalSizes provides themeContract.sizeTokens.getSizes(windowWidthSizeClass),
-        LocalSpaces provides themeContract.spaceTokens.getSpaces(windowWidthSizeClass),
-        LocalComponentsTokens provides themeContract.componentsTokens,
-    ) {
-        MaterialTheme(
-            colorScheme = materialColorScheme,
-            content = content
-        )
+        CompositionLocalProvider(
+            LocalDarkThemeEnabled provides darkThemeEnabled,
+            LocalColorScheme provides colorScheme,
+            LocalLightColorScheme provides colorTokens.lightColorScheme,
+            LocalDarkColorScheme provides colorTokens.darkColorScheme,
+            LocalMaterialLightColorScheme provides materialColorTokens.materialLightColorScheme,
+            LocalMaterialDarkColorScheme provides materialColorTokens.materialDarkColorScheme,
+            LocalBorders provides borderTokens.getBorders(),
+            LocalElevations provides elevationTokens.getElevation(),
+            LocalTypography provides fontTokens.getTypography(fontFamily, windowWidthSizeClass),
+            LocalGrids provides gridTokens.getGrids(windowWidthSizeClass),
+            LocalOpacities provides opacityTokens.getOpacity(),
+            LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),
+            LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),
+            LocalComponentsTokens provides componentsTokens,
+        ) {
+            MaterialTheme(
+                colorScheme = materialColorScheme,
+                content = content
+            )
+        }
     }
 }
 
