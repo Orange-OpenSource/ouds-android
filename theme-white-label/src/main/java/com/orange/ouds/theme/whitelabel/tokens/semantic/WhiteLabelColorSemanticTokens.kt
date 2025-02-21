@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
@@ -34,5 +35,5 @@ data class WhiteLabelColorSemanticTokens(
     override val opacityColorTokens: OudsColorOpacitySemanticTokens = WhiteLabelColorOpacitySemanticTokens(),
     override val overlayColorTokens: OudsColorOverlaySemanticTokens = WhiteLabelColorOverlaySemanticTokens(),
     override val surfaceColorTokens: OudsColorSurfaceSemanticTokens = WhiteLabelColorSurfaceSemanticTokens(),
-    override val repositoryColorTokens: OudsColorRepositorySemanticTokens = WhiteLabelColorRepositorySemanticTokens()
+    @InternalOudsApi override val repositoryColorTokens: OudsColorRepositorySemanticTokens = WhiteLabelColorRepositorySemanticTokens()
 ) : OudsColorSemanticTokens
