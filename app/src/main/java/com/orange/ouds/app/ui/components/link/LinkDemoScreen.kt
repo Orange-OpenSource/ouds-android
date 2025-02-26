@@ -184,7 +184,6 @@ private fun LinkDemoBox(colored: Boolean, modifier: Modifier = Modifier, content
 
 @Composable
 private fun LinkDemoCodeSnippet(state: LinkDemoState, modifier: Modifier = Modifier) {
-    val text = stringResource(id = R.string.app_components_link_label)
     CodeSnippet(modifier = modifier) {
         with(state) {
             coloredBoxCall(onColoredBox) {

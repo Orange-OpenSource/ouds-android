@@ -196,7 +196,6 @@ private fun ButtonDemoBox(colored: Boolean, modifier: Modifier = Modifier, conte
 
 @Composable
 private fun ButtonDemoCodeSnippet(state: ButtonDemoState, modifier: Modifier = Modifier) {
-    val text = stringResource(id = R.string.app_components_button_label)
     CodeSnippet(modifier = modifier) {
         with(state) {
             coloredBoxCall(onColoredBox) {
