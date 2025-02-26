@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "netlify-cli": "^18.0.0"
+    "netlify-cli": "^19.0.0"
   }
 }
