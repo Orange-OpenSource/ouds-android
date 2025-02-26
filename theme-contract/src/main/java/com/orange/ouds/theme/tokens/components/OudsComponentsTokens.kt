@@ -14,6 +14,8 @@ package com.orange.ouds.theme.tokens.components
 
 class OudsComponentsTokens(
     val button: OudsButtonTokens = OudsButtonTokens(),
+    val checkRadio: OudsCheckRadioTokens = OudsCheckRadioTokens(),
+    val listItem: OudsListItemTokens = OudsListItemTokens(),
     val skeleton: OudsSkeletonTokens = OudsSkeletonTokens(),
     val link: OudsLinkTokens = OudsLinkTokens(),
 )
