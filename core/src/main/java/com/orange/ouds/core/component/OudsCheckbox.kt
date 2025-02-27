@@ -57,7 +57,6 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
 /**
- *
  * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
  *
  * An OUDS checkbox.
@@ -164,8 +163,6 @@ private fun OudsCheckbox(
     val context = LocalContext.current
     val checkboxTokens = OudsTheme.componentsTokens.checkbox
     val state = previewState.orElse { rememberOudsCheckboxState(enabled = enabled, interactionState = interactionState) }
-    val shape = RoundedCornerShape(checkboxTokens.borderRadius.value)
-    val selected = value != ToggleableState.Off
 
     Box(
         modifier = modifier
@@ -182,27 +179,40 @@ private fun OudsCheckbox(
             },
         contentAlignment = Alignment.Center,
     ) {
-        Box(
-            modifier = Modifier
-                .size(checkboxTokens.sizeIndicator.value)
-                .selectorBorder(state = state, selected = selected, error = error, shape = shape)
-                .background(color = selectorBackgroundColor(state = state, selected = selected, error = error)),
-            contentAlignment = Alignment.Center
-        ) {
-            val selectorResource = when (value) {
-                ToggleableState.On -> R.drawable.ic_tick
-                ToggleableState.Off -> null
-                ToggleableState.Indeterminate -> R.drawable.ic_less
-            }
+        OudsCheckboxIndicator(state = state, value = value, error = error)
+    }
+}
 
-            selectorResource?.let { resource ->
-                Icon(
-                    modifier = Modifier.fillMaxSize(),
-                    painter = painterResource(resource),
-                    tint = tickColor(state = state, error = error),
-                    contentDescription = null
-                )
-            }
+@Composable
+internal fun OudsCheckboxIndicator(
+    state: OudsCheckbox.State,
+    value: ToggleableState,
+    error: Boolean
+) {
+    val checkboxTokens = OudsTheme.componentsTokens.checkbox
+    val selected = value != ToggleableState.Off
+    val shape = RoundedCornerShape(checkboxTokens.borderRadius.value)
+
+    Box(
+        modifier = Modifier
+            .size(checkboxTokens.sizeIndicator.value)
+            .selectorBorder(state = state, selected = selected, error = error, shape = shape)
+            .background(color = selectorBackgroundColor(state = state, selected = selected, error = error)),
+        contentAlignment = Alignment.Center
+    ) {
+        val selectorResource = when (value) {
+            ToggleableState.On -> R.drawable.ic_tick
+            ToggleableState.Off -> null
+            ToggleableState.Indeterminate -> R.drawable.ic_less
+        }
+
+        selectorResource?.let { resource ->
+            Icon(
+                modifier = Modifier.fillMaxSize(),
+                painter = painterResource(resource),
+                tint = tickColor(state = state, error = error),
+                contentDescription = null
+            )
         }
     }
 }
