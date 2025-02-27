@@ -80,6 +80,8 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  * @param error Controls the error state of the checkbox control item.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsCheckboxControlItemSample
  */
 @Composable
 fun OudsCheckboxControlItem(
@@ -137,6 +139,8 @@ fun OudsCheckboxControlItem(
  * @param error Controls the error state of the checkbox control item.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the control item's checkbox. Note that
  * if `null` is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxControlItemSample
  */
 @Composable
 fun OudsTriStateCheckboxControlItem(
