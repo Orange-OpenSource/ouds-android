@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
+import com.orange.ouds.app.ui.components.checkbox.CheckboxControlItemDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
@@ -28,7 +29,8 @@ sealed class Component(
     @StringRes val nameRes: Int,
     val imageRes: LightDarkResourceId,
     @StringRes val descriptionRes: Int,
-    val demoScreen: @Composable () -> Unit
+    val variants: List<Variant> = emptyList(),
+    val demoScreen: (@Composable () -> Unit)? = null
 ) {
 
     companion object {
@@ -41,20 +43,35 @@ sealed class Component(
         R.string.app_components_button_label,
         LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
         R.string.app_components_button_description_text,
-        { ButtonDemoScreen() }
+        demoScreen = { ButtonDemoScreen() }
     )
 
     data object Checkbox : Component(
         R.string.app_components_checkbox_label,
         LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
         R.string.app_components_checkbox_description_text,
-        { CheckboxDemoScreen() }
+        listOf(Variant.CheckboxOnly, Variant.CheckboxControlItem)
     )
 
     data object Link : Component(
         R.string.app_components_link_label,
         LightDarkResourceId(R.drawable.il_components_link, R.drawable.il_components_link_dark),
         R.string.app_components_link_description_text,
-        { LinkDemoScreen() }
+        demoScreen = { LinkDemoScreen() }
     )
+}
+
+sealed class Variant(
+    @StringRes val nameRes: Int,
+    val demoScreen: @Composable () -> Unit
+) {
+
+    companion object {
+        fun fromId(variantId: Long?) = components.flatMap { it.variants }.firstOrNull { it.id == variantId }
+    }
+
+    val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
+
+    data object CheckboxOnly : Variant(R.string.app_components_checkbox_checkboxOnly_label, { CheckboxDemoScreen() })
+    data object CheckboxControlItem : Variant(R.string.app_components_checkbox_checkboxControlItem_label, { CheckboxControlItemDemoScreen() })
 }
