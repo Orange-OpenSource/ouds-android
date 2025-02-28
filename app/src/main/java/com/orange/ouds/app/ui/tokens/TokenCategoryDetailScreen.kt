@@ -79,7 +79,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
             item {
                 DetailScreenHeader(
                     descriptionRes = tokenCategory.descriptionRes,
-                    imageRes = tokenCategory.imageRes
+                    illustration = painterResource(id = tokenCategory.imageRes)
                 )
                 tokenCategory.valueCodeExample?.let { codeExample ->
                     CodeColumn(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.shortest), codeExample = codeExample)

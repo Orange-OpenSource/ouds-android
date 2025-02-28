@@ -13,17 +13,21 @@
 package com.orange.ouds.app.ui.components
 
 import androidx.compose.runtime.remember
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.orange.ouds.app.ui.navigation.navigateToElement
 
 object ComponentsNavigation {
     const val ComponentDetailRoute = "component"
     const val ComponentIdKey = "componentId"
+    const val ComponentVariantRoute = "component/variant"
+    const val ComponentVariantIdKey = "componentVariantId"
 }
 
-fun NavGraphBuilder.addComponentsNavGraph() {
+fun NavGraphBuilder.addComponentsNavGraph(navController: NavController) {
     composable(
         "${ComponentsNavigation.ComponentDetailRoute}/{${ComponentsNavigation.ComponentIdKey}}",
         arguments = listOf(navArgument(ComponentsNavigation.ComponentIdKey) { type = NavType.LongType })
@@ -33,7 +37,24 @@ fun NavGraphBuilder.addComponentsNavGraph() {
 
         val component = remember(routeComponentId) { Component.fromId(routeComponentId) }
         component?.let {
-            component.demoScreen()
+            if (component.variants.isEmpty()) {
+                component.demoScreen?.invoke()
+            } else {
+                ComponentVariantsScreen(component = component, onVariantClick = { id ->
+                    navController.navigateToElement(ComponentsNavigation.ComponentVariantRoute, id, from)
+                })
+            }
         }
     }
+
+    composable(
+        "${ComponentsNavigation.ComponentVariantRoute}/{${ComponentsNavigation.ComponentVariantIdKey}}",
+        arguments = listOf(navArgument(ComponentsNavigation.ComponentVariantIdKey) { type = NavType.LongType })
+    ) { from ->
+        val arguments = requireNotNull(from.arguments)
+        val routeVariantId = arguments.getLong(ComponentsNavigation.ComponentVariantIdKey)
+        val variant = remember(routeVariantId) { Variant.fromId(routeVariantId) }
+        variant?.demoScreen?.invoke()
+    }
 }
+

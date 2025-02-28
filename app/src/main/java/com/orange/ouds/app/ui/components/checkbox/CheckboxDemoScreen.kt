@@ -55,7 +55,7 @@ fun CheckboxDemoScreen() = DemoScreen(rememberCheckboxDemoState()) {
                 enabled = enabledSwitchEnabled
             )
             CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_checkbox_error_label),
+                label = stringResource(R.string.app_components_common_error_label),
                 checked = error,
                 onCheckedChange = { error = it },
                 enabled = errorSwitchEnabled
