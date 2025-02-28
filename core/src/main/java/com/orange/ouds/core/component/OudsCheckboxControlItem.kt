@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -35,6 +36,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -50,6 +53,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -232,6 +236,7 @@ private fun OudsCheckboxControlItem(
             .fillMaxWidth()
             .heightIn(min = listItemTokens.sizeMinHeight.dp)
             .background(color = backgroundColor(state = state))
+            .border(state = state)
             .semantics(mergeDescendants = true) {
                 stateDescription = when (value) {
                     ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
@@ -333,6 +338,18 @@ private fun checkboxState(state: OudsCheckboxControlItem.State) = when (state) {
     OudsCheckboxControlItem.State.Pressed -> OudsCheckbox.State.Pressed
     OudsCheckboxControlItem.State.Focused -> OudsCheckbox.State.Focused
     OudsCheckboxControlItem.State.Disabled, OudsCheckboxControlItem.State.ReadOnly -> OudsCheckbox.State.Disabled
+}
+
+@Composable
+private fun Modifier.border(state: OudsCheckboxControlItem.State) = if (state == OudsCheckboxControlItem.State.Focused) {
+    outerBorder(
+        width = OudsTheme.borders.width.focus,
+        color = OudsTheme.colorScheme.border.focus,
+        insetWidth = OudsTheme.borders.width.focusInset,
+        insetColor = OudsTheme.colorScheme.border.focusInset
+    )
+} else {
+    this
 }
 
 @Composable
