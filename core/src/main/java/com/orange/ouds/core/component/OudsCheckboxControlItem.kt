@@ -14,14 +14,17 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.triStateToggleable
@@ -36,8 +39,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -229,11 +230,14 @@ private fun OudsCheckboxControlItem(
         }
     }
 
+    val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon.orElse { null } else checkboxIndicator
+    val trailingElement: (@Composable () -> Unit)? = if (inverted) checkboxIndicator else itemIcon.orElse { null }
     val dividerThickness = 1.dp
 
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .height(IntrinsicSize.Min)
             .heightIn(min = listItemTokens.sizeMinHeight.dp)
             .background(color = backgroundColor(state = state))
             .border(state = state)
@@ -247,17 +251,16 @@ private fun OudsCheckboxControlItem(
     ) {
         Row(
             modifier = Modifier
-                .heightIn(min = listItemTokens.sizeMinHeight.dp - dividerThickness) //TODO Not able to do the same using weight
+                .weight(1f)
                 .padding(all = listItemTokens.spaceInset.value),
-            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(listItemTokens.spaceColumnGap.value)
         ) {
-            if (inverted) itemIcon?.invoke() else checkboxIndicator()
+            leadingElement?.let { LeadingTrailingBox(leadingElement) }
             Column(modifier = Modifier.weight(1f)) {
                 Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
                 helperText?.let { Text(text = helperText, style = OudsTheme.typography.label.default.medium, color = helperTextColor(state = state)) }
             }
-            if (inverted) checkboxIndicator() else itemIcon?.invoke()
+            trailingElement?.let { LeadingTrailingBox(trailingElement) }
         }
         if (divider) {
             HorizontalDivider(
@@ -338,6 +341,17 @@ private fun checkboxState(state: OudsCheckboxControlItem.State) = when (state) {
     OudsCheckboxControlItem.State.Pressed -> OudsCheckbox.State.Pressed
     OudsCheckboxControlItem.State.Focused -> OudsCheckbox.State.Focused
     OudsCheckboxControlItem.State.Disabled, OudsCheckboxControlItem.State.ReadOnly -> OudsCheckbox.State.Disabled
+}
+
+@Composable
+private fun LeadingTrailingBox(content: @Composable () -> Unit) {
+    val checkboxTokens = OudsTheme.componentsTokens.checkRadio
+    Box(
+        modifier = Modifier.heightIn(max = checkboxTokens.sizeMaxHeightAssetsContainer.dp).fillMaxHeight(),
+        contentAlignment = Alignment.Center
+    ) {
+        content()
+    }
 }
 
 @Composable
@@ -457,6 +471,13 @@ private val previewParameterValues: List<OudsCheckboxControlItemPreviewParameter
                         inverted = inverted
                     ),
                     OudsCheckboxControlItemPreviewParameter(toggleableState = ToggleableState.On, helperText = helperText, error = true, inverted = inverted),
+                    OudsCheckboxControlItemPreviewParameter(
+                        toggleableState = ToggleableState.On,
+                        helperText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                        error = true,
+                        hasIcon = true,
+                        inverted = inverted
+                    ),
                 )
                 addAll(parameters)
             }
