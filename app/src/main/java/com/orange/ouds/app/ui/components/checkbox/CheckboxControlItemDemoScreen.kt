@@ -108,7 +108,7 @@ private fun CheckboxControlItemDemo(state: CheckboxControlItemDemoState) {
     Box(
         modifier = Modifier
             .background(OudsTheme.colorScheme.background.primary)
-            .padding(all = OudsTheme.spaces.fixed.medium)
+            .padding(vertical = OudsTheme.spaces.fixed.medium)
             .fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {
