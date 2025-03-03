@@ -15,8 +15,7 @@ import com.orange.ouds.gradle.findTypedProperty
 private val moduleDocumentationFilePaths = listOf(
     "global-raw-tokens",
     "theme-contract",
-    "theme-orange",
-    "theme-white-label"
+    "theme-orange"
 ).map { "$it/Module.md" }
 
 private val tokensVersion: String
