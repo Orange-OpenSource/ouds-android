@@ -37,9 +37,7 @@ fun FunctionCall.Builder.painterArgument(@DrawableRes id: Int) {
 }
 
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) {
-    functionCallArgument("contentDescription", "stringResource") {
-        typedArgument("id", id)
-    }
+    formattableArgument("contentDescription") { "\"${it.getString(id)}\"" }
 }
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument("onClick", init)

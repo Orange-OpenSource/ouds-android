@@ -34,7 +34,7 @@ annotation class CodeDslMarker
 
 private const val CODE_INDENT = "  "
 
-interface Formattable {
+fun interface Formattable {
 
     fun format(context: Context): String
 }
@@ -131,7 +131,9 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
             elements.add(Argument(name, value, T::class.java))
         }
 
-        fun rawArgument(name: String?, value: String) = typedArgument(name, RawArgumentValue(value))
+        fun rawArgument(name: String?, value: String) = formattableArgument(name, { value })
+
+        fun formattableArgument(name: String?, format: (Context) -> String) = typedArgument(name, Formattable(format))
 
         fun lambdaArgument(name: String?, init: Code.Builder.() -> Unit = {}) {
             val code = Code.Builder().apply(init).build()
@@ -191,12 +193,6 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : F
 
         return if (name?.isNotBlank() == true) "$name = $valueString" else valueString
     }
-}
-
-@JvmInline
-private value class RawArgumentValue(val value: String) : Formattable {
-
-    override fun format(context: Context): String = value
 }
 
 data class Lambda(val code: Code) : Formattable {
