@@ -173,7 +173,7 @@ fun OudsTriStateCheckboxItem(
             indication = LocalIndication.current,
             state = state,
             onClick = onClick,
-            enabled = enabled,
+            enabled = enabled && !readOnly,
             role = Role.Checkbox
         ),
         previewState = null,
