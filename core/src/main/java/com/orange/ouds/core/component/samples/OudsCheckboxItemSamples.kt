@@ -18,14 +18,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.state.ToggleableState
-import com.orange.ouds.core.component.OudsCheckboxControlItem
-import com.orange.ouds.core.component.OudsTriStateCheckboxControlItem
+import com.orange.ouds.core.component.OudsCheckboxItem
+import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 
 @Composable
-internal fun OudsCheckboxControlItemSample() {
+internal fun OudsCheckboxItemSample() {
     var checked by remember { mutableStateOf(false) }
 
-    OudsCheckboxControlItem(
+    OudsCheckboxItem(
         checked = checked,
         text = "Terms of use",
         helperText = "By checking this box, I acknowledge having read the conditions of use.",
@@ -35,10 +35,10 @@ internal fun OudsCheckboxControlItemSample() {
 }
 
 @Composable
-internal fun OudsTriStateCheckboxControlItemSample() {
+internal fun OudsTriStateCheckboxItemSample() {
     var toggleableState by remember { mutableStateOf(ToggleableState.Off) }
 
-    OudsTriStateCheckboxControlItem(
+    OudsTriStateCheckboxItem(
         state = toggleableState,
         text = "My hobbies",
         helperText = "Select the hobbies you practice regularly.",

@@ -35,8 +35,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.core.component.OudsCheckboxControlItem
-import com.orange.ouds.core.component.OudsTriStateCheckboxControlItem
+import com.orange.ouds.core.component.OudsCheckboxItem
+import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
@@ -44,7 +44,7 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CheckboxControlItemDemoScreen() = DemoScreen(rememberCheckboxControlItemDemoState()) {
+fun CheckboxItemDemoScreen() = DemoScreen(rememberCheckboxItemDemoState()) {
     CustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
@@ -93,16 +93,16 @@ fun CheckboxControlItemDemoScreen() = DemoScreen(rememberCheckboxControlItemDemo
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-            CheckboxControlItemDemo(state = this@DemoScreen)
+            CheckboxItemDemo(state = this@DemoScreen)
             OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                CheckboxControlItemDemo(state = this@DemoScreen)
+                CheckboxItemDemo(state = this@DemoScreen)
             }
         }
     }
 }
 
 @Composable
-private fun CheckboxControlItemDemo(state: CheckboxControlItemDemoState) {
+private fun CheckboxItemDemo(state: CheckboxItemDemoState) {
     var toggleableState by rememberSaveable { mutableStateOf(ToggleableState.Off) }
 
     Box(
@@ -112,7 +112,7 @@ private fun CheckboxControlItemDemo(state: CheckboxControlItemDemoState) {
             .fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {
-        OudsTriStateCheckboxControlItem(
+        OudsTriStateCheckboxItem(
             state = toggleableState,
             onClick = {
                 toggleableState = when (toggleableState) {
@@ -123,7 +123,7 @@ private fun CheckboxControlItemDemo(state: CheckboxControlItemDemoState) {
             },
             text = stringResource(id = R.string.app_components_common_text_label),
             helperText = if (state.helperText) stringResource(id = R.string.app_components_controlItem_helperText_label) else null,
-            icon = if (state.icon) OudsCheckboxControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+            icon = if (state.icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
             divider = state.divider,
             inverted = state.inverted,
             enabled = state.enabled,
@@ -135,6 +135,6 @@ private fun CheckboxControlItemDemo(state: CheckboxControlItemDemoState) {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewCheckboxControlItemDemoScreen() = OudsPreview {
-    CheckboxControlItemDemoScreen()
+private fun PreviewCheckboxItemDemoScreen() = OudsPreview {
+    CheckboxItemDemoScreen()
 }

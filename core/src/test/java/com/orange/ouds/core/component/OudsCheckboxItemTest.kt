@@ -18,18 +18,18 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsCheckboxControlItemTest(private val parameter: OudsCheckboxControlItemPreviewParameter) : OudsPaparazziTest() {
+internal class OudsCheckboxItemTest(private val parameter: OudsCheckboxItemPreviewParameter) : OudsPaparazziTest() {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsCheckboxControlItemPreviewParameterProvider().values.toList()
+        internal fun data() = OudsCheckboxItemPreviewParameterProvider().values.toList()
     }
 
     @Test
-    fun takeOudsCheckboxControlItemLightThemeSnapshot() {
+    fun takeOudsCheckboxItemLightThemeSnapshot() {
         paparazzi.snapshot {
-            PreviewOudsCheckboxControlItem(
+            PreviewOudsCheckboxItem(
                 darkThemeEnabled = false,
                 parameter = parameter
             )
@@ -37,9 +37,9 @@ internal class OudsCheckboxControlItemTest(private val parameter: OudsCheckboxCo
     }
 
     @Test
-    fun takeOudsCheckboxControlItemDarkThemeSnapshot() {
+    fun takeOudsCheckboxItemDarkThemeSnapshot() {
         paparazzi.snapshot {
-            PreviewOudsCheckboxControlItem(
+            PreviewOudsCheckboxItem(
                 darkThemeEnabled = true,
                 parameter = parameter
             )

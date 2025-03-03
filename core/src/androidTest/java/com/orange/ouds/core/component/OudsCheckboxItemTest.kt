@@ -24,20 +24,20 @@ import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 
-internal class OudsCheckboxControlItemTest {
+internal class OudsCheckboxItemTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsCheckboxControlItemOnClickSucceeds() {
+    fun oudsCheckboxItemOnClickSucceeds() {
         with(composeTestRule) {
-            val testTag = "OudsCheckboxControlItem"
+            val testTag = "OudsCheckboxItem"
             val checked = false
             val onClick = mock<(Boolean) -> Unit>()
 
             setOudsContent {
-                OudsCheckboxControlItem(
+                OudsCheckboxItem(
                     checked = checked,
                     text = "Label",
                     onClick = onClick,
