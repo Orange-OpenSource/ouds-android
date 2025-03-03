@@ -256,7 +256,7 @@ private fun OudsCheckboxItem(
             horizontalArrangement = Arrangement.spacedBy(listItemTokens.spaceColumnGap.value)
         ) {
             leadingElement?.let { LeadingTrailingBox(leadingElement) }
-            Column(modifier = Modifier.weight(1f)) {
+            Column(modifier = Modifier.weight(1f).align(Alignment.CenterVertically)) {
                 Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
                 helperText?.let { Text(text = helperText, style = OudsTheme.typography.label.default.medium, color = helperTextColor(state = state)) }
             }
