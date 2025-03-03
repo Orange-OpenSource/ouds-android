@@ -73,7 +73,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                     headlineContent = {
                         Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
                             Text(text = stringResource(id = R.string.app_about_name_label), style = OudsTheme.typography.heading.extraLarge)
-                            Text(text = version, style = OudsTheme.typography.body.default.medium)
+                            Text(text = version, style = OudsTheme.typography.body.default.large)
                             if (pullRequestNumber != null) {
                                 val pullRequest = buildAnnotatedString {
                                     append(stringResource(R.string.app_about_pullRequest_label))
