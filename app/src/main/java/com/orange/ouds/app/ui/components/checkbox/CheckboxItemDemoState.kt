@@ -20,7 +20,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 
 @Composable
-fun rememberCheckboxControlItemDemoState(
+fun rememberCheckboxItemDemoState(
     helperText: Boolean = false,
     icon: Boolean = false,
     divider: Boolean = true,
@@ -28,11 +28,11 @@ fun rememberCheckboxControlItemDemoState(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false
-) = rememberSaveable(helperText, icon, divider, inverted, enabled, readOnly, error, saver = CheckboxControlItemDemoState.Saver) {
-    CheckboxControlItemDemoState(helperText, icon, divider, inverted, enabled, readOnly, error)
+) = rememberSaveable(helperText, icon, divider, inverted, enabled, readOnly, error, saver = CheckboxItemDemoState.Saver) {
+    CheckboxItemDemoState(helperText, icon, divider, inverted, enabled, readOnly, error)
 }
 
-class CheckboxControlItemDemoState(
+class CheckboxItemDemoState(
     helperText: Boolean,
     icon: Boolean,
     divider: Boolean,
@@ -63,7 +63,7 @@ class CheckboxControlItemDemoState(
                     )
                 },
                 restore = { map ->
-                    CheckboxControlItemDemoState(
+                    CheckboxItemDemoState(
                         map[helperTextKey] as Boolean,
                         map[iconKey] as Boolean,
                         map[dividerKey] as Boolean,

@@ -17,8 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
-import com.orange.ouds.app.ui.components.checkbox.CheckboxControlItemDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
+import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 
@@ -50,7 +50,7 @@ sealed class Component(
         R.string.app_components_checkbox_label,
         LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
         R.string.app_components_checkbox_description_text,
-        listOf(Variant.CheckboxOnly, Variant.CheckboxControlItem)
+        listOf(Variant.CheckboxOnly, Variant.CheckboxItem)
     )
 
     data object Link : Component(
@@ -73,5 +73,5 @@ sealed class Variant(
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
     data object CheckboxOnly : Variant(R.string.app_components_checkbox_checkboxOnly_label, { CheckboxDemoScreen() })
-    data object CheckboxControlItem : Variant(R.string.app_components_checkbox_checkboxControlItem_label, { CheckboxControlItemDemoScreen() })
+    data object CheckboxItem : Variant(R.string.app_components_checkbox_checkboxItem_label, { CheckboxItemDemoScreen() })
 }
