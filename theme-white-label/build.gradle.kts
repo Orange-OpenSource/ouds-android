@@ -11,7 +11,6 @@
  */
 
 plugins {
-    id("dokka")
     id("library")
     alias(libs.plugins.compose.compiler)
     id(libs.plugins.kotlin.parcelize.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
@@ -29,6 +28,10 @@ android {
             freeCompilerArgs.add("-opt-in=com.orange.ouds.foundation.InternalOudsApi")
         }
     }
+}
+
+mavenCentralPublish {
+    enabled = false
 }
 
 dependencies {
