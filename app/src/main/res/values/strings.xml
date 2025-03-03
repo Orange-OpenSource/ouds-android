@@ -127,7 +127,7 @@
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_label">Checkbox</string>
     <string name="app_components_checkbox_description_text">Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.</string>
-    <string name="app_components_checkbox_checkboxOnly_label">Checkbox only</string>
+    <string name="app_components_checkbox_checkbox_label">Checkbox</string>
     <string name="app_components_checkbox_checkboxItem_label">Checkbox item</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->

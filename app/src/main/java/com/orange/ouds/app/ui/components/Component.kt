@@ -50,7 +50,7 @@ sealed class Component(
         R.string.app_components_checkbox_label,
         LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
         R.string.app_components_checkbox_description_text,
-        listOf(Variant.CheckboxOnly, Variant.CheckboxItem)
+        listOf(Variant.Checkbox, Variant.CheckboxItem)
     )
 
     data object Link : Component(
@@ -72,6 +72,6 @@ sealed class Variant(
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    data object CheckboxOnly : Variant(R.string.app_components_checkbox_checkboxOnly_label, { CheckboxDemoScreen() })
+    data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })
     data object CheckboxItem : Variant(R.string.app_components_checkbox_checkboxItem_label, { CheckboxItemDemoScreen() })
 }
