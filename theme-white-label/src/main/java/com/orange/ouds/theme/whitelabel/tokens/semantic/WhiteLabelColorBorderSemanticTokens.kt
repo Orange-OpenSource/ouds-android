@@ -23,11 +23,13 @@ data class WhiteLabelColorBorderSemanticTokens(
     override val borderEmphasizedLight: Color = ColorRawTokens.colorFunctionalBlack,
     override val borderFocusLight: Color = ColorRawTokens.colorFunctionalBlack,
     override val borderFocusInsetLight: Color = ColorRawTokens.colorFunctionalWhite,
+    override val borderMutedLight: Color = ColorRawTokens.colorOpacityBlack80,
     override val borderOnBrandPrimaryLight: Color = ColorRawTokens.colorFunctionalBlack,
     override val borderOnBrandPrimaryDark: Color = ColorRawTokens.colorFunctionalBlack,
     override val borderBrandPrimaryDark: Color = WhiteLabelColorRawTokens.colorBlue500,
     override val borderDefaultDark: Color = ColorRawTokens.colorOpacityWhite200,
     override val borderEmphasizedDark: Color = ColorRawTokens.colorOpacityWhite920,
     override val borderFocusDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    override val borderFocusInsetDark: Color = ColorRawTokens.colorFunctionalDarkGray880
+    override val borderFocusInsetDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
+    override val borderMutedDark: Color = ColorRawTokens.colorOpacityWhite80
 ) : OudsColorBorderSemanticTokens

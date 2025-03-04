@@ -90,6 +90,7 @@ data class OudsColorScheme(
         val emphasized: Color,
         val focus: Color,
         val focusInset: Color,
+        val muted: Color,
         val onBrand: OnBrand
     ) {
         data class OnBrand(
@@ -187,10 +188,27 @@ data class OudsColorScheme(
         )
 
         data class Neutral(
-            val default: Color,
-            val emphasized: Color,
-            val muted: Color
-        )
+            val emphasized: Emphasized,
+            val muted: Muted,
+        ) {
+
+            data class Emphasized(
+                val higher: Color,
+                val low: Color,
+                val lower: Color,
+                val lowest: Color
+            )
+
+            data class Muted(
+                val high: Color,
+                val higher: Color,
+                val highest: Color,
+                val low: Color,
+                val lower: Color,
+                val lowest: Color,
+                val medium: Color
+            )
+        }
 
         data class Skin(
             val tint100: Color,
@@ -425,6 +443,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 emphasized = borderEmphasizedLight,
                 focus = borderFocusLight,
                 focusInset = borderFocusInsetLight,
+                muted = borderMutedLight,
                 onBrand = OudsColorScheme.Border.OnBrand(
                     primary = borderOnBrandPrimaryLight,
                 ),
@@ -497,9 +516,21 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                     tertiary = decorativeBrandTertiaryLight,
                 ),
                 neutral = OudsColorScheme.Decorative.Neutral(
-                    default = decorativeNeutralDefaultLight,
-                    emphasized = decorativeNeutralEmphasizedLight,
-                    muted = decorativeNeutralMutedLight,
+                    emphasized = OudsColorScheme.Decorative.Neutral.Emphasized(
+                        higher = decorativeNeutralEmphasizedHigherLight,
+                        low = decorativeNeutralEmphasizedLowLight,
+                        lower = decorativeNeutralEmphasizedLowerLight,
+                        lowest = decorativeNeutralEmphasizedLowestLight
+                    ),
+                    muted = OudsColorScheme.Decorative.Neutral.Muted(
+                        high = decorativeNeutralMutedHighLight,
+                        higher = decorativeNeutralMutedHigherLight,
+                        highest = decorativeNeutralMutedHighestLight,
+                        low = decorativeNeutralMutedLowLight,
+                        lower = decorativeNeutralMutedLowerLight,
+                        lowest = decorativeNeutralMutedLowestLight,
+                        medium = decorativeNeutralMutedMediumLight
+                    )
                 ),
                 skin = OudsColorScheme.Decorative.Skin(
                     tint100 = decorativeSkinTint100Light,
@@ -699,6 +730,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 emphasized = borderEmphasizedDark,
                 focus = borderFocusDark,
                 focusInset = borderFocusInsetDark,
+                muted = borderMutedDark,
                 onBrand = OudsColorScheme.Border.OnBrand(
                     primary = borderOnBrandPrimaryDark,
                 ),
@@ -771,9 +803,21 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                     tertiary = decorativeBrandTertiaryDark,
                 ),
                 neutral = OudsColorScheme.Decorative.Neutral(
-                    default = decorativeNeutralDefaultDark,
-                    emphasized = decorativeNeutralEmphasizedDark,
-                    muted = decorativeNeutralMutedDark,
+                    emphasized = OudsColorScheme.Decorative.Neutral.Emphasized(
+                        higher = decorativeNeutralEmphasizedHigherDark,
+                        low = decorativeNeutralEmphasizedLowDark,
+                        lower = decorativeNeutralEmphasizedLowerDark,
+                        lowest = decorativeNeutralEmphasizedLowestDark
+                    ),
+                    muted = OudsColorScheme.Decorative.Neutral.Muted(
+                        high = decorativeNeutralMutedHighDark,
+                        higher = decorativeNeutralMutedHigherDark,
+                        highest = decorativeNeutralMutedHighestDark,
+                        low = decorativeNeutralMutedLowDark,
+                        lower = decorativeNeutralMutedLowerDark,
+                        lowest = decorativeNeutralMutedLowestDark,
+                        medium = decorativeNeutralMutedMediumDark
+                    )
                 ),
                 skin = OudsColorScheme.Decorative.Skin(
                     tint100 = decorativeSkinTint100Dark,
@@ -982,6 +1026,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
             OudsColorKeyToken.Border.Emphasized -> emphasized
             OudsColorKeyToken.Border.Focus -> focus
             OudsColorKeyToken.Border.FocusInset -> focusInset
+            OudsColorKeyToken.Border.Muted -> muted
             OudsColorKeyToken.Border.OnBrand.Primary -> onBrand.primary
         }
     }
@@ -1037,9 +1082,17 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Colo
             OudsColorKeyToken.Decorative.Brand.Primary -> brand.primary
             OudsColorKeyToken.Decorative.Brand.Secondary -> brand.secondary
             OudsColorKeyToken.Decorative.Brand.Tertiary -> brand.tertiary
-            OudsColorKeyToken.Decorative.Neutral.Default -> neutral.default
-            OudsColorKeyToken.Decorative.Neutral.Emphasized -> neutral.emphasized
-            OudsColorKeyToken.Decorative.Neutral.Muted -> neutral.muted
+            OudsColorKeyToken.Decorative.Neutral.Emphasized.Higher -> neutral.emphasized.higher
+            OudsColorKeyToken.Decorative.Neutral.Emphasized.Low -> neutral.emphasized.low
+            OudsColorKeyToken.Decorative.Neutral.Emphasized.Lower -> neutral.emphasized.lower
+            OudsColorKeyToken.Decorative.Neutral.Emphasized.Lowest -> neutral.emphasized.lowest
+            OudsColorKeyToken.Decorative.Neutral.Muted.High -> neutral.muted.high
+            OudsColorKeyToken.Decorative.Neutral.Muted.Higher -> neutral.muted.higher
+            OudsColorKeyToken.Decorative.Neutral.Muted.Highest -> neutral.muted.highest
+            OudsColorKeyToken.Decorative.Neutral.Muted.Low -> neutral.muted.low
+            OudsColorKeyToken.Decorative.Neutral.Muted.Lower -> neutral.muted.lower
+            OudsColorKeyToken.Decorative.Neutral.Muted.Lowest -> neutral.muted.lowest
+            OudsColorKeyToken.Decorative.Neutral.Muted.Medium -> neutral.muted.medium
             OudsColorKeyToken.Decorative.Skin.Tint100 -> skin.tint100
             OudsColorKeyToken.Decorative.Skin.Tint200 -> skin.tint200
             OudsColorKeyToken.Decorative.Skin.Tint300 -> skin.tint300
