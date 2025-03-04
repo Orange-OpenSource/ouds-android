@@ -209,7 +209,7 @@ private fun OudsCheckboxItem(
 
     val interactionState by interactionSource.collectInteractionStateAsState()
     val context = LocalContext.current
-    val listItemTokens = OudsTheme.componentsTokens.listItem
+    val controlItemTokens = OudsTheme.componentsTokens.controlItem
     val state = previewState.orElse { rememberOudsCheckboxItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
 
     val checkboxIndicator: @Composable () -> Unit = {
@@ -238,7 +238,7 @@ private fun OudsCheckboxItem(
         modifier = modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
-            .heightIn(min = listItemTokens.sizeMinHeight.dp)
+            .heightIn(min = controlItemTokens.sizeMinHeight.dp)
             .background(color = backgroundColor(state = state))
             .border(state = state)
             .semantics(mergeDescendants = true) {
@@ -252,8 +252,8 @@ private fun OudsCheckboxItem(
         Row(
             modifier = Modifier
                 .weight(1f)
-                .padding(all = listItemTokens.spaceInset.value),
-            horizontalArrangement = Arrangement.spacedBy(listItemTokens.spaceColumnGap.value)
+                .padding(all = controlItemTokens.spaceInset.value),
+            horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
         ) {
             leadingElement?.let { LeadingTrailingBox(leadingElement) }
             Column(
@@ -356,7 +356,7 @@ private fun checkboxState(state: OudsCheckboxItem.State) = when (state) {
 
 @Composable
 private fun LeadingTrailingBox(content: @Composable () -> Unit) {
-    val checkboxTokens = OudsTheme.componentsTokens.checkRadio
+    val checkboxTokens = OudsTheme.componentsTokens.controlItem
     Box(
         modifier = Modifier
             .heightIn(max = checkboxTokens.sizeMaxHeightAssetsContainer.dp)
@@ -381,7 +381,7 @@ private fun Modifier.border(state: OudsCheckboxItem.State) = if (state == OudsCh
 
 @Composable
 private fun backgroundColor(state: OudsCheckboxItem.State): Color {
-    return with(OudsTheme.componentsTokens.listItem) {
+    return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
             OudsCheckboxItem.State.Enabled, OudsCheckboxItem.State.Disabled, OudsCheckboxItem.State.ReadOnly -> Color.Transparent
             OudsCheckboxItem.State.Hovered -> colorBgHover.value

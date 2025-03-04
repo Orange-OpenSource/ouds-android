@@ -329,7 +329,7 @@ private fun selectorBackgroundColor(state: OudsCheckbox.State, selected: Boolean
 
 @Composable
 private fun backgroundColor(state: OudsCheckbox.State): Color {
-    return with(OudsTheme.componentsTokens.listItem) {
+    return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
             OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> Color.Transparent
             OudsCheckbox.State.Hovered -> colorBgHover.value
