@@ -22,12 +22,15 @@ plugins {
     id("release")
     id("netlify")
     id("check-notice")
+    id("tokens-version")
 }
 
 dependencies {
     dokkaPlugin(libs.dokka.android.documentation.plugin)
     dokka(project(":core"))
+    dokka(project(":global-raw-tokens"))
     dokka(project(":theme-contract"))
+    dokka(project(":theme-orange"))
 }
 
 checkNotice {
