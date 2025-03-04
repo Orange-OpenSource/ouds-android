@@ -59,6 +59,7 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
                         text = stringResource(id = variant.nameRes),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
+                        color = OudsTheme.colorScheme.content.default,
                         style = OudsTheme.typography.heading.medium
                     )
                 }
@@ -78,6 +79,4 @@ private fun PreviewComponentVariantsScreen(
 private class ComponentVariantsScreenPreviewParameterProvider : BasicPreviewParameterProvider<Component>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<Component>
-    get() = listOf(
-        Component.Checkbox,
-    )
+    get() = listOf(Component.Checkbox)
