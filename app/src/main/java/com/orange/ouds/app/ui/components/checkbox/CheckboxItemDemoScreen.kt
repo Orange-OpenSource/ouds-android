@@ -34,6 +34,7 @@ import androidx.compose.ui.state.ToggleableState
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
@@ -48,11 +49,6 @@ fun CheckboxItemDemoScreen() = DemoScreen(rememberCheckboxItemDemoState()) {
     CustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_controlItem_helperText_label),
-                checked = helperText,
-                onCheckedChange = { helperText = it },
-            )
             CustomizationSwitchListItem(
                 label = stringResource(R.string.app_components_controlItem_icon_label),
                 checked = icon,
@@ -86,6 +82,15 @@ fun CheckboxItemDemoScreen() = DemoScreen(rememberCheckboxItemDemoState()) {
                 onCheckedChange = { error = it },
                 enabled = errorSwitchEnabled
             )
+            CustomizationTextField(
+                label = stringResource(R.string.app_components_common_text_label),
+                value = text,
+                onValueChange = { value -> text = value }
+            )
+            CustomizationTextField(
+                label = stringResource(R.string.app_components_controlItem_helperText_label),
+                value = helperText,
+                onValueChange = { value -> helperText = value })
         }
     ) {
         Column(
@@ -105,31 +110,33 @@ fun CheckboxItemDemoScreen() = DemoScreen(rememberCheckboxItemDemoState()) {
 private fun CheckboxItemDemo(state: CheckboxItemDemoState) {
     var toggleableState by rememberSaveable { mutableStateOf(ToggleableState.Off) }
 
-    Box(
-        modifier = Modifier
-            .background(OudsTheme.colorScheme.background.primary)
-            .padding(vertical = OudsTheme.spaces.fixed.medium)
-            .fillMaxWidth(),
-        contentAlignment = Alignment.Center,
-    ) {
-        OudsTriStateCheckboxItem(
-            state = toggleableState,
-            onClick = {
-                toggleableState = when (toggleableState) {
-                    ToggleableState.On -> ToggleableState.Off
-                    ToggleableState.Off -> ToggleableState.Indeterminate
-                    ToggleableState.Indeterminate -> ToggleableState.On
-                }
-            },
-            text = stringResource(id = R.string.app_components_common_text_label),
-            helperText = if (state.helperText) stringResource(id = R.string.app_components_controlItem_helperText_label) else null,
-            icon = if (state.icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
-            divider = state.divider,
-            inverted = state.inverted,
-            enabled = state.enabled,
-            readOnly = state.readOnly,
-            error = state.error
-        )
+    with(state) {
+        Box(
+            modifier = Modifier
+                .background(OudsTheme.colorScheme.background.primary)
+                .padding(vertical = OudsTheme.spaces.fixed.medium)
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center,
+        ) {
+            OudsTriStateCheckboxItem(
+                state = toggleableState,
+                onClick = {
+                    toggleableState = when (toggleableState) {
+                        ToggleableState.On -> ToggleableState.Off
+                        ToggleableState.Off -> ToggleableState.Indeterminate
+                        ToggleableState.Indeterminate -> ToggleableState.On
+                    }
+                },
+                text = text,
+                helperText = helperText.ifBlank { null },
+                icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                divider = divider,
+                inverted = inverted,
+                enabled = enabled,
+                readOnly = readOnly,
+                error = error
+            )
+        }
     }
 }
 

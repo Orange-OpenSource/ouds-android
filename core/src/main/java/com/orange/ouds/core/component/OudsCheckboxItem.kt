@@ -256,9 +256,20 @@ private fun OudsCheckboxItem(
             horizontalArrangement = Arrangement.spacedBy(listItemTokens.spaceColumnGap.value)
         ) {
             leadingElement?.let { LeadingTrailingBox(leadingElement) }
-            Column(modifier = Modifier.weight(1f).align(Alignment.CenterVertically)) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)
+            ) {
                 Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
-                helperText?.let { Text(text = helperText, style = OudsTheme.typography.label.default.medium, color = helperTextColor(state = state)) }
+                helperText?.let {
+                    Text(
+                        modifier = Modifier.padding(top = OudsTheme.spaces.fixed.shortest), //TODO Not present on Figma but texts are too close without it on Android
+                        text = helperText,
+                        style = OudsTheme.typography.label.default.medium,
+                        color = helperTextColor(state = state)
+                    )
+                }
             }
             trailingElement?.let { LeadingTrailingBox(trailingElement) }
         }
@@ -347,7 +358,9 @@ private fun checkboxState(state: OudsCheckboxItem.State) = when (state) {
 private fun LeadingTrailingBox(content: @Composable () -> Unit) {
     val checkboxTokens = OudsTheme.componentsTokens.checkRadio
     Box(
-        modifier = Modifier.heightIn(max = checkboxTokens.sizeMaxHeightAssetsContainer.dp).fillMaxHeight(),
+        modifier = Modifier
+            .heightIn(max = checkboxTokens.sizeMaxHeightAssetsContainer.dp)
+            .fillMaxHeight(),
         contentAlignment = Alignment.Center
     ) {
         content()
