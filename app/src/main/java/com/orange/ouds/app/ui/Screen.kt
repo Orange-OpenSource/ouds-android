@@ -21,6 +21,7 @@ import com.orange.ouds.app.ui.about.AboutMenuItem
 import com.orange.ouds.app.ui.about.AboutNavigationKey
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.ComponentsNavigation
+import com.orange.ouds.app.ui.components.Variant
 import com.orange.ouds.app.ui.tokens.TokenCategory
 import com.orange.ouds.app.ui.tokens.TokensNavigation
 import com.orange.ouds.foundation.UiString
@@ -37,6 +38,7 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         when (routeRoot) {
             TokensNavigation.TokenCategoryDetailRoute -> args?.getLong(TokensNavigation.TokenCategoryIdKey)?.let { Screen.TokenCategoryDetail(it) }
             ComponentsNavigation.ComponentDetailRoute -> args?.getLong(ComponentsNavigation.ComponentIdKey)?.let { Screen.ComponentDetail(it) }
+            ComponentsNavigation.ComponentVariantRoute -> args?.getLong(ComponentsNavigation.ComponentVariantIdKey)?.let { Screen.ComponentVariantDetail(it) }
             AboutDestinations.FileRoute -> args?.getLong(AboutNavigationKey.MenuItemIdKey)?.let { Screen.AboutFile(it) }
             else -> null
         }
@@ -98,13 +100,18 @@ sealed class Screen(
         title = Component.fromId(componentId)?.nameRes?.let { UiString.StringResource(it) }
     )
 
+    data class ComponentVariantDetail(val componentVariantId: Long) : Screen(
+        route = ComponentsNavigation.ComponentVariantRoute,
+        title = Variant.fromId(componentVariantId)?.nameRes?.let { UiString.StringResource(it) }
+    )
+
     // About screens
 
     data class AboutFile(val menuItemId: Long) : Screen(
         route = AboutDestinations.FileRoute,
         title = AboutMenuItem.fromId(menuItemId.toInt())?.labelRes?.let { UiString.StringResource(it) }
     )
-    
+
     data object AboutMaterialComponents : Screen(
         route = AboutDestinations.MaterialComponentsRoute,
         title = UiString.StringResource(R.string.app_about_materialComponents_label)

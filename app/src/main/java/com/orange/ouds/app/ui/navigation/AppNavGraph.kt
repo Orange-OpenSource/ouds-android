@@ -34,7 +34,7 @@ import com.orange.ouds.app.ui.tokens.addTokensNavGraph
  */
 fun NavGraphBuilder.appNavGraph(navController: NavController) {
     addTokensNavGraph(navController)
-    addComponentsNavGraph()
+    addComponentsNavGraph(navController)
     addAboutNavGraph()
     addBottomBarNavGraph(navController)
 }

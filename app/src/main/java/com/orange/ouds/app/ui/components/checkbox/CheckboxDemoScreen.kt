@@ -24,7 +24,6 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -32,12 +31,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.state.ToggleableState
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
-import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
@@ -57,18 +53,16 @@ fun CheckboxDemoScreen() = DemoScreen(rememberCheckboxDemoState()) {
                 enabled = enabledSwitchEnabled
             )
             CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_checkbox_error_label),
+                label = stringResource(R.string.app_components_common_error_label),
                 checked = error,
                 onCheckedChange = { error = it },
                 enabled = errorSwitchEnabled
             )
         }
     ) {
-        Column(modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState())) {
-            DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-                descriptionRes = Component.Checkbox.descriptionRes
-            )
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())) {
             CheckboxDemo(state = this@DemoScreen)
             OudsThemeTweak(OudsTheme.Tweak.Invert) {
                 CheckboxDemo(state = this@DemoScreen)
