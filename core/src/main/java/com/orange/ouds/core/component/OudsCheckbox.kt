@@ -162,15 +162,15 @@ private fun OudsCheckbox(
 
     val interactionState by interactionSource.collectInteractionStateAsState()
     val context = LocalContext.current
-    val checkboxTokens = OudsTheme.componentsTokens.checkRadio
+    val checkboxTokens = OudsTheme.componentsTokens.checkbox
     val state = previewState.orElse { rememberOudsCheckboxState(enabled = enabled, interactionState = interactionState) }
-    val shape = RoundedCornerShape(checkboxTokens.borderRadiusCheckbox.value)
+    val shape = RoundedCornerShape(checkboxTokens.borderRadius.value)
     val selected = value != ToggleableState.Off
 
     Box(
         modifier = modifier
-            .widthIn(checkboxTokens.sizeMinWidthSelectorOnly.dp)
-            .heightIn(min = checkboxTokens.sizeMinHeightSelectorOnly.dp, max = checkboxTokens.sizeMaxHeightSelectorOnly.dp)
+            .widthIn(checkboxTokens.sizeMinWidth.dp)
+            .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
             .background(color = backgroundColor(state = state))
             .border(state = state)
             .semantics {
@@ -184,7 +184,7 @@ private fun OudsCheckbox(
     ) {
         Box(
             modifier = Modifier
-                .size(checkboxTokens.sizeSelector.value)
+                .size(checkboxTokens.sizeIndicator.value)
                 .selectorBorder(state = state, selected = selected, error = error, shape = shape)
                 .background(color = selectorBackgroundColor(state = state, selected = selected, error = error)),
             contentAlignment = Alignment.Center
@@ -233,7 +233,7 @@ private fun Modifier.selectorBorder(state: OudsCheckbox.State, selected: Boolean
 
 @Composable
 private fun selectorBorderWidth(state: OudsCheckbox.State, selected: Boolean): Dp {
-    return with(OudsTheme.componentsTokens.checkRadio) {
+    return with(OudsTheme.componentsTokens.checkbox) {
         when (state) {
             OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
             OudsCheckbox.State.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
@@ -266,22 +266,22 @@ private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, er
 
 @Composable
 private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
-    return with(OudsTheme.componentsTokens.checkRadio) {
+    return with(OudsTheme.componentsTokens.checkbox) {
         if (error) {
             when (state) {
-                OudsCheckbox.State.Enabled -> colorContentAssetErrorEnabled.value
+                OudsCheckbox.State.Enabled -> colorContentErrorEnabled.value
                 OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-                OudsCheckbox.State.Hovered -> colorContentAssetErrorHover.value
-                OudsCheckbox.State.Pressed -> colorContentAssetErrorPressed.value
-                OudsCheckbox.State.Focused -> colorContentAssetErrorFocus.value
+                OudsCheckbox.State.Hovered -> colorContentErrorHover.value
+                OudsCheckbox.State.Pressed -> colorContentErrorPressed.value
+                OudsCheckbox.State.Focused -> colorContentErrorFocus.value
             }
         } else {
             when (state) {
-                OudsCheckbox.State.Enabled -> colorContentAssetSelected
-                OudsCheckbox.State.Disabled -> colorContentAssetDisabled
-                OudsCheckbox.State.Hovered -> colorContentAssetHover
-                OudsCheckbox.State.Pressed -> colorContentAssetPressed
-                OudsCheckbox.State.Focused -> colorContentAssetFocus
+                OudsCheckbox.State.Enabled -> colorContentSelected
+                OudsCheckbox.State.Disabled -> colorContentDisabled
+                OudsCheckbox.State.Hovered -> colorContentHover
+                OudsCheckbox.State.Pressed -> colorContentPressed
+                OudsCheckbox.State.Focused -> colorContentFocus
             }.value
         }
     }
@@ -289,12 +289,12 @@ private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
 
 @Composable
 private fun selectorBackgroundColor(state: OudsCheckbox.State, selected: Boolean, error: Boolean): Color {
-    val opacityKeyToken = with(OudsTheme.componentsTokens.checkRadio) {
+    val opacityKeyToken = with(OudsTheme.componentsTokens.checkbox) {
         when (state) {
-            OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> if (selected) opacitySelectorBgSelected else opacitySelectorBgUnselected
-            OudsCheckbox.State.Hovered -> if (selected) opacitySelectorBgSelectedHover else opacitySelectorBgUnselectedHover
-            OudsCheckbox.State.Pressed -> if (selected) opacitySelectorBgSelectedPressed else opacitySelectorBgUnselectedPressed
-            OudsCheckbox.State.Focused -> if (selected) opacitySelectorBgSelectedFocus else opacitySelectorBgUnselectedFocus
+            OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> if (selected) opacityBgSelected else opacityBgUnselected
+            OudsCheckbox.State.Hovered -> if (selected) opacityBgSelectedHover else opacityBgUnselectedHover
+            OudsCheckbox.State.Pressed -> if (selected) opacityBgSelectedPressed else opacityBgUnselectedPressed
+            OudsCheckbox.State.Focused -> if (selected) opacityBgSelectedFocus else opacityBgUnselectedFocus
         }
     }
 
