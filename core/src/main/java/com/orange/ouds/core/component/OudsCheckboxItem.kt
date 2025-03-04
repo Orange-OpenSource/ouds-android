@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -264,7 +265,6 @@ private fun OudsCheckboxItem(
                 Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
                 helperText?.let {
                     Text(
-                        modifier = Modifier.padding(top = OudsTheme.spaces.fixed.shortest), //TODO Not present on Figma but texts are too close without it on Android
                         text = helperText,
                         style = OudsTheme.typography.label.default.medium,
                         color = helperTextColor(state = state)
