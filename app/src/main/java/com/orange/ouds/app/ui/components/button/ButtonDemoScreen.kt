@@ -23,10 +23,10 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.stringArgument
 import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.OnColoredBoxDemo
@@ -63,7 +63,7 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
             CustomizationChoiceChips(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_button_hierarchy_label),
-                chipsLabels = OudsButton.Hierarchy.entries.map { it.name },
+                chipLabels = OudsButton.Hierarchy.entries.map { it.name },
                 selectedChipIndex = OudsButton.Hierarchy.entries.indexOf(hierarchy),
                 onSelectionChange = { id -> hierarchy = OudsButton.Hierarchy.entries[id] }
             )
@@ -76,14 +76,14 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
             CustomizationChoiceChips(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_common_style_label),
-                chipsLabels = styles.map { it::class.simpleName.orEmpty() },
+                chipLabels = styles.map { it::class.simpleName.orEmpty() },
                 selectedChipIndex = styles.indexOf(style),
                 onSelectionChange = { id -> style = styles[id] }
             )
             CustomizationChoiceChips(
                 modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                 label = stringResource(R.string.app_components_common_layout_label),
-                chipsLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
+                chipLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
                 selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
                 onSelectionChange = { id -> layout = ButtonDemoState.Layout.entries[id] }
             )
@@ -164,7 +164,7 @@ private fun ButtonDemoCodeSnippet(state: ButtonDemoState, modifier: Modifier = M
                     if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
                         constructorCallArgument<OudsButton.Icon>("icon") {
                             painterArgument(R.drawable.ic_heart)
-                            contentDescriptionArgument(R.string.app_components_button_icon_a11y)
+                            stringArgument("contentDescription", R.string.app_components_button_icon_a11y)
                         }
                     }
                     if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
