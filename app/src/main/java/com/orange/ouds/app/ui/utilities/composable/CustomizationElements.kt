@@ -66,7 +66,7 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
 @Composable
 fun CustomizationChoiceChips(
     label: String,
-    chipsLabels: List<String>,
+    chipLabels: List<String>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
     modifier: Modifier = Modifier
@@ -81,7 +81,7 @@ fun CustomizationChoiceChips(
                 .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)
         ) {
-            chipsLabels.forEachIndexed { id, label ->
+            chipLabels.forEachIndexed { id, label ->
                 val isSelected = selectedChipIndex == id
                 FilterChip(
                     selected = isSelected,
