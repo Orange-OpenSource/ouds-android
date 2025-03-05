@@ -46,6 +46,56 @@ fun LinkDemoScreen() {
     )
 }
 
+/*fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
+    CustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+        bottomSheetContent = {
+            CustomizationSwitchListItem(
+                label = stringResource(R.string.app_common_enabled_label),
+                checked = enabled,
+                onCheckedChange = { enabled = it },
+            )
+            CustomizationSwitchListItem(
+                label = stringResource(R.string.app_components_common_onColoredBackground_label),
+                checked = onColoredBox,
+                onCheckedChange = { onColoredBox = it },
+            )
+            val sizes = OudsLink.Size.entries
+            CustomizationChoiceChips(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+                label = stringResource(R.string.app_components_link_size_label),
+                chipLabels = sizes.map { it.name },
+                selectedChipIndex = sizes.indexOf(size),
+                onSelectionChange = { id -> size = sizes[id] }
+            )
+            CustomizationChoiceChips(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+                label = stringResource(R.string.app_components_common_layout_label),
+                chipLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
+                selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
+                onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
+            )
+            CustomizationTextField(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+                label = stringResource(R.string.app_components_common_text_label),
+                value = text,
+                onValueChange = { value -> text = value })
+        }
+    ) {
+        DetailScreenDescription(
+            modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
+            descriptionRes = Component.Link.descriptionRes
+        )
+        if (!onColoredBox) {
+            LightDarkDemo {
+                LinkDemo(state = this@DemoScreen)
+            }
+        } else {
+            OnColoredBoxDemo {
+                LinkDemo(state = this@DemoScreen)
+            }
+        }
+*/
 @Composable
 private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
     with(state) {
