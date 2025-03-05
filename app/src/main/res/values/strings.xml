@@ -165,6 +165,11 @@
     <string name="app_components_divider_horizontalDivider_label">Horizontal divider</string>
     <string name="app_components_divider_verticalDivider_label">Vertical divider</string>
 
+    <!-- Components: colored background -->
+    <string name="app_components_coloredBackground_label">Colored background</string>
+    <string name="app_components_coloredBackground_description_text">Colored backgrounds use surface colors to maximize the contrast with content.</string>
+    <string name="app_components_coloredBackground_color_label">Color</string>
+
     <!-- Components: link -->
     <string name="app_components_link_label">Link</string>
     <string name="app_components_link_description_text">Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).</string>

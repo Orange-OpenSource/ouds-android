@@ -22,13 +22,14 @@ import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
 import com.orange.ouds.app.ui.components.chip.FilterChipDemoScreen
 import com.orange.ouds.app.ui.components.chip.SuggestionChipDemoScreen
+import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
-import com.orange.ouds.app.ui.utilities.LightDarkResourceId
+import com.orange.ouds.app.ui.utilities.DrawableResourceId
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -36,7 +37,7 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 @Immutable
 sealed class Component(
     @StringRes val nameRes: Int,
-    val imageRes: LightDarkResourceId,
+    val imageRes: DrawableResourceId,
     @StringRes val descriptionRes: Int,
     val variants: List<Variant> = emptyList(),
     val demoScreen: (@Composable () -> Unit)? = null
@@ -57,42 +58,49 @@ sealed class Component(
 
     data object Button : Component(
         R.string.app_components_button_label,
-        LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
+        DrawableResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
         R.string.app_components_button_description_text,
         demoScreen = { ButtonDemoScreen() }
     )
 
     data object Checkbox : Component(
         R.string.app_components_checkbox_label,
-        LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
+        DrawableResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
         R.string.app_components_checkbox_description_text,
         listOf(Variant.Checkbox, Variant.CheckboxItem, Variant.IndeterminateCheckbox, Variant.IndeterminateCheckboxItem)
     )
 
     data object Chip : Component(
         R.string.app_components_chip_label,
-        LightDarkResourceId(R.drawable.il_components_chip, R.drawable.il_components_chip_dark),
+        DrawableResourceId(R.drawable.il_components_chip, R.drawable.il_components_chip_dark),
         R.string.app_components_chip_description_text,
         listOf(Variant.FilterChip, Variant.SuggestionChip)
     )
 
+    data object ColoredBackground : Component(
+        R.string.app_components_coloredBackground_label,
+        DrawableResourceId(R.drawable.ic_components_colored_background),
+        R.string.app_components_coloredBackground_description_text,
+        demoScreen = { ColoredBackgroundDemoScreen() }
+    )
+
     data object Divider : Component(
         R.string.app_components_divider_label,
-        LightDarkResourceId(R.drawable.il_components_divider, R.drawable.il_components_divider_dark),
+        DrawableResourceId(R.drawable.il_components_divider, R.drawable.il_components_divider_dark),
         R.string.app_components_divider_description_text,
         listOf(Variant.HorizontalDivider, Variant.VerticalDivider)
     )
 
     data object Link : Component(
         R.string.app_components_link_label,
-        LightDarkResourceId(R.drawable.il_components_link, R.drawable.il_components_link_dark),
+        DrawableResourceId(R.drawable.il_components_link, R.drawable.il_components_link_dark),
         R.string.app_components_link_description_text,
         demoScreen = { LinkDemoScreen() }
     )
 
     data object RadioButton : Component(
         R.string.app_components_radioButton_label,
-        LightDarkResourceId(R.drawable.il_components_radiobutton, R.drawable.il_components_radiobutton_dark),
+        DrawableResourceId(R.drawable.il_components_radiobutton, R.drawable.il_components_radiobutton_dark),
         R.string.app_components_radioButton_description_text,
         listOf(Variant.RadioButton, Variant.RadioButtonItem)
     )
