@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.utilities.composable
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -43,10 +44,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
@@ -67,6 +70,14 @@ fun CustomizationBottomSheetScaffold(
         SheetValue.Hidden, SheetValue.PartiallyExpanded -> stringResource(R.string.app_common_bottomSheetCollapsed_a11y)
         SheetValue.Expanded -> stringResource(R.string.app_common_bottomSheetExpanded_a11y)
     }
+    val screenHeight = LocalConfiguration.current.screenHeightDp
+    val customizationContentHeight by animateDpAsState(
+        when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
+            SheetValue.Hidden, SheetValue.PartiallyExpanded -> 0.dp
+            SheetValue.Expanded -> screenHeight.dp / 2 - BottomSheetDefaults.SheetPeekHeight
+        }
+    )
+
     BackHandler(bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
         coroutineScope.launch {
             bottomSheetScaffoldState.bottomSheetState.partialExpand()
@@ -113,7 +124,11 @@ fun CustomizationBottomSheetScaffold(
                 )
             }
 
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            Column(
+                modifier = Modifier
+                    .height(customizationContentHeight)
+                    .verticalScroll(rememberScrollState())
+            ) {
                 bottomSheetContent()
             }
         },
