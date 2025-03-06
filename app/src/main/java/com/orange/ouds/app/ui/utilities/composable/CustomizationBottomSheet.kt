@@ -15,11 +15,11 @@ package com.orange.ouds.app.ui.utilities.composable
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -43,7 +43,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -124,10 +127,13 @@ fun CustomizationBottomSheetScaffold(
                 )
             }
 
+            val scrollState = rememberScrollState()
+
             Column(
                 modifier = Modifier
                     .height(customizationContentHeight)
-                    .verticalScroll(rememberScrollState())
+                    .verticalScrollbar(scrollState)
+                    .verticalScroll(scrollState)
             ) {
                 bottomSheetContent()
             }
@@ -166,5 +172,27 @@ private fun tryExpandBottomSheet(coroutineScope: CoroutineScope, sheetState: She
                 tryExpandBottomSheet(coroutineScope, sheetState, retryCount + 1)
             }
         }
+    }
+}
+
+@Composable
+private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
+    val scrollBarColor = OudsTheme.colorScheme.action.disabled
+    val scrollbarWidth = 4.dp
+
+    return drawWithContent {
+        drawContent()
+
+        val viewportHeight = this.size.height
+        val viewportWidth = this.size.width
+        val totalContentHeight = scrollState.maxValue.toFloat() + viewportHeight
+        val scrollBarHeight = (viewportHeight / totalContentHeight) * viewportHeight
+        val scrollBarStartOffset = (scrollState.value.toFloat() / totalContentHeight) * viewportHeight
+
+        drawRect(
+            color = scrollBarColor,
+            topLeft = Offset(viewportWidth - scrollbarWidth.toPx(), scrollBarStartOffset),
+            size = Size(scrollbarWidth.toPx(), scrollBarHeight)
+        )
     }
 }
