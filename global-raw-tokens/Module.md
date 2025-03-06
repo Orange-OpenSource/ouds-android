@@ -1,7 +1,7 @@
 # Module global-raw-tokens
 
 ```
-Tokens version 0.5.0
+Tokens version 0.6.2
 ```
 
 Contains the raw tokens that can be used by any theme.

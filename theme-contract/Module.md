@@ -1,7 +1,7 @@
 # Module theme-contract
 
 ```
-Tokens version 0.5.0
+Tokens version 0.6.2
 ```
 
 This is the interface between the library and the custom themes.
