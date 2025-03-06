@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -186,23 +185,21 @@ private fun OudsCheckbox(
             modifier = Modifier
                 .size(checkboxTokens.sizeIndicator.value)
                 .selectorBorder(state = state, selected = selected, error = error, shape = shape)
-                .background(color = selectorBackgroundColor(state = state, selected = selected, error = error)),
-            contentAlignment = Alignment.Center
-        ) {
-            val selectorResource = when (value) {
-                ToggleableState.On -> R.drawable.ic_tick
-                ToggleableState.Off -> null
-                ToggleableState.Indeterminate -> R.drawable.ic_less
-            }
+        )
 
-            selectorResource?.let { resource ->
-                Icon(
-                    modifier = Modifier.fillMaxSize(),
-                    painter = painterResource(resource),
-                    tint = tickColor(state = state, error = error),
-                    contentDescription = null
-                )
-            }
+        val selectorResource = when (value) {
+            ToggleableState.On -> R.drawable.ic_tick
+            ToggleableState.Off -> null
+            ToggleableState.Indeterminate -> R.drawable.ic_less
+        }
+
+        selectorResource?.let { resource ->
+            Icon(
+                modifier = Modifier.size(checkboxTokens.sizeIndicator.value),
+                painter = painterResource(resource),
+                tint = tickColor(state = state, error = error),
+                contentDescription = null
+            )
         }
     }
 }
@@ -285,36 +282,6 @@ private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
             }.value
         }
     }
-}
-
-@Composable
-private fun selectorBackgroundColor(state: OudsCheckbox.State, selected: Boolean, error: Boolean): Color {
-    val opacityKeyToken = with(OudsTheme.componentsTokens.checkbox) {
-        when (state) {
-            OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> if (selected) opacityBgSelected else opacityBgUnselected
-            OudsCheckbox.State.Hovered -> if (selected) opacityBgSelectedHover else opacityBgUnselectedHover
-            OudsCheckbox.State.Pressed -> if (selected) opacityBgSelectedPressed else opacityBgUnselectedPressed
-            OudsCheckbox.State.Focused -> if (selected) opacityBgSelectedFocus else opacityBgUnselectedFocus
-        }
-    }
-
-    return if (error) {
-        when (state) {
-            OudsCheckbox.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-            OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-            OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
-            OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.negative.focus
-        }
-    } else {
-        when (state) {
-            OudsCheckbox.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else OudsTheme.colorScheme.action.enabled
-            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled
-            OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.hover
-            OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.pressed
-            OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.focus
-        }
-    }.copy(alpha = opacityKeyToken.value)
 }
 
 @Composable
