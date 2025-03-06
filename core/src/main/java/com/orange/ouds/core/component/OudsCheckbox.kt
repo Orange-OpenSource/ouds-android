@@ -263,23 +263,23 @@ private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, er
 
 @Composable
 private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
-    return with(OudsTheme.componentsTokens.checkbox) {
+    return with(OudsTheme.colorScheme.action) {
         if (error) {
             when (state) {
-                OudsCheckbox.State.Enabled -> colorContentErrorEnabled.value
+                OudsCheckbox.State.Enabled -> negative.enabled
                 OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-                OudsCheckbox.State.Hovered -> colorContentErrorHover.value
-                OudsCheckbox.State.Pressed -> colorContentErrorPressed.value
-                OudsCheckbox.State.Focused -> colorContentErrorFocus.value
+                OudsCheckbox.State.Hovered -> negative.hover
+                OudsCheckbox.State.Pressed -> negative.pressed
+                OudsCheckbox.State.Focused -> negative.focus
             }
         } else {
             when (state) {
-                OudsCheckbox.State.Enabled -> colorContentSelected
-                OudsCheckbox.State.Disabled -> colorContentDisabled
-                OudsCheckbox.State.Hovered -> colorContentHover
-                OudsCheckbox.State.Pressed -> colorContentPressed
-                OudsCheckbox.State.Focused -> colorContentFocus
-            }.value
+                OudsCheckbox.State.Enabled -> selected
+                OudsCheckbox.State.Disabled -> disabled
+                OudsCheckbox.State.Hovered -> hover
+                OudsCheckbox.State.Pressed -> pressed
+                OudsCheckbox.State.Focused -> focus
+            }
         }
     }
 }
