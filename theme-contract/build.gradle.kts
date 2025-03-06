@@ -11,9 +11,9 @@
  */
 
 plugins {
+    id("dokka")
     id("library")
     alias(libs.plugins.compose.compiler)
-    id("dokka")
 }
 
 android {
