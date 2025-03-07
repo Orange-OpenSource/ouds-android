@@ -125,7 +125,7 @@ private fun OudsRadioButton(
         Box(
             modifier = Modifier
                 .size(radioButtonTokens.sizeIndicator.value)
-                .selectorBorder(state = state, selected = selected, error = error)
+                .indicatorBorder(state = state, selected = selected, error = error)
         ) {
             if (selected) {
                 Icon(
@@ -154,17 +154,17 @@ private fun rememberOudsRadioButtonState(
 }
 
 @Composable
-private fun Modifier.selectorBorder(state: OudsRadioButton.State, selected: Boolean, error: Boolean): Modifier {
-    val selectorBorderWidth = selectorBorderWidth(state = state, selected = selected)
+private fun Modifier.indicatorBorder(state: OudsRadioButton.State, selected: Boolean, error: Boolean): Modifier {
+    val indicatorBorderWidth = indicatorBorderWidth(state = state, selected = selected)
     return border(
-        width = selectorBorderWidth,
-        color = selectorBorderColor(state = state, selected = selected, error = error),
+        width = indicatorBorderWidth,
+        color = indicatorBorderColor(state = state, selected = selected, error = error),
         shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
     )
 }
 
 @Composable
-private fun selectorBorderWidth(state: OudsRadioButton.State, selected: Boolean): Dp {
+private fun indicatorBorderWidth(state: OudsRadioButton.State, selected: Boolean): Dp {
     return with(OudsTheme.componentsTokens.radioButton) {
         when (state) {
             OudsRadioButton.State.Enabled, OudsRadioButton.State.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
@@ -176,7 +176,7 @@ private fun selectorBorderWidth(state: OudsRadioButton.State, selected: Boolean)
 }
 
 @Composable
-private fun selectorBorderColor(state: OudsRadioButton.State, selected: Boolean, error: Boolean): Color {
+private fun indicatorBorderColor(state: OudsRadioButton.State, selected: Boolean, error: Boolean): Color {
     return if (error) {
         when (state) {
             OudsRadioButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
@@ -198,55 +198,25 @@ private fun selectorBorderColor(state: OudsRadioButton.State, selected: Boolean,
 
 @Composable
 private fun selectedIndicatorColor(state: OudsRadioButton.State, error: Boolean): Color {
-    return with(OudsTheme.componentsTokens.checkbox) {
+    return with(OudsTheme.colorScheme.action) {
         if (error) {
             when (state) {
-                OudsRadioButton.State.Enabled -> colorContentErrorEnabled.value
+                OudsRadioButton.State.Enabled -> negative.enabled
                 OudsRadioButton.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsRadioButton
-                OudsRadioButton.State.Hovered -> colorContentErrorHover.value
-                OudsRadioButton.State.Pressed -> colorContentErrorPressed.value
-                OudsRadioButton.State.Focused -> colorContentErrorFocus.value
+                OudsRadioButton.State.Hovered -> negative.hover
+                OudsRadioButton.State.Pressed -> negative.pressed
+                OudsRadioButton.State.Focused -> negative.focus
             }
         } else {
             when (state) {
-                OudsRadioButton.State.Enabled -> colorContentSelected
-                OudsRadioButton.State.Disabled -> colorContentDisabled
-                OudsRadioButton.State.Hovered -> colorContentHover
-                OudsRadioButton.State.Pressed -> colorContentPressed
-                OudsRadioButton.State.Focused -> colorContentFocus
-            }.value
+                OudsRadioButton.State.Enabled -> selected
+                OudsRadioButton.State.Disabled -> disabled
+                OudsRadioButton.State.Hovered -> hover
+                OudsRadioButton.State.Pressed -> pressed
+                OudsRadioButton.State.Focused -> focus
+            }
         }
     }
-}
-
-@Composable
-private fun selectorBackgroundColor(state: OudsRadioButton.State, selected: Boolean, error: Boolean): Color {
-    val opacityKeyToken = with(OudsTheme.componentsTokens.checkbox) {
-        when (state) {
-            OudsRadioButton.State.Enabled, OudsRadioButton.State.Disabled -> if (selected) opacityBgSelected else opacityBgUnselected
-            OudsRadioButton.State.Hovered -> if (selected) opacityBgSelectedHover else opacityBgUnselectedHover
-            OudsRadioButton.State.Pressed -> if (selected) opacityBgSelectedPressed else opacityBgUnselectedPressed
-            OudsRadioButton.State.Focused -> if (selected) opacityBgSelectedFocus else opacityBgUnselectedFocus
-        }
-    }
-
-    return if (error) {
-        when (state) {
-            OudsRadioButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsRadioButton.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsRadioButton
-            OudsRadioButton.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-            OudsRadioButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
-            OudsRadioButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
-        }
-    } else {
-        when (state) {
-            OudsRadioButton.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else OudsTheme.colorScheme.action.enabled
-            OudsRadioButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
-            OudsRadioButton.State.Hovered -> OudsTheme.colorScheme.action.hover
-            OudsRadioButton.State.Pressed -> OudsTheme.colorScheme.action.pressed
-            OudsRadioButton.State.Focused -> OudsTheme.colorScheme.action.focus
-        }
-    }.copy(alpha = opacityKeyToken.value)
 }
 
 @Composable
