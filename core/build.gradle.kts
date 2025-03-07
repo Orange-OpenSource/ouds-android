@@ -15,6 +15,7 @@ plugins {
     id(libs.plugins.kotlin.parcelize.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.paparazzi)
+    alias(libs.plugins.figma.code.connect)
     id("dokka")
 }
 
@@ -55,6 +56,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.material)
+    implementation(libs.figma.code.connect)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     testImplementation(project(":theme-orange"))
     androidTestImplementation(project(":theme-orange"))

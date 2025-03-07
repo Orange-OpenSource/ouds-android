@@ -17,6 +17,7 @@ plugins {
     alias(libs.plugins.firebase.appdistribution) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.figma.code.connect)
     id(libs.plugins.dokka.gradle.plugin.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     id("github")
     id("release")
@@ -24,10 +25,18 @@ plugins {
     id("check-notice")
 }
 
+configurations {
+    "compileClasspath" {
+        resolutionStrategy.force("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    }
+}
+
 dependencies {
     dokkaPlugin(libs.dokka.android.documentation.plugin)
     dokka(project(":core"))
     dokka(project(":theme-contract"))
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }
 
 checkNotice {

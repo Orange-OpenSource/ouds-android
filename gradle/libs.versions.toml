@@ -8,6 +8,8 @@ browser = "1.8.0"
 composeBom = "2025.02.00"
 coreKtx = "1.15.0"
 dokka = "2.0.0"
+figmaCodeConnect = "1.2.1"
+figmaCodeConnectLib = "1.1.3"
 firebaseAppDistribution = "5.1.1"
 firebaseBom = "33.10.0"
 firebaseCrashlytics = "3.0.3"
@@ -22,6 +24,7 @@ hilt = "2.55"
 javaPoet = "1.13.0"
 json = "20250107"
 kotlin = "2.1.10"
+kotlinSerialization = "1.6.3"
 material = "1.12.0"
 mockitoAndroid = "5.16.0"
 mockitoKotlin = "5.4.0"
@@ -48,6 +51,7 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 dokka-android-documentation-plugin = { module = "org.jetbrains.dokka:android-documentation-plugin", version.ref = "dokka" }
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+figma-code-connect = { group = "com.figma.code.connect", name = "code-connect-lib", version.ref = "figmaCodeConnectLib" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 git-changelog-gradle-plugin = { module = "se.bjurr.gitchangelog:git-changelog-gradle-plugin", version.ref = "gitChangelogGradlePlugin" }
@@ -63,6 +67,7 @@ javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javaPoet"
 json = { module = "org.json:json", version.ref = "json" }
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "kotlinSerialization" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockitoAndroid" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
@@ -74,6 +79,7 @@ android-application = { id = "com.android.application", version.ref = "gradle" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dokka-gradle-plugin = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+figma-code-connect = { id = "com.figma.code.connect", version.ref = "figmaCodeConnect" }
 firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.ref = "firebaseAppDistribution" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }

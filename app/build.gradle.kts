@@ -120,6 +120,7 @@ dependencies {
     implementation(project(":theme-orange-country"))
     implementation(project(":theme-white-label"))
 
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.browser)
