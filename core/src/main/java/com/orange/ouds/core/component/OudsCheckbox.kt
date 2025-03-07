@@ -204,14 +204,13 @@ internal fun OudsCheckboxIndicator(
             ToggleableState.Indeterminate -> R.drawable.ic_less
         }
 
-            selectorResource?.let { resource ->
-                Icon(
-                    modifier = Modifier.fillMaxSize(),
-                    painter = painterResource(resource),
-                    tint = tickColor(state = state, error = error),
-                    contentDescription = null
-                )
-            }
+        selectorResource?.let { resource ->
+            Icon(
+                modifier = Modifier.fillMaxSize(),
+                painter = painterResource(resource),
+                tint = tickColor(state = state, error = error),
+                contentDescription = null
+            )
         }
     }
 }
