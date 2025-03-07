@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -185,21 +186,21 @@ private fun OudsCheckbox(
             modifier = Modifier
                 .size(checkboxTokens.sizeIndicator.value)
                 .selectorBorder(state = state, selected = selected, error = error, shape = shape)
-        )
+        ) {
+            val selectorResource = when (value) {
+                ToggleableState.On -> R.drawable.ic_tick
+                ToggleableState.Off -> null
+                ToggleableState.Indeterminate -> R.drawable.ic_less
+            }
 
-        val selectorResource = when (value) {
-            ToggleableState.On -> R.drawable.ic_tick
-            ToggleableState.Off -> null
-            ToggleableState.Indeterminate -> R.drawable.ic_less
-        }
-
-        selectorResource?.let { resource ->
-            Icon(
-                modifier = Modifier.size(checkboxTokens.sizeIndicator.value),
-                painter = painterResource(resource),
-                tint = tickColor(state = state, error = error),
-                contentDescription = null
-            )
+            selectorResource?.let { resource ->
+                Icon(
+                    modifier = Modifier.fillMaxSize(),
+                    painter = painterResource(resource),
+                    tint = tickColor(state = state, error = error),
+                    contentDescription = null
+                )
+            }
         }
     }
 }
@@ -225,7 +226,7 @@ private fun Modifier.selectorBorder(state: OudsCheckbox.State, selected: Boolean
         width = selectorBorderWidth,
         color = selectorBorderColor(state = state, selected = selected, error = error),
         shape = shape
-    ).padding(all = selectorBorderWidth)
+    )
 }
 
 @Composable
