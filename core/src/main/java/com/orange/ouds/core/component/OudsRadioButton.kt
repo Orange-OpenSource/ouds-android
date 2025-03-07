@@ -66,7 +66,6 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this radio button. Note that if `null`
  * is provided, interactions will still happen internally.
  *
- * TODO
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonSample
  */
 @Composable
@@ -327,8 +326,8 @@ internal class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterPr
 
 private val previewParameterValues: List<OudsRadioButtonPreviewParameter>
     get() = listOf(
-            OudsRadioButtonPreviewParameter(selected = false, error = false),
-            OudsRadioButtonPreviewParameter(selected = false, error = true) ,
-            OudsRadioButtonPreviewParameter(selected = true, error = false),
-            OudsRadioButtonPreviewParameter(selected = true, error = true)
-        )
+        OudsRadioButtonPreviewParameter(selected = false, error = false),
+        OudsRadioButtonPreviewParameter(selected = false, error = true),
+        OudsRadioButtonPreviewParameter(selected = true, error = false),
+        OudsRadioButtonPreviewParameter(selected = true, error = true)
+    )
