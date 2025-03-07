@@ -186,8 +186,6 @@ private fun OudsCheckbox(
             modifier = Modifier
                 .size(checkboxTokens.sizeIndicator.value)
                 .selectorBorder(state = state, selected = selected, error = error, shape = shape)
-                .background(color = selectorBackgroundColor(state = state, selected = selected, error = error)),
-            contentAlignment = Alignment.Center
         ) {
             val selectorResource = when (value) {
                 ToggleableState.On -> R.drawable.ic_tick
@@ -228,7 +226,7 @@ private fun Modifier.selectorBorder(state: OudsCheckbox.State, selected: Boolean
         width = selectorBorderWidth,
         color = selectorBorderColor(state = state, selected = selected, error = error),
         shape = shape
-    ).padding(all = selectorBorderWidth)
+    )
 }
 
 @Composable
@@ -266,55 +264,25 @@ private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, er
 
 @Composable
 private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
-    return with(OudsTheme.componentsTokens.checkbox) {
+    return with(OudsTheme.colorScheme.action) {
         if (error) {
             when (state) {
-                OudsCheckbox.State.Enabled -> colorContentErrorEnabled.value
+                OudsCheckbox.State.Enabled -> negative.enabled
                 OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-                OudsCheckbox.State.Hovered -> colorContentErrorHover.value
-                OudsCheckbox.State.Pressed -> colorContentErrorPressed.value
-                OudsCheckbox.State.Focused -> colorContentErrorFocus.value
+                OudsCheckbox.State.Hovered -> negative.hover
+                OudsCheckbox.State.Pressed -> negative.pressed
+                OudsCheckbox.State.Focused -> negative.focus
             }
         } else {
             when (state) {
-                OudsCheckbox.State.Enabled -> colorContentSelected
-                OudsCheckbox.State.Disabled -> colorContentDisabled
-                OudsCheckbox.State.Hovered -> colorContentHover
-                OudsCheckbox.State.Pressed -> colorContentPressed
-                OudsCheckbox.State.Focused -> colorContentFocus
-            }.value
+                OudsCheckbox.State.Enabled -> selected
+                OudsCheckbox.State.Disabled -> disabled
+                OudsCheckbox.State.Hovered -> hover
+                OudsCheckbox.State.Pressed -> pressed
+                OudsCheckbox.State.Focused -> focus
+            }
         }
     }
-}
-
-@Composable
-private fun selectorBackgroundColor(state: OudsCheckbox.State, selected: Boolean, error: Boolean): Color {
-    val opacityKeyToken = with(OudsTheme.componentsTokens.checkbox) {
-        when (state) {
-            OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> if (selected) opacityBgSelected else opacityBgUnselected
-            OudsCheckbox.State.Hovered -> if (selected) opacityBgSelectedHover else opacityBgUnselectedHover
-            OudsCheckbox.State.Pressed -> if (selected) opacityBgSelectedPressed else opacityBgUnselectedPressed
-            OudsCheckbox.State.Focused -> if (selected) opacityBgSelectedFocus else opacityBgUnselectedFocus
-        }
-    }
-
-    return if (error) {
-        when (state) {
-            OudsCheckbox.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-            OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-            OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
-            OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.negative.focus
-        }
-    } else {
-        when (state) {
-            OudsCheckbox.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else OudsTheme.colorScheme.action.enabled
-            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled
-            OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.hover
-            OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.pressed
-            OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.focus
-        }
-    }.copy(alpha = opacityKeyToken.value)
 }
 
 @Composable
