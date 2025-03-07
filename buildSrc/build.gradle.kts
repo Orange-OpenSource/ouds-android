@@ -44,4 +44,5 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location)) // https://github.com/gradle/gradle/issues/15383
     implementation(libs.zxing.core)
     implementation(libs.zxing.javase)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3") // Fixes an issue with Figma Code Connect plugin
 }

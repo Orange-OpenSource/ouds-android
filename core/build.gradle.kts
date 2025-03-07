@@ -57,7 +57,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.material)
     implementation(libs.figma.code.connect)
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     testImplementation(project(":theme-orange"))
     androidTestImplementation(project(":theme-orange"))
