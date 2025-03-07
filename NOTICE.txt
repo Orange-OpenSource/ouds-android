@@ -95,6 +95,7 @@ app/src/prod/res/drawable/ic_launcher_foreground.xml
 core/src/main/res/drawable/checkbox_indeterminate.xml
 core/src/main/res/drawable/checkbox_selected.xml
 core/src/main/res/drawable/chevron_left.xml
+core/src/main/res/drawable/ic_radiobutton_selected.xml
 
 docs/assets/logo-icon.svg
 
