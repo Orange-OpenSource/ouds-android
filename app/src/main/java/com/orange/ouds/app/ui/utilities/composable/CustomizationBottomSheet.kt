@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -59,7 +60,7 @@ fun CustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     titleResId: Int = R.string.app_common_customize_label,
     bottomSheetContent: @Composable ColumnScope.() -> Unit,
-    content: @Composable (PaddingValues) -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val bottomSheetHeaderStateDescription = when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
@@ -116,7 +117,17 @@ fun CustomizationBottomSheetScaffold(
                 bottomSheetContent()
             }
         },
-        content = content
+        content = { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .consumeWindowInsets(innerPadding)
+                    .padding(innerPadding),
+            ) {
+                content()
+            }
+        }
     )
 
     var shouldExpand by rememberSaveable { mutableStateOf(true) }

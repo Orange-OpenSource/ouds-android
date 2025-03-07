@@ -14,12 +14,8 @@ package com.orange.ouds.app.ui.components.checkbox
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -61,36 +57,28 @@ fun CheckboxDemoScreen() = DemoScreen(rememberCheckboxDemoState()) {
                 enabled = errorSwitchEnabled
             )
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .consumeWindowInsets(innerPadding)
-                .padding(innerPadding)
-        ) {
-            DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-                descriptionRes = Component.Checkbox.descriptionRes
-            )
-            val onClick = {
-                toggleableState = when (toggleableState) {
-                    ToggleableState.On -> ToggleableState.Off
-                    ToggleableState.Off -> ToggleableState.Indeterminate
-                    ToggleableState.Indeterminate -> ToggleableState.On
-                }
+    ) {
+        DetailScreenDescription(
+            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
+            descriptionRes = Component.Checkbox.descriptionRes
+        )
+        val onClick = {
+            toggleableState = when (toggleableState) {
+                ToggleableState.On -> ToggleableState.Off
+                ToggleableState.Off -> ToggleableState.Indeterminate
+                ToggleableState.Indeterminate -> ToggleableState.On
             }
-            CheckboxDemo(state = this@DemoScreen, onClick = onClick)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                CheckboxDemo(state = this@DemoScreen, onClick = onClick)
-            }
-            CheckboxDemoCodeSnippet(
-                state = this@DemoScreen,
-                modifier = Modifier
-                    .padding(all = OudsTheme.spaces.fixed.medium)
-                    .padding(top = OudsTheme.spaces.fixed.medium)
-            )
         }
+        CheckboxDemo(state = this@DemoScreen, onClick = onClick)
+        OudsThemeTweak(OudsTheme.Tweak.Invert) {
+            CheckboxDemo(state = this@DemoScreen, onClick = onClick)
+        }
+        CheckboxDemoCodeSnippet(
+            state = this@DemoScreen,
+            modifier = Modifier
+                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium)
+        )
     }
 }
 

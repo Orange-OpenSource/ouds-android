@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.components.checkbox
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -98,23 +99,16 @@ fun CheckboxItemDemoScreen() = DemoScreen(rememberCheckboxItemDemoState()) {
                 onValueChange = { value -> helperText = value })
         }
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(bottom= BottomSheetDefaults.SheetPeekHeight)
-        ) {
+        CheckboxItemDemo(state = this@DemoScreen)
+        OudsThemeTweak(OudsTheme.Tweak.Invert) {
             CheckboxItemDemo(state = this@DemoScreen)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                CheckboxItemDemo(state = this@DemoScreen)
-            }
-            CheckboxItemDemoCodeSnippet(
-                state = this@DemoScreen,
-                modifier = Modifier
-                    .padding(all = OudsTheme.spaces.fixed.medium)
-                    .padding(top = OudsTheme.spaces.fixed.medium)
-            )
         }
+        CheckboxItemDemoCodeSnippet(
+            state = this@DemoScreen,
+            modifier = Modifier
+                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium)
+        )
     }
 }
 

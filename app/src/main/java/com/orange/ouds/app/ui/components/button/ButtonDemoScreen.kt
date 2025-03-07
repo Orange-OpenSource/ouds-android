@@ -101,31 +101,23 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 value = text,
                 onValueChange = { value -> text = value })
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .consumeWindowInsets(innerPadding)
-                .padding(innerPadding),
-        ) {
-            DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-                descriptionRes = Component.Button.descriptionRes
-            )
-            ButtonDemo(state = this@DemoScreen)
-            if (!onColoredBox) {
-                OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                    ButtonDemo(state = this@DemoScreen)
-                }
+    ) {
+        DetailScreenDescription(
+            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
+            descriptionRes = Component.Button.descriptionRes
+        )
+        ButtonDemo(state = this@DemoScreen)
+        if (!onColoredBox) {
+            OudsThemeTweak(OudsTheme.Tweak.Invert) {
+                ButtonDemo(state = this@DemoScreen)
             }
-            ButtonDemoCodeSnippet(
-                state = this@DemoScreen,
-                modifier = Modifier
-                    .padding(all = OudsTheme.spaces.fixed.medium)
-                    .padding(top = OudsTheme.spaces.fixed.medium)
-            )
         }
+        ButtonDemoCodeSnippet(
+            state = this@DemoScreen,
+            modifier = Modifier
+                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium)
+        )
     }
 }
 

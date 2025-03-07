@@ -86,31 +86,23 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
                 value = text,
                 onValueChange = { value -> text = value })
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .consumeWindowInsets(innerPadding)
-                .padding(innerPadding)
-        ) {
-            DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-                descriptionRes = Component.Link.descriptionRes
-            )
-            LinkDemo(state = this@DemoScreen)
-            if (!onColoredBox) {
-                OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                    LinkDemo(state = this@DemoScreen)
-                }
+    ) {
+        DetailScreenDescription(
+            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
+            descriptionRes = Component.Link.descriptionRes
+        )
+        LinkDemo(state = this@DemoScreen)
+        if (!onColoredBox) {
+            OudsThemeTweak(OudsTheme.Tweak.Invert) {
+                LinkDemo(state = this@DemoScreen)
             }
-            LinkDemoCodeSnippet(
-                state = this@DemoScreen,
-                modifier = Modifier
-                    .padding(all = OudsTheme.spaces.fixed.medium)
-                    .padding(top = OudsTheme.spaces.fixed.medium)
-            )
         }
+        LinkDemoCodeSnippet(
+            state = this@DemoScreen,
+            modifier = Modifier
+                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium)
+        )
     }
 }
 
