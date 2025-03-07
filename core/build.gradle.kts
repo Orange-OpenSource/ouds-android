@@ -16,6 +16,7 @@ plugins {
     id(libs.plugins.kotlin.parcelize.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.paparazzi)
+    alias(libs.plugins.figma.code.connect)
 }
 
 android {
@@ -50,6 +51,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.material)
+    implementation(libs.figma.code.connect)
 
     testImplementation(project(":core-test"))
     testImplementation(project(":theme-orange"))

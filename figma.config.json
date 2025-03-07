@@ -1,0 +1,9 @@
+{
+  "codeConnect": {
+    "include": [
+      "core/src/main/java/com/orange/ouds/core/**"
+    ],
+    "exclude": [],
+    "parser": "compose"
+  }
+}

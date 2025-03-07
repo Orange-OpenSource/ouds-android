@@ -127,6 +127,7 @@ dependencies {
     implementation(project(":theme-sosh"))
     implementation(project(":theme-wireframe"))
 
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.browser)
