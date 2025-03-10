@@ -14,7 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.test.assertIsOff
+import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -44,7 +44,7 @@ internal class OudsRadioButtonTest {
                 )
             }
 
-            onNodeWithTag(testTag).assertIsOff()
+            onNodeWithTag(testTag).assertIsNotSelected()
             onNodeWithTag(testTag).performClick()
             verify(onClick).invoke(!selected)
         }
