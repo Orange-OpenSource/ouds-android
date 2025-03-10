@@ -14,7 +14,6 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -27,6 +26,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -36,8 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -105,8 +104,13 @@ private fun OudsRadioButton(
     val interactionState by radioButtonInteractionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsRadioButtonState(enabled = enabled, interactionState = interactionState) }
 
-    val clickableModifier = if (onClick != null) {
-        Modifier.clickable { onClick.invoke(!selected) }
+    val selectableModifier = if (onClick != null) {
+        Modifier.selectable(
+            selected = selected,
+            onClick = { onClick.invoke(!selected) },
+            enabled = enabled,
+            role = Role.RadioButton,
+        )
     } else Modifier
 
     Box(
@@ -115,11 +119,7 @@ private fun OudsRadioButton(
             .heightIn(min = radioButtonTokens.sizeMinHeight.dp, max = radioButtonTokens.sizeMaxHeight.dp)
             .background(color = backgroundColor(state = state))
             .border(state = state)
-            .clickable { onClick?.invoke(!selected) }
-            .semantics {
-                this.stateDescription = stateDescription
-            }
-            .then(clickableModifier),
+            .then(selectableModifier),
         contentAlignment = Alignment.Center,
     ) {
         Box(
