@@ -83,7 +83,7 @@ class CheckboxItemDemoState(
                         map[readOnlyKey] as Boolean,
                         map[errorKey] as Boolean,
                         map[textKey] as String,
-                        map[helperTextKey] as String
+                        map[helperTextKey] as String?
                     )
                 }
             )
