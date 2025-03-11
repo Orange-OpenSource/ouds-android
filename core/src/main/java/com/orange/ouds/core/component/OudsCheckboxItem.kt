@@ -415,7 +415,7 @@ private fun textColor(state: OudsCheckboxItem.State, error: Boolean) =
                 OudsCheckboxItem.State.Hovered -> hover
                 OudsCheckboxItem.State.Pressed -> pressed
                 OudsCheckboxItem.State.Focused -> focus
-                OudsCheckboxItem.State.Disabled, OudsCheckboxItem.State.ReadOnly -> enabled // Not allowed, exception thrown at the beginning of OudsCheckboxItem
+                OudsCheckboxItem.State.Disabled, OudsCheckboxItem.State.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckboxItem
             }
         }
     } else {
