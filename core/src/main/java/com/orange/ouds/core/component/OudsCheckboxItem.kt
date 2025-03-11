@@ -275,7 +275,7 @@ private fun OudsCheckboxItem(
                     .align(Alignment.CenterVertically)
             ) {
                 Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
-                helperText?.let {
+                if (!helperText.isNullOrBlank()) {
                     Text(
                         text = helperText,
                         style = OudsTheme.typography.label.default.medium,

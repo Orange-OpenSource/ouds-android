@@ -132,7 +132,7 @@ private fun CheckboxItemDemo(state: CheckboxItemDemoState) {
                     }
                 },
                 text = text,
-                helperText = helperText?.ifBlank { null },
+                helperText = helperText,
                 icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                 divider = divider,
                 inverted = inverted,
