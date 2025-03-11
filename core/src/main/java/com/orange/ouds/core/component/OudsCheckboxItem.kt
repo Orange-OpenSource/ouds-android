@@ -471,10 +471,10 @@ internal data class OudsCheckboxItemPreviewParameter(
         OudsCheckboxItem.State.Enabled,
         OudsCheckboxItem.State.Pressed,
         OudsCheckboxItem.State.Hovered,
-        OudsCheckboxItem.State.Focused,
-        OudsCheckboxItem.State.Disabled,
-        OudsCheckboxItem.State.ReadOnly
-    )
+        OudsCheckboxItem.State.Focused
+    ).run {
+        if (!error) plus(listOf(OudsCheckboxItem.State.Disabled, OudsCheckboxItem.State.ReadOnly)) else this
+    }
 }
 
 internal class OudsCheckboxItemPreviewParameterProvider :
