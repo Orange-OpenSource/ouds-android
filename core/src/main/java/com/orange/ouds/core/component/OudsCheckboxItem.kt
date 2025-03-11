@@ -242,8 +242,8 @@ private fun OudsCheckboxItem(
         }
     }
 
-    val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon.orElse { null } else checkboxIndicator
-    val trailingElement: (@Composable () -> Unit)? = if (inverted) checkboxIndicator else itemIcon.orElse { null }
+    val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon else checkboxIndicator
+    val trailingElement: (@Composable () -> Unit)? = if (inverted) checkboxIndicator else itemIcon
     val dividerThickness = 1.dp
 
     Column(
