@@ -48,6 +48,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -367,10 +368,13 @@ private fun checkboxState(state: OudsCheckboxItem.State) = when (state) {
 
 @Composable
 private fun LeadingTrailingBox(content: @Composable () -> Unit) {
-    val checkboxTokens = OudsTheme.componentsTokens.controlItem
+    val assetContainerMaxHeight = OudsTheme.componentsTokens.controlItem.sizeMaxHeightAssetsContainer.dp
+    val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.dp
+
+    val maxHeight = max(assetContainerMaxHeight, checkboxIndicatorSize)
     Box(
         modifier = Modifier
-            .heightIn(max = checkboxTokens.sizeMaxHeightAssetsContainer.dp)
+            .heightIn(max = maxHeight)
             .fillMaxHeight(),
         contentAlignment = Alignment.Center
     ) {
