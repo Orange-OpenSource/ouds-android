@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -250,6 +251,7 @@ private fun OudsCheckboxItem(
         modifier = modifier
             .height(IntrinsicSize.Min)
             .heightIn(min = controlItemTokens.sizeMinHeight.dp)
+            .widthIn(min = controlItemTokens.sizeMinWidth.dp)
             .background(color = backgroundColor(state = state))
             .border(state = state)
             .semantics(mergeDescendants = true) {
