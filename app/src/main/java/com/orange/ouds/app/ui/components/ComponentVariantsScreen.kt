@@ -46,23 +46,18 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
             }
 
             items(component.variants) { variant ->
-                Row(
+                Text(
                     modifier = Modifier
-                        .fillMaxWidth()
                         .padding(top = OudsTheme.spaces.fixed.medium)
                         .clickable { onVariantClick(variant.id) }
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(OudsTheme.spaces.fixed.medium),
-                        text = stringResource(id = variant.nameRes),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        color = OudsTheme.colorScheme.content.default,
-                        style = OudsTheme.typography.heading.medium
-                    )
-                }
+                        .fillMaxWidth()
+                        .padding(OudsTheme.spaces.fixed.medium),
+                    text = stringResource(id = variant.nameRes),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    color = OudsTheme.colorScheme.content.default,
+                    style = OudsTheme.typography.heading.medium
+                )
             }
         }
     }
