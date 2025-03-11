@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -253,7 +252,7 @@ private fun OudsCheckboxItem(
             .heightIn(min = controlItemTokens.sizeMinHeight.dp)
             .widthIn(min = controlItemTokens.sizeMinWidth.dp)
             .background(color = backgroundColor(state = state))
-            .border(state = state)
+            .outerBorder(state = state)
             .semantics(mergeDescendants = true) {
                 stateDescription = when (value) {
                     ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
@@ -380,7 +379,7 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun Modifier.border(state: OudsCheckboxItem.State) = if (state == OudsCheckboxItem.State.Focused) {
+private fun Modifier.outerBorder(state: OudsCheckboxItem.State) = if (state == OudsCheckboxItem.State.Focused) {
     outerBorder(
         width = OudsTheme.borders.width.focus,
         color = OudsTheme.colorScheme.border.focus,
