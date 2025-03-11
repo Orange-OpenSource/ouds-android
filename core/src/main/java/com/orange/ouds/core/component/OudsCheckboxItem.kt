@@ -14,7 +14,6 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -81,8 +80,9 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [inverted] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param inverted When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. It is inverted otherwise.
- * @param enabled Controls the enabled state of the checkbox item. When `false`, the item's checkbox will not be clickable.
- * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled.
+ * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the text and the optional icon are disabled, and the item
+ * will not be clickable. Note that if it is set to `false` and [readOnly] is set to `true`, the checkbox item will be displayed in read only state.
+ * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the text and the icon remain in enabled color.
  * @param error Controls the error state of the checkbox item.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
@@ -140,8 +140,9 @@ fun OudsCheckboxItem(
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [inverted] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param inverted When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. It is inverted otherwise.
- * @param enabled Controls the enabled state of the checkbox item. When `false`, the item's checkbox will not be clickable.
- * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled.
+ * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the text and the optional icon are disabled, and the item
+ * will not be clickable. Note that if it is set to `false` and [readOnly] is set to `true`, the checkbox item will be displayed in read only state.
+ * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the text and the icon remain in enabled color.
  * @param error Controls the error state of the checkbox item.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that
  * if `null` is provided, interactions will still happen internally.
