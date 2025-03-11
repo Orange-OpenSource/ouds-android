@@ -83,8 +83,9 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param inverted When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. It is inverted otherwise.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the text and the optional icon are disabled, and the item
- * will not be clickable. Note that if it is set to `false` and [readOnly] is set to `true`, the checkbox item will be displayed in read only state.
- * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the text and the icon remain in enabled color.
+ * will not be clickable.
+ * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the text and the icon remain in
+ * enabled color. Note that if it is set to `true` and [enabled] is also set to `true`, the checkbox item will be displayed in disabled state.
  * @param error Controls the error state of the checkbox item.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
@@ -146,8 +147,9 @@ fun OudsCheckboxItem(
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param inverted When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. It is inverted otherwise.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the text and the optional icon are disabled, and the item
- * will not be clickable. Note that if it is set to `false` and [readOnly] is set to `true`, the checkbox item will be displayed in read only state.
- * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the text and the icon remain in enabled color.
+ * will not be clickable.
+ * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the text and the icon remain in
+ * enabled color. Note that if it is set to `true` and [enabled] is also set to `true`, the checkbox item will be displayed in disabled state.
  * @param error Controls the error state of the checkbox item.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that
  * if `null` is provided, interactions will still happen internally.
@@ -301,8 +303,8 @@ private fun rememberOudsCheckboxItemState(
     interactionState: InteractionState
 ): OudsCheckboxItem.State = remember(enabled, readOnly, interactionState) {
     when {
-        readOnly -> OudsCheckboxItem.State.ReadOnly
         !enabled -> OudsCheckboxItem.State.Disabled
+        readOnly -> OudsCheckboxItem.State.ReadOnly
         interactionState == InteractionState.Hovered -> OudsCheckboxItem.State.Hovered
         interactionState == InteractionState.Pressed -> OudsCheckboxItem.State.Pressed
         interactionState == InteractionState.Focused -> OudsCheckboxItem.State.Focused
