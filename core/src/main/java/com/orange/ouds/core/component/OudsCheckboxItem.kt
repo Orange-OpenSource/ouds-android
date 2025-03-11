@@ -74,7 +74,8 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  *
  * @param checked Controls checked state of the item's checkbox.
  * @param text The main text of the checkbox item.
- * @param onClick Callback invoked on checkbox item click.
+ * @param onCheckedChange Callback invoked on checkbox item click. If `null`, then this is passive and relies entirely on a higher-level component to control
+ * the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param helperText Optional text displayed below the main text.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [inverted] is set to `true`, it is displayed as a leading element.
@@ -93,7 +94,7 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 fun OudsCheckboxItem(
     checked: Boolean,
     text: String,
-    onClick: (Boolean) -> Unit,
+    onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
     icon: OudsCheckboxItem.Icon? = null,
@@ -107,7 +108,9 @@ fun OudsCheckboxItem(
     OudsTriStateCheckboxItem(
         state = ToggleableState(checked),
         text = text,
-        onClick = { onClick(!checked) },
+        onClick = if (onCheckedChange != null) {
+            { onCheckedChange(!checked) }
+        } else null,
         modifier = modifier,
         helperText = helperText,
         icon = icon,
@@ -134,7 +137,8 @@ fun OudsCheckboxItem(
  *
  * @param state Controls whether item's TriStateCheckbox is checked, unchecked or in indeterminate state.
  * @param text The main text of the checkbox item.
- * @param onClick Callback invoked when checkbox item is being clicked, therefore the change of checkbox [ToggleableState] state is requested.
+ * @param onClick Callback invoked when checkbox item is being clicked, therefore the change of checkbox [ToggleableState] state is requested. If null, then
+ * this is passive and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param helperText Optional text displayed below the main text.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [inverted] is set to `true`, it is displayed as a leading element.
@@ -153,7 +157,7 @@ fun OudsCheckboxItem(
 fun OudsTriStateCheckboxItem(
     state: ToggleableState,
     text: String,
-    onClick: () -> Unit,
+    onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
     icon: OudsCheckboxItem.Icon? = null,
@@ -166,18 +170,24 @@ fun OudsTriStateCheckboxItem(
 ) {
     val checkboxInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
 
-    OudsCheckboxItem(
-        value = state,
-        text = text,
-        interactionSource = checkboxInteractionSource,
-        modifier = modifier.triStateToggleable(
+    val toggleableModifier = if (onClick != null) {
+        Modifier.triStateToggleable(
             interactionSource = checkboxInteractionSource,
             indication = LocalIndication.current,
             state = state,
             onClick = onClick,
             enabled = enabled && !readOnly,
             role = Role.Checkbox
-        ),
+        )
+    } else {
+        Modifier
+    }
+
+    OudsCheckboxItem(
+        value = state,
+        text = text,
+        interactionSource = checkboxInteractionSource,
+        modifier = modifier.then(toggleableModifier),
         previewState = null,
         helperText = helperText,
         icon = icon,

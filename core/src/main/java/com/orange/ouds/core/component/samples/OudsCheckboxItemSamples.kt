@@ -29,7 +29,7 @@ internal fun OudsCheckboxItemSample() {
         checked = checked,
         text = "Terms of use",
         helperText = "By checking this box, I acknowledge having read the conditions of use.",
-        onClick = { value -> checked = value },
+        onCheckedChange = { value -> checked = value },
         divider = false
     )
 }

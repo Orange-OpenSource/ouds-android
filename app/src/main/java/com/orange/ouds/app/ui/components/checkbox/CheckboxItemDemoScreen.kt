@@ -151,7 +151,7 @@ private fun CheckboxItemDemoCodeSnippet(state: CheckboxItemDemoState, modifier: 
             functionCall("OudsTriStateCheckboxItem") {
                 typedArgument("state", toggleableState)
                 textArgument(text)
-                onClickArgument {
+                lambdaArgument("onCheckedChange") {
                     comment("Change state")
                 }
                 if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)

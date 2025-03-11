@@ -30,24 +30,24 @@ internal class OudsCheckboxItemTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsCheckboxItemOnClickSucceeds() {
+    fun oudsCheckboxItemOnCheckedChangeSucceeds() {
         with(composeTestRule) {
             val testTag = "OudsCheckboxItem"
             val checked = false
-            val onClick = mock<(Boolean) -> Unit>()
+            val onCheckedChange = mock<(Boolean) -> Unit>()
 
             setOudsContent {
                 OudsCheckboxItem(
                     checked = checked,
                     text = "Label",
-                    onClick = onClick,
+                    onCheckedChange = onCheckedChange,
                     modifier = Modifier.testTag(testTag)
                 )
             }
 
             onNodeWithTag(testTag).assertIsOff()
             onNodeWithTag(testTag).performClick()
-            verify(onClick).invoke(!checked)
+            verify(onCheckedChange).invoke(!checked)
         }
     }
 }
