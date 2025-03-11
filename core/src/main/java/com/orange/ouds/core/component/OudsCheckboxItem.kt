@@ -439,28 +439,25 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val content: @Composable () -> Unit = {
-            Column(Modifier.padding(16.dp)) {
-                states.forEach { state ->
-                    OudsCheckboxItem(
-                        value = toggleableState,
-                        text = "Label",
-                        previewState = state,
-                        modifier = Modifier,
-                        helperText = helperText,
-                        error = error,
-                        inverted = inverted,
-                        icon = if (hasIcon) {
-                            OudsCheckboxItem.Icon(imageVector = Icons.Filled.Call)
-                        } else {
-                            null
-                        },
-                        interactionSource = remember { MutableInteractionSource() }
-                    )
-                }
+        Column(Modifier.padding(16.dp)) {
+            states.forEach { state ->
+                OudsCheckboxItem(
+                    value = toggleableState,
+                    text = "Label",
+                    previewState = state,
+                    modifier = Modifier,
+                    helperText = helperText,
+                    error = error,
+                    inverted = inverted,
+                    icon = if (hasIcon) {
+                        OudsCheckboxItem.Icon(imageVector = Icons.Filled.Call)
+                    } else {
+                        null
+                    },
+                    interactionSource = remember { MutableInteractionSource() }
+                )
             }
         }
-        content()
     }
 }
 
