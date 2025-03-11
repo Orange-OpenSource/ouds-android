@@ -248,7 +248,6 @@ private fun OudsCheckboxItem(
 
     Column(
         modifier = modifier
-            .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .heightIn(min = controlItemTokens.sizeMinHeight.dp)
             .background(color = backgroundColor(state = state))
