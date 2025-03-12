@@ -14,9 +14,12 @@ package com.orange.ouds.core.component
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.assertIsOff
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
@@ -30,7 +33,7 @@ internal class OudsCheckboxItemTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsCheckboxItemOnCheckedChangeSucceeds() {
+    fun oudsCheckboxItem_checkedChange_succeeds() {
         with(composeTestRule) {
             val testTag = "OudsCheckboxItem"
             val checked = false
@@ -48,6 +51,46 @@ internal class OudsCheckboxItemTest {
             onNodeWithTag(testTag).assertIsOff()
             onNodeWithTag(testTag).performClick()
             verify(onCheckedChange).invoke(!checked)
+        }
+    }
+
+    @Test
+    fun oudsCheckboxItem_withHelperText_helperTextDisplayed() {
+        with(composeTestRule) {
+            val testTag = "OudsCheckboxItem"
+            val helperText = "Helper text"
+
+            setOudsContent {
+                OudsCheckboxItem(
+                    checked = false,
+                    text = "Label",
+                    helperText = helperText,
+                    onCheckedChange = { },
+                    modifier = Modifier.testTag(testTag)
+                )
+            }
+
+            onNodeWithText(helperText).assertIsDisplayed()
+        }
+    }
+
+    @Test
+    fun oudsCheckboxItem_withBlankHelperText_helperTextNotDisplayed() {
+        with(composeTestRule) {
+            val testTag = "OudsCheckboxItem"
+            val helperText = "   "
+
+            setOudsContent {
+                OudsCheckboxItem(
+                    checked = false,
+                    text = "Label",
+                    helperText = helperText,
+                    onCheckedChange = { },
+                    modifier = Modifier.testTag(testTag)
+                )
+            }
+
+            onNodeWithText(helperText).assertIsNotDisplayed()
         }
     }
 }
