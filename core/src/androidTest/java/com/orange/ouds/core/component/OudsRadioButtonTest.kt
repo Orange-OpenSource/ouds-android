@@ -30,7 +30,7 @@ internal class OudsRadioButtonTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsRadioButtonSelectedChangeSucceeds() {
+    fun oudsRadioButton_click_succeeds() {
         with(composeTestRule) {
             val testTag = "OudsRadioButton"
             val selected = false
