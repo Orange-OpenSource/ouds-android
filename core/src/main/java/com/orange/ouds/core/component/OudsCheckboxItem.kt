@@ -276,7 +276,8 @@ private fun OudsCheckboxItem(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .align(Alignment.CenterVertically)
+                    .align(Alignment.CenterVertically),
+                verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
             ) {
                 Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
                 if (!helperText.isNullOrBlank()) {
