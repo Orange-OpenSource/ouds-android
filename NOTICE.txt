@@ -35,6 +35,8 @@ app/src/main/res/drawable-hdpi/il_components_checkbox.png
 app/src/main/res/drawable-hdpi/il_components_checkbox_dark.png
 app/src/main/res/drawable-hdpi/il_components_link.png
 app/src/main/res/drawable-hdpi/il_components_link_dark.png
+app/src/main/res/drawable-hdpi/il_components_radiobutton.png
+app/src/main/res/drawable-hdpi/il_components_radiobutton_dark.png
 app/src/main/res/drawable-hdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-hdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-hdpi/il_tokens_grid_max_width.png
@@ -47,6 +49,8 @@ app/src/main/res/drawable-mdpi/il_components_checkbox.png
 app/src/main/res/drawable-mdpi/il_components_checkbox_dark.png
 app/src/main/res/drawable-mdpi/il_components_link.png
 app/src/main/res/drawable-mdpi/il_components_link_dark.png
+app/src/main/res/drawable-mdpi/il_components_radiobutton.png
+app/src/main/res/drawable-mdpi/il_components_radiobutton_dark.png
 app/src/main/res/drawable-mdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-mdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-mdpi/il_tokens_grid_max_width.png
@@ -59,6 +63,8 @@ app/src/main/res/drawable-xhdpi/il_components_checkbox.png
 app/src/main/res/drawable-xhdpi/il_components_checkbox_dark.png
 app/src/main/res/drawable-xhdpi/il_components_link.png
 app/src/main/res/drawable-xhdpi/il_components_link_dark.png
+app/src/main/res/drawable-xhdpi/il_components_radiobutton.png
+app/src/main/res/drawable-xhdpi/il_components_radiobutton_dark.png
 app/src/main/res/drawable-xhdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-xhdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-xhdpi/il_tokens_grid_max_width.png
@@ -71,6 +77,8 @@ app/src/main/res/drawable-xxhdpi/il_components_checkbox.png
 app/src/main/res/drawable-xxhdpi/il_components_checkbox_dark.png
 app/src/main/res/drawable-xxhdpi/il_components_link.png
 app/src/main/res/drawable-xxhdpi/il_components_link_dark.png
+app/src/main/res/drawable-xxhdpi/il_components_radiobutton.png
+app/src/main/res/drawable-xxhdpi/il_components_radiobutton_dark.png
 app/src/main/res/drawable-xxhdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-xxhdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-xxhdpi/il_tokens_grid_max_width.png
@@ -83,6 +91,8 @@ app/src/main/res/drawable-xxxhdpi/il_components_checkbox.png
 app/src/main/res/drawable-xxxhdpi/il_components_checkbox_dark.png
 app/src/main/res/drawable-xxxhdpi/il_components_link.png
 app/src/main/res/drawable-xxxhdpi/il_components_link_dark.png
+app/src/main/res/drawable-xxxhdpi/il_components_radiobutton.png
+app/src/main/res/drawable-xxxhdpi/il_components_radiobutton_dark.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_column_margin.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_column_margin_dark.png
 app/src/main/res/drawable-xxxhdpi/il_tokens_grid_max_width.png

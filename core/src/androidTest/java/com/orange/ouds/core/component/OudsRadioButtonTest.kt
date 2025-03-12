@@ -34,7 +34,7 @@ internal class OudsRadioButtonTest {
         with(composeTestRule) {
             val testTag = "OudsRadioButton"
             val selected = false
-            val onClick = mock<(Boolean) -> Unit>()
+            val onClick = mock<() -> Unit>()
 
             setOudsContent {
                 OudsRadioButton(
@@ -46,7 +46,7 @@ internal class OudsRadioButtonTest {
 
             onNodeWithTag(testTag).assertIsNotSelected()
             onNodeWithTag(testTag).performClick()
-            verify(onClick).invoke(!selected)
+            verify(onClick).invoke()
         }
     }
 }

@@ -25,6 +25,6 @@ internal fun OudsRadioButtonSample() {
 
     OudsRadioButton(
         selected = selected,
-        onClick = { value -> selected = value }
+        onClick = { selected = !selected }
     )
 }

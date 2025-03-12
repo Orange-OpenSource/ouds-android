@@ -70,7 +70,7 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 @Composable
 fun OudsRadioButton(
     selected: Boolean,
-    onClick: ((Boolean) -> Unit)?,
+    onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     error: Boolean = false,
@@ -90,7 +90,7 @@ fun OudsRadioButton(
 @Composable
 private fun OudsRadioButton(
     selected: Boolean,
-    onClick: ((Boolean) -> Unit)?,
+    onClick: (() -> Unit)?,
     previewState: OudsRadioButton.State?,
     error: Boolean,
     modifier: Modifier = Modifier,
@@ -107,7 +107,7 @@ private fun OudsRadioButton(
     val selectableModifier = if (onClick != null) {
         Modifier.selectable(
             selected = selected,
-            onClick = { onClick.invoke(!selected) },
+            onClick = { onClick.invoke() },
             enabled = enabled,
             role = Role.RadioButton,
         )
