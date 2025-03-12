@@ -50,10 +50,10 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
+// TODO Add DSM URL for radio button when available
+// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Radio button design guidelines</a>
+
 /**
- * TODO
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Radio button design guidelines</a>
- *
  * An OUDS radio button.
  *
  * @param selected Controls selected state of the radio button.
