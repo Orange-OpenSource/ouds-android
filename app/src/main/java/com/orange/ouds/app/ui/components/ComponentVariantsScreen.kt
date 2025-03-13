@@ -14,7 +14,6 @@ package com.orange.ouds.app.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -39,6 +38,7 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
         LazyColumn(contentPadding = PaddingValues(bottom = OudsTheme.spaces.fixed.medium)) {
             item {
                 DetailScreenHeader(
+                    modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.medium),
                     descriptionRes = component.descriptionRes,
                     illustration = painterResource(id = component.imageRes),
                     tintIllustration = false
@@ -48,7 +48,6 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
             items(component.variants) { variant ->
                 Text(
                     modifier = Modifier
-                        .padding(top = OudsTheme.spaces.fixed.medium)
                         .clickable { onVariantClick(variant.id) }
                         .fillMaxWidth()
                         .padding(OudsTheme.spaces.fixed.medium),

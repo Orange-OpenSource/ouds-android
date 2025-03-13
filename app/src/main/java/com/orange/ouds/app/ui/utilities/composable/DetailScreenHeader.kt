@@ -37,9 +37,10 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 fun DetailScreenHeader(
     @StringRes descriptionRes: Int,
     illustration: Painter,
+    modifier: Modifier = Modifier,
     tintIllustration: Boolean = true
 ) {
-    Column {
+    Column(modifier = modifier) {
         Image(
             painter = illustration,
             colorFilter = if (tintIllustration) ColorFilter.tint(OudsTheme.colorScheme.content.default) else null,
