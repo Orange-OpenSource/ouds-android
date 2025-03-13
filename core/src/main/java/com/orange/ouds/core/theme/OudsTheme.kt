@@ -175,3 +175,17 @@ fun OudsThemeTweak(tweak: OudsTheme.Tweak, content: @Composable () -> Unit) {
         )
     }
 }
+
+/**
+ * This function is equivalent to [isSystemInDarkTheme] except it takes the OUDS theme setting into account instead of the system one.
+ *
+ * The OUDS theme can be inverted or forced to light or dark when calling [OudsThemeTweak] and the value returned by this method reflects that kind of change.
+ * If there is no call to [OudsThemeTweak] anywhere in the layout hierarchy, then this function returns the same value as [isSystemInDarkTheme].
+ *
+ * @return `true` if OUDS is considered to be in 'dark theme'.
+ */
+@Composable
+@ReadOnlyComposable
+fun isOudsInDarkTheme(): Boolean {
+    return LocalDarkThemeEnabled.current
+}
