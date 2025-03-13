@@ -50,7 +50,7 @@ sealed class Component(
         R.string.app_components_checkbox_label,
         LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
         R.string.app_components_checkbox_description_text,
-        listOf(Variant.Checkbox, Variant.CheckboxItem)
+        listOf(Variant.Checkbox, Variant.CheckboxItem, Variant.IndeterminateCheckbox, Variant.IndeterminateCheckboxItem)
     )
 
     data object Link : Component(
@@ -74,4 +74,8 @@ sealed class Variant(
 
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })
     data object CheckboxItem : Variant(R.string.app_components_checkbox_checkboxItem_label, { CheckboxItemDemoScreen() })
+    data object IndeterminateCheckbox : Variant(R.string.app_components_checkbox_indeterminateCheckbox_label, { CheckboxDemoScreen(indeterminate = true) })
+    data object IndeterminateCheckboxItem :
+        Variant(R.string.app_components_checkbox_indeterminateCheckboxItem_label, { CheckboxItemDemoScreen(indeterminate = true) })
+
 }

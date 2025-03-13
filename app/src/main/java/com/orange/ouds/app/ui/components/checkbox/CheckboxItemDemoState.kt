@@ -24,7 +24,8 @@ import com.orange.ouds.app.R
 
 @Composable
 fun rememberCheckboxItemDemoState(
-    toggleableState: ToggleableState = ToggleableState.Off,
+    checked: Boolean = false, // only used for checkbox item demo
+    toggleableState: ToggleableState = ToggleableState.Off, // only used for indeterminate checkbox item demo
     icon: Boolean = false,
     divider: Boolean = true,
     inverted: Boolean = false,
@@ -33,11 +34,12 @@ fun rememberCheckboxItemDemoState(
     error: Boolean = false,
     text: String = stringResource(id = R.string.app_components_common_text_label),
     helperText: String? = null
-) = rememberSaveable(toggleableState, icon, divider, inverted, enabled, readOnly, error, text, helperText, saver = CheckboxItemDemoState.Saver) {
-    CheckboxItemDemoState(toggleableState, icon, divider, inverted, enabled, readOnly, error, text, helperText)
+) = rememberSaveable(checked, toggleableState, icon, divider, inverted, enabled, readOnly, error, text, helperText, saver = CheckboxItemDemoState.Saver) {
+    CheckboxItemDemoState(checked, toggleableState, icon, divider, inverted, enabled, readOnly, error, text, helperText)
 }
 
 class CheckboxItemDemoState(
+    checked: Boolean,
     toggleableState: ToggleableState,
     icon: Boolean,
     divider: Boolean,
@@ -50,6 +52,7 @@ class CheckboxItemDemoState(
 ) {
     companion object {
         val Saver = run {
+            val checkedKey = "checked"
             val toggleableStateKey = "toggleableState"
             val iconKey = "icon"
             val dividerKey = "divider"
@@ -62,6 +65,7 @@ class CheckboxItemDemoState(
             mapSaver(
                 save = { state ->
                     mapOf(
+                        checkedKey to state.checked,
                         toggleableStateKey to state.toggleableState,
                         iconKey to state.icon,
                         dividerKey to state.divider,
@@ -75,6 +79,7 @@ class CheckboxItemDemoState(
                 },
                 restore = { map ->
                     CheckboxItemDemoState(
+                        map[checkedKey] as Boolean,
                         map[toggleableStateKey] as ToggleableState,
                         map[iconKey] as Boolean,
                         map[dividerKey] as Boolean,
@@ -90,6 +95,7 @@ class CheckboxItemDemoState(
         }
     }
 
+    var checked: Boolean by mutableStateOf(checked)
     var toggleableState: ToggleableState by mutableStateOf(toggleableState)
     var icon: Boolean by mutableStateOf(icon)
     var divider: Boolean by mutableStateOf(divider)
