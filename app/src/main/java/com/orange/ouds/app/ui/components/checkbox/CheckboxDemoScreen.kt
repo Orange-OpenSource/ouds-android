@@ -27,10 +27,10 @@ import com.orange.ouds.app.ui.utilities.composable.ComponentDemoBox
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
@@ -62,16 +62,12 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
                     ToggleableState.Indeterminate -> ToggleableState.On
                 }
             }
-
-            IndeterminateCheckboxDemo(state = this@DemoScreen, onClick = onClick)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
+            LightDarkDemo {
                 IndeterminateCheckboxDemo(state = this@DemoScreen, onClick = onClick)
             }
         } else {
             val onCheckedChange = { value: Boolean -> checked = value }
-
-            CheckboxDemo(state = this@DemoScreen, onCheckedChange = onCheckedChange)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
+            LightDarkDemo {
                 CheckboxDemo(state = this@DemoScreen, onCheckedChange = onCheckedChange)
             }
         }
