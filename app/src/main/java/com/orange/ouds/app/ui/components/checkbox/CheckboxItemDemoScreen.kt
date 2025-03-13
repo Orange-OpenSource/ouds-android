@@ -197,3 +197,9 @@ private fun CheckboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indetermin
 private fun PreviewCheckboxItemDemoScreen() = OudsPreview {
     CheckboxItemDemoScreen()
 }
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewIndeterminateCheckboxItemDemoScreen() = OudsPreview {
+    CheckboxItemDemoScreen(indeterminate = true)
+}
