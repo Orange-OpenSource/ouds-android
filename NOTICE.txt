@@ -92,9 +92,9 @@ app/src/main/res/drawable-xxxhdpi/il_tokens_grid_min_width_dark.png
 app/src/prod/res/drawable/ic_launcher_background.xml
 app/src/prod/res/drawable/ic_launcher_foreground.xml
 
-core/src/main/res/drawable/ic_form_chevron_left.xml
-core/src/main/res/drawable/ic_less.xml
-core/src/main/res/drawable/ic_tick.xml
+core/src/main/res/drawable/checkbox_indeterminate.xml
+core/src/main/res/drawable/checkbox_selected.xml
+core/src/main/res/drawable/chevron_left.xml
 
 docs/assets/logo-icon.svg
 
