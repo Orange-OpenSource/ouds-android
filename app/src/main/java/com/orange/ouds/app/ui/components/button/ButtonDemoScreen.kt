@@ -12,20 +12,11 @@
 
 package com.orange.ouds.app.ui.components.button
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -38,16 +29,16 @@ import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
+import com.orange.ouds.app.ui.utilities.composable.OnColoredBoxDemo
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
+import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsButton
-import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
@@ -106,9 +97,12 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
             modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
             descriptionRes = Component.Button.descriptionRes
         )
-        ButtonDemo(state = this@DemoScreen)
         if (!onColoredBox) {
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
+            LightDarkDemo {
+                ButtonDemo(state = this@DemoScreen)
+            }
+        } else {
+            OnColoredBoxDemo {
                 ButtonDemo(state = this@DemoScreen)
             }
         }
@@ -123,69 +117,41 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
 
 @Composable
 private fun ButtonDemo(state: ButtonDemoState) {
-    ButtonDemoBox(
-        colored = state.onColoredBox,
-        modifier = Modifier
-            .padding(all = OudsTheme.spaces.fixed.medium)
-            .fillMaxWidth()
-    ) {
-        val icon = OudsButton.Icon(
-            painter = painterResource(id = R.drawable.ic_heart),
-            contentDescription = stringResource(id = R.string.app_components_button_icon_a11y)
-        )
-        with(state) {
-            when (layout) {
-                ButtonDemoState.Layout.TextOnly -> {
-                    OudsButton(
-                        text = text,
-                        onClick = {},
-                        enabled = enabled,
-                        style = style,
-                        hierarchy = hierarchy
-                    )
-                }
-                ButtonDemoState.Layout.IconAndText -> {
-                    OudsButton(
-                        icon = icon,
-                        text = text,
-                        onClick = {},
-                        enabled = enabled,
-                        style = style,
-                        hierarchy = hierarchy
-                    )
-                }
-                ButtonDemoState.Layout.IconOnly -> {
-                    OudsButton(
-                        icon = icon,
-                        onClick = {},
-                        enabled = enabled,
-                        style = style,
-                        hierarchy = hierarchy
-                    )
-                }
+    val icon = OudsButton.Icon(
+        painter = painterResource(id = R.drawable.ic_heart),
+        contentDescription = stringResource(id = R.string.app_components_button_icon_a11y)
+    )
+    with(state) {
+        when (layout) {
+            ButtonDemoState.Layout.TextOnly -> {
+                OudsButton(
+                    text = text,
+                    onClick = {},
+                    enabled = enabled,
+                    style = style,
+                    hierarchy = hierarchy
+                )
+            }
+            ButtonDemoState.Layout.IconAndText -> {
+                OudsButton(
+                    icon = icon,
+                    text = text,
+                    onClick = {},
+                    enabled = enabled,
+                    style = style,
+                    hierarchy = hierarchy
+                )
+            }
+            ButtonDemoState.Layout.IconOnly -> {
+                OudsButton(
+                    icon = icon,
+                    onClick = {},
+                    enabled = enabled,
+                    style = style,
+                    hierarchy = hierarchy
+                )
             }
         }
-    }
-}
-
-@Composable
-private fun ButtonDemoBox(colored: Boolean, modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
-    val contentAlignment = Alignment.Center
-    if (colored) {
-        OudsColoredBox(
-            modifier = modifier,
-            color = OudsColoredBox.Color.BrandPrimary,
-            contentAlignment = contentAlignment,
-            content = content
-        )
-    } else {
-        Box(
-            modifier = Modifier
-                .background(OudsTheme.colorScheme.background.primary)
-                .then(modifier),
-            contentAlignment = contentAlignment,
-            content = content
-        )
     }
 }
 

@@ -12,19 +12,10 @@
 
 package com.orange.ouds.app.ui.components.link
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,16 +27,16 @@ import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
+import com.orange.ouds.app.ui.utilities.composable.OnColoredBoxDemo
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
-import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
@@ -91,12 +82,16 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
             modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
             descriptionRes = Component.Link.descriptionRes
         )
-        LinkDemo(state = this@DemoScreen)
         if (!onColoredBox) {
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
+            LightDarkDemo {
+                LinkDemo(state = this@DemoScreen)
+            }
+        } else {
+            OnColoredBoxDemo {
                 LinkDemo(state = this@DemoScreen)
             }
         }
+
         LinkDemoCodeSnippet(
             state = this@DemoScreen,
             modifier = Modifier
@@ -108,72 +103,45 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
 
 @Composable
 private fun LinkDemo(state: LinkDemoState) {
-    LinkDemoBox(
-        colored = state.onColoredBox,
-        modifier = Modifier
-            .padding(all = OudsTheme.spaces.fixed.medium)
-            .fillMaxWidth()
-    ) {
-        with(state) {
-            when (layout) {
-                LinkDemoState.Layout.TextOnly -> {
-                    OudsLink(
-                        text = text,
-                        icon = null,
-                        onClick = {},
-                        enabled = enabled,
-                        size = size
-                    )
-                }
-                LinkDemoState.Layout.IconAndText -> {
-                    OudsLink(
-                        text = text,
-                        icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
-                        onClick = {},
-                        enabled = enabled,
-                        size = size
-                    )
-                }
-                LinkDemoState.Layout.ArrowBack -> {
-                    OudsLink(
-                        text = text,
-                        arrow = OudsLink.Arrow.Back,
-                        onClick = {},
-                        enabled = enabled,
-                        size = size
-                    )
-                }
-                LinkDemoState.Layout.ArrowNext -> {
-                    OudsLink(
-                        text = text,
-                        arrow = OudsLink.Arrow.Next,
-                        onClick = {},
-                        enabled = enabled,
-                        size = size
-                    )
-                }
+    with(state) {
+        when (layout) {
+            LinkDemoState.Layout.TextOnly -> {
+                OudsLink(
+                    text = text,
+                    icon = null,
+                    onClick = {},
+                    enabled = enabled,
+                    size = size
+                )
+            }
+            LinkDemoState.Layout.IconAndText -> {
+                OudsLink(
+                    text = text,
+                    icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
+                    onClick = {},
+                    enabled = enabled,
+                    size = size
+                )
+            }
+            LinkDemoState.Layout.ArrowBack -> {
+                OudsLink(
+                    text = text,
+                    arrow = OudsLink.Arrow.Back,
+                    onClick = {},
+                    enabled = enabled,
+                    size = size
+                )
+            }
+            LinkDemoState.Layout.ArrowNext -> {
+                OudsLink(
+                    text = text,
+                    arrow = OudsLink.Arrow.Next,
+                    onClick = {},
+                    enabled = enabled,
+                    size = size
+                )
             }
         }
-    }
-}
-
-@Composable
-private fun LinkDemoBox(colored: Boolean, modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
-    if (colored) {
-        OudsColoredBox(
-            color = OudsColoredBox.Color.BrandPrimary,
-            modifier = modifier,
-            contentAlignment = Alignment.Center,
-            content = content
-        )
-    } else {
-        Box(
-            modifier = Modifier
-                .background(OudsTheme.colorScheme.background.primary)
-                .then(other = modifier),
-            contentAlignment = Alignment.Center,
-            content = content
-        )
     }
 }
 

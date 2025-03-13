@@ -23,7 +23,6 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
-import com.orange.ouds.app.ui.utilities.composable.ComponentDemoBox
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -54,21 +53,23 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
             )
         }
     ) {
-        if (indeterminate) {
-            val onClick = {
-                toggleableState = when (toggleableState) {
-                    ToggleableState.On -> ToggleableState.Off
-                    ToggleableState.Off -> ToggleableState.Indeterminate
-                    ToggleableState.Indeterminate -> ToggleableState.On
-                }
-            }
-            LightDarkDemo {
-                IndeterminateCheckboxDemo(state = this@DemoScreen, onClick = onClick)
-            }
-        } else {
-            val onCheckedChange = { value: Boolean -> checked = value }
-            LightDarkDemo {
-                CheckboxDemo(state = this@DemoScreen, onCheckedChange = onCheckedChange)
+        LightDarkDemo {
+            if (indeterminate) {
+                IndeterminateCheckboxDemo(
+                    state = this@DemoScreen,
+                    onClick = {
+                        toggleableState = when (toggleableState) {
+                            ToggleableState.On -> ToggleableState.Off
+                            ToggleableState.Off -> ToggleableState.Indeterminate
+                            ToggleableState.Indeterminate -> ToggleableState.On
+                        }
+                    }
+                )
+            } else {
+                CheckboxDemo(
+                    state = this@DemoScreen,
+                    onCheckedChange = { value: Boolean -> checked = value }
+                )
             }
         }
 
@@ -85,28 +86,24 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
 @Composable
 private fun CheckboxDemo(state: CheckboxDemoState, onCheckedChange: (Boolean) -> Unit) {
     with(state) {
-        ComponentDemoBox {
-            OudsCheckbox(
-                checked = checked,
-                onCheckedChange = onCheckedChange,
-                enabled = enabled,
-                error = error
-            )
-        }
+        OudsCheckbox(
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+            enabled = enabled,
+            error = error
+        )
     }
 }
 
 @Composable
 private fun IndeterminateCheckboxDemo(state: CheckboxDemoState, onClick: () -> Unit) {
     with(state) {
-        ComponentDemoBox {
-            OudsTriStateCheckbox(
-                state = toggleableState,
-                onClick = onClick,
-                enabled = enabled,
-                error = error
-            )
-        }
+        OudsTriStateCheckbox(
+            state = toggleableState,
+            onClick = onClick,
+            enabled = enabled,
+            error = error
+        )
     }
 }
 
