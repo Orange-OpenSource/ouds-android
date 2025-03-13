@@ -58,6 +58,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -101,7 +102,7 @@ fun OudsCheckboxItem(
     modifier: Modifier = Modifier,
     helperText: String? = null,
     icon: OudsCheckboxItem.Icon? = null,
-    divider: Boolean = true,
+    divider: Boolean = false,
     inverted: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -165,7 +166,7 @@ fun OudsTriStateCheckboxItem(
     modifier: Modifier = Modifier,
     helperText: String? = null,
     icon: OudsCheckboxItem.Icon? = null,
-    divider: Boolean = true,
+    divider: Boolean = false,
     inverted: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -212,7 +213,7 @@ private fun OudsCheckboxItem(
     modifier: Modifier = Modifier,
     helperText: String? = null,
     icon: OudsCheckboxItem.Icon? = null,
-    divider: Boolean = true,
+    divider: Boolean = false,
     inverted: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -451,6 +452,7 @@ internal fun PreviewOudsCheckboxItem(
                     text = "Label",
                     previewState = state,
                     helperText = helperText,
+                    divider = divider,
                     error = error,
                     inverted = inverted,
                     icon = if (hasIcon) {
@@ -468,6 +470,7 @@ internal fun PreviewOudsCheckboxItem(
 internal data class OudsCheckboxItemPreviewParameter(
     val toggleableState: ToggleableState,
     val helperText: String? = null,
+    val divider: Boolean = false,
     val hasIcon: Boolean = false,
     val error: Boolean = false,
     val inverted: Boolean = false
@@ -492,17 +495,27 @@ private val previewParameterValues: List<OudsCheckboxItemPreviewParameter>
         return buildList {
             invertedValues.forEach { inverted ->
                 val parameters = listOf(
-                    OudsCheckboxItemPreviewParameter(toggleableState = ToggleableState.Off, inverted = inverted),
+                    OudsCheckboxItemPreviewParameter(
+                        toggleableState = ToggleableState.Off,
+                        inverted = inverted
+                    ),
                     OudsCheckboxItemPreviewParameter(
                         toggleableState = ToggleableState.Off,
                         hasIcon = true,
                         helperText = helperText,
                         inverted = inverted
                     ),
-                    OudsCheckboxItemPreviewParameter(toggleableState = ToggleableState.On, helperText = helperText, error = true, inverted = inverted),
                     OudsCheckboxItemPreviewParameter(
                         toggleableState = ToggleableState.On,
-                        helperText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                        helperText = helperText,
+                        divider = true,
+                        error = true,
+                        inverted = inverted
+                    ),
+                    OudsCheckboxItemPreviewParameter(
+                        toggleableState = ToggleableState.On,
+                        helperText = LoremIpsumText,
+                        divider = true,
                         error = true,
                         hasIcon = true,
                         inverted = inverted
