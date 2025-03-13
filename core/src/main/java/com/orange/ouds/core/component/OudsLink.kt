@@ -19,9 +19,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -211,7 +209,7 @@ private fun OudsLink(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (icon != null || arrow == OudsLink.Arrow.Back) {
-                    icon.orElse { OudsLink.Icon(painterResource(R.drawable.ic_form_chevron_left)) }.Content(
+                    icon.orElse { OudsLink.Icon(painterResource(R.drawable.chevron_left)) }.Content(
                         modifier = Modifier.size(iconSize),
                         extraParameters = ExtraParameters(tint = iconTint)
                     )
@@ -222,7 +220,7 @@ private fun OudsLink(
                     style = textStyle
                 )
                 if (arrow == OudsLink.Arrow.Next) {
-                    OudsLink.Icon(painterResource(R.drawable.ic_form_chevron_left)).Content(
+                    OudsLink.Icon(painterResource(R.drawable.chevron_left)).Content(
                         modifier = Modifier
                             .size(iconSize)
                             .rotate(180f)
