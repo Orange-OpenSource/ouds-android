@@ -894,10 +894,10 @@ private fun SectionColumn(title: String, horizontalPadding: Boolean = true, vert
     Text(
         text = title,
         style = OudsTheme.typography.heading.medium,
-        modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller).padding(horizontal = OudsTheme.spaces.fixed.medium)
+        modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller).padding(horizontal = OudsTheme.grids.margin)
     )
     Column(
-        modifier = if (horizontalPadding) Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium) else Modifier,
+        modifier = if (horizontalPadding) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
         verticalArrangement = if (verticalSpacing) Arrangement.spacedBy(OudsTheme.spaces.fixed.short) else Arrangement.Top
     ) {
         content()

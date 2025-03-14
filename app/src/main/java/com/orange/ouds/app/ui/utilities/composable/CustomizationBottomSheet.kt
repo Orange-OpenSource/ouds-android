@@ -102,7 +102,7 @@ fun CustomizationBottomSheetScaffold(
                     }
                     .fillMaxWidth()
                     .height(BottomSheetDefaults.SheetPeekHeight)
-                    .padding(horizontal = OudsTheme.spaces.fixed.medium),
+                    .padding(horizontal = OudsTheme.grids.margin),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
             ) {

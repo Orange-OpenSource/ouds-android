@@ -97,7 +97,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(OudsTheme.spaces.fixed.medium),
+                                .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
                             text = stringResource(id = subcategory.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -116,7 +116,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .background(color = OudsTheme.colorScheme.background.primary)
-                                    .padding(all = OudsTheme.spaces.fixed.medium)
+                                    .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
                                     .semantics {
                                         heading()
                                     },
@@ -179,7 +179,7 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+            .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
         horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
     ) {
         TokenIllustration(tokenProperty = tokenProperty, token = token)
@@ -265,7 +265,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
         if (expanded) 180f else 0f
     }
 
-    Column(modifier = modifier.padding(horizontal = OudsTheme.spaces.fixed.medium)) {
+    Column(modifier = modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)) {
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
             Row(
                 modifier = Modifier
