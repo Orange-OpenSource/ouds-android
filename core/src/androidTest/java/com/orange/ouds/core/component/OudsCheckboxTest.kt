@@ -30,7 +30,7 @@ internal class OudsCheckboxTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsCheckbox_checkedChange_succeeds() {
+    fun oudsCheckbox_click_succeeds() {
         with(composeTestRule) {
             val testTag = "OudsCheckbox"
             val checked = false
