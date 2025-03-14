@@ -65,7 +65,7 @@ sealed class Component(
         R.string.app_components_radioButton_label,
         LightDarkResourceId(R.drawable.il_components_radiobutton, R.drawable.il_components_radiobutton_dark),
         R.string.app_components_radioButton_description_text,
-        { RadioButtonDemoScreen() }
+        demoScreen = { RadioButtonDemoScreen() }
     )
 }
 

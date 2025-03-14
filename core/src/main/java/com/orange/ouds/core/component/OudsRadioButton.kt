@@ -221,7 +221,7 @@ private fun selectedIndicatorColor(state: OudsRadioButton.State, error: Boolean)
 
 @Composable
 private fun backgroundColor(state: OudsRadioButton.State): Color {
-    return with(OudsTheme.componentsTokens.listItem) {
+    return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
             OudsRadioButton.State.Enabled, OudsRadioButton.State.Disabled -> Color.Transparent
             OudsRadioButton.State.Hovered -> colorBgHover.value

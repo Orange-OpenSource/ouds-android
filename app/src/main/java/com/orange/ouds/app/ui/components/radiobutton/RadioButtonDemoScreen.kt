@@ -36,6 +36,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaff
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
+import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
@@ -61,41 +62,29 @@ fun RadioButtonDemoScreen() = DemoScreen(rememberRadioButtonDemoState()) {
                 enabled = errorSwitchEnabled
             )
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .consumeWindowInsets(innerPadding)
-                .padding(innerPadding)
-        ) {
-            DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-                descriptionRes = Component.RadioButton.descriptionRes
-            )
+    ) {
+        DetailScreenDescription(
+            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
+            descriptionRes = Component.RadioButton.descriptionRes
+        )
 
+        LightDarkDemo {
             RadioButtonDemo(state = this@DemoScreen)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                RadioButtonDemo(state = this@DemoScreen)
-            }
-            RadioButtonDemoCodeSnippet(
-                state = this@DemoScreen,
-                modifier = Modifier
-                    .padding(all = OudsTheme.spaces.fixed.medium)
-                    .padding(top = OudsTheme.spaces.fixed.medium)
-            )
         }
+
+        RadioButtonDemoCodeSnippet(
+            state = this@DemoScreen,
+            modifier = Modifier
+                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium)
+        )
     }
 }
 
 @Composable
 private fun RadioButtonDemo(state: RadioButtonDemoState) {
     Row(
-        modifier = Modifier
-            .selectableGroup()
-            .background(OudsTheme.colorScheme.background.primary)
-            .padding(all = OudsTheme.spaces.fixed.medium)
-            .fillMaxWidth(),
+        modifier = Modifier.selectableGroup(),
         horizontalArrangement = Arrangement.Center
     ) {
         with(state) {

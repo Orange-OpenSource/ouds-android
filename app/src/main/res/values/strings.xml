@@ -116,7 +116,6 @@
     <string name="app_components_common_style_label">Style</string>
     <string name="app_components_common_text_label">Text</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
-    <string name="app_components_common_error_label">Error</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>
