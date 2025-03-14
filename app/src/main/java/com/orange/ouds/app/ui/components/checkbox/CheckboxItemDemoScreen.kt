@@ -32,6 +32,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsCheckboxItem
+import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -123,7 +124,7 @@ private fun CheckboxItemDemo(state: CheckboxItemDemoState) {
                     },
                     text = text,
                     helperText = helperText,
-                    icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                    icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
                     inverted = inverted,
                     enabled = enabled,
@@ -155,7 +156,7 @@ private fun IndeterminateCheckboxItemDemo(state: CheckboxItemDemoState) {
                     },
                     text = text,
                     helperText = helperText,
-                    icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                    icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
                     inverted = inverted,
                     enabled = enabled,
@@ -189,7 +190,7 @@ private fun CheckboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indetermin
                 }
                 if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
                 if (icon) {
-                    constructorCallArgument<OudsCheckboxItem.Icon>("icon") {
+                    constructorCallArgument<OudsControlItem.Icon>("icon") {
                         painterArgument(R.drawable.ic_heart)
                     }
                 }

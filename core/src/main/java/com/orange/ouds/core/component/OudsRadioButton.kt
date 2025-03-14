@@ -129,20 +129,26 @@ private fun OudsRadioButton(
                 .then(selectableModifier),
             contentAlignment = Alignment.Center,
         ) {
-            Box(
-                modifier = Modifier
-                    .size(radioButtonTokens.sizeIndicator.value)
-                    .indicatorBorder(state = state, selected = selected, error = error)
-            ) {
-                if (selected) {
-                    Icon(
-                        modifier = Modifier.fillMaxSize(),
-                        painter = painterResource(R.drawable.radiobutton_selected),
-                        tint = indicatorColor(state = state, selected = true, error = error),
-                        contentDescription = null
-                    )
-                }
-            }
+            OudsRadioButtonIndicator(state = state, selected = selected, error = error)
+        }
+    }
+}
+
+@Composable
+internal fun OudsRadioButtonIndicator(state: OudsRadioButton.State, selected: Boolean, error: Boolean) {
+    val radioButtonTokens = OudsTheme.componentsTokens.radioButton
+    Box(
+        modifier = Modifier
+            .size(radioButtonTokens.sizeIndicator.value)
+            .indicatorBorder(state = state, selected = selected, error = error)
+    ) {
+        if (selected) {
+            Icon(
+                modifier = Modifier.fillMaxSize(),
+                painter = painterResource(R.drawable.radiobutton_selected),
+                tint = indicatorColor(state = state, selected = true, error = error),
+                contentDescription = null
+            )
         }
     }
 }
