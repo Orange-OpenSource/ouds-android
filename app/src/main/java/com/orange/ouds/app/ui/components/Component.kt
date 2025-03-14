@@ -21,6 +21,7 @@ import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
+import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -65,7 +66,7 @@ sealed class Component(
         R.string.app_components_radioButton_label,
         LightDarkResourceId(R.drawable.il_components_radiobutton, R.drawable.il_components_radiobutton_dark),
         R.string.app_components_radioButton_description_text,
-        demoScreen = { RadioButtonDemoScreen() }
+        listOf(Variant.RadioButton, Variant.RadioButtonItem)
     )
 }
 
@@ -85,4 +86,7 @@ sealed class Variant(
     data object IndeterminateCheckbox : Variant(R.string.app_components_checkbox_indeterminateCheckbox_label, { CheckboxDemoScreen(indeterminate = true) })
     data object IndeterminateCheckboxItem :
         Variant(R.string.app_components_checkbox_indeterminateCheckboxItem_label, { CheckboxItemDemoScreen(indeterminate = true) })
+
+    data object RadioButton : Variant(R.string.app_components_radioButton_radioButton_label, { RadioButtonDemoScreen() })
+    data object RadioButtonItem : Variant(R.string.app_components_radioButton_radioButtonItem_label, { RadioButtonItemDemoScreen() })
 }

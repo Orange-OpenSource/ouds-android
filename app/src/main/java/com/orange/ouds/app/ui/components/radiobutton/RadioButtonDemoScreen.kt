@@ -56,11 +56,6 @@ fun RadioButtonDemoScreen() = DemoScreen(rememberRadioButtonDemoState()) {
             )
         }
     ) {
-        DetailScreenDescription(
-            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-            descriptionRes = Component.RadioButton.descriptionRes
-        )
-
         LightDarkDemo {
             RadioButtonDemo(state = this@DemoScreen)
         }
