@@ -57,7 +57,6 @@ internal class OudsCheckboxItemTest {
     @Test
     fun oudsCheckboxItem_withHelperText_helperTextDisplayed() {
         with(composeTestRule) {
-            val testTag = "OudsCheckboxItem"
             val helperText = "Helper text"
 
             setOudsContent {
@@ -66,7 +65,6 @@ internal class OudsCheckboxItemTest {
                     text = "Label",
                     helperText = helperText,
                     onCheckedChange = { },
-                    modifier = Modifier.testTag(testTag)
                 )
             }
 
@@ -77,7 +75,6 @@ internal class OudsCheckboxItemTest {
     @Test
     fun oudsCheckboxItem_withBlankHelperText_helperTextNotDisplayed() {
         with(composeTestRule) {
-            val testTag = "OudsCheckboxItem"
             val helperText = "   "
 
             setOudsContent {
@@ -86,7 +83,6 @@ internal class OudsCheckboxItemTest {
                     text = "Label",
                     helperText = helperText,
                     onCheckedChange = { },
-                    modifier = Modifier.testTag(testTag)
                 )
             }
 
