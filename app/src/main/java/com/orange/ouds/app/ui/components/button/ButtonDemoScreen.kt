@@ -23,10 +23,10 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.stringArgument
 import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.OnColoredBoxDemo
@@ -164,7 +164,7 @@ private fun ButtonDemoCodeSnippet(state: ButtonDemoState, modifier: Modifier = M
                     if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
                         constructorCallArgument<OudsButton.Icon>("icon") {
                             painterArgument(R.drawable.ic_heart)
-                            stringArgument("contentDescription", R.string.app_components_button_icon_a11y)
+                            contentDescriptionArgument(R.string.app_components_button_icon_a11y)
                         }
                     }
                     if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
