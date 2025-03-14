@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,7 +35,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -58,7 +58,8 @@ internal fun OudsControlItem(
     error: Boolean,
     errorComponentName: String,
     indicator: @Composable () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    additionalText: String? = null,
 ) {
     if (error) {
         if (readOnly) throw IllegalStateException("An $errorComponentName set to readOnly with error parameter activated is not allowed.")
@@ -103,6 +104,13 @@ internal fun OudsControlItem(
                 verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
             ) {
                 Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
+                if (!additionalText.isNullOrBlank()) {
+                    Text(
+                        text = additionalText,
+                        style = OudsTheme.typography.label.strong.medium,
+                        color = additionalTextColor(state = state)
+                    )
+                }
                 if (!helperText.isNullOrBlank()) {
                     Text(
                         text = helperText,
@@ -246,6 +254,10 @@ internal fun textColor(state: OudsControlItem.State, error: Boolean) =
     } else {
         if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
     }
+
+@Composable
+internal fun additionalTextColor(state: OudsControlItem.State) =
+    if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
 internal fun helperTextColor(state: OudsControlItem.State) =

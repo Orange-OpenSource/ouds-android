@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -23,10 +25,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -47,9 +51,11 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  * @param onClick Callback invoked on radio button click. If `null`, then this radio button will not be interactable, unless something else handles its
  * input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button item.
- * @param helperText Optional text displayed below the main text.
+ * @param additionalText Optional strong accompanying text for the main label. It is displayed between the [text] and the [helperText].
+ * @param helperText Optional text displayed below the [text] and the [additionalText].
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [inverted] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the radio button item.
+ * @param outlined When set to `true`, the radio button item, if selected, is outlined to stand out and draw the user's attention.
  * @param inverted When `false`, the radio button has a leading position and the optional [icon] has a trailing position. It is inverted otherwise.
  * @param enabled Controls the enabled state of the radio button item. When `false`, the radio button, the text and the optional icon are disabled, and the item
  * will not be clickable.
@@ -67,9 +73,11 @@ fun OudsRadioButtonItem(
     text: String,
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
+    additionalText: String? = null,
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
     divider: Boolean = false,
+    outlined: Boolean = false,
     inverted: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -85,9 +93,11 @@ fun OudsRadioButtonItem(
         interactionSource = radioButtonItemInteractionSource,
         modifier = modifier,
         previewState = null,
+        additionalText = additionalText,
         helperText = helperText,
         icon = icon,
         divider = divider,
+        outlined = outlined,
         inverted = inverted,
         enabled = enabled,
         readOnly = readOnly,
@@ -103,9 +113,11 @@ private fun OudsRadioButtonItem(
     interactionSource: MutableInteractionSource,
     previewState: OudsControlItem.State?,
     modifier: Modifier = Modifier,
+    additionalText: String? = null,
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
     divider: Boolean = false,
+    outlined: Boolean = false,
     inverted: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -113,10 +125,21 @@ private fun OudsRadioButtonItem(
 ) {
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
+    val clickableModifier = if (onClick != null) {
+        Modifier.clickable { onClick() }
+    } else {
+        Modifier
+    }
+    val outlineBorderModifier = if (outlined && selected) {
+        Modifier.border(width = OudsTheme.borders.width.default, color = outlineBorderColor(state, error))
+    } else {
+        Modifier
+    }
 
     OudsControlItem(
         state = state,
         text = text,
+        additionalText = additionalText,
         helperText = helperText,
         icon = icon,
         divider = divider,
@@ -132,9 +155,12 @@ private fun OudsRadioButtonItem(
                 error = error
             )
         },
-        modifier = modifier.semantics(mergeDescendants = true) {
-            //TODO
-        }
+        modifier = clickableModifier
+            .semantics(mergeDescendants = true) {
+                //TODO
+            }
+            .then(modifier)
+            .then(outlineBorderModifier)
     )
 }
 
@@ -145,6 +171,30 @@ private fun radioButtonState(state: OudsControlItem.State) = when (state) {
     OudsControlItem.State.Focused -> OudsRadioButton.State.Focused
     OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsRadioButton.State.Disabled
 }
+
+@Composable
+private fun outlineBorderColor(state: OudsControlItem.State, error: Boolean) =
+    if (error) {
+        with(OudsTheme.colorScheme.action.negative) {
+            when (state) {
+                OudsControlItem.State.Enabled -> enabled
+                OudsControlItem.State.Hovered -> hover
+                OudsControlItem.State.Pressed -> pressed
+                OudsControlItem.State.Focused -> focus
+                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
+            }
+        }
+    } else {
+        with(OudsTheme.colorScheme.action) {
+            when (state) {
+                OudsControlItem.State.Enabled -> selected
+                OudsControlItem.State.Hovered -> hover
+                OudsControlItem.State.Pressed -> pressed
+                OudsControlItem.State.Focused -> focus
+                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> disabled
+            }
+        }
+    }
 
 @UiModePreviews.Default
 @Composable
@@ -166,9 +216,11 @@ internal fun PreviewOudsRadioButtonItem(
                     text = "Label",
                     onClick = { },
                     previewState = state,
+                    additionalText = additionalText,
                     helperText = helperText,
                     divider = divider,
                     error = error,
+                    outlined = outlined,
                     inverted = inverted,
                     icon = if (hasIcon) {
                         OudsControlItem.Icon(imageVector = Icons.Filled.Call)
@@ -184,10 +236,12 @@ internal fun PreviewOudsRadioButtonItem(
 
 internal data class OudsRadioButtonItemPreviewParameter(
     val selected: Boolean,
+    val additionalText: String? = null,
     val helperText: String? = null,
     val divider: Boolean = false,
     val hasIcon: Boolean = false,
     val error: Boolean = false,
+    val outlined: Boolean = false,
     val inverted: Boolean = false
 ) {
     val states: List<OudsControlItem.State> = listOf(
@@ -205,6 +259,7 @@ internal class OudsRadioButtonItemPreviewParameterProvider :
 
 private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
     get() {
+        val additionalText = "Additional text"
         val helperText = "Helper text"
         val invertedValues = listOf(false, true)
         return buildList {
@@ -217,7 +272,9 @@ private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
                     OudsRadioButtonItemPreviewParameter(
                         selected = false,
                         hasIcon = true,
+                        additionalText = additionalText,
                         helperText = helperText,
+                        outlined = true,
                         inverted = inverted
                     ),
                     OudsRadioButtonItemPreviewParameter(
@@ -229,6 +286,7 @@ private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
                     ),
                     OudsRadioButtonItemPreviewParameter(
                         selected = true,
+                        additionalText = additionalText,
                         helperText = LoremIpsumText,
                         divider = true,
                         error = true,
