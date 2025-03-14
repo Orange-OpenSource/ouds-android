@@ -31,7 +31,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.stringArgument
+import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
@@ -139,11 +139,11 @@ private fun ColoredBackgroundDemoCodeSnippet(state: ColoredBackgroundDemoState, 
                         rawArgument("color", "OudsTheme.colorScheme.content.default")
                     }
                     functionCall(OudsButton::class.java.simpleName) {
-                        stringArgument("text", R.string.app_components_button_label)
+                        textArgument(R.string.app_components_button_label)
                         onClickArgument {}
                     }
                     functionCall(OudsLink::class.java.simpleName) {
-                        stringArgument("text", R.string.app_components_link_label)
+                        textArgument(R.string.app_components_link_label)
                         typedArgument("arrow", OudsLink.Arrow.Next)
                         onClickArgument {}
                     }

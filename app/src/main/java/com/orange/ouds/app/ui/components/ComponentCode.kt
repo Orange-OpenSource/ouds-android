@@ -40,8 +40,22 @@ fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg f
 
 fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = formattableArgument(name) { "\"${it.getString(id)}\"" }
 
-fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument("onClick", init)
+fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
 
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument("label", label)
 
-fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument("enabled", value)
+fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
+
+fun FunctionCall.Builder.textArgument(value: String?) = typedArgument(Argument.Text, value)
+
+fun FunctionCall.Builder.textArgument(@StringRes id: Int) = stringArgument(Argument.Text, id)
+
+fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
+
+private object Argument {
+
+    const val ContentDescription = "contentDescription"
+    const val OnClick = "onClick"
+    const val Text = "text"
+    const val Enabled = "enabled"
+}
