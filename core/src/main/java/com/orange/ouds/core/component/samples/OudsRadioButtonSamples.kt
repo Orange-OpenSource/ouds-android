@@ -12,19 +12,27 @@
 
 package com.orange.ouds.core.component.samples
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import com.orange.ouds.core.component.OudsRadioButton
 
 @Composable
 internal fun OudsRadioButtonSample() {
-    var selected by remember { mutableStateOf(false) }
+    val identifiers = listOf(0, 1)
+    var selectedId by rememberSaveable { mutableIntStateOf(identifiers.first()) }
 
-    OudsRadioButton(
-        selected = selected,
-        onClick = { selected = !selected }
-    )
+    Column(modifier = Modifier.selectableGroup()) {
+        identifiers.forEach { id ->
+            OudsRadioButton(
+                selected = id == selectedId,
+                onClick = { selectedId = id }
+            )
+        }
+    }
 }
