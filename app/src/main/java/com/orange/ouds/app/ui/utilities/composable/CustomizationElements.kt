@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.utilities.composable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -49,6 +50,10 @@ import com.orange.ouds.core.theme.OudsTheme
 private val labelTextStyle: TextStyle
     @Composable
     get() = OudsTheme.typography.body.strong.large
+
+private val valueLabelTextStyle: TextStyle
+    @Composable
+    get() = OudsTheme.typography.label.strong.large
 
 @Composable
 fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit, enabled: Boolean = true) {
@@ -96,7 +101,7 @@ fun CustomizationChoiceChips(
                         null
                     },
                     onClick = { onSelectionChange(id) },
-                    label = { Text(text = label) }
+                    label = { Text(text = label, style = valueLabelTextStyle) }
                 )
             }
         }
@@ -119,6 +124,7 @@ fun CustomizationTextField(
             value = value,
             onValueChange = onValueChange,
             singleLine = true,
+            textStyle = valueLabelTextStyle
         )
     }
 }
@@ -130,7 +136,8 @@ fun CustomizationDropdownMenu(
     itemLabels: List<String>,
     selectedItemIndex: Int,
     onSelectionChange: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    itemLeadingIcons: List<@Composable () -> Unit>? = null
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
@@ -140,6 +147,7 @@ fun CustomizationDropdownMenu(
             expanded = expanded,
             onExpandedChange = { expanded = !expanded }
         ) {
+            val leadingIconBoxModifier = Modifier.size(OudsTheme.sizes.icon.withLabel.medium.sizeMedium)
             TextField(
                 modifier = Modifier
                     .menuAnchor(MenuAnchorType.PrimaryNotEditable)
@@ -148,6 +156,8 @@ fun CustomizationDropdownMenu(
                 onValueChange = {},
                 readOnly = true,
                 singleLine = true,
+                textStyle = valueLabelTextStyle,
+                leadingIcon = itemLeadingIcons?.get(selectedItemIndex)?.let { { Box(modifier = leadingIconBoxModifier) { it() } } },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = ExposedDropdownMenuDefaults.textFieldColors(),
             )
@@ -157,11 +167,13 @@ fun CustomizationDropdownMenu(
             ) {
                 itemLabels.forEachIndexed { index, itemLabel ->
                     DropdownMenuItem(
-                        text = { Text(itemLabel) },
+                        text = { Text(text = itemLabel, style = valueLabelTextStyle) },
                         onClick = {
                             onSelectionChange(index)
                             expanded = false
-                        })
+                        },
+                        leadingIcon = itemLeadingIcons?.get(index)?.let { { Box(modifier = leadingIconBoxModifier) { it() } } }
+                    )
                 }
             }
         }
