@@ -199,9 +199,9 @@ internal fun OudsCheckboxIndicator(
             .selectorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
         val selectorResource = when (value) {
-            ToggleableState.On -> R.drawable.ic_tick
+            ToggleableState.On -> R.drawable.checkbox_selected
             ToggleableState.Off -> null
-            ToggleableState.Indeterminate -> R.drawable.ic_less
+            ToggleableState.Indeterminate -> R.drawable.checkbox_indeterminate
         }
 
         selectorResource?.let { resource ->
