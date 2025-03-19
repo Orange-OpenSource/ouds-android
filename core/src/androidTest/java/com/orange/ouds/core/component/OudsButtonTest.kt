@@ -27,7 +27,7 @@ internal class OudsButtonTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsButtonClickSucceeds() {
+    fun oudsButton_click_succeeds() {
         with(composeTestRule) {
             val text = "Text"
             val onClick = mock<() -> Unit>()

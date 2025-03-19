@@ -109,6 +109,7 @@
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
 
     <!-- Components -->
+    <string name="app_components_common_error_label">Error</string>
     <string name="app_components_common_layout_label">Layout</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_iconAndTextLayout_label">Icon + text</string>
@@ -126,7 +127,17 @@
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_label">Checkbox</string>
     <string name="app_components_checkbox_description_text">Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.</string>
-    <string name="app_components_checkbox_error_label">Error</string>
+    <string name="app_components_checkbox_checkbox_label">Checkbox</string>
+    <string name="app_components_checkbox_checkboxItem_label">Checkbox item</string>
+    <string name="app_components_checkbox_indeterminateCheckbox_label">Indeterminate checkbox</string>
+    <string name="app_components_checkbox_indeterminateCheckboxItem_label">Indeterminate checkbox item</string>
+
+    <!-- Components: control item (common strings for checkbox/radio/switch items) -->
+    <string name="app_components_controlItem_helperText_label">Helper text</string>
+    <string name="app_components_controlItem_icon_label">Icon</string>
+    <string name="app_components_controlItem_readOnly_label">Read only</string>
+    <string name="app_components_controlItem_divider_label">Divider</string>
+    <string name="app_components_controlItem_inverted_label">Inverted</string>
 
     <!-- Components: link -->
     <string name="app_components_link_label">Link</string>

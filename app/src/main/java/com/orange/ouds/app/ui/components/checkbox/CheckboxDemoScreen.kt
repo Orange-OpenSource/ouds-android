@@ -12,39 +12,30 @@
 
 package com.orange.ouds.app.ui.components.checkbox
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.state.ToggleableState
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
+import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
+import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CheckboxDemoScreen() = DemoScreen(rememberCheckboxDemoState()) {
+fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberCheckboxDemoState()) {
     CustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
@@ -55,73 +46,84 @@ fun CheckboxDemoScreen() = DemoScreen(rememberCheckboxDemoState()) {
                 enabled = enabledSwitchEnabled
             )
             CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_checkbox_error_label),
+                label = stringResource(R.string.app_components_common_error_label),
                 checked = error,
                 onCheckedChange = { error = it },
                 enabled = errorSwitchEnabled
             )
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .consumeWindowInsets(innerPadding)
-                .padding(innerPadding)
-        ) {
-            DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-                descriptionRes = Component.Checkbox.descriptionRes
-            )
-            val onClick = {
-                toggleableState = when (toggleableState) {
-                    ToggleableState.On -> ToggleableState.Off
-                    ToggleableState.Off -> ToggleableState.Indeterminate
-                    ToggleableState.Indeterminate -> ToggleableState.On
-                }
-            }
-            CheckboxDemo(state = this@DemoScreen, onClick = onClick)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                CheckboxDemo(state = this@DemoScreen, onClick = onClick)
-            }
-            CheckboxDemoCodeSnippet(
-                state = this@DemoScreen,
-                modifier = Modifier
-                    .padding(all = OudsTheme.spaces.fixed.medium)
-                    .padding(top = OudsTheme.spaces.fixed.medium)
-            )
-        }
-    }
-}
-
-@Composable
-private fun CheckboxDemo(state: CheckboxDemoState, onClick: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .background(OudsTheme.colorScheme.background.primary)
-            .padding(all = OudsTheme.spaces.fixed.medium)
-            .fillMaxWidth(),
-        contentAlignment = Alignment.Center,
     ) {
-        with(state) {
-            OudsTriStateCheckbox(
-                state = toggleableState,
-                onClick = onClick,
-                enabled = enabled,
-                error = error
-            )
+        LightDarkDemo {
+            if (indeterminate) {
+                IndeterminateCheckboxDemo(
+                    state = this@DemoScreen,
+                    onClick = {
+                        toggleableState = when (toggleableState) {
+                            ToggleableState.On -> ToggleableState.Off
+                            ToggleableState.Off -> ToggleableState.Indeterminate
+                            ToggleableState.Indeterminate -> ToggleableState.On
+                        }
+                    }
+                )
+            } else {
+                CheckboxDemo(
+                    state = this@DemoScreen,
+                    onCheckedChange = { value: Boolean -> checked = value }
+                )
+            }
         }
+
+        CheckboxDemoCodeSnippet(
+            state = this@DemoScreen,
+            indeterminate = indeterminate,
+            modifier = Modifier
+                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium)
+        )
     }
 }
 
 @Composable
-private fun CheckboxDemoCodeSnippet(state: CheckboxDemoState, modifier: Modifier = Modifier) {
+private fun CheckboxDemo(state: CheckboxDemoState, onCheckedChange: (Boolean) -> Unit) {
+    with(state) {
+        OudsCheckbox(
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+            enabled = enabled,
+            error = error
+        )
+    }
+}
+
+@Composable
+private fun IndeterminateCheckboxDemo(state: CheckboxDemoState, onClick: () -> Unit) {
+    with(state) {
+        OudsTriStateCheckbox(
+            state = toggleableState,
+            onClick = onClick,
+            enabled = enabled,
+            error = error
+        )
+    }
+}
+
+@Composable
+private fun CheckboxDemoCodeSnippet(state: CheckboxDemoState, indeterminate: Boolean, modifier: Modifier = Modifier) {
+    val functionName = if (indeterminate) "OudsTriStateCheckbox" else "OudsCheckbox"
+    val lambdaCommentText = "Change state"
     CodeSnippet(modifier = modifier) {
         with(state) {
-            functionCall("OudsTriStateCheckbox") {
-                typedArgument("state", toggleableState)
-                onClickArgument {
-                    comment("Change state")
+            functionCall(functionName) {
+                if (indeterminate) {
+                    typedArgument("state", toggleableState)
+                    onClickArgument {
+                        comment(lambdaCommentText)
+                    }
+                } else {
+                    typedArgument("checked", checked)
+                    lambdaArgument("onCheckedChange") {
+                        comment(lambdaCommentText)
+                    }
                 }
                 enabledArgument(enabled)
                 typedArgument("error", error)
@@ -134,4 +136,11 @@ private fun CheckboxDemoCodeSnippet(state: CheckboxDemoState, modifier: Modifier
 @Composable
 private fun PreviewCheckboxDemoScreen() = OudsPreview {
     CheckboxDemoScreen()
+}
+
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewIndeterminateCheckboxDemoScreen() = OudsPreview {
+    CheckboxDemoScreen(indeterminate = true)
 }

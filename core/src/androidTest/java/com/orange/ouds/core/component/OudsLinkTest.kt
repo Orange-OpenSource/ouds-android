@@ -27,7 +27,7 @@ internal class OudsLinkTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsLinkClickSucceeds() {
+    fun oudsLink_click_succeeds() {
         with(composeTestRule) {
             val text = "Text"
             val onClick = mock<() -> Unit>()

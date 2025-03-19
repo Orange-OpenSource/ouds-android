@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.utilities.composable
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,12 +36,14 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 @Composable
 fun DetailScreenHeader(
     @StringRes descriptionRes: Int,
-    @DrawableRes imageRes: Int,
+    illustration: Painter,
+    modifier: Modifier = Modifier,
+    tintIllustration: Boolean = true
 ) {
-    Column {
+    Column(modifier = modifier) {
         Image(
-            painter = painterResource(imageRes),
-            colorFilter = ColorFilter.tint(OudsTheme.colorScheme.content.default),
+            painter = illustration,
+            colorFilter = if (tintIllustration) ColorFilter.tint(OudsTheme.colorScheme.content.default) else null,
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
@@ -77,6 +79,6 @@ fun DetailScreenDescription(
 private fun PreviewDetailScreenHeader() = OudsPreview {
     DetailScreenHeader(
         descriptionRes = R.string.app_tokens_elevation_description_text,
-        imageRes = R.drawable.ic_layers
+        illustration = painterResource(id = R.drawable.ic_layers)
     )
 }

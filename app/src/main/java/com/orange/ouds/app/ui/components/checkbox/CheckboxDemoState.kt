@@ -22,26 +22,30 @@ import androidx.compose.ui.state.ToggleableState
 
 @Composable
 fun rememberCheckboxDemoState(
-    toggleableState: ToggleableState = ToggleableState.Off,
+    checked: Boolean = false, // only used for checkbox demo
+    toggleableState: ToggleableState = ToggleableState.Off, // only used for indeterminate checkbox demo
     enabled: Boolean = true,
     error: Boolean = false
-) = rememberSaveable(toggleableState, enabled, error, saver = CheckboxDemoState.Saver) {
-    CheckboxDemoState(toggleableState, enabled, error)
+) = rememberSaveable(checked, toggleableState, enabled, error, saver = CheckboxDemoState.Saver) {
+    CheckboxDemoState(checked, toggleableState, enabled, error)
 }
 
 class CheckboxDemoState(
+    checked: Boolean,
     toggleableState: ToggleableState,
     enabled: Boolean,
     error: Boolean
 ) {
     companion object {
         val Saver = run {
+            val checkedKey = "checked"
             val toggleableStateKey = "toggleableState"
             val enabledKey = "enabled"
             val errorKey = "error"
             mapSaver(
                 save = { state ->
                     mapOf(
+                        checkedKey to state.checked,
                         toggleableStateKey to state.toggleableState,
                         enabledKey to state.enabled,
                         errorKey to state.error,
@@ -49,6 +53,7 @@ class CheckboxDemoState(
                 },
                 restore = { map ->
                     CheckboxDemoState(
+                        map[checkedKey] as Boolean,
                         map[toggleableStateKey] as ToggleableState,
                         map[enabledKey] as Boolean,
                         map[errorKey] as Boolean
@@ -57,6 +62,8 @@ class CheckboxDemoState(
             )
         }
     }
+
+    var checked: Boolean by mutableStateOf(checked)
 
     var toggleableState: ToggleableState by mutableStateOf(toggleableState)
 
