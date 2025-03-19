@@ -133,7 +133,8 @@ fun CustomizationTextField(
             onValueChange = onValueChange,
             enabled = enabled,
             keyboardOptions = keyboardOptions,
-            singleLine = true
+            singleLine = true,
+            textStyle = valueLabelTextStyle
         )
     }
 }

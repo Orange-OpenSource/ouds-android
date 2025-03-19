@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -57,7 +58,16 @@ fun ColoredBackgroundDemoScreen() = DemoScreen(rememberColoredBackgroundDemoStat
                 label = stringResource(id = R.string.app_components_coloredBackground_color_label),
                 itemLabels = colors.map { it.formattedName },
                 selectedItemIndex = colors.indexOf(color),
-                onSelectionChange = { color = colors[it] }
+                onSelectionChange = { color = colors[it] },
+                itemLeadingIcons = colors.map { color ->
+                    {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(color.value)
+                        )
+                    }
+                }
             )
         }
     ) { innerPadding ->
