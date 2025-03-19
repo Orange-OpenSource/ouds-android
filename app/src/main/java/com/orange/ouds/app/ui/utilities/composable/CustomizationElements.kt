@@ -97,7 +97,7 @@ fun CustomizationChoiceChips(
                         null
                     },
                     onClick = { onSelectionChange(id) },
-                    label = { Text(text = label) }
+                    label = { Text(text = label, style = valueLabelTextStyle) }
                 )
             }
         }
@@ -120,6 +120,7 @@ fun CustomizationTextField(
             value = value,
             onValueChange = onValueChange,
             singleLine = true,
+            textStyle = valueLabelTextStyle
         )
     }
 }
