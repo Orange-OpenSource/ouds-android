@@ -77,7 +77,7 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
             state = this@DemoScreen,
             indeterminate = indeterminate,
             modifier = Modifier
-                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
                 .padding(top = OudsTheme.spaces.fixed.medium)
         )
     }

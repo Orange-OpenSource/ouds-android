@@ -50,7 +50,7 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
                     modifier = Modifier
                         .clickable { onVariantClick(variant.id) }
                         .fillMaxWidth()
-                        .padding(OudsTheme.spaces.fixed.medium),
+                        .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
                     text = stringResource(id = variant.nameRes),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

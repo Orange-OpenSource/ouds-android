@@ -94,7 +94,7 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
         }
     ) {
         DetailScreenDescription(
-            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
+            modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
             descriptionRes = Component.Button.descriptionRes
         )
         if (!onColoredBox) {
@@ -109,7 +109,7 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
         ButtonDemoCodeSnippet(
             state = this@DemoScreen,
             modifier = Modifier
-                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
                 .padding(top = OudsTheme.spaces.fixed.medium)
         )
     }

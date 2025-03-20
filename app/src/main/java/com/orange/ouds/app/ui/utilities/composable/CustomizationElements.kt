@@ -60,13 +60,13 @@ fun CustomizationChoiceChips(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         Row(
             Modifier
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
-                .padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)
         ) {
             chipsLabels.forEachIndexed { id, label ->
@@ -100,11 +100,11 @@ fun CustomizationTextField(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
             value = value,
             onValueChange = onValueChange,
             singleLine = true,

@@ -79,7 +79,7 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
         }
     ) {
         DetailScreenDescription(
-            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
+            modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
             descriptionRes = Component.Link.descriptionRes
         )
         if (!onColoredBox) {
@@ -95,7 +95,7 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
         LinkDemoCodeSnippet(
             state = this@DemoScreen,
             modifier = Modifier
-                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
                 .padding(top = OudsTheme.spaces.fixed.medium)
         )
     }
