@@ -70,29 +70,21 @@ fun ColoredBackgroundDemoScreen() = DemoScreen(rememberColoredBackgroundDemoStat
                 }
             )
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .consumeWindowInsets(innerPadding)
-                .padding(innerPadding)
-        ) {
-            DetailScreenDescription(
-                modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-                descriptionRes = Component.ColoredBackground.descriptionRes
-            )
+    ) {
+        DetailScreenDescription(
+            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
+            descriptionRes = Component.ColoredBackground.descriptionRes
+        )
+        ColoredBackgroundDemo(state = this@DemoScreen)
+        OudsThemeTweak(OudsTheme.Tweak.Invert) {
             ColoredBackgroundDemo(state = this@DemoScreen)
-            OudsThemeTweak(OudsTheme.Tweak.Invert) {
-                ColoredBackgroundDemo(state = this@DemoScreen)
-            }
-            ColoredBackgroundDemoCodeSnippet(
-                state = this@DemoScreen,
-                modifier = Modifier
-                    .padding(all = OudsTheme.spaces.fixed.medium)
-                    .padding(top = OudsTheme.spaces.fixed.medium)
-            )
         }
+        ColoredBackgroundDemoCodeSnippet(
+            state = this@DemoScreen,
+            modifier = Modifier
+                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium)
+        )
     }
 }
 
