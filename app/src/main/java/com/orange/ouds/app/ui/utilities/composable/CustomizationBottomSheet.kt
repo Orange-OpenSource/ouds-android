@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui.utilities.composable
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
@@ -74,12 +73,7 @@ fun CustomizationBottomSheetScaffold(
         SheetValue.Expanded -> stringResource(R.string.app_common_bottomSheetExpanded_a11y)
     }
     val screenHeight = LocalConfiguration.current.screenHeightDp
-    val customizationContentHeight by animateDpAsState(
-        when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
-            SheetValue.Hidden, SheetValue.PartiallyExpanded -> 0.dp
-            SheetValue.Expanded -> screenHeight.dp / 2 - BottomSheetDefaults.SheetPeekHeight
-        }
-    )
+    val customizationContentHeight = screenHeight.dp / 2 - BottomSheetDefaults.SheetPeekHeight
 
     BackHandler(bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
         coroutineScope.launch {
