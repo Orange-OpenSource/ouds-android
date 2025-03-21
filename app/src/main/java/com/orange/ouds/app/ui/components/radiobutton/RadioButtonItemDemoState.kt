@@ -19,9 +19,8 @@ import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.state.ToggleableState
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoState
+import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 
 val radioButtonItemDemoValues = listOf("First", "Second")
 
@@ -54,49 +53,41 @@ class RadioButtonItemDemoState(
     text: String,
     additionalText: String?,
     helperText: String?
-) {
+) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, text, helperText) {
     companion object {
         val Saver = run {
             val selectedValueKey = "selectedValue"
-            val iconKey = "icon"
-            val dividerKey = "divider"
             val outlinedKey = "outlined"
-            val invertedKey = "inverted"
-            val enabledKey = "enabled"
-            val readOnlyKey = "readOnly"
-            val errorKey = "error"
-            val textKey = "text"
             val additionalTextKey = "additionalText"
-            val helperTextKey = "helperText"
             mapSaver(
                 save = { state ->
                     mapOf(
                         selectedValueKey to state.selectedValue,
-                        iconKey to state.icon,
-                        dividerKey to state.divider,
+                        IconKey to state.icon,
+                        DividerKey to state.divider,
                         outlinedKey to state.outlined,
-                        invertedKey to state.inverted,
-                        enabledKey to state.enabled,
-                        readOnlyKey to state.readOnly,
-                        errorKey to state.error,
-                        textKey to state.text,
+                        InvertedKey to state.inverted,
+                        EnabledKey to state.enabled,
+                        ReadOnlyKey to state.readOnly,
+                        ErrorKey to state.error,
+                        TextKey to state.text,
                         additionalTextKey to state.additionalText,
-                        helperTextKey to state.helperText
+                        HelperTextKey to state.helperText
                     )
                 },
                 restore = { map ->
                     RadioButtonItemDemoState(
                         map[selectedValueKey] as String,
-                        map[iconKey] as Boolean,
-                        map[dividerKey] as Boolean,
+                        map[IconKey] as Boolean,
+                        map[DividerKey] as Boolean,
                         map[outlinedKey] as Boolean,
-                        map[invertedKey] as Boolean,
-                        map[enabledKey] as Boolean,
-                        map[readOnlyKey] as Boolean,
-                        map[errorKey] as Boolean,
-                        map[textKey] as String,
+                        map[InvertedKey] as Boolean,
+                        map[EnabledKey] as Boolean,
+                        map[ReadOnlyKey] as Boolean,
+                        map[ErrorKey] as Boolean,
+                        map[TextKey] as String,
                         map[additionalTextKey] as String?,
-                        map[helperTextKey] as String?
+                        map[HelperTextKey] as String?
                     )
                 }
             )
@@ -104,25 +95,6 @@ class RadioButtonItemDemoState(
     }
 
     var selectedValue: String by mutableStateOf(selectedValue)
-    var icon: Boolean by mutableStateOf(icon)
-    var divider: Boolean by mutableStateOf(divider)
     var outlined: Boolean by mutableStateOf(outlined)
-    var inverted: Boolean by mutableStateOf(inverted)
-    var enabled: Boolean by mutableStateOf(enabled)
-    var readOnly: Boolean by mutableStateOf(readOnly)
-    var error: Boolean by mutableStateOf(error)
-    var text: String by mutableStateOf(text)
     var additionalText: String? by mutableStateOf(additionalText)
-    var helperText: String? by mutableStateOf(helperText)
-
-
-    val enabledSwitchEnabled: Boolean
-        get() = !error
-
-    val readOnlySwitchEnabled: Boolean
-        get() = !error
-
-    val errorSwitchEnabled: Boolean
-        get() = enabled && !readOnly
-
 }

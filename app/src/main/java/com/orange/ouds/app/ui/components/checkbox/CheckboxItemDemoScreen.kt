@@ -19,16 +19,19 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.controlitem.ControlItemDividerCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemEnabledCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemErrorCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemHelperTextCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemInvertedCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemTextCustomization
+import com.orange.ouds.app.ui.components.controlitem.addControlItemAttributes
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
-import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsCheckboxItem
@@ -44,48 +47,14 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(remember
     CustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_controlItem_icon_label),
-                checked = icon,
-                onCheckedChange = { icon = it },
-            )
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_controlItem_divider_label),
-                checked = divider,
-                onCheckedChange = { divider = it },
-            )
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_controlItem_inverted_label),
-                checked = inverted,
-                onCheckedChange = { inverted = it },
-            )
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_common_enabled_label),
-                checked = enabled,
-                onCheckedChange = { enabled = it },
-                enabled = enabledSwitchEnabled
-            )
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_controlItem_readOnly_label),
-                checked = readOnly,
-                onCheckedChange = { readOnly = it },
-                enabled = readOnlySwitchEnabled
-            )
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_common_error_label),
-                checked = error,
-                onCheckedChange = { error = it },
-                enabled = errorSwitchEnabled
-            )
-            CustomizationTextField(
-                label = stringResource(R.string.app_components_common_text_label),
-                value = text,
-                onValueChange = { value -> text = value }
-            )
-            CustomizationTextField(
-                label = stringResource(R.string.app_components_controlItem_helperText_label),
-                value = helperText.orEmpty(),
-                onValueChange = { value -> helperText = value })
+            ControlItemIconCustomization()
+            ControlItemDividerCustomization()
+            ControlItemInvertedCustomization()
+            ControlItemEnabledCustomization()
+            ControlItemReadOnlyCustomization()
+            ControlItemErrorCustomization()
+            ControlItemTextCustomization()
+            ControlItemHelperTextCustomization()
         }
     ) {
         LightDarkDemo {
@@ -176,7 +145,6 @@ private fun CheckboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indetermin
         comment("First checkbox item")
         with(state) {
             functionCall(functionName) {
-                textArgument(text)
                 if (indeterminate) {
                     typedArgument("state", toggleableStateValues.first)
                     onClickArgument {
@@ -188,17 +156,7 @@ private fun CheckboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indetermin
                         comment(lambdaCommentText)
                     }
                 }
-                if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
-                if (icon) {
-                    constructorCallArgument<OudsControlItem.Icon>("icon") {
-                        painterArgument(R.drawable.ic_heart)
-                    }
-                }
-                if (!divider) typedArgument("divider", divider)
-                if (inverted) typedArgument("inverted", inverted)
-                if (!enabled) enabledArgument(enabled)
-                if (readOnly) typedArgument("readOnly", readOnly)
-                if (error) typedArgument("error", error)
+                addControlItemAttributes(state)
             }
         }
     }
