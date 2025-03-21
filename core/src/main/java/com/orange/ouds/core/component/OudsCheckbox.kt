@@ -49,7 +49,9 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -263,7 +265,12 @@ private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, er
         }
     } else {
         when (state) {
-            OudsCheckbox.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else OudsTheme.colorScheme.action.enabled
+            OudsCheckbox.State.Enabled -> if (selected) {
+                // In order to reach the a11y AAA level, the selected checkbox is black in light mode
+                if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else OudsTheme.colorScheme.action.selected
+            } else {
+                OudsTheme.colorScheme.action.enabled
+            }
             OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled
             OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.hover
             OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.pressed
@@ -285,7 +292,10 @@ private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
             }
         } else {
             when (state) {
-                OudsCheckbox.State.Enabled -> selected
+                OudsCheckbox.State.Enabled -> {
+                    // In order to reach the a11y AAA level, the selected checkbox is black in light mode
+                    if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else selected
+                }
                 OudsCheckbox.State.Disabled -> disabled
                 OudsCheckbox.State.Hovered -> hover
                 OudsCheckbox.State.Pressed -> pressed
