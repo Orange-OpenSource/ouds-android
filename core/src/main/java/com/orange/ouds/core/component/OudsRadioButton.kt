@@ -130,7 +130,7 @@ private fun OudsRadioButton(
             if (selected) {
                 Icon(
                     modifier = Modifier.fillMaxSize(),
-                    painter = painterResource(R.drawable.ic_radiobutton_selected),
+                    painter = painterResource(R.drawable.radiobutton_selected),
                     tint = selectedIndicatorColor(state = state, error = error),
                     contentDescription = null
                 )
