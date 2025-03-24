@@ -272,9 +272,10 @@ internal data class OudsRadioButtonPreviewParameter(
         OudsRadioButton.State.Enabled,
         OudsRadioButton.State.Pressed,
         OudsRadioButton.State.Hovered,
-        OudsRadioButton.State.Focused,
-        OudsRadioButton.State.Disabled
-    )
+        OudsRadioButton.State.Focused
+    ).run {
+        if (!error) plus(listOf(OudsRadioButton.State.Disabled)) else this
+    }
 }
 
 internal class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
