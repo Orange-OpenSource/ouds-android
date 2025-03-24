@@ -54,7 +54,7 @@ fun DetailScreenHeader(
 
         DetailScreenDescription(
             modifier = Modifier
-                .padding(horizontal = OudsTheme.spaces.fixed.medium)
+                .padding(horizontal = OudsTheme.grids.margin)
                 .padding(top = OudsTheme.spaces.fixed.medium),
             descriptionRes = descriptionRes
         )

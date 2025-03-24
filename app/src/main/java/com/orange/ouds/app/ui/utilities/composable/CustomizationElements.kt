@@ -34,6 +34,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
@@ -45,7 +46,8 @@ fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange
     ListItem(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(enabled = enabled) { onCheckedChange(!checked) },
+            .clickable(enabled = enabled) { onCheckedChange(!checked) }
+            .listItemHorizontalPadding(),
         headlineContent = { Text(text = label, style = labelTextStyle) },
         trailingContent = { Switch(checked = checked, onCheckedChange = null, enabled = enabled) }
     )
@@ -60,13 +62,13 @@ fun CustomizationChoiceChips(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         Row(
             Modifier
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
-                .padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)
         ) {
             chipsLabels.forEachIndexed { id, label ->
@@ -100,11 +102,11 @@ fun CustomizationTextField(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
             value = value,
             onValueChange = onValueChange,
             singleLine = true,

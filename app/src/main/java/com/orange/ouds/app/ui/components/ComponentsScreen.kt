@@ -43,7 +43,7 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(OudsTheme.spaces.fixed.medium),
+                .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
             verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
         ) {
             components.forEach { component ->

@@ -147,6 +147,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -557,19 +558,19 @@ private fun ListItemsSample() {
     val trailingContent: @Composable () -> Unit = { Text("meta") }
 
     ListItem(
-        modifier = Modifier.clickable {  },
+        modifier = Modifier.clickable {  }.listItemHorizontalPadding(),
         headlineContent = { Text("One line list item with 24x24 icon") },
         leadingContent = favoriteIcon
     )
     ListItem(
-        modifier = Modifier.clickable {  },
+        modifier = Modifier.clickable {  }.listItemHorizontalPadding(),
         headlineContent = { Text("Two line list item with trailing") },
         supportingContent = { Text("Secondary text") },
         trailingContent = trailingContent,
         leadingContent = favoriteIcon
     )
     ListItem(
-        modifier = Modifier.clickable {  },
+        modifier = Modifier.clickable {  }.listItemHorizontalPadding(),
         headlineContent = { Text("Three line list item") },
         supportingContent = {
             Text("Secondary text that is long and perhaps goes onto another line")
@@ -894,10 +895,10 @@ private fun SectionColumn(title: String, horizontalPadding: Boolean = true, vert
     Text(
         text = title,
         style = OudsTheme.typography.heading.medium,
-        modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller).padding(horizontal = OudsTheme.spaces.fixed.medium)
+        modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller).padding(horizontal = OudsTheme.grids.margin)
     )
     Column(
-        modifier = if (horizontalPadding) Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium) else Modifier,
+        modifier = if (horizontalPadding) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
         verticalArrangement = if (verticalSpacing) Arrangement.spacedBy(OudsTheme.spaces.fixed.short) else Arrangement.Top
     ) {
         content()
