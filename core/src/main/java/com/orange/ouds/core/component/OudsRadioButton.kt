@@ -91,9 +91,9 @@ private fun OudsRadioButton(
     selected: Boolean,
     onClick: (() -> Unit)?,
     previewState: OudsRadioButton.State?,
-    error: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
     if (error && !enabled) throw IllegalStateException("An OudsRadioButton set to disabled with error parameter activated is not allowed.")
