@@ -97,6 +97,7 @@ private fun RadioButtonDemo(state: RadioButtonDemoState) {
 private fun RadioButtonDemoCodeSnippet(state: RadioButtonDemoState, modifier: Modifier = Modifier) {
     CodeSnippet(modifier = modifier) {
         with(state) {
+            comment("First radio button")
             functionCall("OudsRadioButton") {
                 typedArgument("selected", selectedValue == RadioButtonDemoState.values.first())
                 onClickArgument {
