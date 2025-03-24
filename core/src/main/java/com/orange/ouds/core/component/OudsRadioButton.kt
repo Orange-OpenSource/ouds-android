@@ -178,21 +178,23 @@ private fun indicatorBorderWidth(state: OudsRadioButton.State, selected: Boolean
 
 @Composable
 private fun indicatorBorderColor(state: OudsRadioButton.State, selected: Boolean, error: Boolean): Color {
-    return if (error) {
-        when (state) {
-            OudsRadioButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsRadioButton.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsRadioButton
-            OudsRadioButton.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-            OudsRadioButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
-            OudsRadioButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
-        }
-    } else {
-        when (state) {
-            OudsRadioButton.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else OudsTheme.colorScheme.action.enabled
-            OudsRadioButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
-            OudsRadioButton.State.Hovered -> OudsTheme.colorScheme.action.hover
-            OudsRadioButton.State.Pressed -> OudsTheme.colorScheme.action.pressed
-            OudsRadioButton.State.Focused -> OudsTheme.colorScheme.action.focus
+    return with(OudsTheme.colorScheme.action) {
+        if (error) {
+            when (state) {
+                OudsRadioButton.State.Enabled -> negative.enabled
+                OudsRadioButton.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsRadioButton
+                OudsRadioButton.State.Hovered -> negative.hover
+                OudsRadioButton.State.Pressed -> negative.pressed
+                OudsRadioButton.State.Focused -> negative.focus
+            }
+        } else {
+            when (state) {
+                OudsRadioButton.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else enabled
+                OudsRadioButton.State.Disabled -> disabled
+                OudsRadioButton.State.Hovered -> hover
+                OudsRadioButton.State.Pressed -> pressed
+                OudsRadioButton.State.Focused -> focus
+            }
         }
     }
 }

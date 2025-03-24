@@ -261,26 +261,28 @@ private fun selectorBorderWidth(state: OudsCheckbox.State, selected: Boolean): D
 
 @Composable
 private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, error: Boolean): Color {
-    return if (error) {
-        when (state) {
-            OudsCheckbox.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-            OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-            OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-            OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
-            OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.negative.focus
-        }
-    } else {
-        when (state) {
-            OudsCheckbox.State.Enabled -> if (selected) {
-                // In order to reach the a11y AAA level, the selected checkbox is black in light mode
-                if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else OudsTheme.colorScheme.action.selected
-            } else {
-                OudsTheme.colorScheme.action.enabled
+    return with(OudsTheme.colorScheme.action) {
+        if (error) {
+            when (state) {
+                OudsCheckbox.State.Enabled -> negative.enabled
+                OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
+                OudsCheckbox.State.Hovered -> negative.hover
+                OudsCheckbox.State.Pressed -> negative.pressed
+                OudsCheckbox.State.Focused -> negative.focus
             }
-            OudsCheckbox.State.Disabled -> OudsTheme.colorScheme.action.disabled
-            OudsCheckbox.State.Hovered -> OudsTheme.colorScheme.action.hover
-            OudsCheckbox.State.Pressed -> OudsTheme.colorScheme.action.pressed
-            OudsCheckbox.State.Focused -> OudsTheme.colorScheme.action.focus
+        } else {
+            when (state) {
+                OudsCheckbox.State.Enabled -> if (selected) {
+                    // In order to reach the a11y AAA level, the selected checkbox is black in light mode
+                    if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else OudsTheme.colorScheme.action.selected
+                } else {
+                    enabled
+                }
+                OudsCheckbox.State.Disabled -> disabled
+                OudsCheckbox.State.Hovered -> hover
+                OudsCheckbox.State.Pressed -> pressed
+                OudsCheckbox.State.Focused -> focus
+            }
         }
     }
 }
