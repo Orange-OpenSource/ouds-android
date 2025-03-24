@@ -12,16 +12,10 @@
 
 package com.orange.ouds.app.ui.components.radiobutton
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -39,7 +33,6 @@ import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
 
@@ -88,7 +81,7 @@ private fun RadioButtonDemo(state: RadioButtonDemoState) {
         horizontalArrangement = Arrangement.Center
     ) {
         with(state) {
-            radioButtonDemoValues.forEach { value ->
+            RadioButtonDemoState.values.forEach { value ->
                 OudsRadioButton(
                     selected = value == selectedValue,
                     onClick = { selectedValue = value },
@@ -105,7 +98,7 @@ private fun RadioButtonDemoCodeSnippet(state: RadioButtonDemoState, modifier: Mo
     CodeSnippet(modifier = modifier) {
         with(state) {
             functionCall("OudsRadioButton") {
-                typedArgument("selected", selectedValue == radioButtonDemoValues.first())
+                typedArgument("selected", selectedValue == RadioButtonDemoState.values.first())
                 onClickArgument {
                     comment("Change state")
                 }

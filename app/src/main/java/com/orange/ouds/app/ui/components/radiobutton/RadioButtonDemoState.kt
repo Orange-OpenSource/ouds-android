@@ -19,12 +19,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-
-val radioButtonDemoValues = listOf(1, 2)
+import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoState.Companion.values
 
 @Composable
 fun rememberRadioButtonDemoState(
-    selectedValue: Int = radioButtonDemoValues.first(),
+    selectedValue: Int = values.first(),
     enabled: Boolean = true,
     error: Boolean = false
 ) = rememberSaveable(selectedValue, enabled, error, saver = RadioButtonDemoState.Saver) {
@@ -37,6 +36,8 @@ class RadioButtonDemoState(
     error: Boolean
 ) {
     companion object {
+        val values = listOf(1, 2)
+
         val Saver = run {
             val selectedValueKey = "selectedValue"
             val enabledKey = "enabled"
