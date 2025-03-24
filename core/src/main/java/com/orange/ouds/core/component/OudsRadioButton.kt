@@ -253,7 +253,6 @@ internal fun PreviewOudsRadioButton(
                             OudsRadioButton(
                                 selected = selected,
                                 onClick = {},
-                                interactionSource = remember { MutableInteractionSource() },
                                 error = error,
                                 previewState = state
                             )
