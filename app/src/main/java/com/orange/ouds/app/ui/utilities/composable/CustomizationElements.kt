@@ -34,6 +34,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
@@ -45,7 +46,8 @@ fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange
     ListItem(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(enabled = enabled) { onCheckedChange(!checked) },
+            .clickable(enabled = enabled) { onCheckedChange(!checked) }
+            .listItemHorizontalPadding(),
         headlineContent = { Text(text = label, style = labelTextStyle) },
         trailingContent = { Switch(checked = checked, onCheckedChange = null, enabled = enabled) }
     )

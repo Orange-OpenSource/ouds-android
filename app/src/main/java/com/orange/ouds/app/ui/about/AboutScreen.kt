@@ -32,6 +32,7 @@ import androidx.compose.ui.text.withStyle
 import com.orange.ouds.app.BuildConfig
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.UiModePreviews
@@ -70,6 +71,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                 val version = stringResource(R.string.app_about_version_label, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
                 val pullRequestNumber: String? = BuildConfig.PULL_REQUEST_NUMBER
                 ListItem(
+                    modifier = Modifier.listItemHorizontalPadding(),
                     headlineContent = {
                         Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
                             Text(text = stringResource(id = R.string.app_about_name_label), style = OudsTheme.typography.heading.extraLarge)
@@ -95,7 +97,9 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
             }
             items(oudsAboutMenuItems) { item ->
                 ListItem(
-                    modifier = Modifier.clickable { onMenuItemClick(item.id) },
+                    modifier = Modifier
+                        .clickable { onMenuItemClick(item.id) }
+                        .listItemHorizontalPadding(),
                     headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.strong.large) }
                 )
             }
