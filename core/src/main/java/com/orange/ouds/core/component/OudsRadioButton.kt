@@ -106,8 +106,10 @@ private fun OudsRadioButton(
     val selectableModifier = if (onClick != null) {
         Modifier.selectable(
             selected = selected,
-            onClick = { onClick.invoke() },
+            onClick = onClick,
             enabled = enabled,
+            interactionSource = radioButtonInteractionSource,
+            indication = null,
             role = Role.RadioButton,
         )
     } else Modifier
