@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import com.orange.ouds.core.theme.outerBorder
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -213,7 +214,12 @@ private fun backgroundColor(state: OudsRadioButton.State): Color {
 
 @Composable
 private fun Modifier.border(state: OudsRadioButton.State) = if (state == OudsRadioButton.State.Focused) {
-    border(width = OudsTheme.borders.width.focusInset, color = OudsTheme.colorScheme.border.focus)
+    outerBorder(
+        width = OudsTheme.borders.width.focus,
+        color = OudsTheme.colorScheme.border.focus,
+        insetWidth = OudsTheme.borders.width.focusInset,
+        insetColor = OudsTheme.colorScheme.border.focusInset
+    )
 } else {
     this
 }
