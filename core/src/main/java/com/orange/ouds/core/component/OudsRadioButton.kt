@@ -55,7 +55,7 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
  *
  * An OUDS radio button.
  *
- * @param selected Controls selected state of the radio button.
+ * @param selected Controls the selected state of the radio button.
  * @param onClick Callback invoked on radio button click. If `null`, then this radio button will not be interactable, unless something else handles its
  * input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button.
