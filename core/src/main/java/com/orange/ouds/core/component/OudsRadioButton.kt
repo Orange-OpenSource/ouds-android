@@ -189,7 +189,7 @@ private fun indicatorBorderColor(state: OudsRadioButton.State, selected: Boolean
             }
         } else {
             when (state) {
-                OudsRadioButton.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else enabled
+                OudsRadioButton.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else OudsTheme.colorScheme.border.emphasized
                 OudsRadioButton.State.Disabled -> disabled
                 OudsRadioButton.State.Hovered -> hover
                 OudsRadioButton.State.Pressed -> pressed
