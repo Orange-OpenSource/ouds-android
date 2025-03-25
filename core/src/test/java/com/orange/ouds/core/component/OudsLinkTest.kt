@@ -12,8 +12,8 @@
 
 package com.orange.ouds.core.component
 
-import com.orange.ouds.OudsPaparazziTest
-import org.junit.Test
+import androidx.compose.runtime.Composable
+import com.orange.ouds.OudsSnapshotTest
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 
@@ -21,40 +21,29 @@ import org.junit.runner.RunWith
 internal class OudsLinkTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(private val parameter: OudsLinkPreviewParameter) : OudsPaparazziTest() {
+    class Parameterized(private val parameter: OudsLinkPreviewParameter) : OudsSnapshotTest() {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
             internal fun data() = OudsLinkPreviewParameterProvider().values.toList()
         }
 
-        @Test
-        fun takeOudsLinkLightThemeSnapshot() {
-            paparazzi.snapshot {
-                PreviewOudsLink(
-                    darkThemeEnabled = false,
-                    parameter = parameter
-                )
-            }
-        }
-
-        @Test
-        fun takeOudsLinkDarkThemeSnapshot() {
-            paparazzi.snapshot {
-                PreviewOudsLink(
-                    darkThemeEnabled = true,
-                    parameter = parameter
-                )
-            }
+        @Composable
+        override fun Snapshot(darkThemeEnabled: Boolean) {
+            PreviewOudsLink(
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter
+            )
         }
     }
 
-    class NonParameterized: OudsPaparazziTest() {
-        @Test
-        fun takeOudsLinkOnTwoLinesSnapshot() {
-            paparazzi.snapshot {
-                PreviewOudsLinkOnTwoLines()
-            }
+    class NonParameterized : OudsSnapshotTest() {
+
+        override fun ignoreSnapshot(darkThemeEnabled: Boolean) = darkThemeEnabled
+
+        @Composable
+        override fun Snapshot(darkThemeEnabled: Boolean) {
+            PreviewOudsLinkOnTwoLines()
         }
     }
 }
