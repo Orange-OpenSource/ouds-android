@@ -14,7 +14,6 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import com.orange.ouds.core.theme.outerBorder
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -45,6 +44,7 @@ import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -190,7 +190,7 @@ private fun indicatorColor(state: OudsRadioButton.State, selected: Boolean, erro
             }
         } else {
             when (state) {
-                OudsRadioButton.State.Enabled -> if (selected) OudsTheme.colorScheme.action.selected else OudsTheme.colorScheme.border.emphasized
+                OudsRadioButton.State.Enabled -> if (selected) this.selected else OudsTheme.colorScheme.border.emphasized
                 OudsRadioButton.State.Disabled -> disabled
                 OudsRadioButton.State.Hovered -> hover
                 OudsRadioButton.State.Pressed -> pressed

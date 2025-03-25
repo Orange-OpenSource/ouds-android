@@ -274,7 +274,7 @@ private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, er
             when (state) {
                 OudsCheckbox.State.Enabled -> if (selected) {
                     // In order to reach the a11y AAA level, the selected checkbox is black in light mode
-                    if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else OudsTheme.colorScheme.action.selected
+                    if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else this.selected
                 } else {
                     enabled
                 }
