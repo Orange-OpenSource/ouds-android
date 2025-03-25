@@ -84,13 +84,11 @@ fun OudsRadioButtonItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val radioButtonItemInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
-
     OudsRadioButtonItem(
         selected = selected,
         text = text,
         onClick = onClick,
-        interactionSource = radioButtonItemInteractionSource,
+        interactionSource = interactionSource,
         modifier = modifier,
         previewState = null,
         additionalText = additionalText,
@@ -110,7 +108,6 @@ private fun OudsRadioButtonItem(
     selected: Boolean,
     text: String,
     onClick: (() -> Unit)?,
-    interactionSource: MutableInteractionSource,
     previewState: OudsControlItem.State?,
     modifier: Modifier = Modifier,
     additionalText: String? = null,
@@ -121,18 +118,22 @@ private fun OudsRadioButtonItem(
     inverted: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false
+    error: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
 ) {
-    val interactionState by interactionSource.collectInteractionStateAsState()
+    val radioButtonItemInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val interactionState by radioButtonItemInteractionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
     val clickableModifier = if (onClick != null) {
         Modifier.clickable { onClick() }
     } else {
         Modifier
     }
-    val outlineBorderModifier = if (outlined && selected) {
+
+    val outlineBorderModifier = if (outlined && selected && state != OudsControlItem.State.Focused) {
         Modifier.border(width = OudsTheme.borders.width.default, color = outlineBorderColor(state, error))
     } else {
+        // No outline border displayed when the radio button item is selected in focused state
         Modifier
     }
 
@@ -142,7 +143,7 @@ private fun OudsRadioButtonItem(
         additionalText = additionalText,
         helperText = helperText,
         icon = icon,
-        divider = divider,
+        divider = if (outlined && selected && state == OudsControlItem.State.Focused) false else divider, // No divider displayed when the radio button is outlined selected and in focused state
         inverted = inverted,
         enabled = enabled,
         readOnly = readOnly,
@@ -226,8 +227,7 @@ internal fun PreviewOudsRadioButtonItem(
                         OudsControlItem.Icon(imageVector = Icons.Filled.Call)
                     } else {
                         null
-                    },
-                    interactionSource = remember { MutableInteractionSource() }
+                    }
                 )
             }
         }
@@ -267,7 +267,9 @@ private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
                 val parameters = listOf(
                     OudsRadioButtonItemPreviewParameter(
                         selected = false,
+                        outlined = true,
                         inverted = inverted
+
                     ),
                     OudsRadioButtonItemPreviewParameter(
                         selected = false,
