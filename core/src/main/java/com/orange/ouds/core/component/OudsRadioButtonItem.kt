@@ -13,12 +13,12 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.runtime.Composable
@@ -26,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -124,8 +125,16 @@ private fun OudsRadioButtonItem(
     val radioButtonItemInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by radioButtonItemInteractionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
-    val clickableModifier = if (onClick != null) {
-        Modifier.clickable { onClick() }
+
+    val selectableModifier = if (onClick != null) {
+        Modifier.selectable(
+            selected = selected,
+            onClick = onClick,
+            enabled = enabled,
+            interactionSource = radioButtonItemInteractionSource,
+            indication = null,
+            role = Role.RadioButton,
+        )
     } else {
         Modifier
     }
@@ -156,10 +165,8 @@ private fun OudsRadioButtonItem(
                 error = error
             )
         },
-        modifier = clickableModifier
-            .semantics(mergeDescendants = true) {
-                //TODO
-            }
+        modifier = selectableModifier
+            .semantics(mergeDescendants = true) {}
             .then(modifier)
             .then(outlineBorderModifier)
     )
