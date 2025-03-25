@@ -12,13 +12,13 @@
 
 package com.orange.ouds.core.component
 
-import com.orange.ouds.OudsPaparazziTest
-import org.junit.Test
+import androidx.compose.runtime.Composable
+import com.orange.ouds.OudsSnapshotTest
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsCheckboxItemTest(private val parameter: OudsCheckboxItemPreviewParameter) : OudsPaparazziTest() {
+internal class OudsCheckboxItemTest(private val parameter: OudsCheckboxItemPreviewParameter) : OudsSnapshotTest() {
 
     companion object {
         @JvmStatic
@@ -26,23 +26,11 @@ internal class OudsCheckboxItemTest(private val parameter: OudsCheckboxItemPrevi
         internal fun data() = OudsCheckboxItemPreviewParameterProvider().values.toList()
     }
 
-    @Test
-    fun takeOudsCheckboxItemLightThemeSnapshot() {
-        paparazzi.snapshot {
-            PreviewOudsCheckboxItem(
-                darkThemeEnabled = false,
-                parameter = parameter
-            )
-        }
-    }
-
-    @Test
-    fun takeOudsCheckboxItemDarkThemeSnapshot() {
-        paparazzi.snapshot {
-            PreviewOudsCheckboxItem(
-                darkThemeEnabled = true,
-                parameter = parameter
-            )
-        }
+    @Composable
+    override fun Snapshot(darkThemeEnabled: Boolean) {
+        PreviewOudsCheckboxItem(
+            darkThemeEnabled = darkThemeEnabled,
+            parameter = parameter
+        )
     }
 }
