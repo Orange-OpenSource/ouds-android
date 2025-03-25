@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.components.radiobutton
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -85,7 +86,7 @@ fun RadioButtonItemDemoScreen() = DemoScreen(rememberRadioButtonItemDemoState())
 @Composable
 private fun RadioButtonItemDemo(state: RadioButtonItemDemoState) {
     with(state) {
-        Column {
+        Column(modifier = Modifier.selectableGroup()) {
             radioButtonItemDemoValues.forEach { radioButtonValue ->
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
