@@ -16,6 +16,7 @@
 .idea/deploymentTargetSelector.xml
 .idea/androidTestResultsUserPreferences.xml
 .idea/emulatorDisplays.xml
+.idea/studiobot.xml
 
 # Gradle files
 .gradle
