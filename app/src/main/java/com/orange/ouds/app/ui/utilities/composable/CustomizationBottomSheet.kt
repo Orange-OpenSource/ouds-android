@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -73,7 +74,7 @@ fun CustomizationBottomSheetScaffold(
         SheetValue.Expanded -> stringResource(R.string.app_common_bottomSheetExpanded_a11y)
     }
     val screenHeight = LocalConfiguration.current.screenHeightDp
-    val customizationContentHeight = screenHeight.dp / 2 - BottomSheetDefaults.SheetPeekHeight
+    val customizationContentMaxHeight = screenHeight.dp / 2 - BottomSheetDefaults.SheetPeekHeight
 
     BackHandler(bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
         coroutineScope.launch {
@@ -125,7 +126,7 @@ fun CustomizationBottomSheetScaffold(
 
             Column(
                 modifier = Modifier
-                    .height(customizationContentHeight)
+                    .heightIn(max = customizationContentMaxHeight)
                     .verticalScrollbar(scrollState)
                     .verticalScroll(scrollState)
             ) {
