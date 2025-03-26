@@ -10,8 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.foundation
+package com.orange.ouds.core.utilities
 
 import androidx.compose.runtime.staticCompositionLocalOf
 
-val LocalSnapshotTest = staticCompositionLocalOf { false }
+internal val LocalSnapshotTest = staticCompositionLocalOf { false }

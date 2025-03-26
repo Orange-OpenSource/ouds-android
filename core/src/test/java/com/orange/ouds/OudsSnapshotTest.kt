@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
-import com.orange.ouds.foundation.LocalSnapshotTest
+import com.orange.ouds.core.utilities.LocalSnapshotTest
 import org.junit.Assume
 import org.junit.Before
 import org.junit.Rule

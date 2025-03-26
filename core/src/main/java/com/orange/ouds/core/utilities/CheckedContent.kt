@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
-import com.orange.ouds.foundation.LocalSnapshotTest
 
 @Composable
 internal fun CheckedContent(
