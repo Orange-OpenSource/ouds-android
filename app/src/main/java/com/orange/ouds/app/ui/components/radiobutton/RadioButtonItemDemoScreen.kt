@@ -77,7 +77,7 @@ fun RadioButtonItemDemoScreen() = DemoScreen(rememberRadioButtonItemDemoState())
         RadioButtonItemDemoCodeSnippet(
             state = this@DemoScreen,
             modifier = Modifier
-                .padding(all = OudsTheme.spaces.fixed.medium)
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
                 .padding(top = OudsTheme.spaces.fixed.medium)
         )
     }
