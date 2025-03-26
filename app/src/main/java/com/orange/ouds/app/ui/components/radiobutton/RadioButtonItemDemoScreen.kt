@@ -30,7 +30,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomizatio
 import com.orange.ouds.app.ui.components.controlitem.ControlItemInvertedCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemTextCustomization
-import com.orange.ouds.app.ui.components.controlitem.addControlItemAttributes
+import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
@@ -116,7 +116,7 @@ private fun RadioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, modi
                 onClickArgument {
                     comment("Change selection")
                 }
-                addControlItemAttributes(state)
+                controlItemArguments(state)
                 if (!additionalText.isNullOrBlank()) typedArgument("additionalText", additionalText)
                 if (outlined) typedArgument("outlined", outlined)
             }

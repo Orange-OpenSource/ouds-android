@@ -98,19 +98,17 @@ fun <T : ControlItemDemoState> T.ControlItemHelperTextCustomization() {
     )
 }
 
-fun FunctionCall.Builder.addControlItemAttributes(state: ControlItemDemoState) = this.apply {
-    with(state) {
-        textArgument(text)
-        if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
-        if (icon) {
-            constructorCallArgument<OudsControlItem.Icon>("icon") {
-                painterArgument(R.drawable.ic_heart)
-            }
+fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = with(state) {
+    textArgument(text)
+    if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
+    if (icon) {
+        constructorCallArgument<OudsControlItem.Icon>("icon") {
+            painterArgument(R.drawable.ic_heart)
         }
-        if (!divider) typedArgument("divider", divider)
-        if (inverted) typedArgument("inverted", inverted)
-        if (!enabled) enabledArgument(enabled)
-        if (readOnly) typedArgument("readOnly", readOnly)
-        if (error) typedArgument("error", error)
     }
-}.build()
+    if (!divider) typedArgument("divider", divider)
+    if (inverted) typedArgument("inverted", inverted)
+    if (!enabled) enabledArgument(enabled)
+    if (readOnly) typedArgument("readOnly", readOnly)
+    if (error) typedArgument("error", error)
+}

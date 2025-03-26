@@ -28,7 +28,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomizatio
 import com.orange.ouds.app.ui.components.controlitem.ControlItemInvertedCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemTextCustomization
-import com.orange.ouds.app.ui.components.controlitem.addControlItemAttributes
+import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
@@ -156,7 +156,7 @@ private fun CheckboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indetermin
                         comment(lambdaCommentText)
                     }
                 }
-                addControlItemAttributes(state)
+                controlItemArguments(state)
             }
         }
     }
