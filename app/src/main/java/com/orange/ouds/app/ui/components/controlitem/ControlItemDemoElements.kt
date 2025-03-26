@@ -94,7 +94,8 @@ fun <T : ControlItemDemoState> T.ControlItemHelperTextCustomization() {
     CustomizationTextField(
         label = stringResource(R.string.app_components_controlItem_helperText_label),
         value = helperText.orEmpty(),
-        onValueChange = { value -> helperText = value })
+        onValueChange = { value -> helperText = value }
+    )
 }
 
 fun FunctionCall.Builder.addControlItemAttributes(state: ControlItemDemoState) = this.apply {
