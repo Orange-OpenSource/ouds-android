@@ -20,13 +20,13 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 //TODO Add DSM link when available
@@ -125,13 +125,13 @@ internal enum class DividerOrientation {
     Horizontal, Vertical
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewOudsHorizontalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) parameter: OudsDivider.Color) {
     PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = DividerOrientation.Horizontal, color = parameter)
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewOudsVerticalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) parameter: OudsDivider.Color) {
     PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = DividerOrientation.Vertical, color = parameter)
