@@ -232,8 +232,9 @@ private fun OudsButton(
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
     interactionSource: MutableInteractionSource? = null
 ) {
+    val isForbidden = hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current
     CheckState(
-        expression = hierarchy != OudsButton.Hierarchy.Negative || !LocalColoredBox.current,
+        expression = !isForbidden,
         exceptionMessage = { "An OudsButton with OudsButton.Hierarchy.Negative hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
         previewMessage = { if (icon != null && text == null) "⛔" else "Not on a\ncolored\nbackground" }
     ) {

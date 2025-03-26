@@ -161,8 +161,9 @@ private fun OudsCheckbox(
     enabled: Boolean = true
 ) {
     val isDisabledPreviewState = previewState == OudsCheckbox.State.Disabled
+    val isForbidden = error && (!enabled || isDisabledPreviewState)
     CheckState(
-        expression = !error || (enabled && !isDisabledPreviewState),
+        expression = !isForbidden,
         exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." }
     ) {
         val interactionState by interactionSource.collectInteractionStateAsState()

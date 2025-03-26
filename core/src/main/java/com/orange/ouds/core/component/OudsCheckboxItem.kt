@@ -222,8 +222,9 @@ private fun OudsCheckboxItem(
 ) {
     val isReadOnlyPreviewState = previewState == OudsCheckboxItem.State.ReadOnly
     val isDisabledPreviewState = previewState == OudsCheckboxItem.State.Disabled
+    val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
     CheckState(
-        expression = !error || (!readOnly && enabled && !isReadOnlyPreviewState && !isDisabledPreviewState),
+        expression = !isForbidden,
         exceptionMessage = {
             val parameter = if (readOnly) "readOnly" else "enabled"
             "An OudsCheckboxItem or OudsTriStateCheckboxItem set to $parameter with error parameter activated is not allowed."
