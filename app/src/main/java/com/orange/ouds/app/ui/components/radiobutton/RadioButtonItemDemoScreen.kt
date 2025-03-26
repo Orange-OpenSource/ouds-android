@@ -110,6 +110,7 @@ private fun RadioButtonItemDemo(state: RadioButtonItemDemoState) {
 @Composable
 private fun RadioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, modifier: Modifier = Modifier) {
     CodeSnippet(modifier = modifier) {
+        comment("First radio button item")
         with(state) {
             functionCall("OudsRadioButtonItem") {
                 typedArgument("selected", selectedValue == radioButtonItemDemoValues.first())
