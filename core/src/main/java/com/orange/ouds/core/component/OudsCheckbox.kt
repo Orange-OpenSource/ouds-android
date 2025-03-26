@@ -53,7 +53,7 @@ import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.core.utilities.CheckState
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -162,7 +162,7 @@ private fun OudsCheckbox(
 ) {
     val isDisabledPreviewState = previewState == OudsCheckbox.State.Disabled
     val isForbidden = error && (!enabled || isDisabledPreviewState)
-    CheckState(
+    CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." }
     ) {

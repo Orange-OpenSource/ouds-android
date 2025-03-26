@@ -58,7 +58,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.core.utilities.CheckState
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -223,7 +223,7 @@ private fun OudsCheckboxItem(
     val isReadOnlyPreviewState = previewState == OudsCheckboxItem.State.ReadOnly
     val isDisabledPreviewState = previewState == OudsCheckboxItem.State.Disabled
     val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
-    CheckState(
+    CheckedContent(
         expression = !isForbidden,
         exceptionMessage = {
             val parameter = if (readOnly) "readOnly" else "enabled"

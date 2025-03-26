@@ -68,7 +68,7 @@ import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.core.utilities.CheckState
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -233,7 +233,7 @@ private fun OudsButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     val isForbidden = hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current
-    CheckState(
+    CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsButton with OudsButton.Hierarchy.Negative hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
         previewMessage = { if (icon != null && text == null) "⛔" else "Not on a\ncolored\nbackground" }

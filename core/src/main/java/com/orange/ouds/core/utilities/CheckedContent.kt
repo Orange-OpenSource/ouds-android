@@ -32,7 +32,7 @@ import com.orange.ouds.core.theme.dashedBorder
 import com.orange.ouds.foundation.LocalSnapshotTest
 
 @Composable
-internal fun CheckState(
+internal fun CheckedContent(
     expression: Boolean,
     exceptionMessage: () -> String,
     previewMessage: () -> String = { "⛔" },
