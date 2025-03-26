@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.checkbox
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
@@ -19,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.state.ToggleableState
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
@@ -88,22 +88,28 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(remember
         }
     ) {
         LightDarkDemo {
-            if (indeterminate) {
-                IndeterminateCheckboxItemDemo(
-                    state = this@DemoScreen,
-                    onClick = {
-                        toggleableState = when (toggleableState) {
-                            ToggleableState.On -> ToggleableState.Off
-                            ToggleableState.Off -> ToggleableState.Indeterminate
-                            ToggleableState.Indeterminate -> ToggleableState.On
+            Column {
+                if (indeterminate) {
+                    IndeterminateCheckboxItemDemo(
+                        state = this@DemoScreen,
+                        onClick = { identifier ->
+                            toggleableStateValues = when (identifier) {
+                                CheckboxIdentifier.First -> toggleableStateValues.copy(first = getNewToggleableState(toggleableStateValues.first))
+                                CheckboxIdentifier.Second -> toggleableStateValues.copy(second = getNewToggleableState(toggleableStateValues.second))
+                            }
                         }
-                    }
-                )
-            } else {
-                CheckboxItemDemo(
-                    state = this@DemoScreen,
-                    onCheckedChange = { value -> checked = value }
-                )
+                    )
+                } else {
+                    CheckboxItemDemo(
+                        state = this@DemoScreen,
+                        onCheckedChange = { identifier: CheckboxIdentifier, value: Boolean ->
+                            checkedValues = when (identifier) {
+                                CheckboxIdentifier.First -> checkedValues.copy(first = value)
+                                CheckboxIdentifier.Second -> checkedValues.copy(second = value)
+                            }
+                        }
+                    )
+                }
             }
         }
 
@@ -118,38 +124,48 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(remember
 }
 
 @Composable
-private fun CheckboxItemDemo(state: CheckboxItemDemoState, onCheckedChange: (Boolean) -> Unit) {
+private fun CheckboxItemDemo(state: CheckboxItemDemoState, onCheckedChange: (CheckboxIdentifier, Boolean) -> Unit) {
     with(state) {
-        OudsCheckboxItem(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
-            text = text,
-            helperText = helperText,
-            icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
-            divider = divider,
-            inverted = inverted,
-            enabled = enabled,
-            readOnly = readOnly,
-            error = error
-        )
+        CheckboxIdentifier.entries.forEach { identifier ->
+            OudsCheckboxItem(
+                checked = when (identifier) {
+                    CheckboxIdentifier.First -> checkedValues.first
+                    CheckboxIdentifier.Second -> checkedValues.second
+                },
+                onCheckedChange = { value -> onCheckedChange(identifier, value) },
+                text = text,
+                helperText = helperText,
+                icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                divider = divider,
+                inverted = inverted,
+                enabled = enabled,
+                readOnly = readOnly,
+                error = error
+            )
+        }
     }
 }
 
 @Composable
-private fun IndeterminateCheckboxItemDemo(state: CheckboxItemDemoState, onClick: () -> Unit) {
+private fun IndeterminateCheckboxItemDemo(state: CheckboxItemDemoState, onClick: (CheckboxIdentifier) -> Unit) {
     with(state) {
-        OudsTriStateCheckboxItem(
-            state = toggleableState,
-            onClick = onClick,
-            text = text,
-            helperText = helperText,
-            icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
-            divider = divider,
-            inverted = inverted,
-            enabled = enabled,
-            readOnly = readOnly,
-            error = error
-        )
+        CheckboxIdentifier.entries.forEach { identifier ->
+            OudsTriStateCheckboxItem(
+                state = when (identifier) {
+                    CheckboxIdentifier.First -> toggleableStateValues.first
+                    CheckboxIdentifier.Second -> toggleableStateValues.second
+                },
+                onClick = { onClick(identifier) },
+                text = text,
+                helperText = helperText,
+                icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                divider = divider,
+                inverted = inverted,
+                enabled = enabled,
+                readOnly = readOnly,
+                error = error
+            )
+        }
     }
 }
 
@@ -158,16 +174,17 @@ private fun CheckboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indetermin
     val functionName = if (indeterminate) "OudsTriStateCheckboxItem" else "OudsCheckboxItem"
     val lambdaCommentText = "Change state"
     CodeSnippet(modifier = modifier) {
+        comment("First checkbox item")
         with(state) {
             functionCall(functionName) {
                 textArgument(text)
                 if (indeterminate) {
-                    typedArgument("state", toggleableState)
+                    typedArgument("state", toggleableStateValues.first)
                     onClickArgument {
                         comment(lambdaCommentText)
                     }
                 } else {
-                    typedArgument("checked", checked)
+                    typedArgument("checked", checkedValues.first)
                     lambdaArgument("onCheckedChange") {
                         comment(lambdaCommentText)
                     }

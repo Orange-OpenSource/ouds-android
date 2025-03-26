@@ -22,9 +22,7 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.state.ToggleableState
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoState.Companion.CheckboxIdentifier
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
@@ -98,12 +96,6 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
                 .padding(top = OudsTheme.spaces.fixed.medium)
         )
     }
-}
-
-private fun getNewToggleableState(toggleableState: ToggleableState) = when (toggleableState) {
-    ToggleableState.On -> ToggleableState.Off
-    ToggleableState.Off -> ToggleableState.Indeterminate
-    ToggleableState.Indeterminate -> ToggleableState.On
 }
 
 @Composable

@@ -43,10 +43,6 @@ class CheckboxDemoState(
     error: Boolean
 ) {
     companion object {
-        enum class CheckboxIdentifier {
-            First, Second
-        }
-
         val Saver = run {
             val checkedValuesKey = "checkedValues"
             val toggleableStateValuesKey = "toggleableStateValues"
