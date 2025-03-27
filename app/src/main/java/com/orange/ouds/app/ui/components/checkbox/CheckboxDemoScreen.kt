@@ -12,10 +12,7 @@
 
 package com.orange.ouds.app.ui.components.checkbox
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
@@ -57,36 +54,28 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
         }
     ) {
         LightDarkDemo {
-            Row(
-                modifier = Modifier
-                    .background(OudsTheme.colorScheme.background.primary)
-                    .padding(all = OudsTheme.spaces.fixed.medium)
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                if (indeterminate) {
-                    IndeterminateCheckboxDemo(
-                        state = this@DemoScreen,
-                        onClick = { identifier ->
-                            toggleableStateValues = with(toggleableStateValues) {
-                                when (identifier) {
-                                    CheckboxIdentifier.First -> copy(first = first.next())
-                                    CheckboxIdentifier.Second -> copy(second = second.next())
-                                }
+            if (indeterminate) {
+                IndeterminateCheckboxDemo(
+                    state = this@DemoScreen,
+                    onClick = { identifier ->
+                        toggleableStateValues = with(toggleableStateValues) {
+                            when (identifier) {
+                                CheckboxIdentifier.First -> copy(first = first.next())
+                                CheckboxIdentifier.Second -> copy(second = second.next())
                             }
                         }
-                    )
-                } else {
-                    CheckboxDemo(
-                        state = this@DemoScreen,
-                        onCheckedChange = { identifier: CheckboxIdentifier, value: Boolean ->
-                            checkedValues = when (identifier) {
-                                CheckboxIdentifier.First -> checkedValues.copy(first = value)
-                                CheckboxIdentifier.Second -> checkedValues.copy(second = value)
-                            }
+                    }
+                )
+            } else {
+                CheckboxDemo(
+                    state = this@DemoScreen,
+                    onCheckedChange = { identifier: CheckboxIdentifier, value: Boolean ->
+                        checkedValues = when (identifier) {
+                            CheckboxIdentifier.First -> checkedValues.copy(first = value)
+                            CheckboxIdentifier.Second -> checkedValues.copy(second = value)
                         }
-                    )
-                }
+                    }
+                )
             }
         }
 
@@ -103,16 +92,18 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
 @Composable
 private fun CheckboxDemo(state: CheckboxDemoState, onCheckedChange: (CheckboxIdentifier, Boolean) -> Unit) {
     with(state) {
-        CheckboxIdentifier.entries.forEach { identifier ->
-            OudsCheckbox(
-                checked = when (identifier) {
-                    CheckboxIdentifier.First -> checkedValues.first
-                    CheckboxIdentifier.Second -> checkedValues.second
-                },
-                onCheckedChange = { value -> onCheckedChange(identifier, value) },
-                enabled = enabled,
-                error = error
-            )
+        Row {
+            CheckboxIdentifier.entries.forEach { identifier ->
+                OudsCheckbox(
+                    checked = when (identifier) {
+                        CheckboxIdentifier.First -> checkedValues.first
+                        CheckboxIdentifier.Second -> checkedValues.second
+                    },
+                    onCheckedChange = { value -> onCheckedChange(identifier, value) },
+                    enabled = enabled,
+                    error = error
+                )
+            }
         }
     }
 }
@@ -120,16 +111,18 @@ private fun CheckboxDemo(state: CheckboxDemoState, onCheckedChange: (CheckboxIde
 @Composable
 private fun IndeterminateCheckboxDemo(state: CheckboxDemoState, onClick: (CheckboxIdentifier) -> Unit) {
     with(state) {
-        CheckboxIdentifier.entries.forEach { identifier ->
-            OudsTriStateCheckbox(
-                state = when (identifier) {
-                    CheckboxIdentifier.First -> toggleableStateValues.first
-                    CheckboxIdentifier.Second -> toggleableStateValues.second
-                },
-                onClick = { onClick(identifier) },
-                enabled = enabled,
-                error = error
-            )
+        Row {
+            CheckboxIdentifier.entries.forEach { identifier ->
+                OudsTriStateCheckbox(
+                    state = when (identifier) {
+                        CheckboxIdentifier.First -> toggleableStateValues.first
+                        CheckboxIdentifier.Second -> toggleableStateValues.second
+                    },
+                    onClick = { onClick(identifier) },
+                    enabled = enabled,
+                    error = error
+                )
+            }
         }
     }
 }

@@ -88,30 +88,28 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(remember
         }
     ) {
         LightDarkDemo {
-            Column {
-                if (indeterminate) {
-                    IndeterminateCheckboxItemDemo(
-                        state = this@DemoScreen,
-                        onClick = { identifier ->
-                            toggleableStateValues = with(toggleableStateValues) {
-                                when (identifier) {
-                                    CheckboxIdentifier.First -> copy(first = first.next())
-                                    CheckboxIdentifier.Second -> copy(second = second.next())
-                                }
+            if (indeterminate) {
+                IndeterminateCheckboxItemDemo(
+                    state = this@DemoScreen,
+                    onClick = { identifier ->
+                        toggleableStateValues = with(toggleableStateValues) {
+                            when (identifier) {
+                                CheckboxIdentifier.First -> copy(first = first.next())
+                                CheckboxIdentifier.Second -> copy(second = second.next())
                             }
                         }
-                    )
-                } else {
-                    CheckboxItemDemo(
-                        state = this@DemoScreen,
-                        onCheckedChange = { identifier: CheckboxIdentifier, value: Boolean ->
-                            checkedValues = when (identifier) {
-                                CheckboxIdentifier.First -> checkedValues.copy(first = value)
-                                CheckboxIdentifier.Second -> checkedValues.copy(second = value)
-                            }
+                    }
+                )
+            } else {
+                CheckboxItemDemo(
+                    state = this@DemoScreen,
+                    onCheckedChange = { identifier: CheckboxIdentifier, value: Boolean ->
+                        checkedValues = when (identifier) {
+                            CheckboxIdentifier.First -> checkedValues.copy(first = value)
+                            CheckboxIdentifier.Second -> checkedValues.copy(second = value)
                         }
-                    )
-                }
+                    }
+                )
             }
         }
 
@@ -128,22 +126,24 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(remember
 @Composable
 private fun CheckboxItemDemo(state: CheckboxItemDemoState, onCheckedChange: (CheckboxIdentifier, Boolean) -> Unit) {
     with(state) {
-        CheckboxIdentifier.entries.forEach { identifier ->
-            OudsCheckboxItem(
-                checked = when (identifier) {
-                    CheckboxIdentifier.First -> checkedValues.first
-                    CheckboxIdentifier.Second -> checkedValues.second
-                },
-                onCheckedChange = { value -> onCheckedChange(identifier, value) },
-                text = text,
-                helperText = helperText,
-                icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
-                divider = divider,
-                inverted = inverted,
-                enabled = enabled,
-                readOnly = readOnly,
-                error = error
-            )
+        Column {
+            CheckboxIdentifier.entries.forEach { identifier ->
+                OudsCheckboxItem(
+                    checked = when (identifier) {
+                        CheckboxIdentifier.First -> checkedValues.first
+                        CheckboxIdentifier.Second -> checkedValues.second
+                    },
+                    onCheckedChange = { value -> onCheckedChange(identifier, value) },
+                    text = text,
+                    helperText = helperText,
+                    icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                    divider = divider,
+                    inverted = inverted,
+                    enabled = enabled,
+                    readOnly = readOnly,
+                    error = error
+                )
+            }
         }
     }
 }
@@ -151,22 +151,24 @@ private fun CheckboxItemDemo(state: CheckboxItemDemoState, onCheckedChange: (Che
 @Composable
 private fun IndeterminateCheckboxItemDemo(state: CheckboxItemDemoState, onClick: (CheckboxIdentifier) -> Unit) {
     with(state) {
-        CheckboxIdentifier.entries.forEach { identifier ->
-            OudsTriStateCheckboxItem(
-                state = when (identifier) {
-                    CheckboxIdentifier.First -> toggleableStateValues.first
-                    CheckboxIdentifier.Second -> toggleableStateValues.second
-                },
-                onClick = { onClick(identifier) },
-                text = text,
-                helperText = helperText,
-                icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
-                divider = divider,
-                inverted = inverted,
-                enabled = enabled,
-                readOnly = readOnly,
-                error = error
-            )
+        Column {
+            CheckboxIdentifier.entries.forEach { identifier ->
+                OudsTriStateCheckboxItem(
+                    state = when (identifier) {
+                        CheckboxIdentifier.First -> toggleableStateValues.first
+                        CheckboxIdentifier.Second -> toggleableStateValues.second
+                    },
+                    onClick = { onClick(identifier) },
+                    text = text,
+                    helperText = helperText,
+                    icon = if (icon) OudsCheckboxItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                    divider = divider,
+                    inverted = inverted,
+                    enabled = enabled,
+                    readOnly = readOnly,
+                    error = error
+                )
+            }
         }
     }
 }
