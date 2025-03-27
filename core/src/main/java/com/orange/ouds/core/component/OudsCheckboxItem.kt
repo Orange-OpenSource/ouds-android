@@ -233,11 +233,11 @@ private fun OudsCheckboxItem(
 }
 
 private fun checkboxState(state: OudsControlItem.State) = when (state) {
-    OudsControlItem.State.Enabled -> OudsCheckbox.State.Enabled
-    OudsControlItem.State.Hovered -> OudsCheckbox.State.Hovered
-    OudsControlItem.State.Pressed -> OudsCheckbox.State.Pressed
-    OudsControlItem.State.Focused -> OudsCheckbox.State.Focused
-    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsCheckbox.State.Disabled
+    OudsControlItem.State.Enabled -> OudsControl.State.Enabled
+    OudsControlItem.State.Hovered -> OudsControl.State.Hovered
+    OudsControlItem.State.Pressed -> OudsControl.State.Pressed
+    OudsControlItem.State.Focused -> OudsControl.State.Focused
+    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsControl.State.Disabled
 }
 
 @PreviewLightDark

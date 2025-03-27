@@ -44,7 +44,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
-import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
@@ -153,11 +152,11 @@ private fun OudsCheckbox(
     value: ToggleableState,
     interactionSource: MutableInteractionSource,
     error: Boolean,
-    previewState: OudsCheckbox.State?,
+    previewState: OudsControl.State?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
-    val isDisabledPreviewState = previewState == OudsCheckbox.State.Disabled
+    val isDisabledPreviewState = previewState == OudsControl.State.Disabled
     val isForbidden = error && (!enabled || isDisabledPreviewState)
     CheckedContent(
         expression = !isForbidden,
@@ -166,14 +165,14 @@ private fun OudsCheckbox(
         val interactionState by interactionSource.collectInteractionStateAsState()
         val context = LocalContext.current
         val checkboxTokens = OudsTheme.componentsTokens.checkbox
-        val state = previewState.orElse { rememberOudsCheckboxState(enabled = enabled, interactionState = interactionState) }
+        val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
 
         Box(
             modifier = modifier
                 .widthIn(checkboxTokens.sizeMinWidth.dp)
                 .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
                 .background(color = backgroundColor(state = state))
-                .border(state = state)
+                .outerBorder(state = state)
                 .semantics {
                     stateDescription = when (value) {
                         ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
@@ -190,7 +189,7 @@ private fun OudsCheckbox(
 
 @Composable
 internal fun OudsCheckboxIndicator(
-    state: OudsCheckbox.State,
+    state: OudsControl.State,
     value: ToggleableState,
     error: Boolean
 ) {
@@ -201,19 +200,19 @@ internal fun OudsCheckboxIndicator(
     Box(
         modifier = Modifier
             .size(checkboxTokens.sizeIndicator.value)
-            .selectorBorder(state = state, selected = selected, error = error, shape = shape)
+            .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
-        val selectorResource = when (value) {
+        val indicatorResource = when (value) {
             ToggleableState.On -> R.drawable.checkbox_selected
             ToggleableState.Off -> null
             ToggleableState.Indeterminate -> R.drawable.checkbox_indeterminate
         }
 
-        selectorResource?.let { resource ->
+        indicatorResource?.let { resource ->
             Icon(
                 modifier = Modifier.fillMaxSize(),
                 painter = painterResource(resource),
-                tint = tickColor(state = state, error = error),
+                tint = indicatorColor(state = state, selected = true, error = error),
                 contentDescription = null
             )
         }
@@ -221,117 +220,64 @@ internal fun OudsCheckboxIndicator(
 }
 
 @Composable
-private fun rememberOudsCheckboxState(
-    enabled: Boolean,
-    interactionState: InteractionState
-): OudsCheckbox.State = remember(enabled, interactionState) {
-    when {
-        !enabled -> OudsCheckbox.State.Disabled
-        interactionState == InteractionState.Hovered -> OudsCheckbox.State.Hovered
-        interactionState == InteractionState.Pressed -> OudsCheckbox.State.Pressed
-        interactionState == InteractionState.Focused -> OudsCheckbox.State.Focused
-        else -> OudsCheckbox.State.Enabled
-    }
-}
-
-@Composable
-private fun Modifier.selectorBorder(state: OudsCheckbox.State, selected: Boolean, error: Boolean, shape: Shape): Modifier {
-    val selectorBorderWidth = selectorBorderWidth(state = state, selected = selected)
+private fun Modifier.indicatorBorder(state: OudsControl.State, selected: Boolean, error: Boolean, shape: Shape): Modifier {
+    val selectorBorderWidth = indicatorBorderWidth(state = state, selected = selected)
     return border(
         width = selectorBorderWidth,
-        color = selectorBorderColor(state = state, selected = selected, error = error),
+        color = indicatorColor(state = state, selected = selected, error = error),
         shape = shape
     )
 }
 
 @Composable
-private fun selectorBorderWidth(state: OudsCheckbox.State, selected: Boolean): Dp {
+private fun indicatorBorderWidth(state: OudsControl.State, selected: Boolean): Dp {
     return with(OudsTheme.componentsTokens.checkbox) {
         when (state) {
-            OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
-            OudsCheckbox.State.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
-            OudsCheckbox.State.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
-            OudsCheckbox.State.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
+            OudsControl.State.Enabled, OudsControl.State.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
+            OudsControl.State.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
+            OudsControl.State.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
+            OudsControl.State.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
         }.value
     }
 }
 
 @Composable
-private fun selectorBorderColor(state: OudsCheckbox.State, selected: Boolean, error: Boolean): Color {
+private fun indicatorColor(state: OudsControl.State, selected: Boolean, error: Boolean): Color {
     return with(OudsTheme.colorScheme.action) {
         if (error) {
             when (state) {
-                OudsCheckbox.State.Enabled -> negative.enabled
-                OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-                OudsCheckbox.State.Hovered -> negative.hover
-                OudsCheckbox.State.Pressed -> negative.pressed
-                OudsCheckbox.State.Focused -> negative.focus
+                OudsControl.State.Enabled -> negative.enabled
+                OudsControl.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
+                OudsControl.State.Hovered -> negative.hover
+                OudsControl.State.Pressed -> negative.pressed
+                OudsControl.State.Focused -> negative.focus
             }
         } else {
             when (state) {
-                OudsCheckbox.State.Enabled -> if (selected) {
+                OudsControl.State.Enabled -> if (selected) {
                     // In order to reach the a11y AAA level, the selected checkbox is black in light mode
                     if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else this.selected
                 } else {
                     enabled
                 }
-                OudsCheckbox.State.Disabled -> disabled
-                OudsCheckbox.State.Hovered -> hover
-                OudsCheckbox.State.Pressed -> pressed
-                OudsCheckbox.State.Focused -> focus
+                OudsControl.State.Disabled -> disabled
+                OudsControl.State.Hovered -> hover
+                OudsControl.State.Pressed -> pressed
+                OudsControl.State.Focused -> focus
             }
         }
     }
 }
 
 @Composable
-private fun tickColor(state: OudsCheckbox.State, error: Boolean): Color {
-    return with(OudsTheme.colorScheme.action) {
-        if (error) {
-            when (state) {
-                OudsCheckbox.State.Enabled -> negative.enabled
-                OudsCheckbox.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-                OudsCheckbox.State.Hovered -> negative.hover
-                OudsCheckbox.State.Pressed -> negative.pressed
-                OudsCheckbox.State.Focused -> negative.focus
-            }
-        } else {
-            when (state) {
-                OudsCheckbox.State.Enabled -> {
-                    // In order to reach the a11y AAA level, the selected checkbox is black in light mode
-                    if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else selected
-                }
-                OudsCheckbox.State.Disabled -> disabled
-                OudsCheckbox.State.Hovered -> hover
-                OudsCheckbox.State.Pressed -> pressed
-                OudsCheckbox.State.Focused -> focus
-            }
-        }
-    }
-}
-
-@Composable
-private fun backgroundColor(state: OudsCheckbox.State): Color {
+private fun backgroundColor(state: OudsControl.State): Color {
     return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
-            OudsCheckbox.State.Enabled, OudsCheckbox.State.Disabled -> Color.Transparent
-            OudsCheckbox.State.Hovered -> colorBgHover.value
-            OudsCheckbox.State.Pressed -> colorBgPressed.value
-            OudsCheckbox.State.Focused -> colorBgFocus.value
+            OudsControl.State.Enabled, OudsControl.State.Disabled -> Color.Transparent
+            OudsControl.State.Hovered -> colorBgHover.value
+            OudsControl.State.Pressed -> colorBgPressed.value
+            OudsControl.State.Focused -> colorBgFocus.value
         }
-    }
-}
-
-@Composable
-private fun Modifier.border(state: OudsCheckbox.State) = if (state == OudsCheckbox.State.Focused) {
-    border(width = OudsTheme.borders.width.focusInset, color = OudsTheme.colorScheme.border.focus)
-} else {
-    this
-}
-
-internal object OudsCheckbox {
-    enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused
     }
 }
 
@@ -348,7 +294,7 @@ internal fun PreviewOudsCheckbox(
     parameter: OudsCheckboxPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewStates<OudsCheckbox.State> { state ->
+        PreviewStates<OudsControl.State> { state ->
             OudsCheckbox(
                 value = toggleableState,
                 interactionSource = remember { MutableInteractionSource() },

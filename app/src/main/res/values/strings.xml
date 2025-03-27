@@ -154,6 +154,12 @@
     <string name="app_components_radioButton_radioButtonItem_outlined_label">Outlined</string>
     <string name="app_components_radioButton_radioButtonItem_additionalText_label">Additional text</string>
 
+    <!-- Components: switch -->
+    <string name="app_components_switch_label">Switch</string>
+    <string name="app_components_switch_description_text">A switch allows the user to toggle between two states, typically "on" and "off." It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.</string>
+    <string name="app_components_switch_switch_label">Switch</string>
+    <string name="app_components_switch_switchItem_label">Switch item</string>
+
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
     <string name="app_about_pullRequest_label">Pull request\u0020</string>

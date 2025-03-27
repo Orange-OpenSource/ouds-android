@@ -167,11 +167,11 @@ private fun OudsRadioButtonItem(
 }
 
 private fun radioButtonState(state: OudsControlItem.State) = when (state) {
-    OudsControlItem.State.Enabled -> OudsRadioButton.State.Enabled
-    OudsControlItem.State.Hovered -> OudsRadioButton.State.Hovered
-    OudsControlItem.State.Pressed -> OudsRadioButton.State.Pressed
-    OudsControlItem.State.Focused -> OudsRadioButton.State.Focused
-    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsRadioButton.State.Disabled
+    OudsControlItem.State.Enabled -> OudsControl.State.Enabled
+    OudsControlItem.State.Hovered -> OudsControl.State.Hovered
+    OudsControlItem.State.Pressed -> OudsControl.State.Pressed
+    OudsControlItem.State.Focused -> OudsControl.State.Focused
+    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsControl.State.Disabled
 }
 
 @Composable
