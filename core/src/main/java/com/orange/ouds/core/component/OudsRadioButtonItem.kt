@@ -281,7 +281,6 @@ private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
                         selected = false,
                         outlined = true,
                         inverted = inverted
-
                     ),
                     OudsRadioButtonItemPreviewParameter(
                         selected = false,
