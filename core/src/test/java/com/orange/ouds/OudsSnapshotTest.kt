@@ -13,8 +13,10 @@
 package com.orange.ouds
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
+import com.orange.ouds.core.utilities.LocalSnapshotTest
 import org.junit.Assume
 import org.junit.Before
 import org.junit.Rule
@@ -43,12 +45,16 @@ internal abstract class OudsSnapshotTest {
     }
 
     @Test
-    fun takeLightThemeSnapshot() {
-        paparazzi.snapshot { Snapshot(darkThemeEnabled = false) }
-    }
+    fun takeLightThemeSnapshot() = takeSnapshot(darkThemeEnabled = false)
 
     @Test
-    fun takeDarkThemeSnapshot() {
-        paparazzi.snapshot { Snapshot(darkThemeEnabled = true) }
+    fun takeDarkThemeSnapshot() = takeSnapshot(darkThemeEnabled = true)
+
+    private fun takeSnapshot(darkThemeEnabled: Boolean) {
+        paparazzi.snapshot {
+            CompositionLocalProvider(value = LocalSnapshotTest provides true) {
+                Snapshot(darkThemeEnabled = darkThemeEnabled)
+            }
+        }
     }
 }

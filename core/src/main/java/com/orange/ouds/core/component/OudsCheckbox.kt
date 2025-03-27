@@ -53,6 +53,7 @@ import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -159,29 +160,34 @@ private fun OudsCheckbox(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
-    if (error && !enabled) throw IllegalStateException("An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed.")
-
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val context = LocalContext.current
-    val checkboxTokens = OudsTheme.componentsTokens.checkbox
-    val state = previewState.orElse { rememberOudsCheckboxState(enabled = enabled, interactionState = interactionState) }
-
-    Box(
-        modifier = modifier
-            .widthIn(checkboxTokens.sizeMinWidth.dp)
-            .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
-            .background(color = backgroundColor(state = state))
-            .border(state = state)
-            .semantics {
-                stateDescription = when (value) {
-                    ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
-                    ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
-                    ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
-                }
-            },
-        contentAlignment = Alignment.Center,
+    val isDisabledPreviewState = previewState == OudsCheckbox.State.Disabled
+    val isForbidden = error && (!enabled || isDisabledPreviewState)
+    CheckedContent(
+        expression = !isForbidden,
+        exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." }
     ) {
-        OudsCheckboxIndicator(state = state, value = value, error = error)
+        val interactionState by interactionSource.collectInteractionStateAsState()
+        val context = LocalContext.current
+        val checkboxTokens = OudsTheme.componentsTokens.checkbox
+        val state = previewState.orElse { rememberOudsCheckboxState(enabled = enabled, interactionState = interactionState) }
+
+        Box(
+            modifier = modifier
+                .widthIn(checkboxTokens.sizeMinWidth.dp)
+                .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
+                .background(color = backgroundColor(state = state))
+                .border(state = state)
+                .semantics {
+                    stateDescription = when (value) {
+                        ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
+                        ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
+                        ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
+                    }
+                },
+            contentAlignment = Alignment.Center,
+        ) {
+            OudsCheckboxIndicator(state = state, value = value, error = error)
+        }
     }
 }
 

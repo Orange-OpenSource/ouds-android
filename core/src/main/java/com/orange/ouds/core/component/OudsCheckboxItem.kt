@@ -58,6 +58,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -219,83 +220,98 @@ private fun OudsCheckboxItem(
     readOnly: Boolean = false,
     error: Boolean = false
 ) {
-    if (error) {
-        if (readOnly) throw IllegalStateException("An OudsCheckboxItem or OudsTriStateCheckboxItem set to readOnly with error parameter activated is not allowed.")
-        if (!enabled) throw IllegalStateException("An OudsCheckboxItem or OudsTriStateCheckboxItem set to disabled with error parameter activated is not allowed.")
-    }
+    val isReadOnlyPreviewState = previewState == OudsCheckboxItem.State.ReadOnly
+    val isDisabledPreviewState = previewState == OudsCheckboxItem.State.Disabled
+    val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
+    CheckedContent(
+        expression = !isForbidden,
+        exceptionMessage = {
+            val parameter = if (readOnly) "readOnly" else "enabled"
+            "An OudsCheckboxItem or OudsTriStateCheckboxItem set to $parameter with error parameter activated is not allowed."
+        },
+        previewMessage = {
+            val status = when (value) {
+                ToggleableState.On -> "Selected"
+                ToggleableState.Off -> "Unselected"
+                ToggleableState.Indeterminate -> "Indeterminate"
+            }
+            val state = if (isReadOnlyPreviewState) "Read only" else "Disabled"
+            "Error $status status for $state state is not relevant"
+        }
+    ) {
+        val interactionState by interactionSource.collectInteractionStateAsState()
+        val context = LocalContext.current
+        val controlItemTokens = OudsTheme.componentsTokens.controlItem
+        val state = previewState.orElse { rememberOudsCheckboxItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
 
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val context = LocalContext.current
-    val controlItemTokens = OudsTheme.componentsTokens.controlItem
-    val state = previewState.orElse { rememberOudsCheckboxItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
-
-    val checkboxIndicator: @Composable () -> Unit = {
-        OudsCheckboxIndicator(
-            state = checkboxState(state),
-            value = value,
-            error = error
-        )
-    }
-
-    val itemIcon: (@Composable () -> Unit)? = icon?.let {
-        {
-            icon.Content(
-                modifier = Modifier.size(controlItemTokens.sizeIcon.value),
-                extraParameters = OudsCheckboxItem.Icon.ExtraParameters(
-                    tint = if (state == OudsCheckboxItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
-                )
+        val checkboxIndicator: @Composable () -> Unit = {
+            OudsCheckboxIndicator(
+                state = checkboxState(state),
+                value = value,
+                error = error
             )
         }
-    }
 
-    val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon else checkboxIndicator
-    val trailingElement: (@Composable () -> Unit)? = if (inverted) checkboxIndicator else itemIcon
-    val dividerThickness = 1.dp
-
-    Column(
-        modifier = modifier
-            .height(IntrinsicSize.Min)
-            .heightIn(min = controlItemTokens.sizeMinHeight.dp)
-            .widthIn(min = controlItemTokens.sizeMinWidth.dp)
-            .background(color = backgroundColor(state = state))
-            .outerBorder(state = state)
-            .semantics(mergeDescendants = true) {
-                stateDescription = when (value) {
-                    ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
-                    ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
-                    ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
-                }
+        val itemIcon: (@Composable () -> Unit)? = icon?.let {
+            {
+                icon.Content(
+                    modifier = Modifier.size(controlItemTokens.sizeIcon.value),
+                    extraParameters = OudsCheckboxItem.Icon.ExtraParameters(
+                        tint = if (state == OudsCheckboxItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+                    )
+                )
             }
-    ) {
-        Row(
-            modifier = Modifier
-                .weight(1f)
-                .padding(all = controlItemTokens.spaceInset.value),
-            horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
+        }
+
+        val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon else checkboxIndicator
+        val trailingElement: (@Composable () -> Unit)? = if (inverted) checkboxIndicator else itemIcon
+        val dividerThickness = 1.dp
+
+        Column(
+            modifier = modifier
+                .height(IntrinsicSize.Min)
+                .heightIn(min = controlItemTokens.sizeMinHeight.dp)
+                .widthIn(min = controlItemTokens.sizeMinWidth.dp)
+                .background(color = backgroundColor(state = state))
+                .outerBorder(state = state)
+                .semantics(mergeDescendants = true) {
+                    stateDescription = when (value) {
+                        ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
+                        ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
+                        ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
+                    }
+                }
         ) {
-            leadingElement?.let { LeadingTrailingBox(leadingElement) }
-            Column(
+            Row(
                 modifier = Modifier
                     .weight(1f)
-                    .align(Alignment.CenterVertically),
-                verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
+                    .padding(all = controlItemTokens.spaceInset.value),
+                horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
             ) {
-                Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
-                if (!helperText.isNullOrBlank()) {
-                    Text(
-                        text = helperText,
-                        style = OudsTheme.typography.label.default.medium,
-                        color = helperTextColor(state = state)
-                    )
+                leadingElement?.let { LeadingTrailingBox(leadingElement) }
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .align(Alignment.CenterVertically),
+                    verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
+                ) {
+                    Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
+                    if (!helperText.isNullOrBlank()) {
+                        Text(
+                            text = helperText,
+                            style = OudsTheme.typography.label.default.medium,
+                            color = helperTextColor(state = state)
+                        )
+                    }
                 }
+                trailingElement?.let { LeadingTrailingBox(trailingElement) }
             }
-            trailingElement?.let { LeadingTrailingBox(trailingElement) }
-        }
-        if (divider) {
-            HorizontalDivider(
-                thickness = dividerThickness,
-                color = OudsTheme.colorScheme.border.default.copy(alpha = 0.2f)
-            ) //TODO Replace with OudsHorizontalDivider when available
+            if (divider) {
+                HorizontalDivider(
+                    thickness = dividerThickness,
+                    color = OudsTheme.colorScheme.border.default.copy(alpha = 0.2f)
+                ) //TODO Replace with OudsHorizontalDivider when available
+            }
         }
     }
 }
@@ -479,10 +495,10 @@ internal data class OudsCheckboxItemPreviewParameter(
         OudsCheckboxItem.State.Enabled,
         OudsCheckboxItem.State.Pressed,
         OudsCheckboxItem.State.Hovered,
-        OudsCheckboxItem.State.Focused
-    ).run {
-        if (!error) plus(listOf(OudsCheckboxItem.State.Disabled, OudsCheckboxItem.State.ReadOnly)) else this
-    }
+        OudsCheckboxItem.State.Focused,
+        OudsCheckboxItem.State.Disabled,
+        OudsCheckboxItem.State.ReadOnly
+    )
 }
 
 internal class OudsCheckboxItemPreviewParameterProvider :
