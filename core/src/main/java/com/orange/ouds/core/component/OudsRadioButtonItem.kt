@@ -175,9 +175,9 @@ private fun radioButtonState(state: OudsControlItem.State) = when (state) {
 
 @Composable
 private fun Modifier.border(outlined: Boolean, selected: Boolean, error: Boolean, state: OudsControlItem.State): Modifier {
-    val borderColor = outlineBorderColor(state, error)
+    val borderColor = outlineBorderColor(state, selected, error)
 
-    return if (outlined && borderColor != null && (selected || state in listOf(OudsControlItem.State.Hovered, OudsControlItem.State.Pressed))) {
+    return if (outlined && borderColor != null) {
         border(width = OudsTheme.borders.width.default, color = borderColor)
     } else {
         this
@@ -185,11 +185,11 @@ private fun Modifier.border(outlined: Boolean, selected: Boolean, error: Boolean
 }
 
 @Composable
-private fun outlineBorderColor(state: OudsControlItem.State, error: Boolean): Color? {
+private fun outlineBorderColor(state: OudsControlItem.State, selected: Boolean, error: Boolean): Color? {
     return if (error) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
-                OudsControlItem.State.Enabled -> enabled
+                OudsControlItem.State.Enabled -> if (selected) enabled else null
                 OudsControlItem.State.Hovered -> hover
                 OudsControlItem.State.Pressed -> pressed
                 OudsControlItem.State.Focused -> null
@@ -199,11 +199,11 @@ private fun outlineBorderColor(state: OudsControlItem.State, error: Boolean): Co
     } else {
         with(OudsTheme.colorScheme.action) {
             when (state) {
-                OudsControlItem.State.Enabled -> selected
+                OudsControlItem.State.Enabled -> if (selected) this.selected else null
                 OudsControlItem.State.Hovered -> hover
                 OudsControlItem.State.Pressed -> pressed
                 OudsControlItem.State.Focused -> null
-                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> disabled
+                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> if (selected) disabled else null
             }
         }
     }
