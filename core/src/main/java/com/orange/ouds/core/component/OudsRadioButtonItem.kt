@@ -158,9 +158,9 @@ private fun OudsRadioButtonItem(
                 error = error
             )
         },
-        modifier = selectableModifier
+        modifier = modifier
+            .then(selectableModifier)
             .semantics(mergeDescendants = true) {}
-            .then(modifier)
             .border(outlined = outlined, selected = selected, error = error, state = state)
     )
 }
