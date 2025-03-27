@@ -145,7 +145,7 @@ private fun OudsRadioButtonItem(
         additionalText = additionalText,
         helperText = helperText,
         icon = icon,
-        divider = if (outlined && selected && state == OudsControlItem.State.Focused) false else divider, // No divider displayed when the radio button is outlined selected and in focused state
+        divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
         inverted = inverted,
         enabled = enabled,
         readOnly = readOnly,
