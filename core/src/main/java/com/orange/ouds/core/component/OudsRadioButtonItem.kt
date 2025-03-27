@@ -139,13 +139,6 @@ private fun OudsRadioButtonItem(
         Modifier
     }
 
-    val outlineBorderModifier = if (outlined && selected && state != OudsControlItem.State.Focused) {
-        Modifier.border(width = OudsTheme.borders.width.default, color = outlineBorderColor(state, error))
-    } else {
-        // No outline border displayed when the radio button item is selected in focused state
-        Modifier
-    }
-
     OudsControlItem(
         state = state,
         text = text,
@@ -168,7 +161,7 @@ private fun OudsRadioButtonItem(
         modifier = selectableModifier
             .semantics(mergeDescendants = true) {}
             .then(modifier)
-            .then(outlineBorderModifier)
+            .border(outlined = outlined, selected = selected, error = error, state = state)
     )
 }
 
@@ -178,6 +171,19 @@ private fun radioButtonState(state: OudsControlItem.State) = when (state) {
     OudsControlItem.State.Pressed -> OudsRadioButton.State.Pressed
     OudsControlItem.State.Focused -> OudsRadioButton.State.Focused
     OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsRadioButton.State.Disabled
+}
+
+@Composable
+private fun Modifier.border(outlined: Boolean, selected: Boolean, error: Boolean, state: OudsControlItem.State): Modifier {
+    // Display a border when outlined set to `true` and item is selected not in focused state
+    return if (outlined && ((selected && state != OudsControlItem.State.Focused)
+                || (!selected && state in listOf(OudsControlItem.State.Hovered, OudsControlItem.State.Pressed)))
+    ) {
+        border(width = OudsTheme.borders.width.default, color = outlineBorderColor(state, error))
+    } else {
+        // No outline border displayed when the radio button item is selected in focused state
+        this
+    }
 }
 
 @Composable
