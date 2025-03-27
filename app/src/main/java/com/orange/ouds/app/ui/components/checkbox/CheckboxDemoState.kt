@@ -22,39 +22,46 @@ import androidx.compose.ui.state.ToggleableState
 
 @Composable
 fun rememberCheckboxDemoState(
-    checked: Boolean = false, // only used for checkbox demo
-    toggleableState: ToggleableState = ToggleableState.Off, // only used for indeterminate checkbox demo
+    checkedValues: Pair<Boolean, Boolean> = Pair(false, false), // only used for checkbox demo
+    toggleableStateValues: Pair<ToggleableState, ToggleableState> = Pair(ToggleableState.Off, ToggleableState.Off), // only used for indeterminate checkbox demo
     enabled: Boolean = true,
     error: Boolean = false
-) = rememberSaveable(checked, toggleableState, enabled, error, saver = CheckboxDemoState.Saver) {
-    CheckboxDemoState(checked, toggleableState, enabled, error)
+) = rememberSaveable(
+    checkedValues,
+    toggleableStateValues,
+    enabled,
+    error,
+    saver = CheckboxDemoState.Saver
+) {
+    CheckboxDemoState(checkedValues, toggleableStateValues, enabled, error)
 }
 
 class CheckboxDemoState(
-    checked: Boolean,
-    toggleableState: ToggleableState,
+    checkedValues: Pair<Boolean, Boolean>,
+    toggleableStateValues: Pair<ToggleableState, ToggleableState>,
     enabled: Boolean,
     error: Boolean
 ) {
     companion object {
         val Saver = run {
-            val checkedKey = "checked"
-            val toggleableStateKey = "toggleableState"
+            val checkedValuesKey = "checkedValues"
+            val toggleableStateValuesKey = "toggleableStateValues"
             val enabledKey = "enabled"
             val errorKey = "error"
             mapSaver(
                 save = { state ->
                     mapOf(
-                        checkedKey to state.checked,
-                        toggleableStateKey to state.toggleableState,
+                        checkedValuesKey to state.checkedValues,
+                        toggleableStateValuesKey to state.toggleableStateValues,
                         enabledKey to state.enabled,
                         errorKey to state.error,
                     )
                 },
                 restore = { map ->
+                    @Suppress("UNCHECKED_CAST")
                     CheckboxDemoState(
-                        map[checkedKey] as Boolean,
-                        map[toggleableStateKey] as ToggleableState,
+                        map[checkedValuesKey] as Pair<Boolean, Boolean>,
+                        map[toggleableStateValuesKey] as Pair<ToggleableState, ToggleableState>,
                         map[enabledKey] as Boolean,
                         map[errorKey] as Boolean
                     )
@@ -63,9 +70,9 @@ class CheckboxDemoState(
         }
     }
 
-    var checked: Boolean by mutableStateOf(checked)
+    var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)
 
-    var toggleableState: ToggleableState by mutableStateOf(toggleableState)
+    var toggleableStateValues: Pair<ToggleableState, ToggleableState> by mutableStateOf(toggleableStateValues)
 
     var enabled: Boolean by mutableStateOf(enabled)
 

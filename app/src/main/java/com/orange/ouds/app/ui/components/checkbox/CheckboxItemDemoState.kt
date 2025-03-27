@@ -24,8 +24,11 @@ import com.orange.ouds.app.R
 
 @Composable
 fun rememberCheckboxItemDemoState(
-    checked: Boolean = false, // only used for checkbox item demo
-    toggleableState: ToggleableState = ToggleableState.Off, // only used for indeterminate checkbox item demo
+    checkedValues: Pair<Boolean, Boolean> = Pair(false, false), // only used for checkbox item demo
+    toggleableStateValues: Pair<ToggleableState, ToggleableState> = Pair(
+        ToggleableState.Off,
+        ToggleableState.Off
+    ), // only used for indeterminate checkbox item demo
     icon: Boolean = false,
     divider: Boolean = false,
     inverted: Boolean = false,
@@ -34,13 +37,25 @@ fun rememberCheckboxItemDemoState(
     error: Boolean = false,
     text: String = stringResource(id = R.string.app_components_common_text_label),
     helperText: String? = null
-) = rememberSaveable(checked, toggleableState, icon, divider, inverted, enabled, readOnly, error, text, helperText, saver = CheckboxItemDemoState.Saver) {
-    CheckboxItemDemoState(checked, toggleableState, icon, divider, inverted, enabled, readOnly, error, text, helperText)
+) = rememberSaveable(
+    checkedValues,
+    toggleableStateValues,
+    icon,
+    divider,
+    inverted,
+    enabled,
+    readOnly,
+    error,
+    text,
+    helperText,
+    saver = CheckboxItemDemoState.Saver
+) {
+    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, inverted, enabled, readOnly, error, text, helperText)
 }
 
 class CheckboxItemDemoState(
-    checked: Boolean,
-    toggleableState: ToggleableState,
+    checkedValues: Pair<Boolean, Boolean>,
+    toggleableStateValues: Pair<ToggleableState, ToggleableState>,
     icon: Boolean,
     divider: Boolean,
     inverted: Boolean,
@@ -52,8 +67,8 @@ class CheckboxItemDemoState(
 ) {
     companion object {
         val Saver = run {
-            val checkedKey = "checked"
-            val toggleableStateKey = "toggleableState"
+            val checkedValuesKey = "checkedValues"
+            val toggleableStateValuesKey = "toggleableStateValues"
             val iconKey = "icon"
             val dividerKey = "divider"
             val invertedKey = "inverted"
@@ -65,8 +80,8 @@ class CheckboxItemDemoState(
             mapSaver(
                 save = { state ->
                     mapOf(
-                        checkedKey to state.checked,
-                        toggleableStateKey to state.toggleableState,
+                        checkedValuesKey to state.checkedValues,
+                        toggleableStateValuesKey to state.toggleableStateValues,
                         iconKey to state.icon,
                         dividerKey to state.divider,
                         invertedKey to state.inverted,
@@ -78,9 +93,10 @@ class CheckboxItemDemoState(
                     )
                 },
                 restore = { map ->
+                    @Suppress("UNCHECKED_CAST")
                     CheckboxItemDemoState(
-                        map[checkedKey] as Boolean,
-                        map[toggleableStateKey] as ToggleableState,
+                        map[checkedValuesKey] as Pair<Boolean, Boolean>,
+                        map[toggleableStateValuesKey] as Pair<ToggleableState, ToggleableState>,
                         map[iconKey] as Boolean,
                         map[dividerKey] as Boolean,
                         map[invertedKey] as Boolean,
@@ -95,8 +111,8 @@ class CheckboxItemDemoState(
         }
     }
 
-    var checked: Boolean by mutableStateOf(checked)
-    var toggleableState: ToggleableState by mutableStateOf(toggleableState)
+    var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)
+    var toggleableStateValues: Pair<ToggleableState, ToggleableState> by mutableStateOf(toggleableStateValues)
     var icon: Boolean by mutableStateOf(icon)
     var divider: Boolean by mutableStateOf(divider)
     var inverted: Boolean by mutableStateOf(inverted)
