@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.components.radiobutton
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -22,11 +23,9 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 
-val radioButtonItemDemoValues = listOf("First", "Second")
-
 @Composable
 fun rememberRadioButtonItemDemoState(
-    selectedValue: String = radioButtonItemDemoValues.first(),
+    selectedValue: Int = RadioButtonItemDemoState.values.first(),
     icon: Boolean = false,
     divider: Boolean = false,
     outlined: Boolean = false,
@@ -37,12 +36,25 @@ fun rememberRadioButtonItemDemoState(
     text: String = stringResource(id = R.string.app_components_common_text_label),
     additionalText: String? = null,
     helperText: String? = null
-) = rememberSaveable(selectedValue, icon, divider, outlined, inverted, enabled, readOnly, error, text, additionalText, helperText, saver = RadioButtonItemDemoState.Saver) {
+) = rememberSaveable(
+    selectedValue,
+    icon,
+    divider,
+    outlined,
+    inverted,
+    enabled,
+    readOnly,
+    error,
+    text,
+    additionalText,
+    helperText,
+    saver = RadioButtonItemDemoState.Saver
+) {
     RadioButtonItemDemoState(selectedValue, icon, divider, outlined, inverted, enabled, readOnly, error, text, additionalText, helperText)
 }
 
 class RadioButtonItemDemoState(
-    selectedValue: String,
+    selectedValue: Int,
     icon: Boolean,
     divider: Boolean,
     outlined: Boolean,
@@ -55,6 +67,7 @@ class RadioButtonItemDemoState(
     helperText: String?
 ) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, text, helperText) {
     companion object {
+        val values = listOf(1, 2)
         val Saver = run {
             val selectedValueKey = "selectedValue"
             val outlinedKey = "outlined"
@@ -77,7 +90,7 @@ class RadioButtonItemDemoState(
                 },
                 restore = { map ->
                     RadioButtonItemDemoState(
-                        map[selectedValueKey] as String,
+                        map[selectedValueKey] as Int,
                         map[IconKey] as Boolean,
                         map[DividerKey] as Boolean,
                         map[outlinedKey] as Boolean,
@@ -94,7 +107,7 @@ class RadioButtonItemDemoState(
         }
     }
 
-    var selectedValue: String by mutableStateOf(selectedValue)
+    var selectedValue: Int by mutableIntStateOf(selectedValue)
     var outlined: Boolean by mutableStateOf(outlined)
     var additionalText: String? by mutableStateOf(additionalText)
 }

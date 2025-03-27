@@ -87,7 +87,7 @@ fun RadioButtonItemDemoScreen() = DemoScreen(rememberRadioButtonItemDemoState())
 private fun RadioButtonItemDemo(state: RadioButtonItemDemoState) {
     with(state) {
         Column(modifier = Modifier.selectableGroup()) {
-            radioButtonItemDemoValues.forEach { radioButtonValue ->
+            RadioButtonItemDemoState.values.forEach { radioButtonValue ->
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
@@ -113,7 +113,7 @@ private fun RadioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, modi
         comment("First radio button item")
         with(state) {
             functionCall("OudsRadioButtonItem") {
-                typedArgument("selected", selectedValue == radioButtonItemDemoValues.first())
+                typedArgument("selected", selectedValue == RadioButtonItemDemoState.values.first())
                 onClickArgument {
                     comment("Change selection")
                 }
