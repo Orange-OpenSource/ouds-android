@@ -175,26 +175,24 @@ private fun radioButtonState(state: OudsControlItem.State) = when (state) {
 
 @Composable
 private fun Modifier.border(outlined: Boolean, selected: Boolean, error: Boolean, state: OudsControlItem.State): Modifier {
-    // Display a border when outlined set to `true` and item is selected not in focused state
-    return if (outlined && ((selected && state != OudsControlItem.State.Focused)
-                || (!selected && state in listOf(OudsControlItem.State.Hovered, OudsControlItem.State.Pressed)))
-    ) {
-        border(width = OudsTheme.borders.width.default, color = outlineBorderColor(state, error))
+    val borderColor = outlineBorderColor(state, error)
+
+    return if (outlined && borderColor != null && (selected || state in listOf(OudsControlItem.State.Hovered, OudsControlItem.State.Pressed))) {
+        border(width = OudsTheme.borders.width.default, color = borderColor)
     } else {
-        // No outline border displayed when the radio button item is selected in focused state
         this
     }
 }
 
 @Composable
-private fun outlineBorderColor(state: OudsControlItem.State, error: Boolean) =
-    if (error) {
+private fun outlineBorderColor(state: OudsControlItem.State, error: Boolean): Color? {
+    return if (error) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
                 OudsControlItem.State.Enabled -> enabled
                 OudsControlItem.State.Hovered -> hover
                 OudsControlItem.State.Pressed -> pressed
-                OudsControlItem.State.Focused -> focus
+                OudsControlItem.State.Focused -> null
                 OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
             }
         }
@@ -204,11 +202,12 @@ private fun outlineBorderColor(state: OudsControlItem.State, error: Boolean) =
                 OudsControlItem.State.Enabled -> selected
                 OudsControlItem.State.Hovered -> hover
                 OudsControlItem.State.Pressed -> pressed
-                OudsControlItem.State.Focused -> focus
+                OudsControlItem.State.Focused -> null
                 OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> disabled
             }
         }
     }
+}
 
 @UiModePreviews.Default
 @Composable
