@@ -13,7 +13,6 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -200,7 +199,7 @@ internal fun rememberOudsControlItemState(
 }
 
 @Composable
-internal fun LeadingTrailingBox(content: @Composable () -> Unit) {
+private fun LeadingTrailingBox(content: @Composable () -> Unit) {
     val assetContainerMaxHeight = OudsTheme.componentsTokens.controlItem.sizeMaxHeightAssetsContainer.dp
     val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.dp
 
@@ -216,7 +215,7 @@ internal fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-internal fun Modifier.outerBorder(state: OudsControlItem.State) = if (state == OudsControlItem.State.Focused) {
+private fun Modifier.outerBorder(state: OudsControlItem.State) = if (state == OudsControlItem.State.Focused) {
     outerBorder(
         width = OudsTheme.borders.width.focus,
         color = OudsTheme.colorScheme.border.focus,
@@ -228,7 +227,7 @@ internal fun Modifier.outerBorder(state: OudsControlItem.State) = if (state == O
 }
 
 @Composable
-internal fun backgroundColor(state: OudsControlItem.State): Color {
+private fun backgroundColor(state: OudsControlItem.State): Color {
     return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
             OudsControlItem.State.Enabled, OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> Color.Transparent
@@ -240,7 +239,7 @@ internal fun backgroundColor(state: OudsControlItem.State): Color {
 }
 
 @Composable
-internal fun textColor(state: OudsControlItem.State, error: Boolean) =
+private fun textColor(state: OudsControlItem.State, error: Boolean) =
     if (error) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
@@ -256,9 +255,9 @@ internal fun textColor(state: OudsControlItem.State, error: Boolean) =
     }
 
 @Composable
-internal fun additionalTextColor(state: OudsControlItem.State) =
+private fun additionalTextColor(state: OudsControlItem.State) =
     if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
-internal fun helperTextColor(state: OudsControlItem.State) =
+private fun helperTextColor(state: OudsControlItem.State) =
     if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
