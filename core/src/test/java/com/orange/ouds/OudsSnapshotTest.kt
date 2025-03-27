@@ -14,6 +14,7 @@ package com.orange.ouds
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.orange.ouds.core.utilities.LocalSnapshotTest
@@ -26,7 +27,13 @@ import org.junit.rules.TestName
 internal abstract class OudsSnapshotTest {
 
     @get:Rule
-    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.01)
+    val paparazzi = Paparazzi(
+        renderingMode = SessionParams.RenderingMode.SHRINK,
+        // Double the screen height and set useDeviceResolution to true in order to avoid truncated snapshots for vertical content
+        deviceConfig = with(DeviceConfig.NEXUS_5) { copy(screenHeight = screenHeight * 2) },
+        useDeviceResolution = true,
+        maxPercentDifference = 0.01
+    )
 
     @get:Rule
     var name = TestName()
