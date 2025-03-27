@@ -41,7 +41,7 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">OUDS Radio button design guidelines</a>
  *
- * An OUDS radio button item is a layout containing an OudsRadioButton, an associated text and several other optional elements.
+ * An OUDS radio button item is a layout containing an [OudsRadioButton], an associated text and several other optional elements.
  * It can be used in a list as a list item.
  * By clicking on a radio button item, the user changes the selected state of its radio button.
  *
