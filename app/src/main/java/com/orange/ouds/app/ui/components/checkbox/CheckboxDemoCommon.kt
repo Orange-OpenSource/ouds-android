@@ -25,11 +25,10 @@ enum class CheckboxIdentifier {
  * Returns the next [ToggleableState] in the sequence:
  * [ToggleableState.On] -> [ToggleableState.Off] -> [ToggleableState.Indeterminate] -> [ToggleableState.On].
  *
- * @param toggleableState The current [ToggleableState].
  * @return The next [ToggleableState] in the sequence.
  */
-fun getNewToggleableState(toggleableState: ToggleableState) = when (toggleableState) {
-    ToggleableState.On -> ToggleableState.Off
-    ToggleableState.Off -> ToggleableState.Indeterminate
-    ToggleableState.Indeterminate -> ToggleableState.On
+fun ToggleableState.next(): ToggleableState {
+    val entries = ToggleableState.entries
+    val nextOrdinal = (ordinal + 1) % entries.size
+    return entries[nextOrdinal]
 }

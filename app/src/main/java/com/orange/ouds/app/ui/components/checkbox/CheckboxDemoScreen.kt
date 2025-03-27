@@ -68,9 +68,11 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
                     IndeterminateCheckboxDemo(
                         state = this@DemoScreen,
                         onClick = { identifier ->
-                            toggleableStateValues = when (identifier) {
-                                CheckboxIdentifier.First -> toggleableStateValues.copy(first = getNewToggleableState(toggleableStateValues.first))
-                                CheckboxIdentifier.Second -> toggleableStateValues.copy(second = getNewToggleableState(toggleableStateValues.second))
+                            toggleableStateValues = with(toggleableStateValues) {
+                                when (identifier) {
+                                    CheckboxIdentifier.First -> copy(first = first.next())
+                                    CheckboxIdentifier.Second -> copy(second = second.next())
+                                }
                             }
                         }
                     )
