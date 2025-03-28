@@ -46,6 +46,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -97,45 +98,50 @@ private fun OudsRadioButton(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    if (error && !enabled) throw IllegalStateException("An OudsRadioButton set to disabled with error parameter activated is not allowed.")
-
-    val radioButtonTokens = OudsTheme.componentsTokens.radioButton
-    val radioButtonInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by radioButtonInteractionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsRadioButtonState(enabled = enabled, interactionState = interactionState) }
-
-    val selectableModifier = if (onClick != null) {
-        Modifier.selectable(
-            selected = selected,
-            onClick = onClick,
-            enabled = enabled,
-            interactionSource = radioButtonInteractionSource,
-            indication = null,
-            role = Role.RadioButton,
-        )
-    } else Modifier
-
-    Box(
-        modifier = modifier
-            .widthIn(radioButtonTokens.sizeMinWidth.dp)
-            .heightIn(min = radioButtonTokens.sizeMinHeight.dp, max = radioButtonTokens.sizeMaxHeight.dp)
-            .background(color = backgroundColor(state = state))
-            .border(state = state)
-            .then(selectableModifier),
-        contentAlignment = Alignment.Center,
+    val isDisabledPreviewState = previewState == OudsRadioButton.State.Disabled
+    val isForbidden = error && (!enabled || isDisabledPreviewState)
+    CheckedContent(
+        expression = !isForbidden,
+        exceptionMessage = { "An OudsRadioButton set to disabled with error parameter activated is not allowed." }
     ) {
+        val radioButtonTokens = OudsTheme.componentsTokens.radioButton
+        val radioButtonInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
+        val interactionState by radioButtonInteractionSource.collectInteractionStateAsState()
+        val state = previewState.orElse { rememberOudsRadioButtonState(enabled = enabled, interactionState = interactionState) }
+
+        val selectableModifier = if (onClick != null) {
+            Modifier.selectable(
+                selected = selected,
+                onClick = onClick,
+                enabled = enabled,
+                interactionSource = radioButtonInteractionSource,
+                indication = null,
+                role = Role.RadioButton,
+            )
+        } else Modifier
+
         Box(
-            modifier = Modifier
-                .size(radioButtonTokens.sizeIndicator.value)
-                .indicatorBorder(state = state, selected = selected, error = error)
+            modifier = modifier
+                .widthIn(radioButtonTokens.sizeMinWidth.dp)
+                .heightIn(min = radioButtonTokens.sizeMinHeight.dp, max = radioButtonTokens.sizeMaxHeight.dp)
+                .background(color = backgroundColor(state = state))
+                .border(state = state)
+                .then(selectableModifier),
+            contentAlignment = Alignment.Center,
         ) {
-            if (selected) {
-                Icon(
-                    modifier = Modifier.fillMaxSize(),
-                    painter = painterResource(R.drawable.radiobutton_selected),
-                    tint = indicatorColor(state = state, selected = true, error = error),
-                    contentDescription = null
-                )
+            Box(
+                modifier = Modifier
+                    .size(radioButtonTokens.sizeIndicator.value)
+                    .indicatorBorder(state = state, selected = selected, error = error)
+            ) {
+                if (selected) {
+                    Icon(
+                        modifier = Modifier.fillMaxSize(),
+                        painter = painterResource(R.drawable.radiobutton_selected),
+                        tint = indicatorColor(state = state, selected = true, error = error),
+                        contentDescription = null
+                    )
+                }
             }
         }
     }
@@ -272,10 +278,9 @@ internal data class OudsRadioButtonPreviewParameter(
         OudsRadioButton.State.Enabled,
         OudsRadioButton.State.Pressed,
         OudsRadioButton.State.Hovered,
-        OudsRadioButton.State.Focused
-    ).run {
-        if (!error) plus(listOf(OudsRadioButton.State.Disabled)) else this
-    }
+        OudsRadioButton.State.Focused,
+        OudsRadioButton.State.Disabled
+    )
 }
 
 internal class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
