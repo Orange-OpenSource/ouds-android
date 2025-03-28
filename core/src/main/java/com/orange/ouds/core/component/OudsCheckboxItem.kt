@@ -34,7 +34,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -196,56 +195,42 @@ private fun OudsCheckboxItem(
     readOnly: Boolean = false,
     error: Boolean = false
 ) {
-    val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
-    val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
-    val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
-    CheckedContent(
-        expression = !isForbidden,
-        exceptionMessage = {
-            val parameter = if (readOnly) "readOnly" else "enabled"
-            "An OudsCheckboxItem or OudsTriStateCheckboxItem set to $parameter with error parameter activated is not allowed."
-        },
-        previewMessage = {
-            val status = when (value) {
-                ToggleableState.On -> "Selected"
-                ToggleableState.Off -> "Unselected"
-                ToggleableState.Indeterminate -> "Indeterminate"
-            }
-            val state = if (isReadOnlyPreviewState) "Read only" else "Disabled"
-            "Error $status status for $state state is not relevant"
-        }
-    ) {
-        val context = LocalContext.current
-        val interactionState by interactionSource.collectInteractionStateAsState()
-        val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
+    val context = LocalContext.current
+    val interactionState by interactionSource.collectInteractionStateAsState()
+    val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
 
-        OudsControlItem(
-            state = state,
-            text = text,
-            helperText = helperText,
-            icon = icon,
-            divider = divider,
-            inverted = inverted,
-            enabled = enabled,
-            readOnly = readOnly,
-            error = error,
-            errorComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
-            indicator = {
-                OudsCheckboxIndicator(
-                    state = checkboxState(state),
-                    value = value,
-                    error = error
-                )
-            },
-            modifier = modifier.semantics(mergeDescendants = true) {
-                stateDescription = when (value) {
-                    ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
-                    ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
-                    ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
-                }
+    OudsControlItem(
+        state = state,
+        text = text,
+        helperText = helperText,
+        icon = icon,
+        divider = divider,
+        inverted = inverted,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        errorComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
+        indicator = {
+            OudsCheckboxIndicator(
+                state = checkboxState(state),
+                value = value,
+                error = error
+            )
+        },
+        previewState = previewState,
+        previewStatus = when (value) {
+            ToggleableState.On -> "Selected"
+            ToggleableState.Off -> "Unselected"
+            ToggleableState.Indeterminate -> "Indeterminate"
+        },
+        modifier = modifier.semantics(mergeDescendants = true) {
+            stateDescription = when (value) {
+                ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
+                ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
+                ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
             }
-        )
-    }
+        }
+    )
 }
 
 private fun checkboxState(state: OudsControlItem.State) = when (state) {

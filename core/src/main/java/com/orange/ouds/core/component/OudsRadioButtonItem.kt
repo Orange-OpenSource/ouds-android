@@ -124,64 +124,49 @@ private fun OudsRadioButtonItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
-    val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
-    val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
+    val radioButtonItemInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val interactionState by radioButtonItemInteractionSource.collectInteractionStateAsState()
+    val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
 
-    CheckedContent(
-        expression = !isForbidden,
-        exceptionMessage = {
-            val parameter = if (readOnly) "readOnly" else "enabled"
-            "An OudsCheckboxItem or OudsTriStateCheckboxItem set to $parameter with error parameter activated is not allowed."
-        },
-        previewMessage = {
-            val status = if (selected) "Selected" else "Unselected"
-            val state = if (isReadOnlyPreviewState) "Read only" else "Disabled"
-            "Error $status status for $state state is not relevant"
-        }
-    ) {
-        val radioButtonItemInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
-        val interactionState by radioButtonItemInteractionSource.collectInteractionStateAsState()
-        val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
-
-        val selectableModifier = if (onClick != null) {
-            Modifier.selectable(
-                selected = selected,
-                onClick = onClick,
-                enabled = enabled && !readOnly,
-                interactionSource = radioButtonItemInteractionSource,
-                indication = null,
-                role = Role.RadioButton,
-            )
-        } else {
-            Modifier
-        }
-
-        OudsControlItem(
-            state = state,
-            text = text,
-            additionalText = additionalText,
-            helperText = helperText,
-            icon = icon,
-            divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
-            inverted = inverted,
-            enabled = enabled,
-            readOnly = readOnly,
-            error = error,
-            errorComponentName = "OudsRadioButtonItem",
-            indicator = {
-                OudsRadioButtonIndicator(
-                    state = radioButtonState(state),
-                    selected = selected,
-                    error = error
-                )
-            },
-            modifier = modifier
-                .then(selectableModifier)
-                .semantics(mergeDescendants = true) {}
-                .border(outlined = outlined, selected = selected, error = error, state = state)
+    val selectableModifier = if (onClick != null) {
+        Modifier.selectable(
+            selected = selected,
+            onClick = onClick,
+            enabled = enabled && !readOnly,
+            interactionSource = radioButtonItemInteractionSource,
+            indication = null,
+            role = Role.RadioButton,
         )
+    } else {
+        Modifier
     }
+
+    OudsControlItem(
+        state = state,
+        text = text,
+        additionalText = additionalText,
+        helperText = helperText,
+        icon = icon,
+        divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
+        inverted = inverted,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        errorComponentName = "OudsRadioButtonItem",
+        indicator = {
+            OudsRadioButtonIndicator(
+                state = radioButtonState(state),
+                selected = selected,
+                error = error
+            )
+        },
+        previewState = previewState,
+        previewStatus = if (selected) "Selected" else "Unselected",
+        modifier = modifier
+            .then(selectableModifier)
+            .semantics(mergeDescendants = true) {}
+            .border(outlined = outlined, selected = selected, error = error, state = state)
+    )
 }
 
 private fun radioButtonState(state: OudsControlItem.State) = when (state) {

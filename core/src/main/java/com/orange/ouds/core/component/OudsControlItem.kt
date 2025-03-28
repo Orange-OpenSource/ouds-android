@@ -42,7 +42,7 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
-
+import com.orange.ouds.core.utilities.CheckedContent
 
 @Composable
 internal fun OudsControlItem(
@@ -57,74 +57,87 @@ internal fun OudsControlItem(
     error: Boolean,
     errorComponentName: String,
     indicator: @Composable () -> Unit,
+    previewState: OudsControlItem.State?,
+    previewStatus: String,
     modifier: Modifier = Modifier,
     additionalText: String? = null,
 ) {
-    if (error) {
-        if (readOnly) throw IllegalStateException("An $errorComponentName set to readOnly with error parameter activated is not allowed.")
-        if (!enabled) throw IllegalStateException("An $errorComponentName set to disabled with error parameter activated is not allowed.")
-    }
+    val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
+    val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
+    val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
 
-    val controlItemTokens = OudsTheme.componentsTokens.controlItem
-
-    val itemIcon: (@Composable () -> Unit)? = icon?.let {
-        {
-            icon.Content(
-                extraParameters = OudsControlItem.Icon.ExtraParameters(
-                    tint = if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
-                )
-            )
+    CheckedContent(
+        expression = !isForbidden,
+        exceptionMessage = {
+            val parameter = if (readOnly) "readOnly" else "disabled"
+            "An $errorComponentName set to $parameter with error parameter activated is not allowed."
+        },
+        previewMessage = {
+            val stateDescription = if (isReadOnlyPreviewState) "Read only" else "Disabled"
+            "Error $previewStatus status for $stateDescription state is not relevant"
         }
-    }
-
-    val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon else indicator
-    val trailingElement: (@Composable () -> Unit)? = if (inverted) indicator else itemIcon
-    val dividerThickness = 1.dp
-
-    Column(
-        modifier = modifier
-            .height(IntrinsicSize.Min)
-            .heightIn(min = controlItemTokens.sizeMinHeight.dp)
-            .widthIn(min = controlItemTokens.sizeMinWidth.dp)
-            .background(color = backgroundColor(state = state))
-            .outerBorder(state = state)
     ) {
-        Row(
-            modifier = Modifier
-                .weight(1f)
-                .padding(all = controlItemTokens.spaceInset.value),
-            horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
+        val controlItemTokens = OudsTheme.componentsTokens.controlItem
+
+        val itemIcon: (@Composable () -> Unit)? = icon?.let {
+            {
+                icon.Content(
+                    extraParameters = OudsControlItem.Icon.ExtraParameters(
+                        tint = if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+                    )
+                )
+            }
+        }
+
+        val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon else indicator
+        val trailingElement: (@Composable () -> Unit)? = if (inverted) indicator else itemIcon
+        val dividerThickness = 1.dp
+
+        Column(
+            modifier = modifier
+                .height(IntrinsicSize.Min)
+                .heightIn(min = controlItemTokens.sizeMinHeight.dp)
+                .widthIn(min = controlItemTokens.sizeMinWidth.dp)
+                .background(color = backgroundColor(state = state))
+                .outerBorder(state = state)
         ) {
-            leadingElement?.let { LeadingTrailingBox(leadingElement) }
-            Column(
+            Row(
                 modifier = Modifier
                     .weight(1f)
-                    .align(Alignment.CenterVertically),
-                verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
+                    .padding(all = controlItemTokens.spaceInset.value),
+                horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
             ) {
-                Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
-                if (!additionalText.isNullOrBlank()) {
-                    Text(
-                        text = additionalText,
-                        style = OudsTheme.typography.label.strong.medium,
-                        color = additionalTextColor(state = state)
-                    )
+                leadingElement?.let { LeadingTrailingBox(leadingElement) }
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .align(Alignment.CenterVertically),
+                    verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
+                ) {
+                    Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
+                    if (!additionalText.isNullOrBlank()) {
+                        Text(
+                            text = additionalText,
+                            style = OudsTheme.typography.label.strong.medium,
+                            color = additionalTextColor(state = state)
+                        )
+                    }
+                    if (!helperText.isNullOrBlank()) {
+                        Text(
+                            text = helperText,
+                            style = OudsTheme.typography.label.default.medium,
+                            color = helperTextColor(state = state)
+                        )
+                    }
                 }
-                if (!helperText.isNullOrBlank()) {
-                    Text(
-                        text = helperText,
-                        style = OudsTheme.typography.label.default.medium,
-                        color = helperTextColor(state = state)
-                    )
-                }
+                trailingElement?.let { LeadingTrailingBox(trailingElement) }
             }
-            trailingElement?.let { LeadingTrailingBox(trailingElement) }
-        }
-        if (divider) {
-            HorizontalDivider(
-                thickness = dividerThickness,
-                color = OudsTheme.colorScheme.border.default.copy(alpha = 0.2f)
-            ) //TODO Replace with OudsHorizontalDivider when available
+            if (divider) {
+                HorizontalDivider(
+                    thickness = dividerThickness,
+                    color = OudsTheme.colorScheme.border.default.copy(alpha = 0.2f)
+                ) //TODO Replace with OudsHorizontalDivider when available
+            }
         }
     }
 }
