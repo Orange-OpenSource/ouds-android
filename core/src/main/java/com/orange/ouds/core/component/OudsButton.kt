@@ -672,7 +672,7 @@ internal fun PreviewOudsButton(
             Box(modifier = Modifier.padding(16.dp)) {
                 val text = if (hasText) hierarchy.name else null
                 val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
-                val chunkedStates = states.chunked(columnCount)
+                val chunkedStates = OudsButton.State.entries.chunked(columnCount)
                 Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                     chunkedStates.forEach { states ->
                         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -699,16 +699,7 @@ internal data class OudsButtonPreviewParameter(
     val hasText: Boolean,
     val hasIcon: Boolean,
     val onColoredBox: Boolean = false
-) {
-    val states: List<OudsButton.State> = listOf(
-        OudsButton.State.Enabled,
-        OudsButton.State.Hovered,
-        OudsButton.State.Pressed,
-        OudsButton.State.Loading,
-        OudsButton.State.Disabled,
-        OudsButton.State.Focused
-    )
-}
+)
 
 internal class OudsButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 

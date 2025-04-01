@@ -424,7 +424,7 @@ internal fun PreviewOudsLink(
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
-        val chunkedStates = states.chunked(2)
+        val chunkedStates = OudsLink.State.entries.chunked(2)
         val linkPreview: @Composable () -> Unit = {
             Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 chunkedStates.forEach { states ->
@@ -462,14 +462,7 @@ internal data class OudsLinkPreviewParameter(
     val hasIcon: Boolean,
     val onColoredBackground: Boolean,
     val size: OudsLink.Size,
-    val arrow: OudsLink.Arrow? = null,
-    val states: List<OudsLink.State> = listOf(
-        OudsLink.State.Enabled,
-        OudsLink.State.Hovered,
-        OudsLink.State.Pressed,
-        OudsLink.State.Disabled,
-        OudsLink.State.Focused
-    )
+    val arrow: OudsLink.Arrow? = null
 )
 
 internal class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkPreviewParameter>(*previewParameterValues.toTypedArray())

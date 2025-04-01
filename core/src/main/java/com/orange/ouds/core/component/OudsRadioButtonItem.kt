@@ -227,7 +227,7 @@ internal fun PreviewOudsRadioButtonItem(
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         Column(Modifier.padding(16.dp)) {
-            states.forEach { state ->
+            OudsControlItem.State.entries.forEach { state ->
                 OudsRadioButtonItem(
                     selected = selected,
                     text = "Label",
@@ -259,15 +259,7 @@ internal data class OudsRadioButtonItemPreviewParameter(
     val error: Boolean = false,
     val outlined: Boolean = false,
     val inverted: Boolean = false
-) {
-    val states: List<OudsControlItem.State> = listOf(
-        OudsControlItem.State.Enabled,
-        OudsControlItem.State.Pressed,
-        OudsControlItem.State.Hovered,
-        OudsControlItem.State.Focused,
-        OudsControlItem.State.Disabled
-    )
-}
+)
 
 internal class OudsRadioButtonItemPreviewParameterProvider :
     BasicPreviewParameterProvider<OudsRadioButtonItemPreviewParameter>(*previewParameterValues.toTypedArray())

@@ -255,7 +255,7 @@ internal fun PreviewOudsCheckboxItem(
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         Column(Modifier.padding(16.dp)) {
-            states.forEach { state ->
+            OudsControlItem.State.entries.forEach { state ->
                 OudsCheckboxItem(
                     value = toggleableState,
                     text = "Label",
@@ -283,16 +283,7 @@ internal data class OudsCheckboxItemPreviewParameter(
     val hasIcon: Boolean = false,
     val error: Boolean = false,
     val inverted: Boolean = false
-) {
-    val states: List<OudsControlItem.State> = listOf(
-        OudsControlItem.State.Enabled,
-        OudsControlItem.State.Pressed,
-        OudsControlItem.State.Hovered,
-        OudsControlItem.State.Focused,
-        OudsControlItem.State.Disabled,
-        OudsControlItem.State.ReadOnly
-    )
-}
+)
 
 internal class OudsCheckboxItemPreviewParameterProvider :
     BasicPreviewParameterProvider<OudsCheckboxItemPreviewParameter>(*previewParameterValues.toTypedArray())

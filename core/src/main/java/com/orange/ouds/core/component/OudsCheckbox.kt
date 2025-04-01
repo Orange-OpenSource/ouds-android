@@ -353,7 +353,7 @@ internal fun PreviewOudsCheckbox(
     with(parameter) {
         val columnCount = 2
         Box(modifier = Modifier.padding(16.dp)) {
-            val chunkedStates = states.chunked(columnCount)
+            val chunkedStates = OudsCheckbox.State.entries.chunked(columnCount)
             Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 chunkedStates.forEach { states ->
                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -375,15 +375,7 @@ internal fun PreviewOudsCheckbox(
 internal data class OudsCheckboxPreviewParameter(
     val toggleableState: ToggleableState,
     val error: Boolean
-) {
-    val states: List<OudsCheckbox.State> = listOf(
-        OudsCheckbox.State.Enabled,
-        OudsCheckbox.State.Pressed,
-        OudsCheckbox.State.Hovered,
-        OudsCheckbox.State.Focused,
-        OudsCheckbox.State.Disabled
-    )
-}
+)
 
 internal class OudsCheckboxPreviewParameterProvider : BasicPreviewParameterProvider<OudsCheckboxPreviewParameter>(*previewParameterValues.toTypedArray())
 
