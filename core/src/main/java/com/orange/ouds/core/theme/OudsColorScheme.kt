@@ -305,7 +305,8 @@ data class OudsColorScheme(
                 val lower: Color,
                 val lowest: Color,
                 val medium: Color,
-                val soft: Color,
+                val mediumHigh: Color,
+                val mediumLow: Color,
                 val transparent: Color
             )
 
@@ -317,6 +318,7 @@ data class OudsColorScheme(
                 val lower: Color,
                 val lowest: Color,
                 val medium: Color,
+                val mediumLow: Color,
                 val transparent: Color
             )
         }
@@ -606,7 +608,8 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                         lower = repositoryOpacityBlackLowerLight,
                         lowest = repositoryOpacityBlackLowestLight,
                         medium = repositoryOpacityBlackMediumLight,
-                        soft = repositoryOpacityBlackSoftLight,
+                        mediumHigh = repositoryOpacityBlackMediumHighLight,
+                        mediumLow = repositoryOpacityBlackMediumLowLight,
                         transparent = repositoryOpacityBlackTransparentLight,
                     ),
                     info = repositoryOpacityInfoLight,
@@ -620,6 +623,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                         low = repositoryOpacityWhiteLowLight,
                         lower = repositoryOpacityWhiteLowerLight,
                         lowest = repositoryOpacityWhiteLowestLight,
+                        mediumLow = repositoryOpacityWhiteMediumLowLight,
                         medium = repositoryOpacityWhiteMediumLight,
                         transparent = repositoryOpacityWhiteTransparentLight,
                     )
@@ -894,7 +898,8 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                         lower = repositoryOpacityBlackLowerDark,
                         lowest = repositoryOpacityBlackLowestDark,
                         medium = repositoryOpacityBlackMediumDark,
-                        soft = repositoryOpacityBlackSoftDark,
+                        mediumHigh = repositoryOpacityBlackMediumHighDark,
+                        mediumLow = repositoryOpacityBlackMediumLowDark,
                         transparent = repositoryOpacityBlackTransparentDark,
                     ),
                     info = repositoryOpacityInfoDark,
@@ -908,6 +913,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                         low = repositoryOpacityWhiteLowDark,
                         lower = repositoryOpacityWhiteLowerDark,
                         lowest = repositoryOpacityWhiteLowestDark,
+                        mediumLow = repositoryOpacityWhiteMediumLowDark,
                         medium = repositoryOpacityWhiteMediumDark,
                         transparent = repositoryOpacityWhiteTransparentDark,
                     ),
@@ -1140,7 +1146,8 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Colo
             OudsColorKeyToken.Repository.Opacity.Black.Lower -> opacity.black.lower
             OudsColorKeyToken.Repository.Opacity.Black.Lowest -> opacity.black.lowest
             OudsColorKeyToken.Repository.Opacity.Black.Medium -> opacity.black.medium
-            OudsColorKeyToken.Repository.Opacity.Black.Soft -> opacity.black.soft
+            OudsColorKeyToken.Repository.Opacity.Black.MediumHigh -> opacity.black.mediumHigh
+            OudsColorKeyToken.Repository.Opacity.Black.MediumLow -> opacity.black.mediumLow
             OudsColorKeyToken.Repository.Opacity.Black.Transparent -> opacity.black.transparent
             OudsColorKeyToken.Repository.Opacity.Info -> opacity.info
             OudsColorKeyToken.Repository.Opacity.Negative -> opacity.negative
@@ -1153,6 +1160,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Colo
             OudsColorKeyToken.Repository.Opacity.White.Lower -> opacity.white.lower
             OudsColorKeyToken.Repository.Opacity.White.Lowest -> opacity.white.lowest
             OudsColorKeyToken.Repository.Opacity.White.Medium -> opacity.white.medium
+            OudsColorKeyToken.Repository.Opacity.White.MediumLow -> opacity.white.mediumLow
             OudsColorKeyToken.Repository.Opacity.White.Transparent -> opacity.white.transparent
             OudsColorKeyToken.Repository.Positive.Default -> positive.default
             OudsColorKeyToken.Repository.Positive.High -> positive.high
