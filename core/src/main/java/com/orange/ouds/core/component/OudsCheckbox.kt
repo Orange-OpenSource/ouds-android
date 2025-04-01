@@ -36,8 +36,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -163,7 +161,6 @@ private fun OudsCheckbox(
         exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." }
     ) {
         val interactionState by interactionSource.collectInteractionStateAsState()
-        val context = LocalContext.current
         val checkboxTokens = OudsTheme.componentsTokens.checkbox
         val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
 
@@ -172,14 +169,7 @@ private fun OudsCheckbox(
                 .widthIn(checkboxTokens.sizeMinWidth.dp)
                 .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
                 .background(color = backgroundColor(state = state))
-                .outerBorder(state = state)
-                .semantics {
-                    stateDescription = when (value) {
-                        ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
-                        ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
-                        ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
-                    }
-                },
+                .outerBorder(state = state),
             contentAlignment = Alignment.Center,
         ) {
             OudsCheckboxIndicator(state = state, value = value, error = error)
