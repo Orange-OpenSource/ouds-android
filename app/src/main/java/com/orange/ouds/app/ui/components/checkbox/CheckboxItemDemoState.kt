@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.state.ToggleableState
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 
 @Composable
 fun rememberCheckboxItemDemoState(
@@ -64,32 +65,24 @@ class CheckboxItemDemoState(
     error: Boolean,
     text: String,
     helperText: String?
-) {
+) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, text, helperText) {
     companion object {
         val Saver = run {
             val checkedValuesKey = "checkedValues"
             val toggleableStateValuesKey = "toggleableStateValues"
-            val iconKey = "icon"
-            val dividerKey = "divider"
-            val invertedKey = "inverted"
-            val enabledKey = "enabled"
-            val readOnlyKey = "readOnly"
-            val errorKey = "error"
-            val textKey = "text"
-            val helperTextKey = "helperText"
             mapSaver(
                 save = { state ->
                     mapOf(
                         checkedValuesKey to state.checkedValues,
                         toggleableStateValuesKey to state.toggleableStateValues,
-                        iconKey to state.icon,
-                        dividerKey to state.divider,
-                        invertedKey to state.inverted,
-                        enabledKey to state.enabled,
-                        readOnlyKey to state.readOnly,
-                        errorKey to state.error,
-                        textKey to state.text,
-                        helperTextKey to state.helperText
+                        IconKey to state.icon,
+                        DividerKey to state.divider,
+                        InvertedKey to state.inverted,
+                        EnabledKey to state.enabled,
+                        ReadOnlyKey to state.readOnly,
+                        ErrorKey to state.error,
+                        TextKey to state.text,
+                        HelperTextKey to state.helperText
                     )
                 },
                 restore = { map ->
@@ -97,14 +90,14 @@ class CheckboxItemDemoState(
                     CheckboxItemDemoState(
                         map[checkedValuesKey] as Pair<Boolean, Boolean>,
                         map[toggleableStateValuesKey] as Pair<ToggleableState, ToggleableState>,
-                        map[iconKey] as Boolean,
-                        map[dividerKey] as Boolean,
-                        map[invertedKey] as Boolean,
-                        map[enabledKey] as Boolean,
-                        map[readOnlyKey] as Boolean,
-                        map[errorKey] as Boolean,
-                        map[textKey] as String,
-                        map[helperTextKey] as String?
+                        map[IconKey] as Boolean,
+                        map[DividerKey] as Boolean,
+                        map[InvertedKey] as Boolean,
+                        map[EnabledKey] as Boolean,
+                        map[ReadOnlyKey] as Boolean,
+                        map[ErrorKey] as Boolean,
+                        map[TextKey] as String,
+                        map[HelperTextKey] as String?
                     )
                 }
             )
@@ -113,22 +106,4 @@ class CheckboxItemDemoState(
 
     var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)
     var toggleableStateValues: Pair<ToggleableState, ToggleableState> by mutableStateOf(toggleableStateValues)
-    var icon: Boolean by mutableStateOf(icon)
-    var divider: Boolean by mutableStateOf(divider)
-    var inverted: Boolean by mutableStateOf(inverted)
-    var enabled: Boolean by mutableStateOf(enabled)
-    var readOnly: Boolean by mutableStateOf(readOnly)
-    var error: Boolean by mutableStateOf(error)
-    var text: String by mutableStateOf(text)
-    var helperText: String? by mutableStateOf(helperText)
-
-    val enabledSwitchEnabled: Boolean
-        get() = !error
-
-    val readOnlySwitchEnabled: Boolean
-        get() = !error
-
-    val errorSwitchEnabled: Boolean
-        get() = enabled && !readOnly
-
 }

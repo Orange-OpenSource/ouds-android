@@ -129,20 +129,26 @@ private fun OudsRadioButton(
                 .then(selectableModifier),
             contentAlignment = Alignment.Center,
         ) {
-            Box(
-                modifier = Modifier
-                    .size(radioButtonTokens.sizeIndicator.value)
-                    .indicatorBorder(state = state, selected = selected, error = error)
-            ) {
-                if (selected) {
-                    Icon(
-                        modifier = Modifier.fillMaxSize(),
-                        painter = painterResource(R.drawable.radiobutton_selected),
-                        tint = indicatorColor(state = state, selected = true, error = error),
-                        contentDescription = null
-                    )
-                }
-            }
+            OudsRadioButtonIndicator(state = state, selected = selected, error = error)
+        }
+    }
+}
+
+@Composable
+internal fun OudsRadioButtonIndicator(state: OudsRadioButton.State, selected: Boolean, error: Boolean) {
+    val radioButtonTokens = OudsTheme.componentsTokens.radioButton
+    Box(
+        modifier = Modifier
+            .size(radioButtonTokens.sizeIndicator.value)
+            .indicatorBorder(state = state, selected = selected, error = error)
+    ) {
+        if (selected) {
+            Icon(
+                modifier = Modifier.fillMaxSize(),
+                painter = painterResource(R.drawable.radiobutton_selected),
+                tint = indicatorColor(state = state, selected = true, error = error),
+                contentDescription = null
+            )
         }
     }
 }
@@ -251,7 +257,7 @@ internal fun PreviewOudsRadioButton(
     with(parameter) {
         val columnCount = 2
         Box(modifier = Modifier.padding(16.dp)) {
-            val chunkedStates = states.chunked(columnCount)
+            val chunkedStates = OudsRadioButton.State.entries.chunked(columnCount)
             Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 chunkedStates.forEach { states ->
                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -273,15 +279,7 @@ internal fun PreviewOudsRadioButton(
 internal data class OudsRadioButtonPreviewParameter(
     val selected: Boolean,
     val error: Boolean
-) {
-    val states: List<OudsRadioButton.State> = listOf(
-        OudsRadioButton.State.Enabled,
-        OudsRadioButton.State.Pressed,
-        OudsRadioButton.State.Hovered,
-        OudsRadioButton.State.Focused,
-        OudsRadioButton.State.Disabled
-    )
-}
+)
 
 internal class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 

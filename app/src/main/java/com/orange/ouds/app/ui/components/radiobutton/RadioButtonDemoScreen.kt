@@ -22,14 +22,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.theme.OudsTheme
@@ -56,11 +54,6 @@ fun RadioButtonDemoScreen() = DemoScreen(rememberRadioButtonDemoState()) {
             )
         }
     ) {
-        DetailScreenDescription(
-            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
-            descriptionRes = Component.RadioButton.descriptionRes
-        )
-
         LightDarkDemo {
             RadioButtonDemo(state = this@DemoScreen)
         }
