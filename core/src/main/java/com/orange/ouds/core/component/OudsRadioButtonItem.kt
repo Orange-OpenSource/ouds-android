@@ -28,12 +28,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -161,7 +159,7 @@ private fun OudsRadioButtonItem(
             )
         },
         previewState = previewState,
-        previewStatus = if (selected) "Selected" else "Unselected",
+        checkedContentPreviewStatus = if (selected) "Selected" else "Unselected",
         modifier = modifier
             .then(selectableModifier)
             .semantics(mergeDescendants = true) {}

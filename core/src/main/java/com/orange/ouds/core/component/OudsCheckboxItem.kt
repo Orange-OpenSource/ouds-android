@@ -218,7 +218,7 @@ private fun OudsCheckboxItem(
             )
         },
         previewState = previewState,
-        previewStatus = when (value) {
+        checkedContentPreviewStatus = when (value) {
             ToggleableState.On -> "Selected"
             ToggleableState.Off -> "Unselected"
             ToggleableState.Indeterminate -> "Indeterminate"

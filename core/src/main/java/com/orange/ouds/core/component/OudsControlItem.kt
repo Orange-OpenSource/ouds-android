@@ -58,7 +58,7 @@ internal fun OudsControlItem(
     errorComponentName: String,
     indicator: @Composable () -> Unit,
     previewState: OudsControlItem.State?,
-    previewStatus: String,
+    checkedContentPreviewStatus: String,
     modifier: Modifier = Modifier,
     additionalText: String? = null,
 ) {
@@ -74,7 +74,7 @@ internal fun OudsControlItem(
         },
         previewMessage = {
             val stateDescription = if (isReadOnlyPreviewState) "Read only" else "Disabled"
-            "Error $previewStatus status for $stateDescription state is not relevant"
+            "Error $checkedContentPreviewStatus status for $stateDescription state is not relevant"
         }
     ) {
         val controlItemTokens = OudsTheme.componentsTokens.controlItem
