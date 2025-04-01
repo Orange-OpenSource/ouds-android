@@ -40,7 +40,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
  * @param modifier [Modifier] applied to the divider.
  * @param color The color of the divider, chosen from the [OudsDivider.Color] enum. Defaults set to `OudsDivider.Color.Default`.
  *
- * TODO @sample com.orange.ouds.core.component.samples.OudsHorizontalDividerSample
+ * @sample com.orange.ouds.core.component.samples.OudsHorizontalDividerSample
  */
 @Composable
 fun OudsHorizontalDivider(
@@ -61,8 +61,7 @@ fun OudsHorizontalDivider(
  * @param modifier [Modifier] applied to the divider.
  * @param color The color of the divider, chosen from the [OudsDivider.Color] enum. Defaults set to `OudsDivider.Color.Default`.
  *
- * TODO @sample com.orange.ouds.core.component.samples.OudsVerticalDividerSample
- *
+ * @sample com.orange.ouds.core.component.samples.OudsVerticalDividerSample
  */
 @Composable
 fun OudsVerticalDivider(
