@@ -81,38 +81,27 @@ object OudsDivider {
      * Each color corresponds to a specific color key token from the design system.
      */
     enum class Color {
+        AlwaysBlack,
+        AlwaysOnBlack,
+        AlwaysOnWhite,
+        AlwaysWhite,
         BrandPrimary,
         Default,
         Emphasized,
-        Focus,
-        FocusInset,
         Muted,
         OnBrandPrimary;
-
-        companion object {
-            // This method is unused but it allows to be notified with a build error if border key tokens are updated
-            private fun fromKeyToken(keyToken: OudsColorKeyToken.Border): OudsDivider.Color {
-                return when (keyToken) {
-                    OudsColorKeyToken.Border.BrandPrimary -> BrandPrimary
-                    OudsColorKeyToken.Border.Default -> Default
-                    OudsColorKeyToken.Border.Emphasized -> Emphasized
-                    OudsColorKeyToken.Border.Focus -> Focus
-                    OudsColorKeyToken.Border.FocusInset -> FocusInset
-                    OudsColorKeyToken.Border.Muted -> Muted
-                    OudsColorKeyToken.Border.OnBrand.Primary -> OnBrandPrimary
-                }
-            }
-        }
 
         val value: androidx.compose.ui.graphics.Color
             @Composable
             get() {
                 return when (this) {
+                    AlwaysBlack -> OudsColorKeyToken.Always.Black
+                    AlwaysOnBlack -> OudsColorKeyToken.Always.OnBlack
+                    AlwaysOnWhite -> OudsColorKeyToken.Always.OnWhite
+                    AlwaysWhite -> OudsColorKeyToken.Always.White
                     BrandPrimary -> OudsColorKeyToken.Border.BrandPrimary
                     Default -> OudsColorKeyToken.Border.Default
                     Emphasized -> OudsColorKeyToken.Border.Emphasized
-                    Focus -> OudsColorKeyToken.Border.Focus
-                    FocusInset -> OudsColorKeyToken.Border.FocusInset
                     Muted -> OudsColorKeyToken.Border.Muted
                     OnBrandPrimary -> OudsColorKeyToken.Border.OnBrand.Primary
                 }.value
