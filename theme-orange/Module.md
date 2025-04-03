@@ -1,7 +1,7 @@
 # Module theme-orange
 
 ```
-Tokens version 0.10.0
+Tokens version 0.11.0
 ```
 
 Contains the Orange theme.
