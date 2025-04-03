@@ -30,6 +30,7 @@ import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
+import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
@@ -177,13 +178,13 @@ private fun tweak(color: OudsColoredBox.Color): OudsTheme.Tweak {
         OudsColoredBox.Color.StatusPositiveEmphasized,
         OudsColoredBox.Color.StatusWarningEmphasized -> OudsTheme.Tweak.ForceLight
         OudsColoredBox.Color.StatusNegativeEmphasized,
-        OudsColoredBox.Color.StatusNeutralEmphasized -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceLight else OudsTheme.Tweak.ForceDark
+        OudsColoredBox.Color.StatusNeutralEmphasized -> if (isOudsInDarkTheme()) OudsTheme.Tweak.ForceLight else OudsTheme.Tweak.ForceDark
         OudsColoredBox.Color.StatusAccentMuted,
         OudsColoredBox.Color.StatusInfoMuted,
         OudsColoredBox.Color.StatusNegativeMuted,
         OudsColoredBox.Color.StatusPositiveMuted,
         OudsColoredBox.Color.StatusNeutralMuted,
-        OudsColoredBox.Color.StatusWarningMuted -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
+        OudsColoredBox.Color.StatusWarningMuted -> if (isOudsInDarkTheme()) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
     }
 }
 
@@ -208,11 +209,14 @@ internal fun PreviewOudsColoredBox(
                 text = parameter.name,
                 color = OudsTheme.colorScheme.content.default
             )
-            OudsButton(text = "OudsButton", onClick = {})
+            OudsButton(
+                text = "Button",
+                onClick = {}
+            )
             OudsLink(
                 text = "Link",
                 arrow = OudsLink.Arrow.Next,
-                onClick = { },
+                onClick = {},
             )
         }
     }

@@ -139,6 +139,11 @@
     <string name="app_components_controlItem_divider_label">Divider</string>
     <string name="app_components_controlItem_inverted_label">Inverted</string>
 
+    <!-- Components: colored background -->
+    <string name="app_components_coloredBackground_label">Colored background</string>
+    <string name="app_components_coloredBackground_description_text">Colored backgrounds use surface colors to maximize the contrast with content. Several components such as buttons or links adapt their display accordingly when they are displayed on colored backgrounds.</string>
+    <string name="app_components_coloredBackground_color_label">Color</string>
+
     <!-- Components: link -->
     <string name="app_components_link_label">Link</string>
     <string name="app_components_link_description_text">Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).</string>
