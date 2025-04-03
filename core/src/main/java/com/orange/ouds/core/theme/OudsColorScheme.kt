@@ -21,6 +21,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
@@ -1304,6 +1305,7 @@ val OudsMaterialColorTokens.materialDarkColorScheme: ColorScheme
 /**
  * Converts an OUDS color token to the local color value provided by the theme.
  */
+@Suppress("RecursivePropertyAccessor")
 @InternalOudsApi
 val OudsColorKeyToken.value: Color
     @ReadOnlyComposable
@@ -1319,4 +1321,5 @@ val OudsColorKeyToken.value: Color
         is OudsColorKeyToken.Overlay -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Repository -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Surface -> OudsTheme.colorScheme.fromToken(this)
+        is OudsLightDarkColorKeyToken -> if (isOudsInDarkTheme()) dark.value else light.value
     }
