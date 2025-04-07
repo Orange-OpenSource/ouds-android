@@ -118,14 +118,14 @@ internal enum class DividerOrientation {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsHorizontalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) parameter: OudsDivider.Color) {
-    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = DividerOrientation.Horizontal, color = parameter)
+private fun PreviewOudsHorizontalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) color: OudsDivider.Color) {
+    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = DividerOrientation.Horizontal, color = color)
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsVerticalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) parameter: OudsDivider.Color) {
-    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = DividerOrientation.Vertical, color = parameter)
+private fun PreviewOudsVerticalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) color: OudsDivider.Color) {
+    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = DividerOrientation.Vertical, color = color)
 }
 
 @Composable
