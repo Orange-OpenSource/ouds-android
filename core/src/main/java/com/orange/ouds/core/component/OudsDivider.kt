@@ -27,7 +27,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
-import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 //TODO Add DSM link when available
 // <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Divider design guidelines</a>
@@ -96,17 +95,19 @@ object OudsDivider {
         val value: androidx.compose.ui.graphics.Color
             @Composable
             get() {
-                return when (this) {
-                    AlwaysBlack -> OudsColorKeyToken.Always.Black
-                    AlwaysOnBlack -> OudsColorKeyToken.Always.OnBlack
-                    AlwaysOnWhite -> OudsColorKeyToken.Always.OnWhite
-                    AlwaysWhite -> OudsColorKeyToken.Always.White
-                    BrandPrimary -> OudsColorKeyToken.Border.BrandPrimary
-                    Default -> OudsColorKeyToken.Border.Default
-                    Emphasized -> OudsColorKeyToken.Border.Emphasized
-                    Muted -> OudsColorKeyToken.Border.Muted
-                    OnBrandPrimary -> OudsColorKeyToken.Border.OnBrand.Primary
-                }.value
+                with(OudsTheme.colorScheme) {
+                    return when (this@Color) {
+                        AlwaysBlack -> always.black
+                        AlwaysOnBlack -> always.onBlack
+                        AlwaysOnWhite -> always.onWhite
+                        AlwaysWhite -> always.white
+                        BrandPrimary -> border.brandPrimary
+                        Default -> border.default
+                        Emphasized -> border.emphasized
+                        Muted -> border.muted
+                        OnBrandPrimary -> border.onBrand.primary
+                    }
+                }
             }
     }
 }
