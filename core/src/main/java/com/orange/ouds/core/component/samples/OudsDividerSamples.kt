@@ -35,8 +35,8 @@ internal fun OudsHorizontalDividerSample() {
 @Composable
 internal fun OudsVerticalDividerSample() {
     Row(modifier = Modifier.padding(OudsTheme.spaces.fixed.short)) {
-        Text(text = "Before")
+        Text(text = "Start")
         OudsVerticalDivider(modifier = Modifier.fillMaxWidth())
-        Text(text = "After")
+        Text(text = "End")
     }
 }
