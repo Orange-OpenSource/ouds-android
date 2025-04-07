@@ -15,13 +15,10 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
@@ -60,6 +57,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.StatesPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
@@ -424,37 +422,26 @@ internal fun PreviewOudsLink(
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
-        val chunkedStates = OudsLink.State.entries.chunked(2)
         val linkPreview: @Composable () -> Unit = {
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                chunkedStates.forEach { states ->
-                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                        states.forEach { state ->
-                            OudsLink(
-                                icon = icon,
-                                text = "Label",
-                                arrow = arrow,
-                                onClick = {},
-                                size = size,
-                                previewState = state
-                            )
-                        }
-                    }
-                }
+            StatesPreview<OudsLink.State> { state ->
+                OudsLink(
+                    icon = icon,
+                    text = "Label",
+                    arrow = arrow,
+                    onClick = {},
+                    size = size,
+                    previewState = state
+                )
             }
         }
 
-        val boxModifier = Modifier.padding(16.dp)
         if (onColoredBackground) {
-            OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary, modifier = boxModifier) {
+            OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary) {
                 linkPreview()
             }
         } else {
-            Box(modifier = boxModifier) {
-                linkPreview()
-            }
+            linkPreview()
         }
-
     }
 }
 

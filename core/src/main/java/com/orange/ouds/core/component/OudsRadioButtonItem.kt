@@ -16,8 +16,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -30,11 +28,11 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.StatesPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -224,26 +222,24 @@ internal fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        Column(Modifier.padding(16.dp)) {
-            OudsControlItem.State.entries.forEach { state ->
-                OudsRadioButtonItem(
-                    selected = selected,
-                    text = "Label",
-                    onClick = { },
-                    previewState = state,
-                    additionalText = additionalText,
-                    helperText = helperText,
-                    divider = divider,
-                    error = error,
-                    outlined = outlined,
-                    inverted = inverted,
-                    icon = if (hasIcon) {
-                        OudsControlItem.Icon(imageVector = Icons.Filled.Call)
-                    } else {
-                        null
-                    }
-                )
-            }
+        StatesPreview<OudsControlItem.State>(columnCount = 1) { state ->
+            OudsRadioButtonItem(
+                selected = selected,
+                text = "Label",
+                onClick = { },
+                previewState = state,
+                additionalText = additionalText,
+                helperText = helperText,
+                divider = divider,
+                error = error,
+                outlined = outlined,
+                inverted = inverted,
+                icon = if (hasIcon) {
+                    OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+                } else {
+                    null
+                }
+            )
         }
     }
 }

@@ -16,8 +16,6 @@ import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -32,11 +30,11 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.StatesPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -254,24 +252,22 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        Column(Modifier.padding(16.dp)) {
-            OudsControlItem.State.entries.forEach { state ->
-                OudsCheckboxItem(
-                    value = toggleableState,
-                    text = "Label",
-                    previewState = state,
-                    helperText = helperText,
-                    divider = divider,
-                    error = error,
-                    inverted = inverted,
-                    icon = if (hasIcon) {
-                        OudsControlItem.Icon(imageVector = Icons.Filled.Call)
-                    } else {
-                        null
-                    },
-                    interactionSource = remember { MutableInteractionSource() }
-                )
-            }
+        StatesPreview<OudsControlItem.State>(columnCount = 1) { state ->
+            OudsCheckboxItem(
+                value = toggleableState,
+                text = "Label",
+                previewState = state,
+                helperText = helperText,
+                divider = divider,
+                error = error,
+                inverted = inverted,
+                icon = if (hasIcon) {
+                    OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+                } else {
+                    null
+                },
+                interactionSource = remember { MutableInteractionSource() }
+            )
         }
     }
 }

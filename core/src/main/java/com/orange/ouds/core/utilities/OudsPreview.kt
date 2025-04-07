@@ -14,14 +14,20 @@ package com.orange.ouds.core.utilities
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
+import kotlin.enums.enumEntries
 
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
@@ -49,6 +55,22 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
                     .then(modifier)
             ) {
                 content()
+            }
+        }
+    }
+}
+
+@Composable
+internal inline fun <reified T> StatesPreview(columnCount: Int = 2, content: (T) -> Unit) where T : Enum<T> {
+    Box(modifier = Modifier.padding(16.dp)) {
+        val chunkedStates = enumEntries<T>().chunked(columnCount)
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            chunkedStates.forEach { states ->
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    states.forEach { state ->
+                        content(state)
+                    }
+                }
             }
         }
     }

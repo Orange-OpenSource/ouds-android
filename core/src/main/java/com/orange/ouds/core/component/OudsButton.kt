@@ -19,7 +19,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
@@ -71,6 +70,7 @@ import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.StatesPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
@@ -667,21 +667,11 @@ internal fun PreviewOudsButton(
     parameter: OudsButtonPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val columnCount = 2
+        val text = if (hasText) hierarchy.name else null
+        val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
         val content: @Composable () -> Unit = {
-            Box(modifier = Modifier.padding(16.dp)) {
-                val text = if (hasText) hierarchy.name else null
-                val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
-                val chunkedStates = OudsButton.State.entries.chunked(columnCount)
-                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    chunkedStates.forEach { states ->
-                        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                            states.forEach { state ->
-                                OudsButton(icon = icon, text = text, onClick = {}, hierarchy = hierarchy, previewState = state)
-                            }
-                        }
-                    }
-                }
+            StatesPreview<OudsButton.State> { state ->
+                OudsButton(icon = icon, text = text, onClick = {}, hierarchy = hierarchy, previewState = state)
             }
         }
         if (onColoredBox) {
