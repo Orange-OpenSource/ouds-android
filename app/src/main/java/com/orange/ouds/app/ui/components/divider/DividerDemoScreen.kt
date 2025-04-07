@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -75,6 +76,26 @@ fun DividerDemoScreen(vertical: Boolean = false) = DemoScreen(rememberDividerDem
                         .padding(vertical = OudsTheme.spaces.fixed.medium),
                     color = color
                 )
+            }
+        }
+
+        DividerDemoCodeSnippet(
+            state = this@DemoScreen,
+            vertical = vertical,
+            modifier = Modifier
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium)
+        )
+    }
+}
+
+@Composable
+private fun DividerDemoCodeSnippet(state: DividerDemoState, vertical: Boolean, modifier: Modifier = Modifier) {
+    val functionName = if (vertical) "OudsVerticalDivider" else "OudsHorizontalDivider"
+    CodeSnippet(modifier = modifier) {
+        with(state) {
+            functionCall(functionName) {
+                typedArgument("color", color)
             }
         }
     }
