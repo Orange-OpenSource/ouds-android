@@ -23,10 +23,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -45,7 +49,7 @@ import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: Boolean = true) {
-    Column {
+    Column(modifier = Modifier.windowInsetsPadding(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))) {
         val navigationBarBackgroundColor = OudsTheme.colorScheme.background.secondary //TODO Temporary color. Waiting for Material colors from Maxime.
         AnimatedVisibility(
             visible = visible,
