@@ -56,6 +56,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
@@ -68,7 +69,6 @@ import com.orange.ouds.core.theme.OudsTypography
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -184,9 +184,10 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
     ) {
         TokenIllustration(tokenProperty = tokenProperty, token = token)
 
-        Column(modifier = Modifier
-            .weight(1f)
-            .semantics(mergeDescendants = true) {}
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .semantics(mergeDescendants = true) {}
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -300,7 +301,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewTokenCategoryDetailScreen(
     @PreviewParameter(TokenCategoryDetailScreenPreviewParameterProvider::class) parameter: TokenCategory<*>

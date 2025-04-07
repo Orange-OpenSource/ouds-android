@@ -34,6 +34,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -44,7 +45,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun GridHeader(modifier: Modifier = Modifier) {
@@ -196,13 +196,13 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewGridHeader() = OudsPreview {
     GridHeader()
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewSizeIconWithTextHeader() = OudsPreview {
     SizeIconWithTextHeader(
@@ -211,7 +211,7 @@ private fun PreviewSizeIconWithTextHeader() = OudsPreview {
     )
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewSpaceHeader(@PreviewParameter(SpaceHeaderPreviewParameterProvider::class) parameter: TokenProperty<TokenCategory.Dimension.Space>) =
     OudsPreview {

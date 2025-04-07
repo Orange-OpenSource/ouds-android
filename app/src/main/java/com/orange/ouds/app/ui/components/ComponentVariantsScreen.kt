@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
@@ -30,7 +31,6 @@ import com.orange.ouds.app.ui.utilities.painterResource
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> Unit) {
@@ -62,7 +62,7 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewComponentVariantsScreen(
     @PreviewParameter(ComponentVariantsScreenPreviewParameterProvider::class) parameter: Component

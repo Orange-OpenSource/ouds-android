@@ -16,7 +16,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -27,7 +26,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.verticalScroll
@@ -129,7 +127,6 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -145,12 +142,12 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
@@ -408,15 +405,27 @@ private fun SegmentedButtonsSample() {
 private fun CardsSample() {
     val cardHeight = 60.dp
     Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)) {
-        Card(modifier = Modifier.fillMaxWidth().height(cardHeight)) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(cardHeight)
+        ) {
             Box(modifier = Modifier.fillMaxSize()) { Text(text = "Filled card", modifier = Modifier.align(Alignment.Center)) }
         }
 
-        OutlinedCard(modifier = Modifier.fillMaxWidth().height(cardHeight)) {
+        OutlinedCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(cardHeight)
+        ) {
             Box(modifier = Modifier.fillMaxSize()) { Text(text = "Outlined card", modifier = Modifier.align(Alignment.Center)) }
         }
 
-        ElevatedCard(modifier = Modifier.fillMaxWidth().height(cardHeight)) {
+        ElevatedCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(cardHeight)
+        ) {
             Box(modifier = Modifier.fillMaxSize()) { Text(text = "Elevated card", modifier = Modifier.align(Alignment.Center)) }
         }
     }
@@ -510,17 +519,17 @@ private fun FilterChipsRow(enabled: Boolean, selected: Boolean) {
             onClick = { filterChipSelected = !filterChipSelected },
             label = { Text("Elevated filter chip") },
             leadingIcon =
-            if (filterChipSelected) {
-                {
-                    Icon(
-                        imageVector = Icons.Filled.Done,
-                        contentDescription = "Localized Description",
-                        modifier = Modifier.size(FilterChipDefaults.IconSize)
-                    )
-                }
-            } else {
-                null
-            },
+                if (filterChipSelected) {
+                    {
+                        Icon(
+                            imageVector = Icons.Filled.Done,
+                            contentDescription = "Localized Description",
+                            modifier = Modifier.size(FilterChipDefaults.IconSize)
+                        )
+                    }
+                } else {
+                    null
+                },
             enabled = enabled
         )
     }
@@ -558,19 +567,25 @@ private fun ListItemsSample() {
     val trailingContent: @Composable () -> Unit = { Text("meta") }
 
     ListItem(
-        modifier = Modifier.clickable {  }.listItemHorizontalPadding(),
+        modifier = Modifier
+            .clickable { }
+            .listItemHorizontalPadding(),
         headlineContent = { Text("One line list item with 24x24 icon") },
         leadingContent = favoriteIcon
     )
     ListItem(
-        modifier = Modifier.clickable {  }.listItemHorizontalPadding(),
+        modifier = Modifier
+            .clickable { }
+            .listItemHorizontalPadding(),
         headlineContent = { Text("Two line list item with trailing") },
         supportingContent = { Text("Secondary text") },
         trailingContent = trailingContent,
         leadingContent = favoriteIcon
     )
     ListItem(
-        modifier = Modifier.clickable {  }.listItemHorizontalPadding(),
+        modifier = Modifier
+            .clickable { }
+            .listItemHorizontalPadding(),
         headlineContent = { Text("Three line list item") },
         supportingContent = {
             Text("Secondary text that is long and perhaps goes onto another line")
@@ -630,9 +645,9 @@ private fun NavigationBarSample() {
                                 Text(
                                     badgeNumber,
                                     modifier =
-                                    Modifier.semantics {
-                                        contentDescription = "$badgeNumber new notifications"
-                                    }
+                                        Modifier.semantics {
+                                            contentDescription = "$badgeNumber new notifications"
+                                        }
                                 )
                             }
                         }
@@ -895,7 +910,9 @@ private fun SectionColumn(title: String, horizontalPadding: Boolean = true, vert
     Text(
         text = title,
         style = OudsTheme.typography.heading.medium,
-        modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller).padding(horizontal = OudsTheme.grids.margin)
+        modifier = Modifier
+            .padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller)
+            .padding(horizontal = OudsTheme.grids.margin)
     )
     Column(
         modifier = if (horizontalPadding) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
@@ -905,7 +922,7 @@ private fun SectionColumn(title: String, horizontalPadding: Boolean = true, vert
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewAboutMaterialComponentsScreen() = OudsPreview {
     AboutMaterialComponentsScreen()

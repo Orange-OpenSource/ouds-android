@@ -12,8 +12,6 @@
 
 package com.orange.ouds.foundation.utilities
 
-import android.content.res.Configuration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 
 /**
@@ -33,22 +31,3 @@ open class BasicPreviewParameterProvider<T>(vararg values: T) : PreviewParameter
  * @param clazz The enum class.
  */
 open class EnumPreviewParameterProvider(clazz: Class<out Enum<*>>) : BasicPreviewParameterProvider<Enum<*>>(*clazz.enumConstants)
-
-/**
- * Multi-preview annotation classes used to display both light and dark mode previews.
- *
- * The only reason why `UiModePreviews` is an annotation class is to colorize it as an annotation in Android Studio.
- * An empty `Target` annotation has been added in order to avoid using the parent `UiModePreviews` annotation which has no effect.
- */
-@Target
-annotation class UiModePreviews {
-
-    companion object {
-        private const val LightName = "Light"
-        private const val DarkName = "Dark"
-    }
-
-    @Preview(name = LightName)
-    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES)
-    annotation class Default
-}
