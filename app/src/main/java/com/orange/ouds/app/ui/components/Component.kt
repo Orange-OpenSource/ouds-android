@@ -105,8 +105,8 @@ sealed class Variant(
         Variant(R.string.app_components_checkbox_indeterminateCheckboxItem_label, { CheckboxItemDemoScreen(indeterminate = true) })
 
     // Divider
-    data object HorizontalDivider : Variant(R.string.app_components_divider_horizontal_label, { DividerDemoScreen() })
-    data object VerticalDivider : Variant(R.string.app_components_divider_vertical_label, { DividerDemoScreen(vertical = true) })
+    data object HorizontalDivider : Variant(R.string.app_components_divider_horizontalDivider_label, { DividerDemoScreen() })
+    data object VerticalDivider : Variant(R.string.app_components_divider_verticalDivider_label, { DividerDemoScreen(vertical = true) })
 
     // Radio button
     data object RadioButton : Variant(R.string.app_components_radioButton_radioButton_label, { RadioButtonDemoScreen() })
