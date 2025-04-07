@@ -36,6 +36,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
  *
  * This composable renders a horizontal line that can be used to visually separate content.
  * The color of the divider can be specified using the [OudsDivider.Color] enum, and the thickness is defined by the current theme's divider border width.
+ * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
  * @param modifier [Modifier] applied to the divider.
  * @param color The color of the divider, chosen from the [OudsDivider.Color] enum. Default value set to `OudsDivider.Color.Default`.
@@ -57,6 +58,7 @@ fun OudsHorizontalDivider(
  *
  * This composable renders a vertical line that can be used to visually separate content.
  * The color of the divider can be specified using the [OudsDivider.Color] enum, and the thickness is defined by the current theme's divider border width.
+ * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
  * @param modifier [Modifier] applied to the divider.
  * @param color The color of the divider, chosen from the [OudsDivider.Color] enum. Default value set to `OudsDivider.Color.Default`.
