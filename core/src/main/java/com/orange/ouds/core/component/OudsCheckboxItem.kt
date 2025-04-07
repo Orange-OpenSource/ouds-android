@@ -28,6 +28,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.R
@@ -272,6 +273,18 @@ internal fun PreviewOudsCheckboxItem(
     }
 }
 
+@Preview
+@Composable
+internal fun PreviewOudsCheckboxItemWithLongHelperText() = OudsPreview {
+    OudsCheckboxItem(
+        checked = true,
+        text = "Label",
+        onCheckedChange = {},
+        helperText = LoremIpsumText,
+        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+    )
+}
+
 internal data class OudsCheckboxItemPreviewParameter(
     val toggleableState: ToggleableState,
     val helperText: String? = null,
@@ -306,14 +319,6 @@ private val previewParameterValues: List<OudsCheckboxItemPreviewParameter>
                         helperText = helperText,
                         divider = true,
                         error = true,
-                        inverted = inverted
-                    ),
-                    OudsCheckboxItemPreviewParameter(
-                        toggleableState = ToggleableState.On,
-                        helperText = LoremIpsumText,
-                        divider = true,
-                        error = true,
-                        hasIcon = true,
                         inverted = inverted
                     ),
                 )

@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -244,6 +245,19 @@ internal fun PreviewOudsRadioButtonItem(
     }
 }
 
+@Preview
+@Composable
+internal fun PreviewOudsRadioButtonItemWithLongHelperText() = OudsPreview {
+    OudsRadioButtonItem(
+        selected = true,
+        text = "Label",
+        onClick = {},
+        additionalText = "Additional text",
+        helperText = LoremIpsumText,
+        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+    )
+}
+
 internal data class OudsRadioButtonItemPreviewParameter(
     val selected: Boolean,
     val additionalText: String? = null,
@@ -284,15 +298,6 @@ private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
                         helperText = helperText,
                         divider = true,
                         error = true,
-                        inverted = inverted
-                    ),
-                    OudsRadioButtonItemPreviewParameter(
-                        selected = true,
-                        additionalText = additionalText,
-                        helperText = LoremIpsumText,
-                        divider = true,
-                        error = true,
-                        hasIcon = true,
                         inverted = inverted
                     ),
                 )
