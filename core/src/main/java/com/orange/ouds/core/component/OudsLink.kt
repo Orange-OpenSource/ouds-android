@@ -423,7 +423,7 @@ internal fun PreviewOudsLink(
     with(parameter) {
         val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
         val linkPreview: @Composable () -> Unit = {
-            StatesPreview<OudsLink.State> { state ->
+            StatesPreview<OudsLink.State>(columnCount = 3) { state ->
                 OudsLink(
                     icon = icon,
                     text = "Label",

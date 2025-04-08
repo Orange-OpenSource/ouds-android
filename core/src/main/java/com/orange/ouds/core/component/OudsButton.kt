@@ -670,7 +670,7 @@ internal fun PreviewOudsButton(
         val text = if (hasText) hierarchy.name else null
         val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
         val content: @Composable () -> Unit = {
-            StatesPreview<OudsButton.State> { state ->
+            StatesPreview<OudsButton.State>(columnCount = 2) { state ->
                 OudsButton(icon = icon, text = text, onClick = {}, hierarchy = hierarchy, previewState = state)
             }
         }
