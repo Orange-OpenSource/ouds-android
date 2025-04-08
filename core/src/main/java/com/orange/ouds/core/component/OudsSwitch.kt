@@ -61,9 +61,9 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
+//TODO Add DSM link when available
+// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Switch design guidelines</a>
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a> // TODO Replace with switch URL when it is available
- *
  * An OUDS switch.
  *
  * @param checked Controls checked state of the switch.

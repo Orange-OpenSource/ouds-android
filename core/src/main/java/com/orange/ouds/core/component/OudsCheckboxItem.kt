@@ -36,9 +36,8 @@ import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
+// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
- *
  * An OUDS checkbox item is a layout containing an OudsCheckbox, an associated text and several other optional elements.
  * It can be used in a list as a list item or as a single element to validate general conditions for example.
  * By clicking on a checkbox item, the user changes the checked state of its checkbox.

@@ -62,6 +62,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 
+// <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">OUDS Link design guidelines</a>
 /**
  * An OUDS link which displays a text and an optional icon.
  *
