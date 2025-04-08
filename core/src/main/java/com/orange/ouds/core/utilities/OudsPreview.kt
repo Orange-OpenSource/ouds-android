@@ -64,7 +64,7 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
 }
 
 @Composable
-internal inline fun <reified T> StatesPreview(columnCount: Int = enumEntries<T>().count(), content: (T) -> Unit) where T : Enum<T> {
+internal inline fun <reified T> PreviewStates(columnCount: Int = enumEntries<T>().count(), content: (T) -> Unit) where T : Enum<T> {
     val chunkedStates = enumEntries<T>().chunked(columnCount)
     Box(modifier = Modifier.padding(16.dp)) {
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {

@@ -52,7 +52,7 @@ import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.StatesPreview
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -348,7 +348,7 @@ internal fun PreviewOudsCheckbox(
     parameter: OudsCheckboxPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        StatesPreview<OudsCheckbox.State> { state ->
+        PreviewStates<OudsCheckbox.State> { state ->
             OudsCheckbox(
                 value = toggleableState,
                 interactionSource = remember { MutableInteractionSource() },

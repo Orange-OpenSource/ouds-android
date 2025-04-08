@@ -35,7 +35,7 @@ import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.StatesPreview
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -253,7 +253,7 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        StatesPreview<OudsControlItem.State>(columnCount = 1) { state ->
+        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
             OudsCheckboxItem(
                 value = toggleableState,
                 text = "Label",

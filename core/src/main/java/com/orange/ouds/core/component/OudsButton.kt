@@ -70,7 +70,7 @@ import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.StatesPreview
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
@@ -670,7 +670,7 @@ internal fun PreviewOudsButton(
         val text = if (hasText) hierarchy.name else null
         val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
         val content: @Composable () -> Unit = {
-            StatesPreview<OudsButton.State>(columnCount = 2) { state ->
+            PreviewStates<OudsButton.State>(columnCount = 2) { state ->
                 OudsButton(icon = icon, text = text, onClick = {}, hierarchy = hierarchy, previewState = state)
             }
         }

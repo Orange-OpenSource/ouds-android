@@ -45,7 +45,7 @@ import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.StatesPreview
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -252,7 +252,7 @@ internal fun PreviewOudsRadioButton(
     parameter: OudsRadioButtonPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        StatesPreview<OudsRadioButton.State> { state ->
+        PreviewStates<OudsRadioButton.State> { state ->
             OudsRadioButton(
                 selected = selected,
                 onClick = {},
