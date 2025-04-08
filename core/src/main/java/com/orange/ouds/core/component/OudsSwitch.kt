@@ -255,20 +255,18 @@ internal fun PreviewOudsSwitch(
     darkThemeEnabled: Boolean,
     checked: Boolean
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    with(checked) {
-        val columnCount = 2
-        Box(modifier = Modifier.padding(16.dp)) {
-            val chunkedStates = OudsControl.State.entries.chunked(columnCount)
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                chunkedStates.forEach { states ->
-                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                        states.forEach { state ->
-                            OudsSwitch(
-                                checked = checked,
-                                onCheckedChange = {},
-                                previewState = state
-                            )
-                        }
+    val columnCount = 2
+    Box(modifier = Modifier.padding(16.dp)) {
+        val chunkedStates = OudsControl.State.entries.chunked(columnCount)
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            chunkedStates.forEach { states ->
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    states.forEach { state ->
+                        OudsSwitch(
+                            checked = checked,
+                            onCheckedChange = {},
+                            previewState = state
+                        )
                     }
                 }
             }
