@@ -240,7 +240,7 @@ private fun animateHorizontalAlignmentAsState(targetBiasValue: Float, animationS
 
 private object OudsSwitch {
 
-    val AnimationDuration = 150
+    const val AnimationDuration = 150
 }
 
 @PreviewLightDark
