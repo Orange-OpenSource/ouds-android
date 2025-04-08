@@ -27,7 +27,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -150,9 +149,8 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
             .background(indicatorBackgroundColor(state = state, checked = checked))
             .padding(start = switchTokens.spacePaddingInlineUnselected.value, end = switchTokens.spacePaddingInlineSelected.value),
         horizontalAlignment = horizontalAlignment,
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.weight(1.0f))
-
         val cursorSize by animateSizeAsState(
             targetValue = cursorSize(state = state, checked = checked),
             animationSpec = cursorAnimationSpec()
@@ -182,8 +180,6 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
                 )
             }
         }
-
-        Spacer(modifier = Modifier.weight(1.0f))
     }
 }
 
