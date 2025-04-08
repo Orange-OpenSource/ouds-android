@@ -29,6 +29,13 @@ apply {
     }
 }
 
+tasks.register<Jar>("dokkaJar") {
+    dependsOn(tasks["dokkaGenerate"])
+    from(layout.buildDirectory.dir("dokka"))
+    destinationDirectory = layout.buildDirectory.dir("outputs")
+    archiveClassifier.set("javadoc")
+}
+
 afterEvaluate {
     if (pluginExtension?.enabled == true) {
         publishing {
@@ -38,6 +45,15 @@ afterEvaluate {
                     groupId = "com.orange.ouds.android"
                     artifactId = pluginExtension?.artifactId ?: project.artifactId
                     this.version = version
+                    
+                    if (tasks.findByName("dokkaGenerate") != null) {
+                        val dokkaJar = layout.buildDirectory.file("outputs/${project.name}-${project.version}-javadoc.jar")
+                        val dokkaArtifact = this@afterEvaluate.artifacts.add("default", dokkaJar) {
+                            type = "jar"
+                            builtBy(tasks["dokkaJar"])
+                        }
+                        artifact(dokkaArtifact)
+                    }
 
                     pom {
                         name.set(artifactId)

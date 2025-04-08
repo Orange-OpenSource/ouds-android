@@ -53,7 +53,6 @@ android {
     publishing {
         singleVariant(MavenCentralPublishPluginExtension.VARIANT) {
             withSourcesJar()
-            withJavadocJar()
         }
     }
 
