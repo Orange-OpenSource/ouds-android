@@ -76,8 +76,9 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import kotlinx.parcelize.Parcelize
 
-// <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
 /**
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ *
  * An OUDS button which displays text only.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
