@@ -66,14 +66,15 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
 @Composable
 internal inline fun <reified T> PreviewStates(columnCount: Int = enumEntries<T>().count(), content: (T) -> Unit) where T : Enum<T> {
     val chunkedStates = enumEntries<T>().chunked(columnCount)
-    Box(modifier = Modifier.padding(16.dp)) {
-        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+    val space = 16.dp
+    Box(modifier = Modifier.padding(space)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(space)) {
             repeat(columnCount) { columnIndex ->
                 val columnStates = chunkedStates.mapNotNull { it.getOrNull(columnIndex) }
                 Column {
                     columnStates.forEachIndexed { index, state ->
                         Text(
-                            modifier = Modifier.padding(top = if (index == 0) 0.dp else 16.dp, bottom = 8.dp),
+                            modifier = Modifier.padding(top = if (index == 0) 0.dp else space, bottom = 8.dp),
                             text = state.name,
                             color = OudsTheme.colorScheme.content.default,
                             fontFamily = FontFamily.Monospace,
