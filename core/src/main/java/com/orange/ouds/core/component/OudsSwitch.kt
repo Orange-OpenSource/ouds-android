@@ -26,7 +26,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -57,6 +56,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -255,22 +255,12 @@ internal fun PreviewOudsSwitch(
     darkThemeEnabled: Boolean,
     checked: Boolean
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    val columnCount = 2
-    Box(modifier = Modifier.padding(16.dp)) {
-        val chunkedStates = OudsControl.State.entries.chunked(columnCount)
-        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            chunkedStates.forEach { states ->
-                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    states.forEach { state ->
-                        OudsSwitch(
-                            checked = checked,
-                            onCheckedChange = {},
-                            previewState = state
-                        )
-                    }
-                }
-            }
-        }
+    PreviewStates<OudsControl.State>(columnCount = 3) { state ->
+        OudsSwitch(
+            checked = checked,
+            onCheckedChange = {},
+            previewState = state
+        )
     }
 }
 
