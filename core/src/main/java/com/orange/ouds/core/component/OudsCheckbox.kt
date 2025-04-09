@@ -118,12 +118,12 @@ fun OudsTriStateCheckbox(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val checkboxInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
+    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
 
     val toggleableModifier =
         if (onClick != null) {
             Modifier.triStateToggleable(
-                interactionSource = checkboxInteractionSource,
+                interactionSource = interactionSource,
                 indication = LocalIndication.current,
                 state = state,
                 onClick = onClick,
@@ -136,7 +136,7 @@ fun OudsTriStateCheckbox(
 
     OudsCheckbox(
         value = state,
-        interactionSource = checkboxInteractionSource,
+        interactionSource = interactionSource,
         modifier = modifier.then(toggleableModifier),
         previewState = null,
         enabled = enabled,

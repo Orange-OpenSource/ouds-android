@@ -238,8 +238,8 @@ private fun OudsButton(
         previewMessage = { if (icon != null && text == null) "⛔" else "Not on a\ncolored\nbackground" }
     ) {
         val buttonTokens = OudsTheme.componentsTokens.button
-        val buttonInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
-        val interactionState by buttonInteractionSource.collectInteractionStateAsState()
+        @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+        val interactionState by interactionSource.collectInteractionStateAsState()
         val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
         val iconScale = if (icon != null && text == null) LocalContext.current.resources.configuration.fontScale else 1.0f
         val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeightIconOnly.dp * iconScale else Dp.Unspecified
@@ -262,7 +262,7 @@ private fun OudsButton(
                 colors = buttonColors(hierarchy = hierarchy, buttonState = state),
                 elevation = null,
                 contentPadding = PaddingValues(all = 0.dp),
-                interactionSource = buttonInteractionSource
+                interactionSource = interactionSource
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     if (state == OudsButton.State.Loading) {

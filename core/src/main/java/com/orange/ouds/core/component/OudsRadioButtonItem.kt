@@ -120,8 +120,8 @@ private fun OudsRadioButtonItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val radioButtonItemInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by radioButtonItemInteractionSource.collectInteractionStateAsState()
+    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
 
     val selectableModifier = if (onClick != null) {
@@ -129,7 +129,7 @@ private fun OudsRadioButtonItem(
             selected = selected,
             onClick = onClick,
             enabled = enabled && !readOnly,
-            interactionSource = radioButtonItemInteractionSource,
+            interactionSource = interactionSource,
             indication = null,
             role = Role.RadioButton,
         )

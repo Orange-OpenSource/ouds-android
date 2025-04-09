@@ -102,8 +102,8 @@ private fun OudsRadioButton(
         exceptionMessage = { "An OudsRadioButton set to disabled with error parameter activated is not allowed." }
     ) {
         val radioButtonTokens = OudsTheme.componentsTokens.radioButton
-        val radioButtonInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
-        val interactionState by radioButtonInteractionSource.collectInteractionStateAsState()
+        @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+        val interactionState by interactionSource.collectInteractionStateAsState()
         val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
 
         val selectableModifier = if (onClick != null) {
@@ -111,7 +111,7 @@ private fun OudsRadioButton(
                 selected = selected,
                 onClick = onClick,
                 enabled = enabled,
-                interactionSource = radioButtonInteractionSource,
+                interactionSource = interactionSource,
                 indication = null,
                 role = Role.RadioButton,
             )
