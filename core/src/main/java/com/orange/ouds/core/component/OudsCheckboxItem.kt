@@ -16,8 +16,6 @@ import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -30,15 +28,16 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
@@ -241,7 +240,7 @@ private fun checkboxState(state: OudsControlItem.State) = when (state) {
     OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsCheckbox.State.Disabled
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItem(@PreviewParameter(OudsCheckboxItemPreviewParameterProvider::class) parameter: OudsCheckboxItemPreviewParameter) {
@@ -254,26 +253,36 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        Column(Modifier.padding(16.dp)) {
-            OudsControlItem.State.entries.forEach { state ->
-                OudsCheckboxItem(
-                    value = toggleableState,
-                    text = "Label",
-                    previewState = state,
-                    helperText = helperText,
-                    divider = divider,
-                    error = error,
-                    inverted = inverted,
-                    icon = if (hasIcon) {
-                        OudsControlItem.Icon(imageVector = Icons.Filled.Call)
-                    } else {
-                        null
-                    },
-                    interactionSource = remember { MutableInteractionSource() }
-                )
-            }
+        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+            OudsCheckboxItem(
+                value = toggleableState,
+                text = "Label",
+                previewState = state,
+                helperText = helperText,
+                divider = divider,
+                error = error,
+                inverted = inverted,
+                icon = if (hasIcon) {
+                    OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+                } else {
+                    null
+                },
+                interactionSource = remember { MutableInteractionSource() }
+            )
         }
     }
+}
+
+@Preview
+@Composable
+internal fun PreviewOudsCheckboxItemWithLongHelperText() = OudsPreview {
+    OudsCheckboxItem(
+        checked = true,
+        text = "Label",
+        onCheckedChange = {},
+        helperText = LoremIpsumText,
+        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+    )
 }
 
 internal data class OudsCheckboxItemPreviewParameter(
@@ -310,14 +319,6 @@ private val previewParameterValues: List<OudsCheckboxItemPreviewParameter>
                         helperText = helperText,
                         divider = true,
                         error = true,
-                        inverted = inverted
-                    ),
-                    OudsCheckboxItemPreviewParameter(
-                        toggleableState = ToggleableState.On,
-                        helperText = LoremIpsumText,
-                        divider = true,
-                        error = true,
-                        hasIcon = true,
                         inverted = inverted
                     ),
                 )

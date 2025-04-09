@@ -17,13 +17,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.selection.selectable
@@ -37,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -48,9 +45,9 @@ import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">OUDS Radio button design guidelines</a>
@@ -242,7 +239,7 @@ internal object OudsRadioButton {
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsRadioButton(@PreviewParameter(OudsRadioButtonPreviewParameterProvider::class) parameter: OudsRadioButtonPreviewParameter) {
@@ -255,23 +252,13 @@ internal fun PreviewOudsRadioButton(
     parameter: OudsRadioButtonPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val columnCount = 2
-        Box(modifier = Modifier.padding(16.dp)) {
-            val chunkedStates = OudsRadioButton.State.entries.chunked(columnCount)
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                chunkedStates.forEach { states ->
-                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                        states.forEach { state ->
-                            OudsRadioButton(
-                                selected = selected,
-                                onClick = {},
-                                error = error,
-                                previewState = state
-                            )
-                        }
-                    }
-                }
-            }
+        PreviewStates<OudsRadioButton.State> { state ->
+            OudsRadioButton(
+                selected = selected,
+                onClick = {},
+                error = error,
+                previewState = state
+            )
         }
     }
 }

@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemDividerCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemEnabledCustomization
@@ -42,7 +43,6 @@ import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsRadioButtonItem
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -125,7 +125,7 @@ private fun RadioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, modi
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewRadioButtonItemDemoScreen() = OudsPreview {
     RadioButtonItemDemoScreen()

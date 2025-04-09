@@ -22,11 +22,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
@@ -58,7 +58,7 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewTokensScreen() = OudsPreview {
     TokensScreen(

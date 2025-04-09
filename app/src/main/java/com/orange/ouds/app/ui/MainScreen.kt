@@ -50,6 +50,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.content.getSystemService
@@ -60,7 +61,6 @@ import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import com.orange.ouds.theme.orange.OrangeTheme
@@ -222,7 +222,7 @@ private fun getCurrentTheme(
     .orElse { themes.firstOrNull { it.name == ORANGE_THEME_NAME } }
     .orElse { themes.first() }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewMainScreen() = OudsPreview {
     // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which returns an empty list in Compose previews

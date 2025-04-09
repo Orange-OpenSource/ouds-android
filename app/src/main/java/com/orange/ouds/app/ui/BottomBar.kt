@@ -42,10 +42,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: Boolean = true) {
@@ -100,7 +100,7 @@ enum class BottomBarItem(
     About(R.string.app_bottomBar_about_label, R.drawable.ic_info, "main/about");
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewBottomBar() = OudsPreview {
     BottomBar(currentRoute = "", navigateToRoute = {})

@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.LocalColoredBox
@@ -33,7 +34,6 @@ import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 
@@ -188,7 +188,7 @@ private fun tweak(color: OudsColoredBox.Color): OudsTheme.Tweak {
 }
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) parameter: OudsColoredBox.Color) {
     PreviewOudsColoredBox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)

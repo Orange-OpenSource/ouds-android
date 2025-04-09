@@ -35,12 +35,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.orange.OrangeTheme
 
 @Composable
@@ -89,7 +89,7 @@ private fun copyCodeToClipboard(context: Context, code: String, clipboardManager
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 internal fun PreviewCodeSnippet() = OudsPreview {
     CodeSnippet {

@@ -19,6 +19,7 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
@@ -31,7 +32,6 @@ import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -147,14 +147,14 @@ private fun CheckboxDemoCodeSnippet(state: CheckboxDemoState, indeterminate: Boo
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewCheckboxDemoScreen() = OudsPreview {
     CheckboxDemoScreen()
 }
 
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewIndeterminateCheckboxDemoScreen() = OudsPreview {
     CheckboxDemoScreen(indeterminate = true)

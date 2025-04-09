@@ -18,13 +18,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.selection.triStateToggleable
@@ -43,6 +39,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -55,9 +52,9 @@ import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
@@ -338,7 +335,7 @@ internal object OudsCheckbox {
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckbox(@PreviewParameter(OudsCheckboxPreviewParameterProvider::class) parameter: OudsCheckboxPreviewParameter) {
@@ -351,23 +348,13 @@ internal fun PreviewOudsCheckbox(
     parameter: OudsCheckboxPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val columnCount = 2
-        Box(modifier = Modifier.padding(16.dp)) {
-            val chunkedStates = OudsCheckbox.State.entries.chunked(columnCount)
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                chunkedStates.forEach { states ->
-                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                        states.forEach { state ->
-                            OudsCheckbox(
-                                value = toggleableState,
-                                interactionSource = remember { MutableInteractionSource() },
-                                error = error,
-                                previewState = state
-                            )
-                        }
-                    }
-                }
-            }
+        PreviewStates<OudsCheckbox.State> { state ->
+            OudsCheckbox(
+                value = toggleableState,
+                interactionSource = remember { MutableInteractionSource() },
+                error = error,
+                previewState = state
+            )
         }
     }
 }

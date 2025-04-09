@@ -17,9 +17,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun Screen(content: @Composable () -> Unit) {
@@ -35,7 +35,7 @@ fun Screen(content: @Composable () -> Unit) {
 @Composable
 fun <T : Any> DemoScreen(demoState: T, content: @Composable T.() -> Unit) = Screen { demoState.content() }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewScreen() = OudsPreview {
     Screen {}
