@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -40,7 +41,9 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -199,7 +202,12 @@ private fun indicatorColor(state: OudsRadioButton.State, selected: Boolean, erro
             }
         } else {
             when (state) {
-                OudsRadioButton.State.Enabled -> if (selected) this.selected else OudsTheme.colorScheme.border.emphasized
+                OudsRadioButton.State.Enabled -> if (selected) {
+                    // In order to reach the a11y AAA level, the selected radio button is black in light mode
+                    if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else this.selected
+                } else {
+                    OudsTheme.colorScheme.border.emphasized
+                }
                 OudsRadioButton.State.Disabled -> disabled
                 OudsRadioButton.State.Hovered -> hover
                 OudsRadioButton.State.Pressed -> pressed
