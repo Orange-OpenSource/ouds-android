@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -43,6 +42,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @Composable
 internal fun OudsControlItem(
@@ -144,7 +144,17 @@ internal fun OudsControlItem(
  */
 object OudsControlItem {
     internal enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly
+        Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly;
+
+        fun toControlState(): OudsControl.State {
+            return when (this) {
+                Enabled -> OudsControl.State.Enabled
+                Hovered -> OudsControl.State.Hovered
+                Pressed -> OudsControl.State.Pressed
+                Focused -> OudsControl.State.Focused
+                Disabled, ReadOnly -> OudsControl.State.Disabled
+            }
+        }
     }
 
     /**
@@ -271,3 +281,49 @@ private fun additionalLabelColor(state: OudsControlItem.State) =
 @Composable
 private fun helperTextColor(state: OudsControlItem.State) =
     if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
+
+internal data class OudsControlItemPreviewParameter<T, S>(
+    val value: T,
+    val extraParameter: S?,
+    val helperText: String? = null,
+    val divider: Boolean = false,
+    val hasIcon: Boolean = false,
+    val error: Boolean = false,
+    val reversed: Boolean = false,
+    val additionalLabel: String? = null
+)
+
+internal open class OudsControlItemPreviewParameterProvider<T, S>(
+    values: List<T>,
+    extraParameters: List<S> = listOf()
+) : BasicPreviewParameterProvider<OudsControlItemPreviewParameter<T, S>>(*getPreviewParameterValues(values, extraParameters).toTypedArray()) {
+
+    companion object {
+        val DefaultBooleanValues = listOf(false, false, true)
+    }
+}
+
+private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: List<S> = listOf()): List<OudsControlItemPreviewParameter<T, S>> {
+    val additionalLabel = "Additional label"
+    val helperText = "Helper text"
+    val reversedValues = listOf(false, true)
+
+    return buildList {
+        reversedValues.forEach { reversed ->
+            val parameters = List(3) { index ->
+                OudsControlItemPreviewParameter(
+                    value = values[index],
+                    extraParameter = extraParameters.getOrNull(index),
+                    reversed = reversed
+                ).run {
+                    when (index) {
+                        0 -> this
+                        1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
+                        else -> copy(helperText = helperText, divider = true, error = true)
+                    }
+                }
+            }
+            addAll(parameters)
+        }
+    }
+}

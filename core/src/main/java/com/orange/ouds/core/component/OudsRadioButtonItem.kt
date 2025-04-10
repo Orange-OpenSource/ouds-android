@@ -35,7 +35,6 @@ import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">OUDS Radio button design guidelines</a>
@@ -152,7 +151,7 @@ private fun OudsRadioButtonItem(
         errorComponentName = "OudsRadioButtonItem",
         indicator = {
             OudsRadioButtonIndicator(
-                state = radioButtonState(state),
+                state = state.toControlState(),
                 selected = selected,
                 error = error
             )
@@ -164,14 +163,6 @@ private fun OudsRadioButtonItem(
             .semantics(mergeDescendants = true) {}
             .border(outlined = outlined, selected = selected, error = error, state = state)
     )
-}
-
-private fun radioButtonState(state: OudsControlItem.State) = when (state) {
-    OudsControlItem.State.Enabled -> OudsControl.State.Enabled
-    OudsControlItem.State.Hovered -> OudsControl.State.Hovered
-    OudsControlItem.State.Pressed -> OudsControl.State.Pressed
-    OudsControlItem.State.Focused -> OudsControl.State.Focused
-    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsControl.State.Disabled
 }
 
 @Composable
@@ -225,7 +216,7 @@ internal fun PreviewOudsRadioButtonItem(
     with(parameter) {
         PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
             OudsRadioButtonItem(
-                selected = selected,
+                selected = value,
                 label = "Label",
                 onClick = { },
                 previewState = state,
@@ -233,13 +224,9 @@ internal fun PreviewOudsRadioButtonItem(
                 helperText = helperText,
                 divider = divider,
                 error = error,
-                outlined = outlined,
+                outlined = checkNotNull(extraParameter),
                 reversed = reversed,
-                icon = if (hasIcon) {
-                    OudsControlItem.Icon(imageVector = Icons.Filled.Call)
-                } else {
-                    null
-                }
+                icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null
             )
         }
     }
@@ -258,50 +245,9 @@ internal fun PreviewOudsRadioButtonItemWithLongHelperText() = OudsPreview {
     )
 }
 
-internal data class OudsRadioButtonItemPreviewParameter(
-    val selected: Boolean,
-    val additionalLabel: String? = null,
-    val helperText: String? = null,
-    val divider: Boolean = false,
-    val hasIcon: Boolean = false,
-    val error: Boolean = false,
-    val outlined: Boolean = false,
-    val reversed: Boolean = false
-)
+internal typealias OudsRadioButtonItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Boolean>
+
+private val previewOutlinedValues = listOf(true, true, false)
 
 internal class OudsRadioButtonItemPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsRadioButtonItemPreviewParameter>(*previewParameterValues.toTypedArray())
-
-private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
-    get() {
-        val additionalLabel = "Additional label"
-        val helperText = "Helper text"
-        val reversedValues = listOf(false, true)
-        return buildList {
-            reversedValues.forEach { reversed ->
-                val parameters = listOf(
-                    OudsRadioButtonItemPreviewParameter(
-                        selected = false,
-                        outlined = true,
-                        reversed = reversed
-                    ),
-                    OudsRadioButtonItemPreviewParameter(
-                        selected = false,
-                        hasIcon = true,
-                        additionalLabel = additionalLabel,
-                        helperText = helperText,
-                        outlined = true,
-                        reversed = reversed
-                    ),
-                    OudsRadioButtonItemPreviewParameter(
-                        selected = true,
-                        helperText = helperText,
-                        divider = true,
-                        error = true,
-                        reversed = reversed
-                    ),
-                )
-                addAll(parameters)
-            }
-        }
-    }
+    OudsControlItemPreviewParameterProvider<Boolean, Boolean>(DefaultBooleanValues, previewOutlinedValues)
