@@ -23,15 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.controlitem.ControlItemDividerCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemEnabledCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemErrorCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemHelperTextCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemReversedCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemLabelCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
+import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
@@ -50,24 +44,23 @@ fun RadioButtonItemDemoScreen() = DemoScreen(rememberRadioButtonItemDemoState())
     CustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            ControlItemIconCustomization()
-            ControlItemDividerCustomization()
-            CustomizationSwitchListItem(
-                label = stringResource(R.string.app_components_radioButton_radioButtonItem_outlined_label),
-                checked = outlined,
-                onCheckedChange = { outlined = it },
+            val extraCustomizations = listOf(
+                controlItemCustomization(2) {
+                    CustomizationSwitchListItem(
+                        label = stringResource(R.string.app_components_radioButton_radioButtonItem_outlined_label),
+                        checked = outlined,
+                        onCheckedChange = { outlined = it },
+                    )
+                },
+                controlItemCustomization(8) {
+                    CustomizationTextField(
+                        label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
+                        value = additionalLabel.orEmpty(),
+                        onValueChange = { value -> additionalLabel = value }
+                    )
+                }
             )
-            ControlItemReversedCustomization()
-            ControlItemEnabledCustomization()
-            ControlItemReadOnlyCustomization()
-            ControlItemErrorCustomization()
-            ControlItemLabelCustomization()
-            CustomizationTextField(
-                label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
-                value = additionalLabel.orEmpty(),
-                onValueChange = { value -> additionalLabel = value }
-            )
-            ControlItemHelperTextCustomization()
+            ControlItemCustomizations(extraCustomizations = extraCustomizations)
         }
     ) {
         LightDarkDemo {

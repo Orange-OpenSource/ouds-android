@@ -15,7 +15,7 @@ package com.orange.ouds.app.ui.components.switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
@@ -48,38 +48,33 @@ class SwitchItemDemoState(
     text: String,
     helperText: String?
 ) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, text, helperText) {
+
     companion object {
-        val Saver = run {
-            val checkedKey = "checked"
-            mapSaver(
-                save = { state ->
-                    mapOf(
-                        checkedKey to state.checked,
-                        IconKey to state.icon,
-                        DividerKey to state.divider,
-                        ReversedKey to state.reversed,
-                        EnabledKey to state.enabled,
-                        ReadOnlyKey to state.readOnly,
-                        ErrorKey to state.error,
-                        LabelKey to state.label,
-                        HelperTextKey to state.helperText
-                    )
-                },
-                restore = { map ->
+
+        val Saver = listSaver(
+            save = { state ->
+                listOf(
+                    state.checked,
+                    with(ControlItemDemoState.Saver) { save(state) }
+                )
+            },
+            restore = { list: List<Any?> ->
+                val controlItemDemoState = list[1]?.let { ControlItemDemoState.Saver.restore(it) }
+                controlItemDemoState?.run {
                     SwitchItemDemoState(
-                        map[checkedKey] as Boolean,
-                        map[IconKey] as Boolean,
-                        map[DividerKey] as Boolean,
-                        map[ReversedKey] as Boolean,
-                        map[EnabledKey] as Boolean,
-                        map[ReadOnlyKey] as Boolean,
-                        map[ErrorKey] as Boolean,
-                        map[LabelKey] as String,
-                        map[HelperTextKey] as String?
+                        list[0] as Boolean,
+                        icon,
+                        divider,
+                        reversed,
+                        enabled,
+                        readOnly,
+                        error,
+                        label,
+                        helperText
                     )
                 }
-            )
-        }
+            }
+        )
     }
 
     var checked: Boolean by mutableStateOf(checked)

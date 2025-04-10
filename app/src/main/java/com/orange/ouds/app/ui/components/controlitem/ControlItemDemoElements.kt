@@ -23,8 +23,30 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.core.component.OudsControlItem
 
+data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
+
+fun controlItemCustomization(index: Int, content: @Composable () -> Unit) = ControlItemCustomization(index, content)
+
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemIconCustomization() {
+fun <T : ControlItemDemoState> T.ControlItemCustomizations(extraCustomizations: List<ControlItemCustomization> = listOf()) {
+    val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
+        { ControlItemIconCustomization() },
+        { ControlItemDividerCustomization() },
+        { ControlItemReversedCustomization() },
+        { ControlItemEnabledCustomization() },
+        { ControlItemReadOnlyCustomization() },
+        { ControlItemErrorCustomization() },
+        { ControlItemLabelCustomization() },
+        { ControlItemHelperTextCustomization() }
+    )
+    extraCustomizations.forEach { (index, content) ->
+        customizations.add(minOf(index, customizations.count()), content)
+    }
+    customizations.forEach { it() }
+}
+
+@Composable
+private fun <T : ControlItemDemoState> T.ControlItemIconCustomization() {
     CustomizationSwitchListItem(
         label = stringResource(R.string.app_components_controlItem_icon_label),
         checked = icon,
@@ -33,7 +55,7 @@ fun <T : ControlItemDemoState> T.ControlItemIconCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemDividerCustomization() {
+private fun <T : ControlItemDemoState> T.ControlItemDividerCustomization() {
     CustomizationSwitchListItem(
         label = stringResource(R.string.app_components_controlItem_divider_label),
         checked = divider,
@@ -42,7 +64,7 @@ fun <T : ControlItemDemoState> T.ControlItemDividerCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemReversedCustomization() {
+private fun <T : ControlItemDemoState> T.ControlItemReversedCustomization() {
     CustomizationSwitchListItem(
         label = stringResource(R.string.app_components_controlItem_reversed_label),
         checked = reversed,
@@ -51,7 +73,7 @@ fun <T : ControlItemDemoState> T.ControlItemReversedCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemEnabledCustomization() {
+private fun <T : ControlItemDemoState> T.ControlItemEnabledCustomization() {
     CustomizationSwitchListItem(
         label = stringResource(R.string.app_common_enabled_label),
         checked = enabled,
@@ -61,7 +83,7 @@ fun <T : ControlItemDemoState> T.ControlItemEnabledCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemReadOnlyCustomization() {
+private fun <T : ControlItemDemoState> T.ControlItemReadOnlyCustomization() {
     CustomizationSwitchListItem(
         label = stringResource(R.string.app_components_controlItem_readOnly_label),
         checked = readOnly,
@@ -71,7 +93,7 @@ fun <T : ControlItemDemoState> T.ControlItemReadOnlyCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemErrorCustomization() {
+private fun <T : ControlItemDemoState> T.ControlItemErrorCustomization() {
     CustomizationSwitchListItem(
         label = stringResource(R.string.app_components_common_error_label),
         checked = error,
@@ -81,7 +103,7 @@ fun <T : ControlItemDemoState> T.ControlItemErrorCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemLabelCustomization() {
+private fun <T : ControlItemDemoState> T.ControlItemLabelCustomization() {
     CustomizationTextField(
         label = stringResource(R.string.app_components_common_label_label),
         value = label,
@@ -90,7 +112,7 @@ fun <T : ControlItemDemoState> T.ControlItemLabelCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemHelperTextCustomization() {
+private fun <T : ControlItemDemoState> T.ControlItemHelperTextCustomization() {
     CustomizationTextField(
         label = stringResource(R.string.app_components_controlItem_helperText_label),
         value = helperText.orEmpty(),
