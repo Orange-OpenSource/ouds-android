@@ -106,7 +106,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = wit
             painterArgument(R.drawable.ic_heart)
         }
     }
-    if (!divider) typedArgument("divider", divider)
+    if (divider) typedArgument("divider", divider)
     if (reversed) typedArgument("reversed", reversed)
     if (!enabled) enabledArgument(enabled)
     if (readOnly) typedArgument("readOnly", readOnly)
