@@ -133,10 +133,7 @@ internal fun OudsControlItem(
                 trailingElement?.let { LeadingTrailingBox(trailingElement) }
             }
             if (divider) {
-                HorizontalDivider(
-                    thickness = dividerThickness,
-                    color = OudsTheme.colorScheme.border.default.copy(alpha = 0.2f)
-                ) //TODO Replace with OudsHorizontalDivider when available
+                OudsHorizontalDivider()
             }
         }
     }
