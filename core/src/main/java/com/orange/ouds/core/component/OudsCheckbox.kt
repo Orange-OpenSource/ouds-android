@@ -12,8 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import com.orange.ouds.core.component.common.outerBorder
-import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
@@ -42,6 +40,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
@@ -137,7 +136,7 @@ fun OudsTriStateCheckbox(
         if (onClick != null) {
             Modifier.triStateToggleable(
                 interactionSource = interactionSource,
-                indication = LocalIndication.current,
+                indication = OudsControlItem.clickIndication(),
                 state = state,
                 onClick = onClick,
                 enabled = enabled,

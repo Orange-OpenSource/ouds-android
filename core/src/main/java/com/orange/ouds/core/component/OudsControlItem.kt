@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -33,6 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import com.orange.ouds.core.component.common.outerBorder
@@ -175,6 +177,13 @@ object OudsControlItem {
     }
 
     /**
+     * Indication used by control items and associated standalone elements like checkbox, radio button, ...
+     */
+    internal val clickIndication: @Composable () -> Indication = {
+        BackgroundAlphaVariation(OudsTheme.componentsTokens.controlItem.colorBgPressed.value)
+    }
+
+    /**
      * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
      * It is non-clickable and no content description is needed because a control item label is always present.
      */
@@ -257,7 +266,12 @@ private fun backgroundColor(state: OudsControlItem.State): Color {
         when (state) {
             OudsControlItem.State.Enabled, OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> Color.Transparent
             OudsControlItem.State.Hovered -> colorBgHover.value
-            OudsControlItem.State.Pressed -> colorBgPressed.value
+            OudsControlItem.State.Pressed -> if (LocalInspectionMode.current) {
+                colorBgPressed.value
+            } else {
+                // Pressed background color is handled by `OudsControlItem.clickIndication`
+                Color.Transparent
+            }
             OudsControlItem.State.Focused -> colorBgFocus.value
         }
     }
