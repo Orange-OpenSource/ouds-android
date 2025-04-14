@@ -82,30 +82,30 @@ object OudsDivider {
      * Each color corresponds to a specific color key token from the design system.
      */
     enum class Color {
+        Default,
+        Muted,
+        Emphasized,
+        BrandPrimary,
+        OnBrandPrimary,
         AlwaysBlack,
         AlwaysOnBlack,
-        AlwaysOnWhite,
         AlwaysWhite,
-        BrandPrimary,
-        Default,
-        Emphasized,
-        Muted,
-        OnBrandPrimary;
+        AlwaysOnWhite;
 
         val value: androidx.compose.ui.graphics.Color
             @Composable
             get() {
                 with(OudsTheme.colorScheme) {
                     return when (this@Color) {
+                        Default -> border.default
+                        Muted -> border.muted
+                        Emphasized -> border.emphasized
+                        OnBrandPrimary -> border.onBrand.primary
+                        BrandPrimary -> border.brandPrimary
                         AlwaysBlack -> always.black
                         AlwaysOnBlack -> always.onBlack
-                        AlwaysOnWhite -> always.onWhite
                         AlwaysWhite -> always.white
-                        BrandPrimary -> border.brandPrimary
-                        Default -> border.default
-                        Emphasized -> border.emphasized
-                        Muted -> border.muted
-                        OnBrandPrimary -> border.onBrand.primary
+                        AlwaysOnWhite -> always.onWhite
                     }
                 }
             }
