@@ -23,15 +23,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
@@ -148,11 +145,11 @@ fun OudsTriStateCheckboxItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val checkboxInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
+    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
 
     val toggleableModifier = if (onClick != null) {
         Modifier.triStateToggleable(
-            interactionSource = checkboxInteractionSource,
+            interactionSource = interactionSource,
             indication = LocalIndication.current,
             state = state,
             onClick = onClick,
@@ -166,7 +163,7 @@ fun OudsTriStateCheckboxItem(
     OudsCheckboxItem(
         value = state,
         text = text,
-        interactionSource = checkboxInteractionSource,
+        interactionSource = interactionSource,
         modifier = modifier.then(toggleableModifier),
         previewState = null,
         helperText = helperText,
@@ -194,7 +191,6 @@ private fun OudsCheckboxItem(
     readOnly: Boolean = false,
     error: Boolean = false
 ) {
-    val context = LocalContext.current
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
 
@@ -222,22 +218,16 @@ private fun OudsCheckboxItem(
             ToggleableState.Off -> "Unselected"
             ToggleableState.Indeterminate -> "Indeterminate"
         },
-        modifier = modifier.semantics(mergeDescendants = true) {
-            stateDescription = when (value) {
-                ToggleableState.Off -> context.getString(R.string.core_checkbox_unchecked_a11y)
-                ToggleableState.On -> context.getString(R.string.core_checkbox_checked_a11y)
-                ToggleableState.Indeterminate -> context.getString(R.string.core_checkbox_indeterminate_a11y)
-            }
-        }
+        modifier = modifier.semantics(mergeDescendants = true) {}
     )
 }
 
 private fun checkboxState(state: OudsControlItem.State) = when (state) {
-    OudsControlItem.State.Enabled -> OudsCheckbox.State.Enabled
-    OudsControlItem.State.Hovered -> OudsCheckbox.State.Hovered
-    OudsControlItem.State.Pressed -> OudsCheckbox.State.Pressed
-    OudsControlItem.State.Focused -> OudsCheckbox.State.Focused
-    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsCheckbox.State.Disabled
+    OudsControlItem.State.Enabled -> OudsControl.State.Enabled
+    OudsControlItem.State.Hovered -> OudsControl.State.Hovered
+    OudsControlItem.State.Pressed -> OudsControl.State.Pressed
+    OudsControlItem.State.Focused -> OudsControl.State.Focused
+    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsControl.State.Disabled
 }
 
 @PreviewLightDark

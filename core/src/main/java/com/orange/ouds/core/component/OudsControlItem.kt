@@ -164,21 +164,21 @@ object OudsControlItem {
         ) : OudsComponentContent.ExtraParameters()
 
         /**
-         * Creates an instance of [OudsRadioButtonItem.Icon].
+         * Creates an instance of [OudsControlItem.Icon].
          *
          * @param painter Painter of the icon.
          */
         constructor(painter: Painter) : this(painter as Any)
 
         /**
-         * Creates an instance of [OudsRadioButtonItem.Icon].
+         * Creates an instance of [OudsControlItem.Icon].
          *
          * @param imageVector Image vector of the icon.
          */
         constructor(imageVector: ImageVector) : this(imageVector as Any)
 
         /**
-         * Creates an instance of [OudsRadioButtonItem.Icon].
+         * Creates an instance of [OudsControlItem.Icon].
          *
          * @param bitmap Image bitmap of the icon.
          */

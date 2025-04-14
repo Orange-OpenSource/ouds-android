@@ -631,7 +631,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 ),
                 positive = OudsColorScheme.Repository.Positive(
                     default = repositoryPositiveDefaultLight,
-                    high = repositoryOpacityWhiteHighLight,
+                    high = repositoryPositiveHighLight,
                     highest = repositoryPositiveHighestLight,
                     low = repositoryPositiveLowLight,
                     lowest = repositoryPositiveLowestLight,

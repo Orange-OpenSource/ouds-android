@@ -121,8 +121,8 @@ private fun OudsRadioButtonItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val radioButtonItemInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by radioButtonItemInteractionSource.collectInteractionStateAsState()
+    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
 
     val selectableModifier = if (onClick != null) {
@@ -130,7 +130,7 @@ private fun OudsRadioButtonItem(
             selected = selected,
             onClick = onClick,
             enabled = enabled && !readOnly,
-            interactionSource = radioButtonItemInteractionSource,
+            interactionSource = interactionSource,
             indication = null,
             role = Role.RadioButton,
         )
@@ -167,11 +167,11 @@ private fun OudsRadioButtonItem(
 }
 
 private fun radioButtonState(state: OudsControlItem.State) = when (state) {
-    OudsControlItem.State.Enabled -> OudsRadioButton.State.Enabled
-    OudsControlItem.State.Hovered -> OudsRadioButton.State.Hovered
-    OudsControlItem.State.Pressed -> OudsRadioButton.State.Pressed
-    OudsControlItem.State.Focused -> OudsRadioButton.State.Focused
-    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsRadioButton.State.Disabled
+    OudsControlItem.State.Enabled -> OudsControl.State.Enabled
+    OudsControlItem.State.Hovered -> OudsControl.State.Hovered
+    OudsControlItem.State.Pressed -> OudsControl.State.Pressed
+    OudsControlItem.State.Focused -> OudsControl.State.Focused
+    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsControl.State.Disabled
 }
 
 @Composable
