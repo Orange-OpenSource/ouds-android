@@ -19,7 +19,7 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
-import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.core.component.OudsControlItem
 
@@ -47,7 +47,7 @@ fun <T : ControlItemDemoState> T.ControlItemCustomizations(extraCustomizations: 
 
 @Composable
 private fun <T : ControlItemDemoState> T.ControlItemIconCustomization() {
-    CustomizationSwitchListItem(
+    CustomizationSwitchItem(
         label = stringResource(R.string.app_components_controlItem_icon_label),
         checked = icon,
         onCheckedChange = { icon = it },
@@ -56,7 +56,7 @@ private fun <T : ControlItemDemoState> T.ControlItemIconCustomization() {
 
 @Composable
 private fun <T : ControlItemDemoState> T.ControlItemDividerCustomization() {
-    CustomizationSwitchListItem(
+    CustomizationSwitchItem(
         label = stringResource(R.string.app_components_controlItem_divider_label),
         checked = divider,
         onCheckedChange = { divider = it },
@@ -65,7 +65,7 @@ private fun <T : ControlItemDemoState> T.ControlItemDividerCustomization() {
 
 @Composable
 private fun <T : ControlItemDemoState> T.ControlItemReversedCustomization() {
-    CustomizationSwitchListItem(
+    CustomizationSwitchItem(
         label = stringResource(R.string.app_components_controlItem_reversed_label),
         checked = reversed,
         onCheckedChange = { reversed = it },
@@ -74,7 +74,7 @@ private fun <T : ControlItemDemoState> T.ControlItemReversedCustomization() {
 
 @Composable
 private fun <T : ControlItemDemoState> T.ControlItemEnabledCustomization() {
-    CustomizationSwitchListItem(
+    CustomizationSwitchItem(
         label = stringResource(R.string.app_common_enabled_label),
         checked = enabled,
         onCheckedChange = { enabled = it },
@@ -84,7 +84,7 @@ private fun <T : ControlItemDemoState> T.ControlItemEnabledCustomization() {
 
 @Composable
 private fun <T : ControlItemDemoState> T.ControlItemReadOnlyCustomization() {
-    CustomizationSwitchListItem(
+    CustomizationSwitchItem(
         label = stringResource(R.string.app_components_controlItem_readOnly_label),
         checked = readOnly,
         onCheckedChange = { readOnly = it },
@@ -94,7 +94,7 @@ private fun <T : ControlItemDemoState> T.ControlItemReadOnlyCustomization() {
 
 @Composable
 private fun <T : ControlItemDemoState> T.ControlItemErrorCustomization() {
-    CustomizationSwitchListItem(
+    CustomizationSwitchItem(
         label = stringResource(R.string.app_components_common_error_label),
         checked = error,
         onCheckedChange = { error = it },

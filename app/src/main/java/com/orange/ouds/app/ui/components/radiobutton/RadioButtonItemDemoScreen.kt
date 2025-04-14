@@ -29,7 +29,7 @@ import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
-import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
@@ -46,7 +46,7 @@ fun RadioButtonItemDemoScreen() = DemoScreen(rememberRadioButtonItemDemoState())
         bottomSheetContent = {
             val extraCustomizations = listOf(
                 controlItemCustomization(2) {
-                    CustomizationSwitchListItem(
+                    CustomizationSwitchItem(
                         label = stringResource(R.string.app_components_radioButton_radioButtonItem_outlined_label),
                         checked = outlined,
                         onCheckedChange = { outlined = it },

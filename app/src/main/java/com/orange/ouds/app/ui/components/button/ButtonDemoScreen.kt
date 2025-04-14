@@ -32,7 +32,7 @@ import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
-import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
@@ -48,13 +48,13 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
     CustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            CustomizationSwitchListItem(
+            CustomizationSwitchItem(
                 label = stringResource(R.string.app_common_enabled_label),
                 checked = enabled,
                 onCheckedChange = { enabled = it },
                 enabled = enabledSwitchEnabled
             )
-            CustomizationSwitchListItem(
+            CustomizationSwitchItem(
                 label = stringResource(R.string.app_common_onColoredBackground_label),
                 checked = onColoredBox,
                 onCheckedChange = { onColoredBox = it },
