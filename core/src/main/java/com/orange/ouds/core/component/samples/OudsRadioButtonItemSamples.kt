@@ -31,7 +31,7 @@ internal fun OudsRadioButtonItemSample() {
         genders.forEach { gender ->
             OudsRadioButtonItem(
                 selected = gender == selectedGender,
-                text = gender,
+                label = gender,
                 onClick = { selectedGender = gender },
                 divider = true
             )

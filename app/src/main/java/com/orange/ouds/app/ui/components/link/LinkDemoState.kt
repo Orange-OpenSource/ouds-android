@@ -26,17 +26,17 @@ import com.orange.ouds.core.component.OudsLinkDefaults
 
 @Composable
 fun rememberLinkDemoState(
-    text: String = stringResource(R.string.app_components_link_label),
+    label: String = stringResource(R.string.app_components_link_label),
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     size: OudsLink.Size = OudsLinkDefaults.Size,
     layout: LinkDemoState.Layout = LinkDemoState.Layout.TextOnly
-) = rememberSaveable(text, enabled, onColoredBox, size, layout, saver = LinkDemoState.Saver) {
-    LinkDemoState(text, enabled, onColoredBox, size, layout)
+) = rememberSaveable(label, enabled, onColoredBox, size, layout, saver = LinkDemoState.Saver) {
+    LinkDemoState(label, enabled, onColoredBox, size, layout)
 }
 
 class LinkDemoState(
-    text: String,
+    label: String,
     enabled: Boolean,
     onColoredBox: Boolean,
     size: OudsLink.Size,
@@ -45,7 +45,7 @@ class LinkDemoState(
 
     companion object {
         val Saver = run {
-            val textKey = "text"
+            val labelKey = "label"
             val enabledKey = "enabled"
             val onColoredBoxKey = "onColoredBox"
             val sizeKey = "size"
@@ -53,7 +53,7 @@ class LinkDemoState(
             mapSaver(
                 save = { state ->
                     mapOf(
-                        textKey to state.text,
+                        labelKey to state.label,
                         enabledKey to state.enabled,
                         onColoredBoxKey to state.onColoredBox,
                         sizeKey to state.size,
@@ -62,7 +62,7 @@ class LinkDemoState(
                 },
                 restore = { map ->
                     LinkDemoState(
-                        map[textKey] as String,
+                        map[labelKey] as String,
                         map[enabledKey] as Boolean,
                         map[onColoredBoxKey] as Boolean,
                         map[sizeKey] as OudsLink.Size,
@@ -73,7 +73,7 @@ class LinkDemoState(
         }
     }
 
-    var text: String by mutableStateOf(text)
+    var label: String by mutableStateOf(label)
 
     var enabled: Boolean by mutableStateOf(enabled)
 

@@ -24,7 +24,7 @@ abstract class ControlItemDemoState(
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
-    text: String,
+    label: String,
     helperText: String?
 ) {
     companion object {
@@ -34,7 +34,7 @@ abstract class ControlItemDemoState(
         const val EnabledKey = "enabled"
         const val ReadOnlyKey = "readOnly"
         const val ErrorKey = "error"
-        const val TextKey = "text"
+        const val LabelKey = "label"
         const val HelperTextKey = "helperText"
     }
 
@@ -44,7 +44,7 @@ abstract class ControlItemDemoState(
     var enabled: Boolean by mutableStateOf(enabled)
     var readOnly: Boolean by mutableStateOf(readOnly)
     var error: Boolean by mutableStateOf(error)
-    var text: String by mutableStateOf(text)
+    var label: String by mutableStateOf(label)
     var helperText: String? by mutableStateOf(helperText)
 
     val enabledSwitchEnabled: Boolean

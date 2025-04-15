@@ -26,9 +26,9 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
@@ -88,9 +88,9 @@ fun ButtonDemoScreen() = DemoScreen(rememberButtonDemoState()) {
                 onSelectionChange = { id -> layout = ButtonDemoState.Layout.entries[id] }
             )
             CustomizationTextField(
-                label = stringResource(R.string.app_components_common_text_label),
-                value = text,
-                onValueChange = { value -> text = value })
+                label = stringResource(R.string.app_components_common_label_label),
+                value = label,
+                onValueChange = { value -> label = value })
         }
     ) {
         DetailScreenDescription(
@@ -125,7 +125,7 @@ private fun ButtonDemo(state: ButtonDemoState) {
         when (layout) {
             ButtonDemoState.Layout.TextOnly -> {
                 OudsButton(
-                    text = text,
+                    label = label,
                     onClick = {},
                     enabled = enabled,
                     style = style,
@@ -135,7 +135,7 @@ private fun ButtonDemo(state: ButtonDemoState) {
             ButtonDemoState.Layout.IconAndText -> {
                 OudsButton(
                     icon = icon,
-                    text = text,
+                    label = label,
                     onClick = {},
                     enabled = enabled,
                     style = style,
@@ -168,7 +168,7 @@ private fun ButtonDemoCodeSnippet(state: ButtonDemoState, modifier: Modifier = M
                         }
                     }
                     if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
-                        textArgument(text)
+                        labelArgument(label)
                     }
                     onClickArgument()
                     enabledArgument(enabled)

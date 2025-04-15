@@ -79,12 +79,12 @@ import kotlinx.parcelize.Parcelize
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
  *
- * An OUDS button which displays text only.
+ * An OUDS button which displays label only.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param text Text displayed in the button.
+ * @param label Text displayed in the button.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
@@ -102,7 +102,7 @@ import kotlinx.parcelize.Parcelize
  */
 @Composable
 fun OudsButton(
-    text: String,
+    label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -112,7 +112,7 @@ fun OudsButton(
 ) {
     OudsButton(
         icon = null,
-        text = text,
+        label = label,
         onClick = onClick,
         previewState = null,
         modifier = modifier,
@@ -159,7 +159,7 @@ fun OudsButton(
 ) {
     OudsButton(
         icon = icon,
-        text = null,
+        label = null,
         onClick = onClick,
         previewState = null,
         modifier = modifier,
@@ -173,13 +173,13 @@ fun OudsButton(
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
  *
- * An OUDS button which displays an icon and text.
+ * An OUDS button which displays an icon and a label.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
  * @param icon Icon displayed in the button.
- * @param text Text displayed in the button.
+ * @param label Text displayed in the button.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
@@ -198,7 +198,7 @@ fun OudsButton(
 @Composable
 fun OudsButton(
     icon: OudsButton.Icon,
-    text: String,
+    label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -208,7 +208,7 @@ fun OudsButton(
 ) {
     OudsButton(
         icon = icon,
-        text = text,
+        label = label,
         onClick = onClick,
         previewState = null,
         modifier = modifier,
@@ -223,7 +223,7 @@ fun OudsButton(
 @OptIn(ExperimentalMaterial3Api::class)
 private fun OudsButton(
     icon: OudsButton.Icon?,
-    text: String?,
+    label: String?,
     onClick: () -> Unit,
     previewState: OudsButton.State?,
     modifier: Modifier = Modifier,
@@ -236,14 +236,14 @@ private fun OudsButton(
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsButton with OudsButton.Hierarchy.Negative hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
-        previewMessage = { if (icon != null && text == null) "⛔" else "Not on a\ncolored\nbackground" }
+        previewMessage = { if (icon != null && label == null) "⛔" else "Not on a\ncolored\nbackground" }
     ) {
         val buttonTokens = OudsTheme.componentsTokens.button
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
-        val iconScale = if (icon != null && text == null) LocalContext.current.resources.configuration.fontScale else 1.0f
-        val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeightIconOnly.dp * iconScale else Dp.Unspecified
+        val iconScale = if (icon != null && label == null) LocalContext.current.resources.configuration.fontScale else 1.0f
+        val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.dp * iconScale else Dp.Unspecified
         val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
@@ -276,26 +276,26 @@ private fun OudsButton(
                     Row(
                         modifier = Modifier
                             .alpha(alpha = alpha)
-                            .padding(contentPadding(icon = icon, text = text)),
+                            .padding(contentPadding(icon = icon, label = label)),
                         horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         if (icon != null) {
-                            val size = if (text == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
+                            val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
                             val tint = contentColor(hierarchy = hierarchy, state = state)
                             icon.Content(
                                 modifier = Modifier
                                     .size(size.value * iconScale)
                                     .semantics {
-                                        contentDescription = if (text == null) icon.contentDescription else ""
+                                        contentDescription = if (label == null) icon.contentDescription else ""
                                     },
                                 extraParameters = OudsButton.Icon.ExtraParameters(tint = tint)
                             )
                         }
-                        if (text != null) {
+                        if (label != null) {
                             Text(
                                 modifier = modifier,
-                                text = text,
+                                text = label,
                                 style = OudsTheme.typography.label.strong.large,
                                 textAlign = TextAlign.Center
                             )
@@ -506,16 +506,16 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
 }
 
 @Composable
-private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues {
+private fun contentPadding(icon: OudsButton.Icon?, label: String?): PaddingValues {
     return with(OudsTheme.componentsTokens.button) {
         when {
-            icon != null && text != null -> PaddingValues(
+            icon != null && label != null -> PaddingValues(
                 start = spacePaddingInlineIconStart.value,
                 top = spacePaddingBlock.value,
                 end = spacePaddingInlineEndIconStart.value,
                 bottom = spacePaddingBlock.value
             )
-            icon != null && text == null -> PaddingValues(
+            icon != null && label == null -> PaddingValues(
                 horizontal = spaceInsetIconOnly.value,
                 vertical = spacePaddingBlock.value
             )
@@ -595,7 +595,7 @@ object OudsButton {
          * Creates an instance of [OudsButton.Icon].
          *
          * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
          */
         constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
@@ -603,7 +603,7 @@ object OudsButton {
          * Creates an instance of [OudsButton.Icon].
          *
          * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
          */
         constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
@@ -611,7 +611,7 @@ object OudsButton {
          * Creates an instance of [OudsButton.Icon].
          *
          * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
          */
         constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
@@ -633,7 +633,7 @@ object OudsButton {
     sealed class Style : Parcelable {
 
         /**
-         * The button displays an icon and/or a text and supports user interactions if it is enabled.
+         * The button displays an icon and/or a label and supports user interactions if it is enabled.
          */
         @Parcelize
         data object Default : Style()
@@ -667,11 +667,11 @@ internal fun PreviewOudsButton(
     parameter: OudsButtonPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val text = if (hasText) hierarchy.name else null
+        val label = if (hasLabel) hierarchy.name else null
         val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
         val content: @Composable () -> Unit = {
             PreviewStates<OudsButton.State>(columnCount = 2) { state ->
-                OudsButton(icon = icon, text = text, onClick = {}, hierarchy = hierarchy, previewState = state)
+                OudsButton(icon = icon, label = label, onClick = {}, hierarchy = hierarchy, previewState = state)
             }
         }
         if (onColoredBox) {
@@ -686,7 +686,7 @@ internal fun PreviewOudsButton(
 
 internal data class OudsButtonPreviewParameter(
     val hierarchy: OudsButton.Hierarchy,
-    val hasText: Boolean,
+    val hasLabel: Boolean,
     val hasIcon: Boolean,
     val onColoredBox: Boolean = false
 )
@@ -697,9 +697,9 @@ private val previewParameterValues: List<OudsButtonPreviewParameter>
     get() = buildList {
         OudsButton.Hierarchy.entries.forEach { hierarchy ->
             val parameters = listOf(
-                OudsButtonPreviewParameter(hierarchy, hasText = true, hasIcon = false),
-                OudsButtonPreviewParameter(hierarchy, hasText = true, hasIcon = true),
-                OudsButtonPreviewParameter(hierarchy, hasText = false, hasIcon = true),
+                OudsButtonPreviewParameter(hierarchy, hasLabel = true, hasIcon = false),
+                OudsButtonPreviewParameter(hierarchy, hasLabel = true, hasIcon = true),
+                OudsButtonPreviewParameter(hierarchy, hasLabel = false, hasIcon = true),
             )
             addAll(parameters)
             addAll(parameters.map { it.copy(onColoredBox = true) })

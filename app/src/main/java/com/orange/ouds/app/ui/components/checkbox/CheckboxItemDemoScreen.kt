@@ -28,7 +28,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemHelperTextCustom
 import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemInvertedCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemTextCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemLabelCustomization
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
@@ -53,7 +53,7 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(remember
             ControlItemEnabledCustomization()
             ControlItemReadOnlyCustomization()
             ControlItemErrorCustomization()
-            ControlItemTextCustomization()
+            ControlItemLabelCustomization()
             ControlItemHelperTextCustomization()
         }
     ) {
@@ -91,7 +91,7 @@ private fun CheckboxItemDemo(state: CheckboxItemDemoState) {
                             CheckboxIdentifier.Second -> checkedValues.copy(second = value)
                         }
                     },
-                    text = text,
+                    label = label,
                     helperText = helperText,
                     icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
@@ -123,7 +123,7 @@ private fun IndeterminateCheckboxItemDemo(state: CheckboxItemDemoState) {
                             }
                         }
                     },
-                    text = text,
+                    label = label,
                     helperText = helperText,
                     icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,

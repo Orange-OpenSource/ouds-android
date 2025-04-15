@@ -34,7 +34,7 @@ internal class OudsButtonTest {
 
             setOudsContent {
                 OudsButton(
-                    text = text,
+                    label = text,
                     onClick = onClick
                 )
             }

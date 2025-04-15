@@ -34,7 +34,7 @@ internal class OudsLinkTest {
 
             setOudsContent {
                 OudsLink(
-                    text = text,
+                    label = text,
                     icon = null,
                     onClick = onClick
                 )

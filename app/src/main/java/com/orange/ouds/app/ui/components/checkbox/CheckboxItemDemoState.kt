@@ -36,7 +36,7 @@ fun rememberCheckboxItemDemoState(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
-    text: String = stringResource(id = R.string.app_components_common_text_label),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     helperText: String? = null
 ) = rememberSaveable(
     checkedValues,
@@ -47,11 +47,11 @@ fun rememberCheckboxItemDemoState(
     enabled,
     readOnly,
     error,
-    text,
+    label,
     helperText,
     saver = CheckboxItemDemoState.Saver
 ) {
-    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, inverted, enabled, readOnly, error, text, helperText)
+    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, inverted, enabled, readOnly, error, label, helperText)
 }
 
 class CheckboxItemDemoState(
@@ -63,9 +63,9 @@ class CheckboxItemDemoState(
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
-    text: String,
+    label: String,
     helperText: String?
-) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, text, helperText) {
+) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, label, helperText) {
     companion object {
         val Saver = run {
             val checkedValuesKey = "checkedValues"
@@ -81,7 +81,7 @@ class CheckboxItemDemoState(
                         EnabledKey to state.enabled,
                         ReadOnlyKey to state.readOnly,
                         ErrorKey to state.error,
-                        TextKey to state.text,
+                        LabelKey to state.label,
                         HelperTextKey to state.helperText
                     )
                 },
@@ -96,7 +96,7 @@ class CheckboxItemDemoState(
                         map[EnabledKey] as Boolean,
                         map[ReadOnlyKey] as Boolean,
                         map[ErrorKey] as Boolean,
-                        map[TextKey] as String,
+                        map[LabelKey] as String,
                         map[HelperTextKey] as String?
                     )
                 }

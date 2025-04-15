@@ -21,7 +21,7 @@ import com.orange.ouds.core.component.OudsColoredBox
 @Composable
 internal fun OudsButtonWithTextSample() {
     OudsButton(
-        text = "Text",
+        label = "Label",
         onClick = { /* Do something! */ }
     )
 }
@@ -31,7 +31,7 @@ internal fun OudsButtonWithTextOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
-            text = "Text",
+            label = "Label",
             onClick = { /* Do something! */ }
         )
     }
@@ -69,7 +69,7 @@ internal fun OudsButtonWithIconAndTextSample() {
             painterResource(id = R.drawable.star_on),
             "Content description"
         ),
-        text = "Text",
+        label = "Label",
         onClick = { /* Do something! */ }
     )
 }
@@ -83,7 +83,7 @@ internal fun OudsButtonWithIconAndTextOnColoredBackgroundSample() {
                 painterResource(id = R.drawable.star_on),
                 "Content description"
             ),
-            text = "Text",
+            label = "Label",
             onClick = { /* Do something! */ }
         )
     }
