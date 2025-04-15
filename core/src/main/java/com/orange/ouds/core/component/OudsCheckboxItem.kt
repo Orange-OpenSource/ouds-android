@@ -265,7 +265,7 @@ internal fun PreviewOudsCheckboxItem(
 
 @Preview
 @Composable
-internal fun PreviewOudsCheckboxItemWithLongHelper() = OudsPreview {
+internal fun PreviewOudsCheckboxItemWithLongHelperText() = OudsPreview {
     OudsCheckboxItem(
         checked = true,
         label = "Label",
