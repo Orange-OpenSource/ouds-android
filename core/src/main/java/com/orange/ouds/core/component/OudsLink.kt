@@ -155,7 +155,7 @@ private fun OudsLink(
     val isTextOnly = icon == null && arrow == null
 
     val (minWidth, minHeight) = when (size) {
-        OudsLink.Size.Medium -> linkTokens.sizeMinWidthMedium.dp to linkTokens.sizeMinHeightMedium.dp
+        OudsLink.Size.Default -> linkTokens.sizeMinWidthMedium.dp to linkTokens.sizeMinHeightMedium.dp
         OudsLink.Size.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
     }
 
@@ -181,7 +181,7 @@ private fun OudsLink(
             var textStyle: TextStyle
             with(linkTokens) {
                 when (size) {
-                    OudsLink.Size.Medium -> {
+                    OudsLink.Size.Default -> {
                         columnGap = if (arrow != null) spaceColumnGapArrowMedium.value else spaceColumnGapIconMedium.value
                         iconSize = sizeIconMedium.value
                         textStyle = OudsTheme.typography.label.strong.large
@@ -324,7 +324,7 @@ object OudsLinkDefaults {
     /**
      * The default size.
      */
-    val Size = OudsLink.Size.Medium
+    val Size = OudsLink.Size.Default
 
 }
 
@@ -337,7 +337,7 @@ object OudsLink {
      * Represents the size of an OUDS link.
      */
     enum class Size {
-        Small, Medium
+        Default, Small
     }
 
     /**
