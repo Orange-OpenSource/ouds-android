@@ -20,7 +20,7 @@ import androidx.compose.runtime.setValue
 abstract class ControlItemDemoState(
     icon: Boolean,
     divider: Boolean,
-    inverted: Boolean,
+    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
@@ -30,7 +30,7 @@ abstract class ControlItemDemoState(
     companion object {
         const val IconKey = "icon"
         const val DividerKey = "divider"
-        const val InvertedKey = "inverted"
+        const val ReversedKey = "reversed"
         const val EnabledKey = "enabled"
         const val ReadOnlyKey = "readOnly"
         const val ErrorKey = "error"
@@ -40,7 +40,7 @@ abstract class ControlItemDemoState(
 
     var icon: Boolean by mutableStateOf(icon)
     var divider: Boolean by mutableStateOf(divider)
-    var inverted: Boolean by mutableStateOf(inverted)
+    var reversed: Boolean by mutableStateOf(reversed)
     var enabled: Boolean by mutableStateOf(enabled)
     var readOnly: Boolean by mutableStateOf(readOnly)
     var error: Boolean by mutableStateOf(error)

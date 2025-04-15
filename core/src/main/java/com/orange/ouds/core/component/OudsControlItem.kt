@@ -51,7 +51,7 @@ internal fun OudsControlItem(
     helperText: String?,
     icon: OudsControlItem.Icon?,
     divider: Boolean,
-    inverted: Boolean,
+    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
@@ -89,8 +89,8 @@ internal fun OudsControlItem(
             }
         }
 
-        val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon else indicator
-        val trailingElement: (@Composable () -> Unit)? = if (inverted) indicator else itemIcon
+        val leadingElement: (@Composable () -> Unit)? = if (reversed) itemIcon else indicator
+        val trailingElement: (@Composable () -> Unit)? = if (reversed) indicator else itemIcon
         val dividerThickness = 1.dp
 
         Column(

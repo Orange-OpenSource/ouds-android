@@ -29,7 +29,7 @@ fun rememberRadioButtonItemDemoState(
     icon: Boolean = false,
     divider: Boolean = false,
     outlined: Boolean = false,
-    inverted: Boolean = false,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
@@ -41,7 +41,7 @@ fun rememberRadioButtonItemDemoState(
     icon,
     divider,
     outlined,
-    inverted,
+    reversed,
     enabled,
     readOnly,
     error,
@@ -50,7 +50,7 @@ fun rememberRadioButtonItemDemoState(
     helperText,
     saver = RadioButtonItemDemoState.Saver
 ) {
-    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, inverted, enabled, readOnly, error, label, additionalLabel, helperText)
+    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, label, additionalLabel, helperText)
 }
 
 class RadioButtonItemDemoState(
@@ -58,14 +58,14 @@ class RadioButtonItemDemoState(
     icon: Boolean,
     divider: Boolean,
     outlined: Boolean,
-    inverted: Boolean,
+    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
     label: String,
     additionalLabel: String?,
     helperText: String?
-) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, label, helperText) {
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
     companion object {
         val values = listOf(1, 2)
         val Saver = run {
@@ -79,7 +79,7 @@ class RadioButtonItemDemoState(
                         IconKey to state.icon,
                         DividerKey to state.divider,
                         outlinedKey to state.outlined,
-                        InvertedKey to state.inverted,
+                        ReversedKey to state.reversed,
                         EnabledKey to state.enabled,
                         ReadOnlyKey to state.readOnly,
                         ErrorKey to state.error,
@@ -94,7 +94,7 @@ class RadioButtonItemDemoState(
                         map[IconKey] as Boolean,
                         map[DividerKey] as Boolean,
                         map[outlinedKey] as Boolean,
-                        map[InvertedKey] as Boolean,
+                        map[ReversedKey] as Boolean,
                         map[EnabledKey] as Boolean,
                         map[ReadOnlyKey] as Boolean,
                         map[ErrorKey] as Boolean,

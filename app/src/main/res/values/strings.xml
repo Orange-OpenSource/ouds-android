@@ -138,7 +138,7 @@
     <string name="app_components_controlItem_icon_label">Icon</string>
     <string name="app_components_controlItem_readOnly_label">Read only</string>
     <string name="app_components_controlItem_divider_label">Divider</string>
-    <string name="app_components_controlItem_inverted_label">Inverted</string>
+    <string name="app_components_controlItem_reversed_label">Reversed</string>
 
     <!-- Components: divider -->
     <string name="app_components_divider_label">Divider</string>

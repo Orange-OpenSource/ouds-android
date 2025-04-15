@@ -28,7 +28,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemEnabledCustomiza
 import com.orange.ouds.app.ui.components.controlitem.ControlItemErrorCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemHelperTextCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemInvertedCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemReversedCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemLabelCustomization
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
@@ -57,7 +57,7 @@ fun RadioButtonItemDemoScreen() = DemoScreen(rememberRadioButtonItemDemoState())
                 checked = outlined,
                 onCheckedChange = { outlined = it },
             )
-            ControlItemInvertedCustomization()
+            ControlItemReversedCustomization()
             ControlItemEnabledCustomization()
             ControlItemReadOnlyCustomization()
             ControlItemErrorCustomization()
@@ -97,7 +97,7 @@ private fun RadioButtonItemDemo(state: RadioButtonItemDemoState) {
                     icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
                     outlined = outlined,
-                    inverted = inverted,
+                    reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
                     error = error

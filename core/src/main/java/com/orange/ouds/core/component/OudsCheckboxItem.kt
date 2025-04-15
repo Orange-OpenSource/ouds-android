@@ -53,9 +53,9 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param helperText Optional text displayed below the label.
- * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [inverted] is set to `true`, it is displayed as a leading element.
+ * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
- * @param inverted When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. It is inverted otherwise.
+ * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position.  Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
  * will not be clickable.
  * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
@@ -75,7 +75,7 @@ fun OudsCheckboxItem(
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
     divider: Boolean = false,
-    inverted: Boolean = false,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
@@ -91,7 +91,7 @@ fun OudsCheckboxItem(
         helperText = helperText,
         icon = icon,
         divider = divider,
-        inverted = inverted,
+        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
@@ -117,9 +117,9 @@ fun OudsCheckboxItem(
  * this is passive and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param helperText Optional text displayed below the label.
- * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [inverted] is set to `true`, it is displayed as a leading element.
+ * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
- * @param inverted When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. It is inverted otherwise.
+ * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
  * will not be clickable.
  * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
@@ -139,7 +139,7 @@ fun OudsTriStateCheckboxItem(
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
     divider: Boolean = false,
-    inverted: Boolean = false,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
@@ -169,7 +169,7 @@ fun OudsTriStateCheckboxItem(
         helperText = helperText,
         icon = icon,
         divider = divider,
-        inverted = inverted,
+        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error
@@ -186,7 +186,7 @@ private fun OudsCheckboxItem(
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
     divider: Boolean = false,
-    inverted: Boolean = false,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false
@@ -200,7 +200,7 @@ private fun OudsCheckboxItem(
         helperText = helperText,
         icon = icon,
         divider = divider,
-        inverted = inverted,
+        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
@@ -251,7 +251,7 @@ internal fun PreviewOudsCheckboxItem(
                 helperText = helperText,
                 divider = divider,
                 error = error,
-                inverted = inverted,
+                reversed = reversed,
                 icon = if (hasIcon) {
                     OudsControlItem.Icon(imageVector = Icons.Filled.Call)
                 } else {
@@ -281,7 +281,7 @@ internal data class OudsCheckboxItemPreviewParameter(
     val divider: Boolean = false,
     val hasIcon: Boolean = false,
     val error: Boolean = false,
-    val inverted: Boolean = false
+    val reversed: Boolean = false
 )
 
 internal class OudsCheckboxItemPreviewParameterProvider :
@@ -290,26 +290,26 @@ internal class OudsCheckboxItemPreviewParameterProvider :
 private val previewParameterValues: List<OudsCheckboxItemPreviewParameter>
     get() {
         val helperText = "Helper text"
-        val invertedValues = listOf(false, true)
+        val reversedValues = listOf(false, true)
         return buildList {
-            invertedValues.forEach { inverted ->
+            reversedValues.forEach { reversed ->
                 val parameters = listOf(
                     OudsCheckboxItemPreviewParameter(
                         toggleableState = ToggleableState.Off,
-                        inverted = inverted
+                        reversed = reversed
                     ),
                     OudsCheckboxItemPreviewParameter(
                         toggleableState = ToggleableState.Off,
                         hasIcon = true,
                         helperText = helperText,
-                        inverted = inverted
+                        reversed = reversed
                     ),
                     OudsCheckboxItemPreviewParameter(
                         toggleableState = ToggleableState.On,
                         helperText = helperText,
                         divider = true,
                         error = true,
-                        inverted = inverted
+                        reversed = reversed
                     ),
                 )
                 addAll(parameters)

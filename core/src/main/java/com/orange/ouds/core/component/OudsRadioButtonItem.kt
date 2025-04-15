@@ -53,10 +53,10 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param modifier [Modifier] applied to the layout of the radio button item.
  * @param additionalLabel Optional strong accompanying text for the main label. It is displayed between the [label] and the [helperText].
  * @param helperText Optional text displayed below the [label] and the [additionalLabel].
- * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [inverted] is set to `true`, it is displayed as a leading element.
+ * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the radio button item.
  * @param outlined When set to `true`, the radio button item, if selected, is outlined to stand out and draw the user's attention.
- * @param inverted When `false`, the radio button has a leading position and the optional [icon] has a trailing position. It is inverted otherwise.
+ * @param reversed When `false`, the radio button has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the radio button item. When `false`, the radio button, the texts and the optional icon are disabled, and the item
  * will not be clickable.
  * @param readOnly Controls the read only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
@@ -78,7 +78,7 @@ fun OudsRadioButtonItem(
     icon: OudsControlItem.Icon? = null,
     divider: Boolean = false,
     outlined: Boolean = false,
-    inverted: Boolean = false,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
@@ -96,7 +96,7 @@ fun OudsRadioButtonItem(
         icon = icon,
         divider = divider,
         outlined = outlined,
-        inverted = inverted,
+        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error
@@ -115,7 +115,7 @@ private fun OudsRadioButtonItem(
     icon: OudsControlItem.Icon? = null,
     divider: Boolean = false,
     outlined: Boolean = false,
-    inverted: Boolean = false,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
@@ -145,7 +145,7 @@ private fun OudsRadioButtonItem(
         helperText = helperText,
         icon = icon,
         divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
-        inverted = inverted,
+        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
@@ -234,7 +234,7 @@ internal fun PreviewOudsRadioButtonItem(
                 divider = divider,
                 error = error,
                 outlined = outlined,
-                inverted = inverted,
+                reversed = reversed,
                 icon = if (hasIcon) {
                     OudsControlItem.Icon(imageVector = Icons.Filled.Call)
                 } else {
@@ -266,7 +266,7 @@ internal data class OudsRadioButtonItemPreviewParameter(
     val hasIcon: Boolean = false,
     val error: Boolean = false,
     val outlined: Boolean = false,
-    val inverted: Boolean = false
+    val reversed: Boolean = false
 )
 
 internal class OudsRadioButtonItemPreviewParameterProvider :
@@ -276,14 +276,14 @@ private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
     get() {
         val additionalLabel = "Additional label"
         val helperText = "Helper text"
-        val invertedValues = listOf(false, true)
+        val reversedValues = listOf(false, true)
         return buildList {
-            invertedValues.forEach { inverted ->
+            reversedValues.forEach { reversed ->
                 val parameters = listOf(
                     OudsRadioButtonItemPreviewParameter(
                         selected = false,
                         outlined = true,
-                        inverted = inverted
+                        reversed = reversed
                     ),
                     OudsRadioButtonItemPreviewParameter(
                         selected = false,
@@ -291,14 +291,14 @@ private val previewParameterValues: List<OudsRadioButtonItemPreviewParameter>
                         additionalLabel = additionalLabel,
                         helperText = helperText,
                         outlined = true,
-                        inverted = inverted
+                        reversed = reversed
                     ),
                     OudsRadioButtonItemPreviewParameter(
                         selected = true,
                         helperText = helperText,
                         divider = true,
                         error = true,
-                        inverted = inverted
+                        reversed = reversed
                     ),
                 )
                 addAll(parameters)

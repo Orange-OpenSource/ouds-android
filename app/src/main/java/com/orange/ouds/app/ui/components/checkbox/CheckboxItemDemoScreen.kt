@@ -26,7 +26,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemEnabledCustomiza
 import com.orange.ouds.app.ui.components.controlitem.ControlItemErrorCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemHelperTextCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemInvertedCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemReversedCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemLabelCustomization
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
@@ -49,7 +49,7 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(remember
         bottomSheetContent = {
             ControlItemIconCustomization()
             ControlItemDividerCustomization()
-            ControlItemInvertedCustomization()
+            ControlItemReversedCustomization()
             ControlItemEnabledCustomization()
             ControlItemReadOnlyCustomization()
             ControlItemErrorCustomization()
@@ -95,7 +95,7 @@ private fun CheckboxItemDemo(state: CheckboxItemDemoState) {
                     helperText = helperText,
                     icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
-                    inverted = inverted,
+                    reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
                     error = error
@@ -127,7 +127,7 @@ private fun IndeterminateCheckboxItemDemo(state: CheckboxItemDemoState) {
                     helperText = helperText,
                     icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
-                    inverted = inverted,
+                    reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
                     error = error
