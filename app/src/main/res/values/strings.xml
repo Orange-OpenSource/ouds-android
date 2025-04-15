@@ -109,6 +109,7 @@
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
 
     <!-- Components -->
+    <string name="app_components_common_color_label">Color</string>
     <string name="app_components_common_error_label">Error</string>
     <string name="app_components_common_layout_label">Layout</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
@@ -138,6 +139,12 @@
     <string name="app_components_controlItem_readOnly_label">Read only</string>
     <string name="app_components_controlItem_divider_label">Divider</string>
     <string name="app_components_controlItem_inverted_label">Inverted</string>
+
+    <!-- Components: divider -->
+    <string name="app_components_divider_label">Divider</string>
+    <string name="app_components_divider_description_text">A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.</string>
+    <string name="app_components_divider_horizontalDivider_label">Horizontal divider</string>
+    <string name="app_components_divider_verticalDivider_label">Vertical divider</string>
 
     <!-- Components: link -->
     <string name="app_components_link_label">Link</string>

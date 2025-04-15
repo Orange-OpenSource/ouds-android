@@ -16,6 +16,7 @@ class OudsComponentsTokens(
     val button: OudsButtonTokens = OudsButtonTokens(),
     val checkbox: OudsCheckboxTokens = OudsCheckboxTokens(),
     val controlItem: OudsControlItemTokens = OudsControlItemTokens(),
+    val divider: OudsDividerTokens = OudsDividerTokens(),
     val link: OudsLinkTokens = OudsLinkTokens(),
     val radioButton: OudsRadioButtonTokens = OudsRadioButtonTokens(),
     val skeleton: OudsSkeletonTokens = OudsSkeletonTokens(),

@@ -19,6 +19,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
+import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
@@ -56,6 +57,13 @@ sealed class Component(
         listOf(Variant.Checkbox, Variant.CheckboxItem, Variant.IndeterminateCheckbox, Variant.IndeterminateCheckboxItem)
     )
 
+    data object Divider : Component(
+        R.string.app_components_divider_label,
+        LightDarkResourceId(R.drawable.il_components_divider, R.drawable.il_components_divider_dark),
+        R.string.app_components_divider_description_text,
+        listOf(Variant.HorizontalDivider, Variant.VerticalDivider)
+    )
+
     data object Link : Component(
         R.string.app_components_link_label,
         LightDarkResourceId(R.drawable.il_components_link, R.drawable.il_components_link_dark),
@@ -89,14 +97,23 @@ sealed class Variant(
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
+    // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })
     data object CheckboxItem : Variant(R.string.app_components_checkbox_checkboxItem_label, { CheckboxItemDemoScreen() })
     data object IndeterminateCheckbox : Variant(R.string.app_components_checkbox_indeterminateCheckbox_label, { CheckboxDemoScreen(indeterminate = true) })
     data object IndeterminateCheckboxItem :
         Variant(R.string.app_components_checkbox_indeterminateCheckboxItem_label, { CheckboxItemDemoScreen(indeterminate = true) })
 
+    // Divider
+    data object HorizontalDivider : Variant(R.string.app_components_divider_horizontalDivider_label, { DividerDemoScreen() })
+    data object VerticalDivider : Variant(R.string.app_components_divider_verticalDivider_label, { DividerDemoScreen(vertical = true) })
+
+    // Radio button
     data object RadioButton : Variant(R.string.app_components_radioButton_radioButton_label, { RadioButtonDemoScreen() })
     data object RadioButtonItem : Variant(R.string.app_components_radioButton_radioButtonItem_label, { RadioButtonItemDemoScreen() })
+
+    // Switch
     data object Switch : Variant(R.string.app_components_switch_switch_label, { SwitchDemoScreen() })
     data object SwitchItem : Variant(R.string.app_components_switch_switchItem_label, {})
+
 }
