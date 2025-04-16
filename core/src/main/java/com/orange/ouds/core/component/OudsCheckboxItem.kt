@@ -42,6 +42,9 @@ import com.orange.ouds.foundation.extensions.orElse
  * It can be used in a list as a list item or as a single element to validate general conditions for example.
  * By clicking on a checkbox item, the user changes the checked state of its checkbox.
  *
+ * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
+ * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] with `enabled` parameter set to `false`.
+ *
  * If you want to use a standalone checkbox please use [com.orange.ouds.core.component.OudsCheckbox].
  *
  * If you need an indeterminate state for the item's checkbox, please use [OudsTriStateCheckboxItem].

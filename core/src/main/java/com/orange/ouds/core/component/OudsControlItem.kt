@@ -38,10 +38,14 @@ import androidx.compose.ui.unit.max
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
+import com.orange.ouds.core.extensions.filter
+import com.orange.ouds.core.extensions.last
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
+import com.orange.ouds.core.utilities.edgeToEdgePadding
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @Composable
@@ -93,18 +97,27 @@ internal fun OudsControlItem(
         val trailingElement: (@Composable () -> Unit)? = if (reversed) indicator else itemIcon
         val dividerThickness = 1.dp
 
+        val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
         Column(
-            modifier = modifier
+            modifier = filteredModifier
                 .height(IntrinsicSize.Min)
                 .heightIn(min = controlItemTokens.sizeMinHeight.dp)
                 .widthIn(min = controlItemTokens.sizeMinWidth.dp)
                 .background(color = backgroundColor(state = state))
                 .outerBorder(state = state)
         ) {
+            val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
             Row(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(all = controlItemTokens.spaceInset.value),
+                    .padding(vertical = controlItemTokens.spaceInset.value)
+                    .edgeToEdgePadding(true)
+                    .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
+                    .run {
+                        // Apply default horizontal padding if edgeToEdgePadding is disabled
+                        val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
+                        if (element?.enabled == false) padding(horizontal = controlItemTokens.spaceInset.value) else this
+                    },
                 horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
             ) {
                 leadingElement?.let { LeadingTrailingBox(leadingElement) }

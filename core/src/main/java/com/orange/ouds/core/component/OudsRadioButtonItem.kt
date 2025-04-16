@@ -43,6 +43,9 @@ import com.orange.ouds.foundation.extensions.orElse
  * It can be used in a list as a list item.
  * By clicking on a radio button item, the user changes the selected state of its radio button.
  *
+ * In most cases, OUDS radio button items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
+ * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] with `enabled` parameter set to `false`.
+ *
  * If you want to use a standalone radio button please use [com.orange.ouds.core.component.OudsRadioButton].
  *
  * @param selected Controls selected state of the radio button.
