@@ -59,8 +59,7 @@ private class BackgroundAlphaNode(private val interactionSource: InteractionSour
             interactionSource.interactions.collectLatest { interaction ->
                 when (interaction) {
                     is PressInteraction.Press -> animateToPressed()
-                    is PressInteraction.Release -> animateToResting()
-                    is PressInteraction.Cancel -> animateToResting()
+                    is PressInteraction.Release, is PressInteraction.Cancel -> animateToResting()
                 }
             }
         }
