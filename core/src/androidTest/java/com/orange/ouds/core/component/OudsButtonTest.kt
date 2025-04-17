@@ -29,17 +29,17 @@ internal class OudsButtonTest {
     @Test
     fun oudsButton_click_succeeds() {
         with(composeTestRule) {
-            val text = "Text"
+            val label = "Label"
             val onClick = mock<() -> Unit>()
 
             setOudsContent {
                 OudsButton(
-                    label = text,
+                    label = label,
                     onClick = onClick
                 )
             }
 
-            onNodeWithText(text).performClick()
+            onNodeWithText(label).performClick()
             verify(onClick).invoke()
         }
     }
