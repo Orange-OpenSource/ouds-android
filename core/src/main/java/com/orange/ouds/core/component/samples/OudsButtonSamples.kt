@@ -19,7 +19,7 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
 
 @Composable
-internal fun OudsButtonWithTextSample() {
+internal fun OudsButtonTextOnlySample() {
     OudsButton(
         label = "Label",
         onClick = { /* Do something! */ }
@@ -27,7 +27,7 @@ internal fun OudsButtonWithTextSample() {
 }
 
 @Composable
-internal fun OudsButtonWithTextOnColoredBackgroundSample() {
+internal fun OudsButtonTextOnlyOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
@@ -38,7 +38,7 @@ internal fun OudsButtonWithTextOnColoredBackgroundSample() {
 }
 
 @Composable
-internal fun OudsButtonWithIconSample() {
+internal fun OudsButtonIconOnlySample() {
     OudsButton(
         icon = OudsButton.Icon(
             painterResource(id = R.drawable.star_on),
@@ -49,7 +49,7 @@ internal fun OudsButtonWithIconSample() {
 }
 
 @Composable
-internal fun OudsButtonWithIconOnColoredBackgroundSample() {
+internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
@@ -63,7 +63,7 @@ internal fun OudsButtonWithIconOnColoredBackgroundSample() {
 }
 
 @Composable
-internal fun OudsButtonWithIconAndTextSample() {
+internal fun OudsButtonIconAndTextSample() {
     OudsButton(
         icon = OudsButton.Icon(
             painterResource(id = R.drawable.star_on),
@@ -75,7 +75,7 @@ internal fun OudsButtonWithIconAndTextSample() {
 }
 
 @Composable
-internal fun OudsButtonWithIconAndTextOnColoredBackgroundSample() {
+internal fun OudsButtonIconAndTextOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(

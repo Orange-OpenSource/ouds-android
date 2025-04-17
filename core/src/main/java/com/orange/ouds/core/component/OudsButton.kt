@@ -96,9 +96,9 @@ import kotlinx.parcelize.Parcelize
  * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  * is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlySample
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextOnColoredBackgroundSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlyOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
@@ -143,9 +143,9 @@ fun OudsButton(
  * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  * is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlySample
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconOnColoredBackgroundSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
@@ -191,9 +191,9 @@ fun OudsButton(
  * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  * is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconAndTextSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextOnColoredBackgroundSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconAndTextOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
