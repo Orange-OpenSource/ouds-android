@@ -20,7 +20,7 @@ import com.orange.ouds.core.component.OudsLink
 @Composable
 internal fun OudsLinkSample() {
     OudsLink(
-        text = "Link",
+        label = "Link",
         icon = OudsLink.Icon(painterResource(id = R.drawable.star_on)),
         onClick = { /* Do something! */ },
     )
@@ -29,7 +29,7 @@ internal fun OudsLinkSample() {
 @Composable
 internal fun OudsLinkWithArrowSample() {
     OudsLink(
-        text = "Link",
+        label = "Link",
         arrow = OudsLink.Arrow.Next,
         onClick = { /* Do something! */ },
     )

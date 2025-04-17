@@ -42,6 +42,6 @@ fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) {
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument("onClick", init)
 
-fun FunctionCall.Builder.textArgument(text: String?) = typedArgument("text", text)
+fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument("label", label)
 
 fun FunctionCall.Builder.enabledArgument(boolean: Boolean) = typedArgument("enabled", boolean)

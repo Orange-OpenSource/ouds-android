@@ -32,26 +32,26 @@ fun rememberCheckboxItemDemoState(
     ), // only used for indeterminate checkbox item demo
     icon: Boolean = false,
     divider: Boolean = false,
-    inverted: Boolean = false,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
-    text: String = stringResource(id = R.string.app_components_common_text_label),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     helperText: String? = null
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
     icon,
     divider,
-    inverted,
+    reversed,
     enabled,
     readOnly,
     error,
-    text,
+    label,
     helperText,
     saver = CheckboxItemDemoState.Saver
 ) {
-    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, inverted, enabled, readOnly, error, text, helperText)
+    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, label, helperText)
 }
 
 class CheckboxItemDemoState(
@@ -59,13 +59,13 @@ class CheckboxItemDemoState(
     toggleableStateValues: Pair<ToggleableState, ToggleableState>,
     icon: Boolean,
     divider: Boolean,
-    inverted: Boolean,
+    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
-    text: String,
+    label: String,
     helperText: String?
-) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, text, helperText) {
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
     companion object {
         val Saver = run {
             val checkedValuesKey = "checkedValues"
@@ -77,11 +77,11 @@ class CheckboxItemDemoState(
                         toggleableStateValuesKey to state.toggleableStateValues,
                         IconKey to state.icon,
                         DividerKey to state.divider,
-                        InvertedKey to state.inverted,
+                        ReversedKey to state.reversed,
                         EnabledKey to state.enabled,
                         ReadOnlyKey to state.readOnly,
                         ErrorKey to state.error,
-                        TextKey to state.text,
+                        LabelKey to state.label,
                         HelperTextKey to state.helperText
                     )
                 },
@@ -92,11 +92,11 @@ class CheckboxItemDemoState(
                         map[toggleableStateValuesKey] as Pair<ToggleableState, ToggleableState>,
                         map[IconKey] as Boolean,
                         map[DividerKey] as Boolean,
-                        map[InvertedKey] as Boolean,
+                        map[ReversedKey] as Boolean,
                         map[EnabledKey] as Boolean,
                         map[ReadOnlyKey] as Boolean,
                         map[ErrorKey] as Boolean,
-                        map[TextKey] as String,
+                        map[LabelKey] as String,
                         map[HelperTextKey] as String?
                     )
                 }

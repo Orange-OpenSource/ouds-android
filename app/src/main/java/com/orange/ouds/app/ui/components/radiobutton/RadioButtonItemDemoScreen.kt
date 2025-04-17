@@ -28,9 +28,9 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemEnabledCustomiza
 import com.orange.ouds.app.ui.components.controlitem.ControlItemErrorCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemHelperTextCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemInvertedCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemReversedCustomization
 import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemTextCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemLabelCustomization
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
@@ -57,15 +57,15 @@ fun RadioButtonItemDemoScreen() = DemoScreen(rememberRadioButtonItemDemoState())
                 checked = outlined,
                 onCheckedChange = { outlined = it },
             )
-            ControlItemInvertedCustomization()
+            ControlItemReversedCustomization()
             ControlItemEnabledCustomization()
             ControlItemReadOnlyCustomization()
             ControlItemErrorCustomization()
-            ControlItemTextCustomization()
+            ControlItemLabelCustomization()
             CustomizationTextField(
-                label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalText_label),
-                value = additionalText.orEmpty(),
-                onValueChange = { value -> additionalText = value }
+                label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
+                value = additionalLabel.orEmpty(),
+                onValueChange = { value -> additionalLabel = value }
             )
             ControlItemHelperTextCustomization()
         }
@@ -91,13 +91,13 @@ private fun RadioButtonItemDemo(state: RadioButtonItemDemoState) {
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
-                    text = text,
-                    additionalText = additionalText,
+                    label = label,
+                    additionalLabel = additionalLabel,
                     helperText = helperText,
                     icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
                     outlined = outlined,
-                    inverted = inverted,
+                    reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
                     error = error
@@ -118,7 +118,7 @@ private fun RadioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, modi
                     comment("Change selection")
                 }
                 controlItemArguments(state)
-                if (!additionalText.isNullOrBlank()) typedArgument("additionalText", additionalText)
+                if (!additionalLabel.isNullOrBlank()) typedArgument("additionalLabel", additionalLabel)
                 if (outlined) typedArgument("outlined", outlined)
             }
         }

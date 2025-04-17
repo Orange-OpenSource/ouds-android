@@ -47,11 +47,11 @@ import com.orange.ouds.core.utilities.CheckedContent
 @Composable
 internal fun OudsControlItem(
     state: OudsControlItem.State,
-    text: String,
+    label: String,
     helperText: String?,
     icon: OudsControlItem.Icon?,
     divider: Boolean,
-    inverted: Boolean,
+    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
@@ -60,7 +60,7 @@ internal fun OudsControlItem(
     previewState: OudsControlItem.State?,
     checkedContentPreviewStatus: String,
     modifier: Modifier = Modifier,
-    additionalText: String? = null,
+    additionalLabel: String? = null,
 ) {
     val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
@@ -89,8 +89,8 @@ internal fun OudsControlItem(
             }
         }
 
-        val leadingElement: (@Composable () -> Unit)? = if (inverted) itemIcon else indicator
-        val trailingElement: (@Composable () -> Unit)? = if (inverted) indicator else itemIcon
+        val leadingElement: (@Composable () -> Unit)? = if (reversed) itemIcon else indicator
+        val trailingElement: (@Composable () -> Unit)? = if (reversed) indicator else itemIcon
         val dividerThickness = 1.dp
 
         Column(
@@ -114,12 +114,12 @@ internal fun OudsControlItem(
                         .align(Alignment.CenterVertically),
                     verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
                 ) {
-                    Text(text = text, style = OudsTheme.typography.label.default.large, color = textColor(state = state, error = error))
-                    if (!additionalText.isNullOrBlank()) {
+                    Text(text = label, style = OudsTheme.typography.label.default.large, color = labelColor(state = state, error = error))
+                    if (!additionalLabel.isNullOrBlank()) {
                         Text(
-                            text = additionalText,
+                            text = additionalLabel,
                             style = OudsTheme.typography.label.strong.medium,
-                            color = additionalTextColor(state = state)
+                            color = additionalLabelColor(state = state)
                         )
                     }
                     if (!helperText.isNullOrBlank()) {
@@ -149,7 +149,7 @@ object OudsControlItem {
 
     /**
      * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
-     * It is non-clickable and no content description is needed cause a checkbox item text is always present.
+     * It is non-clickable and no content description is needed because a control item label is always present.
      */
     class Icon private constructor(
         graphicsObject: Any,
@@ -249,7 +249,7 @@ private fun backgroundColor(state: OudsControlItem.State): Color {
 }
 
 @Composable
-private fun textColor(state: OudsControlItem.State, error: Boolean) =
+private fun labelColor(state: OudsControlItem.State, error: Boolean) =
     if (error) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
@@ -265,7 +265,7 @@ private fun textColor(state: OudsControlItem.State, error: Boolean) =
     }
 
 @Composable
-private fun additionalTextColor(state: OudsControlItem.State) =
+private fun additionalLabelColor(state: OudsControlItem.State) =
     if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
 
 @Composable

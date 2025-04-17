@@ -42,7 +42,7 @@ internal class OudsCheckboxItemTest {
             setOudsContent {
                 OudsCheckboxItem(
                     checked = checked,
-                    text = "Label",
+                    label = "Label",
                     onCheckedChange = onCheckedChange,
                     modifier = Modifier.testTag(testTag)
                 )
@@ -62,7 +62,7 @@ internal class OudsCheckboxItemTest {
             setOudsContent {
                 OudsCheckboxItem(
                     checked = false,
-                    text = "Label",
+                    label = "Label",
                     helperText = helperText,
                     onCheckedChange = { },
                 )
@@ -80,7 +80,7 @@ internal class OudsCheckboxItemTest {
             setOudsContent {
                 OudsCheckboxItem(
                     checked = false,
-                    text = "Label",
+                    label = "Label",
                     helperText = helperText,
                     onCheckedChange = { },
                 )

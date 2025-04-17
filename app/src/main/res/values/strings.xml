@@ -115,7 +115,7 @@
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_iconAndTextLayout_label">Icon + text</string>
     <string name="app_components_common_style_label">Style</string>
-    <string name="app_components_common_text_label">Text</string>
+    <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
 
     <!-- Components: button -->
@@ -138,7 +138,7 @@
     <string name="app_components_controlItem_icon_label">Icon</string>
     <string name="app_components_controlItem_readOnly_label">Read only</string>
     <string name="app_components_controlItem_divider_label">Divider</string>
-    <string name="app_components_controlItem_inverted_label">Inverted</string>
+    <string name="app_components_controlItem_reversed_label">Reversed</string>
 
     <!-- Components: divider -->
     <string name="app_components_divider_label">Divider</string>
@@ -159,7 +159,7 @@
     <string name="app_components_radioButton_radioButton_label">Radio button</string>
     <string name="app_components_radioButton_radioButtonItem_label">Radio button item</string>
     <string name="app_components_radioButton_radioButtonItem_outlined_label">Outlined</string>
-    <string name="app_components_radioButton_radioButtonItem_additionalText_label">Additional text</string>
+    <string name="app_components_radioButton_radioButtonItem_additionalLabel_label">Additional label</string>
 
     <!-- Components: switch -->
     <string name="app_components_switch_label">Switch</string>

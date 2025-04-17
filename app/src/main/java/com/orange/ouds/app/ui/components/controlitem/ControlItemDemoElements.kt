@@ -16,8 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.textArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchListItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -42,11 +42,11 @@ fun <T : ControlItemDemoState> T.ControlItemDividerCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemInvertedCustomization() {
+fun <T : ControlItemDemoState> T.ControlItemReversedCustomization() {
     CustomizationSwitchListItem(
-        label = stringResource(R.string.app_components_controlItem_inverted_label),
-        checked = inverted,
-        onCheckedChange = { inverted = it },
+        label = stringResource(R.string.app_components_controlItem_reversed_label),
+        checked = reversed,
+        onCheckedChange = { reversed = it },
     )
 }
 
@@ -81,11 +81,11 @@ fun <T : ControlItemDemoState> T.ControlItemErrorCustomization() {
 }
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemTextCustomization() {
+fun <T : ControlItemDemoState> T.ControlItemLabelCustomization() {
     CustomizationTextField(
-        label = stringResource(R.string.app_components_common_text_label),
-        value = text,
-        onValueChange = { value -> text = value }
+        label = stringResource(R.string.app_components_common_label_label),
+        value = label,
+        onValueChange = { value -> label = value }
     )
 }
 
@@ -99,7 +99,7 @@ fun <T : ControlItemDemoState> T.ControlItemHelperTextCustomization() {
 }
 
 fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = with(state) {
-    textArgument(text)
+    labelArgument(label)
     if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
     if (icon) {
         constructorCallArgument<OudsControlItem.Icon>("icon") {
@@ -107,7 +107,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = wit
         }
     }
     if (!divider) typedArgument("divider", divider)
-    if (inverted) typedArgument("inverted", inverted)
+    if (reversed) typedArgument("reversed", reversed)
     if (!enabled) enabledArgument(enabled)
     if (readOnly) typedArgument("readOnly", readOnly)
     if (error) typedArgument("error", error)

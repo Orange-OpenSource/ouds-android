@@ -65,14 +65,14 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">OUDS Link design guidelines</a>
  *
- * An OUDS link which displays a text and an optional icon.
+ * An OUDS link which displays a label and an optional icon.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  *
- * @param text Text displayed in the link.
+ * @param label Label displayed in the link.
  * @param icon Icon displayed in the link.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
@@ -81,7 +81,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
  */
 @Composable
 fun OudsLink(
-    text: String,
+    label: String,
     icon: OudsLink.Icon?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -89,7 +89,7 @@ fun OudsLink(
     enabled: Boolean = true,
 ) {
     OudsLink(
-        text = text,
+        label = label,
         icon = icon,
         arrow = null,
         onClick = onClick,
@@ -100,17 +100,17 @@ fun OudsLink(
 }
 
 /**
- * An OUDS link which displays an [arrow] before ([OudsLink.Arrow.Back]) or after ([OudsLink.Arrow.Next]) a text.
+ * An OUDS link which displays an [arrow] before ([OudsLink.Arrow.Back]) or after ([OudsLink.Arrow.Next]) a label.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
  *
- * @param text Text displayed in the link.
+ * @param label Label displayed in the link.
  * @param arrow Arrow displayed in the link.
- *   When [OudsLink.Arrow.Back], the arrow is displayed before the text.
- *   When [OudsLink.Arrow.Next], the arrow is displayed after the text.
+ *   When [OudsLink.Arrow.Back], the arrow is displayed before the label.
+ *   When [OudsLink.Arrow.Next], the arrow is displayed after the label.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link.
@@ -118,7 +118,7 @@ fun OudsLink(
  */
 @Composable
 fun OudsLink(
-    text: String,
+    label: String,
     arrow: OudsLink.Arrow,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -126,7 +126,7 @@ fun OudsLink(
     enabled: Boolean = true,
 ) {
     OudsLink(
-        text = text,
+        label = label,
         icon = null,
         arrow = arrow,
         onClick = onClick,
@@ -139,7 +139,7 @@ fun OudsLink(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OudsLink(
-    text: String,
+    label: String,
     icon: OudsLink.Icon?,
     arrow: OudsLink.Arrow?,
     onClick: () -> Unit,
@@ -155,7 +155,7 @@ private fun OudsLink(
     val isTextOnly = icon == null && arrow == null
 
     val (minWidth, minHeight) = when (size) {
-        OudsLink.Size.Medium -> linkTokens.sizeMinWidthMedium.dp to linkTokens.sizeMinHeightMedium.dp
+        OudsLink.Size.Default -> linkTokens.sizeMinWidthMedium.dp to linkTokens.sizeMinHeightMedium.dp
         OudsLink.Size.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
     }
 
@@ -181,7 +181,7 @@ private fun OudsLink(
             var textStyle: TextStyle
             with(linkTokens) {
                 when (size) {
-                    OudsLink.Size.Medium -> {
+                    OudsLink.Size.Default -> {
                         columnGap = if (arrow != null) spaceColumnGapArrowMedium.value else spaceColumnGapIconMedium.value
                         iconSize = sizeIconMedium.value
                         textStyle = OudsTheme.typography.label.strong.large
@@ -216,7 +216,7 @@ private fun OudsLink(
                 }
                 Text(
                     modifier = Modifier.weight(1f, fill = false),
-                    text = text,
+                    text = label,
                     style = textStyle
                 )
                 if (arrow == OudsLink.Arrow.Next) {
@@ -324,7 +324,7 @@ object OudsLinkDefaults {
     /**
      * The default size.
      */
-    val Size = OudsLink.Size.Medium
+    val Size = OudsLink.Size.Default
 
 }
 
@@ -337,7 +337,7 @@ object OudsLink {
      * Represents the size of an OUDS link.
      */
     enum class Size {
-        Small, Medium
+        Default, Small
     }
 
     /**
@@ -403,11 +403,11 @@ private fun PreviewOudsLink(@PreviewParameter(OudsLinkPreviewParameterProvider::
 @Composable
 internal fun PreviewOudsLinkOnTwoLines() {
     OudsPreview {
-        val text = "Link\non two lines"
+        val label = "Link\non two lines"
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             listOf(OudsLink.Arrow.Back, OudsLink.Arrow.Next).forEach { arrow ->
                 OudsLink(
-                    text = text,
+                    label = label,
                     arrow = arrow,
                     onClick = {},
                 )
@@ -428,7 +428,7 @@ internal fun PreviewOudsLink(
             PreviewStates<OudsLink.State>(columnCount = 3) { state ->
                 OudsLink(
                     icon = icon,
-                    text = "Label",
+                    label = "Label",
                     arrow = arrow,
                     onClick = {},
                     size = size,

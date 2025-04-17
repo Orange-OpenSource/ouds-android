@@ -29,28 +29,28 @@ fun rememberRadioButtonItemDemoState(
     icon: Boolean = false,
     divider: Boolean = false,
     outlined: Boolean = false,
-    inverted: Boolean = false,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
-    text: String = stringResource(id = R.string.app_components_common_text_label),
-    additionalText: String? = null,
+    label: String = stringResource(id = R.string.app_components_common_label_label),
+    additionalLabel: String? = null,
     helperText: String? = null
 ) = rememberSaveable(
     selectedValue,
     icon,
     divider,
     outlined,
-    inverted,
+    reversed,
     enabled,
     readOnly,
     error,
-    text,
-    additionalText,
+    label,
+    additionalLabel,
     helperText,
     saver = RadioButtonItemDemoState.Saver
 ) {
-    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, inverted, enabled, readOnly, error, text, additionalText, helperText)
+    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, label, additionalLabel, helperText)
 }
 
 class RadioButtonItemDemoState(
@@ -58,20 +58,20 @@ class RadioButtonItemDemoState(
     icon: Boolean,
     divider: Boolean,
     outlined: Boolean,
-    inverted: Boolean,
+    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
-    text: String,
-    additionalText: String?,
+    label: String,
+    additionalLabel: String?,
     helperText: String?
-) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, text, helperText) {
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
     companion object {
         val values = listOf(1, 2)
         val Saver = run {
             val selectedValueKey = "selectedValue"
             val outlinedKey = "outlined"
-            val additionalTextKey = "additionalText"
+            val additionalLabelKey = "additionalLabel"
             mapSaver(
                 save = { state ->
                     mapOf(
@@ -79,12 +79,12 @@ class RadioButtonItemDemoState(
                         IconKey to state.icon,
                         DividerKey to state.divider,
                         outlinedKey to state.outlined,
-                        InvertedKey to state.inverted,
+                        ReversedKey to state.reversed,
                         EnabledKey to state.enabled,
                         ReadOnlyKey to state.readOnly,
                         ErrorKey to state.error,
-                        TextKey to state.text,
-                        additionalTextKey to state.additionalText,
+                        LabelKey to state.label,
+                        additionalLabelKey to state.additionalLabel,
                         HelperTextKey to state.helperText
                     )
                 },
@@ -94,12 +94,12 @@ class RadioButtonItemDemoState(
                         map[IconKey] as Boolean,
                         map[DividerKey] as Boolean,
                         map[outlinedKey] as Boolean,
-                        map[InvertedKey] as Boolean,
+                        map[ReversedKey] as Boolean,
                         map[EnabledKey] as Boolean,
                         map[ReadOnlyKey] as Boolean,
                         map[ErrorKey] as Boolean,
-                        map[TextKey] as String,
-                        map[additionalTextKey] as String?,
+                        map[LabelKey] as String,
+                        map[additionalLabelKey] as String?,
                         map[HelperTextKey] as String?
                     )
                 }
@@ -109,5 +109,5 @@ class RadioButtonItemDemoState(
 
     var selectedValue: Int by mutableIntStateOf(selectedValue)
     var outlined: Boolean by mutableStateOf(outlined)
-    var additionalText: String? by mutableStateOf(additionalText)
+    var additionalLabel: String? by mutableStateOf(additionalLabel)
 }

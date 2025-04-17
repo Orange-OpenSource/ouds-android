@@ -27,7 +27,7 @@ internal fun OudsCheckboxItemSample() {
 
     OudsCheckboxItem(
         checked = checked,
-        text = "Terms of use",
+        label = "Terms of use",
         helperText = "By checking this box, I acknowledge having read the conditions of use.",
         onCheckedChange = { value -> checked = value },
         divider = false
@@ -40,7 +40,7 @@ internal fun OudsTriStateCheckboxItemSample() {
 
     OudsTriStateCheckboxItem(
         state = toggleableState,
-        text = "My hobbies",
+        label = "My hobbies",
         helperText = "Select the hobbies you practice regularly.",
         onClick = {
             toggleableState = when (toggleableState) {
