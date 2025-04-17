@@ -55,7 +55,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param helperText Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
- * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position.  Otherwise, it is reversed.
+ * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
  * will not be clickable.
  * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
