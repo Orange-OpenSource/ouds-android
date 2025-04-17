@@ -48,7 +48,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * If you need an indeterminate state for the item's checkbox, please use [OudsTriStateCheckboxItem].
  *
  * @param checked Controls checked state of the item's checkbox.
- * @param label The main text of the checkbox item.
+ * @param label The main label of the checkbox item.
  * @param onCheckedChange Callback invoked on checkbox item click. If `null`, then this is passive and relies entirely on a higher-level component to control
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
@@ -112,7 +112,7 @@ fun OudsCheckboxItem(
  * If you don't need an indeterminate state for the item's checkbox, you may prefer [OudsCheckboxItem].
  *
  * @param state Controls whether item's TriStateCheckbox is checked, unchecked or in indeterminate state.
- * @param label The main text of the checkbox item.
+ * @param label The main label of the checkbox item.
  * @param onClick Callback invoked when checkbox item is being clicked, therefore the change of checkbox [ToggleableState] state is requested. If null, then
  * this is passive and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.

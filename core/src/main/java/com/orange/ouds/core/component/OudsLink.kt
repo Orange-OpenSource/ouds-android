@@ -72,7 +72,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  *
- * @param label Text displayed in the link.
+ * @param label Label displayed in the link.
  * @param icon Icon displayed in the link.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
@@ -107,7 +107,7 @@ fun OudsLink(
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
  *
- * @param label Text displayed in the link.
+ * @param label Label displayed in the link.
  * @param arrow Arrow displayed in the link.
  *   When [OudsLink.Arrow.Back], the arrow is displayed before the label.
  *   When [OudsLink.Arrow.Next], the arrow is displayed after the label.

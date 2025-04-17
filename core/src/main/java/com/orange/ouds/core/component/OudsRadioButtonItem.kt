@@ -47,11 +47,11 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * If you want to use a standalone radio button please use [com.orange.ouds.core.component.OudsRadioButton].
  *
  * @param selected Controls selected state of the radio button.
- * @param label The main text of the radio button item.
+ * @param label The main label of the radio button item.
  * @param onClick Callback invoked on radio button click. If `null`, then this radio button will not be interactable, unless something else handles its
  * input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button item.
- * @param additionalLabel Optional strong accompanying text for the main label. It is displayed between the [label] and the [helperText].
+ * @param additionalLabel Optional strong accompanying label for the main label. It is displayed between the [label] and the [helperText].
  * @param helperText Optional text displayed below the [label] and the [additionalLabel].
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the radio button item.
