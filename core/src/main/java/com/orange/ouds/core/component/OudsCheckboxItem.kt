@@ -43,7 +43,7 @@ import com.orange.ouds.foundation.extensions.orElse
  * By clicking on a checkbox item, the user changes the checked state of its checkbox.
  *
  * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
- * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] with `enabled` parameter set to `false`.
+ * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
  * If you want to use a standalone checkbox please use [com.orange.ouds.core.component.OudsCheckbox].
  *
@@ -108,6 +108,9 @@ fun OudsCheckboxItem(
  * It is a layout containing an [com.orange.ouds.core.component.OudsTriStateCheckbox], an associated label and several other optional elements which is often
  * used in a list to handle checkbox items hierarchy.
  * By clicking on a checkbox parent item, the user changes the checked state of its checkbox.
+ *
+ * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
+ * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
  * If you only need a standalone parent checkbox, please use [com.orange.ouds.core.component.OudsTriStateCheckbox].
  *
