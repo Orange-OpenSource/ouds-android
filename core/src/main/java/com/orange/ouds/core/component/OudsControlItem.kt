@@ -95,7 +95,6 @@ internal fun OudsControlItem(
 
         val leadingElement: (@Composable () -> Unit)? = if (reversed) itemIcon else indicator
         val trailingElement: (@Composable () -> Unit)? = if (reversed) indicator else itemIcon
-        val dividerThickness = 1.dp
 
         val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
         Column(
