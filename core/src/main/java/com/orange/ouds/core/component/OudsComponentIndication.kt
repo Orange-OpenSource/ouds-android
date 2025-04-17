@@ -13,7 +13,8 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.Easing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.IndicationNodeFactory
 import androidx.compose.foundation.interaction.InteractionSource
@@ -30,6 +31,7 @@ import kotlinx.coroutines.launch
 private class BackgroundColorAlphaNode(private val interactionSource: InteractionSource, private val color: Color) :
     Modifier.Node(), DrawModifierNode {
 
+    val backgroundColorAlphaEasing: Easing = CubicBezierEasing(0.3f, 0.3f, 0.2f, 1.0f)
     val animatedPressAlpha = Animatable(0f)
     var pressedAnimation: Job? = null
     var restingAnimation: Job? = null
@@ -41,7 +43,7 @@ private class BackgroundColorAlphaNode(private val interactionSource: Interactio
         pressedAnimation?.cancel()
         pressedAnimation = coroutineScope.launch {
             animatedPressAlpha.snapTo(0f)
-            animatedPressAlpha.animateTo(color.alpha, tween(easing = FastOutLinearInEasing))
+            animatedPressAlpha.animateTo(color.alpha, tween(easing = backgroundColorAlphaEasing))
         }
     }
 
@@ -49,7 +51,7 @@ private class BackgroundColorAlphaNode(private val interactionSource: Interactio
         restingAnimation = coroutineScope.launch {
             // Wait for the existing press animation to finish if it is still ongoing
             pressedAnimation?.join()
-            animatedPressAlpha.animateTo(0f, tween(easing = FastOutLinearInEasing))
+            animatedPressAlpha.animateTo(0f, tween(easing = backgroundColorAlphaEasing))
         }
 
     }
