@@ -83,11 +83,11 @@ fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
             descriptionRes = Component.Link.descriptionRes
         )
         if (!onColoredBox) {
-            LightDarkDemo {
+            LightDarkDemo(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)) {
                 LinkDemo(state = this@DemoScreen)
             }
         } else {
-            OnColoredBoxDemo {
+            OnColoredBoxDemo(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)) {
                 LinkDemo(state = this@DemoScreen)
             }
         }

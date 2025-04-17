@@ -54,7 +54,7 @@ fun RadioButtonDemoScreen() = DemoScreen(rememberRadioButtonDemoState()) {
             )
         }
     ) {
-        LightDarkDemo {
+        LightDarkDemo(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)) {
             RadioButtonDemo(state = this@DemoScreen)
         }
 

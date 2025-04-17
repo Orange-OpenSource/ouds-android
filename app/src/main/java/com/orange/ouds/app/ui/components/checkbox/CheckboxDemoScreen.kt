@@ -53,7 +53,7 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberChec
             )
         }
     ) {
-        LightDarkDemo {
+        LightDarkDemo(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)) {
             if (indeterminate) {
                 IndeterminateCheckboxDemo(state = this@DemoScreen)
             } else {

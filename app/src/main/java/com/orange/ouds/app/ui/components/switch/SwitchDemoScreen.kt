@@ -43,7 +43,7 @@ fun SwitchDemoScreen() = DemoScreen(rememberSwitchDemoState()) {
             )
         }
     ) {
-        LightDarkDemo {
+        LightDarkDemo(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)) {
             SwitchDemo(state = this@DemoScreen)
         }
 
