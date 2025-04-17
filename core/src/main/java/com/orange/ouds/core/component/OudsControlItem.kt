@@ -180,7 +180,7 @@ object OudsControlItem {
      * Indication used by control items and associated standalone elements like checkbox, radio button, ...
      */
     internal val clickIndication: @Composable () -> Indication = {
-        BackgroundAlphaVariation(OudsTheme.componentsTokens.controlItem.colorBgPressed.value)
+        BackgroundColorAlphaIndication(OudsTheme.componentsTokens.controlItem.colorBgPressed.value)
     }
 
     /**

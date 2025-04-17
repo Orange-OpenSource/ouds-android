@@ -27,7 +27,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-private class BackgroundAlphaNode(private val interactionSource: InteractionSource, private val color: Color) :
+private class BackgroundColorAlphaNode(private val interactionSource: InteractionSource, private val color: Color) :
     Modifier.Node(), DrawModifierNode {
 
     val animatedPressAlpha = Animatable(0f)
@@ -71,8 +71,8 @@ private class BackgroundAlphaNode(private val interactionSource: InteractionSour
     }
 }
 
-internal data class BackgroundAlphaVariation(private val color: Color) : IndicationNodeFactory {
+internal data class BackgroundColorAlphaIndication(private val color: Color) : IndicationNodeFactory {
     override fun create(interactionSource: InteractionSource): DelegatableNode {
-        return BackgroundAlphaNode(interactionSource, color)
+        return BackgroundColorAlphaNode(interactionSource, color)
     }
 }
