@@ -22,7 +22,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -36,12 +41,15 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import java.util.Locale
 
 private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(1, R.string.app_about_legalInformation_label, AboutFileMenuItem.File(R.raw.about_legal_information, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, AboutFileMenuItem.File(R.raw.about_privacy_policy, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(3, R.string.app_about_changelog_label, AboutFileMenuItem.File(R.raw.changelog, AboutFileMenuItem.File.Format.Markdown)),
-    AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute)
+    AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute),
+    AboutRouteMenuItem(5, R.string.app_about_change_language_label, AboutDestinations.MaterialComponentsRoute)
+
 )
 
 sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
@@ -65,6 +73,12 @@ class AboutRouteMenuItem(id: Int, @StringRes labelRes: Int, val route: String) :
 
 @Composable
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
+    var showLanguageDialog by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val onLanguageSelected: (Locale) -> Unit = { locale ->
+        updateLocale(context, locale)
+    }
     Screen {
         LazyColumn {
             item {
@@ -98,12 +112,23 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
             items(oudsAboutMenuItems) { item ->
                 ListItem(
                     modifier = Modifier
-                        .clickable { onMenuItemClick(item.id) }
+                        .clickable {
+                            if (item.id == 5) {
+                                showLanguageDialog = true
+                            } else {
+                                onMenuItemClick(item.id)
+                            } }
                         .listItemHorizontalPadding(),
                     headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.strong.large) }
                 )
             }
         }
+    }
+    if (showLanguageDialog) {
+        LanguageChangeDialog(
+            onDismiss = { showLanguageDialog = false },
+            onLanguageSelected = onLanguageSelected
+        )
     }
 }
 
