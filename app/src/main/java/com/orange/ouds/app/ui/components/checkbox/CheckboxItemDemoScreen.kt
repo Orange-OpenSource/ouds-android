@@ -21,14 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.controlitem.ControlItemDividerCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemEnabledCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemErrorCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemHelperTextCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemIconCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemReversedCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemReadOnlyCustomization
-import com.orange.ouds.app.ui.components.controlitem.ControlItemLabelCustomization
+import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
@@ -46,16 +39,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberCheckboxItemDemoState()) {
     CustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
-            ControlItemIconCustomization()
-            ControlItemDividerCustomization()
-            ControlItemReversedCustomization()
-            ControlItemEnabledCustomization()
-            ControlItemReadOnlyCustomization()
-            ControlItemErrorCustomization()
-            ControlItemLabelCustomization()
-            ControlItemHelperTextCustomization()
-        }
+        bottomSheetContent = { ControlItemCustomizations() }
     ) {
         LightDarkDemo {
             if (indeterminate) {

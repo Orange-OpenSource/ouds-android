@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.extensions.filter
 import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
@@ -65,9 +66,7 @@ fun OudsColoredBox(
     ) {
         // Filter the background modifiers in order to force the background color
         // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
-        val filteredModifier = modifier.foldIn<Modifier>(Modifier) { result, element ->
-            if (element::class.simpleName != "BackgroundElement") result.then(element) else result
-        }
+        val filteredModifier = modifier.filter { it::class.simpleName != "BackgroundElement" }
         Box(
             modifier = Modifier
                 .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
