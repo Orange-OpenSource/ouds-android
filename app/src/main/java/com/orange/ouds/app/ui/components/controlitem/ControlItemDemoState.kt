@@ -14,10 +14,10 @@ package com.orange.ouds.app.ui.components.controlitem
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
 
-
-abstract class ControlItemDemoState(
+open class ControlItemDemoState(
     icon: Boolean,
     divider: Boolean,
     reversed: Boolean,
@@ -27,15 +27,37 @@ abstract class ControlItemDemoState(
     label: String,
     helperText: String?
 ) {
+
     companion object {
-        const val IconKey = "icon"
-        const val DividerKey = "divider"
-        const val ReversedKey = "reversed"
-        const val EnabledKey = "enabled"
-        const val ReadOnlyKey = "readOnly"
-        const val ErrorKey = "error"
-        const val LabelKey = "label"
-        const val HelperTextKey = "helperText"
+
+        val Saver = listSaver(
+            save = { state ->
+                with(state) {
+                    listOf(
+                        icon,
+                        divider,
+                        reversed,
+                        enabled,
+                        readOnly,
+                        error,
+                        label,
+                        helperText
+                    )
+                }
+            },
+            restore = { list ->
+                ControlItemDemoState(
+                    list[0] as Boolean,
+                    list[1] as Boolean,
+                    list[2] as Boolean,
+                    list[3] as Boolean,
+                    list[4] as Boolean,
+                    list[5] as Boolean,
+                    list[6] as String,
+                    list[7] as String?
+                )
+            }
+        )
     }
 
     var icon: Boolean by mutableStateOf(icon)

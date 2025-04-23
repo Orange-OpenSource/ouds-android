@@ -12,10 +12,7 @@
 
 package com.orange.ouds.app.ui.utilities.composable
 
-import androidx.compose.foundation.LocalIndication
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,7 +31,6 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -45,8 +41,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
-import com.orange.ouds.core.component.OudsSwitch
+import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
@@ -58,28 +53,13 @@ private val valueLabelTextStyle: TextStyle
     get() = OudsTheme.typography.label.strong.large
 
 @Composable
-fun CustomizationSwitchListItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit, enabled: Boolean = true) {
-    val interactionSource = remember { MutableInteractionSource() }
-    ListItem(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(
-                interactionSource = interactionSource,
-                indication = LocalIndication.current,
-                enabled = enabled
-            ) {
-                onCheckedChange(!checked)
-            }
-            .listItemHorizontalPadding(),
-        headlineContent = { Text(text = label, style = labelTextStyle) },
-        trailingContent = {
-            OudsSwitch(
-                checked = checked,
-                onCheckedChange = null,
-                enabled = enabled,
-                interactionSource = interactionSource
-            )
-        }
+fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit, enabled: Boolean = true) {
+    OudsSwitchItem(
+        checked = checked,
+        label = label,
+        onCheckedChange = onCheckedChange,
+        reversed = true,
+        enabled = enabled
     )
 }
 

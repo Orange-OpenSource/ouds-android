@@ -34,14 +34,16 @@ import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
  *
- * An OUDS checkbox item is a layout containing an OudsCheckbox, an associated label and several other optional elements.
+ * An OUDS checkbox item is a layout containing an [OudsCheckbox], an associated label and several other optional elements.
  * It can be used in a list as a list item or as a single element to validate general conditions for example.
  * By clicking on a checkbox item, the user changes the checked state of its checkbox.
+ *
+ * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
+ * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
  * If you want to use a standalone checkbox please use [com.orange.ouds.core.component.OudsCheckbox].
  *
@@ -106,6 +108,9 @@ fun OudsCheckboxItem(
  * It is a layout containing an [com.orange.ouds.core.component.OudsTriStateCheckbox], an associated label and several other optional elements which is often
  * used in a list to handle checkbox items hierarchy.
  * By clicking on a checkbox parent item, the user changes the checked state of its checkbox.
+ *
+ * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
+ * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
  * If you only need a standalone parent checkbox, please use [com.orange.ouds.core.component.OudsTriStateCheckbox].
  *
@@ -207,7 +212,7 @@ private fun OudsCheckboxItem(
         errorComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
         indicator = {
             OudsCheckboxIndicator(
-                state = checkboxState(state),
+                state = state.toControlState(),
                 value = value,
                 error = error
             )
@@ -220,14 +225,6 @@ private fun OudsCheckboxItem(
         },
         modifier = modifier.semantics(mergeDescendants = true) {}
     )
-}
-
-private fun checkboxState(state: OudsControlItem.State) = when (state) {
-    OudsControlItem.State.Enabled -> OudsControl.State.Enabled
-    OudsControlItem.State.Hovered -> OudsControl.State.Hovered
-    OudsControlItem.State.Pressed -> OudsControl.State.Pressed
-    OudsControlItem.State.Focused -> OudsControl.State.Focused
-    OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> OudsControl.State.Disabled
 }
 
 @PreviewLightDark
@@ -245,18 +242,14 @@ internal fun PreviewOudsCheckboxItem(
     with(parameter) {
         PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
             OudsCheckboxItem(
-                value = toggleableState,
+                value = value,
                 label = "Label",
                 previewState = state,
                 helperText = helperText,
                 divider = divider,
                 error = error,
                 reversed = reversed,
-                icon = if (hasIcon) {
-                    OudsControlItem.Icon(imageVector = Icons.Filled.Call)
-                } else {
-                    null
-                },
+                icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null,
                 interactionSource = remember { MutableInteractionSource() }
             )
         }
@@ -275,44 +268,7 @@ internal fun PreviewOudsCheckboxItemWithLongHelperText() = OudsPreview {
     )
 }
 
-internal data class OudsCheckboxItemPreviewParameter(
-    val toggleableState: ToggleableState,
-    val helperText: String? = null,
-    val divider: Boolean = false,
-    val hasIcon: Boolean = false,
-    val error: Boolean = false,
-    val reversed: Boolean = false
-)
+internal typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewParameter<ToggleableState, Nothing>
 
 internal class OudsCheckboxItemPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsCheckboxItemPreviewParameter>(*previewParameterValues.toTypedArray())
-
-private val previewParameterValues: List<OudsCheckboxItemPreviewParameter>
-    get() {
-        val helperText = "Helper text"
-        val reversedValues = listOf(false, true)
-        return buildList {
-            reversedValues.forEach { reversed ->
-                val parameters = listOf(
-                    OudsCheckboxItemPreviewParameter(
-                        toggleableState = ToggleableState.Off,
-                        reversed = reversed
-                    ),
-                    OudsCheckboxItemPreviewParameter(
-                        toggleableState = ToggleableState.Off,
-                        hasIcon = true,
-                        helperText = helperText,
-                        reversed = reversed
-                    ),
-                    OudsCheckboxItemPreviewParameter(
-                        toggleableState = ToggleableState.On,
-                        helperText = helperText,
-                        divider = true,
-                        error = true,
-                        reversed = reversed
-                    ),
-                )
-                addAll(parameters)
-            }
-        }
-    }
+    OudsControlItemPreviewParameterProvider<ToggleableState, Nothing>(DefaultBooleanValues.map { ToggleableState(it) })

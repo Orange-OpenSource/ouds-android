@@ -63,7 +63,7 @@ fun DividerDemoScreen(vertical: Boolean = false) = DemoScreen(rememberDividerDem
             )
         }
     ) {
-        LightDarkDemo {
+        LightDarkDemo(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)) {
             if (vertical) {
                 OudsVerticalDivider(
                     modifier = Modifier.height(50.dp),
