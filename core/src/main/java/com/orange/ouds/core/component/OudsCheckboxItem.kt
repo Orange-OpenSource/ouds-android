@@ -38,16 +38,18 @@ import com.orange.ouds.foundation.extensions.orElse
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
  *
- * An OUDS checkbox item is a layout containing an [OudsCheckbox], an associated label and several other optional elements.
- * It can be used in a list as a list item or as a single element to validate general conditions for example.
- * By clicking on a checkbox item, the user changes the checked state of its checkbox.
+ * Checkboxes are input controls that allow users to select one or more options from a number of choices.
+ *
+ * The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text, a divider, or an icon,
+ * allowing it to suit various use cases.
+ *
+ * The OUDS checkbox item layout contains an [OudsCheckbox]. By clicking on a checkbox item, the user changes the checked state of its checkbox.
  *
  * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
- * If you want to use a standalone checkbox please use [com.orange.ouds.core.component.OudsCheckbox].
- *
- * If you need an indeterminate state for the item's checkbox, please use [OudsTriStateCheckboxItem].
+ * @see [OudsTriStateCheckboxItem] if you need an indeterminate state for the item's checkbox.
+ * @see [OudsCheckbox] if you want to use a standalone checkbox without any other element.
  *
  * @param checked Controls checked state of the item's checkbox.
  * @param label The main label of the checkbox item.
@@ -104,17 +106,23 @@ fun OudsCheckboxItem(
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
  *
- * An OUDS checkbox parent item.
- * It is a layout containing an [com.orange.ouds.core.component.OudsTriStateCheckbox], an associated label and several other optional elements which is often
- * used in a list to handle checkbox items hierarchy.
- * By clicking on a checkbox parent item, the user changes the checked state of its checkbox.
+ * Checkboxes are input controls that allow users to select one or more options from a number of choices.
+ *
+ * This checkbox item supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is
+ * checked, all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are
+ * checked, the parent checkbox becomes an indeterminate checkbox.
+ *
+ * The **indeterminate checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text,
+ * a divider, or an icon, allowing it to suit various use cases.
+ *
+ * The OUDS indeterminate checkbox item layout contains an [OudsTriStateCheckbox]. By clicking on an indeterminate checkbox item, the user changes the checked
+ * state of its checkbox.
  *
  * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
- * If you only need a standalone parent checkbox, please use [com.orange.ouds.core.component.OudsTriStateCheckbox].
- *
- * If you don't need an indeterminate state for the item's checkbox, you may prefer [OudsCheckboxItem].
+ * @see [OudsCheckboxItem] if you need a simple item's checkbox that represents Boolean state.
+ * @see [OudsTriStateCheckbox] if you only need an indeterminate standalone parent checkbox without any other element.
  *
  * @param state Controls whether item's TriStateCheckbox is checked, unchecked or in indeterminate state.
  * @param label The main label of the checkbox item.
