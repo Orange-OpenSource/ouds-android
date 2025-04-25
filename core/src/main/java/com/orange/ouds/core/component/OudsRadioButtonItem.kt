@@ -41,8 +41,8 @@ import com.orange.ouds.foundation.extensions.orElse
  *
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
  *
- * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as helper text,
- * a divider, or an icon, allowing it to suit various use cases.
+ * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as
+ * helper text, a divider, or an icon, allowing it to suit various use cases.
  *
  * The OUDS radio button item layout contains an [OudsRadioButton]. By clicking on the radio button item, the user changes the selected state of its radio button.
  *
