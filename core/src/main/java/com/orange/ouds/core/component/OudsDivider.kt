@@ -31,9 +31,11 @@ import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 //TODO Add DSM link when available
 // <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Divider design guidelines</a>
 /**
- * An OUDS horizontal divider.
+ * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
+ * without introducing a strong hierarchy like a heading or a container would.
  *
- * This composable renders a horizontal line that can be used to visually separate content.
+ * The **horizontal divider** renders an horizontal line to separate stacked vertical sections.
+ *
  * The color of the divider can be specified using the [OudsDivider.Color] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
@@ -53,9 +55,11 @@ fun OudsHorizontalDivider(
 //TODO Add DSM link when available
 // <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Divider design guidelines</a>
 /**
- * An OUDS vertical divider.
+ * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
+ * without introducing a strong hierarchy like a heading or a container would.
  *
- * This composable renders a vertical line that can be used to visually separate content.
+ * The **vertical divider** renders an vertical line to separate horizontally aligned elements.
+ *
  * The color of the divider can be specified using the [OudsDivider.Color] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
@@ -79,7 +83,7 @@ object OudsDivider {
 
     /**
      * Represents the possible colors for an [OudsHorizontalDivider] or an [OudsVerticalDivider].
-     * Each color corresponds to a specific color key token from the design system.
+     * Each color corresponds to a specific color key token from the Design System.
      */
     enum class Color {
         Default,
