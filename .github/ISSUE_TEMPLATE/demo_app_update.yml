@@ -1,0 +1,21 @@
+name: Request demo app update
+description: Please fill out the following details for your demo app update request.
+title: "Demo App - <Write here the title of the update> "
+labels: [ "📱 demo app", "🔍 triage" ]
+assignees: [ "florentmaitre", "paulinea" ]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe your need in details. Which screens? Which tokens, components or modules?
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Checklist for the Core Team
+      description: Some points to check before any merge
+      options:
+        - label: Unit tests have been updated and still pass
+        - label: UI tests have been updated and still pass
+        - label: A11y tests are ok

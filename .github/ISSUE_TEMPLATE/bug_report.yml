@@ -1,8 +1,8 @@
 name: Report a bug
 description: Tell us about a bug or issue you may have identified in OUDS Android.
-title: "[Bug]: Bug Summary"
-labels: ["🐞 bug", "🔍 triage"]
-assignees: ["florentmaitre", "paulinea"]
+title: "Bug - <Write here the bug summary>"
+labels: [ "🐞 bug", "🔍 triage" ]
+assignees: [ "florentmaitre", "paulinea" ]
 body:
   - type: checkboxes
     attributes:
@@ -15,7 +15,6 @@ body:
     id: device
     attributes:
       label: Your test device
-      description: 
       placeholder: Huawei Mate 20 Pro
     validations:
       required: true
@@ -23,7 +22,6 @@ body:
     id: os-version
     attributes:
       label: OS Version
-      description: 
       placeholder: Android 10.x
     validations:
       required: true
@@ -38,7 +36,7 @@ body:
     id: what-happened
     attributes:
       label: Describe the issue
-      description: Provide a summary of the issue, including specific steps to reproduce.
+      description: Provide a summary of the issue, including specific steps to reproduce with as much detail as possible. Do not forget to hide sensitive or personal data (phone numbers, accounts, messages, emails etc).
     validations:
       required: true
   - type: textarea
@@ -48,3 +46,10 @@ body:
       description: Provide a description of what you expected to happen.
     validations:
       required: true
+  - type: textarea
+    id: a11y-settings
+    attributes:
+      label: Accessibility settings
+      description: Provide a description about the accessibility settings you have (vocalization with Talkback, increased text sizes, keyboard navigation, high contrast, etc.)
+    validations:
+      required: false
