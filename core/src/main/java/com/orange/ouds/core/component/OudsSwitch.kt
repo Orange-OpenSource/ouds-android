@@ -63,7 +63,12 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 //TODO Add DSM link when available
 // <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Switch design guidelines</a>
 /**
- * An OUDS switch.
+ * Switches allow the user to toggle between two states, typically "on" and "off." It is represented as a slider that changes its position or color to indicate
+ * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
+ *
+ * The **standalone switch variant** can be used when the switch selector control is nested within another component and an alternative label is provided.
+ *
+ * @see [OudsSwitchItem]  if you want to use a switch with an associated label and other optional elements.
  *
  * @param checked Controls checked state of the switch.
  * @param onCheckedChange Callback invoked on switch click. If `null`, then this is passive and relies entirely on a higher-level component to control

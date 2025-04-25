@@ -36,14 +36,19 @@ import com.orange.ouds.foundation.extensions.orElse
 //TODO Add DSM link when available
 // <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Switch design guidelines</a>
 /**
- * An OUDS switch item is a layout containing an [OudsSwitch], an associated label and several other optional elements.
+ * Switches allow the user to toggle between two states, typically "on" and "off." It is represented as a slider that changes its position or color to indicate
+ * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
+ *
+ * The **switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text, a divider,
+ * or an icon, allowing it to suit various use cases.
  * It can be used in a list as a list item or as a single element to validate general conditions for example.
- * By clicking on a switch item, the user changes the checked state of its switch.
+ *
+ * The OUDS switch item layout contains an [OudsSwitch]. By clicking on the switch item, the user changes the selected state of its switch.
  *
  * In most cases, OUDS switch items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
- * If you want to use a standalone switch please use [com.orange.ouds.core.component.OudsSwitch].
+ * @see [OudsSwitch] if you want to use a standalone switch.
  *
  * @param checked Controls checked state of the item's switch.
  * @param label The main label of the switch item.
