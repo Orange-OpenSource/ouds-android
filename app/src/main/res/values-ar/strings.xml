@@ -16,10 +16,10 @@
         <string name="app_common_back_a11y">رجوع</string>
         <string name="app_common_copyCode_a11y">نسخ الكود</string>
         <string name="app_common_codeCopied_text">تم نسخ الكود إلى الحافظة</string>
-        <string name="app_common_collapsed_a11y">مغلق</string>
+        <string name="app_common_collapsed_a11y">مطوي</string>
         <string name="app_common_expanded_a11y">موسع</string>
         <string name="app_common_bottomSheetExpanded_a11y">القائمة السفلى موسعة</string>
-        <string name="app_common_bottomSheetCollapsed_a11y">القائمة السفلى مغلقة</string>
+        <string name="app_common_bottomSheetCollapsed_a11y">القائمة السفلية مطوية</string>
         <string name="app_common_customize_label">تخصيص</string>
         <string name="app_common_enabled_label">مفعل</string>
         <string name="app_common_onColoredBackground_label">على خلفية ملونة</string>
@@ -38,9 +38,6 @@
         <string name="app_bottomBar_about_label">حول</string>
 
         <!-- Tokens -->
-        <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
-        <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
-        <string name="app_tokens_spFormat_label" translatable="false">%s sp</string>
         <string name="app_tokens_viewCodeExample_label">عرض مثال على كود الرمز</string>
 
         <!-- Tokens: border -->
@@ -65,29 +62,29 @@
 
         <!-- Tokens: dimension -->
         <string name="app_tokens_dimension_label">الأبعاد</string>
-        <string name="app_tokens_dimension_description_text">الأبعاد توفر الحجم والتباعد القياسي لضمان التناسق البصري عبر واجهة المستخدم.</string>
+        <string name="app_tokens_dimension_description_text"> توفر الأبعاد مقاسات وتباعدًا موحدًا لضمان الاتساق البصري في واجهة المستخدم.</string>
 
         <!-- Tokens: dimension/space -->
         <string name="app_tokens_dimension_space_label">المسافة</string>
-        <string name="app_tokens_dimension_space_description_text">المسافة تشير إلى القياسات المستخدمة لتعريف المسافة بين عناصر واجهة المستخدم.</string>
+        <string name="app_tokens_dimension_space_description_text">المسافة تشير إلى القياسات المستخدمة لتعريف التباعد بين عناصر واجهة المستخدم.</string>
         <string name="app_tokens_dimension_space_scaled_label">مقاس متغير</string>
         <string name="app_tokens_dimension_space_scaledHeader_text">المسافة المقاسة المتغيرة تشير إلى التباعد الذي يتغير استنادًا إلى عوامل مثل حجم الحاوية، دقة الشاشة، أو عناصر التخطيط.</string>
         <string name="app_tokens_dimension_space_fixed_label">مقاس ثابت</string>
-        <string name="app_tokens_dimension_space_fixedHeader_text">المسافة الثابتة تشير إلى المسافة الثابتة بين العناصر التي تظل كما هي بغض النظر عن عوامل مثل حجم الحاوية، دقة الشاشة، أو تغييرات التخطيط.</string>
+        <string name="app_tokens_dimension_space_fixedHeader_text">تشير المسافات الثابتة إلى مسافة محددة بين العناصر التي تظل كما هي بغض النظر عن عوامل مثل حجم الحاوية، دقة الشاشة، أو تغييرات التخطيط.</string>
         <string name="app_tokens_dimension_space_paddingInline_label">الهوامش الجانبية</string>
         <string name="app_tokens_dimension_space_paddingInlineHeader_text">الهوامش الجانبية تشمل المسافة بين الجوانب اليمنى واليسرى للعناصر.</string>
         <string name="app_tokens_dimension_space_paddingStack_label">الهوامش العلوية والسفلية</string>
         <string name="app_tokens_dimension_space_paddingStackHeader_text">الهوامش العلوية والسفلية تشمل المسافة بين أعلى وأسفل العنصر.</string>
         <string name="app_tokens_dimension_space_paddingInset_label">الهوامش المحيطية</string>
         <string name="app_tokens_dimension_space_paddingInsetHeader_text">الهوامش المحيطية تشمل المسافة بين جميع الجوانب، مع كون جميع المعايير متساوية.</string>
-        <string name="app_tokens_dimension_space_columnGap_label">فراغ الأعمدة</string>
-        <string name="app_tokens_dimension_space_columnGapHeader_text">فراغ الأعمدة يشير إلى المسافة الرأسية بين العناصر.</string>
-        <string name="app_tokens_dimension_space_rowGap_label">فراغ الصفوف</string>
-        <string name="app_tokens_dimension_space_rowGapHeader_text">فراغ الصفوف يشير إلى المسافة الأفقية بين العناصر.</string>
+        <string name="app_tokens_dimension_space_columnGap_label">المسافة بين الأعمدة</string>
+        <string name="app_tokens_dimension_space_columnGapHeader_text">تشير المسافة بين الأعمدة إلى التباعد العمودي بين العناصر.</string>
+        <string name="app_tokens_dimension_space_rowGap_label">المسافة بين الصفوف</string>
+        <string name="app_tokens_dimension_space_rowGapHeader_text">تشير المسافة بين الصفوف إلى التباعد الأفقي بين العناصر.</string>
 
         <!-- Tokens: dimension/size -->
         <string name="app_tokens_dimension_size_label">الحجم</string>
-        <string name="app_tokens_dimension_size_description_text">الحجم يشير إلى القياسات المحددة التي تستخدم لتعريف أبعاد عناصر واجهة المستخدم.</string>
+        <string name="app_tokens_dimension_size_description_text">يشير الحجم إلى القياسات المحددة التي تُستخدم لتعريف أبعاد عناصر واجهة المستخدم داخل نظام التصميم.</string>
         <string name="app_tokens_dimension_size_iconDecorative_label">رمز زخرفي</string>
         <string name="app_tokens_dimension_size_iconWithText_label">رمز مع نص</string>
 
@@ -125,17 +122,17 @@
 
         <!-- Components: link -->
         <string name="app_components_link_label">رابط</string>
-        <string name="app_components_link_description_text">روابط لتوجيه العميل لأماكن اخري داخل التطبيق او خارجه.</string>
+        <string name="app_components_link_description_text">تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).</string>
         <string name="app_components_link_back_label">عوده</string>
         <string name="app_components_link_next_label">التالي</string>
         <string name="app_components_link_size_label">حجم</string>
-        <string name="app_components_checkbox_label">مربع الاختيار</string>
-        <string name="app_components_checkbox_description_text">مربعات الاختيار تسمح للمستخدمين باختيار خيار واحد أو عدة خيارات من مجموعة من الخيارات.</string>
+        <string name="app_components_checkbox_label">مربع اختيار</string>
+        <string name="app_components_checkbox_description_text"> تتيح خانات الاختيار للمستخدمين تحديد خيار واحد أو عدة خيارات من قائمة، أو تفعيل/تعطيل إعدادات، أو تأكيد إجراء معين.</string>
         <!-- Components: checkbox -->
-        <string name="app_components_checkbox_checkbox_label">مربع الاختيار</string>
-        <string name="app_components_checkbox_checkboxItem_label">عنصر مربع الاختيار</string>
-        <string name="app_components_checkbox_indeterminateCheckbox_label">مربع اختيار غير محدد</string>
-        <string name="app_components_checkbox_indeterminateCheckboxItem_label">عنصر مربع اختيار غير محدد</string>
+        <string name="app_components_checkbox_checkbox_label">خانة اختيار</string>
+        <string name="app_components_checkbox_checkboxItem_label">عنصر خانة اختيار</string>
+        <string name="app_components_checkbox_indeterminateCheckbox_label">خانة اختيار غير محدد</string>
+        <string name="app_components_checkbox_indeterminateCheckboxItem_label">خانة اختيار اختيار غير محدد</string>
 
         <!-- Components: control item (common strings for checkbox/radio/switch items) -->
         <string name="app_components_controlItem_helperText_label">نص المساعدة</string>
@@ -151,14 +148,14 @@
         <string name="app_components_divider_verticalDivider_label">فاصل عمودي</string>
         <!-- Components: radio button -->
         <string name="app_components_radioButton_label">زر الاختيار</string>
-        <string name="app_components_radioButton_description_text">أزرار الاختيار تسمح للمستخدمين باختيار خيار واحد فقط من مجموعة من الخيارات.</string>
+        <string name="app_components_radioButton_description_text">يُستخدم زر الاختيار لتمكين المستخدم من تحديد خيار واحد فقط من بين مجموعة خيارات حصرية. يُعرض عادةً كدائرة صغيرة مع تسمية، وتُملأ عند التحديد.</string>
         <string name="app_components_radioButton_radioButton_label">زر الاختيار</string>
         <string name="app_components_radioButton_radioButtonItem_label">عنصر زر الاختيار</string>
         <string name="app_components_radioButton_radioButtonItem_outlined_label">مخطط</string>
         <string name="app_components_radioButton_radioButtonItem_additionalLabel_label">التسمية الإضافية</string>
         <!-- Components: switch -->
         <string name="app_components_switch_label">مفتاح التبديل</string>
-        <string name="app_components_switch_description_text">مفاتيح التبديل تسمح للمستخدمين بتشغيل أو إيقاف ميزة.</string>
+        <string name="app_components_switch_description_text">يتيح مفتاح التبديل للمستخدم التبديل بين حالتين، عادةً "تشغيل" و "إيقاف". يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.</string>
         <string name="app_components_switch_switch_label">مفتاح التبديل</string>
         <string name="app_components_switch_switchItem_label">تبديل العنصر</string>
         <!-- About -->
@@ -170,11 +167,8 @@
         <string name="app_about_legalInformation_label">المعلومات القانونية</string>
         <string name="app_about_materialComponents_label">مكونات Material 3</string>
         <string name="app_about_changelog_label">سجل التغييرات</string>
-        <string name="app_about_change_language_label">تغيير اللغه</string>
+        <string name="app_about_openAppSettings_label">فتح اعدادات التطبيق</string>
         <string name="app_components_button_icon_a11y">أيقون</string>
-        <string name="app_about_choose_language_label">اختار لغه</string>
-        <string name="app_about_choose_language_arabic">عربي</string>
-        <string name="app_about_choose_language_english">أنجليزي</string>
-        <string name="app_about_choose_language_cancel">الغاء</string>
+
 
 </resources>

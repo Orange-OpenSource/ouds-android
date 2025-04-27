@@ -39,9 +39,9 @@
     <string name="app_bottomBar_about_label">About</string>
 
     <!-- Tokens -->
-    <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
-    <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
-    <string name="app_tokens_spFormat_label" translatable="false">%s sp</string>
+    <string name="app_tokens_floatFormat_label" translatable="false">\u200e%sf</string>
+    <string name="app_tokens_dpFormat_label" translatable="false">\u200e%s dp</string>
+    <string name="app_tokens_spFormat_label" translatable="false">\u200e%s sp</string>
     <string name="app_tokens_viewCodeExample_label">View token code example</string>
 
     <!-- Tokens: border -->
@@ -176,10 +176,6 @@
     <string name="app_about_legalInformation_label">Legal information</string>
     <string name="app_about_materialComponents_label">Material 3 components</string>
     <string name="app_about_changelog_label">Changelog</string>
-    <string name="app_about_change_language_label">Change Language</string>
-    <string name="app_about_choose_language_label">Choose Language</string>
-    <string name="app_about_choose_language_arabic">Arabic</string>
-    <string name="app_about_choose_language_english">English</string>
-    <string name="app_about_choose_language_cancel">Cancel</string>
+    <string name="app_about_openAppSettings_label">Open application settings</string>
 
 </resources>
