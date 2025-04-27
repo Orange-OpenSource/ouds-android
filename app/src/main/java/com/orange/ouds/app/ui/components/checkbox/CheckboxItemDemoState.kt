@@ -15,7 +15,7 @@ package com.orange.ouds.app.ui.components.checkbox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
@@ -66,42 +66,35 @@ class CheckboxItemDemoState(
     label: String,
     helperText: String?
 ) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
+
     companion object {
-        val Saver = run {
-            val checkedValuesKey = "checkedValues"
-            val toggleableStateValuesKey = "toggleableStateValues"
-            mapSaver(
-                save = { state ->
-                    mapOf(
-                        checkedValuesKey to state.checkedValues,
-                        toggleableStateValuesKey to state.toggleableStateValues,
-                        IconKey to state.icon,
-                        DividerKey to state.divider,
-                        ReversedKey to state.reversed,
-                        EnabledKey to state.enabled,
-                        ReadOnlyKey to state.readOnly,
-                        ErrorKey to state.error,
-                        LabelKey to state.label,
-                        HelperTextKey to state.helperText
-                    )
-                },
-                restore = { map ->
+        val Saver = listSaver(
+            save = { state ->
+                listOf(
+                    state.checkedValues,
+                    state.toggleableStateValues,
+                    with(ControlItemDemoState.Saver) { save(state) }
+                )
+            },
+            restore = { list: List<Any?> ->
+                val controlItemDemoState = list[2]?.let { ControlItemDemoState.Saver.restore(it) }
+                controlItemDemoState?.run {
                     @Suppress("UNCHECKED_CAST")
                     CheckboxItemDemoState(
-                        map[checkedValuesKey] as Pair<Boolean, Boolean>,
-                        map[toggleableStateValuesKey] as Pair<ToggleableState, ToggleableState>,
-                        map[IconKey] as Boolean,
-                        map[DividerKey] as Boolean,
-                        map[ReversedKey] as Boolean,
-                        map[EnabledKey] as Boolean,
-                        map[ReadOnlyKey] as Boolean,
-                        map[ErrorKey] as Boolean,
-                        map[LabelKey] as String,
-                        map[HelperTextKey] as String?
+                        list[0] as Pair<Boolean, Boolean>,
+                        list[1] as Pair<ToggleableState, ToggleableState>,
+                        icon,
+                        divider,
+                        reversed,
+                        enabled,
+                        readOnly,
+                        error,
+                        label,
+                        helperText
                     )
                 }
-            )
-        }
+            }
+        )
     }
 
     var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)

@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -39,10 +38,15 @@ import androidx.compose.ui.unit.max
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
+import com.orange.ouds.core.extensions.filter
+import com.orange.ouds.core.extensions.last
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
+import com.orange.ouds.core.utilities.edgeToEdgePadding
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @Composable
 internal fun OudsControlItem(
@@ -91,20 +95,28 @@ internal fun OudsControlItem(
 
         val leadingElement: (@Composable () -> Unit)? = if (reversed) itemIcon else indicator
         val trailingElement: (@Composable () -> Unit)? = if (reversed) indicator else itemIcon
-        val dividerThickness = 1.dp
 
+        val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
         Column(
-            modifier = modifier
+            modifier = filteredModifier
                 .height(IntrinsicSize.Min)
                 .heightIn(min = controlItemTokens.sizeMinHeight.dp)
                 .widthIn(min = controlItemTokens.sizeMinWidth.dp)
                 .background(color = backgroundColor(state = state))
                 .outerBorder(state = state)
         ) {
+            val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
             Row(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(all = controlItemTokens.spaceInset.value),
+                    .padding(vertical = controlItemTokens.spaceInset.value)
+                    .edgeToEdgePadding(true)
+                    .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
+                    .run {
+                        // Apply default horizontal padding if edgeToEdgePadding is disabled
+                        val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
+                        if (element?.enabled == false) padding(horizontal = controlItemTokens.spaceInset.value) else this
+                    },
                 horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
             ) {
                 leadingElement?.let { LeadingTrailingBox(leadingElement) }
@@ -144,7 +156,17 @@ internal fun OudsControlItem(
  */
 object OudsControlItem {
     internal enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly
+        Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly;
+
+        fun toControlState(): OudsControl.State {
+            return when (this) {
+                Enabled -> OudsControl.State.Enabled
+                Hovered -> OudsControl.State.Hovered
+                Pressed -> OudsControl.State.Pressed
+                Focused -> OudsControl.State.Focused
+                Disabled, ReadOnly -> OudsControl.State.Disabled
+            }
+        }
     }
 
     /**
@@ -271,3 +293,49 @@ private fun additionalLabelColor(state: OudsControlItem.State) =
 @Composable
 private fun helperTextColor(state: OudsControlItem.State) =
     if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
+
+internal data class OudsControlItemPreviewParameter<T, S>(
+    val value: T,
+    val extraParameter: S?,
+    val helperText: String? = null,
+    val divider: Boolean = false,
+    val hasIcon: Boolean = false,
+    val error: Boolean = false,
+    val reversed: Boolean = false,
+    val additionalLabel: String? = null
+)
+
+internal open class OudsControlItemPreviewParameterProvider<T, S>(
+    values: List<T>,
+    extraParameters: List<S> = listOf()
+) : BasicPreviewParameterProvider<OudsControlItemPreviewParameter<T, S>>(*getPreviewParameterValues(values, extraParameters).toTypedArray()) {
+
+    companion object {
+        val DefaultBooleanValues = listOf(false, false, true)
+    }
+}
+
+private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: List<S> = listOf()): List<OudsControlItemPreviewParameter<T, S>> {
+    val additionalLabel = "Additional label"
+    val helperText = "Helper text"
+    val reversedValues = listOf(false, true)
+
+    return buildList {
+        reversedValues.forEach { reversed ->
+            val parameters = List(3) { index ->
+                OudsControlItemPreviewParameter(
+                    value = values[index],
+                    extraParameter = extraParameters.getOrNull(index),
+                    reversed = reversed
+                ).run {
+                    when (index) {
+                        0 -> this
+                        1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
+                        else -> copy(helperText = helperText, divider = true, error = true)
+                    }
+                }
+            }
+            addAll(parameters)
+        }
+    }
+}

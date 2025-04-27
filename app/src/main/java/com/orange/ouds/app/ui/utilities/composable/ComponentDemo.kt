@@ -25,28 +25,29 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 
 @Composable
-fun LightDarkDemo(componentDemo: @Composable () -> Unit) {
-    ComponentDemoBox {
+fun LightDarkDemo(modifier: Modifier = Modifier, componentDemo: @Composable () -> Unit) {
+    ComponentDemoBox(modifier = modifier) {
         componentDemo()
     }
     OudsThemeTweak(OudsTheme.Tweak.Invert) {
-        ComponentDemoBox {
+        ComponentDemoBox(modifier = modifier) {
             componentDemo()
         }
     }
 }
 
 @Composable
-fun OnColoredBoxDemo(componentDemo: @Composable () -> Unit) {
-    ComponentDemoBox(colored = true) {
+fun OnColoredBoxDemo(modifier: Modifier = Modifier, componentDemo: @Composable () -> Unit) {
+    ComponentDemoBox(modifier = modifier, colored = true) {
         componentDemo()
     }
 }
 
 @Composable
-private fun ComponentDemoBox(colored: Boolean = false, content: @Composable BoxScope.() -> Unit) {
-    val modifier = Modifier
-        .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
+private fun ComponentDemoBox(modifier: Modifier = Modifier, colored: Boolean = false, content: @Composable BoxScope.() -> Unit) {
+    @Suppress("NAME_SHADOWING")
+    val modifier = modifier
+        .padding(vertical = OudsTheme.spaces.fixed.medium)
         .fillMaxWidth()
     val contentAlignment = Alignment.Center
     if (colored) {
