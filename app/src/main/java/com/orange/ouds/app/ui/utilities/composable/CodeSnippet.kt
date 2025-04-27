@@ -25,17 +25,20 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ClipboardManager
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
@@ -52,6 +55,8 @@ fun CodeSnippet(modifier: Modifier = Modifier, init: Code.Builder.() -> Unit) {
 
 @Composable
 fun CodeSnippet(code: String, modifier: Modifier = Modifier) {
+    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+
     Row(
         modifier = modifier
             .background(color = OudsTheme.colorScheme.background.secondary)
@@ -79,6 +84,7 @@ fun CodeSnippet(code: String, modifier: Modifier = Modifier) {
                 contentDescription = stringResource(id = R.string.app_common_copyCode_a11y)
             )
         }
+    }
     }
 }
 

@@ -110,6 +110,9 @@ android {
         releaseNotesFile = Firebase_gradle.AppDistribution.RELEASE_NOTES_FILE_PATH
         groups = project.findTypedProperty("appDistributionGroup")
     }
+    androidResources {
+        generateLocaleConfig = true
+    }
 }
 
 dependencies {
@@ -134,6 +137,7 @@ dependencies {
 }
 
 tasks.register<DefaultTask>("updateAppChangelog") {
+    onlyIf {false}
     doLast {
         updateChangelog(null)
         copy {

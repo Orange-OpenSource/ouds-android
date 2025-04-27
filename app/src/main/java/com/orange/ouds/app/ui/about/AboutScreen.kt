@@ -12,6 +12,11 @@
 
 package com.orange.ouds.app.ui.about
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
@@ -48,7 +53,7 @@ private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, AboutFileMenuItem.File(R.raw.about_privacy_policy, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(3, R.string.app_about_changelog_label, AboutFileMenuItem.File(R.raw.changelog, AboutFileMenuItem.File.Format.Markdown)),
     AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute),
-    AboutRouteMenuItem(5, R.string.app_about_change_language_label, AboutDestinations.MaterialComponentsRoute)
+    AboutAppSettingItem(5, R.string.app_about_openAppSettings_label)
 
 )
 
@@ -71,14 +76,13 @@ class AboutFileMenuItem(id: Int, @StringRes labelRes: Int, val file: File) : Abo
 
 class AboutRouteMenuItem(id: Int, @StringRes labelRes: Int, val route: String) : AboutMenuItem(id, labelRes)
 
+class AboutAppSettingItem(id: Int, @StringRes labelRes: Int) : AboutMenuItem(id, labelRes)
+
 @Composable
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
-    var showLanguageDialog by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
-    val onLanguageSelected: (Locale) -> Unit = { locale ->
-        updateLocale(context, locale)
-    }
+
     Screen {
         LazyColumn {
             item {
@@ -113,25 +117,31 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                 ListItem(
                     modifier = Modifier
                         .clickable {
-                            if (item.id == 5) {
-                                showLanguageDialog = true
+                            if (item is AboutAppSettingItem) {
+                               context.openAppSettings()
                             } else {
                                 onMenuItemClick(item.id)
-                            } }
+                            }
+                        }
                         .listItemHorizontalPadding(),
                     headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.strong.large) }
                 )
             }
         }
     }
-    if (showLanguageDialog) {
-        LanguageChangeDialog(
-            onDismiss = { showLanguageDialog = false },
-            onLanguageSelected = onLanguageSelected
-        )
+
+}
+fun Context.openAppSettings() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val intent = Intent(Settings.ACTION_APP_LOCALE_SETTINGS).apply {
+            putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+        }
+        startActivity(intent)
+    } else {
+        val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+        startActivity(intent)
     }
 }
-
 @PreviewLightDark
 @Composable
 private fun PreviewAboutScreen() = OudsPreview {
