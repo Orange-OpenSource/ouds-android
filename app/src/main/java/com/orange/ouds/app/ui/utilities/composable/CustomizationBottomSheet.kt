@@ -47,7 +47,8 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -73,8 +74,8 @@ fun CustomizationBottomSheetScaffold(
         SheetValue.Hidden, SheetValue.PartiallyExpanded -> stringResource(R.string.app_common_bottomSheetCollapsed_a11y)
         SheetValue.Expanded -> stringResource(R.string.app_common_bottomSheetExpanded_a11y)
     }
-    val screenHeight = LocalConfiguration.current.screenHeightDp
-    val customizationContentMaxHeight = screenHeight.dp / 2 - BottomSheetDefaults.SheetPeekHeight
+    val screenHeight = with(LocalDensity.current) { LocalWindowInfo.current.containerSize.height.toDp() }
+    val customizationContentMaxHeight = screenHeight / 2 - BottomSheetDefaults.SheetPeekHeight
 
     BackHandler(bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
         coroutineScope.launch {
