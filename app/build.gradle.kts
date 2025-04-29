@@ -137,7 +137,6 @@ dependencies {
 }
 
 tasks.register<DefaultTask>("updateAppChangelog") {
-    onlyIf {false}
     doLast {
         updateChangelog(null)
         copy {

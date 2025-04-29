@@ -132,15 +132,15 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
 
 }
 fun Context.openAppSettings() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        val intent = Intent(Settings.ACTION_APP_LOCALE_SETTINGS).apply {
-            putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
-        }
-        startActivity(intent)
+    val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.fromParts("package", this.packageName, null)
+        )
     } else {
-        val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-        startActivity(intent)
+        Intent(Settings.ACTION_LOCALE_SETTINGS)
     }
+    startActivity(intent)
 }
 @PreviewLightDark
 @Composable
