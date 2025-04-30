@@ -37,19 +37,19 @@ import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">OUDS Radio button design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">**OUDS Radio button design guidelines**</a>
  *
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
  *
  * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as
- * helper text, a divider, or an icon, allowing it to suit various use cases.
+ * additional label, helper text, a divider, or an icon, allowing it to suit various use cases.
  *
  * The OUDS radio button item layout contains an [OudsRadioButton]. By clicking on the radio button item, the user changes the selected state of its radio button.
  *
  * In most cases, OUDS radio button items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
- * @see [OudsRadioButton] if you want to use a standalone radio button.
+ * @see [OudsRadioButton] If you want to use a standalone radio button.
  *
  * @param selected Controls selected state of the radio button.
  * @param label The main label of the radio button item.
