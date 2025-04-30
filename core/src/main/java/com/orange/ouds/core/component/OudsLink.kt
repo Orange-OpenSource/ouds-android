@@ -357,7 +357,7 @@ object OudsLink {
      */
     enum class Arrow {
         /**
-         * Used for "backward" navigation. This arrow id positioned before the label, it features a "chevron left" icon, which is not customizable.
+         * Used for "backward" navigation. This arrow is positioned before the label, it features a "chevron left" icon, which is not customizable.
          */
         Back,
 
