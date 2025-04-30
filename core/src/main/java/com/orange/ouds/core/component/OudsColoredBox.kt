@@ -105,7 +105,7 @@ object OudsColoredBox {
         StatusWarningEmphasized,
         StatusWarningMuted;
 
-        companion object {
+        private companion object {
 
             // This method is unused but it allows to be notified with a build error if surface key tokens are updated
             private fun fromKeyToken(keyToken: OudsColorKeyToken.Surface): Color {
