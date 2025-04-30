@@ -1,5 +1,5 @@
 name: Feature Request
-description: Suggest a new Epic to be added to the backlog.
+description: Suggest a new Epic to be added to the backlog
 title: "Feature - <Write here your feature summary>"
 labels: [ "🗳️ feature", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]

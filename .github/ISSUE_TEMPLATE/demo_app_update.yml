@@ -1,5 +1,5 @@
 name: Request demo app update
-description: Please fill out the following details for your demo app update request.
+description: Propose a change in the Design Toolbox demo application
 title: "Demo App - <Write here the title of the update> "
 labels: [ "📱 demo app", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]

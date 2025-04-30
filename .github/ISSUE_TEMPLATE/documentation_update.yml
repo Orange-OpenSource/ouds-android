@@ -1,5 +1,5 @@
 name: Documentation Update
-description: Please fill out the following details for your documentation update request.
+description: Propose a documentation change
 title: "Documentation - <Write here the title of the update>"
 labels: [ "📖 documentation", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]

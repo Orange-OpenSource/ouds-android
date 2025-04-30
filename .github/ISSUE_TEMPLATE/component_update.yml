@@ -1,5 +1,5 @@
 name: Request a component update
-description: Please fill out the following details for your component update request.
+description: Propose a change for a specific component
 title: "Component update - <Write here the title of the update>"
 labels: [ "⚛️ component", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
