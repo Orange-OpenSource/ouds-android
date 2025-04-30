@@ -17,7 +17,7 @@
     <string name="app_common_back_a11y">Back</string>
     <string name="app_common_copyCode_a11y">Copy code</string>
     <string name="app_common_codeCopied_text">Code copied to the clipboard</string>
-    <string name="app_common_codeClipData_label">OUDS code</string>
+    <string name="app_common_codeClipData_label" translatable="false">OUDS code</string>
     <string name="app_common_collapsed_a11y">Collapsed</string>
     <string name="app_common_expanded_a11y">Expanded</string>
     <string name="app_common_bottomSheetExpanded_a11y">Bottom sheet expanded</string>
