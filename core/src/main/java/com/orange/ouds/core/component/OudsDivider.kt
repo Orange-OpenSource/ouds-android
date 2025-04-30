@@ -29,7 +29,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 
 //TODO Add DSM link when available
-// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Divider design guidelines</a>
+// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Divider design guidelines**</a>
 /**
  * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
  * without introducing a strong hierarchy like a heading or a container would.
@@ -53,7 +53,7 @@ fun OudsHorizontalDivider(
 }
 
 //TODO Add DSM link when available
-// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Divider design guidelines</a>
+// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Divider design guidelines**</a>
 /**
  * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
  * without introducing a strong hierarchy like a heading or a container would.

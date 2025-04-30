@@ -34,7 +34,7 @@ import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.extensions.orElse
 
 //TODO Add DSM link when available
-// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">OUDS Switch design guidelines</a>
+// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Switch design guidelines**</a>
 /**
  * Switches allow the user to toggle between two states, typically "on" and "off." It is represented as a slider that changes its position or color to indicate
  * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
