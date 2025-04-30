@@ -26,4 +26,4 @@ body:
         - label: Unit tests have been updated
         - label: UI tests have been updated
         - label: Design System Toolbox has been updated
-        - label: Retro-compatibility has been checked, or broken API have been flagged as deprecated with a workaround
+        - label: Backward compatibility has been checked, or broken API have been flagged as deprecated with a workaround
