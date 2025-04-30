@@ -81,7 +81,7 @@ import kotlinx.parcelize.Parcelize
  *
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * This version of the button uses the *text only* layout which is the default one.
+ * This version of the button uses the *text only* layout which is the most used layout.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
@@ -114,7 +114,6 @@ fun OudsButton(
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
     interactionSource: MutableInteractionSource? = null
 ) {
-
     OudsButton(
         icon = null,
         label = label,
@@ -592,7 +591,7 @@ object OudsButtonDefaults {
 object OudsButton {
 
     /**
-     * A button icon in an [com.orange.ouds.core.component.OudsButton].
+     * A button icon in an [OudsButton].
      * It is non-clickable and no content description is needed because a button label is always present.
      */
     class Icon private constructor(
@@ -645,7 +644,7 @@ object OudsButton {
 
         /**
          * A strong style for a button which should be singular and prominent, limited to one per view. It should be reserved for the most critical action,
-         * such as "Next," "Save," "Submit," etc
+         * such as "Next," "Save," "Submit," etc...
          */
         Strong,
 
