@@ -54,15 +54,15 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
  *
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
  * The **standalone checkbox variant** is used when the checkbox input is nested within another component and an alternative label is provided. For example,
  * a checkbox can be used in a data table where its purpose is clear from its position or its connection to other items in the same row or column.
  *
- * @see [OudsTriStateCheckbox] if you require support for an indeterminate state.
- * @see [OudsCheckboxItem] if you want to use a checkbox with an associated label and other optional elements.
+ * @see [OudsTriStateCheckbox] If you require support for an indeterminate state.
+ * @see [OudsCheckboxItem] If you want to use a checkbox with an associated label and other optional elements.
  *
  * @param checked Controls checked state of the checkbox.
  * @param onCheckedChange Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control
@@ -98,7 +98,7 @@ fun OudsCheckbox(
 
 /**
  *
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
  *
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
@@ -109,8 +109,8 @@ fun OudsCheckbox(
  * The **indeterminate standalone checkbox variant** allows to manage a checkbox with an indeterminate state that can be used when the checkbox input is nested
  * within another component and an alternative label is provided.
  *
- * @see [OudsCheckbox] if you need a simple component that represents Boolean state.
- * @see [OudsTriStateCheckboxItem] if you want to use an indeterminate checkbox with an associated label and other optional elements.
+ * @see [OudsCheckbox] If you need a simple component that represents [Boolean] state.
+ * @see [OudsTriStateCheckboxItem] If you want to use an indeterminate checkbox with an associated label and other optional elements.
  *
  * @param state Controls whether TriStateCheckbox is checked, unchecked or in indeterminate state.
  * @param onClick Callback invoked when checkbox is being clicked, therefore the change of [ToggleableState] state is requested. If null, then this is passive
