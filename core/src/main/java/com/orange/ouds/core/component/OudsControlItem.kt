@@ -48,6 +48,10 @@ import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
 import com.orange.ouds.core.utilities.edgeToEdgePadding
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
+/**
+ * Control item composable helps to factorize common layout elements between [OudsCheckboxItem], [OudsTriStateCheckboxItem], [OudsRadioButtonItem]
+ * and [OudsSwitchItem].
+ */
 @Composable
 internal fun OudsControlItem(
     state: OudsControlItem.State,
@@ -152,7 +156,7 @@ internal fun OudsControlItem(
 }
 
 /**
- * Contains classes to build a control item: [com.orange.ouds.core.component.OudsCheckboxItem], [com.orange.ouds.core.component.OudsRadioButtonItem].
+ * Contains classes to build a control item: [OudsCheckboxItem], [OudsRadioButtonItem].
  */
 object OudsControlItem {
     internal enum class State {
