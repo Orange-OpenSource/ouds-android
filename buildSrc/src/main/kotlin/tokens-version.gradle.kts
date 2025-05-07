@@ -13,13 +13,16 @@
 import com.orange.ouds.gradle.findTypedProperty
 
 private val moduleDocumentationFilePaths = listOf(
-    "global-raw-tokens",
-    "theme-contract",
-    "theme-orange"
+    "${rootProject.projectDir}/global-raw-tokens",
+    "${rootProject.projectDir}/theme-contract",
+    "${rootProject.projectDir}/theme-orange"
 ).map { "$it/Module.md" }
 
 private val tokensVersion: String
-    get() = getTokensVersion("global-raw-tokens/src/main/java/com/orange/ouds/tokens/global/raw/ColorRawTokens.kt", "^// Tokens version (.*)")
+    get() = getTokensVersion(
+        "${rootProject.projectDir}/global-raw-tokens/src/main/java/com/orange/ouds/tokens/global/raw/ColorRawTokens.kt",
+        "^// Tokens version (.*)"
+    )
 
 private fun getTokensVersion(filePath: String, pattern: String): String {
     val tokensVersionRegex = pattern.toRegex()
