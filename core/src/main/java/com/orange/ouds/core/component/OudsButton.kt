@@ -257,15 +257,23 @@ private fun OudsButton(
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.dp * iconScale else Dp.Unspecified
         val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
-        val backgroundColor = backgroundColor(hierarchy = hierarchy, state = state)
 
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
             val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
+            val contentColor = rememberInteractionStateColor(interactionState = interactionState) { interactionStateValue ->
+                val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
+                contentColor(hierarchy = hierarchy, state = buttonState)
+            }
+            val backgroundColor = rememberInteractionStateColor(interactionState = interactionState) { interactionStateValue ->
+                val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
+                backgroundColor(hierarchy = hierarchy, state = buttonState)
+            }
+            val indication = InteractionStateValuesIndication(contentColor, backgroundColor)
             Box(
                 modifier = modifier
                     .widthIn(min = buttonTokens.sizeMinWidth.dp)
                     .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
-                    .background(color = backgroundColor, shape = shape)
+                    .background(color = backgroundColor.value, shape = shape)
                     .border(hierarchy = hierarchy, state = state, shape = shape)
                     .outerBorder(state = state, shape = shape)
                     .semantics {
@@ -274,7 +282,7 @@ private fun OudsButton(
                     .clickable(
                         enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading) },
                         interactionSource = interactionSource,
-                        indication = null,
+                        indication = indication,
                         onClick = onClick
                     ),
                 contentAlignment = Alignment.Center
@@ -295,21 +303,20 @@ private fun OudsButton(
                 ) {
                     if (icon != null) {
                         val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
-                        val tint = contentColor(hierarchy = hierarchy, state = state)
                         icon.Content(
                             modifier = Modifier
                                 .size(size.value * iconScale)
                                 .semantics {
                                     contentDescription = if (label == null) icon.contentDescription else ""
                                 },
-                            extraParameters = OudsButton.Icon.ExtraParameters(tint = tint)
+                            extraParameters = OudsButton.Icon.ExtraParameters(tint = contentColor.value)
                         )
                     }
                     if (label != null) {
                         Text(
                             modifier = modifier,
                             text = label,
-                            color = contentColor(hierarchy = hierarchy, state = state),
+                            color = contentColor.value,
                             style = OudsTheme.typography.label.strong.large,
                             textAlign = TextAlign.Center
                         )
