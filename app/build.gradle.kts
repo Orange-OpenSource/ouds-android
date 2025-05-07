@@ -10,6 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
+import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.findTypedProperty
