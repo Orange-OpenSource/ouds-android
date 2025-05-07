@@ -1,0 +1,29 @@
+name: Request a component update
+description: Propose a change for a specific component
+title: "Component update - <Write here the title of the update>"
+labels: [ "⚛️ component", "🔍 triage" ]
+assignees: [ "florentmaitre", "paulinea" ]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe your need in details
+    validations:
+      required: true
+  - type: textarea
+    id: motivation_context
+    attributes:
+      label: Motivation & Context
+      description: Why is this change required? What problem does it solve?
+  - type: checkboxes
+    attributes:
+      label: Checklist for the Core Team
+      description: Some points to check before any merge
+      options:
+        - label: Tokens have been updated
+        - label: Documentations have been updated
+        - label: Unit tests have been updated
+        - label: UI tests have been updated
+        - label: Design System Toolbox has been updated
+        - label: Backward compatibility has been checked, or broken API have been flagged as deprecated with a workaround

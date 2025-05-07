@@ -1,8 +1,8 @@
 name: Feature Request
-description: Suggest a new Epic to be added to the backlog.
-title: "[feature]: "
-labels: ["🗳️ feature", "🔍 triage"]
-assignees: ["florentmaitre", "paulinea"]
+description: Suggest a new Epic to be added to the backlog
+title: "Feature - <Write here your feature summary>"
+labels: [ "🗳️ feature", "🔍 triage" ]
+assignees: [ "florentmaitre", "paulinea" ]
 body:
   - type: checkboxes
     attributes:
@@ -18,8 +18,7 @@ body:
   - type: textarea
     id: user
     attributes:
-      label: As a 
-      description: 
+      label: As a
       placeholder: type of user / context of use
     validations:
       required: true
@@ -27,7 +26,6 @@ body:
     id: need
     attributes:
       label: ... I want to
-      description: 
       placeholder: perform some task
     validations:
       required: true
@@ -35,7 +33,6 @@ body:
     id: goal
     attributes:
       label: ... so that I can
-      description: 
       placeholder: achieve some goal
     validations:
       required: true
