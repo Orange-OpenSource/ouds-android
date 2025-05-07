@@ -121,7 +121,7 @@ fun OudsCheckboxItem(
  * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
- * @see [OudsCheckboxItem] If you need a simple item's checkbox that represents Boolean state.
+ * @see [OudsCheckboxItem] If you need a simple item's checkbox that represents [Boolean] state.
  * @see [OudsTriStateCheckbox] If you only need an indeterminate standalone parent checkbox without any other element.
  *
  * @param state Controls whether item's TriStateCheckbox is checked, unchecked or in indeterminate state.

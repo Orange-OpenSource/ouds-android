@@ -156,7 +156,7 @@ internal fun OudsControlItem(
 }
 
 /**
- * Contains classes to build a control item: [com.orange.ouds.core.component.OudsCheckboxItem], [com.orange.ouds.core.component.OudsRadioButtonItem].
+ * Contains classes to build a control item: [OudsCheckboxItem], [OudsRadioButtonItem].
  */
 object OudsControlItem {
     internal enum class State {

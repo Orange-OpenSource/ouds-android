@@ -83,7 +83,7 @@ fun OudsColoredBox(
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.OudsColoredBox].
+ * Contains classes to build an [OudsColoredBox].
  */
 object OudsColoredBox {
 

@@ -570,7 +570,7 @@ private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?, 
 }
 
 /**
- * Default values for [com.orange.ouds.core.component.OudsButton].
+ * Default values for [OudsButton].
  */
 object OudsButtonDefaults {
 
@@ -586,7 +586,7 @@ object OudsButtonDefaults {
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.OudsButton].
+ * Contains classes to build an [OudsButton].
  */
 object OudsButton {
 

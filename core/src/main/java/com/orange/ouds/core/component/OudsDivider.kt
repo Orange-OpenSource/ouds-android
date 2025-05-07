@@ -77,7 +77,7 @@ fun OudsVerticalDivider(
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.OudsHorizontalDivider] or an [com.orange.ouds.core.component.OudsVerticalDivider].
+ * Contains classes to build an [OudsHorizontalDivider] or an [OudsVerticalDivider].
  */
 object OudsDivider {
 

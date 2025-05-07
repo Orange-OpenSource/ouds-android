@@ -332,7 +332,7 @@ object OudsLinkDefaults {
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.OudsLink].
+ * Contains classes to build an [OudsLink].
  */
 object OudsLink {
 
@@ -368,7 +368,7 @@ object OudsLink {
     }
 
     /**
-     * A link icon in an [com.orange.ouds.core.component.OudsLink].
+     * A link icon in an [OudsLink].
      * It is non-clickable and no content description is needed because a link label is always present.
      */
     open class Icon private constructor(
