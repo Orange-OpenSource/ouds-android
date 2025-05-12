@@ -12,8 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.foundation.Indication
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,7 +32,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import com.orange.ouds.core.component.common.outerBorder
@@ -109,7 +106,6 @@ internal fun OudsControlItem(
                 .height(IntrinsicSize.Min)
                 .heightIn(min = controlItemTokens.sizeMinHeight.dp)
                 .widthIn(min = controlItemTokens.sizeMinWidth.dp)
-                .background(color = backgroundColor(state = state).run { if (!LocalInspectionMode.current && state == OudsControlItem.State.Pressed) Color.Transparent else this })
                 .outerBorder(state = state, handleHighContrastMode = handleHighContrastMode),
             contentAlignment = Alignment.BottomCenter
         ) {
@@ -177,13 +173,6 @@ object OudsControlItem {
     }
 
     /**
-     * Indication used by control items and associated standalone elements like checkbox, radio button, ...
-     */
-    internal val clickIndication: @Composable () -> Indication = {
-        BackgroundColorAlphaIndication(backgroundColor(State.Pressed))
-    }
-
-    /**
      * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
      * It is non-clickable and no content description is needed because a control item label is always present.
      */
@@ -242,6 +231,16 @@ internal fun rememberOudsControlItemState(
         interactionState == InteractionState.Focused -> OudsControlItem.State.Focused
         else -> OudsControlItem.State.Enabled
     }
+}
+
+@Composable
+internal fun rememberControlItemBackgroundColor(
+    enabled: Boolean,
+    readOnly: Boolean,
+    interactionState: InteractionState
+) = rememberInteractionStateColor(interactionState = interactionState) { interactionStateValue ->
+    val state = rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionStateValue)
+    backgroundColor(state = state)
 }
 
 @Composable

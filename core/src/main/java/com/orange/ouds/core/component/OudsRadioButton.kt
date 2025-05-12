@@ -109,6 +109,10 @@ private fun OudsRadioButton(
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
+        val backgroundColor = rememberInteractionStateColor(interactionState = interactionState) { interactionStateValue ->
+            val radioButtonState = rememberOudsControlState(enabled = enabled, interactionState = interactionStateValue)
+            backgroundColor(state = radioButtonState)
+        }
 
         val selectableModifier = if (onClick != null) {
             Modifier.selectable(
@@ -116,7 +120,7 @@ private fun OudsRadioButton(
                 onClick = onClick,
                 enabled = enabled,
                 interactionSource = interactionSource,
-                indication = OudsControlItem.clickIndication(),
+                indication = InteractionStateValuesIndication(backgroundColor),
                 role = Role.RadioButton,
             )
         } else Modifier
@@ -125,7 +129,7 @@ private fun OudsRadioButton(
             modifier = modifier
                 .widthIn(radioButtonTokens.sizeMinWidth.dp)
                 .heightIn(min = radioButtonTokens.sizeMinHeight.dp, max = radioButtonTokens.sizeMaxHeight.dp)
-                .background(color = backgroundColor(state = state))
+                .background(color = backgroundColor.value)
                 .outerBorder(state = state, handleHighContrastMode = true)
                 .then(selectableModifier),
             contentAlignment = Alignment.Center,

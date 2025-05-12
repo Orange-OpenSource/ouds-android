@@ -130,40 +130,26 @@ fun OudsTriStateCheckbox(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
-
-    val toggleableModifier =
-        if (onClick != null) {
-            Modifier.triStateToggleable(
-                interactionSource = interactionSource,
-                indication = OudsControlItem.clickIndication(),
-                state = state,
-                onClick = onClick,
-                enabled = enabled,
-                role = Role.Checkbox
-            )
-        } else {
-            Modifier
-        }
-
     OudsCheckbox(
         value = state,
-        interactionSource = interactionSource,
-        modifier = modifier.then(toggleableModifier),
+        onClick = onClick,
         previewState = null,
+        modifier = modifier,
         enabled = enabled,
-        error = error
+        error = error,
+        interactionSource = interactionSource
     )
 }
 
 @Composable
 private fun OudsCheckbox(
     value: ToggleableState,
-    interactionSource: MutableInteractionSource,
-    error: Boolean,
+    onClick: (() -> Unit)?,
     previewState: OudsControl.State?,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    error: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
 ) {
     val isDisabledPreviewState = previewState == OudsControl.State.Disabled
     val isForbidden = error && (!enabled || isDisabledPreviewState)
@@ -171,15 +157,35 @@ private fun OudsCheckbox(
         expression = !isForbidden,
         exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." }
     ) {
+        @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val checkboxTokens = OudsTheme.componentsTokens.checkbox
         val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
+        val backgroundColor = rememberInteractionStateColor(interactionState = interactionState) { interactionStateValue ->
+            val checkboxState = rememberOudsControlState(enabled = enabled, interactionState = interactionStateValue)
+            backgroundColor(state = checkboxState)
+        }
+
+        val toggleableModifier =
+            if (onClick != null) {
+                Modifier.triStateToggleable(
+                    interactionSource = interactionSource,
+                    indication = InteractionStateValuesIndication(backgroundColor),
+                    state = value,
+                    onClick = onClick,
+                    enabled = enabled,
+                    role = Role.Checkbox
+                )
+            } else {
+                Modifier
+            }
 
         Box(
             modifier = modifier
+                .then(toggleableModifier)
                 .widthIn(checkboxTokens.sizeMinWidth.dp)
                 .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
-                .background(color = backgroundColor(state = state))
+                .background(color = backgroundColor.value)
                 .outerBorder(state = state, handleHighContrastMode = true),
             contentAlignment = Alignment.Center,
         ) {
@@ -305,6 +311,7 @@ internal fun PreviewOudsCheckbox(
         PreviewStates<OudsControl.State> { state ->
             OudsCheckbox(
                 value = toggleableState,
+                onClick = null,
                 interactionSource = remember { MutableInteractionSource() },
                 error = error,
                 previewState = state

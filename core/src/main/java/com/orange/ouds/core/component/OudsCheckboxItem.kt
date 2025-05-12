@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -157,26 +158,11 @@ fun OudsTriStateCheckboxItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
-
-    val toggleableModifier = if (onClick != null) {
-        Modifier.triStateToggleable(
-            interactionSource = interactionSource,
-            indication = OudsControlItem.clickIndication(),
-            state = state,
-            onClick = onClick,
-            enabled = enabled && !readOnly,
-            role = Role.Checkbox
-        )
-    } else {
-        Modifier
-    }
-
     OudsCheckboxItem(
         value = state,
         label = label,
-        interactionSource = interactionSource,
-        modifier = modifier.then(toggleableModifier),
+        onClick = onClick,
+        modifier = modifier,
         previewState = null,
         helperText = helperText,
         icon = icon,
@@ -184,7 +170,8 @@ fun OudsTriStateCheckboxItem(
         reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
-        error = error
+        error = error,
+        interactionSource = interactionSource,
     )
 }
 
@@ -192,7 +179,7 @@ fun OudsTriStateCheckboxItem(
 private fun OudsCheckboxItem(
     value: ToggleableState,
     label: String,
-    interactionSource: MutableInteractionSource,
+    onClick: (() -> Unit)?,
     previewState: OudsControlItem.State?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
@@ -201,10 +188,26 @@ private fun OudsCheckboxItem(
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false
+    error: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
 ) {
+    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
+    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+
+    val toggleableModifier = if (onClick != null) {
+        Modifier.triStateToggleable(
+            interactionSource = interactionSource,
+            indication = InteractionStateValuesIndication(backgroundColor),
+            state = value,
+            onClick = onClick,
+            enabled = enabled && !readOnly,
+            role = Role.Checkbox
+        )
+    } else {
+        Modifier
+    }
 
     OudsControlItem(
         state = state,
@@ -230,7 +233,10 @@ private fun OudsCheckboxItem(
             ToggleableState.Off -> "Unselected"
             ToggleableState.Indeterminate -> "Indeterminate"
         },
-        modifier = modifier.semantics(mergeDescendants = true) {},
+        modifier = modifier
+            .then(toggleableModifier)
+            .background(color = backgroundColor.value)
+            .semantics(mergeDescendants = true) {},
         handleHighContrastMode = true
     )
 }
@@ -252,6 +258,7 @@ internal fun PreviewOudsCheckboxItem(
             OudsCheckboxItem(
                 value = value,
                 label = "Label",
+                onClick = {},
                 previewState = state,
                 helperText = helperText,
                 divider = divider,
@@ -281,6 +288,7 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
             OudsCheckboxItem(
                 value = value,
                 label = "Label",
+                onClick = {},
                 previewState = state,
                 interactionSource = remember { MutableInteractionSource() }
             )

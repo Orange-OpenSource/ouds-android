@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -129,6 +130,7 @@ private fun OudsRadioButtonItem(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
+    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val selectableModifier = if (onClick != null) {
         Modifier.selectable(
@@ -136,7 +138,7 @@ private fun OudsRadioButtonItem(
             onClick = onClick,
             enabled = enabled && !readOnly,
             interactionSource = interactionSource,
-            indication = OudsControlItem.clickIndication(),
+            indication = InteractionStateValuesIndication(backgroundColor),
             role = Role.RadioButton,
         )
     } else {
@@ -166,8 +168,9 @@ private fun OudsRadioButtonItem(
         checkedContentPreviewStatus = if (selected) "Selected" else "Unselected",
         modifier = modifier
             .then(selectableModifier)
-            .semantics(mergeDescendants = true) {}
-            .border(outlined = outlined, selected = selected, error = error, state = state),
+            .background(color = backgroundColor.value)
+            .border(outlined = outlined, selected = selected, error = error, state = state)
+            .semantics(mergeDescendants = true) {},
         handleHighContrastMode = true
     )
 }

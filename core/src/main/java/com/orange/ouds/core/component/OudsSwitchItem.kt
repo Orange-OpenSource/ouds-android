@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -120,12 +121,13 @@ private fun OudsSwitchItem(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
+    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val toggleableModifier = if (onCheckedChange != null) {
         Modifier.toggleable(
             value = checked,
             interactionSource = interactionSource,
-            indication = null,
+            indication = InteractionStateValuesIndication(backgroundColor),
             enabled = enabled && !readOnly,
             role = Role.Switch,
             onValueChange = onCheckedChange
@@ -155,6 +157,7 @@ private fun OudsSwitchItem(
         checkedContentPreviewStatus = if (checked) "Selected" else "Unselected",
         modifier = modifier
             .then(toggleableModifier)
+            .background(color = backgroundColor.value)
             .semantics(mergeDescendants = true) {}
     )
 }
