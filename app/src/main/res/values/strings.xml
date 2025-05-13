@@ -17,7 +17,7 @@
     <string name="app_common_back_a11y">Back</string>
     <string name="app_common_copyCode_a11y">Copy code</string>
     <string name="app_common_codeCopied_text">Code copied to the clipboard</string>
-    <string name="app_common_codeClipData_label">OUDS code</string>
+    <string name="app_common_codeClipData_label" translatable="false">OUDS code</string>
     <string name="app_common_collapsed_a11y">Collapsed</string>
     <string name="app_common_expanded_a11y">Expanded</string>
     <string name="app_common_bottomSheetExpanded_a11y">Bottom sheet expanded</string>
@@ -40,9 +40,9 @@
     <string name="app_bottomBar_about_label">About</string>
 
     <!-- Tokens -->
-    <string name="app_tokens_floatFormat_label" translatable="false">%sf</string>
-    <string name="app_tokens_dpFormat_label" translatable="false">%s dp</string>
-    <string name="app_tokens_spFormat_label" translatable="false">%s sp</string>
+    <string name="app_tokens_floatFormat_label" translatable="false">\u200e%sf</string>
+    <string name="app_tokens_dpFormat_label" translatable="false">\u200e%s dp</string>
+    <string name="app_tokens_spFormat_label" translatable="false">\u200e%s sp</string>
     <string name="app_tokens_viewCodeExample_label">View token code example</string>
 
     <!-- Tokens: border -->
@@ -177,5 +177,6 @@
     <string name="app_about_legalInformation_label">Legal information</string>
     <string name="app_about_materialComponents_label">Material 3 components</string>
     <string name="app_about_changelog_label">Changelog</string>
+    <string name="app_about_openAppSettings_label">Open application settings</string>
 
 </resources>

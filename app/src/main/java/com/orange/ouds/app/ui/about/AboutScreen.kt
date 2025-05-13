@@ -12,6 +12,11 @@
 
 package com.orange.ouds.app.ui.about
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
@@ -22,7 +27,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -36,12 +46,15 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import java.util.Locale
 
 private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(1, R.string.app_about_legalInformation_label, AboutFileMenuItem.File(R.raw.about_legal_information, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, AboutFileMenuItem.File(R.raw.about_privacy_policy, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(3, R.string.app_about_changelog_label, AboutFileMenuItem.File(R.raw.changelog, AboutFileMenuItem.File.Format.Markdown)),
-    AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute)
+    AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute),
+    AboutAppSettingItem(5, R.string.app_about_openAppSettings_label)
+
 )
 
 sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
@@ -63,8 +76,13 @@ class AboutFileMenuItem(id: Int, @StringRes labelRes: Int, val file: File) : Abo
 
 class AboutRouteMenuItem(id: Int, @StringRes labelRes: Int, val route: String) : AboutMenuItem(id, labelRes)
 
+class AboutAppSettingItem(id: Int, @StringRes labelRes: Int) : AboutMenuItem(id, labelRes)
+
 @Composable
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
+
+    val context = LocalContext.current
+
     Screen {
         LazyColumn {
             item {
@@ -98,15 +116,32 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
             items(oudsAboutMenuItems) { item ->
                 ListItem(
                     modifier = Modifier
-                        .clickable { onMenuItemClick(item.id) }
+                        .clickable {
+                            if (item is AboutAppSettingItem) {
+                               context.openAppSettings()
+                            } else {
+                                onMenuItemClick(item.id)
+                            }
+                        }
                         .listItemHorizontalPadding(),
                     headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.strong.large) }
                 )
             }
         }
     }
-}
 
+}
+fun Context.openAppSettings() {
+    val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.fromParts("package", this.packageName, null)
+        )
+    } else {
+        Intent(Settings.ACTION_LOCALE_SETTINGS)
+    }
+    startActivity(intent)
+}
 @PreviewLightDark
 @Composable
 private fun PreviewAboutScreen() = OudsPreview {

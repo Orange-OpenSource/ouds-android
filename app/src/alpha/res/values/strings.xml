@@ -12,5 +12,5 @@
 
 <resources>
     <!-- About -->
-    <string name="app_about_version_label">Alpha version %1$s (%2$d)</string>
+    <string name="app_about_version_label" translatable="false">Alpha version %1$s (%2$d)</string>
 </resources>
