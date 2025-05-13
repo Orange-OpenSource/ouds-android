@@ -12,47 +12,32 @@
 
 package com.orange.ouds.app.ui.components.switch
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.rememberBottomSheetScaffoldState
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
-import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
-import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
+import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsSwitchItem
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SwitchItemDemoScreen() = DemoScreen(rememberSwitchItemDemoState()) {
-    CustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = { ControlItemCustomizations() }
-    ) {
-        LightDarkDemo {
-            SwitchItemDemo(state = this@DemoScreen)
-        }
-
-        SwitchItemDemoCodeSnippet(
-            state = this@DemoScreen,
-            modifier = Modifier
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
-                .padding(top = OudsTheme.spaces.fixed.medium)
-        )
-    }
+fun SwitchItemDemoScreen() {
+    val state = rememberSwitchItemDemoState()
+    DemoScreen(
+        bottomSheetContent = { ControlItemCustomizations(state = state) },
+        codeSnippet = { switchItemDemoCodeSnippet(state = state) },
+        demoContent = { SwitchItemDemoContent(state = state) },
+        demoContentPaddingValues = PaddingValues()
+    )
 }
 
 @Composable
-private fun SwitchItemDemo(state: SwitchItemDemoState) {
+private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
     with(state) {
         OudsSwitchItem(
             checked = checked,
@@ -69,17 +54,14 @@ private fun SwitchItemDemo(state: SwitchItemDemoState) {
     }
 }
 
-@Composable
-private fun SwitchItemDemoCodeSnippet(state: SwitchItemDemoState, modifier: Modifier = Modifier) {
-    CodeSnippet(modifier = modifier) {
-        with(state) {
-            functionCall("OudsSwitchItem") {
-                typedArgument("checked", checked)
-                lambdaArgument("onCheckedChange") {
-                    comment("Change state")
-                }
-                controlItemArguments(state)
+private fun Code.Builder.switchItemDemoCodeSnippet(state: SwitchItemDemoState) {
+    with(state) {
+        functionCall("OudsSwitchItem") {
+            typedArgument("checked", checked)
+            lambdaArgument("onCheckedChange") {
+                comment("Change state")
             }
+            controlItemArguments(state)
         }
     }
 }

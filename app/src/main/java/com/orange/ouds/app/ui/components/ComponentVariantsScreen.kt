@@ -39,7 +39,7 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
             item {
                 DetailScreenHeader(
                     modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.medium),
-                    descriptionRes = component.descriptionRes,
+                    description = stringResource(id = component.descriptionRes),
                     illustration = painterResource(id = component.imageRes),
                     tintIllustration = false
                 )

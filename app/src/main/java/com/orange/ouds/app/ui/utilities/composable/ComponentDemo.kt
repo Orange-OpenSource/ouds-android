@@ -25,21 +25,21 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 
 @Composable
-fun LightDarkDemo(modifier: Modifier = Modifier, componentDemo: @Composable () -> Unit) {
+fun LightDarkDemo(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     ComponentDemoBox(modifier = modifier) {
-        componentDemo()
+        content()
     }
     OudsThemeTweak(OudsTheme.Tweak.Invert) {
         ComponentDemoBox(modifier = modifier) {
-            componentDemo()
+            content()
         }
     }
 }
 
 @Composable
-fun OnColoredBoxDemo(modifier: Modifier = Modifier, componentDemo: @Composable () -> Unit) {
+fun OnColoredBoxDemo(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     ComponentDemoBox(modifier = modifier, colored = true) {
-        componentDemo()
+        content()
     }
 }
 

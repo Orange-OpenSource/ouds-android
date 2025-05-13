@@ -13,54 +13,40 @@
 package com.orange.ouds.app.ui.components.checkbox
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.rememberBottomSheetScaffoldState
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
-import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
+import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CheckboxItemDemoScreen(indeterminate: Boolean = false) = DemoScreen(rememberCheckboxItemDemoState()) {
-    CustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = { ControlItemCustomizations() }
-    ) {
-        LightDarkDemo {
+fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
+    val state = rememberCheckboxItemDemoState()
+    DemoScreen(
+        bottomSheetContent = { ControlItemCustomizations(state = state) },
+        codeSnippet = { checkboxItemDemoCodeSnippet(state = state, indeterminate = indeterminate) },
+        demoContent = {
             if (indeterminate) {
-                IndeterminateCheckboxItemDemo(state = this@DemoScreen)
+                IndeterminateCheckboxItemDemoContent(state = state)
             } else {
-                CheckboxItemDemo(state = this@DemoScreen)
+                CheckboxItemDemoContent(state = state)
             }
-        }
-
-        CheckboxItemDemoCodeSnippet(
-            state = this@DemoScreen,
-            indeterminate = indeterminate,
-            modifier = Modifier
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
-                .padding(top = OudsTheme.spaces.fixed.medium)
-        )
-    }
+        },
+        demoContentPaddingValues = PaddingValues()
+    )
 }
 
 @Composable
-private fun CheckboxItemDemo(state: CheckboxItemDemoState) {
+private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
         Column {
             CheckboxIdentifier.entries.forEach { identifier ->
@@ -90,7 +76,7 @@ private fun CheckboxItemDemo(state: CheckboxItemDemoState) {
 }
 
 @Composable
-private fun IndeterminateCheckboxItemDemo(state: CheckboxItemDemoState) {
+private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
         Column {
             CheckboxIdentifier.entries.forEach { identifier ->
@@ -121,27 +107,24 @@ private fun IndeterminateCheckboxItemDemo(state: CheckboxItemDemoState) {
     }
 }
 
-@Composable
-private fun CheckboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indeterminate: Boolean, modifier: Modifier = Modifier) {
+private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indeterminate: Boolean) {
     val functionName = if (indeterminate) "OudsTriStateCheckboxItem" else "OudsCheckboxItem"
     val lambdaCommentText = "Change state"
-    CodeSnippet(modifier = modifier) {
-        comment("First checkbox item")
-        with(state) {
-            functionCall(functionName) {
-                if (indeterminate) {
-                    typedArgument("state", toggleableStateValues.first)
-                    onClickArgument {
-                        comment(lambdaCommentText)
-                    }
-                } else {
-                    typedArgument("checked", checkedValues.first)
-                    lambdaArgument("onCheckedChange") {
-                        comment(lambdaCommentText)
-                    }
+    comment("First checkbox item")
+    with(state) {
+        functionCall(functionName) {
+            if (indeterminate) {
+                typedArgument("state", toggleableStateValues.first)
+                onClickArgument {
+                    comment(lambdaCommentText)
                 }
-                controlItemArguments(state)
+            } else {
+                typedArgument("checked", checkedValues.first)
+                lambdaArgument("onCheckedChange") {
+                    comment(lambdaCommentText)
+                }
             }
+            controlItemArguments(state)
         }
     }
 }

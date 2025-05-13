@@ -28,16 +28,16 @@ data class ControlItemCustomization(val index: Int, val content: @Composable () 
 fun controlItemCustomization(index: Int, content: @Composable () -> Unit) = ControlItemCustomization(index, content)
 
 @Composable
-fun <T : ControlItemDemoState> T.ControlItemCustomizations(extraCustomizations: List<ControlItemCustomization> = listOf()) {
+fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: List<ControlItemCustomization> = listOf()) {
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
-        { ControlItemIconCustomization() },
-        { ControlItemDividerCustomization() },
-        { ControlItemReversedCustomization() },
-        { ControlItemEnabledCustomization() },
-        { ControlItemReadOnlyCustomization() },
-        { ControlItemErrorCustomization() },
-        { ControlItemLabelCustomization() },
-        { ControlItemHelperTextCustomization() }
+        { ControlItemIconCustomization(state = state) },
+        { ControlItemDividerCustomization(state = state) },
+        { ControlItemReversedCustomization(state = state) },
+        { ControlItemEnabledCustomization(state = state) },
+        { ControlItemReadOnlyCustomization(state = state) },
+        { ControlItemErrorCustomization(state = state) },
+        { ControlItemLabelCustomization(state = state) },
+        { ControlItemHelperTextCustomization(state = state) }
     )
     extraCustomizations.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -46,78 +46,94 @@ fun <T : ControlItemDemoState> T.ControlItemCustomizations(extraCustomizations: 
 }
 
 @Composable
-private fun <T : ControlItemDemoState> T.ControlItemIconCustomization() {
-    CustomizationSwitchItem(
-        label = stringResource(R.string.app_components_controlItem_icon_label),
-        checked = icon,
-        onCheckedChange = { icon = it },
-    )
+private fun ControlItemIconCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_controlItem_icon_label),
+            checked = icon,
+            onCheckedChange = { icon = it },
+        )
+    }
 }
 
 @Composable
-private fun <T : ControlItemDemoState> T.ControlItemDividerCustomization() {
-    CustomizationSwitchItem(
-        label = stringResource(R.string.app_components_controlItem_divider_label),
-        checked = divider,
-        onCheckedChange = { divider = it },
-    )
+private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_controlItem_divider_label),
+            checked = divider,
+            onCheckedChange = { divider = it },
+        )
+    }
 }
 
 @Composable
-private fun <T : ControlItemDemoState> T.ControlItemReversedCustomization() {
-    CustomizationSwitchItem(
-        label = stringResource(R.string.app_components_controlItem_reversed_label),
-        checked = reversed,
-        onCheckedChange = { reversed = it },
-    )
+private fun ControlItemReversedCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_controlItem_reversed_label),
+            checked = reversed,
+            onCheckedChange = { reversed = it },
+        )
+    }
 }
 
 @Composable
-private fun <T : ControlItemDemoState> T.ControlItemEnabledCustomization() {
-    CustomizationSwitchItem(
-        label = stringResource(R.string.app_common_enabled_label),
-        checked = enabled,
-        onCheckedChange = { enabled = it },
-        enabled = enabledSwitchEnabled
-    )
+private fun ControlItemEnabledCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_common_enabled_label),
+            checked = enabled,
+            onCheckedChange = { enabled = it },
+            enabled = enabledSwitchEnabled
+        )
+    }
 }
 
 @Composable
-private fun <T : ControlItemDemoState> T.ControlItemReadOnlyCustomization() {
-    CustomizationSwitchItem(
-        label = stringResource(R.string.app_components_controlItem_readOnly_label),
-        checked = readOnly,
-        onCheckedChange = { readOnly = it },
-        enabled = readOnlySwitchEnabled
-    )
+private fun ControlItemReadOnlyCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_controlItem_readOnly_label),
+            checked = readOnly,
+            onCheckedChange = { readOnly = it },
+            enabled = readOnlySwitchEnabled
+        )
+    }
 }
 
 @Composable
-private fun <T : ControlItemDemoState> T.ControlItemErrorCustomization() {
-    CustomizationSwitchItem(
-        label = stringResource(R.string.app_components_common_error_label),
-        checked = error,
-        onCheckedChange = { error = it },
-        enabled = errorSwitchEnabled
-    )
+private fun ControlItemErrorCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_error_label),
+            checked = error,
+            onCheckedChange = { error = it },
+            enabled = errorSwitchEnabled
+        )
+    }
 }
 
 @Composable
-private fun <T : ControlItemDemoState> T.ControlItemLabelCustomization() {
-    CustomizationTextField(
-        label = stringResource(R.string.app_components_common_label_label),
-        value = label,
-        onValueChange = { value -> label = value }
-    )
+private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationTextField(
+            label = stringResource(R.string.app_components_common_label_label),
+            value = label,
+            onValueChange = { value -> label = value }
+        )
+    }
 }
 
 @Composable
-private fun <T : ControlItemDemoState> T.ControlItemHelperTextCustomization() {
-    CustomizationTextField(
-        label = stringResource(R.string.app_components_controlItem_helperText_label),
-        value = helperText.orEmpty(),
-        onValueChange = { value -> helperText = value }
-    )
+private fun ControlItemHelperTextCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationTextField(
+            label = stringResource(R.string.app_components_controlItem_helperText_label),
+            value = helperText.orEmpty(),
+            onValueChange = { value -> helperText = value }
+        )
+    }
 }
 
 fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = with(state) {

@@ -13,10 +13,8 @@
 package com.orange.ouds.app.ui.components.radiobutton
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -27,57 +25,50 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
-import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
+import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
 import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsRadioButtonItem
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RadioButtonItemDemoScreen() = DemoScreen(rememberRadioButtonItemDemoState()) {
-    CustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
-            val extraCustomizations = listOf(
-                controlItemCustomization(2) {
-                    CustomizationSwitchItem(
-                        label = stringResource(R.string.app_components_radioButton_radioButtonItem_outlined_label),
-                        checked = outlined,
-                        onCheckedChange = { outlined = it },
-                    )
-                },
-                controlItemCustomization(8) {
-                    CustomizationTextField(
-                        label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
-                        value = additionalLabel.orEmpty(),
-                        onValueChange = { value -> additionalLabel = value }
-                    )
-                }
-            )
-            ControlItemCustomizations(extraCustomizations = extraCustomizations)
-        }
-    ) {
-        LightDarkDemo {
-            RadioButtonItemDemo(state = this@DemoScreen)
-        }
+fun RadioButtonItemDemoScreen() {
+    val state = rememberRadioButtonItemDemoState()
+    DemoScreen(
+        bottomSheetContent = { RadioButtonItemDemoBottomSheetContent(state = state) },
+        codeSnippet = { radioButtonItemDemoCodeSnippet(state = state) },
+        demoContent = { RadioButtonItemDemoContent(state = state) },
+        demoContentPaddingValues = PaddingValues()
+    )
+}
 
-        RadioButtonItemDemoCodeSnippet(
-            state = this@DemoScreen,
-            modifier = Modifier
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
-                .padding(top = OudsTheme.spaces.fixed.medium)
+@Composable
+private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoState) {
+    with(state) {
+        val extraCustomizations = listOf(
+            controlItemCustomization(2) {
+                CustomizationSwitchItem(
+                    label = stringResource(R.string.app_components_radioButton_radioButtonItem_outlined_label),
+                    checked = outlined,
+                    onCheckedChange = { outlined = it },
+                )
+            },
+            controlItemCustomization(8) {
+                CustomizationTextField(
+                    label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
+                    value = additionalLabel.orEmpty(),
+                    onValueChange = { value -> additionalLabel = value }
+                )
+            }
         )
+        ControlItemCustomizations(state = state, extraCustomizations = extraCustomizations)
     }
 }
 
 @Composable
-private fun RadioButtonItemDemo(state: RadioButtonItemDemoState) {
+private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
     with(state) {
         Column(modifier = Modifier.selectableGroup()) {
             RadioButtonItemDemoState.values.forEach { radioButtonValue ->
@@ -100,20 +91,17 @@ private fun RadioButtonItemDemo(state: RadioButtonItemDemoState) {
     }
 }
 
-@Composable
-private fun RadioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, modifier: Modifier = Modifier) {
-    CodeSnippet(modifier = modifier) {
-        comment("First radio button item")
-        with(state) {
-            functionCall("OudsRadioButtonItem") {
-                typedArgument("selected", selectedValue == RadioButtonItemDemoState.values.first())
-                onClickArgument {
-                    comment("Change selection")
-                }
-                controlItemArguments(state)
-                if (!additionalLabel.isNullOrBlank()) typedArgument("additionalLabel", additionalLabel)
-                if (outlined) typedArgument("outlined", outlined)
+private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState) {
+    comment("First radio button item")
+    with(state) {
+        functionCall("OudsRadioButtonItem") {
+            typedArgument("selected", selectedValue == RadioButtonItemDemoState.values.first())
+            onClickArgument {
+                comment("Change selection")
             }
+            controlItemArguments(state)
+            if (!additionalLabel.isNullOrBlank()) typedArgument("additionalLabel", additionalLabel)
+            if (outlined) typedArgument("outlined", outlined)
         }
     }
 }

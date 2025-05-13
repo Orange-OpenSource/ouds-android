@@ -13,8 +13,6 @@
 package com.orange.ouds.app.ui.components.link
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -27,82 +25,66 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
-import com.orange.ouds.app.ui.utilities.composable.CustomizationBottomSheetScaffold
+import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
-import com.orange.ouds.app.ui.utilities.composable.LightDarkDemo
-import com.orange.ouds.app.ui.utilities.composable.OnColoredBoxDemo
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LinkDemoScreen() = DemoScreen(rememberLinkDemoState()) {
-    CustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
-            CustomizationSwitchItem(
-                label = stringResource(R.string.app_common_enabled_label),
-                checked = enabled,
-                onCheckedChange = { enabled = it },
-            )
-            CustomizationSwitchItem(
-                label = stringResource(R.string.app_components_common_onColoredBackground_label),
-                checked = onColoredBox,
-                onCheckedChange = { onColoredBox = it },
-            )
-            val sizes = OudsLink.Size.entries
-            CustomizationChoiceChips(
-                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-                label = stringResource(R.string.app_components_link_size_label),
-                chipsLabels = sizes.map { it.name },
-                selectedChipIndex = sizes.indexOf(size),
-                onSelectionChange = { id -> size = sizes[id] }
-            )
-            CustomizationChoiceChips(
-                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-                label = stringResource(R.string.app_components_common_layout_label),
-                chipsLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
-                selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
-                onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
-            )
-            CustomizationTextField(
-                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-                label = stringResource(R.string.app_components_common_label_label),
-                value = label,
-                onValueChange = { value -> label = value })
-        }
-    ) {
-        DetailScreenDescription(
-            modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
-            descriptionRes = Component.Link.descriptionRes
-        )
-        if (!onColoredBox) {
-            LightDarkDemo(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)) {
-                LinkDemo(state = this@DemoScreen)
-            }
-        } else {
-            OnColoredBoxDemo(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)) {
-                LinkDemo(state = this@DemoScreen)
-            }
-        }
+fun LinkDemoScreen() {
+    val state = rememberLinkDemoState()
+    DemoScreen(
+        description = stringResource(id = Component.Link.descriptionRes),
+        bottomSheetContent = { LinkDemoBottomSheetContent(state = state) },
+        codeSnippet = { linkDemoCodeSnippet(state = state) },
+        demoContent = { LinkDemoContent(state = state) },
+        demoContentOnColoredBox = state.onColoredBox
+    )
+}
 
-        LinkDemoCodeSnippet(
-            state = this@DemoScreen,
-            modifier = Modifier
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
-                .padding(top = OudsTheme.spaces.fixed.medium)
+@Composable
+private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_common_enabled_label),
+            checked = enabled,
+            onCheckedChange = { enabled = it },
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_onColoredBackground_label),
+            checked = onColoredBox,
+            onCheckedChange = { onColoredBox = it },
+        )
+        val sizes = OudsLink.Size.entries
+        CustomizationChoiceChips(
+            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            label = stringResource(R.string.app_components_link_size_label),
+            chipsLabels = sizes.map { it.name },
+            selectedChipIndex = sizes.indexOf(size),
+            onSelectionChange = { id -> size = sizes[id] }
+        )
+        CustomizationChoiceChips(
+            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            label = stringResource(R.string.app_components_common_layout_label),
+            chipsLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
+            onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
+        )
+        CustomizationTextField(
+            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            label = stringResource(R.string.app_components_common_label_label),
+            value = label,
+            onValueChange = { value -> label = value }
         )
     }
 }
 
 @Composable
-private fun LinkDemo(state: LinkDemoState) {
+private fun LinkDemoContent(state: LinkDemoState) {
     with(state) {
         when (layout) {
             LinkDemoState.Layout.TextOnly -> {
@@ -145,27 +127,24 @@ private fun LinkDemo(state: LinkDemoState) {
     }
 }
 
-@Composable
-private fun LinkDemoCodeSnippet(state: LinkDemoState, modifier: Modifier = Modifier) {
-    CodeSnippet(modifier = modifier) {
-        with(state) {
-            coloredBoxCall(onColoredBox) {
-                functionCall(OudsLink::class.simpleName.orEmpty()) {
-                    labelArgument(label)
-                    when (layout) {
-                        LinkDemoState.Layout.TextOnly -> {}
-                        LinkDemoState.Layout.IconAndText -> {
-                            constructorCallArgument<OudsLink.Icon>("icon") {
-                                painterArgument(R.drawable.ic_heart)
-                            }
+private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState) {
+    with(state) {
+        coloredBoxCall(onColoredBox) {
+            functionCall(OudsLink::class.simpleName.orEmpty()) {
+                labelArgument(label)
+                when (layout) {
+                    LinkDemoState.Layout.TextOnly -> {}
+                    LinkDemoState.Layout.IconAndText -> {
+                        constructorCallArgument<OudsLink.Icon>("icon") {
+                            painterArgument(R.drawable.ic_heart)
                         }
-                        LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLink.Arrow.Back)
-                        LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLink.Arrow.Next)
                     }
-                    onClickArgument()
-                    enabledArgument(enabled)
-                    typedArgument("size", size)
+                    LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLink.Arrow.Back)
+                    LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLink.Arrow.Next)
                 }
+                onClickArgument()
+                enabledArgument(enabled)
+                typedArgument("size", size)
             }
         }
     }
