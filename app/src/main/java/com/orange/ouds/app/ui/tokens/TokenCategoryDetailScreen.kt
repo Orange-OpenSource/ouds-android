@@ -78,7 +78,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
         LazyColumn(contentPadding = PaddingValues(bottom = OudsTheme.spaces.fixed.medium)) {
             item {
                 DetailScreenHeader(
-                    descriptionRes = tokenCategory.descriptionRes,
+                    description = stringResource(id = tokenCategory.descriptionRes),
                     illustration = painterResource(id = tokenCategory.imageRes)
                 )
                 tokenCategory.valueCodeExample?.let { codeExample ->
