@@ -44,9 +44,9 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
  * Moreover, the colors of several OUDS components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param color The background color.
- * @param modifier Modifier to be applied to the layout corresponding to the colored box.
- * @param contentAlignment The default alignment inside the colored box.
+ * @param color The background color of the colored box.
+ * @param modifier [Modifier] to be applied to the layout corresponding to the colored box.
+ * @param contentAlignment The default [Alignment] inside the colored box.
  * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.
  * @param content The content of this colored box.
  *
@@ -83,7 +83,7 @@ fun OudsColoredBox(
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.coloredbox.OudsColoredBox].
+ * Contains classes to build an [OudsColoredBox].
  */
 object OudsColoredBox {
 
@@ -105,7 +105,7 @@ object OudsColoredBox {
         StatusWarningEmphasized,
         StatusWarningMuted;
 
-        companion object {
+        private companion object {
 
             // This method is unused but it allows to be notified with a build error if surface key tokens are updated
             private fun fromKeyToken(keyToken: OudsColorKeyToken.Surface): Color {

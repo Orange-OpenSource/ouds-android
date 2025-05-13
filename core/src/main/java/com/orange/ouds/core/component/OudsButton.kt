@@ -77,24 +77,28 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import kotlinx.parcelize.Parcelize
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
  *
- * An OUDS button which displays label only.
+ * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * This version of the button uses the *text only* layout which is the most used layout.
+ * Other layouts are available for this component: *text + icon* and *icon only*.
+ *
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param label Label displayed in the button.
+ * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
- * @param style The button style.
- * @param hierarchy The button hierarchy.
+ * @param style The [OudsButton.Style] used for the button. Use [OudsButton.Style.Default] for a standard button, or [OudsButton.Style.Loading] to indicate
+ *   an ongoing operation.
+ * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
- * is provided, interactions will still happen internally.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlySample
  *
@@ -124,24 +128,28 @@ fun OudsButton(
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
  *
- * An OUDS button which displays an icon only.
+ * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * This version of the button uses the *icon only* layout which is typically used in business or back-office interfaces, it is rarely used alone (usually part of a group of elements).
+ * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param icon Icon displayed in the button.
+ * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
- * @param style The button style.
- * @param hierarchy The button hierarchy.
+ * @param style The [OudsButton.Style] used for the button. Use [OudsButton.Style.Default] for a standard button, or [OudsButton.Style.Loading] to indicate
+ *   an ongoing operation.
+ * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
- * is provided, interactions will still happen internally.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlySample
  *
@@ -171,25 +179,30 @@ fun OudsButton(
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
  *
- * An OUDS button which displays an icon and a label.
+ * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * This version of the button uses the *text + icon* layout which should remain specific to some clearly identified contexts (e.g. the use of an icon with a
+ * "Play" button is standard in the context of TV or video streaming).
+ * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param icon Icon displayed in the button.
- * @param label Text displayed in the button.
+ * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
- * @param style The button style.
- * @param hierarchy The button hierarchy.
+ * @param style The [OudsButton.Style] used for the button. Use [OudsButton.Style.Default] for a standard button, or [OudsButton.Style.Loading] to indicate
+ *   an ongoing operation.
+ * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
- * is provided, interactions will still happen internally.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconAndTextSample
  *
@@ -557,29 +570,29 @@ private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?, 
 }
 
 /**
- * Contains the default values used by OUDS buttons.
+ * Default values for [OudsButton].
  */
 object OudsButtonDefaults {
 
     /**
-     * The default hierarchy.
+     * Default hierarchy of an OUDS button.
      */
     val Hierarchy = OudsButton.Hierarchy.Default
 
     /**
-     * The default style.
+     * Default style of an OUDS button.
      */
     val Style = OudsButton.Style.Default
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.OudsButton].
+ * Contains classes to build an [OudsButton].
  */
 object OudsButton {
 
     /**
      * A button icon in an [OudsButton].
-     * It is non-clickable and no content description is needed cause a button label is always present.
+     * It is non-clickable and no content description is needed because a button label is always present.
      */
     class Icon private constructor(
         graphicsObject: Any,
@@ -624,7 +637,27 @@ object OudsButton {
      * Represents the hierarchy of an OUDS button.
      */
     enum class Hierarchy {
-        Default, Strong, Minimal, Negative
+        /**
+         * A standard button style used for actions which are not mandatory or essential for the user.
+         */
+        Default,
+
+        /**
+         * A strong style for a button which should be singular and prominent, limited to one per view. It should be reserved for the most critical action,
+         * such as "Next," "Save," "Submit," etc...
+         */
+        Strong,
+
+        /**
+         * Minimal buttons are commonly used for actions that are considered less crucial. They can be used independently or together with a strong button.
+         */
+        Minimal,
+
+        /**
+         * Negative buttons should be used sparingly to warn of a destructive action, for example, delete or remove, typically resulting in the opening of a
+         * confirmation dialog.
+         */
+        Negative
     }
 
     /**

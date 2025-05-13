@@ -1,13 +1,9 @@
 name: Documentation Update
-description: Describe this issue found in the documentation
-title: "[Doc]: "
-labels: ["📖 documentation", "🔍 triage"]
-assignees: ["florentmaitre", "paulinea"]
+description: Propose a documentation change
+title: "Documentation - <Write here the title of the update>"
+labels: [ "📖 documentation", "🔍 triage" ]
+assignees: [ "florentmaitre", "paulinea" ]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
   - type: textarea
     id: location
     attributes:

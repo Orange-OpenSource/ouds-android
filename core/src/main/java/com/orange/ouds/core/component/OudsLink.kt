@@ -63,20 +63,23 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">OUDS Link design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Link design guidelines**</a>
  *
- * An OUDS link which displays a label and an optional icon.
+ * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
  *
- * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
+ * This API manage the display of *text only* and *text + icon* links.
+ * If you need a navigation link, you can use the other API available for this component which display a text with a *back* or *next* chevron.
+ *
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  *
- * @param label Label displayed in the link.
- * @param icon Icon displayed in the link.
+ * @param label Label describing what is being linked to.
+ * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
- * @param size Size of the link.
+ * @param size Size of the link. See [OudsLink.Size] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  */
 @Composable
@@ -100,6 +103,8 @@ fun OudsLink(
 }
 
 /**
+ * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Link design guidelines**</a>
+ *
  * An OUDS link which displays an [arrow] before ([OudsLink.Arrow.Back]) or after ([OudsLink.Arrow.Next]) a label.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
@@ -107,13 +112,11 @@ fun OudsLink(
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
  *
- * @param label Label displayed in the link.
- * @param arrow Arrow displayed in the link.
- *   When [OudsLink.Arrow.Back], the arrow is displayed before the label.
- *   When [OudsLink.Arrow.Next], the arrow is displayed after the label.
+ * @param label Label describing what is being linked to.
+ * @param arrow Navigation arrow displayed in the link. See [OudsLink.Arrow] for allowed values.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
- * @param size Size of the link.
+ * @param size Size of the link. See [OudsLink.Size] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  */
 @Composable
@@ -329,7 +332,7 @@ object OudsLinkDefaults {
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.link.OudsLink].
+ * Contains classes to build an [OudsLink].
  */
 object OudsLink {
 
@@ -337,19 +340,36 @@ object OudsLink {
      * Represents the size of an OUDS link.
      */
     enum class Size {
-        Default, Small
+        /**
+         * A standard link size used in most cases.
+         */
+        Default,
+
+        /**
+         * A small size for a link, particularly useful in an information-dense interface or in a component requiring the use
+         * of small elements ("In-line alert" component, for example).
+         */
+        Small
     }
 
     /**
-     * Represents the arrow of an OUDS link.
+     * Represents the type of arrow displayed in an OUDS link.
      */
     enum class Arrow {
-        Back, Next
+        /**
+         * Used for "backward" navigation. This arrow is positioned before the label, it features a "chevron left" icon, which is not customizable.
+         */
+        Back,
+
+        /**
+         * Used in a standard navigation context. This arrow is positioned after the label, it features a "chevron right" icon, which is not customizable.
+         */
+        Next
     }
 
     /**
      * A link icon in an [OudsLink].
-     * It is non-clickable and no content description is needed cause a link label is always present.
+     * It is non-clickable and no content description is needed because a link label is always present.
      */
     open class Icon private constructor(
         graphicsObject: Any
