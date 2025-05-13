@@ -27,10 +27,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -46,15 +42,15 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import java.util.Locale
+
+private val canOpenAppSettings = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
 
 private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(1, R.string.app_about_legalInformation_label, AboutFileMenuItem.File(R.raw.about_legal_information, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, AboutFileMenuItem.File(R.raw.about_privacy_policy, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(3, R.string.app_about_changelog_label, AboutFileMenuItem.File(R.raw.changelog, AboutFileMenuItem.File.Format.Markdown)),
     AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute),
-    AboutAppSettingItem(5, R.string.app_about_openAppSettings_label)
-
+    AboutAppSettingsItem(5, if (canOpenAppSettings) R.string.app_about_openAppSettings_label else R.string.app_about_changeLanguage_label)
 )
 
 sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
@@ -76,13 +72,11 @@ class AboutFileMenuItem(id: Int, @StringRes labelRes: Int, val file: File) : Abo
 
 class AboutRouteMenuItem(id: Int, @StringRes labelRes: Int, val route: String) : AboutMenuItem(id, labelRes)
 
-class AboutAppSettingItem(id: Int, @StringRes labelRes: Int) : AboutMenuItem(id, labelRes)
+class AboutAppSettingsItem(id: Int, @StringRes labelRes: Int) : AboutMenuItem(id, labelRes)
 
 @Composable
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
-
     val context = LocalContext.current
-
     Screen {
         LazyColumn {
             item {
@@ -117,10 +111,10 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                 ListItem(
                     modifier = Modifier
                         .clickable {
-                            if (item is AboutAppSettingItem) {
+                            if (item is AboutAppSettingsItem) {
                                context.openAppSettings()
                             } else {
-                                onMenuItemClick(item.id)
+                               onMenuItemClick(item.id)
                             }
                         }
                         .listItemHorizontalPadding(),
@@ -129,10 +123,10 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
             }
         }
     }
-
 }
-fun Context.openAppSettings() {
-    val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+
+private fun Context.openAppSettings() {
+    val intent = if (canOpenAppSettings) {
         Intent(
             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
             Uri.fromParts("package", this.packageName, null)
@@ -142,6 +136,7 @@ fun Context.openAppSettings() {
     }
     startActivity(intent)
 }
+
 @PreviewLightDark
 @Composable
 private fun PreviewAboutScreen() = OudsPreview {

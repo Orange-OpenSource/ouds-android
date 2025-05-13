@@ -33,7 +33,7 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
     val literalValue: String
         @Composable
         get() = when (val value = value()) {
-            is Color -> value.toHexString()
+            is Color -> stringResource(id = R.string.app_tokens_colorFormat_label, value.value.toString(16).substring(2, 8).uppercase())
             is Float -> stringResource(id = R.string.app_tokens_floatFormat_label, value)
             is Dp -> stringResource(id = R.string.app_tokens_dpFormat_label, value.toString().replace(".0.dp", "").substringBeforeLast(".dp"))
             is TextStyle -> stringResource(
@@ -44,8 +44,3 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
             else -> this.value.toString()
         }
 }
-
-/**
- * @return the hexadecimal value of the Color
- */
-private fun Color.toHexString() = "#" + value.toString(16).substring(2, 8).uppercase()
