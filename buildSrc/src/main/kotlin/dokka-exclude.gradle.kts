@@ -11,21 +11,13 @@
  */
 
 plugins {
-    id("dokka-exclude")
-    id("library")
-    alias(libs.plugins.compose.compiler)
+    id("org.jetbrains.dokka")
 }
 
-android {
-    namespace = "com.orange.ouds.foundation"
-
-    buildFeatures {
-        compose = true
+dokka {
+    dokkaSourceSets {
+        configureEach {
+           suppress.set(true)
+        }
     }
-}
-
-dependencies {
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.ui)
-    api(libs.androidx.compose.ui.tooling.preview)
 }
