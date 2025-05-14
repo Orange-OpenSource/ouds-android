@@ -238,7 +238,7 @@ internal fun rememberControlItemBackgroundColor(
     enabled: Boolean,
     readOnly: Boolean,
     interactionState: InteractionState
-) = rememberInteractionStateColor(interactionState = interactionState) { interactionStateValue ->
+) = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
     val state = rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionStateValue)
     backgroundColor(state = state)
 }

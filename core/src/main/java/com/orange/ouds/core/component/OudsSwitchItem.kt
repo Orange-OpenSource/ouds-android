@@ -127,7 +127,7 @@ private fun OudsSwitchItem(
         Modifier.toggleable(
             value = checked,
             interactionSource = interactionSource,
-            indication = InteractionStateValuesIndication(backgroundColor),
+            indication = InteractionValuesIndication(backgroundColor),
             enabled = enabled && !readOnly,
             role = Role.Switch,
             onValueChange = onCheckedChange

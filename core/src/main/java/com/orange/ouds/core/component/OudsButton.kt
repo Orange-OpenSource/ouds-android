@@ -41,7 +41,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -70,6 +69,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
@@ -260,21 +260,39 @@ private fun OudsButton(
 
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
             val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
-            val contentColor = rememberInteractionStateColor(interactionState = interactionState) { interactionStateValue ->
+            val contentColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
                 val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
                 contentColor(hierarchy = hierarchy, state = buttonState)
             }
-            val backgroundColor = rememberInteractionStateColor(interactionState = interactionState) { interactionStateValue ->
+            val backgroundColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
                 val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
                 backgroundColor(hierarchy = hierarchy, state = buttonState)
             }
-            val indication = InteractionStateValuesIndication(contentColor, backgroundColor)
+            val borderWidth = rememberInteractionValue(
+                interactionState = interactionState,
+                toAnimatableFloat = { it?.value.orElse { 0f } },
+                fromAnimatableFloat = { it.dp }
+            ) { interactionStateValue ->
+                val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
+                borderWidth(hierarchy = hierarchy, state = buttonState)
+            }
+            val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { interactionStateValue ->
+                val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
+                borderColor(hierarchy = hierarchy, state = buttonState)
+            }
+
             Box(
                 modifier = modifier
                     .widthIn(min = buttonTokens.sizeMinWidth.dp)
                     .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
                     .background(color = backgroundColor.value, shape = shape)
-                    .border(hierarchy = hierarchy, state = state, shape = shape)
+                    .run {
+                        ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
+                            border(width = borderWidth, color = borderColor, shape = shape)
+                        }.orElse {
+                            this
+                        }
+                    }
                     .outerBorder(state = state, shape = shape)
                     .semantics {
                         this.stateDescription = stateDescription
@@ -282,7 +300,7 @@ private fun OudsButton(
                     .clickable(
                         enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading) },
                         interactionSource = interactionSource,
-                        indication = indication,
+                        indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                         onClick = onClick
                     ),
                 contentAlignment = Alignment.Center
@@ -342,18 +360,6 @@ private fun rememberOudsButtonState(
             else -> OudsButton.State.Enabled
         }
         is OudsButton.Style.Loading -> OudsButton.State.Loading
-    }
-}
-
-@Composable
-private fun Modifier.border(hierarchy: OudsButton.Hierarchy, state: OudsButton.State, shape: Shape): Modifier {
-    val borderWidth = borderWidth(hierarchy = hierarchy, state = state)
-    val borderColor = borderColor(hierarchy = hierarchy, state = state)
-
-    return if (borderWidth != null && borderColor != null) {
-        border(width = borderWidth, color = borderColor, shape = shape)
-    } else {
-        this
     }
 }
 

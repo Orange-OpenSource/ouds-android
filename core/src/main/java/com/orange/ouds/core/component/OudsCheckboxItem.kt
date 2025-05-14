@@ -199,7 +199,7 @@ private fun OudsCheckboxItem(
     val toggleableModifier = if (onClick != null) {
         Modifier.triStateToggleable(
             interactionSource = interactionSource,
-            indication = InteractionStateValuesIndication(backgroundColor),
+            indication = InteractionValuesIndication(backgroundColor),
             state = value,
             onClick = onClick,
             enabled = enabled && !readOnly,
