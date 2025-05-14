@@ -27,6 +27,7 @@ import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -44,6 +45,8 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
+import com.orange.ouds.core.theme.LocalBorders
+import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
@@ -258,8 +261,8 @@ private fun indicatorColor(state: OudsControl.State, selected: Boolean, error: B
         } else {
             when (state) {
                 OudsControl.State.Enabled -> if (selected) {
-                    // In order to reach the a11y AAA level, the selected checkbox is black in light mode
-                    if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else this.selected
+                    // In order to reach the a11y AAA level, when high contrast mode is enabled, the selected checkbox must use `color.content.default` token
+                    if (LocalHighContrastModeEnabled.current) OudsTheme.colorScheme.content.default else this.selected
                 } else {
                     enabled
                 }
@@ -291,11 +294,18 @@ private fun PreviewOudsCheckbox(@PreviewParameter(OudsCheckboxPreviewParameterPr
     PreviewOudsCheckbox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
+@PreviewLightDark
+@Composable
+internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCheckboxPreviewParameterProvider::class) parameter: OudsCheckboxPreviewParameter) {
+    PreviewOudsCheckbox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter, highContrastModeEnabled = true)
+}
+
 @Composable
 internal fun PreviewOudsCheckbox(
     darkThemeEnabled: Boolean,
-    parameter: OudsCheckboxPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+    parameter: OudsCheckboxPreviewParameter,
+    highContrastModeEnabled: Boolean = false
+) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
         PreviewStates<OudsControl.State> { state ->
             OudsCheckbox(

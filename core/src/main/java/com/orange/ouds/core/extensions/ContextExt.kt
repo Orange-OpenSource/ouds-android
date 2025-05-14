@@ -19,7 +19,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.tryOrNull
 
 /**
- * @return true is the high contrast mode is enabled on the device, false otherwise
+ * @return true if the high contrast mode is enabled on the device, false otherwise
  */
 @SuppressLint("DiscouragedPrivateApi", "PrivateApi")
 internal fun Context.isHighContrastModeEnabled(): Boolean {
