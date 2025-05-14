@@ -45,6 +45,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
 import com.orange.ouds.core.utilities.edgeToEdgePadding
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -237,9 +238,10 @@ internal fun rememberOudsControlItemState(
 internal fun rememberControlItemBackgroundColor(
     enabled: Boolean,
     readOnly: Boolean,
-    interactionState: InteractionState
+    interactionState: InteractionState,
+    previewState: OudsControlItem.State?
 ) = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-    val state = rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionStateValue)
+    val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionStateValue) }
     backgroundColor(state = state)
 }
 

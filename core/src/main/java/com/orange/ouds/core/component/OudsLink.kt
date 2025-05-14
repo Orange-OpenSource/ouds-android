@@ -162,12 +162,12 @@ private fun OudsLink(
     }
 
     val contentColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-        val linkState = rememberOudsLinkState(enabled = enabled, interactionState = interactionStateValue)
+        val linkState = previewState.orElse { rememberOudsLinkState(enabled = enabled, interactionState = interactionStateValue) }
         contentColor(state = linkState, monochrome = LocalUseMonoComponents.current)
     }
 
     val arrowColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-        val linkState = rememberOudsLinkState(enabled = enabled, interactionState = interactionStateValue)
+        val linkState = previewState.orElse { rememberOudsLinkState(enabled = enabled, interactionState = interactionStateValue) }
         arrowColor(state = linkState, monochrome = LocalUseMonoComponents.current)
     }
 
@@ -181,7 +181,7 @@ private fun OudsLink(
         // meaning that the text will be underlined in the middle of the pressed animation and will come back to normal in the middle of the resting animation
         fromAnimatableFloat = { it >= 0.5f }
     ) { interactionStateValue ->
-        val linkState = rememberOudsLinkState(enabled = enabled, interactionState = interactionStateValue)
+        val linkState = previewState.orElse { rememberOudsLinkState(enabled = enabled, interactionState = interactionStateValue) }
         isTextOnly || linkState in listOf(OudsLink.State.Hovered, OudsLink.State.Pressed, OudsLink.State.Focused)
     }
 
@@ -197,7 +197,8 @@ private fun OudsLink(
                     indication = InteractionValuesIndication(contentColor, arrowColor, isUnderlined),
                     enabled = state != OudsLink.State.Disabled,
                     onClick = onClick
-                )
+                ),
+            contentAlignment = Alignment.Center
         ) {
             val columnGap: Dp
             val iconSize: Dp

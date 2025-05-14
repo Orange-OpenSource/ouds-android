@@ -261,11 +261,11 @@ private fun OudsButton(
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
             val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
             val contentColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-                val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
+                val buttonState = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue) }
                 contentColor(hierarchy = hierarchy, state = buttonState)
             }
             val backgroundColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-                val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
+                val buttonState = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue) }
                 backgroundColor(hierarchy = hierarchy, state = buttonState)
             }
             val borderWidth = rememberInteractionValue(
@@ -273,11 +273,11 @@ private fun OudsButton(
                 toAnimatableFloat = { it?.value.orElse { 0f } },
                 fromAnimatableFloat = { it.dp }
             ) { interactionStateValue ->
-                val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
+                val buttonState = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue) }
                 borderWidth(hierarchy = hierarchy, state = buttonState)
             }
             val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { interactionStateValue ->
-                val buttonState = rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue)
+                val buttonState = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue) }
                 borderColor(hierarchy = hierarchy, state = buttonState)
             }
 

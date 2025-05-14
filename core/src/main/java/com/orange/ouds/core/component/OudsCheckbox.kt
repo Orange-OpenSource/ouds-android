@@ -162,7 +162,7 @@ private fun OudsCheckbox(
         val checkboxTokens = OudsTheme.componentsTokens.checkbox
         val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
         val backgroundColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-            val checkboxState = rememberOudsControlState(enabled = enabled, interactionState = interactionStateValue)
+            val checkboxState = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionStateValue) }
             backgroundColor(state = checkboxState)
         }
 

@@ -110,7 +110,7 @@ private fun OudsRadioButton(
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
         val backgroundColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-            val radioButtonState = rememberOudsControlState(enabled = enabled, interactionState = interactionStateValue)
+            val radioButtonState = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionStateValue) }
             backgroundColor(state = radioButtonState)
         }
 
