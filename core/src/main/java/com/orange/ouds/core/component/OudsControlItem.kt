@@ -101,18 +101,18 @@ internal fun OudsControlItem(
         val trailingElement: (@Composable () -> Unit)? = if (reversed) indicator else itemIcon
 
         val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
-        Column(
+        Box(
             modifier = filteredModifier
                 .height(IntrinsicSize.Min)
                 .heightIn(min = controlItemTokens.sizeMinHeight.dp)
                 .widthIn(min = controlItemTokens.sizeMinWidth.dp)
                 .background(color = backgroundColor(state = state))
-                .outerBorder(state = state)
+                .outerBorder(state = state),
+            contentAlignment = Alignment.BottomCenter
         ) {
             val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
             Row(
                 modifier = Modifier
-                    .weight(1f)
                     .padding(vertical = controlItemTokens.spaceInset.value)
                     .edgeToEdgePadding(true)
                     .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
