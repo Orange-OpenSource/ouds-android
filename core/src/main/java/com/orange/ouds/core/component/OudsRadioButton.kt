@@ -133,7 +133,7 @@ private fun OudsRadioButton(
                 .widthIn(radioButtonTokens.sizeMinWidth.dp)
                 .heightIn(min = radioButtonTokens.sizeMinHeight.dp, max = radioButtonTokens.sizeMaxHeight.dp)
                 .background(color = backgroundColor(state = state))
-                .outerBorder(state = state)
+                .outerBorder(state = state, handleHighContrastMode = true)
                 .then(selectableModifier),
             contentAlignment = Alignment.Center,
         ) {

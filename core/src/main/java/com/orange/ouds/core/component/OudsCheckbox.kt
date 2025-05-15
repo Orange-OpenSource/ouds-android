@@ -27,14 +27,12 @@ import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.state.ToggleableState
@@ -44,11 +42,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.extensions.isHighContrastModeEnabled
-import com.orange.ouds.core.theme.LocalBorders
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
@@ -185,7 +180,7 @@ private fun OudsCheckbox(
                 .widthIn(checkboxTokens.sizeMinWidth.dp)
                 .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
                 .background(color = backgroundColor(state = state))
-                .outerBorder(state = state),
+                .outerBorder(state = state, handleHighContrastMode = true),
             contentAlignment = Alignment.Center,
         ) {
             OudsCheckboxIndicator(state = state, value = value, error = error)
