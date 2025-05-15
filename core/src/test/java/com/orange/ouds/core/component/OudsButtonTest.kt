@@ -27,7 +27,7 @@ internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter)
     }
 
     @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean) {
+    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
         PreviewOudsButton(
             darkThemeEnabled = darkThemeEnabled,
             parameter = parameter

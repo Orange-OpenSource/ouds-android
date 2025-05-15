@@ -30,7 +30,7 @@ internal class OudsSwitchItemTest {
         }
 
         @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean) {
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
             PreviewOudsSwitchItem(
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter
@@ -40,10 +40,10 @@ internal class OudsSwitchItemTest {
 
     class NonParameterized : OudsSnapshotTest() {
 
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean) = darkThemeEnabled
+        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
 
         @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean) {
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
             PreviewOudsSwitchItemWithLongHelperText()
         }
     }

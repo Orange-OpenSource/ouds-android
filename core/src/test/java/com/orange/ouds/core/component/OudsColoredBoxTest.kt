@@ -27,7 +27,7 @@ internal class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color) :
     }
 
     @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean) {
+    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
         PreviewOudsColoredBox(
             darkThemeEnabled = darkThemeEnabled,
             parameter = parameter

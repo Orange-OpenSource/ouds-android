@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
 import com.orange.ouds.OudsSnapshotTest
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
@@ -26,11 +27,16 @@ internal class OudsCheckboxTest(private val parameter: OudsCheckboxPreviewParame
         internal fun data() = OudsCheckboxPreviewParameterProvider().values.toList()
     }
 
+    override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = false
+
     @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean) {
+    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
         PreviewOudsCheckbox(
             darkThemeEnabled = darkThemeEnabled,
+            highContrastModeEnabled = highContrastModeEnabled,
             parameter = parameter
         )
     }
+
+
 }

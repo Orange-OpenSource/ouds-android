@@ -30,7 +30,7 @@ internal class OudsCheckboxItemTest {
         }
 
         @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean) {
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
             PreviewOudsCheckboxItem(
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter
@@ -40,10 +40,10 @@ internal class OudsCheckboxItemTest {
 
     class NonParameterized : OudsSnapshotTest() {
 
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean) = darkThemeEnabled
+        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
 
         @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean) {
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
             PreviewOudsCheckboxItemWithLongHelperText()
         }
     }
