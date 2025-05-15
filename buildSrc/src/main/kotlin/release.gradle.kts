@@ -25,6 +25,7 @@ tasks.register<DefaultTask>("prepareRelease") {
     doLast {
         val version = project.gradle.startParameter.projectProperties["version"] ?: run { createGitChangelogApi().nextSemanticVersion.toString() }
         updateVersion(version)
+        updateDependencies(version)
         updateVersionCode()
         updateChangelog(version)
     }
@@ -42,6 +43,14 @@ fun updateVersion(version: String) {
     File("gradle.properties").replace("(version=).*".toRegex()) { matchResult ->
         "${matchResult.groupValues[1]}$version"
     }
+}
+
+fun updateDependencies(version: String) {
+    val regex = "(com\\.orange\\.ouds\\.android:ouds-[^:]*:)\\d+\\.\\d+\\.\\d+".toRegex()
+    val transform: (MatchResult) -> CharSequence = { matchResult ->
+        "${matchResult.groupValues[1]}$version"
+    }
+    File("docs/index.md").replace(regex, transform)
 }
 
 fun updateVersionCode() {
