@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontFamily
@@ -32,6 +33,8 @@ import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import kotlin.enums.enumEntries
+
+private val LocalPreviewState = staticCompositionLocalOf<Any?> { null }
 
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
@@ -68,7 +71,13 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
 }
 
 @Composable
-internal inline fun <reified T> PreviewStates(columnCount: Int = enumEntries<T>().count(), content: (T) -> Unit) where T : Enum<T> {
+internal fun <T> getPreviewState(): T? {
+    @Suppress("UNCHECKED_CAST")
+    return LocalPreviewState.current as? T
+}
+
+@Composable
+internal inline fun <reified T> PreviewStates(columnCount: Int = enumEntries<T>().count(), crossinline content: @Composable () -> Unit) where T : Enum<T> {
     val chunkedStates = enumEntries<T>().chunked(columnCount)
     val space = 16.dp
     Box(modifier = Modifier.padding(space)) {
@@ -84,7 +93,9 @@ internal inline fun <reified T> PreviewStates(columnCount: Int = enumEntries<T>(
                             fontFamily = FontFamily.Monospace,
                             fontSize = 10.sp
                         )
-                        content(state)
+                        CompositionLocalProvider(LocalPreviewState provides state) {
+                            content()
+                        }
                     }
                 }
             }

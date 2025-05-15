@@ -30,7 +30,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -58,11 +57,10 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.getPreviewState
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
-
-private val LocalPreviewState = staticCompositionLocalOf<OudsLink.State?> { null }
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Link design guidelines**</a>
@@ -155,7 +153,7 @@ private fun OudsLink(
     val linkTokens = OudsTheme.componentsTokens.link
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getState(enabled = enabled, interactionState = interactionState)
+    val state = getLinkState(enabled = enabled, interactionState = interactionState)
     val isTextOnly = icon == null && arrow == null
 
     val (minWidth, minHeight) = when (size) {
@@ -164,12 +162,12 @@ private fun OudsLink(
     }
 
     val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
-        val linkState = getState(enabled = enabled, interactionState = linkInteractionState)
+        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
         contentColor(state = linkState, monochrome = LocalUseMonoComponents.current)
     }
 
     val arrowColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
-        val linkState = getState(enabled = enabled, interactionState = linkInteractionState)
+        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
         arrowColor(state = linkState, monochrome = LocalUseMonoComponents.current)
     }
 
@@ -183,7 +181,7 @@ private fun OudsLink(
         // meaning that the text will be underlined in the middle of the pressed animation and will come back to normal in the middle of the resting animation
         fromAnimatableFloat = { it >= 0.5f }
     ) { linkInteractionState ->
-        val linkState = getState(enabled = enabled, interactionState = linkInteractionState)
+        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
         isTextOnly || linkState in listOf(OudsLink.State.Hovered, OudsLink.State.Pressed, OudsLink.State.Focused)
     }
 
@@ -258,8 +256,8 @@ private fun OudsLink(
 }
 
 @Composable
-private fun getState(enabled: Boolean, interactionState: InteractionState): OudsLink.State {
-    return LocalPreviewState.current.orElse {
+private fun getLinkState(enabled: Boolean, interactionState: InteractionState): OudsLink.State {
+    return getPreviewState<OudsLink.State>().orElse {
         when {
             !enabled -> OudsLink.State.Disabled
             interactionState == InteractionState.Hovered -> OudsLink.State.Hovered
@@ -437,16 +435,14 @@ internal fun PreviewOudsLink(
     with(parameter) {
         val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
         val linkPreview: @Composable () -> Unit = {
-            PreviewStates<OudsLink.State>(columnCount = 3) { state ->
-                CompositionLocalProvider(LocalPreviewState provides state) {
-                    OudsLink(
-                        icon = icon,
-                        label = "Label",
-                        arrow = arrow,
-                        onClick = {},
-                        size = size,
-                    )
-                }
+            PreviewStates<OudsLink.State>(columnCount = 3) {
+                OudsLink(
+                    icon = icon,
+                    label = "Label",
+                    arrow = arrow,
+                    onClick = {},
+                    size = size
+                )
             }
         }
 

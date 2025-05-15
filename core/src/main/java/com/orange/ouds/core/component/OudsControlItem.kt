@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,6 +44,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
 import com.orange.ouds.core.utilities.edgeToEdgePadding
+import com.orange.ouds.core.utilities.getPreviewState
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -65,12 +65,12 @@ internal fun OudsControlItem(
     error: Boolean,
     errorComponentName: String,
     indicator: @Composable () -> Unit,
-    previewState: OudsControlItem.State?,
     checkedContentPreviewStatus: String,
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
     handleHighContrastMode: Boolean = false
 ) {
+    val previewState = getPreviewState<OudsControlItem.State>()
     val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
     val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
@@ -219,18 +219,16 @@ object OudsControlItem {
 }
 
 @Composable
-internal fun rememberOudsControlItemState(
-    enabled: Boolean,
-    readOnly: Boolean,
-    interactionState: InteractionState
-): OudsControlItem.State = remember(enabled, readOnly, interactionState) {
-    when {
-        !enabled -> OudsControlItem.State.Disabled
-        readOnly -> OudsControlItem.State.ReadOnly
-        interactionState == InteractionState.Hovered -> OudsControlItem.State.Hovered
-        interactionState == InteractionState.Pressed -> OudsControlItem.State.Pressed
-        interactionState == InteractionState.Focused -> OudsControlItem.State.Focused
-        else -> OudsControlItem.State.Enabled
+internal fun getControlItemState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsControlItem.State {
+    return getPreviewState<OudsControlItem.State>().orElse {
+        when {
+            !enabled -> OudsControlItem.State.Disabled
+            readOnly -> OudsControlItem.State.ReadOnly
+            interactionState == InteractionState.Hovered -> OudsControlItem.State.Hovered
+            interactionState == InteractionState.Pressed -> OudsControlItem.State.Pressed
+            interactionState == InteractionState.Focused -> OudsControlItem.State.Focused
+            else -> OudsControlItem.State.Enabled
+        }
     }
 }
 
@@ -238,10 +236,9 @@ internal fun rememberOudsControlItemState(
 internal fun rememberControlItemBackgroundColor(
     enabled: Boolean,
     readOnly: Boolean,
-    interactionState: InteractionState,
-    previewState: OudsControlItem.State?
-) = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-    val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionStateValue) }
+    interactionState: InteractionState
+) = rememberInteractionColor(interactionState = interactionState) { controlItemInteractionState ->
+    val state = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = controlItemInteractionState)
     backgroundColor(state = state)
 }
 

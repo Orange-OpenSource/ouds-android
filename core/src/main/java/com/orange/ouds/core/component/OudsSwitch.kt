@@ -58,7 +58,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -89,29 +88,10 @@ fun OudsSwitch(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsSwitch(
-        checked = checked,
-        onCheckedChange = onCheckedChange,
-        previewState = null,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
-    )
-}
-
-@Composable
-private fun OudsSwitch(
-    checked: Boolean,
-    onCheckedChange: ((Boolean) -> Unit)?,
-    previewState: OudsControl.State?,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null,
-) {
     val switchTokens = OudsTheme.componentsTokens.switch
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
+    val state = getControlState(enabled = enabled, interactionState = interactionState)
 
     val toggleableModifier = if (onCheckedChange != null) {
         Modifier.toggleable(
@@ -261,11 +241,10 @@ internal fun PreviewOudsSwitch(
     darkThemeEnabled: Boolean,
     checked: Boolean
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    PreviewStates<OudsControl.State>(columnCount = 3) { state ->
+    PreviewStates<OudsControl.State>(columnCount = 3) {
         OudsSwitch(
             checked = checked,
-            onCheckedChange = {},
-            previewState = state
+            onCheckedChange = {}
         )
     }
 }

@@ -46,7 +46,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.core.utilities.getPreviewState
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -78,28 +78,7 @@ fun OudsRadioButton(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsRadioButton(
-        selected = selected,
-        onClick = onClick,
-        previewState = null,
-        modifier = modifier,
-        enabled = enabled,
-        error = error,
-        interactionSource = interactionSource
-    )
-}
-
-@Composable
-private fun OudsRadioButton(
-    selected: Boolean,
-    onClick: (() -> Unit)?,
-    previewState: OudsControl.State?,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    error: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
-    val isDisabledPreviewState = previewState == OudsControl.State.Disabled
+    val isDisabledPreviewState = getPreviewState<OudsControl.State>() == OudsControl.State.Disabled
     val isForbidden = error && (!enabled || isDisabledPreviewState)
     CheckedContent(
         expression = !isForbidden,
@@ -108,9 +87,9 @@ private fun OudsRadioButton(
         val radioButtonTokens = OudsTheme.componentsTokens.radioButton
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
-        val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
-        val backgroundColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-            val radioButtonState = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionStateValue) }
+        val state = getControlState(enabled = enabled, interactionState = interactionState)
+        val backgroundColor = rememberInteractionColor(interactionState = interactionState) { radioButtonInteractionState ->
+            val radioButtonState = getControlState(enabled = enabled, interactionState = radioButtonInteractionState)
             backgroundColor(state = radioButtonState)
         }
 
@@ -240,12 +219,11 @@ internal fun PreviewOudsRadioButton(
     highContrastModeEnabled: Boolean = false
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControl.State> { state ->
+        PreviewStates<OudsControl.State> {
             OudsRadioButton(
                 selected = selected,
                 onClick = {},
-                error = error,
-                previewState = state
+                error = error
             )
         }
     }

@@ -33,7 +33,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.foundation.extensions.orElse
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
@@ -158,49 +157,16 @@ fun OudsTriStateCheckboxItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsCheckboxItem(
-        value = state,
-        label = label,
-        onClick = onClick,
-        modifier = modifier,
-        previewState = null,
-        helperText = helperText,
-        icon = icon,
-        divider = divider,
-        reversed = reversed,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        interactionSource = interactionSource,
-    )
-}
-
-@Composable
-private fun OudsCheckboxItem(
-    value: ToggleableState,
-    label: String,
-    onClick: (() -> Unit)?,
-    previewState: OudsControlItem.State?,
-    modifier: Modifier = Modifier,
-    helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
-    divider: Boolean = false,
-    reversed: Boolean = false,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
-    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState, previewState = previewState)
+    val checkboxItemState = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val toggleableModifier = if (onClick != null) {
         Modifier.triStateToggleable(
             interactionSource = interactionSource,
             indication = InteractionValuesIndication(backgroundColor),
-            state = value,
+            state = state,
             onClick = onClick,
             enabled = enabled && !readOnly,
             role = Role.Checkbox
@@ -210,7 +176,7 @@ private fun OudsCheckboxItem(
     }
 
     OudsControlItem(
-        state = state,
+        state = checkboxItemState,
         label = label,
         helperText = helperText,
         icon = icon,
@@ -222,13 +188,12 @@ private fun OudsCheckboxItem(
         errorComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
         indicator = {
             OudsCheckboxIndicator(
-                state = state.toControlState(),
-                value = value,
+                state = checkboxItemState.toControlState(),
+                value = state,
                 error = error
             )
         },
-        previewState = previewState,
-        checkedContentPreviewStatus = when (value) {
+        checkedContentPreviewStatus = when (state) {
             ToggleableState.On -> "Selected"
             ToggleableState.Off -> "Unselected"
             ToggleableState.Indeterminate -> "Indeterminate"
@@ -254,12 +219,11 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
-            OudsCheckboxItem(
-                value = value,
+        PreviewStates<OudsControlItem.State>(columnCount = 1) {
+            OudsTriStateCheckboxItem(
+                state = value,
                 label = "Label",
                 onClick = {},
-                previewState = state,
                 helperText = helperText,
                 divider = divider,
                 error = error,
@@ -284,12 +248,11 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
-            OudsCheckboxItem(
-                value = value,
+        PreviewStates<OudsControlItem.State>(columnCount = 1) {
+            OudsTriStateCheckboxItem(
+                state = value,
                 label = "Label",
                 onClick = {},
-                previewState = state,
                 interactionSource = remember { MutableInteractionSource() }
             )
         }

@@ -69,6 +69,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.getPreviewState
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -114,10 +115,9 @@ fun OudsButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
-        icon = null,
-        label = label,
+        nullableIcon = null,
+        nullableLabel = label,
         onClick = onClick,
-        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
@@ -165,10 +165,9 @@ fun OudsButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
-        icon = icon,
-        label = null,
+        nullableIcon = icon,
+        nullableLabel = null,
         onClick = onClick,
-        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
@@ -219,10 +218,9 @@ fun OudsButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
-        icon = icon,
-        label = label,
+        nullableIcon = icon,
+        nullableLabel = label,
         onClick = onClick,
-        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
@@ -233,17 +231,19 @@ fun OudsButton(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
+@JvmName("OudsButtonNullableIconAndLabel")
 private fun OudsButton(
-    icon: OudsButton.Icon?,
-    label: String?,
+    nullableIcon: OudsButton.Icon?,
+    nullableLabel: String?,
     onClick: () -> Unit,
-    previewState: OudsButton.State?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButton.Style.Default,
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
     interactionSource: MutableInteractionSource? = null
 ) {
+    val icon = nullableIcon
+    val label = nullableLabel
     val isForbidden = hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current
     CheckedContent(
         expression = !isForbidden,
@@ -253,31 +253,31 @@ private fun OudsButton(
         val buttonTokens = OudsTheme.componentsTokens.button
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
-        val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
+        val state = getButtonState(enabled = enabled, style = style, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.dp * iconScale else Dp.Unspecified
         val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
             val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
-            val contentColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-                val buttonState = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue) }
+            val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
                 contentColor(hierarchy = hierarchy, state = buttonState)
             }
-            val backgroundColor = rememberInteractionColor(interactionState = interactionState) { interactionStateValue ->
-                val buttonState = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue) }
+            val backgroundColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
                 backgroundColor(hierarchy = hierarchy, state = buttonState)
             }
             val borderWidth = rememberInteractionValue(
                 interactionState = interactionState,
                 toAnimatableFloat = { it?.value.orElse { 0f } },
                 fromAnimatableFloat = { it.dp }
-            ) { interactionStateValue ->
-                val buttonState = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue) }
+            ) { buttonInteractionState ->
+                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
                 borderWidth(hierarchy = hierarchy, state = buttonState)
             }
-            val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { interactionStateValue ->
-                val buttonState = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionStateValue) }
+            val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
                 borderColor(hierarchy = hierarchy, state = buttonState)
             }
 
@@ -307,7 +307,7 @@ private fun OudsButton(
             ) {
                 if (state == OudsButton.State.Loading) {
                     val loadingStyle = style as? OudsButton.Style.Loading
-                    val progress = if (previewState == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
+                    val progress = if (getPreviewState<OudsButton.State>() == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
                     LoadingIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
                 }
 
@@ -346,20 +346,18 @@ private fun OudsButton(
 }
 
 @Composable
-private fun rememberOudsButtonState(
-    enabled: Boolean,
-    style: OudsButton.Style,
-    interactionState: InteractionState
-): OudsButton.State = remember(enabled, style, interactionState) {
-    when (style) {
-        OudsButton.Style.Default -> when {
-            !enabled -> OudsButton.State.Disabled
-            interactionState == InteractionState.Hovered -> OudsButton.State.Hovered
-            interactionState == InteractionState.Pressed -> OudsButton.State.Pressed
-            interactionState == InteractionState.Focused -> OudsButton.State.Focused
-            else -> OudsButton.State.Enabled
+private fun getButtonState(enabled: Boolean, style: OudsButton.Style, interactionState: InteractionState): OudsButton.State {
+    return getPreviewState<OudsButton.State>().orElse {
+        when (style) {
+            OudsButton.Style.Default -> when {
+                !enabled -> OudsButton.State.Disabled
+                interactionState == InteractionState.Hovered -> OudsButton.State.Hovered
+                interactionState == InteractionState.Pressed -> OudsButton.State.Pressed
+                interactionState == InteractionState.Focused -> OudsButton.State.Focused
+                else -> OudsButton.State.Enabled
+            }
+            is OudsButton.Style.Loading -> OudsButton.State.Loading
         }
-        is OudsButton.Style.Loading -> OudsButton.State.Loading
     }
 }
 
@@ -691,8 +689,8 @@ internal fun PreviewOudsButton(
         val label = if (hasLabel) hierarchy.name else null
         val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
         val content: @Composable () -> Unit = {
-            PreviewStates<OudsButton.State>(columnCount = 2) { state ->
-                OudsButton(icon = icon, label = label, onClick = {}, hierarchy = hierarchy, previewState = state)
+            PreviewStates<OudsButton.State>(columnCount = 2) {
+                OudsButton(nullableIcon = icon, nullableLabel = label, onClick = {}, hierarchy = hierarchy)
             }
         }
         if (onColoredBox) {

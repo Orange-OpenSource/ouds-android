@@ -263,7 +263,7 @@ internal fun rememberInteractionColor(
 @Composable
 internal fun rememberInteractionColor(
     interactionState: InteractionState,
-    init: @Composable (InteractionState) -> Color,
+    init: @Composable (InteractionState) -> Color
 ) = rememberInteractionColor(
     none = init(InteractionState.None),
     focused = init(InteractionState.Focused),
@@ -291,7 +291,7 @@ internal fun rememberNullableInteractionColor(
 @Composable
 internal fun rememberNullableInteractionColor(
     interactionState: InteractionState,
-    init: @Composable (InteractionState) -> Color?,
+    init: @Composable (InteractionState) -> Color?
 ) = rememberNullableInteractionColor(
     none = init(InteractionState.None),
     focused = init(InteractionState.Focused),
@@ -321,7 +321,7 @@ internal fun <T> rememberInteractionValue(
     interactionState: InteractionState,
     toAnimatableFloat: (T) -> Float,
     fromAnimatableFloat: (Float) -> T,
-    init: @Composable (InteractionState) -> T,
+    init: @Composable (InteractionState) -> T
 ) = rememberInteractionValue(
     none = init(InteractionState.None),
     focused = init(InteractionState.Focused),
@@ -351,7 +351,7 @@ internal fun rememberInteractionFloat(
 @Composable
 internal fun rememberInteractionFloat(
     interactionState: InteractionState,
-    init: @Composable (InteractionState) -> Float,
+    init: @Composable (InteractionState) -> Float
 ) = rememberInteractionFloat(
     none = init(InteractionState.None),
     focused = init(InteractionState.Focused),
