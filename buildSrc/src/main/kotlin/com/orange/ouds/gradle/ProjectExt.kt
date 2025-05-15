@@ -187,7 +187,7 @@ fun Project.updateChangelog(version: String?) {
     val gitChangelogApi = createGitChangelogApi()
         .withUntaggedName(untaggedName) // Group unreleased commits under the new version tag
         .withIgnoreTagsIfNameMatches("^refs/tags/ci/.*") // Ignore CI tags
-        .withTemplatePath("CHANGELOG.mustache") // Use a Mustache template to generate changelog
+        .withTemplatePath("${rootProject.projectDir}/CHANGELOG.mustache") // Use a Mustache template to generate changelog
         .withHandlebarsHelper("commitDescriptionWithPullRequestUrl", Helper<Commit> { commit, options ->
             // This Handlebars helper returns an enriched commit description
             // It searches for a pull request number in the commit description and replace it with a link to the pull request on GitHub
@@ -215,7 +215,7 @@ fun Project.updateChangelog(version: String?) {
         })
 
     val changelog = changelogHeader + gitChangelogApi.render().trim().replace("&#x60;", "`")
-    File("CHANGELOG.md").writeText(changelog)
+    File("${rootProject.projectDir}/CHANGELOG.md").writeText(changelog)
 }
 
 internal fun Project.createGitChangelogApi(): GitChangelogApi {
