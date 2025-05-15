@@ -15,6 +15,7 @@ Here is the official list of people who contributed to the ouds-android reposito
 * [Julien DERAMOND](https://github.com/JulienDeramond) - <julien.deramond@orange.com>
 * [Pierre-Yves LAPERSONNE](https://github.com/pylapp) - <pierreyves.lapersonne@orange.com>
 * [Florent MAITRE](https://github.com/florentmaitre) - <florent.maitre@orange.com>
+* [Mark SEIF](https://github.com/markoeltiger) - <mark.seif@orange.com>
 
 ## You would like to join this list?
 
