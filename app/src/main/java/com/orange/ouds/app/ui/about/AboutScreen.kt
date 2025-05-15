@@ -43,14 +43,12 @@ import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
-private val canOpenAppSettings = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-
 private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(1, R.string.app_about_legalInformation_label, AboutFileMenuItem.File(R.raw.about_legal_information, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, AboutFileMenuItem.File(R.raw.about_privacy_policy, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(3, R.string.app_about_changelog_label, AboutFileMenuItem.File(R.raw.changelog, AboutFileMenuItem.File.Format.Markdown)),
     AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute),
-    AboutAppSettingsItem(5, if (canOpenAppSettings) R.string.app_about_openAppSettings_label else R.string.app_about_changeLanguage_label)
+    AboutAppSettingsItem(5, R.string.app_about_changeLanguage_label)
 )
 
 sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
@@ -112,9 +110,9 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                     modifier = Modifier
                         .clickable {
                             if (item is AboutAppSettingsItem) {
-                               context.openAppSettings()
+                                context.openLocaleSettings()
                             } else {
-                               onMenuItemClick(item.id)
+                                onMenuItemClick(item.id)
                             }
                         }
                         .listItemHorizontalPadding(),
@@ -125,10 +123,10 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
     }
 }
 
-private fun Context.openAppSettings() {
-    val intent = if (canOpenAppSettings) {
+private fun Context.openLocaleSettings() {
+    val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         Intent(
-            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Settings.ACTION_APP_LOCALE_SETTINGS,
             Uri.fromParts("package", this.packageName, null)
         )
     } else {
