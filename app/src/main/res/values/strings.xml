@@ -43,6 +43,7 @@
     <string name="app_tokens_floatFormat_label" translatable="false">\u200e%sf</string>
     <string name="app_tokens_dpFormat_label" translatable="false">\u200e%s dp</string>
     <string name="app_tokens_spFormat_label" translatable="false">\u200e%s sp</string>
+    <string name="app_tokens_colorFormat_label" translatable="false">\u200e#%s</string>
     <string name="app_tokens_viewCodeExample_label">View token code example</string>
 
     <!-- Tokens: border -->
@@ -177,6 +178,6 @@
     <string name="app_about_legalInformation_label">Legal information</string>
     <string name="app_about_materialComponents_label">Material 3 components</string>
     <string name="app_about_changelog_label">Changelog</string>
-    <string name="app_about_openAppSettings_label">Open application settings</string>
+    <string name="app_about_changeLanguage_label">Change language</string>
 
 </resources>
