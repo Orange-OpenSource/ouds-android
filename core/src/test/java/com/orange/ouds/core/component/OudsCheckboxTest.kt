@@ -37,6 +37,4 @@ internal class OudsCheckboxTest(private val parameter: OudsCheckboxPreviewParame
             parameter = parameter
         )
     }
-
-
 }
