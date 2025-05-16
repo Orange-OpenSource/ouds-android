@@ -49,14 +49,9 @@ internal abstract class OudsSnapshotTest {
 
     @Before
     fun setUp() {
-        val isLightThemeSnapshotTest = name.methodName.startsWith(::takeLightThemeSnapshot.name)
-        val isDarkThemeSnapshotTest = name.methodName.startsWith(::takeDarkThemeSnapshot.name)
-        val isLightThemeHighContrastModeSnapshotTest = name.methodName.startsWith(::takeLightThemeHighContrastSnapshot.name)
-        val isDarkThemeHighContrastModeSnapshotTest = name.methodName.startsWith(::takeDarkThemeHighContrastSnapshot.name)
-        val ignoreTest = (ignoreSnapshot(darkThemeEnabled = false, highContrastModeEnabled = false) && isLightThemeSnapshotTest)
-                || (ignoreSnapshot(darkThemeEnabled = true, highContrastModeEnabled = false) && isDarkThemeSnapshotTest)
-                || (ignoreSnapshot(darkThemeEnabled = false, highContrastModeEnabled = true) && isLightThemeHighContrastModeSnapshotTest)
-                || (ignoreSnapshot(darkThemeEnabled = true, highContrastModeEnabled = true) && isDarkThemeHighContrastModeSnapshotTest)
+        val isDarkThemeSnapshotTest = name.methodName.contains("DarkTheme")
+        val isHighContrastModeSnapshotTest = name.methodName.contains("HighContrast")
+        val ignoreTest = ignoreSnapshot(isDarkThemeSnapshotTest, isHighContrastModeSnapshotTest)
         Assume.assumeTrue(!ignoreTest)
     }
 
