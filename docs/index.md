@@ -4,7 +4,7 @@ The OUDS Android library is compatible with **Android 5.0 (API level 21) and hig
 
 ## 1. Add library dependencies
 
-Orange Design System for Android is available through [Maven Central Repository](https://mvnrepository.com/artifact/com.orange.ouds.android). To use it:
+Orange Unified Design System for Android is available through [Maven Central Repository](https://mvnrepository.com/artifact/com.orange.ouds.android). To use it:
 
 1. Open the `build.gradle` file of your application.
 
