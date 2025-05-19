@@ -238,6 +238,24 @@ internal fun PreviewOudsRadioButtonItem(
     }
 }
 
+@PreviewLightDark
+@Composable
+private fun PreviewOudsRadioButtonItemHighContrastModeEnabled(@PreviewParameter(OudsRadioButtonItemHighContrastModePreviewParameterProvider::class) parameter: OudsRadioButtonItemHighContrastModePreviewParameter) {
+    OudsPreview(darkThemeEnabled = isSystemInDarkTheme(), highContrastModeEnabled = true) {
+        with(parameter) {
+            PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+                OudsRadioButtonItem(
+                    selected = value,
+                    label = "Label",
+                    onClick = {},
+                    previewState = state,
+                    interactionSource = remember { MutableInteractionSource() }
+                )
+            }
+        }
+    }
+}
+
 @Preview
 @Composable
 internal fun PreviewOudsRadioButtonItemWithLongHelperText() = OudsPreview {
@@ -257,3 +275,9 @@ private val previewOutlinedValues = listOf(true, true, false)
 
 internal class OudsRadioButtonItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<Boolean, Boolean>(DefaultBooleanValues, previewOutlinedValues)
+
+internal typealias OudsRadioButtonItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<Boolean>
+
+internal class OudsRadioButtonItemHighContrastModePreviewParameterProvider :
+    OudsControlItemHighContrastModePreviewParameterProvider<Boolean>(listOf(false, true))
+

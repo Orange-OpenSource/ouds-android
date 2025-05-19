@@ -242,11 +242,29 @@ private fun PreviewOudsCheckboxItem(@PreviewParameter(OudsCheckboxItemPreviewPar
     PreviewOudsCheckboxItem(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
+@PreviewLightDark
+@Composable
+private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(OudsCheckboxItemHighContrastModePreviewParameterProvider::class) parameter: OudsCheckboxItemHighContrastModePreviewParameter) {
+    OudsPreview(darkThemeEnabled = isSystemInDarkTheme(), highContrastModeEnabled = true) {
+        with(parameter) {
+            PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+                OudsCheckboxItem(
+                    value = value,
+                    label = "Label",
+                    previewState = state,
+                    interactionSource = remember { MutableInteractionSource() }
+                )
+            }
+        }
+    }
+}
+
 @Composable
 internal fun PreviewOudsCheckboxItem(
     darkThemeEnabled: Boolean,
-    parameter: OudsCheckboxItemPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+    parameter: OudsCheckboxItemPreviewParameter,
+    highContrastModeEnabled: Boolean = false
+) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
         PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
             OudsCheckboxItem(
@@ -280,3 +298,8 @@ internal typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewPara
 
 internal class OudsCheckboxItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<ToggleableState, Nothing>(DefaultBooleanValues.map { ToggleableState(it) })
+
+internal typealias OudsCheckboxItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<ToggleableState>
+
+internal class OudsCheckboxItemHighContrastModePreviewParameterProvider :
+    OudsControlItemHighContrastModePreviewParameterProvider<ToggleableState>(listOf(ToggleableState.Off, ToggleableState.On))

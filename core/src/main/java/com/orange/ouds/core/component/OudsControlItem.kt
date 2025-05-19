@@ -343,3 +343,19 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
         }
     }
 }
+
+internal data class OudsControlItemHighContrastModePreviewParameter<T>(
+    val value: T,
+)
+
+internal open class OudsControlItemHighContrastModePreviewParameterProvider<T>(
+    values: List<T>
+) : BasicPreviewParameterProvider<OudsControlItemHighContrastModePreviewParameter<T>>(*getPreviewHighContrastModeParameterValues(values).toTypedArray())
+
+private fun <T> getPreviewHighContrastModeParameterValues(values: List<T>): List<OudsControlItemHighContrastModePreviewParameter<T>> {
+    return buildList {
+        List(2) { index ->
+            add(OudsControlItemHighContrastModePreviewParameter(value = values[index]))
+        }
+    }
+}
