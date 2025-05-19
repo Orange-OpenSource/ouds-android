@@ -128,7 +128,7 @@ sealed class TokenProperty<T>(
     )
 
     data object SizeIconWithText : TokenProperty<TokenCategory.Dimension.Size>(
-        nameRes = R.string.app_tokens_dimension_size_iconWithText_label,
+        nameRes = R.string.app_tokens_dimension_size_iconWith_label,
         tokens = listOf(
             OudsSizes.Icon.WithLabel.Small::class,
             OudsSizes.Icon.WithLabel.Medium::class,
@@ -146,7 +146,7 @@ sealed class TokenProperty<T>(
     )
 
     data object SpaceColumnGap : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_columnGap_label,
+        nameRes = R.string.app_tokens_dimension_space_gapInline_label,
         tokens = getTokens<OudsSpaces.ColumnGap>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )
@@ -176,7 +176,7 @@ sealed class TokenProperty<T>(
     )
 
     data object SpaceRowGap : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_rowGap_label,
+        nameRes = R.string.app_tokens_dimension_space_gapStack_label,
         tokens = getTokens<OudsSpaces.RowGap>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )

@@ -255,7 +255,7 @@ private fun TokenPropertyHeader(tokenProperty: TokenProperty<*>, modifier: Modif
 private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     val linkStateDescription = stringResource(if (isExpanded) R.string.app_common_expanded_a11y else R.string.app_common_collapsed_a11y)
-    val linkContentDescription = stringResource(R.string.app_tokens_viewCodeExample_label)
+    val linkContentDescription = stringResource(R.string.app_tokens_common_viewCodeExample_label)
     val transition = updateTransition(targetState = isExpanded, label = "LinkArrowTransition")
     val linkArrowRotation by transition.animateFloat(
         label = "LinkArrowRotation",
@@ -283,7 +283,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.paddingInline.short)
             ) {
                 Text(
-                    text = stringResource(R.string.app_tokens_viewCodeExample_label),
+                    text = stringResource(R.string.app_tokens_common_viewCodeExample_label),
                     style = OudsTheme.typography.label.strong.large,
                     color = OudsTheme.colorScheme.content.default
                 )

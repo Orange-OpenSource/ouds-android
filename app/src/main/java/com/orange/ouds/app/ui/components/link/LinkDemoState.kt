@@ -86,7 +86,7 @@ class LinkDemoState(
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),
         IconAndText(R.string.app_components_common_iconAndTextLayout_label),
-        ArrowBack(R.string.app_components_link_back_label),
-        ArrowNext(R.string.app_components_link_next_label)
+        ArrowBack(R.string.app_components_link_backLayout_label),
+        ArrowNext(R.string.app_components_link_nextLayout_label)
     }
 }

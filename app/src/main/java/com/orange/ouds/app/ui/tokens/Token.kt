@@ -34,12 +34,9 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
         @Composable
         get() = when (val value = value()) {
             is Color -> stringResource(id = R.string.app_tokens_colorFormat_label, value.value.toString(16).substring(2, 8).uppercase())
-            is Float -> stringResource(id = R.string.app_tokens_floatFormat_label, value)
-            is Dp -> stringResource(id = R.string.app_tokens_dpFormat_label, value.toString().replace(".0.dp", "").substringBeforeLast(".dp"))
-            is TextStyle -> stringResource(
-                id = R.string.app_tokens_spFormat_label,
-                value.fontSize.toString().replace(".0.sp", "").substringBeforeLast(".sp")
-            )
+            is Float -> "\u200e${value}f" // "\u200e" forces LTR display even if the app is in arabic
+            is Dp -> "\u200e${value} dp".replace(".0.dp", "").substringBeforeLast(".dp")
+            is TextStyle -> "\u200e${value.fontSize} sp".replace(".0.sp", "").substringBeforeLast(".sp")
             is Enum<*> -> value.name
             else -> this.value.toString()
         }

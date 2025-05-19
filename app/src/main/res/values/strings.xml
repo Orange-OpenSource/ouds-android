@@ -24,12 +24,11 @@
     <string name="app_common_bottomSheetCollapsed_a11y">Bottom sheet collapsed</string>
     <string name="app_common_customize_label">Customize</string>
     <string name="app_common_enabled_label">Enabled</string>
-    <string name="app_common_onColoredBackground_label">On colored background</string>
 
     <!-- Top bar -->
-    <string name="app_topBar_theme_button_a11y">ChangeTheme</string>
-    <string name="app_topBar_darkMode_button_a11y">Change to dark mode</string>
-    <string name="app_topBar_lightMode_button_a11y">Change to light mode</string>
+    <string name="app_topBar_theme_button_a11y">Change theme</string>
+    <string name="app_topBar_darkMode_button_a11y">Apply dark mode</string>
+    <string name="app_topBar_lightMode_button_a11y">Apply light mode</string>
 
     <!-- Change theme dialog -->
     <string name="app_themeDialog_label">Change theme</string>
@@ -40,11 +39,8 @@
     <string name="app_bottomBar_about_label">About</string>
 
     <!-- Tokens -->
-    <string name="app_tokens_floatFormat_label" translatable="false">\u200e%sf</string>
-    <string name="app_tokens_dpFormat_label" translatable="false">\u200e%s dp</string>
-    <string name="app_tokens_spFormat_label" translatable="false">\u200e%s sp</string>
     <string name="app_tokens_colorFormat_label" translatable="false">\u200e#%s</string>
-    <string name="app_tokens_viewCodeExample_label">View token code example</string>
+    <string name="app_tokens_common_viewCodeExample_label">View token code example</string>
 
     <!-- Tokens: border -->
     <string name="app_tokens_border_label">Border</string>
@@ -56,15 +52,15 @@
     <!-- Tokens: color -->
     <string name="app_tokens_color_label">Color</string>
     <string name="app_tokens_color_description_text">Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.</string>
-    <string name="app_tokens_color_action_label">Action</string>
-    <string name="app_tokens_color_always_label">Always</string>
-    <string name="app_tokens_color_background_label">Background</string>
-    <string name="app_tokens_color_border_label">Border</string>
-    <string name="app_tokens_color_brand_label">Brand</string>
-    <string name="app_tokens_color_content_label">Content</string>
-    <string name="app_tokens_color_decorative_label">Decorative</string>
-    <string name="app_tokens_color_overlay_label">Overlay</string>
-    <string name="app_tokens_color_surface_label">Surface</string>
+    <string name="app_tokens_color_action_label" translatable="false">Action</string>
+    <string name="app_tokens_color_always_label" translatable="false">Always</string>
+    <string name="app_tokens_color_background_label" translatable="false">Background</string>
+    <string name="app_tokens_color_border_label" translatable="false">Border</string>
+    <string name="app_tokens_color_brand_label" translatable="false">Brand</string>
+    <string name="app_tokens_color_content_label" translatable="false">Content</string>
+    <string name="app_tokens_color_decorative_label" translatable="false">Decorative</string>
+    <string name="app_tokens_color_overlay_label" translatable="false">Overlay</string>
+    <string name="app_tokens_color_surface_label" translatable="false">Surface</string>
 
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_label">Dimension</string>
@@ -83,16 +79,16 @@
     <string name="app_tokens_dimension_space_paddingStackHeader_text">Padding stack includes the top and bottom padding.</string>
     <string name="app_tokens_dimension_space_paddingInset_label">Padding inset</string>
     <string name="app_tokens_dimension_space_paddingInsetHeader_text">Padding inset includes the left, right, top, and bottom padding, with all parameters being equal.</string>
-    <string name="app_tokens_dimension_space_columnGap_label">Column gap</string>
-    <string name="app_tokens_dimension_space_columnGapHeader_text">Gap inline includes the vertical spacing between objects.</string>
-    <string name="app_tokens_dimension_space_rowGap_label">Row gap</string>
-    <string name="app_tokens_dimension_space_rowGapHeader_text">Gap stack includes the horizontal spacing between objects.</string>
+    <string name="app_tokens_dimension_space_gapInline_label">Gap inline</string>
+    <string name="app_tokens_dimension_space_gapInlineHeader_text">Gap inline is the horizontal spacing between elements.</string>
+    <string name="app_tokens_dimension_space_gapStack_label">Gap stack</string>
+    <string name="app_tokens_dimension_space_gapStackHeader_text">Gap stack is the vertical spacing between elements.</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_label">Size</string>
     <string name="app_tokens_dimension_size_description_text">Size refers to the specific measurements used to define the dimensions of UI elements within the design system.</string>
     <string name="app_tokens_dimension_size_iconDecorative_label">Icon decorative</string>
-    <string name="app_tokens_dimension_size_iconWithText_label">Icon with text</string>
+    <string name="app_tokens_dimension_size_iconWith_label">Icon with</string>
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label">Elevation</string>
@@ -151,8 +147,8 @@
     <!-- Components: link -->
     <string name="app_components_link_label">Link</string>
     <string name="app_components_link_description_text">Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).</string>
-    <string name="app_components_link_back_label">Back</string>
-    <string name="app_components_link_next_label">Next</string>
+    <string name="app_components_link_backLayout_label">Back</string>
+    <string name="app_components_link_nextLayout_label">Next</string>
     <string name="app_components_link_size_label">Size</string>
 
     <!-- Components: radio button -->
