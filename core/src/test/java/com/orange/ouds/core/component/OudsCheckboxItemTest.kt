@@ -38,6 +38,26 @@ internal class OudsCheckboxItemTest {
         }
     }
 
+    @RunWith(org.junit.runners.Parameterized::class)
+    class ParameterizedHighContrastMode(private val parameter: OudsCheckboxItemHighContrastModePreviewParameter) : OudsSnapshotTest() {
+
+        companion object {
+            @JvmStatic
+            @org.junit.runners.Parameterized.Parameters
+            internal fun data() = OudsCheckboxItemHighContrastModePreviewParameterProvider().values.toList()
+        }
+
+        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !highContrastModeEnabled
+
+        @Composable
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+            PreviewOudsCheckboxItemHighContrastModeEnabled(
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter
+            )
+        }
+    }
+
     class NonParameterized : OudsSnapshotTest() {
 
         override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled

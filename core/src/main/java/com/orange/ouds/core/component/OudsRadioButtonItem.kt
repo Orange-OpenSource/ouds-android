@@ -241,21 +241,29 @@ internal fun PreviewOudsRadioButtonItem(
 
 @PreviewLightDark
 @Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsRadioButtonItemHighContrastModeEnabled(@PreviewParameter(OudsRadioButtonItemHighContrastModePreviewParameterProvider::class) parameter: OudsRadioButtonItemHighContrastModePreviewParameter) {
-    OudsPreview(darkThemeEnabled = isSystemInDarkTheme(), highContrastModeEnabled = true) {
-        with(parameter) {
-            PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
-                OudsRadioButtonItem(
-                    selected = value,
-                    label = "Label",
-                    onClick = {},
-                    previewState = state,
-                    interactionSource = remember { MutableInteractionSource() }
-                )
-            }
+    PreviewOudsRadioButtonItemHighContrastModeEnabled(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Composable
+internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
+    darkThemeEnabled: Boolean,
+    parameter: OudsRadioButtonItemHighContrastModePreviewParameter
+) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+    with(parameter) {
+        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+            OudsRadioButtonItem(
+                selected = value,
+                label = "Label",
+                onClick = {},
+                previewState = state,
+                interactionSource = remember { MutableInteractionSource() }
+            )
         }
     }
 }
+
 
 @Preview
 @Composable

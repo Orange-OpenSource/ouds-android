@@ -243,23 +243,6 @@ private fun PreviewOudsCheckboxItem(@PreviewParameter(OudsCheckboxItemPreviewPar
     PreviewOudsCheckboxItem(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
-@PreviewLightDark
-@Composable
-private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(OudsCheckboxItemHighContrastModePreviewParameterProvider::class) parameter: OudsCheckboxItemHighContrastModePreviewParameter) {
-    OudsPreview(darkThemeEnabled = isSystemInDarkTheme(), highContrastModeEnabled = true) {
-        with(parameter) {
-            PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
-                OudsCheckboxItem(
-                    value = value,
-                    label = "Label",
-                    previewState = state,
-                    interactionSource = remember { MutableInteractionSource() }
-                )
-            }
-        }
-    }
-}
-
 @Composable
 internal fun PreviewOudsCheckboxItem(
     darkThemeEnabled: Boolean,
@@ -281,6 +264,31 @@ internal fun PreviewOudsCheckboxItem(
         }
     }
 }
+
+@PreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(OudsCheckboxItemHighContrastModePreviewParameterProvider::class) parameter: OudsCheckboxItemHighContrastModePreviewParameter) {
+    PreviewOudsCheckboxItemHighContrastModeEnabled(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Composable
+internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
+    darkThemeEnabled: Boolean,
+    parameter: OudsCheckboxItemHighContrastModePreviewParameter
+) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+    with(parameter) {
+        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+            OudsCheckboxItem(
+                value = value,
+                label = "Label",
+                previewState = state,
+                interactionSource = remember { MutableInteractionSource() }
+            )
+        }
+    }
+}
+
 
 @Preview
 @Composable
