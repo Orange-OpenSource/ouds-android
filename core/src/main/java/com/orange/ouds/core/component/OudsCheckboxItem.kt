@@ -263,9 +263,8 @@ private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(Oud
 @Composable
 internal fun PreviewOudsCheckboxItem(
     darkThemeEnabled: Boolean,
-    parameter: OudsCheckboxItemPreviewParameter,
-    highContrastModeEnabled: Boolean = false
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
+    parameter: OudsCheckboxItemPreviewParameter
+) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
             OudsCheckboxItem(
