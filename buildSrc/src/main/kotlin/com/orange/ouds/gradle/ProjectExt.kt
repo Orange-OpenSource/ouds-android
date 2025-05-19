@@ -275,3 +275,10 @@ private fun Project.deleteChangelogTags() {
         .filter { it.startsWith("changelog/") }
         .forEach { execute("git", "tag", "--delete", it) }
 }
+
+val Project.releaseVersion: String?
+    get() = if (gradle.startParameter.taskNames.contains("prepareRelease")) {
+        gradle.startParameter.projectProperties["version"] ?: run { gitChangelogApi { nextSemanticVersion.toString() } }
+    } else {
+        null
+    }

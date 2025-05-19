@@ -12,23 +12,43 @@
 
 import com.orange.ouds.gradle.artifactId
 import com.orange.ouds.gradle.execute
-import com.orange.ouds.gradle.gitChangelogApi
 import com.orange.ouds.gradle.isPublished
+import com.orange.ouds.gradle.releaseVersion
 import com.orange.ouds.gradle.requireTypedProperty
 import com.orange.ouds.gradle.updateChangelog
+import org.json.JSONObject
 
 plugins {
     id("se.bjurr.gitchangelog.git-changelog-gradle-plugin")
 }
 
-tasks.register<DefaultTask>("prepareRelease") {
+tasks.register<DefaultTask>("updateVersion") {
     doLast {
-        val version = project.gradle.startParameter.projectProperties["version"] ?: run { gitChangelogApi { nextSemanticVersion.toString() } }
-        updateVersion(version)
+        val version = checkNotNull(releaseVersion) { "releaseVersion should not be null." }
+        updateGradleProperties(version)
         updateDependencies(version)
         updateVersionCode()
         updateChangelog(version)
     }
+}
+
+tasks.register<DefaultTask>("archiveDocumentation") {
+    dependsOn(tasks["dokkaGenerate"])
+    doLast {
+        val jsonVersion = File("docs/dokka/version.json").readText()
+        val version = JSONObject(jsonVersion).getString("version")
+        // Copy all files to a new directory named after the version
+        copy {
+            from("docs/dokka")
+            exclude("older")
+            into("docs/previousDocVersions/$version")
+        }
+    }
+}
+
+tasks.register<DefaultTask>("prepareRelease") {
+    dependsOn(tasks["archiveDocumentation"], tasks["updateVersion"])
+    tasks["archiveDocumentation"].mustRunAfter(tasks["updateVersion"])
 }
 
 tasks.register<DefaultTask>("tagRelease") {
@@ -39,7 +59,7 @@ tasks.register<DefaultTask>("tagRelease") {
     }
 }
 
-fun updateVersion(version: String) {
+fun updateGradleProperties(version: String) {
     File("gradle.properties").replace("(version=).*".toRegex()) { matchResult ->
         "${matchResult.groupValues[1]}$version"
     }
