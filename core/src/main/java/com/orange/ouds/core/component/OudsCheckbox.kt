@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import com.orange.ouds.core.component.common.outerBorder
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

@@ -35,13 +35,13 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
+import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.filter
 import com.orange.ouds.core.extensions.last
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
@@ -69,6 +69,7 @@ internal fun OudsControlItem(
     checkedContentPreviewStatus: String,
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
+    handleHighContrastMode: Boolean = false
 ) {
     val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
@@ -107,7 +108,7 @@ internal fun OudsControlItem(
                 .heightIn(min = controlItemTokens.sizeMinHeight.dp)
                 .widthIn(min = controlItemTokens.sizeMinWidth.dp)
                 .background(color = backgroundColor(state = state))
-                .outerBorder(state = state),
+                .outerBorder(state = state, handleHighContrastMode = handleHighContrastMode),
             contentAlignment = Alignment.BottomCenter
         ) {
             val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
@@ -248,18 +249,6 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
     ) {
         content()
     }
-}
-
-@Composable
-private fun Modifier.outerBorder(state: OudsControlItem.State) = if (state == OudsControlItem.State.Focused) {
-    outerBorder(
-        width = OudsTheme.borders.width.focus,
-        color = OudsTheme.colorScheme.border.focus,
-        insetWidth = OudsTheme.borders.width.focusInset,
-        insetColor = OudsTheme.colorScheme.border.focusInset
-    )
-} else {
-    this
 }
 
 @Composable

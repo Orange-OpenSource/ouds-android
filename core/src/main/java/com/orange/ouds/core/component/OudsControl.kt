@@ -20,22 +20,6 @@ import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 
-@Composable
-internal fun Modifier.outerBorder(state: OudsControl.State, handleHighContrastMode: Boolean = false) =
-    // To be able to distinguish the enabled and the hover states when high contrast mode is activated,
-    // the hover state must display the focus border in this case
-    if (state == OudsControl.State.Focused || (state == OudsControl.State.Hovered && handleHighContrastMode && LocalHighContrastModeEnabled.current)) {
-         outerBorder(
-             width = OudsTheme.borders.width.focus,
-             color = OudsTheme.colorScheme.border.focus,
-             insetWidth = OudsTheme.borders.width.focusInset,
-             insetColor = OudsTheme.colorScheme.border.focusInset
-         )
-     } else {
-         this
-     }
-
-
 internal object OudsControl {
 
     enum class State {

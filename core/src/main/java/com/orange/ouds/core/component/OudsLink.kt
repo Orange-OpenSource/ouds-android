@@ -48,13 +48,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.OudsLink.Icon.ExtraParameters
+import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
@@ -248,21 +248,6 @@ private fun rememberOudsLinkState(
         interactionState == InteractionState.Pressed -> OudsLink.State.Pressed
         interactionState == InteractionState.Focused -> OudsLink.State.Focused
         else -> OudsLink.State.Enabled
-    }
-}
-
-@Composable
-private fun Modifier.outerBorder(state: OudsLink.State): Modifier {
-    return if (state == OudsLink.State.Focused) {
-        outerBorder(
-            width = OudsTheme.borders.width.focus,
-            color = OudsTheme.colorScheme.border.focus,
-            shape = RectangleShape,
-            insetWidth = OudsTheme.borders.width.focusInset,
-            insetColor = OudsTheme.colorScheme.border.focusInset
-        )
-    } else {
-        this
     }
 }
 

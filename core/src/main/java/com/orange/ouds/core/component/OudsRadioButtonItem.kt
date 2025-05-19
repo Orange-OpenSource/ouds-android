@@ -167,7 +167,8 @@ private fun OudsRadioButtonItem(
         modifier = modifier
             .then(selectableModifier)
             .semantics(mergeDescendants = true) {}
-            .border(outlined = outlined, selected = selected, error = error, state = state)
+            .border(outlined = outlined, selected = selected, error = error, state = state),
+        handleHighContrastMode = true
     )
 }
 

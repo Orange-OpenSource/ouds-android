@@ -231,7 +231,8 @@ private fun OudsCheckboxItem(
             ToggleableState.Off -> "Unselected"
             ToggleableState.Indeterminate -> "Indeterminate"
         },
-        modifier = modifier.semantics(mergeDescendants = true) {}
+        modifier = modifier.semantics(mergeDescendants = true) {},
+        handleHighContrastMode = true
     )
 }
 
