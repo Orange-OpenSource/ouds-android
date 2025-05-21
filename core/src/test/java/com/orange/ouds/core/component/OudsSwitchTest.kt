@@ -27,7 +27,7 @@ internal class OudsSwitchTest(private val checked: Boolean) : OudsSnapshotTest()
     }
 
     @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean) {
+    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
         PreviewOudsSwitch(
             darkThemeEnabled = darkThemeEnabled,
             checked = checked

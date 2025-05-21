@@ -38,16 +38,20 @@ internal abstract class OudsSnapshotTest {
     @get:Rule
     var name = TestName()
 
-    open fun ignoreSnapshot(darkThemeEnabled: Boolean) = false
+    /**
+     * Allows to ignore the execution of specified snapshots tests.
+     * By default, high contrast mode snapshots are ignored.
+     */
+    open fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
 
     @Composable
-    abstract fun Snapshot(darkThemeEnabled: Boolean)
+    abstract fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean)
 
     @Before
     fun setUp() {
-        val isLightThemeSnapshotTest = name.methodName.startsWith(::takeLightThemeSnapshot.name)
-        val isDarkThemeSnapshotTest = name.methodName.startsWith(::takeDarkThemeSnapshot.name)
-        val ignoreTest = (ignoreSnapshot(false) && isLightThemeSnapshotTest) || (ignoreSnapshot(true) && isDarkThemeSnapshotTest)
+        val isDarkThemeSnapshotTest = name.methodName.contains("DarkTheme")
+        val isHighContrastModeSnapshotTest = name.methodName.contains("HighContrast")
+        val ignoreTest = ignoreSnapshot(isDarkThemeSnapshotTest, isHighContrastModeSnapshotTest)
         Assume.assumeTrue(!ignoreTest)
     }
 
@@ -55,12 +59,18 @@ internal abstract class OudsSnapshotTest {
     fun takeLightThemeSnapshot() = takeSnapshot(darkThemeEnabled = false)
 
     @Test
+    fun takeLightThemeHighContrastSnapshot() = takeSnapshot(darkThemeEnabled = false, highContrastModeEnabled = true)
+
+    @Test
     fun takeDarkThemeSnapshot() = takeSnapshot(darkThemeEnabled = true)
 
-    private fun takeSnapshot(darkThemeEnabled: Boolean) {
+    @Test
+    fun takeDarkThemeHighContrastSnapshot() = takeSnapshot(darkThemeEnabled = true, highContrastModeEnabled = true)
+
+    private fun takeSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean = false) {
         paparazzi.snapshot {
             CompositionLocalProvider(value = LocalSnapshotTest provides true) {
-                Snapshot(darkThemeEnabled = darkThemeEnabled)
+                Snapshot(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled)
             }
         }
     }

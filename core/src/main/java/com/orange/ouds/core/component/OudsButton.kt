@@ -59,6 +59,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -66,7 +67,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
@@ -345,21 +345,6 @@ private fun Modifier.border(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
 
     return if (borderWidth != null && borderColor != null) {
         border(width = borderWidth, color = borderColor, shape = shape)
-    } else {
-        this
-    }
-}
-
-@Composable
-private fun Modifier.outerBorder(state: OudsButton.State, shape: Shape): Modifier {
-    return if (state == OudsButton.State.Focused) {
-        outerBorder(
-            width = OudsTheme.borders.width.focus,
-            color = OudsTheme.colorScheme.border.focus,
-            shape = shape,
-            insetWidth = OudsTheme.borders.width.focusInset,
-            insetColor = OudsTheme.colorScheme.border.focusInset
-        )
     } else {
         this
     }

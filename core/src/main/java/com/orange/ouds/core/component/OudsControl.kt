@@ -16,20 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.orange.ouds.core.extensions.InteractionState
+import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
-
-@Composable
-internal fun Modifier.outerBorder(state: OudsControl.State) = if (state == OudsControl.State.Focused) {
-    outerBorder(
-        width = OudsTheme.borders.width.focus,
-        color = OudsTheme.colorScheme.border.focus,
-        insetWidth = OudsTheme.borders.width.focusInset,
-        insetColor = OudsTheme.colorScheme.border.focusInset
-    )
-} else {
-    this
-}
 
 internal object OudsControl {
 

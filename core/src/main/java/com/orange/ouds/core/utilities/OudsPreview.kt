@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.extensions.isNightModeEnabled
+import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import kotlin.enums.enumEntries
 
@@ -37,12 +38,13 @@ import kotlin.enums.enumEntries
  *
  * @param modifier The modifier for the preview content.
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
+ * @param highContrastModeEnabled Indicates whether the high contrast mode is enabled for the preview.
  * @param content The content of the preview.
  *
  * @suppress
  */
 @Composable
-fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSystemInDarkTheme(), highContrastModeEnabled: Boolean = false, content: @Composable () -> Unit) {
     // Updating the configuration is only needed for UI tests
     // It is not needed for Android Studio previews because the uiMode parameter of the @Preview annotation already configures the UI mode properly
     val configuration = LocalConfiguration.current.apply {
@@ -57,7 +59,9 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
                     .background(OudsTheme.colorScheme.background.primary)
                     .then(modifier)
             ) {
-                content()
+                CompositionLocalProvider(LocalHighContrastModeEnabled provides highContrastModeEnabled) {
+                    content()
+                }
             }
         }
     }

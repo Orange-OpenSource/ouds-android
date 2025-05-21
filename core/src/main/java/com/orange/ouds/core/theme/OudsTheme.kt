@@ -20,6 +20,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.platform.LocalContext
+import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 
@@ -27,6 +29,7 @@ private fun missingCompositionLocalError(compositionLocalName: String): Nothing 
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
 
 internal val LocalDarkThemeEnabled = staticCompositionLocalOf<Boolean> { missingCompositionLocalError("LocalDarkThemeEnabled") }
+internal val LocalHighContrastModeEnabled = staticCompositionLocalOf<Boolean> { missingCompositionLocalError("LocalHighContrastModeEnabled") }
 internal val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
 internal val LocalLightColorScheme = compositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalLightColorScheme") }
 internal val LocalDarkColorScheme = compositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalDarkColorScheme") }
@@ -125,6 +128,7 @@ fun OudsTheme(
 
         CompositionLocalProvider(
             LocalDarkThemeEnabled provides darkThemeEnabled,
+            LocalHighContrastModeEnabled provides LocalContext.current.isHighContrastModeEnabled(),
             LocalColorScheme provides colorScheme,
             LocalLightColorScheme provides colorTokens.lightColorScheme,
             LocalDarkColorScheme provides colorTokens.darkColorScheme,

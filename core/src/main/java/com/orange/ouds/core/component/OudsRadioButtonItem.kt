@@ -167,7 +167,8 @@ private fun OudsRadioButtonItem(
         modifier = modifier
             .then(selectableModifier)
             .semantics(mergeDescendants = true) {}
-            .border(outlined = outlined, selected = selected, error = error, state = state)
+            .border(outlined = outlined, selected = selected, error = error, state = state),
+        handleHighContrastMode = true
     )
 }
 
@@ -238,6 +239,32 @@ internal fun PreviewOudsRadioButtonItem(
     }
 }
 
+@PreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsRadioButtonItemHighContrastModeEnabled(@PreviewParameter(OudsRadioButtonItemHighContrastModePreviewParameterProvider::class) parameter: OudsRadioButtonItemHighContrastModePreviewParameter) {
+    PreviewOudsRadioButtonItemHighContrastModeEnabled(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Composable
+internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
+    darkThemeEnabled: Boolean,
+    parameter: OudsRadioButtonItemHighContrastModePreviewParameter
+) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+    with(parameter) {
+        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+            OudsRadioButtonItem(
+                selected = value,
+                label = "Label",
+                onClick = {},
+                previewState = state,
+                interactionSource = remember { MutableInteractionSource() }
+            )
+        }
+    }
+}
+
+
 @Preview
 @Composable
 internal fun PreviewOudsRadioButtonItemWithLongHelperText() = OudsPreview {
@@ -257,3 +284,9 @@ private val previewOutlinedValues = listOf(true, true, false)
 
 internal class OudsRadioButtonItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<Boolean, Boolean>(DefaultBooleanValues, previewOutlinedValues)
+
+internal typealias OudsRadioButtonItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<Boolean>
+
+internal class OudsRadioButtonItemHighContrastModePreviewParameterProvider :
+    OudsControlItemHighContrastModePreviewParameterProvider<Boolean>(listOf(false, true))
+

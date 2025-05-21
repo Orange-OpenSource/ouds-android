@@ -29,7 +29,7 @@ internal class OudsLinkTest {
         }
 
         @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean) {
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
             PreviewOudsLink(
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter
@@ -39,10 +39,10 @@ internal class OudsLinkTest {
 
     class NonParameterized : OudsSnapshotTest() {
 
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean) = darkThemeEnabled
+        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
 
         @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean) {
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
             PreviewOudsLinkOnTwoLines()
         }
     }

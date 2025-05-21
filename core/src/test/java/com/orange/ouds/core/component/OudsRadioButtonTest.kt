@@ -26,10 +26,13 @@ internal class OudsRadioButtonTest(private val parameter: OudsRadioButtonPreview
         internal fun data() = OudsRadioButtonPreviewParameterProvider().values.toList()
     }
 
+    override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = false
+
     @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean) {
+    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
         PreviewOudsRadioButton(
             darkThemeEnabled = darkThemeEnabled,
+            highContrastModeEnabled = highContrastModeEnabled,
             parameter = parameter
         )
     }

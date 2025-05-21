@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import com.orange.ouds.core.component.common.outerBorder
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -33,7 +34,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.state.ToggleableState
@@ -43,9 +43,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.extensions.isHighContrastModeEnabled
+import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
@@ -182,7 +181,7 @@ private fun OudsCheckbox(
                 .widthIn(checkboxTokens.sizeMinWidth.dp)
                 .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
                 .background(color = backgroundColor(state = state))
-                .outerBorder(state = state),
+                .outerBorder(state = state, handleHighContrastMode = true),
             contentAlignment = Alignment.Center,
         ) {
             OudsCheckboxIndicator(state = state, value = value, error = error)
@@ -258,8 +257,8 @@ private fun indicatorColor(state: OudsControl.State, selected: Boolean, error: B
         } else {
             when (state) {
                 OudsControl.State.Enabled -> if (selected) {
-                    // In order to reach the a11y AAA level, the selected checkbox is black in light mode
-                    if (!isOudsInDarkTheme() && LocalContext.current.isHighContrastModeEnabled()) Color.Black else this.selected
+                    // In order to reach the a11y AAA level, when high contrast mode is enabled, the selected checkbox must use `color.content.default` token
+                    if (LocalHighContrastModeEnabled.current) OudsTheme.colorScheme.content.default else this.selected
                 } else {
                     enabled
                 }
@@ -291,11 +290,18 @@ private fun PreviewOudsCheckbox(@PreviewParameter(OudsCheckboxPreviewParameterPr
     PreviewOudsCheckbox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
+@PreviewLightDark
+@Composable
+internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCheckboxPreviewParameterProvider::class) parameter: OudsCheckboxPreviewParameter) {
+    PreviewOudsCheckbox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter, highContrastModeEnabled = true)
+}
+
 @Composable
 internal fun PreviewOudsCheckbox(
     darkThemeEnabled: Boolean,
-    parameter: OudsCheckboxPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+    parameter: OudsCheckboxPreviewParameter,
+    highContrastModeEnabled: Boolean = false
+) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
         PreviewStates<OudsControl.State> { state ->
             OudsCheckbox(

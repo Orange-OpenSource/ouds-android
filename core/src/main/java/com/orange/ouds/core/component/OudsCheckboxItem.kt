@@ -231,7 +231,8 @@ private fun OudsCheckboxItem(
             ToggleableState.Off -> "Unselected"
             ToggleableState.Indeterminate -> "Indeterminate"
         },
-        modifier = modifier.semantics(mergeDescendants = true) {}
+        modifier = modifier.semantics(mergeDescendants = true) {},
+        handleHighContrastMode = true
     )
 }
 
@@ -264,6 +265,31 @@ internal fun PreviewOudsCheckboxItem(
     }
 }
 
+@PreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(OudsCheckboxItemHighContrastModePreviewParameterProvider::class) parameter: OudsCheckboxItemHighContrastModePreviewParameter) {
+    PreviewOudsCheckboxItemHighContrastModeEnabled(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Composable
+internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
+    darkThemeEnabled: Boolean,
+    parameter: OudsCheckboxItemHighContrastModePreviewParameter
+) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+    with(parameter) {
+        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+            OudsCheckboxItem(
+                value = value,
+                label = "Label",
+                previewState = state,
+                interactionSource = remember { MutableInteractionSource() }
+            )
+        }
+    }
+}
+
+
 @Preview
 @Composable
 internal fun PreviewOudsCheckboxItemWithLongHelperText() = OudsPreview {
@@ -280,3 +306,8 @@ internal typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewPara
 
 internal class OudsCheckboxItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<ToggleableState, Nothing>(DefaultBooleanValues.map { ToggleableState(it) })
+
+internal typealias OudsCheckboxItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<ToggleableState>
+
+internal class OudsCheckboxItemHighContrastModePreviewParameterProvider :
+    OudsControlItemHighContrastModePreviewParameterProvider<ToggleableState>(listOf(ToggleableState.Off, ToggleableState.On))
