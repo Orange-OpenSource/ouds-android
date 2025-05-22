@@ -258,7 +258,8 @@ internal fun rememberInteractionColor(
     pressed = pressed,
     interactionState = interactionState,
     toAnimatableColor = { it },
-    fromAnimatableColor = { it })
+    fromAnimatableColor = { it }
+)
 
 @Composable
 internal fun rememberInteractionColor(
@@ -286,7 +287,8 @@ internal fun rememberNullableInteractionColor(
     pressed = pressed,
     interactionState = interactionState,
     toAnimatableColor = { it.orElse { Color.Transparent } },
-    fromAnimatableColor = { it })
+    fromAnimatableColor = { it }
+)
 
 @Composable
 internal fun rememberNullableInteractionColor(
@@ -346,7 +348,8 @@ internal fun rememberInteractionFloat(
     pressed = pressed,
     interactionState = interactionState,
     toAnimatableFloat = { it },
-    fromAnimatableFloat = { it })
+    fromAnimatableFloat = { it }
+)
 
 @Composable
 internal fun rememberInteractionFloat(
