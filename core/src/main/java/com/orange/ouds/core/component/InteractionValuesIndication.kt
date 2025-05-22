@@ -229,135 +229,60 @@ private class AnimatableFloatInteractionValue<T>(
 @Composable
 @JvmName("rememberAnimatableColorInteractionValue")
 private fun <T> rememberInteractionValue(
-    none: T,
-    focused: T,
-    hovered: T,
-    pressed: T,
     interactionState: InteractionState,
     toAnimatableColor: (T) -> Color,
-    fromAnimatableColor: (Color) -> T
-): InteractionValue<T, Color> =
-    remember(none, focused, hovered, pressed, toAnimatableColor, fromAnimatableColor) {
+    fromAnimatableColor: (Color) -> T,
+    init: @Composable (InteractionState) -> T
+): InteractionValue<T, Color> {
+    val none = init(InteractionState.None)
+    val focused = init(InteractionState.Focused)
+    val hovered = init(InteractionState.Hovered)
+    val pressed = init(InteractionState.Pressed)
+    return remember(none, focused, hovered, pressed, toAnimatableColor, fromAnimatableColor) {
         AnimatableColorInteractionValue(none, focused, hovered, pressed, toAnimatableColor, fromAnimatableColor)
     }.apply {
         this.interactionState = interactionState
     }
-
-@Composable
-internal fun rememberInteractionColor(
-    none: Color,
-    focused: Color,
-    hovered: Color,
-    pressed: Color,
-    interactionState: InteractionState
-) = rememberInteractionValue(
-    none = none,
-    focused = focused,
-    hovered = hovered,
-    pressed = pressed,
-    interactionState = interactionState,
-    toAnimatableColor = { it },
-    fromAnimatableColor = { it }
-)
+}
 
 @Composable
 internal fun rememberInteractionColor(
     interactionState: InteractionState,
     init: @Composable (InteractionState) -> Color
-) = rememberInteractionColor(
-    none = init(InteractionState.None),
-    focused = init(InteractionState.Focused),
-    hovered = init(InteractionState.Hovered),
-    pressed = init(InteractionState.Pressed),
-    interactionState = interactionState
-)
-
-@Composable
-internal fun rememberNullableInteractionColor(
-    none: Color?,
-    focused: Color?,
-    hovered: Color?,
-    pressed: Color?,
-    interactionState: InteractionState
 ) = rememberInteractionValue(
-    none = none,
-    focused = focused,
-    hovered = hovered,
-    pressed = pressed,
     interactionState = interactionState,
-    toAnimatableColor = { it.orElse { Color.Transparent } },
-    fromAnimatableColor = { it }
+    toAnimatableColor = { it },
+    fromAnimatableColor = { it },
+    init = init
 )
 
 @Composable
 internal fun rememberNullableInteractionColor(
     interactionState: InteractionState,
     init: @Composable (InteractionState) -> Color?
-) = rememberNullableInteractionColor(
-    none = init(InteractionState.None),
-    focused = init(InteractionState.Focused),
-    hovered = init(InteractionState.Hovered),
-    pressed = init(InteractionState.Pressed),
-    interactionState = interactionState
+) = rememberInteractionValue(
+    interactionState = interactionState,
+    toAnimatableColor = { it.orElse { Color.Transparent } },
+    fromAnimatableColor = { it },
+    init = init
 )
 
 @Composable
 @JvmName("rememberAnimatableFloatInteractionValue")
 internal fun <T> rememberInteractionValue(
-    none: T,
-    focused: T,
-    hovered: T,
-    pressed: T,
-    interactionState: InteractionState,
-    toAnimatableFloat: (T) -> Float,
-    fromAnimatableFloat: (Float) -> T
-): InteractionValue<T, Float> = remember(none, focused, hovered, pressed, toAnimatableFloat, fromAnimatableFloat) {
-    AnimatableFloatInteractionValue(none, focused, hovered, pressed, toAnimatableFloat, fromAnimatableFloat)
-}.apply {
-    this.interactionState = interactionState
-}
-
-@Composable
-internal fun <T> rememberInteractionValue(
     interactionState: InteractionState,
     toAnimatableFloat: (T) -> Float,
     fromAnimatableFloat: (Float) -> T,
     init: @Composable (InteractionState) -> T
-) = rememberInteractionValue(
-    none = init(InteractionState.None),
-    focused = init(InteractionState.Focused),
-    hovered = init(InteractionState.Hovered),
-    pressed = init(InteractionState.Pressed),
-    interactionState = interactionState,
-    toAnimatableFloat = toAnimatableFloat,
-    fromAnimatableFloat = fromAnimatableFloat
-)
+): InteractionValue<T, Float> {
+    val none = init(InteractionState.None)
+    val focused = init(InteractionState.Focused)
+    val hovered = init(InteractionState.Hovered)
+    val pressed = init(InteractionState.Pressed)
+    return remember(none, focused, hovered, pressed, toAnimatableFloat, fromAnimatableFloat) {
+        AnimatableFloatInteractionValue(none, focused, hovered, pressed, toAnimatableFloat, fromAnimatableFloat)
+    }.apply {
+        this.interactionState = interactionState
+    }
+}
 
-@Composable
-internal fun rememberInteractionFloat(
-    none: Float,
-    focused: Float,
-    hovered: Float,
-    pressed: Float,
-    interactionState: InteractionState
-) = rememberInteractionValue(
-    none = none,
-    focused = focused,
-    hovered = hovered,
-    pressed = pressed,
-    interactionState = interactionState,
-    toAnimatableFloat = { it },
-    fromAnimatableFloat = { it }
-)
-
-@Composable
-internal fun rememberInteractionFloat(
-    interactionState: InteractionState,
-    init: @Composable (InteractionState) -> Float
-) = rememberInteractionFloat(
-    none = init(InteractionState.None),
-    focused = init(InteractionState.Focused),
-    hovered = init(InteractionState.Hovered),
-    pressed = init(InteractionState.Pressed),
-    interactionState = interactionState
-)
