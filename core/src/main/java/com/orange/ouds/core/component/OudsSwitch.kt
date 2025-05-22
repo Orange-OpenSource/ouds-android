@@ -13,12 +13,10 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.animation.core.AnimationSpec
-import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateSizeAsState
 import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -126,7 +124,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
     // The cursor animation is obtained by using a column and updating its horizontalAlignment parameter
     val horizontalAlignment by animateHorizontalAlignmentAsState(
         targetBiasValue = if (checked) 1f else -1f,
-        animationSpec = cursorAnimationSpec()
+        animationSpec = defaultAnimationSpec()
     )
     Column(
         modifier = Modifier
@@ -139,7 +137,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
     ) {
         val cursorSize by animateSizeAsState(
             targetValue = cursorSize(state = state, checked = checked),
-            animationSpec = cursorAnimationSpec()
+            animationSpec = defaultAnimationSpec()
         )
         Box(
             modifier = Modifier
@@ -153,7 +151,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
             // There is no issue when switching from checked state to unchecked because check color is null thus the check is not displayed
             val checkAlpha by animateFloatAsState(
                 targetValue = if (checkColor != null) 1.0f else 0.0f,
-                animationSpec = snap(OudsSwitch.AnimationDuration)
+                animationSpec = snap(DefaultAnimationSpec.DurationMillis)
             )
             if (checkColor != null) {
                 Icon(
@@ -211,22 +209,10 @@ private fun checkColor(state: OudsControl.State, checked: Boolean): Color? {
     }
 }
 
-private fun <T> cursorAnimationSpec(): AnimationSpec<T> {
-    return tween(
-        durationMillis = OudsSwitch.AnimationDuration,
-        easing = CubicBezierEasing(0.2f, 0.0f, 0.0f, 1.0f)
-    )
-}
-
 @Composable
 private fun animateHorizontalAlignmentAsState(targetBiasValue: Float, animationSpec: AnimationSpec<Float> = spring()): State<BiasAlignment.Horizontal> {
     val bias by animateFloatAsState(targetBiasValue, animationSpec)
     return remember { derivedStateOf { BiasAlignment.Horizontal(bias) } }
-}
-
-private object OudsSwitch {
-
-    const val AnimationDuration = 150
 }
 
 @PreviewLightDark

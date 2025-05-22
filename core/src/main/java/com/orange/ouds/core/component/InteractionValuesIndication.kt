@@ -15,7 +15,6 @@ package com.orange.ouds.core.component
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.Easing
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.IndicationNodeFactory
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
@@ -119,13 +118,13 @@ internal class InteractionValuesNode(
     private suspend fun <T, S> animateToPressed(animatableInteractionValue: AnimatableInteractionValue<T, S>) {
         with(animatableInteractionValue) {
             animatable.snapTo(with(interactionValue) { toAnimatableValue(resting) })
-            animatable.animateTo(with(interactionValue) { toAnimatableValue(pressed) }, tween(easing = Easing))
+            animatable.animateTo(with(interactionValue) { toAnimatableValue(pressed) }, defaultAnimationSpec())
         }
     }
 
     private suspend fun <T, S> animateToResting(animatableInteraction: AnimatableInteractionValue<T, S>) {
         with(animatableInteraction) {
-            animatable.animateTo(with(interactionValue) { toAnimatableValue(resting) }, tween(easing = Easing))
+            animatable.animateTo(with(interactionValue) { toAnimatableValue(resting) }, defaultAnimationSpec())
         }
     }
 
