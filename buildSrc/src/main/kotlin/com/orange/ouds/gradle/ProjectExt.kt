@@ -172,7 +172,8 @@ private interface ExecuteValueSourceParameters : ValueSourceParameters {
 private const val CHANGELOG_UNRELEASED_TAG_NAME = "Unreleased"
 
 fun Project.updateChangelog(version: String?) {
-    val changelogHeader = """
+    gitChangelogApi {
+        val changelogHeader = """
             |# OUDS Android library changelog
             |
             |All notable changes done in OUDS Android library will be documented in this file.
@@ -183,45 +184,79 @@ fun Project.updateChangelog(version: String?) {
             |
         """.trimMargin()
 
-    val untaggedName = version ?: CHANGELOG_UNRELEASED_TAG_NAME
-    val gitChangelogApi = createGitChangelogApi()
-        .withUntaggedName(untaggedName) // Group unreleased commits under the new version tag
-        .withIgnoreTagsIfNameMatches("^refs/tags/ci/.*") // Ignore CI tags
-        .withTemplatePath("${rootProject.projectDir}/CHANGELOG.mustache") // Use a Mustache template to generate changelog
-        .withHandlebarsHelper("commitDescriptionWithPullRequestUrl", Helper<Commit> { commit, options ->
-            // This Handlebars helper returns an enriched commit description
-            // It searches for a pull request number in the commit description and replace it with a link to the pull request on GitHub
-            val commitDescription = ConventionalCommitParser.commitDescription(commit.message)
-            return@Helper commitDescription.replace("\\(#(\\d+)\\)$".toRegex()) { matchResult ->
-                val pullRequestNumber = matchResult.groupValues[1]
+        val untaggedName = version ?: CHANGELOG_UNRELEASED_TAG_NAME
+        val gitChangelogApi = withUntaggedName(untaggedName) // Group unreleased commits under the new version tag
+            .withIgnoreTagsIfNameMatches("^refs/tags/ci/.*") // Ignore CI tags
+            .withTemplatePath("${rootProject.projectDir}/CHANGELOG.mustache") // Use a Mustache template to generate changelog
+            .withHandlebarsHelper("commitDescriptionWithPullRequestUrl", Helper<Commit> { commit, options ->
+                // This Handlebars helper returns an enriched commit description
+                // It searches for a pull request number in the commit description and replace it with a link to the pull request on GitHub
+                val commitDescription = ConventionalCommitParser.commitDescription(commit.message)
+                return@Helper commitDescription.replace("\\(#(\\d+)\\)$".toRegex()) { matchResult ->
+                    val pullRequestNumber = matchResult.groupValues[1]
+                    val changelog = options.get<Changelog>("root")
+                    val pullRequestUrl = "https://github.com/${changelog.ownerName}/${changelog.repoName}/issues/${pullRequestNumber}"
+                    "([#$pullRequestNumber]($pullRequestUrl))"
+                }
+            })
+            .withHandlebarsHelper("tagChangesUrl", Helper<Tag> { tag, options ->
+                // This Handlebars helper returns a GitHub URL which lists the changes for the tag
                 val changelog = options.get<Changelog>("root")
-                val pullRequestUrl = "https://github.com/${changelog.ownerName}/${changelog.repoName}/issues/${pullRequestNumber}"
-                "([#$pullRequestNumber]($pullRequestUrl))"
-            }
-        })
-        .withHandlebarsHelper("tagChangesUrl", Helper<Tag> { tag, options ->
-            // This Handlebars helper returns a GitHub URL which lists the changes for the tag
-            val changelog = options.get<Changelog>("root")
-            val baseUrl = "https://github.com/${changelog.ownerName}/${changelog.repoName}"
-            val previousTag = changelog.tags
-                .filter { it.name != untaggedName && (it.tagTimeLong < tag.tagTimeLong || tag.name == untaggedName) }
-                .maxByOrNull { it.tagTimeLong }
-            val referenceName = if (tag.name == CHANGELOG_UNRELEASED_TAG_NAME) "develop" else tag.name
-            return@Helper if (previousTag != null) {
-                "$baseUrl/compare/${previousTag.name}...$referenceName"
-            } else {
-                "$baseUrl/tree/$referenceName"
-            }
-        })
+                val baseUrl = "https://github.com/${changelog.ownerName}/${changelog.repoName}"
+                val previousTag = changelog.tags
+                    .filter { it.name != untaggedName && (it.tagTimeLong < tag.tagTimeLong || tag.name == untaggedName) }
+                    .maxByOrNull { it.tagTimeLong }
+                val referenceName = if (tag.name == CHANGELOG_UNRELEASED_TAG_NAME) "develop" else tag.name
+                return@Helper if (previousTag != null) {
+                    "$baseUrl/compare/${previousTag.name}...$referenceName"
+                } else {
+                    "$baseUrl/tree/$referenceName"
+                }
+            })
 
-    val changelog = changelogHeader + gitChangelogApi.render().trim().replace("&#x60;", "`")
-    File("${rootProject.projectDir}/CHANGELOG.md").writeText(changelog)
+        val changelog = changelogHeader + gitChangelogApi.render().trim().replace("&#x60;", "`")
+        File("${rootProject.projectDir}/CHANGELOG.md").writeText(changelog)
+    }
 }
 
-internal fun Project.createGitChangelogApi(): GitChangelogApi {
+fun <T> Project.gitChangelogApi(action: GitChangelogApi.() -> T): T {
+    // GitChangelogApi does not take release tags into account when working on develop or on a feature branch because they are on the main branch.
+    // Thus nextSemanticVersion does not return the correct value.
+    // That's why we copy the release tags locally on their associated parent commits located on the develop branch.
+    // These tags are prefixed by "changelog/" and are removed once the action on GitChangelogApi is finished.
+    addChangelogTags()
     return gitChangelogApiBuilder()
         .withFromRepo(project.rootDir)
         .withSemanticMajorVersionPattern("BREAKING CHANGE")
         .withSemanticMinorVersionPattern("^feat")
         .withSemanticPatchVersionPattern("^fix")
+        .action()
+        .also { deleteChangelogTags() }
+}
+
+private fun Project.addChangelogTags() {
+    // Get release tags
+    val tags = execute("git", "--no-pager", "tag")
+        .trim()
+        .split("\n")
+        .filter { !it.startsWith("ci/") && !it.startsWith("changelog/") }
+    tags.forEach { tag ->
+        // Get the second parent commit SHA which is supposed to be on develop
+        val parentCommitSha = execute("git", "--no-pager", "log", "-n 1", "--pretty=%P", tag)
+            .trim()
+            .split(" ")
+            .getOrNull(1)
+        if (parentCommitSha != null) {
+            // Add an identical tag prefixed with "changelog/" on the parent commit and use "--force" in case it already exists
+            execute("git", "tag", "changelog/$tag", parentCommitSha, "--force")
+        }
+    }
+}
+
+private fun Project.deleteChangelogTags() {
+    execute("git", "--no-pager", "tag")
+        .trim()
+        .split("\n")
+        .filter { it.startsWith("changelog/") }
+        .forEach { execute("git", "tag", "--delete", it) }
 }
