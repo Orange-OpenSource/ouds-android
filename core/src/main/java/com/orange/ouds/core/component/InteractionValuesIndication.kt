@@ -53,11 +53,7 @@ internal class InteractionValuesNode(
 
     // The aim of this class is to resolve issues related to generics when manipulating instances of InteractionValue and Animatable
     private class AnimatableInteractionValue<T, S>(val interactionValue: InteractionValue<T, S>, val animatable: Animatable<S, *>)
-
-    private companion object {
-        val Easing: Easing = CubicBezierEasing(0.3f, 0.3f, 0.2f, 1.0f)
-    }
-
+    
     private var pressedAnimations: Job? = null
 
     private var restingAnimations: Job? = null
