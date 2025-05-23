@@ -12,17 +12,17 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
@@ -35,7 +35,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -58,6 +57,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.getPreviewState
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
@@ -148,13 +148,12 @@ private fun OudsLink(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
-    enabled: Boolean = true,
-    previewState: OudsLink.State? = null
+    enabled: Boolean = true
 ) {
     val linkTokens = OudsTheme.componentsTokens.link
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsLinkState(enabled = enabled, interactionState = interactionState) }
+    val state = getLinkState(enabled = enabled, interactionState = interactionState)
     val isTextOnly = icon == null && arrow == null
 
     val (minWidth, minHeight) = when (size) {
@@ -162,22 +161,44 @@ private fun OudsLink(
         OudsLink.Size.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
     }
 
+    val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
+        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
+        contentColor(state = linkState, monochrome = LocalUseMonoComponents.current)
+    }
+
+    val arrowColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
+        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
+        arrowColor(state = linkState, monochrome = LocalUseMonoComponents.current)
+    }
+
+    // Underlined text style cannot be animated with alpha, thus we use an interaction boolean to make it appear while the other animations are ongoing
+    val isUnderlined = rememberInteractionValue(
+        interactionState = interactionState,
+        // The underlying animatable value is equal to 1f when isUnderlined is true and to 0f when isUnderlined is false,
+        // meaning that the animatable value will smoothly move back and forth between 0f and 1f during the animation
+        toAnimatableFloat = { if (it) 1f else 0f },
+        // isUnderlined is true if the underlying animatable value is greater than or equal to 0.5f, false otherwise
+        // meaning that the text will be underlined in the middle of the pressed animation and will come back to normal in the middle of the resting animation
+        fromAnimatableFloat = { it >= 0.5f }
+    ) { linkInteractionState ->
+        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
+        isTextOnly || linkState in listOf(OudsLink.State.Hovered, OudsLink.State.Pressed, OudsLink.State.Focused)
+    }
+
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
-        Button(
-            onClick = onClick,
+        Box(
             modifier = modifier
                 .widthIn(min = minWidth)
                 .heightIn(min = minHeight)
-                .outerBorder(state = state),
-            enabled = state != OudsLink.State.Disabled,
-            shape = RectangleShape,
-            colors = buttonColors(linkState = state, monochrome = LocalUseMonoComponents.current),
-            elevation = null,
-            contentPadding = PaddingValues(
-                horizontal = linkTokens.spacePaddingInline.value,
-                vertical = linkTokens.spacePaddingBlock.value
-            ),
-            interactionSource = interactionSource
+                .outerBorder(state = state)
+                .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlock.value)
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = InteractionValuesIndication(contentColor, arrowColor, isUnderlined),
+                    enabled = state != OudsLink.State.Disabled,
+                    onClick = onClick
+                ),
+            contentAlignment = Alignment.Center
         ) {
             val columnGap: Dp
             val iconSize: Dp
@@ -197,15 +218,11 @@ private fun OudsLink(
                 }
             }
 
-            if (isTextOnly || state in listOf(OudsLink.State.Hovered, OudsLink.State.Pressed, OudsLink.State.Focused)) {
+            if (isUnderlined.value) {
                 textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
             }
 
-            val iconTint = if (arrow != null) {
-                arrowColor(state = state, monochrome = LocalUseMonoComponents.current)
-            } else {
-                contentColor(state = state, monochrome = LocalUseMonoComponents.current)
-            }
+            val iconTint = if (arrow != null) arrowColor.value else contentColor.value
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(columnGap),
@@ -220,6 +237,7 @@ private fun OudsLink(
                 Text(
                     modifier = Modifier.weight(1f, fill = false),
                     text = label,
+                    color = contentColor.value,
                     style = textStyle
                 )
                 if (arrow == OudsLink.Arrow.Next) {
@@ -238,30 +256,17 @@ private fun OudsLink(
 }
 
 @Composable
-private fun rememberOudsLinkState(
-    enabled: Boolean,
-    interactionState: InteractionState
-): OudsLink.State = remember(enabled, interactionState) {
-    when {
-        !enabled -> OudsLink.State.Disabled
-        interactionState == InteractionState.Hovered -> OudsLink.State.Hovered
-        interactionState == InteractionState.Pressed -> OudsLink.State.Pressed
-        interactionState == InteractionState.Focused -> OudsLink.State.Focused
-        else -> OudsLink.State.Enabled
+private fun getLinkState(enabled: Boolean, interactionState: InteractionState): OudsLink.State {
+    return getPreviewState<OudsLink.State>().orElse {
+        when {
+            !enabled -> OudsLink.State.Disabled
+            interactionState == InteractionState.Hovered -> OudsLink.State.Hovered
+            interactionState == InteractionState.Pressed -> OudsLink.State.Pressed
+            interactionState == InteractionState.Focused -> OudsLink.State.Focused
+            else -> OudsLink.State.Enabled
+        }
     }
 }
-
-@Composable
-private fun buttonColors(linkState: OudsLink.State, monochrome: Boolean) = ButtonDefaults.buttonColors(
-    containerColor = containerColor,
-    contentColor = contentColor(state = linkState, monochrome = monochrome),
-    disabledContainerColor = containerColor,
-    disabledContentColor = contentColor(state = linkState, monochrome = monochrome)
-)
-
-private val containerColor: Color
-    @Composable
-    get() = OudsTheme.colorScheme.opacity.transparent
 
 @Composable
 private fun contentColor(state: OudsLink.State, monochrome: Boolean): Color {
@@ -430,14 +435,13 @@ internal fun PreviewOudsLink(
     with(parameter) {
         val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
         val linkPreview: @Composable () -> Unit = {
-            PreviewStates<OudsLink.State>(columnCount = 3) { state ->
+            PreviewStates<OudsLink.State>(columnCount = 3) {
                 OudsLink(
                     icon = icon,
                     label = "Label",
                     arrow = arrow,
                     onClick = {},
-                    size = size,
-                    previewState = state
+                    size = size
                 )
             }
         }

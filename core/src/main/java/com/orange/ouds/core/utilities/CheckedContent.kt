@@ -38,7 +38,7 @@ internal fun CheckedContent(
     content: @Composable () -> Unit
 ) {
     // Throw an exception at runtime if expression is false
-    if (!LocalInspectionMode.current && !LocalSnapshotTest.current) {
+    if (!LocalInspectionMode.current) {
         check(expression, exceptionMessage)
     }
 

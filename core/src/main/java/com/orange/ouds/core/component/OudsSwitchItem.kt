@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -31,7 +32,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.foundation.extensions.orElse
 
 //TODO Add DSM link when available
 // <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Switch design guidelines**</a>
@@ -84,48 +84,16 @@ fun OudsSwitchItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsSwitchItem(
-        checked = checked,
-        label = label,
-        onCheckedChange = onCheckedChange,
-        previewState = null,
-        modifier = modifier,
-        helperText = helperText,
-        icon = icon,
-        divider = divider,
-        reversed = reversed,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        interactionSource = interactionSource
-    )
-}
-
-@Composable
-private fun OudsSwitchItem(
-    checked: Boolean,
-    label: String,
-    onCheckedChange: ((Boolean) -> Unit)?,
-    previewState: OudsControlItem.State?,
-    modifier: Modifier = Modifier,
-    helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
-    divider: Boolean = false,
-    reversed: Boolean = false,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
+    val state = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val toggleableModifier = if (onCheckedChange != null) {
         Modifier.toggleable(
             value = checked,
             interactionSource = interactionSource,
-            indication = null,
+            indication = InteractionValuesIndication(backgroundColor),
             enabled = enabled && !readOnly,
             role = Role.Switch,
             onValueChange = onCheckedChange
@@ -151,10 +119,10 @@ private fun OudsSwitchItem(
                 checked = checked
             )
         },
-        previewState = previewState,
         checkedContentPreviewStatus = if (checked) "Selected" else "Unselected",
         modifier = modifier
             .then(toggleableModifier)
+            .background(color = backgroundColor.value)
             .semantics(mergeDescendants = true) {}
     )
 }
@@ -172,12 +140,11 @@ internal fun PreviewOudsSwitchItem(
     parameter: OudsSwitchItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+        PreviewStates<OudsControlItem.State>(columnCount = 1) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",
                 onCheckedChange = {},
-                previewState = state,
                 helperText = helperText,
                 icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null,
                 divider = divider,

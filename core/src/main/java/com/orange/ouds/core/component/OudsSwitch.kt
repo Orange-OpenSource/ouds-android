@@ -13,12 +13,10 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.animation.core.AnimationSpec
-import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateSizeAsState
 import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -58,7 +56,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -89,29 +86,10 @@ fun OudsSwitch(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsSwitch(
-        checked = checked,
-        onCheckedChange = onCheckedChange,
-        previewState = null,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
-    )
-}
-
-@Composable
-private fun OudsSwitch(
-    checked: Boolean,
-    onCheckedChange: ((Boolean) -> Unit)?,
-    previewState: OudsControl.State?,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null,
-) {
     val switchTokens = OudsTheme.componentsTokens.switch
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsControlState(enabled = enabled, interactionState = interactionState) }
+    val state = getControlState(enabled = enabled, interactionState = interactionState)
 
     val toggleableModifier = if (onCheckedChange != null) {
         Modifier.toggleable(
@@ -146,7 +124,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
     // The cursor animation is obtained by using a column and updating its horizontalAlignment parameter
     val horizontalAlignment by animateHorizontalAlignmentAsState(
         targetBiasValue = if (checked) 1f else -1f,
-        animationSpec = cursorAnimationSpec()
+        animationSpec = defaultAnimationSpec()
     )
     Column(
         modifier = Modifier
@@ -159,7 +137,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
     ) {
         val cursorSize by animateSizeAsState(
             targetValue = cursorSize(state = state, checked = checked),
-            animationSpec = cursorAnimationSpec()
+            animationSpec = defaultAnimationSpec()
         )
         Box(
             modifier = Modifier
@@ -173,7 +151,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
             // There is no issue when switching from checked state to unchecked because check color is null thus the check is not displayed
             val checkAlpha by animateFloatAsState(
                 targetValue = if (checkColor != null) 1.0f else 0.0f,
-                animationSpec = snap(OudsSwitch.AnimationDuration)
+                animationSpec = snap(DefaultAnimationSpec.DurationMillis)
             )
             if (checkColor != null) {
                 Icon(
@@ -231,22 +209,10 @@ private fun checkColor(state: OudsControl.State, checked: Boolean): Color? {
     }
 }
 
-private fun <T> cursorAnimationSpec(): AnimationSpec<T> {
-    return tween(
-        durationMillis = OudsSwitch.AnimationDuration,
-        easing = CubicBezierEasing(0.2f, 0.0f, 0.0f, 1.0f)
-    )
-}
-
 @Composable
 private fun animateHorizontalAlignmentAsState(targetBiasValue: Float, animationSpec: AnimationSpec<Float> = spring()): State<BiasAlignment.Horizontal> {
     val bias by animateFloatAsState(targetBiasValue, animationSpec)
     return remember { derivedStateOf { BiasAlignment.Horizontal(bias) } }
-}
-
-private object OudsSwitch {
-
-    const val AnimationDuration = 150
 }
 
 @PreviewLightDark
@@ -261,11 +227,10 @@ internal fun PreviewOudsSwitch(
     darkThemeEnabled: Boolean,
     checked: Boolean
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    PreviewStates<OudsControl.State>(columnCount = 3) { state ->
+    PreviewStates<OudsControl.State>(columnCount = 3) {
         OudsSwitch(
             checked = checked,
-            onCheckedChange = {},
-            previewState = state
+            onCheckedChange = {}
         )
     }
 }

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -34,7 +35,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.foundation.extensions.orElse
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">**OUDS Radio button design guidelines**</a>
@@ -89,46 +89,10 @@ fun OudsRadioButtonItem(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsRadioButtonItem(
-        selected = selected,
-        label = label,
-        onClick = onClick,
-        interactionSource = interactionSource,
-        modifier = modifier,
-        previewState = null,
-        additionalLabel = additionalLabel,
-        helperText = helperText,
-        icon = icon,
-        divider = divider,
-        outlined = outlined,
-        reversed = reversed,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error
-    )
-}
-
-@Composable
-private fun OudsRadioButtonItem(
-    selected: Boolean,
-    label: String,
-    onClick: (() -> Unit)?,
-    previewState: OudsControlItem.State?,
-    modifier: Modifier = Modifier,
-    additionalLabel: String? = null,
-    helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
-    divider: Boolean = false,
-    outlined: Boolean = false,
-    reversed: Boolean = false,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState) }
+    val state = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val selectableModifier = if (onClick != null) {
         Modifier.selectable(
@@ -136,7 +100,7 @@ private fun OudsRadioButtonItem(
             onClick = onClick,
             enabled = enabled && !readOnly,
             interactionSource = interactionSource,
-            indication = null,
+            indication = InteractionValuesIndication(backgroundColor),
             role = Role.RadioButton,
         )
     } else {
@@ -162,12 +126,12 @@ private fun OudsRadioButtonItem(
                 error = error
             )
         },
-        previewState = previewState,
         checkedContentPreviewStatus = if (selected) "Selected" else "Unselected",
         modifier = modifier
             .then(selectableModifier)
-            .semantics(mergeDescendants = true) {}
-            .border(outlined = outlined, selected = selected, error = error, state = state),
+            .background(color = backgroundColor.value)
+            .border(outlined = outlined, selected = selected, error = error, state = state)
+            .semantics(mergeDescendants = true) {},
         handleHighContrastMode = true
     )
 }
@@ -221,12 +185,11 @@ internal fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+        PreviewStates<OudsControlItem.State>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
                 onClick = { },
-                previewState = state,
                 additionalLabel = additionalLabel,
                 helperText = helperText,
                 divider = divider,
@@ -252,12 +215,11 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) { state ->
+        PreviewStates<OudsControlItem.State>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
                 onClick = {},
-                previewState = state,
                 interactionSource = remember { MutableInteractionSource() }
             )
         }
