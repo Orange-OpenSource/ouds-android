@@ -32,7 +32,7 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
         }
 
         val output = try {
-            execute("npx", *args.toTypedArray()).also { logger.lifecycle(it) }
+            execute("npx", *args.toTypedArray(), logLevel = LogLevel.LIFECYCLE)
         } catch (exception: ExecException) {
             logger.lifecycle(exception.stackTraceToString())
             null

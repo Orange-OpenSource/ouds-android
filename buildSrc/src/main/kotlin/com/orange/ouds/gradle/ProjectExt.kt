@@ -16,6 +16,7 @@ import com.github.jknack.handlebars.Helper
 import com.google.auth.oauth2.GoogleCredentials
 import org.gradle.api.GradleException
 import org.gradle.api.Project
+import org.gradle.api.logging.LogLevel
 import org.gradle.api.provider.ValueSource
 import org.gradle.api.provider.ValueSourceParameters
 import org.gradle.process.ExecOperations
@@ -46,7 +47,12 @@ inline fun <reified T> Project.requireTypedProperty(propertyName: String): T {
     return findTypedProperty(propertyName) ?: throw GradleException("Please set the \"$propertyName\" project property.")
 }
 
-fun Project.execute(executable: String, vararg args: String): String {
+fun Project.execute(
+    executable: String,
+    vararg args: String,
+    logLevel: LogLevel = LogLevel.DEBUG,
+    onComplete: (output: String) -> ExecuteResult = { ExecuteResult(it, null) }
+): String {
     val formattedArgs = args.joinToString(" ") { if (it.contains(" ")) "\"$it\"" else it }
     logger.lifecycle("\u001B[38;2;255;121;0;1m$executable $formattedArgs\u001B[0m")
 
@@ -55,7 +61,11 @@ fun Project.execute(executable: String, vararg args: String): String {
         parameters.args = args.toList()
     }
 
-    return provider.get()
+    val result = onComplete(provider.get())
+    logger.log(logLevel, result.formattedOutput)
+    result.exception?.let { throw it }
+
+    return result.formattedOutput
 }
 
 /**
@@ -68,19 +78,15 @@ fun Project.execute(executable: String, vararg args: String): String {
  */
 fun Project.curl(vararg args: String): String {
     // Add an argument to write the HTTP status code at the end of the output
-    val output = execute("curl", *args, "-w", "\n%{http_code}")
-
-    // Retrieve the HTTP status code
-    val splitOutput = output.split("\n")
-    val httpStatusCode = splitOutput.last().toInt()
-    // Reconstruct output without the status code and print it
-    val outputWithoutStatus = splitOutput.dropLast(1).joinToString("\n")
-    logger.lifecycle(outputWithoutStatus)
-    if (httpStatusCode < 200 || httpStatusCode >= 300) {
-        throw GradleException("Received HTTP error code $httpStatusCode.")
+    return execute("curl", *args, "-w", "\n%{http_code}", logLevel = LogLevel.LIFECYCLE) { output ->
+        // Retrieve the HTTP status code
+        val splitOutput = output.split("\n")
+        val httpStatusCode = splitOutput.last().toInt()
+        // Reconstruct output without the status code
+        val outputWithoutStatus = splitOutput.dropLast(1).joinToString("\n")
+        val exception = if (httpStatusCode < 200 || httpStatusCode >= 300) GradleException("Received HTTP error code $httpStatusCode.") else null
+        ExecuteResult(outputWithoutStatus, exception)
     }
-
-    return outputWithoutStatus
 }
 
 /**
@@ -146,6 +152,8 @@ val Project.artifactId: String
 
 val Project.isPublished: Boolean
     get() = extensions.findByType(MavenCentralPublishPluginExtension::class.java)?.enabled == true
+
+class ExecuteResult(val formattedOutput: String, val exception: Throwable?)
 
 private abstract class ExecuteValueSource : ValueSource<String, ExecuteValueSourceParameters> {
 
