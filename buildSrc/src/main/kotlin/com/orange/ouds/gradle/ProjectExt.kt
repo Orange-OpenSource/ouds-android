@@ -180,7 +180,7 @@ private interface ExecuteValueSourceParameters : ValueSourceParameters {
 private const val CHANGELOG_UNRELEASED_TAG_NAME = "Unreleased"
 
 fun Project.updateChangelog(version: String?) {
-    gitChangelogApi {
+    gitChangelogApi(version) {
         val changelogHeader = """
             |# OUDS Android library changelog
             |
@@ -227,12 +227,12 @@ fun Project.updateChangelog(version: String?) {
     }
 }
 
-fun <T> Project.gitChangelogApi(action: GitChangelogApi.() -> T): T {
+fun <T> Project.gitChangelogApi(version: String? = null, action: GitChangelogApi.() -> T): T {
     // GitChangelogApi does not take release tags into account when working on develop or on a feature branch because they are on the main branch.
     // Thus nextSemanticVersion does not return the correct value.
     // That's why we copy the release tags locally on their associated parent commits located on the develop branch.
     // These tags are prefixed by "changelog/" and are removed once the action on GitChangelogApi is finished.
-    addChangelogTags()
+    addChangelogTags(version)
     return gitChangelogApiBuilder()
         .withFromRepo(project.rootDir)
         .withSemanticMajorVersionPattern("BREAKING CHANGE")
@@ -242,7 +242,7 @@ fun <T> Project.gitChangelogApi(action: GitChangelogApi.() -> T): T {
         .also { deleteChangelogTags() }
 }
 
-private fun Project.addChangelogTags() {
+private fun Project.addChangelogTags(version: String?) {
     // Get release tags
     val tags = execute("git", "--no-pager", "tag")
         .trim()
@@ -258,6 +258,13 @@ private fun Project.addChangelogTags() {
             // Add an identical tag prefixed with "changelog/" on the parent commit and use "--force" in case it already exists
             execute("git", "tag", "changelog/$tag", parentCommitSha, "--force")
         }
+    }
+
+    // withUntaggedName(version) should be enough to display unreleased commits under the new version tag,
+    // but doing so, the date is missing because there is no associated tag.
+    // That's why we also add a temporary tag for the new version.
+    if (version != null) {
+        execute("git", "tag", "changelog/$version", "HEAD", "--force")
     }
 }
 
