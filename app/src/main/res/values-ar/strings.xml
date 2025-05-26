@@ -68,10 +68,10 @@
     <string name="app_tokens_dimension_space_paddingStackHeader_text">الهوامش العلوية والسفلية تشمل المسافة بين أعلى وأسفل العنصر.</string>
     <string name="app_tokens_dimension_space_paddingInset_label">الهوامش المحيطية</string>
     <string name="app_tokens_dimension_space_paddingInsetHeader_text">الهوامش المحيطية تشمل المسافة بين جميع الجوانب، مع كون جميع المعايير متساوية.</string>
-    <string name="app_tokens_dimension_space_gapInline_label">الفاصل الأفقي</string>
-    <string name="app_tokens_dimension_space_gapInlineHeader_text">الفاصل الأفقي هو المسافة الأفقية بين العناصر.</string>
-    <string name="app_tokens_dimension_space_gapStack_label">الفاصل العمودي</string>
-    <string name="app_tokens_dimension_space_gapStackHeader_text">الفاصل العمودي هو المسافة العمودية بين.</string>
+    <string name="app_tokens_dimension_space_columnGap_label">الفاصل بين الأعمدة</string>
+    <string name="app_tokens_dimension_space_columnGapHeader_text">الفاصل بين الأعمدة هو التباعد الأفقي بين العناصر.</string>
+    <string name="app_tokens_dimension_space_rowGap_label">الفاصل بين الصفوف</string>
+    <string name="app_tokens_dimension_space_rowGapHeader_text">الفاصل بين الصفوف هو التباعد العمودي بين العناصر.</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_label">الحجم</string>

@@ -146,7 +146,7 @@ sealed class TokenProperty<T>(
     )
 
     data object SpaceColumnGap : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_gapInline_label,
+        nameRes = R.string.app_tokens_dimension_space_columnGap_label,
         tokens = getTokens<OudsSpaces.ColumnGap>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )
@@ -176,7 +176,7 @@ sealed class TokenProperty<T>(
     )
 
     data object SpaceRowGap : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_gapStack_label,
+        nameRes = R.string.app_tokens_dimension_space_rowGap_label,
         tokens = getTokens<OudsSpaces.RowGap>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )

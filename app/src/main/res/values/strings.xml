@@ -79,10 +79,10 @@
     <string name="app_tokens_dimension_space_paddingStackHeader_text">Padding stack includes the top and bottom padding.</string>
     <string name="app_tokens_dimension_space_paddingInset_label">Padding inset</string>
     <string name="app_tokens_dimension_space_paddingInsetHeader_text">Padding inset includes the left, right, top, and bottom padding, with all parameters being equal.</string>
-    <string name="app_tokens_dimension_space_gapInline_label">Gap inline</string>
-    <string name="app_tokens_dimension_space_gapInlineHeader_text">Gap inline is the horizontal spacing between elements.</string>
-    <string name="app_tokens_dimension_space_gapStack_label">Gap stack</string>
-    <string name="app_tokens_dimension_space_gapStackHeader_text">Gap stack is the vertical spacing between elements.</string>
+    <string name="app_tokens_dimension_space_columnGap_label">Column gap</string>
+    <string name="app_tokens_dimension_space_columnGapHeader_text">Column gap is the horizontal spacing between elements.</string>
+    <string name="app_tokens_dimension_space_rowGap_label">Row gap</string>
+    <string name="app_tokens_dimension_space_rowGapHeader_text">Row gap is the vertical spacing between elements.</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_label">Size</string>

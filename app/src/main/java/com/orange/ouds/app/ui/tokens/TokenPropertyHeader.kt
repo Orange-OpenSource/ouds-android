@@ -175,12 +175,12 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
 @Composable
 private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>, modifier: Modifier = Modifier) {
     val textResId = when (spaceTokenProperty) {
-        TokenProperty.SpaceColumnGap -> R.string.app_tokens_dimension_space_gapInlineHeader_text
+        TokenProperty.SpaceColumnGap -> R.string.app_tokens_dimension_space_columnGapHeader_text
         TokenProperty.SpaceFixed -> R.string.app_tokens_dimension_space_fixedHeader_text
         TokenProperty.SpacePaddingInline -> R.string.app_tokens_dimension_space_paddingInlineHeader_text
         TokenProperty.SpacePaddingInset -> R.string.app_tokens_dimension_space_paddingInsetHeader_text
         TokenProperty.SpacePaddingStack -> R.string.app_tokens_dimension_space_paddingStackHeader_text
-        TokenProperty.SpaceRowGap -> R.string.app_tokens_dimension_space_gapStackHeader_text
+        TokenProperty.SpaceRowGap -> R.string.app_tokens_dimension_space_rowGapHeader_text
         TokenProperty.SpaceScaled -> R.string.app_tokens_dimension_space_scaledHeader_text
         else -> null
     }
