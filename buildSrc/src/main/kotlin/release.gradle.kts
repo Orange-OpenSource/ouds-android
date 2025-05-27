@@ -11,8 +11,8 @@
  */
 
 import com.orange.ouds.gradle.artifactId
-import com.orange.ouds.gradle.createGitChangelogApi
 import com.orange.ouds.gradle.execute
+import com.orange.ouds.gradle.gitChangelogApi
 import com.orange.ouds.gradle.isPublished
 import com.orange.ouds.gradle.requireTypedProperty
 import com.orange.ouds.gradle.updateChangelog
@@ -23,7 +23,7 @@ plugins {
 
 tasks.register<DefaultTask>("prepareRelease") {
     doLast {
-        val version = project.gradle.startParameter.projectProperties["version"] ?: run { createGitChangelogApi().nextSemanticVersion.toString() }
+        val version = project.gradle.startParameter.projectProperties["version"] ?: run { gitChangelogApi { nextSemanticVersion.toString() } }
         updateVersion(version)
         updateDependencies(version)
         updateVersionCode()
