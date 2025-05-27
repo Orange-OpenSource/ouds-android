@@ -11,6 +11,7 @@
  */
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.client.j2se.MatrixToImageWriter
@@ -30,11 +31,8 @@ import java.util.EnumMap
 import java.util.Locale
 import kotlin.io.path.Path
 
-object AppDistribution {
-    const val RELEASE_NOTES_FILE_PATH = "./app_distribution_release_notes.txt"
-}
-
 internal val releaseNotesExtraKey = "releaseNotesExtraKey"
+internal val releaseNotesFilePath = "./app_distribution_release_notes.txt"
 
 internal val Project.appDistributionVariants: List<String>
     get() = findTypedProperty<String>("appDistributionVariants")
@@ -117,7 +115,7 @@ tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
         }
 
         // Create a file and export release notes as an extra property
-        File(AppDistribution.RELEASE_NOTES_FILE_PATH).apply {
+        File(releaseNotesFilePath).apply {
             writeText(releaseNotes)
         }
         extra.set(releaseNotesExtraKey, releaseNotes)
@@ -224,4 +222,10 @@ private fun generateQrCode(release: FirebaseAppDistributionRelease): File {
     MatrixToImageWriter.writeToPath(bitMatrix, "PNG", Path(qrCodeFilePath))
 
     return File(qrCodeFilePath)
+}
+
+afterEvaluate {
+    firebaseAppDistribution {
+        releaseNotesFile = releaseNotesFilePath
+    }
 }
