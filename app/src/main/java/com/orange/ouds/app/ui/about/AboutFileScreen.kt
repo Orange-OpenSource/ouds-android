@@ -17,16 +17,16 @@ import android.graphics.Color
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.annotation.RawRes
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.injectLightDarkModeCss
 import com.orange.ouds.app.ui.utilities.launchUrl
+import com.orange.ouds.core.theme.OudsTheme
 import java.io.BufferedReader
 import java.nio.charset.StandardCharsets
 
@@ -34,13 +34,14 @@ private const val FileResourceDir = "raw"
 private const val FilePath = "file:///android_res/$FileResourceDir/"
 
 @Composable
-internal fun AboutFileScreen(@RawRes fileRes: Int) {
+internal fun AboutFileScreen(fileMenuItem: AboutFileMenuItem) {
     val context = LocalContext.current
-    val horizontalPadding = dimensionResource(id = R.dimen.screen_horizontal_margin).value
-    val verticalPadding = dimensionResource(id = R.dimen.screen_vertical_margin).value
+    val horizontalPadding = OudsTheme.grids.margin.value
+    val verticalPadding = OudsTheme.spaces.fixed.medium.value
     val isSystemInDarkTheme = isSystemInDarkTheme()
     Screen {
         AndroidView(
+            modifier = Modifier.fillMaxSize(),
             factory = {
                 WebView(context).apply {
                     @SuppressLint("SetJavaScriptEnabled")
@@ -60,12 +61,17 @@ internal fun AboutFileScreen(@RawRes fileRes: Int) {
                         }
                     }
 
-                    val fileContent = resources.openRawResource(fileRes)
+                    val fileContent = resources.openRawResource(fileMenuItem.file.resource)
                         .bufferedReader()
                         .use(BufferedReader::readText)
 
+                    val html = when (fileMenuItem.file.format) {
+                        AboutFileMenuItem.File.Format.Html -> fileContent
+                        AboutFileMenuItem.File.Format.Markdown -> Markdown.toHtml(fileContent)
+                    }
+
                     // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
-                    loadDataWithBaseURL(FilePath, fileContent, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
+                    loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
 
                     setBackgroundColor(Color.TRANSPARENT)
                 }

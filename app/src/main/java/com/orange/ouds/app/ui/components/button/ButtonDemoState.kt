@@ -19,22 +19,25 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonDefaults
 
 @Composable
 fun rememberButtonDemoState(
+    label: String = stringResource(id = R.string.app_components_button_label),
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     style: OudsButton.Style = OudsButtonDefaults.Style,
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.TextOnly
-) = rememberSaveable(enabled, style, hierarchy, layout, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(enabled, onColoredBox, style, hierarchy, layout)
+) = rememberSaveable(label, enabled, style, hierarchy, layout, saver = ButtonDemoState.Saver) {
+    ButtonDemoState(label, enabled, onColoredBox, style, hierarchy, layout)
 }
 
 class ButtonDemoState(
+    label: String,
     enabled: Boolean,
     onColoredBox: Boolean,
     style: OudsButton.Style,
@@ -45,6 +48,7 @@ class ButtonDemoState(
     companion object {
 
         val Saver = run {
+            val labelKey = "label"
             val enabledKey = "enabled"
             val onColoredBoxKey = "onColoredBox"
             val styleKey = "style"
@@ -53,6 +57,7 @@ class ButtonDemoState(
             mapSaver(
                 save = { state ->
                     mapOf(
+                        labelKey to state.label,
                         enabledKey to state.enabled,
                         onColoredBoxKey to state.onColoredBox,
                         styleKey to state.style,
@@ -62,6 +67,7 @@ class ButtonDemoState(
                 },
                 restore = { map ->
                     ButtonDemoState(
+                        map[labelKey] as String,
                         map[enabledKey] as Boolean,
                         map[onColoredBoxKey] as Boolean,
                         map[styleKey] as OudsButton.Style,
@@ -72,6 +78,8 @@ class ButtonDemoState(
             )
         }
     }
+
+    var label: String by mutableStateOf(label)
 
     var enabled: Boolean by mutableStateOf(enabled)
 

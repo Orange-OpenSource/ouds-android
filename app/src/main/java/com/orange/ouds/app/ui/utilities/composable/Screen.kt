@@ -14,12 +14,18 @@ package com.orange.ouds.app.ui.utilities.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun Screen(content: @Composable () -> Unit) {
@@ -32,10 +38,44 @@ fun Screen(content: @Composable () -> Unit) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun <T : Any> DemoScreen(demoState: T, content: @Composable T.() -> Unit) = Screen { demoState.content() }
+fun DemoScreen(
+    bottomSheetContent: @Composable ColumnScope.() -> Unit,
+    codeSnippet: Code.Builder.() -> Unit,
+    demoContent: @Composable () -> Unit,
+    demoContentOnColoredBox: Boolean = false,
+    demoContentPaddingValues: PaddingValues = PaddingValues(horizontal = OudsTheme.grids.margin),
+    description: String? = null,
+) {
+    Screen {
+        CustomizationBottomSheetScaffold(
+            bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+            bottomSheetContent = bottomSheetContent
+        ) {
+            if (description != null) {
+                DetailScreenDescription(
+                    modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
+                    description = description
+                )
+            }
+            val demoContentModifier = Modifier.padding(paddingValues = demoContentPaddingValues)
+            if (!demoContentOnColoredBox) {
+                LightDarkDemo(modifier = demoContentModifier, content = demoContent)
+            } else {
+                OnColoredBoxDemo(modifier = demoContentModifier, content = demoContent)
+            }
+            CodeSnippet(
+                modifier = Modifier
+                    .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
+                    .padding(top = OudsTheme.spaces.fixed.medium),
+                init = codeSnippet
+            )
+        }
+    }
+}
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewScreen() = OudsPreview {
     Screen {}

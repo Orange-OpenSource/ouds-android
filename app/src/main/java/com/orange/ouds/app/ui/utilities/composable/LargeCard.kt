@@ -30,11 +30,11 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 /**
  * Temporary large card used by the demo app
@@ -77,7 +77,7 @@ fun LargeCard(
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewLargeCard() = OudsPreview {
     LargeCard(

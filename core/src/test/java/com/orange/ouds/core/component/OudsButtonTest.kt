@@ -12,13 +12,13 @@
 
 package com.orange.ouds.core.component
 
-import com.orange.ouds.OudsPaparazziTest
-import org.junit.Test
+import androidx.compose.runtime.Composable
+import com.orange.ouds.OudsSnapshotTest
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter) : OudsPaparazziTest() {
+internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter) : OudsSnapshotTest() {
 
     companion object {
         @JvmStatic
@@ -26,23 +26,11 @@ internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter)
         internal fun data() = OudsButtonPreviewParameterProvider().values.toList()
     }
 
-    @Test
-    fun takeOudsButtonLightThemeSnapshot() {
-        paparazzi.snapshot {
-            PreviewOudsButton(
-                darkThemeEnabled = false,
-                parameter = parameter
-            )
-        }
-    }
-
-    @Test
-    fun takeOudsButtonDarkThemeSnapshot() {
-        paparazzi.snapshot {
-            PreviewOudsButton(
-                darkThemeEnabled = true,
-                parameter = parameter
-            )
-        }
+    @Composable
+    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+        PreviewOudsButton(
+            darkThemeEnabled = darkThemeEnabled,
+            parameter = parameter
+        )
     }
 }

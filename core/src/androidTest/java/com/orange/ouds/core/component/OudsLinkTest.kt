@@ -27,20 +27,20 @@ internal class OudsLinkTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsLinkClickSucceeds() {
+    fun oudsLink_click_succeeds() {
         with(composeTestRule) {
-            val text = "Text"
+            val label = "Label"
             val onClick = mock<() -> Unit>()
 
             setOudsContent {
                 OudsLink(
-                    text = text,
+                    label = label,
                     icon = null,
                     onClick = onClick
                 )
             }
 
-            onNodeWithText(text).performClick()
+            onNodeWithText(label).performClick()
             verify(onClick).invoke()
         }
     }

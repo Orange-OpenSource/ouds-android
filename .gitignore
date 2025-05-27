@@ -16,6 +16,7 @@
 .idea/deploymentTargetSelector.xml
 .idea/androidTestResultsUserPreferences.xml
 .idea/emulatorDisplays.xml
+.idea/studiobot.xml
 
 # Gradle files
 .gradle
@@ -32,3 +33,6 @@ node_modules/
 
 # Dokka generated files
 docs/dokka/
+
+# App
+app/src/main/res/raw/changelog.md

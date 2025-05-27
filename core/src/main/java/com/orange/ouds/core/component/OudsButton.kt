@@ -13,12 +13,14 @@
 package com.orange.ouds.core.component
 
 import android.os.Parcelable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
@@ -26,9 +28,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalRippleConfiguration
@@ -42,22 +41,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.invisibleToUser
+import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -65,79 +65,94 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import kotlinx.parcelize.Parcelize
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
  *
- * An OUDS button which displays text only.
+ * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * This version of the button uses the *text only* layout which is the most used layout.
+ * Other layouts are available for this component: *text + icon* and *icon only*.
+ *
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param text Text displayed in the button.
+ * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
- * @param style The button style.
- * @param hierarchy The button hierarchy.
+ * @param style The [OudsButton.Style] used for the button. Use [OudsButton.Style.Default] for a standard button, or [OudsButton.Style.Loading] to indicate
+ *   an ongoing operation.
+ * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlySample
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithTextOnColoredBackgroundSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlyOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
-    text: String,
+    label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButtonDefaults.Style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
-        icon = null,
-        text = text,
+        nullableIcon = null,
+        nullableLabel = label,
         onClick = onClick,
-        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
-        hierarchy = hierarchy
+        hierarchy = hierarchy,
+        interactionSource = interactionSource
     )
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
  *
- * An OUDS button which displays an icon only.
+ * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * This version of the button uses the *icon only* layout which is typically used in business or back-office interfaces, it is rarely used alone (usually part of a group of elements).
+ * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param icon Icon displayed in the button.
+ * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
- * @param style The button style.
- * @param hierarchy The button hierarchy.
+ * @param style The [OudsButton.Style] used for the button. Use [OudsButton.Style.Default] for a standard button, or [OudsButton.Style.Loading] to indicate
+ *   an ongoing operation.
+ * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlySample
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconOnColoredBackgroundSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
@@ -146,112 +161,153 @@ fun OudsButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButtonDefaults.Style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
-        icon = icon,
-        text = null,
+        nullableIcon = icon,
+        nullableLabel = null,
         onClick = onClick,
-        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
-        hierarchy = hierarchy
+        hierarchy = hierarchy,
+        interactionSource = interactionSource
     )
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">OUDS Button design guidelines</a>
+ * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
  *
- * An OUDS button which displays an icon and text.
+ * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * This version of the button uses the *text + icon* layout which should remain specific to some clearly identified contexts (e.g. the use of an icon with a
+ * "Play" button is standard in the context of TV or video streaming).
+ * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param icon Icon displayed in the button.
- * @param text Text displayed in the button.
+ * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when [style] is equal to [OudsButton.Style.Default].
  *   When `false`, this button will not be clickable.
  *   Has no effect when [style] is equal to [OudsButton.Style.Loading].
- * @param style The button style.
- * @param hierarchy The button hierarchy.
+ * @param style The [OudsButton.Style] used for the button. Use [OudsButton.Style.Default] for a standard button, or [OudsButton.Style.Loading] to indicate
+ *   an ongoing operation.
+ * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconAndTextSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonWithIconAndTextOnColoredBackgroundSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconAndTextOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
     icon: OudsButton.Icon,
-    text: String,
+    label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButtonDefaults.Style,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
-        icon = icon,
-        text = text,
+        nullableIcon = icon,
+        nullableLabel = label,
         onClick = onClick,
-        previewState = null,
         modifier = modifier,
         enabled = enabled,
         style = style,
-        hierarchy = hierarchy
+        hierarchy = hierarchy,
+        interactionSource = interactionSource
     )
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
+@JvmName("OudsButtonNullableIconAndLabel")
 private fun OudsButton(
-    icon: OudsButton.Icon?,
-    text: String?,
+    nullableIcon: OudsButton.Icon?,
+    nullableLabel: String?,
     onClick: () -> Unit,
-    previewState: OudsButton.State?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     style: OudsButton.Style = OudsButton.Style.Default,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy
+    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    interactionSource: MutableInteractionSource? = null
 ) {
-    if (hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current) {
-        throw IllegalStateException("An OudsButton with OudsButton.Hierarchy.Negative hierarchy has been detected as a direct or indirect child of an OudsColoredBox, which is not allowed.")
-    }
+    val icon = nullableIcon
+    val label = nullableLabel
+    val isForbidden = hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current
+    CheckedContent(
+        expression = !isForbidden,
+        exceptionMessage = { "An OudsButton with OudsButton.Hierarchy.Negative hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
+        previewMessage = { if (icon != null && label == null) "⛔" else "Not on a\ncolored\nbackground" }
+    ) {
+        val buttonTokens = OudsTheme.componentsTokens.button
+        @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+        val interactionState by interactionSource.collectInteractionStateAsState()
+        val state = getButtonState(enabled = enabled, style = style, interactionState = interactionState)
+        val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
+        val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.dp * iconScale else Dp.Unspecified
+        val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
-    val buttonTokens = OudsTheme.componentsTokens.button
-    val interactionSource = remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = previewState.orElse { rememberOudsButtonState(enabled = enabled, style = style, interactionState = interactionState) }
-    val iconScale = if (icon != null && text == null) LocalContext.current.resources.configuration.fontScale else 1.0f
-    val maxHeight = if (icon != null && text == null) buttonTokens.sizeMaxHeight.dp * iconScale else Dp.Unspecified
-    val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
+        CompositionLocalProvider(LocalRippleConfiguration provides null) {
+            val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
+            val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
+                contentColor(hierarchy = hierarchy, state = buttonState)
+            }
+            val backgroundColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
+                backgroundColor(hierarchy = hierarchy, state = buttonState)
+            }
+            val borderWidth = rememberInteractionValue(
+                interactionState = interactionState,
+                toAnimatableFloat = { it?.value.orElse { 0f } },
+                fromAnimatableFloat = { it.dp }
+            ) { buttonInteractionState ->
+                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
+                borderWidth(hierarchy = hierarchy, state = buttonState)
+            }
+            val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
+                borderColor(hierarchy = hierarchy, state = buttonState)
+            }
 
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
-        val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
-        Button(
-            onClick = onClick,
-            modifier = modifier
-                .widthIn(min = buttonTokens.sizeMinWidth.dp)
-                .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
-                .border(hierarchy = hierarchy, state = state, shape = shape)
-                .outerBorder(state = state, shape = shape)
-                .semantics {
-                    this.stateDescription = stateDescription
-                },
-            enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading) },
-            shape = shape,
-            colors = buttonColors(hierarchy = hierarchy, buttonState = state),
-            elevation = null,
-            contentPadding = PaddingValues(all = 0.dp),
-            interactionSource = interactionSource
-        ) {
-            Box(contentAlignment = Alignment.Center) {
+            Box(
+                modifier = modifier
+                    .widthIn(min = buttonTokens.sizeMinWidth.dp)
+                    .heightIn(min = buttonTokens.sizeMinHeight.dp, max = maxHeight)
+                    .background(color = backgroundColor.value, shape = shape)
+                    .run {
+                        ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
+                            border(width = borderWidth, color = borderColor, shape = shape)
+                        }.orElse {
+                            this
+                        }
+                    }
+                    .outerBorder(state = state, shape = shape)
+                    .semantics {
+                        this.stateDescription = stateDescription
+                    }
+                    .clickable(
+                        enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading) },
+                        interactionSource = interactionSource,
+                        indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
+                        onClick = onClick
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
                 if (state == OudsButton.State.Loading) {
                     val loadingStyle = style as? OudsButton.Style.Loading
-                    val progress = if (previewState == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
+                    val progress = if (getPreviewState<OudsButton.State>() == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
                     LoadingIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
                 }
 
@@ -259,26 +315,26 @@ private fun OudsButton(
                 Row(
                     modifier = Modifier
                         .alpha(alpha = alpha)
-                        .padding(contentPadding(icon = icon, text = text)),
+                        .padding(contentPadding(icon = icon, label = label)),
                     horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     if (icon != null) {
-                        val size = if (text == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
-                        val tint = contentColor(hierarchy = hierarchy, state = state)
+                        val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
                         icon.Content(
                             modifier = Modifier
                                 .size(size.value * iconScale)
                                 .semantics {
-                                    contentDescription = if (text == null) icon.contentDescription else ""
+                                    contentDescription = if (label == null) icon.contentDescription else ""
                                 },
-                            extraParameters = OudsButton.Icon.ExtraParameters(tint = tint)
+                            extraParameters = OudsButton.Icon.ExtraParameters(tint = contentColor.value)
                         )
                     }
-                    if (text != null) {
+                    if (label != null) {
                         Text(
                             modifier = modifier,
-                            text = text,
+                            text = label,
+                            color = contentColor.value,
                             style = OudsTheme.typography.label.strong.large,
                             textAlign = TextAlign.Center
                         )
@@ -290,47 +346,18 @@ private fun OudsButton(
 }
 
 @Composable
-private fun rememberOudsButtonState(
-    enabled: Boolean,
-    style: OudsButton.Style,
-    interactionState: InteractionState
-): OudsButton.State = remember(enabled, style, interactionState) {
-    when (style) {
-        OudsButton.Style.Default -> when {
-            !enabled -> OudsButton.State.Disabled
-            interactionState == InteractionState.Hovered -> OudsButton.State.Hovered
-            interactionState == InteractionState.Pressed -> OudsButton.State.Pressed
-            interactionState == InteractionState.Focused -> OudsButton.State.Focused
-            else -> OudsButton.State.Enabled
+private fun getButtonState(enabled: Boolean, style: OudsButton.Style, interactionState: InteractionState): OudsButton.State {
+    return getPreviewState<OudsButton.State>().orElse {
+        when (style) {
+            OudsButton.Style.Default -> when {
+                !enabled -> OudsButton.State.Disabled
+                interactionState == InteractionState.Hovered -> OudsButton.State.Hovered
+                interactionState == InteractionState.Pressed -> OudsButton.State.Pressed
+                interactionState == InteractionState.Focused -> OudsButton.State.Focused
+                else -> OudsButton.State.Enabled
+            }
+            is OudsButton.Style.Loading -> OudsButton.State.Loading
         }
-        is OudsButton.Style.Loading -> OudsButton.State.Loading
-    }
-}
-
-@Composable
-private fun Modifier.border(hierarchy: OudsButton.Hierarchy, state: OudsButton.State, shape: Shape): Modifier {
-    val borderWidth = borderWidth(hierarchy = hierarchy, state = state)
-    val borderColor = borderColor(hierarchy = hierarchy, state = state)
-
-    return if (borderWidth != null && borderColor != null) {
-        border(width = borderWidth, color = borderColor, shape = shape)
-    } else {
-        this
-    }
-}
-
-@Composable
-private fun Modifier.outerBorder(state: OudsButton.State, shape: Shape): Modifier {
-    return if (state == OudsButton.State.Focused) {
-        outerBorder(
-            width = OudsTheme.borders.width.focus,
-            color = OudsTheme.colorScheme.border.focus,
-            shape = shape,
-            insetWidth = OudsTheme.borders.width.focusInset,
-            insetColor = OudsTheme.colorScheme.border.focusInset
-        )
-    } else {
-        this
     }
 }
 
@@ -398,17 +425,7 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
 }
 
 @Composable
-private fun buttonColors(hierarchy: OudsButton.Hierarchy, buttonState: OudsButton.State): ButtonColors {
-    return ButtonDefaults.buttonColors(
-        containerColor = containerColor(hierarchy = hierarchy, state = buttonState),
-        contentColor = contentColor(hierarchy = hierarchy, state = buttonState),
-        disabledContainerColor = containerColor(hierarchy = hierarchy, state = buttonState),
-        disabledContentColor = contentColor(hierarchy = hierarchy, state = buttonState)
-    )
-}
-
-@Composable
-private fun containerColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State): Color {
+private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State): Color {
     return with(OudsTheme.componentsTokens.button) {
         when (hierarchy) {
             OudsButton.Hierarchy.Default -> when (state) {
@@ -480,7 +497,7 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
                 OudsButton.State.Loading,
-                OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.negative
+                OudsButton.State.Focused -> OudsTheme.colorScheme.content.onStatus.emphasizedAlt
                 OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
             }
         }
@@ -488,17 +505,17 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
 }
 
 @Composable
-private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues {
+private fun contentPadding(icon: OudsButton.Icon?, label: String?): PaddingValues {
     return with(OudsTheme.componentsTokens.button) {
         when {
-            icon != null && text != null -> PaddingValues(
+            icon != null && label != null -> PaddingValues(
                 start = spacePaddingInlineIconStart.value,
                 top = spacePaddingBlock.value,
                 end = spacePaddingInlineEndIconStart.value,
                 bottom = spacePaddingBlock.value
             )
-            icon != null && text == null -> PaddingValues(
-                horizontal = spaceInsetIconAlone.value,
+            icon != null && label == null -> PaddingValues(
+                horizontal = spaceInsetIconOnly.value,
                 vertical = spacePaddingBlock.value
             )
             else -> PaddingValues(
@@ -513,7 +530,7 @@ private fun contentPadding(icon: OudsButton.Icon?, text: String?): PaddingValues
 private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?, scale: Float) {
     val modifier = Modifier
         .size(OudsTheme.componentsTokens.button.sizeLoader.value * scale)
-        .semantics { invisibleToUser() }
+        .semantics { hideFromAccessibility() }
     val color = contentColor(hierarchy = hierarchy, state = OudsButton.State.Loading)
     val strokeWidth = 3.dp * scale
     val trackColor = Color.Transparent
@@ -539,29 +556,29 @@ private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?, 
 }
 
 /**
- * Contains the default values used by OUDS buttons.
+ * Default values for [OudsButton].
  */
 object OudsButtonDefaults {
 
     /**
-     * The default hierarchy.
+     * Default hierarchy of an OUDS button.
      */
     val Hierarchy = OudsButton.Hierarchy.Default
 
     /**
-     * The default style.
+     * Default style of an OUDS button.
      */
     val Style = OudsButton.Style.Default
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.button.OudsButton].
+ * Contains classes to build an [OudsButton].
  */
 object OudsButton {
 
     /**
      * A button icon in an [OudsButton].
-     * It is non-clickable and no content description is needed cause a button label is always present.
+     * It is non-clickable and no content description is needed because a button label is always present.
      */
     class Icon private constructor(
         graphicsObject: Any,
@@ -577,7 +594,7 @@ object OudsButton {
          * Creates an instance of [OudsButton.Icon].
          *
          * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
          */
         constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
@@ -585,7 +602,7 @@ object OudsButton {
          * Creates an instance of [OudsButton.Icon].
          *
          * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
          */
         constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
@@ -593,7 +610,7 @@ object OudsButton {
          * Creates an instance of [OudsButton.Icon].
          *
          * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains text.
+         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
          */
         constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
@@ -606,7 +623,27 @@ object OudsButton {
      * Represents the hierarchy of an OUDS button.
      */
     enum class Hierarchy {
-        Default, Strong, Minimal, Negative
+        /**
+         * A standard button style used for actions which are not mandatory or essential for the user.
+         */
+        Default,
+
+        /**
+         * A strong style for a button which should be singular and prominent, limited to one per view. It should be reserved for the most critical action,
+         * such as "Next," "Save," "Submit," etc...
+         */
+        Strong,
+
+        /**
+         * Minimal buttons are commonly used for actions that are considered less crucial. They can be used independently or together with a strong button.
+         */
+        Minimal,
+
+        /**
+         * Negative buttons should be used sparingly to warn of a destructive action, for example, delete or remove, typically resulting in the opening of a
+         * confirmation dialog.
+         */
+        Negative
     }
 
     /**
@@ -615,7 +652,7 @@ object OudsButton {
     sealed class Style : Parcelable {
 
         /**
-         * The button displays an icon and/or a text and supports user interactions if it is enabled.
+         * The button displays an icon and/or a label and supports user interactions if it is enabled.
          */
         @Parcelize
         data object Default : Style()
@@ -636,7 +673,7 @@ object OudsButton {
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvider::class) parameter: OudsButtonPreviewParameter) {
@@ -649,21 +686,11 @@ internal fun PreviewOudsButton(
     parameter: OudsButtonPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val columnCount = 2
+        val label = if (hasLabel) hierarchy.name else null
+        val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
         val content: @Composable () -> Unit = {
-            Box(modifier = Modifier.padding(16.dp)) {
-                val text = if (hasText) hierarchy.name else null
-                val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
-                val chunkedStates = states.chunked(columnCount)
-                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    chunkedStates.forEach { states ->
-                        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                            states.forEach { state ->
-                                OudsButton(icon = icon, text = text, onClick = {}, hierarchy = hierarchy, previewState = state)
-                            }
-                        }
-                    }
-                }
+            PreviewStates<OudsButton.State>(columnCount = 2) {
+                OudsButton(nullableIcon = icon, nullableLabel = label, onClick = {}, hierarchy = hierarchy)
             }
         }
         if (onColoredBox) {
@@ -678,19 +705,10 @@ internal fun PreviewOudsButton(
 
 internal data class OudsButtonPreviewParameter(
     val hierarchy: OudsButton.Hierarchy,
-    val hasText: Boolean,
+    val hasLabel: Boolean,
     val hasIcon: Boolean,
     val onColoredBox: Boolean = false
-) {
-    val states: List<OudsButton.State> = listOf(
-        OudsButton.State.Enabled,
-        OudsButton.State.Hovered,
-        OudsButton.State.Pressed,
-        OudsButton.State.Loading,
-        OudsButton.State.Disabled,
-        OudsButton.State.Focused
-    )
-}
+)
 
 internal class OudsButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 
@@ -698,13 +716,11 @@ private val previewParameterValues: List<OudsButtonPreviewParameter>
     get() = buildList {
         OudsButton.Hierarchy.entries.forEach { hierarchy ->
             val parameters = listOf(
-                OudsButtonPreviewParameter(hierarchy, hasText = true, hasIcon = false),
-                OudsButtonPreviewParameter(hierarchy, hasText = true, hasIcon = true),
-                OudsButtonPreviewParameter(hierarchy, hasText = false, hasIcon = true),
+                OudsButtonPreviewParameter(hierarchy, hasLabel = true, hasIcon = false),
+                OudsButtonPreviewParameter(hierarchy, hasLabel = true, hasIcon = true),
+                OudsButtonPreviewParameter(hierarchy, hasLabel = false, hasIcon = true),
             )
             addAll(parameters)
-            if (hierarchy != OudsButton.Hierarchy.Negative) {
-                addAll(parameters.map { it.copy(onColoredBox = true) })
-            }
+            addAll(parameters.map { it.copy(onColoredBox = true) })
         }
     }

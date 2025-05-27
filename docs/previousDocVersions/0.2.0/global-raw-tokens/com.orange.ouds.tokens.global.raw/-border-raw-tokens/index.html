@@ -1,0 +1,524 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>BorderRawTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.tokens.global.raw/-border-raw-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0">0.2.0</div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+    <div><a href="index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.2.0</a></div>
+    <div><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.1.0</a></div>
+  </div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":global-raw-tokens/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":global-raw-tokens/release" data-filter=":global-raw-tokens/release">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="global-raw-tokens::com.orange.ouds.tokens.global.raw/BorderRawTokens///PointingToDeclaration//-588012478">
+  <div class="breadcrumbs"><a href="../../index.html">global-raw-tokens</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.tokens.global.raw</a><span class="delimiter">/</span><span class="current">BorderRawTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Border</span><wbr><span>Raw</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">BorderRawTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-220066781%2FProperties%2F-588012478" anchor-label="borderBase" id="-220066781%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-base.html"><span>border</span><wbr><span><span>Base</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-220066781%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-base.html">borderBase</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">4</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="836408872%2FProperties%2F-588012478" anchor-label="borderRadius0" id="836408872%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius0.html"><span>border</span><wbr><span><span>Radius0</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="836408872%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius0.html">borderRadius0</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1168861383%2FProperties%2F-588012478" anchor-label="borderRadius100" id="1168861383%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius100.html"><span>border</span><wbr><span><span>Radius100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1168861383%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius100.html">borderRadius100</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1681964172%2FProperties%2F-588012478" anchor-label="borderRadius150" id="1681964172%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius150.html"><span>border</span><wbr><span><span>Radius150</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1681964172%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius150.html">borderRadius150</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="914124838%2FProperties%2F-588012478" anchor-label="borderRadius200" id="914124838%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius200.html"><span>border</span><wbr><span><span>Radius200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="914124838%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius200.html">borderRadius200</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1725126047%2FProperties%2F-588012478" anchor-label="borderRadius25" id="1725126047%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius25.html"><span>border</span><wbr><span><span>Radius25</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1725126047%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius25.html">borderRadius25</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="659388293%2FProperties%2F-588012478" anchor-label="borderRadius300" id="659388293%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius300.html"><span>border</span><wbr><span><span>Radius300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="659388293%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius300.html">borderRadius300</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="404651748%2FProperties%2F-588012478" anchor-label="borderRadius400" id="404651748%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius400.html"><span>border</span><wbr><span><span>Radius400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="404651748%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius400.html">borderRadius400</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="159901767%2FProperties%2F-588012478" anchor-label="borderRadius50" id="159901767%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius50.html"><span>border</span><wbr><span><span>Radius50</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="159901767%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius50.html">borderRadius50</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="149915203%2FProperties%2F-588012478" anchor-label="borderRadius500" id="149915203%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius500.html"><span>border</span><wbr><span><span>Radius500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="149915203%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius500.html">borderRadius500</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-104821342%2FProperties%2F-588012478" anchor-label="borderRadius600" id="-104821342%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius600.html"><span>border</span><wbr><span><span>Radius600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-104821342%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius600.html">borderRadius600</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2056738460%2FProperties%2F-588012478" anchor-label="borderRadius75" id="-2056738460%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius75.html"><span>border</span><wbr><span><span>Radius75</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2056738460%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius75.html">borderRadius75</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-614294432%2FProperties%2F-588012478" anchor-label="borderRadius800" id="-614294432%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius800.html"><span>border</span><wbr><span><span>Radius800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-614294432%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius800.html">borderRadius800</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="663879426%2FProperties%2F-588012478" anchor-label="borderRadius9999" id="663879426%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius9999.html"><span>border</span><wbr><span><span>Radius9999</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="663879426%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-radius9999.html">borderRadius9999</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">2000.0f</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-848824508%2FProperties%2F-588012478" anchor-label="borderStyleDashed" id="-848824508%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-style-dashed.html"><span>border</span><wbr><span>Style</span><wbr><span><span>Dashed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-848824508%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-style-dashed.html">borderStyleDashed</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1240831723%2FProperties%2F-588012478" anchor-label="borderStyleDotted" id="1240831723%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-style-dotted.html"><span>border</span><wbr><span>Style</span><wbr><span><span>Dotted</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1240831723%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-style-dotted.html">borderStyleDotted</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-681114723%2FProperties%2F-588012478" anchor-label="borderStyleNone" id="-681114723%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-style-none.html"><span>border</span><wbr><span>Style</span><wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-681114723%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-style-none.html">borderStyleNone</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1578780250%2FProperties%2F-588012478" anchor-label="borderStyleSolid" id="1578780250%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-style-solid.html"><span>border</span><wbr><span>Style</span><wbr><span><span>Solid</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1578780250%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-style-solid.html">borderStyleSolid</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-391723990%2FProperties%2F-588012478" anchor-label="borderWidth0" id="-391723990%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width0.html"><span>border</span><wbr><span><span>Width0</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-391723990%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-width0.html">borderWidth0</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2049187401%2FProperties%2F-588012478" anchor-label="borderWidth100" id="2049187401%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width100.html"><span>border</span><wbr><span><span>Width100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2049187401%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-width100.html">borderWidth100</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-167452826%2FProperties%2F-588012478" anchor-label="borderWidth125" id="-167452826%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width125.html"><span>border</span><wbr><span><span>Width125</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-167452826%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-width125.html">borderWidth125</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1732677106%2FProperties%2F-588012478" anchor-label="borderWidth150" id="-1732677106%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width150.html"><span>border</span><wbr><span><span>Width150</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1732677106%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-width150.html">borderWidth150</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1794450856%2FProperties%2F-588012478" anchor-label="borderWidth200" id="1794450856%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width200.html"><span>border</span><wbr><span><span>Width200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1794450856%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-width200.html">borderWidth200</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1987254307%2FProperties%2F-588012478" anchor-label="borderWidth25" id="-1987254307%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width25.html"><span>border</span><wbr><span><span>Width25</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1987254307%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-width25.html">borderWidth25</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="742488709%2FProperties%2F-588012478" anchor-label="borderWidth50" id="742488709%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width50.html"><span>border</span><wbr><span><span>Width50</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="742488709%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-width50.html">borderWidth50</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1474151518%2FProperties%2F-588012478" anchor-label="borderWidth75" id="-1474151518%2FProperties%2F-588012478" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width75.html"><span>border</span><wbr><span><span>Width75</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1474151518%2FProperties%2F-588012478"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="border-width75.html">borderWidth75</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>Copyright © Orange 2024</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

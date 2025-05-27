@@ -1,0 +1,1293 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OrangeColorDecorativeSemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.orange.tokens.semantic/-orange-color-decorative-semantic-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0">0.2.0</div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+    <div><a href="index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.2.0</a></div>
+    <div><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.1.0</a></div>
+  </div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":theme-orange/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-orange/release" data-filter=":theme-orange/release">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-orange::com.orange.ouds.theme.orange.tokens.semantic/OrangeColorDecorativeSemanticTokens///PointingToDeclaration//558520189">
+  <div class="breadcrumbs"><a href="../../index.html">theme-orange</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.orange.tokens.semantic</a><span class="delimiter">/</span><span class="current">OrangeColorDecorativeSemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Orange</span><wbr><span>Color</span><wbr><span>Decorative</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">OrangeColorDecorativeSemanticTokens</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>decorativeAccent1DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent1EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent1MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent1DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent1EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent1MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent2DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent2EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent2MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent2DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent2EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent2MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent3DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent3EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmber500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent3MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent3DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent3EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmber500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent3MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent4DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent4EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent4MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent4DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent4EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent4MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent5DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent5EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent5MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent5DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent5EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeAccent5MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeBrandPrimaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeBrandSecondaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeBrandTertiaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeBrandPrimaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeBrandSecondaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeBrandTertiaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralEmphasizedHigherLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray640<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralEmphasizedLowLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralEmphasizedLowerLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray320<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralEmphasizedLowestLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray240<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralEmphasizedHigherDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray640<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralEmphasizedLowDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralEmphasizedLowerDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray320<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralEmphasizedLowestDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray240<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedHighLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedHigherLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedHighestLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray960<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedLowLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray240<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedLowerLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedLowestLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray80<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedMediumLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray320<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedHighDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedHigherDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedHighestDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray960<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedLowDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray240<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedLowerDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedLowestDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray80<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeNeutralMutedMediumDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray320<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint100Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint200Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint300Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint400Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint500Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint600Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach600<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint700Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint800Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint900Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach900<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint100Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint200Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint300Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint400Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint500Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint600Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach600<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint700Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint800Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>decorativeSkinTint900Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach900</span></span><span class="token punctuation">)</span> : <a href="../../../theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-color-decorative-semantic-tokens/index.html">OudsColorDecorativeSemanticTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="243224531%2FConstructors%2F558520189" anchor-label="OrangeColorDecorativeSemanticTokens" id="243224531%2FConstructors%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-orange-color-decorative-semantic-tokens.html"><span>Orange</span><wbr><span>Color</span><wbr><span>Decorative</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="243224531%2FConstructors%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">decorativeAccent1DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald500<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent1EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald700<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent1MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent1DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald500<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent1EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald700<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent1MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeEmerald200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent2DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky400<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent2EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky700<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent2MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent2DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky400<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent2EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky700<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent2MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeSky200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent3DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun500<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent3EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmber500<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent3MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent3DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun500<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent3EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmber500<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent3MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent4DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst400<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent4EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst800<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent4MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent4DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst400<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent4EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst800<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent4MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent5DefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent5EmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink300<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent5MutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink100<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent5DefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink200<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent5EmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink300<span class="token punctuation">, </span></span><span class="parameter ">decorativeAccent5MutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeShockingPink100<span class="token punctuation">, </span></span><span class="parameter ">decorativeBrandPrimaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter ">decorativeBrandSecondaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">decorativeBrandTertiaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter ">decorativeBrandPrimaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter ">decorativeBrandSecondaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">decorativeBrandTertiaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralEmphasizedHigherLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray640<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralEmphasizedLowLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray400<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralEmphasizedLowerLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray320<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralEmphasizedLowestLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray240<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralEmphasizedHigherDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray640<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralEmphasizedLowDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray400<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralEmphasizedLowerDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray320<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralEmphasizedLowestDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDarkGray240<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedHighLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray400<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedHigherLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray800<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedHighestLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray960<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedLowLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray240<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedLowerLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedLowestLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray80<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedMediumLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray320<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedHighDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray400<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedHigherDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray800<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedHighestDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray960<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedLowDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray240<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedLowerDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedLowestDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray80<span class="token punctuation">, </span></span><span class="parameter ">decorativeNeutralMutedMediumDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray320<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint100Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach100<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint200Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach200<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint300Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach300<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint400Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach400<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint500Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach500<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint600Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach600<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint700Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach700<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint800Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach800<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint900Light<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach900<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint100Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach100<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint200Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach200<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint300Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach300<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint400Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach400<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint500Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach500<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint600Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach600<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint700Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach700<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint800Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach800<span class="token punctuation">, </span></span><span class="parameter ">decorativeSkinTint900Dark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeDeepPeach900</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="475002697%2FProperties%2F558520189" anchor-label="decorativeAccent1DefaultDark" id="475002697%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent1-default-dark.html"><span>decorative</span><wbr><span>Accent1Default</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="475002697%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent1-default-dark.html">decorativeAccent1DefaultDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="400124261%2FProperties%2F558520189" anchor-label="decorativeAccent1DefaultLight" id="400124261%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent1-default-light.html"><span>decorative</span><wbr><span>Accent1Default</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="400124261%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent1-default-light.html">decorativeAccent1DefaultLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1597600482%2FProperties%2F558520189" anchor-label="decorativeAccent1EmphasizedDark" id="1597600482%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent1-emphasized-dark.html"><span>decorative</span><wbr><span>Accent1Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1597600482%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent1-emphasized-dark.html">decorativeAccent1EmphasizedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="840917228%2FProperties%2F558520189" anchor-label="decorativeAccent1EmphasizedLight" id="840917228%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent1-emphasized-light.html"><span>decorative</span><wbr><span>Accent1Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="840917228%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent1-emphasized-light.html">decorativeAccent1EmphasizedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1215711519%2FProperties%2F558520189" anchor-label="decorativeAccent1MutedDark" id="1215711519%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent1-muted-dark.html"><span>decorative</span><wbr><span>Accent1Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1215711519%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent1-muted-dark.html">decorativeAccent1MutedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1887261263%2FProperties%2F558520189" anchor-label="decorativeAccent1MutedLight" id="1887261263%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent1-muted-light.html"><span>decorative</span><wbr><span>Accent1Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1887261263%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent1-muted-light.html">decorativeAccent1MutedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="804768458%2FProperties%2F558520189" anchor-label="decorativeAccent2DefaultDark" id="804768458%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent2-default-dark.html"><span>decorative</span><wbr><span>Accent2Default</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="804768458%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent2-default-dark.html">decorativeAccent2DefaultDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2032928260%2FProperties%2F558520189" anchor-label="decorativeAccent2DefaultLight" id="2032928260%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent2-default-light.html"><span>decorative</span><wbr><span>Accent2Default</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2032928260%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent2-default-light.html">decorativeAccent2DefaultLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1235786815%2FProperties%2F558520189" anchor-label="decorativeAccent2EmphasizedDark" id="-1235786815%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent2-emphasized-dark.html"><span>decorative</span><wbr><span>Accent2Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1235786815%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent2-emphasized-dark.html">decorativeAccent2EmphasizedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1094743059%2FProperties%2F558520189" anchor-label="decorativeAccent2EmphasizedLight" id="-1094743059%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent2-emphasized-light.html"><span>decorative</span><wbr><span>Accent2Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1094743059%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent2-emphasized-light.html">decorativeAccent2EmphasizedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1353774880%2FProperties%2F558520189" anchor-label="decorativeAccent2MutedDark" id="-1353774880%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent2-muted-dark.html"><span>decorative</span><wbr><span>Accent2Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1353774880%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent2-muted-dark.html">decorativeAccent2MutedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-457405778%2FProperties%2F558520189" anchor-label="decorativeAccent2MutedLight" id="-457405778%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent2-muted-light.html"><span>decorative</span><wbr><span>Accent2Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-457405778%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent2-muted-light.html">decorativeAccent2MutedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1134534219%2FProperties%2F558520189" anchor-label="decorativeAccent3DefaultDark" id="1134534219%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent3-default-dark.html"><span>decorative</span><wbr><span>Accent3Default</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1134534219%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent3-default-dark.html">decorativeAccent3DefaultDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-629235037%2FProperties%2F558520189" anchor-label="decorativeAccent3DefaultLight" id="-629235037%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent3-default-light.html"><span>decorative</span><wbr><span>Accent3Default</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-629235037%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent3-default-light.html">decorativeAccent3DefaultLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="225793184%2FProperties%2F558520189" anchor-label="decorativeAccent3EmphasizedDark" id="225793184%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent3-emphasized-dark.html"><span>decorative</span><wbr><span>Accent3Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="225793184%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent3-emphasized-dark.html">decorativeAccent3EmphasizedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1264563950%2FProperties%2F558520189" anchor-label="decorativeAccent3EmphasizedLight" id="1264563950%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent3-emphasized-light.html"><span>decorative</span><wbr><span>Accent3Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1264563950%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent3-emphasized-light.html">decorativeAccent3EmphasizedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="371706017%2FProperties%2F558520189" anchor-label="decorativeAccent3MutedDark" id="371706017%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent3-muted-dark.html"><span>decorative</span><wbr><span>Accent3Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="371706017%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent3-muted-dark.html">decorativeAccent3MutedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1492894477%2FProperties%2F558520189" anchor-label="decorativeAccent3MutedLight" id="1492894477%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent3-muted-light.html"><span>decorative</span><wbr><span>Accent3Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1492894477%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent3-muted-light.html">decorativeAccent3MutedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1464299980%2FProperties%2F558520189" anchor-label="decorativeAccent4DefaultDark" id="1464299980%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent4-default-dark.html"><span>decorative</span><wbr><span>Accent4Default</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1464299980%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent4-default-dark.html">decorativeAccent4DefaultDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1003568962%2FProperties%2F558520189" anchor-label="decorativeAccent4DefaultLight" id="1003568962%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent4-default-light.html"><span>decorative</span><wbr><span>Accent4Default</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1003568962%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent4-default-light.html">decorativeAccent4DefaultLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1687373183%2FProperties%2F558520189" anchor-label="decorativeAccent4EmphasizedDark" id="1687373183%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent4-emphasized-dark.html"><span>decorative</span><wbr><span>Accent4Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1687373183%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent4-emphasized-dark.html">decorativeAccent4EmphasizedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-671096337%2FProperties%2F558520189" anchor-label="decorativeAccent4EmphasizedLight" id="-671096337%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent4-emphasized-light.html"><span>decorative</span><wbr><span>Accent4Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-671096337%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent4-emphasized-light.html">decorativeAccent4EmphasizedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2097186914%2FProperties%2F558520189" anchor-label="decorativeAccent4MutedDark" id="2097186914%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent4-muted-dark.html"><span>decorative</span><wbr><span>Accent4Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2097186914%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent4-muted-dark.html">decorativeAccent4MutedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-851772564%2FProperties%2F558520189" anchor-label="decorativeAccent4MutedLight" id="-851772564%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent4-muted-light.html"><span>decorative</span><wbr><span>Accent4Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-851772564%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent4-muted-light.html">decorativeAccent4MutedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1794065741%2FProperties%2F558520189" anchor-label="decorativeAccent5DefaultDark" id="1794065741%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent5-default-dark.html"><span>decorative</span><wbr><span>Accent5Default</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1794065741%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent5-default-dark.html">decorativeAccent5DefaultDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1658594335%2FProperties%2F558520189" anchor-label="decorativeAccent5DefaultLight" id="-1658594335%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent5-default-light.html"><span>decorative</span><wbr><span>Accent5Default</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1658594335%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent5-default-light.html">decorativeAccent5DefaultLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1146014114%2FProperties%2F558520189" anchor-label="decorativeAccent5EmphasizedDark" id="-1146014114%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent5-emphasized-dark.html"><span>decorative</span><wbr><span>Accent5Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1146014114%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent5-emphasized-dark.html">decorativeAccent5EmphasizedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1688210672%2FProperties%2F558520189" anchor-label="decorativeAccent5EmphasizedLight" id="1688210672%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent5-emphasized-light.html"><span>decorative</span><wbr><span>Accent5Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1688210672%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent5-emphasized-light.html">decorativeAccent5EmphasizedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-472299485%2FProperties%2F558520189" anchor-label="decorativeAccent5MutedDark" id="-472299485%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent5-muted-dark.html"><span>decorative</span><wbr><span>Accent5Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-472299485%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent5-muted-dark.html">decorativeAccent5MutedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1098527691%2FProperties%2F558520189" anchor-label="decorativeAccent5MutedLight" id="1098527691%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-accent5-muted-light.html"><span>decorative</span><wbr><span>Accent5Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1098527691%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-accent5-muted-light.html">decorativeAccent5MutedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1938376440%2FProperties%2F558520189" anchor-label="decorativeBrandPrimaryDark" id="-1938376440%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-brand-primary-dark.html"><span>decorative</span><wbr><span>Brand</span><wbr><span>Primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1938376440%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-brand-primary-dark.html">decorativeBrandPrimaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1400184954%2FProperties%2F558520189" anchor-label="decorativeBrandPrimaryLight" id="-1400184954%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-brand-primary-light.html"><span>decorative</span><wbr><span>Brand</span><wbr><span>Primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1400184954%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-brand-primary-light.html">decorativeBrandPrimaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1466398230%2FProperties%2F558520189" anchor-label="decorativeBrandSecondaryDark" id="1466398230%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-brand-secondary-dark.html"><span>decorative</span><wbr><span>Brand</span><wbr><span>Secondary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1466398230%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-brand-secondary-dark.html">decorativeBrandSecondaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1068614712%2FProperties%2F558520189" anchor-label="decorativeBrandSecondaryLight" id="1068614712%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-brand-secondary-light.html"><span>decorative</span><wbr><span>Brand</span><wbr><span>Secondary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1068614712%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-brand-secondary-light.html">decorativeBrandSecondaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1544308562%2FProperties%2F558520189" anchor-label="decorativeBrandTertiaryDark" id="1544308562%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-brand-tertiary-dark.html"><span>decorative</span><wbr><span>Brand</span><wbr><span>Tertiary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1544308562%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-brand-tertiary-dark.html">decorativeBrandTertiaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-811132292%2FProperties%2F558520189" anchor-label="decorativeBrandTertiaryLight" id="-811132292%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-brand-tertiary-light.html"><span>decorative</span><wbr><span>Brand</span><wbr><span>Tertiary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-811132292%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-brand-tertiary-light.html">decorativeBrandTertiaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="906381811%2FProperties%2F558520189" anchor-label="decorativeNeutralEmphasizedHigherDark" id="906381811%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-emphasized-higher-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span>Higher</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="906381811%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-emphasized-higher-dark.html">decorativeNeutralEmphasizedHigherDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="887974907%2FProperties%2F558520189" anchor-label="decorativeNeutralEmphasizedHigherLight" id="887974907%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-emphasized-higher-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span>Higher</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="887974907%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-emphasized-higher-light.html">decorativeNeutralEmphasizedHigherLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1144417416%2FProperties%2F558520189" anchor-label="decorativeNeutralEmphasizedLowDark" id="-1144417416%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-emphasized-low-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span>Low</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1144417416%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-emphasized-low-dark.html">decorativeNeutralEmphasizedLowDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1005560235%2FProperties%2F558520189" anchor-label="decorativeNeutralEmphasizedLowerDark" id="1005560235%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-emphasized-lower-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span>Lower</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1005560235%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-emphasized-lower-dark.html">decorativeNeutralEmphasizedLowerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-332461245%2FProperties%2F558520189" anchor-label="decorativeNeutralEmphasizedLowerLight" id="-332461245%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-emphasized-lower-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span>Lower</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-332461245%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-emphasized-lower-light.html">decorativeNeutralEmphasizedLowerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1423495952%2FProperties%2F558520189" anchor-label="decorativeNeutralEmphasizedLowestDark" id="-1423495952%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-emphasized-lowest-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span>Lowest</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1423495952%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-emphasized-lowest-dark.html">decorativeNeutralEmphasizedLowestDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1676208286%2FProperties%2F558520189" anchor-label="decorativeNeutralEmphasizedLowestLight" id="1676208286%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-emphasized-lowest-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span>Lowest</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1676208286%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-emphasized-lowest-light.html">decorativeNeutralEmphasizedLowestLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1737708310%2FProperties%2F558520189" anchor-label="decorativeNeutralEmphasizedLowLight" id="1737708310%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-emphasized-low-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span>Low</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1737708310%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-emphasized-low-light.html">decorativeNeutralEmphasizedLowLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1253954627%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedHighDark" id="-1253954627%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-high-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>High</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1253954627%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-high-dark.html">decorativeNeutralMutedHighDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1180484432%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedHigherDark" id="-1180484432%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-higher-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Higher</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1180484432%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-higher-dark.html">decorativeNeutralMutedHigherDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="619630814%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedHigherLight" id="619630814%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-higher-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Higher</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="619630814%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-higher-light.html">decorativeNeutralMutedHigherLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-471403893%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedHighestDark" id="-471403893%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-highest-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Highest</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-471403893%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-highest-dark.html">decorativeNeutralMutedHighestDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1126291043%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedHighestLight" id="1126291043%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-highest-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Highest</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1126291043%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-highest-light.html">decorativeNeutralMutedHighestLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1657945231%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedHighLight" id="-1657945231%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-high-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>High</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1657945231%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-high-light.html">decorativeNeutralMutedHighLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-709959205%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedLowDark" id="-709959205%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-low-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Low</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-709959205%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-low-dark.html">decorativeNeutralMutedLowDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1908073294%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedLowerDark" id="1908073294%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-lower-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Lower</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1908073294%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-lower-dark.html">decorativeNeutralMutedLowerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1875639808%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedLowerLight" id="1875639808%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-lower-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Lower</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1875639808%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-lower-light.html">decorativeNeutralMutedLowerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="784605101%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedLowestDark" id="784605101%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-lowest-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Lowest</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="784605101%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-lowest-dark.html">decorativeNeutralMutedLowestDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1407864193%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedLowestLight" id="1407864193%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-lowest-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Lowest</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1407864193%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-lowest-light.html">decorativeNeutralMutedLowestLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1973956333%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedLowLight" id="-1973956333%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-low-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Low</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1973956333%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-low-light.html">decorativeNeutralMutedLowLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="557195466%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedMediumDark" id="557195466%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-medium-dark.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Medium</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="557195466%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-medium-dark.html">decorativeNeutralMutedMediumDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1346867196%2FProperties%2F558520189" anchor-label="decorativeNeutralMutedMediumLight" id="-1346867196%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-neutral-muted-medium-light.html"><span>decorative</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span>Medium</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1346867196%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-neutral-muted-medium-light.html">decorativeNeutralMutedMediumLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-466209678%2FProperties%2F558520189" anchor-label="decorativeSkinTint100Dark" id="-466209678%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint100-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint100Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-466209678%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint100-dark.html">decorativeSkinTint100Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1287311708%2FProperties%2F558520189" anchor-label="decorativeSkinTint100Light" id="1287311708%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint100-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint100Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1287311708%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint100-light.html">decorativeSkinTint100Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1818653777%2FProperties%2F558520189" anchor-label="decorativeSkinTint200Dark" id="1818653777%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint200-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint200Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1818653777%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint200-dark.html">decorativeSkinTint200Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-896365219%2FProperties%2F558520189" anchor-label="decorativeSkinTint200Light" id="-896365219%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint200-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint200Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-896365219%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint200-light.html">decorativeSkinTint200Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-191450064%2FProperties%2F558520189" anchor-label="decorativeSkinTint300Dark" id="-191450064%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint300-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint300Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-191450064%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint300-dark.html">decorativeSkinTint300Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1214925150%2FProperties%2F558520189" anchor-label="decorativeSkinTint300Light" id="1214925150%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint300-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint300Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1214925150%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint300-light.html">decorativeSkinTint300Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2093413391%2FProperties%2F558520189" anchor-label="decorativeSkinTint400Dark" id="2093413391%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint400-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint400Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2093413391%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint400-dark.html">decorativeSkinTint400Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-968751777%2FProperties%2F558520189" anchor-label="decorativeSkinTint400Light" id="-968751777%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint400-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint400Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-968751777%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint400-light.html">decorativeSkinTint400Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="83309550%2FProperties%2F558520189" anchor-label="decorativeSkinTint500Dark" id="83309550%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint500-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint500Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="83309550%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint500-dark.html">decorativeSkinTint500Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1142538592%2FProperties%2F558520189" anchor-label="decorativeSkinTint500Light" id="1142538592%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint500-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint500Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1142538592%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint500-light.html">decorativeSkinTint500Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1926794291%2FProperties%2F558520189" anchor-label="decorativeSkinTint600Dark" id="-1926794291%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint600-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint600Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1926794291%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint600-dark.html">decorativeSkinTint600Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1041138335%2FProperties%2F558520189" anchor-label="decorativeSkinTint600Light" id="-1041138335%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint600-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint600Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1041138335%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint600-light.html">decorativeSkinTint600Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="358069164%2FProperties%2F558520189" anchor-label="decorativeSkinTint700Dark" id="358069164%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint700-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint700Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="358069164%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint700-dark.html">decorativeSkinTint700Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1070152034%2FProperties%2F558520189" anchor-label="decorativeSkinTint700Light" id="1070152034%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint700-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint700Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1070152034%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint700-light.html">decorativeSkinTint700Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1652034677%2FProperties%2F558520189" anchor-label="decorativeSkinTint800Dark" id="-1652034677%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint800-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint800Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1652034677%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint800-dark.html">decorativeSkinTint800Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1113524893%2FProperties%2F558520189" anchor-label="decorativeSkinTint800Light" id="-1113524893%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint800-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint800Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1113524893%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint800-light.html">decorativeSkinTint800Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="632828778%2FProperties%2F558520189" anchor-label="decorativeSkinTint900Dark" id="632828778%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint900-dark.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint900Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="632828778%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint900-dark.html">decorativeSkinTint900Dark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="997765476%2FProperties%2F558520189" anchor-label="decorativeSkinTint900Light" id="997765476%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="decorative-skin-tint900-light.html"><span>decorative</span><wbr><span>Skin</span><wbr><span><span>Tint900Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="997765476%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="decorative-skin-tint900-light.html">decorativeSkinTint900Light</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>Copyright © Orange 2024</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

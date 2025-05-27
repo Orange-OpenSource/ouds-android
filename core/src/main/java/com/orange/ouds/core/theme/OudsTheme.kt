@@ -20,26 +20,29 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.platform.LocalContext
+import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
 
-private val LocalDarkThemeEnabled = staticCompositionLocalOf<Boolean> { missingCompositionLocalError("LocalDarkThemeEnabled") }
-private val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
-private val LocalLightColorScheme = compositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalLightColorScheme") }
-private val LocalDarkColorScheme = compositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalDarkColorScheme") }
-private val LocalMaterialLightColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialLightColorScheme") }
-private val LocalMaterialDarkColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialDarkColorScheme") }
-private val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
-private val LocalElevations = staticCompositionLocalOf<OudsElevations> { missingCompositionLocalError("LocalElevations") }
-private val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
-private val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
-private val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
-private val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
-private val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingCompositionLocalError("LocalSpaces") }
-private val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
+internal val LocalDarkThemeEnabled = staticCompositionLocalOf<Boolean> { missingCompositionLocalError("LocalDarkThemeEnabled") }
+internal val LocalHighContrastModeEnabled = staticCompositionLocalOf<Boolean> { missingCompositionLocalError("LocalHighContrastModeEnabled") }
+internal val LocalColorScheme = staticCompositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalColorScheme") }
+internal val LocalLightColorScheme = compositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalLightColorScheme") }
+internal val LocalDarkColorScheme = compositionLocalOf<OudsColorScheme> { missingCompositionLocalError("LocalDarkColorScheme") }
+internal val LocalMaterialLightColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialLightColorScheme") }
+internal val LocalMaterialDarkColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialDarkColorScheme") }
+internal val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
+internal val LocalElevations = staticCompositionLocalOf<OudsElevations> { missingCompositionLocalError("LocalElevations") }
+internal val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
+internal val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
+internal val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
+internal val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
+internal val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingCompositionLocalError("LocalSpaces") }
+internal val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 internal val LocalColoredBox = staticCompositionLocalOf { false }
 internal val LocalUseMonoComponents = staticCompositionLocalOf { false }
 
@@ -118,30 +121,33 @@ fun OudsTheme(
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkThemeEnabled) themeContract.colorTokens.darkColorScheme else themeContract.colorTokens.lightColorScheme
-    val materialColorScheme = if (darkThemeEnabled) themeContract.colorTokens.materialDarkColorScheme else themeContract.colorTokens.materialLightColorScheme
-    val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
+    with(themeContract) {
+        val colorScheme = if (darkThemeEnabled) colorTokens.darkColorScheme else colorTokens.lightColorScheme
+        val materialColorScheme = if (darkThemeEnabled) materialColorTokens.materialDarkColorScheme else materialColorTokens.materialLightColorScheme
+        val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
 
-    CompositionLocalProvider(
-        LocalDarkThemeEnabled provides darkThemeEnabled,
-        LocalColorScheme provides colorScheme,
-        LocalLightColorScheme provides themeContract.colorTokens.lightColorScheme,
-        LocalDarkColorScheme provides themeContract.colorTokens.darkColorScheme,
-        LocalMaterialLightColorScheme provides themeContract.colorTokens.materialLightColorScheme,
-        LocalMaterialDarkColorScheme provides themeContract.colorTokens.materialDarkColorScheme,
-        LocalBorders provides themeContract.borderTokens.getBorders(),
-        LocalElevations provides themeContract.elevationTokens.getElevation(),
-        LocalTypography provides themeContract.fontTokens.getTypography(themeContract.fontFamily, windowWidthSizeClass),
-        LocalGrids provides themeContract.gridTokens.getGrids(windowWidthSizeClass),
-        LocalOpacities provides themeContract.opacityTokens.getOpacity(),
-        LocalSizes provides themeContract.sizeTokens.getSizes(windowWidthSizeClass),
-        LocalSpaces provides themeContract.spaceTokens.getSpaces(windowWidthSizeClass),
-        LocalComponentsTokens provides themeContract.componentsTokens,
-    ) {
-        MaterialTheme(
-            colorScheme = materialColorScheme,
-            content = content
-        )
+        CompositionLocalProvider(
+            LocalDarkThemeEnabled provides darkThemeEnabled,
+            LocalHighContrastModeEnabled provides LocalContext.current.isHighContrastModeEnabled(),
+            LocalColorScheme provides colorScheme,
+            LocalLightColorScheme provides colorTokens.lightColorScheme,
+            LocalDarkColorScheme provides colorTokens.darkColorScheme,
+            LocalMaterialLightColorScheme provides materialColorTokens.materialLightColorScheme,
+            LocalMaterialDarkColorScheme provides materialColorTokens.materialDarkColorScheme,
+            LocalBorders provides borderTokens.getBorders(),
+            LocalElevations provides elevationTokens.getElevation(),
+            LocalTypography provides fontTokens.getTypography(fontFamily, windowWidthSizeClass),
+            LocalGrids provides gridTokens.getGrids(windowWidthSizeClass),
+            LocalOpacities provides opacityTokens.getOpacity(),
+            LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),
+            LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),
+            LocalComponentsTokens provides componentsTokens,
+        ) {
+            MaterialTheme(
+                colorScheme = materialColorScheme,
+                content = content
+            )
+        }
     }
 }
 
@@ -172,4 +178,18 @@ fun OudsThemeTweak(tweak: OudsTheme.Tweak, content: @Composable () -> Unit) {
             content = content
         )
     }
+}
+
+/**
+ * This function is equivalent to [isSystemInDarkTheme] except it takes the OUDS theme setting into account instead of the system one.
+ *
+ * The OUDS theme can be inverted or forced to light or dark when calling [OudsThemeTweak] and the value returned by this method reflects that kind of change.
+ * If there is no call to [OudsThemeTweak] anywhere in the layout hierarchy, then this function returns the same value as [isSystemInDarkTheme].
+ *
+ * @return `true` if OUDS is considered to be in 'dark theme'.
+ */
+@Composable
+@ReadOnlyComposable
+fun isOudsInDarkTheme(): Boolean {
+    return LocalDarkThemeEnabled.current
 }

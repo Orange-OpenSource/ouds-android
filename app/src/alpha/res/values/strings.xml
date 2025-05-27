@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Software Name: OUDS Android
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
+
+<resources>
+    <!-- About -->
+    <string name="app_about_version_label" translatable="false">Alpha version %1$s (%2$d)</string>
+</resources>

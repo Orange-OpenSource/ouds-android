@@ -46,7 +46,8 @@ jobs:
       - name: Run instrumented tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: 35
+          arch: x86_64
           script: ./gradlew :core:connectedCheck
 
       - name: Run snapshot tests
@@ -109,12 +110,6 @@ jobs:
         with:
           name: theme-orange
           path: theme-orange/build/outputs/aar/*.aar
-
-      - name: Upload theme-white-label artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: theme-white-label
-          path: theme-white-label/build/outputs/aar/*.aar
 
   maven-central-release:
     runs-on: ubuntu-latest

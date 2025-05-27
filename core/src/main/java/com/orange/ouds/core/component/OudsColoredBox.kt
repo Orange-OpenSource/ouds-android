@@ -24,8 +24,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.extensions.filter
 import com.orange.ouds.core.theme.LocalColoredBox
 import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
@@ -33,7 +35,6 @@ import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
-import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 
@@ -43,9 +44,9 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
  * Moreover, the colors of several OUDS components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param color The background color.
- * @param modifier Modifier to be applied to the layout corresponding to the colored box.
- * @param contentAlignment The default alignment inside the colored box.
+ * @param color The background color of the colored box.
+ * @param modifier [Modifier] to be applied to the layout corresponding to the colored box.
+ * @param contentAlignment The default [Alignment] inside the colored box.
  * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.
  * @param content The content of this colored box.
  *
@@ -65,9 +66,7 @@ fun OudsColoredBox(
     ) {
         // Filter the background modifiers in order to force the background color
         // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
-        val filteredModifier = modifier.foldIn<Modifier>(Modifier) { result, element ->
-            if (element::class.simpleName != "BackgroundElement") result.then(element) else result
-        }
+        val filteredModifier = modifier.filter { it::class.simpleName != "BackgroundElement" }
         Box(
             modifier = Modifier
                 .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
@@ -84,7 +83,7 @@ fun OudsColoredBox(
 }
 
 /**
- * Contains classes to build an [com.orange.ouds.core.component.coloredbox.OudsColoredBox].
+ * Contains classes to build an [OudsColoredBox].
  */
 object OudsColoredBox {
 
@@ -106,7 +105,7 @@ object OudsColoredBox {
         StatusWarningEmphasized,
         StatusWarningMuted;
 
-        companion object {
+        private companion object {
 
             // This method is unused but it allows to be notified with a build error if surface key tokens are updated
             private fun fromKeyToken(keyToken: OudsColorKeyToken.Surface): Color {
@@ -188,7 +187,7 @@ private fun tweak(color: OudsColoredBox.Color): OudsTheme.Tweak {
 }
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) parameter: OudsColoredBox.Color) {
     PreviewOudsColoredBox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
@@ -208,9 +207,9 @@ internal fun PreviewOudsColoredBox(
                 text = parameter.name,
                 color = OudsTheme.colorScheme.content.default
             )
-            OudsButton(text = "OudsButton", onClick = {})
+            OudsButton(label = "OudsButton", onClick = {})
             OudsLink(
-                text = "Link",
+                label = "Link",
                 arrow = OudsLink.Arrow.Next,
                 onClick = { },
             )

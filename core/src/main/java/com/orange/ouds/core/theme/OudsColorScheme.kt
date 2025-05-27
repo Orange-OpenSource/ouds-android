@@ -21,6 +21,8 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
+import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 /**
@@ -89,6 +91,7 @@ data class OudsColorScheme(
         val emphasized: Color,
         val focus: Color,
         val focusInset: Color,
+        val muted: Color,
         val onBrand: OnBrand
     ) {
         data class OnBrand(
@@ -114,7 +117,6 @@ data class OudsColorScheme(
             val highlighted: Color,
             val hover: Color,
             val loading: Color,
-            val negative: Color,
             val pressed: Color
         )
 
@@ -128,7 +130,7 @@ data class OudsColorScheme(
 
         data class OnStatus(
             val emphasized: Color,
-            val emphasizedNeutral: Color,
+            val emphasizedAlt: Color,
             val muted: Color
         )
 
@@ -187,10 +189,27 @@ data class OudsColorScheme(
         )
 
         data class Neutral(
-            val default: Color,
-            val emphasized: Color,
-            val muted: Color
-        )
+            val emphasized: Emphasized,
+            val muted: Muted,
+        ) {
+
+            data class Emphasized(
+                val higher: Color,
+                val low: Color,
+                val lower: Color,
+                val lowest: Color
+            )
+
+            data class Muted(
+                val high: Color,
+                val higher: Color,
+                val highest: Color,
+                val low: Color,
+                val lower: Color,
+                val lowest: Color,
+                val medium: Color
+            )
+        }
 
         data class Skin(
             val tint100: Color,
@@ -280,12 +299,15 @@ data class OudsColorScheme(
             val white: White
         ) {
             data class Black(
+                val high: Color,
                 val higher: Color,
                 val highest: Color,
                 val low: Color,
                 val lower: Color,
                 val lowest: Color,
                 val medium: Color,
+                val mediumHigh: Color,
+                val mediumLow: Color,
                 val transparent: Color
             )
 
@@ -296,12 +318,15 @@ data class OudsColorScheme(
                 val low: Color,
                 val lower: Color,
                 val lowest: Color,
+                val medium: Color,
+                val mediumLow: Color,
                 val transparent: Color
             )
         }
 
         data class Positive(
             val default: Color,
+            val high: Color,
             val highest: Color,
             val low: Color,
             val lowest: Color
@@ -421,6 +446,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 emphasized = borderEmphasizedLight,
                 focus = borderFocusLight,
                 focusInset = borderFocusInsetLight,
+                muted = borderMutedLight,
                 onBrand = OudsColorScheme.Border.OnBrand(
                     primary = borderOnBrandPrimaryLight,
                 ),
@@ -434,7 +460,6 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 muted = contentMutedLight,
                 onAction = OudsColorScheme.Content.OnAction(
                     disabled = contentOnActionDisabledLight,
-                    negative = contentOnActionNegativeLight,
                     enabled = contentOnActionEnabledLight,
                     focus = contentOnActionFocusLight,
                     highlighted = contentOnActionHighlightedLight,
@@ -450,7 +475,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 ),
                 onStatus = OudsColorScheme.Content.OnStatus(
                     emphasized = contentOnStatusEmphasizedLight,
-                    emphasizedNeutral = contentOnStatusEmphasizedNeutralLight,
+                    emphasizedAlt = contentOnStatusEmphasizedAltLight,
                     muted = contentOnStatusMutedLight,
                 ),
                 status = OudsColorScheme.Content.Status(
@@ -494,9 +519,21 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                     tertiary = decorativeBrandTertiaryLight,
                 ),
                 neutral = OudsColorScheme.Decorative.Neutral(
-                    default = decorativeNeutralDefaultLight,
-                    emphasized = decorativeNeutralEmphasizedLight,
-                    muted = decorativeNeutralMutedLight,
+                    emphasized = OudsColorScheme.Decorative.Neutral.Emphasized(
+                        higher = decorativeNeutralEmphasizedHigherLight,
+                        low = decorativeNeutralEmphasizedLowLight,
+                        lower = decorativeNeutralEmphasizedLowerLight,
+                        lowest = decorativeNeutralEmphasizedLowestLight
+                    ),
+                    muted = OudsColorScheme.Decorative.Neutral.Muted(
+                        high = decorativeNeutralMutedHighLight,
+                        higher = decorativeNeutralMutedHigherLight,
+                        highest = decorativeNeutralMutedHighestLight,
+                        low = decorativeNeutralMutedLowLight,
+                        lower = decorativeNeutralMutedLowerLight,
+                        lowest = decorativeNeutralMutedLowestLight,
+                        medium = decorativeNeutralMutedMediumLight
+                    )
                 ),
                 skin = OudsColorScheme.Decorative.Skin(
                     tint100 = decorativeSkinTint100Light,
@@ -565,12 +602,15 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 ),
                 opacity = OudsColorScheme.Repository.Opacity(
                     black = OudsColorScheme.Repository.Opacity.Black(
+                        high = repositoryOpacityBlackHighLight,
                         higher = repositoryOpacityBlackHigherLight,
                         highest = repositoryOpacityBlackHighestLight,
                         low = repositoryOpacityBlackLowLight,
                         lower = repositoryOpacityBlackLowerLight,
                         lowest = repositoryOpacityBlackLowestLight,
                         medium = repositoryOpacityBlackMediumLight,
+                        mediumHigh = repositoryOpacityBlackMediumHighLight,
+                        mediumLow = repositoryOpacityBlackMediumLowLight,
                         transparent = repositoryOpacityBlackTransparentLight,
                     ),
                     info = repositoryOpacityInfoLight,
@@ -584,11 +624,14 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                         low = repositoryOpacityWhiteLowLight,
                         lower = repositoryOpacityWhiteLowerLight,
                         lowest = repositoryOpacityWhiteLowestLight,
+                        mediumLow = repositoryOpacityWhiteMediumLowLight,
+                        medium = repositoryOpacityWhiteMediumLight,
                         transparent = repositoryOpacityWhiteTransparentLight,
                     )
                 ),
                 positive = OudsColorScheme.Repository.Positive(
                     default = repositoryPositiveDefaultLight,
+                    high = repositoryPositiveHighLight,
                     highest = repositoryPositiveHighestLight,
                     low = repositoryPositiveLowLight,
                     lowest = repositoryPositiveLowestLight,
@@ -692,6 +735,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 emphasized = borderEmphasizedDark,
                 focus = borderFocusDark,
                 focusInset = borderFocusInsetDark,
+                muted = borderMutedDark,
                 onBrand = OudsColorScheme.Border.OnBrand(
                     primary = borderOnBrandPrimaryDark,
                 ),
@@ -705,7 +749,6 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 muted = contentMutedDark,
                 onAction = OudsColorScheme.Content.OnAction(
                     disabled = contentOnActionDisabledDark,
-                    negative = contentOnActionNegativeDark,
                     enabled = contentOnActionEnabledDark,
                     focus = contentOnActionFocusDark,
                     highlighted = contentOnActionHighlightedDark,
@@ -721,7 +764,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 ),
                 onStatus = OudsColorScheme.Content.OnStatus(
                     emphasized = contentOnStatusEmphasizedDark,
-                    emphasizedNeutral = contentOnStatusEmphasizedNeutralDark,
+                    emphasizedAlt = contentOnStatusEmphasizedAltDark,
                     muted = contentOnStatusMutedDark,
                 ),
                 status = OudsColorScheme.Content.Status(
@@ -765,9 +808,21 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                     tertiary = decorativeBrandTertiaryDark,
                 ),
                 neutral = OudsColorScheme.Decorative.Neutral(
-                    default = decorativeNeutralDefaultDark,
-                    emphasized = decorativeNeutralEmphasizedDark,
-                    muted = decorativeNeutralMutedDark,
+                    emphasized = OudsColorScheme.Decorative.Neutral.Emphasized(
+                        higher = decorativeNeutralEmphasizedHigherDark,
+                        low = decorativeNeutralEmphasizedLowDark,
+                        lower = decorativeNeutralEmphasizedLowerDark,
+                        lowest = decorativeNeutralEmphasizedLowestDark
+                    ),
+                    muted = OudsColorScheme.Decorative.Neutral.Muted(
+                        high = decorativeNeutralMutedHighDark,
+                        higher = decorativeNeutralMutedHigherDark,
+                        highest = decorativeNeutralMutedHighestDark,
+                        low = decorativeNeutralMutedLowDark,
+                        lower = decorativeNeutralMutedLowerDark,
+                        lowest = decorativeNeutralMutedLowestDark,
+                        medium = decorativeNeutralMutedMediumDark
+                    )
                 ),
                 skin = OudsColorScheme.Decorative.Skin(
                     tint100 = decorativeSkinTint100Dark,
@@ -837,12 +892,15 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 ),
                 opacity = OudsColorScheme.Repository.Opacity(
                     black = OudsColorScheme.Repository.Opacity.Black(
+                        high = repositoryOpacityBlackHighDark,
                         higher = repositoryOpacityBlackHigherDark,
                         highest = repositoryOpacityBlackHighestDark,
                         low = repositoryOpacityBlackLowDark,
                         lower = repositoryOpacityBlackLowerDark,
                         lowest = repositoryOpacityBlackLowestDark,
                         medium = repositoryOpacityBlackMediumDark,
+                        mediumHigh = repositoryOpacityBlackMediumHighDark,
+                        mediumLow = repositoryOpacityBlackMediumLowDark,
                         transparent = repositoryOpacityBlackTransparentDark,
                     ),
                     info = repositoryOpacityInfoDark,
@@ -856,6 +914,8 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                         low = repositoryOpacityWhiteLowDark,
                         lower = repositoryOpacityWhiteLowerDark,
                         lowest = repositoryOpacityWhiteLowestDark,
+                        mediumLow = repositoryOpacityWhiteMediumLowDark,
+                        medium = repositoryOpacityWhiteMediumDark,
                         transparent = repositoryOpacityWhiteTransparentDark,
                     ),
                 ),
@@ -863,6 +923,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                     default = repositoryPositiveDefaultDark,
                     highest = repositoryPositiveHighestDark,
                     low = repositoryPositiveLowDark,
+                    high = repositoryPositiveHighDark,
                     lowest = repositoryPositiveLowestDark,
                 ),
                 primary = OudsColorScheme.Repository.Primary(
@@ -972,6 +1033,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
             OudsColorKeyToken.Border.Emphasized -> emphasized
             OudsColorKeyToken.Border.Focus -> focus
             OudsColorKeyToken.Border.FocusInset -> focusInset
+            OudsColorKeyToken.Border.Muted -> muted
             OudsColorKeyToken.Border.OnBrand.Primary -> onBrand.primary
         }
     }
@@ -986,7 +1048,6 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
             OudsColorKeyToken.Content.Disabled -> disabled
             OudsColorKeyToken.Content.Muted -> muted
             OudsColorKeyToken.Content.OnAction.Disabled -> onAction.disabled
-            OudsColorKeyToken.Content.OnAction.Negative -> onAction.negative
             OudsColorKeyToken.Content.OnAction.Enabled -> onAction.enabled
             OudsColorKeyToken.Content.OnAction.Focus -> onAction.focus
             OudsColorKeyToken.Content.OnAction.Highlighted -> onAction.highlighted
@@ -996,7 +1057,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
             OudsColorKeyToken.Content.OnBrand.Primary -> onBrand.primary
             OudsColorKeyToken.Content.OnOverlay.Emphasized -> onOverlay.emphasized
             OudsColorKeyToken.Content.OnStatus.Emphasized -> onStatus.emphasized
-            OudsColorKeyToken.Content.OnStatus.EmphasizedNeutral -> onStatus.emphasizedNeutral
+            OudsColorKeyToken.Content.OnStatus.EmphasizedAlt -> onStatus.emphasizedAlt
             OudsColorKeyToken.Content.OnStatus.Muted -> onStatus.muted
             OudsColorKeyToken.Content.Status.Info -> status.info
             OudsColorKeyToken.Content.Status.Negative -> status.negative
@@ -1028,9 +1089,17 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Colo
             OudsColorKeyToken.Decorative.Brand.Primary -> brand.primary
             OudsColorKeyToken.Decorative.Brand.Secondary -> brand.secondary
             OudsColorKeyToken.Decorative.Brand.Tertiary -> brand.tertiary
-            OudsColorKeyToken.Decorative.Neutral.Default -> neutral.default
-            OudsColorKeyToken.Decorative.Neutral.Emphasized -> neutral.emphasized
-            OudsColorKeyToken.Decorative.Neutral.Muted -> neutral.muted
+            OudsColorKeyToken.Decorative.Neutral.Emphasized.Higher -> neutral.emphasized.higher
+            OudsColorKeyToken.Decorative.Neutral.Emphasized.Low -> neutral.emphasized.low
+            OudsColorKeyToken.Decorative.Neutral.Emphasized.Lower -> neutral.emphasized.lower
+            OudsColorKeyToken.Decorative.Neutral.Emphasized.Lowest -> neutral.emphasized.lowest
+            OudsColorKeyToken.Decorative.Neutral.Muted.High -> neutral.muted.high
+            OudsColorKeyToken.Decorative.Neutral.Muted.Higher -> neutral.muted.higher
+            OudsColorKeyToken.Decorative.Neutral.Muted.Highest -> neutral.muted.highest
+            OudsColorKeyToken.Decorative.Neutral.Muted.Low -> neutral.muted.low
+            OudsColorKeyToken.Decorative.Neutral.Muted.Lower -> neutral.muted.lower
+            OudsColorKeyToken.Decorative.Neutral.Muted.Lowest -> neutral.muted.lowest
+            OudsColorKeyToken.Decorative.Neutral.Muted.Medium -> neutral.muted.medium
             OudsColorKeyToken.Decorative.Skin.Tint100 -> skin.tint100
             OudsColorKeyToken.Decorative.Skin.Tint200 -> skin.tint200
             OudsColorKeyToken.Decorative.Skin.Tint300 -> skin.tint300
@@ -1071,12 +1140,15 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Colo
             OudsColorKeyToken.Repository.Neutral.Muted.Lower -> neutral.muted.lower
             OudsColorKeyToken.Repository.Neutral.Muted.Lowest -> neutral.muted.lowest
             OudsColorKeyToken.Repository.Neutral.Muted.White -> neutral.muted.white
+            OudsColorKeyToken.Repository.Opacity.Black.High -> opacity.black.high
             OudsColorKeyToken.Repository.Opacity.Black.Higher -> opacity.black.higher
             OudsColorKeyToken.Repository.Opacity.Black.Highest -> opacity.black.highest
             OudsColorKeyToken.Repository.Opacity.Black.Low -> opacity.black.low
             OudsColorKeyToken.Repository.Opacity.Black.Lower -> opacity.black.lower
             OudsColorKeyToken.Repository.Opacity.Black.Lowest -> opacity.black.lowest
             OudsColorKeyToken.Repository.Opacity.Black.Medium -> opacity.black.medium
+            OudsColorKeyToken.Repository.Opacity.Black.MediumHigh -> opacity.black.mediumHigh
+            OudsColorKeyToken.Repository.Opacity.Black.MediumLow -> opacity.black.mediumLow
             OudsColorKeyToken.Repository.Opacity.Black.Transparent -> opacity.black.transparent
             OudsColorKeyToken.Repository.Opacity.Info -> opacity.info
             OudsColorKeyToken.Repository.Opacity.Negative -> opacity.negative
@@ -1088,8 +1160,11 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Colo
             OudsColorKeyToken.Repository.Opacity.White.Low -> opacity.white.low
             OudsColorKeyToken.Repository.Opacity.White.Lower -> opacity.white.lower
             OudsColorKeyToken.Repository.Opacity.White.Lowest -> opacity.white.lowest
+            OudsColorKeyToken.Repository.Opacity.White.Medium -> opacity.white.medium
+            OudsColorKeyToken.Repository.Opacity.White.MediumLow -> opacity.white.mediumLow
             OudsColorKeyToken.Repository.Opacity.White.Transparent -> opacity.white.transparent
             OudsColorKeyToken.Repository.Positive.Default -> positive.default
+            OudsColorKeyToken.Repository.Positive.High -> positive.high
             OudsColorKeyToken.Repository.Positive.Highest -> positive.highest
             OudsColorKeyToken.Repository.Positive.Low -> positive.low
             OudsColorKeyToken.Repository.Positive.Lowest -> positive.lowest
@@ -1147,89 +1222,90 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
     }
 }
 
-val OudsColorSemanticTokens.materialLightColorScheme: ColorScheme
+val OudsMaterialColorTokens.materialLightColorScheme: ColorScheme
     get() = lightColorScheme(
-        primary = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        onPrimary = repositoryColorTokens.repositoryNeutralMutedLowerLight,
-        primaryContainer = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        onPrimaryContainer = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        secondary = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        onSecondary = repositoryColorTokens.repositoryNeutralMutedLowerLight,
-        secondaryContainer = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        onSecondaryContainer = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        tertiary = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        onTertiary = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        tertiaryContainer = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        onTertiaryContainer = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        error = repositoryColorTokens.repositoryNegativeDefaultLight,
-        onError = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        errorContainer = repositoryColorTokens.repositoryNegativeLowestLight,
-        onErrorContainer = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        surfaceDim = repositoryColorTokens.repositoryNeutralMutedLowestLight,
-        surface = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        surfaceBright = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        onSurface = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        onSurfaceVariant = repositoryColorTokens.repositoryOpacityBlackHigherLight,
-        surfaceContainerLowest = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        surfaceContainerLow = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        surfaceContainer = repositoryColorTokens.repositoryNeutralMutedLowestLight,
-        surfaceContainerHigh = repositoryColorTokens.repositoryNeutralMutedLowestLight,
-        surfaceContainerHighest = repositoryColorTokens.repositoryNeutralMutedLowestLight,
-        inverseSurface = repositoryColorTokens.repositoryNeutralEmphasizedHighLight,
-        inverseOnSurface = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        inversePrimary = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        outline = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        outlineVariant = repositoryColorTokens.repositoryOpacityBlackLowLight,
-        scrim = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        background = repositoryColorTokens.repositoryNeutralMutedWhiteLight,
-        onBackground = repositoryColorTokens.repositoryNeutralEmphasizedBlackLight,
-        surfaceVariant = repositoryColorTokens.repositoryNeutralMutedLowestLight,
-        surfaceTint = repositoryColorTokens.repositoryNeutralMutedLowestLight,
+        primary = primaryLight,
+        onPrimary = onPrimaryLight,
+        primaryContainer = primaryContainerLight,
+        onPrimaryContainer = onPrimaryContainerLight,
+        secondary = secondaryLight,
+        onSecondary = onSecondaryLight,
+        secondaryContainer = secondaryContainerLight,
+        onSecondaryContainer = onSecondaryContainerLight,
+        tertiary = tertiaryLight,
+        onTertiary = onTertiaryLight,
+        tertiaryContainer = tertiaryContainerLight,
+        onTertiaryContainer = onTertiaryContainerLight,
+        error = errorLight,
+        onError = onErrorLight,
+        errorContainer = errorContainerLight,
+        onErrorContainer = onErrorContainerLight,
+        surfaceDim = surfaceDimLight,
+        surface = surfaceLight,
+        surfaceBright = surfaceBrightLight,
+        onSurface = onSurfaceLight,
+        onSurfaceVariant = onSurfaceVariantLight,
+        surfaceContainerLowest = surfContainerLowestLight,
+        surfaceContainerLow = surfContainerLowLight,
+        surfaceContainer = surfContainerLight,
+        surfaceContainerHigh = surfContainerHighLight,
+        surfaceContainerHighest = surfContainerHighestLight,
+        inverseSurface = inverseSurfaceLight,
+        inverseOnSurface = inverseOnSurfaceLight,
+        inversePrimary = inversePrimaryLight,
+        outline = outlineLight,
+        outlineVariant = outlineVariantLight,
+        scrim = scrimLight,
+        background = backgroundLight,
+        onBackground = onBackgroundLight,
+        surfaceVariant = surfaceVariantLight,
+        surfaceTint = surfaceTintLight,
     )
 
-val OudsColorSemanticTokens.materialDarkColorScheme: ColorScheme
+val OudsMaterialColorTokens.materialDarkColorScheme: ColorScheme
     get() = darkColorScheme(
-        primary = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        onPrimary = repositoryColorTokens.repositoryNeutralEmphasizedBlackDark,
-        primaryContainer = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        onPrimaryContainer = repositoryColorTokens.repositoryNeutralEmphasizedBlackDark,
-        secondary = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        onSecondary = repositoryColorTokens.repositoryNeutralEmphasizedBlackDark,
-        secondaryContainer = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        onSecondaryContainer = repositoryColorTokens.repositoryNeutralEmphasizedBlackDark,
-        tertiary = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
-        onTertiary = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        tertiaryContainer = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
-        onTertiaryContainer = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        error = repositoryColorTokens.repositoryNegativeLowDark,
-        onError = repositoryColorTokens.repositoryNeutralEmphasizedBlackDark,
-        errorContainer = repositoryColorTokens.repositoryNegativeHighestDark,
-        onErrorContainer = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        surfaceDim = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
-        surface = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
-        surfaceBright = repositoryColorTokens.repositoryNeutralEmphasizedMediumDark,
-        onSurface = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        onSurfaceVariant = repositoryColorTokens.repositoryOpacityWhiteHighDark,
-        surfaceContainerLowest = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
-        surfaceContainerLow = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
-        surfaceContainer = repositoryColorTokens.repositoryNeutralMutedLowestDark,
-        surfaceContainerHigh = repositoryColorTokens.repositoryNeutralMutedLowestDark,
-        surfaceContainerHighest = repositoryColorTokens.repositoryNeutralMutedLowestDark,
-        inverseSurface = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        inverseOnSurface = repositoryColorTokens.repositoryNeutralEmphasizedBlackDark,
-        inversePrimary = repositoryColorTokens.repositoryNeutralEmphasizedBlackDark,
-        outline = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        outlineVariant = repositoryColorTokens.repositoryOpacityWhiteLowDark,
-        scrim = repositoryColorTokens.repositoryNeutralEmphasizedBlackDark,
-        background = repositoryColorTokens.repositoryNeutralEmphasizedHighestDark,
-        onBackground = repositoryColorTokens.repositoryNeutralMutedLowerDark,
-        surfaceVariant = repositoryColorTokens.repositoryNeutralMutedLowestDark,
-        surfaceTint = repositoryColorTokens.repositoryNeutralMutedLowestDark,
+        primary = primaryDark,
+        onPrimary = onPrimaryDark,
+        primaryContainer = primaryContainerDark,
+        onPrimaryContainer = onPrimaryContainerDark,
+        secondary = secondaryDark,
+        onSecondary = onSecondaryDark,
+        secondaryContainer = secondaryContainerDark,
+        onSecondaryContainer = onSecondaryContainerDark,
+        tertiary = tertiaryDark,
+        onTertiary = onTertiaryDark,
+        tertiaryContainer = tertiaryContainerDark,
+        onTertiaryContainer = onTertiaryContainerDark,
+        error = errorDark,
+        onError = onErrorDark,
+        errorContainer = errorContainerDark,
+        onErrorContainer = onErrorContainerDark,
+        surfaceDim = surfaceDimDark,
+        surface = surfaceDark,
+        surfaceBright = surfaceBrightDark,
+        onSurface = onSurfaceDark,
+        onSurfaceVariant = onSurfaceVariantDark,
+        surfaceContainerLowest = surfContainerLowestDark,
+        surfaceContainerLow = surfContainerLowDark,
+        surfaceContainer = surfContainerDark,
+        surfaceContainerHigh = surfContainerHighDark,
+        surfaceContainerHighest = surfContainerHighestDark,
+        inverseSurface = inverseSurfaceDark,
+        inverseOnSurface = inverseOnSurfaceDark,
+        inversePrimary = inversePrimaryDark,
+        outline = outlineDark,
+        outlineVariant = outlineVariantDark,
+        scrim = scrimDark,
+        background = backgroundDark,
+        onBackground = onBackgroundDark,
+        surfaceVariant = surfaceVariantDark,
+        surfaceTint = surfaceTintDark,
     )
 
 /**
  * Converts an OUDS color token to the local color value provided by the theme.
  */
+@Suppress("RecursivePropertyAccessor")
 @InternalOudsApi
 val OudsColorKeyToken.value: Color
     @ReadOnlyComposable
@@ -1245,4 +1321,5 @@ val OudsColorKeyToken.value: Color
         is OudsColorKeyToken.Overlay -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Repository -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Surface -> OudsTheme.colorScheme.fromToken(this)
+        is OudsLightDarkColorKeyToken -> if (isOudsInDarkTheme()) dark.value else light.value
     }

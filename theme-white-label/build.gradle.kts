@@ -30,6 +30,10 @@ android {
     }
 }
 
+mavenCentralPublish {
+    enabled = false
+}
+
 dependencies {
     implementation(project(":foundation"))
 

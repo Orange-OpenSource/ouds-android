@@ -14,17 +14,16 @@ package com.orange.ouds.app.ui.utilities.composable
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.background
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -38,14 +37,23 @@ import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
@@ -59,13 +67,16 @@ fun CustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     titleResId: Int = R.string.app_common_customize_label,
     bottomSheetContent: @Composable ColumnScope.() -> Unit,
-    content: @Composable BoxScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val bottomSheetHeaderStateDescription = when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
         SheetValue.Hidden, SheetValue.PartiallyExpanded -> stringResource(R.string.app_common_bottomSheetCollapsed_a11y)
         SheetValue.Expanded -> stringResource(R.string.app_common_bottomSheetExpanded_a11y)
     }
+    val screenHeight = with(LocalDensity.current) { LocalWindowInfo.current.containerSize.height.toDp() }
+    val customizationContentMaxHeight = screenHeight / 2 - BottomSheetDefaults.SheetPeekHeight
+
     BackHandler(bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
         coroutineScope.launch {
             bottomSheetScaffoldState.bottomSheetState.partialExpand()
@@ -75,6 +86,7 @@ fun CustomizationBottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
         sheetSwipeEnabled = false,
         sheetDragHandle = null,
+        containerColor = OudsTheme.colorScheme.background.primary,
         sheetContent = {
             Row(
                 modifier = Modifier
@@ -92,7 +104,7 @@ fun CustomizationBottomSheetScaffold(
                     }
                     .fillMaxWidth()
                     .height(BottomSheetDefaults.SheetPeekHeight)
-                    .padding(horizontal = OudsTheme.spaces.fixed.medium),
+                    .padding(horizontal = OudsTheme.grids.margin),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
             ) {
@@ -111,22 +123,36 @@ fun CustomizationBottomSheetScaffold(
                 )
             }
 
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            val scrollState = rememberScrollState()
+
+            Column(
+                modifier = Modifier
+                    .heightIn(max = customizationContentMaxHeight)
+                    .verticalScrollbar(scrollState)
+                    .verticalScroll(scrollState)
+            ) {
                 bottomSheetContent()
             }
+        },
+        content = { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .consumeWindowInsets(innerPadding)
+                    .padding(innerPadding),
+            ) {
+                content()
+            }
         }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-                .background(OudsTheme.colorScheme.background.primary),
-            content = content
-        )
-    }
+    )
 
+    var shouldExpand by rememberSaveable { mutableStateOf(true) }
     LifecycleResumeEffect(Unit) {
-        tryExpandBottomSheet(coroutineScope, bottomSheetScaffoldState.bottomSheetState)
+        if (shouldExpand) {
+            shouldExpand = false
+            tryExpandBottomSheet(coroutineScope, bottomSheetScaffoldState.bottomSheetState)
+        }
         onPauseOrDispose {}
     }
 }
@@ -142,5 +168,27 @@ private fun tryExpandBottomSheet(coroutineScope: CoroutineScope, sheetState: She
                 tryExpandBottomSheet(coroutineScope, sheetState, retryCount + 1)
             }
         }
+    }
+}
+
+@Composable
+private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
+    val scrollBarColor = OudsTheme.colorScheme.action.disabled
+    val scrollbarWidth = 4.dp
+
+    return drawWithContent {
+        drawContent()
+
+        val viewportHeight = this.size.height
+        val viewportWidth = this.size.width
+        val totalContentHeight = scrollState.maxValue.toFloat() + viewportHeight
+        val scrollBarHeight = (viewportHeight / totalContentHeight) * viewportHeight
+        val scrollBarStartOffset = (scrollState.value.toFloat() / totalContentHeight) * viewportHeight
+
+        drawRect(
+            color = scrollBarColor,
+            topLeft = Offset(viewportWidth - scrollbarWidth.toPx(), scrollBarStartOffset),
+            size = Size(scrollbarWidth.toPx(), scrollBarHeight)
+        )
     }
 }

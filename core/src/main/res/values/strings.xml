@@ -13,4 +13,5 @@
 <resources>
     <!-- OudsButton -->
     <string name="core_button_loading_a11y">Loading</string>
+
 </resources>

@@ -94,6 +94,6 @@ data class WhiteLabelFontSemanticTokens(
     override val weightHeading: Int = FontRawTokens.fontWeight700,
     override val weightLabelDefault: Int = FontRawTokens.fontWeight400,
     override val weightLabelStrong: Int = FontRawTokens.fontWeight700,
-    override val weightDefault: Int = FontRawTokens.fontWeight400,
-    override val weightStrong: Int = FontRawTokens.fontWeight700
+    override val weightSystemDefault: Int = FontRawTokens.fontWeight400,
+    override val weightSystemStrong: Int = FontRawTokens.fontWeight700
 ) : OudsFontSemanticTokens

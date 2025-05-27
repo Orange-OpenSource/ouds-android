@@ -1,5 +1,9 @@
 # Module theme-contract
 
+```
+Tokens version 0.11.0
+```
+
 This is the interface between the library and the custom themes.
 
 # Package com.orange.ouds.theme

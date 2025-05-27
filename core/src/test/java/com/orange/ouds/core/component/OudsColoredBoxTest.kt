@@ -12,13 +12,13 @@
 
 package com.orange.ouds.core.component
 
-import com.orange.ouds.OudsPaparazziTest
-import org.junit.Test
+import androidx.compose.runtime.Composable
+import com.orange.ouds.OudsSnapshotTest
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color) : OudsPaparazziTest() {
+internal class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color) : OudsSnapshotTest() {
 
     companion object {
         @JvmStatic
@@ -26,23 +26,11 @@ internal class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color) :
         internal fun data() = OudsColoredBoxPreviewParameterProvider().values.toList()
     }
 
-    @Test
-    fun takeOudsColoredBoxLightThemeSnapshot() {
-        paparazzi.snapshot {
-            PreviewOudsColoredBox(
-                darkThemeEnabled = false,
-                parameter = parameter
-            )
-        }
-    }
-
-    @Test
-    fun takeOudsColoredBoxDarkThemeSnapshot() {
-        paparazzi.snapshot {
-            PreviewOudsColoredBox(
-                darkThemeEnabled = true,
-                parameter = parameter
-            )
-        }
+    @Composable
+    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+        PreviewOudsColoredBox(
+            darkThemeEnabled = darkThemeEnabled,
+            parameter = parameter
+        )
     }
 }

@@ -37,7 +37,7 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
 ## Release
 
-- Create a new pull request named `Release X.Y.Z` on GitHub to merge `develop` into `main`.
+- Create a new pull request named `chore: release X.Y.Z` on GitHub to merge `develop` into `main`.
 
 - Review and merge this pull request on GitHub.
 

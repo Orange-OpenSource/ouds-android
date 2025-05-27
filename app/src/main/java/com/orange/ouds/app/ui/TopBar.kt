@@ -14,6 +14,11 @@ package com.orange.ouds.app.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.displayCutout
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,10 +34,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 
 @Composable
@@ -60,7 +65,9 @@ private fun TopBar(
     onActionClick: (TopBarAction) -> Unit
 ) {
     TopAppBar(
-        modifier = Modifier.semantics { isTraversalGroup = true },
+        modifier = Modifier
+            .semantics { isTraversalGroup = true }
+            .windowInsetsPadding(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal)),
         navigationIcon = {
             if (showNavigationIcon) {
                 IconButton(onClick = upPress) {
@@ -114,7 +121,7 @@ private fun ChangeModeAction(onClick: (TopBarAction) -> Unit) {
     }
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewTopBar() = OudsPreview {
     TopBar(

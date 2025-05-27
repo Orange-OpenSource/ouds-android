@@ -12,8 +12,6 @@
 
 package com.orange.ouds.app.ui.utilities.composable
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -24,24 +22,27 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.utilities.UiModePreviews
 
 @Composable
 fun DetailScreenHeader(
-    @StringRes descriptionRes: Int,
-    @DrawableRes imageRes: Int,
+    description: String,
+    illustration: Painter,
+    modifier: Modifier = Modifier,
+    tintIllustration: Boolean = true
 ) {
-    Column {
+    Column(modifier = modifier) {
         Image(
-            painter = painterResource(imageRes),
-            colorFilter = ColorFilter.tint(OudsTheme.colorScheme.content.default),
+            painter = illustration,
+            colorFilter = if (tintIllustration) ColorFilter.tint(OudsTheme.colorScheme.content.default) else null,
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
@@ -52,31 +53,31 @@ fun DetailScreenHeader(
 
         DetailScreenDescription(
             modifier = Modifier
-                .padding(horizontal = OudsTheme.spaces.fixed.medium)
+                .padding(horizontal = OudsTheme.grids.margin)
                 .padding(top = OudsTheme.spaces.fixed.medium),
-            descriptionRes = descriptionRes
+            description = description
         )
     }
 }
 
 @Composable
 fun DetailScreenDescription(
-    modifier: Modifier = Modifier,
-    @StringRes descriptionRes: Int
+    description: String,
+    modifier: Modifier = Modifier
 ) {
     Text(
         modifier = modifier,
-        text = stringResource(descriptionRes),
+        text = description,
         color = OudsTheme.colorScheme.content.default,
         style = OudsTheme.typography.body.default.large
     )
 }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewDetailScreenHeader() = OudsPreview {
     DetailScreenHeader(
-        descriptionRes = R.string.app_tokens_elevation_description_text,
-        imageRes = R.drawable.ic_layers
+        description = stringResource(id = R.string.app_tokens_elevation_description_text),
+        illustration = painterResource(id = R.drawable.ic_layers)
     )
 }

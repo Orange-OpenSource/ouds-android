@@ -21,22 +21,23 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.LocalActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -49,6 +50,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.content.getSystemService
@@ -59,7 +61,6 @@ import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.foundation.utilities.UiModePreviews
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import com.orange.ouds.theme.orange.OrangeTheme
@@ -88,7 +89,10 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
 
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val activity = LocalActivity.current as? ComponentActivity
-    activity?.enableEdgeToEdge(SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isSystemInDarkTheme })
+    activity?.enableEdgeToEdge(
+        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isSystemInDarkTheme },
+        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isSystemInDarkTheme }
+    )
 
     var changeThemeDialogVisible by remember { mutableStateOf(false) }
 
@@ -97,6 +101,7 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
         darkThemeEnabled = isSystemInDarkTheme
     ) {
         Scaffold(
+            contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
             topBar = {
                 val context = LocalContext.current
                 TopBar(
@@ -111,24 +116,21 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
                 )
             },
             bottomBar = {
-                AnimatedVisibility(
-                    visible = mainState.showBottomBar,
-                    enter = fadeIn(tween(100)),
-                    exit = fadeOut(tween(100))
-                ) {
-                    BottomBar(
-                        currentRoute = mainState.navigationState.currentRoute.orEmpty(),
-                        navigateToRoute = { route ->
-                            mainState.navigationState.navigateToBottomBarRoute(route)
-                        }
-                    )
-                }
+                BottomBar(
+                    currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                    navigateToRoute = { route ->
+                        mainState.navigationState.navigateToBottomBarRoute(route)
+                    },
+                    visible = mainState.showBottomBar
+                )
             }
         ) { innerPadding ->
             NavHost(
                 navController = mainState.navigationState.navController,
                 startDestination = BottomBarItem.Tokens.route,
-                modifier = Modifier.padding(innerPadding)
+                modifier = Modifier
+                    .consumeWindowInsets(innerPadding)
+                    .padding(innerPadding)
             ) {
                 appNavGraph(mainState.navigationState.navController)
             }
@@ -220,7 +222,7 @@ private fun getCurrentTheme(
     .orElse { themes.firstOrNull { it.name == ORANGE_THEME_NAME } }
     .orElse { themes.first() }
 
-@UiModePreviews.Default
+@PreviewLightDark
 @Composable
 private fun PreviewMainScreen() = OudsPreview {
     // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which returns an empty list in Compose previews
