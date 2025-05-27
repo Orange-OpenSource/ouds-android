@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+import com.orange.ouds.gradle.releaseVersion
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     kotlin("jvm")
@@ -27,6 +29,7 @@ plugins {
 
 dependencies {
     dokkaPlugin(libs.dokka.android.documentation.plugin)
+    dokkaHtmlPlugin(libs.dokka.versioning.plugin)
     dokka(project(":core"))
     dokka(project(":global-raw-tokens"))
     dokka(project(":theme-contract"))
@@ -41,10 +44,19 @@ dokka {
     // used as project name in the header
     moduleName.set("OUDS Android")
 
-    pluginsConfiguration.html {
-        customAssets.from("docs/assets/logo-icon.svg")
-        customStyleSheets.from("docs/assets/orange-style.css")
-        footerMessage.set("Copyright © Orange 2024")
+    pluginsConfiguration {
+        html {
+            customAssets.from("docs/assets/logo-icon.svg")
+            customStyleSheets.from("docs/assets/orange-style.css")
+            footerMessage.set("Copyright © Orange 2024")
+        }
+        versioning {
+            // This configuration step is evaluated before any task is executed,
+            // thus project.version.toString() is not up to date when executing the prepareRelease task.
+            // That's why we use releaseVersion to set the correct version.
+            version.set(releaseVersion ?: project.version.toString())
+            olderVersionsDir.set(projectDir.resolve("docs/previousDocVersions"))
+        }
     }
 
     dokkaPublications.html {
