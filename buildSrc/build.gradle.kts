@@ -29,6 +29,7 @@ dependencies {
     implementation(libs.android.gradle.plugin)
     implementation(libs.dokka.base)
     implementation(libs.dokka.gradle.plugin)
+    implementation(libs.firebase.appdistribution.gradle.plugin)
     implementation(libs.git.changelog.gradle.plugin)
     implementation(libs.git.changelog.lib)
     implementation(libs.google.auth.library.oauth2.http)
