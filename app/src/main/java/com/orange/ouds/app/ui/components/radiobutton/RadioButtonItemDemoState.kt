@@ -27,7 +27,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 fun rememberRadioButtonItemDemoState(
     selectedValue: Int = RadioButtonItemDemoState.values.first(),
     icon: Boolean = false,
-    divider: Boolean = false,
+    divider: Boolean = true,
     outlined: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,

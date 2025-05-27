@@ -26,28 +26,28 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 fun rememberSwitchItemDemoState(
     checked: Boolean = false,
     icon: Boolean = false,
-    divider: Boolean = false,
-    inverted: Boolean = false,
+    divider: Boolean = true,
+    reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
     text: String = stringResource(id = R.string.app_components_common_label_label),
     helperText: String? = null
-) = rememberSaveable(checked, icon, divider, inverted, enabled, readOnly, error, text, helperText, saver = SwitchItemDemoState.Saver) {
-    SwitchItemDemoState(checked, icon, divider, inverted, enabled, readOnly, error, text, helperText)
+) = rememberSaveable(checked, icon, divider, reversed, enabled, readOnly, error, text, helperText, saver = SwitchItemDemoState.Saver) {
+    SwitchItemDemoState(checked, icon, divider, reversed, enabled, readOnly, error, text, helperText)
 }
 
 class SwitchItemDemoState(
     checked: Boolean,
     icon: Boolean,
     divider: Boolean,
-    inverted: Boolean,
+    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
     text: String,
     helperText: String?
-) : ControlItemDemoState(icon, divider, inverted, enabled, readOnly, error, text, helperText) {
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, text, helperText) {
 
     companion object {
 

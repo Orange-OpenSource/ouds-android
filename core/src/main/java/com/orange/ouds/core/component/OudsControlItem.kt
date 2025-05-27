@@ -59,12 +59,12 @@ internal fun OudsControlItem(
     helperText: String?,
     icon: OudsControlItem.Icon?,
     divider: Boolean,
-    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
     errorComponentName: String,
     indicator: @Composable () -> Unit,
+    indicatorPosition: OudsControlItem.IndicatorPosition,
     checkedContentPreviewStatus: String,
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
@@ -98,8 +98,9 @@ internal fun OudsControlItem(
             }
         }
 
-        val leadingElement: (@Composable () -> Unit)? = if (reversed) itemIcon else indicator
-        val trailingElement: (@Composable () -> Unit)? = if (reversed) indicator else itemIcon
+
+        val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItem.IndicatorPosition.Start) indicator else itemIcon
+        val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItem.IndicatorPosition.Start) itemIcon else indicator
 
         val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
         Box(
@@ -171,6 +172,10 @@ object OudsControlItem {
                 Disabled, ReadOnly -> OudsControl.State.Disabled
             }
         }
+    }
+
+    internal enum class IndicatorPosition {
+        Start, End
     }
 
     /**
@@ -298,7 +303,7 @@ internal data class OudsControlItemPreviewParameter<T, S>(
     val value: T,
     val extraParameter: S?,
     val helperText: String? = null,
-    val divider: Boolean = false,
+    val divider: Boolean = true,
     val hasIcon: Boolean = false,
     val error: Boolean = false,
     val reversed: Boolean = false,
@@ -331,7 +336,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                     when (index) {
                         0 -> this
                         1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
-                        else -> copy(helperText = helperText, divider = true, error = true)
+                        else -> copy(helperText = helperText, divider = false, error = true)
                     }
                 }
             }
