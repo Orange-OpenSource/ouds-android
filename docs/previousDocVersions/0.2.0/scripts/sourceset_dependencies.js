@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":theme-contract/debug":[],":theme-contract/main":[],":theme-contract/release":[],":core/debug":[],":core/main":[],":core/release":[],":theme-orange/debug":[],":theme-orange/main":[],":theme-orange/release":[],":global-raw-tokens/debug":[],":global-raw-tokens/main":[],":global-raw-tokens/release":[]}'
