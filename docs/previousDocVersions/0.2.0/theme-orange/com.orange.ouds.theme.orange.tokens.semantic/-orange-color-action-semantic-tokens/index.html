@@ -1,0 +1,723 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OrangeColorActionSemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.orange.tokens.semantic/-orange-color-action-semantic-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0">0.2.0</div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+    <div><a href="index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.2.0</a></div>
+    <div><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.1.0</a></div>
+  </div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":theme-orange/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-orange/release" data-filter=":theme-orange/release">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-orange::com.orange.ouds.theme.orange.tokens.semantic/OrangeColorActionSemanticTokens///PointingToDeclaration//558520189">
+  <div class="breadcrumbs"><a href="../../index.html">theme-orange</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.orange.tokens.semantic</a><span class="delimiter">/</span><span class="current">OrangeColorActionSemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Orange</span><wbr><span>Color</span><wbr><span>Action</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">OrangeColorActionSemanticTokens</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>actionDisabledLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionEnabledLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionFocusLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack680<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionHighlightedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionHoverLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack680<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionLoadingLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativeEnabledLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet600<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativeFocusLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativeHoverLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativeLoadingLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativePressedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativeEnabledDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativeFocusDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativeHoverDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativeLoadingDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionNegativePressedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionPressedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSelectedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportEnabledLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack40<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportFocusLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack80<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportHoverLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack80<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportLoadingLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack120<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportPressedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack120<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportEnabledDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite40<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportFocusDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite80<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportHoverDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite80<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportLoadingDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite120<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSupportPressedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite120<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionVisitedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst600<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionDisabledDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionEnabledDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionFocusDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite640<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionHighlightedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionHoverDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite640<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionLoadingDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionPressedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionSelectedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>actionVisitedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst400</span></span><span class="token punctuation">)</span> : <a href="../../../theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-color-action-semantic-tokens/index.html">OudsColorActionSemanticTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1001413825%2FConstructors%2F558520189" anchor-label="OrangeColorActionSemanticTokens" id="-1001413825%2FConstructors%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-orange-color-action-semantic-tokens.html"><span>Orange</span><wbr><span>Color</span><wbr><span>Action</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1001413825%2FConstructors%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">actionDisabledLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack200<span class="token punctuation">, </span></span><span class="parameter ">actionEnabledLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">actionFocusLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack680<span class="token punctuation">, </span></span><span class="parameter ">actionHighlightedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">actionHoverLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack680<span class="token punctuation">, </span></span><span class="parameter ">actionLoadingLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange550<span class="token punctuation">, </span></span><span class="parameter ">actionNegativeEnabledLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet600<span class="token punctuation">, </span></span><span class="parameter ">actionNegativeFocusLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet700<span class="token punctuation">, </span></span><span class="parameter ">actionNegativeHoverLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet700<span class="token punctuation">, </span></span><span class="parameter ">actionNegativeLoadingLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet800<span class="token punctuation">, </span></span><span class="parameter ">actionNegativePressedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet800<span class="token punctuation">, </span></span><span class="parameter ">actionNegativeEnabledDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet300<span class="token punctuation">, </span></span><span class="parameter ">actionNegativeFocusDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet200<span class="token punctuation">, </span></span><span class="parameter ">actionNegativeHoverDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet200<span class="token punctuation">, </span></span><span class="parameter ">actionNegativeLoadingDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet100<span class="token punctuation">, </span></span><span class="parameter ">actionNegativePressedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet100<span class="token punctuation">, </span></span><span class="parameter ">actionPressedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange550<span class="token punctuation">, </span></span><span class="parameter ">actionSelectedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange550<span class="token punctuation">, </span></span><span class="parameter ">actionSupportEnabledLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack40<span class="token punctuation">, </span></span><span class="parameter ">actionSupportFocusLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack80<span class="token punctuation">, </span></span><span class="parameter ">actionSupportHoverLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack80<span class="token punctuation">, </span></span><span class="parameter ">actionSupportLoadingLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack120<span class="token punctuation">, </span></span><span class="parameter ">actionSupportPressedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack120<span class="token punctuation">, </span></span><span class="parameter ">actionSupportEnabledDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite40<span class="token punctuation">, </span></span><span class="parameter ">actionSupportFocusDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite80<span class="token punctuation">, </span></span><span class="parameter ">actionSupportHoverDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite80<span class="token punctuation">, </span></span><span class="parameter ">actionSupportLoadingDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite120<span class="token punctuation">, </span></span><span class="parameter ">actionSupportPressedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite120<span class="token punctuation">, </span></span><span class="parameter ">actionVisitedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst600<span class="token punctuation">, </span></span><span class="parameter ">actionDisabledDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite200<span class="token punctuation">, </span></span><span class="parameter ">actionEnabledDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter ">actionFocusDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite640<span class="token punctuation">, </span></span><span class="parameter ">actionHighlightedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalLightGray160<span class="token punctuation">, </span></span><span class="parameter ">actionHoverDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite640<span class="token punctuation">, </span></span><span class="parameter ">actionLoadingDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter ">actionPressedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter ">actionSelectedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>OrangeBrandColorRawTokens.colorOrange500<span class="token punctuation">, </span></span><span class="parameter ">actionVisitedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorDecorativeAmethyst400</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-982736281%2FProperties%2F558520189" anchor-label="actionDisabledDark" id="-982736281%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-disabled-dark.html"><span>action</span><wbr><span>Disabled</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-982736281%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-disabled-dark.html">actionDisabledDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1840111097%2FProperties%2F558520189" anchor-label="actionDisabledLight" id="-1840111097%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-disabled-light.html"><span>action</span><wbr><span>Disabled</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1840111097%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-disabled-light.html">actionDisabledLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-7055542%2FProperties%2F558520189" anchor-label="actionEnabledDark" id="-7055542%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-enabled-dark.html"><span>action</span><wbr><span>Enabled</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-7055542%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-enabled-dark.html">actionEnabledDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1658779260%2FProperties%2F558520189" anchor-label="actionEnabledLight" id="-1658779260%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-enabled-light.html"><span>action</span><wbr><span>Enabled</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1658779260%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-enabled-light.html">actionEnabledLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1965876717%2FProperties%2F558520189" anchor-label="actionFocusDark" id="-1965876717%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-focus-dark.html"><span>action</span><wbr><span>Focus</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1965876717%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-focus-dark.html">actionFocusDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2042273755%2FProperties%2F558520189" anchor-label="actionFocusLight" id="2042273755%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-focus-light.html"><span>action</span><wbr><span>Focus</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2042273755%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-focus-light.html">actionFocusLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="175617400%2FProperties%2F558520189" anchor-label="actionHighlightedDark" id="175617400%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-highlighted-dark.html"><span>action</span><wbr><span>Highlighted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="175617400%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-highlighted-dark.html">actionHighlightedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-290885354%2FProperties%2F558520189" anchor-label="actionHighlightedLight" id="-290885354%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-highlighted-light.html"><span>action</span><wbr><span>Highlighted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-290885354%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-highlighted-light.html">actionHighlightedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-781307857%2FProperties%2F558520189" anchor-label="actionHoverDark" id="-781307857%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-hover-dark.html"><span>action</span><wbr><span>Hover</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-781307857%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-hover-dark.html">actionHoverDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="109202751%2FProperties%2F558520189" anchor-label="actionHoverLight" id="109202751%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-hover-light.html"><span>action</span><wbr><span>Hover</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="109202751%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-hover-light.html">actionHoverLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1250203857%2FProperties%2F558520189" anchor-label="actionLoadingDark" id="-1250203857%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-loading-dark.html"><span>action</span><wbr><span>Loading</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1250203857%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-loading-dark.html">actionLoadingDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1541671361%2FProperties%2F558520189" anchor-label="actionLoadingLight" id="-1541671361%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-loading-light.html"><span>action</span><wbr><span>Loading</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1541671361%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-loading-light.html">actionLoadingLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1575690977%2FProperties%2F558520189" anchor-label="actionNegativeEnabledDark" id="-1575690977%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-enabled-dark.html"><span>action</span><wbr><span>Negative</span><wbr><span>Enabled</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1575690977%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-enabled-dark.html">actionNegativeEnabledDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1253129807%2FProperties%2F558520189" anchor-label="actionNegativeEnabledLight" id="1253129807%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-enabled-light.html"><span>action</span><wbr><span>Negative</span><wbr><span>Enabled</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1253129807%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-enabled-light.html">actionNegativeEnabledLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1844777256%2FProperties%2F558520189" anchor-label="actionNegativeFocusDark" id="1844777256%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-focus-dark.html"><span>action</span><wbr><span>Negative</span><wbr><span>Focus</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1844777256%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-focus-dark.html">actionNegativeFocusDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-86537370%2FProperties%2F558520189" anchor-label="actionNegativeFocusLight" id="-86537370%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-focus-light.html"><span>action</span><wbr><span>Negative</span><wbr><span>Focus</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-86537370%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-focus-light.html">actionNegativeFocusLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1265621180%2FProperties%2F558520189" anchor-label="actionNegativeHoverDark" id="-1265621180%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-hover-dark.html"><span>action</span><wbr><span>Negative</span><wbr><span>Hover</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1265621180%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-hover-dark.html">actionNegativeHoverDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2019608374%2FProperties%2F558520189" anchor-label="actionNegativeHoverLight" id="-2019608374%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-hover-light.html"><span>action</span><wbr><span>Negative</span><wbr><span>Hover</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2019608374%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-hover-light.html">actionNegativeHoverLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1476128004%2FProperties%2F558520189" anchor-label="actionNegativeLoadingDark" id="1476128004%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-loading-dark.html"><span>action</span><wbr><span>Negative</span><wbr><span>Loading</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1476128004%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-loading-dark.html">actionNegativeLoadingDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1370237706%2FProperties%2F558520189" anchor-label="actionNegativeLoadingLight" id="1370237706%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-loading-light.html"><span>action</span><wbr><span>Negative</span><wbr><span>Loading</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1370237706%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-loading-light.html">actionNegativeLoadingLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1163105246%2FProperties%2F558520189" anchor-label="actionNegativePressedDark" id="1163105246%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-pressed-dark.html"><span>action</span><wbr><span>Negative</span><wbr><span>Pressed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1163105246%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-pressed-dark.html">actionNegativePressedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="256466800%2FProperties%2F558520189" anchor-label="actionNegativePressedLight" id="256466800%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-negative-pressed-light.html"><span>action</span><wbr><span>Negative</span><wbr><span>Pressed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="256466800%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-negative-pressed-light.html">actionNegativePressedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1563226615%2FProperties%2F558520189" anchor-label="actionPressedDark" id="-1563226615%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-pressed-dark.html"><span>action</span><wbr><span>Pressed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1563226615%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-pressed-dark.html">actionPressedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1639525029%2FProperties%2F558520189" anchor-label="actionPressedLight" id="1639525029%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-pressed-light.html"><span>action</span><wbr><span>Pressed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1639525029%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-pressed-light.html">actionPressedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-13585752%2FProperties%2F558520189" anchor-label="actionSelectedDark" id="-13585752%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-selected-dark.html"><span>action</span><wbr><span>Selected</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-13585752%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-selected-dark.html">actionSelectedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1861215770%2FProperties%2F558520189" anchor-label="actionSelectedLight" id="-1861215770%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-selected-light.html"><span>action</span><wbr><span>Selected</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1861215770%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-selected-light.html">actionSelectedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1264480463%2FProperties%2F558520189" anchor-label="actionSupportEnabledDark" id="-1264480463%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-enabled-dark.html"><span>action</span><wbr><span>Support</span><wbr><span>Enabled</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1264480463%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-enabled-dark.html">actionSupportEnabledDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1984246147%2FProperties%2F558520189" anchor-label="actionSupportEnabledLight" id="-1984246147%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-enabled-light.html"><span>action</span><wbr><span>Support</span><wbr><span>Enabled</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1984246147%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-enabled-light.html">actionSupportEnabledLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="499851194%2FProperties%2F558520189" anchor-label="actionSupportFocusDark" id="499851194%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-focus-dark.html"><span>action</span><wbr><span>Support</span><wbr><span>Focus</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="499851194%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-focus-dark.html">actionSupportFocusDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1170427668%2FProperties%2F558520189" anchor-label="actionSupportFocusLight" id="1170427668%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-focus-light.html"><span>action</span><wbr><span>Support</span><wbr><span>Focus</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1170427668%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-focus-light.html">actionSupportFocusLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1684420054%2FProperties%2F558520189" anchor-label="actionSupportHoverDark" id="1684420054%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-hover-dark.html"><span>action</span><wbr><span>Support</span><wbr><span>Hover</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1684420054%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-hover-dark.html">actionSupportHoverDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-762643336%2FProperties%2F558520189" anchor-label="actionSupportHoverLight" id="-762643336%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-hover-light.html"><span>action</span><wbr><span>Support</span><wbr><span>Hover</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-762643336%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-hover-light.html">actionSupportHoverLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1787338518%2FProperties%2F558520189" anchor-label="actionSupportLoadingDark" id="1787338518%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-loading-dark.html"><span>action</span><wbr><span>Support</span><wbr><span>Loading</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1787338518%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-loading-dark.html">actionSupportLoadingDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1867138248%2FProperties%2F558520189" anchor-label="actionSupportLoadingLight" id="-1867138248%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-loading-light.html"><span>action</span><wbr><span>Support</span><wbr><span>Loading</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1867138248%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-loading-light.html">actionSupportLoadingLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1474315760%2FProperties%2F558520189" anchor-label="actionSupportPressedDark" id="1474315760%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-pressed-dark.html"><span>action</span><wbr><span>Support</span><wbr><span>Pressed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1474315760%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-pressed-dark.html">actionSupportPressedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1314058142%2FProperties%2F558520189" anchor-label="actionSupportPressedLight" id="1314058142%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-support-pressed-light.html"><span>action</span><wbr><span>Support</span><wbr><span>Pressed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1314058142%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-support-pressed-light.html">actionSupportPressedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1271970815%2FProperties%2F558520189" anchor-label="actionVisitedDark" id="-1271970815%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-visited-dark.html"><span>action</span><wbr><span>Visited</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1271970815%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-visited-dark.html">actionVisitedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2078520237%2FProperties%2F558520189" anchor-label="actionVisitedLight" id="2078520237%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="action-visited-light.html"><span>action</span><wbr><span>Visited</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2078520237%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="action-visited-light.html">actionVisitedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>Copyright © Orange 2024</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

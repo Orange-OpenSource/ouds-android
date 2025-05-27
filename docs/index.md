@@ -24,8 +24,8 @@ Orange Unified Design System for Android is available through [Maven Central Rep
     ```kotlin
     dependencies {
       // ...
-      implementation("com.orange.ouds.android:ouds-core:0.1.0")
-      implementation("com.orange.ouds.android:ouds-theme-orange:0.1.0")
+      implementation("com.orange.ouds.android:ouds-core:0.2.0")
+      implementation("com.orange.ouds.android:ouds-theme-orange:0.2.0")
       // ...
     }
     ```
