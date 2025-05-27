@@ -58,7 +58,7 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
         checked = checked,
         label = label,
         onCheckedChange = onCheckedChange,
-        reversed = true,
+        divider = false,
         enabled = enabled
     )
 }
