@@ -180,3 +180,36 @@ jobs:
         run: ./gradlew publishToGitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  google-play-store-release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    needs: build
+    environment:
+      name: google-play-store-release
+      url: https://play.google.com/store/apps
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Publish release to Google Play Store
+        run: |
+          ./gradlew assembleProdRelease bundleProdRelease
+          curl -F 'file=@app/build/outputs/bundle/prodRelease/app-prod-release.aab' https://oma-portal.orange.fr/oma/api/v1/external/applications/${{ secrets.OMA_APP_ID }}/artifacts -H "apiKey:${{ secrets.OMA_APP_TOKEN }}"
+
+      - name: Store Google Play Store artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-play-store
+          path: |
+            app/build/outputs/apk/*/*/*.apk
+            app/build/outputs/bundle/*/*.aab
