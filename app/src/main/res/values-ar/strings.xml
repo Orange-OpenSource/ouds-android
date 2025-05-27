@@ -23,7 +23,6 @@
     <string name="app_common_bottomSheetCollapsed_a11y">القائمة السفلية مطوية</string>
     <string name="app_common_customize_label">تخصيص</string>
     <string name="app_common_enabled_label">مفعل</string>
-    <string name="app_common_onColoredBackground_label">على خلفية ملونة</string>
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">تغيير السمة</string>
@@ -39,7 +38,7 @@
     <string name="app_bottomBar_about_label">حول</string>
 
     <!-- Tokens -->
-    <string name="app_tokens_viewCodeExample_label">عرض مثال على كود الرمز</string>
+    <string name="app_tokens_common_viewCodeExample_label">عرض مثال على كود الرمز</string>
 
     <!-- Tokens: border -->
     <string name="app_tokens_border_label">الحدود</string>
@@ -51,15 +50,6 @@
     <!-- Tokens: color -->
     <string name="app_tokens_color_label">اللون</string>
     <string name="app_tokens_color_description_text">اللون يعزز هويتنا البصرية ويضمن التناسق عبر تجارب المنتجات.</string>
-    <string name="app_tokens_color_action_label">إجراء</string>
-    <string name="app_tokens_color_always_label">دائمًا</string>
-    <string name="app_tokens_color_background_label">الخلفية</string>
-    <string name="app_tokens_color_border_label">الإطار</string>
-    <string name="app_tokens_color_brand_label">العلامة التجارية</string>
-    <string name="app_tokens_color_content_label">المحتوى</string>
-    <string name="app_tokens_color_decorative_label">زخرفي</string>
-    <string name="app_tokens_color_overlay_label">تراكب</string>
-    <string name="app_tokens_color_surface_label">السطح</string>
 
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_label">الأبعاد</string>
@@ -78,16 +68,16 @@
     <string name="app_tokens_dimension_space_paddingStackHeader_text">الهوامش العلوية والسفلية تشمل المسافة بين أعلى وأسفل العنصر.</string>
     <string name="app_tokens_dimension_space_paddingInset_label">الهوامش المحيطية</string>
     <string name="app_tokens_dimension_space_paddingInsetHeader_text">الهوامش المحيطية تشمل المسافة بين جميع الجوانب، مع كون جميع المعايير متساوية.</string>
-    <string name="app_tokens_dimension_space_columnGap_label">المسافة بين الأعمدة</string>
-    <string name="app_tokens_dimension_space_columnGapHeader_text">تشير المسافة بين الأعمدة إلى التباعد العمودي بين العناصر.</string>
-    <string name="app_tokens_dimension_space_rowGap_label">المسافة بين الصفوف</string>
-    <string name="app_tokens_dimension_space_rowGapHeader_text">تشير المسافة بين الصفوف إلى التباعد الأفقي بين العناصر.</string>
+    <string name="app_tokens_dimension_space_columnGap_label">الفاصل بين الأعمدة</string>
+    <string name="app_tokens_dimension_space_columnGapHeader_text">الفاصل بين الأعمدة هو التباعد الأفقي بين العناصر.</string>
+    <string name="app_tokens_dimension_space_rowGap_label">الفاصل بين الصفوف</string>
+    <string name="app_tokens_dimension_space_rowGapHeader_text">الفاصل بين الصفوف هو التباعد العمودي بين العناصر.</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_label">الحجم</string>
     <string name="app_tokens_dimension_size_description_text">يشير الحجم إلى القياسات المحددة التي تُستخدم لتعريف أبعاد عناصر واجهة المستخدم داخل نظام التصميم.</string>
     <string name="app_tokens_dimension_size_iconDecorative_label">رمز زخرفي</string>
-    <string name="app_tokens_dimension_size_iconWithText_label">رمز مع نص</string>
+    <string name="app_tokens_dimension_size_iconWith_label">رمز مع نص</string>
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label">الارتفاع</string>
@@ -125,8 +115,8 @@
     <!-- Components: link -->
     <string name="app_components_link_label">رابط</string>
     <string name="app_components_link_description_text">تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).</string>
-    <string name="app_components_link_back_label">عوده</string>
-    <string name="app_components_link_next_label">التالي</string>
+    <string name="app_components_link_backLayout_label">عوده</string>
+    <string name="app_components_link_nextLayout_label">التالي</string>
     <string name="app_components_link_size_label">حجم</string>
     <string name="app_components_checkbox_label">مربع اختيار</string>
     <string name="app_components_checkbox_description_text"> تتيح خانات الاختيار للمستخدمين تحديد خيار واحد أو عدة خيارات من قائمة، أو تفعيل/تعطيل إعدادات، أو تأكيد إجراء معين.</string>

@@ -58,7 +58,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             enabled = enabledSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_onColoredBackground_label),
+            label = stringResource(R.string.app_components_common_onColoredBackground_label),
             checked = onColoredBox,
             onCheckedChange = { onColoredBox = it },
             enabled = onColoredBoxSwitchEnabled

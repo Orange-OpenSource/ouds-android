@@ -128,7 +128,7 @@ sealed class TokenProperty<T>(
     )
 
     data object SizeIconWithText : TokenProperty<TokenCategory.Dimension.Size>(
-        nameRes = R.string.app_tokens_dimension_size_iconWithText_label,
+        nameRes = R.string.app_tokens_dimension_size_iconWith_label,
         tokens = listOf(
             OudsSizes.Icon.WithLabel.Small::class,
             OudsSizes.Icon.WithLabel.Medium::class,
