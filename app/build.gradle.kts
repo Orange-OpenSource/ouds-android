@@ -24,7 +24,7 @@ plugins {
     id(libs.plugins.kotlin.kapt.get().pluginId)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.firebase.appdistribution)
+    id(libs.plugins.firebase.appdistribution.get().pluginId)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.services)
     alias(libs.plugins.hilt)
@@ -107,13 +107,13 @@ android {
         }
     }
 
-    firebaseAppDistribution {
-        releaseNotesFile = Firebase_gradle.AppDistribution.RELEASE_NOTES_FILE_PATH
-        groups = project.findTypedProperty("appDistributionGroup")
-    }
     androidResources {
         generateLocaleConfig = true
     }
+}
+
+firebaseAppDistribution {
+    groups = project.findTypedProperty("appDistributionGroup")
 }
 
 dependencies {

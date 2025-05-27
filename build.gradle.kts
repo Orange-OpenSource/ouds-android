@@ -16,10 +16,10 @@ import com.orange.ouds.gradle.releaseVersion
 plugins {
     kotlin("jvm")
     alias(libs.plugins.compose.compiler) apply false
-    alias(libs.plugins.firebase.appdistribution) apply false
+    id(libs.plugins.firebase.appdistribution.get().pluginId) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.google.services) apply false
-    id(libs.plugins.dokka.gradle.plugin.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    id(libs.plugins.dokka.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     id("github")
     id("release")
     id("netlify")
