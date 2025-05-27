@@ -81,7 +81,7 @@ fun OudsRadioButtonItem(
     additionalLabel: String? = null,
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
-    divider: Boolean = false,
+    divider: Boolean = true,
     outlined: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -114,7 +114,6 @@ fun OudsRadioButtonItem(
         helperText = helperText,
         icon = icon,
         divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
-        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
@@ -126,6 +125,7 @@ fun OudsRadioButtonItem(
                 error = error
             )
         },
+        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
         checkedContentPreviewStatus = if (selected) "Selected" else "Unselected",
         modifier = modifier
             .then(selectableModifier)
