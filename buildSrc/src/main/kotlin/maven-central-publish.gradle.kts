@@ -45,7 +45,7 @@ afterEvaluate {
                     groupId = "com.orange.ouds.android"
                     artifactId = pluginExtension?.artifactId ?: project.artifactId
                     this.version = version
-                    
+
                     if (tasks.findByName("dokkaGenerate") != null) {
                         val dokkaJar = layout.buildDirectory.file("outputs/${project.name}-${project.version}-javadoc.jar")
                         val dokkaArtifact = this@afterEvaluate.artifacts.add("default", dokkaJar) {
@@ -87,8 +87,8 @@ afterEvaluate {
 
             repositories {
                 maven {
-                    val releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                    val snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+                    val releasesRepoUrl = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
+                    val snapshotsRepoUrl = "https://ossrh-staging-api.central.sonatype.com/content/repositories/snapshots/"
                     url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
                     credentials {
                         val (username, password) = Environment.getVariablesOrNull("SONATYPE_USERNAME", "SONATYPE_PASSWORD")
