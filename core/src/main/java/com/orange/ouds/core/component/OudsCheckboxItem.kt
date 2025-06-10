@@ -77,7 +77,7 @@ fun OudsCheckboxItem(
     modifier: Modifier = Modifier,
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
-    divider: Boolean = false,
+    divider: Boolean = true,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -150,7 +150,7 @@ fun OudsTriStateCheckboxItem(
     modifier: Modifier = Modifier,
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
-    divider: Boolean = false,
+    divider: Boolean = true,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -181,7 +181,6 @@ fun OudsTriStateCheckboxItem(
         helperText = helperText,
         icon = icon,
         divider = divider,
-        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
@@ -193,6 +192,7 @@ fun OudsTriStateCheckboxItem(
                 error = error
             )
         },
+        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
         checkedContentPreviewStatus = when (state) {
             ToggleableState.On -> "Selected"
             ToggleableState.Off -> "Unselected"
