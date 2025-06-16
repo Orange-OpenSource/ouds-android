@@ -13,6 +13,7 @@
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.MavenCentralPublishPluginExtension
 import com.orange.ouds.gradle.artifactId
+import com.orange.ouds.gradle.isSnapshot
 
 plugins {
     id("com.android.library")
@@ -45,7 +46,7 @@ afterEvaluate {
                     groupId = "com.orange.ouds.android"
                     artifactId = pluginExtension?.artifactId ?: project.artifactId
                     this.version = version
-
+                    
                     if (tasks.findByName("dokkaGenerate") != null) {
                         val dokkaJar = layout.buildDirectory.file("outputs/${project.name}-${project.version}-javadoc.jar")
                         val dokkaArtifact = this@afterEvaluate.artifacts.add("default", dokkaJar) {
@@ -87,9 +88,9 @@ afterEvaluate {
 
             repositories {
                 maven {
-                    val releasesRepoUrl = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
-                    val snapshotsRepoUrl = "https://central.sonatype.com/repository/maven-snapshots"
-                    url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+                    val releasesRepositoryUrl = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
+                    val snapshotsRepositoryUrl = "https://central.sonatype.com/repository/maven-snapshots"
+                    url = uri(if (isSnapshot) snapshotsRepositoryUrl else releasesRepositoryUrl)
                     credentials {
                         val (username, password) = Environment.getVariablesOrNull("CENTRAL_PUBLISHER_PORTAL_USERNAME", "CENTRAL_PUBLISHER_PORTAL_PASSWORD")
                         this.username = username

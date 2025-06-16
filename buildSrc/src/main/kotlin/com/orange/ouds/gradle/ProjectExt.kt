@@ -158,6 +158,9 @@ val Project.artifactId: String
 val Project.isPublished: Boolean
     get() = extensions.findByType(MavenCentralPublishPluginExtension::class.java)?.enabled == true
 
+val Project.isSnapshot: Boolean
+    get() = version.toString().endsWith("SNAPSHOT")
+
 class ExecuteResult(val formattedOutput: String, val exception: Throwable?)
 
 private abstract class ExecuteValueSource : ValueSource<String, ExecuteValueSourceParameters> {
