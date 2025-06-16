@@ -15,28 +15,21 @@ package com.orange.ouds.gradle
 import org.gradle.api.Project
 import org.json.JSONObject
 
-class FirebaseApi(private val accessToken: String, private val projectNumber: String, private val appId: String) {
+class FirebaseApi(accessToken: String, projectNumber: String, appId: String) : Api() {
+
+    override val baseUrl = "https://firebaseappdistribution.googleapis.com/v1/projects/$projectNumber/apps/$appId"
+
+    override val headers = mapOf(
+        "Authorization" to listOf("Bearer $accessToken"),
+        "Accept" to listOf("application/json")
+    )
+
+    override val curlOptions = listOf("compressed")
 
     fun Project.getAppDistributionReleases(): List<FirebaseAppDistributionRelease> {
         val jsonString = launchRequest("releases", "GET")
 
         return parseAppDistributionReleases(jsonString)
-    }
-
-    private fun Project.launchRequest(path: String, method: String, body: String? = null): String {
-        val args = mutableListOf(
-            "-X", method,
-            "-H", "Authorization: Bearer $accessToken",
-            "-H", "Accept: application/json",
-            "--compressed",
-        ).apply {
-            if ((method == "POST" || method == "PUT") && body != null) {
-                add("-d")
-                add(body)
-            }
-            add("https://firebaseappdistribution.googleapis.com/v1/projects/$projectNumber/apps/$appId/$path")
-        }
-        return curl(*args.toTypedArray())
     }
 
     private fun parseAppDistributionReleases(jsonString: String): List<FirebaseAppDistributionRelease> {

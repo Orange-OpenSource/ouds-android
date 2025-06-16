@@ -147,6 +147,11 @@ fun <T> Project.firebaseApi(appId: String, action: FirebaseApi.() -> T): T {
     return FirebaseApi(accessToken, "756919609448", appId).action()
 }
 
+fun <T> Project.sonatypeOssrhStagingApi(action: SonatypeOssrhStagingApi.() -> T): T {
+    val token = Environment.getVariables("CENTRAL_PUBLISHER_PORTAL_TOKEN").first()
+    return SonatypeOssrhStagingApi(token).action()
+}
+
 val Project.artifactId: String
     get() = "ouds-$name"
 

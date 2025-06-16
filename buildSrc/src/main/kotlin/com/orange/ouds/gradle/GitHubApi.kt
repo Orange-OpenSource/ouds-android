@@ -19,7 +19,14 @@ import java.io.File
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-class GitHubApi(private val token: String, private val repository: String) {
+class GitHubApi(token: String, repository: String) : Api() {
+
+    override val baseUrl = "https://api.github.com/repos/$repository"
+
+    override val headers = mapOf(
+        "Authorization" to listOf("token $token"),
+        "Accept" to listOf("application/vnd.github.v3+json")
+    )
 
     fun Project.createTag(tag: String, sha: String) {
         launchRequest(
@@ -73,21 +80,6 @@ class GitHubApi(private val token: String, private val repository: String) {
             "POST",
             "{\"tag_name\":\"$tag\",\"name\":\"$tag\",\"draft\":$draft,\"prerelease\":$prerelease}"
         )
-    }
-
-    private fun Project.launchRequest(path: String, method: String, body: String? = null): String {
-        val args = mutableListOf(
-            "-X", method,
-            "-H", "Authorization: token $token",
-            "-H", "Accept: application/vnd.github.v3+json"
-        ).apply {
-            if ((method == "POST" || method == "PUT" || method == "PATCH") && body != null) {
-                add("-d")
-                add(body)
-            }
-            add("https://api.github.com/repos/$repository/$path")
-        }
-        return curl(*args.toTypedArray())
     }
 
     private fun parsePullRequests(jsonString: String): List<GitHubPullRequest> {
