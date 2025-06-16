@@ -10,11 +10,14 @@
  * Software description: Android library of reusable graphical components
  */
 
+import com.orange.ouds.gradle.Environment
+import com.orange.ouds.gradle.SonatypeOssrhStagingRepository
 import com.orange.ouds.gradle.artifactId
 import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.isPublished
 import com.orange.ouds.gradle.releaseVersion
 import com.orange.ouds.gradle.requireTypedProperty
+import com.orange.ouds.gradle.sonatypeOssrhStagingApi
 import com.orange.ouds.gradle.updateChangelog
 import org.json.JSONObject
 
@@ -112,4 +115,30 @@ tasks.register<DefaultTask>("testSonatypeRepository") {
             }
         }
     }
+}
+
+tasks.register<DefaultTask>("finalizeUploadToCentralPublisherPortal") {
+    // Currently there is no official Gradle plugin for publishing to Maven Central via the Central Publisher Portal.
+    // When using Gradle's built-in maven-publish plugin, we need to use the OSSRH Staging API to finalize the upload process to the Central Publisher Portal.
+    // See https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/ for more information
+    group = "publishing"
+
+    doLast {
+        sonatypeOssrhStagingApi {
+            val repositories = searchRepositories()
+            val username = Environment.getVariables("CENTRAL_PUBLISHER_PORTAL_USERNAME").first()
+            repositories.firstOrNull { it.key.split("/").firstOrNull() == username && it.state == SonatypeOssrhStagingRepository.State.OPEN }
+                ?.let {
+                    uploadRepository(it.key)
+                    dropRepository(it.key)
+                }
+        }
+    }
+}
+
+tasks.register<DefaultTask>("publishToCentralPublisherPortal") {
+    group = "publishing"
+    val publishTasks = getTasksByName("publish", true)
+    dependsOn(*publishTasks.toTypedArray(), tasks["finalizeUploadToCentralPublisherPortal"])
+    tasks["finalizeUploadToCentralPublisherPortal"].mustRunAfter(*publishTasks.toTypedArray())
 }
