@@ -15,6 +15,7 @@ import com.orange.ouds.gradle.SonatypeOssrhStagingRepository
 import com.orange.ouds.gradle.artifactId
 import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.isPublished
+import com.orange.ouds.gradle.isSnapshot
 import com.orange.ouds.gradle.releaseVersion
 import com.orange.ouds.gradle.requireTypedProperty
 import com.orange.ouds.gradle.sonatypeOssrhStagingApi
@@ -84,14 +85,34 @@ fun updateVersionCode() {
     }
 }
 
-tasks.register<DefaultTask>("testSonatypeRepository") {
+tasks.register<DefaultTask>("testCentralPublisherPortalDeployment") {
     doLast {
-        val sonatypeRepositoryId = project.requireTypedProperty<String>("sonatypeRepositoryId")
+        val token = project.requireTypedProperty<String>("Ptoken")
 
-        // Add Sonatype Maven repository in root build.gradle.kts file
-        File("settings.gradle.kts").replace("(\\s*)mavenCentral\\(\\)".toRegex()) { matchResult ->
+        // Add Central Publisher Portal Maven repository in settings.gradle.kts file
+        File("settings.gradle.kts").replace("(\\h*)mavenCentral\\(\\)".toRegex()) { matchResult ->
             val indent = matchResult.groupValues[1]
-            "${matchResult.value}${indent}maven(url = \"https://oss.sonatype.org/content/repositories/comorange-$sonatypeRepositoryId\")"
+            val maven = if (isSnapshot) {
+                """
+                    maven {
+                        url = uri("https://central.sonatype.com/repository/maven-snapshots")
+                    }
+                """
+            } else {
+                """
+                    maven {
+                        url = uri("https://central.sonatype.com/api/v1/publisher/deployments/download/")
+                        credentials(HttpHeaderCredentials::class) {
+                            name = "Authorization"
+                            value = "Bearer $token"
+                        }
+                        authentication {
+                            create<HttpHeaderAuthentication>("header")
+                        }
+                    }
+                """
+            }.trimIndent().prependIndent(indent)
+            "${matchResult.value}\n$maven"
         }
 
         val publishedSubprojects = rootProject.subprojects.filter { it.isPublished }
@@ -100,7 +121,7 @@ tasks.register<DefaultTask>("testSonatypeRepository") {
             // Remove published Android Studio modules from settings.gradle.kts
             File("settings.gradle.kts").replace("include\\(\":${publishedSubproject.name}\"\\)(\\n)?".toRegex(), "")
 
-            // Replace project dependencies used for dokka with artifact dependencies in build.gradle.kts
+            // Replace project dependencies used for Dokka with artifact dependencies in root build.gradle.kts
             File("build.gradle.kts").replace(
                 "dokka\\(project\\(\":${publishedSubproject.name}\"\\)\\)".toRegex(),
                 "dokka(\"com.orange.ouds.android:${publishedSubproject.artifactId}:$version\")"
