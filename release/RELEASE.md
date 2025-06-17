@@ -20,8 +20,10 @@ This file lists all the steps to follow when releasing a new version of OUDS And
   This task finds the next semantic version based on conventional commits and performs the following changes to the project:
 
     - Update `version` project property in `gradle.properties`.
+    - Update version of OUDS Android dependencies in various Markdown files.
     - Increment the app `versionCode` in associated `build.gradle.kts` file.
     - Update content of `CHANGELOG.md`.
+    - Archive the documentation in `docs/previousDocVersions/X.Y.Z`.
 
   You can optionally launch `prepareRelease` with a version property to force the release version:
 
@@ -31,7 +33,7 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
 - Verify the changes mentioned above, then commit and push.
 
-- Create a new pull request named `Prepare release X.Y.Z` on GitHub to merge your branch into `develop`.
+- Create a new pull request named `chore: prepare release X.Y.Z` on GitHub to merge your branch into `develop`.
 
 - Review and merge this pull request on GitHub.<br /><br />
 
@@ -57,33 +59,26 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
   ![Maven Central release deployment](images/maven_central_release_01.png)
 
-- Go to [Sonatype Nexus Repository Manager](https://oss.sonatype.org).
+- Go to [Central Publisher Portal](https://central.sonatype.com/publishing) and verify the content of the OUDS Android deployment.
 
-- Click `Staging Repositories` and verify the content of the OUDS Android repository.
+  ![Central Publisher Portal](images/maven_central_release_02.png)
 
-  ![Sonatype staging repositories](images/maven_central_release_02.png)
-
-- Click `Close` if content is OK or `Drop` otherwise.
-
-- Retrieve the Sonatype repository ID from either the repository name or URL.
-
-  ![Sonatype repository ID](images/maven_central_release_03.png)
-
-- Launch the `testSonatypeRepository` Gradle task using the ID from the previous step:
+- Launch the `testCentralPublisherPortalDeployment` Gradle task using your user token as parameter:
 
     ```shell
-    ./gradlew testSonatypeRepository -PsonatypeRepositoryId=<repository_id>
+    ./gradlew testCentralPublisherPortalDeployment -PcentralPublisherPortalToken=<token>
     ```
 
   This task allows you to test the release before it is deployed to Maven Central and performs the following changes to the project:
 
-    - Add Sonatype Maven repository.
-    - Remove all Android Studio modules except `app`.
-    - Replace project dependencies with module dependencies in `app`.
+    - Add Central Publisher Portal Maven repository for manual testing.
+    - Remove published Android Studio modules from `settings.gradle.kts`.
+    - Replace project dependencies with artifact dependencies in `build.gradle.kts` files of non published modules.
+    - Replace project dependencies used for Dokka with artifact dependencies in root `build.gradle.kts`.
 
 - Synchronize Gradle, build app, deploy and test on device.
 
-- Go back to Sonatype Nexus Repository Manager and click `Release`.<br /><br />
+- Go back to Central Publisher Portal and click `Publish` if everything is OK or `Drop` otherwise.<br /><br />
 
 ### Publish release to GitHub
 
@@ -99,6 +94,12 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
   ![Generate GitHub release notes](images/github_release_02.png)
 
-- Verify the release notes using the preview tab.
+- Remove lines starting with `* chore`. You can use `sed` command line tool for instance:
+
+  ```shell
+  sed '/^* chore/d' release_notes.txt
+  ```
+
+- Verify the release notes using the `Preview` tab.
 
 - Optionally check `Set as a pre-release` and click `Publish release`.<br /><br />
