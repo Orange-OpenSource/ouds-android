@@ -15,10 +15,8 @@ package com.orange.ouds.theme.orangecountry
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorActionSemanticTokens
-import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorBgSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorBorderSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorContentSemanticTokens
-import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorRepositorySemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorSurfaceSemanticTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
@@ -33,6 +31,7 @@ import kotlinx.parcelize.Parcelize
 class OrangeCountryTheme : OrangeTheme() {
     @IgnoredOnParcel
     private val colorGreen500 = Color(0xFF34D349)
+
     @IgnoredOnParcel
     private val colorGreen600 = Color(0xFF069D1A)
 
@@ -65,6 +64,6 @@ class OrangeCountryTheme : OrangeTheme() {
 
     override val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens(
-            button = OudsButtonTokens(colorBgDefaultEnabled = OudsColorKeyToken.Surface.Status.Warning.Muted, borderRadius = OudsBorderKeyToken.Radius.Short)
+            button = OudsButtonTokens(colorBgDefaultEnabled = OudsColorKeyToken.Surface.Status.Warning.Muted, borderRadius = OudsBorderKeyToken.Radius.Small)
         )
 }
