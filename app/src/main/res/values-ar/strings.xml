@@ -100,7 +100,7 @@
     <string name="app_components_common_error_label">خطأ</string>
     <string name="app_components_common_layout_label">التخطيط</string>
     <string name="app_components_common_textOnlyLayout_label">نص فقط</string>
-    <string name="app_components_common_iconAndTextLayout_label">رمز + نص</string>
+    <string name="app_components_common_textAndIconLayout_label">رمز + نص</string>
     <string name="app_components_common_style_label">الأسلوب</string>
     <string name="app_components_common_label_label">التسمية</string>
     <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
