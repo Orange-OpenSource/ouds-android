@@ -92,6 +92,8 @@ object OudsColoredBox {
      */
     enum class Color {
         BrandPrimary,
+        BrandSecondary,
+        BrandTertiary,
         StatusAccentEmphasized,
         StatusAccentMuted,
         StatusInfoEmphasized,
@@ -111,6 +113,8 @@ object OudsColoredBox {
             private fun fromKeyToken(keyToken: OudsColorKeyToken.Surface): Color {
                 return when (keyToken) {
                     OudsColorKeyToken.Surface.Brand.Primary -> BrandPrimary
+                    OudsColorKeyToken.Surface.Brand.Secondary -> BrandSecondary
+                    OudsColorKeyToken.Surface.Brand.Tertiary -> BrandTertiary
                     OudsColorKeyToken.Surface.Status.Accent.Emphasized -> StatusAccentEmphasized
                     OudsColorKeyToken.Surface.Status.Accent.Muted -> StatusAccentMuted
                     OudsColorKeyToken.Surface.Status.Info.Emphasized -> StatusInfoEmphasized
@@ -132,6 +136,8 @@ object OudsColoredBox {
             get() {
                 return when (this) {
                     BrandPrimary -> OudsColorKeyToken.Surface.Brand.Primary
+                    BrandSecondary -> OudsColorKeyToken.Surface.Brand.Secondary
+                    BrandTertiary -> OudsColorKeyToken.Surface.Brand.Tertiary
                     StatusAccentEmphasized -> OudsColorKeyToken.Surface.Status.Accent.Emphasized
                     StatusAccentMuted -> OudsColorKeyToken.Surface.Status.Accent.Muted
                     StatusInfoEmphasized -> OudsColorKeyToken.Surface.Status.Info.Emphasized
@@ -152,6 +158,8 @@ object OudsColoredBox {
 private fun useMonoComponents(color: OudsColoredBox.Color): Boolean {
     return when (color) {
         OudsColoredBox.Color.BrandPrimary,
+        OudsColoredBox.Color.BrandSecondary,
+        OudsColoredBox.Color.BrandTertiary,
         OudsColoredBox.Color.StatusAccentEmphasized,
         OudsColoredBox.Color.StatusInfoEmphasized,
         OudsColoredBox.Color.StatusPositiveEmphasized,
@@ -171,6 +179,8 @@ private fun useMonoComponents(color: OudsColoredBox.Color): Boolean {
 private fun tweak(color: OudsColoredBox.Color): OudsTheme.Tweak {
     return when (color) {
         OudsColoredBox.Color.BrandPrimary,
+        OudsColoredBox.Color.BrandSecondary,
+        OudsColoredBox.Color.BrandTertiary,
         OudsColoredBox.Color.StatusAccentEmphasized,
         OudsColoredBox.Color.StatusInfoEmphasized,
         OudsColoredBox.Color.StatusPositiveEmphasized,
