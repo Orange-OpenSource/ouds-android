@@ -21,16 +21,51 @@ import com.orange.ouds.foundation.InternalOudsApi
 sealed interface OudsColorKeyToken : OudsKeyToken {
     sealed interface Repository : OudsColorKeyToken {
         sealed interface Primary : Repository {
+            data object Lowest : Primary
+            data object Lower : Primary
             data object Low : Primary
             data object Default : Primary
+            data object High : Primary
+            data object Higher : Primary
+            data object Highest : Primary
         }
+
+        sealed interface Secondary : Repository {
+            data object Lowest : Secondary
+            data object Lower : Secondary
+            data object Low : Secondary
+            data object Default : Secondary
+            data object High : Secondary
+            data object Higher : Secondary
+            data object Highest : Secondary
+        }
+
+        sealed interface Tertiary : Repository {
+            data object Lowest : Tertiary
+            data object Lower : Tertiary
+            data object Low : Tertiary
+            data object Default : Tertiary
+            data object High : Tertiary
+            data object Higher : Tertiary
+            data object Highest : Tertiary
+        }
+
         sealed interface Neutral : Repository {
             sealed interface Muted : Neutral {
                 data object White : Muted
                 data object Lowest : Muted
                 data object Lower : Muted
+                data object Low : Muted
+                data object Medium : Muted
+                data object High : Muted
+                data object Higher : Muted
+                data object Highest : Muted
             }
+
             sealed interface Emphasized : Neutral {
+                data object Lowest : Emphasized
+                data object Lower : Emphasized
+                data object Low : Emphasized
                 data object Medium : Emphasized
                 data object High : Emphasized
                 data object Higher : Emphasized
@@ -38,12 +73,17 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object Black : Emphasized
             }
         }
+
         sealed interface Warning : Repository {
             data object Lowest : Warning
+            data object Lower : Warning
             data object Low : Warning
             data object Default : Warning
+            data object High : Warning
+            data object Higher : Warning
             data object Highest : Warning
         }
+
         sealed interface Negative : Repository {
             data object Lowest : Negative
             data object Lower : Negative
@@ -53,25 +93,37 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Higher : Negative
             data object Highest : Negative
         }
+
         sealed interface Positive : Repository {
             data object Lowest : Positive
+            data object Lower : Positive
             data object Low : Positive
             data object Default : Positive
             data object High : Positive
+            data object Higher : Positive
             data object Highest : Positive
         }
+
         sealed interface Info : Repository {
             data object Lowest : Info
+            data object Lower : Info
             data object Low : Info
             data object Default : Info
+            data object High : Info
+            data object Higher : Info
             data object Highest : Info
         }
+
         sealed interface Accent : Repository {
             data object Lowest : Accent
+            data object Lower : Accent
             data object Low : Accent
             data object Default : Accent
+            data object High : Accent
+            data object Higher : Accent
             data object Highest : Accent
         }
+
         sealed interface Opacity : Repository {
             data object Negative : Opacity
             data object Warning : Opacity
@@ -89,6 +141,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object Higher : Black
                 data object Highest : Black
             }
+
             sealed interface White : Opacity {
                 data object Transparent : White
                 data object Lowest : White
@@ -100,50 +153,74 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object Higher : White
                 data object Highest : White
             }
+
+            sealed interface Primary : Opacity {
+                data object Transparent : Primary
+                data object Lowest : Primary
+                data object Lower : Primary
+                data object Low : Primary
+                data object Medium : Primary
+                data object High : Primary
+                data object Higher : Primary
+                data object Highest : Primary
+            }
         }
     }
+
     sealed interface Background : OudsColorKeyToken {
         data object Primary : Background
         data object Secondary : Background
         data object Tertiary : Background
         data object Emphasized : Background
     }
+
     sealed interface Surface : OudsColorKeyToken {
         sealed interface Brand : Surface {
             data object Primary : Brand
+            data object Secondary : Brand
+            data object Tertiary : Brand
         }
+
         sealed interface Status : Surface {
             sealed interface Neutral : Status {
                 data object Muted : Neutral
                 data object Emphasized : Neutral
             }
+
             sealed interface Positive : Status {
                 data object Muted : Positive
                 data object Emphasized : Positive
             }
+
             sealed interface Info : Status {
                 data object Muted : Info
                 data object Emphasized : Info
             }
+
             sealed interface Warning : Status {
                 data object Muted : Warning
                 data object Emphasized : Warning
             }
+
             sealed interface Negative : Status {
                 data object Muted : Negative
                 data object Emphasized : Negative
             }
+
             sealed interface Accent : Status {
                 data object Muted : Accent
                 data object Emphasized : Accent
             }
         }
     }
+
     sealed interface Content : OudsColorKeyToken {
         data object Default : Content
         data object Muted : Content
         data object Disabled : Content
         data object BrandPrimary : Content
+        data object BrandSecondary : Content
+        data object BrandTertiary : Content
         sealed interface Status : Content {
             data object Positive : Status
             data object Info : Status
@@ -151,35 +228,45 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Negative : Status
             data object Accent : Status
         }
+
         sealed interface OnBrand : Content {
             data object Primary : OnBrand
+            data object Secondary : OnBrand
+            data object Tertiary : OnBrand
         }
+
         sealed interface OnStatus : Content {
             sealed interface Neutral : OnStatus {
                 data object Muted : Neutral
                 data object Emphasized : Neutral
             }
+
             sealed interface Positive : OnStatus {
                 data object Muted : Positive
                 data object Emphasized : Positive
             }
+
             sealed interface Info : OnStatus {
                 data object Muted : Info
                 data object Emphasized : Info
             }
+
             sealed interface Warning : OnStatus {
                 data object Muted : Warning
                 data object Emphasized : Warning
             }
+
             sealed interface Negative : OnStatus {
                 data object Muted : Negative
                 data object Emphasized : Negative
             }
+
             sealed interface Accent : OnStatus {
                 data object Muted : Accent
                 data object Emphasized : Accent
             }
         }
+
         sealed interface OnAction : Content {
             data object Enabled : OnAction
             data object Hover : OnAction
@@ -187,12 +274,15 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Loading : OnAction
             data object Disabled : OnAction
             data object Focus : OnAction
+            data object Selected : OnAction
             data object Highlighted : OnAction
         }
+
         sealed interface OnOverlay : Content {
             data object Emphasized : OnOverlay
         }
     }
+
     sealed interface Border : OudsColorKeyToken {
         data object Default : Border
         data object Muted : Border
@@ -200,10 +290,23 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
         data object Focus : Border
         data object FocusInset : Border
         data object BrandPrimary : Border
+        data object BrandSecondary : Border
+        data object BrandTertiary : Border
+        sealed interface Status : Border {
+            data object Positive : Status
+            data object Info : Status
+            data object Warning : Status
+            data object Negative : Status
+            data object Accent : Status
+        }
+
         sealed interface OnBrand : Border {
             data object Primary : OnBrand
+            data object Secondary : OnBrand
+            data object Tertiary : OnBrand
         }
     }
+
     sealed interface Action : OudsColorKeyToken {
         data object Enabled : Action
         data object Hover : Action
@@ -221,6 +324,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Loading : Support
             data object Focus : Support
         }
+
         sealed interface Negative : Action {
             data object Enabled : Negative
             data object Hover : Negative
@@ -229,29 +333,40 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Focus : Negative
         }
     }
+
     sealed interface Overlay : OudsColorKeyToken {
         data object Default : Overlay
         data object Emphasized : Overlay
         data object Drag : Overlay
         data object Modal : Overlay
     }
+
     sealed interface Opacity : OudsColorKeyToken {
         data object Transparent : Opacity
         data object Lowest : Opacity
         data object Lower : Opacity
     }
+
     sealed interface Always : OudsColorKeyToken {
         data object Black : Always
         data object White : Always
         data object OnBlack : Always
         data object OnWhite : Always
     }
+
     sealed interface Decorative : OudsColorKeyToken {
         sealed interface Brand : Decorative {
             data object Primary : Brand
+            data object PrimaryMuted : Brand
+            data object PrimaryEmphasized : Brand
             data object Secondary : Brand
+            data object SecondaryMuted : Brand
+            data object SecondaryEmphasized : Brand
             data object Tertiary : Brand
+            data object TertiaryMuted : Brand
+            data object TertiaryEmphasized : Brand
         }
+
         sealed interface Neutral : Decorative {
             sealed interface Muted : Neutral {
                 data object Lowest : Muted
@@ -262,38 +377,48 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object Higher : Muted
                 data object Highest : Muted
             }
+
             sealed interface Emphasized : Neutral {
                 data object Lowest : Emphasized
                 data object Lower : Emphasized
                 data object Low : Emphasized
+                data object Medium : Emphasized
+                data object High : Emphasized
                 data object Higher : Emphasized
+                data object Highest : Emphasized
             }
         }
+
         sealed interface Accent1 : Decorative {
             data object Muted : Accent1
             data object Default : Accent1
             data object Emphasized : Accent1
         }
+
         sealed interface Accent2 : Decorative {
             data object Muted : Accent2
             data object Default : Accent2
             data object Emphasized : Accent2
         }
+
         sealed interface Accent3 : Decorative {
             data object Muted : Accent3
             data object Default : Accent3
             data object Emphasized : Accent3
         }
+
         sealed interface Accent4 : Decorative {
             data object Muted : Accent4
             data object Default : Accent4
             data object Emphasized : Accent4
         }
+
         sealed interface Accent5 : Decorative {
             data object Muted : Accent5
             data object Default : Accent5
             data object Emphasized : Accent5
         }
+
         sealed interface Skin : Decorative {
             data object Tint100 : Skin
             data object Tint200 : Skin
@@ -307,4 +432,3 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
         }
     }
 }
-
