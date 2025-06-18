@@ -14,10 +14,12 @@ package com.orange.ouds.theme.tokens.components
 
 class OudsComponentsTokens(
     val button: OudsButtonTokens = OudsButtonTokens(),
+    val buttonMono: OudsButtonMonoTokens = OudsButtonMonoTokens(),
     val checkbox: OudsCheckboxTokens = OudsCheckboxTokens(),
     val controlItem: OudsControlItemTokens = OudsControlItemTokens(),
     val divider: OudsDividerTokens = OudsDividerTokens(),
     val link: OudsLinkTokens = OudsLinkTokens(),
+    val linkMono: OudsLinkMonoTokens = OudsLinkMonoTokens(),
     val radioButton: OudsRadioButtonTokens = OudsRadioButtonTokens(),
     val skeleton: OudsSkeletonTokens = OudsSkeletonTokens(),
     val switch: OudsSwitchTokens = OudsSwitchTokens(),

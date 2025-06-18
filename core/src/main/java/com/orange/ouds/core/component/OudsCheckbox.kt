@@ -162,8 +162,8 @@ fun OudsTriStateCheckbox(
         Box(
             modifier = modifier
                 .then(toggleableModifier)
-                .widthIn(checkboxTokens.sizeMinWidth.dp)
-                .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
+                .widthIn(checkboxTokens.sizeMinWidth.value)
+                .heightIn(min = checkboxTokens.sizeMinHeight.value, max = checkboxTokens.sizeMaxHeight.value)
                 .background(color = backgroundColor.value)
                 .outerBorder(state = checkboxState, handleHighContrastMode = true),
             contentAlignment = Alignment.Center,

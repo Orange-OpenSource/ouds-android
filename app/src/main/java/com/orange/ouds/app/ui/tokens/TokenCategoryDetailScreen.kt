@@ -82,7 +82,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     illustration = painterResource(id = tokenCategory.imageRes)
                 )
                 tokenCategory.valueCodeExample?.let { codeExample ->
-                    CodeColumn(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.shortest), codeExample = codeExample)
+                    CodeColumn(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall), codeExample = codeExample)
                 }
             }
 
@@ -152,7 +152,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                     SizeIconWithTextHeader(
                                         modifier = Modifier.padding(
                                             horizontal = OudsTheme.spaces.fixed.medium,
-                                            vertical = OudsTheme.spaces.fixed.shorter
+                                            vertical = OudsTheme.spaces.fixed.extraSmall
                                         ),
                                         typographyToken = typographyToken,
                                         size = entry.value.last().value() as Dp
@@ -179,7 +179,7 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
+            .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
         horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
     ) {
         TokenIllustration(tokenProperty = tokenProperty, token = token)
@@ -271,7 +271,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = OudsTheme.spaces.fixed.short)
+                    .padding(vertical = OudsTheme.spaces.fixed.small)
                     .clickable {
                         isExpanded = !isExpanded
                     }
@@ -280,7 +280,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                         stateDescription = linkStateDescription
                     },
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.paddingInline.short)
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.paddingInline.small)
             ) {
                 Text(
                     text = stringResource(R.string.app_tokens_common_viewCodeExample_label),

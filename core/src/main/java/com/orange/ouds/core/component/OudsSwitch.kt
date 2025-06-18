@@ -119,7 +119,6 @@ fun OudsSwitch(
 @Composable
 internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
     val switchTokens = OudsTheme.componentsTokens.switch
-    val shape = RoundedCornerShape(switchTokens.borderRadius.value)
 
     // The cursor animation is obtained by using a column and updating its horizontalAlignment parameter
     val horizontalAlignment by animateHorizontalAlignmentAsState(
@@ -129,7 +128,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
     Column(
         modifier = Modifier
             .size(width = switchTokens.sizeWidthTrack.dp, height = switchTokens.sizeHeightTrack.dp)
-            .clip(shape)
+            .clip(RoundedCornerShape(switchTokens.borderRadiusTrack.value))
             .background(indicatorBackgroundColor(state = state, checked = checked))
             .padding(start = switchTokens.spacePaddingInlineUnselected.value, end = switchTokens.spacePaddingInlineSelected.value),
         horizontalAlignment = horizontalAlignment,
@@ -142,7 +141,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
         Box(
             modifier = Modifier
                 .size(cursorSize.width.dp, cursorSize.height.dp)
-                .shadow(OudsTheme.elevations.raised.value.dp, shape)
+                .shadow(OudsTheme.elevations.raised.value.dp, RoundedCornerShape(switchTokens.borderRadiusCursor.value))
                 .background(switchTokens.colorCursor.value),
             contentAlignment = Alignment.Center
         ) {

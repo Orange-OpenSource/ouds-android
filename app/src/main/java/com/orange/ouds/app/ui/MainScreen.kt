@@ -173,7 +173,7 @@ private fun ChangeThemeDialog(themeState: ThemeState, dismissDialog: () -> Unit,
             Text(
                 text = stringResource(R.string.app_themeDialog_label),
                 modifier = Modifier
-                    .padding(top = OudsTheme.spaces.fixed.medium, bottom = OudsTheme.spaces.fixed.short)
+                    .padding(top = OudsTheme.spaces.fixed.medium, bottom = OudsTheme.spaces.fixed.small)
                     .padding(horizontal = OudsTheme.spaces.fixed.medium),
                 style = MaterialTheme.typography.titleLarge
             )
