@@ -46,14 +46,14 @@ data class WhiteLabelColorActionSemanticTokens(
     override val actionSupportHoverDark: Color = ColorRawTokens.colorOpacityWhite80,
     override val actionSupportLoadingDark: Color = ColorRawTokens.colorOpacityWhite80,
     override val actionSupportPressedDark: Color = ColorRawTokens.colorOpacityWhite80,
-    override val actionVisitedLight: Color = ColorRawTokens.colorDecorativeAmethyst600,
+    override val actionVisitedLight: Color = ColorRawTokens.colorFunctionalScarlet100,
     override val actionDisabledDark: Color = ColorRawTokens.colorOpacityWhite200,
-    override val actionEnabledDark: Color = ColorRawTokens.colorFunctionalLightGray160,
+    override val actionEnabledDark: Color = ColorRawTokens.colorFunctionalGrayLight160,
     override val actionFocusDark: Color = ColorRawTokens.colorOpacityWhite640,
-    override val actionHighlightedDark: Color = ColorRawTokens.colorFunctionalLightGray160,
+    override val actionHighlightedDark: Color = ColorRawTokens.colorFunctionalGrayLight160,
     override val actionHoverDark: Color = ColorRawTokens.colorOpacityWhite640,
     override val actionLoadingDark: Color = WhiteLabelColorRawTokens.colorBlue500,
     override val actionPressedDark: Color = WhiteLabelColorRawTokens.colorBlue500,
     override val actionSelectedDark: Color = WhiteLabelColorRawTokens.colorBlue500,
-    override val actionVisitedDark: Color = ColorRawTokens.colorDecorativeAmethyst400
+    override val actionVisitedDark: Color = ColorRawTokens.colorFunctionalScarlet100
 ) : OudsColorActionSemanticTokens
