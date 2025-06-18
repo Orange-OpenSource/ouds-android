@@ -107,7 +107,7 @@ class ButtonDemoState(
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),
-        IconAndText(R.string.app_components_common_iconAndTextLayout_label),
+        TextAndIcon(R.string.app_components_common_textAndIconLayout_label),
         IconOnly(R.string.app_components_button_iconOnlyLayout_label)
     }
 }

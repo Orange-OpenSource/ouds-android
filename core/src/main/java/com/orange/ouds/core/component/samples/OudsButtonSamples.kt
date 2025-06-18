@@ -63,7 +63,7 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
 }
 
 @Composable
-internal fun OudsButtonIconAndTextSample() {
+internal fun OudsButtonTextAndIconSample() {
     OudsButton(
         icon = OudsButton.Icon(
             painterResource(id = R.drawable.star_on),
@@ -75,7 +75,7 @@ internal fun OudsButtonIconAndTextSample() {
 }
 
 @Composable
-internal fun OudsButtonIconAndTextOnColoredBackgroundSample() {
+internal fun OudsButtonTextAndIconOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
