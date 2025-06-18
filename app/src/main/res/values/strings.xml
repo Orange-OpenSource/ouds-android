@@ -111,7 +111,7 @@
     <string name="app_components_common_error_label">Error</string>
     <string name="app_components_common_layout_label">Layout</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
-    <string name="app_components_common_iconAndTextLayout_label">Icon + text</string>
+    <string name="app_components_common_textAndIconLayout_label">Text + icon</string>
     <string name="app_components_common_style_label">Style</string>
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>

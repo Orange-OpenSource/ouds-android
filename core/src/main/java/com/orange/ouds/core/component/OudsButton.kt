@@ -30,10 +30,8 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -204,9 +202,9 @@ fun OudsButton(
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonIconAndTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsButtonIconAndTextOnColoredBackgroundSample
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconOnColoredBackgroundSample
  */
 @Composable
 fun OudsButton(
@@ -260,88 +258,86 @@ private fun OudsButton(
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.value * iconScale else Dp.Unspecified
         val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
 
-        CompositionLocalProvider(LocalRippleConfiguration provides null) {
-            val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
-            val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
-                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
-                contentColor(hierarchy = hierarchy, state = buttonState)
-            }
-            val backgroundColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
-                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
-                backgroundColor(hierarchy = hierarchy, state = buttonState)
-            }
-            val borderWidth = rememberInteractionValue(
-                interactionState = interactionState,
-                toAnimatableFloat = { it?.value.orElse { 0f } },
-                fromAnimatableFloat = { it.dp }
-            ) { buttonInteractionState ->
-                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
-                borderWidth(hierarchy = hierarchy, state = buttonState)
-            }
-            val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { buttonInteractionState ->
-                val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
-                borderColor(hierarchy = hierarchy, state = buttonState)
-            }
+        val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
+        val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+            val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
+            contentColor(hierarchy = hierarchy, state = buttonState)
+        }
+        val backgroundColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+            val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
+            backgroundColor(hierarchy = hierarchy, state = buttonState)
+        }
+        val borderWidth = rememberInteractionValue(
+            interactionState = interactionState,
+            toAnimatableFloat = { it?.value.orElse { 0f } },
+            fromAnimatableFloat = { it.dp }
+        ) { buttonInteractionState ->
+            val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
+            borderWidth(hierarchy = hierarchy, state = buttonState)
+        }
+        val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { buttonInteractionState ->
+            val buttonState = getButtonState(enabled = enabled, style = style, interactionState = buttonInteractionState)
+            borderColor(hierarchy = hierarchy, state = buttonState)
+        }
 
-            Box(
-                modifier = modifier
-                    .widthIn(min = buttonTokens.sizeMinWidth.value)
-                    .heightIn(min = buttonTokens.sizeMinHeight.value, max = maxHeight)
-                    .background(color = backgroundColor.value, shape = shape)
-                    .run {
-                        ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
-                            border(width = borderWidth, color = borderColor, shape = shape)
-                        }.orElse {
-                            this
-                        }
+        Box(
+            modifier = modifier
+                .widthIn(min = buttonTokens.sizeMinWidth.value)
+                .heightIn(min = buttonTokens.sizeMinHeight.value, max = maxHeight)
+                .background(color = backgroundColor.value, shape = shape)
+                .run {
+                    ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
+                        border(width = borderWidth, color = borderColor, shape = shape)
+                    }.orElse {
+                        this
                     }
-                    .outerBorder(state = state, shape = shape)
-                    .semantics {
-                        this.stateDescription = stateDescription
-                        role = Role.Button
-                    }
-                    .clickable(
-                        enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading) },
-                        interactionSource = interactionSource,
-                        indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
-                        onClick = onClick
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                if (state == OudsButton.State.Loading) {
-                    val loadingStyle = style as? OudsButton.Style.Loading
-                    val progress = if (getPreviewEnumEntry<OudsButton.State>() == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
-                    LoadingIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
                 }
+                .outerBorder(state = state, shape = shape)
+                .semantics {
+                    this.stateDescription = stateDescription
+                    role = Role.Button
+                }
+                .clickable(
+                    enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading) },
+                    interactionSource = interactionSource,
+                    indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
+                    onClick = onClick
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            if (state == OudsButton.State.Loading) {
+                val loadingStyle = style as? OudsButton.Style.Loading
+                val progress = if (getPreviewEnumEntry<OudsButton.State>() == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
+                LoadingIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
+            }
 
-                val alpha = if (state == OudsButton.State.Loading) 0f else 1f
-                Row(
-                    modifier = Modifier
-                        .alpha(alpha = alpha)
-                        .padding(contentPadding(icon = icon, label = label)),
-                    horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    if (icon != null) {
-                        val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
-                        icon.Content(
-                            modifier = Modifier
-                                .size(size.value * iconScale)
-                                .semantics {
-                                    contentDescription = if (label == null) icon.contentDescription else ""
-                                },
-                            extraParameters = OudsButton.Icon.ExtraParameters(tint = contentColor.value)
-                        )
-                    }
-                    if (label != null) {
-                        Text(
-                            modifier = modifier,
-                            text = label,
-                            color = contentColor.value,
-                            style = OudsTheme.typography.label.strong.large,
-                            textAlign = TextAlign.Center
-                        )
-                    }
+            val alpha = if (state == OudsButton.State.Loading) 0f else 1f
+            Row(
+                modifier = Modifier
+                    .alpha(alpha = alpha)
+                    .padding(contentPadding(icon = icon, label = label)),
+                horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (icon != null) {
+                    val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
+                    icon.Content(
+                        modifier = Modifier
+                            .size(size.value * iconScale)
+                            .semantics {
+                                contentDescription = if (label == null) icon.contentDescription else ""
+                            },
+                        extraParameters = OudsButton.Icon.ExtraParameters(tint = contentColor.value)
+                    )
+                }
+                if (label != null) {
+                    Text(
+                        modifier = modifier,
+                        text = label,
+                        color = contentColor.value,
+                        style = OudsTheme.typography.label.strong.large,
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
         }
@@ -667,8 +663,7 @@ object OudsButtonDefaults {
 object OudsButton {
 
     /**
-     * A button icon in an [OudsButton].
-     * It is non-clickable and no content description is needed because a button label is always present.
+     * An icon in an [OudsButton].
      */
     class Icon private constructor(
         graphicsObject: Any,

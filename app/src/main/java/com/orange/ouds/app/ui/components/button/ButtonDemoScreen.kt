@@ -115,7 +115,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     hierarchy = hierarchy
                 )
             }
-            ButtonDemoState.Layout.IconAndText -> {
+            ButtonDemoState.Layout.TextAndIcon -> {
                 OudsButton(
                     icon = icon,
                     label = label,
@@ -142,13 +142,13 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
     with(state) {
         coloredBoxCall(onColoredBox) {
             functionCall(OudsButton::class.simpleName.orEmpty()) {
-                if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
+                if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     constructorCallArgument<OudsButton.Icon>("icon") {
                         painterArgument(R.drawable.ic_heart)
                         contentDescriptionArgument(R.string.app_components_common_icon_a11y)
                     }
                 }
-                if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
+                if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     labelArgument(label)
                 }
                 onClickArgument()

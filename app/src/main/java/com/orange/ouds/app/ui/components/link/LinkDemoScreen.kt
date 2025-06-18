@@ -96,7 +96,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     size = size
                 )
             }
-            LinkDemoState.Layout.IconAndText -> {
+            LinkDemoState.Layout.TextAndIcon -> {
                 OudsLink(
                     label = label,
                     icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
@@ -134,7 +134,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState) {
                 labelArgument(label)
                 when (layout) {
                     LinkDemoState.Layout.TextOnly -> {}
-                    LinkDemoState.Layout.IconAndText -> {
+                    LinkDemoState.Layout.TextAndIcon -> {
                         constructorCallArgument<OudsLink.Icon>("icon") {
                             painterArgument(R.drawable.ic_heart)
                         }
