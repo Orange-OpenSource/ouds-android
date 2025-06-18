@@ -179,14 +179,14 @@ private fun useMonoComponents(color: OudsColoredBox.Color): Boolean {
 private fun tweak(color: OudsColoredBox.Color): OudsTheme.Tweak {
     return when (color) {
         OudsColoredBox.Color.BrandPrimary,
-        OudsColoredBox.Color.BrandSecondary,
-        OudsColoredBox.Color.BrandTertiary,
         OudsColoredBox.Color.StatusAccentEmphasized,
         OudsColoredBox.Color.StatusInfoEmphasized,
         OudsColoredBox.Color.StatusPositiveEmphasized,
         OudsColoredBox.Color.StatusWarningEmphasized -> OudsTheme.Tweak.ForceLight
         OudsColoredBox.Color.StatusNegativeEmphasized,
         OudsColoredBox.Color.StatusNeutralEmphasized -> if (isSystemInDarkTheme()) OudsTheme.Tweak.ForceLight else OudsTheme.Tweak.ForceDark
+        OudsColoredBox.Color.BrandSecondary,
+        OudsColoredBox.Color.BrandTertiary,
         OudsColoredBox.Color.StatusAccentMuted,
         OudsColoredBox.Color.StatusInfoMuted,
         OudsColoredBox.Color.StatusNegativeMuted,
