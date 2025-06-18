@@ -791,6 +791,18 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                     emphasized = contentOnOverlayEmphasizedDark,
                 ),
                 onStatus = OudsColorScheme.Content.OnStatus(
+                    accent = OudsColorScheme.Content.OnStatus.Accent(
+                        emphasized = contentOnStatusAccentEmphasizedDark,
+                        muted = contentOnStatusAccentMutedDark
+                    ),
+                    info = OudsColorScheme.Content.OnStatus.Info(
+                        emphasized = contentOnStatusInfoEmphasizedDark,
+                        muted = contentOnStatusInfoMutedDark
+                    ),
+                    negative = OudsColorScheme.Content.OnStatus.Negative(
+                        emphasized = contentOnStatusNegativeEmphasizedDark,
+                        muted = contentOnStatusNegativeMutedDark
+                    ),
                     neutral = OudsColorScheme.Content.OnStatus.Neutral(
                         emphasized = contentOnStatusNeutralEmphasizedDark,
                         muted = contentOnStatusNeutralMutedDark
@@ -799,21 +811,9 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                         emphasized = contentOnStatusPositiveEmphasizedDark,
                         muted = contentOnStatusPositiveMutedDark
                     ),
-                    info = OudsColorScheme.Content.OnStatus.Info(
-                        emphasized = contentOnStatusInfoEmphasizedDark,
-                        muted = contentOnStatusInfoMutedDark
-                    ),
                     warning = OudsColorScheme.Content.OnStatus.Warning(
                         emphasized = contentOnStatusWarningEmphasizedDark,
                         muted = contentOnStatusWarningMutedDark
-                    ),
-                    negative = OudsColorScheme.Content.OnStatus.Negative(
-                        emphasized = contentOnStatusNegativeEmphasizedDark,
-                        muted = contentOnStatusNegativeMutedDark
-                    ),
-                    accent = OudsColorScheme.Content.OnStatus.Accent(
-                        emphasized = contentOnStatusAccentEmphasizedDark,
-                        muted = contentOnStatusAccentMutedDark
                     )
                 ),
                 status = OudsColorScheme.Content.Status(
@@ -921,21 +921,21 @@ private val OudsColorSemanticTokens.decorativeColorScheme: OudsColorScheme.Decor
             ),
             neutral = OudsColorScheme.Decorative.Neutral(
                 emphasized = OudsColorScheme.Decorative.Neutral.Emphasized(
+                    high = decorativeNeutralEmphasizedHigh,
                     higher = decorativeNeutralEmphasizedHigher,
+                    highest = decorativeNeutralEmphasizedHighest,
                     low = decorativeNeutralEmphasizedLow,
                     lower = decorativeNeutralEmphasizedLower,
                     lowest = decorativeNeutralEmphasizedLowest,
-                    high = decorativeNeutralEmphasizedHigh,
-                    highest = decorativeNeutralEmphasizedHighest,
                     medium = decorativeNeutralEmphasizedMedium
                 ),
                 muted = OudsColorScheme.Decorative.Neutral.Muted(
                     high = decorativeNeutralMutedHigh,
                     higher = decorativeNeutralMutedHigher,
                     highest = decorativeNeutralMutedHighest,
-                    low = decorativeNeutralMutedLow,
                     lower = decorativeNeutralMutedLower,
                     lowest = decorativeNeutralMutedLowest,
+                    low = decorativeNeutralMutedLow,
                     medium = decorativeNeutralMutedMedium
                 )
             ),
@@ -959,21 +959,21 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
         OudsColorScheme.Repository(
             accent = OudsColorScheme.Repository.Accent(
                 default = repositoryAccentDefault,
+                high = repositoryAccentHigh,
                 higher = repositoryAccentHigher,
                 highest = repositoryAccentHighest,
                 low = repositoryAccentLow,
-                lowest = repositoryAccentLowest,
-                high = repositoryAccentHigh,
                 lower = repositoryAccentLower,
+                lowest = repositoryAccentLowest,
             ),
             info = OudsColorScheme.Repository.Info(
                 default = repositoryInfoDefault,
-                highest = repositoryInfoHighest,
-                low = repositoryInfoLow,
-                lowest = repositoryInfoLowest,
                 high = repositoryInfoHigh,
                 higher = repositoryInfoHigher,
+                highest = repositoryInfoHighest,
+                low = repositoryInfoLow,
                 lower = repositoryInfoLower,
+                lowest = repositoryInfoLowest,
             ),
             negative = OudsColorScheme.Repository.Negative(
                 default = repositoryNegativeDefault,
@@ -984,27 +984,26 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
                 lower = repositoryNegativeLower,
                 lowest = repositoryNegativeLowest,
             ),
-
             neutral = OudsColorScheme.Repository.Neutral(
                 emphasized = OudsColorScheme.Repository.Neutral.Emphasized(
                     black = repositoryNeutralEmphasizedBlack,
                     high = repositoryNeutralEmphasizedHigh,
                     higher = repositoryNeutralEmphasizedHigher,
                     highest = repositoryNeutralEmphasizedHighest,
-                    medium = repositoryNeutralEmphasizedMedium,
                     low = repositoryNeutralEmphasizedLow,
                     lower = repositoryNeutralEmphasizedLower,
                     lowest = repositoryNeutralEmphasizedLowest,
+                    medium = repositoryNeutralEmphasizedMedium
                 ),
                 muted = OudsColorScheme.Repository.Neutral.Muted(
-                    lower = repositoryNeutralMutedLower,
-                    lowest = repositoryNeutralMutedLowest,
-                    white = repositoryNeutralMutedWhite,
-                    medium = repositoryNeutralMutedMedium,
                     high = repositoryNeutralMutedHigh,
                     higher = repositoryNeutralMutedHigher,
                     highest = repositoryNeutralMutedHighest,
                     low = repositoryNeutralMutedLow,
+                    lower = repositoryNeutralMutedLower,
+                    lowest = repositoryNeutralMutedLowest,
+                    medium = repositoryNeutralMutedMedium,
+                    white = repositoryNeutralMutedWhite,
                 )
             ),
             opacity = OudsColorScheme.Repository.Opacity(
@@ -1023,18 +1022,6 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
                 info = repositoryOpacityInfo,
                 negative = repositoryOpacityNegative,
                 positive = repositoryOpacityPositive,
-                warning = repositoryOpacityWarning,
-                white = OudsColorScheme.Repository.Opacity.White(
-                    high = repositoryOpacityWhiteHigh,
-                    higher = repositoryOpacityWhiteHigher,
-                    highest = repositoryOpacityWhiteHighest,
-                    low = repositoryOpacityWhiteLow,
-                    lower = repositoryOpacityWhiteLower,
-                    lowest = repositoryOpacityWhiteLowest,
-                    mediumLow = repositoryOpacityWhiteMediumLow,
-                    medium = repositoryOpacityWhiteMedium,
-                    transparent = repositoryOpacityWhiteTransparent,
-                ),
                 primary = OudsColorScheme.Repository.Opacity.Primary(
                     high = repositoryOpacityPrimaryHigh,
                     higher = repositoryOpacityPrimaryHigher,
@@ -1045,33 +1032,36 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
                     medium = repositoryOpacityPrimaryMedium,
                     transparent = repositoryOpacityPrimaryTransparent,
                 ),
+                warning = repositoryOpacityWarning,
+                white = OudsColorScheme.Repository.Opacity.White(
+                    high = repositoryOpacityWhiteHigh,
+                    higher = repositoryOpacityWhiteHigher,
+                    highest = repositoryOpacityWhiteHighest,
+                    low = repositoryOpacityWhiteLow,
+                    lower = repositoryOpacityWhiteLower,
+                    lowest = repositoryOpacityWhiteLowest,
+                    medium = repositoryOpacityWhiteMedium,
+                    mediumLow = repositoryOpacityWhiteMediumLow,
+                    transparent = repositoryOpacityWhiteTransparent,
+                ),
             ),
             positive = OudsColorScheme.Repository.Positive(
                 default = repositoryPositiveDefault,
+                high = repositoryPositiveHigh,
+                higher = repositoryPositiveHigher,
                 highest = repositoryPositiveHighest,
                 low = repositoryPositiveLow,
-                high = repositoryPositiveHigh,
-                lowest = repositoryPositiveLowest,
-                higher = repositoryPositiveHigher,
                 lower = repositoryPositiveLower,
+                lowest = repositoryPositiveLowest,
             ),
             primary = OudsColorScheme.Repository.Primary(
                 default = repositoryPrimaryDefault,
-                low = repositoryPrimaryLow,
                 high = repositoryPrimaryHigh,
                 higher = repositoryPrimaryHigher,
                 highest = repositoryPrimaryHighest,
+                low = repositoryPrimaryLow,
                 lower = repositoryPrimaryLower,
                 lowest = repositoryPrimaryLowest,
-            ),
-            warning = OudsColorScheme.Repository.Warning(
-                default = repositoryWarningDefault,
-                highest = repositoryWarningHighest,
-                low = repositoryWarningLow,
-                lowest = repositoryWarningLowest,
-                high = repositoryWarningHigh,
-                higher = repositoryWarningHigher,
-                lower = repositoryWarningLower,
             ),
             secondary = OudsColorScheme.Repository.Secondary(
                 default = repositorySecondaryDefault,
@@ -1090,6 +1080,15 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
                 low = repositoryTertiaryLow,
                 lower = repositoryTertiaryLower,
                 lowest = repositoryTertiaryLowest
+            ),
+            warning = OudsColorScheme.Repository.Warning(
+                default = repositoryWarningDefault,
+                high = repositoryWarningHigh,
+                higher = repositoryWarningHigher,
+                highest = repositoryWarningHighest,
+                low = repositoryWarningLow,
+                lower = repositoryWarningLower,
+                lowest = repositoryWarningLowest,
             ),
         )
     }
