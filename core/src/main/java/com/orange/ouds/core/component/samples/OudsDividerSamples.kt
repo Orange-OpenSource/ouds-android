@@ -25,7 +25,7 @@ import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
 internal fun OudsHorizontalDividerSample() {
-    Column(modifier = Modifier.padding(OudsTheme.spaces.fixed.short)) {
+    Column(modifier = Modifier.padding(OudsTheme.spaces.fixed.small)) {
         Text(text = "Up")
         OudsHorizontalDivider(modifier = Modifier.fillMaxWidth())
         Text(text = "Down")
@@ -34,7 +34,7 @@ internal fun OudsHorizontalDividerSample() {
 
 @Composable
 internal fun OudsVerticalDividerSample() {
-    Row(modifier = Modifier.padding(OudsTheme.spaces.fixed.short)) {
+    Row(modifier = Modifier.padding(OudsTheme.spaces.fixed.small)) {
         Text(text = "Start")
         OudsVerticalDivider(modifier = Modifier.fillMaxWidth())
         Text(text = "End")

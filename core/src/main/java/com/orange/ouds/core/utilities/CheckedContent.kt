@@ -56,7 +56,7 @@ internal fun CheckedContent(
         ) {
             Box(modifier = Modifier.alpha(0f)) { content() } // Add content but hide it in order to make room for the text
             Text(
-                modifier = Modifier.padding(OudsTheme.spaces.fixed.short),
+                modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
                 text = previewMessage(),
                 color = color,
                 textAlign = TextAlign.Center,

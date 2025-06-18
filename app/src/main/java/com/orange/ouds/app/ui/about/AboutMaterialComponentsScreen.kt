@@ -333,8 +333,8 @@ private fun AppBarsSample() {
 @Composable
 private fun CommonButtonsSample(enabled: Boolean = true) {
     FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
-        verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shortest)
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small),
+        verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)
     ) {
         Button(onClick = { /* do something */ }, enabled = enabled) { Text("Filled") }
         FilledTonalButton(onClick = { /* do something */ }, enabled = enabled) { Text("Tonal") }
@@ -348,8 +348,8 @@ private fun CommonButtonsSample(enabled: Boolean = true) {
 @Composable
 private fun FloatingActionButtonsSample() {
     FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
-        verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small),
+        verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
     ) {
         FloatingActionButton(onClick = { /* do something */ }) { Icon(Icons.Filled.Add, "Floating action button.") }
         SmallFloatingActionButton(onClick = { /* do something */ }) { Icon(Icons.Filled.Add, "Floating action button.") }
@@ -404,7 +404,7 @@ private fun SegmentedButtonsSample() {
 @Composable
 private fun CardsSample() {
     val cardHeight = 60.dp
-    Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)) {
+    Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -434,7 +434,7 @@ private fun CardsSample() {
 @Composable
 private fun CheckboxesSample(enabled: Boolean = true) {
     val checkedState = remember { mutableStateOf(true) }
-    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
         Checkbox(checked = checkedState.value, enabled = enabled, onCheckedChange = { checkedState.value = it })
         Checkbox(checked = !checkedState.value, enabled = enabled, onCheckedChange = { checkedState.value = !it })
     }
@@ -452,7 +452,7 @@ private fun ChipsSample(enabled: Boolean = true) {
         }
 
         Row(
-            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short),
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small),
         ) {
             AssistChip(
                 onClick = { /* Do something! */ },
@@ -493,7 +493,7 @@ private fun ChipsSample(enabled: Boolean = true) {
 
 @Composable
 private fun FilterChipsRow(enabled: Boolean, selected: Boolean) {
-    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
         var filterChipSelected by remember { mutableStateOf(selected) }
 
         FilterChip(
@@ -764,7 +764,7 @@ private fun BottomSheetScaffoldSample(
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Text("Sheet content")
                 FilledTonalButton(
-                    modifier = Modifier.padding(top = OudsTheme.spaces.fixed.short, bottom = OudsTheme.spaces.fixed.huge),
+                    modifier = Modifier.padding(top = OudsTheme.spaces.fixed.small, bottom = OudsTheme.spaces.fixed.fourExtraLarge),
                     onClick = { scope.launch { scaffoldState.bottomSheetState.partialExpand() } }
                 ) {
                     Text("Collapse sheet")
@@ -819,7 +819,7 @@ private fun SwitchesSample(enabled: Boolean = true) {
         )
     }
 
-    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
         Switch(
             checked = checked,
             onCheckedChange = { checked = !checked },
@@ -911,12 +911,12 @@ private fun SectionColumn(title: String, horizontalPadding: Boolean = true, vert
         text = title,
         style = OudsTheme.typography.heading.medium,
         modifier = Modifier
-            .padding(bottom = OudsTheme.spaces.fixed.short, top = OudsTheme.spaces.fixed.taller)
+            .padding(bottom = OudsTheme.spaces.fixed.small, top = OudsTheme.spaces.fixed.extraLarge)
             .padding(horizontal = OudsTheme.grids.margin)
     )
     Column(
         modifier = if (horizontalPadding) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
-        verticalArrangement = if (verticalSpacing) Arrangement.spacedBy(OudsTheme.spaces.fixed.short) else Arrangement.Top
+        verticalArrangement = if (verticalSpacing) Arrangement.spacedBy(OudsTheme.spaces.fixed.small) else Arrangement.Top
     ) {
         content()
     }

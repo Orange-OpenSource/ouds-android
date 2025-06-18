@@ -60,9 +60,9 @@ data class OudsBorders(
     data class Radius(
         val none: Dp,
         val default: Dp,
-        val short: Dp,
+        val small: Dp,
         val medium: Dp,
-        val tall: Dp,
+        val large: Dp,
         val pill: Dp
     )
 
@@ -86,9 +86,9 @@ internal fun OudsBorderSemanticTokens.getBorders() = OudsBorders(
     radius = OudsBorders.Radius(
         none = radiusNone.dp,
         default = radiusDefault.dp,
-        short = radiusShort.dp,
+        small = radiusSmall.dp,
         medium = radiusMedium.dp,
-        tall = radiusTall.dp,
+        large = radiusLarge.dp,
         pill = radiusPill.dp
     ),
     style = OudsBorders.Style(
@@ -116,9 +116,9 @@ private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Radius): Dp {
     return when (token) {
         OudsBorderKeyToken.Radius.None -> radius.none
         OudsBorderKeyToken.Radius.Default -> radius.default
-        OudsBorderKeyToken.Radius.Short -> radius.short
+        OudsBorderKeyToken.Radius.Small -> radius.small
         OudsBorderKeyToken.Radius.Medium -> radius.medium
-        OudsBorderKeyToken.Radius.Tall -> radius.tall
+        OudsBorderKeyToken.Radius.Large -> radius.large
         OudsBorderKeyToken.Radius.Pill -> radius.pill
     }
 }

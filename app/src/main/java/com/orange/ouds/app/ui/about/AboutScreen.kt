@@ -83,7 +83,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                 ListItem(
                     modifier = Modifier.listItemHorizontalPadding(),
                     headlineContent = {
-                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
+                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
                             Text(text = stringResource(id = R.string.app_about_name_label), style = OudsTheme.typography.heading.extraLarge)
                             Text(text = version, style = OudsTheme.typography.body.default.large)
                             if (pullRequestNumber != null) {
