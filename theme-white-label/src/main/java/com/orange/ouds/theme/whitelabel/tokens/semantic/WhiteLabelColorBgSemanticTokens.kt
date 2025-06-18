@@ -18,12 +18,12 @@ import com.orange.ouds.theme.whitelabel.tokens.raw.WhiteLabelColorRawTokens
 import com.orange.ouds.tokens.global.raw.ColorRawTokens
 
 data class WhiteLabelColorBgSemanticTokens(
-    override val bgEmphasizedLight: Color = ColorRawTokens.colorFunctionalDarkGray880,
+    override val bgEmphasizedLight: Color = ColorRawTokens.colorFunctionalGrayDark880,
     override val bgPrimaryLight: Color = ColorRawTokens.colorFunctionalWhite,
-    override val bgSecondaryLight: Color = ColorRawTokens.colorFunctionalLightGray80,
+    override val bgSecondaryLight: Color = ColorRawTokens.colorFunctionalGrayLight80,
     override val bgTertiaryLight: Color = WhiteLabelColorRawTokens.colorWarmGray100,
-    override val bgEmphasizedDark: Color = ColorRawTokens.colorFunctionalDarkGray640,
-    override val bgPrimaryDark: Color = ColorRawTokens.colorFunctionalDarkGray880,
-    override val bgSecondaryDark: Color = ColorRawTokens.colorFunctionalDarkGray800,
+    override val bgEmphasizedDark: Color = ColorRawTokens.colorFunctionalGrayDark640,
+    override val bgPrimaryDark: Color = ColorRawTokens.colorFunctionalGrayDark880,
+    override val bgSecondaryDark: Color = ColorRawTokens.colorFunctionalGrayDark800,
     override val bgTertiaryDark: Color = WhiteLabelColorRawTokens.colorWarmGray900
 ) : OudsColorBgSemanticTokens
