@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -58,17 +59,17 @@ import com.orange.ouds.foundation.extensions.orElse
 
 @Composable
 internal fun OudsChip(
+    selectable: Boolean,
     selected: Boolean,
     onClick: () -> Unit,
-    nullableLabel: String?,
-    nullableIcon: OudsChip.Icon?,
+    label: String?,
+    icon: OudsChip.Icon?,
+    iconPosition: OudsChip.IconPosition,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val label = nullableLabel
-    val icon = nullableIcon
-
+    val selected = selectable && selected
     val chipTokens = OudsTheme.componentsTokens.chip
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -119,14 +120,28 @@ internal fun OudsChip(
                 }
                 .outerBorder(state = state, shape = shape)
                 .padding(paddingValues = contentPadding(label, icon))
-                .selectable(
-                    selected = selected,
-                    enabled = state != OudsChip.State.Disabled,
-                    interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(contentColor, tickColor, backgroundColor, borderColor, borderWidth),
-                    onClick = onClick,
-                    role = Role.Checkbox
-                ),
+                .run {
+                    val enabled = state != OudsChip.State.Disabled
+                    val indication = InteractionValuesIndication(contentColor, tickColor, backgroundColor, borderColor, borderWidth)
+                    if (selectable) {
+                        selectable(
+                            selected = selected,
+                            enabled = enabled,
+                            interactionSource = interactionSource,
+                            indication = indication,
+                            onClick = onClick,
+                            role = Role.Checkbox
+                        )
+                    } else {
+                        clickable(
+                            enabled = enabled,
+                            interactionSource = interactionSource,
+                            indication = indication,
+                            onClick = onClick,
+                            role = Role.Button
+                        )
+                    }
+                },
             horizontalArrangement = Arrangement.spacedBy(chipTokens.spaceColumnGapIcon.value, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -137,6 +152,21 @@ internal fun OudsChip(
                     contentDescription = null
                 )
             }
+
+            val icon: @Composable () -> Unit = {
+                icon?.Content(
+                    modifier = Modifier
+                        .size(chipTokens.sizeIcon.value * iconScale)
+                        .semantics {
+                            contentDescription = if (label == null) icon.contentDescription else ""
+                        },
+                    extraParameters = OudsChip.Icon.ExtraParameters(tint = contentColor.value)
+                )
+            }
+
+            if (iconPosition == OudsChip.IconPosition.Start) {
+                icon()
+            }
             if (label != null) {
                 Text(
                     modifier = modifier,
@@ -146,14 +176,9 @@ internal fun OudsChip(
                     textAlign = TextAlign.Center
                 )
             }
-            icon?.Content(
-                modifier = Modifier
-                    .size(chipTokens.sizeIcon.value * iconScale)
-                    .semantics {
-                        contentDescription = if (label == null) icon.contentDescription else ""
-                    },
-                extraParameters = OudsChip.Icon.ExtraParameters(tint = contentColor.value)
-            )
+            if (iconPosition == OudsChip.IconPosition.End) {
+                icon()
+            }
         }
     }
 }
@@ -302,5 +327,9 @@ object OudsChip {
 
     internal enum class State {
         Enabled, Hovered, Pressed, Disabled, Focused
+    }
+
+    internal enum class IconPosition {
+        Start, End
     }
 }

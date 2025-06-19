@@ -7,7 +7,7 @@
  * the text of which is available at https://opensource.org/license/MIT/
  * or see the "LICENSE" file for more details.
  *
- * Software description: Android library of reusable graphical components
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ouds.core.component
@@ -21,20 +21,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewStates
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @Composable
-fun OudsFilterChip(
-    selected: Boolean,
+fun OudsSuggestionChip(
     onClick: () -> Unit,
     label: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsFilterChip(
-        selected = selected,
+    OudsSuggestionChip(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = null,
@@ -45,16 +43,14 @@ fun OudsFilterChip(
 }
 
 @Composable
-fun OudsFilterChip(
-    selected: Boolean,
+fun OudsSuggestionChip(
     onClick: () -> Unit,
     icon: OudsChip.Icon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsFilterChip(
-        selected = selected,
+    OudsSuggestionChip(
         onClick = onClick,
         nullableLabel = null,
         nullableIcon = icon,
@@ -65,8 +61,7 @@ fun OudsFilterChip(
 }
 
 @Composable
-fun OudsFilterChip(
-    selected: Boolean,
+fun OudsSuggestionChip(
     onClick: () -> Unit,
     label: String,
     icon: OudsChip.Icon,
@@ -74,8 +69,7 @@ fun OudsFilterChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsFilterChip(
-        selected = selected,
+    OudsSuggestionChip(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = icon,
@@ -83,13 +77,11 @@ fun OudsFilterChip(
         enabled = enabled,
         interactionSource = interactionSource
     )
-
 }
 
 @Composable
-@JvmName("OudsFilterChipNullableLabelAndIcon")
-private fun OudsFilterChip(
-    selected: Boolean,
+@JvmName("OudsSuggestionChipNullableLabelAndIcon")
+private fun OudsSuggestionChip(
     onClick: () -> Unit,
     nullableLabel: String?,
     nullableIcon: OudsChip.Icon?,
@@ -98,12 +90,12 @@ private fun OudsFilterChip(
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsChip(
-        selectable = true,
-        selected = selected,
+        selectable = false,
+        selected = false,
         onClick = onClick,
         label = nullableLabel,
         icon = nullableIcon,
-        iconPosition = OudsChip.IconPosition.End,
+        iconPosition = OudsChip.IconPosition.Start,
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -113,35 +105,33 @@ private fun OudsFilterChip(
 @PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsFilterChip(@PreviewParameter(OudsFilterChipPreviewParameterProvider::class) parameter: OudsFilterChipPreviewParameter) {
-    PreviewOudsFilterChip(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+private fun PreviewOudsSuggestionChip(@PreviewParameter(OudsSuggestionChipPreviewParameterProvider::class) parameter: OudsSuggestionChipPreviewParameter) {
+    PreviewOudsSuggestionChip(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsFilterChip(darkThemeEnabled: Boolean, parameter: OudsFilterChipPreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    with(parameter) {
-        val label = if (hasLabel) "Label" else null
-        val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
-        PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
-            OudsFilterChip(selected = selected, nullableIcon = icon, nullableLabel = label, onClick = {})
+internal fun PreviewOudsSuggestionChip(darkThemeEnabled: Boolean, parameter: OudsSuggestionChipPreviewParameter) =
+    OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+        with(parameter) {
+            val label = if (hasLabel) "Label" else null
+            val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
+            PreviewStates<OudsChip.State>(columnCount = 3) {
+                OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
+            }
         }
     }
-}
 
-internal data class OudsFilterChipPreviewParameter(
-    val selected: Boolean,
+internal data class OudsSuggestionChipPreviewParameter(
     val hasLabel: Boolean,
     val hasIcon: Boolean
 )
 
-internal class OudsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<OudsFilterChipPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsSuggestionChipPreviewParameterProvider :
+    BasicPreviewParameterProvider<OudsSuggestionChipPreviewParameter>(*previewParameterValues.toTypedArray())
 
-private val previewParameterValues: List<OudsFilterChipPreviewParameter>
+private val previewParameterValues: List<OudsSuggestionChipPreviewParameter>
     get() = listOf(
-        OudsFilterChipPreviewParameter(selected = true, hasLabel = true, hasIcon = true),
-        OudsFilterChipPreviewParameter(selected = false, hasLabel = true, hasIcon = true),
-        OudsFilterChipPreviewParameter(selected = true, hasLabel = true, hasIcon = false),
-        OudsFilterChipPreviewParameter(selected = false, hasLabel = true, hasIcon = false),
-        OudsFilterChipPreviewParameter(selected = true, hasLabel = false, hasIcon = true),
-        OudsFilterChipPreviewParameter(selected = false, hasLabel = false, hasIcon = true)
+        OudsSuggestionChipPreviewParameter(hasLabel = true, hasIcon = true),
+        OudsSuggestionChipPreviewParameter(hasLabel = true, hasIcon = false),
+        OudsSuggestionChipPreviewParameter(hasLabel = false, hasIcon = true)
     )
