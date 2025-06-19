@@ -540,14 +540,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 visited = actionVisitedLight,
             )
         },
-        always = with(alwaysColorTokens) {
-            OudsColorScheme.Always(
-                black = alwaysBlack,
-                onBlack = alwaysOnBlack,
-                onWhite = alwaysOnWhite,
-                white = alwaysWhite,
-            )
-        },
+        always = alwaysColorScheme,
         background = with(backgroundColorTokens) {
             OudsColorScheme.Background(
                 emphasized = bgEmphasizedLight,
@@ -724,14 +717,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 visited = actionVisitedDark,
             )
         },
-        always = with(alwaysColorTokens) {
-            OudsColorScheme.Always(
-                black = alwaysBlack,
-                onBlack = alwaysOnBlack,
-                onWhite = alwaysOnWhite,
-                white = alwaysWhite,
-            )
-        },
+        always = alwaysColorScheme,
         background = with(backgroundColorTokens) {
             OudsColorScheme.Background(
                 emphasized = bgEmphasizedDark,
@@ -878,6 +864,17 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
             )
         },
     )
+
+// Always colors are the same in light & dark modes
+private val OudsColorSemanticTokens.alwaysColorScheme: OudsColorScheme.Always
+    get() = with(alwaysColorTokens) {
+        OudsColorScheme.Always(
+            black = alwaysBlack,
+            onBlack = alwaysOnBlack,
+            onWhite = alwaysOnWhite,
+            white = alwaysWhite,
+        )
+    }
 
 // Decorative colors are the same in light & dark modes
 private val OudsColorSemanticTokens.decorativeColorScheme: OudsColorScheme.Decorative
