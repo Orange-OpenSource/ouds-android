@@ -49,6 +49,7 @@ dokka-android-documentation-plugin = { module = "org.jetbrains.dokka:android-doc
 dokka-versioning-plugin = { module = "org.jetbrains.dokka:versioning-plugin", version.ref = "dokka" }
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+firebase-appdistribution-gradle-plugin = { group = "com.google.firebase.appdistribution", name = "com.google.firebase.appdistribution.gradle.plugin", version.ref = "firebaseAppDistribution" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 git-changelog-gradle-plugin = { module = "se.bjurr.gitchangelog:git-changelog-gradle-plugin", version.ref = "gitChangelogGradlePlugin" }
@@ -74,7 +75,7 @@ zxing-javase = { module = "com.google.zxing:javase", version.ref = "zxing" }
 android-application = { id = "com.android.application", version.ref = "gradle" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-dokka-gradle-plugin = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.ref = "firebaseAppDistribution" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
