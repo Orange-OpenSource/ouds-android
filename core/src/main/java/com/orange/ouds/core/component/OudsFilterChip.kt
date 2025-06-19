@@ -14,9 +14,10 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.utilities.OudsPreview
@@ -118,7 +119,7 @@ private fun PreviewOudsFilterChip(@PreviewParameter(OudsFilterChipPreviewParamet
 internal fun PreviewOudsFilterChip(darkThemeEnabled: Boolean, parameter: OudsFilterChipPreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) "Label" else null
-        val icon = if (hasIcon) OudsChip.Icon(painterResource(id = android.R.drawable.star_on), "") else null
+        val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
         PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
             OudsFilterChip(selected = selected, nullableIcon = icon, nullableLabel = label, onClick = {})
         }

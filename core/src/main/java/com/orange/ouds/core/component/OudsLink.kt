@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -437,7 +439,7 @@ internal fun PreviewOudsLink(
     parameter: OudsLinkPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
+        val icon = if (hasIcon) OudsLink.Icon(Icons.Filled.FavoriteBorder) else null
         val linkPreview: @Composable () -> Unit = {
             PreviewEnumEntries<OudsLink.State>(columnCount = 3) {
                 OudsLink(

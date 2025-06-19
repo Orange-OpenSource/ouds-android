@@ -28,6 +28,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -772,7 +774,7 @@ internal fun PreviewOudsButton(
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) hierarchy.name else null
-        val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
+        val icon = if (hasIcon) OudsButton.Icon(Icons.Filled.FavoriteBorder, "") else null
         val content: @Composable () -> Unit = {
             PreviewEnumEntries<OudsButton.State>(columnCount = 2) {
                 OudsButton(nullableIcon = icon, nullableLabel = label, onClick = {}, hierarchy = hierarchy)
