@@ -79,7 +79,7 @@ open class WhiteLabelTheme : OudsThemeContract {
         get() = OudsComponentsTokens(
             button = OudsButtonTokens(
                 borderRadius = OudsBorderKeyToken.Radius.Pill,
-                spacePaddingBlock = OudsSpaceKeyToken.PaddingBlock.Shortest
+                spacePaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall
             )
         )
 }

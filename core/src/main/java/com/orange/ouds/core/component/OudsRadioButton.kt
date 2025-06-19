@@ -106,8 +106,8 @@ fun OudsRadioButton(
 
         Box(
             modifier = modifier
-                .widthIn(radioButtonTokens.sizeMinWidth.dp)
-                .heightIn(min = radioButtonTokens.sizeMinHeight.dp, max = radioButtonTokens.sizeMaxHeight.dp)
+                .widthIn(radioButtonTokens.sizeMinWidth.value)
+                .heightIn(min = radioButtonTokens.sizeMinHeight.value, max = radioButtonTokens.sizeMaxHeight.value)
                 .background(color = backgroundColor.value)
                 .outerBorder(state = state, handleHighContrastMode = true)
                 .then(selectableModifier),

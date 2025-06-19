@@ -78,8 +78,8 @@ fun CustomizationChoiceChips(
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
-            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
             chipsLabels.forEachIndexed { id, label ->
                 val isSelected = selectedChipIndex == id
@@ -116,7 +116,7 @@ fun CustomizationTextField(
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             value = value,
             onValueChange = onValueChange,
             singleLine = true,
@@ -138,7 +138,7 @@ fun CustomizationDropdownMenu(
         Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
-            modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+            modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.extraSmall),
             expanded = expanded,
             onExpandedChange = { expanded = !expanded }
         ) {

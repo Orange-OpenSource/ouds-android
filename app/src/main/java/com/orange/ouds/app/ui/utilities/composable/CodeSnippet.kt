@@ -61,35 +61,35 @@ fun CodeSnippet(modifier: Modifier = Modifier, init: Code.Builder.() -> Unit) {
 fun CodeSnippet(code: String, modifier: Modifier = Modifier) {
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
 
-    Row(
-        modifier = modifier
-            .background(color = OudsTheme.colorScheme.background.secondary)
-            .border(width = 1.dp, color = OudsTheme.colorScheme.border.default),
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter),
-        verticalAlignment = Alignment.Top
-    ) {
-        Text(
-            modifier = Modifier
-                .weight(1f)
-                .padding(vertical = OudsTheme.spaces.fixed.medium)
-                .padding(start = OudsTheme.spaces.fixed.medium),
-            text = code,
-            style = TextStyle(fontFamily = FontFamily.Monospace),
-            color = OudsTheme.colorScheme.content.default
-        )
-        val context = LocalContext.current
-        val clipboard: Clipboard = LocalClipboard.current
-        val coroutineScope: CoroutineScope = rememberCoroutineScope()
-        IconButton(
-            onClick = { copyCodeToClipboard(context, code, clipboard, coroutineScope) },
-            colors = IconButtonDefaults.iconButtonColors(contentColor = OudsTheme.colorScheme.content.default)
+        Row(
+            modifier = modifier
+                .background(color = OudsTheme.colorScheme.background.secondary)
+                .border(width = 1.dp, color = OudsTheme.colorScheme.border.default),
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall),
+            verticalAlignment = Alignment.Top
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_copy),
-                contentDescription = stringResource(id = R.string.app_common_copyCode_a11y)
+            Text(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(vertical = OudsTheme.spaces.fixed.medium)
+                    .padding(start = OudsTheme.spaces.fixed.medium),
+                text = code,
+                style = TextStyle(fontFamily = FontFamily.Monospace),
+                color = OudsTheme.colorScheme.content.default
             )
+            val context = LocalContext.current
+            val clipboard: Clipboard = LocalClipboard.current
+            val coroutineScope: CoroutineScope = rememberCoroutineScope()
+            IconButton(
+                onClick = { copyCodeToClipboard(context, code, clipboard, coroutineScope) },
+                colors = IconButtonDefaults.iconButtonColors(contentColor = OudsTheme.colorScheme.content.default)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_copy),
+                    contentDescription = stringResource(id = R.string.app_common_copyCode_a11y)
+                )
+            }
         }
-    }
     }
 }
 

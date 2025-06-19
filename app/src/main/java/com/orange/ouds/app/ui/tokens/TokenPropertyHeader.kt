@@ -79,7 +79,7 @@ fun SizeIconWithTextHeader(
         modifier = modifier
             .background(color = OudsTheme.colorScheme.surface.status.neutral.muted)
             .padding(all = OudsTheme.spaces.fixed.medium),
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter),
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -124,11 +124,11 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
     val dashedBorderWidth = 1.dp
 
     val externalSpaceValues = when (spaceTokenProperty) {
-        TokenProperty.SpaceScaled -> PaddingValues(start = OudsTheme.spaces.fixed.shorter, top = OudsTheme.spaces.fixed.shortest)
-        TokenProperty.SpaceFixed -> PaddingValues(start = OudsTheme.spaces.fixed.shorter)
-        TokenProperty.SpacePaddingInline -> PaddingValues(horizontal = OudsTheme.spaces.fixed.shorter)
-        TokenProperty.SpacePaddingStack -> PaddingValues(vertical = OudsTheme.spaces.fixed.shorter)
-        TokenProperty.SpacePaddingInset -> PaddingValues(all = OudsTheme.spaces.fixed.shorter)
+        TokenProperty.SpaceScaled -> PaddingValues(start = OudsTheme.spaces.fixed.extraSmall, top = OudsTheme.spaces.fixed.twoExtraSmall)
+        TokenProperty.SpaceFixed -> PaddingValues(start = OudsTheme.spaces.fixed.extraSmall)
+        TokenProperty.SpacePaddingInline -> PaddingValues(horizontal = OudsTheme.spaces.fixed.extraSmall)
+        TokenProperty.SpacePaddingStack -> PaddingValues(vertical = OudsTheme.spaces.fixed.extraSmall)
+        TokenProperty.SpacePaddingInset -> PaddingValues(all = OudsTheme.spaces.fixed.extraSmall)
         else -> PaddingValues(all = 0.dp)
     }
 
@@ -145,7 +145,7 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
         )
     }
 
-    val arrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)
+    val arrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
 
     if (column) {
         Column(
