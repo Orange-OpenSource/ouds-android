@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -31,4 +32,10 @@ internal fun OudsSwitchItemSample() = OudsPreview {
         onCheckedChange = { value -> checked = value },
         divider = false
     )
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsSwitchItemSample() = OudsPreview {
+    OudsSwitchItemSample()
 }

@@ -18,8 +18,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.state.ToggleableState
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsTriStateCheckbox
+import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsCheckboxSample() {
@@ -45,4 +47,16 @@ internal fun OudsTriStateCheckboxSample() {
             }
         }
     )
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsCheckboxSample() = OudsPreview {
+    OudsCheckboxSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTriStateCheckboxSample() = OudsPreview {
+    OudsTriStateCheckboxSample()
 }

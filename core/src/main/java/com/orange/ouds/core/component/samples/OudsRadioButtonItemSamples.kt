@@ -20,7 +20,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsRadioButtonItem
+import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsRadioButtonItemSample() {
@@ -37,4 +39,10 @@ internal fun OudsRadioButtonItemSample() {
             )
         }
     }
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsRadioButtonItemSample() = OudsPreview {
+    OudsRadioButtonItemSample()
 }
