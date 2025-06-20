@@ -145,12 +145,14 @@ internal fun OudsChip(
             horizontalArrangement = Arrangement.spacedBy(chipTokens.spaceColumnGapIcon.value, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            tickColor.value?.let { tickColor ->
-                Icon(
-                    painter = painterResource(id = R.drawable.chip_tick),
-                    tint = tickColor,
-                    contentDescription = null
-                )
+            if (selected) {
+                tickColor.value?.let { tickColor ->
+                    Icon(
+                        painter = painterResource(id = R.drawable.chip_tick),
+                        tint = tickColor,
+                        contentDescription = null
+                    )
+                }
             }
 
             val icon: @Composable () -> Unit = {
