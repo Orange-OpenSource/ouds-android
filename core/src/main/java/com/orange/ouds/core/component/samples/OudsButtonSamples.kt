@@ -12,11 +12,13 @@
 
 package com.orange.ouds.core.component.samples
 
-import android.R
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsButtonTextOnlySample() {
@@ -41,7 +43,7 @@ internal fun OudsButtonTextOnlyOnColoredBackgroundSample() {
 internal fun OudsButtonIconOnlySample() {
     OudsButton(
         icon = OudsButton.Icon(
-            painterResource(id = R.drawable.star_on),
+            Icons.Filled.FavoriteBorder,
             "Content description"
         ),
         onClick = { /* Do something! */ }
@@ -54,7 +56,7 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                painterResource(id = R.drawable.star_on),
+                Icons.Filled.FavoriteBorder,
                 "Content description"
             ),
             onClick = { /* Do something! */ }
@@ -66,7 +68,7 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
 internal fun OudsButtonIconAndTextSample() {
     OudsButton(
         icon = OudsButton.Icon(
-            painterResource(id = R.drawable.star_on),
+            Icons.Filled.FavoriteBorder,
             "Content description"
         ),
         label = "Label",
@@ -80,11 +82,47 @@ internal fun OudsButtonIconAndTextOnColoredBackgroundSample() {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                painterResource(id = R.drawable.star_on),
+                Icons.Filled.FavoriteBorder,
                 "Content description"
             ),
             label = "Label",
             onClick = { /* Do something! */ }
         )
     }
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsButtonTextOnlySample() = OudsPreview {
+    OudsButtonTextOnlySample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsButtonTextOnlyOnColoredBackgroundSample() = OudsPreview {
+    OudsButtonTextOnlyOnColoredBackgroundSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsButtonIconOnlySample() = OudsPreview {
+    OudsButtonIconOnlySample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsButtonIconOnlyOnColoredBackgroundSample() = OudsPreview {
+    OudsButtonIconOnlyOnColoredBackgroundSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsButtonIconAndTextSample() = OudsPreview {
+    OudsButtonIconAndTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsButtonIconAndTextOnColoredBackgroundSample() = OudsPreview {
+    OudsButtonIconAndTextOnColoredBackgroundSample()
 }
