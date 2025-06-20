@@ -12,9 +12,9 @@
 
 package com.orange.ouds.core.component.samples
 
-import android.R
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
 
@@ -41,7 +41,7 @@ internal fun OudsButtonTextOnlyOnColoredBackgroundSample() {
 internal fun OudsButtonIconOnlySample() {
     OudsButton(
         icon = OudsButton.Icon(
-            painterResource(id = R.drawable.star_on),
+            Icons.Filled.FavoriteBorder,
             "Content description"
         ),
         onClick = { /* Do something! */ }
@@ -54,7 +54,7 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                painterResource(id = R.drawable.star_on),
+                Icons.Filled.FavoriteBorder,
                 "Content description"
             ),
             onClick = { /* Do something! */ }
@@ -63,10 +63,10 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
 }
 
 @Composable
-internal fun OudsButtonIconAndTextSample() {
+internal fun OudsButtonTextAndIconSample() {
     OudsButton(
         icon = OudsButton.Icon(
-            painterResource(id = R.drawable.star_on),
+            Icons.Filled.FavoriteBorder,
             "Content description"
         ),
         label = "Label",
@@ -75,12 +75,12 @@ internal fun OudsButtonIconAndTextSample() {
 }
 
 @Composable
-internal fun OudsButtonIconAndTextOnColoredBackgroundSample() {
+internal fun OudsButtonTextAndIconOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                painterResource(id = R.drawable.star_on),
+                Icons.Filled.FavoriteBorder,
                 "Content description"
             ),
             label = "Label",
