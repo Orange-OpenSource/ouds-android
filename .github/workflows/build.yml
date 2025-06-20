@@ -113,7 +113,6 @@ jobs:
 
   maven-central-release:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     needs: build
     environment:
       name: maven-central-release
