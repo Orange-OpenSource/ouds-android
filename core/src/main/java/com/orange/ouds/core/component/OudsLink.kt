@@ -198,7 +198,7 @@ private fun OudsLink(
                     enabled = state != OudsLink.State.Disabled,
                     onClick = onClick
                 ),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.CenterStart
         ) {
             val columnGap: Dp
             val iconSize: Dp
