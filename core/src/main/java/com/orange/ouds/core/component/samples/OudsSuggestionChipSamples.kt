@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsChip
 import com.orange.ouds.core.component.OudsSuggestionChip
 
-
 @Composable
 internal fun OudsSuggestionChipTextOnlySample() {
     OudsSuggestionChip(

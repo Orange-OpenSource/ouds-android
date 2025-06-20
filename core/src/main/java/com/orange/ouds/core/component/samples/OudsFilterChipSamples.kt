@@ -22,7 +22,6 @@ import androidx.compose.runtime.setValue
 import com.orange.ouds.core.component.OudsChip
 import com.orange.ouds.core.component.OudsFilterChip
 
-
 @Composable
 internal fun OudsFilterChipTextOnlySample() {
     var selected by remember { mutableStateOf(false) }
