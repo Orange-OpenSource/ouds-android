@@ -101,6 +101,7 @@
     <string name="app_components_common_layout_label">التخطيط</string>
     <string name="app_components_common_textOnlyLayout_label">نص فقط</string>
     <string name="app_components_common_textAndIconLayout_label">رمز + نص</string>
+    <string name="app_components_common_iconOnlyLayout_label">رمز فقط</string>
     <string name="app_components_common_style_label">الأسلوب</string>
     <string name="app_components_common_label_label">التسمية</string>
     <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
@@ -121,7 +122,6 @@
     <string name="app_components_button_label">زر</string>
     <string name="app_components_button_description_text">الأزرار تسمح للمستخدمين باتخاذ قرارات أو أداء إجراء. لها عدة أنماط لتلبية احتياجات مختلفة.</string>
     <string name="app_components_button_hierarchy_label">التسلسل</string>
-    <string name="app_components_button_iconOnlyLayout_label">رمز فقط</string>
 
     <!-- Components: link -->
     <string name="app_components_link_label">رابط</string>
@@ -139,6 +139,12 @@
     <string name="app_components_checkbox_indeterminateCheckbox_label">خانة اختيار غير محدد</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">وصف محتوى مربع الاختيار غير المحدد %s</string>
     <string name="app_components_checkbox_indeterminateCheckboxItem_label">خانة اختيار اختيار غير محدد</string>
+
+    <!-- Components: chip -->
+    <string name="app_components_chip_label">Chip</string>
+    <string name="app_components_chip_description_text">Chips help people enter information, make selections, filter content, or trigger actions.</string>
+    <string name="app_components_chip_filterChip_label">Filter chip</string>
+    <string name="app_components_chip_suggestionChip_label">Suggestion chip</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">نص المساعدة</string>

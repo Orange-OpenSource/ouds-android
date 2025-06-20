@@ -30,7 +30,7 @@ fun rememberLinkDemoState(
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     size: OudsLink.Size = OudsLinkDefaults.Size,
-    layout: LinkDemoState.Layout = LinkDemoState.Layout.TextOnly
+    layout: LinkDemoState.Layout = LinkDemoState.Layout.entries.first()
 ) = rememberSaveable(label, enabled, onColoredBox, size, layout, saver = LinkDemoState.Saver) {
     LinkDemoState(label, enabled, onColoredBox, size, layout)
 }

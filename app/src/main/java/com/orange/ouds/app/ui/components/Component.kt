@@ -20,6 +20,8 @@ import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
+import com.orange.ouds.app.ui.components.chip.FilterChipDemoScreen
+import com.orange.ouds.app.ui.components.chip.SuggestionChipDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
@@ -65,6 +67,13 @@ sealed class Component(
         LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
         R.string.app_components_checkbox_description_text,
         listOf(Variant.Checkbox, Variant.CheckboxItem, Variant.IndeterminateCheckbox, Variant.IndeterminateCheckboxItem)
+    )
+
+    data object Chip : Component(
+        R.string.app_components_chip_label,
+        LightDarkResourceId(R.drawable.il_components_chip, R.drawable.il_components_chip_dark),
+        R.string.app_components_chip_description_text,
+        listOf(Variant.FilterChip, Variant.SuggestionChip)
     )
 
     data object Divider : Component(
@@ -113,6 +122,10 @@ sealed class Variant(
     data object IndeterminateCheckbox : Variant(R.string.app_components_checkbox_indeterminateCheckbox_label, { CheckboxDemoScreen(indeterminate = true) })
     data object IndeterminateCheckboxItem :
         Variant(R.string.app_components_checkbox_indeterminateCheckboxItem_label, { CheckboxItemDemoScreen(indeterminate = true) })
+
+    // Chip
+    data object FilterChip : Variant(R.string.app_components_chip_filterChip_label, { FilterChipDemoScreen() })
+    data object SuggestionChip : Variant(R.string.app_components_chip_suggestionChip_label, { SuggestionChipDemoScreen() })
 
     // Divider
     data object HorizontalDivider : Variant(R.string.app_components_divider_horizontalDivider_label, { DividerDemoScreen() })
