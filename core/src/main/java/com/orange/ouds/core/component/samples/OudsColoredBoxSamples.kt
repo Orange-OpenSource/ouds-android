@@ -14,7 +14,9 @@ package com.orange.ouds.core.component.samples
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsColoredBoxSample() {
@@ -22,4 +24,10 @@ internal fun OudsColoredBoxSample() {
         // From this point the theme is automatically adjusted to maximize the contrast with OudsColoredBox.Color.StatusInfoEmphasized
         Text("Text")
     }
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsColoredBoxSample() = OudsPreview {
+    OudsColoredBoxSample()
 }
