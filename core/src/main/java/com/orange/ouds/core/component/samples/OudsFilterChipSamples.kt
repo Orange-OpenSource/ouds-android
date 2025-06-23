@@ -19,8 +19,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsChip
 import com.orange.ouds.core.component.OudsFilterChip
+import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsFilterChipTextOnlySample() {
@@ -28,7 +30,7 @@ internal fun OudsFilterChipTextOnlySample() {
     OudsFilterChip(
         selected = selected,
         onClick = { selected = !selected },
-        label = "Filter chip"
+        label = "Label"
     )
 }
 
@@ -39,22 +41,40 @@ internal fun OudsFilterChipIconOnlySample() {
         selected = selected,
         onClick = { selected = !selected },
         icon = OudsChip.Icon(
-            Icons.Filled.FavoriteBorder,
-            "Content description"
+            imageVector = Icons.Filled.FavoriteBorder,
+            contentDescription = "Content description"
         )
     )
 }
 
 @Composable
-internal fun OudsFilterTextAndIconSample() {
+internal fun OudsFilterChipTextAndIconSample() {
     var selected by remember { mutableStateOf(false) }
     OudsFilterChip(
         selected = selected,
         onClick = { selected = !selected },
         label = "Label",
         icon = OudsChip.Icon(
-            Icons.Filled.FavoriteBorder,
-            "Content description"
+            imageVector = Icons.Filled.FavoriteBorder,
+            contentDescription = ""
         )
     )
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsFilterChipTextOnlySample() = OudsPreview {
+    OudsFilterChipTextOnlySample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsFilterChipIconOnlySample() = OudsPreview {
+    OudsFilterChipIconOnlySample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsFilterChipTextAndIconSample() = OudsPreview {
+    OudsFilterChipTextAndIconSample()
 }

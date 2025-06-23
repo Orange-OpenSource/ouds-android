@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @Composable
@@ -115,7 +115,7 @@ internal fun PreviewOudsSuggestionChip(darkThemeEnabled: Boolean, parameter: Oud
         with(parameter) {
             val label = if (hasLabel) "Label" else null
             val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
-            PreviewStates<OudsChip.State>(columnCount = 3) {
+            PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
                 OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
             }
         }

@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -142,7 +141,6 @@ fun OudsLink(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OudsLink(
     label: String,
@@ -365,7 +363,7 @@ object OudsLink {
 
     /**
      * An icon in an [OudsLink].
-     * It is non-clickable and no content description is needed because a link label is always present.
+     * This icon is non-clickable and no content description is needed because a link label is always present.
      */
     open class Icon private constructor(
         graphicsObject: Any

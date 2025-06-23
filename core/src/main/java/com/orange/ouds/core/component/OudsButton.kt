@@ -31,7 +31,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -231,7 +230,6 @@ fun OudsButton(
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 @JvmName("OudsButtonNullableIconAndLabel")
 private fun OudsButton(
     nullableIcon: OudsButton.Icon?,
@@ -665,6 +663,7 @@ object OudsButton {
 
     /**
      * An icon in an [OudsButton].
+     * This icon is non-clickable.
      */
     class Icon private constructor(
         graphicsObject: Any,

@@ -54,7 +54,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
-import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 
 @Composable
@@ -69,7 +68,7 @@ internal fun OudsChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val selected = selectable && selected
+    @Suppress("NAME_SHADOWING") val selected = selectable && selected
     val chipTokens = OudsTheme.componentsTokens.chip
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -91,13 +90,13 @@ internal fun OudsChip(
     }
     val borderWidth = rememberInteractionValue(
         interactionState = interactionState,
-        toAnimatableFloat = { it?.value.orElse { 0f } },
+        toAnimatableFloat = { it.value },
         fromAnimatableFloat = { it.dp }
     ) { chipInteractionState ->
         val chipState = getChipState(enabled = enabled, interactionState = chipInteractionState)
         borderWidth(state = chipState, selected = selected)
     }
-    val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { chipInteractionState ->
+    val borderColor = rememberInteractionColor(interactionState = interactionState) { chipInteractionState ->
         val chipState = getChipState(enabled = enabled, interactionState = chipInteractionState)
         borderColor(state = chipState, selected = selected)
     }
@@ -111,17 +110,10 @@ internal fun OudsChip(
                 .widthIn(min = chipTokens.sizeMinWidth.dp)
                 .heightIn(min = chipTokens.sizeMinHeight.dp)
                 .background(color = backgroundColor.value, shape = shape)
-                .run {
-                    ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
-                        border(width = borderWidth, color = borderColor, shape = shape)
-                    }.orElse {
-                        this
-                    }
-                }
+                .border(width = borderWidth.value, color = borderColor.value, shape = shape)
                 .outerBorder(state = state, shape = shape)
                 .padding(paddingValues = contentPadding(label, icon))
                 .run {
-                    val enabled = state != OudsChip.State.Disabled
                     val indication = InteractionValuesIndication(contentColor, tickColor, backgroundColor, borderColor, borderWidth)
                     if (selectable) {
                         selectable(
@@ -155,7 +147,7 @@ internal fun OudsChip(
                 }
             }
 
-            val icon: @Composable () -> Unit = {
+            val iconContent: @Composable () -> Unit = {
                 icon?.Content(
                     modifier = Modifier
                         .size(chipTokens.sizeIcon.value * iconScale)
@@ -167,7 +159,7 @@ internal fun OudsChip(
             }
 
             if (iconPosition == OudsChip.IconPosition.Start) {
-                icon()
+                iconContent()
             }
             if (label != null) {
                 Text(
@@ -179,7 +171,7 @@ internal fun OudsChip(
                 )
             }
             if (iconPosition == OudsChip.IconPosition.End) {
-                icon()
+                iconContent()
             }
         }
     }
@@ -199,7 +191,7 @@ private fun getChipState(interactionState: InteractionState, enabled: Boolean): 
 }
 
 @Composable
-private fun borderWidth(state: OudsChip.State, selected: Boolean): Dp? {
+private fun borderWidth(state: OudsChip.State, selected: Boolean): Dp {
     return with(OudsTheme.componentsTokens.chip) {
         if (selected) {
             borderWidthSelected
@@ -216,7 +208,7 @@ private fun borderWidth(state: OudsChip.State, selected: Boolean): Dp? {
 }
 
 @Composable
-private fun borderColor(state: OudsChip.State, selected: Boolean): Color? {
+private fun borderColor(state: OudsChip.State, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
             OudsChip.State.Enabled -> if (selected) colorBorderSelectedEnabled else colorBorderUnselectedEnabled
@@ -281,12 +273,13 @@ private fun contentPadding(label: String?, icon: OudsChip.Icon?): PaddingValues 
 }
 
 /**
- * Contains classes to build an [OudsFilterChip], an [OudsSuggestionChip] or an [OudsExpandFilterChip].
+ * Contains classes to build an [OudsFilterChip] or an [OudsSuggestionChip].
  */
 object OudsChip {
 
     /**
-     * An icon in an [OudsFilterChip], an [OudsSuggestionChip] or an [OudsExpandFilterChip].
+     * An icon in an [OudsFilterChip] or an [OudsSuggestionChip].
+     * This icon is non-clickable.
      */
     class Icon private constructor(
         graphicsObject: Any,
