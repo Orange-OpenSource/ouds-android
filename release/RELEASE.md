@@ -67,7 +67,7 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 - Launch the `testCentralPublisherPortalDeployment` Gradle task using your user token as parameter:
 
     ```shell
-    ./gradlew testCentralPublisherPortalDeployment -PcentralPublisherPortalToken=<token>
+    ./gradlew testCentralPublisherPortalDeployment -Ptoken=<token>
     ```
 
   This task allows you to test the release before it is deployed to Maven Central and performs the following changes to the project:

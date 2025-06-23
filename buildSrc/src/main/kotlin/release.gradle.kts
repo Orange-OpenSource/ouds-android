@@ -87,7 +87,7 @@ fun updateVersionCode() {
 
 tasks.register<DefaultTask>("testCentralPublisherPortalDeployment") {
     doLast {
-        val token = project.requireTypedProperty<String>("Ptoken")
+        val token = project.requireTypedProperty<String>("token")
 
         // Add Central Publisher Portal Maven repository in settings.gradle.kts file
         File("settings.gradle.kts").replace("(\\h*)mavenCentral\\(\\)".toRegex()) { matchResult ->
