@@ -144,9 +144,10 @@ jobs:
           GNUPG_SIGNING_KEY_ID: ${{ secrets.GNUPG_SIGNING_KEY_ID }}
           GNUPG_SIGNING_PASSWORD: ${{ secrets.GNUPG_SIGNING_PASSWORD }}
           GNUPG_SIGNING_SECRET_KEY: ${{ secrets.GNUPG_SIGNING_SECRET_KEY }}
-          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-        run: ./gradlew publish
+          CENTRAL_PUBLISHER_PORTAL_TOKEN: ${{ secrets.CENTRAL_PUBLISHER_PORTAL_TOKEN }}
+          CENTRAL_PUBLISHER_PORTAL_USERNAME: ${{ secrets.CENTRAL_PUBLISHER_PORTAL_USERNAME }}
+          CENTRAL_PUBLISHER_PORTAL_PASSWORD: ${{ secrets.CENTRAL_PUBLISHER_PORTAL_PASSWORD }}
+        run: ./gradlew publishToCentralPublisherPortal
 
   github-release:
     runs-on: ubuntu-latest
