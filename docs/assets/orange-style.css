@@ -1,46 +1,248 @@
-/* --- root styles --- */
 :root {
-    --color-key-orange: #ff7900;
+  --color-key-orange: #f15e00;
 
-    --active-tab-border-color: #ff7900;
-    --active-section-color: #ff7900;
-    --sidemenu-section-active-color: #ff7900;
+  --active-tab-border-color: #f15e00;
+  --active-section-color: #f15e00;
+  --sidemenu-section-active-color: #f15e00;
 
-    --footer-go-to-top-color: white;
+  --footer-go-to-top-color: white;
+  --color-background-nav: #000;
+  --color-background-nav-dt: #000;
 
-    --default-font-family: HelvNeueOrange, "Helvetica Neue", Helvetica, "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --default-font-family: helvneueorange, "Helvetica Neue", helvetica,
+    "Noto Sans", "Liberation Sans", arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --dokka-logo-height: 32px;
+  --dokka-logo-width: 32px;
+  --navigation-padding-top: 10px;
+  --navigation-padding-bottom: 0;
+  --grid-margin: 16px;
+
+  --hero-image-height: 120px;
+
+  --font-size-body-large: 1rem;
+  --font-size-heading-small: 1.125rem;
+  --font-size-heading-medium: 1.25rem;
+  --font-size-heading-large: 1.5rem;
+  --font-size-display-small: 2rem;
+
+  --font-line-height-heading-large: 0px;
+
+  --font-letter-spacing-display-small: -0.32px;
+  --font-letter-spacing-heading-large: 0.12px;
+  --font-letter-spacing-heading-small: 0.18px;
+  --font-letter-spacing-body-large: 0.2px;
+
+  --default-font-size: var(--font-size-body-large);
+  --horizontal-spacing-for-content: var(--grid-margin);
+
+  @media (min-width: 736px) {
+    --dokka-logo-height: 48px;
+    --dokka-logo-width: 48px;
+    --navigation-padding-top: 44px;
+    --navigation-padding-bottom: 16px;
+    --grid-margin: 32px;
+
+    --hero-image-height: 170px;
+
+    --font-size-body-large: 1.125rem;
+    --font-size-heading-small: 1.5rem;
+    --font-size-heading-medium: 1.5rem;
+    --font-size-heading-large: 2.25rem;
+    --font-size-display-small: 2.5rem;
+
+    --font-line-height-heading-large: 36px;
+
+    --font-letter-spacing-display-small: -0.4px;
+    --font-letter-spacing-heading-large: 0.28px;
+    --font-letter-spacing-heading-small: 0px;
+    --font-letter-spacing-body-large: 0.18px;
+  }
+
+  @media (min-width: 1024px) {
+    --grid-margin: 56px;
+
+    --hero-image-height: 200px;
+
+    --font-size-body-large: 1.125rem;
+    --font-size-heading-small: 1.5rem;
+    --font-size-heading-medium: 1.75rem;
+    --font-size-heading-large: 2.5rem;
+    --font-size-display-small: 3rem;
+
+    --font-line-height-heading-large: 40px;
+
+    --font-letter-spacing-display-small: -0.6px;
+    --font-letter-spacing-heading-large: 0.32px;
+    --font-letter-spacing-heading-small: -0.12px;
+  }
 }
 
+.theme-dark {
+  --background-color: #121212;
+  --color-key-orange: #ff7900;
+
+  --active-tab-border-color: #ff7900;
+  --active-section-color: #ff7900;
+  --sidemenu-section-active-color: #ff7900;
+}
+
+.navigation {
+  position: relative;
+  padding: var(--navigation-padding-top) var(--grid-margin)
+    var(--navigation-padding-bottom);
+  border-bottom: 1px solid #666;
+}
+.library-name--link {
+  position: relative;
+  height: auto;
+  padding-left: calc(var(--dokka-logo-width) + 24px);
+  margin: 0 8px 0 0;
+  font-family: var(--default-font-family);
+  font-size: var(--font-size-heading-large);
+  font-weight: 700;
+  line-height: var(--font-line-height-heading-large);
+  letter-spacing: var(--font-letter-spacing-heading-large);
+  vertical-align: baseline;
+
+  @media (max-width: 736px) {
+    color: transparent;
+  }
+}
+.library-name--link::before {
+  position: absolute;
+  left: 0;
+  max-height: initial;
+  background-size: var(--dokka-logo-height) var(--dokka-logo-width);
+
+  @media (min-width: 736px) {
+    top: -17px;
+  }
+  @media (min-width: 1024px) {
+    top: -13px;
+  }
+}
+.navigation-controls--btn {
+  width: var(--dokka-logo-height);
+  height: var(--dokka-logo-height);
+}
+.navigation-controls--btn_theme {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' fill='white'><path d='M675 649.88c-179.493 0-325-145.57-325-325.141A324.478 324.478 0 0 1 465.721 76C247.03 93.463 75 276.537 75 499.815 75 734.638 265.279 925 500 925c223.181 0 406.175-172.106 423.63-390.891A324.222 324.222 0 0 1 675 649.88Z'/></svg>");
+}
+
+/* TOC sidebar */
+.toc--part {
+  font: inherit;
+  font-weight: 700;
+}
+.dropdown--header {
+  font-size: var(--font-size-heading-medium);
+  font-weight: 700;
+}
+@media (max-width: 439px) {
+  .dropdown--list {
+    width: 320px;
+  }
+}
+.toc--button::after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' fill='white'><path d='m225 402.78 196.43 194.44L500 675l78.57-77.78L775 402.78 696.43 325 500 519.44 303.57 325 225 402.78Z'/></svg>");
+}
+
+/* fixes strange line-height on some paragraph texts */
+.UnderCoverText {
+  line-height: inherit;
+}
+
+/* Homepage hero */
+#main:has(.main-content[pageIds~="OUDS"])::before {
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--hero-image-height);
+  content: " ";
+  background: no-repeat url("../images/banner.png");
+  background-size: cover;
+
+  @media (max-width: 480px) {
+    background-position: -170px;
+  }
+}
+
+/* Homepage introduction */
+.main-content[pageIds~="OUDS"] > .cover > .cover > .paragraph:first-of-type {
+  font-size: var(--font-size-heading-small);
+  font-weight: 700;
+  letter-spacing: var(--font-letter-spacing-heading-small);
+}
+
+/* section headings, using :is() to select like Dokka */
+.main-content :is(h1, h2) {
+  font-weight: 700;
+  color: var(--color-key-orange);
+}
+.main-content :is(h1) {
+  font-size: var(--font-size-display-small);
+  line-height: 56px;
+  letter-spacing: var(--font-letter-spacing-display-small);
+}
+.main-content :is(h2, h3) {
+  font-size: var(--font-size-heading-large);
+  line-height: var(--font-line-height-heading-large);
+  letter-spacing: var(--font-letter-spacing-heading-large);
+}
+
+.paragraph,
+.table {
+  max-width: 45rem;
+  letter-spacing: var(--font-letter-spacing-body-large);
+}
+
+/* inline code styling */
+code:not(.block) {
+  padding: 0 0.4em 0.175em;
+  margin: 0;
+  font-size: 80%;
+  white-space: break-spaces;
+  border-radius: 2px;
+}
+code.block {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+}
+
+/* mainly fixes dark theme */
+.table-row {
+  background-color: inherit;
+}
 
 /* Remove "ANDROIDJVM" button in header */
 .filter-section {
-    display: none;
+  display: none;
 }
 
 .toc--link:hover {
-    color: var(--color-key-orange);
+  color: var(--color-key-orange);
 }
 
-.toc--part[data-active]>.toc--row .toc--button:after, .toc--part[data-active]>.toc--row .toc--link:after {
-    filter: invert(1);
+.toc--part[data-active] > .toc--row .toc--button::after,
+.toc--part[data-active] > .toc--row .toc--link::after {
+  filter: invert(1);
 }
 
-.toc--part[data-active]>.toc--row .toc--button, .toc--part[data-active]>.toc--row .toc--link {
-    background-color: var(--color-background);
-    color: var(--toc-color);
-    font-weight: 700;
+.toc--part[data-active] > .toc--row .toc--button,
+.toc--part[data-active] > .toc--row .toc--link {
+  font-weight: 700;
+  color: var(--toc-color);
+  background-color: var(--color-background);
 }
 
-.toc--part[data-active]>.toc--row .toc--button:hover,.toc--part[data-active]>.toc--row .toc--link:hover {
-    background-color: var(--color-background);
-    color: var(--color-key-orange);
-}
-
-.library-name--link {
-    font-size: 28px;
-    font-weight: 700;
+.toc--part[data-active] > .toc--row .toc--button:hover,
+.toc--part[data-active] > .toc--row .toc--link:hover {
+  color: var(--color-key-orange);
+  background-color: var(--color-background);
 }
 
 li {
-    margin-top: 8px;
+  margin-top: 8px;
 }
