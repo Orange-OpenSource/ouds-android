@@ -27,7 +27,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
-import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.core.component.OudsChip
 import com.orange.ouds.core.theme.OudsTheme
@@ -40,7 +40,7 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             checked = enabled,
             onCheckedChange = { enabled = it }
         )
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_layout_label),
             chipsLabels = ChipDemoState.Layout.entries.map { stringResource(it.labelRes) },

@@ -28,7 +28,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -63,7 +63,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             onCheckedChange = { onColoredBox = it },
             enabled = onColoredBoxSwitchEnabled
         )
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_button_hierarchy_label),
             chipsLabels = OudsButton.Hierarchy.entries.map { it.name },
@@ -76,14 +76,14 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
                 OudsButton.Style.Loading(progress = null),
             )
         }
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_style_label),
             chipsLabels = styles.map { it::class.simpleName.orEmpty() },
             selectedChipIndex = styles.indexOf(style),
             onSelectionChange = { id -> style = styles[id] }
         )
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_layout_label),
             chipsLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },

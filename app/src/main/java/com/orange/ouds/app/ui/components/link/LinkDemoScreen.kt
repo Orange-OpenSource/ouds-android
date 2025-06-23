@@ -26,7 +26,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -60,14 +60,14 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
             onCheckedChange = { onColoredBox = it },
         )
         val sizes = OudsLink.Size.entries
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_link_size_label),
             chipsLabels = sizes.map { it.name },
             selectedChipIndex = sizes.indexOf(size),
             onSelectionChange = { id -> size = sizes[id] }
         )
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_layout_label),
             chipsLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
