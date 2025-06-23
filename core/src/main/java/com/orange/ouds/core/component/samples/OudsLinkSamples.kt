@@ -12,16 +12,18 @@
 
 package com.orange.ouds.core.component.samples
 
-import android.R
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsLink
+import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsLinkSample() {
     OudsLink(
         label = "Link",
-        icon = OudsLink.Icon(painterResource(id = R.drawable.star_on)),
+        icon = OudsLink.Icon(Icons.Filled.FavoriteBorder),
         onClick = { /* Do something! */ },
     )
 }
@@ -33,4 +35,16 @@ internal fun OudsLinkWithArrowSample() {
         arrow = OudsLink.Arrow.Next,
         onClick = { /* Do something! */ },
     )
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsLinkSample() = OudsPreview {
+    OudsLinkSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsLinkWithArrowSample() = OudsPreview {
+    OudsLinkWithArrowSample()
 }
