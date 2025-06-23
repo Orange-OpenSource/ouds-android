@@ -183,7 +183,7 @@ fun OudsButton(
  *
  * This version of the button uses the *text + icon* layout which should remain specific to some clearly identified contexts (e.g. the use of an icon with a
  * "Play" button is standard in the context of TV or video streaming).
- * Other layouts are available for this component: *text only* and *text + icon*.
+ * Other layouts are available for this component: *text only* and *icon only*.
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
