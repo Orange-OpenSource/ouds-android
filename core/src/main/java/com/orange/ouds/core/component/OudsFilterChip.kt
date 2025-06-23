@@ -83,7 +83,6 @@ fun OudsFilterChip(
         enabled = enabled,
         interactionSource = interactionSource
     )
-
 }
 
 @Composable

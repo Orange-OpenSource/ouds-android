@@ -43,8 +43,8 @@ internal fun OudsButtonTextOnlyOnColoredBackgroundSample() {
 internal fun OudsButtonIconOnlySample() {
     OudsButton(
         icon = OudsButton.Icon(
-            Icons.Filled.FavoriteBorder,
-            "Content description"
+            imageVector = Icons.Filled.FavoriteBorder,
+            contentDescription = "Content description"
         ),
         onClick = { /* Do something! */ }
     )
@@ -56,8 +56,8 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                Icons.Filled.FavoriteBorder,
-                "Content description"
+                imageVector = Icons.Filled.FavoriteBorder,
+                contentDescription = "Content description"
             ),
             onClick = { /* Do something! */ }
         )
@@ -68,8 +68,8 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
 internal fun OudsButtonTextAndIconSample() {
     OudsButton(
         icon = OudsButton.Icon(
-            Icons.Filled.FavoriteBorder,
-            "Content description"
+            imageVector = Icons.Filled.FavoriteBorder,
+            contentDescription = ""
         ),
         label = "Label",
         onClick = { /* Do something! */ }
@@ -82,8 +82,8 @@ internal fun OudsButtonTextAndIconOnColoredBackgroundSample() {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                Icons.Filled.FavoriteBorder,
-                "Content description"
+                imageVector = Icons.Filled.FavoriteBorder,
+                contentDescription = ""
             ),
             label = "Label",
             onClick = { /* Do something! */ }
