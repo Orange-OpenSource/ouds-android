@@ -26,7 +26,6 @@ import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
-import com.orange.ouds.app.ui.utilities.DrawableResourceId
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -34,7 +33,7 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 @Immutable
 sealed class Component(
     @StringRes val nameRes: Int,
-    val imageRes: DrawableResourceId,
+    val imageRes: LightDarkResourceId,
     @StringRes val descriptionRes: Int,
     val variants: List<Variant> = emptyList(),
     val demoScreen: (@Composable () -> Unit)? = null
@@ -48,21 +47,21 @@ sealed class Component(
 
     data object Button : Component(
         R.string.app_components_button_label,
-        DrawableResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
+        LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
         R.string.app_components_button_description_text,
         demoScreen = { ButtonDemoScreen() }
     )
 
     data object Checkbox : Component(
         R.string.app_components_checkbox_label,
-        DrawableResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
+        LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
         R.string.app_components_checkbox_description_text,
         listOf(Variant.Checkbox, Variant.CheckboxItem, Variant.IndeterminateCheckbox, Variant.IndeterminateCheckboxItem)
     )
 
     data object ColoredBackground : Component(
         R.string.app_components_coloredBackground_label,
-        DrawableResourceId(R.drawable.ic_components_colored_background),
+        LightDarkResourceId(R.drawable.ic_components_colored_background, R.drawable.ic_components_colored_background),
         R.string.app_components_coloredBackground_description_text,
         demoScreen = { ColoredBackgroundDemoScreen() }
     )
@@ -76,14 +75,14 @@ sealed class Component(
 
     data object Link : Component(
         R.string.app_components_link_label,
-        DrawableResourceId(R.drawable.il_components_link, R.drawable.il_components_link_dark),
+        LightDarkResourceId(R.drawable.il_components_link, R.drawable.il_components_link_dark),
         R.string.app_components_link_description_text,
         demoScreen = { LinkDemoScreen() }
     )
 
     data object RadioButton : Component(
         R.string.app_components_radioButton_label,
-        DrawableResourceId(R.drawable.il_components_radiobutton, R.drawable.il_components_radiobutton_dark),
+        LightDarkResourceId(R.drawable.il_components_radiobutton, R.drawable.il_components_radiobutton_dark),
         R.string.app_components_radioButton_description_text,
         listOf(Variant.RadioButton, Variant.RadioButtonItem)
     )

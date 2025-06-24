@@ -18,12 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 
-data class DrawableResourceId(@DrawableRes val light: Int, @DrawableRes val dark: Int) {
-
-    constructor(@DrawableRes id: Int) : this(id, id)
-}
+data class LightDarkResourceId(@DrawableRes val light: Int, @DrawableRes val dark: Int)
 
 @Composable
-fun painterResource(id: DrawableResourceId): Painter {
+fun painterResource(id: LightDarkResourceId): Painter {
     return if (isSystemInDarkTheme()) painterResource(id = id.dark) else painterResource(id = id.light)
 }
