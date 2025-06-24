@@ -112,7 +112,7 @@ internal fun OudsChip(
                 .background(color = backgroundColor.value, shape = shape)
                 .border(width = borderWidth.value, color = borderColor.value, shape = shape)
                 .outerBorder(state = state, shape = shape)
-                .padding(paddingValues = contentPadding(label, icon))
+                .padding(paddingValues = contentPadding(label, icon, iconPosition, selected))
                 .run {
                     val indication = InteractionValuesIndication(contentColor, tickColor, backgroundColor, borderColor, borderWidth)
                     if (selectable) {
@@ -264,11 +264,26 @@ private fun tickColor(state: OudsChip.State, selected: Boolean): Color? {
 }
 
 @Composable
-private fun contentPadding(label: String?, icon: OudsChip.Icon?): PaddingValues {
+private fun contentPadding(label: String?, icon: OudsChip.Icon?, iconPosition: OudsChip.IconPosition, selected: Boolean): PaddingValues {
     return with(OudsTheme.componentsTokens.chip) {
-        val horizontal = if (icon != null) spacePaddingInlineIcon.value else spacePaddingInlineIconNone.value
+        // If chip layout starts with an icon or the tick then we use spacePaddingInlineIcon as the start padding, otherwise spacePaddingInlineIconNone
+        val start = if (selected
+            || (icon != null && iconPosition == OudsChip.IconPosition.Start)
+            || (icon != null && label == null)
+        ) {
+            spacePaddingInlineIcon.value
+        } else {
+            spacePaddingInlineIconNone.value
+        }
+        val end = if ((icon != null && iconPosition == OudsChip.IconPosition.End)
+            || (icon != null && label == null)
+        ) {
+            spacePaddingInlineIcon.value
+        } else {
+            spacePaddingInlineIconNone.value
+        }
         val vertical = if (label != null) spacePaddingBlock.value else spacePaddingBlockIconOnly.value
-        PaddingValues(horizontal = horizontal, vertical = vertical)
+        PaddingValues(start = start, top = vertical, end = end, bottom = vertical)
     }
 }
 
