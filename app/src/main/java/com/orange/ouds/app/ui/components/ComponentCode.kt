@@ -36,12 +36,21 @@ fun FunctionCall.Builder.painterArgument(@DrawableRes id: Int) {
     }
 }
 
-fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) {
-    formattableArgument("contentDescription") { "\"${it.getString(id)}\"" }
-}
+fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = formattableArgument(name) { "\"${it.getString(id)}\"" }
 
-fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument("onClick", init)
+fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
+
+fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument("label", label)
+fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringArgument(Argument.Text, id)
 
-fun FunctionCall.Builder.enabledArgument(boolean: Boolean) = typedArgument("enabled", boolean)
+fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
+
+private object Argument {
+
+    const val ContentDescription = "contentDescription"
+    const val OnClick = "onClick"
+    const val Text = "text"
+    const val Enabled = "enabled"
+}
