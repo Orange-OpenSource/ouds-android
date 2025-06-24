@@ -21,6 +21,14 @@ android {
     buildFeatures {
         compose = true
     }
+
+    kotlin {
+        compilerOptions {
+            // From Kotlin 2.2, need to specify default rule for annotations
+            // See http://youtrack.jetbrains.com/issue/KT-73255
+            freeCompilerArgs.add("-Xannotation-default-target=param-property")
+        }
+    }
 }
 
 dependencies {
