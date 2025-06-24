@@ -45,7 +45,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
  * Moreover, the colors of several OUDS components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
  * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
  *
- * @param color The background color of the colored box.
+ * @param color The background color of the colored box.$
  * @param modifier [Modifier] to be applied to the layout corresponding to the colored box.
  * @param contentAlignment The default [Alignment] inside the colored box.
  * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.

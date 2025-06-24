@@ -42,15 +42,12 @@ fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = form
 
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
 
+fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
+
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument("label", label)
+fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringArgument(Argument.Text, id)
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
-
-fun FunctionCall.Builder.textArgument(value: String?) = typedArgument(Argument.Text, value)
-
-fun FunctionCall.Builder.textArgument(@StringRes id: Int) = stringArgument(Argument.Text, id)
-
-fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
 private object Argument {
 

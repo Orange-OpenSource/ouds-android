@@ -66,7 +66,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_button_hierarchy_label),
-            chipsLabels = OudsButton.Hierarchy.entries.map { it.name },
+            chipLabels = OudsButton.Hierarchy.entries.map { it.name },
             selectedChipIndex = OudsButton.Hierarchy.entries.indexOf(hierarchy),
             onSelectionChange = { id -> hierarchy = OudsButton.Hierarchy.entries[id] }
         )
@@ -79,14 +79,14 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_style_label),
-            chipsLabels = styles.map { it::class.simpleName.orEmpty() },
+            chipLabels = styles.map { it::class.simpleName.orEmpty() },
             selectedChipIndex = styles.indexOf(style),
             onSelectionChange = { id -> style = styles[id] }
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_layout_label),
-            chipsLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
+            chipLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = ButtonDemoState.Layout.entries[id] }
         )
