@@ -12,7 +12,9 @@
 
 package com.orange.ouds.app.ui.components.chip
 
+import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
@@ -24,17 +26,18 @@ import com.orange.ouds.core.utilities.OudsPreview
 @Composable
 fun FilterChipDemoScreen() {
     val state = rememberFilterChipDemoState()
+    val context = LocalContext.current
     DemoScreen(
         bottomSheetContent = { ChipDemoBottomSheetContent(state = state) },
-        codeSnippet = { filterChipDemoCodeSnippet(state = state) },
+        codeSnippet = { filterChipDemoCodeSnippet(state = state, context = context) },
         demoContent = { FilterChipDemoContent(state = state) }
     )
 }
 
 @Composable
 private fun FilterChipDemoContent(state: FilterChipDemoState) {
-    val label = stringResource(R.string.app_components_chip_filterChip_label)
-    ChipDemoContent(state = state) { index, icon ->
+    ChipDemoContent { index, icon ->
+        val label = stringResource(R.string.app_components_chip_filterChip_filterChip_label, index + 1)
         with(state) {
             val selected = selectedValues[index]
             val onClick = { selectedValues = selectedValues.toMutableList().also { it[index] = !it[index] } }
@@ -69,12 +72,12 @@ private fun FilterChipDemoContent(state: FilterChipDemoState) {
     }
 }
 
-private fun Code.Builder.filterChipDemoCodeSnippet(state: FilterChipDemoState) {
+private fun Code.Builder.filterChipDemoCodeSnippet(state: FilterChipDemoState, context: Context) {
     with(state) {
         comment("First filter chip")
         functionCall("OudsFilterChip") {
             typedArgument("selected", selectedValues[0])
-            chipArguments(state, R.string.app_components_chip_filterChip_label)
+            chipArguments(state, context.getString(R.string.app_components_chip_filterChip_filterChip_label, 1))
         }
     }
 }
