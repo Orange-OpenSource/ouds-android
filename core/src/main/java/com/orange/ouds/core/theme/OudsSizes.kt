@@ -350,9 +350,6 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel): Dp {
 }
 
 @Stable
-private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MinInteractiveArea) = minInteractiveArea
-
-@Stable
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
     return with(maxWidth.type) {
         when (token) {
@@ -379,5 +376,5 @@ val OudsSizeKeyToken.value: Dp
         is OudsSizeKeyToken.Icon.WithBody -> OudsTheme.sizes.fromToken(this)
         is OudsSizeKeyToken.Icon.WithLabel -> OudsTheme.sizes.fromToken(this)
         is OudsSizeKeyToken.MaxWidth -> OudsTheme.sizes.fromToken(this)
-        is OudsSizeKeyToken.MinInteractiveArea -> OudsTheme.sizes.fromToken(this)
+        is OudsSizeKeyToken.MinInteractiveArea -> OudsTheme.sizes.minInteractiveArea
     }
