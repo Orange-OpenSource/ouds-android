@@ -20,7 +20,7 @@ private val moduleDocumentationFilePaths = listOf(
 
 private val tokensVersion: String
     get() = getTokensVersion(
-        "${rootProject.projectDir}/global-raw-tokens/src/main/java/com/orange/ouds/tokens/global/raw/ColorRawTokens.kt",
+        "${rootProject.projectDir}/global-raw-tokens/src/main/java/com/orange/ouds/tokens/raw/ColorRawTokens.kt",
         "^// Tokens version (.*)"
     )
 

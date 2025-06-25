@@ -14,15 +14,15 @@ package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.ColorRawTokens
 
 data class WhiteLabelColorOverlaySemanticTokens(
     override val overlayDefaultLight: Color = ColorRawTokens.colorFunctionalWhite,
     override val overlayDragLight: Color = ColorRawTokens.colorOpacityBlack40,
-    override val overlayEmphasizedLight: Color = ColorRawTokens.colorFunctionalDarkGray720,
+    override val overlayEmphasizedLight: Color = ColorRawTokens.colorFunctionalGrayDark720,
     override val overlayModalLight: Color = ColorRawTokens.colorFunctionalWhite,
     override val overlayDefaultDark: Color = ColorRawTokens.colorOpacityWhite80,
     override val overlayDragDark: Color = ColorRawTokens.colorOpacityWhite200,
-    override val overlayEmphasizedDark: Color = ColorRawTokens.colorFunctionalLightGray160,
-    override val overlayModalDark: Color = ColorRawTokens.colorFunctionalDarkGray640
+    override val overlayEmphasizedDark: Color = ColorRawTokens.colorFunctionalGrayLight160,
+    override val overlayModalDark: Color = ColorRawTokens.colorFunctionalGrayDark640
 ) : OudsColorOverlaySemanticTokens

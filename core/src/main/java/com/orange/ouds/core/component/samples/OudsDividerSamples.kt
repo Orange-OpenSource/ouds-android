@@ -29,7 +29,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsHorizontalDividerSample() {
-    Column(modifier = Modifier.padding(OudsTheme.spaces.fixed.short)) {
+    Column(modifier = Modifier.padding(OudsTheme.spaces.fixed.small)) {
         Text(
             text = "Up",
             color = OudsTheme.colorScheme.content.default
@@ -44,7 +44,7 @@ internal fun OudsHorizontalDividerSample() {
 
 @Composable
 internal fun OudsVerticalDividerSample() {
-    Row(modifier = Modifier.padding(OudsTheme.spaces.fixed.short)) {
+    Row(modifier = Modifier.padding(OudsTheme.spaces.fixed.small)) {
         Text(
             modifier = Modifier.weight(1f),
             text = "Start",

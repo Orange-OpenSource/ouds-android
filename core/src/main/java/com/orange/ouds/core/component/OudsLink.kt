@@ -157,7 +157,7 @@ private fun OudsLink(
     val isTextOnly = icon == null && arrow == null
 
     val (minWidth, minHeight) = when (size) {
-        OudsLink.Size.Default -> linkTokens.sizeMinWidthMedium.dp to linkTokens.sizeMinHeightMedium.dp
+        OudsLink.Size.Default -> linkTokens.sizeMinWidthDefault.value to linkTokens.sizeMinHeightDefault.value
         OudsLink.Size.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
     }
 
@@ -206,8 +206,8 @@ private fun OudsLink(
             with(linkTokens) {
                 when (size) {
                     OudsLink.Size.Default -> {
-                        columnGap = if (arrow != null) spaceColumnGapArrowMedium.value else spaceColumnGapIconMedium.value
-                        iconSize = sizeIconMedium.value
+                        columnGap = if (arrow != null) spaceColumnGapArrowDefault.value else spaceColumnGapIconDefault.value
+                        iconSize = sizeIconDefault.value
                         textStyle = OudsTheme.typography.label.strong.large
                     }
                     OudsLink.Size.Small -> {
@@ -270,16 +270,18 @@ private fun getLinkState(enabled: Boolean, interactionState: InteractionState): 
 
 @Composable
 private fun contentColor(state: OudsLink.State, monochrome: Boolean): Color {
-    return with(OudsTheme.componentsTokens.link) {
-        if (monochrome) {
+    return if (monochrome) {
+        with(OudsTheme.componentsTokens.linkMono) {
             when (state) {
-                OudsLink.State.Enabled -> colorContentEnabledMono
-                OudsLink.State.Focused -> colorContentFocusMono
-                OudsLink.State.Hovered -> colorContentHoverMono
-                OudsLink.State.Pressed -> colorContentPressedMono
-                OudsLink.State.Disabled -> colorContentDisabledMono
+                OudsLink.State.Enabled -> colorContentEnabled
+                OudsLink.State.Focused -> colorContentFocus
+                OudsLink.State.Hovered -> colorContentHover
+                OudsLink.State.Pressed -> colorContentPressed
+                OudsLink.State.Disabled -> colorContentDisabled
             }.value
-        } else {
+        }
+    } else {
+        with(OudsTheme.componentsTokens.link) {
             when (state) {
                 OudsLink.State.Enabled -> colorContentEnabled.value
                 OudsLink.State.Focused -> colorContentFocus.value

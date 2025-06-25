@@ -250,7 +250,7 @@ internal fun rememberControlItemBackgroundColor(
 @Composable
 private fun LeadingTrailingBox(content: @Composable () -> Unit) {
     val assetContainerMaxHeight = OudsTheme.componentsTokens.controlItem.sizeMaxHeightAssetsContainer.dp
-    val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.dp
+    val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.value
 
     val maxHeight = max(assetContainerMaxHeight, checkboxIndicatorSize)
     Box(
