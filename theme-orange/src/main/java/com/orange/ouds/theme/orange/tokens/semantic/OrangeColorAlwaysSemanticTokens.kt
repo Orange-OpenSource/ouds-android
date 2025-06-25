@@ -17,11 +17,11 @@ package com.orange.ouds.theme.orange.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.ColorRawTokens
 
 data class OrangeColorAlwaysSemanticTokens(
     override val alwaysBlack: Color = ColorRawTokens.colorFunctionalBlack,
-    override val alwaysWhite: Color = ColorRawTokens.colorFunctionalWhite,
     override val alwaysOnBlack: Color = ColorRawTokens.colorFunctionalGrayLight160,
-    override val alwaysOnWhite: Color = ColorRawTokens.colorFunctionalBlack
+    override val alwaysOnWhite: Color = ColorRawTokens.colorFunctionalBlack,
+    override val alwaysWhite: Color = ColorRawTokens.colorFunctionalWhite
 ) : OudsColorAlwaysSemanticTokens

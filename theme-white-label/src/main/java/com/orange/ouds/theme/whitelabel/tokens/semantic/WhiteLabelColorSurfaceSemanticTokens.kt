@@ -15,7 +15,7 @@ package com.orange.ouds.theme.whitelabel.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 import com.orange.ouds.theme.whitelabel.tokens.raw.WhiteLabelColorRawTokens
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.ColorRawTokens
 
 data class WhiteLabelColorSurfaceSemanticTokens(
     override val surfaceBrandPrimaryLight: Color = WhiteLabelColorRawTokens.colorBlue600,

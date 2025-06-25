@@ -18,42 +18,42 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.ui.graphics.Color
 
 interface OudsColorActionSemanticTokens {
-    val actionEnabledLight: Color
-    val actionEnabledDark: Color
-    val actionHoverLight: Color
-    val actionHoverDark: Color
-    val actionPressedLight: Color
-    val actionPressedDark: Color
-    val actionLoadingLight: Color
-    val actionLoadingDark: Color
-    val actionDisabledLight: Color
     val actionDisabledDark: Color
-    val actionFocusLight: Color
+    val actionDisabledLight: Color
+    val actionEnabledDark: Color
+    val actionEnabledLight: Color
     val actionFocusDark: Color
-    val actionSelectedLight: Color
-    val actionSelectedDark: Color
-    val actionVisitedLight: Color
-    val actionVisitedDark: Color
-    val actionHighlightedLight: Color
+    val actionFocusLight: Color
     val actionHighlightedDark: Color
-    val actionSupportEnabledLight: Color
-    val actionSupportEnabledDark: Color
-    val actionSupportHoverLight: Color
-    val actionSupportHoverDark: Color
-    val actionSupportPressedLight: Color
-    val actionSupportPressedDark: Color
-    val actionSupportLoadingLight: Color
-    val actionSupportLoadingDark: Color
-    val actionSupportFocusLight: Color
-    val actionSupportFocusDark: Color
-    val actionNegativeEnabledLight: Color
+    val actionHighlightedLight: Color
+    val actionHoverDark: Color
+    val actionHoverLight: Color
+    val actionLoadingDark: Color
+    val actionLoadingLight: Color
     val actionNegativeEnabledDark: Color
-    val actionNegativeHoverLight: Color
-    val actionNegativeHoverDark: Color
-    val actionNegativePressedLight: Color
-    val actionNegativePressedDark: Color
-    val actionNegativeLoadingLight: Color
-    val actionNegativeLoadingDark: Color
-    val actionNegativeFocusLight: Color
+    val actionNegativeEnabledLight: Color
     val actionNegativeFocusDark: Color
+    val actionNegativeFocusLight: Color
+    val actionNegativeHoverDark: Color
+    val actionNegativeHoverLight: Color
+    val actionNegativeLoadingDark: Color
+    val actionNegativeLoadingLight: Color
+    val actionNegativePressedDark: Color
+    val actionNegativePressedLight: Color
+    val actionPressedDark: Color
+    val actionPressedLight: Color
+    val actionSelectedDark: Color
+    val actionSelectedLight: Color
+    val actionSupportEnabledDark: Color
+    val actionSupportEnabledLight: Color
+    val actionSupportFocusDark: Color
+    val actionSupportFocusLight: Color
+    val actionSupportHoverDark: Color
+    val actionSupportHoverLight: Color
+    val actionSupportLoadingDark: Color
+    val actionSupportLoadingLight: Color
+    val actionSupportPressedDark: Color
+    val actionSupportPressedLight: Color
+    val actionVisitedDark: Color
+    val actionVisitedLight: Color
 }

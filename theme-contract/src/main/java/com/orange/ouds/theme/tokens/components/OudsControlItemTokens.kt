@@ -19,23 +19,23 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.DimensionRawTokens
 
 open class OudsControlItemTokens(
-    val colorBgHover: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Hover,
-    val colorBgPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Pressed,
-    val colorBgLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Loading,
-    val colorBgFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Focus,
-    val colorContentLoader: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
     val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     val borderRadiusItemOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
-    val spaceInset: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.Medium,
-    val spaceColumnGap: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Large,
-    val spaceRowGap: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.None,
+    val colorBgFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Focus,
+    val colorBgHover: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Hover,
+    val colorBgLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Loading,
+    val colorBgPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Pressed,
+    val colorContentLoader: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
     val sizeIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeMedium,
+    val sizeListItemSizeMinHeightText: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeMedium,
     val sizeLoader: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
-    val sizeMinHeight: Float = DimensionRawTokens.dimension650,
     val sizeMaxHeightAssetsContainer: Float = DimensionRawTokens.dimension1200,
+    val sizeMinHeight: Float = DimensionRawTokens.dimension650,
     val sizeMinWidth: Float = DimensionRawTokens.dimension2000,
-    val sizeListItemSizeMinHeightText: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeMedium
+    val spaceColumnGap: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Large,
+    val spaceInset: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.Medium,
+    val spaceRowGap: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.None
 )

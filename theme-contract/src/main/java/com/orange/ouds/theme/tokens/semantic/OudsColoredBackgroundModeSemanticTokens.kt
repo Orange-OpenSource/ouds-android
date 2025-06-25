@@ -16,48 +16,48 @@
 package com.orange.ouds.theme.tokens.semantic
 
 interface OudsColoredBackgroundModeSemanticTokens {
-    val onBgPrimaryLight: String
-    val onBgPrimaryDark: String
-    val onBgSecondaryLight: String
-    val onBgSecondaryDark: String
-    val onBgTertiaryLight: String
-    val onBgTertiaryDark: String
-    val onBgEmphasizedLight: String
     val onBgEmphasizedDark: String
-    val onBrandPrimaryLight: String
+    val onBgEmphasizedLight: String
+    val onBgPrimaryDark: String
+    val onBgPrimaryLight: String
+    val onBgSecondaryDark: String
+    val onBgSecondaryLight: String
+    val onBgTertiaryDark: String
+    val onBgTertiaryLight: String
     val onBrandPrimaryDark: String
-    val onBrandSecondaryLight: String
+    val onBrandPrimaryLight: String
     val onBrandSecondaryDark: String
-    val onBrandTertiaryLight: String
+    val onBrandSecondaryLight: String
     val onBrandTertiaryDark: String
-    val onStatusNeutralMutedLight: String
-    val onStatusNeutralMutedDark: String
-    val onStatusNeutralEmphasizedLight: String
-    val onStatusNeutralEmphasizedDark: String
-    val onStatusPositiveMutedLight: String
-    val onStatusPositiveMutedDark: String
-    val onStatusPositiveEmphasizedLight: String
-    val onStatusPositiveEmphasizedDark: String
-    val onStatusInfoMutedLight: String
-    val onStatusInfoMutedDark: String
-    val onStatusInfoEmphasizedLight: String
-    val onStatusInfoEmphasizedDark: String
-    val onStatusWarningMutedLight: String
-    val onStatusWarningMutedDark: String
-    val onStatusWarningEmphasizedLight: String
-    val onStatusWarningEmphasizedDark: String
-    val onStatusNegativeMutedLight: String
-    val onStatusNegativeMutedDark: String
-    val onStatusNegativeEmphasizedLight: String
-    val onStatusNegativeEmphasizedDark: String
-    val onStatusAccentMutedLight: String
-    val onStatusAccentMutedDark: String
-    val onStatusAccentEmphasizedLight: String
-    val onStatusAccentEmphasizedDark: String
-    val onOverlayDefaultLight: String
-    val onOverlayDefaultDark: String
-    val onOverlayEmphasizedLight: String
-    val onOverlayEmphasizedDark: String
-    val onModalLight: String
+    val onBrandTertiaryLight: String
     val onModalDark: String
+    val onModalLight: String
+    val onOverlayDefaultDark: String
+    val onOverlayDefaultLight: String
+    val onOverlayEmphasizedDark: String
+    val onOverlayEmphasizedLight: String
+    val onStatusAccentEmphasizedDark: String
+    val onStatusAccentEmphasizedLight: String
+    val onStatusAccentMutedDark: String
+    val onStatusAccentMutedLight: String
+    val onStatusInfoEmphasizedDark: String
+    val onStatusInfoEmphasizedLight: String
+    val onStatusInfoMutedDark: String
+    val onStatusInfoMutedLight: String
+    val onStatusNegativeEmphasizedDark: String
+    val onStatusNegativeEmphasizedLight: String
+    val onStatusNegativeMutedDark: String
+    val onStatusNegativeMutedLight: String
+    val onStatusNeutralEmphasizedDark: String
+    val onStatusNeutralEmphasizedLight: String
+    val onStatusNeutralMutedDark: String
+    val onStatusNeutralMutedLight: String
+    val onStatusPositiveEmphasizedDark: String
+    val onStatusPositiveEmphasizedLight: String
+    val onStatusPositiveMutedDark: String
+    val onStatusPositiveMutedLight: String
+    val onStatusWarningEmphasizedDark: String
+    val onStatusWarningEmphasizedLight: String
+    val onStatusWarningMutedDark: String
+    val onStatusWarningMutedLight: String
 }

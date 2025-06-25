@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
-import com.orange.ouds.tokens.global.raw.ElevationRawTokens
+import com.orange.ouds.tokens.raw.ElevationRawTokens
 
 data class WhiteLabelElevationSemanticTokens(
     override val drag: Float = ElevationRawTokens.elevation4,

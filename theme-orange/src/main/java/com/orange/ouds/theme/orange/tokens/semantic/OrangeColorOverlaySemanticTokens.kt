@@ -17,15 +17,15 @@ package com.orange.ouds.theme.orange.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.ColorRawTokens
 
 data class OrangeColorOverlaySemanticTokens(
-    override val overlayDefaultLight: Color = ColorRawTokens.colorFunctionalWhite,
     override val overlayDefaultDark: Color = ColorRawTokens.colorOpacityWhite80,
-    override val overlayEmphasizedLight: Color = ColorRawTokens.colorFunctionalGrayDark720,
-    override val overlayEmphasizedDark: Color = ColorRawTokens.colorFunctionalGrayLight160,
-    override val overlayDragLight: Color = ColorRawTokens.colorOpacityBlack40,
+    override val overlayDefaultLight: Color = ColorRawTokens.colorFunctionalWhite,
     override val overlayDragDark: Color = ColorRawTokens.colorOpacityWhite200,
-    override val overlayModalLight: Color = ColorRawTokens.colorFunctionalWhite,
-    override val overlayModalDark: Color = ColorRawTokens.colorFunctionalGrayDark640
+    override val overlayDragLight: Color = ColorRawTokens.colorOpacityBlack40,
+    override val overlayEmphasizedDark: Color = ColorRawTokens.colorFunctionalGrayLight160,
+    override val overlayEmphasizedLight: Color = ColorRawTokens.colorFunctionalGrayDark720,
+    override val overlayModalDark: Color = ColorRawTokens.colorFunctionalGrayDark640,
+    override val overlayModalLight: Color = ColorRawTokens.colorFunctionalWhite
 ) : OudsColorOverlaySemanticTokens

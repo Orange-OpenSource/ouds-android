@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
-import com.orange.ouds.tokens.global.raw.BorderRawTokens
+import com.orange.ouds.tokens.raw.BorderRawTokens
 
 data class WhiteLabelBorderSemanticTokens(
     override val widthNone: Float = BorderRawTokens.borderWidth0,

@@ -16,13 +16,13 @@
 package com.orange.ouds.theme.orange.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
-import com.orange.ouds.tokens.global.raw.OpacityRawTokens
+import com.orange.ouds.tokens.raw.OpacityRawTokens
 
 data class OrangeOpacitySemanticTokens(
     override val invisible: Float = OpacityRawTokens.opacity0,
-    override val weaker: Float = OpacityRawTokens.opacity40,
-    override val weak: Float = OpacityRawTokens.opacity160,
     override val medium: Float = OpacityRawTokens.opacity320,
+    override val opaque: Float = OpacityRawTokens.opacity1000,
     override val strong: Float = OpacityRawTokens.opacity640,
-    override val opaque: Float = OpacityRawTokens.opacity1000
+    override val weak: Float = OpacityRawTokens.opacity160,
+    override val weaker: Float = OpacityRawTokens.opacity40
 ) : OudsOpacitySemanticTokens

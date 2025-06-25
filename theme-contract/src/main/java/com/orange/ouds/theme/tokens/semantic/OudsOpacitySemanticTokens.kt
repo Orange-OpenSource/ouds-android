@@ -17,9 +17,9 @@ package com.orange.ouds.theme.tokens.semantic
 
 interface OudsOpacitySemanticTokens {
     val invisible: Float
-    val weaker: Float
-    val weak: Float
     val medium: Float
-    val strong: Float
     val opaque: Float
+    val strong: Float
+    val weak: Float
+    val weaker: Float
 }

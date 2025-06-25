@@ -18,36 +18,36 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.ui.graphics.Color
 
 interface OudsColorBorderSemanticTokens {
-    val borderDefaultLight: Color
-    val borderDefaultDark: Color
-    val borderMutedLight: Color
-    val borderMutedDark: Color
-    val borderEmphasizedLight: Color
-    val borderEmphasizedDark: Color
-    val borderFocusLight: Color
-    val borderFocusDark: Color
-    val borderFocusInsetLight: Color
-    val borderFocusInsetDark: Color
-    val borderBrandPrimaryLight: Color
     val borderBrandPrimaryDark: Color
-    val borderBrandSecondaryLight: Color
+    val borderBrandPrimaryLight: Color
     val borderBrandSecondaryDark: Color
-    val borderBrandTertiaryLight: Color
+    val borderBrandSecondaryLight: Color
     val borderBrandTertiaryDark: Color
-    val borderStatusPositiveLight: Color
-    val borderStatusPositiveDark: Color
-    val borderStatusInfoLight: Color
-    val borderStatusInfoDark: Color
-    val borderStatusWarningLight: Color
-    val borderStatusWarningDark: Color
-    val borderStatusNegativeLight: Color
-    val borderStatusNegativeDark: Color
-    val borderStatusAccentLight: Color
-    val borderStatusAccentDark: Color
-    val borderOnBrandPrimaryLight: Color
+    val borderBrandTertiaryLight: Color
+    val borderDefaultDark: Color
+    val borderDefaultLight: Color
+    val borderEmphasizedDark: Color
+    val borderEmphasizedLight: Color
+    val borderFocusDark: Color
+    val borderFocusInsetDark: Color
+    val borderFocusInsetLight: Color
+    val borderFocusLight: Color
+    val borderMutedDark: Color
+    val borderMutedLight: Color
     val borderOnBrandPrimaryDark: Color
-    val borderOnBrandSecondaryLight: Color
+    val borderOnBrandPrimaryLight: Color
     val borderOnBrandSecondaryDark: Color
-    val borderOnBrandTertiaryLight: Color
+    val borderOnBrandSecondaryLight: Color
     val borderOnBrandTertiaryDark: Color
+    val borderOnBrandTertiaryLight: Color
+    val borderStatusAccentDark: Color
+    val borderStatusAccentLight: Color
+    val borderStatusInfoDark: Color
+    val borderStatusInfoLight: Color
+    val borderStatusNegativeDark: Color
+    val borderStatusNegativeLight: Color
+    val borderStatusPositiveDark: Color
+    val borderStatusPositiveLight: Color
+    val borderStatusWarningDark: Color
+    val borderStatusWarningLight: Color
 }

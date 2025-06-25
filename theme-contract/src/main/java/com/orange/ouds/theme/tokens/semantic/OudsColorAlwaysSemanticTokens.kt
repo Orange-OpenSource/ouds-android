@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 
 interface OudsColorAlwaysSemanticTokens {
     val alwaysBlack: Color
-    val alwaysWhite: Color
     val alwaysOnBlack: Color
     val alwaysOnWhite: Color
+    val alwaysWhite: Color
 }

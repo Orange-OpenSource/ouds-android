@@ -19,24 +19,9 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 
 open class OudsLinkMonoTokens(
-    val colorContentEnabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(
-        OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
-        OudsColorKeyToken.Repository.Neutral.Muted.White
-    ),
-    val colorContentHover: OudsColorKeyToken = OudsLightDarkColorKeyToken(
-        OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
-        OudsColorKeyToken.Repository.Neutral.Muted.White
-    ),
-    val colorContentPressed: OudsColorKeyToken = OudsLightDarkColorKeyToken(
-        OudsColorKeyToken.Repository.Opacity.Black.High,
-        OudsColorKeyToken.Repository.Opacity.White.Higher
-    ),
-    val colorContentDisabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(
-        OudsColorKeyToken.Repository.Opacity.Black.Medium,
-        OudsColorKeyToken.Repository.Opacity.White.Medium
-    ),
-    val colorContentFocus: OudsColorKeyToken = OudsLightDarkColorKeyToken(
-        OudsColorKeyToken.Repository.Neutral.Emphasized.Black,
-        OudsColorKeyToken.Repository.Neutral.Muted.White
-    )
+    val colorContentDisabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.Medium, OudsColorKeyToken.Repository.Opacity.White.Medium),
+    val colorContentEnabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.White),
+    val colorContentFocus: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.White),
+    val colorContentHover: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.White),
+    val colorContentPressed: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.High, OudsColorKeyToken.Repository.Opacity.White.Higher)
 )

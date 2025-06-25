@@ -19,9 +19,9 @@ import com.orange.ouds.foundation.InternalOudsApi
 
 @InternalOudsApi
 sealed interface OudsGridKeyToken : OudsKeyToken {
-    data object MinWidth : OudsGridKeyToken
-    data object MaxWidth : OudsGridKeyToken
-    data object Margin : OudsGridKeyToken
     data object ColumnGap : OudsGridKeyToken
+    data object Margin : OudsGridKeyToken
+    data object MaxWidth : OudsGridKeyToken
+    data object MinWidth : OudsGridKeyToken
 }
 

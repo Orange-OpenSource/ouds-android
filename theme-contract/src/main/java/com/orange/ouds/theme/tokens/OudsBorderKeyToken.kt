@@ -19,27 +19,27 @@ import com.orange.ouds.foundation.InternalOudsApi
 
 @InternalOudsApi
 sealed interface OudsBorderKeyToken : OudsKeyToken {
-    sealed interface Width : OudsBorderKeyToken {
-        data object None : Width
-        data object Default : Width
-        data object Thin : Width
-        data object Medium : Width
-        data object Thick : Width
-        data object Thicker : Width
-        data object Focus : Width
-        data object FocusInset : Width
-    }
     sealed interface Radius : OudsBorderKeyToken {
-        data object None : Radius
         data object Default : Radius
-        data object Small : Radius
-        data object Medium : Radius
         data object Large : Radius
+        data object Medium : Radius
+        data object None : Radius
         data object Pill : Radius
+        data object Small : Radius
     }
     sealed interface Style : OudsBorderKeyToken {
         data object Default : Style
         data object Drag : Style
+    }
+    sealed interface Width : OudsBorderKeyToken {
+        data object Default : Width
+        data object Focus : Width
+        data object FocusInset : Width
+        data object Medium : Width
+        data object None : Width
+        data object Thick : Width
+        data object Thicker : Width
+        data object Thin : Width
     }
 }
 

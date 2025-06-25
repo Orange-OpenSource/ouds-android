@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
-import com.orange.ouds.tokens.global.raw.GridRawTokens
+import com.orange.ouds.tokens.raw.GridRawTokens
 
 data class WhiteLabelGridSemanticTokens(
     override val extraCompactMinWidth: Int = GridRawTokens.gridMinWidthExtraCompact,

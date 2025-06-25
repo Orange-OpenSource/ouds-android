@@ -16,16 +16,16 @@
 package com.orange.ouds.theme.tokens.semantic
 
 interface OudsGridSemanticTokens {
-    val extraCompactMinWidth: Int
-    val extraCompactMaxWidth: Int
-    val extraCompactMargin: Int
-    val extraCompactColumnGap: Int
-    val compactMinWidth: Int
-    val compactMaxWidth: Int
-    val compactMargin: Int
     val compactColumnGap: Int
-    val mediumMinWidth: Int
-    val mediumMaxWidth: Int
-    val mediumMargin: Int
+    val compactMargin: Int
+    val compactMaxWidth: Int
+    val compactMinWidth: Int
+    val extraCompactColumnGap: Int
+    val extraCompactMargin: Int
+    val extraCompactMaxWidth: Int
+    val extraCompactMinWidth: Int
     val mediumColumnGap: Int
+    val mediumMargin: Int
+    val mediumMaxWidth: Int
+    val mediumMinWidth: Int
 }

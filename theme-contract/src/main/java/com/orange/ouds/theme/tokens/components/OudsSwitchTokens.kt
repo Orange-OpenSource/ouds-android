@@ -21,31 +21,46 @@ import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.DimensionRawTokens
 
 open class OudsSwitchTokens(
-    val colorCursor: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Muted.White, OudsColorKeyToken.Repository.Neutral.Emphasized.Highest),
-    val colorCheck: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
-    val colorCheckInteraction: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
-    val colorTrackSelected: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Positive.Default, OudsColorKeyToken.Repository.Positive.High),
-    val colorTrackSelectedInteraction: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Positive.High, OudsColorKeyToken.Repository.Positive.Low),
-    val colorTrackUnselected: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.MediumHigh, OudsColorKeyToken.Repository.Opacity.White.High),
-    val colorTrackUnselectedInteraction: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.High, OudsColorKeyToken.Repository.Opacity.White.Higher),
     val borderRadiusCursor: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     val borderRadiusTrack: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
+    val colorCheck: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
+    val colorCheckInteraction: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
+    val colorCursor: OudsColorKeyToken = OudsLightDarkColorKeyToken(
+        OudsColorKeyToken.Repository.Neutral.Muted.White,
+        OudsColorKeyToken.Repository.Neutral.Emphasized.Highest
+    ),
+    val colorTrackSelected: OudsColorKeyToken = OudsLightDarkColorKeyToken(
+        OudsColorKeyToken.Repository.Positive.Default,
+        OudsColorKeyToken.Repository.Positive.High
+    ),
+    val colorTrackSelectedInteraction: OudsColorKeyToken = OudsLightDarkColorKeyToken(
+        OudsColorKeyToken.Repository.Positive.High,
+        OudsColorKeyToken.Repository.Positive.Low
+    ),
+    val colorTrackUnselected: OudsColorKeyToken = OudsLightDarkColorKeyToken(
+        OudsColorKeyToken.Repository.Opacity.Black.MediumHigh,
+        OudsColorKeyToken.Repository.Opacity.White.High
+    ),
+    val colorTrackUnselectedInteraction: OudsColorKeyToken = OudsLightDarkColorKeyToken(
+        OudsColorKeyToken.Repository.Opacity.Black.High,
+        OudsColorKeyToken.Repository.Opacity.White.Higher
+    ),
     val opacityCheck: OudsOpacityKeyToken = OudsOpacityKeyToken.Opaque,
-    val spacePaddingInlineSelected: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ThreeExtraSmall,
-    val spacePaddingInlineUnselected: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ExtraSmall,
-    val sizeMinWidth: Float = DimensionRawTokens.dimension700,
-    val sizeMinHeight: Float = DimensionRawTokens.dimension400,
-    val sizeMinHeightInteractiveArea: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMaxHeight: Float = DimensionRawTokens.dimension400,
-    val sizeWidthCursorSelected: Float = DimensionRawTokens.dimension300,
-    val sizeWidthCursorUnselected: Float = DimensionRawTokens.dimension200,
-    val sizeWidthCursorSelectedPressed: Float = DimensionRawTokens.dimension400,
-    val sizeWidthCursorUnselectedPressed: Float = DimensionRawTokens.dimension300,
-    val sizeWidthTrack: Float = DimensionRawTokens.dimension700,
     val sizeHeightCursorSelected: Float = DimensionRawTokens.dimension300,
     val sizeHeightCursorUnselected: Float = DimensionRawTokens.dimension200,
-    val sizeHeightTrack: Float = DimensionRawTokens.dimension400
+    val sizeHeightTrack: Float = DimensionRawTokens.dimension400,
+    val sizeMaxHeight: Float = DimensionRawTokens.dimension400,
+    val sizeMinHeight: Float = DimensionRawTokens.dimension400,
+    val sizeMinHeightInteractiveArea: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
+    val sizeMinWidth: Float = DimensionRawTokens.dimension700,
+    val sizeWidthCursorSelected: Float = DimensionRawTokens.dimension300,
+    val sizeWidthCursorSelectedPressed: Float = DimensionRawTokens.dimension400,
+    val sizeWidthCursorUnselected: Float = DimensionRawTokens.dimension200,
+    val sizeWidthCursorUnselectedPressed: Float = DimensionRawTokens.dimension300,
+    val sizeWidthTrack: Float = DimensionRawTokens.dimension700,
+    val spacePaddingInlineSelected: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ThreeExtraSmall,
+    val spacePaddingInlineUnselected: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ExtraSmall
 )

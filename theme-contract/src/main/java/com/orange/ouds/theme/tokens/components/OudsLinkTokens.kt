@@ -18,27 +18,27 @@ package com.orange.ouds.theme.tokens.components
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.global.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.DimensionRawTokens
 
 open class OudsLinkTokens(
-    val colorContentEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
-    val colorContentHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
-    val colorContentPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    val colorContentFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
     val colorArrowEnabled: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
+    val colorArrowFocus: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
     val colorArrowHover: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
     val colorArrowPressed: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
-    val colorArrowFocus: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
-    val spacePaddingInline: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.None,
-    val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.Medium,
-    val spaceColumnGapIconDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,
-    val spaceColumnGapIconSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.ExtraSmall,
-    val spaceColumnGapArrowDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
-    val spaceColumnGapArrowSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
+    val colorContentEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
+    val colorContentFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
+    val colorContentHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
+    val colorContentPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
     val sizeIconDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
     val sizeIconSmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
     val sizeMinHeightDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMinWidthDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
     val sizeMinHeightSmall: Float = DimensionRawTokens.dimension550,
-    val sizeMinWidthSmall: Float = DimensionRawTokens.dimension550
+    val sizeMinWidthDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
+    val sizeMinWidthSmall: Float = DimensionRawTokens.dimension550,
+    val spaceColumnGapArrowDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
+    val spaceColumnGapArrowSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
+    val spaceColumnGapIconDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,
+    val spaceColumnGapIconSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.ExtraSmall,
+    val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.Medium,
+    val spacePaddingInline: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.None
 )

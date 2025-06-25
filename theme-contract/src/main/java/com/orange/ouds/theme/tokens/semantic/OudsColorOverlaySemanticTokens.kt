@@ -18,12 +18,12 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.ui.graphics.Color
 
 interface OudsColorOverlaySemanticTokens {
-    val overlayDefaultLight: Color
     val overlayDefaultDark: Color
-    val overlayEmphasizedLight: Color
-    val overlayEmphasizedDark: Color
-    val overlayDragLight: Color
+    val overlayDefaultLight: Color
     val overlayDragDark: Color
-    val overlayModalLight: Color
+    val overlayDragLight: Color
+    val overlayEmphasizedDark: Color
+    val overlayEmphasizedLight: Color
     val overlayModalDark: Color
+    val overlayModalLight: Color
 }

@@ -21,15 +21,15 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 open class OudsCheckboxTokens(
     val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     val borderWidthSelected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
+    val borderWidthSelectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     val borderWidthSelectedHover: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     val borderWidthSelectedPressed: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthSelectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     val borderWidthUnselected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Thin,
+    val borderWidthUnselectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     val borderWidthUnselectedHover: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     val borderWidthUnselectedPressed: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthUnselectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     val sizeIndicator: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
+    val sizeMaxHeight: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
     val sizeMinHeight: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMinWidth: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMaxHeight: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea
+    val sizeMinWidth: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea
 )

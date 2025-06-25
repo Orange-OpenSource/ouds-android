@@ -14,7 +14,7 @@ package com.orange.ouds.theme.whitelabel.tokens.material
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.ColorRawTokens
 
 data class WhiteLabelMaterialColorTokens(
     override val backgroundLight: Color = ColorRawTokens.colorFunctionalWhite,

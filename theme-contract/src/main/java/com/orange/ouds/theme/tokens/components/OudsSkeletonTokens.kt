@@ -19,6 +19,6 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 open class OudsSkeletonTokens(
     val colorBg: OudsColorKeyToken = OudsColorKeyToken.Opacity.Lowest,
-    val colorGradientStartEnd: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorGradientMiddle: OudsColorKeyToken = OudsColorKeyToken.Opacity.Lower
+    val colorGradientMiddle: OudsColorKeyToken = OudsColorKeyToken.Opacity.Lower,
+    val colorGradientStartEnd: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent
 )

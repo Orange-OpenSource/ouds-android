@@ -18,34 +18,34 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.ui.graphics.Color
 
 interface OudsColorSurfaceSemanticTokens {
-    val surfaceBrandPrimaryLight: Color
     val surfaceBrandPrimaryDark: Color
-    val surfaceBrandSecondaryLight: Color
+    val surfaceBrandPrimaryLight: Color
     val surfaceBrandSecondaryDark: Color
-    val surfaceBrandTertiaryLight: Color
+    val surfaceBrandSecondaryLight: Color
     val surfaceBrandTertiaryDark: Color
-    val surfaceStatusNeutralMutedLight: Color
-    val surfaceStatusNeutralMutedDark: Color
-    val surfaceStatusNeutralEmphasizedLight: Color
-    val surfaceStatusNeutralEmphasizedDark: Color
-    val surfaceStatusPositiveMutedLight: Color
-    val surfaceStatusPositiveMutedDark: Color
-    val surfaceStatusPositiveEmphasizedLight: Color
-    val surfaceStatusPositiveEmphasizedDark: Color
-    val surfaceStatusInfoMutedLight: Color
-    val surfaceStatusInfoMutedDark: Color
-    val surfaceStatusInfoEmphasizedLight: Color
-    val surfaceStatusInfoEmphasizedDark: Color
-    val surfaceStatusWarningMutedLight: Color
-    val surfaceStatusWarningMutedDark: Color
-    val surfaceStatusWarningEmphasizedLight: Color
-    val surfaceStatusWarningEmphasizedDark: Color
-    val surfaceStatusNegativeMutedLight: Color
-    val surfaceStatusNegativeMutedDark: Color
-    val surfaceStatusNegativeEmphasizedLight: Color
-    val surfaceStatusNegativeEmphasizedDark: Color
-    val surfaceStatusAccentMutedLight: Color
-    val surfaceStatusAccentMutedDark: Color
-    val surfaceStatusAccentEmphasizedLight: Color
+    val surfaceBrandTertiaryLight: Color
     val surfaceStatusAccentEmphasizedDark: Color
+    val surfaceStatusAccentEmphasizedLight: Color
+    val surfaceStatusAccentMutedDark: Color
+    val surfaceStatusAccentMutedLight: Color
+    val surfaceStatusInfoEmphasizedDark: Color
+    val surfaceStatusInfoEmphasizedLight: Color
+    val surfaceStatusInfoMutedDark: Color
+    val surfaceStatusInfoMutedLight: Color
+    val surfaceStatusNegativeEmphasizedDark: Color
+    val surfaceStatusNegativeEmphasizedLight: Color
+    val surfaceStatusNegativeMutedDark: Color
+    val surfaceStatusNegativeMutedLight: Color
+    val surfaceStatusNeutralEmphasizedDark: Color
+    val surfaceStatusNeutralEmphasizedLight: Color
+    val surfaceStatusNeutralMutedDark: Color
+    val surfaceStatusNeutralMutedLight: Color
+    val surfaceStatusPositiveEmphasizedDark: Color
+    val surfaceStatusPositiveEmphasizedLight: Color
+    val surfaceStatusPositiveMutedDark: Color
+    val surfaceStatusPositiveMutedLight: Color
+    val surfaceStatusWarningEmphasizedDark: Color
+    val surfaceStatusWarningEmphasizedLight: Color
+    val surfaceStatusWarningMutedDark: Color
+    val surfaceStatusWarningMutedLight: Color
 }

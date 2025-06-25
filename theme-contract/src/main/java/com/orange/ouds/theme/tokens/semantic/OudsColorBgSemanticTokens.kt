@@ -18,12 +18,12 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.ui.graphics.Color
 
 interface OudsColorBgSemanticTokens {
-    val bgPrimaryLight: Color
-    val bgPrimaryDark: Color
-    val bgSecondaryLight: Color
-    val bgSecondaryDark: Color
-    val bgTertiaryLight: Color
-    val bgTertiaryDark: Color
-    val bgEmphasizedLight: Color
     val bgEmphasizedDark: Color
+    val bgEmphasizedLight: Color
+    val bgPrimaryDark: Color
+    val bgPrimaryLight: Color
+    val bgSecondaryDark: Color
+    val bgSecondaryLight: Color
+    val bgTertiaryDark: Color
+    val bgTertiaryLight: Color
 }

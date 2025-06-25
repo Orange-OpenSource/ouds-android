@@ -16,11 +16,11 @@
 package com.orange.ouds.theme.tokens.semantic
 
 interface OudsElevationSemanticTokens {
-    val none: Float
-    val raised: Float
     val drag: Float
+    val none: Float
     val overlayDefault: Float
     val overlayEmphasized: Float
+    val raised: Float
     val stickyDefault: Float
     val stickyEmphasized: Float
     val stickyNavigationScrolled: Float

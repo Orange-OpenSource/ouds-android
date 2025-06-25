@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
-import com.orange.ouds.tokens.global.raw.OpacityRawTokens
+import com.orange.ouds.tokens.raw.OpacityRawTokens
 
 data class WhiteLabelOpacitySemanticTokens(
     override val invisible: Float = OpacityRawTokens.opacity0,

@@ -17,13 +17,9 @@ package com.orange.ouds.theme.orange.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
-import com.orange.ouds.tokens.global.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.ColorRawTokens
 
 data class OrangeColorOpacitySemanticTokens(
-    override val opacityScarlet: Color = Color(0x14ea0305),
-    override val opacitySun: Color = Color(0x29ffd000),
-    override val opacityMalachite: Color = Color(0x1f3de35a),
-    override val opacityDodgerBlue: Color = Color(0x1426b2ff),
     override val opacityBlack0: Color = Color(0x00000000),
     override val opacityBlack40: Color = Color(0x0a000000),
     override val opacityBlack80: Color = Color(0x14000000),
@@ -49,6 +45,16 @@ data class OrangeColorOpacitySemanticTokens(
     override val opacityBlack880: Color = Color(0xe0000000),
     override val opacityBlack920: Color = Color(0xeb000000),
     override val opacityBlack960: Color = Color(0xf5000000),
+    override val opacityDodgerBlue: Color = Color(0x1426b2ff),
+    override val opacityLowerDark: Color = ColorRawTokens.colorOpacityWhite80,
+    override val opacityLowerLight: Color = ColorRawTokens.colorOpacityBlack80,
+    override val opacityLowestDark: Color = ColorRawTokens.colorOpacityWhite40,
+    override val opacityLowestLight: Color = ColorRawTokens.colorOpacityBlack40,
+    override val opacityMalachite: Color = Color(0x1f3de35a),
+    override val opacityScarlet: Color = Color(0x14ea0305),
+    override val opacitySun: Color = Color(0x29ffd000),
+    override val opacityTransparentDark: Color = ColorRawTokens.colorOpacityWhite0,
+    override val opacityTransparentLight: Color = ColorRawTokens.colorOpacityBlack0,
     override val opacityWhite0: Color = Color(0x00ffffff),
     override val opacityWhite40: Color = Color(0x0affffff),
     override val opacityWhite80: Color = Color(0x14ffffff),
@@ -73,11 +79,5 @@ data class OrangeColorOpacitySemanticTokens(
     override val opacityWhite840: Color = Color(0xd6ffffff),
     override val opacityWhite880: Color = Color(0xe0ffffff),
     override val opacityWhite920: Color = Color(0xebffffff),
-    override val opacityWhite960: Color = Color(0xf5ffffff),
-    override val opacityTransparentLight: Color = ColorRawTokens.colorOpacityBlack0,
-    override val opacityTransparentDark: Color = ColorRawTokens.colorOpacityWhite0,
-    override val opacityLowestLight: Color = ColorRawTokens.colorOpacityBlack40,
-    override val opacityLowestDark: Color = ColorRawTokens.colorOpacityWhite40,
-    override val opacityLowerLight: Color = ColorRawTokens.colorOpacityBlack80,
-    override val opacityLowerDark: Color = ColorRawTokens.colorOpacityWhite80
+    override val opacityWhite960: Color = Color(0xf5ffffff)
 ) : OudsColorOpacitySemanticTokens

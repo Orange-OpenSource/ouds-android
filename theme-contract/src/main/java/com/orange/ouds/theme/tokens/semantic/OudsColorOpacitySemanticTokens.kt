@@ -18,10 +18,6 @@ package com.orange.ouds.theme.tokens.semantic
 import androidx.compose.ui.graphics.Color
 
 interface OudsColorOpacitySemanticTokens {
-    val opacityScarlet: Color
-    val opacitySun: Color
-    val opacityMalachite: Color
-    val opacityDodgerBlue: Color
     val opacityBlack0: Color
     val opacityBlack40: Color
     val opacityBlack80: Color
@@ -47,6 +43,16 @@ interface OudsColorOpacitySemanticTokens {
     val opacityBlack880: Color
     val opacityBlack920: Color
     val opacityBlack960: Color
+    val opacityDodgerBlue: Color
+    val opacityLowerDark: Color
+    val opacityLowerLight: Color
+    val opacityLowestDark: Color
+    val opacityLowestLight: Color
+    val opacityMalachite: Color
+    val opacityScarlet: Color
+    val opacitySun: Color
+    val opacityTransparentDark: Color
+    val opacityTransparentLight: Color
     val opacityWhite0: Color
     val opacityWhite40: Color
     val opacityWhite80: Color
@@ -72,10 +78,4 @@ interface OudsColorOpacitySemanticTokens {
     val opacityWhite880: Color
     val opacityWhite920: Color
     val opacityWhite960: Color
-    val opacityTransparentLight: Color
-    val opacityTransparentDark: Color
-    val opacityLowestLight: Color
-    val opacityLowestDark: Color
-    val opacityLowerLight: Color
-    val opacityLowerDark: Color
 }

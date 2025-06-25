@@ -20,10 +20,10 @@ import com.orange.ouds.foundation.InternalOudsApi
 @InternalOudsApi
 sealed interface OudsOpacityKeyToken : OudsKeyToken {
     data object Invisible : OudsOpacityKeyToken
-    data object Weaker : OudsOpacityKeyToken
-    data object Weak : OudsOpacityKeyToken
     data object Medium : OudsOpacityKeyToken
-    data object Strong : OudsOpacityKeyToken
     data object Opaque : OudsOpacityKeyToken
+    data object Strong : OudsOpacityKeyToken
+    data object Weak : OudsOpacityKeyToken
+    data object Weaker : OudsOpacityKeyToken
 }
 

@@ -19,91 +19,91 @@ import com.orange.ouds.foundation.InternalOudsApi
 
 @InternalOudsApi
 sealed interface OudsSpaceKeyToken : OudsKeyToken {
-    sealed interface Scaled : OudsSpaceKeyToken {
-        data object None : Scaled
-        data object ThreeExtraSmall : Scaled
-        data object TwoExtraSmall : Scaled
-        data object ExtraSmall : Scaled
-        data object Small : Scaled
-        data object Medium : Scaled
-        data object Large : Scaled
-        data object ExtraLarge : Scaled
-        data object TwoExtraLarge : Scaled
-        data object ThreeExtraLarge : Scaled
+    sealed interface ColumnGap : OudsSpaceKeyToken {
+        data object ExtraLarge : ColumnGap
+        data object ExtraSmall : ColumnGap
+        data object Large : ColumnGap
+        data object Medium : ColumnGap
+        data object None : ColumnGap
+        data object Small : ColumnGap
+        data object ThreeExtraSmall : ColumnGap
+        data object TwoExtraLarge : ColumnGap
+        data object TwoExtraSmall : ColumnGap
     }
     sealed interface Fixed : OudsSpaceKeyToken {
-        data object None : Fixed
-        data object ThreeExtraSmall : Fixed
-        data object TwoExtraSmall : Fixed
-        data object ExtraSmall : Fixed
-        data object Small : Fixed
-        data object Medium : Fixed
-        data object Large : Fixed
         data object ExtraLarge : Fixed
-        data object TwoExtraLarge : Fixed
-        data object ThreeExtraLarge : Fixed
-        data object FourExtraLarge : Fixed
+        data object ExtraSmall : Fixed
         data object FiveExtraLarge : Fixed
-    }
-    sealed interface PaddingInline : OudsSpaceKeyToken {
-        data object None : PaddingInline
-        data object FourExtraSmall : PaddingInline
-        data object ThreeExtraSmall : PaddingInline
-        data object TwoExtraSmall : PaddingInline
-        data object ExtraSmall : PaddingInline
-        data object Small : PaddingInline
-        data object Medium : PaddingInline
-        data object Large : PaddingInline
-        data object ExtraLarge : PaddingInline
-        data object TwoExtraLarge : PaddingInline
-        data object ThreeExtraLarge : PaddingInline
-        data object FourExtraLarge : PaddingInline
-    }
-    sealed interface PaddingBlock : OudsSpaceKeyToken {
-        data object None : PaddingBlock
-        data object ThreeExtraSmall : PaddingBlock
-        data object TwoExtraSmall : PaddingBlock
-        data object ExtraSmall : PaddingBlock
-        data object Small : PaddingBlock
-        data object Medium : PaddingBlock
-        data object Large : PaddingBlock
-        data object ExtraLarge : PaddingBlock
-        data object TwoExtraLarge : PaddingBlock
-        data object ThreeExtraLarge : PaddingBlock
-        data object FourExtraLarge : PaddingBlock
+        data object FourExtraLarge : Fixed
+        data object Large : Fixed
+        data object Medium : Fixed
+        data object None : Fixed
+        data object Small : Fixed
+        data object ThreeExtraLarge : Fixed
+        data object ThreeExtraSmall : Fixed
+        data object TwoExtraLarge : Fixed
+        data object TwoExtraSmall : Fixed
     }
     sealed interface Inset : OudsSpaceKeyToken {
-        data object None : Inset
-        data object FourExtraSmall : Inset
-        data object ThreeExtraSmall : Inset
-        data object TwoExtraSmall : Inset
-        data object ExtraSmall : Inset
-        data object Small : Inset
-        data object Medium : Inset
-        data object Large : Inset
         data object ExtraLarge : Inset
-        data object TwoExtraLarge : Inset
+        data object ExtraSmall : Inset
+        data object FourExtraSmall : Inset
+        data object Large : Inset
+        data object Medium : Inset
+        data object None : Inset
+        data object Small : Inset
         data object ThreeExtraLarge : Inset
+        data object ThreeExtraSmall : Inset
+        data object TwoExtraLarge : Inset
+        data object TwoExtraSmall : Inset
     }
-    sealed interface ColumnGap : OudsSpaceKeyToken {
-        data object None : ColumnGap
-        data object ThreeExtraSmall : ColumnGap
-        data object TwoExtraSmall : ColumnGap
-        data object ExtraSmall : ColumnGap
-        data object Small : ColumnGap
-        data object Medium : ColumnGap
-        data object Large : ColumnGap
-        data object ExtraLarge : ColumnGap
-        data object TwoExtraLarge : ColumnGap
+    sealed interface PaddingBlock : OudsSpaceKeyToken {
+        data object ExtraLarge : PaddingBlock
+        data object ExtraSmall : PaddingBlock
+        data object FourExtraLarge : PaddingBlock
+        data object Large : PaddingBlock
+        data object Medium : PaddingBlock
+        data object None : PaddingBlock
+        data object Small : PaddingBlock
+        data object ThreeExtraLarge : PaddingBlock
+        data object ThreeExtraSmall : PaddingBlock
+        data object TwoExtraLarge : PaddingBlock
+        data object TwoExtraSmall : PaddingBlock
+    }
+    sealed interface PaddingInline : OudsSpaceKeyToken {
+        data object ExtraLarge : PaddingInline
+        data object ExtraSmall : PaddingInline
+        data object FourExtraLarge : PaddingInline
+        data object FourExtraSmall : PaddingInline
+        data object Large : PaddingInline
+        data object Medium : PaddingInline
+        data object None : PaddingInline
+        data object Small : PaddingInline
+        data object ThreeExtraLarge : PaddingInline
+        data object ThreeExtraSmall : PaddingInline
+        data object TwoExtraLarge : PaddingInline
+        data object TwoExtraSmall : PaddingInline
     }
     sealed interface RowGap : OudsSpaceKeyToken {
+        data object ExtraSmall : RowGap
+        data object Large : RowGap
+        data object Medium : RowGap
         data object None : RowGap
+        data object Small : RowGap
         data object ThreeExtraSmall : RowGap
         data object TwoExtraSmall : RowGap
-        data object ExtraSmall : RowGap
-        data object Small : RowGap
-        data object Medium : RowGap
-        data object Large : RowGap
+    }
+    sealed interface Scaled : OudsSpaceKeyToken {
+        data object ExtraLarge : Scaled
+        data object ExtraSmall : Scaled
+        data object Large : Scaled
+        data object Medium : Scaled
+        data object None : Scaled
+        data object Small : Scaled
+        data object ThreeExtraLarge : Scaled
+        data object ThreeExtraSmall : Scaled
+        data object TwoExtraLarge : Scaled
+        data object TwoExtraSmall : Scaled
     }
 }
 

@@ -19,11 +19,11 @@ import com.orange.ouds.foundation.InternalOudsApi
 
 @InternalOudsApi
 sealed interface OudsElevationKeyToken : OudsKeyToken {
-    data object None : OudsElevationKeyToken
-    data object Raised : OudsElevationKeyToken
     data object Drag : OudsElevationKeyToken
+    data object None : OudsElevationKeyToken
     data object OverlayDefault : OudsElevationKeyToken
     data object OverlayEmphasized : OudsElevationKeyToken
+    data object Raised : OudsElevationKeyToken
     data object StickyDefault : OudsElevationKeyToken
     data object StickyEmphasized : OudsElevationKeyToken
     data object StickyNavigationScrolled : OudsElevationKeyToken

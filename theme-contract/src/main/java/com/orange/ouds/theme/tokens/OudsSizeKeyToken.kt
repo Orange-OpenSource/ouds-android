@@ -20,86 +20,90 @@ import com.orange.ouds.foundation.InternalOudsApi
 @InternalOudsApi
 sealed interface OudsSizeKeyToken : OudsKeyToken {
     sealed interface Icon : OudsSizeKeyToken {
-        sealed interface WithHeading : Icon {
-            sealed interface ExtraLarge : WithHeading {
-                data object SizeSmall : ExtraLarge
-                data object SizeMedium : ExtraLarge
-                data object SizeLarge : ExtraLarge
-            }
-            sealed interface Large : WithHeading {
-                data object SizeSmall : Large
-                data object SizeMedium : Large
-                data object SizeLarge : Large
-            }
-            sealed interface Medium : WithHeading {
-                data object SizeSmall : Medium
-                data object SizeMedium : Medium
-                data object SizeLarge : Medium
-            }
-            sealed interface Small : WithHeading {
-                data object SizeSmall : Small
-                data object SizeMedium : Small
-                data object SizeLarge : Small
-            }
+        sealed interface Decorative : Icon {
+            data object ExtraLarge : Decorative
+            data object ExtraSmall : Decorative
+            data object FourExtraSmall : Decorative
+            data object Large : Decorative
+            data object Medium : Decorative
+            data object Small : Decorative
+            data object ThreeExtraSmall : Decorative
+            data object TwoExtraLarge : Decorative
+            data object TwoExtraSmall : Decorative
         }
         sealed interface WithBody : Icon {
             sealed interface Large : WithBody {
-                data object SizeSmall : Large
-                data object SizeMedium : Large
                 data object SizeLarge : Large
+                data object SizeMedium : Large
+                data object SizeSmall : Large
             }
             sealed interface Medium : WithBody {
-                data object SizeSmall : Medium
-                data object SizeMedium : Medium
                 data object SizeLarge : Medium
+                data object SizeMedium : Medium
+                data object SizeSmall : Medium
             }
             sealed interface Small : WithBody {
-                data object SizeSmall : Small
-                data object SizeMedium : Small
                 data object SizeLarge : Small
+                data object SizeMedium : Small
+                data object SizeSmall : Small
+            }
+        }
+        sealed interface WithHeading : Icon {
+            sealed interface ExtraLarge : WithHeading {
+                data object SizeLarge : ExtraLarge
+                data object SizeMedium : ExtraLarge
+                data object SizeSmall : ExtraLarge
+            }
+            sealed interface Large : WithHeading {
+                data object SizeLarge : Large
+                data object SizeMedium : Large
+                data object SizeSmall : Large
+            }
+            sealed interface Medium : WithHeading {
+                data object SizeLarge : Medium
+                data object SizeMedium : Medium
+                data object SizeSmall : Medium
+            }
+            sealed interface Small : WithHeading {
+                data object SizeLarge : Small
+                data object SizeMedium : Small
+                data object SizeSmall : Small
             }
         }
         sealed interface WithLabel : Icon {
             sealed interface ExtraLarge : WithLabel {
-                data object SizeSmall : ExtraLarge
-                data object SizeMedium : ExtraLarge
                 data object SizeLarge : ExtraLarge
+                data object SizeMedium : ExtraLarge
+                data object SizeSmall : ExtraLarge
             }
             sealed interface Large : WithLabel {
-                data object SizeExtraSmall : Large
-                data object SizeSmall : Large
-                data object SizeMedium : Large
-                data object SizeLarge : Large
                 data object SizeExtraLarge : Large
+                data object SizeExtraSmall : Large
+                data object SizeLarge : Large
+                data object SizeMedium : Large
+                data object SizeSmall : Large
             }
             sealed interface Medium : WithLabel {
                 data object SizeExtraSmall : Medium
-                data object SizeSmall : Medium
-                data object SizeMedium : Medium
                 data object SizeLarge : Medium
+                data object SizeMedium : Medium
+                data object SizeSmall : Medium
             }
             sealed interface Small : WithLabel {
                 data object SizeExtraSmall : Small
-                data object SizeSmall : Small
-                data object SizeMedium : Small
                 data object SizeLarge : Small
+                data object SizeMedium : Small
+                data object SizeSmall : Small
             }
         }
-        sealed interface Decorative : Icon {
-            data object FourExtraSmall : Decorative
-            data object ThreeExtraSmall : Decorative
-            data object TwoExtraSmall : Decorative
-            data object ExtraSmall : Decorative
-            data object Small : Decorative
-            data object Medium : Decorative
-            data object Large : Decorative
-            data object ExtraLarge : Decorative
-            data object TwoExtraLarge : Decorative
-        }
     }
-    data object MinInteractiveArea : OudsSizeKeyToken
     sealed interface MaxWidth : OudsSizeKeyToken {
         sealed interface Type : MaxWidth {
+            sealed interface Body : Type {
+                data object Large : Body
+                data object Medium : Body
+                data object Small : Body
+            }
             sealed interface Display : Type {
                 data object Large : Display
                 data object Medium : Display
@@ -111,12 +115,8 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
                 data object Medium : Heading
                 data object Small : Heading
             }
-            sealed interface Body : Type {
-                data object Large : Body
-                data object Medium : Body
-                data object Small : Body
-            }
         }
     }
+    data object MinInteractiveArea : OudsSizeKeyToken
 }
 
