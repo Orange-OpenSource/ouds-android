@@ -31,10 +31,11 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * can show multiple interactive elements together in the same area, such as a list of selectable
  * movie times, or a series of email contacts.
  *
- * Filter chips use tags or descriptive words to filter content. They can be a good alternative to
- * toggle buttons or checkboxes.
+ * A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
+ * Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
  *
- * This version of the filter chip uses the *text only* layout which is the most used layout.
+ * This version of the filter chip uses the *text only* layout which displays only text, offering a clean and minimalistic look.
+ * Best suited for category-based filters that do not require additional visual elements.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
  * @param selected Whether this chip is selected or not.
@@ -77,10 +78,11 @@ fun OudsFilterChip(
  * can show multiple interactive elements together in the same area, such as a list of selectable
  * movie times, or a series of email contacts.
  *
- * Filter chips use tags or descriptive words to filter content. They can be a good alternative to
- * toggle buttons or checkboxes.
+ * A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
+ * Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
  *
- * This version of the chip uses the *icon only* layout.
+ * This version of the chip uses the *icon only* layout which uses only an icon, making it a compact option for limited space.
+ * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
  * @param selected Whether this chip is selected or not.
@@ -123,10 +125,11 @@ fun OudsFilterChip(
  * can show multiple interactive elements together in the same area, such as a list of selectable
  * movie times, or a series of email contacts.
  *
- * Filter chips use tags or descriptive words to filter content. They can be a good alternative to
- * toggle buttons or checkboxes.
+ * A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
+ * Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
  *
- * This version of the chip uses the *text + icon* layout.
+ * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
+ * Ideal when a visual cue helps reinforce the filter’s meaning.
  * Other layouts are available for this component: *text only* and *icon only*.
  *
  * @param selected Whether this chip is selected or not.
