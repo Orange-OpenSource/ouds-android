@@ -5,7 +5,8 @@
   --active-section-color: #f15e00;
   --sidemenu-section-active-color: #f15e00;
 
-  --footer-go-to-top-color: white;
+  --footer-go-to-top-color: #fff;
+  --footer-background: #fff;
   --color-background-nav: #000;
   --color-background-nav-dt: #000;
 
@@ -28,6 +29,7 @@
   --font-size-display-small: 2rem;
 
   --font-line-height-heading-large: 0px;
+  --font-line-height-display-small: 40px;
 
   --font-letter-spacing-display-small: -0.32px;
   --font-letter-spacing-heading-large: 0.12px;
@@ -72,6 +74,7 @@
     --font-size-display-small: 3rem;
 
     --font-line-height-heading-large: 40px;
+    --font-line-height-display-small: 56px;
 
     --font-letter-spacing-display-small: -0.6px;
     --font-letter-spacing-heading-large: 0.32px;
@@ -94,6 +97,7 @@
     var(--navigation-padding-bottom);
   border-bottom: 1px solid #666;
 }
+
 .library-name--link {
   position: relative;
   height: auto;
@@ -110,6 +114,7 @@
     color: transparent;
   }
 }
+
 .library-name--link::before {
   position: absolute;
   left: 0;
@@ -123,10 +128,12 @@
     top: -13px;
   }
 }
+
 .navigation-controls--btn {
   width: var(--dokka-logo-height);
   height: var(--dokka-logo-height);
 }
+
 .navigation-controls--btn_theme {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' fill='white'><path d='M675 649.88c-179.493 0-325-145.57-325-325.141A324.478 324.478 0 0 1 465.721 76C247.03 93.463 75 276.537 75 499.815 75 734.638 265.279 925 500 925c223.181 0 406.175-172.106 423.63-390.891A324.222 324.222 0 0 1 675 649.88Z'/></svg>");
 }
@@ -136,17 +143,42 @@
   font: inherit;
   font-weight: 700;
 }
+
 .dropdown--header {
   font-size: var(--font-size-heading-medium);
   font-weight: 700;
 }
+
 @media (max-width: 439px) {
   .dropdown--list {
     width: 320px;
   }
 }
+
 .toc--button::after {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' fill='white'><path d='m225 402.78 196.43 194.44L500 675l78.57-77.78L775 402.78 696.43 325 500 519.44 303.57 325 225 402.78Z'/></svg>");
+}
+
+.toc--link:hover {
+  color: var(--color-key-orange);
+}
+
+.toc--part[data-active] > .toc--row .toc--button::after,
+.toc--part[data-active] > .toc--row .toc--link::after {
+  filter: invert(1);
+}
+
+.toc--part[data-active] > .toc--row .toc--button,
+.toc--part[data-active] > .toc--row .toc--link {
+  font-weight: 700;
+  color: var(--toc-color);
+  background-color: var(--color-background);
+}
+
+.toc--part[data-active] > .toc--row .toc--button:hover,
+.toc--part[data-active] > .toc--row .toc--link:hover {
+  color: var(--color-key-orange);
+  background-color: var(--color-background);
 }
 
 /* fixes strange line-height on some paragraph texts */
@@ -183,13 +215,25 @@
 }
 .main-content :is(h1) {
   font-size: var(--font-size-display-small);
-  line-height: 56px;
+  line-height: var(--font-line-height-display-small);
   letter-spacing: var(--font-letter-spacing-display-small);
 }
 .main-content :is(h2, h3) {
   font-size: var(--font-size-heading-large);
   line-height: var(--font-line-height-heading-large);
   letter-spacing: var(--font-letter-spacing-heading-large);
+}
+
+/* links in content */
+.main-content a:not([data-name]) {
+  margin: initial;
+  font-weight: 700;
+  text-decoration: underline;
+  border: none;
+  transition: none;
+}
+.main-content a:not([data-name]):hover {
+  color: rgba(0, 0, 0, 0.68);
 }
 
 .paragraph,
@@ -206,6 +250,7 @@ code:not(.block) {
   white-space: break-spaces;
   border-radius: 2px;
 }
+
 code.block {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0;
@@ -221,28 +266,10 @@ code.block {
   display: none;
 }
 
-.toc--link:hover {
-  color: var(--color-key-orange);
-}
-
-.toc--part[data-active] > .toc--row .toc--button::after,
-.toc--part[data-active] > .toc--row .toc--link::after {
-  filter: invert(1);
-}
-
-.toc--part[data-active] > .toc--row .toc--button,
-.toc--part[data-active] > .toc--row .toc--link {
-  font-weight: 700;
-  color: var(--toc-color);
-  background-color: var(--color-background);
-}
-
-.toc--part[data-active] > .toc--row .toc--button:hover,
-.toc--part[data-active] > .toc--row .toc--link:hover {
-  color: var(--color-key-orange);
-  background-color: var(--color-background);
-}
-
 li {
   margin-top: 8px;
+}
+
+.footer {
+  border-top: 1px solid rgba(39, 40, 44, 0.2);
 }
