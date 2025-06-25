@@ -16,9 +16,11 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
@@ -51,33 +53,32 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
 }
 
 @Composable
-fun ChipDemoContent(
-    state: ChipDemoState,
-    content: @Composable (index: Int, icon: OudsChip.Icon) -> Unit
-) {
+fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChip.Icon) -> Unit) {
+    val icons = listOf(
+        Icons.Filled.Person,
+        Icons.Filled.Phone
+    )
     FlowRow(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
-        val icon = OudsChip.Icon(
-            painter = painterResource(id = R.drawable.ic_heart),
-            contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
-        )
-        with(state) {
-            repeat(ChipDemoState.ChipCount) { index ->
-                content(index, icon)
-            }
+        repeat(ChipDemoState.ChipCount) { index ->
+            val icon = OudsChip.Icon(
+                imageVector = icons[index % icons.count()],
+                contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
+            )
+            content(index, icon)
         }
     }
 }
 
-fun FunctionCall.Builder.chipArguments(state: ChipDemoState, @StringRes labelResId: Int) = with(state) {
+fun FunctionCall.Builder.chipArguments(state: ChipDemoState, label: String) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
         constructorCallArgument<OudsChip.Icon>("icon") {
-            painterArgument(R.drawable.ic_heart)
+            rawArgument("imageVector", "Icons.Filled.Person")
             contentDescriptionArgument(R.string.app_components_common_icon_a11y)
         }
     }
     if (layout in listOf(ChipDemoState.Layout.TextOnly, ChipDemoState.Layout.TextAndIcon)) {
-        labelArgument(labelResId)
+        labelArgument(label)
     }
     enabledArgument(enabled)
 }
