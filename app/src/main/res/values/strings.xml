@@ -148,7 +148,9 @@
     <string name="app_components_chip_label">Chip</string>
     <string name="app_components_chip_description_text">Chips help people enter information, make selections, filter content, or trigger actions.</string>
     <string name="app_components_chip_filterChip_label">Filter chip</string>
+    <string name="app_components_chip_filterChip_filterChip_label">Filter %d</string>
     <string name="app_components_chip_suggestionChip_label">Suggestion chip</string>
+    <string name="app_components_chip_suggestionChip_suggestionChip_label">Suggestion %d</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">Helper text</string>

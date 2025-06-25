@@ -136,8 +136,8 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
 
         fun rawArgument(name: String?, value: String) = formattableArgument(name) { value }
 
-        fun stringResourceArgument(name: String?, @StringRes id: Int) {
-            formattableArgument(name) { "\"${it.getString(id)}\"" }
+        fun stringResourceArgument(name: String?, @StringRes id: Int, vararg formatArgs: Any) {
+            formattableArgument(name) { "\"${it.getString(id, formatArgs)}\"" }
         }
 
         fun lambdaArgument(name: String?, init: Code.Builder.() -> Unit = {}) {
