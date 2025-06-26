@@ -55,7 +55,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -226,7 +226,7 @@ internal fun PreviewOudsSwitch(
     darkThemeEnabled: Boolean,
     checked: Boolean
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    PreviewStates<OudsControl.State>(columnCount = 3) {
+    PreviewEnumEntries<OudsControl.State>(columnCount = 3) {
         OudsSwitch(
             checked = checked,
             onCheckedChange = {}

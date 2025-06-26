@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.tokens.components
 
 class OudsComponentsTokens(
+    val badge: OudsBadgeTokens = OudsBadgeTokens(),
     val button: OudsButtonTokens = OudsButtonTokens(),
     val buttonMono: OudsButtonMonoTokens = OudsButtonMonoTokens(),
     val checkbox: OudsCheckboxTokens = OudsCheckboxTokens(),

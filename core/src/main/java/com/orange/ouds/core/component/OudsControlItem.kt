@@ -44,7 +44,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
 import com.orange.ouds.core.utilities.edgeToEdgePadding
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -70,7 +70,7 @@ internal fun OudsControlItem(
     additionalLabel: String? = null,
     handleHighContrastMode: Boolean = false
 ) {
-    val previewState = getPreviewState<OudsControlItem.State>()
+    val previewState = getPreviewEnumEntry<OudsControlItem.State>()
     val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
     val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
@@ -225,7 +225,7 @@ object OudsControlItem {
 
 @Composable
 internal fun getControlItemState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsControlItem.State {
-    return getPreviewState<OudsControlItem.State>().orElse {
+    return getPreviewEnumEntry<OudsControlItem.State>().orElse {
         when {
             !enabled -> OudsControlItem.State.Disabled
             readOnly -> OudsControlItem.State.ReadOnly

@@ -70,8 +70,8 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -310,7 +310,7 @@ private fun OudsButton(
             ) {
                 if (state == OudsButton.State.Loading) {
                     val loadingStyle = style as? OudsButton.Style.Loading
-                    val progress = if (getPreviewState<OudsButton.State>() == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
+                    val progress = if (getPreviewEnumEntry<OudsButton.State>() == OudsButton.State.Loading) 0.75f else loadingStyle?.progress
                     LoadingIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
                 }
 
@@ -350,7 +350,7 @@ private fun OudsButton(
 
 @Composable
 private fun getButtonState(enabled: Boolean, style: OudsButton.Style, interactionState: InteractionState): OudsButton.State {
-    return getPreviewState<OudsButton.State>().orElse {
+    return getPreviewEnumEntry<OudsButton.State>().orElse {
         when (style) {
             OudsButton.Style.Default -> when {
                 !enabled -> OudsButton.State.Disabled
@@ -651,12 +651,12 @@ private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?, 
 object OudsButtonDefaults {
 
     /**
-     * Default hierarchy of an OUDS button.
+     * Default hierarchy of an [OudsButton].
      */
     val Hierarchy = OudsButton.Hierarchy.Default
 
     /**
-     * Default style of an OUDS button.
+     * Default style of an [OudsButton].
      */
     val Style = OudsButton.Style.Default
 }
@@ -779,7 +779,7 @@ internal fun PreviewOudsButton(
         val label = if (hasLabel) hierarchy.name else null
         val icon = if (hasIcon) OudsButton.Icon(painterResource(id = android.R.drawable.star_on), "") else null
         val content: @Composable () -> Unit = {
-            PreviewStates<OudsButton.State>(columnCount = 2) {
+            PreviewEnumEntries<OudsButton.State>(columnCount = 2) {
                 OudsButton(nullableIcon = icon, nullableLabel = label, onClick = {}, hierarchy = hierarchy)
             }
         }
