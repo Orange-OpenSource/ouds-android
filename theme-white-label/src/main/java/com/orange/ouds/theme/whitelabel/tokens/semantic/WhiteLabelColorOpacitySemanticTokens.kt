@@ -73,6 +73,7 @@ data class WhiteLabelColorOpacitySemanticTokens(
     override val opacityWhite960: Color = Color(0xf5ffffff),
     override val opacityTransparentLight: Color = ColorRawTokens.colorOpacityBlack0,
     override val opacityTransparentDark: Color = ColorRawTokens.colorOpacityWhite0,
+    override val opacityWarmGray: Color = Color(0x14bd793c),
     override val opacityLowestLight: Color = ColorRawTokens.colorOpacityBlack40,
     override val opacityLowestDark: Color = ColorRawTokens.colorOpacityWhite40,
     override val opacityLowerLight: Color = ColorRawTokens.colorOpacityBlack80,
