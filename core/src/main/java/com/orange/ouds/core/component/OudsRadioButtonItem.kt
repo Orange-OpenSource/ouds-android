@@ -34,7 +34,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">**OUDS Radio button design guidelines**</a>
@@ -185,7 +185,7 @@ internal fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -215,7 +215,7 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
