@@ -59,8 +59,8 @@ import com.orange.ouds.core.theme.LocalUseMonoComponents
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
@@ -263,7 +263,7 @@ private fun OudsLink(
 
 @Composable
 private fun getLinkState(enabled: Boolean, interactionState: InteractionState): OudsLink.State {
-    return getPreviewState<OudsLink.State>().orElse {
+    return getPreviewEnumEntry<OudsLink.State>().orElse {
         when {
             !enabled -> OudsLink.State.Disabled
             interactionState == InteractionState.Hovered -> OudsLink.State.Hovered
@@ -443,7 +443,7 @@ internal fun PreviewOudsLink(
     with(parameter) {
         val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
         val linkPreview: @Composable () -> Unit = {
-            PreviewStates<OudsLink.State>(columnCount = 3) {
+            PreviewEnumEntries<OudsLink.State>(columnCount = 3) {
                 OudsLink(
                     icon = icon,
                     label = "Label",

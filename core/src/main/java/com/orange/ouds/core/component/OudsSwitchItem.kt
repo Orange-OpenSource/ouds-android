@@ -31,7 +31,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 
 //TODO Add DSM link when available
 // <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Switch design guidelines**</a>
@@ -140,7 +140,7 @@ internal fun PreviewOudsSwitchItem(
     parameter: OudsSwitchItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",
