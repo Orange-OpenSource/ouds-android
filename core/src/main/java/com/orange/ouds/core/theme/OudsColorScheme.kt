@@ -364,6 +364,7 @@ data class OudsColorScheme(
         }
 
         data class Opacity(
+            val accent: Color,
             val black: Black,
             val info: Color,
             val negative: Color,
@@ -1004,6 +1005,7 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
                 )
             ),
             opacity = OudsColorScheme.Repository.Opacity(
+                accent = repositoryOpacityAccent,
                 black = OudsColorScheme.Repository.Opacity.Black(
                     high = repositoryOpacityBlackHigh,
                     higher = repositoryOpacityBlackHigher,
@@ -1304,6 +1306,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Colo
             OudsColorKeyToken.Repository.Neutral.Muted.Lowest -> neutral.muted.lowest
             OudsColorKeyToken.Repository.Neutral.Muted.Medium -> neutral.muted.medium
             OudsColorKeyToken.Repository.Neutral.Muted.White -> neutral.muted.white
+            OudsColorKeyToken.Repository.Opacity.Accent -> opacity.accent
             OudsColorKeyToken.Repository.Opacity.Black.High -> opacity.black.high
             OudsColorKeyToken.Repository.Opacity.Black.Higher -> opacity.black.higher
             OudsColorKeyToken.Repository.Opacity.Black.Highest -> opacity.black.highest
