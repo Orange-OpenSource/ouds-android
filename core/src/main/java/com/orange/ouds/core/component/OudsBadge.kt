@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -55,6 +56,28 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
+
+// TODO: Add documentation URL once it is available
+/**
+ * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
+ * It is often displayed as a label or indicator with a distinct background color and text.
+ *
+ * Badges have five statuses depending on the context of the information they represent.
+ * Each status is designed to convey a specific meaning and ensure clarity in communication.
+ *
+ * This version of the badge renders as a static label without a number.
+ * It is used for status indicators (e.g., "New", "Pending", "Success").
+ * The size remains unchanged despite the increase in the interface size.
+ *
+ * See [BadgedBox] for a top level layout that will properly place the badge relative to content
+ * such as text or an icon.
+ *
+ * @param modifier The [Modifier] to be applied to this badge.
+ * @param status The status of this badge. The background color of the badge is based on this status.
+ * @param size The size of this badge.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsBadgeSample
+ */
 @Composable
 fun OudsBadge(
     modifier: Modifier = Modifier,
@@ -70,6 +93,29 @@ fun OudsBadge(
     )
 }
 
+// TODO: Add documentation URL once it is available
+/**
+ * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
+ * It is often displayed as a label or indicator with a distinct background color and text.
+ *
+ * Badges have five statuses depending on the context of the information they represent.
+ * Each status is designed to convey a specific meaning and ensure clarity in communication.
+ *
+ * This version of the badge displays numerical values (e.g., unread messages, notifications).
+ *
+ * See [BadgedBox] for a top level layout that will properly place the badge relative to content
+ * such as text or an icon.
+ *
+ * @param count The number displayed in the badge. Minimum and maximum values are 0 and 99 respectively.
+ *   Values greater than 99 are displayed as "+99".
+ * @param modifier The [Modifier] to be applied to this badge.
+ * @param status The status of this badge. The background color of the badge and the number color are based on this status.
+ * @param size The size of this badge. The number is not displayed when size is [OudsBadge.Size.ExtraSmall] or [OudsBadge.Size.Small].
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsBadgeWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsBadgeWithCountInNavigationBarItemSample
+ */
 @Composable
 fun OudsBadge(
     count: Int,
@@ -86,6 +132,26 @@ fun OudsBadge(
     )
 }
 
+// TODO: Add documentation URL once it is available
+/**
+ * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
+ * It is often displayed as a label or indicator with a distinct background color and text.
+ *
+ * Badges have five statuses depending on the context of the information they represent.
+ * Each status is designed to convey a specific meaning and ensure clarity in communication.
+ *
+ * This version of the badge displays an icon to visually reinforce meaning.
+ *
+ * See [BadgedBox] for a top level layout that will properly place the badge relative to content
+ * such as text or an icon.
+ *
+ * @param icon The icon displayed in the badge.
+ * @param modifier The [Modifier] to be applied to this badge.
+ * @param status The status of this badge. The background color of the badge and the icon color are based on this status.
+ * @param size The size of this badge. The icon is not displayed when size is [OudsBadge.Size.ExtraSmall] or [OudsBadge.Size.Small].
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsBadgeWithIconSample
+ */
 @Composable
 fun OudsBadge(
     icon: OudsBadge.Icon,
@@ -149,7 +215,7 @@ private fun OudsBadge(
 }
 
 @Composable
-fun size(size: OudsBadge.Size): Dp {
+private fun size(size: OudsBadge.Size): Dp {
     return with(OudsTheme.componentsTokens.badge) {
         when (size) {
             OudsBadge.Size.ExtraSmall -> sizeXsmall
@@ -233,7 +299,10 @@ object OudsBadgeDefaults {
  */
 object OudsBadge {
 
-    internal const val MaxCount = 99
+    /**
+     * The maximum count value.
+     */
+    const val MaxCount = 99
 
     /**
      * An icon in an [OudsBadge].
@@ -279,11 +348,48 @@ object OudsBadge {
     }
 
     enum class Status {
-        Neutral, Accent, Positive, Info, Warning, Negative, Disabled;
+
+        /** Used for general labels without specific emphasis. */
+        Neutral,
+
+        /** Employed to highlight discovery or exploration-related content. */
+        Accent,
+
+        /** Indicates success, completion, or approval. */
+        Positive,
+
+        /** Provides informational context without urgency. */
+        Info,
+
+        /** Negatives the user to potential risks or cautionary messages. */
+        Warning,
+
+        /**
+         * Draws attention to important or critical information.
+         * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
+         */
+        Negative,
+
+        /**
+         * Indicate when the user isn’t allowed to interact with an element.
+         * They remove all interactivity from a text or icon elements.
+         */
+        Disabled;
     }
 
     enum class Size {
-        ExtraSmall, Small, Medium, Large;
+        
+        /** A compact badge for minimal space usage, ideal for small UI elements like icons or tooltips. */
+        ExtraSmall,
+
+        /** A slightly larger badge that remains subtle but improves readability, often used for inline labels. */
+        Small,
+
+        /** The default size, providing a balance between visibility and space efficiency, suitable for most use cases. */
+        Medium,
+
+        /** A prominent badge for drawing more attention, often used in dashboards or highlighted sections. */
+        Large;
 
         internal companion object {
             val countEntries: List<Size>
