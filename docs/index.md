@@ -1,8 +1,8 @@
 # OUDS Android
 
-## Getting started
+The OUDS Android library is compatible with **Android 5.0 (API level 21) and higher**. It serves as the interface between applications and custom themes, providing essential components for app development.
 
-The OUDS Android library is compatible with **Android 5.0 (API level 21) and higher**.
+## Getting started
 
 ### Gradle
 
@@ -19,6 +19,7 @@ dependencies {
     // ...
 }
 ```
+
 </details></br>
 
 <details>
@@ -32,11 +33,12 @@ dependencies {
     // ...
 }
 ```
+
 </details>
 
 ### Themes
 
-The `OudsTheme` method is an extension of the `MaterialTheme` method which allows to use the Orange Unified Design System in Jetpack Compose applications. Because OUDS Android supports multi-theme, you must provide the theme to use in your application as a parameter. OUDS Android components such as `OudsButton` and `OudsCheckbox` as well as Material components use values provided by the theme when they are rendered on screen.  For instance if you want to use the Orange theme:
+The `OudsTheme` method is an extension of the `MaterialTheme` method which allows to use the Orange Unified Design System in Jetpack Compose applications. Because OUDS Android supports multi-theme, you must provide the theme to use in your application as a parameter. OUDS Android components such as `OudsButton` and `OudsCheckbox` as well as Material components use values provided by the theme when they are rendered on screen. For instance if you want to use the Orange theme:
 
 ```kotlin
 OudsTheme(themeContract = OrangeTheme()) {
