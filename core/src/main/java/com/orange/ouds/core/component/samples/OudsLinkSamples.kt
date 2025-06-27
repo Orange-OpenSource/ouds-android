@@ -23,7 +23,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 internal fun OudsLinkSample() {
     OudsLink(
         label = "Link",
-        icon = OudsLink.Icon(Icons.Filled.FavoriteBorder),
+        icon = OudsLink.Icon(imageVector = Icons.Filled.FavoriteBorder),
         onClick = { /* Do something! */ },
     )
 }

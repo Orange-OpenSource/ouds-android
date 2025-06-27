@@ -13,8 +13,6 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.CubicBezierEasing
-import androidx.compose.animation.core.Easing
 import androidx.compose.foundation.IndicationNodeFactory
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
@@ -36,7 +34,6 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
 internal data class InteractionValuesIndication(val values: List<InteractionValue<*, *>>) : IndicationNodeFactory {
 
     constructor(vararg interactionValues: InteractionValue<*, *>) : this(interactionValues.toList())
@@ -53,7 +50,7 @@ internal class InteractionValuesNode(
 
     // The aim of this class is to resolve issues related to generics when manipulating instances of InteractionValue and Animatable
     private class AnimatableInteractionValue<T, S>(val interactionValue: InteractionValue<T, S>, val animatable: Animatable<S, *>)
-    
+
     private var pressedAnimations: Job? = null
 
     private var restingAnimations: Job? = null
@@ -160,7 +157,6 @@ internal sealed class InteractionValue<T, S>(
         set(value) {
             field = value
             if (value != InteractionState.Pressed) {
-                @Suppress("KotlinConstantConditions")
                 resting = when (value) {
                     InteractionState.None -> none
                     InteractionState.Focused -> focused
