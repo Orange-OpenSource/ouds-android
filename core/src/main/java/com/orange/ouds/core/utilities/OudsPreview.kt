@@ -34,7 +34,7 @@ import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import kotlin.enums.enumEntries
 
-private val LocalPreviewState = staticCompositionLocalOf<Any?> { null }
+private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
@@ -47,7 +47,12 @@ private val LocalPreviewState = staticCompositionLocalOf<Any?> { null }
  * @suppress
  */
 @Composable
-fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSystemInDarkTheme(), highContrastModeEnabled: Boolean = false, content: @Composable () -> Unit) {
+fun OudsPreview(
+    modifier: Modifier = Modifier,
+    darkThemeEnabled: Boolean = isSystemInDarkTheme(),
+    highContrastModeEnabled: Boolean = false,
+    content: @Composable () -> Unit
+) {
     // Updating the configuration is only needed for UI tests
     // It is not needed for Android Studio previews because the uiMode parameter of the @Preview annotation already configures the UI mode properly
     val configuration = LocalConfiguration.current.apply {
@@ -71,30 +76,33 @@ fun OudsPreview(modifier: Modifier = Modifier, darkThemeEnabled: Boolean = isSys
 }
 
 @Composable
-internal fun <T> getPreviewState(): T? {
+internal fun <T> getPreviewEnumEntry(): T? {
     @Suppress("UNCHECKED_CAST")
-    return LocalPreviewState.current as? T
+    return LocalPreviewEnumEntry.current as? T
 }
 
 @Composable
-internal inline fun <reified T> PreviewStates(columnCount: Int = enumEntries<T>().count(), crossinline content: @Composable () -> Unit) where T : Enum<T> {
-    val chunkedStates = enumEntries<T>().chunked(columnCount)
+internal inline fun <reified T> PreviewEnumEntries(
+    columnCount: Int = enumEntries<T>().count(),
+    crossinline content: @Composable (T) -> Unit
+) where T : Enum<T> {
+    val chunkedEnumEntries = enumEntries<T>().chunked(columnCount)
     val space = 16.dp
     Box(modifier = Modifier.padding(space)) {
         Row(horizontalArrangement = Arrangement.spacedBy(space)) {
             repeat(columnCount) { columnIndex ->
-                val columnStates = chunkedStates.mapNotNull { it.getOrNull(columnIndex) }
+                val columnEnumEntries = chunkedEnumEntries.mapNotNull { it.getOrNull(columnIndex) }
                 Column {
-                    columnStates.forEachIndexed { index, state ->
+                    columnEnumEntries.forEachIndexed { index, enumEntry ->
                         Text(
                             modifier = Modifier.padding(top = if (index == 0) 0.dp else space, bottom = 8.dp),
-                            text = state.name,
+                            text = enumEntry.name,
                             color = OudsTheme.colorScheme.content.default,
                             fontFamily = FontFamily.Monospace,
                             fontSize = 10.sp
                         )
-                        CompositionLocalProvider(LocalPreviewState provides state) {
-                            content()
+                        CompositionLocalProvider(LocalPreviewEnumEntry provides enumEntry) {
+                            content(enumEntry)
                         }
                     }
                 }

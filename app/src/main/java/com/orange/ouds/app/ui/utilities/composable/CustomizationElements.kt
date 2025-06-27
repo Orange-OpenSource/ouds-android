@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.DropdownMenuItem
@@ -41,6 +42,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -109,7 +111,28 @@ fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+) {
+    CustomizationTextField(
+        label = label,
+        value = TextFieldValue(text = value),
+        onValueChange = { onValueChange(it.text) },
+        modifier = modifier,
+        enabled = enabled,
+        keyboardOptions = keyboardOptions
+    )
+}
+
+@Composable
+fun CustomizationTextField(
+    label: String,
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
@@ -119,7 +142,9 @@ fun CustomizationTextField(
                 .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             value = value,
             onValueChange = onValueChange,
-            singleLine = true,
+            enabled = enabled,
+            keyboardOptions = keyboardOptions,
+            singleLine = true
         )
     }
 }
@@ -135,10 +160,10 @@ fun CustomizationDropdownMenu(
     itemLeadingIcons: List<@Composable () -> Unit>? = null
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
-            modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.extraSmall),
+            modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             expanded = expanded,
             onExpandedChange = { expanded = !expanded }
         ) {
