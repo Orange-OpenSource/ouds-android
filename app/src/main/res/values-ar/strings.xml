@@ -104,13 +104,24 @@
     <string name="app_components_common_style_label">الأسلوب</string>
     <string name="app_components_common_label_label">التسمية</string>
     <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
+    <string name="app_components_common_icon_a11y">أيقون</string>
+
+    <!-- Components: badge -->
+    <string name="app_components_badge_label">Badge</string>
+    <string name="app_components_badge_description_text">The badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.</string>
+    <string name="app_components_badge_status_label">Status</string>
+    <string name="app_components_badge_size_label">Size</string>
+    <string name="app_components_badge_type_label">Type</string>
+    <string name="app_components_badge_standardType_label">Standard</string>
+    <string name="app_components_badge_countType_label">Count</string>
+    <string name="app_components_badge_iconType_label">Icon</string>
+    <string name="app_components_badge_count_label">Count</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label">زر</string>
     <string name="app_components_button_description_text">الأزرار تسمح للمستخدمين باتخاذ قرارات أو أداء إجراء. لها عدة أنماط لتلبية احتياجات مختلفة.</string>
     <string name="app_components_button_hierarchy_label">التسلسل</string>
     <string name="app_components_button_iconOnlyLayout_label">رمز فقط</string>
-    <string name="app_components_button_icon_a11y">أيقون</string>
 
     <!-- Components: link -->
     <string name="app_components_link_label">رابط</string>

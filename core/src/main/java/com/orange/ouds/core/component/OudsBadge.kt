@@ -186,7 +186,7 @@ private fun OudsBadge(
         Box(
             modifier = Modifier
                 .clip(shape = RoundedCornerShape(OudsTheme.borders.radius.pill))
-                .background(backgroundColor(status = status))
+                .background(status.backgroundColor)
                 .heightIn(min = sizeDp, max = sizeDp)
                 .widthIn(min = sizeDp, max = maxWidth)
                 .padding(paddingValues = contentPadding(size = size, count = count, icon = icon)),
@@ -223,19 +223,6 @@ private fun size(size: OudsBadge.Size): Dp {
             OudsBadge.Size.Medium -> sizeMedium
             OudsBadge.Size.Large -> sizeLarge
         }.dp
-    }
-}
-
-@Composable
-private fun backgroundColor(status: OudsBadge.Status): Color {
-    return when (status) {
-        Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
-        Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
-        Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
-        Info -> OudsTheme.colorScheme.surface.status.info.emphasized
-        Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
-        Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
-        Disabled -> OudsTheme.colorScheme.action.disabled
     }
 }
 
@@ -375,10 +362,25 @@ object OudsBadge {
          * They remove all interactivity from a text or icon elements.
          */
         Disabled;
+
+        /**
+         * The badge background color associated with this status.
+         */
+        val backgroundColor: Color
+            @Composable
+            get() = when (this) {
+                Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
+                Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
+                Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
+                Info -> OudsTheme.colorScheme.surface.status.info.emphasized
+                Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
+                Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
+                Disabled -> OudsTheme.colorScheme.action.disabled
+            }
     }
 
     enum class Size {
-        
+
         /** A compact badge for minimal space usage, ideal for small UI elements like icons or tooltips. */
         ExtraSmall,
 
@@ -392,6 +394,7 @@ object OudsBadge {
         Large;
 
         internal companion object {
+
             val countEntries: List<Size>
                 get() = listOf(Medium, Large)
 
