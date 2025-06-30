@@ -17,8 +17,11 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -93,13 +96,10 @@ internal inline fun <reified T> PreviewEnumEntries(
             repeat(columnCount) { columnIndex ->
                 val columnEnumEntries = chunkedEnumEntries.mapNotNull { it.getOrNull(columnIndex) }
                 Column {
-                    columnEnumEntries.forEachIndexed { index, enumEntry ->
-                        Text(
-                            modifier = Modifier.padding(top = if (index == 0) 0.dp else space, bottom = 8.dp),
-                            text = enumEntry.name,
-                            color = OudsTheme.colorScheme.content.default,
-                            fontFamily = FontFamily.Monospace,
-                            fontSize = 10.sp
+                    columnEnumEntries.forEachIndexed { rowIndex, enumEntry ->
+                        EnumEntryName(
+                            modifier = Modifier.padding(top = if (rowIndex == 0) 0.dp else space, bottom = 8.dp),
+                            enumEntry = enumEntry
                         )
                         CompositionLocalProvider(LocalPreviewEnumEntry provides enumEntry) {
                             content(enumEntry)
@@ -109,6 +109,48 @@ internal inline fun <reified T> PreviewEnumEntries(
             }
         }
     }
+}
+
+@Composable
+internal inline fun <reified T, reified S> PreviewEnumEntries(crossinline content: @Composable (T, S) -> Unit) where T : Enum<T>, S : Enum<S> {
+    val space = 16.dp
+    val columnCount = enumEntries<T>().count()
+    val rowCount = enumEntries<S>().count()
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(1 + columnCount),
+        contentPadding = PaddingValues(all = space),
+        horizontalArrangement = Arrangement.spacedBy(space),
+        verticalArrangement = Arrangement.spacedBy(space)
+    ) {
+        repeat(1 + rowCount) { rowIndex ->
+            repeat(1 + columnCount) { columnIndex ->
+                val rowEnumEntry = enumEntries<S>().getOrNull(rowIndex - 1)
+                val columnEnumEntry = enumEntries<T>().getOrNull(columnIndex - 1)
+                item {
+                    when {
+                        rowEnumEntry == null && columnEnumEntry != null -> EnumEntryName(columnEnumEntry)
+                        rowEnumEntry != null && columnEnumEntry == null -> EnumEntryName(rowEnumEntry)
+                        rowEnumEntry != null && columnEnumEntry != null -> {
+                            Box {
+                                content(columnEnumEntry, rowEnumEntry)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun <T> EnumEntryName(enumEntry: T, modifier: Modifier = Modifier) where T : Enum<T> {
+    Text(
+        modifier = modifier,
+        text = enumEntry.name,
+        color = OudsTheme.colorScheme.content.default,
+        fontFamily = FontFamily.Monospace,
+        fontSize = 10.sp
+    )
 }
 
 /**

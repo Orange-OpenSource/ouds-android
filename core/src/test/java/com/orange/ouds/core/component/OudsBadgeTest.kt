@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsBadgeTest(private val parameter: OudsBadgePreviewParameter) : OudsSnapshotTest() {
+internal class OudsBadgeTest(private val parameter: OudsBadgePreviewParameter) : OudsSnapshotTest(OudsBadgePreview.widthDp) {
 
     companion object {
         @JvmStatic
