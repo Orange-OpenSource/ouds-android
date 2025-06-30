@@ -102,7 +102,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
 private fun ButtonDemoContent(state: ButtonDemoState) {
     val icon = OudsButton.Icon(
         painter = painterResource(id = R.drawable.ic_heart),
-        contentDescription = stringResource(id = R.string.app_components_button_icon_a11y)
+        contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
     )
     with(state) {
         when (layout) {
@@ -145,7 +145,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.IconAndText)) {
                     constructorCallArgument<OudsButton.Icon>("icon") {
                         painterArgument(R.drawable.ic_heart)
-                        contentDescriptionArgument(R.string.app_components_button_icon_a11y)
+                        contentDescriptionArgument(R.string.app_components_common_icon_a11y)
                     }
                 }
                 if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.IconAndText)) {
