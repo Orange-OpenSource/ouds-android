@@ -12,13 +12,12 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -37,7 +36,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -404,7 +403,13 @@ object OudsBadge {
     }
 }
 
-@PreviewLightDark
+internal object OudsBadgePreview {
+
+    const val widthDp = 420
+}
+
+@Preview(name = "Light", widthDp = OudsBadgePreview.widthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsBadgePreview.widthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsBadge(@PreviewParameter(OudsBadgePreviewParameterProvider::class) parameter: OudsBadgePreviewParameter) {
@@ -414,23 +419,18 @@ private fun PreviewOudsBadge(@PreviewParameter(OudsBadgePreviewParameterProvider
 @Composable
 internal fun PreviewOudsBadge(darkThemeEnabled: Boolean, parameter: OudsBadgePreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsBadge.Size> { size ->
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                OudsBadge.Status.entries.forEach { status ->
-                    OudsBadge(
-                        modifier = Modifier.height(size(OudsBadge.Size.Large)), // User the biggest height to align the badges vertically
-                        count = count,
-                        icon = icon?.let {
-                            OudsBadge.Icon(
-                                imageVector = it,
-                                contentDescription = ""
-                            )
-                        },
-                        status = status,
-                        size = size
+        PreviewEnumEntries<OudsBadge.Size, OudsBadge.Status> { size, status ->
+            OudsBadge(
+                count = count,
+                icon = icon?.let {
+                    OudsBadge.Icon(
+                        imageVector = it,
+                        contentDescription = ""
                     )
-                }
-            }
+                },
+                status = status,
+                size = size
+            )
         }
     }
 }
