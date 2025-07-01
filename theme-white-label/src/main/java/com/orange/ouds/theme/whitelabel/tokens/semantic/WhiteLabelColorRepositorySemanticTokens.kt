@@ -90,6 +90,7 @@ data class WhiteLabelColorRepositorySemanticTokens(
     override val repositoryAccentHigh: Color = Color(0x00ff0000),
     override val repositoryAccentHigher: Color = Color(0x00ff0000),
     override val repositoryAccentHighest: Color = WhiteLabelColorRawTokens.colorWarmGray900,
+    override val repositoryOpacityAccent: Color = WhiteLabelColorRawTokens.colorOpacityWarmGray,
     override val repositoryOpacityNegative: Color = ColorRawTokens.colorOpacityScarlet,
     override val repositoryOpacityWarning: Color = ColorRawTokens.colorOpacitySun,
     override val repositoryOpacityPositive: Color = ColorRawTokens.colorOpacityMalachite,

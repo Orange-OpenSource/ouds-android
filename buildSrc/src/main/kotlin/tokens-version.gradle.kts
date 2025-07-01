@@ -21,7 +21,7 @@ private val moduleDocumentationFilePaths = listOf(
 private val tokensVersion: String
     get() = getTokensVersion(
         "${rootProject.projectDir}/global-raw-tokens/src/main/java/com/orange/ouds/tokens/raw/ColorRawTokens.kt",
-        "^// Tokens version (.*)"
+        "^// OUDS Core tokens version (.*)"
     )
 
 private fun getTokensVersion(filePath: String, pattern: String): String {
