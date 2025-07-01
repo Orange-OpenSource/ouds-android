@@ -18,9 +18,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -176,7 +176,6 @@ private fun OudsBadge(
     size: OudsBadge.Size = OudsBadgeDefaults.Size
 ) {
     val sizeDp = size(size)
-    val maxWidth = if (count != null) Dp.Unspecified else sizeDp
     // This outer box is necessary otherwise the user can change the size of the badge through the modifier
     Box(
         modifier = modifier,
@@ -186,8 +185,13 @@ private fun OudsBadge(
             modifier = Modifier
                 .clip(shape = RoundedCornerShape(OudsTheme.borders.radius.pill))
                 .background(status.backgroundColor)
-                .heightIn(min = sizeDp, max = sizeDp)
-                .widthIn(min = sizeDp, max = maxWidth)
+                .run {
+                    if (count != null && size in OudsBadge.Size.countEntries) {
+                        sizeIn(minWidth = sizeDp, minHeight = sizeDp)
+                    } else {
+                        size(sizeDp)
+                    }
+                }
                 .padding(paddingValues = contentPadding(size = size, count = count, icon = icon)),
             contentAlignment = Alignment.Center
         ) {
