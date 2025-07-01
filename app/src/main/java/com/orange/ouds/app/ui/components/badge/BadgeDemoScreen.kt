@@ -103,7 +103,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
 @Composable
 private fun BadgeDemoContent(state: BadgeDemoState) {
     with(state) {
-        val content: @Composable (OudsBadge.Size, Boolean) -> Unit = { size, visible ->
+        val content: @Composable (BadgeDemoState.Type, OudsBadge.Size, Boolean) -> Unit = { type, size, visible ->
             val alpha = if (visible) 1f else 0f
             val modifier = Modifier.alpha(alpha)
             when (type) {
@@ -136,8 +136,10 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
             }
         }
 
-        content(size, true)
-        content(OudsBadge.Size.Large, false) // Reserve space to avoid changing the height of the demo box when switching between sizes
+        content(type, size, true)
+        // Reserve space to avoid changing the height of the demo box when switching between sizes and types
+        // A large count badge has the biggest height because font size can be increased by the user
+        content(BadgeDemoState.Type.Count, OudsBadge.Size.Large, false)
     }
 }
 
