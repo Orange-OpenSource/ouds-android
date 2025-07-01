@@ -38,6 +38,9 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -192,6 +195,9 @@ private fun OudsLink(
                 .heightIn(min = minHeight)
                 .outerBorder(state = state)
                 .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlock.value)
+                .semantics {
+                    role = Role.Button
+                }
                 .clickable(
                     interactionSource = interactionSource,
                     indication = InteractionValuesIndication(contentColor, arrowColor, isUnderlined),
