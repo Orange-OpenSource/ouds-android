@@ -25,7 +25,8 @@ import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
  */
 data class OudsSizes(
     val icon: Icon,
-    val maxWidth: MaxWidth
+    val maxWidth: MaxWidth,
+    val minInteractiveArea: Dp
 ) {
     data class Icon(
         val decorative: Decorative,
@@ -34,13 +35,15 @@ data class OudsSizes(
         val withBody: WithBody
     ) {
         data class Decorative(
-            val extraExtraSmall: Dp,
+            val fourExtraSmall: Dp,
+            val threeExtraSmall: Dp,
+            val twoExtraSmall: Dp,
             val extraSmall: Dp,
             val small: Dp,
             val medium: Dp,
             val large: Dp,
             val extraLarge: Dp,
-            val extraExtraLarge: Dp,
+            val twoExtraLarge: Dp,
         )
 
         data class WithHeading(
@@ -168,13 +171,15 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
     OudsSizes(
         icon = OudsSizes.Icon(
             decorative = OudsSizes.Icon.Decorative(
-                extraExtraSmall = iconDecorative2xs.dp,
+                fourExtraSmall = iconDecorative4xs.dp,
+                threeExtraSmall = iconDecorative3xs.dp,
+                twoExtraSmall = iconDecorative2xs.dp,
                 extraSmall = iconDecorativeXs.dp,
                 small = iconDecorativeSm.dp,
                 medium = iconDecorativeMd.dp,
                 large = iconDecorativeLg.dp,
                 extraLarge = iconDecorativeXl.dp,
-                extraExtraLarge = iconDecorative2xl.dp,
+                twoExtraLarge = iconDecorative2xl.dp,
             ),
             withHeading = OudsSizes.Icon.WithHeading(
                 small = OudsSizes.Icon.WithHeading.Small(
@@ -261,7 +266,8 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
                     large = getTokenValue(maxWidthTypeBodyLargeMobile, maxWidthTypeBodyLargeTablet).dp,
                 )
             )
-        )
+        ),
+        minInteractiveArea = minInteractiveArea.dp
     )
 }
 
@@ -269,13 +275,15 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.Decorative): Dp {
     return with(icon.decorative) {
         when (token) {
-            OudsSizeKeyToken.Icon.Decorative.ExtraExtraSmall -> extraExtraSmall
+            OudsSizeKeyToken.Icon.Decorative.FourExtraSmall -> fourExtraSmall
+            OudsSizeKeyToken.Icon.Decorative.ThreeExtraSmall -> threeExtraSmall
+            OudsSizeKeyToken.Icon.Decorative.TwoExtraSmall -> twoExtraSmall
             OudsSizeKeyToken.Icon.Decorative.ExtraSmall -> extraSmall
             OudsSizeKeyToken.Icon.Decorative.Small -> small
             OudsSizeKeyToken.Icon.Decorative.Medium -> medium
             OudsSizeKeyToken.Icon.Decorative.Large -> large
             OudsSizeKeyToken.Icon.Decorative.ExtraLarge -> extraLarge
-            OudsSizeKeyToken.Icon.Decorative.ExtraExtraLarge -> extraExtraLarge
+            OudsSizeKeyToken.Icon.Decorative.TwoExtraLarge -> twoExtraLarge
         }
     }
 }
@@ -368,4 +376,5 @@ val OudsSizeKeyToken.value: Dp
         is OudsSizeKeyToken.Icon.WithBody -> OudsTheme.sizes.fromToken(this)
         is OudsSizeKeyToken.Icon.WithLabel -> OudsTheme.sizes.fromToken(this)
         is OudsSizeKeyToken.MaxWidth -> OudsTheme.sizes.fromToken(this)
+        is OudsSizeKeyToken.MinInteractiveArea -> OudsTheme.sizes.minInteractiveArea
     }

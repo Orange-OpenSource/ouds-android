@@ -92,8 +92,8 @@ object OudsDivider {
         BrandPrimary,
         OnBrandPrimary,
         AlwaysBlack,
-        AlwaysOnBlack,
         AlwaysWhite,
+        AlwaysOnBlack,
         AlwaysOnWhite;
 
         val value: androidx.compose.ui.graphics.Color
