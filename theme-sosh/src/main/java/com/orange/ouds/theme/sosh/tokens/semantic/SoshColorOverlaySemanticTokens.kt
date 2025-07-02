@@ -34,6 +34,6 @@ data class SoshColorOverlaySemanticTokens(
     override val overlayDragLight: Color = ColorRawTokens.colorOpacityBlack40,
     override val overlayEmphasizedDark: Color = ColorRawTokens.colorFunctionalGrayLight160,
     override val overlayEmphasizedLight: Color = SoshColorRawTokens.colorBlueDuckDark880,
-    override val overlayModalDark: Color = ColorRawTokens.bgEmphasizedDark,
-    override val overlayModalLight: Color = ColorRawTokens.bgPrimaryLight
+    override val overlayModalDark: Color = SoshColorRawTokens.colorBlueDuckDark720,
+    override val overlayModalLight: Color = ColorRawTokens.colorFunctionalWhite
 ) : OudsColorOverlaySemanticTokens
