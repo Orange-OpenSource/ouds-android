@@ -158,6 +158,7 @@
     <string name="app_components_radioButton_radioButtonItem_label">Radio button item</string>
     <string name="app_components_radioButton_radioButtonItem_outlined_label">Outlined</string>
     <string name="app_components_radioButton_radioButtonItem_additionalLabel_label">Additional label</string>
+    <string name="app_components_radioButton_radioButton_a11y">Radio button %s content description</string>
 
     <!-- Components: switch -->
     <string name="app_components_switch_label">Switch</string>
