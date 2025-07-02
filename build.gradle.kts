@@ -46,7 +46,7 @@ dokka {
 
     pluginsConfiguration {
         html {
-            customAssets.from("docs/assets/logo-icon.svg")
+            customAssets.from("docs/assets/logo-icon.svg", "docs/assets/banner.png")
             customStyleSheets.from("docs/assets/orange-style.css")
             footerMessage.set("Copyright © Orange 2024")
         }
