@@ -6,13 +6,15 @@
   --sidemenu-section-active-color: #f15e00;
 
   --footer-go-to-top-color: #fff;
-  --footer-background: #fff;
+  --footer-background: var(--color-background);
   --color-background-nav: #000;
   --color-background-nav-dt: #000;
+  --elements-border-color: rgba(0, 0, 0, 0.2);
+  --color-action-hover: rgba(0, 0, 0, 0.68);
 
-  --default-font-family: helvneueorange, "Helvetica Neue", helvetica,
-    "Noto Sans", "Liberation Sans", arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --default-font-family: "Helvetica Neue", helvetica, "Noto Sans",
+    "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
 
   --dokka-logo-height: 32px;
   --dokka-logo-width: 32px;
@@ -83,12 +85,20 @@
 }
 
 .theme-dark {
-  --background-color: #121212;
+  --color-background: #141414;
   --color-key-orange: #ff7900;
+  --elements-border-color: rgba(255, 255, 255, 0.2);
+  --color-action-hover: rgba(255, 255, 255, 0.64);
 
   --active-tab-border-color: #ff7900;
   --active-section-color: #ff7900;
   --sidemenu-section-active-color: #ff7900;
+}
+
+.theme-dark .button:hover,
+.theme-dark .button:active,
+.button_dropdown_active {
+  background-color: #4a4a52;
 }
 
 .navigation {
@@ -233,7 +243,7 @@
   transition: none;
 }
 .main-content a:not([data-name]):hover {
-  color: rgba(0, 0, 0, 0.68);
+  color: var(--color-action-hover);
 }
 
 .paragraph,
@@ -252,7 +262,7 @@ code:not(.block) {
 }
 
 code.block {
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--elements-border-color);
   border-radius: 0;
 }
 
@@ -271,5 +281,5 @@ li {
 }
 
 .footer {
-  border-top: 1px solid rgba(39, 40, 44, 0.2);
+  border-top: 1px solid var(--elements-border-color);
 }
