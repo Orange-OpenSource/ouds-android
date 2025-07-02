@@ -18,6 +18,7 @@
 
   --dokka-logo-height: 32px;
   --dokka-logo-width: 32px;
+  --logo-link-gap: 10px;
   --navigation-padding-top: 10px;
   --navigation-padding-bottom: 0;
   --grid-margin: 16px;
@@ -44,6 +45,7 @@
   @media (min-width: 736px) {
     --dokka-logo-height: 48px;
     --dokka-logo-width: 48px;
+    --logo-link-gap: 24px;
     --navigation-padding-top: 44px;
     --navigation-padding-bottom: 16px;
     --grid-margin: 32px;
@@ -89,10 +91,14 @@
   --color-key-orange: #ff7900;
   --elements-border-color: rgba(255, 255, 255, 0.2);
   --color-action-hover: rgba(255, 255, 255, 0.64);
+  --toc-hover-color: #4a4a52;
 
   --active-tab-border-color: #ff7900;
   --active-section-color: #ff7900;
   --sidemenu-section-active-color: #ff7900;
+}
+.theme-dark_mobile {
+  --toc-hover-color: #3b3b3e;
 }
 
 .theme-dark .button:hover,
@@ -111,7 +117,7 @@
 .library-name--link {
   position: relative;
   height: auto;
-  padding-left: calc(var(--dokka-logo-width) + 24px);
+  padding-left: calc(var(--dokka-logo-width) + var(--logo-link-gap));
   margin: 0 8px 0 0;
   font-family: var(--default-font-family);
   font-size: var(--font-size-heading-large);
@@ -119,10 +125,11 @@
   line-height: var(--font-line-height-heading-large);
   letter-spacing: var(--font-letter-spacing-heading-large);
   vertical-align: baseline;
+}
 
-  @media (max-width: 736px) {
-    color: transparent;
-  }
+/* remove run button on examples codes */
+.run-button {
+  display: none;
 }
 
 .library-name--link::before {
@@ -182,13 +189,13 @@
 .toc--part[data-active] > .toc--row .toc--link {
   font-weight: 700;
   color: var(--toc-color);
-  background-color: var(--color-background);
+  background-color: var(--toc-hover-color);
 }
 
 .toc--part[data-active] > .toc--row .toc--button:hover,
 .toc--part[data-active] > .toc--row .toc--link:hover {
   color: var(--color-key-orange);
-  background-color: var(--color-background);
+  background-color: var(--toc-hover-color);
 }
 
 /* fixes strange line-height on some paragraph texts */
@@ -216,6 +223,7 @@
   font-size: var(--font-size-heading-small);
   font-weight: 700;
   letter-spacing: var(--font-letter-spacing-heading-small);
+  margin-bottom: 1rem;
 }
 
 /* section headings, using :is() to select like Dokka */
