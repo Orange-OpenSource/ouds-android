@@ -120,6 +120,7 @@ core/src/main/res/drawable/chevron_left.xml
 core/src/main/res/drawable/radiobutton_selected.xml
 core/src/main/res/drawable/switch_selected.xml
 
+docs/assets/banner.png
 docs/assets/logo-icon.svg
 
 End of the parts list under Orange SA Copyright

@@ -19,7 +19,7 @@ dokka {
         configureEach {
             includes.from("Module.md")
             pluginsConfiguration.html {
-                customAssets.from("${rootProject.projectDir}/docs/assets/logo-icon.svg")
+                customAssets.from("${rootProject.projectDir}/docs/assets/logo-icon.svg", "${rootProject.projectDir}/docs/assets/banner.png")
                 customStyleSheets.from("${rootProject.projectDir}/docs/assets/orange-style.css")
                 footerMessage.set("Copyright © Orange 2024")
             }
