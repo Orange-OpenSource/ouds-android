@@ -40,24 +40,6 @@ interface OudsColorDecorativeSemanticTokens {
     val decorativeAccent5Default: Color
     val decorativeAccent5Emphasized: Color
     val decorativeAccent5Muted: Color
-    val decorativeAmber100: Color
-    val decorativeAmber200: Color
-    val decorativeAmber300: Color
-    val decorativeAmber400: Color
-    val decorativeAmber500: Color
-    val decorativeAmber600: Color
-    val decorativeAmber700: Color
-    val decorativeAmber800: Color
-    val decorativeAmber900: Color
-    val decorativeAmethyst100: Color
-    val decorativeAmethyst200: Color
-    val decorativeAmethyst300: Color
-    val decorativeAmethyst400: Color
-    val decorativeAmethyst500: Color
-    val decorativeAmethyst600: Color
-    val decorativeAmethyst700: Color
-    val decorativeAmethyst800: Color
-    val decorativeAmethyst900: Color
     val decorativeBrandPrimary: Color
     val decorativeBrandPrimaryEmphasized: Color
     val decorativeBrandPrimaryMuted: Color
@@ -67,24 +49,6 @@ interface OudsColorDecorativeSemanticTokens {
     val decorativeBrandTertiary: Color
     val decorativeBrandTertiaryEmphasized: Color
     val decorativeBrandTertiaryMuted: Color
-    val decorativeDeepPeach100: Color
-    val decorativeDeepPeach200: Color
-    val decorativeDeepPeach300: Color
-    val decorativeDeepPeach400: Color
-    val decorativeDeepPeach500: Color
-    val decorativeDeepPeach600: Color
-    val decorativeDeepPeach700: Color
-    val decorativeDeepPeach800: Color
-    val decorativeDeepPeach900: Color
-    val decorativeEmerald100: Color
-    val decorativeEmerald200: Color
-    val decorativeEmerald300: Color
-    val decorativeEmerald400: Color
-    val decorativeEmerald500: Color
-    val decorativeEmerald600: Color
-    val decorativeEmerald700: Color
-    val decorativeEmerald800: Color
-    val decorativeEmerald900: Color
     val decorativeNeutralEmphasizedHigh: Color
     val decorativeNeutralEmphasizedHigher: Color
     val decorativeNeutralEmphasizedHighest: Color
@@ -99,15 +63,6 @@ interface OudsColorDecorativeSemanticTokens {
     val decorativeNeutralMutedLower: Color
     val decorativeNeutralMutedLowest: Color
     val decorativeNeutralMutedMedium: Color
-    val decorativeShockingPink100: Color
-    val decorativeShockingPink200: Color
-    val decorativeShockingPink300: Color
-    val decorativeShockingPink400: Color
-    val decorativeShockingPink500: Color
-    val decorativeShockingPink600: Color
-    val decorativeShockingPink700: Color
-    val decorativeShockingPink800: Color
-    val decorativeShockingPink900: Color
     val decorativeSkinTint100: Color
     val decorativeSkinTint200: Color
     val decorativeSkinTint300: Color
@@ -117,13 +72,4 @@ interface OudsColorDecorativeSemanticTokens {
     val decorativeSkinTint700: Color
     val decorativeSkinTint800: Color
     val decorativeSkinTint900: Color
-    val decorativeSky100: Color
-    val decorativeSky200: Color
-    val decorativeSky300: Color
-    val decorativeSky400: Color
-    val decorativeSky500: Color
-    val decorativeSky600: Color
-    val decorativeSky700: Color
-    val decorativeSky800: Color
-    val decorativeSky900: Color
 }
