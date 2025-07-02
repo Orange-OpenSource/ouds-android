@@ -97,9 +97,6 @@
   --active-section-color: #ff7900;
   --sidemenu-section-active-color: #ff7900;
 }
-.theme-dark_mobile {
-  --toc-hover-color: #3b3b3e;
-}
 
 .theme-dark .button:hover,
 .theme-dark .button:active,
