@@ -54,7 +54,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalUseMonoComponents
+import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -162,14 +162,15 @@ private fun OudsLink(
         OudsLink.Size.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
     }
 
+    val monochrome = LocalColorMode.current?.mono == true
     val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
         val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        contentColor(state = linkState, monochrome = LocalUseMonoComponents.current)
+        contentColor(state = linkState, monochrome = monochrome)
     }
 
     val arrowColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
         val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        arrowColor(state = linkState, monochrome = LocalUseMonoComponents.current)
+        arrowColor(state = linkState, monochrome = monochrome)
     }
 
     // Underlined text style cannot be animated with alpha, thus we use an interaction boolean to make it appear while the other animations are ongoing

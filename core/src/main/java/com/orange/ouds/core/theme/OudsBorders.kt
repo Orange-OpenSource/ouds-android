@@ -164,7 +164,7 @@ val OudsBorderKeyToken.Width.value: Dp
 enum class OudsBorderStyle {
     None, Solid, Dashed, Dotted;
 
-    companion object {
+    internal companion object {
         /**
          * Returns the [OudsBorderStyle] corresponding to the given [string].
          */

@@ -47,7 +47,7 @@ data class OrangeColoredBackgroundModeSemanticTokens(
     override val onOverlayEmphasizedLight: String = "dark",
     override val onStatusAccentEmphasizedDark: String = "mono-light",
     override val onStatusAccentEmphasizedLight: String = "mono-light",
-    override val onStatusAccentMutedDark: String = "darkt",
+    override val onStatusAccentMutedDark: String = "dark",
     override val onStatusAccentMutedLight: String = "light",
     override val onStatusInfoEmphasizedDark: String = "mono-light",
     override val onStatusInfoEmphasizedLight: String = "mono-light",
