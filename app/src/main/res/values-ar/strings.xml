@@ -124,7 +124,9 @@
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_checkbox_label">خانة اختيار</string>
     <string name="app_components_checkbox_checkboxItem_label">عنصر خانة اختيار</string>
+    <string name="app_components_checkbox_checkbox_a11y">وصف محتوى مربع الاختيار %s</string>
     <string name="app_components_checkbox_indeterminateCheckbox_label">خانة اختيار غير محدد</string>
+    <string name="app_components_checkbox_indeterminateCheckbox_a11y">وصف محتوى مربع الاختيار غير المحدد %s</string>
     <string name="app_components_checkbox_indeterminateCheckboxItem_label">خانة اختيار اختيار غير محدد</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
