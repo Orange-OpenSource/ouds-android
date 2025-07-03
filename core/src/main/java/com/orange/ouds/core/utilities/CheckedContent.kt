@@ -26,7 +26,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.theme.LocalColoredBox
+import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
 
@@ -46,8 +46,8 @@ internal fun CheckedContent(
         content()
     } else {
         // Display a text in the preview if expression is false
-        val color = with(OudsTheme.colorScheme) { if (LocalColoredBox.current) always.white else action.negative.enabled }
-        val backgroundColor = if (LocalColoredBox.current) Color.Black.copy(alpha = 0.68f) else Color.Transparent
+        val color = with(OudsTheme.colorScheme) { if (LocalColorMode.current != null) always.white else action.negative.enabled }
+        val backgroundColor = if (LocalColorMode.current != null) Color.Black.copy(alpha = 0.68f) else Color.Transparent
         Box(
             modifier = Modifier
                 .dashedBorder(width = 1.dp, color = color, intervals = listOf(10.dp, 5.dp))

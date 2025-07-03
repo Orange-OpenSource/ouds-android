@@ -24,6 +24,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColoredBackgroundModeSemanticTokens
 
 data class WhiteLabelColorSemanticTokens(
     override val actionColorTokens: OudsColorActionSemanticTokens = WhiteLabelColorActionSemanticTokens(),
@@ -35,5 +36,6 @@ data class WhiteLabelColorSemanticTokens(
     override val opacityColorTokens: OudsColorOpacitySemanticTokens = WhiteLabelColorOpacitySemanticTokens(),
     override val overlayColorTokens: OudsColorOverlaySemanticTokens = WhiteLabelColorOverlaySemanticTokens(),
     override val surfaceColorTokens: OudsColorSurfaceSemanticTokens = WhiteLabelColorSurfaceSemanticTokens(),
-    @InternalOudsApi override val repositoryColorTokens: OudsColorRepositorySemanticTokens = WhiteLabelColorRepositorySemanticTokens()
+    @InternalOudsApi override val repositoryColorTokens: OudsColorRepositorySemanticTokens = WhiteLabelColorRepositorySemanticTokens(),
+    @InternalOudsApi override val colorModeTokens: OudsColoredBackgroundModeSemanticTokens = WhiteLabelColoredBackgroundModeSemanticTokens()
 ) : OudsColorSemanticTokens
