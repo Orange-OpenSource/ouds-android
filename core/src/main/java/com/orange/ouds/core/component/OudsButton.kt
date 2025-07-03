@@ -62,8 +62,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalColoredBox
-import com.orange.ouds.core.theme.LocalUseMonoComponents
+import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -243,7 +242,7 @@ private fun OudsButton(
 ) {
     val icon = nullableIcon
     val label = nullableLabel
-    val isForbidden = hierarchy == OudsButton.Hierarchy.Negative && LocalColoredBox.current
+    val isForbidden = hierarchy == OudsButton.Hierarchy.Negative && LocalColorMode.current != null
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsButton with OudsButton.Hierarchy.Negative hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
@@ -368,7 +367,7 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Disabled -> borderWidthDefault.value
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
-                OudsButton.State.Loading -> if (LocalUseMonoComponents.current) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
+                OudsButton.State.Loading -> if (LocalColorMode.current?.mono == true) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
                 OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
@@ -387,7 +386,7 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
 
 @Composable
 private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State): Color? {
-    return if (LocalUseMonoComponents.current) {
+    return if (LocalColorMode.current?.mono == true) {
         with(OudsTheme.componentsTokens.buttonMono) {
             when (hierarchy) {
                 OudsButton.Hierarchy.Default -> when (state) {
@@ -453,7 +452,7 @@ private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
         OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
         OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
     }
-    return if (LocalUseMonoComponents.current) {
+    return if (LocalColorMode.current?.mono == true) {
         with(OudsTheme.componentsTokens.buttonMono) {
             when (hierarchy) {
                 OudsButton.Hierarchy.Default -> when (state) {
@@ -526,7 +525,7 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
         OudsButton.State.Focused -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
         OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
     }
-    return if (LocalUseMonoComponents.current) {
+    return if (LocalColorMode.current?.mono == true) {
         with(OudsTheme.componentsTokens.buttonMono) {
             when (hierarchy) {
                 OudsButton.Hierarchy.Default -> when (state) {

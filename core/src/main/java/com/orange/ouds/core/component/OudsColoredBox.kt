@@ -28,24 +28,23 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.filter
-import com.orange.ouds.core.theme.LocalColoredBox
-import com.orange.ouds.core.theme.LocalUseMonoComponents
+import com.orange.ouds.core.theme.LocalColorMode
+import com.orange.ouds.core.theme.OudsColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
-import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 
 /**
- * An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
+ * A colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
  *
- * Moreover, the colors of several OUDS components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
- * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
+ * Moreover, the colors of several OUDS Android components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
+ * Some tokens associated with these specific colors can be customized and are grouped into `Mono` tokens classes (for instance [com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens]).
  *
- * @param color The background color of the colored box.$
+ * @param color The background color of the colored box.
  * @param modifier [Modifier] to be applied to the layout corresponding to the colored box.
  * @param contentAlignment The default [Alignment] inside the colored box.
  * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.
@@ -61,25 +60,29 @@ fun OudsColoredBox(
     propagateMinConstraints: Boolean = false,
     content: @Composable BoxScope.() -> Unit
 ) {
-    CompositionLocalProvider(
-        LocalColoredBox provides true,
-        LocalUseMonoComponents provides useMonoComponents(color)
+    CheckedContent(
+        expression = !color.mode.isUnspecified,
+        exceptionMessage = { "Current theme does not support an OudsColoredBox with color parameter set to ${color.name}." },
+        previewMessage = { "${color.name} is not supported by current theme" }
     ) {
-        // Filter the background modifiers in order to force the background color
-        // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
-        val filteredModifier = modifier.filter { it::class.simpleName != "BackgroundElement" }
-        Box(
-            modifier = Modifier
-                .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
-                .then(filteredModifier),
-            contentAlignment = contentAlignment,
-            propagateMinConstraints = propagateMinConstraints,
-            content = {
-                OudsThemeTweak(tweak(color)) {
-                    content()
+        CompositionLocalProvider(value = LocalColorMode provides color.mode) {
+            // Filter the background modifiers in order to force the background color
+            // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
+            val filteredModifier = modifier.filter { it::class.simpleName != "BackgroundElement" }
+            Box(
+                modifier = Modifier
+                    .background(color.value) // Set the background color first, otherwise padding (if any) is wrongly applied
+                    .then(filteredModifier),
+                contentAlignment = contentAlignment,
+                propagateMinConstraints = propagateMinConstraints,
+                content = {
+                    val tweak = if (color.mode.dark) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
+                    OudsThemeTweak(tweak) {
+                        content()
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 }
 
@@ -92,9 +95,16 @@ object OudsColoredBox {
      * Represents the possible background colors of an [OudsColoredBox].
      */
     enum class Color {
+        BackgroundEmphasized,
+        BackgroundPrimary,
+        BackgroundSecondary,
+        BackgroundTertiary,
         BrandPrimary,
         BrandSecondary,
         BrandTertiary,
+        OverlayModal,
+        OverlayDefault,
+        OverlayEmphasized,
         StatusAccentEmphasized,
         StatusAccentMuted,
         StatusInfoEmphasized,
@@ -110,8 +120,26 @@ object OudsColoredBox {
 
         private companion object {
 
-            // This method is unused but it allows to be notified with a build error if surface key tokens are updated
-            private fun fromKeyToken(keyToken: OudsColorKeyToken.Surface): Color {
+            // These methods are unused but they allows to be notified with a build error if background, overlay or surface key tokens are updated
+            fun fromKeyToken(keyToken: OudsColorKeyToken.Background): Color {
+                return when (keyToken) {
+                    OudsColorKeyToken.Background.Emphasized -> BackgroundEmphasized
+                    OudsColorKeyToken.Background.Primary -> BackgroundPrimary
+                    OudsColorKeyToken.Background.Secondary -> BackgroundSecondary
+                    OudsColorKeyToken.Background.Tertiary -> BackgroundTertiary
+                }
+            }
+
+            fun fromKeyToken(keyToken: OudsColorKeyToken.Overlay): Color {
+                return when (keyToken) {
+                    OudsColorKeyToken.Overlay.Default -> OverlayDefault
+                    OudsColorKeyToken.Overlay.Drag -> error("OudsColoredBox does not support this color.")
+                    OudsColorKeyToken.Overlay.Emphasized -> OverlayEmphasized
+                    OudsColorKeyToken.Overlay.Modal -> OverlayModal
+                }
+            }
+
+            fun fromKeyToken(keyToken: OudsColorKeyToken.Surface): Color {
                 return when (keyToken) {
                     OudsColorKeyToken.Surface.Brand.Primary -> BrandPrimary
                     OudsColorKeyToken.Surface.Brand.Secondary -> BrandSecondary
@@ -136,9 +164,16 @@ object OudsColoredBox {
             @Composable
             get() {
                 return when (this) {
+                    BackgroundEmphasized -> OudsColorKeyToken.Background.Emphasized
+                    BackgroundPrimary -> OudsColorKeyToken.Background.Primary
+                    BackgroundSecondary -> OudsColorKeyToken.Background.Secondary
+                    BackgroundTertiary -> OudsColorKeyToken.Background.Tertiary
                     BrandPrimary -> OudsColorKeyToken.Surface.Brand.Primary
                     BrandSecondary -> OudsColorKeyToken.Surface.Brand.Secondary
                     BrandTertiary -> OudsColorKeyToken.Surface.Brand.Tertiary
+                    OverlayModal -> OudsColorKeyToken.Overlay.Modal
+                    OverlayDefault -> OudsColorKeyToken.Overlay.Default
+                    OverlayEmphasized -> OudsColorKeyToken.Overlay.Emphasized
                     StatusAccentEmphasized -> OudsColorKeyToken.Surface.Status.Accent.Emphasized
                     StatusAccentMuted -> OudsColorKeyToken.Surface.Status.Accent.Muted
                     StatusInfoEmphasized -> OudsColorKeyToken.Surface.Status.Info.Emphasized
@@ -153,47 +188,37 @@ object OudsColoredBox {
                     StatusWarningMuted -> OudsColorKeyToken.Surface.Status.Warning.Muted
                 }.value
             }
-    }
-}
 
-private fun useMonoComponents(color: OudsColoredBox.Color): Boolean {
-    return when (color) {
-        OudsColoredBox.Color.BrandPrimary,
-        OudsColoredBox.Color.BrandSecondary,
-        OudsColoredBox.Color.BrandTertiary,
-        OudsColoredBox.Color.StatusAccentEmphasized,
-        OudsColoredBox.Color.StatusInfoEmphasized,
-        OudsColoredBox.Color.StatusPositiveEmphasized,
-        OudsColoredBox.Color.StatusWarningEmphasized,
-        OudsColoredBox.Color.StatusNegativeEmphasized -> true
-        OudsColoredBox.Color.StatusNeutralEmphasized,
-        OudsColoredBox.Color.StatusAccentMuted,
-        OudsColoredBox.Color.StatusInfoMuted,
-        OudsColoredBox.Color.StatusNegativeMuted,
-        OudsColoredBox.Color.StatusPositiveMuted,
-        OudsColoredBox.Color.StatusNeutralMuted,
-        OudsColoredBox.Color.StatusWarningMuted -> false
-    }
-}
-
-@Composable
-private fun tweak(color: OudsColoredBox.Color): OudsTheme.Tweak {
-    return when (color) {
-        OudsColoredBox.Color.BrandPrimary,
-        OudsColoredBox.Color.StatusAccentEmphasized,
-        OudsColoredBox.Color.StatusInfoEmphasized,
-        OudsColoredBox.Color.StatusPositiveEmphasized,
-        OudsColoredBox.Color.StatusWarningEmphasized -> OudsTheme.Tweak.ForceLight
-        OudsColoredBox.Color.StatusNegativeEmphasized,
-        OudsColoredBox.Color.StatusNeutralEmphasized -> if (isOudsInDarkTheme()) OudsTheme.Tweak.ForceLight else OudsTheme.Tweak.ForceDark
-        OudsColoredBox.Color.BrandSecondary,
-        OudsColoredBox.Color.BrandTertiary,
-        OudsColoredBox.Color.StatusAccentMuted,
-        OudsColoredBox.Color.StatusInfoMuted,
-        OudsColoredBox.Color.StatusNegativeMuted,
-        OudsColoredBox.Color.StatusPositiveMuted,
-        OudsColoredBox.Color.StatusNeutralMuted,
-        OudsColoredBox.Color.StatusWarningMuted -> if (isOudsInDarkTheme()) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
+        val mode: OudsColorMode
+            @Composable
+            get() {
+                return with(OudsTheme.colorScheme.modes) {
+                    when (this@Color) {
+                        BackgroundEmphasized -> onBackground.emphasized
+                        BackgroundPrimary -> onBackground.primary
+                        BackgroundSecondary -> onBackground.secondary
+                        BackgroundTertiary -> onBackground.tertiary
+                        BrandPrimary -> onBrand.primary
+                        BrandSecondary -> onBrand.secondary
+                        BrandTertiary -> onBrand.tertiary
+                        OverlayModal -> onOverlay.modal
+                        OverlayDefault -> onOverlay.default
+                        OverlayEmphasized -> onOverlay.emphasized
+                        StatusAccentEmphasized -> onStatus.accent.emphasized
+                        StatusAccentMuted -> onStatus.accent.muted
+                        StatusInfoEmphasized -> onStatus.info.emphasized
+                        StatusInfoMuted -> onStatus.info.muted
+                        StatusNegativeEmphasized -> onStatus.negative.emphasized
+                        StatusNegativeMuted -> onStatus.negative.muted
+                        StatusNeutralEmphasized -> onStatus.neutral.emphasized
+                        StatusNeutralMuted -> onStatus.neutral.muted
+                        StatusPositiveEmphasized -> onStatus.positive.emphasized
+                        StatusPositiveMuted -> onStatus.positive.muted
+                        StatusWarningEmphasized -> onStatus.warning.emphasized
+                        StatusWarningMuted -> onStatus.warning.muted
+                    }
+                }
+            }
     }
 }
 
@@ -218,7 +243,7 @@ internal fun PreviewOudsColoredBox(
                 text = parameter.name,
                 color = OudsTheme.colorScheme.content.default
             )
-            OudsButton(label = "OudsButton", onClick = {})
+            OudsButton(label = "Button", onClick = {})
             OudsLink(
                 label = "Link",
                 arrow = OudsLink.Arrow.Next,
@@ -229,4 +254,3 @@ internal fun PreviewOudsColoredBox(
 }
 
 internal class OudsColoredBoxPreviewParameterProvider : EnumPreviewParameterProvider(OudsColoredBox.Color::class.java)
-

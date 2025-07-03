@@ -38,7 +38,8 @@ data class OudsColorScheme(
     val opacity: Opacity,
     val overlay: Overlay,
     internal val repository: Repository,
-    val surface: Surface
+    val surface: Surface,
+    internal val modes: Modes
 ) {
 
     data class Action(
@@ -510,6 +511,72 @@ data class OudsColorScheme(
             )
         }
     }
+
+    data class Modes(
+        val onBackground: OnBackground,
+        val onBrand: OnBrand,
+        val onOverlay: OnOverlay,
+        val onStatus: OnStatus
+    ) {
+
+        data class OnBackground(
+            val emphasized: OudsColorMode,
+            val primary: OudsColorMode,
+            val secondary: OudsColorMode,
+            val tertiary: OudsColorMode
+        )
+
+        data class OnBrand(
+            val primary: OudsColorMode,
+            val secondary: OudsColorMode,
+            val tertiary: OudsColorMode
+        )
+
+        data class OnOverlay(
+            val default: OudsColorMode,
+            val emphasized: OudsColorMode,
+            val modal: OudsColorMode
+        )
+
+        data class OnStatus(
+            val accent: Accent,
+            val info: Info,
+            val negative: Negative,
+            val neutral: Neutral,
+            val positive: Positive,
+            val warning: Warning
+        ) {
+            data class Accent(
+                val emphasized: OudsColorMode,
+                val muted: OudsColorMode
+            )
+
+            data class Info(
+                val emphasized: OudsColorMode,
+                val muted: OudsColorMode
+            )
+
+            data class Negative(
+                val emphasized: OudsColorMode,
+                val muted: OudsColorMode
+            )
+
+            data class Neutral(
+                val emphasized: OudsColorMode,
+                val muted: OudsColorMode
+            )
+
+            data class Positive(
+                val emphasized: OudsColorMode,
+                val muted: OudsColorMode
+            )
+
+            data class Warning(
+                val emphasized: OudsColorMode,
+                val muted: OudsColorMode
+            )
+        }
+    }
 }
 
 internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
@@ -687,6 +754,52 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 ),
             )
         },
+        modes = with(colorModeTokens) {
+            OudsColorScheme.Modes(
+                onBackground = OudsColorScheme.Modes.OnBackground(
+                    emphasized = OudsColorMode.fromString(onBgEmphasizedLight),
+                    primary = OudsColorMode.fromString(onBgPrimaryLight),
+                    secondary = OudsColorMode.fromString(onBgSecondaryLight),
+                    tertiary = OudsColorMode.fromString(onBgTertiaryLight)
+                ),
+                onBrand = OudsColorScheme.Modes.OnBrand(
+                    primary = OudsColorMode.fromString(onBrandPrimaryLight),
+                    secondary = OudsColorMode.fromString(onBrandSecondaryLight),
+                    tertiary = OudsColorMode.fromString(onBrandTertiaryLight)
+                ),
+                onOverlay = OudsColorScheme.Modes.OnOverlay(
+                    default = OudsColorMode.fromString(onOverlayDefaultLight),
+                    emphasized = OudsColorMode.fromString(onOverlayEmphasizedLight),
+                    modal = OudsColorMode.fromString(onModalLight)
+                ),
+                onStatus = OudsColorScheme.Modes.OnStatus(
+                    accent = OudsColorScheme.Modes.OnStatus.Accent(
+                        emphasized = OudsColorMode.fromString(onStatusAccentEmphasizedLight),
+                        muted = OudsColorMode.fromString(onStatusAccentMutedLight)
+                    ),
+                    info = OudsColorScheme.Modes.OnStatus.Info(
+                        emphasized = OudsColorMode.fromString(onStatusInfoEmphasizedLight),
+                        muted = OudsColorMode.fromString(onStatusInfoMutedLight)
+                    ),
+                    negative = OudsColorScheme.Modes.OnStatus.Negative(
+                        emphasized = OudsColorMode.fromString(onStatusNegativeEmphasizedLight),
+                        muted = OudsColorMode.fromString(onStatusNegativeMutedLight)
+                    ),
+                    neutral = OudsColorScheme.Modes.OnStatus.Neutral(
+                        emphasized = OudsColorMode.fromString(onStatusNeutralEmphasizedLight),
+                        muted = OudsColorMode.fromString(onStatusNeutralMutedLight)
+                    ),
+                    positive = OudsColorScheme.Modes.OnStatus.Positive(
+                        emphasized = OudsColorMode.fromString(onStatusPositiveEmphasizedLight),
+                        muted = OudsColorMode.fromString(onStatusPositiveMutedLight)
+                    ),
+                    warning = OudsColorScheme.Modes.OnStatus.Warning(
+                        emphasized = OudsColorMode.fromString(onStatusWarningEmphasizedLight),
+                        muted = OudsColorMode.fromString(onStatusWarningMutedLight)
+                    )
+                )
+            )
+        }
     )
 
 internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
@@ -825,7 +938,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 default = overlayDefaultDark,
                 drag = overlayDragDark,
                 emphasized = overlayEmphasizedDark,
-                modal = overlayModalLight
+                modal = overlayModalDark
             )
         },
         repository = repositoryColorScheme,
@@ -864,6 +977,52 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 ),
             )
         },
+        modes = with(colorModeTokens) {
+            OudsColorScheme.Modes(
+                onBackground = OudsColorScheme.Modes.OnBackground(
+                    emphasized = OudsColorMode.fromString(onBgEmphasizedDark),
+                    primary = OudsColorMode.fromString(onBgPrimaryDark),
+                    secondary = OudsColorMode.fromString(onBgSecondaryDark),
+                    tertiary = OudsColorMode.fromString(onBgTertiaryDark)
+                ),
+                onBrand = OudsColorScheme.Modes.OnBrand(
+                    primary = OudsColorMode.fromString(onBrandPrimaryDark),
+                    secondary = OudsColorMode.fromString(onBrandSecondaryDark),
+                    tertiary = OudsColorMode.fromString(onBrandTertiaryDark)
+                ),
+                onOverlay = OudsColorScheme.Modes.OnOverlay(
+                    default = OudsColorMode.fromString(onOverlayDefaultDark),
+                    emphasized = OudsColorMode.fromString(onOverlayEmphasizedDark),
+                    modal = OudsColorMode.fromString(onModalDark)
+                ),
+                onStatus = OudsColorScheme.Modes.OnStatus(
+                    accent = OudsColorScheme.Modes.OnStatus.Accent(
+                        emphasized = OudsColorMode.fromString(onStatusAccentEmphasizedDark),
+                        muted = OudsColorMode.fromString(onStatusAccentMutedDark)
+                    ),
+                    info = OudsColorScheme.Modes.OnStatus.Info(
+                        emphasized = OudsColorMode.fromString(onStatusInfoEmphasizedDark),
+                        muted = OudsColorMode.fromString(onStatusInfoMutedDark)
+                    ),
+                    negative = OudsColorScheme.Modes.OnStatus.Negative(
+                        emphasized = OudsColorMode.fromString(onStatusNegativeEmphasizedDark),
+                        muted = OudsColorMode.fromString(onStatusNegativeMutedDark)
+                    ),
+                    neutral = OudsColorScheme.Modes.OnStatus.Neutral(
+                        emphasized = OudsColorMode.fromString(onStatusNeutralEmphasizedDark),
+                        muted = OudsColorMode.fromString(onStatusNeutralMutedDark)
+                    ),
+                    positive = OudsColorScheme.Modes.OnStatus.Positive(
+                        emphasized = OudsColorMode.fromString(onStatusPositiveEmphasizedDark),
+                        muted = OudsColorMode.fromString(onStatusPositiveMutedDark)
+                    ),
+                    warning = OudsColorScheme.Modes.OnStatus.Warning(
+                        emphasized = OudsColorMode.fromString(onStatusWarningEmphasizedDark),
+                        muted = OudsColorMode.fromString(onStatusWarningMutedDark)
+                    )
+                )
+            )
+        }
     )
 
 // Always colors are the same in light & dark modes
