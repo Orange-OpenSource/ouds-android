@@ -201,7 +201,6 @@ private fun OudsBadge(
                 val textStyle = textStyle(size = size)
                 if (textStyle != null) {
                     Text(
-                        modifier = Modifier,
                         text = text,
                         color = contentColor,
                         style = textStyle
