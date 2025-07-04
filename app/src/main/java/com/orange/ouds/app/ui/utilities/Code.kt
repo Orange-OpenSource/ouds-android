@@ -131,8 +131,9 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
         inline fun <reified T> typedArgument(name: String?, value: T) {
             elements.add(Argument(name, value, T::class.java))
         }
-
+        
         fun formattableArgument(name: String?, format: (Context) -> String) = typedArgument(name, Formattable(format))
+        
 
         fun rawArgument(name: String?, value: String) = formattableArgument(name) { value }
 

@@ -102,9 +102,9 @@ object OudsColoredBox {
         BrandPrimary,
         BrandSecondary,
         BrandTertiary,
-        OverlayModal,
         OverlayDefault,
         OverlayEmphasized,
+        OverlayModal,
         StatusAccentEmphasized,
         StatusAccentMuted,
         StatusInfoEmphasized,
@@ -171,9 +171,9 @@ object OudsColoredBox {
                     BrandPrimary -> OudsColorKeyToken.Surface.Brand.Primary
                     BrandSecondary -> OudsColorKeyToken.Surface.Brand.Secondary
                     BrandTertiary -> OudsColorKeyToken.Surface.Brand.Tertiary
-                    OverlayModal -> OudsColorKeyToken.Overlay.Modal
                     OverlayDefault -> OudsColorKeyToken.Overlay.Default
                     OverlayEmphasized -> OudsColorKeyToken.Overlay.Emphasized
+                    OverlayModal -> OudsColorKeyToken.Overlay.Modal
                     StatusAccentEmphasized -> OudsColorKeyToken.Surface.Status.Accent.Emphasized
                     StatusAccentMuted -> OudsColorKeyToken.Surface.Status.Accent.Muted
                     StatusInfoEmphasized -> OudsColorKeyToken.Surface.Status.Info.Emphasized
@@ -201,9 +201,9 @@ object OudsColoredBox {
                         BrandPrimary -> onBrand.primary
                         BrandSecondary -> onBrand.secondary
                         BrandTertiary -> onBrand.tertiary
-                        OverlayModal -> onOverlay.modal
                         OverlayDefault -> onOverlay.default
                         OverlayEmphasized -> onOverlay.emphasized
+                        OverlayModal -> onOverlay.modal
                         StatusAccentEmphasized -> onStatus.accent.emphasized
                         StatusAccentMuted -> onStatus.accent.muted
                         StatusInfoEmphasized -> onStatus.info.emphasized

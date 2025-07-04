@@ -15,7 +15,6 @@ app/src/beta/res/drawable/ic_launcher_foreground.xml
 app/src/main/res/drawable/ic_border.xml
 app/src/main/res/drawable/ic_chevron_down.xml
 app/src/main/res/drawable/ic_component_atom.xml
-app/src/main/res/drawable/ic_components_colored_background.xml
 app/src/main/res/drawable/ic_copy.xml
 app/src/main/res/drawable/ic_design_token_figma.xml
 app/src/main/res/drawable/ic_dimension.xml
@@ -31,6 +30,7 @@ app/src/main/res/drawable/ic_ui_dark_mode.xml
 app/src/main/res/drawable/ic_ui_light_mode.xml
 app/src/main/res/drawable/il_components_badge.xml
 app/src/main/res/drawable/il_components_badge_dark.xml
+app/src/main/res/drawable/il_components_colored_background.xml
 app/src/main/res/drawable/il_components_divider.xml
 app/src/main/res/drawable/il_components_divider_dark.xml
 app/src/main/res/drawable/il_opacity_union.xml
