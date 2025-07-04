@@ -367,7 +367,7 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Disabled -> borderWidthDefault.value
                 OudsButton.State.Hovered,
                 OudsButton.State.Pressed,
-                OudsButton.State.Loading -> if (LocalColorMode.current?.mono == true) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
+                OudsButton.State.Loading -> if (LocalColorMode.current?.monochrome == true) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
                 OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
             }
             OudsButton.Hierarchy.Minimal -> when (state) {
@@ -386,8 +386,8 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
 
 @Composable
 private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State): Color? {
-    return if (LocalColorMode.current?.mono == true) {
-        with(OudsTheme.componentsTokens.buttonMono) {
+    return if (LocalColorMode.current?.monochrome == true) {
+        with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (hierarchy) {
                 OudsButton.Hierarchy.Default -> when (state) {
                     OudsButton.State.Enabled -> colorBorderDefaultEnabled
@@ -452,8 +452,8 @@ private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
         OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
         OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
     }
-    return if (LocalColorMode.current?.mono == true) {
-        with(OudsTheme.componentsTokens.buttonMono) {
+    return if (LocalColorMode.current?.monochrome == true) {
+        with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (hierarchy) {
                 OudsButton.Hierarchy.Default -> when (state) {
                     OudsButton.State.Enabled -> colorBgDefaultEnabled
@@ -525,8 +525,8 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
         OudsButton.State.Focused -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
         OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
     }
-    return if (LocalColorMode.current?.mono == true) {
-        with(OudsTheme.componentsTokens.buttonMono) {
+    return if (LocalColorMode.current?.monochrome == true) {
+        with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (hierarchy) {
                 OudsButton.Hierarchy.Default -> when (state) {
                     OudsButton.State.Enabled -> colorContentDefaultEnabled

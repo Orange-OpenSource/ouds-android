@@ -162,7 +162,7 @@ private fun OudsLink(
         OudsLink.Size.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
     }
 
-    val monochrome = LocalColorMode.current?.mono == true
+    val monochrome = LocalColorMode.current?.monochrome == true
     val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
         val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
         contentColor(state = linkState, monochrome = monochrome)
@@ -274,7 +274,7 @@ private fun getLinkState(enabled: Boolean, interactionState: InteractionState): 
 @Composable
 private fun contentColor(state: OudsLink.State, monochrome: Boolean): Color {
     return if (monochrome) {
-        with(OudsTheme.componentsTokens.linkMono) {
+        with(OudsTheme.componentsTokens.linkMonochrome) {
             when (state) {
                 OudsLink.State.Enabled -> colorContentEnabled
                 OudsLink.State.Focused -> colorContentFocus
