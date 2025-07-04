@@ -14,6 +14,7 @@ package com.orange.ouds.theme.sosh
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.sosh.tokens.material.SoshMaterialColorTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshBorderSemanticTokens
@@ -38,7 +39,7 @@ import kotlinx.parcelize.Parcelize
 const val SOSH_THEME_NAME = "Sosh"
 
 @Parcelize
-open class SoshTheme : OudsThemeContract {
+class SoshTheme : OudsThemeContract {
 
     override val name: String
         get() = SOSH_THEME_NAME
