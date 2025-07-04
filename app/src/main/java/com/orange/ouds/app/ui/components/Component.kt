@@ -79,7 +79,7 @@ sealed class Component(
 
     data object ColoredBackground : Component(
         R.string.app_components_coloredBackground_label,
-        LightDarkResourceId(R.drawable.ic_components_colored_background, R.drawable.ic_components_colored_background),
+        LightDarkResourceId(R.drawable.il_components_colored_background, R.drawable.il_components_colored_background),
         R.string.app_components_coloredBackground_description_text,
         demoScreen = { ColoredBackgroundDemoScreen() }
     )

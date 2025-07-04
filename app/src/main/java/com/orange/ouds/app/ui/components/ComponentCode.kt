@@ -22,8 +22,8 @@ fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() 
     if (onColoredBox) {
         functionCall(OudsColoredBox::class.simpleName.orEmpty()) {
             trailingLambda = true
-            typedArgument("color", OudsColoredBox.Color.BrandPrimary)
-            lambdaArgument("content", content)
+            typedArgument(Argument.Color, OudsColoredBox.Color.BrandPrimary)
+            lambdaArgument(Argument.Content, content)
         }
     } else {
         content()
@@ -31,12 +31,10 @@ fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() 
 }
 
 fun FunctionCall.Builder.painterArgument(@DrawableRes id: Int) {
-    functionCallArgument("painter", "painterResource") {
-        typedArgument("id", id)
+    functionCallArgument(Argument.Painter, "painterResource") {
+        typedArgument(Argument.Id, id)
     }
 }
-
-fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg formatArgs: Any) = stringResourceArgument("contentDescription", id, formatArgs)
 
 fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = formattableArgument(name) { "\"${it.getString(id)}\"" }
 
@@ -44,15 +42,18 @@ fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = string
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
-fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument("label", label)
-fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringArgument(Argument.Text, id)
+fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument(Argument.Label, label)
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
 
 private object Argument {
 
+    const val Color = "color"
     const val ContentDescription = "contentDescription"
-    const val OnClick = "onClick"
-    const val Text = "text"
+    const val Content = "content"
     const val Enabled = "enabled"
+    const val Id = "id"
+    const val Label = "label"
+    const val OnClick = "onClick"
+    const val Painter = "painter"
 }

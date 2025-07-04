@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,7 +39,6 @@ import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ColoredBackgroundDemoScreen() {
     val state = rememberColoredBackgroundDemoState()
@@ -55,7 +53,7 @@ fun ColoredBackgroundDemoScreen() {
 @Composable
 private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemoState) {
     with(state) {
-        val colors = OudsColoredBox.Color.entries
+        val colors = OudsColoredBox.Color.entries.filter { !it.mode.isUnspecified }
         CustomizationDropdownMenu(
             label = stringResource(id = R.string.app_components_coloredBackground_color_label),
             itemLabels = colors.map { it.formattedName },
@@ -77,40 +75,30 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
 @Composable
 private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
     with(state) {
-        Box(
-            modifier = Modifier
-                .background(OudsTheme.colorScheme.background.primary)
-                .padding(all = OudsTheme.spaces.fixed.medium)
-                .fillMaxWidth(),
-            contentAlignment = Alignment.Center,
+        OudsColoredBox(
+            modifier = Modifier.fillMaxWidth(),
+            color = color
         ) {
-            with(state) {
-                OudsColoredBox(
-                    modifier = Modifier.fillMaxWidth(),
-                    color = color
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .padding(all = OudsTheme.spaces.fixed.medium)
-                            .fillMaxWidth(),
-                        verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = color.formattedName,
-                            color = OudsTheme.colorScheme.content.default
-                        )
-                        OudsButton(
-                            label = stringResource(id = R.string.app_components_button_label),
-                            onClick = {}
-                        )
-                        OudsLink(
-                            label = stringResource(id = R.string.app_components_link_label),
-                            arrow = OudsLink.Arrow.Next,
-                            onClick = {},
-                        )
-                    }
-                }
+            Column(
+                modifier = Modifier
+                    .padding(all = OudsTheme.spaces.fixed.medium)
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = color.formattedName,
+                    color = OudsTheme.colorScheme.content.default
+                )
+                OudsButton(
+                    label = stringResource(id = R.string.app_components_button_label),
+                    onClick = {}
+                )
+                OudsLink(
+                    label = stringResource(id = R.string.app_components_link_label),
+                    arrow = OudsLink.Arrow.Next,
+                    onClick = {},
+                )
             }
         }
     }
