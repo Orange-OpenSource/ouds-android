@@ -152,6 +152,11 @@
     <string name="app_components_chip_suggestionChip_label">Suggestion chip</string>
     <string name="app_components_chip_suggestionChip_chipContent_label">Suggestion</string>
 
+    <!-- Components: colored background -->
+    <string name="app_components_coloredBackground_label">Colored background</string>
+    <string name="app_components_coloredBackground_description_text">Colored backgrounds use surface colors to maximize the contrast with content. Several components such as buttons or links adapt their display accordingly when they are displayed on colored backgrounds.</string>
+    <string name="app_components_coloredBackground_color_label">Color</string>
+
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">Helper text</string>
     <string name="app_components_controlItem_icon_label">Icon</string>
@@ -164,11 +169,6 @@
     <string name="app_components_divider_description_text">A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.</string>
     <string name="app_components_divider_horizontalDivider_label">Horizontal divider</string>
     <string name="app_components_divider_verticalDivider_label">Vertical divider</string>
-
-    <!-- Components: colored background -->
-    <string name="app_components_coloredBackground_label">Colored background</string>
-    <string name="app_components_coloredBackground_description_text">Colored backgrounds use surface colors to maximize the contrast with content. Several components such as buttons or links adapt their display accordingly when they are displayed on colored backgrounds.</string>
-    <string name="app_components_coloredBackground_color_label">Color</string>
 
     <!-- Components: link -->
     <string name="app_components_link_label">Link</string>
