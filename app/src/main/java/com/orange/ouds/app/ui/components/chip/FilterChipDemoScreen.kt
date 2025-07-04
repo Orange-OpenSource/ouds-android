@@ -15,9 +15,7 @@ package com.orange.ouds.app.ui.components.chip
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsFilterChip
@@ -37,8 +35,9 @@ fun FilterChipDemoScreen() {
 @Composable
 private fun FilterChipDemoContent(state: FilterChipDemoState) {
     ChipDemoContent { index, icon ->
-        val label = stringResource(R.string.app_components_chip_filterChip_filterChip_label, index + 1)
         with(state) {
+            val separator = if (label.isBlank()) "" else " "
+            val label = "$label$separator${index + 1}"
             val selected = selectedValues[index]
             val onClick = { selectedValues = selectedValues.toMutableList().also { it[index] = !it[index] } }
             when (layout) {
@@ -77,7 +76,7 @@ private fun Code.Builder.filterChipDemoCodeSnippet(state: FilterChipDemoState, c
         comment("First filter chip")
         functionCall("OudsFilterChip") {
             typedArgument("selected", selectedValues[0])
-            chipArguments(state, context.getString(R.string.app_components_chip_filterChip_filterChip_label, 1))
+            chipArguments(state)
         }
     }
 }

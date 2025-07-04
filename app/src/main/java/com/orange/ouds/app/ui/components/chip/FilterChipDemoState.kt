@@ -18,21 +18,25 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
+import com.orange.ouds.app.R
 
 @Composable
 fun rememberFilterChipDemoState(
     selectedValues: List<Boolean> = List(ChipDemoState.ChipCount) { it == 0 },
     enabled: Boolean = true,
-    layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first()
+    layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first(),
+    label: String = stringResource(R.string.app_components_chip_filterChip_filterChip_label)
 ) = rememberSaveable(selectedValues, enabled, layout, saver = FilterChipDemoState.Saver) {
-    FilterChipDemoState(selectedValues, enabled, layout)
+    FilterChipDemoState(selectedValues, enabled, layout, label)
 }
 
 class FilterChipDemoState(
     selectedValues: List<Boolean>,
     enabled: Boolean,
-    layout: Layout
-) : ChipDemoState(enabled, layout) {
+    layout: Layout,
+    label: String
+) : ChipDemoState(enabled, layout, label) {
 
     companion object {
 
@@ -52,7 +56,8 @@ class FilterChipDemoState(
                     FilterChipDemoState(
                         list[0] as List<Boolean>,
                         enabled,
-                        layout
+                        layout,
+                        label
                     )
                 }
             }

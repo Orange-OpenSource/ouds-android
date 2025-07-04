@@ -15,9 +15,7 @@ package com.orange.ouds.app.ui.components.chip
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSuggestionChip
@@ -37,8 +35,9 @@ fun SuggestionChipDemoScreen() {
 @Composable
 private fun SuggestionChipDemoContent(state: SuggestionChipDemoState) {
     ChipDemoContent { index, icon ->
-        val label = stringResource(R.string.app_components_chip_suggestionChip_suggestionChip_label, index + 1)
         with(state) {
+            val separator = if (label.isBlank()) "" else " "
+            val label = "$label$separator${index + 1}"
             when (layout) {
                 ChipDemoState.Layout.TextOnly -> {
                     OudsSuggestionChip(
@@ -71,8 +70,7 @@ private fun Code.Builder.suggestionChipDemoCodeSnippet(state: SuggestionChipDemo
     with(state) {
         comment("First suggestion chip")
         functionCall("OudsSuggestionChip") {
-            val label = context.getString(R.string.app_components_chip_suggestionChip_suggestionChip_label, 1)
-            chipArguments(state, label)
+            chipArguments(state)
         }
     }
 }

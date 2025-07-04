@@ -21,7 +21,8 @@ import com.orange.ouds.app.R
 
 open class ChipDemoState(
     enabled: Boolean,
-    layout: Layout
+    layout: Layout,
+    label: String
 ) {
 
     companion object {
@@ -33,21 +34,26 @@ open class ChipDemoState(
                 with(state) {
                     listOf(
                         enabled,
-                        layout
+                        layout,
+                        label
                     )
                 }
             },
             restore = { list ->
                 ChipDemoState(
                     list[0] as Boolean,
-                    list[1] as Layout
+                    list[1] as Layout,
+                    list[2] as String
                 )
             }
         )
     }
 
     var enabled: Boolean by mutableStateOf(enabled)
+
     var layout: Layout by mutableStateOf(layout)
+
+    var label: String by mutableStateOf(label)
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),
