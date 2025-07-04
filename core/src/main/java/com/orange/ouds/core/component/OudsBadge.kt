@@ -337,6 +337,9 @@ object OudsBadge {
             get() = extraParameters.tint
     }
 
+    /**
+     * The status of an [OudsBadge]. This status determines the background and content colors of the badge.
+     */
     enum class Status {
 
         /** Used for general labels without specific emphasis. */
