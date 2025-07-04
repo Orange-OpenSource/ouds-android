@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.utilities
 
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -130,10 +131,14 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
         inline fun <reified T> typedArgument(name: String?, value: T) {
             elements.add(Argument(name, value, T::class.java))
         }
+        
+        fun formattableArgument(name: String?, format: (Context) -> String) = typedArgument(name, Formattable(format))
 
         fun rawArgument(name: String?, value: String) = formattableArgument(name, { value })
 
-        fun formattableArgument(name: String?, format: (Context) -> String) = typedArgument(name, Formattable(format))
+        fun stringResourceArgument(name: String?, @StringRes id: Int, vararg formatArgs: Any) {
+            formattableArgument(name) { "\"${it.getString(id, formatArgs)}\"" }
+        }
 
         fun lambdaArgument(name: String?, init: Code.Builder.() -> Unit = {}) {
             val code = Code.Builder().apply(init).build()

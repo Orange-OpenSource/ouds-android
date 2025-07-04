@@ -27,4 +27,7 @@ interface OudsColorSemanticTokens {
 
     @InternalOudsApi
     val repositoryColorTokens: OudsColorRepositorySemanticTokens
+
+    @InternalOudsApi
+    val colorModeTokens: OudsColoredBackgroundModeSemanticTokens
 }
