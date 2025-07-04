@@ -12,6 +12,8 @@
 
 package com.orange.ouds.theme.sosh
 
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.sosh.tokens.material.SoshMaterialColorTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshBorderSemanticTokens
@@ -40,6 +42,15 @@ open class SoshTheme : OudsThemeContract {
 
     override val name: String
         get() = SOSH_THEME_NAME
+
+    override val fontFamily: FontFamily
+        get() = FontFamily(
+            Font(R.font.sosh_black, weight = FontWeight.Black),
+            Font(R.font.sosh_medium, weight = FontWeight.Medium),
+            Font(R.font.sosh_bold, weight = FontWeight.Bold),
+            Font(R.font.sosh_regular, weight = FontWeight.Normal),
+            Font(R.font.sosh_thin, weight = FontWeight.Thin)
+        )
 
     override val materialColorTokens: OudsMaterialColorTokens
         get() = SoshMaterialColorTokens()
