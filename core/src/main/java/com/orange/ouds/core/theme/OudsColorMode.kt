@@ -13,23 +13,23 @@
 package com.orange.ouds.core.theme
 
 @ConsistentCopyVisibility
-data class OudsColorMode private constructor(val dark: Boolean, val mono: Boolean, private val identifier: String? = null) {
+data class OudsColorMode private constructor(val dark: Boolean, val monochrome: Boolean, private val identifier: String? = null) {
 
-    constructor(dark: Boolean, mono: Boolean) : this(dark, mono, null)
+    constructor(dark: Boolean, monochrome: Boolean) : this(dark, monochrome, null)
 
     companion object {
 
         // This identifier is used to differentiate Unspecified from "light" color mode
         private const val UnspecifiedIdentifier = "OudsColorMode.Unspecified"
 
-        val Unspecified = OudsColorMode(dark = false, mono = false, UnspecifiedIdentifier)
+        val Unspecified = OudsColorMode(dark = false, monochrome = false, UnspecifiedIdentifier)
 
         internal fun fromString(string: String): OudsColorMode {
             return when (string) {
-                "dark" -> OudsColorMode(dark = true, mono = false)
-                "light" -> OudsColorMode(dark = false, mono = false)
-                "mono-dark" -> OudsColorMode(dark = true, mono = true)
-                "mono-light" -> OudsColorMode(dark = false, mono = true)
+                "dark" -> OudsColorMode(dark = true, monochrome = false)
+                "light" -> OudsColorMode(dark = false, monochrome = false)
+                "mono-dark" -> OudsColorMode(dark = true, monochrome = true)
+                "mono-light" -> OudsColorMode(dark = false, monochrome = true)
                 // \uFE0F is the code for the variation selector that specifies that an emoji should be presented as an image
                 "⛔\uFE0F", "⛔" -> Unspecified
                 else -> error("Color mode $string is unknown.")
