@@ -15,19 +15,23 @@ package com.orange.ouds.app.ui.components.chip
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.res.stringResource
+import com.orange.ouds.app.R
 
 @Composable
 fun rememberSuggestionChipDemoState(
     enabled: Boolean = true,
-    layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first()
+    layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first(),
+    label: String = stringResource(R.string.app_components_chip_suggestionChip_suggestionChip_label)
 ) = rememberSaveable(enabled, layout, saver = SuggestionChipDemoState.Saver) {
-    SuggestionChipDemoState(enabled, layout)
+    SuggestionChipDemoState(enabled, layout, label)
 }
 
 class SuggestionChipDemoState(
     enabled: Boolean,
-    layout: Layout
-) : ChipDemoState(enabled, layout) {
+    layout: Layout,
+    label: String
+) : ChipDemoState(enabled, layout, label) {
 
     companion object {
 
@@ -37,7 +41,7 @@ class SuggestionChipDemoState(
             },
             restore = { value ->
                 val chipDemoState = ChipDemoState.Saver.restore(value)
-                chipDemoState?.let { SuggestionChipDemoState(it.enabled, it.layout) }
+                chipDemoState?.let { SuggestionChipDemoState(it.enabled, it.layout, it.label) }
             }
         )
     }
