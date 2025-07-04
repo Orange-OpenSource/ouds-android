@@ -64,8 +64,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orangecountry.OrangeCountryTheme
-import com.orange.ouds.theme.whitelabel.WhiteLabelTheme
+import com.orange.ouds.theme.sosh.SoshTheme
 
 @Composable
 fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = viewModel()) {
@@ -229,7 +228,7 @@ private fun PreviewMainScreen() = OudsPreview {
     // Fixing this issue implies several modifications which would add unnecessary complexity to the code
     // See https://issuetracker.google.com/issues/240601093
     MainScreen(
-        themes = listOf(OrangeTheme(), OrangeCountryTheme(), WhiteLabelTheme()),
+        themes = listOf(OrangeTheme(), SoshTheme()),
         userThemeName = ORANGE_THEME_NAME,
         onThemeSelected = {}
     )

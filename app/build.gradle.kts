@@ -123,8 +123,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
     implementation(project(":theme-orange"))
-    implementation(project(":theme-orange-country"))
-    implementation(project(":theme-white-label"))
+    implementation(project(":theme-sosh"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
