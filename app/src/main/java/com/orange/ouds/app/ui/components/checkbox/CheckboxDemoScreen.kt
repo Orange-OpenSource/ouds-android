@@ -68,10 +68,10 @@ private fun CheckboxDemoContent(state: CheckboxDemoState) {
     with(state) {
         Row {
             CheckboxIdentifier.entries.forEach { identifier ->
-                val a11yDescription = stringResource(R.string.app_components_checkbox_checkbox_a11y, identifier.name)
+                val contentDescription = stringResource(R.string.app_components_checkbox_checkbox_a11y, identifier.name)
                 OudsCheckbox(
                     modifier = Modifier.semantics {
-                        contentDescription = a11yDescription
+                        this.contentDescription = contentDescription
                     },
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first
@@ -96,10 +96,10 @@ private fun IndeterminateCheckboxDemoContent(state: CheckboxDemoState) {
     with(state) {
         Row {
             CheckboxIdentifier.entries.forEach { identifier ->
-                val a11yDescription = stringResource(R.string.app_components_checkbox_indeterminateCheckbox_a11y, identifier.name)
+                val contentDescription = stringResource(R.string.app_components_checkbox_indeterminateCheckbox_a11y, identifier.name)
                 OudsTriStateCheckbox(
                     modifier = Modifier.semantics {
-                        contentDescription = a11yDescription
+                        this.contentDescription = contentDescription
                     },
                     state = when (identifier) {
                         CheckboxIdentifier.First -> toggleableStateValues.first
