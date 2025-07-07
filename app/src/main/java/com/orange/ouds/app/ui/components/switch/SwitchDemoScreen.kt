@@ -50,10 +50,10 @@ private fun SwitchDemoBottomSheetContent(state: SwitchDemoState) {
 @Composable
 private fun SwitchDemoContent(state: SwitchDemoState) {
     with(state) {
-        val a11yDescription = stringResource(R.string.app_components_switch_switch_a11y)
+        val contentDescription = stringResource(R.string.app_components_switch_switch_a11y)
         OudsSwitch(
             modifier = Modifier.semantics {
-                contentDescription = a11yDescription
+                this.contentDescription = contentDescription
             },
             checked = checked,
             onCheckedChange = { checked = it },
