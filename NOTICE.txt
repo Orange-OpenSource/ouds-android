@@ -123,4 +123,10 @@ core/src/main/res/drawable/switch_selected.xml
 docs/assets/banner.png
 docs/assets/logo-icon.svg
 
+theme-sosh/src/main/res/font/sosh_black.ttf
+theme-sosh/src/main/res/font/sosh_bold.ttf
+theme-sosh/src/main/res/font/sosh_medium.ttf
+theme-sosh/src/main/res/font/sosh_regular.ttf
+theme-sosh/src/main/res/font/sosh_thin.ttf
+
 End of the parts list under Orange SA Copyright
