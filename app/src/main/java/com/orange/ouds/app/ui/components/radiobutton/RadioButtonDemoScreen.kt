@@ -66,10 +66,10 @@ private fun RadioButtonDemoContent(state: RadioButtonDemoState) {
     ) {
         with(state) {
             RadioButtonDemoState.values.forEach { value ->
-                val a11yDescription = stringResource(R.string.app_components_radioButton_radioButton_a11y, value.toString())
+                val contentDescription = stringResource(R.string.app_components_radioButton_radioButton_a11y, value.toString())
                 OudsRadioButton(
                     modifier = Modifier.semantics {
-                        contentDescription = a11yDescription
+                        this.contentDescription = contentDescription
                     },
                     selected = value == selectedValue,
                     onClick = { selectedValue = value },
