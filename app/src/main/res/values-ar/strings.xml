@@ -147,7 +147,7 @@
     <string name="app_components_radioButton_radioButtonItem_label">عنصر زر الاختيار</string>
     <string name="app_components_radioButton_radioButtonItem_outlined_label">مخطط</string>
     <string name="app_components_radioButton_radioButtonItem_additionalLabel_label">التسمية الإضافية</string>
-    <string name="app_components_radioButton_radioButton_a11y">وصف محتوى زر الاختيار 1</string>
+    <string name="app_components_radioButton_radioButton_a11y">وصف محتوى زر الاختيار %s</string>
 
     <!-- Components: switch -->
     <string name="app_components_switch_label">مفتاح التبديل</string>
