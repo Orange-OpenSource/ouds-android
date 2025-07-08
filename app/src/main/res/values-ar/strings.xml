@@ -152,6 +152,7 @@
     <string name="app_components_switch_label">مفتاح التبديل</string>
     <string name="app_components_switch_description_text">يتيح مفتاح التبديل للمستخدم التبديل بين حالتين، عادةً "تشغيل" و "إيقاف". يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.</string>
     <string name="app_components_switch_switch_label">مفتاح التبديل</string>
+    <string name="app_components_switch_switch_a11y">تبديل وصف المحتوى</string>
     <string name="app_components_switch_switchItem_label">تبديل العنصر</string>
 
     <!-- About -->
