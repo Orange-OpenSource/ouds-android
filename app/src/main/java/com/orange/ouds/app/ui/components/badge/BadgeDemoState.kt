@@ -25,7 +25,7 @@ import com.orange.ouds.core.component.OudsBadgeDefaults
 
 @Composable
 fun rememberBadgeDemoState(
-    type: BadgeDemoState.Type = BadgeDemoState.Type.entries.first(),
+    type: BadgeDemoState.Type = BadgeDemoState.Type.Count,
     size: OudsBadge.Size = OudsBadgeDefaults.Size,
     status: OudsBadge.Status = OudsBadgeDefaults.Status,
     count: Int = 1
@@ -64,7 +64,19 @@ class BadgeDemoState(
         )
     }
 
-    var type: Type by mutableStateOf(type)
+    private var _type: Type by mutableStateOf(type)
+
+    var type: Type
+        get() = _type
+        set(value) {
+            if (_type != value
+                && value in listOf(Type.Count, Type.Icon)
+                && size in listOf(OudsBadge.Size.ExtraSmall, OudsBadge.Size.Small)
+            ) {
+                size = OudsBadge.Size.Medium
+            }
+            _type = value
+        }
 
     var size: OudsBadge.Size by mutableStateOf(size)
 
