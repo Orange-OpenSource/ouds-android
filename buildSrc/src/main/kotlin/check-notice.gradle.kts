@@ -27,7 +27,7 @@ tasks.register<DefaultTask>("checkNotice") {
 
     doLast {
         // Get resources listed in NOTICE.txt
-        val resourceExtensions = listOf("xml", "png", "svg")
+        val resourceExtensions = listOf("xml", "png", "svg", "ttf")
         val noticeResources = File("${rootDir.path}/NOTICE.txt").readLines()
             .mapNotNull { line ->
                 File("${rootDir.path}/$line").takeIf { it.extension in resourceExtensions }
@@ -48,7 +48,7 @@ tasks.register<DefaultTask>("checkNotice") {
             sourceSetNames.mapNotNull { androidExtension?.sourceSets?.get(it) }.flatMap { sourceSet ->
                 sourceSet.res.directories.flatMap { directory ->
                     File("${subproject.projectDir}/$directory").walk().mapNotNull { file ->
-                        if (file.isDirectory && file.name.startsWith("drawable")) file.path else null
+                        if (file.isDirectory && (file.name.startsWith("drawable") || file.name == "font")) file.path else null
                     }
                 }
             }

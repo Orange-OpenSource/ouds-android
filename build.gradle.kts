@@ -34,6 +34,7 @@ dependencies {
     dokka(project(":global-raw-tokens"))
     dokka(project(":theme-contract"))
     dokka(project(":theme-orange"))
+    dokka(project(":theme-sosh"))
 }
 
 checkNotice {

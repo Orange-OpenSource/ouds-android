@@ -12,7 +12,19 @@
 
 package com.orange.ouds.theme.sosh
 
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.sosh.tokens.material.SoshMaterialColorTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshBorderSemanticTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshColorSemanticTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshElevationSemanticTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshFontSemanticTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshGridSemanticTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshOpacitySemanticTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshSizeSemanticTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshSpaceSemanticTokens
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
@@ -27,35 +39,44 @@ import kotlinx.parcelize.Parcelize
 const val SOSH_THEME_NAME = "Sosh"
 
 @Parcelize
-open class SoshTheme : OudsThemeContract {
+class SoshTheme : OudsThemeContract {
 
     override val name: String
         get() = SOSH_THEME_NAME
 
+    override val fontFamily: FontFamily
+        get() = FontFamily(
+            Font(R.font.sosh_black, weight = FontWeight.Black),
+            Font(R.font.sosh_medium, weight = FontWeight.Medium),
+            Font(R.font.sosh_bold, weight = FontWeight.Bold),
+            Font(R.font.sosh_regular, weight = FontWeight.Normal),
+            Font(R.font.sosh_thin, weight = FontWeight.Thin)
+        )
+
     override val materialColorTokens: OudsMaterialColorTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshMaterialColorTokens()
 
     override val colorTokens: OudsColorSemanticTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshColorSemanticTokens()
 
     override val borderTokens: OudsBorderSemanticTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshBorderSemanticTokens()
 
     override val elevationTokens: OudsElevationSemanticTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshElevationSemanticTokens()
 
     override val fontTokens: OudsFontSemanticTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshFontSemanticTokens()
 
     override val gridTokens: OudsGridSemanticTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshGridSemanticTokens()
 
     override val opacityTokens: OudsOpacitySemanticTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshOpacitySemanticTokens()
 
     override val sizeTokens: OudsSizeSemanticTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshSizeSemanticTokens()
 
     override val spaceTokens: OudsSpaceSemanticTokens
-        get() = TODO("Not yet implemented")
+        get() = SoshSpaceSemanticTokens()
 }
