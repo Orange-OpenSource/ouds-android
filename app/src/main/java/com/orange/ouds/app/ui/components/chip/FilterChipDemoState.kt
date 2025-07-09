@@ -26,7 +26,7 @@ fun rememberFilterChipDemoState(
     selectedValues: List<Boolean> = List(ChipDemoState.ChipCount) { it == 0 },
     enabled: Boolean = true,
     layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first(),
-    label: String = stringResource(R.string.app_components_chip_filterChip_filterChip_label)
+    label: String = stringResource(R.string.app_components_chip_filterChip_chipContent_label)
 ) = rememberSaveable(selectedValues, enabled, layout, saver = FilterChipDemoState.Saver) {
     FilterChipDemoState(selectedValues, enabled, layout, label)
 }
