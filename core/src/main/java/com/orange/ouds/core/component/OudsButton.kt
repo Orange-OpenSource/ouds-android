@@ -668,7 +668,7 @@ object OudsButton {
 
     /**
      * A button icon in an [OudsButton].
-     * It is non-clickable and no content description is needed because a button label is always present.
+     * It is non-clickable, the [contentDescription] must not be empty in the case of an icon-only button.
      */
     class Icon private constructor(
         graphicsObject: Any,
