@@ -22,6 +22,7 @@ import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
+import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
@@ -78,6 +79,13 @@ sealed class Component(
         LightDarkResourceId(R.drawable.il_components_link, R.drawable.il_components_link_dark),
         R.string.app_components_link_description_text,
         demoScreen = { LinkDemoScreen() }
+    )
+
+    data object NavigationBar : Component(
+        R.string.app_components_navigationBar_label,
+        LightDarkResourceId(R.drawable.il_components_empty, R.drawable.il_components_empty),
+        R.string.app_components_navigationBar_description_text,
+        demoScreen = { NavigationBarDemoScreen() }
     )
 
     data object RadioButton : Component(
