@@ -16,6 +16,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 import com.orange.ouds.core.theme.OudsTheme
 
 val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -33,7 +34,7 @@ sealed class TokenCategory<T>(
         fun fromId(tokenId: Long) = tokenCategories.firstOrNull { token -> token.id == tokenId }
     }
 
-    val id: Long = TokenCategory::class.sealedSubclasses.indexOf(this::class).toLong()
+    val id: Long = TokenCategory::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
     val isSubcategory: Boolean
         get() = tokenCategories.any { it.subcategories.contains(this) }
 

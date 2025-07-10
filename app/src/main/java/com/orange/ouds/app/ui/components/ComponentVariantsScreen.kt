@@ -67,7 +67,10 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
 private fun PreviewComponentVariantsScreen(
     @PreviewParameter(ComponentVariantsScreenPreviewParameterProvider::class) parameter: Component
 ) = OudsPreview {
-    ComponentVariantsScreen(parameter) {}
+    ComponentVariantsScreen(
+        component = parameter,
+        onVariantClick = {}
+    )
 }
 
 private class ComponentVariantsScreenPreviewParameterProvider : BasicPreviewParameterProvider<Component>(*previewParameterValues.toTypedArray())

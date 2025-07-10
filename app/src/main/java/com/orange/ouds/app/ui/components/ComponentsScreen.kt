@@ -61,6 +61,7 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
 @Composable
 private fun PreviewComponentsScreen() = OudsPreview {
     ComponentsScreen(
-        components = listOf(Component.Button, Component.Link)
-    ) {}
+        components = listOf(Component.Button, Component.Link),
+        onComponentClick = {}
+    )
 }

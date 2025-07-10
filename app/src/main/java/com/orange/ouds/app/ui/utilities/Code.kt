@@ -182,7 +182,7 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : F
             is Formattable -> value.format(context)
             else -> {
                 val valueClass = value?.let { it::class }.orElse { null }
-                if (valueClass?.isData == true) {
+                if (valueClass?.previewCompatibleClass?.isData == true) {
                     // Displays OudsButton.Style.Loading(progress = null) instead of Loading(progress=null)
                     "${valueClass.java.nestedName.substringBeforeLast(".")}.${value.toString().replace("=", " = ")}"
                 } else {
