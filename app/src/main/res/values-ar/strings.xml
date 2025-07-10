@@ -134,12 +134,12 @@
     <string name="app_components_checkbox_indeterminateCheckboxItem_label">خانة اختيار اختيار غير محدد</string>
 
     <!-- Components: chip -->
-    <string name="app_components_chip_label">Chip</string>
-    <string name="app_components_chip_description_text">Chips help people enter information, make selections, filter content, or trigger actions.</string>
-    <string name="app_components_chip_filterChip_label">Filter chip</string>
-    <string name="app_components_chip_filterChip_chipContent_label">Filter</string>
-    <string name="app_components_chip_suggestionChip_label">Suggestion chip</string>
-    <string name="app_components_chip_suggestionChip_chipContent_label">Suggestion</string>
+    <string name="app_components_chip_label">عنصر</string>
+    <string name="app_components_chip_description_text">تساعد الـعناصر  المستخدمين على إدخال المعلومات، أو القيام باختيارات، أو تصفية المحتوى، أو تنفيذ إجراءات.</string>
+    <string name="app_components_chip_filterChip_label">نصر تصفية</string>
+    <string name="app_components_chip_filterChip_chipContent_label">تصفية</string>
+    <string name="app_components_chip_suggestionChip_label">عنصر اقتراح</string>
+    <string name="app_components_chip_suggestionChip_chipContent_label">اقتراح</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">نص المساعدة</string>
