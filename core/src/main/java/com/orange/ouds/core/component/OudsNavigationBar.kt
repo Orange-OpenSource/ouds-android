@@ -77,7 +77,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param windowInsets Window insets of the navigation bar.
  * @param content Content of the navigation bar.
  *
- * @sample com.orange.ouds.core.component.samples.OudsNavigationBarWithFreeContentSample
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  */
 @Composable
 fun OudsNavigationBar(
