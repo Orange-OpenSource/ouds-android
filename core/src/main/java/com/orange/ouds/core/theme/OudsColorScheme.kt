@@ -20,8 +20,10 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.theme.tokens.Mode
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
+import com.orange.ouds.theme.tokens.OudsSingleModeColorKeyToken
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
@@ -1511,4 +1513,21 @@ val OudsColorKeyToken.value: Color
         is OudsColorKeyToken.Repository -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Surface -> OudsTheme.colorScheme.fromToken(this)
         is OudsLightDarkColorKeyToken -> if (isOudsInDarkTheme()) dark.value else light.value
+        is OudsSingleModeColorKeyToken -> {
+            val colorScheme = if (mode == Mode.Dark) LocalDarkColorScheme.current else LocalLightColorScheme.current
+            val keyToken = keyToken
+            when (keyToken) {
+                is OudsColorKeyToken.Action -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Always -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Background -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Border -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Content -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Decorative -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Opacity -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Overlay -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Repository -> colorScheme.fromToken(keyToken)
+                is OudsColorKeyToken.Surface -> colorScheme.fromToken(keyToken)
+                else -> throw IllegalArgumentException("Unsupported color key token: $keyToken")
+            }
+        }
     }
