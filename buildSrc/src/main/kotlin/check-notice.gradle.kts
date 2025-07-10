@@ -35,9 +35,9 @@ tasks.register<DefaultTask>("checkNotice") {
             .sortedBy { it.path }
 
         if (noticeResources.isNotEmpty()) {
-            logger.lifecycle("Detected resources in NOTICE.txt:\n${noticeResources.joinToString("\n") { "  ${it.path}" }}")
+            logger.info("Detected resources in NOTICE.txt:\n${noticeResources.joinToString("\n") { "  ${it.path}" }}")
         } else {
-            logger.lifecycle("No resource detected in NOTICE.txt.")
+            logger.info("No resource detected in NOTICE.txt.")
         }
 
         // Get resources in project
@@ -64,9 +64,9 @@ tasks.register<DefaultTask>("checkNotice") {
             .sortedBy { it.path }
 
         if (resources.isNotEmpty()) {
-            logger.lifecycle("Detected resources in project:\n${resources.joinToString("\n") { "  ${it.path}" }}")
+            logger.info("Detected resources in project:\n${resources.joinToString("\n") { "  ${it.path}" }}")
         } else {
-            logger.lifecycle("No resource detected in project.")
+            logger.info("No resource detected in project.")
         }
 
         // Check if resources listed in NOTICE.txt exist

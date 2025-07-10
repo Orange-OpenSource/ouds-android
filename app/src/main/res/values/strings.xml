@@ -115,13 +115,24 @@
     <string name="app_components_common_style_label">Style</string>
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
+    <string name="app_components_common_icon_a11y">Icon</string>
+
+    <!-- Components: badge -->
+    <string name="app_components_badge_label">Badge</string>
+    <string name="app_components_badge_description_text">The badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.</string>
+    <string name="app_components_badge_status_label">Status</string>
+    <string name="app_components_badge_size_label">Size</string>
+    <string name="app_components_badge_type_label">Type</string>
+    <string name="app_components_badge_standardType_label">Standard</string>
+    <string name="app_components_badge_countType_label">Count</string>
+    <string name="app_components_badge_iconType_label">Icon</string>
+    <string name="app_components_badge_count_label">Count</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>
     <string name="app_components_button_description_text">Buttons allow users to make choices or perform an action. They have multiple styles for various needs.</string>
     <string name="app_components_button_hierarchy_label">Hierarchy</string>
     <string name="app_components_button_iconOnlyLayout_label">Icon only</string>
-    <string name="app_components_button_icon_a11y">Icon</string>
 
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_label">Checkbox</string>

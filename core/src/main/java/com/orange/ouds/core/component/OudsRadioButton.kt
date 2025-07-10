@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import com.orange.ouds.core.component.common.outerBorder
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
@@ -37,16 +36,16 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -78,7 +77,7 @@ fun OudsRadioButton(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val isDisabledPreviewState = getPreviewState<OudsControl.State>() == OudsControl.State.Disabled
+    val isDisabledPreviewState = getPreviewEnumEntry<OudsControl.State>() == OudsControl.State.Disabled
     val isForbidden = error && (!enabled || isDisabledPreviewState)
     CheckedContent(
         expression = !isForbidden,
@@ -219,7 +218,7 @@ internal fun PreviewOudsRadioButton(
     highContrastModeEnabled: Boolean = false
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControl.State> {
+        PreviewEnumEntries<OudsControl.State> {
             OudsRadioButton(
                 selected = selected,
                 onClick = {},

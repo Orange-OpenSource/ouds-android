@@ -38,7 +38,6 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -47,8 +46,8 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -130,7 +129,7 @@ fun OudsTriStateCheckbox(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val isDisabledPreviewState = getPreviewState<OudsControl.State>() == OudsControl.State.Disabled
+    val isDisabledPreviewState = getPreviewEnumEntry<OudsControl.State>() == OudsControl.State.Disabled
     val isForbidden = error && (!enabled || isDisabledPreviewState)
     CheckedContent(
         expression = !isForbidden,
@@ -287,7 +286,7 @@ internal fun PreviewOudsCheckbox(
     highContrastModeEnabled: Boolean = false
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControl.State> {
+        PreviewEnumEntries<OudsControl.State> {
             OudsTriStateCheckbox(
                 state = toggleableState,
                 onClick = null,

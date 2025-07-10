@@ -104,13 +104,24 @@
     <string name="app_components_common_style_label">الأسلوب</string>
     <string name="app_components_common_label_label">التسمية</string>
     <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
+    <string name="app_components_common_icon_a11y">أيقون</string>
+
+    <!-- Components: badge -->
+    <string name="app_components_badge_label">شارة</string>
+    <string name="app_components_badge_description_text">الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
+    <string name="app_components_badge_status_label">الحالة</string>
+    <string name="app_components_badge_size_label">الحجم</string>
+    <string name="app_components_badge_type_label">النوع</string>
+    <string name="app_components_badge_standardType_label">قياسي</string>
+    <string name="app_components_badge_countType_label">عدد</string>
+    <string name="app_components_badge_iconType_label">أيقونة</string>
+    <string name="app_components_badge_count_label">عدد</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label">زر</string>
     <string name="app_components_button_description_text">الأزرار تسمح للمستخدمين باتخاذ قرارات أو أداء إجراء. لها عدة أنماط لتلبية احتياجات مختلفة.</string>
     <string name="app_components_button_hierarchy_label">التسلسل</string>
     <string name="app_components_button_iconOnlyLayout_label">رمز فقط</string>
-    <string name="app_components_button_icon_a11y">أيقون</string>
 
     <!-- Components: link -->
     <string name="app_components_link_label">رابط</string>

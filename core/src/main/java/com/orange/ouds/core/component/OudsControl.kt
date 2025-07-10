@@ -13,12 +13,8 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import com.orange.ouds.core.extensions.InteractionState
-import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
-import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.outerBorder
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 
 internal object OudsControl {
@@ -30,7 +26,7 @@ internal object OudsControl {
 
 @Composable
 internal fun getControlState(enabled: Boolean, interactionState: InteractionState): OudsControl.State {
-    return getPreviewState<OudsControl.State>().orElse {
+    return getPreviewEnumEntry<OudsControl.State>().orElse {
         when {
             !enabled -> OudsControl.State.Disabled
             interactionState == InteractionState.Hovered -> OudsControl.State.Hovered
