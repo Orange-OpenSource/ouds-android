@@ -12,13 +12,16 @@ app/src/alpha/res/drawable-v24/ic_launcher_background.xml
 app/src/alpha/res/drawable/ic_launcher_foreground.xml
 app/src/beta/res/drawable-v24/ic_launcher_background.xml
 app/src/beta/res/drawable/ic_launcher_foreground.xml
+app/src/main/res/drawable/ic_avatar.xml
 app/src/main/res/drawable/ic_border.xml
 app/src/main/res/drawable/ic_component_atom.xml
 app/src/main/res/drawable/ic_copy.xml
 app/src/main/res/drawable/ic_design_token_figma.xml
 app/src/main/res/drawable/ic_dimension.xml
 app/src/main/res/drawable/ic_filter_effects.xml
+app/src/main/res/drawable/ic_home.xml
 app/src/main/res/drawable/ic_layers.xml
+app/src/main/res/drawable/ic_notification_alert.xml
 app/src/main/res/drawable/ic_orange_call.xml
 app/src/main/res/drawable/ic_orange_filters.xml
 app/src/main/res/drawable/ic_orange_form_chevron_down.xml
@@ -27,6 +30,8 @@ app/src/main/res/drawable/ic_orange_menu_grid.xml
 app/src/main/res/drawable/ic_orange_palette.xml
 app/src/main/res/drawable/ic_orange_sms_message.xml
 app/src/main/res/drawable/ic_orange_tips_and_tricks.xml
+app/src/main/res/drawable/ic_settings.xml
+app/src/main/res/drawable/ic_shop_store.xml
 app/src/main/res/drawable/ic_solar_palette.xml
 app/src/main/res/drawable/ic_sosh_call.xml
 app/src/main/res/drawable/ic_sosh_filters.xml
