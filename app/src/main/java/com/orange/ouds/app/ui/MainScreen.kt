@@ -224,8 +224,7 @@ private fun getCurrentTheme(
 @PreviewLightDark
 @Composable
 private fun PreviewMainScreen() = OudsPreview {
-    // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which returns an empty list in Compose previews
-    // Fixing this issue implies several modifications which would add unnecessary complexity to the code
+    // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which does not work in Compose previews
     // See https://issuetracker.google.com/issues/240601093
     MainScreen(
         themes = listOf(OrangeTheme(), SoshTheme()),

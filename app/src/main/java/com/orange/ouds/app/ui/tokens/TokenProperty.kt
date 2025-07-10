@@ -16,6 +16,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.nestedName
+import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 import com.orange.ouds.core.theme.OudsBorders
 import com.orange.ouds.core.theme.OudsColorScheme
 import com.orange.ouds.core.theme.OudsElevations
@@ -238,7 +239,7 @@ private fun getTokenPaths(clazz: KClass<*>, fromClass: KClass<*>?, parentPath: S
                 // parameter is a nested class, we'll continue browsing the class tree
                 // When fromClass is encountered we call getTokenPaths recursively with a null fromClass parameter
                 // to indicate that we can now take token paths into account
-                parameterClass in clazz.nestedClasses -> {
+                parameterClass in clazz.previewCompatibleClass.nestedClasses -> {
                     getTokenPaths(
                         parameterClass,
                         fromClass.takeIf { parameterClass != fromClass },
