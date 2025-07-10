@@ -107,15 +107,15 @@
     <string name="app_components_common_icon_a11y">أيقون</string>
 
     <!-- Components: badge -->
-    <string name="app_components_badge_label">Badge</string>
-    <string name="app_components_badge_description_text">The badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.</string>
-    <string name="app_components_badge_status_label">Status</string>
-    <string name="app_components_badge_size_label">Size</string>
-    <string name="app_components_badge_type_label">Type</string>
-    <string name="app_components_badge_standardType_label">Standard</string>
-    <string name="app_components_badge_countType_label">Count</string>
-    <string name="app_components_badge_iconType_label">Icon</string>
-    <string name="app_components_badge_count_label">Count</string>
+    <string name="app_components_badge_label">شارة</string>
+    <string name="app_components_badge_description_text">الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
+    <string name="app_components_badge_status_label">الحالة</string>
+    <string name="app_components_badge_size_label">الحجم</string>
+    <string name="app_components_badge_type_label">النوع</string>
+    <string name="app_components_badge_standardType_label">قياسي</string>
+    <string name="app_components_badge_countType_label">عدد</string>
+    <string name="app_components_badge_iconType_label">أيقونة</string>
+    <string name="app_components_badge_count_label">عدد</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label">زر</string>
