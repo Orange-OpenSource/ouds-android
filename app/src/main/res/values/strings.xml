@@ -188,6 +188,18 @@
     <string name="app_components_link_backLayout_label">Back</string>
     <string name="app_components_link_nextLayout_label">Next</string>
 
+    <!-- Components: navigation bar -->
+    <string name="app_components_navigationBar_label">Navigation bar</string>
+    <string name="app_components_navigationBar_description_text">Navigation bars let people switch between UI views on smaller devices</string> <!--TODO update with OUDS description-->
+    <string name="app_components_navigationBar_itemCount_label">Item count</string>
+    <string name="app_components_navigationBar_alwaysShowLabel_label">Always show label</string>
+    <string name="app_components_navigationBar_lastItemEnabled_label">Last item enabled</string>
+    <string name="app_components_navigationBar_homeItem_label">Home</string>
+    <string name="app_components_navigationBar_shopItem_label">Shop</string>
+    <string name="app_components_navigationBar_notificationItem_label">Notifications</string>
+    <string name="app_components_navigationBar_accountItem_label">Account</string>
+    <string name="app_components_navigationBar_settingsItem_label">Settings</string>
+
     <!-- Components: radio button -->
     <string name="app_components_radioButton_label">Radio button</string>
     <string name="app_components_radioButton_description_text">Radio buttons allow users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.</string>
