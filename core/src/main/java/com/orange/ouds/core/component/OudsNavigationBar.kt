@@ -61,8 +61,8 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -207,7 +207,7 @@ fun RowScope.OudsNavigationBarItem(
 
 @Composable
 private fun getNavigationBarItemState(enabled: Boolean, interactionState: InteractionState): OudsNavigationBarItem.State {
-    return getPreviewState<OudsNavigationBarItem.State>().orElse {
+    return getPreviewEnumEntry<OudsNavigationBarItem.State>().orElse {
         when {
             !enabled -> OudsNavigationBarItem.State.Disabled
             interactionState == InteractionState.Hovered -> OudsNavigationBarItem.State.Hovered
@@ -364,7 +364,7 @@ internal fun PreviewOudsNavigationBarItem(
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         Row {
-            PreviewStates<OudsNavigationBarItem.State>(columnCount = 2) {
+            PreviewEnumEntries<OudsNavigationBarItem.State>(columnCount = 2) {
                 OudsNavigationBarItem(
                     modifier = Modifier
                         .size(width = 80.dp, height = 64.dp)
