@@ -24,6 +24,7 @@ interface OudsComponentsTokens {
     val inputTag: OudsInputTagTokens
     val link: OudsLinkTokens
     val linkMonochrome: OudsLinkMonoTokens
+    val navigationBar: OudsNavigationBarTokens
     val radioButton: OudsRadioButtonTokens
     val switch: OudsSwitchTokens
     val tag: OudsTagTokens
