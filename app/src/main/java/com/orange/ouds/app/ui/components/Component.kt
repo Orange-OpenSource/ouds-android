@@ -22,6 +22,7 @@ import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
 import com.orange.ouds.app.ui.components.chip.FilterChipDemoScreen
 import com.orange.ouds.app.ui.components.chip.SuggestionChipDemoScreen
+import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
@@ -74,6 +75,13 @@ sealed class Component(
         LightDarkResourceId(R.drawable.il_components_chip, R.drawable.il_components_chip_dark),
         R.string.app_components_chip_description_text,
         listOf(Variant.FilterChip, Variant.SuggestionChip)
+    )
+
+    data object ColoredBackground : Component(
+        R.string.app_components_coloredBackground_label,
+        LightDarkResourceId(R.drawable.il_components_colored_background, R.drawable.il_components_colored_background),
+        R.string.app_components_coloredBackground_description_text,
+        demoScreen = { ColoredBackgroundDemoScreen() }
     )
 
     data object Divider : Component(

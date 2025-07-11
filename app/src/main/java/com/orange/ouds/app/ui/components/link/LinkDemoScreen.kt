@@ -63,14 +63,14 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_link_size_label),
-            chipsLabels = sizes.map { it.name },
+            chipLabels = sizes.map { it.name },
             selectedChipIndex = sizes.indexOf(size),
             onSelectionChange = { id -> size = sizes[id] }
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_layout_label),
-            chipsLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
+            chipLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
         )
