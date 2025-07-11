@@ -68,6 +68,7 @@ private fun PreviewTokensScreen() = OudsPreview {
             TokenCategory.Elevation,
             TokenCategory.Opacity,
             TokenCategory.Typography
-        )
-    ) {}
+        ),
+        onTokenCategoryClick = {}
+    )
 }

@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
+import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
@@ -43,7 +44,7 @@ sealed class Component(
         fun fromId(componentId: Long) = components.firstOrNull { component -> component.id == componentId }
     }
 
-    val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
+    val id: Long = Component::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
 
     data object Badge : Component(
         R.string.app_components_badge_label,
@@ -104,7 +105,7 @@ sealed class Variant(
         fun fromId(variantId: Long?) = components.flatMap { it.variants }.firstOrNull { it.id == variantId }
     }
 
-    val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
+    val id: Long = Variant::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })
