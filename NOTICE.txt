@@ -37,6 +37,8 @@ app/src/main/res/drawable-hdpi/il_components_button.png
 app/src/main/res/drawable-hdpi/il_components_button_dark.png
 app/src/main/res/drawable-hdpi/il_components_checkbox.png
 app/src/main/res/drawable-hdpi/il_components_checkbox_dark.png
+app/src/main/res/drawable-hdpi/il_components_chip.png
+app/src/main/res/drawable-hdpi/il_components_chip_dark.png
 app/src/main/res/drawable-hdpi/il_components_link.png
 app/src/main/res/drawable-hdpi/il_components_link_dark.png
 app/src/main/res/drawable-hdpi/il_components_radiobutton.png
@@ -53,6 +55,8 @@ app/src/main/res/drawable-mdpi/il_components_button.png
 app/src/main/res/drawable-mdpi/il_components_button_dark.png
 app/src/main/res/drawable-mdpi/il_components_checkbox.png
 app/src/main/res/drawable-mdpi/il_components_checkbox_dark.png
+app/src/main/res/drawable-mdpi/il_components_chip.png
+app/src/main/res/drawable-mdpi/il_components_chip_dark.png
 app/src/main/res/drawable-mdpi/il_components_link.png
 app/src/main/res/drawable-mdpi/il_components_link_dark.png
 app/src/main/res/drawable-mdpi/il_components_radiobutton.png
@@ -69,6 +73,8 @@ app/src/main/res/drawable-xhdpi/il_components_button.png
 app/src/main/res/drawable-xhdpi/il_components_button_dark.png
 app/src/main/res/drawable-xhdpi/il_components_checkbox.png
 app/src/main/res/drawable-xhdpi/il_components_checkbox_dark.png
+app/src/main/res/drawable-xhdpi/il_components_chip.png
+app/src/main/res/drawable-xhdpi/il_components_chip_dark.png
 app/src/main/res/drawable-xhdpi/il_components_link.png
 app/src/main/res/drawable-xhdpi/il_components_link_dark.png
 app/src/main/res/drawable-xhdpi/il_components_radiobutton.png
@@ -85,6 +91,8 @@ app/src/main/res/drawable-xxhdpi/il_components_button.png
 app/src/main/res/drawable-xxhdpi/il_components_button_dark.png
 app/src/main/res/drawable-xxhdpi/il_components_checkbox.png
 app/src/main/res/drawable-xxhdpi/il_components_checkbox_dark.png
+app/src/main/res/drawable-xxhdpi/il_components_chip.png
+app/src/main/res/drawable-xxhdpi/il_components_chip_dark.png
 app/src/main/res/drawable-xxhdpi/il_components_link.png
 app/src/main/res/drawable-xxhdpi/il_components_link_dark.png
 app/src/main/res/drawable-xxhdpi/il_components_radiobutton.png
@@ -101,6 +109,8 @@ app/src/main/res/drawable-xxxhdpi/il_components_button.png
 app/src/main/res/drawable-xxxhdpi/il_components_button_dark.png
 app/src/main/res/drawable-xxxhdpi/il_components_checkbox.png
 app/src/main/res/drawable-xxxhdpi/il_components_checkbox_dark.png
+app/src/main/res/drawable-xxxhdpi/il_components_chip.png
+app/src/main/res/drawable-xxxhdpi/il_components_chip_dark.png
 app/src/main/res/drawable-xxxhdpi/il_components_link.png
 app/src/main/res/drawable-xxxhdpi/il_components_link_dark.png
 app/src/main/res/drawable-xxxhdpi/il_components_radiobutton.png
@@ -119,6 +129,7 @@ app/src/prod/res/drawable/ic_launcher_foreground.xml
 core/src/main/res/drawable/checkbox_indeterminate.xml
 core/src/main/res/drawable/checkbox_selected.xml
 core/src/main/res/drawable/chevron_left.xml
+core/src/main/res/drawable/chip_tick.xml
 core/src/main/res/drawable/radiobutton_selected.xml
 core/src/main/res/drawable/switch_selected.xml
 

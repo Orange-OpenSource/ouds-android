@@ -43,8 +43,8 @@ internal fun OudsButtonTextOnlyOnColoredBackgroundSample() {
 internal fun OudsButtonIconOnlySample() {
     OudsButton(
         icon = OudsButton.Icon(
-            Icons.Filled.FavoriteBorder,
-            "Content description"
+            imageVector = Icons.Filled.FavoriteBorder,
+            contentDescription = "Content description"
         ),
         onClick = { /* Do something! */ }
     )
@@ -56,8 +56,8 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                Icons.Filled.FavoriteBorder,
-                "Content description"
+                imageVector = Icons.Filled.FavoriteBorder,
+                contentDescription = "Content description"
             ),
             onClick = { /* Do something! */ }
         )
@@ -65,11 +65,11 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
 }
 
 @Composable
-internal fun OudsButtonIconAndTextSample() {
+internal fun OudsButtonTextAndIconSample() {
     OudsButton(
         icon = OudsButton.Icon(
-            Icons.Filled.FavoriteBorder,
-            "Content description"
+            imageVector = Icons.Filled.FavoriteBorder,
+            contentDescription = ""
         ),
         label = "Label",
         onClick = { /* Do something! */ }
@@ -77,13 +77,13 @@ internal fun OudsButtonIconAndTextSample() {
 }
 
 @Composable
-internal fun OudsButtonIconAndTextOnColoredBackgroundSample() {
+internal fun OudsButtonTextAndIconOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButton.Icon(
-                Icons.Filled.FavoriteBorder,
-                "Content description"
+                imageVector = Icons.Filled.FavoriteBorder,
+                contentDescription = ""
             ),
             label = "Label",
             onClick = { /* Do something! */ }
@@ -117,12 +117,12 @@ private fun PreviewOudsButtonIconOnlyOnColoredBackgroundSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsButtonIconAndTextSample() = OudsPreview {
-    OudsButtonIconAndTextSample()
+private fun PreviewOudsButtonTextAndIconSample() = OudsPreview {
+    OudsButtonTextAndIconSample()
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsButtonIconAndTextOnColoredBackgroundSample() = OudsPreview {
-    OudsButtonIconAndTextOnColoredBackgroundSample()
+private fun PreviewOudsButtonTextAndIconOnColoredBackgroundSample() = OudsPreview {
+    OudsButtonTextAndIconOnColoredBackgroundSample()
 }

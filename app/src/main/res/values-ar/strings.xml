@@ -100,7 +100,8 @@
     <string name="app_components_common_error_label">خطأ</string>
     <string name="app_components_common_layout_label">التخطيط</string>
     <string name="app_components_common_textOnlyLayout_label">نص فقط</string>
-    <string name="app_components_common_iconAndTextLayout_label">رمز + نص</string>
+    <string name="app_components_common_textAndIconLayout_label">رمز + نص</string>
+    <string name="app_components_common_iconOnlyLayout_label">رمز فقط</string>
     <string name="app_components_common_style_label">الأسلوب</string>
     <string name="app_components_common_label_label">التسمية</string>
     <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
@@ -121,24 +122,24 @@
     <string name="app_components_button_label">زر</string>
     <string name="app_components_button_description_text">الأزرار تسمح للمستخدمين باتخاذ قرارات أو أداء إجراء. لها عدة أنماط لتلبية احتياجات مختلفة.</string>
     <string name="app_components_button_hierarchy_label">التسلسل</string>
-    <string name="app_components_button_iconOnlyLayout_label">رمز فقط</string>
-
-    <!-- Components: link -->
-    <string name="app_components_link_label">رابط</string>
-    <string name="app_components_link_description_text">تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).</string>
-    <string name="app_components_link_backLayout_label">عوده</string>
-    <string name="app_components_link_nextLayout_label">التالي</string>
-    <string name="app_components_link_size_label">حجم</string>
-    <string name="app_components_checkbox_label">مربع اختيار</string>
-    <string name="app_components_checkbox_description_text"> تتيح خانات الاختيار للمستخدمين تحديد خيار واحد أو عدة خيارات من قائمة، أو تفعيل/تعطيل إعدادات، أو تأكيد إجراء معين.</string>
 
     <!-- Components: checkbox -->
+    <string name="app_components_checkbox_label">مربع اختيار</string>
+    <string name="app_components_checkbox_description_text"> تتيح خانات الاختيار للمستخدمين تحديد خيار واحد أو عدة خيارات من قائمة، أو تفعيل/تعطيل إعدادات، أو تأكيد إجراء معين.</string>
     <string name="app_components_checkbox_checkbox_label">خانة اختيار</string>
     <string name="app_components_checkbox_checkboxItem_label">عنصر خانة اختيار</string>
     <string name="app_components_checkbox_checkbox_a11y">وصف محتوى مربع الاختيار %s</string>
     <string name="app_components_checkbox_indeterminateCheckbox_label">خانة اختيار غير محدد</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">وصف محتوى مربع الاختيار غير المحدد %s</string>
     <string name="app_components_checkbox_indeterminateCheckboxItem_label">خانة اختيار اختيار غير محدد</string>
+
+    <!-- Components: chip -->
+    <string name="app_components_chip_label">عنصر</string>
+    <string name="app_components_chip_description_text">تساعد الـعناصر  المستخدمين على إدخال المعلومات، أو القيام باختيارات، أو تصفية المحتوى، أو تنفيذ إجراءات.</string>
+    <string name="app_components_chip_filterChip_label">نصر تصفية</string>
+    <string name="app_components_chip_filterChip_chipContent_label">تصفية</string>
+    <string name="app_components_chip_suggestionChip_label">عنصر اقتراح</string>
+    <string name="app_components_chip_suggestionChip_chipContent_label">اقتراح</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">نص المساعدة</string>
@@ -152,6 +153,13 @@
     <string name="app_components_divider_description_text">الفاصل ينظم واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.</string>
     <string name="app_components_divider_horizontalDivider_label">فاصل أفقي</string>
     <string name="app_components_divider_verticalDivider_label">فاصل عمودي</string>
+
+    <!-- Components: link -->
+    <string name="app_components_link_label">رابط</string>
+    <string name="app_components_link_description_text">تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).</string>
+    <string name="app_components_link_backLayout_label">عوده</string>
+    <string name="app_components_link_nextLayout_label">التالي</string>
+    <string name="app_components_link_size_label">حجم</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_label">زر الاختيار</string>

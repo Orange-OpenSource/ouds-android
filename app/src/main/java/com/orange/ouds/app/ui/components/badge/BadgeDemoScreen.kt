@@ -30,8 +30,8 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
@@ -54,14 +54,14 @@ fun BadgeDemoScreen() {
 @Composable
 private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
     with(state) {
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_badge_type_label),
             chipsLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
             onSelectionChange = { id -> type = BadgeDemoState.Type.entries[id] }
         )
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_badge_size_label),
             chipsLabels = OudsBadge.Size.entries.map { it.formattedName },

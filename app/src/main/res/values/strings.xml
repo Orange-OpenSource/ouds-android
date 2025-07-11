@@ -111,7 +111,8 @@
     <string name="app_components_common_error_label">Error</string>
     <string name="app_components_common_layout_label">Layout</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
-    <string name="app_components_common_iconAndTextLayout_label">Icon + text</string>
+    <string name="app_components_common_textAndIconLayout_label">Text + icon</string>
+    <string name="app_components_common_iconOnlyLayout_label">Icon only</string>
     <string name="app_components_common_style_label">Style</string>
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
@@ -132,7 +133,6 @@
     <string name="app_components_button_label">Button</string>
     <string name="app_components_button_description_text">Buttons allow users to make choices or perform an action. They have multiple styles for various needs.</string>
     <string name="app_components_button_hierarchy_label">Hierarchy</string>
-    <string name="app_components_button_iconOnlyLayout_label">Icon only</string>
 
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_label">Checkbox</string>
@@ -143,6 +143,14 @@
     <string name="app_components_checkbox_indeterminateCheckbox_label">Indeterminate checkbox</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">%s indeterminate checkbox content description</string>
     <string name="app_components_checkbox_indeterminateCheckboxItem_label">Indeterminate checkbox item</string>
+
+    <!-- Components: chip -->
+    <string name="app_components_chip_label">Chip</string>
+    <string name="app_components_chip_description_text">Chips help people enter information, make selections, filter content, or trigger actions.</string>
+    <string name="app_components_chip_filterChip_label">Filter chip</string>
+    <string name="app_components_chip_filterChip_chipContent_label">Filter</string>
+    <string name="app_components_chip_suggestionChip_label">Suggestion chip</string>
+    <string name="app_components_chip_suggestionChip_chipContent_label">Suggestion</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">Helper text</string>

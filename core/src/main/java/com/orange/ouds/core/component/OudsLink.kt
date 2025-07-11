@@ -23,11 +23,10 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LocalRippleConfiguration
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -142,7 +141,6 @@ fun OudsLink(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OudsLink(
     label: String,
@@ -188,74 +186,72 @@ private fun OudsLink(
         isTextOnly || linkState in listOf(OudsLink.State.Hovered, OudsLink.State.Pressed, OudsLink.State.Focused)
     }
 
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
-        Box(
-            modifier = modifier
-                .widthIn(min = minWidth)
-                .heightIn(min = minHeight)
-                .outerBorder(state = state)
-                .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlock.value)
-                .semantics {
-                    role = Role.Button
+    Box(
+        modifier = modifier
+            .widthIn(min = minWidth)
+            .heightIn(min = minHeight)
+            .outerBorder(state = state)
+            .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlock.value)
+            .semantics {
+                role = Role.Button
+            }
+            .clickable(
+                interactionSource = interactionSource,
+                indication = InteractionValuesIndication(contentColor, arrowColor, isUnderlined),
+                enabled = state != OudsLink.State.Disabled,
+                onClick = onClick
+            ),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        val columnGap: Dp
+        val iconSize: Dp
+        var textStyle: TextStyle
+        with(linkTokens) {
+            when (size) {
+                OudsLink.Size.Default -> {
+                    columnGap = if (arrow != null) spaceColumnGapArrowDefault.value else spaceColumnGapIconDefault.value
+                    iconSize = sizeIconDefault.value
+                    textStyle = OudsTheme.typography.label.strong.large
                 }
-                .clickable(
-                    interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(contentColor, arrowColor, isUnderlined),
-                    enabled = state != OudsLink.State.Disabled,
-                    onClick = onClick
-                ),
-            contentAlignment = Alignment.CenterStart
+                OudsLink.Size.Small -> {
+                    columnGap = if (arrow != null) spaceColumnGapArrowSmall.value else spaceColumnGapIconSmall.value
+                    iconSize = sizeIconSmall.value
+                    textStyle = OudsTheme.typography.label.strong.medium
+                }
+            }
+        }
+
+        if (isUnderlined.value) {
+            textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
+        }
+
+        val iconTint = if (arrow != null) arrowColor.value else contentColor.value
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(columnGap),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            val columnGap: Dp
-            val iconSize: Dp
-            var textStyle: TextStyle
-            with(linkTokens) {
-                when (size) {
-                    OudsLink.Size.Default -> {
-                        columnGap = if (arrow != null) spaceColumnGapArrowDefault.value else spaceColumnGapIconDefault.value
-                        iconSize = sizeIconDefault.value
-                        textStyle = OudsTheme.typography.label.strong.large
-                    }
-                    OudsLink.Size.Small -> {
-                        columnGap = if (arrow != null) spaceColumnGapArrowSmall.value else spaceColumnGapIconSmall.value
-                        iconSize = sizeIconSmall.value
-                        textStyle = OudsTheme.typography.label.strong.medium
-                    }
-                }
-            }
-
-            if (isUnderlined.value) {
-                textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
-            }
-
-            val iconTint = if (arrow != null) arrowColor.value else contentColor.value
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(columnGap),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (icon != null || arrow == OudsLink.Arrow.Back) {
-                    icon.orElse { OudsLink.Icon(painterResource(R.drawable.chevron_left)) }.Content(
-                        modifier = Modifier.size(iconSize),
-                        extraParameters = ExtraParameters(tint = iconTint)
-                    )
-                }
-                Text(
-                    modifier = Modifier.weight(1f, fill = false),
-                    text = label,
-                    color = contentColor.value,
-                    style = textStyle
+            if (icon != null || arrow == OudsLink.Arrow.Back) {
+                icon.orElse { OudsLink.Icon(painterResource(R.drawable.chevron_left)) }.Content(
+                    modifier = Modifier.size(iconSize),
+                    extraParameters = ExtraParameters(tint = iconTint)
                 )
-                if (arrow == OudsLink.Arrow.Next) {
-                    OudsLink.Icon(painterResource(R.drawable.chevron_left)).Content(
-                        modifier = Modifier
-                            .size(iconSize)
-                            .rotate(180f)
-                            .fillMaxHeight()
-                            .align(Alignment.Bottom),
-                        extraParameters = ExtraParameters(tint = iconTint)
-                    )
-                }
+            }
+            Text(
+                modifier = Modifier.weight(1f, fill = false),
+                text = label,
+                color = contentColor.value,
+                style = textStyle
+            )
+            if (arrow == OudsLink.Arrow.Next) {
+                OudsLink.Icon(painterResource(R.drawable.chevron_left)).Content(
+                    modifier = Modifier
+                        .size(iconSize)
+                        .rotate(180f)
+                        .fillMaxHeight()
+                        .align(Alignment.Bottom),
+                    extraParameters = ExtraParameters(tint = iconTint)
+                )
             }
         }
     }
@@ -366,8 +362,8 @@ object OudsLink {
     }
 
     /**
-     * A link icon in an [OudsLink].
-     * It is non-clickable and no content description is needed because a link label is always present.
+     * An icon in an [OudsLink].
+     * This icon is non-clickable and no content description is needed because a link label is always present.
      */
     open class Icon private constructor(
         graphicsObject: Any
@@ -441,7 +437,7 @@ internal fun PreviewOudsLink(
     parameter: OudsLinkPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
+        val icon = if (hasIcon) OudsLink.Icon(Icons.Filled.FavoriteBorder) else null
         val linkPreview: @Composable () -> Unit = {
             PreviewEnumEntries<OudsLink.State>(columnCount = 3) {
                 OudsLink(
