@@ -44,7 +44,7 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_layout_label),
-            chipsLabels = ChipDemoState.Layout.entries.map { stringResource(it.labelRes) },
+            chipLabels = ChipDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ChipDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = ChipDemoState.Layout.entries[id] }
         )

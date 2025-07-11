@@ -133,7 +133,6 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
         }
         
         fun formattableArgument(name: String?, format: (Context) -> String) = typedArgument(name, Formattable(format))
-        
 
         fun rawArgument(name: String?, value: String) = formattableArgument(name) { value }
 

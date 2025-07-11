@@ -39,10 +39,13 @@ fun FunctionCall.Builder.painterArgument(@DrawableRes id: Int) {
 fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = formattableArgument(name) { "\"${it.getString(id)}\"" }
 
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
+fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg formatArgs: Any) =
+    stringResourceArgument(Argument.ContentDescription, id, formatArgs)
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument(Argument.Label, label)
+fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringResourceArgument(Argument.Label, id)
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
 
