@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,6 +35,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
@@ -55,6 +57,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -116,6 +119,7 @@ fun OudsNavigationBar(
  * @param modifier [Modifier] applied to the navigation bar item.
  * @param label Label of the item.
  * @param enabled Controls the enabled state of the item. When `false`, the item will not be clickable.
+ * @param badge Optional badge display on the item icon.
  * @param alwaysShowLabel Whether the label should always be shown.
  * @param interactionSource [MutableInteractionSource] that will be used to dispatch events when this item is pressed, hovered or focused.
  */
@@ -127,6 +131,7 @@ fun RowScope.OudsNavigationBarItem(
     modifier: Modifier = Modifier,
     label: String? = null,
     enabled: Boolean = true,
+    badge: OudsNavigationBarItem.Badge? = null,
     alwaysShowLabel: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -176,7 +181,17 @@ fun RowScope.OudsNavigationBarItem(
             this@OudsNavigationBarItem.NavigationBarItem(
                 selected = selected,
                 onClick = onClick,
-                icon = { icon.Content() },
+                icon = {
+                    if (badge != null) {
+                        BadgedBox(
+                            badge = { badge.Content() },
+                        ) {
+                            icon.Content()
+                        }
+                    } else {
+                        icon.Content()
+                    }
+                },
                 modifier = Modifier.constrainAs(itemRef) {
                     centerTo(parent)
                 },
@@ -264,6 +279,10 @@ object OudsNavigationBarItem {
         val contentDescription: String
     ) : OudsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
+        companion object {
+            val Size = 24.dp
+        }
+
         /**
          * Creates an instance of [OudsNavigationBarItem.Icon].
          *
@@ -288,6 +307,36 @@ object OudsNavigationBarItem {
          */
         constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
     }
+
+    /**
+     * A badge in an [OudsNavigationBarItem].
+     *
+     * @see [OudsBadge]
+     *
+     * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadge.Size.Medium] size. Otherwise, it has an [OudsBadge.Size.Small] size.
+     */
+    class Badge(val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
+
+        /**
+         * Status of the badge.
+         * In a navigation bar it has always a negative status.
+         */
+        private val status = OudsBadge.Status.Negative
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            if (count != null) {
+                OudsBadge(count = count, modifier = modifier, status = this.status, size = OudsBadge.Size.Medium)
+            } else {
+                val startPosition = Icon.Size / 2
+                val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
+                val xOffset = startPosition - badgeSize
+                val yOffset = (startPosition - badgeSize) + 2.dp
+                OudsBadge(modifier = modifier.offset(x = xOffset, y = -yOffset), status = this.status, size = OudsBadge.Size.ExtraSmall)
+            }
+        }
+
+    }
 }
 
 @PreviewLightDark
@@ -307,6 +356,7 @@ internal fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarIte
 private data class OudsNavigationBarPreviewItem(
     val imageVector: ImageVector,
     val label: String? = null,
+    val badge: OudsNavigationBarItem.Badge? = null,
     val enabled: Boolean = true
 )
 
@@ -317,16 +367,18 @@ private val navigationBarPreviewItems = listOf(
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.Email,
-        label = "Emails"
+        label = "Emails",
+        badge = OudsNavigationBarItem.Badge(count = 24)
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.DateRange,
         label = "Agenda",
-        enabled = false
+        badge = OudsNavigationBarItem.Badge()
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.AccountCircle,
-        label = "Account"
+        label = "Account",
+        enabled = false
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.Settings,
@@ -350,6 +402,7 @@ internal fun PreviewOudsNavigationBar(
                         onClick = {},
                         icon = OudsNavigationBarItem.Icon(imageVector = item.imageVector, contentDescription = ""),
                         label = item.label,
+                        badge = item.badge,
                         enabled = item.enabled,
                         alwaysShowLabel = alwaysShowLabel
                     )
