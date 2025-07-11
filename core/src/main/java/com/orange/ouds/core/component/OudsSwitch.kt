@@ -44,6 +44,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -108,16 +109,19 @@ fun OudsSwitch(
         modifier = modifier
             .widthIn(min = switchTokens.sizeMinWidth.dp)
             .heightIn(min = switchTokens.sizeMinHeight.dp, max = switchTokens.sizeMaxHeight.dp)
-            .outerBorder(state = state)
             .then(toggleableModifier),
         contentAlignment = Alignment.Center,
     ) {
-        OudsSwitchIndicator(state = state, checked = checked)
+        OudsSwitchIndicator(
+            modifier = Modifier.outerBorder(state = state, shape = indicatorShape()),
+            state = state,
+            checked = checked
+        )
     }
 }
 
 @Composable
-internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
+internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean, modifier: Modifier = Modifier) {
     val switchTokens = OudsTheme.componentsTokens.switch
 
     // The cursor animation is obtained by using a column and updating its horizontalAlignment parameter
@@ -126,9 +130,9 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
         animationSpec = defaultAnimationSpec()
     )
     Column(
-        modifier = Modifier
+        modifier = modifier
             .size(width = switchTokens.sizeWidthTrack.dp, height = switchTokens.sizeHeightTrack.dp)
-            .clip(RoundedCornerShape(switchTokens.borderRadiusTrack.value))
+            .clip(indicatorShape())
             .background(indicatorBackgroundColor(state = state, checked = checked))
             .padding(start = switchTokens.spacePaddingInlineUnselected.value, end = switchTokens.spacePaddingInlineSelected.value),
         horizontalAlignment = horizontalAlignment,
@@ -165,6 +169,9 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
         }
     }
 }
+
+@Composable
+private fun indicatorShape(): Shape = RoundedCornerShape(OudsTheme.componentsTokens.switch.borderRadiusTrack.value)
 
 @Composable
 private fun indicatorBackgroundColor(state: OudsControl.State, checked: Boolean): Color {
