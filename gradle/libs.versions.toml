@@ -6,6 +6,7 @@ androidMinSdk = "21"
 androidTargetSdk = "35"
 browser = "1.8.0"
 composeBom = "2025.06.01"
+constraintlayoutCompose = "1.1.1"
 coreKtx = "1.16.0"
 dokka = "2.0.0"
 firebaseAppDistribution = "5.1.1"
@@ -31,6 +32,7 @@ zxing = "3.5.3"
 
 [libraries]
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
