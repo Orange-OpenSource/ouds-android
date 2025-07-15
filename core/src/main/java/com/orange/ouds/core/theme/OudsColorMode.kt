@@ -12,9 +12,24 @@
 
 package com.orange.ouds.core.theme
 
+/**
+ * The color mode associated with a colored background.
+ * This defines how content is displayed when it is layout on a colored background.
+ *
+ * @property tweak The theme tweak associated with this color mode.
+ * @property monochrome Indicates if the monochrome variant of components should be used.
+ *   When `true`, OUDS Android components are displayed using their monochrome variant, if it exists.
+ */
 @ConsistentCopyVisibility
 data class OudsColorMode private constructor(val tweak: OudsTheme.Tweak, val monochrome: Boolean, private val identifier: String? = null) {
 
+    /**
+     * Creates an instance of [OudsColorMode].
+     *
+     * @param tweak The theme tweak associated with this color mode.
+     * @param monochrome Indicates if the monochrome variant of components should be used.
+     *   When `true`, OUDS Android components are displayed using their monochrome variant, if it exists.
+     */
     constructor(tweak: OudsTheme.Tweak, monochrome: Boolean) : this(tweak, monochrome, null)
 
     companion object {
@@ -22,6 +37,7 @@ data class OudsColorMode private constructor(val tweak: OudsTheme.Tweak, val mon
         // This identifier is used to differentiate Unspecified from "light" color mode
         private const val UnspecifiedIdentifier = "OudsColorMode.Unspecified"
 
+        /** The unspecified color mode. */
         val Unspecified = OudsColorMode(tweak = OudsTheme.Tweak.ForceLight, monochrome = false, UnspecifiedIdentifier)
 
         internal fun fromString(string: String): OudsColorMode {
@@ -37,7 +53,7 @@ data class OudsColorMode private constructor(val tweak: OudsTheme.Tweak, val mon
         }
     }
 
-    /** `true` when this is [com.orange.ouds.core.theme.OudsColorMode.Unspecified]. */
+    /** `true` when this color mode is [com.orange.ouds.core.theme.OudsColorMode.Unspecified]. */
     val isUnspecified: Boolean
         get() = identifier == UnspecifiedIdentifier
 }
