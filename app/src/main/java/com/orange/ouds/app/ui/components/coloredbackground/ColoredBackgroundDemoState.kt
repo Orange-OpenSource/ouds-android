@@ -19,10 +19,11 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.foundation.extensions.orElse
 
 @Composable
 fun rememberColoredBackgroundDemoState(
-    color: OudsColoredBox.Color = OudsColoredBox.Color.BrandPrimary
+    color: OudsColoredBox.Color = ColoredBackgroundDemoStateDefaults.Color
 ) = rememberSaveable(color, saver = ColoredBackgroundDemoState.Saver) {
     ColoredBackgroundDemoState(color)
 }
@@ -37,4 +38,13 @@ class ColoredBackgroundDemoState(color: OudsColoredBox.Color) {
     }
 
     var color: OudsColoredBox.Color by mutableStateOf(color)
+}
+
+object ColoredBackgroundDemoStateDefaults {
+
+    val Color: OudsColoredBox.Color
+        @Composable
+        get() = OudsColoredBox.Color.BrandPrimary
+            .takeIf { it.mode.isSupported }
+            .orElse { OudsColoredBox.Color.entries.first { it.mode.isSupported } }
 }

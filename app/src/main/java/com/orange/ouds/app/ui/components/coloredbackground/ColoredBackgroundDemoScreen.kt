@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.coloredbackground
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
@@ -75,6 +77,14 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
 @Composable
 private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
     with(state) {
+        if (!color.mode.isSupported) {
+            Toast.makeText(
+                LocalContext.current,
+                stringResource(id = R.string.app_components_coloredBackground_unsupportedColor_text, color.formattedName),
+                Toast.LENGTH_LONG
+            ).show()
+            color = ColoredBackgroundDemoStateDefaults.Color
+        }
         OudsColoredBox(
             modifier = Modifier.fillMaxWidth(),
             color = color

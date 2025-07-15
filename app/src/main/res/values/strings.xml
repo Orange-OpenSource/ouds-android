@@ -156,6 +156,7 @@
     <string name="app_components_coloredBackground_label">Colored background</string>
     <string name="app_components_coloredBackground_description_text">Colored backgrounds use specific colors to maximize the contrast with content. Several components such as buttons or links adapt their display accordingly when they are displayed on colored backgrounds.</string>
     <string name="app_components_coloredBackground_color_label">Color</string>
+    <string name="app_components_coloredBackground_unsupportedColor_text">Current theme does not support \"%s\" color.</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">Helper text</string>
