@@ -38,7 +38,6 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
@@ -188,9 +187,9 @@ internal fun OudsCheckboxIndicator(
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
         val indicatorResource = when (value) {
-            ToggleableState.On -> R.drawable.checkbox_selected
+            ToggleableState.On -> OudsTheme.drawableResources.checkboxSelected
             ToggleableState.Off -> null
-            ToggleableState.Indeterminate -> R.drawable.checkbox_indeterminate
+            ToggleableState.Indeterminate -> OudsTheme.drawableResources.checkboxIndeterminate
         }
 
         indicatorResource?.let { resource ->

@@ -47,7 +47,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -232,7 +231,7 @@ private fun OudsLink(
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (icon != null || arrow == OudsLink.Arrow.Back) {
-                icon.orElse { OudsLink.Icon(painterResource(R.drawable.chevron_left)) }.Content(
+                icon.orElse { OudsLink.Icon(painterResource(OudsTheme.drawableResources.chevronLeft)) }.Content(
                     modifier = Modifier.size(iconSize),
                     extraParameters = ExtraParameters(tint = iconTint)
                 )
@@ -244,7 +243,7 @@ private fun OudsLink(
                 style = textStyle
             )
             if (arrow == OudsLink.Arrow.Next) {
-                OudsLink.Icon(painterResource(R.drawable.chevron_left)).Content(
+                OudsLink.Icon(painterResource(OudsTheme.drawableResources.chevronLeft)).Content(
                     modifier = Modifier
                         .size(iconSize)
                         .rotate(180f)

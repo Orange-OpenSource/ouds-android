@@ -45,7 +45,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -140,7 +139,7 @@ internal fun OudsChip(
             if (selected) {
                 tickColor.value?.let { tickColor ->
                     Icon(
-                        painter = painterResource(id = R.drawable.chip_tick),
+                        painter = painterResource(id = OudsTheme.drawableResources.tick),
                         tint = tickColor,
                         contentDescription = null
                     )

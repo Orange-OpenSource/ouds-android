@@ -90,8 +90,15 @@ interface OudsThemeContract : Parcelable {
     val spaceTokens: OudsSpaceSemanticTokens
 
     /**
-     * Customization of the OUDS components if needed
+     * Allows customization of OUDS components.
      */
     val componentsTokens: OudsComponentsTokens
         get() = OudsComponentsTokens()
+
+    /**
+     * Allows customization of drawable resources used by OUDS components.
+     * OUDS includes a set of default drawable resources. You can replace these with your own drawable resources by overriding this property in your theme.
+     */
+    val drawableResources: OudsDrawableResources
+        get() = OudsDrawableResources()
 }

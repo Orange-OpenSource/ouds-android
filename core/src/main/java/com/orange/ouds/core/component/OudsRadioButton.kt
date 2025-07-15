@@ -36,7 +36,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
@@ -128,7 +127,7 @@ internal fun OudsRadioButtonIndicator(state: OudsControl.State, selected: Boolea
         if (selected) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                painter = painterResource(R.drawable.radiobutton_selected),
+                painter = painterResource(OudsTheme.drawableResources.radioButtonSelected),
                 tint = indicatorColor(state = state, selected = true, error = error),
                 contentDescription = null
             )

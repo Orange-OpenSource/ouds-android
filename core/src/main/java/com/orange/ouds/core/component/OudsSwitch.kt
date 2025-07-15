@@ -50,7 +50,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
@@ -161,7 +160,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean, mod
                     modifier = Modifier
                         .alpha(switchTokens.opacityCheck.value)
                         .alpha(checkAlpha),
-                    painter = painterResource(id = R.drawable.switch_selected),
+                    painter = painterResource(id = OudsTheme.drawableResources.switchSelected),
                     contentDescription = null,
                     tint = checkColor
                 )

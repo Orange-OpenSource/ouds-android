@@ -62,16 +62,22 @@ app/src/main/res/drawable-xxxhdpi/il_tokens_grid_min_width_dark.png
 app/src/prod/res/drawable/ic_launcher_background.xml
 app/src/prod/res/drawable/ic_launcher_foreground.xml
 
-core/src/main/res/drawable/checkbox_indeterminate.xml
-core/src/main/res/drawable/checkbox_selected.xml
-core/src/main/res/drawable/chevron_left.xml
-core/src/main/res/drawable/chip_tick.xml
-core/src/main/res/drawable/radiobutton_selected.xml
-core/src/main/res/drawable/switch_selected.xml
-
 docs/assets/banner.png
 docs/assets/logo-icon.svg
 
+theme-contract/src/main/res/drawable/ic_checkbox_indeterminate.xml
+theme-contract/src/main/res/drawable/ic_checkbox_selected.xml
+theme-contract/src/main/res/drawable/ic_chevron_left.xml
+theme-contract/src/main/res/drawable/ic_tick.xml
+theme-contract/src/main/res/drawable/ic_radio_button_selected.xml
+theme-contract/src/main/res/drawable/ic_switch_selected.xml
+
+theme-sosh/src/main/res/drawable/sosh_checkbox_indeterminate.xml
+theme-sosh/src/main/res/drawable/sosh_checkbox_selected.xml
+theme-sosh/src/main/res/drawable/sosh_chevron_left.xml
+theme-sosh/src/main/res/drawable/sosh_tick.xml
+theme-sosh/src/main/res/drawable/sosh_radio_button_selected.xml
+theme-sosh/src/main/res/drawable/sosh_switch_selected.xml
 theme-sosh/src/main/res/font/sosh_black.ttf
 theme-sosh/src/main/res/font/sosh_bold.ttf
 theme-sosh/src/main/res/font/sosh_medium.ttf
