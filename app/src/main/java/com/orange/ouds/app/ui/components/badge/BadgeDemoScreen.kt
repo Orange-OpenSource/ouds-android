@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -126,7 +127,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                     OudsBadge(
                         modifier = modifier,
                         icon = OudsBadge.Icon(
-                            imageVector = Icons.Filled.FavoriteBorder,
+                            painter = painterResource(R.drawable.ic_heart),
                             contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
                         ),
                         status = status,
