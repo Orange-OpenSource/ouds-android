@@ -75,24 +75,26 @@ tasks.register<DefaultTask>("checkNotice") {
         // Check if resources are missing in NOTICE.txt
         val missingResources = resources.filter { !noticeResources.contains(it) }
 
-        if (surplusResources.isNotEmpty() || missingResources.isNotEmpty()) {
+        // Check if resources listed in NOTICE.txt are duplicated
+        val duplicatedResources = noticeResources.groupBy { it.path }.mapNotNull { (path, resources) ->
+            resources.takeIf { it.count() > 1 }?.first()
+        }
+
+        if (surplusResources.isNotEmpty() || missingResources.isNotEmpty() || duplicatedResources.isNotEmpty()) {
             val message = buildString {
-                if (surplusResources.isNotEmpty()) {
-                    appendLine(
-                        """
-                        |One or more files are listed in NOTICE.txt but do not exist:
-                        |${surplusResources.joinToString("\n") { "  ${it.path.removePrefix("${rootDir.path}/")}" }}
+                val appendErrorMessage: (String, List<File>) -> Unit = { errorMessage, resources ->
+                    if (resources.isNotEmpty()) {
+                        appendLine(
+                            """
+                        |${errorMessage}:
+                        |${resources.joinToString("\n") { "  ${it.path.removePrefix("${rootDir.path}/")}" }}
                         """.trimMargin()
-                    )
+                        )
+                    }
                 }
-                if (missingResources.isNotEmpty()) {
-                    appendLine(
-                        """
-                        |One or more files are not listed in NOTICE.txt:
-                        |${missingResources.joinToString("\n") { "  ${it.path.removePrefix("${rootDir.path}/")}" }}
-                        """.trimMargin()
-                    )
-                }
+                appendErrorMessage("One or more files are listed in NOTICE.txt but do not exist", surplusResources)
+                appendErrorMessage("One or more files are not listed in NOTICE.txt", missingResources)
+                appendErrorMessage("One or more files are duplicated in NOTICE.txt", duplicatedResources)
             }
 
             throw GradleException(message)
