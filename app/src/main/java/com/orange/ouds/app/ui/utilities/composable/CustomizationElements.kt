@@ -99,10 +99,15 @@ fun CustomizationTextField(
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
+    var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value)) }
+
     CustomizationTextField(
         label = label,
-        value = TextFieldValue(text = value),
-        onValueChange = { onValueChange(it.text) },
+        value = textFieldValue,
+        onValueChange = { newTextFieldValue ->
+            textFieldValue = newTextFieldValue
+            onValueChange(newTextFieldValue.text)
+        },
         modifier = modifier,
         enabled = enabled,
         keyboardOptions = keyboardOptions
