@@ -12,45 +12,42 @@
 
 package com.orange.ouds.app.ui.utilities.composable
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.priorityClickable
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun DetailScreenHeader(
     description: String,
-    illustration: Painter,
+    illustration: (@Composable () -> Unit),
     modifier: Modifier = Modifier,
-    tintIllustration: Boolean = true
 ) {
-    Column(modifier = modifier) {
-        Image(
-            painter = illustration,
-            colorFilter = if (tintIllustration) ColorFilter.tint(OudsTheme.colorScheme.content.default) else null,
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(186.dp)
-                .background(OudsTheme.colorScheme.surface.status.neutral.muted),
-            contentScale = ContentScale.None
-        )
-
+    Column(
+        modifier = modifier
+            // Intercept all click events before they reach interactive components in illustration composable
+            .priorityClickable(
+                interactionSource = null,
+                indication = null,
+                onClick = {}
+            )
+    ) {
+        Box(
+            modifier = Modifier.height(186.dp),
+            propagateMinConstraints = true
+        ) {
+            illustration()
+        }
         DetailScreenDescription(
             modifier = Modifier
                 .padding(horizontal = OudsTheme.grids.margin)
@@ -78,6 +75,6 @@ fun DetailScreenDescription(
 private fun PreviewDetailScreenHeader() = OudsPreview {
     DetailScreenHeader(
         description = stringResource(id = R.string.app_tokens_elevation_description_text),
-        illustration = painterResource(id = R.drawable.ic_layers)
+        illustration = { ImageIllustration(imageRes = R.drawable.ic_layers) }
     )
 }

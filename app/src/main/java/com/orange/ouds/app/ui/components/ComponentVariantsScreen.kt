@@ -27,7 +27,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
-import com.orange.ouds.app.ui.utilities.painterResource
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -40,8 +39,7 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
                 DetailScreenHeader(
                     modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.medium),
                     description = stringResource(id = component.descriptionRes),
-                    illustration = painterResource(id = component.imageRes),
-                    tintIllustration = false
+                    illustration = component.illustration
                 )
             }
 

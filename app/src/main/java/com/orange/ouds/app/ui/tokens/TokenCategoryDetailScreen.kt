@@ -62,6 +62,7 @@ import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
+import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
@@ -79,7 +80,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
             item {
                 DetailScreenHeader(
                     description = stringResource(id = tokenCategory.descriptionRes),
-                    illustration = painterResource(id = tokenCategory.imageRes)
+                    illustration = { ImageIllustration(imageRes = tokenCategory.imageRes) }
                 )
                 tokenCategory.valueCodeExample?.let { codeExample ->
                     CodeColumn(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall), codeExample = codeExample)
