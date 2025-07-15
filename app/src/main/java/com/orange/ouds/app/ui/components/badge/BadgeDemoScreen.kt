@@ -57,14 +57,14 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_badge_type_label),
-            chipsLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
+            chipLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
             onSelectionChange = { id -> type = BadgeDemoState.Type.entries[id] }
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_badge_size_label),
-            chipsLabels = OudsBadge.Size.entries.map { it.formattedName },
+            chipLabels = OudsBadge.Size.entries.map { it.formattedName },
             selectedChipIndex = OudsBadge.Size.entries.indexOf(size),
             onSelectionChange = { id -> size = OudsBadge.Size.entries[id] }
         )
