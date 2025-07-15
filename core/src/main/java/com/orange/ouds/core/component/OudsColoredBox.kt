@@ -76,8 +76,7 @@ fun OudsColoredBox(
                 contentAlignment = contentAlignment,
                 propagateMinConstraints = propagateMinConstraints,
                 content = {
-                    val tweak = if (color.mode.dark) OudsTheme.Tweak.ForceDark else OudsTheme.Tweak.ForceLight
-                    OudsThemeTweak(tweak) {
+                    OudsThemeTweak(color.mode.tweak) {
                         content()
                     }
                 }
