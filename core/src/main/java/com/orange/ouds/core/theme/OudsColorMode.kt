@@ -34,11 +34,11 @@ data class OudsColorMode private constructor(val tweak: OudsTheme.Tweak, val mon
 
     companion object {
 
-        // This identifier is used to differentiate Unspecified from "light" color mode
-        private const val UnspecifiedIdentifier = "OudsColorMode.Unspecified"
+        // This identifier is used to differentiate Unsupported from "light" color mode
+        private const val UnsupportedIdentifier = "OudsColorMode.Unsupported"
 
-        /** The unspecified color mode. */
-        val Unspecified = OudsColorMode(tweak = OudsTheme.Tweak.ForceLight, monochrome = false, UnspecifiedIdentifier)
+        /** An unsupported color mode. */
+        val Unsupported = OudsColorMode(tweak = OudsTheme.Tweak.ForceLight, monochrome = false, UnsupportedIdentifier)
 
         internal fun fromString(string: String): OudsColorMode {
             return when (string) {
@@ -47,13 +47,13 @@ data class OudsColorMode private constructor(val tweak: OudsTheme.Tweak, val mon
                 "mono-dark" -> OudsColorMode(tweak = OudsTheme.Tweak.ForceDark, monochrome = true)
                 "mono-light" -> OudsColorMode(tweak = OudsTheme.Tweak.ForceLight, monochrome = true)
                 // \uFE0F is the code for the variation selector that specifies that an emoji should be presented as an image
-                "⛔\uFE0F", "⛔" -> Unspecified
+                "⛔\uFE0F", "⛔" -> Unsupported
                 else -> error("Color mode $string is unknown.")
             }
         }
     }
 
-    /** `true` when this color mode is [com.orange.ouds.core.theme.OudsColorMode.Unspecified]. */
-    val isUnspecified: Boolean
-        get() = identifier == UnspecifiedIdentifier
+    /** `true` when this color mode is not [com.orange.ouds.core.theme.OudsColorMode.Unsupported]. */
+    val isSupported: Boolean
+        get() = identifier != UnsupportedIdentifier
 }
