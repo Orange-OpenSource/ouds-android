@@ -98,6 +98,10 @@ interface OudsThemeContract : Parcelable {
     /**
      * Allows customization of drawable resources used by OUDS components.
      * OUDS includes a set of default drawable resources. You can replace these with your own drawable resources by overriding this property in your theme.
+     *
+     * Caution:
+     * To avoid resource conflicts, Android recommends using a prefix or other consistent naming scheme that is unique to the module (or is unique across all project modules).
+     * So, we strongly recommend that you prefix your resources with the name of your theme. For example, if your theme is called "LoremIpsum" you might name your resources as lorem_ipsum_checkbox_selected, lorem_ipsum_tick, etc.
      */
     val drawableResources: OudsDrawableResources
         get() = OudsDrawableResources()
