@@ -253,7 +253,6 @@
 
 .paragraph,
 .table {
-  max-width: 45rem;
   letter-spacing: var(--font-letter-spacing-body-large);
 }
 
