@@ -76,7 +76,7 @@ tasks.register<DefaultTask>("checkNotice") {
         val missingResources = resources.filter { !noticeResources.contains(it) }
 
         // Check if resources listed in NOTICE.txt are duplicated
-        val duplicatedResources = noticeResources.groupBy { it.path }.mapNotNull { (path, resources) ->
+        val duplicatedResources = noticeResources.groupBy { it.path }.mapNotNull { (_, resources) ->
             resources.takeIf { it.count() > 1 }?.first()
         }
 
