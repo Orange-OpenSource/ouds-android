@@ -23,6 +23,5 @@ class OudsComponentsTokens(
     val link: OudsLinkTokens = OudsLinkTokens(),
     val linkMonochrome: OudsLinkMonoTokens = OudsLinkMonoTokens(),
     val radioButton: OudsRadioButtonTokens = OudsRadioButtonTokens(),
-    val skeleton: OudsSkeletonTokens = OudsSkeletonTokens(),
     val switch: OudsSwitchTokens = OudsSwitchTokens(),
 )
