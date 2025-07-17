@@ -86,6 +86,12 @@
   }
 }
 
+@media print, (min-width: 960px) {
+    .keyValue {
+        grid-template-columns: 25% 75%;
+    }
+}
+
 .theme-dark {
   --color-background: #141414;
   --color-key-orange: #ff7900;
@@ -253,7 +259,6 @@
 
 .paragraph,
 .table {
-  max-width: 45rem;
   letter-spacing: var(--font-letter-spacing-body-large);
 }
 
