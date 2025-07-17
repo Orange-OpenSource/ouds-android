@@ -72,7 +72,6 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -84,7 +83,7 @@ import kotlinx.parcelize.Parcelize
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
+ * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
@@ -134,7 +133,7 @@ fun OudsButton(
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
+ * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
@@ -185,7 +184,7 @@ fun OudsButton(
  * Other layouts are available for this component: *text only* and *icon only*.
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
+ * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.

@@ -47,7 +47,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -62,7 +61,6 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 
 /**
  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Link design guidelines**</a>
@@ -73,7 +71,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
  * If you need a navigation link, you can use the other API available for this component which display a text with a *back* or *next* chevron.
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  *
@@ -110,7 +108,7 @@ fun OudsLink(
  * An OUDS link which displays an [arrow] before ([OudsLink.Arrow.Back]) or after ([OudsLink.Arrow.Next]) a label.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
  *
@@ -233,7 +231,7 @@ private fun OudsLink(
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (icon != null || arrow == OudsLink.Arrow.Back) {
-                icon.orElse { OudsLink.Icon(painterResource(R.drawable.chevron_left)) }.Content(
+                icon.orElse { OudsLink.Icon(painterResource(OudsTheme.drawableResources.chevronLeft)) }.Content(
                     modifier = Modifier.size(iconSize),
                     extraParameters = ExtraParameters(tint = iconTint)
                 )
@@ -245,7 +243,7 @@ private fun OudsLink(
                 style = textStyle
             )
             if (arrow == OudsLink.Arrow.Next) {
-                OudsLink.Icon(painterResource(R.drawable.chevron_left)).Content(
+                OudsLink.Icon(painterResource(OudsTheme.drawableResources.chevronLeft)).Content(
                     modifier = Modifier
                         .size(iconSize)
                         .rotate(180f)
