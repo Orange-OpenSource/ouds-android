@@ -68,6 +68,7 @@ core/src/main/res/drawable/chevron_left.xml
 core/src/main/res/drawable/chip_tick.xml
 core/src/main/res/drawable/radiobutton_selected.xml
 core/src/main/res/drawable/switch_selected.xml
+core/src/main/res/drawable/tag_bullet.xml
 
 docs/assets/banner.png
 docs/assets/logo-icon.svg
