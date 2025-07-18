@@ -15,17 +15,16 @@ package com.orange.ouds.app.ui.components.chip
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Phone
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -59,13 +58,13 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
 @Composable
 fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChip.Icon) -> Unit) {
     val icons = listOf(
-        Icons.Filled.Person,
-        Icons.Filled.Phone
+        R.drawable.ic_call,
+        R.drawable.ic_sms_message
     )
     FlowRow(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
         repeat(ChipDemoState.ChipCount) { index ->
             val icon = OudsChip.Icon(
-                imageVector = icons[index % icons.count()],
+                painter = painterResource(icons[index % icons.count()]),
                 contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
             )
             content(index, icon)
@@ -77,7 +76,7 @@ fun FunctionCall.Builder.chipArguments(state: ChipDemoState) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
         constructorCallArgument<OudsChip.Icon>("icon") {
-            rawArgument("imageVector", "Icons.Filled.Person")
+            painterArgument(R.drawable.ic_call)
             contentDescriptionArgument(R.string.app_components_common_icon_a11y)
         }
     }

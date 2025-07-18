@@ -17,11 +17,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -29,6 +28,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
@@ -126,7 +127,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                     OudsBadge(
                         modifier = modifier,
                         icon = OudsBadge.Icon(
-                            imageVector = Icons.Filled.FavoriteBorder,
+                            painter = painterResource(R.drawable.ic_heart),
                             contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
                         ),
                         status = status,
@@ -149,7 +150,10 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState) {
             when (type) {
                 BadgeDemoState.Type.Standard -> {}
                 BadgeDemoState.Type.Count -> typedArgument("count", count)
-                BadgeDemoState.Type.Icon -> rawArgument("imageVector", "Icons.Filled.FavoriteBorder")
+                BadgeDemoState.Type.Icon -> constructorCallArgument<OudsBadge.Icon>("icon") {
+                    painterArgument(R.drawable.ic_heart)
+                    contentDescriptionArgument(R.string.app_components_common_icon_a11y)
+                }
             }
             typedArgument("status", status)
             typedArgument("size", size)
