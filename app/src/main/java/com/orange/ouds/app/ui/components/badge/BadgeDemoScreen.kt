@@ -66,14 +66,14 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-            label = stringResource(R.string.app_components_badge_size_label),
+            label = stringResource(R.string.app_components_common_size_label),
             chipLabels = OudsBadge.Size.entries.map { it.formattedName },
             selectedChipIndex = OudsBadge.Size.entries.indexOf(size),
             onSelectionChange = { id -> size = OudsBadge.Size.entries[id] }
         )
         val statuses = OudsBadge.Status.entries
         CustomizationDropdownMenu(
-            label = stringResource(id = R.string.app_components_badge_status_label),
+            label = stringResource(id = R.string.app_components_common_status_label),
             itemLabels = statuses.map { it.formattedName },
             selectedItemIndex = statuses.indexOf(status),
             onSelectionChange = { status = statuses[it] },

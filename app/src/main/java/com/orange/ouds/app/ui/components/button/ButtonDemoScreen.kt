@@ -67,7 +67,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-            label = stringResource(R.string.app_components_button_hierarchy_label),
+            label = stringResource(R.string.app_components_common_hierarchy_label),
             chipLabels = OudsButton.Hierarchy.entries.map { it.name },
             selectedChipIndex = OudsButton.Hierarchy.entries.indexOf(hierarchy),
             onSelectionChange = { id -> hierarchy = OudsButton.Hierarchy.entries[id] }

@@ -37,6 +37,7 @@ import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
+import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 
 @Composable
@@ -144,6 +145,15 @@ fun SwitchIllustration() = ComponentIllustration {
             checked = false,
             onCheckedChange = {}
         )
+    }
+}
+
+@Composable
+fun TagIllustration() = ComponentIllustration {
+    val label = stringResource(id = R.string.app_components_common_label_label)
+    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+        OudsTag(label = label)
+        OudsTag(label = label, hierarchy = OudsTag.Hierarchy.Muted)
     }
 }
 
