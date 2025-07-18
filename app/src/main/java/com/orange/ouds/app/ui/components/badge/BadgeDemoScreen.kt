@@ -28,6 +28,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
@@ -148,7 +150,10 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState) {
             when (type) {
                 BadgeDemoState.Type.Standard -> {}
                 BadgeDemoState.Type.Count -> typedArgument("count", count)
-                BadgeDemoState.Type.Icon -> rawArgument("imageVector", "Icons.Filled.FavoriteBorder")
+                BadgeDemoState.Type.Icon -> constructorCallArgument<OudsBadge.Icon>("icon") {
+                    painterArgument(R.drawable.ic_heart)
+                    contentDescriptionArgument(R.string.app_components_common_icon_a11y)
+                }
             }
             typedArgument("status", status)
             typedArgument("size", size)

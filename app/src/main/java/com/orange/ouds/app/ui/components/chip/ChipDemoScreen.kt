@@ -24,6 +24,7 @@ import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -75,7 +76,7 @@ fun FunctionCall.Builder.chipArguments(state: ChipDemoState) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
         constructorCallArgument<OudsChip.Icon>("icon") {
-            rawArgument("imageVector", "Icons.Filled.Person")
+            painterArgument(R.drawable.ic_call)
             contentDescriptionArgument(R.string.app_components_common_icon_a11y)
         }
     }
