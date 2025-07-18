@@ -117,6 +117,7 @@
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
     <string name="app_components_common_icon_a11y">Icon</string>
+    <string name="app_components_common_version_label">Component design version</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label">Badge</string>
