@@ -25,4 +25,5 @@ class OudsComponentsTokens(
     val radioButton: OudsRadioButtonTokens = OudsRadioButtonTokens(),
     val skeleton: OudsSkeletonTokens = OudsSkeletonTokens(),
     val switch: OudsSwitchTokens = OudsSwitchTokens(),
+    val tag: OudsTagTokens = OudsTagTokens()
 )
