@@ -28,6 +28,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun CheckboxDemoScreen(indeterminate: Boolean = false) {
@@ -41,7 +42,8 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) {
             } else {
                 CheckboxDemoContent(state = state)
             }
-        }
+        },
+        version = OudsVersion.Component.Checkbox
     )
 }
 

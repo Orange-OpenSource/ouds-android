@@ -33,6 +33,7 @@ import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsVerticalDivider
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun DividerDemoScreen(vertical: Boolean = false) {
@@ -40,7 +41,8 @@ fun DividerDemoScreen(vertical: Boolean = false) {
     DemoScreen(
         bottomSheetContent = { DividerDemoBottomSheetContent(state = state) },
         codeSnippet = { dividerDemoCodeSnippet(state = state, vertical = vertical) },
-        demoContent = { DividerDemoContent(state = state, vertical = vertical) }
+        demoContent = { DividerDemoContent(state = state, vertical = vertical) },
+        version = OudsVersion.Component.Divider
     )
 }
 
