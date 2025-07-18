@@ -10,8 +10,6 @@
  * Software description: Android library of reusable graphical components
  */
 
-import com.orange.ouds.gradle.findTypedProperty
-
 private val moduleDocumentationFilePaths = listOf(
     "global-raw-tokens",
     "theme-contract",
@@ -37,10 +35,6 @@ private fun getTokensVersion(filePath: String, pattern: String): String {
 
 tasks.register<DefaultTask>("checkTokensVersion") {
     doLast {
-        val gradlePropertiesTokensVersion = findTypedProperty<String>("tokensVersion")
-        if (gradlePropertiesTokensVersion != tokensVersion) {
-            throw GradleException("Tokens version in gradle.properties is not up to date. Please launch updateTokensVersion Gradle task.")
-        }
         moduleDocumentationFilePaths.forEach { moduleDocumentationFilePath ->
             if (getTokensVersion(moduleDocumentationFilePath, "^Tokens version (.*)") != tokensVersion) {
                 throw GradleException("Tokens version in $moduleDocumentationFilePath is not up to date. Please launch updateTokensVersion Gradle task.")
@@ -51,9 +45,6 @@ tasks.register<DefaultTask>("checkTokensVersion") {
 
 tasks.register<DefaultTask>("updateTokensVersion") {
     doLast {
-        File("gradle.properties").replace("(tokensVersion=).*".toRegex()) { matchResult ->
-            "${matchResult.groupValues[1]}$tokensVersion"
-        }
         moduleDocumentationFilePaths.forEach { moduleDocumentationFilePath ->
             File(moduleDocumentationFilePath).replace("(Tokens version ).*".toRegex()) { matchResult ->
                 "${matchResult.groupValues[1]}$tokensVersion"

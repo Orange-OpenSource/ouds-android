@@ -116,4 +116,9 @@ sealed class Screen(
         route = AboutDestinations.MaterialComponentsRoute,
         title = R.string.app_about_materialComponents_label
     )
+
+    data object AboutVersions : Screen(
+        route = AboutDestinations.VersionsRoute,
+        title = R.string.app_about_versions_label
+    )
 }

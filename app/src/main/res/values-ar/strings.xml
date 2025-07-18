@@ -187,11 +187,13 @@
     <string name="app_about_name_label">أدوات نظام التصميم</string>
     <string name="app_about_pullRequest_label">طلب السحب</string>
     <string name="app_about_pullRequestNumber_label">#%s</string>
-    <string name="app_about_tokensVersion_label">إصدار الرموز %s</string>
     <string name="app_about_privacyPolicy_label">سياسة الخصوصية</string>
     <string name="app_about_legalInformation_label">المعلومات القانونية</string>
     <string name="app_about_materialComponents_label">مكونات Material 3</string>
     <string name="app_about_changelog_label">سجل التغييرات</string>
     <string name="app_about_changeLanguage_label">تغيير اللغة</string>
+    <string name="app_about_versions_label">Versions</string>
+    <string name="app_about_versions_tokens_label">Tokens</string>
+    <string name="app_about_versions_components_label">Components</string>
 
 </resources>
