@@ -35,6 +35,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun ButtonDemoScreen() {
@@ -44,7 +45,8 @@ fun ButtonDemoScreen() {
         bottomSheetContent = { ButtonDemoBottomSheetContent(state = state) },
         codeSnippet = { buttonDemoCodeSnippet(state = state) },
         demoContent = { ButtonDemoContent(state = state) },
-        demoContentOnColoredBox = state.onColoredBox
+        demoContentOnColoredBox = state.onColoredBox,
+        version = OudsVersion.Component.Button
     )
 }
 

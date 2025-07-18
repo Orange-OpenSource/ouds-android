@@ -20,6 +20,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSuggestionChip
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun SuggestionChipDemoScreen() {
@@ -28,7 +29,8 @@ fun SuggestionChipDemoScreen() {
     DemoScreen(
         bottomSheetContent = { ChipDemoBottomSheetContent(state = state) },
         codeSnippet = { suggestionChipDemoCodeSnippet(state = state, context = context) },
-        demoContent = { SuggestionChipDemoContent(state = state) }
+        demoContent = { SuggestionChipDemoContent(state = state) },
+        version = OudsVersion.Component.Chip
     )
 }
 

@@ -40,6 +40,7 @@ import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun BadgeDemoScreen() {
@@ -48,7 +49,8 @@ fun BadgeDemoScreen() {
         description = stringResource(id = Component.Badge.descriptionRes),
         bottomSheetContent = { BadgeDemoBottomSheetContent(state = state) },
         codeSnippet = { badgeDemoCodeSnippet(state = state) },
-        demoContent = { BadgeDemoContent(state = state) }
+        demoContent = { BadgeDemoContent(state = state) },
+        version = OudsVersion.Component.Badge
     )
 }
 
