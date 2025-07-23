@@ -168,7 +168,6 @@ fun updateBuildConfig() {
 gradle.projectsEvaluated {
     tasks["preBuild"].apply {
         dependsOn(":checkNotice")
-        dependsOn(":checkTokensVersion")
         dependsOn(tasks["updateAppChangelog"])
     }
     updateBuildConfig()

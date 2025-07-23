@@ -12,6 +12,7 @@
 
 plugins {
     id("org.jetbrains.dokka")
+    id("documentation")
 }
 
 dokka {
@@ -29,4 +30,9 @@ dokka {
     dokkaPublications.html {
         failOnWarning.set(true)
     }
+}
+
+gradle.projectsEvaluated {
+    tasks["dokkaGenerate"].dependsOn(tasks["prepareDocumentation"]) // Case where dokkaGenerate is called from the subproject
+    tasks["dokkaGenerateModuleHtml"].dependsOn(tasks["prepareDocumentation"]) // Case where dokkaGenerate is called from the root project
 }
