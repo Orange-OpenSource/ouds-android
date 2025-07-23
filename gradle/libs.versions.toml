@@ -25,6 +25,7 @@ kotlin = "2.2.0"
 material = "1.12.0"
 mockitoAndroid = "5.18.0"
 mockitoKotlin = "6.0.0"
+mustacheJava = "0.9.14"
 navigationCompose = "2.9.3"
 paparazzi = "2.0.0-alpha02"
 zxing = "3.5.3"
@@ -68,6 +69,7 @@ kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", vers
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockitoAndroid" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
+mustache-java = { module = "com.github.spullara.mustache.java:compiler", version.ref = "mustacheJava" }
 zxing-core = { module = "com.google.zxing:core", version.ref = "zxing" }
 zxing-javase = { module = "com.google.zxing:javase", version.ref = "zxing" }
 
