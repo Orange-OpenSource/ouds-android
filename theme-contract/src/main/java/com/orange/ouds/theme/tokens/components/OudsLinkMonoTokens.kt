@@ -18,10 +18,10 @@ package com.orange.ouds.theme.tokens.components
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 
-open class OudsLinkMonoTokens(
-    val colorContentDisabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.Medium, OudsColorKeyToken.Repository.Opacity.White.Medium),
-    val colorContentEnabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.White),
-    val colorContentFocus: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.White),
-    val colorContentHover: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.White),
-    val colorContentPressed: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.High, OudsColorKeyToken.Repository.Opacity.White.Higher)
-)
+interface OudsLinkMonoTokens {
+    val colorContentDisabled: OudsColorKeyToken
+    val colorContentEnabled: OudsColorKeyToken
+    val colorContentFocus: OudsColorKeyToken
+    val colorContentHover: OudsColorKeyToken
+    val colorContentPressed: OudsColorKeyToken
+}

@@ -18,12 +18,12 @@ package com.orange.ouds.theme.tokens.components
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.DimensionRawTokens
 
-open class OudsBadgeTokens(
-    val sizeLarge: Float = DimensionRawTokens.dimension250,
-    val sizeMedium: Float = DimensionRawTokens.dimension200,
-    val sizeSmall: Float = DimensionRawTokens.dimension150,
-    val sizeXsmall: Float = DimensionRawTokens.dimension100,
-    val spaceInset: Float = DimensionRawTokens.dimensionOutOfSystem75,
-    val spacePaddingInlineLarge: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.TwoExtraSmall,
-    val spacePaddingInlineMedium: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ThreeExtraSmall
-)
+interface OudsBadgeTokens {
+    val sizeLarge: Float
+    val sizeMedium: Float
+    val sizeSmall: Float
+    val sizeXsmall: Float
+    val spaceInset: Float
+    val spacePaddingInlineLarge: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineMedium: OudsSpaceKeyToken.PaddingInline
+}

@@ -20,27 +20,27 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.DimensionRawTokens
 
-open class OudsTagTokens(
-    val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
-    val sizeAssetDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
-    val sizeAssetSmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Small.SizeSmall,
-    val sizeMinHeightDefault: Float = DimensionRawTokens.dimension400,
-    val sizeMinHeightInteractiveArea: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMinHeightSmall: Float = DimensionRawTokens.dimension300,
-    val sizeMinWidthDefault: Float = DimensionRawTokens.dimension600,
-    val sizeMinWidthSmall: Float = DimensionRawTokens.dimension550,
-    val spaceColumnGapDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
-    val spaceColumnGapSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
-    val spaceInsetBulletDefault: Float = DimensionRawTokens.dimensionOutOfSystem75,
-    val spaceInsetBulletSmall: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.ThreeExtraSmall,
-    val spaceInsetIconDefault: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.FourExtraSmall,
-    val spaceInsetIconSmall: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.None,
-    val spaceInsetLoaderDefault: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.ThreeExtraSmall,
-    val spaceInsetLoaderSmall: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.FourExtraSmall,
-    val spacePaddingBlockDefault: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall,
-    val spacePaddingBlockSmall: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ThreeExtraSmall,
-    val spacePaddingInlineAssetDefault: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ExtraSmall,
-    val spacePaddingInlineAssetSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.TwoExtraSmall,
-    val spacePaddingInlineDefault: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Medium,
-    val spacePaddingInlineSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Small
-)
+interface OudsTagTokens {
+    val borderRadius: OudsBorderKeyToken.Radius
+    val sizeAssetDefault: OudsSizeKeyToken.Icon
+    val sizeAssetSmall: OudsSizeKeyToken.Icon
+    val sizeMinHeightDefault: Float
+    val sizeMinHeightInteractiveArea: OudsSizeKeyToken
+    val sizeMinHeightSmall: Float
+    val sizeMinWidthDefault: Float
+    val sizeMinWidthSmall: Float
+    val spaceColumnGapDefault: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapSmall: OudsSpaceKeyToken.ColumnGap
+    val spaceInsetBulletDefault: Float
+    val spaceInsetBulletSmall: OudsSpaceKeyToken.Inset
+    val spaceInsetIconDefault: OudsSpaceKeyToken.Inset
+    val spaceInsetIconSmall: OudsSpaceKeyToken.Inset
+    val spaceInsetLoaderDefault: OudsSpaceKeyToken.Inset
+    val spaceInsetLoaderSmall: OudsSpaceKeyToken.Inset
+    val spacePaddingBlockDefault: OudsSpaceKeyToken.PaddingBlock
+    val spacePaddingBlockSmall: OudsSpaceKeyToken.PaddingBlock
+    val spacePaddingInlineAssetDefault: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineAssetSmall: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineDefault: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineSmall: OudsSpaceKeyToken.PaddingInline
+}
