@@ -15,7 +15,7 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-interface OudsColoredBackgroundModeSemanticTokens {
+interface OudsColorModeSemanticTokens {
     val navigationBarDark: String
     val navigationBarLight: String
     val onBgEmphasizedDark: String
