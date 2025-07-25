@@ -137,9 +137,11 @@ tasks.register<DefaultTask>("gitTagAppDistribution") {
 
     doLast {
         val sha = findTypedProperty<String>("appDistributionGitTagSha").orEmpty()
-        val tag = "${gitTagPrefix}-${sha.take(7)}"
-        gitHubApi {
-            createTag(tag, sha)
+        if (gitTagPrefix.isNotEmpty()) {
+            val tag = "${gitTagPrefix}-${sha.take(7)}"
+            gitHubApi {
+                createTag(tag, sha)
+            }
         }
     }
 }
