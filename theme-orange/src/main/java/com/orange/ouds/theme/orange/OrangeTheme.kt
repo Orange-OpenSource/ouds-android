@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.orange
 
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.orange.tokens.components.OrangeComponentsTokens
 import com.orange.ouds.theme.orange.tokens.material.OrangeMaterialColorTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeBorderSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorSemanticTokens
@@ -22,6 +23,7 @@ import com.orange.ouds.theme.orange.tokens.semantic.OrangeGridSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeOpacitySemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeSizeSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeSpaceSemanticTokens
+import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
@@ -67,4 +69,7 @@ open class OrangeTheme : OudsThemeContract {
 
     override val spaceTokens: OudsSpaceSemanticTokens
         get() = OrangeSpaceSemanticTokens()
+
+    override val componentsTokens: OudsComponentsTokens
+        get() = OrangeComponentsTokens()
 }
