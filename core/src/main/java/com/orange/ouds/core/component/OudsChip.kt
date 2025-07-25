@@ -139,6 +139,7 @@ internal fun OudsChip(
             if (selected) {
                 tickColor.value?.let { tickColor ->
                     Icon(
+                        modifier = Modifier.size(chipTokens.sizeIcon.value * iconScale),
                         painter = painterResource(id = OudsTheme.drawableResources.tick),
                         tint = tickColor,
                         contentDescription = null
