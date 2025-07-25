@@ -6,6 +6,7 @@ on:
 jobs:
   app-distribution-alpha:
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
