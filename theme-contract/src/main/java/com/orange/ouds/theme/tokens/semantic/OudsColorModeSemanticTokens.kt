@@ -15,7 +15,7 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-interface OudsColoredBackgroundModeSemanticTokens {
+interface OudsColorModeSemanticTokens {
     val onBgEmphasizedDark: String
     val onBgEmphasizedLight: String
     val onBgPrimaryDark: String

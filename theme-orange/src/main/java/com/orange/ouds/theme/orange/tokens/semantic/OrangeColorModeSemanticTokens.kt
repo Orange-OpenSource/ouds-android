@@ -15,9 +15,9 @@
 
 package com.orange.ouds.theme.orange.tokens.semantic
 
-import com.orange.ouds.theme.tokens.semantic.OudsColoredBackgroundModeSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorModeSemanticTokens
 
-data class OrangeColoredBackgroundModeSemanticTokens(
+data class OrangeColorModeSemanticTokens(
     override val onBgEmphasizedDark: String = "dark",
     override val onBgEmphasizedLight: String = "dark",
     override val onBgPrimaryDark: String = "dark",
@@ -62,4 +62,4 @@ data class OrangeColoredBackgroundModeSemanticTokens(
     override val onStatusWarningEmphasizedLight: String = "mono-light",
     override val onStatusWarningMutedDark: String = "dark",
     override val onStatusWarningMutedLight: String = "light"
-) : OudsColoredBackgroundModeSemanticTokens
+) : OudsColorModeSemanticTokens
