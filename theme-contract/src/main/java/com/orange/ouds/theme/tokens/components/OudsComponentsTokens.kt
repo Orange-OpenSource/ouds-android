@@ -12,16 +12,16 @@
 
 package com.orange.ouds.theme.tokens.components
 
-class OudsComponentsTokens(
-    val badge: OudsBadgeTokens = OudsBadgeTokens(),
-    val button: OudsButtonTokens = OudsButtonTokens(),
-    val buttonMonochrome: OudsButtonMonoTokens = OudsButtonMonoTokens(),
-    val checkbox: OudsCheckboxTokens = OudsCheckboxTokens(),
-    val chip: OudsChipTokens = OudsChipTokens(),
-    val controlItem: OudsControlItemTokens = OudsControlItemTokens(),
-    val divider: OudsDividerTokens = OudsDividerTokens(),
-    val link: OudsLinkTokens = OudsLinkTokens(),
-    val linkMonochrome: OudsLinkMonoTokens = OudsLinkMonoTokens(),
-    val radioButton: OudsRadioButtonTokens = OudsRadioButtonTokens(),
-    val switch: OudsSwitchTokens = OudsSwitchTokens(),
-)
+interface OudsComponentsTokens {
+    val badge: OudsBadgeTokens
+    val button: OudsButtonTokens
+    val buttonMonochrome: OudsButtonMonoTokens
+    val checkbox: OudsCheckboxTokens
+    val chip: OudsChipTokens
+    val controlItem: OudsControlItemTokens
+    val divider: OudsDividerTokens
+    val link: OudsLinkTokens
+    val linkMonochrome: OudsLinkMonoTokens
+    val radioButton: OudsRadioButtonTokens
+    val switch: OudsSwitchTokens
+}
