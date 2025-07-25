@@ -33,6 +33,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun LinkDemoScreen() {
@@ -42,7 +43,8 @@ fun LinkDemoScreen() {
         bottomSheetContent = { LinkDemoBottomSheetContent(state = state) },
         codeSnippet = { linkDemoCodeSnippet(state = state) },
         demoContent = { LinkDemoContent(state = state) },
-        demoContentOnColoredBox = state.onColoredBox
+        demoContentOnColoredBox = state.onColoredBox,
+        version = OudsVersion.Component.Link
     )
 }
 
