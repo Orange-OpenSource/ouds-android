@@ -21,6 +21,7 @@ import com.orange.ouds.app.ui.about.AboutNavigationKey.MenuItemIdKey
 object AboutDestinations {
     const val FileRoute = "ouds/module/about/file"
     const val MaterialComponentsRoute = "ouds/module/about/materialComponents"
+    const val VersionsRoute = "ouds/module/about/versions"
 }
 
 object AboutNavigationKey {
@@ -39,5 +40,9 @@ fun NavGraphBuilder.addAboutNavGraph() {
 
     composable(AboutDestinations.MaterialComponentsRoute) { _ ->
         AboutMaterialComponentsScreen()
+    }
+
+    composable(AboutDestinations.VersionsRoute) { _ ->
+        AboutVersionsScreen()
     }
 }

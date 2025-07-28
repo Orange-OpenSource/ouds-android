@@ -32,6 +32,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsRadioButtonItem
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun RadioButtonItemDemoScreen() {
@@ -40,7 +41,8 @@ fun RadioButtonItemDemoScreen() {
         bottomSheetContent = { RadioButtonItemDemoBottomSheetContent(state = state) },
         codeSnippet = { radioButtonItemDemoCodeSnippet(state = state) },
         demoContent = { RadioButtonItemDemoContent(state = state) },
-        demoContentPaddingValues = PaddingValues()
+        demoContentPaddingValues = PaddingValues(),
+        version = OudsVersion.Component.RadioButton
     )
 }
 

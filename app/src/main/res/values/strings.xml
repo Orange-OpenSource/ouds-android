@@ -117,6 +117,7 @@
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
     <string name="app_components_common_icon_a11y">Icon</string>
+    <string name="app_components_common_version_label">Component design version</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label">Badge</string>
@@ -198,11 +199,13 @@
     <string name="app_about_name_label">Design System Toolbox</string>
     <string name="app_about_pullRequest_label">Pull request\u0020</string>
     <string name="app_about_pullRequestNumber_label">#%s</string>
-    <string name="app_about_tokensVersion_label">Tokens version %s</string>
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
     <string name="app_about_legalInformation_label">Legal information</string>
     <string name="app_about_materialComponents_label">Material 3 components</string>
     <string name="app_about_changelog_label">Changelog</string>
     <string name="app_about_changeLanguage_label">Change language</string>
+    <string name="app_about_versions_label">Versions</string>
+    <string name="app_about_versions_tokens_label">Tokens</string>
+    <string name="app_about_versions_components_label">Components</string>
 
 </resources>

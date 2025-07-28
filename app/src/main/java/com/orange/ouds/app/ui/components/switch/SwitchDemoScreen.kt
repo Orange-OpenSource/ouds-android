@@ -25,6 +25,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun SwitchDemoScreen() {
@@ -32,7 +33,8 @@ fun SwitchDemoScreen() {
     DemoScreen(
         bottomSheetContent = { SwitchDemoBottomSheetContent(state = state) },
         codeSnippet = { switchDemoCodeSnippet(state = state) },
-        demoContent = { SwitchDemoContent(state = state) }
+        demoContent = { SwitchDemoContent(state = state) },
+        version = OudsVersion.Component.Switch
     )
 }
 
