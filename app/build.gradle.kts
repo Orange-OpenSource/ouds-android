@@ -14,7 +14,8 @@ import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.findTypedProperty
-import com.orange.ouds.gradle.gitHubApi
+import com.orange.ouds.gradle.gitHubGraphQLApi
+import com.orange.ouds.gradle.gitHubRestApi
 import com.orange.ouds.gradle.updateChangelog
 
 plugins {
@@ -153,10 +154,15 @@ fun updateBuildConfig() {
     val tokensVersion = findTypedProperty<String>("tokensVersion").orEmpty()
 
     val gitHubWorkflow = Environment.getVariablesOrNull("GITHUB_WORKFLOW").first()
-    val pullRequestNumber = if (gitHubWorkflow == "app-distribution-alpha") {
-        gitHubApi {
+    val issueNumbers = if (gitHubWorkflow == "app-distribution-alpha") {
+        gitHubRestApi {
             val pullRequests = getPullRequests()
-            pullRequests.firstOrNull { it.branchName == Environment.branchName }?.number
+            pullRequests.firstOrNull { it.branchName == Environment.branchName }
+                ?.let { pullRequest ->
+                    gitHubGraphQLApi {
+                        getPullRequestClosingIssues(pullRequest.number).map { it.number }
+                    }
+                }
         }
     } else {
         null
@@ -164,7 +170,7 @@ fun updateBuildConfig() {
 
     android.defaultConfig {
         buildConfigField("String", "TOKENS_VERSION", "\"$tokensVersion\"")
-        buildConfigField("String", "PULL_REQUEST_NUMBER", if (pullRequestNumber != null) "\"$pullRequestNumber\"" else "null")
+        buildConfigField("int[]", "ISSUE_NUMBERS", if (issueNumbers != null) "new int[]{${issueNumbers.joinToString(", ")}}" else "null")
     }
 }
 
