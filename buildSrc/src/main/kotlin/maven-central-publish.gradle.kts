@@ -30,11 +30,13 @@ apply {
     }
 }
 
-tasks.register<Jar>("dokkaJar") {
-    dependsOn(tasks["dokkaGenerate"])
-    from(layout.buildDirectory.dir("dokka"))
-    destinationDirectory = layout.buildDirectory.dir("outputs")
-    archiveClassifier.set("javadoc")
+if (tasks.findByName("dokkaGenerate") != null) {
+    tasks.register<Jar>("dokkaJar") {
+        dependsOn(tasks["dokkaGenerate"])
+        from(layout.buildDirectory.dir("dokka"))
+        destinationDirectory = layout.buildDirectory.dir("outputs")
+        archiveClassifier.set("javadoc")
+    }
 }
 
 afterEvaluate {
