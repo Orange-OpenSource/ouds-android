@@ -38,7 +38,7 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
             null
         }
 
-        var exception = if (output == null) GradleException("Netlify deploy failed") else null
+        var exception = if (output == null) GradleException("Netlify deploy failed.") else null
 
         val outputLines = output.orEmpty()
             .replace("\\x1B\\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]".toRegex(), "") // Removes ANSI colors from output
@@ -71,9 +71,17 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
                     ?.getOrNull(1)
             }
 
+        if (exception == null && netlifyDeployPreviewUrl == null) {
+            exception = GradleException("Could not parse Netlify deploy preview URL.")
+        }
+
         val netlifyDeployLogUrl = outputLines.firstNotNullOfOrNull { "^Build logs:\\s+(.*)$".toRegex().find(it) }
             ?.groupValues
             ?.getOrNull(1)
+
+        if (exception == null && netlifyDeployLogUrl == null) {
+            exception = GradleException("Could not parse Netlify deploy log URL.")
+        }
 
         // Save deploy preview URL in a file in order to update GitHub Netlify environment URL later on
         File("netlify_deploy_preview_url.txt").writeText(netlifyDeployPreviewUrl.orEmpty())
