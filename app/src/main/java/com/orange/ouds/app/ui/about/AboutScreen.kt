@@ -29,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -80,23 +81,28 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
         LazyColumn {
             item {
                 val version = stringResource(R.string.app_about_version_label, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
-                val pullRequestNumber: String? = BuildConfig.PULL_REQUEST_NUMBER
+                val issueNumbers: IntArray? = BuildConfig.ISSUE_NUMBERS
                 ListItem(
                     modifier = Modifier.listItemHorizontalPadding(),
                     headlineContent = {
                         Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
                             Text(text = stringResource(id = R.string.app_about_name_label), style = OudsTheme.typography.heading.extraLarge)
                             Text(text = version, style = OudsTheme.typography.body.default.large)
-                            if (pullRequestNumber != null) {
-                                val pullRequest = buildAnnotatedString {
-                                    append(stringResource(R.string.app_about_pullRequest_label))
-                                    withLink(LinkAnnotation.Url("https://github.com/Orange-OpenSource/ouds-android/pull/$pullRequestNumber")) {
-                                        withStyle(SpanStyle(OudsTheme.colorScheme.content.brandPrimary)) {
-                                            append(stringResource(R.string.app_about_pullRequestNumber_label, pullRequestNumber))
+                            if (issueNumbers != null) {
+                                val issues = buildAnnotatedString {
+                                    append(pluralStringResource(R.plurals.app_about_issues_label, issueNumbers.count()))
+                                    issueNumbers.forEachIndexed { index, issueNumber ->
+                                        if (index >= 1) {
+                                            append(" ")
+                                        }
+                                        withLink(LinkAnnotation.Url("https://github.com/Orange-OpenSource/ouds-android/issues/$issueNumber")) {
+                                            withStyle(SpanStyle(OudsTheme.colorScheme.content.brandPrimary)) {
+                                                append(stringResource(R.string.app_about_issueNumber_label, issueNumber))
+                                            }
                                         }
                                     }
                                 }
-                                Text(text = pullRequest, style = OudsTheme.typography.body.default.medium)
+                                Text(text = issues, style = OudsTheme.typography.body.default.medium)
                             }
                         }
                     }

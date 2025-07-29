@@ -23,11 +23,11 @@ import com.orange.ouds.gradle.findLastTag
 import com.orange.ouds.gradle.findTypedProperty
 import com.orange.ouds.gradle.firebaseApi
 import com.orange.ouds.gradle.generateReleaseNotes
-import com.orange.ouds.gradle.gitHubApi
+import com.orange.ouds.gradle.gitHubGraphQLApi
+import com.orange.ouds.gradle.gitHubRestApi
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.util.EnumMap
 import java.util.Locale
 import kotlin.io.path.Path
 
@@ -96,7 +96,7 @@ tasks.register<DefaultTask>("generateAppDistributionReleaseNotes") {
             }
             generateReleaseNotes(lastTag)
         } else {
-            gitHubApi {
+            gitHubRestApi {
                 val pullRequests = getPullRequests()
                 val pullRequest = pullRequests.firstOrNull { it.branchName == Environment.branchName }
                 pullRequest?.let { "${pullRequest.title} (#${pullRequest.number})" }.orEmpty()
@@ -137,11 +137,9 @@ tasks.register<DefaultTask>("gitTagAppDistribution") {
 
     doLast {
         val sha = findTypedProperty<String>("appDistributionGitTagSha").orEmpty()
-        if (gitTagPrefix.isNotEmpty()) {
-            val tag = "${gitTagPrefix}-${sha.take(7)}"
-            gitHubApi {
-                createTag(tag, sha)
-            }
+        val tag = "${gitTagPrefix}-${sha.take(7)}"
+        gitHubRestApi {
+            createTag(tag, sha)
         }
     }
 }
@@ -166,37 +164,68 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                 val release = getAppDistributionReleases().firstOrNull { it.buildVersion == versionCode }
                 if (release != null) {
                     logger.lifecycle("Found App Distribution release with version code $versionCode.")
-                    gitHubApi {
+                    gitHubRestApi {
                         // Find pull request for current branch
                         val pullRequests = getPullRequests()
                         val pullRequest = pullRequests.firstOrNull { it.branchName == Environment.branchName }
                         if (pullRequest != null) {
-                            logger.lifecycle("Found pull request #${pullRequest.number} for branch ${Environment.branchName} .")
-                            // Generate QR code with download URL of App Distribution release
-                            val qrCode = generateQrCode(release)
+                            logger.lifecycle("Found pull request #${pullRequest.number} for branch ${Environment.branchName}.")
+                            gitHubGraphQLApi {
+                                val issues = getPullRequestClosingIssues(pullRequest.number)
+                                val separator = ", "
+                                val issueNumbers = issues.joinToString(separator) { "#${it.number}" }
+                                    .run {
+                                        if (contains(separator)) {
+                                            substringBeforeLast(separator) + " and " + substringAfterLast(separator)
+                                        } else {
+                                            this
+                                        }
+                                    }
+                                val issuePlural = if (issues.count() > 1) "s" else ""
+                                if (issues.isNotEmpty()) {
+                                    logger.lifecycle("Found closing issue$issuePlural $issueNumbers for pull request #${pullRequest.number}.")
 
-                            // There is now way to attach a file to a comment in an issue or pull request using the GitHub API
-                            // A workaround is to add the QR code to the repository and add a link in the comment which references the QR code on the repository
-                            logger.lifecycle("Add QR code for '${pullRequest.title} (#${pullRequest.number})' to repository.")
-                            // Add QR code to repository on 'qrcodes' branch
-                            val sha = createFile(
-                                qrCode,
-                                "qrcodes/${qrCode.name}",
-                                "Add QR code for '${pullRequest.title} (#${pullRequest.number})'",
-                                "qrcodes"
-                            )
+                                    // Generate QR code with download URL of App Distribution release
+                                    val qrCode = generateQrCode(release)
 
-                            // Add a comment with a link to the QR code in the repository
-                            logger.lifecycle("Create comment with QR code to '${pullRequest.title} (#${pullRequest.number})'.")
-                            val link = "![qrcode](https://github.com/Orange-OpenSource/ouds-android/raw/$sha/qrcodes/${qrCode.name})"
-                            val formatter = DateTimeFormatter.RFC_1123_DATE_TIME.withZone(ZoneOffset.UTC).localizedBy(Locale.ENGLISH)
-                            val expirationDateTime = formatter?.let { ZonedDateTime.now().plusHours(1).format(it) }.orEmpty()
-                            val body = "### :iphone: Alpha release available\\n\\n" +
-                                    "Scan the QR code below to download and install the Design System Toolbox app which contains the changes of this pull request.\\n" +
-                                    "**Please note that the link behind this QR code will expire on $expirationDateTime.**\\n$link"
-                            // Although we use the "issues/{issue_number}/comments" GitHub API, this will comment the pull request because a pull request is an issue
-                            // The "pulls/{pull_number}/comments" is used to add review comments on a pull request
-                            createIssueComment(pullRequest.number, body)
+                                    // There is now way to attach a file to a comment in an issue or pull request using the GitHub API
+                                    // A workaround is to add the QR code to the repository and add a link in the comment which references the QR code on the repository
+                                    logger.lifecycle("Add QR code for issue$issuePlural $issueNumbers to repository.")
+
+                                    // Add QR code to repository on 'qrcodes' branch
+                                    val sha = createFile(
+                                        qrCode,
+                                        "qrcodes/${qrCode.name}",
+                                        "Add QR code for issue$issuePlural $issueNumbers",
+                                        "qrcodes"
+                                    )
+
+                                    // Add a comment with a link to the QR code in the repository
+                                    logger.lifecycle("Create comment with QR code to issue$issuePlural $issueNumbers.")
+                                    val link = "![qrcode](https://github.com/Orange-OpenSource/ouds-android/raw/$sha/qrcodes/${qrCode.name})"
+                                    val formatter = DateTimeFormatter.RFC_1123_DATE_TIME.withZone(ZoneOffset.UTC).localizedBy(Locale.ENGLISH)
+                                    val expirationDateTime = formatter?.let { ZonedDateTime.now().plusHours(1).format(it) }.orEmpty()
+
+                                    val body = "### :mega: New Firebase App Distribution alpha release available :rocket:\\n\\n" +
+                                            "Scan the QR code below to download and install the Design System Toolbox app which contains the changes for this issue.\\n" +
+                                            "**Please note that the link behind this QR code will expire on $expirationDateTime.**\\n\\n" +
+                                            "$link\\n\\n" +
+                                            "- Application name: **DesignToolbox**\\n" +
+                                            "- Version name: **${release.displayVersion}**\\n" +
+                                            "- Version code: **${release.buildVersion}**\\n" +
+                                            "- Variant: **$variant**\\n\\n" +
+                                            "cc @B3nz01d (product owner)\\n" +
+                                            "cc @florentmaitre @paulinea (dev team)\\n" +
+                                            "cc @jerome-regnier (design team)\\n" +
+                                            "cc @pya35 (a11y team)"
+
+                                    issues.forEach { issue ->
+                                        createIssueComment(issue.number, body)
+                                    }
+                                } else {
+                                    throw GradleException("Could not find a closing issue for pull request #${pullRequest.number}.")
+                                }
+                            }
                         } else {
                             throw GradleException("Could not find a pull request for branch ${Environment.branchName}.")
                         }
@@ -212,13 +241,13 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
 }
 
 private fun generateQrCode(release: FirebaseAppDistributionRelease): File {
-    val size = 256
+    val size = 192
     val bitMatrix = QRCodeWriter().encode(
         release.binaryDownloadUri,
         BarcodeFormat.QR_CODE,
         size,
         size,
-        EnumMap<EncodeHintType, Int>(EncodeHintType::class.java)
+        emptyMap<EncodeHintType, Any>()
     )
     val qrCodeFilePath = "./${release.buildVersion}.png"
     MatrixToImageWriter.writeToPath(bitMatrix, "PNG", Path(qrCodeFilePath))

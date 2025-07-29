@@ -12,7 +12,7 @@
 
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.execute
-import com.orange.ouds.gradle.gitHubApi
+import com.orange.ouds.gradle.gitHubRestApi
 import com.orange.ouds.gradle.requireTypedProperty
 import org.gradle.process.internal.ExecException
 
@@ -87,7 +87,7 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
         File("netlify_deploy_preview_url.txt").writeText(netlifyDeployPreviewUrl.orEmpty())
 
         if (Environment.branchName != "develop") {
-            gitHubApi {
+            gitHubRestApi {
                 // Find pull request for current branch
                 val pullRequests = getPullRequests()
                 val pullRequest = pullRequests.firstOrNull { it.branchName == Environment.branchName }
