@@ -42,7 +42,7 @@ tasks.register<DefaultTask>("checkNotice") {
 
         // Get resources in project
         val subprojectsResourcePaths = subprojects.flatMap { subproject ->
-            val androidExtension = subproject.extensions.getByName("android") as? CommonExtension<*, *, *, *, *, *>
+            val androidExtension = subproject.extensions.findByName("android") as? CommonExtension<*, *, *, *, *, *>
             val flavorNames = androidExtension?.productFlavors.orEmpty().map { it.name }
             val sourceSetNames = listOf("main", *flavorNames.toTypedArray())
             sourceSetNames.mapNotNull { androidExtension?.sourceSets?.get(it) }.flatMap { sourceSet ->
