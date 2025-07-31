@@ -45,6 +45,7 @@ android {
 }
 
 dependencies {
+    dokkaPlugin(project(":dokka-plugin"))
     implementation(project(":foundation"))
     api(project(":theme-contract"))
     compileOnly(project(":theme-orange")) // Only useful for previews
