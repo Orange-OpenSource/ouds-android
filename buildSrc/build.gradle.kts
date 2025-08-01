@@ -47,12 +47,3 @@ dependencies {
     implementation(libs.zxing.javase)
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location)) // https://github.com/gradle/gradle/issues/15383
 }
-
-sourceSets {
-    named("main") {
-        java {
-            srcDir("../theme-contract/src/main/java")
-            setIncludes(listOf("com/orange/ouds/theme/OudsVersion.kt"))
-        }
-    }
-}
