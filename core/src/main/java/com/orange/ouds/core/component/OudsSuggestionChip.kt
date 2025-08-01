@@ -41,7 +41,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.3.0
  *
  * @param onClick Called when this chip is clicked.
  * @param label Text label for this chip.
@@ -90,7 +90,7 @@ fun OudsSuggestionChip(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.3.0
  *
  * @param onClick Called when this chip is clicked.
  * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
@@ -139,7 +139,7 @@ fun OudsSuggestionChip(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.3.0
  *
  * @param onClick Called when this chip is clicked.
  * @param label Text label for this chip.
