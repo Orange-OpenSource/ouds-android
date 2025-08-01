@@ -293,3 +293,8 @@ li {
 .footer {
   border-top: 1px solid var(--elements-border-color);
 }
+
+td:first-child {
+  width: 25%;
+  padding-left: 0px;
+}

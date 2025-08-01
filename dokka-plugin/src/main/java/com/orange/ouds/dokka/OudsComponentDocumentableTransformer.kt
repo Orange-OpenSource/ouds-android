@@ -160,7 +160,6 @@ class OudsComponentDocumentableTransformer(val context: DokkaContext) : Document
     private fun Documentable.replaceDesignDocTags(): SourceSetDependent<DocumentationNode> {
         val designVersionRegex = "Design version: (.*)".toRegex()
         val designGuidelinesRegex = "Design guidelines: (.*)".toRegex()
-        val rootCustomDocTagName = "MARKDOWN_FILE"
 
         return documentation.mapValues { (_, node) ->
             val nodeChildren = node.children.flatMap { tagWrapper ->
@@ -169,35 +168,54 @@ class OudsComponentDocumentableTransformer(val context: DokkaContext) : Document
                         .removeDescendant { designVersionRegex.find(it) != null }
                         .removeDescendant { designGuidelinesRegex.find(it) != null }
 
-                    val designVersionBlockQuote = tagWrapper.root.firstMemberOfTypeOrNull<BlockQuote> { designVersionRegex.find(it) != null }
-                    val designVersionTagWrapper = designVersionBlockQuote?.let {
-                        designVersionRegex.find(designVersionBlockQuote)?.groupValues[1]?.let { version ->
-                            CustomTagWrapper(
-                                CustomDocTag(listOf(Text(version)), name = rootCustomDocTagName),
-                                OudsComponentTagContentProvider.COMPONENT_DESIGN_VERSION_TAG_NAME
-                            )
-                        }
+                    val version = designVersionRegex.find(tagWrapper.root)?.groupValues?.getOrNull(1)
+                    val guidelinesBlockquote = tagWrapper.root.firstMemberOfTypeOrNull<BlockQuote> { designGuidelinesRegex.find(it) != null }
+                    val guidelinesAnchor = guidelinesBlockquote?.firstMemberOfTypeOrNull<A>()
+                    val guidelinesText = guidelinesAnchor?.firstMemberOfTypeOrNull<Text>()?.body
+                    val guidelinesHref = guidelinesAnchor?.params["href"]
+                    val designTagWrapper = if (version != null && guidelinesText != null && guidelinesHref != null) {
+                        getDesignTagWrapper(version, guidelinesText, guidelinesHref)
+                    } else {
+                        null
                     }
 
-                    val designGuidelinesBlockQuote = tagWrapper.root.firstMemberOfTypeOrNull<BlockQuote> { designGuidelinesRegex.find(it) != null }
-                    val designGuidelinesTagWrapper = designGuidelinesBlockQuote?.firstMemberOfTypeOrNull<A>()?.let { anchor ->
-                        val text = anchor.firstMemberOfTypeOrNull<Text>()?.body.orEmpty()
-                        val href = anchor.params["href"].orEmpty()
-                        val body = "<a href=\"$href\" class=\"external\" target=\"_blank\">$text</a>"
-                        val params = mapOf("content-type" to "html")
-                        CustomTagWrapper(
-                            CustomDocTag(listOf(Text(body, params = params)), name = rootCustomDocTagName),
-                            OudsComponentTagContentProvider.COMPONENT_DESIGN_GUIDELINES_TAG_NAME
-                        )
-                    }
-
-                    listOfNotNull(tagWrapper.copy(root = tagWrapperRoot), designGuidelinesTagWrapper, designVersionTagWrapper)
+                    listOfNotNull(tagWrapper.copy(root = tagWrapperRoot), designTagWrapper)
                 } else {
                     listOf(tagWrapper)
                 }
             }
             node.copy(children = nodeChildren)
         }
+    }
+
+    private fun getDesignTagWrapper(version: String, guidelinesText: String, guidelinesHref: String): CustomTagWrapper {
+        val guidelinesBody = "<a href=\"$guidelinesHref\" class=\"external\" target=\"_blank\">$guidelinesText</a>"
+        val guidelinesParams = mapOf("content-type" to "html")
+
+        return CustomTagWrapper(
+            CustomDocTag(
+                listOf(
+                    Table(
+                        listOf(
+                            Tr(
+                                listOf(
+                                    Td(listOf(Text("Guidelines"))),
+                                    Td(listOf(Text(guidelinesBody, params = guidelinesParams)))
+                                )
+                            ),
+                            Tr(
+                                listOf(
+                                    Td(listOf(Text("Version"))),
+                                    Td(listOf(Text(version)))
+                                )
+                            )
+                        )
+                    )
+                ),
+                name = "MARKDOWN_FILE"
+            ),
+            OudsComponentTagContentProvider.COMPONENT_DESIGN_TAG_NAME
+        )
     }
 
     private fun DocTag.removeDescendant(predicate: (DocTag) -> Boolean): DocTag {

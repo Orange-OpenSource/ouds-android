@@ -19,24 +19,16 @@ import org.jetbrains.dokka.model.doc.CustomTagWrapper
 
 object OudsComponentTagContentProvider : CustomTagContentProvider {
 
-    const val COMPONENT_DESIGN_VERSION_TAG_NAME = "ComponentDesignVersion"
+    const val COMPONENT_DESIGN_TAG_NAME = "COMPONENT_DESIGN_TAG_NAME"
 
-    const val COMPONENT_DESIGN_GUIDELINES_TAG_NAME = "ComponentDesignGuidelines"
-
-    override fun isApplicable(customTag: CustomTagWrapper): Boolean =
-        customTag.name in listOf(COMPONENT_DESIGN_VERSION_TAG_NAME, COMPONENT_DESIGN_GUIDELINES_TAG_NAME)
+    override fun isApplicable(customTag: CustomTagWrapper): Boolean = customTag.name == COMPONENT_DESIGN_TAG_NAME
 
     override fun PageContentBuilder.DocumentableContentBuilder.contentForDescription(
         sourceSet: DokkaConfiguration.DokkaSourceSet,
         customTag: CustomTagWrapper
     ) {
-        val headerText = when (customTag.name) {
-            COMPONENT_DESIGN_VERSION_TAG_NAME -> "Design version"
-            COMPONENT_DESIGN_GUIDELINES_TAG_NAME -> "Design guidelines"
-            else -> ""
-        }
         group(sourceSets = setOf(sourceSet)) {
-            header(4, headerText)
+            header(4, "Design")
             comment(customTag.root)
         }
     }
