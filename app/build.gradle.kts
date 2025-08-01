@@ -167,6 +167,7 @@ fun updateBuildConfig() {
 
 gradle.projectsEvaluated {
     tasks["preBuild"].apply {
+        dependsOn(":checkDocumentation")
         dependsOn(":checkNotice")
         dependsOn(tasks["updateAppChangelog"])
     }

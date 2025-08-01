@@ -28,8 +28,6 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 
-//TODO Add DSM link when available
-// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Divider design guidelines**</a>
 /**
  * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
  * without introducing a strong hierarchy like a heading or a container would.
@@ -38,6 +36,10 @@ import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
  *
  * The color of the divider can be specified using the [OudsDivider.Color] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
+ *
+ * > Design version: 1.0.0
  *
  * @param modifier [Modifier] applied to the divider.
  * @param color The color of the divider, chosen from the [OudsDivider.Color] enum. Default value set to `OudsDivider.Color.Default`.
@@ -52,8 +54,6 @@ fun OudsHorizontalDivider(
     HorizontalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
 }
 
-//TODO Add DSM link when available
-// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Divider design guidelines**</a>
 /**
  * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
  * without introducing a strong hierarchy like a heading or a container would.
@@ -62,6 +62,10 @@ fun OudsHorizontalDivider(
  *
  * The color of the divider can be specified using the [OudsDivider.Color] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
+ *
+ * > Design version: 1.0.0
  *
  * @param modifier [Modifier] applied to the divider.
  * @param color The color of the divider, chosen from the [OudsDivider.Color] enum. Default value set to `OudsDivider.Color.Default`.

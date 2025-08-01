@@ -37,8 +37,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">**OUDS Radio button design guidelines**</a>
- *
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
  *
  * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as
@@ -48,6 +46,10 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  *
  * In most cases, OUDS radio button items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+ *
+ * > Design version: 1.1.0
  *
  * @see [OudsRadioButton] If you want to use a standalone radio button.
  *

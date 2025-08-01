@@ -11,12 +11,15 @@
  */
 
 import com.github.mustachejava.DefaultMustacheFactory
+import com.orange.ouds.gradle.Component
 import com.orange.ouds.theme.OudsVersion
 import java.io.FileOutputStream
 import java.io.PrintWriter
 import kotlin.reflect.full.declaredMemberProperties
 
 tasks.register<DefaultTask>("prepareDocumentation") {
+    dependsOn(tasks["checkDocumentation"])
+
     doLast {
         val mustacheFactory = DefaultMustacheFactory()
 
@@ -50,6 +53,43 @@ tasks.register<DefaultTask>("prepareDocumentation") {
             mustacheFactory.compile("$moduleDocumentationDirectory/Module.mustache")
                 .execute(moduleDocumentationWriter, OudsVersion.Tokens)
                 .flush()
+        }
+    }
+}
+
+tasks.register<DefaultTask>("checkDocumentation") {
+    doLast {
+        val componentVersionRegex = "Design version: (.*)$".toRegex()
+        Component.values().forEach { component ->
+            component.getSourceFilePaths(project).forEach { sourceFilePath ->
+                val versionByLineIndex = File(sourceFilePath).readLines()
+                    .mapIndexedNotNull { index, line ->
+                        componentVersionRegex.find(line)
+                            ?.groupValues
+                            ?.getOrNull(1)
+                            ?.let { version ->
+                                index to version
+                            }
+                    }
+                versionByLineIndex.forEach { (lineIndex, version) ->
+                    if (version != component.version) {
+                        throw GradleException("Component version at line ${lineIndex + 1} in $sourceFilePath is not up to date. Please launch updateDocumentation Gradle task.")
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks.register<DefaultTask>("updateDocumentation") {
+    doLast {
+        val componentVersionRegex = "(Design version: ).*".toRegex()
+        Component.values().forEach { component ->
+            component.getSourceFilePaths(project).forEach { sourceFilePath ->
+                File(sourceFilePath).replace(componentVersionRegex) { matchResult ->
+                    "${matchResult.groupValues[1]}${component.version}"
+                }
+            }
         }
     }
 }
