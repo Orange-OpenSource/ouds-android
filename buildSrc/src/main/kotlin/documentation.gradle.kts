@@ -11,6 +11,7 @@
  */
 
 import com.github.mustachejava.DefaultMustacheFactory
+import com.orange.ouds.theme.OudsVersion
 import java.io.FileOutputStream
 import java.io.PrintWriter
 import kotlin.reflect.full.declaredMemberProperties
@@ -22,8 +23,7 @@ tasks.register<DefaultTask>("prepareDocumentation") {
         // Retrieve OudsVersion.Component object and fill the table in core/Module.md with the component design versions
         val coreModuleDocumentationWriter = PrintWriter(FileOutputStream("core/Module.md"))
         // Build a map in order to loop through all component versions in core Module.mustache
-        val componentVersions = Class.forName("com.orange.ouds.theme.OudsVersion${'$'}Component")
-            .kotlin
+        val componentVersions = OudsVersion.Component::class
             .declaredMemberProperties
             .map { property ->
                 val name = property.name
@@ -46,11 +46,10 @@ tasks.register<DefaultTask>("prepareDocumentation") {
             "theme-sosh"
         )
         // Use OudsVersion.Tokens directly in various Module.mustache files
-        val tokensVersions = Class.forName("com.orange.ouds.theme.OudsVersion${'$'}Tokens").kotlin.objectInstance
         moduleDocumentationDirectories.forEach { moduleDocumentationDirectory ->
             val moduleDocumentationWriter = PrintWriter(FileOutputStream("$moduleDocumentationDirectory/Module.md"))
             mustacheFactory.compile("$moduleDocumentationDirectory/Module.mustache")
-                .execute(moduleDocumentationWriter, tokensVersions)
+                .execute(moduleDocumentationWriter, OudsVersion.Tokens)
                 .flush()
         }
     }
