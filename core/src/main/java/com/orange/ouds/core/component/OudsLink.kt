@@ -208,12 +208,12 @@ private fun OudsLink(
         with(linkTokens) {
             when (size) {
                 OudsLink.Size.Default -> {
-                    columnGap = if (arrow != null) spaceColumnGapArrowDefault.value else spaceColumnGapIconDefault.value
+                    columnGap = if (arrow != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
                     iconSize = sizeIconDefault.value
                     textStyle = OudsTheme.typography.label.strong.large
                 }
                 OudsLink.Size.Small -> {
-                    columnGap = if (arrow != null) spaceColumnGapArrowSmall.value else spaceColumnGapIconSmall.value
+                    columnGap = if (arrow != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
                     iconSize = sizeIconSmall.value
                     textStyle = OudsTheme.typography.label.strong.medium
                 }
@@ -301,10 +301,10 @@ private fun arrowColor(state: OudsLink.State, monochrome: Boolean): Color {
             contentColor(state = state, monochrome = true)
         } else {
             when (state) {
-                OudsLink.State.Enabled -> colorArrowEnabled.value
-                OudsLink.State.Focused -> colorArrowFocus.value
-                OudsLink.State.Hovered -> colorArrowHover.value
-                OudsLink.State.Pressed -> colorArrowPressed.value
+                OudsLink.State.Enabled -> colorChevronEnabled.value
+                OudsLink.State.Focused -> colorChevronFocus.value
+                OudsLink.State.Hovered -> colorChevronHover.value
+                OudsLink.State.Pressed -> colorChevronPressed.value
                 OudsLink.State.Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }

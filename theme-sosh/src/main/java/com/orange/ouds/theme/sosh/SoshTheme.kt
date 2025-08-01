@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.sosh.tokens.components.SoshComponentsTokens
 import com.orange.ouds.theme.sosh.tokens.material.SoshMaterialColorTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshBorderSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshColorSemanticTokens
@@ -26,6 +27,7 @@ import com.orange.ouds.theme.sosh.tokens.semantic.SoshGridSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshOpacitySemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshSizeSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshSpaceSemanticTokens
+import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
@@ -80,6 +82,9 @@ class SoshTheme : OudsThemeContract {
 
     override val spaceTokens: OudsSpaceSemanticTokens
         get() = SoshSpaceSemanticTokens()
+
+    override val componentsTokens: OudsComponentsTokens
+        get() = SoshComponentsTokens()
 
     override val drawableResources: OudsDrawableResources
         get() = SoshDrawableResources()

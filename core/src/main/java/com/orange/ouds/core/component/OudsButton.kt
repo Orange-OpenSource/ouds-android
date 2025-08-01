@@ -64,6 +64,7 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
@@ -253,7 +254,7 @@ private fun OudsButton(
         val state = getButtonState(enabled = enabled, style = style, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.value * iconScale else Dp.Unspecified
-        val shape = RoundedCornerShape(buttonTokens.borderRadius.value)
+        val shape = RoundedCornerShape(buttonTokens.borderRadiusDefault.value)
 
         val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
         val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
@@ -369,15 +370,8 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Loading -> if (LocalColorMode.current?.monochrome == true) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
                 OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
             }
-            OudsButton.Hierarchy.Minimal -> when (state) {
-                OudsButton.State.Enabled,
-                OudsButton.State.Disabled -> borderWidthMinimal.value
-                OudsButton.State.Hovered,
-                OudsButton.State.Pressed,
-                OudsButton.State.Loading -> borderWidthMinimalInteraction.value
-                OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
-            }
             OudsButton.Hierarchy.Strong,
+            OudsButton.Hierarchy.Minimal,
             OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsTheme.borders.width.focusInset else null
         }
     }
@@ -396,14 +390,6 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                     OudsButton.State.Disabled -> colorBorderDefaultDisabled
                     OudsButton.State.Focused -> colorBorderDefaultFocus
                 }
-                OudsButton.Hierarchy.Minimal -> when (state) {
-                    OudsButton.State.Enabled -> colorBorderMinimalEnabled
-                    OudsButton.State.Hovered -> colorBorderMinimalHover
-                    OudsButton.State.Pressed -> colorBorderMinimalPressed
-                    OudsButton.State.Loading -> colorBorderMinimalLoading
-                    OudsButton.State.Disabled -> colorBorderMinimalDisabled
-                    OudsButton.State.Focused -> colorBorderMinimalFocus
-                }
                 OudsButton.Hierarchy.Strong -> when (state) {
                     OudsButton.State.Enabled -> colorBorderStrongEnabled
                     OudsButton.State.Hovered -> colorBorderStrongHover
@@ -412,6 +398,7 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                     OudsButton.State.Disabled -> colorBorderStrongDisabled
                     OudsButton.State.Focused -> colorBorderStrongFocus
                 }
+                OudsButton.Hierarchy.Minimal,
                 OudsButton.Hierarchy.Negative -> null
             }
         }
@@ -426,15 +413,8 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                     OudsButton.State.Disabled -> colorBorderDefaultDisabled
                     OudsButton.State.Focused -> colorBorderDefaultFocus
                 }
-                OudsButton.Hierarchy.Minimal -> when (state) {
-                    OudsButton.State.Enabled -> colorBorderMinimalEnabled
-                    OudsButton.State.Hovered -> colorBorderMinimalHover
-                    OudsButton.State.Pressed -> colorBorderMinimalPressed
-                    OudsButton.State.Loading -> colorBorderMinimalLoading
-                    OudsButton.State.Disabled -> colorBorderMinimalDisabled
-                    OudsButton.State.Focused -> colorBorderMinimalFocus
-                }
                 OudsButton.Hierarchy.Strong,
+                OudsButton.Hierarchy.Minimal,
                 OudsButton.Hierarchy.Negative -> null
             }
         }
@@ -463,13 +443,13 @@ private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
                     OudsButton.State.Disabled -> colorBgDefaultDisabled
                 }.value
                 OudsButton.Hierarchy.Minimal -> when (state) {
-                    OudsButton.State.Enabled -> colorBgMinimalEnabled
-                    OudsButton.State.Focused -> colorBgMinimalFocus
-                    OudsButton.State.Hovered -> colorBgMinimalHover
-                    OudsButton.State.Pressed -> colorBgMinimalPressed
-                    OudsButton.State.Loading -> colorBgMinimalLoading
-                    OudsButton.State.Disabled -> colorBgMinimalDisabled
-                }.value
+                    OudsButton.State.Enabled,
+                    OudsButton.State.Disabled -> Color.Transparent
+                    OudsButton.State.Focused -> colorBgMinimalFocus.value
+                    OudsButton.State.Hovered -> colorBgMinimalHover.value
+                    OudsButton.State.Pressed -> colorBgMinimalPressed.value
+                    OudsButton.State.Loading -> if (isOudsInDarkTheme()) OudsTheme.colorScheme.repository.opacity.black.higher else OudsTheme.colorScheme.repository.opacity.white.higher
+                }
                 OudsButton.Hierarchy.Strong -> when (state) {
                     OudsButton.State.Enabled -> colorBgStrongEnabled
                     OudsButton.State.Focused -> colorBgStrongFocus
@@ -493,13 +473,13 @@ private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
                     OudsButton.State.Disabled -> colorBgDefaultDisabled
                 }.value
                 OudsButton.Hierarchy.Minimal -> when (state) {
-                    OudsButton.State.Enabled -> colorBgMinimalEnabled
-                    OudsButton.State.Focused -> colorBgMinimalFocus
-                    OudsButton.State.Hovered -> colorBgMinimalHover
-                    OudsButton.State.Pressed -> colorBgMinimalPressed
-                    OudsButton.State.Loading -> colorBgMinimalLoading
-                    OudsButton.State.Disabled -> colorBgMinimalDisabled
-                }.value
+                    OudsButton.State.Enabled,
+                    OudsButton.State.Disabled -> Color.Transparent
+                    OudsButton.State.Focused -> colorBgMinimalFocus.value
+                    OudsButton.State.Hovered -> colorBgMinimalHover.value
+                    OudsButton.State.Pressed -> colorBgMinimalPressed.value
+                    OudsButton.State.Loading -> OudsTheme.colorScheme.action.support.loading
+                }
                 OudsButton.Hierarchy.Strong -> when (state) {
                     OudsButton.State.Enabled -> OudsTheme.colorScheme.action.enabled
                     OudsButton.State.Focused -> OudsTheme.colorScheme.action.focus
