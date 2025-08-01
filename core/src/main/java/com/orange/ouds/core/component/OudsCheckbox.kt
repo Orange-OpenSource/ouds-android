@@ -50,12 +50,14 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
- *
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
  * The **standalone checkbox variant** is used when the checkbox input is nested within another component and an alternative label is provided. For example,
  * a checkbox can be used in a data table where its purpose is clear from its position or its connection to other items in the same row or column.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+ *
+ * > Design version: 2.1.0
  *
  * @see [OudsTriStateCheckbox] If you require support for an indeterminate state.
  * @see [OudsCheckboxItem] If you want to use a checkbox with an associated label and other optional elements.
@@ -93,9 +95,6 @@ fun OudsCheckbox(
 }
 
 /**
- *
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
- *
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
  * This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,
@@ -104,6 +103,10 @@ fun OudsCheckbox(
  *
  * The **indeterminate standalone checkbox variant** allows to manage a checkbox with an indeterminate state that can be used when the checkbox input is nested
  * within another component and an alternative label is provided.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+ *
+ * > Design version: 2.1.0
  *
  * @see [OudsCheckbox] If you need a simple component that represents [Boolean] state.
  * @see [OudsTriStateCheckboxItem] If you want to use an indeterminate checkbox with an associated label and other optional elements.

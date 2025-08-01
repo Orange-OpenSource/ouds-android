@@ -24,6 +24,7 @@ plugins {
     id("release")
     id("netlify")
     id("check-notice")
+    id("documentation")
 }
 
 dependencies {

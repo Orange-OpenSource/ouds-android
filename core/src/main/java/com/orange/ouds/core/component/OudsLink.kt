@@ -61,10 +61,9 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Link design guidelines**</a>
- *
  * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
  *
  * This API manage the display of *text only* and *text + icon* links.
@@ -72,6 +71,10 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
+ *
+ * > Design version: 2.1.0
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  *
@@ -103,12 +106,14 @@ fun OudsLink(
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Link design guidelines**</a>
- *
  * An OUDS link which displays an [arrow] before ([OudsLink.Arrow.Back]) or after ([OudsLink.Arrow.Next]) a label.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
+ *
+ * > Design version: 2.1.0
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
  *

@@ -33,8 +33,6 @@ import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 
-//TODO Add DSM link when available
-// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Switch design guidelines**</a>
 /**
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
  * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
@@ -47,6 +45,10 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  *
  * In most cases, OUDS switch items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
+ *
+ * > Design version: 1.2.0
  *
  * @see [OudsSwitch] If you want to use a standalone switch.
  *

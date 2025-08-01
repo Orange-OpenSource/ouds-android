@@ -72,11 +72,10 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import kotlinx.parcelize.Parcelize
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
- *
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
  * This version of the button uses the *text only* layout which is the most used layout.
@@ -84,6 +83,10 @@ import kotlinx.parcelize.Parcelize
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ *
+ * > Design version: 2.1.0
  *
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
@@ -125,8 +128,6 @@ fun OudsButton(
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
- *
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
  * This version of the button uses the *icon only* layout which is typically used in business or back-office interfaces, it is rarely used alone (usually part of a group of elements).
@@ -134,6 +135,10 @@ fun OudsButton(
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ *
+ * > Design version: 2.1.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
@@ -175,8 +180,6 @@ fun OudsButton(
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/48a788-button" class="external" target="_blank">**OUDS Button design guidelines**</a>
- *
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
  * This version of the button uses the *text + icon* layout which should remain specific to some clearly identified contexts (e.g. the use of an icon with a
@@ -185,6 +188,10 @@ fun OudsButton(
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ *
+ * > Design version: 2.1.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.

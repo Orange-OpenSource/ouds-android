@@ -35,8 +35,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
- *
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
  * The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text, a divider, or an icon,
@@ -46,6 +44,10 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  *
  * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+ *
+ * > Design version: 2.1.0
  *
  * @see [OudsTriStateCheckboxItem] If you need an indeterminate state for the item's checkbox.
  * @see [OudsCheckbox] If you want to use a standalone checkbox without any other element.
@@ -103,8 +105,6 @@ fun OudsCheckboxItem(
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
- *
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
  * This checkbox item supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is
@@ -119,6 +119,10 @@ fun OudsCheckboxItem(
  *
  * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+ *
+ * > Design version: 2.1.0
  *
  * @see [OudsCheckboxItem] If you need a simple item's checkbox that represents [Boolean] state.
  * @see [OudsTriStateCheckbox] If you only need an indeterminate standalone parent checkbox without any other element.
