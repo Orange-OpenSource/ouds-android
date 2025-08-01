@@ -37,7 +37,6 @@ import org.jetbrains.dokka.model.doc.Cite
 import org.jetbrains.dokka.model.doc.CodeBlock
 import org.jetbrains.dokka.model.doc.CodeInline
 import org.jetbrains.dokka.model.doc.CustomDocTag
-import org.jetbrains.dokka.model.doc.CustomTagWrapper
 import org.jetbrains.dokka.model.doc.Dd
 import org.jetbrains.dokka.model.doc.Description
 import org.jetbrains.dokka.model.doc.Dfn
@@ -162,136 +161,143 @@ class OudsComponentDocumentableTransformer(val context: DokkaContext) : Document
         val designGuidelinesRegex = "Design guidelines: (.*)".toRegex()
 
         return documentation.mapValues { (_, node) ->
-            val nodeChildren = node.children.flatMap { tagWrapper ->
+            val nodeChildren = node.children.map { tagWrapper ->
                 if (tagWrapper is Description) {
-                    val tagWrapperRoot = tagWrapper.root
-                        .removeDescendant { designVersionRegex.find(it) != null }
-                        .removeDescendant { designGuidelinesRegex.find(it) != null }
-
                     val version = designVersionRegex.find(tagWrapper.root)?.groupValues?.getOrNull(1)
                     val guidelinesBlockquote = tagWrapper.root.firstMemberOfTypeOrNull<BlockQuote> { designGuidelinesRegex.find(it) != null }
                     val guidelinesAnchor = guidelinesBlockquote?.firstMemberOfTypeOrNull<A>()
                     val guidelinesText = guidelinesAnchor?.firstMemberOfTypeOrNull<Text>()?.body
                     val guidelinesHref = guidelinesAnchor?.params["href"]
-                    val designTagWrapper = if (version != null && guidelinesText != null && guidelinesHref != null) {
-                        getDesignTagWrapper(version, guidelinesText, guidelinesHref)
+                    val designDocTag = if (version != null && guidelinesText != null && guidelinesHref != null) {
+                        getDesignDocTag(version, guidelinesText, guidelinesHref)
                     } else {
                         null
                     }
 
-                    listOfNotNull(tagWrapper.copy(root = tagWrapperRoot), designTagWrapper)
+                    val tagWrapperRoot = tagWrapper.root
+                        .removeDescendant { designVersionRegex.find(it) != null }
+                        .removeDescendant { designGuidelinesRegex.find(it) != null }
+                        .run { if (designDocTag != null) addChild(designDocTag) else this }
+
+                    tagWrapper.copy(root = tagWrapperRoot)
                 } else {
-                    listOf(tagWrapper)
+                    tagWrapper
                 }
             }
             node.copy(children = nodeChildren)
         }
     }
 
-    private fun getDesignTagWrapper(version: String, guidelinesText: String, guidelinesHref: String): CustomTagWrapper {
+    private fun getDesignDocTag(version: String, guidelinesText: String, guidelinesHref: String): DocTag {
         val guidelinesBody = "<a href=\"$guidelinesHref\" class=\"external\" target=\"_blank\">$guidelinesText</a>"
         val guidelinesParams = mapOf("content-type" to "html")
 
-        return CustomTagWrapper(
-            CustomDocTag(
-                listOf(
-                    Table(
-                        listOf(
-                            Tr(
-                                listOf(
-                                    Td(listOf(Text("Guidelines"))),
-                                    Td(listOf(Text(guidelinesBody, params = guidelinesParams)))
-                                )
-                            ),
-                            Tr(
-                                listOf(
-                                    Td(listOf(Text("Version"))),
-                                    Td(listOf(Text(version)))
-                                )
+        return Div(
+            listOf(
+                H4(listOf(Text("Design"))),
+                Table(
+                    listOf(
+                        Tr(
+                            listOf(
+                                Td(listOf(Text("Guidelines"))),
+                                Td(listOf(Text(guidelinesBody, params = guidelinesParams)))
+                            )
+                        ),
+                        Tr(
+                            listOf(
+                                Td(listOf(Text("Version"))),
+                                Td(listOf(Text(version)))
                             )
                         )
                     )
-                ),
-                name = "MARKDOWN_FILE"
-            ),
-            OudsComponentTagContentProvider.COMPONENT_DESIGN_TAG_NAME
+                )
+            )
         )
     }
 
-    private fun DocTag.removeDescendant(predicate: (DocTag) -> Boolean): DocTag {
+    private fun <T : DocTag> T.addChild(child: DocTag): T {
+        return genericCopy(children + child)
+    }
+
+    private fun <T : DocTag> T.removeDescendant(predicate: (DocTag) -> Boolean): T {
         val filteredChildren = children.filterNot(predicate).map { it.removeDescendant(predicate) }
+        return genericCopy(filteredChildren)
+    }
+
+    private fun <T : DocTag> T.genericCopy(children: List<DocTag>): T {
+        @Suppress("UNCHECKED_CAST")
         return when (this) {
-            is A -> copy(children = filteredChildren)
-            is B -> copy(children = filteredChildren)
-            is Big -> copy(children = filteredChildren)
-            is BlockQuote -> copy(children = filteredChildren)
+            is A -> copy(children = children)
+            is B -> copy(children = children)
+            is Big -> copy(children = children)
+            is BlockQuote -> copy(children = children)
             Br -> this
-            is Caption -> copy(children = filteredChildren)
-            is Cite -> copy(children = filteredChildren)
-            is CodeBlock -> copy(children = filteredChildren)
-            is CodeInline -> copy(children = filteredChildren)
-            is CustomDocTag -> copy(children = filteredChildren)
-            is Dd -> copy(children = filteredChildren)
-            is Dfn -> copy(children = filteredChildren)
-            is Dir -> copy(children = filteredChildren)
-            is Div -> copy(children = filteredChildren)
-            is Dl -> copy(children = filteredChildren)
-            is DocumentationLink -> copy(children = filteredChildren)
-            is Dt -> copy(children = filteredChildren)
-            is Em -> copy(children = filteredChildren)
-            is Font -> copy(children = filteredChildren)
-            is Footer -> copy(children = filteredChildren)
-            is Frame -> copy(children = filteredChildren)
-            is FrameSet -> copy(children = filteredChildren)
-            is H1 -> copy(children = filteredChildren)
-            is H2 -> copy(children = filteredChildren)
-            is H3 -> copy(children = filteredChildren)
-            is H4 -> copy(children = filteredChildren)
-            is H5 -> copy(children = filteredChildren)
-            is H6 -> copy(children = filteredChildren)
-            is Head -> copy(children = filteredChildren)
-            is Header -> copy(children = filteredChildren)
+            is Caption -> copy(children = children)
+            is Cite -> copy(children = children)
+            is CodeBlock -> copy(children = children)
+            is CodeInline -> copy(children = children)
+            is CustomDocTag -> copy(children = children)
+            is Dd -> copy(children = children)
+            is Dfn -> copy(children = children)
+            is Dir -> copy(children = children)
+            is Div -> copy(children = children)
+            is Dl -> copy(children = children)
+            is DocumentationLink -> copy(children = children)
+            is Dt -> copy(children = children)
+            is Em -> copy(children = children)
+            is Font -> copy(children = children)
+            is Footer -> copy(children = children)
+            is Frame -> copy(children = children)
+            is FrameSet -> copy(children = children)
+            is H1 -> copy(children = children)
+            is H2 -> copy(children = children)
+            is H3 -> copy(children = children)
+            is H4 -> copy(children = children)
+            is H5 -> copy(children = children)
+            is H6 -> copy(children = children)
+            is Head -> copy(children = children)
+            is Header -> copy(children = children)
             HorizontalRule -> this
-            is Html -> copy(children = filteredChildren)
-            is I -> copy(children = filteredChildren)
-            is IFrame -> copy(children = filteredChildren)
-            is Img -> copy(children = filteredChildren)
-            is Index -> copy(children = filteredChildren)
-            is Input -> copy(children = filteredChildren)
-            is Li -> copy(children = filteredChildren)
-            is Link -> copy(children = filteredChildren)
-            is Listing -> copy(children = filteredChildren)
-            is Main -> copy(children = filteredChildren)
-            is Menu -> copy(children = filteredChildren)
-            is Meta -> copy(children = filteredChildren)
-            is Nav -> copy(children = filteredChildren)
-            is NoFrames -> copy(children = filteredChildren)
-            is NoScript -> copy(children = filteredChildren)
-            is Ol -> copy(children = filteredChildren)
-            is P -> copy(children = filteredChildren)
-            is Pre -> copy(children = filteredChildren)
-            is Script -> copy(children = filteredChildren)
-            is Section -> copy(children = filteredChildren)
-            is Small -> copy(children = filteredChildren)
-            is Span -> copy(children = filteredChildren)
-            is Strikethrough -> copy(children = filteredChildren)
-            is Strong -> copy(children = filteredChildren)
-            is Sub -> copy(children = filteredChildren)
-            is Sup -> copy(children = filteredChildren)
-            is TBody -> copy(children = filteredChildren)
-            is TFoot -> copy(children = filteredChildren)
-            is THead -> copy(children = filteredChildren)
-            is Table -> copy(children = filteredChildren)
-            is Td -> copy(children = filteredChildren)
-            is Text -> copy(children = filteredChildren)
-            is Th -> copy(children = filteredChildren)
-            is Title -> copy(children = filteredChildren)
-            is Tr -> copy(children = filteredChildren)
-            is Tt -> copy(children = filteredChildren)
-            is U -> copy(children = filteredChildren)
-            is Ul -> copy(children = filteredChildren)
-            is Var -> copy(children = filteredChildren)
-        }
+            is Html -> copy(children = children)
+            is I -> copy(children = children)
+            is IFrame -> copy(children = children)
+            is Img -> copy(children = children)
+            is Index -> copy(children = children)
+            is Input -> copy(children = children)
+            is Li -> copy(children = children)
+            is Link -> copy(children = children)
+            is Listing -> copy(children = children)
+            is Main -> copy(children = children)
+            is Menu -> copy(children = children)
+            is Meta -> copy(children = children)
+            is Nav -> copy(children = children)
+            is NoFrames -> copy(children = children)
+            is NoScript -> copy(children = children)
+            is Ol -> copy(children = children)
+            is P -> copy(children = children)
+            is Pre -> copy(children = children)
+            is Script -> copy(children = children)
+            is Section -> copy(children = children)
+            is Small -> copy(children = children)
+            is Span -> copy(children = children)
+            is Strikethrough -> copy(children = children)
+            is Strong -> copy(children = children)
+            is Sub -> copy(children = children)
+            is Sup -> copy(children = children)
+            is TBody -> copy(children = children)
+            is TFoot -> copy(children = children)
+            is THead -> copy(children = children)
+            is Table -> copy(children = children)
+            is Td -> copy(children = children)
+            is Text -> copy(children = children)
+            is Th -> copy(children = children)
+            is Title -> copy(children = children)
+            is Tr -> copy(children = children)
+            is Tt -> copy(children = children)
+            is U -> copy(children = children)
+            is Ul -> copy(children = children)
+            is Var -> copy(children = children)
+        } as T
     }
 
     private fun Regex.find(docTag: DocTag, startIndex: Int = 0): MatchResult? {

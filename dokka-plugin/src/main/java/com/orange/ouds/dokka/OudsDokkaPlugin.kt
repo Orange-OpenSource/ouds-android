@@ -13,7 +13,6 @@
 package com.orange.ouds.dokka
 
 import org.jetbrains.dokka.CoreExtensions
-import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.plugability.DokkaPlugin
 import org.jetbrains.dokka.plugability.DokkaPluginApiPreview
 import org.jetbrains.dokka.plugability.PluginApiPreviewAcknowledgement
@@ -25,9 +24,5 @@ class OudsDokkaPlugin : DokkaPlugin() {
 
     val componentDocumentableTransformer by extending {
         CoreExtensions.documentableTransformer providing ::OudsComponentDocumentableTransformer
-    }
-
-    val componentTagContentProvider by extending {
-        plugin<DokkaBase>().customTagContentProvider with OudsComponentTagContentProvider
     }
 }
