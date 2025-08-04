@@ -64,6 +64,7 @@ data class OudsColorScheme(
         )
 
         data class Support(
+            val disabled: Color,
             val enabled: Color,
             val focus: Color,
             val hover: Color,
@@ -598,6 +599,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 loading = actionLoadingLight,
                 pressed = actionPressedLight,
                 support = OudsColorScheme.Action.Support(
+                    disabled = actionSupportDisabledLight,
                     enabled = actionSupportEnabledLight,
                     focus = actionSupportFocusLight,
                     hover = actionSupportHoverLight,
@@ -770,7 +772,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 onOverlay = OudsColorScheme.Modes.OnOverlay(
                     default = OudsColorMode.fromString(onOverlayDefaultLight),
                     emphasized = OudsColorMode.fromString(onOverlayEmphasizedLight),
-                    modal = OudsColorMode.fromString(onModalLight)
+                    modal = OudsColorMode.fromString(onOverlayModalLight)
                 ),
                 onStatus = OudsColorScheme.Modes.OnStatus(
                     accent = OudsColorScheme.Modes.OnStatus.Accent(
@@ -821,6 +823,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 loading = actionLoadingDark,
                 pressed = actionPressedDark,
                 support = OudsColorScheme.Action.Support(
+                    disabled = actionSupportDisabledDark,
                     enabled = actionSupportEnabledDark,
                     focus = actionSupportFocusDark,
                     hover = actionSupportHoverDark,
@@ -993,7 +996,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 onOverlay = OudsColorScheme.Modes.OnOverlay(
                     default = OudsColorMode.fromString(onOverlayDefaultDark),
                     emphasized = OudsColorMode.fromString(onOverlayEmphasizedDark),
-                    modal = OudsColorMode.fromString(onModalDark)
+                    modal = OudsColorMode.fromString(onOverlayModalDark)
                 ),
                 onStatus = OudsColorScheme.Modes.OnStatus(
                     accent = OudsColorScheme.Modes.OnStatus.Accent(
@@ -1268,6 +1271,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Action): Color {
             OudsColorKeyToken.Action.Negative.Pressed -> negative.pressed
             OudsColorKeyToken.Action.Pressed -> pressed
             OudsColorKeyToken.Action.Selected -> selected
+            OudsColorKeyToken.Action.Support.Disabled -> support.disabled
             OudsColorKeyToken.Action.Support.Enabled -> support.enabled
             OudsColorKeyToken.Action.Support.Focus -> support.focus
             OudsColorKeyToken.Action.Support.Hover -> support.hover

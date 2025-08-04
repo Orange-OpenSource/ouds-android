@@ -78,6 +78,7 @@ data class OudsSpaces(
 
     data class PaddingBlock(
         val none: Dp,
+        val fourExtraSmall: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
         val extraSmall: Dp,
@@ -171,6 +172,7 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
         ),
         paddingBlock = OudsSpaces.PaddingBlock(
             none = paddingBlockNone.dp,
+            fourExtraSmall = paddingBlock4xs.dp,
             threeExtraSmall = paddingBlock3xs.dp,
             twoExtraSmall = paddingBlock2xs.dp,
             extraSmall = paddingBlockXs.dp,
@@ -274,6 +276,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
     return when (token) {
         OudsSpaceKeyToken.PaddingBlock.None -> paddingBlock.none
+        OudsSpaceKeyToken.PaddingBlock.FourExtraSmall -> paddingBlock.fourExtraSmall
         OudsSpaceKeyToken.PaddingBlock.ThreeExtraSmall -> paddingBlock.threeExtraSmall
         OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall -> paddingBlock.twoExtraSmall
         OudsSpaceKeyToken.PaddingBlock.ExtraSmall -> paddingBlock.extraSmall

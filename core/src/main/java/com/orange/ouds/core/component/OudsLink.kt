@@ -208,12 +208,12 @@ private fun OudsLink(
         with(linkTokens) {
             when (size) {
                 OudsLink.Size.Default -> {
-                    columnGap = if (arrow != null) spaceColumnGapArrowDefault.value else spaceColumnGapIconDefault.value
+                    columnGap = if (arrow != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
                     iconSize = sizeIconDefault.value
                     textStyle = OudsTheme.typography.label.strong.large
                 }
                 OudsLink.Size.Small -> {
-                    columnGap = if (arrow != null) spaceColumnGapArrowSmall.value else spaceColumnGapIconSmall.value
+                    columnGap = if (arrow != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
                     iconSize = sizeIconSmall.value
                     textStyle = OudsTheme.typography.label.strong.medium
                 }
