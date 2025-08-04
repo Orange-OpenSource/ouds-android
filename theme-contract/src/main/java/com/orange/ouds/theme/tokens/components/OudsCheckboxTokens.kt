@@ -18,18 +18,18 @@ package com.orange.ouds.theme.tokens.components
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 
-open class OudsCheckboxTokens(
-    val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
-    val borderWidthSelected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthSelectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthSelectedHover: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthSelectedPressed: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthUnselected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Thin,
-    val borderWidthUnselectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthUnselectedHover: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthUnselectedPressed: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val sizeIndicator: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
-    val sizeMaxHeight: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMinHeight: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMinWidth: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea
-)
+interface OudsCheckboxTokens {
+    val borderRadius: OudsBorderKeyToken.Radius
+    val borderWidthSelected: OudsBorderKeyToken.Width
+    val borderWidthSelectedFocus: OudsBorderKeyToken.Width
+    val borderWidthSelectedHover: OudsBorderKeyToken.Width
+    val borderWidthSelectedPressed: OudsBorderKeyToken.Width
+    val borderWidthUnselected: OudsBorderKeyToken.Width
+    val borderWidthUnselectedFocus: OudsBorderKeyToken.Width
+    val borderWidthUnselectedHover: OudsBorderKeyToken.Width
+    val borderWidthUnselectedPressed: OudsBorderKeyToken.Width
+    val sizeIndicator: OudsSizeKeyToken.Icon
+    val sizeMaxHeight: OudsSizeKeyToken
+    val sizeMinHeight: OudsSizeKeyToken
+    val sizeMinWidth: OudsSizeKeyToken
+}

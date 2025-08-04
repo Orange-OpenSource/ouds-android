@@ -93,7 +93,6 @@ interface OudsThemeContract : Parcelable {
      * Allows customization of OUDS components.
      */
     val componentsTokens: OudsComponentsTokens
-        get() = OudsComponentsTokens()
 
     /**
      * Allows customization of drawable resources used by OUDS components.

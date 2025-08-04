@@ -19,12 +19,12 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorContentSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorDecorativeSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorModeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
-import com.orange.ouds.theme.tokens.semantic.OudsColoredBackgroundModeSemanticTokens
 
 data class SoshColorSemanticTokens(
     override val actionColorTokens: OudsColorActionSemanticTokens = SoshColorActionSemanticTokens(),
@@ -37,5 +37,5 @@ data class SoshColorSemanticTokens(
     override val overlayColorTokens: OudsColorOverlaySemanticTokens = SoshColorOverlaySemanticTokens(),
     override val surfaceColorTokens: OudsColorSurfaceSemanticTokens = SoshColorSurfaceSemanticTokens(),
     @InternalOudsApi override val repositoryColorTokens: OudsColorRepositorySemanticTokens = SoshColorRepositorySemanticTokens(),
-    @InternalOudsApi override val colorModeTokens: OudsColoredBackgroundModeSemanticTokens = SoshColoredBackgroundModeSemanticTokens()
+    @InternalOudsApi override val colorModeTokens: OudsColorModeSemanticTokens = SoshColorModeSemanticTokens()
 ) : OudsColorSemanticTokens

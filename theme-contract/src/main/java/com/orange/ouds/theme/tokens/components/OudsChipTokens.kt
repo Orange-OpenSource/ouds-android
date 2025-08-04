@@ -21,54 +21,54 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.DimensionRawTokens
 
-open class OudsChipTokens(
-    val badgeColorBg: OudsColorKeyToken = OudsColorKeyToken.Surface.Status.Neutral.Emphasized,
-    val badgeColorContent: OudsColorKeyToken = OudsColorKeyToken.Content.OnStatus.Neutral.Emphasized,
-    val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
-    val borderWidthSelected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val borderWidthUnselected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Default,
-    val borderWidthUnselectedInteraction: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
-    val colorBgSelectedDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgSelectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgSelectedFocus: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgSelectedHover: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgSelectedPressed: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgUnselectedDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgUnselectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgUnselectedFocus: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgUnselectedHover: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBgUnselectedPressed: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
-    val colorBorderSelectedDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
-    val colorBorderSelectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Selected,
-    val colorBorderSelectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
-    val colorBorderSelectedHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
-    val colorBorderSelectedPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    val colorBorderUnselectedDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
-    val colorBorderUnselectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Border.Default,
-    val colorBorderUnselectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
-    val colorBorderUnselectedHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
-    val colorBorderUnselectedPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    val colorContentSelectedDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
-    val colorContentSelectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
-    val colorContentSelectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
-    val colorContentSelectedHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
-    val colorContentSelectedPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    val colorContentSelectedTickEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Selected,
-    val colorContentUnselectedDisabled: OudsColorKeyToken = OudsColorKeyToken.Action.Disabled,
-    val colorContentUnselectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
-    val colorContentUnselectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
-    val colorContentUnselectedHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
-    val colorContentUnselectedPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    val sizeIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
-    val sizeMinHeight: Float = DimensionRawTokens.dimension400,
-    val sizeMinHeightInteractiveArea: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMinWidth: Float = DimensionRawTokens.dimension650,
-    val spaceColumnGapBadgeChevron: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
-    val spaceColumnGapIcon: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.ExtraSmall,
-    val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall,
-    val spacePaddingBlockIconOnly: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ExtraSmall,
-    val spacePaddingInlineBadgeStart: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.FourExtraSmall,
-    val spacePaddingInlineChevronEnd: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ExtraSmall,
-    val spacePaddingInlineIcon: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Small,
-    val spacePaddingInlineIconNone: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Large
-)
+interface OudsChipTokens {
+    val badgeColorBg: OudsColorKeyToken
+    val badgeColorContent: OudsColorKeyToken
+    val borderRadius: OudsBorderKeyToken.Radius
+    val borderWidthSelected: OudsBorderKeyToken.Width
+    val borderWidthUnselected: OudsBorderKeyToken.Width
+    val borderWidthUnselectedInteraction: OudsBorderKeyToken.Width
+    val colorBgSelectedDisabled: OudsColorKeyToken
+    val colorBgSelectedEnabled: OudsColorKeyToken
+    val colorBgSelectedFocus: OudsColorKeyToken
+    val colorBgSelectedHover: OudsColorKeyToken
+    val colorBgSelectedPressed: OudsColorKeyToken
+    val colorBgUnselectedDisabled: OudsColorKeyToken
+    val colorBgUnselectedEnabled: OudsColorKeyToken
+    val colorBgUnselectedFocus: OudsColorKeyToken
+    val colorBgUnselectedHover: OudsColorKeyToken
+    val colorBgUnselectedPressed: OudsColorKeyToken
+    val colorBorderSelectedDisabled: OudsColorKeyToken
+    val colorBorderSelectedEnabled: OudsColorKeyToken
+    val colorBorderSelectedFocus: OudsColorKeyToken
+    val colorBorderSelectedHover: OudsColorKeyToken
+    val colorBorderSelectedPressed: OudsColorKeyToken
+    val colorBorderUnselectedDisabled: OudsColorKeyToken
+    val colorBorderUnselectedEnabled: OudsColorKeyToken
+    val colorBorderUnselectedFocus: OudsColorKeyToken
+    val colorBorderUnselectedHover: OudsColorKeyToken
+    val colorBorderUnselectedPressed: OudsColorKeyToken
+    val colorContentSelectedDisabled: OudsColorKeyToken
+    val colorContentSelectedEnabled: OudsColorKeyToken
+    val colorContentSelectedFocus: OudsColorKeyToken
+    val colorContentSelectedHover: OudsColorKeyToken
+    val colorContentSelectedPressed: OudsColorKeyToken
+    val colorContentSelectedTickEnabled: OudsColorKeyToken
+    val colorContentUnselectedDisabled: OudsColorKeyToken
+    val colorContentUnselectedEnabled: OudsColorKeyToken
+    val colorContentUnselectedFocus: OudsColorKeyToken
+    val colorContentUnselectedHover: OudsColorKeyToken
+    val colorContentUnselectedPressed: OudsColorKeyToken
+    val sizeIcon: OudsSizeKeyToken.Icon
+    val sizeMinHeight: Float
+    val sizeMinHeightInteractiveArea: OudsSizeKeyToken
+    val sizeMinWidth: Float
+    val spaceColumnGapBadgeChevron: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapIcon: OudsSpaceKeyToken.ColumnGap
+    val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock
+    val spacePaddingBlockIconOnly: OudsSpaceKeyToken.PaddingBlock
+    val spacePaddingInlineBadgeStart: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineChevronEnd: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineIcon: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineIconNone: OudsSpaceKeyToken.PaddingInline
+}

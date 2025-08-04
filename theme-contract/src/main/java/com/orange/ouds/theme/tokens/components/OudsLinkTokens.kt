@@ -20,25 +20,25 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.DimensionRawTokens
 
-open class OudsLinkTokens(
-    val colorArrowEnabled: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
-    val colorArrowFocus: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
-    val colorArrowHover: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
-    val colorArrowPressed: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
-    val colorContentEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
-    val colorContentFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
-    val colorContentHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
-    val colorContentPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    val sizeIconDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
-    val sizeIconSmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
-    val sizeMinHeightDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMinHeightSmall: Float = DimensionRawTokens.dimension550,
-    val sizeMinWidthDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    val sizeMinWidthSmall: Float = DimensionRawTokens.dimension550,
-    val spaceColumnGapChevronDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
-    val spaceColumnGapChevronSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
-    val spaceColumnGapIconDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,
-    val spaceColumnGapIconSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.ExtraSmall,
-    val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.Medium,
-    val spacePaddingInline: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.None
-)
+interface OudsLinkTokens {
+    val colorArrowEnabled: OudsColorKeyToken
+    val colorArrowFocus: OudsColorKeyToken
+    val colorArrowHover: OudsColorKeyToken
+    val colorArrowPressed: OudsColorKeyToken
+    val colorContentEnabled: OudsColorKeyToken
+    val colorContentFocus: OudsColorKeyToken
+    val colorContentHover: OudsColorKeyToken
+    val colorContentPressed: OudsColorKeyToken
+    val sizeIconDefault: OudsSizeKeyToken.Icon
+    val sizeIconSmall: OudsSizeKeyToken.Icon
+    val sizeMinHeightDefault: OudsSizeKeyToken
+    val sizeMinHeightSmall: Float
+    val sizeMinWidthDefault: OudsSizeKeyToken
+    val sizeMinWidthSmall: Float
+    val spaceColumnGapChevronDefault: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapChevronSmall: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapIconDefault: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapIconSmall: OudsSpaceKeyToken.ColumnGap
+    val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock
+    val spacePaddingInline: OudsSpaceKeyToken.PaddingInline
+}
