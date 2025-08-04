@@ -22,6 +22,7 @@ class OudsDokkaPlugin : DokkaPlugin() {
     @OptIn(DokkaPluginApiPreview::class)
     override fun pluginApiPreviewAcknowledgement(): PluginApiPreviewAcknowledgement = PluginApiPreviewAcknowledgement
 
+    // Add the transformer to the documentableTransformer core extension point
     val componentDocumentableTransformer by extending {
         CoreExtensions.documentableTransformer providing ::OudsComponentDocumentableTransformer
     }

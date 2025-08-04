@@ -156,27 +156,38 @@ class OudsComponentDocumentableTransformer(val context: DokkaContext) : Document
         }
     }
 
+    /**
+     * Replaces the DocTags instances related to the design version and guidelines link with a new one that displays these values in a table.
+     */
     private fun Documentable.replaceDesignDocTags(): SourceSetDependent<DocumentationNode> {
         val designVersionRegex = "Design version: (.*)".toRegex()
-        val designGuidelinesRegex = "Design guidelines: (.*)".toRegex()
+        val designGuidelinesLinkRegex = "Design guidelines: (.*)".toRegex()
 
         return documentation.mapValues { (_, node) ->
             val nodeChildren = node.children.map { tagWrapper ->
+                // The design version and guidelines link are located in the description part of the KDoc
                 if (tagWrapper is Description) {
+                    // Find the design version in any descendant of the root DocTag
                     val version = designVersionRegex.find(tagWrapper.root)?.groupValues?.getOrNull(1)
-                    val guidelinesBlockquote = tagWrapper.root.firstMemberOfTypeOrNull<BlockQuote> { designGuidelinesRegex.find(it) != null }
-                    val guidelinesAnchor = guidelinesBlockquote?.firstMemberOfTypeOrNull<A>()
-                    val guidelinesText = guidelinesAnchor?.firstMemberOfTypeOrNull<Text>()?.body
-                    val guidelinesHref = guidelinesAnchor?.params["href"]
-                    val designDocTag = if (version != null && guidelinesText != null && guidelinesHref != null) {
-                        getDesignDocTag(version, guidelinesText, guidelinesHref)
+                    // Find the blockquote DocTag that contains the design guidelines link
+                    val guidelinesLinkBlockquote = tagWrapper.root.firstMemberOfTypeOrNull<BlockQuote> { designGuidelinesLinkRegex.find(it) != null }
+                    // Get the anchor contained into that blockquote and retrieve the URL and the text
+                    val guidelinesLink = guidelinesLinkBlockquote?.firstMemberOfTypeOrNull<A>()
+                    val guidelinesLinkText = guidelinesLink?.firstMemberOfTypeOrNull<Text>()?.body
+                    val guidelinesLinkUrl = guidelinesLink?.params["href"]
+                    val designDocTag = if (version != null && guidelinesLinkText != null && guidelinesLinkUrl != null) {
+                        // Build a new DocTag that displays the design version and guidelines link in a table.
+                        getDesignDocTag(version, guidelinesLinkText, guidelinesLinkUrl)
                     } else {
                         null
                     }
 
+                    // Remove the design version and guidelines link DocTag instances and add the new one as a child of the Description node 
+                    // In this way, design version and guidelines link will appear into blockquotes in Android Studio quick documentation
+                    // but into a table in the Dokka documentation
                     val tagWrapperRoot = tagWrapper.root
                         .removeDescendant { designVersionRegex.find(it) != null }
-                        .removeDescendant { designGuidelinesRegex.find(it) != null }
+                        .removeDescendant { designGuidelinesLinkRegex.find(it) != null }
                         .run { if (designDocTag != null) addChild(designDocTag) else this }
 
                     tagWrapper.copy(root = tagWrapperRoot)
@@ -188,9 +199,12 @@ class OudsComponentDocumentableTransformer(val context: DokkaContext) : Document
         }
     }
 
-    private fun getDesignDocTag(version: String, guidelinesText: String, guidelinesHref: String): DocTag {
-        val guidelinesBody = "<a href=\"$guidelinesHref\" class=\"external\" target=\"_blank\">$guidelinesText</a>"
-        val guidelinesParams = mapOf("content-type" to "html")
+    /**
+     * Builds and returns a DocTag that displays the design version and guidelines link in a table.
+     */
+    private fun getDesignDocTag(version: String, guidelinesLinkText: String, guidelinesLinkUrl: String): DocTag {
+        val guidelinesLinkBody = "<a href=\"$guidelinesLinkUrl\" class=\"external\" target=\"_blank\">$guidelinesLinkText</a>"
+        val guidelinesLinkParams = mapOf("content-type" to "html")
 
         return Div(
             listOf(
@@ -200,7 +214,8 @@ class OudsComponentDocumentableTransformer(val context: DokkaContext) : Document
                         Tr(
                             listOf(
                                 Td(listOf(Text("Guidelines"))),
-                                Td(listOf(Text(guidelinesBody, params = guidelinesParams)))
+                                // Use a Text instead of an A to display the link in order to obtain a link which will open a new window
+                                Td(listOf(Text(guidelinesLinkBody, params = guidelinesLinkParams)))
                             )
                         ),
                         Tr(
