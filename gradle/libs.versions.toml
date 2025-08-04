@@ -1,9 +1,9 @@
 [versions]
 activityCompose = "1.10.1"
 appcompat = "1.7.1"
-androidCompileSdk = "35"
+androidCompileSdk = "36"
 androidMinSdk = "21"
-androidTargetSdk = "35"
+androidTargetSdk = "36"
 browser = "1.8.0"
 composeBom = "2025.07.00"
 coreKtx = "1.16.0"
@@ -26,7 +26,7 @@ material = "1.12.0"
 mockitoAndroid = "5.18.0"
 mockitoKotlin = "6.0.0"
 navigationCompose = "2.9.3"
-paparazzi = "1.3.5"
+paparazzi = "2.0.0-alpha02"
 zxing = "3.5.3"
 
 [libraries]
