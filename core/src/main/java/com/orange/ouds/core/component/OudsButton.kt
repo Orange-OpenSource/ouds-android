@@ -249,10 +249,10 @@ private fun OudsButton(
 ) {
     val icon = nullableIcon
     val label = nullableLabel
-    val isForbidden = hierarchy == OudsButton.Hierarchy.Negative && LocalColorMode.current != null
+    val isForbidden = (hierarchy == OudsButton.Hierarchy.Brand || hierarchy == OudsButton.Hierarchy.Negative) && LocalColorMode.current != null
     CheckedContent(
         expression = !isForbidden,
-        exceptionMessage = { "An OudsButton with OudsButton.Hierarchy.Negative hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
+        exceptionMessage = { "An OudsButton with $hierarchy hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
         previewMessage = { if (icon != null && label == null) "⛔" else "Not on a\ncolored\nbackground" }
     ) {
         val buttonTokens = OudsTheme.componentsTokens.button
@@ -378,6 +378,7 @@ private fun borderWidth(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                 OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
             }
             OudsButton.Hierarchy.Strong,
+            OudsButton.Hierarchy.Brand,
             OudsButton.Hierarchy.Minimal,
             OudsButton.Hierarchy.Negative -> if (state == OudsButton.State.Focused) OudsTheme.borders.width.focusInset else null
         }
@@ -396,7 +397,7 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                     OudsButton.State.Loading -> colorBorderDefaultLoading
                     OudsButton.State.Disabled -> colorBorderDefaultDisabled
                     OudsButton.State.Focused -> colorBorderDefaultFocus
-                }
+                }.value
                 OudsButton.Hierarchy.Strong -> when (state) {
                     OudsButton.State.Enabled -> colorBorderStrongEnabled
                     OudsButton.State.Hovered -> colorBorderStrongHover
@@ -404,9 +405,10 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                     OudsButton.State.Loading -> colorBorderStrongLoading
                     OudsButton.State.Disabled -> colorBorderStrongDisabled
                     OudsButton.State.Focused -> colorBorderStrongFocus
-                }
-                OudsButton.Hierarchy.Minimal,
-                OudsButton.Hierarchy.Negative -> null
+                }.value
+                OudsButton.Hierarchy.Minimal -> null
+                OudsButton.Hierarchy.Brand,
+                OudsButton.Hierarchy.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
             }
         }
     } else {
@@ -421,23 +423,16 @@ private fun borderColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State
                     OudsButton.State.Focused -> colorBorderDefaultFocus
                 }
                 OudsButton.Hierarchy.Strong,
+                OudsButton.Hierarchy.Brand,
                 OudsButton.Hierarchy.Minimal,
                 OudsButton.Hierarchy.Negative -> null
             }
-        }
-    }?.value
+        }?.value
+    }
 }
 
 @Composable
 private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State): Color {
-    val negativeBackgroundColor = when (state) {
-        OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-        OudsButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
-        OudsButton.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-        OudsButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
-        OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
-        OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
-    }
     return if (LocalColorMode.current?.monochrome == true) {
         with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (hierarchy) {
@@ -465,7 +460,8 @@ private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
                     OudsButton.State.Loading -> colorBgStrongLoading
                     OudsButton.State.Disabled -> colorBgStrongDisabled
                 }.value
-                OudsButton.Hierarchy.Negative -> negativeBackgroundColor
+                OudsButton.Hierarchy.Brand,
+                OudsButton.Hierarchy.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
             }
         }
     } else {
@@ -495,7 +491,22 @@ private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
                     OudsButton.State.Loading -> OudsTheme.colorScheme.action.loading
                     OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
                 }
-                OudsButton.Hierarchy.Negative -> negativeBackgroundColor
+                OudsButton.Hierarchy.Brand -> when (state) {
+                    OudsButton.State.Enabled -> colorBgBrandEnabled.value
+                    OudsButton.State.Focused -> OudsTheme.colorScheme.action.focus
+                    OudsButton.State.Hovered -> OudsTheme.colorScheme.action.hover
+                    OudsButton.State.Pressed -> OudsTheme.colorScheme.action.pressed
+                    OudsButton.State.Loading -> OudsTheme.colorScheme.action.loading
+                    OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
+                }
+                OudsButton.Hierarchy.Negative -> when (state) {
+                    OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
+                    OudsButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
+                    OudsButton.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
+                    OudsButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
+                    OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
+                    OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
+                }
             }
         }
     }
@@ -503,14 +514,6 @@ private fun backgroundColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.S
 
 @Composable
 private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.State): Color {
-    val negativeContentColor = when (state) {
-        OudsButton.State.Enabled,
-        OudsButton.State.Hovered,
-        OudsButton.State.Pressed,
-        OudsButton.State.Loading,
-        OudsButton.State.Focused -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
-        OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
-    }
     return if (LocalColorMode.current?.monochrome == true) {
         with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (hierarchy) {
@@ -538,7 +541,8 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                     OudsButton.State.Loading -> colorContentStrongLoading
                     OudsButton.State.Disabled -> colorContentStrongDisabled
                 }.value
-                OudsButton.Hierarchy.Negative -> negativeContentColor
+                OudsButton.Hierarchy.Brand,
+                OudsButton.Hierarchy.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
             }
         }
     } else {
@@ -568,7 +572,22 @@ private fun contentColor(hierarchy: OudsButton.Hierarchy, state: OudsButton.Stat
                     OudsButton.State.Loading -> OudsTheme.colorScheme.content.onAction.loading
                     OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 }
-                OudsButton.Hierarchy.Negative -> negativeContentColor
+                OudsButton.Hierarchy.Brand -> when (state) {
+                    OudsButton.State.Enabled -> colorContentBrandEnabled.value
+                    OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.focus
+                    OudsButton.State.Hovered -> OudsTheme.colorScheme.content.onAction.hover
+                    OudsButton.State.Pressed -> OudsTheme.colorScheme.content.onAction.pressed
+                    OudsButton.State.Loading -> OudsTheme.colorScheme.content.onAction.loading
+                    OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+                }
+                OudsButton.Hierarchy.Negative -> when (state) {
+                    OudsButton.State.Enabled,
+                    OudsButton.State.Hovered,
+                    OudsButton.State.Pressed,
+                    OudsButton.State.Loading,
+                    OudsButton.State.Focused -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
+                    OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+                }
             }
         }
     }
@@ -694,15 +713,22 @@ object OudsButton {
      */
     enum class Hierarchy {
         /**
-         * A standard button style used for actions which are not mandatory or essential for the user.
+         * Default buttons are used for actions which are not mandatory or essential for the user.
+         * Often screens will include multiple Outline buttons alongside one of the Full button.
          */
         Default,
 
         /**
-         * A strong style for a button which should be singular and prominent, limited to one per view. It should be reserved for the most critical action,
-         * such as "Next," "Save," "Submit," etc...
+         * The Strong button on the page should be singular and prominent, ideally limited to one per view.
+         * It should be reserved for the most critical action, such as "Buy," "Save," "Submit," etc.
          */
         Strong,
+
+        /**
+         * A brand primary color alternative to the Strong button. To be used sparingly for high-value specific actions or to visually anchor a brand moment.
+         * Do not use it as the default primary button in your interfaces.
+         */
+        Brand,
 
         /**
          * Minimal buttons are commonly used for actions that are considered less crucial. They can be used independently or together with a strong button.
