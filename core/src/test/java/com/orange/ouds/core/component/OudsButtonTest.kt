@@ -14,23 +14,38 @@ package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
 import com.orange.ouds.OudsSnapshotTest
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsButtonTest(private val parameter: OudsButtonPreviewParameter) : OudsSnapshotTest() {
+@RunWith(Enclosed::class)
+internal class OudsButtonTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsButtonPreviewParameterProvider().values.toList()
+    @RunWith(org.junit.runners.Parameterized::class)
+    class Parameterized(private val parameter: OudsButtonPreviewParameter) : OudsSnapshotTest() {
+        
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsButtonPreviewParameterProvider().values.toList()
+        }
+
+        @Composable
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+            PreviewOudsButton(
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter
+            )
+        }
     }
 
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsButton(
-            darkThemeEnabled = darkThemeEnabled,
-            parameter = parameter
-        )
+    class NonParameterized : OudsSnapshotTest() {
+
+        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
+
+        @Composable
+        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+            PreviewOudsButtonWithRoundedCorners()
+        }
     }
 }

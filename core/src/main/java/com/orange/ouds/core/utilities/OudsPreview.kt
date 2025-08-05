@@ -35,6 +35,7 @@ import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.OudsThemeDefaults
 import kotlin.enums.enumEntries
 
 private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
@@ -44,6 +45,7 @@ private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
  *
  * @param modifier The modifier for the preview content.
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
+ * @param themeSettings The theme settings for the preview.
  * @param highContrastModeEnabled Indicates whether the high contrast mode is enabled for the preview.
  * @param content The content of the preview.
  *
@@ -53,6 +55,7 @@ private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 fun OudsPreview(
     modifier: Modifier = Modifier,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
+    themeSettings: OudsTheme.Settings = OudsThemeDefaults.Settings,
     highContrastModeEnabled: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -62,7 +65,11 @@ fun OudsPreview(
         isNightModeEnabled = darkThemeEnabled
     }
     CompositionLocalProvider(value = LocalConfiguration provides configuration) {
-        OudsTheme(themeContract = BuildConfig.PREVIEW_THEME, darkThemeEnabled) {
+        OudsTheme(
+            themeContract = BuildConfig.PREVIEW_THEME,
+            darkThemeEnabled = darkThemeEnabled,
+            settings = themeSettings
+        ) {
             // Add a box to be able to see components
             // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
             Box(

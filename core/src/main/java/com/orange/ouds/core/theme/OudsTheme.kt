@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.theme
 
+import android.os.Parcelable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -21,10 +22,12 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
+import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import kotlinx.parcelize.Parcelize
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
@@ -46,6 +49,7 @@ internal val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingComposi
 internal val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
 internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
+internal val LocalSettings = staticCompositionLocalOf<OudsTheme.Settings> { missingCompositionLocalError("LocalSettings") }
 
 /**
  * Object that stores tokens values for the current theme.
@@ -60,6 +64,20 @@ object OudsTheme {
     enum class Tweak {
         Invert, ForceDark, ForceLight
     }
+
+    /**
+     * The theme settings.
+     *
+     * @property roundedCorners Indicates if rounded corners should be applied to several components, such as [OudsButton].
+     *   Set to `false` for a default finish, or `true` for a finish with rounded corner.
+     *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
+     *   For standard or business-oriented journeys, keep the default corners.
+     *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
+     *   Please note that this setting may have no effect depending on the theme used.
+     * @constructor Creates an instance of [OudsTheme.Settings].
+     */
+    @Parcelize
+    data class Settings(val roundedCorners: Boolean) : Parcelable
 
     val colorScheme: OudsColorScheme
         @Composable
@@ -110,6 +128,22 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalDrawableResources.current
+
+    internal val settings: Settings
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalSettings.current
+}
+
+/**
+ * Default values for [OudsTheme].
+ */
+object OudsThemeDefaults {
+
+    /**
+     * Default settings of an [OudsTheme].
+     */
+    val Settings = OudsTheme.Settings(roundedCorners = false)
 }
 
 /**
@@ -119,12 +153,14 @@ object OudsTheme {
  *
  * @param themeContract Theme contract which contain the configuration of the OudsTheme: colors, typography...
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
+ * @param settings The theme settings.
  * @param content Theme nested content. OudsTheme will be applied to this content.
  */
 @Composable
 fun OudsTheme(
     themeContract: OudsThemeContract,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
+    settings: OudsTheme.Settings = OudsThemeDefaults.Settings,
     content: @Composable () -> Unit
 ) {
     with(themeContract) {
@@ -148,7 +184,8 @@ fun OudsTheme(
             LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),
             LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),
             LocalComponentsTokens provides componentsTokens,
-            LocalDrawableResources provides drawableResources
+            LocalDrawableResources provides drawableResources,
+            LocalSettings provides settings
         ) {
             MaterialTheme(
                 colorScheme = materialColorScheme,

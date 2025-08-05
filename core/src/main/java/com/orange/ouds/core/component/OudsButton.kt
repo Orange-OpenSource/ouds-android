@@ -52,6 +52,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -63,7 +64,9 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalColorMode
+import com.orange.ouds.core.theme.LocalSettings
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.OudsThemeDefaults
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -84,6 +87,8 @@ import kotlinx.parcelize.Parcelize
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.roundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -137,6 +142,8 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
+ * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.roundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
  * > Design version: 3.0.0
@@ -189,6 +196,8 @@ fun OudsButton(
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.roundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -249,7 +258,8 @@ private fun OudsButton(
 ) {
     val icon = nullableIcon
     val label = nullableLabel
-    val isForbidden = (hierarchy == OudsButton.Hierarchy.Brand || hierarchy == OudsButton.Hierarchy.Negative) && LocalColorMode.current != null
+    val forbiddenHierarchiesOnColoredBox = remember { listOf(OudsButton.Hierarchy.Brand, OudsButton.Hierarchy.Negative) }
+    val isForbidden = (hierarchy in forbiddenHierarchiesOnColoredBox) && LocalColorMode.current != null
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsButton with $hierarchy hierarchy displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
@@ -261,7 +271,8 @@ private fun OudsButton(
         val state = getButtonState(enabled = enabled, style = style, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.value * iconScale else Dp.Unspecified
-        val shape = RoundedCornerShape(buttonTokens.borderRadiusDefault.value)
+        val borderRadius = if (LocalSettings.current.roundedCorners) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
+        val shape = RoundedCornerShape(borderRadius.value)
 
         val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
         val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
@@ -774,6 +785,20 @@ object OudsButton {
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvider::class) parameter: OudsButtonPreviewParameter) {
     PreviewOudsButton(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Preview
+@Composable
+internal fun PreviewOudsButtonWithRoundedCorners() = OudsPreview(themeSettings = OudsThemeDefaults.Settings.copy(roundedCorners = true)) {
+    val hierarchy = OudsButton.Hierarchy.Default
+    PreviewEnumEntries<OudsButton.State>(columnCount = 2) { state ->
+        OudsButton(
+            nullableIcon = OudsButton.Icon(Icons.Filled.FavoriteBorder, ""),
+            nullableLabel = hierarchy.name,
+            onClick = {},
+            hierarchy = hierarchy
+        )
+    }
 }
 
 @Composable
