@@ -105,7 +105,7 @@ import org.jetbrains.dokka.model.withDescendants
 import org.jetbrains.dokka.plugability.DokkaContext
 import org.jetbrains.dokka.transformers.documentation.DocumentableTransformer
 
-class OudsComponentDocumentableTransformer(val context: DokkaContext) : DocumentableTransformer {
+class OudsComponentDocumentableTransformer : DocumentableTransformer {
 
     override fun invoke(original: DModule, context: DokkaContext): DModule = original.transform() as DModule
 

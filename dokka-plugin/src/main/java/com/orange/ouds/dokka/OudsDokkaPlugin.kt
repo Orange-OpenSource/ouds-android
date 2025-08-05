@@ -24,6 +24,6 @@ class OudsDokkaPlugin : DokkaPlugin() {
 
     // Add the transformer to the documentableTransformer core extension point
     val componentDocumentableTransformer by extending {
-        CoreExtensions.documentableTransformer providing ::OudsComponentDocumentableTransformer
+        CoreExtensions.documentableTransformer providing { OudsComponentDocumentableTransformer() }
     }
 }
