@@ -60,7 +60,7 @@ tasks.register<DefaultTask>("prepareDocumentation") {
 tasks.register<DefaultTask>("checkDocumentation") {
     doLast {
         val componentVersionRegex = "Design version: (.*)$".toRegex()
-        Component.values().forEach { component ->
+        Component.entries.forEach { component ->
             component.getSourceFilePaths(project).forEach { sourceFilePath ->
                 val versionByLineIndex = File(sourceFilePath).readLines()
                     .mapIndexedNotNull { index, line ->
@@ -84,7 +84,7 @@ tasks.register<DefaultTask>("checkDocumentation") {
 tasks.register<DefaultTask>("updateDocumentation") {
     doLast {
         val componentVersionRegex = "(Design version: ).*".toRegex()
-        Component.values().forEach { component ->
+        Component.entries.forEach { component ->
             component.getSourceFilePaths(project).forEach { sourceFilePath ->
                 File(sourceFilePath).replace(componentVersionRegex) { matchResult ->
                     "${matchResult.groupValues[1]}${component.version}"
