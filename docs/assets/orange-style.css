@@ -298,3 +298,7 @@ td:first-child {
   width: 25%;
   padding-left: 0px;
 }
+
+.parameters {
+    display: block;
+}
