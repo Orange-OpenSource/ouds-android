@@ -94,7 +94,7 @@ fun OudsTag(
     loading: OudsTag.Loading? = null
 ) {
     OudsTag(
-        nullableIcon = if (hasBullet) OudsTag.Icon(painter = painterResource(R.drawable.tag_bullet)) else null,
+        nullableIcon = if (hasBullet) OudsTag.Icon(painter = painterResource(id = OudsTheme.drawableResources.tagBullet)) else null,
         label = label,
         modifier = modifier,
         hierarchy = hierarchy,
@@ -231,8 +231,8 @@ private fun minHeight(size: OudsTag.Size): Dp {
 private fun assetSize(size: OudsTag.Size): Dp {
     return with(OudsTheme.componentsTokens.tag) {
         when (size) {
-            OudsTag.Size.Default -> sizeIconDefault
-            OudsTag.Size.Small -> sizeIconSmall
+            OudsTag.Size.Default -> sizeAssetDefault
+            OudsTag.Size.Small -> sizeAssetSmall
         }.value
     }
 }
@@ -295,12 +295,12 @@ private fun contentPadding(size: OudsTag.Size, hasAsset: Boolean): PaddingValues
         when (size) {
             OudsTag.Size.Default -> {
                 verticalPadding = spacePaddingBlockDefault.value
-                startPadding = if (hasAsset) spacePaddingInlineDefaultAsset.value else spacePaddingInlineDefault.value
+                startPadding = if (hasAsset) spacePaddingInlineAssetDefault.value else spacePaddingInlineDefault.value
                 endPadding = spacePaddingInlineDefault.value
             }
             OudsTag.Size.Small -> {
                 verticalPadding = spacePaddingBlockSmall.value
-                startPadding = if (hasAsset) spacePaddingInlineSmallAsset.value else spacePaddingInlineSmall.value
+                startPadding = if (hasAsset) spacePaddingInlineAssetSmall.value else spacePaddingInlineSmall.value
                 endPadding = spacePaddingInlineSmall.value
             }
         }

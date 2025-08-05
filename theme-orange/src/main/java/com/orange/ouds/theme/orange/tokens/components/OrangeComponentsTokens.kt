@@ -24,6 +24,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
+import com.orange.ouds.theme.tokens.components.OudsTagTokens
 
 data class OrangeComponentsTokens(
     override val badge: OudsBadgeTokens = OrangeBadgeTokens(),
@@ -36,5 +37,6 @@ data class OrangeComponentsTokens(
     override val link: OudsLinkTokens = OrangeLinkTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = OrangeLinkMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = OrangeRadioButtonTokens(),
-    override val switch: OudsSwitchTokens = OrangeSwitchTokens()
+    override val switch: OudsSwitchTokens = OrangeSwitchTokens(),
+    override val tag: OudsTagTokens = OrangeTagTokens()
 ) : OudsComponentsTokens

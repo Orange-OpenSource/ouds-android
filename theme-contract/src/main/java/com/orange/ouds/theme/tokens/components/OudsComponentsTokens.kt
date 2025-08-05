@@ -12,8 +12,6 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import OudsTagTokens
-
 interface OudsComponentsTokens {
     val badge: OudsBadgeTokens
     val button: OudsButtonTokens
