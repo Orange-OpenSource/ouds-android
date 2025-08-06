@@ -48,11 +48,13 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">**OUDS Radio button design guidelines**</a>
- *
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
  *
  * The **standalone radio button variant** can be used when the radio selector control is nested within another component and an alternative label is provided.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+ *
+ * > Design version: 1.1.0
  *
  * @see [OudsRadioButtonItem] If you want to use a radio button with an associated label and other optional elements.
  *

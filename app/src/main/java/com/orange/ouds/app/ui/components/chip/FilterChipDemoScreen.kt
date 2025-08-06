@@ -20,6 +20,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun FilterChipDemoScreen() {
@@ -28,7 +29,8 @@ fun FilterChipDemoScreen() {
     DemoScreen(
         bottomSheetContent = { ChipDemoBottomSheetContent(state = state) },
         codeSnippet = { filterChipDemoCodeSnippet(state = state, context = context) },
-        demoContent = { FilterChipDemoContent(state = state) }
+        demoContent = { FilterChipDemoContent(state = state) },
+        version = OudsVersion.Component.Chip
     )
 }
 

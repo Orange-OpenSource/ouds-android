@@ -25,7 +25,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
-// TODO: Add OUDS documentation URL for chips
+// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -38,6 +38,10 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * This version of the suggestion chip uses the *text only* layout which displays only text, offering a clean and minimalistic look.
  * Best suited for category-based filters that do not require additional visual elements.
  * Other layouts are available for this component: *text + icon* and *icon only*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.2.0
  *
  * @param onClick Called when this chip is clicked.
  * @param label Text label for this chip.
@@ -70,7 +74,7 @@ fun OudsSuggestionChip(
     )
 }
 
-// TODO: Add OUDS documentation URL for chips
+// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -83,6 +87,10 @@ fun OudsSuggestionChip(
  * This version of the chip uses the *icon only* layout which uses only an icon, making it a compact option for limited space.
  * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
  * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.2.0
  *
  * @param onClick Called when this chip is clicked.
  * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
@@ -115,7 +123,7 @@ fun OudsSuggestionChip(
     )
 }
 
-// TODO: Add OUDS documentation URL for chips
+// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -128,6 +136,10 @@ fun OudsSuggestionChip(
  * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
  * Ideal when a visual cue helps reinforce the filter’s meaning.
  * Other layouts are available for this component: *text only* and *icon only*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.2.0
  *
  * @param onClick Called when this chip is clicked.
  * @param label Text label for this chip.

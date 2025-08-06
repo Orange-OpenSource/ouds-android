@@ -56,7 +56,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 
-// TODO: Add documentation URL once it is available
+// TODO: Update documentation URL once it is available
 /**
  * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
  * It is often displayed as a label or indicator with a distinct background color and text.
@@ -70,6 +70,10 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.1.0
  *
  * @param modifier The [Modifier] to be applied to this badge.
  * @param status The status of this badge. The background color of the badge is based on this status.
@@ -92,7 +96,7 @@ fun OudsBadge(
     )
 }
 
-// TODO: Add documentation URL once it is available
+// TODO: Update documentation URL once it is available
 /**
  * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
  * It is often displayed as a label or indicator with a distinct background color and text.
@@ -104,6 +108,10 @@ fun OudsBadge(
  *
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.1.0
  *
  * @param count The number displayed in the badge. Minimum and maximum values are 0 and 99 respectively.
  *   Values greater than 99 are displayed as "+99".
@@ -131,7 +139,7 @@ fun OudsBadge(
     )
 }
 
-// TODO: Add documentation URL once it is available
+// TODO: Update documentation URL once it is available
 /**
  * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
  * It is often displayed as a label or indicator with a distinct background color and text.
@@ -143,6 +151,10 @@ fun OudsBadge(
  *
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.1.0
  *
  * @param icon The icon displayed in the badge.
  * @param modifier The [Modifier] to be applied to this badge.

@@ -150,8 +150,6 @@ tasks.register<DefaultTask>("updateAppChangelog") {
 }
 
 fun updateBuildConfig() {
-    val tokensVersion = findTypedProperty<String>("tokensVersion").orEmpty()
-
     val gitHubWorkflow = Environment.getVariablesOrNull("GITHUB_WORKFLOW").first()
     val pullRequestNumber = if (gitHubWorkflow == "app-distribution-alpha") {
         gitHubApi {
@@ -163,15 +161,14 @@ fun updateBuildConfig() {
     }
 
     android.defaultConfig {
-        buildConfigField("String", "TOKENS_VERSION", "\"$tokensVersion\"")
         buildConfigField("String", "PULL_REQUEST_NUMBER", if (pullRequestNumber != null) "\"$pullRequestNumber\"" else "null")
     }
 }
 
 gradle.projectsEvaluated {
     tasks["preBuild"].apply {
+        dependsOn(":checkDocumentation")
         dependsOn(":checkNotice")
-        dependsOn(":checkTokensVersion")
         dependsOn(tasks["updateAppChangelog"])
     }
     updateBuildConfig()

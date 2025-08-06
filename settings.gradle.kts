@@ -32,6 +32,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "OUDS Android"
+include(":dokka-plugin")
 include(":app")
 include(":foundation")
 include(":core")
