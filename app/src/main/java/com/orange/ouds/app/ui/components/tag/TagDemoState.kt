@@ -92,6 +92,9 @@ class TagDemoState(
 
     var loading: Boolean by mutableStateOf(loading)
 
+    val loadingSwitchEnabled: Boolean
+        get() = status != OudsTag.Status.Disabled
+
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),
         TextAndBullet(R.string.app_components_tag_textAndBulletLayout_label),

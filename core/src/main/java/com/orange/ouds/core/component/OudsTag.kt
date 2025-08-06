@@ -56,6 +56,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -77,10 +78,12 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param hasBullet Controls the display of a bullet before the tag label.
  * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
  * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
+ *   A tag with loading spinner cannot have an [OudsTag.Status.Disabled] status. This will throw an [IllegalStateException].
  * @param shape The shape of the tag. This allows to play with its corners appearance.
  * @param size The size of the tag.
  * @param loading An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
+ *   A tag with an [OudsTag.Status.Disabled] status cannot have a loading spinner. This will throw an [IllegalStateException].
  */
 @Composable
 fun OudsTag(
@@ -121,10 +124,12 @@ fun OudsTag(
  * @param modifier [Modifier] applied to the tag.
  * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
  * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
+ *   A tag with loading spinner cannot have an [OudsTag.Status.Disabled] status. This will throw an [IllegalStateException].
  * @param shape The shape of the tag. This allows to play with its corners appearance.
  * @param size The size of the tag.
  * @param loading An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
+ *   A tag with an [OudsTag.Status.Disabled] status cannot have a loading spinner. This will throw an [IllegalStateException].
  */
 @Composable
 fun OudsTag(
@@ -163,44 +168,51 @@ private fun OudsTag(
     loading: OudsTag.Loading?
 ) {
     val hasAsset = hasBullet || nullableIcon != null || loading != null
+    val isForbidden = status == Disabled && loading != null
 
-    // This outer box is necessary otherwise the user can change the size of the tag through the modifier
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
+    CheckedContent(
+        expression = !isForbidden,
+        exceptionMessage = { "An OudsTag with OudsTag.Status.Disabled status cannot have a loading spinner. This is not allowed." },
+        previewMessage = { "⛔" }
     ) {
-        Row(
-            modifier = Modifier
-                .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
-                .clip(shape = shape(shape))
-                .background(status.backgroundColor(hierarchy = hierarchy))
-                .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = if (hasAsset) Arrangement.spacedBy(OudsTheme.componentsTokens.tag.spaceColumnGapSmall.value) else Arrangement.Center,
+        // This outer box is necessary otherwise the user can change the size of the tag through the modifier
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
         ) {
-            val contentColor = contentColor(status = status, hierarchy = hierarchy)
+            Row(
+                modifier = Modifier
+                    .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
+                    .clip(shape = shape(shape))
+                    .background(status.backgroundColor(hierarchy = hierarchy))
+                    .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = if (hasAsset) Arrangement.spacedBy(OudsTheme.componentsTokens.tag.spaceColumnGapSmall.value) else Arrangement.Center,
+            ) {
+                val contentColor = contentColor(status = status, hierarchy = hierarchy)
 
-            if (hasAsset) {
-                Box(modifier = Modifier.size(assetSize(size))) {
-                    if (loading != null) {
-                        LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loading.progress)
-                    } else {
-                        val asset = if (hasBullet) OudsTag.Icon(painter = painterResource(id = OudsTheme.drawableResources.tagBullet)) else nullableIcon
-                        val assetPadding = if (hasBullet) bulletPadding(size = size) else iconPadding(size = size)
+                if (hasAsset) {
+                    Box(modifier = Modifier.size(assetSize(size))) {
+                        if (loading != null) {
+                            LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loading.progress)
+                        } else {
+                            val asset = if (hasBullet) OudsTag.Icon(painter = painterResource(id = OudsTheme.drawableResources.tagBullet)) else nullableIcon
+                            val assetPadding = if (hasBullet) bulletPadding(size = size) else iconPadding(size = size)
 
-                        asset?.Content(
-                            modifier = Modifier.padding(all = assetPadding),
-                            extraParameters = OudsTag.Icon.ExtraParameters(tint = contentColor)
-                        )
+                            asset?.Content(
+                                modifier = Modifier.padding(all = assetPadding),
+                                extraParameters = OudsTag.Icon.ExtraParameters(tint = contentColor)
+                            )
+                        }
                     }
                 }
+                Text(
+                    modifier = Modifier.padding(start = labelPaddingStart(size = size, hasAsset = hasAsset)),
+                    text = label,
+                    color = contentColor,
+                    style = textStyle(size)
+                )
             }
-            Text(
-                modifier = Modifier.padding(start = labelPaddingStart(size = size, hasAsset = hasAsset)),
-                text = label,
-                color = contentColor,
-                style = textStyle(size)
-            )
         }
     }
 }

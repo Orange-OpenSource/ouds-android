@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
+import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -60,18 +61,21 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
         CustomizationDropdownMenu(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(id = R.string.app_components_common_status_label),
-            itemLabels = statuses.map { it.formattedName },
+            items = statuses.map { status ->
+                CustomizationDropdownMenuItem(
+                    label = status.formattedName,
+                    leadingIcon = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(status.backgroundColor(hierarchy))
+                        )
+                    },
+                    enabled = !(status == OudsTag.Status.Disabled && loading)
+                )
+            },
             selectedItemIndex = statuses.indexOf(status),
-            onSelectionChange = { status = statuses[it] },
-            itemLeadingIcons = statuses.map { status ->
-                {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(status.backgroundColor(hierarchy))
-                    )
-                }
-            }
+            onSelectionChange = { status = statuses[it] }
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
@@ -84,6 +88,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             label = stringResource(R.string.app_components_tag_loading_label),
             checked = loading,
             onCheckedChange = { loading = it },
+            enabled = loadingSwitchEnabled
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
@@ -139,7 +144,7 @@ private fun TagDemoContent(state: TagDemoState) {
 private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
     with(state) {
         functionCall(OudsTag::class.simpleName.orEmpty()) {
-            when(layout) {
+            when (layout) {
                 TagDemoState.Layout.TextAndBullet -> typedArgument("hasBullet", true)
                 TagDemoState.Layout.TextAndIcon -> {
                     constructorCallArgument<OudsTag.Icon>("icon") {
