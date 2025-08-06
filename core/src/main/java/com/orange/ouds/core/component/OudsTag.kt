@@ -75,8 +75,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
  * @param hasBullet Controls the display of a bullet before the tag label.
- * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined to the [status] of the tag.
- * @param status The status of the tag. Its background color and its content color are based on this status combined to the [hierarchy] of the tag.
+ * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
+ * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
  * @param shape The shape of the tag. This allows to play with its corners appearance.
  * @param size The size of the tag.
  * @param loading An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
@@ -119,8 +119,8 @@ fun OudsTag(
  * @param icon The icon displayed before the label.
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
- * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined to the [status] of the tag.
- * @param status The status of the tag. Its background color and its content color are based on this status combined to the [hierarchy] of the tag.
+ * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
+ * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
  * @param shape The shape of the tag. This allows to play with its corners appearance.
  * @param size The size of the tag.
  * @param loading An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
