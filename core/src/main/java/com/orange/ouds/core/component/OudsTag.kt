@@ -187,7 +187,7 @@ private fun OudsTag(
                     .background(status.backgroundColor(hierarchy = hierarchy))
                     .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = if (hasAsset) Arrangement.spacedBy(OudsTheme.componentsTokens.tag.spaceColumnGapSmall.value) else Arrangement.Center,
+                horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
             ) {
                 val contentColor = contentColor(status = status, hierarchy = hierarchy)
 
@@ -207,7 +207,6 @@ private fun OudsTag(
                     }
                 }
                 Text(
-                    modifier = Modifier.padding(start = labelPaddingStart(size = size, hasAsset = hasAsset)),
                     text = label,
                     color = contentColor,
                     style = textStyle(size)
@@ -270,16 +269,12 @@ private fun textStyle(size: OudsTag.Size): TextStyle {
 }
 
 @Composable
-private fun labelPaddingStart(size: OudsTag.Size, hasAsset: Boolean): Dp {
+private fun betweenAssetAndLabelSpace(size: OudsTag.Size): Dp {
     return with(OudsTheme.componentsTokens.tag) {
-        if (hasAsset) {
-            when (size) {
-                OudsTag.Size.Default -> spaceColumnGapDefault
-                OudsTag.Size.Small -> spaceColumnGapSmall
-            }.value
-        } else {
-            0.dp
-        }
+        when (size) {
+            OudsTag.Size.Default -> spaceColumnGapDefault
+            OudsTag.Size.Small -> spaceColumnGapSmall
+        }.value
     }
 }
 
