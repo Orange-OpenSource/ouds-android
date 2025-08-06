@@ -368,7 +368,7 @@ private fun LoadingIndicator(status: OudsTag.Status, hierarchy: OudsTag.Hierarch
         OudsTag.Size.Small -> 2.dp
     }
     val trackColor = Color.Transparent
-    val strokeCap = StrokeCap.Square
+    val strokeCap = StrokeCap.Butt
     if (progress != null) {
         CircularProgressIndicator(
             progress = { progress },
