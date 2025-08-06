@@ -150,11 +150,7 @@ fun SwitchIllustration() = ComponentIllustration {
 
 @Composable
 fun TagIllustration() = ComponentIllustration {
-    val label = stringResource(id = R.string.app_components_common_label_label)
-    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-        OudsTag(label = label)
-        OudsTag(label = label, hierarchy = OudsTag.Hierarchy.Muted)
-    }
+    OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTag.Status.Positive)
 }
 
 @Composable
