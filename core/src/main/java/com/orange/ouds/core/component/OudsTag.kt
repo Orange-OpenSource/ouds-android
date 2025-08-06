@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
@@ -44,7 +45,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.OudsTag.Status.Accent
 import com.orange.ouds.core.component.OudsTag.Status.Disabled
 import com.orange.ouds.core.component.OudsTag.Status.Info
@@ -94,7 +94,8 @@ fun OudsTag(
     loading: OudsTag.Loading? = null
 ) {
     OudsTag(
-        nullableIcon = if (hasBullet) OudsTag.Icon(painter = painterResource(id = OudsTheme.drawableResources.tagBullet)) else null,
+        hasBullet = hasBullet,
+        nullableIcon = null,
         label = label,
         modifier = modifier,
         hierarchy = hierarchy,
@@ -137,6 +138,7 @@ fun OudsTag(
     loading: OudsTag.Loading? = null
 ) {
     OudsTag(
+        hasBullet = false,
         nullableIcon = icon,
         label = label,
         modifier = modifier,
@@ -150,6 +152,7 @@ fun OudsTag(
 
 @Composable
 private fun OudsTag(
+    hasBullet: Boolean,
     nullableIcon: OudsTag.Icon?,
     label: String,
     modifier: Modifier,
@@ -159,7 +162,7 @@ private fun OudsTag(
     size: OudsTag.Size,
     loading: OudsTag.Loading?
 ) {
-    val hasAsset = nullableIcon != null || loading != null
+    val hasAsset = hasBullet || nullableIcon != null || loading != null
 
     // This outer box is necessary otherwise the user can change the size of the tag through the modifier
     Box(
@@ -168,22 +171,29 @@ private fun OudsTag(
     ) {
         Row(
             modifier = Modifier
+                .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
                 .clip(shape = shape(shape))
                 .background(status.backgroundColor(hierarchy = hierarchy))
-                .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset))
-                .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size)),
+                .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = if (hasAsset) Arrangement.spacedBy(OudsTheme.componentsTokens.tag.spaceColumnGapSmall.value) else Arrangement.Center,
         ) {
             val contentColor = contentColor(status = status, hierarchy = hierarchy)
 
-            if (loading != null) {
-                LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loading.progress)
-            } else {
-                nullableIcon?.Content(
-                    modifier = Modifier.size(assetSize(size = size)),
-                    extraParameters = OudsTag.Icon.ExtraParameters(tint = contentColor)
-                )
+            if (hasAsset) {
+                Box(modifier = Modifier.size(assetSize(size))) {
+                    if (loading != null) {
+                        LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loading.progress)
+                    } else {
+                        val asset = if (hasBullet) OudsTag.Icon(painter = painterResource(id = OudsTheme.drawableResources.tagBullet)) else nullableIcon
+                        val assetPadding = if (hasBullet) bulletPadding(size = size) else iconPadding(size = size)
+
+                        asset?.Content(
+                            modifier = Modifier.padding(all = assetPadding),
+                            extraParameters = OudsTag.Icon.ExtraParameters(tint = contentColor)
+                        )
+                    }
+                }
             }
             Text(
                 modifier = Modifier.padding(start = labelPaddingStart(size = size, hasAsset = hasAsset)),
@@ -310,9 +320,40 @@ private fun contentPadding(size: OudsTag.Size, hasAsset: Boolean): PaddingValues
 }
 
 @Composable
+private fun iconPadding(size: OudsTag.Size): Dp {
+    return with(OudsTheme.componentsTokens.tag) {
+        when (size) {
+            OudsTag.Size.Default -> spaceInsetIconDefault
+            OudsTag.Size.Small -> spaceInsetIconSmall
+        }.value
+    }
+}
+
+@Composable
+private fun bulletPadding(size: OudsTag.Size): Dp {
+    return with(OudsTheme.componentsTokens.tag) {
+        when (size) {
+            OudsTag.Size.Default -> spaceInsetBulletDefault.dp
+            OudsTag.Size.Small -> spaceInsetBulletSmall.value
+        }
+    }
+}
+
+@Composable
+private fun loaderPadding(size: OudsTag.Size): Dp {
+    return with(OudsTheme.componentsTokens.tag) {
+        when (size) {
+            OudsTag.Size.Default -> spaceInsetLoaderDefault
+            OudsTag.Size.Small -> spaceInsetLoaderSmall
+        }.value
+    }
+}
+
+@Composable
 private fun LoadingIndicator(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy, size: OudsTag.Size, progress: Float?) {
     val modifier = Modifier
-        .size(assetSize(size = size))
+        .padding(all = loaderPadding(size = size))
+        .fillMaxSize()
         .semantics { hideFromAccessibility() }
     val color = contentColor(status = status, hierarchy = hierarchy)
     val strokeWidth = when (size) {
