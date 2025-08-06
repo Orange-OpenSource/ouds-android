@@ -45,13 +45,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.component.OudsTag.Status.Accent
-import com.orange.ouds.core.component.OudsTag.Status.Disabled
-import com.orange.ouds.core.component.OudsTag.Status.Info
-import com.orange.ouds.core.component.OudsTag.Status.Negative
-import com.orange.ouds.core.component.OudsTag.Status.Neutral
-import com.orange.ouds.core.component.OudsTag.Status.Positive
-import com.orange.ouds.core.component.OudsTag.Status.Warning
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
@@ -168,7 +161,7 @@ private fun OudsTag(
     loading: OudsTag.Loading?
 ) {
     val hasAsset = hasBullet || nullableIcon != null || loading != null
-    val isForbidden = status == Disabled && loading != null
+    val isForbidden = status == OudsTag.Status.Disabled && loading != null
 
     CheckedContent(
         expression = !isForbidden,
@@ -281,24 +274,26 @@ private fun betweenAssetAndLabelSpace(size: OudsTag.Size): Dp {
 @Composable
 private fun contentColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
     val disabledContentColor = OudsTheme.colorScheme.content.onAction.disabled
-    return when (hierarchy) {
-        OudsTag.Hierarchy.Emphasized -> when (status) {
-            Neutral -> OudsTheme.colorScheme.content.onStatus.neutral.emphasized
-            Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
-            Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
-            Warning -> OudsTheme.colorScheme.content.onStatus.warning.emphasized
-            Negative -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
-            Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
-            Disabled -> disabledContentColor
-        }
-        OudsTag.Hierarchy.Muted -> when (status) {
-            Neutral -> OudsTheme.colorScheme.content.onStatus.neutral.muted
-            Accent -> OudsTheme.colorScheme.content.onStatus.accent.muted
-            Positive -> OudsTheme.colorScheme.content.onStatus.positive.muted
-            Warning -> OudsTheme.colorScheme.content.onStatus.warning.muted
-            Negative -> OudsTheme.colorScheme.content.onStatus.negative.muted
-            Info -> OudsTheme.colorScheme.content.onStatus.info.muted
-            Disabled -> disabledContentColor
+    return with(OudsTheme.colorScheme.content.onStatus) {
+        when (hierarchy) {
+            OudsTag.Hierarchy.Emphasized -> when (status) {
+                OudsTag.Status.Neutral -> neutral.emphasized
+                OudsTag.Status.Accent -> accent.emphasized
+                OudsTag.Status.Positive -> positive.emphasized
+                OudsTag.Status.Warning -> warning.emphasized
+                OudsTag.Status.Negative -> negative.emphasized
+                OudsTag.Status.Info -> info.emphasized
+                OudsTag.Status.Disabled -> disabledContentColor
+            }
+            OudsTag.Hierarchy.Muted -> when (status) {
+                OudsTag.Status.Neutral -> neutral.muted
+                OudsTag.Status.Accent -> accent.muted
+                OudsTag.Status.Positive -> positive.muted
+                OudsTag.Status.Warning -> warning.muted
+                OudsTag.Status.Negative -> negative.muted
+                OudsTag.Status.Info -> info.muted
+                OudsTag.Status.Disabled -> disabledContentColor
+            }
         }
     }
 }
@@ -412,7 +407,7 @@ object OudsTagDefaults {
     /**
      * Default status of an [OudsTag].
      */
-    val Status = Neutral
+    val Status = OudsTag.Status.Neutral
 
 }
 
