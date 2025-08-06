@@ -118,7 +118,6 @@ sealed class Component(
         { TagIllustration() },
         demoScreen = { TagDemoScreen() }
     )
-
 }
 
 sealed class Variant(
