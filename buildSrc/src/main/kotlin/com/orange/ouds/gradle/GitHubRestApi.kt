@@ -19,7 +19,7 @@ import java.io.File
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-class GitHubApi(token: String, repository: String) : Api() {
+class GitHubRestApi(token: String, repository: String) : Api() {
 
     override val baseUrl = "https://api.github.com/repos/$repository"
 

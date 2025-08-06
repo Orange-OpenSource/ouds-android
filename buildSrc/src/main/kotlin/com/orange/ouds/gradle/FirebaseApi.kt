@@ -39,6 +39,7 @@ class FirebaseApi(accessToken: String, projectNumber: String, appId: String) : A
         return List(jsonReleases.length()) { index ->
             with(jsonReleases.getJSONObject(index)) {
                 FirebaseAppDistributionRelease(
+                    displayVersion = getString("displayVersion"),
                     buildVersion = getString("buildVersion").toInt(),
                     binaryDownloadUri = getString("binaryDownloadUri")
                 )

@@ -133,9 +133,14 @@ fun Project.findLastTag(pattern: String, before: String?, isAnnotated: Boolean):
     return results.firstOrNull()
 }
 
-fun <T> Project.gitHubApi(action: GitHubApi.() -> T): T {
+fun <T> Project.gitHubRestApi(action: GitHubRestApi.() -> T): T {
     val token = Environment.getVariables("GITHUB_TOKEN").first()
-    return GitHubApi(token, "Orange-OpenSource/ouds-android").action()
+    return GitHubRestApi(token, "Orange-OpenSource/ouds-android").action()
+}
+
+fun <T> Project.gitHubGraphQLApi(action: GitHubGraphQLApi.() -> T): T {
+    val token = Environment.getVariables("GITHUB_TOKEN").first()
+    return GitHubGraphQLApi(token, "Orange-OpenSource", "ouds-android").action()
 }
 
 fun <T> Project.firebaseApi(appId: String, action: FirebaseApi.() -> T): T {

@@ -186,8 +186,15 @@
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
-    <string name="app_about_pullRequest_label">طلب السحب</string>
-    <string name="app_about_pullRequestNumber_label">#%s</string>
+    <plurals name="app_about_issues_label">
+        <item quantity="zero">Issue\u0020</item>
+        <item quantity="one">Issues\u0020</item>
+        <item quantity="two">Issues\u0020</item>
+        <item quantity="few">Issues\u0020</item>
+        <item quantity="many">Issues\u0020</item>
+    </plurals>
+    <string name="app_about_issueNumber_label">#%s</string>
+    <string name="app_about_tokensVersion_label">إصدار الرموز %s</string>
     <string name="app_about_privacyPolicy_label">سياسة الخصوصية</string>
     <string name="app_about_legalInformation_label">المعلومات القانونية</string>
     <string name="app_about_materialComponents_label">مكونات Material 3</string>
