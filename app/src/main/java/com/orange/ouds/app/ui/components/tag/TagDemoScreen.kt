@@ -153,6 +153,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
             typedArgument("shape", shape)
             typedArgument("size", size)
             typedArgument("status", status)
+            typedArgument("loading", loading)
         }
     }
 }
