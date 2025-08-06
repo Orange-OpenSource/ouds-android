@@ -79,6 +79,7 @@ class TagDemoState(
     }
 
     var label: String by mutableStateOf(label)
+
     var hierarchy: OudsTag.Hierarchy by mutableStateOf(hierarchy)
 
     var layout: Layout by mutableStateOf(layout)
