@@ -65,7 +65,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * A tag is a small element that shows short info like a label, keyword, or category.
  * It helps users quickly find, group, or understand content.
  *
- * Badges have seven status depending on the context of the information they represent. Each state is designed
+ * Tags have seven status depending on the context of the information they represent. Each state is designed
  * to convey a specific meaning and ensure clarity in communication.
  *
  * This tag API allows to:
@@ -111,7 +111,7 @@ fun OudsTag(
  * A tag is a small element that shows short info like a label, keyword, or category.
  * It helps users quickly find, group, or understand content.
  *
- * Badges have seven status depending on the context of the information they represent. Each state is designed
+ * Tags have seven status depending on the context of the information they represent. Each state is designed
  * to convey a specific meaning and ensure clarity in communication.
  *
  * This version displays an icon to visually reinforce the meaning of the tag, such as status, type, or action.
