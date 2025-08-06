@@ -36,6 +36,7 @@ import com.orange.ouds.app.ui.utilities.formattedName
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun TagDemoScreen() {
@@ -44,7 +45,8 @@ fun TagDemoScreen() {
         description = stringResource(id = Component.Tag.descriptionRes),
         bottomSheetContent = { TagDemoBottomSheetContent(state = state) },
         codeSnippet = { tagDemoCodeSnippet(state = state) },
-        demoContent = { TagDemoContent(state = state) }
+        demoContent = { TagDemoContent(state = state) },
+        version = OudsVersion.Component.Tag
     )
 }
 
