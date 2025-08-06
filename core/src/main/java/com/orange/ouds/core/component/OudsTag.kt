@@ -54,7 +54,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
-// TODO: Add documentation URL once it is available
+// TODO: Update documentation URL once it is available
 /**
  * A tag is a small element that shows short info like a label, keyword, or category.
  * It helps users quickly find, group, or understand content.
@@ -65,6 +65,10 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * This tag API allows to:
  *   - displays only text. Used for simple labels, categories, or keywords without additional visual elements.
  *   - displays a small indicator (bullet) alongside the text. Used to show status, presence, or activity next to the label.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.1.0
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
@@ -102,7 +106,7 @@ fun OudsTag(
     )
 }
 
-// TODO: Add documentation URL once it is available
+// TODO: Update documentation URL once it is available
 /**
  * A tag is a small element that shows short info like a label, keyword, or category.
  * It helps users quickly find, group, or understand content.
@@ -111,6 +115,10 @@ fun OudsTag(
  * to convey a specific meaning and ensure clarity in communication.
  *
  * This version displays an icon to visually reinforce the meaning of the tag, such as status, type, or action.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.1.0
  *
  * @param icon The icon displayed before the label.
  * @param label The label displayed in the tag.
