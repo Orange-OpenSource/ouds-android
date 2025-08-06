@@ -171,10 +171,12 @@ private fun OudsTag(
     val hasAsset = hasBullet || nullableIcon != null || loading != null
     val isForbidden = status == OudsTag.Status.Disabled && loading != null
 
+    val tagShape = shape(shape)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsTag with OudsTag.Status.Disabled status cannot have a loading spinner. This is not allowed." },
-        previewMessage = { "⛔" }
+        previewMessagePaddingValues = contentPadding(size, false),
+        shape = tagShape
     ) {
         // This outer box is necessary otherwise the user can change the size of the tag through the modifier
         Box(
@@ -184,7 +186,7 @@ private fun OudsTag(
             Row(
                 modifier = Modifier
                     .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
-                    .clip(shape = shape(shape))
+                    .clip(shape = tagShape)
                     .background(status.backgroundColor(hierarchy = hierarchy))
                     .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
                 verticalAlignment = Alignment.CenterVertically,
