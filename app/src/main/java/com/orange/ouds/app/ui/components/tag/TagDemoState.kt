@@ -90,7 +90,7 @@ class TagDemoState(
 
     var status: OudsTag.Status by mutableStateOf(status)
 
-    val loading: Boolean by mutableStateOf(loading)
+    var loading: Boolean by mutableStateOf(loading)
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),

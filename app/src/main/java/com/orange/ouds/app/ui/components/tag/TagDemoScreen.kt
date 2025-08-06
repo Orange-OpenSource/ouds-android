@@ -23,21 +23,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
-import com.orange.ouds.app.ui.components.badge.BadgeDemoState
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.stringArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
-import com.orange.ouds.core.component.OudsBadge
-import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsTag
-import com.orange.ouds.core.component.OudsTagDefaults
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -84,6 +79,11 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             chipLabels = TagDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TagDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = TagDemoState.Layout.entries[id] }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_tag_loading_label),
+            checked = loading,
+            onCheckedChange = { loading = it },
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
