@@ -561,6 +561,10 @@ object OudsTag {
 
     /**
      * Displays a spinner in the input or tag area to indicate that tags are being loaded or processed.
+     *
+     * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
+     *   Values outside of this range are coerced into the range.
+     *   Set this value to `null` to display a circular indeterminate progress indicator.
      */
     data class Loading(val progress: Float?)
 }
