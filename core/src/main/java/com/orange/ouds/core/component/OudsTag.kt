@@ -124,7 +124,7 @@ fun OudsTag(
                 modifier = Modifier
                     .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
                     .clip(shape = tagShape)
-                    .background(status.backgroundColor(hierarchy = hierarchy))
+                    .background(backgroundColor(status = status, hierarchy = hierarchy))
                     .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
@@ -139,7 +139,7 @@ fun OudsTag(
                             val assetPadding = if (icon is OudsTag.Icon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
                             icon?.Content(
                                 modifier = Modifier.padding(all = assetPadding),
-                                extraParameters = OudsTag.Icon.ExtraParameters(tint = contentColor)
+                                extraParameters = OudsTag.Icon.ExtraParameters(tint = assetColor(status, hierarchy))
                             )
                         }
                     }
@@ -213,6 +213,22 @@ private fun betweenAssetAndLabelSpace(size: OudsTag.Size): Dp {
             OudsTag.Size.Default -> spaceColumnGapDefault
             OudsTag.Size.Small -> spaceColumnGapSmall
         }.value
+    }
+}
+
+@Composable
+private fun backgroundColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
+    return when (hierarchy) {
+        OudsTag.Hierarchy.Emphasized -> status.color()
+        OudsTag.Hierarchy.Muted -> status.mutedColor()
+    }
+}
+
+@Composable
+private fun assetColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
+    return when (hierarchy) {
+        OudsTag.Hierarchy.Emphasized -> contentColor(status = status, hierarchy = hierarchy)
+        OudsTag.Hierarchy.Muted -> if (status == OudsTag.Status.Disabled) OudsTheme.colorScheme.content.onAction.disabled else status.color()
     }
 }
 
@@ -477,30 +493,34 @@ object OudsTag {
         Disabled;
 
         /**
-         * The tag background color associated with this status.
+         * The color associated with this status.
          */
         @Composable
-        fun backgroundColor(hierarchy: Hierarchy): Color {
-            val disabledBackgroundColor = OudsTheme.colorScheme.action.disabled
-            return when (hierarchy) {
-                Hierarchy.Emphasized -> when (this) {
-                    Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
-                    Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
-                    Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
-                    Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
-                    Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
-                    Info -> OudsTheme.colorScheme.surface.status.info.emphasized
-                    Disabled -> disabledBackgroundColor
-                }
-                Hierarchy.Muted -> when (this) {
-                    Neutral -> OudsTheme.colorScheme.surface.status.neutral.muted
-                    Accent -> OudsTheme.colorScheme.surface.status.accent.muted
-                    Positive -> OudsTheme.colorScheme.surface.status.positive.muted
-                    Warning -> OudsTheme.colorScheme.surface.status.warning.muted
-                    Negative -> OudsTheme.colorScheme.surface.status.negative.muted
-                    Info -> OudsTheme.colorScheme.surface.status.info.muted
-                    Disabled -> disabledBackgroundColor
-                }
+        fun color(): Color {
+            return when (this) {
+                Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
+                Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
+                Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
+                Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
+                Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
+                Info -> OudsTheme.colorScheme.surface.status.info.emphasized
+                Disabled -> OudsTheme.colorScheme.action.disabled
+            }
+        }
+
+        /**
+         * The muted color associated with this status.
+         */
+        @Composable
+        fun mutedColor(): Color {
+            return when (this) {
+                Neutral -> OudsTheme.colorScheme.surface.status.neutral.muted
+                Accent -> OudsTheme.colorScheme.surface.status.accent.muted
+                Positive -> OudsTheme.colorScheme.surface.status.positive.muted
+                Warning -> OudsTheme.colorScheme.surface.status.warning.muted
+                Negative -> OudsTheme.colorScheme.surface.status.negative.muted
+                Info -> OudsTheme.colorScheme.surface.status.info.muted
+                Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }
     }
@@ -550,9 +570,15 @@ internal data class OudsTagPreviewParameter(
 internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsTagPreviewParameter>
-    get() = listOf(
-        OudsTagPreviewParameter(null),
-        OudsTagPreviewParameter(OudsTag.Icon.Bullet, hierarchy = OudsTag.Hierarchy.Muted),
-        OudsTagPreviewParameter(OudsTag.Icon(Icons.Outlined.FavoriteBorder), shape = OudsTag.Shape.Square),
-        OudsTagPreviewParameter(loading = OudsTag.Loading(0.6f))
-    )
+    get() {
+        val icon = OudsTag.Icon(Icons.Outlined.FavoriteBorder)
+        val loading = OudsTag.Loading(0.6f)
+        return listOf(
+            OudsTagPreviewParameter(null),
+            OudsTagPreviewParameter(OudsTag.Icon.Bullet, hierarchy = OudsTag.Hierarchy.Muted),
+            OudsTagPreviewParameter(icon, hierarchy = OudsTag.Hierarchy.Muted),
+            OudsTagPreviewParameter(loading = loading, hierarchy = OudsTag.Hierarchy.Muted),
+            OudsTagPreviewParameter(icon, shape = OudsTag.Shape.Square),
+            OudsTagPreviewParameter(loading = loading)
+        )
+    }
