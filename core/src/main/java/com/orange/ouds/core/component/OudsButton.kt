@@ -88,7 +88,7 @@ import kotlinx.parcelize.Parcelize
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.roundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -142,7 +142,7 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.roundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -197,7 +197,7 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.roundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -271,7 +271,7 @@ private fun OudsButton(
         val state = getButtonState(enabled = enabled, style = style, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.value * iconScale else Dp.Unspecified
-        val borderRadius = if (LocalSettings.current.roundedCorners) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
+        val borderRadius = if (LocalSettings.current.buttonRoundedCorners) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
 
         val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
@@ -789,7 +789,7 @@ private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvid
 
 @Preview
 @Composable
-internal fun PreviewOudsButtonWithRoundedCorners() = OudsPreview(themeSettings = OudsThemeDefaults.Settings.copy(roundedCorners = true)) {
+internal fun PreviewOudsButtonWithRoundedCorners() = OudsPreview(themeSettings = OudsThemeDefaults.Settings.copy(buttonRoundedCorners = true)) {
     val hierarchy = OudsButton.Hierarchy.Default
     PreviewEnumEntries<OudsButton.State>(columnCount = 2) { state ->
         OudsButton(

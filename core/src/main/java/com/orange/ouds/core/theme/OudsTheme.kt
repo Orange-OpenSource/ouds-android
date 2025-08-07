@@ -68,7 +68,7 @@ object OudsTheme {
     /**
      * The theme settings.
      *
-     * @property roundedCorners Indicates if rounded corners should be applied to several components, such as [OudsButton].
+     * @property buttonRoundedCorners Indicates if rounded corners should be applied to every [OudsButton].
      *   Set to `false` for a default finish, or `true` for a finish with rounded corner.
      *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
      *   For standard or business-oriented journeys, keep the default corners.
@@ -77,7 +77,7 @@ object OudsTheme {
      * @constructor Creates an instance of [OudsTheme.Settings].
      */
     @Parcelize
-    data class Settings(val roundedCorners: Boolean) : Parcelable
+    data class Settings(val buttonRoundedCorners: Boolean) : Parcelable
 
     val colorScheme: OudsColorScheme
         @Composable
@@ -143,7 +143,7 @@ object OudsThemeDefaults {
     /**
      * Default settings of an [OudsTheme].
      */
-    val Settings = OudsTheme.Settings(roundedCorners = false)
+    val Settings = OudsTheme.Settings(buttonRoundedCorners = false)
 }
 
 /**

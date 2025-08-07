@@ -67,9 +67,9 @@ fun ButtonDemoScreen(themeState: ThemeState) {
             bottomSheetContent = {
                 ButtonDemoBottomSheetContent(
                     state = state,
-                    roundedCorners = themeSettings.roundedCorners,
+                    roundedCorners = themeSettings.buttonRoundedCorners,
                     onRoundedCornersChange = { roundedCorners ->
-                        themeState.settings = themeState.settings.copy(roundedCorners = roundedCorners)
+                        themeState.settings = themeState.settings.copy(buttonRoundedCorners = roundedCorners)
                     }
                 )
             },
@@ -86,7 +86,7 @@ fun ButtonDemoScreen(themeState: ThemeState) {
         onStopOrDispose {
             if (activity?.isChangingConfigurations == false) {
                 shouldUpdateThemeSettings = false
-                themeState.settings = themeState.settings.copy(roundedCorners = OudsThemeDefaults.Settings.roundedCorners)
+                themeState.settings = themeState.settings.copy(buttonRoundedCorners = OudsThemeDefaults.Settings.buttonRoundedCorners)
             }
         }
     }
