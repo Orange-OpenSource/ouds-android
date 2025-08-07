@@ -119,27 +119,20 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
 private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val loading = if (loading) OudsTag.Loading(null) else null
-        if (layout == TagDemoState.Layout.TextAndIcon) {
-            OudsTag(
-                icon = OudsTag.Icon(painter = painterResource(R.drawable.ic_heart)),
-                label = label,
-                hierarchy = hierarchy,
-                status = status,
-                size = size,
-                shape = shape,
-                loading = loading,
-            )
-        } else {
-            OudsTag(
-                hasBullet = layout == TagDemoState.Layout.TextAndBullet,
-                label = label,
-                hierarchy = hierarchy,
-                status = status,
-                size = size,
-                shape = shape,
-                loading = loading,
-            )
+        val icon = when (layout) {
+            TagDemoState.Layout.TextOnly -> null
+            TagDemoState.Layout.TextAndBullet -> OudsTag.Icon.Bullet
+            TagDemoState.Layout.TextAndIcon -> OudsTag.Icon(painter = painterResource(R.drawable.ic_heart))
         }
+        OudsTag(
+            icon = icon,
+            label = label,
+            hierarchy = hierarchy,
+            status = status,
+            size = size,
+            shape = shape,
+            loading = loading,
+        )
     }
 }
 
@@ -147,13 +140,13 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
     with(state) {
         functionCall(OudsTag::class.simpleName.orEmpty()) {
             when (layout) {
-                TagDemoState.Layout.TextAndBullet -> typedArgument("hasBullet", true)
+                TagDemoState.Layout.TextOnly -> {}
+                TagDemoState.Layout.TextAndBullet -> typedArgument("icon", OudsTag.Icon.Bullet)
                 TagDemoState.Layout.TextAndIcon -> {
                     constructorCallArgument<OudsTag.Icon>("icon") {
                         painterArgument(R.drawable.ic_heart)
                     }
                 }
-                TagDemoState.Layout.TextOnly -> {}
             }
             labelArgument(label)
             typedArgument("hierarchy", hierarchy)

@@ -62,9 +62,15 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * Tags have seven status depending on the context of the information they represent. Each state is designed
  * to convey a specific meaning and ensure clarity in communication.
  *
- * This tag API allows to:
- *   - displays only text. Used for simple labels, categories, or keywords without additional visual elements.
- *   - displays a small indicator (bullet) alongside the text. Used to show status, presence, or activity next to the label.
+ * Four different layouts are supported:
+ *   - Text only: when [icon] is `null`, the tag displays only text.
+ *     Used for simple labels, categories, or keywords without additional visual elements.
+ *   - Text and bullet: when [icon] is equal to [OudsTag.Icon.Bullet], the tag displays a small indicator (bullet) alongside the text.
+ *     Used to show status, presence, or activity next to the label.
+ *   - Text and icon: when [icon] is not `null`, the tag includes an icon before the text.
+ *     Used to visually reinforce the meaning of the tag, such as status, type, or action.
+ *   - Text and loader: when [loading] is `true`, the tag combines a loading spinner (or progress indicator) with text.
+ *     Used to indicate that a process or action related to the tag is in progress.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
@@ -72,7 +78,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
- * @param hasBullet Controls the display of a bullet before the tag label.
+ * @param icon The icon displayed before the label, or `null` if there is no icon.
  * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
  * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
  *   A tag with loading spinner cannot have an [OudsTag.Status.Disabled] status. This will throw an [IllegalStateException].
@@ -86,89 +92,14 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 fun OudsTag(
     label: String,
     modifier: Modifier = Modifier,
-    hasBullet: Boolean = false,
+    icon: OudsTag.Icon? = null,
     hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
     status: OudsTag.Status = OudsTagDefaults.Status,
     shape: OudsTag.Shape = OudsTagDefaults.Shape,
     size: OudsTag.Size = OudsTagDefaults.Size,
     loading: OudsTag.Loading? = null
 ) {
-    OudsTag(
-        hasBullet = hasBullet,
-        nullableIcon = null,
-        label = label,
-        modifier = modifier,
-        hierarchy = hierarchy,
-        status = status,
-        shape = shape,
-        size = size,
-        loading = loading
-    )
-}
-
-// TODO: Update documentation URL once it is available
-/**
- * A tag is a small element that shows short info like a label, keyword, or category.
- * It helps users quickly find, group, or understand content.
- *
- * Tags have seven status depending on the context of the information they represent. Each state is designed
- * to convey a specific meaning and ensure clarity in communication.
- *
- * This version displays an icon to visually reinforce the meaning of the tag, such as status, type, or action.
- *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
- *
- * > Design version: 1.1.0
- *
- * @param icon The icon displayed before the label.
- * @param label The label displayed in the tag.
- * @param modifier [Modifier] applied to the tag.
- * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
- * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
- *   A tag with loading spinner cannot have an [OudsTag.Status.Disabled] status. This will throw an [IllegalStateException].
- * @param shape The shape of the tag. This allows to play with its corners appearance.
- * @param size The size of the tag.
- * @param loading An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
- * tag is in progress.
- *   A tag with an [OudsTag.Status.Disabled] status cannot have a loading spinner. This will throw an [IllegalStateException].
- */
-@Composable
-fun OudsTag(
-    icon: OudsTag.Icon,
-    label: String,
-    modifier: Modifier = Modifier,
-    hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
-    status: OudsTag.Status = OudsTagDefaults.Status,
-    shape: OudsTag.Shape = OudsTagDefaults.Shape,
-    size: OudsTag.Size = OudsTagDefaults.Size,
-    loading: OudsTag.Loading? = null
-) {
-    OudsTag(
-        hasBullet = false,
-        nullableIcon = icon,
-        label = label,
-        modifier = modifier,
-        hierarchy = hierarchy,
-        status = status,
-        shape = shape,
-        size = size,
-        loading = loading
-    )
-}
-
-@Composable
-private fun OudsTag(
-    hasBullet: Boolean,
-    nullableIcon: OudsTag.Icon?,
-    label: String,
-    modifier: Modifier,
-    hierarchy: OudsTag.Hierarchy,
-    status: OudsTag.Status,
-    shape: OudsTag.Shape,
-    size: OudsTag.Size,
-    loading: OudsTag.Loading?
-) {
-    val hasAsset = hasBullet || nullableIcon != null || loading != null
+    val hasAsset = icon != null || loading != null
     val isForbidden = status == OudsTag.Status.Disabled && loading != null
 
     val tagShape = shape(shape)
@@ -199,10 +130,8 @@ private fun OudsTag(
                         if (loading != null) {
                             LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loading.progress)
                         } else {
-                            val asset = if (hasBullet) OudsTag.Icon(painter = painterResource(id = OudsTheme.drawableResources.tagBullet)) else nullableIcon
-                            val assetPadding = if (hasBullet) bulletPadding(size = size) else iconPadding(size = size)
-
-                            asset?.Content(
+                            val assetPadding = if (icon is OudsTag.Icon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
+                            icon?.Content(
                                 modifier = Modifier.padding(all = assetPadding),
                                 extraParameters = OudsTag.Icon.ExtraParameters(tint = contentColor)
                             )
@@ -447,9 +376,15 @@ object OudsTag {
      * An icon in an [OudsTag].
      * This icon is non-clickable. No content description is needed because a tag always contains a label.
      */
-    class Icon private constructor(
-        graphicsObject: Any
-    ) : OudsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, "") {
+    open class Icon protected constructor(
+        graphicsObjectProvider: @Composable () -> Any,
+    ) : OudsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObjectProvider, "") {
+
+        /**
+         * A bullet in an [OudsTag].
+         * This bullet is non-clickable. No content description is needed because a tag always contains a label.
+         */
+        data object Bullet : Icon({ painterResource(OudsTheme.drawableResources.tagBullet) })
 
         @ConsistentCopyVisibility
         data class ExtraParameters internal constructor(
@@ -461,21 +396,21 @@ object OudsTag {
          *
          * @param painter Painter of the icon.
          */
-        constructor(painter: Painter) : this(painter as Any)
+        constructor(painter: Painter) : this({ painter })
 
         /**
          * Creates an instance of [OudsTag.Icon].
          *
          * @param imageVector Image vector of the icon.
          */
-        constructor(imageVector: ImageVector) : this(imageVector as Any)
+        constructor(imageVector: ImageVector) : this({ imageVector })
 
         /**
          * Creates an instance of [OudsTag.Icon].
          *
          * @param bitmap Image bitmap of the icon.
          */
-        constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+        constructor(bitmap: ImageBitmap) : this({ bitmap })
 
         override val tint: Color?
             @Composable
@@ -586,34 +521,21 @@ internal fun PreviewOudsTag(darkThemeEnabled: Boolean, parameter: OudsTagPreview
     val label = "Label"
     with(parameter) {
         PreviewEnumEntries<OudsTag.Size, OudsTag.Status> { size, status ->
-            if (icon != null) {
-                OudsTag(
-                    icon = OudsTag.Icon(imageVector = icon),
-                    label = label,
-                    hierarchy = hierarchy,
-                    status = status,
-                    size = size,
-                    shape = shape,
-                    loading = loading,
-                )
-            } else {
-                OudsTag(
-                    hasBullet = hasBullet,
-                    label = label,
-                    hierarchy = hierarchy,
-                    status = status,
-                    size = size,
-                    shape = shape,
-                    loading = loading,
-                )
-            }
+            OudsTag(
+                label = label,
+                icon = icon,
+                hierarchy = hierarchy,
+                status = status,
+                size = size,
+                shape = shape,
+                loading = loading,
+            )
         }
     }
 }
 
 internal data class OudsTagPreviewParameter(
-    val icon: ImageVector? = null,
-    val hasBullet: Boolean = false,
+    val icon: OudsTag.Icon? = null,
     val hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
     val shape: OudsTag.Shape = OudsTagDefaults.Shape,
     val loading: OudsTag.Loading? = null
@@ -624,7 +546,7 @@ internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<O
 private val previewParameterValues: List<OudsTagPreviewParameter>
     get() = listOf(
         OudsTagPreviewParameter(null),
-        OudsTagPreviewParameter(null, true, hierarchy = OudsTag.Hierarchy.Muted),
-        OudsTagPreviewParameter(Icons.Outlined.FavoriteBorder, shape = OudsTag.Shape.Square),
+        OudsTagPreviewParameter(OudsTag.Icon.Bullet, hierarchy = OudsTag.Hierarchy.Muted),
+        OudsTagPreviewParameter(OudsTag.Icon(Icons.Outlined.FavoriteBorder), shape = OudsTag.Shape.Square),
         OudsTagPreviewParameter(loading = OudsTag.Loading(0.6f))
     )
