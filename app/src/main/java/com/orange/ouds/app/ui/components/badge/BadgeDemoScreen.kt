@@ -59,7 +59,6 @@ fun BadgeDemoScreen() {
 private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
     with(state) {
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_badge_type_label),
             chipLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
@@ -74,6 +73,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         )
         val statuses = OudsBadge.Status.entries
         CustomizationDropdownMenu(
+            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(id = R.string.app_components_common_status_label),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
@@ -91,6 +91,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
             onSelectionChange = { status = statuses[it] }
         )
         CustomizationTextField(
+            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_badge_count_label),
             value = TextFieldValue(count.toString(), TextRange(count.toString().length)),
             onValueChange = { value ->

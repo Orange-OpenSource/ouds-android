@@ -48,6 +48,7 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             onSelectionChange = { id -> layout = ChipDemoState.Layout.entries[id] }
         )
         CustomizationTextField(
+            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
