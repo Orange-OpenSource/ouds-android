@@ -87,6 +87,12 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param loading An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
  *   A tag with an [OudsTag.Status.Disabled] status cannot have a loading spinner. This will throw an [IllegalStateException].
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagWithBulletSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagWithIconSample
  */
 @Composable
 fun OudsTag(
