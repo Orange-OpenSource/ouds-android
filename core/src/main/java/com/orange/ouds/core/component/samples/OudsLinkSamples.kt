@@ -23,6 +23,14 @@ import com.orange.ouds.core.utilities.OudsPreview
 internal fun OudsLinkSample() {
     OudsLink(
         label = "Link",
+        onClick = { /* Do something! */ },
+    )
+}
+
+@Composable
+internal fun OudsLinkWithIconSample() {
+    OudsLink(
+        label = "Link",
         icon = OudsLink.Icon(imageVector = Icons.Filled.FavoriteBorder),
         onClick = { /* Do something! */ },
     )
@@ -41,6 +49,12 @@ internal fun OudsLinkWithArrowSample() {
 @Composable
 private fun PreviewOudsLinkSample() = OudsPreview {
     OudsLinkSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsLinkWithIconSample() = OudsPreview {
+    OudsLinkWithIconSample()
 }
 
 @PreviewLightDark

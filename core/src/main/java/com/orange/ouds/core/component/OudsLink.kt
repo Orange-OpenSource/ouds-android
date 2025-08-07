@@ -66,8 +66,42 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 /**
  * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
  *
- * This API manage the display of *text only* and *text + icon* links.
- * If you need a navigation link, you can use the other API available for this component which display a text with a *back* or *next* chevron.
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
+ *
+ * > Design version: 2.1.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLink.Size] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkSample
+ */
+@Composable
+fun OudsLink(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLink.Size = OudsLinkDefaults.Size,
+    enabled: Boolean = true,
+) {
+    OudsLink(
+        label = label,
+        icon = null,
+        arrow = null,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled,
+    )
+}
+
+/**
+ * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
  *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
@@ -76,19 +110,19 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
  *
  * > Design version: 2.1.0
  *
- * @sample com.orange.ouds.core.component.samples.OudsLinkSample
- *
  * @param label Label describing what is being linked to.
  * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link. See [OudsLink.Size] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
  */
 @Composable
 fun OudsLink(
     label: String,
-    icon: OudsLink.Icon?,
+    icon: OudsLink.Icon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
@@ -115,14 +149,14 @@ fun OudsLink(
  *
  * > Design version: 2.1.0
  *
- * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
- *
  * @param label Label describing what is being linked to.
  * @param arrow Navigation arrow displayed in the link. See [OudsLink.Arrow] for allowed values.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link. See [OudsLink.Size] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
  */
 @Composable
 fun OudsLink(
