@@ -59,7 +59,6 @@ fun BadgeDemoScreen() {
 private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
     with(state) {
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_badge_type_label),
             chipLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
