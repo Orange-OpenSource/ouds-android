@@ -136,10 +136,10 @@ fun OudsTag(
                         if (loading != null) {
                             LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loading.progress)
                         } else {
-                            val assetPadding = if (icon is OudsTag.Icon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
+                            val iconPadding = if (icon is OudsTag.Icon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
                             icon?.Content(
-                                modifier = Modifier.padding(all = assetPadding),
-                                extraParameters = OudsTag.Icon.ExtraParameters(tint = assetColor(status, hierarchy))
+                                modifier = Modifier.padding(all = iconPadding),
+                                extraParameters = OudsTag.Icon.ExtraParameters(tint = iconColor(status, hierarchy))
                             )
                         }
                     }
@@ -225,7 +225,7 @@ private fun backgroundColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy
 }
 
 @Composable
-private fun assetColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
+private fun iconColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
     return when (hierarchy) {
         OudsTag.Hierarchy.Emphasized -> contentColor(status = status, hierarchy = hierarchy)
         OudsTag.Hierarchy.Muted -> if (status == OudsTag.Status.Disabled) OudsTheme.colorScheme.content.onAction.disabled else status.color()
