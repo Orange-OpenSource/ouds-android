@@ -196,7 +196,7 @@ private fun OudsBadge(
         Box(
             modifier = Modifier
                 .clip(shape = RoundedCornerShape(OudsTheme.borders.radius.pill))
-                .background(status.backgroundColor)
+                .background(status.color)
                 .run {
                     if (count != null && size in OudsBadge.Size.countEntries) {
                         sizeIn(minWidth = sizeDp, minHeight = sizeDp)
@@ -381,9 +381,9 @@ object OudsBadge {
         Disabled;
 
         /**
-         * The badge background color associated with this status.
+         * The color associated with this status.
          */
-        val backgroundColor: Color
+        val color: Color
             @Composable
             get() = when (this) {
                 Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized

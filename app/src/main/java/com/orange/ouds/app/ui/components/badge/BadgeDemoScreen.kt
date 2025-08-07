@@ -82,7 +82,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(status.backgroundColor)
+                                .background(status.color)
                         )
                     }
                 )
