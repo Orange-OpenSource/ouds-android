@@ -97,7 +97,8 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
 
     OudsTheme(
         themeContract = mainState.themeState.currentTheme,
-        darkThemeEnabled = isSystemInDarkTheme
+        darkThemeEnabled = isSystemInDarkTheme,
+        settings = mainState.themeState.settings
     ) {
         Scaffold(
             contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
@@ -131,7 +132,7 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
                     .consumeWindowInsets(innerPadding)
                     .padding(innerPadding)
             ) {
-                appNavGraph(mainState.navigationState.navController)
+                appNavGraph(mainState)
             }
 
             if (changeThemeDialogVisible) {

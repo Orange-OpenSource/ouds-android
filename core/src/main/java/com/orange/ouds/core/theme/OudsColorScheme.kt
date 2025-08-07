@@ -663,7 +663,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 ),
                 onBrand = OudsColorScheme.Content.OnBrand(
                     primary = contentOnBrandPrimaryLight,
-                    secondary = contentBrandSecondaryLight,
+                    secondary = contentOnBrandSecondaryLight,
                     tertiary = contentOnBrandTertiaryLight
                 ),
                 onOverlay = OudsColorScheme.Content.OnOverlay(

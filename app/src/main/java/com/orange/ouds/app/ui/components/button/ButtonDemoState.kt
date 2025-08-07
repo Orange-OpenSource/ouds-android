@@ -47,6 +47,8 @@ class ButtonDemoState(
 
     companion object {
 
+        private val ForbiddenHierarchiesOnColoredBox = listOf(OudsButton.Hierarchy.Brand, OudsButton.Hierarchy.Negative)
+
         val Saver = run {
             val labelKey = "label"
             val enabledKey = "enabled"
@@ -92,7 +94,7 @@ class ButtonDemoState(
         get() = _hierarchy
         set(value) {
             _hierarchy = value
-            if (value == OudsButton.Hierarchy.Negative) {
+            if (value in ForbiddenHierarchiesOnColoredBox) {
                 onColoredBox = false
             }
         }
@@ -103,7 +105,7 @@ class ButtonDemoState(
         get() = style == OudsButton.Style.Default
 
     val onColoredBoxSwitchEnabled: Boolean
-        get() = hierarchy != OudsButton.Hierarchy.Negative
+        get() = hierarchy !in ForbiddenHierarchiesOnColoredBox
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),

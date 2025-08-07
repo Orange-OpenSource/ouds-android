@@ -306,10 +306,10 @@ private fun arrowColor(state: OudsLink.State, monochrome: Boolean): Color {
             contentColor(state = state, monochrome = true)
         } else {
             when (state) {
-                OudsLink.State.Enabled -> colorArrowEnabled.value
-                OudsLink.State.Focused -> colorArrowFocus.value
-                OudsLink.State.Hovered -> colorArrowHover.value
-                OudsLink.State.Pressed -> colorArrowPressed.value
+                OudsLink.State.Enabled -> colorChevronEnabled.value
+                OudsLink.State.Focused -> colorChevronFocus.value
+                OudsLink.State.Hovered -> colorChevronHover.value
+                OudsLink.State.Pressed -> colorChevronPressed.value
                 OudsLink.State.Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }

@@ -13,11 +13,11 @@
 package com.orange.ouds.app.ui.components
 
 import androidx.compose.runtime.remember
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.orange.ouds.app.ui.MainState
 import com.orange.ouds.app.ui.navigation.navigateToElement
 
 object ComponentsNavigation {
@@ -27,7 +27,7 @@ object ComponentsNavigation {
     const val ComponentVariantIdKey = "componentVariantId"
 }
 
-fun NavGraphBuilder.addComponentsNavGraph(navController: NavController) {
+fun NavGraphBuilder.addComponentsNavGraph(mainState: MainState) {
     composable(
         "${ComponentsNavigation.ComponentDetailRoute}/{${ComponentsNavigation.ComponentIdKey}}",
         arguments = listOf(navArgument(ComponentsNavigation.ComponentIdKey) { type = NavType.LongType })
@@ -38,10 +38,10 @@ fun NavGraphBuilder.addComponentsNavGraph(navController: NavController) {
         val component = remember(routeComponentId) { Component.fromId(routeComponentId) }
         component?.let {
             if (component.variants.isEmpty()) {
-                component.demoScreen?.invoke()
+                component.demoScreen?.invoke(mainState.themeState)
             } else {
                 ComponentVariantsScreen(component = component, onVariantClick = { id ->
-                    navController.navigateToElement(ComponentsNavigation.ComponentVariantRoute, id, from)
+                    mainState.navigationState.navController.navigateToElement(ComponentsNavigation.ComponentVariantRoute, id, from)
                 })
             }
         }

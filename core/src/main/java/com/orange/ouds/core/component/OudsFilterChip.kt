@@ -40,7 +40,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.3.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
@@ -91,7 +91,7 @@ fun OudsFilterChip(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.3.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
@@ -142,7 +142,7 @@ fun OudsFilterChip(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.3.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
