@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -118,21 +119,29 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
 @Composable
 private fun TagDemoContent(state: TagDemoState) {
     with(state) {
-        val loading = if (loading) OudsTag.Loading(null) else null
-        val icon = when (layout) {
-            TagDemoState.Layout.TextOnly -> null
-            TagDemoState.Layout.TextAndBullet -> OudsTag.Icon.Bullet
-            TagDemoState.Layout.TextAndIcon -> OudsTag.Icon(painter = painterResource(R.drawable.ic_heart))
+        val content: @Composable (OudsTag.Size, Boolean) -> Unit = { size, visible ->
+            val loading = if (loading) OudsTag.Loading(null) else null
+            val icon = when (layout) {
+                TagDemoState.Layout.TextOnly -> null
+                TagDemoState.Layout.TextAndBullet -> OudsTag.Icon.Bullet
+                TagDemoState.Layout.TextAndIcon -> OudsTag.Icon(painter = painterResource(R.drawable.ic_heart))
+            }
+            val alpha = if (visible) 1f else 0f
+            OudsTag(
+                modifier = Modifier.alpha(alpha),
+                icon = icon,
+                label = label,
+                hierarchy = hierarchy,
+                status = status,
+                size = size,
+                shape = shape,
+                loading = loading,
+            )
         }
-        OudsTag(
-            icon = icon,
-            label = label,
-            hierarchy = hierarchy,
-            status = status,
-            size = size,
-            shape = shape,
-            loading = loading,
-        )
+
+        content(size, true)
+        // Reserve space to avoid changing the height of the demo box when switching between sizes
+        content(OudsTag.Size.Default, false)
     }
 }
 
