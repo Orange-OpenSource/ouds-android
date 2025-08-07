@@ -93,7 +93,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             onSelectionChange = { id -> layout = TagDemoState.Layout.entries[id] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_tag_loading_label),
+            label = stringResource(R.string.app_components_common_loading_label),
             checked = loading,
             onCheckedChange = { loading = it },
             enabled = loadingSwitchEnabled
