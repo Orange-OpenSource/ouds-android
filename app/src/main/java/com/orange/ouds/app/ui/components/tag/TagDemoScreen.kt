@@ -71,7 +71,12 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(status.backgroundColor(hierarchy))
+                                .background(
+                                    when(hierarchy) {
+                                        OudsTag.Hierarchy.Emphasized -> status.color()
+                                        OudsTag.Hierarchy.Muted -> status.mutedColor()
+                                    }
+                                )
                         )
                     },
                     enabled = !(status == OudsTag.Status.Disabled && loading)
