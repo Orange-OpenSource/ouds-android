@@ -44,7 +44,7 @@ import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
     @Composable
-    get() = OudsTheme.typography.body.strong.large
+    get() = OudsTheme.typography.label.default.large
 
 private val valueLabelTextStyle: TextStyle
     @Composable
