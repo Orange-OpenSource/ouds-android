@@ -92,7 +92,6 @@ private fun LinkDemoContent(state: LinkDemoState) {
             LinkDemoState.Layout.TextOnly -> {
                 OudsLink(
                     label = label,
-                    icon = null,
                     onClick = {},
                     enabled = enabled,
                     size = size
