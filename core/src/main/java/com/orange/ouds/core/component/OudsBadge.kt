@@ -323,7 +323,7 @@ object OudsBadge {
          * Creates an instance of [OudsBadge.Icon].
          *
          * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the chip also contains label.
+         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the badge also contains label.
          */
         constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
@@ -331,7 +331,7 @@ object OudsBadge {
          * Creates an instance of [OudsBadge.Icon].
          *
          * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the chip also contains label.
+         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the badge also contains label.
          */
         constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
@@ -339,7 +339,7 @@ object OudsBadge {
          * Creates an instance of [OudsBadge.Icon].
          *
          * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the chip also contains label.
+         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the badge also contains label.
          */
         constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 

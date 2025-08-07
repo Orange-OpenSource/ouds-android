@@ -32,6 +32,7 @@ import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
+import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -66,26 +67,28 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-            label = stringResource(R.string.app_components_badge_size_label),
+            label = stringResource(R.string.app_components_common_size_label),
             chipLabels = OudsBadge.Size.entries.map { it.formattedName },
             selectedChipIndex = OudsBadge.Size.entries.indexOf(size),
             onSelectionChange = { id -> size = OudsBadge.Size.entries[id] }
         )
         val statuses = OudsBadge.Status.entries
         CustomizationDropdownMenu(
-            label = stringResource(id = R.string.app_components_badge_status_label),
-            itemLabels = statuses.map { it.formattedName },
+            label = stringResource(id = R.string.app_components_common_status_label),
+            items = statuses.map { status ->
+                CustomizationDropdownMenuItem(
+                    label = status.formattedName,
+                    leadingIcon = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(status.backgroundColor)
+                        )
+                    }
+                )
+            },
             selectedItemIndex = statuses.indexOf(status),
-            onSelectionChange = { status = statuses[it] },
-            itemLeadingIcons = statuses.map { status ->
-                {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(status.backgroundColor)
-                    )
-                }
-            }
+            onSelectionChange = { status = statuses[it] }
         )
         CustomizationTextField(
             label = stringResource(R.string.app_components_badge_count_label),

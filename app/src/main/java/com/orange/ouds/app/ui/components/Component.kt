@@ -29,6 +29,7 @@ import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
+import com.orange.ouds.app.ui.components.tag.TagDemoScreen
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -109,6 +110,13 @@ sealed class Component(
         R.string.app_components_switch_description_text,
         { SwitchIllustration() },
         listOf(Variant.Switch, Variant.SwitchItem)
+    )
+
+    data object Tag : Component(
+        R.string.app_components_tag_label,
+        R.string.app_components_tag_description_text,
+        { TagIllustration() },
+        demoScreen = { TagDemoScreen() }
     )
 }
 

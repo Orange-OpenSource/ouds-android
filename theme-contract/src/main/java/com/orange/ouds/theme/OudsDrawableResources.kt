@@ -27,6 +27,8 @@ open class OudsDrawableResources {
         @DrawableRes get() = R.drawable.ic_radio_button_selected
     open val switchSelected: Int
         @DrawableRes get() = R.drawable.ic_switch_selected
+    open val tagBullet: Int
+        @DrawableRes get() = R.drawable.ic_tag_bullet
     open val tick: Int
         @DrawableRes get() = R.drawable.ic_tick
 }

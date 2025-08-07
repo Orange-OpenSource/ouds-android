@@ -98,21 +98,22 @@
     <!-- Components -->
     <string name="app_components_common_color_label">اللون</string>
     <string name="app_components_common_error_label">خطأ</string>
-    <string name="app_components_common_layout_label">التخطيط</string>
-    <string name="app_components_common_textOnlyLayout_label">نص فقط</string>
-    <string name="app_components_common_textAndIconLayout_label">رمز + نص</string>
-    <string name="app_components_common_iconOnlyLayout_label">رمز فقط</string>
-    <string name="app_components_common_style_label">الأسلوب</string>
-    <string name="app_components_common_label_label">التسمية</string>
-    <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
+    <string name="app_components_common_hierarchy_label">التسلسل</string>
     <string name="app_components_common_icon_a11y">أيقون</string>
+    <string name="app_components_common_iconOnlyLayout_label">رمز فقط</string>
+    <string name="app_components_common_label_label">التسمية</string>
+    <string name="app_components_common_layout_label">التخطيط</string>
+    <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
+    <string name="app_components_common_size_label">الحجم</string>
+    <string name="app_components_common_status_label">الحالة</string>
+    <string name="app_components_common_style_label">الأسلوب</string>
+    <string name="app_components_common_textAndIconLayout_label">رمز + نص</string>
+    <string name="app_components_common_textOnlyLayout_label">نص فقط</string>
     <string name="app_components_common_version_label">Component design version</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label">شارة</string>
     <string name="app_components_badge_description_text">الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
-    <string name="app_components_badge_status_label">الحالة</string>
-    <string name="app_components_badge_size_label">الحجم</string>
     <string name="app_components_badge_type_label">النوع</string>
     <string name="app_components_badge_standardType_label">قياسي</string>
     <string name="app_components_badge_countType_label">عدد</string>
@@ -122,7 +123,6 @@
     <!-- Components: button -->
     <string name="app_components_button_label">زر</string>
     <string name="app_components_button_description_text">الأزرار تسمح للمستخدمين باتخاذ قرارات أو أداء إجراء. لها عدة أنماط لتلبية احتياجات مختلفة.</string>
-    <string name="app_components_button_hierarchy_label">التسلسل</string>
 
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_label">مربع اختيار</string>
@@ -183,6 +183,13 @@
     <string name="app_components_switch_switch_label">مفتاح التبديل</string>
     <string name="app_components_switch_switch_a11y">تبديل وصف المحتوى</string>
     <string name="app_components_switch_switchItem_label">تبديل العنصر</string>
+
+    <!-- Components: tag -->
+    <string name="app_components_tag_label">Tag</string>
+    <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.</string>
+    <string name="app_components_tag_shape_label">Shape</string>
+    <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
+    <string name="app_components_tag_loading_label">Loading</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>

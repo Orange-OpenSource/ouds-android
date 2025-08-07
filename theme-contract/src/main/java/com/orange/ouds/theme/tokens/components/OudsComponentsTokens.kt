@@ -24,4 +24,5 @@ interface OudsComponentsTokens {
     val linkMonochrome: OudsLinkMonoTokens
     val radioButton: OudsRadioButtonTokens
     val switch: OudsSwitchTokens
+    val tag: OudsTagTokens
 }

@@ -143,11 +143,10 @@ fun CustomizationTextField(
 @Composable
 fun CustomizationDropdownMenu(
     label: String,
-    itemLabels: List<String>,
+    items: List<CustomizationDropdownMenuItem>,
     selectedItemIndex: Int,
     onSelectionChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
-    itemLeadingIcons: List<@Composable () -> Unit>? = null
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
@@ -162,12 +161,12 @@ fun CustomizationDropdownMenu(
                 modifier = Modifier
                     .menuAnchor(MenuAnchorType.PrimaryNotEditable)
                     .fillMaxWidth(),
-                value = itemLabels[selectedItemIndex],
+                value = items[selectedItemIndex].label,
                 onValueChange = {},
                 readOnly = true,
                 singleLine = true,
                 textStyle = valueLabelTextStyle,
-                leadingIcon = itemLeadingIcons?.get(selectedItemIndex)?.let { { Box(modifier = leadingIconBoxModifier) { it() } } },
+                leadingIcon = items[selectedItemIndex].leadingIcon?.let { { Box(modifier = leadingIconBoxModifier) { it() } } },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = ExposedDropdownMenuDefaults.textFieldColors(),
             )
@@ -175,17 +174,20 @@ fun CustomizationDropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                itemLabels.forEachIndexed { index, itemLabel ->
+                items.forEachIndexed { index, item ->
                     DropdownMenuItem(
-                        text = { Text(text = itemLabel, style = valueLabelTextStyle) },
+                        text = { Text(text = item.label, style = valueLabelTextStyle) },
                         onClick = {
                             onSelectionChange(index)
                             expanded = false
                         },
-                        leadingIcon = itemLeadingIcons?.get(index)?.let { { Box(modifier = leadingIconBoxModifier) { it() } } }
+                        leadingIcon = item.leadingIcon?.let { { Box(modifier = leadingIconBoxModifier) { it() } } },
+                        enabled = item.enabled
                     )
                 }
             }
         }
     }
 }
+
+data class CustomizationDropdownMenuItem(val label: String, val leadingIcon: (@Composable () -> Unit)? = null, val enabled: Boolean = true)

@@ -33,6 +33,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
+import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
 import com.orange.ouds.core.component.OudsButton
@@ -58,18 +59,20 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
         val colors = OudsColoredBox.Color.entries.filter { it.mode.isSupported }
         CustomizationDropdownMenu(
             label = stringResource(id = R.string.app_components_coloredBackground_color_label),
-            itemLabels = colors.map { it.formattedName },
+            items = colors.map { color ->
+                CustomizationDropdownMenuItem(
+                    label = color.formattedName,
+                    leadingIcon = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(color.value)
+                        )
+                    }
+                )
+            },
             selectedItemIndex = colors.indexOf(color),
             onSelectionChange = { color = colors[it] },
-            itemLeadingIcons = colors.map { color ->
-                {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(color.value)
-                    )
-                }
-            }
         )
     }
 }
