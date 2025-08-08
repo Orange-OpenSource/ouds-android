@@ -119,7 +119,6 @@
     <string name="app_components_common_roundedCorners_label">Rounded corners</string>
     <string name="app_components_common_size_label">Size</string>
     <string name="app_components_common_status_label">Status</string>
-    <string name="app_components_common_style_label">Style</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_textAndIconLayout_label">Text + icon</string>
     <string name="app_components_common_version_label">Component design version</string>

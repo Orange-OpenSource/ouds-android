@@ -108,7 +108,6 @@
     <string name="app_components_common_roundedCorners_label">Rounded corners</string>
     <string name="app_components_common_size_label">الحجم</string>
     <string name="app_components_common_status_label">الحالة</string>
-    <string name="app_components_common_style_label">الأسلوب</string>
     <string name="app_components_common_textAndIconLayout_label">رمز + نص</string>
     <string name="app_components_common_textOnlyLayout_label">نص فقط</string>
     <string name="app_components_common_version_label">Component design version</string>
