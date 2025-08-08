@@ -17,33 +17,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
-import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.tag.TagDemoState
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonDefaults
-import com.orange.ouds.core.component.OudsTag
 
 @Composable
 fun rememberButtonDemoState(
     label: String = stringResource(id = R.string.app_components_button_label),
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
-    loading: Boolean = false,
+    hasLoader: Boolean = false,
     hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first()
-) = rememberSaveable(label, enabled, onColoredBox, loading, hierarchy, layout, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(label, enabled, onColoredBox, loading, hierarchy, layout)
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, hierarchy, layout, saver = ButtonDemoState.Saver) {
+    ButtonDemoState(label, enabled, onColoredBox, hasLoader, hierarchy, layout)
 }
 
 class ButtonDemoState(
     label: String,
     enabled: Boolean,
     onColoredBox: Boolean,
-    loading: Boolean,
+    hasLoader: Boolean,
     hierarchy: OudsButton.Hierarchy,
     layout: Layout
 ) {
@@ -58,7 +55,7 @@ class ButtonDemoState(
                         label,
                         enabled,
                         onColoredBox,
-                        loading,
+                        hasLoader,
                         hierarchy,
                         layout
                     )
@@ -83,7 +80,7 @@ class ButtonDemoState(
 
     var onColoredBox: Boolean by mutableStateOf(onColoredBox)
 
-    var loading: Boolean by mutableStateOf(loading)
+    var hasLoader: Boolean by mutableStateOf(hasLoader)
 
     private var _hierarchy: OudsButton.Hierarchy by mutableStateOf(hierarchy)
     var hierarchy: OudsButton.Hierarchy
@@ -98,12 +95,12 @@ class ButtonDemoState(
     var layout: Layout by mutableStateOf(layout)
 
     val enabledSwitchEnabled: Boolean
-        get() = !loading
+        get() = !hasLoader
 
     val onColoredBoxSwitchEnabled: Boolean
         get() = hierarchy !in ForbiddenHierarchiesOnColoredBox
 
-    val loadingSwitchEnabled: Boolean
+    val loaderSwitchEnabled: Boolean
         get() = enabled
 
     enum class Layout(@StringRes val labelRes: Int) {

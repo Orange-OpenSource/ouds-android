@@ -72,14 +72,14 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(
-                                    when(hierarchy) {
+                                    when (hierarchy) {
                                         OudsTag.Hierarchy.Emphasized -> status.color()
                                         OudsTag.Hierarchy.Muted -> status.mutedColor()
                                     }
                                 )
                         )
                     },
-                    enabled = !(status == OudsTag.Status.Disabled && loading)
+                    enabled = !(status == OudsTag.Status.Disabled && hasLoader)
                 )
             },
             selectedItemIndex = statuses.indexOf(status),
@@ -93,10 +93,10 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             onSelectionChange = { id -> layout = TagDemoState.Layout.entries[id] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_loading_label),
-            checked = loading,
-            onCheckedChange = { loading = it },
-            enabled = loadingSwitchEnabled
+            label = stringResource(R.string.app_components_common_loader_label),
+            checked = hasLoader,
+            onCheckedChange = { hasLoader = it },
+            enabled = loaderSwitchEnabled
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
@@ -125,7 +125,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
 private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTag.Size, Boolean) -> Unit = { size, visible ->
-            val loading = if (loading) OudsTag.Loading(null) else null
+            val loader = if (hasLoader) OudsTag.Loader(null) else null
             val icon = when (layout) {
                 TagDemoState.Layout.TextOnly -> null
                 TagDemoState.Layout.TextAndBullet -> OudsTag.Icon.Bullet
@@ -140,7 +140,7 @@ private fun TagDemoContent(state: TagDemoState) {
                 status = status,
                 size = size,
                 shape = shape,
-                loading = loading,
+                loader = loader,
             )
         }
 
@@ -167,8 +167,8 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
             typedArgument("shape", shape)
             typedArgument("size", size)
             typedArgument("status", status)
-            if (loading) {
-                constructorCallArgument<OudsTag.Loading>("loading") {
+            if (hasLoader) {
+                constructorCallArgument<OudsTag.Loader>("loader") {
                     typedArgument("progress", null)
                 }
             }

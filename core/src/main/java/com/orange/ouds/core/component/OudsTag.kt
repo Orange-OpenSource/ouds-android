@@ -69,7 +69,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *     Used to show status, presence, or activity next to the label.
  *   - Text and icon: when [icon] is not `null`, the tag includes an icon before the text.
  *     Used to visually reinforce the meaning of the tag, such as status, type, or action.
- *   - Text and loader: when [loading] is `true`, the tag combines a loading spinner (or progress indicator) with text.
+ *   - Text and loader: when [loader] is `true`, the tag combines a loading spinner (or progress indicator) with text.
  *     Used to indicate that a process or action related to the tag is in progress.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
@@ -84,9 +84,9 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *   A tag with loading spinner cannot have an [OudsTag.Status.Disabled] status. This will throw an [IllegalStateException].
  * @param shape The shape of the tag. This allows to play with its corners appearance.
  * @param size The size of the tag.
- * @param loading An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
+ * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
- *   A tag with an [OudsTag.Status.Disabled] status cannot have a loading spinner. This will throw an [IllegalStateException].
+ *   A tag with an [OudsTag.Status.Disabled] status cannot have a loader. This will throw an [IllegalStateException].
  *
  * @sample com.orange.ouds.core.component.samples.OudsTagSample
  *
@@ -103,15 +103,15 @@ fun OudsTag(
     status: OudsTag.Status = OudsTagDefaults.Status,
     shape: OudsTag.Shape = OudsTagDefaults.Shape,
     size: OudsTag.Size = OudsTagDefaults.Size,
-    loading: OudsTag.Loading? = null
+    loader: OudsTag.Loader? = null
 ) {
-    val hasAsset = icon != null || loading != null
-    val isForbidden = status == OudsTag.Status.Disabled && loading != null
+    val hasAsset = icon != null || loader != null
+    val isForbidden = status == OudsTag.Status.Disabled && loader != null
 
     val tagShape = shape(shape)
     CheckedContent(
         expression = !isForbidden,
-        exceptionMessage = { "An OudsTag with OudsTag.Status.Disabled status cannot have a loading spinner. This is not allowed." },
+        exceptionMessage = { "An OudsTag with OudsTag.Status.Disabled status cannot have a loader. This is not allowed." },
         previewMessagePaddingValues = contentPadding(size, false),
         shape = tagShape
     ) {
@@ -133,8 +133,8 @@ fun OudsTag(
 
                 if (hasAsset) {
                     Box(modifier = Modifier.size(assetSize(size))) {
-                        if (loading != null) {
-                            LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loading.progress)
+                        if (loader != null) {
+                            LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loader.progress)
                         } else {
                             val iconPadding = if (icon is OudsTag.Icon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
                             icon?.Content(
@@ -526,13 +526,13 @@ object OudsTag {
     }
 
     /**
-     * Displays a spinner in the input or tag area to indicate that tags are being loaded or processed.
+     * A circular progress indicator displayed in the input or tag area to indicate that tags are being loaded or processed.
      *
      * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
      *   Values outside of this range are coerced into the range.
      *   Set this value to `null` to display a circular indeterminate progress indicator.
      */
-    data class Loading(val progress: Float?)
+    data class Loader(val progress: Float?)
 }
 
 @PreviewLightDark
@@ -554,7 +554,7 @@ internal fun PreviewOudsTag(darkThemeEnabled: Boolean, parameter: OudsTagPreview
                 status = status,
                 size = size,
                 shape = shape,
-                loading = loading,
+                loader = loader,
             )
         }
     }
@@ -564,7 +564,7 @@ internal data class OudsTagPreviewParameter(
     val icon: OudsTag.Icon? = null,
     val hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
     val shape: OudsTag.Shape = OudsTagDefaults.Shape,
-    val loading: OudsTag.Loading? = null
+    val loader: OudsTag.Loader? = null
 )
 
 internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -572,13 +572,13 @@ internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<O
 private val previewParameterValues: List<OudsTagPreviewParameter>
     get() {
         val icon = OudsTag.Icon(Icons.Outlined.FavoriteBorder)
-        val loading = OudsTag.Loading(0.6f)
+        val loader = OudsTag.Loader(0.6f)
         return listOf(
             OudsTagPreviewParameter(null),
             OudsTagPreviewParameter(OudsTag.Icon.Bullet, hierarchy = OudsTag.Hierarchy.Muted),
             OudsTagPreviewParameter(icon, hierarchy = OudsTag.Hierarchy.Muted),
-            OudsTagPreviewParameter(loading = loading, hierarchy = OudsTag.Hierarchy.Muted),
+            OudsTagPreviewParameter(loader = loader, hierarchy = OudsTag.Hierarchy.Muted),
             OudsTagPreviewParameter(icon, shape = OudsTag.Shape.Square),
-            OudsTagPreviewParameter(loading = loading)
+            OudsTagPreviewParameter(loader = loader)
         )
     }

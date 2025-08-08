@@ -103,7 +103,7 @@
     <string name="app_components_common_iconOnlyLayout_label">رمز فقط</string>
     <string name="app_components_common_label_label">التسمية</string>
     <string name="app_components_common_layout_label">التخطيط</string>
-    <string name="app_components_common_loading_label">Loading</string>
+    <string name="app_components_common_loader_label">Loader</string>
     <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
     <string name="app_components_common_roundedCorners_label">Rounded corners</string>
     <string name="app_components_common_size_label">الحجم</string>

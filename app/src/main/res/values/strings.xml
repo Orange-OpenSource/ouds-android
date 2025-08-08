@@ -114,7 +114,7 @@
     <string name="app_components_common_iconOnlyLayout_label">Icon only</string>
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_layout_label">Layout</string>
-    <string name="app_components_common_loading_label">Loading</string>
+    <string name="app_components_common_loader_label">Loader</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
     <string name="app_components_common_roundedCorners_label">Rounded corners</string>
     <string name="app_components_common_size_label">Size</string>

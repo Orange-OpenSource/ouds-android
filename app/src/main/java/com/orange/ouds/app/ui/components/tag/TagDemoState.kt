@@ -33,9 +33,9 @@ fun rememberTagDemoState(
     shape: OudsTag.Shape = OudsTagDefaults.Shape,
     size: OudsTag.Size = OudsTagDefaults.Size,
     status: OudsTag.Status = OudsTagDefaults.Status,
-    loading: Boolean = false
-) = rememberSaveable(label, hierarchy, layout, shape, size, status, loading, saver = TagDemoState.Saver) {
-    TagDemoState(label, hierarchy, layout, shape, size, status, loading)
+    hasLoader: Boolean = false
+) = rememberSaveable(label, hierarchy, layout, shape, size, status, hasLoader, saver = TagDemoState.Saver) {
+    TagDemoState(label, hierarchy, layout, shape, size, status, hasLoader)
 }
 
 class TagDemoState(
@@ -45,7 +45,7 @@ class TagDemoState(
     shape: OudsTag.Shape,
     size: OudsTag.Size,
     status: OudsTag.Status,
-    loading: Boolean
+    hasLoader: Boolean
 ) {
 
     companion object {
@@ -60,7 +60,7 @@ class TagDemoState(
                         shape,
                         size,
                         status,
-                        loading
+                        this.hasLoader
                     )
                 }
             },
@@ -90,9 +90,9 @@ class TagDemoState(
 
     var status: OudsTag.Status by mutableStateOf(status)
 
-    var loading: Boolean by mutableStateOf(loading)
+    var hasLoader: Boolean by mutableStateOf(hasLoader)
 
-    val loadingSwitchEnabled: Boolean
+    val loaderSwitchEnabled: Boolean
         get() = status != OudsTag.Status.Disabled
 
     enum class Layout(@StringRes val labelRes: Int) {
