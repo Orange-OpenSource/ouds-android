@@ -95,9 +95,9 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
- * @param enabled Controls the enabled state of the button when it is not [loader].
+ * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when the button is [loader].
+ *   Has no effect when [loader] is not null.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
@@ -148,9 +148,9 @@ fun OudsButton(
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
- * @param enabled Controls the enabled state of the button when it is not [loader].
+ * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when the button is [loader].
+ *   Has no effect when [loader] is not null.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
@@ -203,9 +203,9 @@ fun OudsButton(
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
- * @param enabled Controls the enabled state of the button when it is not [loader].
+ * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when the button is [loader].
+ *   Has no effect when [loader] is not null.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param hierarchy The button appearance based on its [OudsButton.Hierarchy].
  *   A button with [OudsButton.Hierarchy.Negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
@@ -263,7 +263,7 @@ private fun OudsButton(
         val buttonTokens = OudsTheme.componentsTokens.button
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
-        val state = getButtonState(enabled = enabled, loading = loader != null, interactionState = interactionState)
+        val state = getButtonState(enabled = enabled, loader = loader, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.value * iconScale else Dp.Unspecified
         val borderRadius = if (LocalSettings.current.buttonRoundedCorners) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
@@ -271,11 +271,11 @@ private fun OudsButton(
 
         val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
         val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
-            val buttonState = getButtonState(enabled = enabled, loading = loader != null, interactionState = buttonInteractionState)
+            val buttonState = getButtonState(enabled = enabled, loader = loader, interactionState = buttonInteractionState)
             contentColor(hierarchy = hierarchy, state = buttonState)
         }
         val backgroundColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
-            val buttonState = getButtonState(enabled = enabled, loading = loader != null, interactionState = buttonInteractionState)
+            val buttonState = getButtonState(enabled = enabled, loader = loader, interactionState = buttonInteractionState)
             backgroundColor(hierarchy = hierarchy, state = buttonState)
         }
         val borderWidth = rememberInteractionValue(
@@ -283,11 +283,11 @@ private fun OudsButton(
             toAnimatableFloat = { it?.value.orElse { 0f } },
             fromAnimatableFloat = { it.dp }
         ) { buttonInteractionState ->
-            val buttonState = getButtonState(enabled = enabled, loading = loader != null, interactionState = buttonInteractionState)
+            val buttonState = getButtonState(enabled = enabled, loader = loader, interactionState = buttonInteractionState)
             borderWidth(hierarchy = hierarchy, state = buttonState)
         }
         val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { buttonInteractionState ->
-            val buttonState = getButtonState(enabled = enabled, loading = loader != null, interactionState = buttonInteractionState)
+            val buttonState = getButtonState(enabled = enabled, loader = loader, interactionState = buttonInteractionState)
             borderColor(hierarchy = hierarchy, state = buttonState)
         }
 
@@ -318,7 +318,7 @@ private fun OudsButton(
         ) {
             if (state == OudsButton.State.Loading) {
                 val progress = if (getPreviewEnumEntry<OudsButton.State>() == OudsButton.State.Loading) 0.75f else loader?.progress
-                LoadingIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
+                ProgressIndicator(hierarchy = hierarchy, progress = progress, scale = iconScale)
             }
 
             val alpha = if (state == OudsButton.State.Loading) 0f else 1f
@@ -355,9 +355,9 @@ private fun OudsButton(
 }
 
 @Composable
-private fun getButtonState(enabled: Boolean, loading: Boolean, interactionState: InteractionState): OudsButton.State {
+private fun getButtonState(enabled: Boolean, loader: OudsButton.Loader?, interactionState: InteractionState): OudsButton.State {
     return getPreviewEnumEntry<OudsButton.State>().orElse {
-        if (loading) {
+        if (loader != null) {
             OudsButton.State.Loading
         } else {
             when {
@@ -622,7 +622,7 @@ private fun contentPadding(icon: OudsButton.Icon?, label: String?): PaddingValue
 }
 
 @Composable
-private fun LoadingIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?, scale: Float) {
+private fun ProgressIndicator(hierarchy: OudsButton.Hierarchy, progress: Float?, scale: Float) {
     val modifier = Modifier
         .size(OudsTheme.componentsTokens.button.sizeLoader.value * scale)
         .semantics { hideFromAccessibility() }

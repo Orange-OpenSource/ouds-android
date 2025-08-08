@@ -60,7 +60,7 @@ class TagDemoState(
                         shape,
                         size,
                         status,
-                        this.hasLoader
+                        hasLoader
                     )
                 }
             },

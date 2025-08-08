@@ -134,7 +134,7 @@ fun OudsTag(
                 if (hasAsset) {
                     Box(modifier = Modifier.size(assetSize(size))) {
                         if (loader != null) {
-                            LoadingIndicator(status = status, hierarchy = hierarchy, size = size, progress = loader.progress)
+                            ProgressIndicator(status = status, hierarchy = hierarchy, size = size, progress = loader.progress)
                         } else {
                             val iconPadding = if (icon is OudsTag.Icon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
                             icon?.Content(
@@ -313,7 +313,7 @@ private fun loaderPadding(size: OudsTag.Size): Dp {
 }
 
 @Composable
-private fun LoadingIndicator(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy, size: OudsTag.Size, progress: Float?) {
+private fun ProgressIndicator(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy, size: OudsTag.Size, progress: Float?) {
     val modifier = Modifier
         .padding(all = loaderPadding(size = size))
         .fillMaxSize()
