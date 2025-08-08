@@ -14,7 +14,6 @@ package com.orange.ouds.app.ui.components.radiobutton
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -32,7 +31,6 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsRadioButtonItem
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -61,7 +59,7 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
             },
             controlItemCustomization(8) {
                 CustomizationTextField(
-                    modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+                    applyTopPadding = true,
                     label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
                     value = additionalLabel.orEmpty(),
                     onValueChange = { value -> additionalLabel = value }

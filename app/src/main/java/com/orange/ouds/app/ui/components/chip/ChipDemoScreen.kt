@@ -14,9 +14,7 @@ package com.orange.ouds.app.ui.components.chip
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
@@ -41,14 +39,14 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             onCheckedChange = { enabled = it }
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = ChipDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ChipDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = ChipDemoState.Layout.entries[id] }
         )
         CustomizationTextField(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value },

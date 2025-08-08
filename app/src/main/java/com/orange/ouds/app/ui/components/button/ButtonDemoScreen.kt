@@ -12,9 +12,7 @@
 
 package com.orange.ouds.app.ui.components.button
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -35,7 +33,6 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButton
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
@@ -93,7 +90,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState, roundedCorners:
             enabled = onColoredBoxSwitchEnabled
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_hierarchy_label),
             chipLabels = OudsButton.Hierarchy.entries.map { it.name },
             selectedChipIndex = OudsButton.Hierarchy.entries.indexOf(hierarchy),
@@ -106,14 +103,14 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState, roundedCorners:
             enabled = loaderSwitchEnabled
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = ButtonDemoState.Layout.entries[id] }
         )
         CustomizationTextField(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value },

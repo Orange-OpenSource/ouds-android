@@ -58,6 +58,7 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
     with(state) {
         val colors = OudsColoredBox.Color.entries.filter { it.mode.isSupported }
         CustomizationDropdownMenu(
+            applyTopPadding = false,
             label = stringResource(id = R.string.app_components_coloredBackground_color_label),
             items = colors.map { color ->
                 CustomizationDropdownMenuItem(

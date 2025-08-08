@@ -15,7 +15,6 @@ package com.orange.ouds.app.ui.components.tag
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -34,7 +33,6 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
 import com.orange.ouds.core.component.OudsTag
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -53,6 +51,7 @@ fun TagDemoScreen() {
 private fun TagDemoBottomSheetContent(state: TagDemoState) {
     with(state) {
         CustomizationFilterChips(
+            applyTopPadding = false,
             label = stringResource(R.string.app_components_common_hierarchy_label),
             chipLabels = OudsTag.Hierarchy.entries.map { it.name },
             selectedChipIndex = OudsTag.Hierarchy.entries.indexOf(hierarchy),
@@ -60,7 +59,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
         )
         val statuses = OudsTag.Status.entries
         CustomizationDropdownMenu(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(id = R.string.app_components_common_status_label),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
@@ -84,7 +83,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             onSelectionChange = { status = statuses[it] }
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = TagDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TagDemoState.Layout.entries.indexOf(layout),
@@ -97,21 +96,21 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             enabled = loaderSwitchEnabled
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_tag_shape_label),
             chipLabels = OudsTag.Shape.entries.map { it.name },
             selectedChipIndex = OudsTag.Shape.entries.indexOf(shape),
             onSelectionChange = { id -> shape = OudsTag.Shape.entries[id] }
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_size_label),
             chipLabels = OudsTag.Size.entries.map { it.name },
             selectedChipIndex = OudsTag.Size.entries.indexOf(size),
             onSelectionChange = { id -> size = OudsTag.Size.entries[id] }
         )
         CustomizationTextField(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }

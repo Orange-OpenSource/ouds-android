@@ -52,6 +52,7 @@ private fun DividerDemoBottomSheetContent(state: DividerDemoState) {
     with(state) {
         val colors = OudsDivider.Color.entries
         CustomizationDropdownMenu(
+            applyTopPadding = false,
             label = stringResource(id = R.string.app_components_common_color_label),
             items = colors.map { color ->
                 CustomizationDropdownMenuItem(

@@ -41,6 +41,7 @@ import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.theme.OudsTheme
@@ -52,6 +53,10 @@ private val labelTextStyle: TextStyle
 private val valueLabelTextStyle: TextStyle
     @Composable
     get() = OudsTheme.typography.label.strong.large
+
+private val elementTopPadding: Dp
+    @Composable
+    get() = OudsTheme.spaces.fixed.medium
 
 @Composable
 fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit, enabled: Boolean = true) {
@@ -72,6 +77,7 @@ fun CustomizationFilterChips(
     chipLabels: List<String>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier
 ) {
     CustomizationFilterChips(
@@ -79,6 +85,7 @@ fun CustomizationFilterChips(
         chips = chipLabels.map { CustomizationFilterChip(label = it) },
         selectedChipIndex = selectedChipIndex,
         onSelectionChange = onSelectionChange,
+        applyTopPadding = applyTopPadding,
         modifier = modifier
     )
 }
@@ -90,8 +97,10 @@ fun CustomizationFilterChips(
     chips: List<CustomizationFilterChip>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier
 ) {
+    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -128,6 +137,7 @@ fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
@@ -135,6 +145,7 @@ fun CustomizationTextField(
     var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value)) }
 
     CustomizationTextField(
+        applyTopPadding = applyTopPadding,
         label = label,
         value = textFieldValue,
         onValueChange = { newTextFieldValue ->
@@ -152,10 +163,13 @@ fun CustomizationTextField(
     label: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
+    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
+
     Column(modifier = modifier.fillMaxWidth()) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         TextField(
@@ -179,8 +193,11 @@ fun CustomizationDropdownMenu(
     items: List<CustomizationDropdownMenuItem>,
     selectedItemIndex: Int,
     onSelectionChange: (Int) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
 ) {
+    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
+
     Column(modifier = modifier.fillMaxWidth()) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         var expanded by remember { mutableStateOf(false) }
