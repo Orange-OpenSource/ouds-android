@@ -163,7 +163,6 @@ internal fun OudsChip(
             }
             if (label != null) {
                 Text(
-                    modifier = modifier,
                     text = label,
                     color = contentColor.value,
                     style = OudsTheme.typography.label.strong.medium,
