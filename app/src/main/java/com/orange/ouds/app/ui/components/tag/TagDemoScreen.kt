@@ -23,7 +23,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
@@ -43,7 +42,6 @@ import com.orange.ouds.theme.OudsVersion
 fun TagDemoScreen() {
     val state = rememberTagDemoState()
     DemoScreen(
-        description = stringResource(id = Component.Tag.descriptionRes),
         bottomSheetContent = { TagDemoBottomSheetContent(state = state) },
         codeSnippet = { tagDemoCodeSnippet(state = state) },
         demoContent = { TagDemoContent(state = state) },

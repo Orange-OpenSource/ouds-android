@@ -30,6 +30,7 @@ import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
+import com.orange.ouds.app.ui.components.tag.InputTagDemoScreen
 import com.orange.ouds.app.ui.components.tag.TagDemoScreen
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
@@ -117,7 +118,7 @@ sealed class Component(
         R.string.app_components_tag_label,
         R.string.app_components_tag_description_text,
         { TagIllustration() },
-        demoScreen = { TagDemoScreen() }
+        listOf(Variant.Tag, Variant.InputTag)
     )
 }
 
@@ -154,4 +155,9 @@ sealed class Variant(
     // Switch
     data object Switch : Variant(R.string.app_components_switch_switch_label, { SwitchDemoScreen() })
     data object SwitchItem : Variant(R.string.app_components_switch_switchItem_label, { SwitchItemDemoScreen() })
+
+    // Tag
+    data object Tag : Variant(R.string.app_components_tag_tag_label, { TagDemoScreen() })
+    data object InputTag : Variant(R.string.app_components_tag_inputTag_label, { InputTagDemoScreen() })
+
 }
