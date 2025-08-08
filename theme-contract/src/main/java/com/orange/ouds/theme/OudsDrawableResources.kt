@@ -23,6 +23,8 @@ open class OudsDrawableResources {
         @DrawableRes get() = R.drawable.ic_checkbox_selected
     open val chevronLeft: Int
         @DrawableRes get() = R.drawable.ic_chevron_left
+    open val delete: Int
+        @DrawableRes get() = R.drawable.ic_delete
     open val radioButtonSelected: Int
         @DrawableRes get() = R.drawable.ic_radio_button_selected
     open val switchSelected: Int

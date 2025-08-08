@@ -21,6 +21,8 @@ class SoshDrawableResources : OudsDrawableResources() {
         get() = R.drawable.sosh_checkbox_selected
     override val chevronLeft: Int
         get() = R.drawable.sosh_chevron_left
+    override val delete: Int
+        get() = R.drawable.sosh_delete
     override val tick: Int
         get() = R.drawable.sosh_tick
     override val radioButtonSelected: Int
