@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
@@ -141,7 +142,9 @@ fun OudsInputTag(
             Text(
                 text = label,
                 color = contentColor.value,
-                style = OudsTheme.typography.label.strong.medium,
+                style = OudsTheme.typography.label.strong.medium.run {
+                    copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
+                },
                 textAlign = TextAlign.Center
             )
             Icon(
