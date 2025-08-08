@@ -119,18 +119,11 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState, roundedCorners:
             selectedChipIndex = OudsButton.Hierarchy.entries.indexOf(hierarchy),
             onSelectionChange = { id -> hierarchy = OudsButton.Hierarchy.entries[id] }
         )
-        val styles = remember {
-            listOf(
-                OudsButton.Style.Default,
-                OudsButton.Style.Loading(progress = null),
-            )
-        }
-        CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-            label = stringResource(R.string.app_components_common_style_label),
-            chipLabels = styles.map { it::class.simpleName.orEmpty() },
-            selectedChipIndex = styles.indexOf(style),
-            onSelectionChange = { id -> style = styles[id] }
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_loader_label),
+            checked = hasLoader,
+            onCheckedChange = { hasLoader = it },
+            enabled = loaderSwitchEnabled
         )
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
@@ -155,13 +148,14 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
         contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
     )
     with(state) {
+        val loader = if (hasLoader) OudsButton.Loader(null) else null
         when (layout) {
             ButtonDemoState.Layout.TextOnly -> {
                 OudsButton(
                     label = label,
                     onClick = {},
                     enabled = enabled,
-                    style = style,
+                    loader = loader,
                     hierarchy = hierarchy
                 )
             }
@@ -171,7 +165,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     label = label,
                     onClick = {},
                     enabled = enabled,
-                    style = style,
+                    loader = loader,
                     hierarchy = hierarchy
                 )
             }
@@ -180,7 +174,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     icon = icon,
                     onClick = {},
                     enabled = enabled,
-                    style = style,
+                    loader = loader,
                     hierarchy = hierarchy
                 )
             }
@@ -203,7 +197,11 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
                 }
                 onClickArgument()
                 enabledArgument(enabled)
-                typedArgument("style", style)
+                if (hasLoader) {
+                    constructorCallArgument<OudsButton.Loader>("loader") {
+                        typedArgument("progress", null)
+                    }
+                }
                 typedArgument("hierarchy", hierarchy)
             }
         }

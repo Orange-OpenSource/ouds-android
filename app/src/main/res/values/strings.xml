@@ -114,11 +114,11 @@
     <string name="app_components_common_iconOnlyLayout_label">Icon only</string>
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_layout_label">Layout</string>
+    <string name="app_components_common_loader_label">Loader</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
     <string name="app_components_common_roundedCorners_label">Rounded corners</string>
     <string name="app_components_common_size_label">Size</string>
     <string name="app_components_common_status_label">Status</string>
-    <string name="app_components_common_style_label">Style</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_textAndIconLayout_label">Text + icon</string>
     <string name="app_components_common_version_label">Component design version</string>
@@ -201,7 +201,6 @@
     <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.</string>
     <string name="app_components_tag_shape_label">Shape</string>
     <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
-    <string name="app_components_tag_loading_label">Loading</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
