@@ -178,7 +178,6 @@
     <string name="app_components_link_description_text">Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).</string>
     <string name="app_components_link_backLayout_label">Back</string>
     <string name="app_components_link_nextLayout_label">Next</string>
-    <string name="app_components_link_size_label">Size</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_label">Radio button</string>

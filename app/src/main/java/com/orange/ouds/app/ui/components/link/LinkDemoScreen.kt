@@ -64,7 +64,7 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
         val sizes = OudsLink.Size.entries
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-            label = stringResource(R.string.app_components_link_size_label),
+            label = stringResource(R.string.app_components_common_size_label),
             chipLabels = sizes.map { it.name },
             selectedChipIndex = sizes.indexOf(size),
             onSelectionChange = { id -> size = sizes[id] }
