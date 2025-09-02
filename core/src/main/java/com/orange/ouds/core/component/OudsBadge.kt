@@ -18,6 +18,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
@@ -34,19 +35,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.component.OudsBadge.Status.Accent
-import com.orange.ouds.core.component.OudsBadge.Status.Disabled
-import com.orange.ouds.core.component.OudsBadge.Status.Info
-import com.orange.ouds.core.component.OudsBadge.Status.Negative
-import com.orange.ouds.core.component.OudsBadge.Status.Neutral
-import com.orange.ouds.core.component.OudsBadge.Status.Positive
-import com.orange.ouds.core.component.OudsBadge.Status.Warning
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
@@ -187,12 +182,17 @@ private fun OudsBadge(
     status: OudsBadge.Status = OudsBadgeDefaults.Status,
     size: OudsBadge.Size = OudsBadgeDefaults.Size
 ) {
-    val sizeDp = size(size)
     // This outer box is necessary otherwise the user can change the size of the badge through the modifier
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
+        // Apply the font scale to the size when displaying a count or an icon badge.
+        // This allows to:
+        // - get consistent sizes between count and icon badges
+        // - get a round badge with low count values. Otherwise, a count badge with an increase text size and a value of 1 will look like a vertical ellipse
+        val scale = if (count != null || icon != null) LocalConfiguration.current.fontScale else 1.0f
+        val sizeDp = size(size) * scale
         Box(
             modifier = Modifier
                 .clip(shape = RoundedCornerShape(OudsTheme.borders.radius.pill))
@@ -204,7 +204,7 @@ private fun OudsBadge(
                         size(sizeDp)
                     }
                 }
-                .padding(paddingValues = contentPadding(size = size, count = count, icon = icon)),
+                .padding(paddingValues = contentPadding(size = size, count = count, icon = icon, scale = scale)),
             contentAlignment = Alignment.Center
         ) {
             val text = count?.let { if (it > OudsBadge.MaxCount) "+${OudsBadge.MaxCount}" else it.coerceAtLeast(0).toString() }
@@ -221,6 +221,7 @@ private fun OudsBadge(
             }
             if (size in OudsBadge.Size.iconEntries) {
                 icon?.Content(
+                    modifier = Modifier.fillMaxSize(),
                     extraParameters = OudsBadge.Icon.ExtraParameters(tint = contentColor)
                 )
             }
@@ -243,13 +244,13 @@ private fun size(size: OudsBadge.Size): Dp {
 @Composable
 private fun contentColor(status: OudsBadge.Status): Color {
     return when (status) {
-        Neutral -> OudsTheme.colorScheme.content.onStatus.neutral.emphasized
-        Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
-        Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
-        Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
-        Warning -> OudsTheme.colorScheme.content.onStatus.warning.emphasized
-        Negative -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
-        Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+        OudsBadge.Status.Neutral -> OudsTheme.colorScheme.content.onStatus.neutral.emphasized
+        OudsBadge.Status.Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
+        OudsBadge.Status.Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
+        OudsBadge.Status.Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
+        OudsBadge.Status.Warning -> OudsTheme.colorScheme.content.onStatus.warning.emphasized
+        OudsBadge.Status.Negative -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
+        OudsBadge.Status.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
     }
 }
 
@@ -266,17 +267,15 @@ private fun textStyle(size: OudsBadge.Size): TextStyle? {
 }
 
 @Composable
-private fun contentPadding(size: OudsBadge.Size, count: Int?, icon: OudsBadge.Icon?): PaddingValues {
-    val horizontalPadding = with(OudsTheme.componentsTokens.badge) {
+private fun contentPadding(size: OudsBadge.Size, count: Int?, icon: OudsBadge.Icon?, scale: Float): PaddingValues {
+    return with(OudsTheme.componentsTokens.badge) {
         when {
-            count != null && size == OudsBadge.Size.Medium -> spacePaddingInlineMedium.value
-            count != null && size == OudsBadge.Size.Large -> spacePaddingInlineLarge.value
-            icon != null && size in OudsBadge.Size.iconEntries -> spaceInset.dp
-            else -> 0.dp
+            count != null && size == OudsBadge.Size.Medium -> PaddingValues(horizontal = spacePaddingInlineMedium.value * scale)
+            count != null && size == OudsBadge.Size.Large -> PaddingValues(horizontal = spacePaddingInlineLarge.value * scale)
+            icon != null && size in OudsBadge.Size.iconEntries -> PaddingValues(all = spaceInset.dp * scale)
+            else -> PaddingValues(all = 0.dp)
         }
     }
-
-    return PaddingValues(horizontal = horizontalPadding)
 }
 
 /**
