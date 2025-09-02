@@ -1,0 +1,1355 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OrangeFontSemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.orange.tokens.semantic/-orange-font-semantic-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0">0.3.0</div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+    <div><a href="index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.3.0</a></div>
+    <div><a href="../../../older/0.2.0/theme-orange/com.orange.ouds.theme.orange.tokens.semantic/-orange-font-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.2.0</a></div>
+    <div><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.1.0</a></div>
+  </div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":theme-orange/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-orange/release" data-filter=":theme-orange/release">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-orange::com.orange.ouds.theme.orange.tokens.semantic/OrangeFontSemanticTokens///PointingToDeclaration//558520189">
+  <div class="breadcrumbs"><a href="../../index.html">theme-orange</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.orange.tokens.semantic</a><span class="delimiter">/</span><span class="current">OrangeFontSemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Orange</span><wbr><span>Font</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">OrangeFontSemanticTokens</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>letterSpacingBodyLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingBodyLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingBodyMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingBodyMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingBodySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingBodySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingDisplayLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing850<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingDisplayLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing1450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingDisplayMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing750<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingDisplayMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing1050<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingDisplaySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing650<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingDisplaySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing850<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingHeadingLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingHeadingLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingHeadingMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingHeadingMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingHeadingSmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingHeadingSmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingHeadingXlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingHeadingXlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing750<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingLabelLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingLabelMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingLabelSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>letterSpacingLabelXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightBodyLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightBodyLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightBodyMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightBodyMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightBodySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightBodySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightDisplayLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight1050<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightDisplayLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight1850<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightDisplayMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight950<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightDisplayMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight1250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightDisplaySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight850<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightDisplaySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight1050<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightHeadingLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight650<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightHeadingLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight750<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightHeadingMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightHeadingMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight650<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightHeadingSmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightHeadingSmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightHeadingXlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight750<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightHeadingXlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight950<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightLabelLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightLabelMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightLabelSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lineHeightLabelXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeBodyLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeBodyLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeBodyMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeBodyMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeBodySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeBodySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeDisplayLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize850<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeDisplayLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize1450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeDisplayMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize750<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeDisplayMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize1050<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeDisplaySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize650<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeDisplaySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize850<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeHeadingLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeHeadingLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeHeadingMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeHeadingMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize450<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeHeadingSmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeHeadingSmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeHeadingXlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize550<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeHeadingXlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize750<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeLabelLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeLabelMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeLabelSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeLabelXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>weightBodyDefault<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>weightBodyStrong<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>weightDisplay<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>weightHeading<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>weightLabelDefault<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>weightLabelStrong<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>weightSystemDefault<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>weightSystemStrong<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700</span></span><span class="token punctuation">)</span> : <a href="../../../theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-font-semantic-tokens/index.html">OudsFontSemanticTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="998792391%2FConstructors%2F558520189" anchor-label="OrangeFontSemanticTokens" id="998792391%2FConstructors%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-orange-font-semantic-tokens.html"><span>Orange</span><wbr><span>Font</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="998792391%2FConstructors%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">letterSpacingBodyLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing250<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingBodyLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing250<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingBodyMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing200<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingBodyMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing200<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingBodySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing150<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingBodySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing150<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingDisplayLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing850<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingDisplayLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing1450<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingDisplayMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing750<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingDisplayMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing1050<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingDisplaySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing650<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingDisplaySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing850<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingHeadingLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing450<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingHeadingLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing550<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingHeadingMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing350<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingHeadingMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing450<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingHeadingSmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing300<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingHeadingSmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing350<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingHeadingXlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing550<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingHeadingXlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing750<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingLabelLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing250<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingLabelMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing200<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingLabelSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing150<span class="token punctuation">, </span></span><span class="parameter ">letterSpacingLabelXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>FontRawTokens.fontLetterSpacing300<span class="token punctuation">, </span></span><span class="parameter ">lineHeightBodyLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter ">lineHeightBodyLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter ">lineHeightBodyMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight350<span class="token punctuation">, </span></span><span class="parameter ">lineHeightBodyMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight350<span class="token punctuation">, </span></span><span class="parameter ">lineHeightBodySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight250<span class="token punctuation">, </span></span><span class="parameter ">lineHeightBodySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight250<span class="token punctuation">, </span></span><span class="parameter ">lineHeightDisplayLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight1050<span class="token punctuation">, </span></span><span class="parameter ">lineHeightDisplayLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight1850<span class="token punctuation">, </span></span><span class="parameter ">lineHeightDisplayMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight950<span class="token punctuation">, </span></span><span class="parameter ">lineHeightDisplayMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight1250<span class="token punctuation">, </span></span><span class="parameter ">lineHeightDisplaySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight850<span class="token punctuation">, </span></span><span class="parameter ">lineHeightDisplaySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight1050<span class="token punctuation">, </span></span><span class="parameter ">lineHeightHeadingLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight650<span class="token punctuation">, </span></span><span class="parameter ">lineHeightHeadingLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight750<span class="token punctuation">, </span></span><span class="parameter ">lineHeightHeadingMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight550<span class="token punctuation">, </span></span><span class="parameter ">lineHeightHeadingMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight650<span class="token punctuation">, </span></span><span class="parameter ">lineHeightHeadingSmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter ">lineHeightHeadingSmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight550<span class="token punctuation">, </span></span><span class="parameter ">lineHeightHeadingXlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight750<span class="token punctuation">, </span></span><span class="parameter ">lineHeightHeadingXlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight950<span class="token punctuation">, </span></span><span class="parameter ">lineHeightLabelLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter ">lineHeightLabelMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight350<span class="token punctuation">, </span></span><span class="parameter ">lineHeightLabelSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight250<span class="token punctuation">, </span></span><span class="parameter ">lineHeightLabelXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontLineHeight450<span class="token punctuation">, </span></span><span class="parameter ">sizeBodyLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize250<span class="token punctuation">, </span></span><span class="parameter ">sizeBodyLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize250<span class="token punctuation">, </span></span><span class="parameter ">sizeBodyMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize200<span class="token punctuation">, </span></span><span class="parameter ">sizeBodyMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize200<span class="token punctuation">, </span></span><span class="parameter ">sizeBodySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize150<span class="token punctuation">, </span></span><span class="parameter ">sizeBodySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize150<span class="token punctuation">, </span></span><span class="parameter ">sizeDisplayLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize850<span class="token punctuation">, </span></span><span class="parameter ">sizeDisplayLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize1450<span class="token punctuation">, </span></span><span class="parameter ">sizeDisplayMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize750<span class="token punctuation">, </span></span><span class="parameter ">sizeDisplayMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize1050<span class="token punctuation">, </span></span><span class="parameter ">sizeDisplaySmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize650<span class="token punctuation">, </span></span><span class="parameter ">sizeDisplaySmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize850<span class="token punctuation">, </span></span><span class="parameter ">sizeHeadingLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize450<span class="token punctuation">, </span></span><span class="parameter ">sizeHeadingLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize550<span class="token punctuation">, </span></span><span class="parameter ">sizeHeadingMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize350<span class="token punctuation">, </span></span><span class="parameter ">sizeHeadingMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize450<span class="token punctuation">, </span></span><span class="parameter ">sizeHeadingSmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize300<span class="token punctuation">, </span></span><span class="parameter ">sizeHeadingSmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize350<span class="token punctuation">, </span></span><span class="parameter ">sizeHeadingXlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize550<span class="token punctuation">, </span></span><span class="parameter ">sizeHeadingXlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize750<span class="token punctuation">, </span></span><span class="parameter ">sizeLabelLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize250<span class="token punctuation">, </span></span><span class="parameter ">sizeLabelMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize200<span class="token punctuation">, </span></span><span class="parameter ">sizeLabelSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize150<span class="token punctuation">, </span></span><span class="parameter ">sizeLabelXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontSize300<span class="token punctuation">, </span></span><span class="parameter ">weightBodyDefault<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight400<span class="token punctuation">, </span></span><span class="parameter ">weightBodyStrong<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700<span class="token punctuation">, </span></span><span class="parameter ">weightDisplay<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700<span class="token punctuation">, </span></span><span class="parameter ">weightHeading<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700<span class="token punctuation">, </span></span><span class="parameter ">weightLabelDefault<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight400<span class="token punctuation">, </span></span><span class="parameter ">weightLabelStrong<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700<span class="token punctuation">, </span></span><span class="parameter ">weightSystemDefault<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight400<span class="token punctuation">, </span></span><span class="parameter ">weightSystemStrong<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>FontRawTokens.fontWeight700</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1402132329%2FProperties%2F558520189" anchor-label="letterSpacingBodyLargeMobile" id="-1402132329%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-body-large-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1402132329%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-body-large-mobile.html">letterSpacingBodyLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1840201901%2FProperties%2F558520189" anchor-label="letterSpacingBodyLargeTablet" id="-1840201901%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-body-large-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1840201901%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-body-large-tablet.html">letterSpacingBodyLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1498595313%2FProperties%2F558520189" anchor-label="letterSpacingBodyMediumMobile" id="-1498595313%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-body-medium-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1498595313%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-body-medium-mobile.html">letterSpacingBodyMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1936664885%2FProperties%2F558520189" anchor-label="letterSpacingBodyMediumTablet" id="-1936664885%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-body-medium-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1936664885%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-body-medium-tablet.html">letterSpacingBodyMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-876800693%2FProperties%2F558520189" anchor-label="letterSpacingBodySmallMobile" id="-876800693%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-body-small-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-876800693%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-body-small-mobile.html">letterSpacingBodySmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1314870265%2FProperties%2F558520189" anchor-label="letterSpacingBodySmallTablet" id="-1314870265%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-body-small-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1314870265%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-body-small-tablet.html">letterSpacingBodySmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-782324435%2FProperties%2F558520189" anchor-label="letterSpacingDisplayLargeMobile" id="-782324435%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-display-large-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Display</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-782324435%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-display-large-mobile.html">letterSpacingDisplayLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1220394007%2FProperties%2F558520189" anchor-label="letterSpacingDisplayLargeTablet" id="-1220394007%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-display-large-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Display</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1220394007%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-display-large-tablet.html">letterSpacingDisplayLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="535580217%2FProperties%2F558520189" anchor-label="letterSpacingDisplayMediumMobile" id="535580217%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-display-medium-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Display</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="535580217%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-display-medium-mobile.html">letterSpacingDisplayMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="97510645%2FProperties%2F558520189" anchor-label="letterSpacingDisplayMediumTablet" id="97510645%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-display-medium-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Display</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="97510645%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-display-medium-tablet.html">letterSpacingDisplayMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-256992799%2FProperties%2F558520189" anchor-label="letterSpacingDisplaySmallMobile" id="-256992799%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-display-small-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Display</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-256992799%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-display-small-mobile.html">letterSpacingDisplaySmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-695062371%2FProperties%2F558520189" anchor-label="letterSpacingDisplaySmallTablet" id="-695062371%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-display-small-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Display</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-695062371%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-display-small-tablet.html">letterSpacingDisplaySmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2071498131%2FProperties%2F558520189" anchor-label="letterSpacingHeadingLargeMobile" id="-2071498131%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-heading-large-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2071498131%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-heading-large-mobile.html">letterSpacingHeadingLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1785399593%2FProperties%2F558520189" anchor-label="letterSpacingHeadingLargeTablet" id="1785399593%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-heading-large-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1785399593%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-heading-large-tablet.html">letterSpacingHeadingLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-774098695%2FProperties%2F558520189" anchor-label="letterSpacingHeadingMediumMobile" id="-774098695%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-heading-medium-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-774098695%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-heading-medium-mobile.html">letterSpacingHeadingMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1212168267%2FProperties%2F558520189" anchor-label="letterSpacingHeadingMediumTablet" id="-1212168267%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-heading-medium-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1212168267%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-heading-medium-tablet.html">letterSpacingHeadingMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1546166495%2FProperties%2F558520189" anchor-label="letterSpacingHeadingSmallMobile" id="-1546166495%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-heading-small-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1546166495%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-heading-small-mobile.html">letterSpacingHeadingSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1984236067%2FProperties%2F558520189" anchor-label="letterSpacingHeadingSmallTablet" id="-1984236067%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-heading-small-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1984236067%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-heading-small-tablet.html">letterSpacingHeadingSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1508757269%2FProperties%2F558520189" anchor-label="letterSpacingHeadingXlargeMobile" id="-1508757269%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-heading-xlarge-mobile.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1508757269%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-heading-xlarge-mobile.html">letterSpacingHeadingXlargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1946826841%2FProperties%2F558520189" anchor-label="letterSpacingHeadingXlargeTablet" id="-1946826841%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-heading-xlarge-tablet.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1946826841%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-heading-xlarge-tablet.html">letterSpacingHeadingXlargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-314324319%2FProperties%2F558520189" anchor-label="letterSpacingLabelLarge" id="-314324319%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-label-large.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Label</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-314324319%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-label-large.html">letterSpacingLabelLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1500041225%2FProperties%2F558520189" anchor-label="letterSpacingLabelMedium" id="1500041225%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-label-medium.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Label</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1500041225%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-label-medium.html">letterSpacingLabelMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="257969749%2FProperties%2F558520189" anchor-label="letterSpacingLabelSmall" id="257969749%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-label-small.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Label</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="257969749%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-label-small.html">letterSpacingLabelSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="240266619%2FProperties%2F558520189" anchor-label="letterSpacingLabelXlarge" id="240266619%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="letter-spacing-label-xlarge.html"><span>letter</span><wbr><span>Spacing</span><wbr><span>Label</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="240266619%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="letter-spacing-label-xlarge.html">letterSpacingLabelXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-230150939%2FProperties%2F558520189" anchor-label="lineHeightBodyLargeMobile" id="-230150939%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-body-large-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-230150939%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-body-large-mobile.html">lineHeightBodyLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-668220511%2FProperties%2F558520189" anchor-label="lineHeightBodyLargeTablet" id="-668220511%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-body-large-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-668220511%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-body-large-tablet.html">lineHeightBodyLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="473089409%2FProperties%2F558520189" anchor-label="lineHeightBodyMediumMobile" id="473089409%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-body-medium-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="473089409%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-body-medium-mobile.html">lineHeightBodyMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="35019837%2FProperties%2F558520189" anchor-label="lineHeightBodyMediumTablet" id="35019837%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-body-medium-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="35019837%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-body-medium-tablet.html">lineHeightBodyMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="295180697%2FProperties%2F558520189" anchor-label="lineHeightBodySmallMobile" id="295180697%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-body-small-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="295180697%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-body-small-mobile.html">lineHeightBodySmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-142888875%2FProperties%2F558520189" anchor-label="lineHeightBodySmallTablet" id="-142888875%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-body-small-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-142888875%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-body-small-tablet.html">lineHeightBodySmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-73884129%2FProperties%2F558520189" anchor-label="lineHeightDisplayLargeMobile" id="-73884129%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-display-large-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Display</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-73884129%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-display-large-mobile.html">lineHeightDisplayLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-511953701%2FProperties%2F558520189" anchor-label="lineHeightDisplayLargeTablet" id="-511953701%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-display-large-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Display</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-511953701%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-display-large-tablet.html">lineHeightDisplayLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1022393223%2FProperties%2F558520189" anchor-label="lineHeightDisplayMediumMobile" id="1022393223%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-display-medium-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Display</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1022393223%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-display-medium-mobile.html">lineHeightDisplayMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="584323651%2FProperties%2F558520189" anchor-label="lineHeightDisplayMediumTablet" id="584323651%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-display-medium-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Display</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="584323651%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-display-medium-tablet.html">lineHeightDisplayMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="451447507%2FProperties%2F558520189" anchor-label="lineHeightDisplaySmallMobile" id="451447507%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-display-small-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Display</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="451447507%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-display-small-mobile.html">lineHeightDisplaySmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="13377935%2FProperties%2F558520189" anchor-label="lineHeightDisplaySmallTablet" id="13377935%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-display-small-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Display</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="13377935%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-display-small-tablet.html">lineHeightDisplaySmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1363057825%2FProperties%2F558520189" anchor-label="lineHeightHeadingLargeMobile" id="-1363057825%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-heading-large-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1363057825%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-heading-large-mobile.html">lineHeightHeadingLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1801127397%2FProperties%2F558520189" anchor-label="lineHeightHeadingLargeTablet" id="-1801127397%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-heading-large-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1801127397%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-heading-large-tablet.html">lineHeightHeadingLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-287285689%2FProperties%2F558520189" anchor-label="lineHeightHeadingMediumMobile" id="-287285689%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-heading-medium-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-287285689%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-heading-medium-mobile.html">lineHeightHeadingMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-725355261%2FProperties%2F558520189" anchor-label="lineHeightHeadingMediumTablet" id="-725355261%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-heading-medium-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-725355261%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-heading-medium-tablet.html">lineHeightHeadingMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-837726189%2FProperties%2F558520189" anchor-label="lineHeightHeadingSmallMobile" id="-837726189%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-heading-small-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-837726189%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-heading-small-mobile.html">lineHeightHeadingSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1275795761%2FProperties%2F558520189" anchor-label="lineHeightHeadingSmallTablet" id="-1275795761%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-heading-small-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1275795761%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-heading-small-tablet.html">lineHeightHeadingSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1021944263%2FProperties%2F558520189" anchor-label="lineHeightHeadingXlargeMobile" id="-1021944263%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-heading-xlarge-mobile.html"><span>line</span><wbr><span>Height</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1021944263%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-heading-xlarge-mobile.html">lineHeightHeadingXlargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1460013835%2FProperties%2F558520189" anchor-label="lineHeightHeadingXlargeTablet" id="-1460013835%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-heading-xlarge-tablet.html"><span>line</span><wbr><span>Height</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1460013835%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-heading-xlarge-tablet.html">lineHeightHeadingXlargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1089392019%2FProperties%2F558520189" anchor-label="lineHeightLabelLarge" id="1089392019%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-label-large.html"><span>line</span><wbr><span>Height</span><wbr><span>Label</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1089392019%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-label-large.html">lineHeightLabelLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2065574743%2FProperties%2F558520189" anchor-label="lineHeightLabelMedium" id="2065574743%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-label-medium.html"><span>line</span><wbr><span>Height</span><wbr><span>Label</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2065574743%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-label-medium.html">lineHeightLabelMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1661686087%2FProperties%2F558520189" anchor-label="lineHeightLabelSmall" id="1661686087%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-label-small.html"><span>line</span><wbr><span>Height</span><wbr><span>Label</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1661686087%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-label-small.html">lineHeightLabelSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="805800137%2FProperties%2F558520189" anchor-label="lineHeightLabelXlarge" id="805800137%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="line-height-label-xlarge.html"><span>line</span><wbr><span>Height</span><wbr><span>Label</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="805800137%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="line-height-label-xlarge.html">lineHeightLabelXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1091852629%2FProperties%2F558520189" anchor-label="sizeBodyLargeMobile" id="-1091852629%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-body-large-mobile.html"><span>size</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1091852629%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-body-large-mobile.html">sizeBodyLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1529922201%2FProperties%2F558520189" anchor-label="sizeBodyLargeTablet" id="-1529922201%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-body-large-tablet.html"><span>size</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1529922201%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-body-large-tablet.html">sizeBodyLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-469859205%2FProperties%2F558520189" anchor-label="sizeBodyMediumMobile" id="-469859205%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-body-medium-mobile.html"><span>size</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-469859205%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-body-medium-mobile.html">sizeBodyMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-907928777%2FProperties%2F558520189" anchor-label="sizeBodyMediumTablet" id="-907928777%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-body-medium-tablet.html"><span>size</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-907928777%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-body-medium-tablet.html">sizeBodyMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-566520993%2FProperties%2F558520189" anchor-label="sizeBodySmallMobile" id="-566520993%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-body-small-mobile.html"><span>size</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-566520993%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-body-small-mobile.html">sizeBodySmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1004590565%2FProperties%2F558520189" anchor-label="sizeBodySmallTablet" id="-1004590565%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-body-small-tablet.html"><span>size</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1004590565%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-body-small-tablet.html">sizeBodySmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-9402727%2FProperties%2F558520189" anchor-label="sizeDisplayLargeMobile" id="-9402727%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-display-large-mobile.html"><span>size</span><wbr><span>Display</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-9402727%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-display-large-mobile.html">sizeDisplayLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-447472299%2FProperties%2F558520189" anchor-label="sizeDisplayLargeTablet" id="-447472299%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-display-large-tablet.html"><span>size</span><wbr><span>Display</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-447472299%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-display-large-tablet.html">sizeDisplayLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1273650611%2FProperties%2F558520189" anchor-label="sizeDisplayMediumMobile" id="-1273650611%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-display-medium-mobile.html"><span>size</span><wbr><span>Display</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1273650611%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-display-medium-mobile.html">sizeDisplayMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1711720183%2FProperties%2F558520189" anchor-label="sizeDisplayMediumTablet" id="-1711720183%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-display-medium-tablet.html"><span>size</span><wbr><span>Display</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1711720183%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-display-medium-tablet.html">sizeDisplayMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="515928909%2FProperties%2F558520189" anchor-label="sizeDisplaySmallMobile" id="515928909%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-display-small-mobile.html"><span>size</span><wbr><span>Display</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="515928909%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-display-small-mobile.html">sizeDisplaySmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="77859337%2FProperties%2F558520189" anchor-label="sizeDisplaySmallTablet" id="77859337%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-display-small-tablet.html"><span>size</span><wbr><span>Display</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="77859337%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-display-small-tablet.html">sizeDisplaySmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1298576423%2FProperties%2F558520189" anchor-label="sizeHeadingLargeMobile" id="-1298576423%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-heading-large-mobile.html"><span>size</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1298576423%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-heading-large-mobile.html">sizeHeadingLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1736645995%2FProperties%2F558520189" anchor-label="sizeHeadingLargeTablet" id="-1736645995%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-heading-large-tablet.html"><span>size</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1736645995%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-heading-large-tablet.html">sizeHeadingLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1711637773%2FProperties%2F558520189" anchor-label="sizeHeadingMediumMobile" id="1711637773%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-heading-medium-mobile.html"><span>size</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1711637773%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-heading-medium-mobile.html">sizeHeadingMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1273568201%2FProperties%2F558520189" anchor-label="sizeHeadingMediumTablet" id="1273568201%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-heading-medium-tablet.html"><span>size</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1273568201%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-heading-medium-tablet.html">sizeHeadingMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-773244787%2FProperties%2F558520189" anchor-label="sizeHeadingSmallMobile" id="-773244787%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-heading-small-mobile.html"><span>size</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-773244787%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-heading-small-mobile.html">sizeHeadingSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1211314359%2FProperties%2F558520189" anchor-label="sizeHeadingSmallTablet" id="-1211314359%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-heading-small-tablet.html"><span>size</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1211314359%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-heading-small-tablet.html">sizeHeadingSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="976979199%2FProperties%2F558520189" anchor-label="sizeHeadingXlargeMobile" id="976979199%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-heading-xlarge-mobile.html"><span>size</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="976979199%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-heading-xlarge-mobile.html">sizeHeadingXlargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="538909627%2FProperties%2F558520189" anchor-label="sizeHeadingXlargeTablet" id="538909627%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-heading-xlarge-tablet.html"><span>size</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="538909627%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-heading-xlarge-tablet.html">sizeHeadingXlargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1068773363%2FProperties%2F558520189" anchor-label="sizeLabelLarge" id="-1068773363%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-label-large.html"><span>size</span><wbr><span>Label</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1068773363%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-label-large.html">sizeLabelLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-413042659%2FProperties%2F558520189" anchor-label="sizeLabelMedium" id="-413042659%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-label-medium.html"><span>size</span><wbr><span>Label</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-413042659%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-label-medium.html">sizeLabelMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-496479295%2FProperties%2F558520189" anchor-label="sizeLabelSmall" id="-496479295%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-label-small.html"><span>size</span><wbr><span>Label</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-496479295%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-label-small.html">sizeLabelSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1672817265%2FProperties%2F558520189" anchor-label="sizeLabelXlarge" id="-1672817265%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-label-xlarge.html"><span>size</span><wbr><span>Label</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1672817265%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-label-xlarge.html">sizeLabelXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2061692130%2FProperties%2F558520189" anchor-label="weightBodyDefault" id="-2061692130%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="weight-body-default.html"><span>weight</span><wbr><span>Body</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2061692130%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="weight-body-default.html">weightBodyDefault</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-285461948%2FProperties%2F558520189" anchor-label="weightBodyStrong" id="-285461948%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="weight-body-strong.html"><span>weight</span><wbr><span>Body</span><wbr><span><span>Strong</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-285461948%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="weight-body-strong.html">weightBodyStrong</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-227664389%2FProperties%2F558520189" anchor-label="weightDisplay" id="-227664389%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="weight-display.html"><span>weight</span><wbr><span><span>Display</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-227664389%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="weight-display.html">weightDisplay</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1190387525%2FProperties%2F558520189" anchor-label="weightHeading" id="-1190387525%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="weight-heading.html"><span>weight</span><wbr><span><span>Heading</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1190387525%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="weight-heading.html">weightHeading</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-819151120%2FProperties%2F558520189" anchor-label="weightLabelDefault" id="-819151120%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="weight-label-default.html"><span>weight</span><wbr><span>Label</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-819151120%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="weight-label-default.html">weightLabelDefault</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1832830002%2FProperties%2F558520189" anchor-label="weightLabelStrong" id="1832830002%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="weight-label-strong.html"><span>weight</span><wbr><span>Label</span><wbr><span><span>Strong</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1832830002%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="weight-label-strong.html">weightLabelStrong</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="67348395%2FProperties%2F558520189" anchor-label="weightSystemDefault" id="67348395%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="weight-system-default.html"><span>weight</span><wbr><span>System</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="67348395%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="weight-system-default.html">weightSystemDefault</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="198858775%2FProperties%2F558520189" anchor-label="weightSystemStrong" id="198858775%2FProperties%2F558520189" data-filterable-set=":theme-orange/release"></a>
+          <div class="table-row" data-filterable-current=":theme-orange/release" data-filterable-set=":theme-orange/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="weight-system-strong.html"><span>weight</span><wbr><span>System</span><wbr><span><span>Strong</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="198858775%2FProperties%2F558520189"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="weight-system-strong.html">weightSystemStrong</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>Copyright © Orange 2024</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

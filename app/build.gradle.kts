@@ -39,7 +39,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 3
+        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 4
         versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
