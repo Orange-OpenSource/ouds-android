@@ -125,6 +125,7 @@ fun OudsTag(
                     .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
                     .clip(shape = tagShape)
                     .background(backgroundColor(status = status, hierarchy = hierarchy))
+                    .semantics(mergeDescendants = true) {}
                     .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
@@ -132,7 +133,11 @@ fun OudsTag(
                 val contentColor = contentColor(status = status, hierarchy = hierarchy)
 
                 if (hasAsset) {
-                    Box(modifier = Modifier.size(assetSize(size))) {
+                    Box(
+                        modifier = Modifier
+                            .size(assetSize(size))
+                            .semantics { hideFromAccessibility() }
+                    ) {
                         if (loader != null) {
                             ProgressIndicator(status = status, hierarchy = hierarchy, size = size, progress = loader.progress)
                         } else {
