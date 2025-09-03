@@ -14,8 +14,8 @@ OUDS Android is available through [Maven Central Repository](https://central.son
 ```kotlin
 dependencies {
     // ...
-    implementation("com.orange.ouds.android:ouds-core:0.2.0")
-    implementation("com.orange.ouds.android:ouds-theme-orange:0.2.0")
+    implementation("com.orange.ouds.android:ouds-core:0.3.0")
+    implementation("com.orange.ouds.android:ouds-theme-orange:0.3.0")
     // ...
 }
 ```
@@ -28,8 +28,8 @@ dependencies {
 ```shell
 dependencies {
     // ...
-    implementation 'com.orange.ouds.android:ouds-core:0.2.0'
-    implementation 'com.orange.ouds.android:ouds-theme-orange:0.2.0'
+    implementation 'com.orange.ouds.android:ouds-core:0.3.0'
+    implementation 'com.orange.ouds.android:ouds-theme-orange:0.3.0'
     // ...
 }
 ```
