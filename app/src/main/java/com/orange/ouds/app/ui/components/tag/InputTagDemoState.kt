@@ -58,5 +58,4 @@ class InputTagDemoState(
     var label: String by mutableStateOf(label)
 
     var enabled: Boolean by mutableStateOf(enabled)
-
 }
