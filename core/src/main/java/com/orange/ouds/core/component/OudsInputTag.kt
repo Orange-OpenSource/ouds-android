@@ -125,16 +125,13 @@ fun OudsInputTag(
                 .outerBorder(state = state, shape = shape)
                 .padding(vertical = tagTokens.spacePaddingBlockDefault.value)
                 .padding(start = tagTokens.spacePaddingInlineDefault.value, end = tagTokens.spacePaddingInlineAssetDefault.value)
-                .run {
-                    val indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth)
-                    clickable(
+                .clickable(
                         enabled = enabled,
                         interactionSource = interactionSource,
-                        indication = indication,
+                        indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                         onClick = onClick,
                         role = Role.Button
-                    )
-                },
+                    ),
             horizontalArrangement = Arrangement.spacedBy(tagTokens.spaceColumnGapDefault.value, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
