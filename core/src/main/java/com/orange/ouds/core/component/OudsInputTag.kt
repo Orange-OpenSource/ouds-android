@@ -229,11 +229,10 @@ private fun contentColor(state: OudsInputTag.State): Color {
  * Contains classes to build an [OudsInputTag].
  */
 object OudsInputTag {
-
+    
     internal enum class State {
         Enabled, Hovered, Pressed, Disabled, Focused
     }
-
 }
 
 @PreviewLightDark
