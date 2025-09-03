@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui
 
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalInspectionMode
 import com.orange.ouds.app.R
@@ -24,7 +25,6 @@ import com.orange.ouds.app.ui.components.ComponentsNavigation
 import com.orange.ouds.app.ui.components.Variant
 import com.orange.ouds.app.ui.tokens.TokenCategory
 import com.orange.ouds.app.ui.tokens.TokensNavigation
-import com.orange.ouds.foundation.UiString
 
 /**
  * Returns the [Screen] corresponding to the given [route].
@@ -64,7 +64,7 @@ val screens: List<Screen>
  */
 sealed class Screen(
     val route: String,
-    val title: UiString? = null,
+    @StringRes val title: Int? = null,
 ) {
 
     fun isHome() = this in listOf(Tokens, Components, About)
@@ -73,47 +73,52 @@ sealed class Screen(
 
     data object Tokens : Screen(
         route = BottomBarItem.Tokens.route,
-        title = UiString.StringResource(R.string.app_bottomBar_tokens_label)
+        title = R.string.app_bottomBar_tokens_label
     )
 
     data object Components : Screen(
         route = BottomBarItem.Components.route,
-        title = UiString.StringResource(R.string.app_bottomBar_components_label)
+        title = R.string.app_bottomBar_components_label
     )
 
     data object About : Screen(
         route = BottomBarItem.About.route,
-        title = UiString.StringResource(R.string.app_bottomBar_about_label)
+        title = R.string.app_bottomBar_about_label
     )
 
     // Tokens screens
 
     data class TokenCategoryDetail(val tokenCategoryId: Long) : Screen(
         route = TokensNavigation.TokenCategoryDetailRoute,
-        title = TokenCategory.fromId(tokenCategoryId)?.nameRes?.let { UiString.StringResource(it) }
+        title = TokenCategory.fromId(tokenCategoryId)?.nameRes
     )
 
     // Components screens
 
     data class ComponentDetail(val componentId: Long) : Screen(
         route = ComponentsNavigation.ComponentDetailRoute,
-        title = Component.fromId(componentId)?.nameRes?.let { UiString.StringResource(it) }
+        title = Component.fromId(componentId)?.nameRes
     )
 
     data class ComponentVariantDetail(val componentVariantId: Long) : Screen(
         route = ComponentsNavigation.ComponentVariantRoute,
-        title = Variant.fromId(componentVariantId)?.nameRes?.let { UiString.StringResource(it) }
+        title = Variant.fromId(componentVariantId)?.nameRes
     )
 
     // About screens
 
     data class AboutFile(val menuItemId: Long) : Screen(
         route = AboutDestinations.FileRoute,
-        title = AboutMenuItem.fromId(menuItemId.toInt())?.labelRes?.let { UiString.StringResource(it) }
+        title = AboutMenuItem.fromId(menuItemId.toInt())?.labelRes
     )
 
     data object AboutMaterialComponents : Screen(
         route = AboutDestinations.MaterialComponentsRoute,
-        title = UiString.StringResource(R.string.app_about_materialComponents_label)
+        title = R.string.app_about_materialComponents_label
+    )
+
+    data object AboutVersions : Screen(
+        route = AboutDestinations.VersionsRoute,
+        title = R.string.app_about_versions_label
     )
 }

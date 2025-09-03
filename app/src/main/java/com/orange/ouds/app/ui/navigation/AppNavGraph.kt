@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ouds.app.ui.BottomBarItem
+import com.orange.ouds.app.ui.MainState
 import com.orange.ouds.app.ui.about.AboutDestinations
 import com.orange.ouds.app.ui.about.AboutFileMenuItem
 import com.orange.ouds.app.ui.about.AboutMenuItem
@@ -32,9 +33,10 @@ import com.orange.ouds.app.ui.tokens.addTokensNavGraph
 /**
  * Root navigation graph of the application
  */
-fun NavGraphBuilder.appNavGraph(navController: NavController) {
+fun NavGraphBuilder.appNavGraph(mainState: MainState) {
+    val navController = mainState.navigationState.navController
     addTokensNavGraph(navController)
-    addComponentsNavGraph(navController)
+    addComponentsNavGraph(mainState)
     addAboutNavGraph()
     addBottomBarNavGraph(navController)
 }

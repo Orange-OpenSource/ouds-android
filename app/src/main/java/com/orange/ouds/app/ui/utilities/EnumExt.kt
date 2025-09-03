@@ -12,6 +12,9 @@
 
 package com.orange.ouds.app.ui.utilities
 
+/**
+ * Returns the formatted name of the enum. For instance `FooBar` becomes `Foo Bar`.
+ */
 val Enum<*>.formattedName: String
     get() = name.split("(?=\\p{Lu})".toRegex())
         .joinToString(separator = " ") { it.lowercase() }

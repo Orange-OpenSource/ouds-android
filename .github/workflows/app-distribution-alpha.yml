@@ -2,25 +2,19 @@ name: app-distribution-alpha
 
 on:
   workflow_dispatch:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - labeled
-      - unlabeled
 
 jobs:
   app-distribution-alpha:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && startsWith(github.event.pull_request.head.ref, 'tokenator-update-tokens-'))
+    if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
           java-version: '17'

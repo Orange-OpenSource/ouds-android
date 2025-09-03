@@ -12,27 +12,23 @@
 
 package com.orange.ouds.app.ui.utilities.composable
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardDefaults.cardElevation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.priorityClickable
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -42,37 +38,36 @@ import com.orange.ouds.core.utilities.OudsPreview
 @Composable
 fun LargeCard(
     title: String,
-    painter: Painter,
-    onClick: () -> Unit,
-    imageTint: Color? = null
+    illustration: (@Composable () -> Unit),
+    onClick: () -> Unit
 ) {
-    Card(shape = RectangleShape, elevation = cardElevation(defaultElevation = OudsTheme.elevations.raised), onClick = onClick) {
-        Column(modifier = Modifier.background(OudsTheme.colorScheme.background.primary)) {
-            Image(
-                painter = painter,
-                colorFilter = imageTint?.let { ColorFilter.tint(imageTint) },
-                contentDescription = null,
+    val interactionSource = remember { MutableInteractionSource() }
+    Card(
+        colors = CardDefaults.cardColors(containerColor = OudsTheme.colorScheme.background.primary),
+        modifier = Modifier
+            // Intercept all click events before they reach interactive components in illustration composable
+            .priorityClickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = onClick
+            ),
+        interactionSource = interactionSource,
+        shape = RectangleShape,
+        elevation = cardElevation(defaultElevation = OudsTheme.elevations.raised),
+        onClick = {} // Card onClick is empty because priorityClickable consumes click events first
+    ) {
+        Column(modifier = Modifier.background(OudsTheme.colorScheme.overlay.default)) {
+            illustration()
+            Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(184.dp)
-                    .background(OudsTheme.colorScheme.overlay.default)
-                    .background(OudsTheme.colorScheme.surface.status.neutral.muted),
-                contentScale = ContentScale.None
+                    .padding(OudsTheme.spaces.fixed.medium),
+                text = title,
+                color = OudsTheme.colorScheme.content.default,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                style = OudsTheme.typography.heading.medium
             )
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(OudsTheme.colorScheme.overlay.default)
-                    .padding(OudsTheme.spaces.fixed.medium)
-            ) {
-                Text(
-                    text = title,
-                    color = OudsTheme.colorScheme.content.default,
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1,
-                    style = OudsTheme.typography.heading.medium
-                )
-            }
         }
     }
 }
@@ -82,8 +77,7 @@ fun LargeCard(
 private fun PreviewLargeCard() = OudsPreview {
     LargeCard(
         title = "Title",
-        painter = painterResource(R.drawable.ic_filter_effects),
-        onClick = {},
-        imageTint = OudsTheme.colorScheme.content.default
+        illustration = { ImageIllustration(imageRes = R.drawable.ic_filter_effects) },
+        onClick = {}
     )
 }

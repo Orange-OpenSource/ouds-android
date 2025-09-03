@@ -27,7 +27,7 @@ tasks.register<DefaultTask>("checkNotice") {
 
     doLast {
         // Get resources listed in NOTICE.txt
-        val resourceExtensions = listOf("xml", "png", "svg")
+        val resourceExtensions = listOf("xml", "png", "svg", "ttf")
         val noticeResources = File("${rootDir.path}/NOTICE.txt").readLines()
             .mapNotNull { line ->
                 File("${rootDir.path}/$line").takeIf { it.extension in resourceExtensions }
@@ -35,20 +35,20 @@ tasks.register<DefaultTask>("checkNotice") {
             .sortedBy { it.path }
 
         if (noticeResources.isNotEmpty()) {
-            logger.lifecycle("Detected resources in NOTICE.txt:\n${noticeResources.joinToString("\n") { "  ${it.path}" }}")
+            logger.info("Detected resources in NOTICE.txt:\n${noticeResources.joinToString("\n") { "  ${it.path}" }}")
         } else {
-            logger.lifecycle("No resource detected in NOTICE.txt.")
+            logger.info("No resource detected in NOTICE.txt.")
         }
 
         // Get resources in project
         val subprojectsResourcePaths = subprojects.flatMap { subproject ->
-            val androidExtension = subproject.extensions.getByName("android") as? CommonExtension<*, *, *, *, *, *>
+            val androidExtension = subproject.extensions.findByName("android") as? CommonExtension<*, *, *, *, *, *>
             val flavorNames = androidExtension?.productFlavors.orEmpty().map { it.name }
             val sourceSetNames = listOf("main", *flavorNames.toTypedArray())
             sourceSetNames.mapNotNull { androidExtension?.sourceSets?.get(it) }.flatMap { sourceSet ->
                 sourceSet.res.directories.flatMap { directory ->
                     File("${subproject.projectDir}/$directory").walk().mapNotNull { file ->
-                        if (file.isDirectory && file.name.startsWith("drawable")) file.path else null
+                        if (file.isDirectory && (file.name.startsWith("drawable") || file.name == "font")) file.path else null
                     }
                 }
             }
@@ -64,9 +64,9 @@ tasks.register<DefaultTask>("checkNotice") {
             .sortedBy { it.path }
 
         if (resources.isNotEmpty()) {
-            logger.lifecycle("Detected resources in project:\n${resources.joinToString("\n") { "  ${it.path}" }}")
+            logger.info("Detected resources in project:\n${resources.joinToString("\n") { "  ${it.path}" }}")
         } else {
-            logger.lifecycle("No resource detected in project.")
+            logger.info("No resource detected in project.")
         }
 
         // Check if resources listed in NOTICE.txt exist
@@ -75,24 +75,26 @@ tasks.register<DefaultTask>("checkNotice") {
         // Check if resources are missing in NOTICE.txt
         val missingResources = resources.filter { !noticeResources.contains(it) }
 
-        if (surplusResources.isNotEmpty() || missingResources.isNotEmpty()) {
+        // Check if resources listed in NOTICE.txt are duplicated
+        val duplicatedResources = noticeResources.groupBy { it.path }.mapNotNull { (_, resources) ->
+            resources.takeIf { it.count() > 1 }?.first()
+        }
+
+        if (surplusResources.isNotEmpty() || missingResources.isNotEmpty() || duplicatedResources.isNotEmpty()) {
             val message = buildString {
-                if (surplusResources.isNotEmpty()) {
-                    appendLine(
-                        """
-                        |One or more files are listed in NOTICE.txt but do not exist:
-                        |${surplusResources.joinToString("\n") { "  ${it.path.removePrefix("${rootDir.path}/")}" }}
+                val appendErrorMessage: (String, List<File>) -> Unit = { errorMessage, resources ->
+                    if (resources.isNotEmpty()) {
+                        appendLine(
+                            """
+                        |${errorMessage}:
+                        |${resources.joinToString("\n") { "  ${it.path.removePrefix("${rootDir.path}/")}" }}
                         """.trimMargin()
-                    )
+                        )
+                    }
                 }
-                if (missingResources.isNotEmpty()) {
-                    appendLine(
-                        """
-                        |One or more files are not listed in NOTICE.txt:
-                        |${missingResources.joinToString("\n") { "  ${it.path.removePrefix("${rootDir.path}/")}" }}
-                        """.trimMargin()
-                    )
-                }
+                appendErrorMessage("One or more files are listed in NOTICE.txt but do not exist", surplusResources)
+                appendErrorMessage("One or more files are not listed in NOTICE.txt", missingResources)
+                appendErrorMessage("One or more files are duplicated in NOTICE.txt", duplicatedResources)
             }
 
             throw GradleException(message)

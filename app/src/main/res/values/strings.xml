@@ -51,7 +51,7 @@
 
     <!-- Tokens: color -->
     <string name="app_tokens_color_label">Color</string>
-    <string name="app_tokens_color_description_text">Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.</string>
+    <string name="app_tokens_color_description_text">Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the ones you should use when building a mobile app.</string>
     <string name="app_tokens_color_action_label" translatable="false">Action</string>
     <string name="app_tokens_color_always_label" translatable="false">Always</string>
     <string name="app_tokens_color_background_label" translatable="false">Background</string>
@@ -109,27 +109,56 @@
     <!-- Components -->
     <string name="app_components_common_color_label">Color</string>
     <string name="app_components_common_error_label">Error</string>
-    <string name="app_components_common_layout_label">Layout</string>
-    <string name="app_components_common_textOnlyLayout_label">Text only</string>
-    <string name="app_components_common_iconAndTextLayout_label">Icon + text</string>
-    <string name="app_components_common_style_label">Style</string>
+    <string name="app_components_common_hierarchy_label">Hierarchy</string>
+    <string name="app_components_common_icon_a11y">Icon</string>
+    <string name="app_components_common_iconOnlyLayout_label">Icon only</string>
     <string name="app_components_common_label_label">Label</string>
+    <string name="app_components_common_layout_label">Layout</string>
+    <string name="app_components_common_loader_label">Loader</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
+    <string name="app_components_common_roundedCorners_label">Rounded corners</string>
+    <string name="app_components_common_size_label">Size</string>
+    <string name="app_components_common_status_label">Status</string>
+    <string name="app_components_common_textOnlyLayout_label">Text only</string>
+    <string name="app_components_common_textAndIconLayout_label">Text + icon</string>
+    <string name="app_components_common_version_label">Component design version</string>
+
+    <!-- Components: badge -->
+    <string name="app_components_badge_label">Badge</string>
+    <string name="app_components_badge_description_text">The badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.</string>
+    <string name="app_components_badge_type_label">Type</string>
+    <string name="app_components_badge_standardType_label">Standard</string>
+    <string name="app_components_badge_countType_label">Count</string>
+    <string name="app_components_badge_iconType_label">Icon</string>
+    <string name="app_components_badge_count_label">Count</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>
     <string name="app_components_button_description_text">Buttons allow users to make choices or perform an action. They have multiple styles for various needs.</string>
-    <string name="app_components_button_hierarchy_label">Hierarchy</string>
-    <string name="app_components_button_iconOnlyLayout_label">Icon only</string>
-    <string name="app_components_button_icon_a11y">Icon</string>
 
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_label">Checkbox</string>
-    <string name="app_components_checkbox_description_text">Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.</string>
+    <string name="app_components_checkbox_description_text">Checkboxes allow users to select one or multiple options from a list, toggle settings on or off, or confirm an action.</string>
     <string name="app_components_checkbox_checkbox_label">Checkbox</string>
+    <string name="app_components_checkbox_checkbox_a11y">%s checkbox content description</string>
     <string name="app_components_checkbox_checkboxItem_label">Checkbox item</string>
     <string name="app_components_checkbox_indeterminateCheckbox_label">Indeterminate checkbox</string>
+    <string name="app_components_checkbox_indeterminateCheckbox_a11y">%s indeterminate checkbox content description</string>
     <string name="app_components_checkbox_indeterminateCheckboxItem_label">Indeterminate checkbox item</string>
+
+    <!-- Components: chip -->
+    <string name="app_components_chip_label">Chip</string>
+    <string name="app_components_chip_description_text">Chips help people enter information, make selections, filter content, or trigger actions.</string>
+    <string name="app_components_chip_filterChip_label">Filter chip</string>
+    <string name="app_components_chip_filterChip_chipContent_label">Filter</string>
+    <string name="app_components_chip_suggestionChip_label">Suggestion chip</string>
+    <string name="app_components_chip_suggestionChip_chipContent_label">Suggestion</string>
+
+    <!-- Components: colored background -->
+    <string name="app_components_coloredBackground_label">Colored background</string>
+    <string name="app_components_coloredBackground_description_text">Colored backgrounds use specific colors to maximize the contrast with content. Several components such as buttons or links adapt their display accordingly when they are displayed on colored backgrounds.</string>
+    <string name="app_components_coloredBackground_color_label">Color</string>
+    <string name="app_components_coloredBackground_unsupportedColor_text">Current theme does not support \"%s\" color.</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">Helper text</string>
@@ -153,27 +182,41 @@
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_label">Radio button</string>
-    <string name="app_components_radioButton_description_text">A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.</string>
+    <string name="app_components_radioButton_description_text">Radio buttons allow users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.</string>
     <string name="app_components_radioButton_radioButton_label">Radio button</string>
     <string name="app_components_radioButton_radioButtonItem_label">Radio button item</string>
     <string name="app_components_radioButton_radioButtonItem_outlined_label">Outlined</string>
     <string name="app_components_radioButton_radioButtonItem_additionalLabel_label">Additional label</string>
+    <string name="app_components_radioButton_radioButton_a11y">Radio button %s content description</string>
 
     <!-- Components: switch -->
     <string name="app_components_switch_label">Switch</string>
-    <string name="app_components_switch_description_text">A switch allows the user to toggle between two states, typically "on" and "off." It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.</string>
+    <string name="app_components_switch_description_text">Switches allow users to toggle between two states, typically "on" and "off." It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.</string>
     <string name="app_components_switch_switch_label">Switch</string>
+    <string name="app_components_switch_switch_a11y">Switch content description</string>
     <string name="app_components_switch_switchItem_label">Switch item</string>
+
+    <!-- Components: tag -->
+    <string name="app_components_tag_label">Tag</string>
+    <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.</string>
+    <string name="app_components_tag_shape_label">Shape</string>
+    <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
-    <string name="app_about_pullRequest_label">Pull request\u0020</string>
-    <string name="app_about_pullRequestNumber_label">#%s</string>
+    <plurals name="app_about_issues_label">
+        <item quantity="one">Issue\u0020</item>
+        <item quantity="other">Issues\u0020</item>
+    </plurals>
+    <string name="app_about_issueNumber_label">#%s</string>
     <string name="app_about_tokensVersion_label">Tokens version %s</string>
     <string name="app_about_privacyPolicy_label">Privacy policy</string>
     <string name="app_about_legalInformation_label">Legal information</string>
     <string name="app_about_materialComponents_label">Material 3 components</string>
     <string name="app_about_changelog_label">Changelog</string>
     <string name="app_about_changeLanguage_label">Change language</string>
+    <string name="app_about_versions_label">Versions</string>
+    <string name="app_about_versions_tokens_label">Tokens</string>
+    <string name="app_about_versions_components_label">Components</string>
 
 </resources>

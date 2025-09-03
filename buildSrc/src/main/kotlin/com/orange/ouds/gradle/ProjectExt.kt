@@ -133,9 +133,14 @@ fun Project.findLastTag(pattern: String, before: String?, isAnnotated: Boolean):
     return results.firstOrNull()
 }
 
-fun <T> Project.gitHubApi(action: GitHubApi.() -> T): T {
+fun <T> Project.gitHubRestApi(action: GitHubRestApi.() -> T): T {
     val token = Environment.getVariables("GITHUB_TOKEN").first()
-    return GitHubApi(token, "Orange-OpenSource/ouds-android").action()
+    return GitHubRestApi(token, "Orange-OpenSource/ouds-android").action()
+}
+
+fun <T> Project.gitHubGraphQLApi(action: GitHubGraphQLApi.() -> T): T {
+    val token = Environment.getVariables("GITHUB_TOKEN").first()
+    return GitHubGraphQLApi(token, "Orange-OpenSource", "ouds-android").action()
 }
 
 fun <T> Project.firebaseApi(appId: String, action: FirebaseApi.() -> T): T {
@@ -147,11 +152,19 @@ fun <T> Project.firebaseApi(appId: String, action: FirebaseApi.() -> T): T {
     return FirebaseApi(accessToken, "756919609448", appId).action()
 }
 
+fun <T> Project.sonatypeOssrhStagingApi(action: SonatypeOssrhStagingApi.() -> T): T {
+    val token = Environment.getVariables("CENTRAL_PUBLISHER_PORTAL_TOKEN").first()
+    return SonatypeOssrhStagingApi(token).action()
+}
+
 val Project.artifactId: String
     get() = "ouds-$name"
 
 val Project.isPublished: Boolean
     get() = extensions.findByType(MavenCentralPublishPluginExtension::class.java)?.enabled == true
+
+val Project.isSnapshot: Boolean
+    get() = version.toString().endsWith("SNAPSHOT")
 
 class ExecuteResult(val formattedOutput: String, val exception: Throwable?)
 

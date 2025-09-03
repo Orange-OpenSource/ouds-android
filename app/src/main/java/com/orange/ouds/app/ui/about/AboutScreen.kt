@@ -29,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -47,8 +48,9 @@ private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(1, R.string.app_about_legalInformation_label, AboutFileMenuItem.File(R.raw.about_legal_information, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, AboutFileMenuItem.File(R.raw.about_privacy_policy, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(3, R.string.app_about_changelog_label, AboutFileMenuItem.File(R.raw.changelog, AboutFileMenuItem.File.Format.Markdown)),
-    AboutRouteMenuItem(4, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute),
-    AboutAppSettingsItem(5, R.string.app_about_changeLanguage_label)
+    AboutRouteMenuItem(4, R.string.app_about_versions_label, AboutDestinations.VersionsRoute),
+    AboutRouteMenuItem(5, R.string.app_about_materialComponents_label, AboutDestinations.MaterialComponentsRoute),
+    AboutAppSettingsItem(6, R.string.app_about_changeLanguage_label)
 )
 
 sealed class AboutMenuItem(val id: Int, @StringRes val labelRes: Int) {
@@ -79,28 +81,29 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
         LazyColumn {
             item {
                 val version = stringResource(R.string.app_about_version_label, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
-                val pullRequestNumber: String? = BuildConfig.PULL_REQUEST_NUMBER
+                val issueNumbers: IntArray? = BuildConfig.ISSUE_NUMBERS
                 ListItem(
                     modifier = Modifier.listItemHorizontalPadding(),
                     headlineContent = {
-                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.short)) {
+                        Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
                             Text(text = stringResource(id = R.string.app_about_name_label), style = OudsTheme.typography.heading.extraLarge)
                             Text(text = version, style = OudsTheme.typography.body.default.large)
-                            if (pullRequestNumber != null) {
-                                val pullRequest = buildAnnotatedString {
-                                    append(stringResource(R.string.app_about_pullRequest_label))
-                                    withLink(LinkAnnotation.Url("https://github.com/Orange-OpenSource/ouds-android/pull/$pullRequestNumber")) {
-                                        withStyle(SpanStyle(OudsTheme.colorScheme.content.brandPrimary)) {
-                                            append(stringResource(R.string.app_about_pullRequestNumber_label, pullRequestNumber))
+                            if (issueNumbers != null) {
+                                val issues = buildAnnotatedString {
+                                    append(pluralStringResource(R.plurals.app_about_issues_label, issueNumbers.count()))
+                                    issueNumbers.forEachIndexed { index, issueNumber ->
+                                        if (index >= 1) {
+                                            append(" ")
+                                        }
+                                        withLink(LinkAnnotation.Url("https://github.com/Orange-OpenSource/ouds-android/issues/$issueNumber")) {
+                                            withStyle(SpanStyle(OudsTheme.colorScheme.content.brandPrimary)) {
+                                                append(stringResource(R.string.app_about_issueNumber_label, issueNumber))
+                                            }
                                         }
                                     }
                                 }
-                                Text(text = pullRequest, style = OudsTheme.typography.body.default.medium)
+                                Text(text = issues, style = OudsTheme.typography.body.default.medium)
                             }
-                            Text(
-                                text = stringResource(R.string.app_about_tokensVersion_label, BuildConfig.TOKENS_VERSION),
-                                style = OudsTheme.typography.body.default.medium
-                            )
                         }
                     }
                 )

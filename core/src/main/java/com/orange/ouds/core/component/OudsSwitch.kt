@@ -44,27 +44,29 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/18acc0-switch" class="external" target="_blank">**OUDS Switch design guidelines**</a>
- *
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
  * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
  *
  * The **standalone switch variant** can be used when the switch selector control is nested within another component and an alternative label is provided.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
+ *
+ * > Design version: 1.2.0
  *
  * @see [OudsSwitchItem] If you want to use a switch with an associated label and other optional elements.
  *
@@ -108,18 +110,20 @@ fun OudsSwitch(
         modifier = modifier
             .widthIn(min = switchTokens.sizeMinWidth.dp)
             .heightIn(min = switchTokens.sizeMinHeight.dp, max = switchTokens.sizeMaxHeight.dp)
-            .outerBorder(state = state)
             .then(toggleableModifier),
         contentAlignment = Alignment.Center,
     ) {
-        OudsSwitchIndicator(state = state, checked = checked)
+        OudsSwitchIndicator(
+            modifier = Modifier.outerBorder(state = state, shape = indicatorShape()),
+            state = state,
+            checked = checked
+        )
     }
 }
 
 @Composable
-internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
+internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean, modifier: Modifier = Modifier) {
     val switchTokens = OudsTheme.componentsTokens.switch
-    val shape = RoundedCornerShape(switchTokens.borderRadius.value)
 
     // The cursor animation is obtained by using a column and updating its horizontalAlignment parameter
     val horizontalAlignment by animateHorizontalAlignmentAsState(
@@ -127,9 +131,9 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
         animationSpec = defaultAnimationSpec()
     )
     Column(
-        modifier = Modifier
+        modifier = modifier
             .size(width = switchTokens.sizeWidthTrack.dp, height = switchTokens.sizeHeightTrack.dp)
-            .clip(shape)
+            .clip(indicatorShape())
             .background(indicatorBackgroundColor(state = state, checked = checked))
             .padding(start = switchTokens.spacePaddingInlineUnselected.value, end = switchTokens.spacePaddingInlineSelected.value),
         horizontalAlignment = horizontalAlignment,
@@ -142,7 +146,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
         Box(
             modifier = Modifier
                 .size(cursorSize.width.dp, cursorSize.height.dp)
-                .shadow(OudsTheme.elevations.raised.value.dp, shape)
+                .shadow(OudsTheme.elevations.raised.value.dp, RoundedCornerShape(switchTokens.borderRadiusCursor.value))
                 .background(switchTokens.colorCursor.value),
             contentAlignment = Alignment.Center
         ) {
@@ -158,7 +162,7 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
                     modifier = Modifier
                         .alpha(switchTokens.opacityCheck.value)
                         .alpha(checkAlpha),
-                    painter = painterResource(id = R.drawable.switch_selected),
+                    painter = painterResource(id = OudsTheme.drawableResources.switchSelected),
                     contentDescription = null,
                     tint = checkColor
                 )
@@ -166,6 +170,9 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean) {
         }
     }
 }
+
+@Composable
+private fun indicatorShape(): Shape = RoundedCornerShape(OudsTheme.componentsTokens.switch.borderRadiusTrack.value)
 
 @Composable
 private fun indicatorBackgroundColor(state: OudsControl.State, checked: Boolean): Color {
@@ -227,7 +234,7 @@ internal fun PreviewOudsSwitch(
     darkThemeEnabled: Boolean,
     checked: Boolean
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    PreviewStates<OudsControl.State>(columnCount = 3) {
+    PreviewEnumEntries<OudsControl.State>(columnCount = 3) {
         OudsSwitch(
             checked = checked,
             onCheckedChange = {}

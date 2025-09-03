@@ -14,7 +14,8 @@ import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.findTypedProperty
-import com.orange.ouds.gradle.gitHubApi
+import com.orange.ouds.gradle.gitHubGraphQLApi
+import com.orange.ouds.gradle.gitHubRestApi
 import com.orange.ouds.gradle.updateChangelog
 
 plugins {
@@ -24,7 +25,7 @@ plugins {
     id(libs.plugins.kotlin.kapt.get().pluginId)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.firebase.appdistribution)
+    id(libs.plugins.firebase.appdistribution.get().pluginId)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.services)
     alias(libs.plugins.hilt)
@@ -38,7 +39,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 3
+        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 4
         versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -104,24 +105,26 @@ android {
             // Suppresses an expected warning that triggers a build failure because allWarningsAsErrors is true
             // See https://youtrack.jetbrains.com/issue/KT-68400/K2-w-Kapt-currently-doesnt-support-language-version-2.0.-Falling-back-to-1.9.
             freeCompilerArgs.add("-Xsuppress-version-warnings")
+            // From Kotlin 2.2, need to specify default rule for annotations
+            // See http://youtrack.jetbrains.com/issue/KT-73255
+            freeCompilerArgs.add("-Xannotation-default-target=param-property")
         }
     }
 
-    firebaseAppDistribution {
-        releaseNotesFile = Firebase_gradle.AppDistribution.RELEASE_NOTES_FILE_PATH
-        groups = project.findTypedProperty("appDistributionGroup")
-    }
     androidResources {
         generateLocaleConfig = true
     }
+}
+
+firebaseAppDistribution {
+    groups = project.findTypedProperty("appDistributionGroup")
 }
 
 dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
     implementation(project(":theme-orange"))
-    implementation(project(":theme-orange-country"))
-    implementation(project(":theme-white-label"))
+    implementation(project(":theme-sosh"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
@@ -148,28 +151,30 @@ tasks.register<DefaultTask>("updateAppChangelog") {
 }
 
 fun updateBuildConfig() {
-    val tokensVersion = findTypedProperty<String>("tokensVersion").orEmpty()
-
     val gitHubWorkflow = Environment.getVariablesOrNull("GITHUB_WORKFLOW").first()
-    val pullRequestNumber = if (gitHubWorkflow == "app-distribution-alpha") {
-        gitHubApi {
+    val issueNumbers = if (gitHubWorkflow == "app-distribution-alpha") {
+        gitHubRestApi {
             val pullRequests = getPullRequests()
-            pullRequests.firstOrNull { it.branchName == Environment.branchName }?.number
+            pullRequests.firstOrNull { it.branchName == Environment.branchName }
+                ?.let { pullRequest ->
+                    gitHubGraphQLApi {
+                        getPullRequestClosingIssues(pullRequest.number).map { it.number }
+                    }
+                }
         }
     } else {
         null
     }
 
     android.defaultConfig {
-        buildConfigField("String", "TOKENS_VERSION", "\"$tokensVersion\"")
-        buildConfigField("String", "PULL_REQUEST_NUMBER", if (pullRequestNumber != null) "\"$pullRequestNumber\"" else "null")
+        buildConfigField("int[]", "ISSUE_NUMBERS", if (issueNumbers != null) "new int[]{${issueNumbers.joinToString(", ")}}" else "null")
     }
 }
 
 gradle.projectsEvaluated {
     tasks["preBuild"].apply {
+        dependsOn(":checkDocumentation")
         dependsOn(":checkNotice")
-        dependsOn(":checkTokensVersion")
         dependsOn(tasks["updateAppChangelog"])
     }
     updateBuildConfig()

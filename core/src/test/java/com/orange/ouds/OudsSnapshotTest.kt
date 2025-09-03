@@ -24,13 +24,18 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestName
 
-internal abstract class OudsSnapshotTest {
+internal abstract class OudsSnapshotTest(widthDp: Int = -1) {
 
     @get:Rule
     val paparazzi = Paparazzi(
         renderingMode = SessionParams.RenderingMode.SHRINK,
         // Double the screen height and set useDeviceResolution to true in order to avoid truncated snapshots for vertical content
-        deviceConfig = with(DeviceConfig.NEXUS_5) { copy(screenHeight = screenHeight * 2) },
+        deviceConfig = with(DeviceConfig.NEXUS_5) {
+            copy(
+                screenWidth = if (widthDp > 0) (widthDp * density.dpiValue / 160f).toInt() else screenWidth,
+                screenHeight = screenHeight * 2
+            )
+        },
         useDeviceResolution = true,
         maxPercentDifference = 0.01
     )

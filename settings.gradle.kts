@@ -32,6 +32,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "OUDS Android"
+include(":dokka-plugin")
 include(":app")
 include(":foundation")
 include(":core")
@@ -39,4 +40,4 @@ include(":global-raw-tokens")
 include(":theme-contract")
 include(":theme-orange")
 include(":theme-orange-country")
-include(":theme-white-label")
+include(":theme-sosh")

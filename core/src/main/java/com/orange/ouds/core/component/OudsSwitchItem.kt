@@ -31,10 +31,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 
-//TODO Add DSM link when available
-// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Switch design guidelines**</a>
 /**
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
  * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
@@ -48,6 +46,10 @@ import com.orange.ouds.core.utilities.PreviewStates
  * In most cases, OUDS switch items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
+ *
+ * > Design version: 1.2.0
+ *
  * @see [OudsSwitch] If you want to use a standalone switch.
  *
  * @param checked Controls checked state of the item's switch.
@@ -56,9 +58,9 @@ import com.orange.ouds.core.utilities.PreviewStates
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the switch item.
  * @param helperText Optional text displayed below the label.
- * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+ * @param icon Optional icon displayed in the item. By default, it has a leading position. If [reversed] is set to `true`, it is displayed as a trailing element.
  * @param divider Controls the display of a divider at the bottom of the switch item.
- * @param reversed When `false`, the switch has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
+ * @param reversed When `false`, the switch has a trailing position and the optional [icon] has a leading position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the switch item. When `false`, the switch, the texts and the optional icon are disabled, and the item
  * will not be clickable.
  * @param readOnly Controls the read only state of the switch item. When `true` the item's switch is disabled but the texts and the icon remain in
@@ -77,7 +79,7 @@ fun OudsSwitchItem(
     modifier: Modifier = Modifier,
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
-    divider: Boolean = false,
+    divider: Boolean = true,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -108,7 +110,6 @@ fun OudsSwitchItem(
         helperText = helperText,
         icon = icon,
         divider = divider,
-        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
@@ -119,6 +120,7 @@ fun OudsSwitchItem(
                 checked = checked
             )
         },
+        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.Start else OudsControlItem.IndicatorPosition.End,
         checkedContentPreviewStatus = if (checked) "Selected" else "Unselected",
         modifier = modifier
             .then(toggleableModifier)
@@ -140,7 +142,7 @@ internal fun PreviewOudsSwitchItem(
     parameter: OudsSwitchItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",

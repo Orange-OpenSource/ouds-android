@@ -13,7 +13,10 @@
 package com.orange.ouds.app.ui.components.switch
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
@@ -22,6 +25,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun SwitchDemoScreen() {
@@ -29,7 +33,8 @@ fun SwitchDemoScreen() {
     DemoScreen(
         bottomSheetContent = { SwitchDemoBottomSheetContent(state = state) },
         codeSnippet = { switchDemoCodeSnippet(state = state) },
-        demoContent = { SwitchDemoContent(state = state) }
+        demoContent = { SwitchDemoContent(state = state) },
+        version = OudsVersion.Component.Switch
     )
 }
 
@@ -47,7 +52,11 @@ private fun SwitchDemoBottomSheetContent(state: SwitchDemoState) {
 @Composable
 private fun SwitchDemoContent(state: SwitchDemoState) {
     with(state) {
+        val contentDescription = stringResource(R.string.app_components_switch_switch_a11y)
         OudsSwitch(
+            modifier = Modifier.semantics {
+                this.contentDescription = contentDescription
+            },
             checked = checked,
             onCheckedChange = { checked = it },
             enabled = enabled

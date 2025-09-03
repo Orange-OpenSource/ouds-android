@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
+import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
 import com.orange.ouds.core.component.OudsDivider
@@ -33,6 +34,7 @@ import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsVerticalDivider
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun DividerDemoScreen(vertical: Boolean = false) {
@@ -40,7 +42,8 @@ fun DividerDemoScreen(vertical: Boolean = false) {
     DemoScreen(
         bottomSheetContent = { DividerDemoBottomSheetContent(state = state) },
         codeSnippet = { dividerDemoCodeSnippet(state = state, vertical = vertical) },
-        demoContent = { DividerDemoContent(state = state, vertical = vertical) }
+        demoContent = { DividerDemoContent(state = state, vertical = vertical) },
+        version = OudsVersion.Component.Divider
     )
 }
 
@@ -50,18 +53,20 @@ private fun DividerDemoBottomSheetContent(state: DividerDemoState) {
         val colors = OudsDivider.Color.entries
         CustomizationDropdownMenu(
             label = stringResource(id = R.string.app_components_common_color_label),
-            itemLabels = colors.map { it.formattedName },
+            items = colors.map { color ->
+                CustomizationDropdownMenuItem(
+                    label = color.formattedName,
+                    leadingIcon = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(color.value)
+                        )
+                    }
+                )
+            },
             selectedItemIndex = colors.indexOf(color),
-            onSelectionChange = { color = colors[it] },
-            itemLeadingIcons = colors.map { color ->
-                {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(color.value)
-                    )
-                }
-            }
+            onSelectionChange = { color = colors[it] }
         )
     }
 }

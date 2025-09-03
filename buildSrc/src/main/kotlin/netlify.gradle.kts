@@ -12,7 +12,7 @@
 
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.execute
-import com.orange.ouds.gradle.gitHubApi
+import com.orange.ouds.gradle.gitHubRestApi
 import com.orange.ouds.gradle.requireTypedProperty
 import org.gradle.process.internal.ExecException
 
@@ -38,24 +38,56 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
             null
         }
 
-        var exception = if (output == null) GradleException("Netlify deploy failed") else null
+        var exception = if (output == null) GradleException("Netlify deploy failed.") else null
 
         val outputLines = output.orEmpty()
             .replace("\\x1B\\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]".toRegex(), "") // Removes ANSI colors from output
             .split("\n")
-        // Output displays "Website draft URL" for draft deployments and "Website URL" for prod deployments
-        val netlifyDeployPreviewUrl = outputLines.firstNotNullOfOrNull { "^Website (?:draft |)URL:\\s+(.*)$".toRegex().find(it) }
-            ?.groupValues
-            ?.getOrNull(1)
+
+        // Output displays "Deployed draft to" for draft deployments and "Unique deploy URL" for prod deployments:
+        //
+        // ╭───────────────────────── ⬥  Draft deploy is live ⬥ ──────────────────────────╮
+        // │                                                                               │
+        // │                              Deployed draft to                                │
+        // │          https://687672e116cf5a2cbd949f0a--ouds-android.netlify.app           │
+        // │                                                                               │
+        // ╰───────────────────────────────────────────────────────────────────────────────╯
+        //
+        // ╭──────────────── ⬥  Production deploy is live ⬥ ─────────────────╮
+        // │                                                                  │
+        // │   Deployed to production URL: https://ouds-android.netlify.app   │
+        // │                                                                  │
+        // │                        Unique deploy URL:                        │
+        // │    https://687673f72c25433090a8bc6e--ouds-android.netlify.app    │
+        // │                                                                  │
+        // ╰──────────────────────────────────────────────────────────────────╯
+        val netlifyDeployPreviewUrl = outputLines.indexOfFirst { it.contains("Deployed draft to") || it.contains("Unique deploy URL") }
+            .takeIf { it != -1 }
+            ?.plus(1) // Deploy preview URL is displayed on the next line
+            ?.let { index ->
+                "(https:\\/\\/.*--ouds-android\\.netlify\\.app)".toRegex()
+                    .find(outputLines[index])
+                    ?.groupValues
+                    ?.getOrNull(1)
+            }
+
+        if (exception == null && netlifyDeployPreviewUrl == null) {
+            exception = GradleException("Could not parse Netlify deploy preview URL.")
+        }
+
         val netlifyDeployLogUrl = outputLines.firstNotNullOfOrNull { "^Build logs:\\s+(.*)$".toRegex().find(it) }
             ?.groupValues
             ?.getOrNull(1)
+
+        if (exception == null && netlifyDeployLogUrl == null) {
+            exception = GradleException("Could not parse Netlify deploy log URL.")
+        }
 
         // Save deploy preview URL in a file in order to update GitHub Netlify environment URL later on
         File("netlify_deploy_preview_url.txt").writeText(netlifyDeployPreviewUrl.orEmpty())
 
         if (Environment.branchName != "develop") {
-            gitHubApi {
+            gitHubRestApi {
                 // Find pull request for current branch
                 val pullRequests = getPullRequests()
                 val pullRequest = pullRequests.firstOrNull { it.branchName == Environment.branchName }

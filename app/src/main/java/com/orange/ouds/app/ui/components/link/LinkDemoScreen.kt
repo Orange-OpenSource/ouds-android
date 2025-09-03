@@ -26,13 +26,14 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun LinkDemoScreen() {
@@ -42,7 +43,8 @@ fun LinkDemoScreen() {
         bottomSheetContent = { LinkDemoBottomSheetContent(state = state) },
         codeSnippet = { linkDemoCodeSnippet(state = state) },
         demoContent = { LinkDemoContent(state = state) },
-        demoContentOnColoredBox = state.onColoredBox
+        demoContentOnColoredBox = state.onColoredBox,
+        version = OudsVersion.Component.Link
     )
 }
 
@@ -60,17 +62,17 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
             onCheckedChange = { onColoredBox = it },
         )
         val sizes = OudsLink.Size.entries
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_link_size_label),
-            chipsLabels = sizes.map { it.name },
+            chipLabels = sizes.map { it.name },
             selectedChipIndex = sizes.indexOf(size),
             onSelectionChange = { id -> size = sizes[id] }
         )
-        CustomizationChoiceChips(
+        CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_layout_label),
-            chipsLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
+            chipLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
         )
@@ -90,13 +92,12 @@ private fun LinkDemoContent(state: LinkDemoState) {
             LinkDemoState.Layout.TextOnly -> {
                 OudsLink(
                     label = label,
-                    icon = null,
                     onClick = {},
                     enabled = enabled,
                     size = size
                 )
             }
-            LinkDemoState.Layout.IconAndText -> {
+            LinkDemoState.Layout.TextAndIcon -> {
                 OudsLink(
                     label = label,
                     icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
@@ -134,7 +135,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState) {
                 labelArgument(label)
                 when (layout) {
                     LinkDemoState.Layout.TextOnly -> {}
-                    LinkDemoState.Layout.IconAndText -> {
+                    LinkDemoState.Layout.TextAndIcon -> {
                         constructorCallArgument<OudsLink.Icon>("icon") {
                             painterArgument(R.drawable.ic_heart)
                         }

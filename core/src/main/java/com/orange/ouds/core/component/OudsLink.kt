@@ -23,11 +23,10 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LocalRippleConfiguration
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,6 +37,9 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,35 +47,68 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalUseMonoComponents
+import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.theme.tokens.components.OudsLinkTokens
+import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Link design guidelines**</a>
- *
  * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
  *
- * This API manage the display of *text only* and *text + icon* links.
- * If you need a navigation link, you can use the other API available for this component which display a text with a *back* or *next* chevron.
- *
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
+ *
+ * > Design version: 2.1.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLink.Size] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
+ */
+@Composable
+fun OudsLink(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLink.Size = OudsLinkDefaults.Size,
+    enabled: Boolean = true,
+) {
+    OudsLink(
+        label = label,
+        icon = null,
+        arrow = null,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled,
+    )
+}
+
+/**
+ * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
+ *
+ * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
+ *
+ * > Design version: 2.1.0
  *
  * @param label Label describing what is being linked to.
  * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
@@ -81,11 +116,13 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link. See [OudsLink.Size] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
  */
 @Composable
 fun OudsLink(
     label: String,
-    icon: OudsLink.Icon?,
+    icon: OudsLink.Icon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLink.Size = OudsLinkDefaults.Size,
@@ -103,14 +140,14 @@ fun OudsLink(
 }
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Link design guidelines**</a>
- *
  * An OUDS link which displays an [arrow] before ([OudsLink.Arrow.Back]) or after ([OudsLink.Arrow.Next]) a label.
  *
  * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * The tokens associated with this variant can be customized and are identified with the `Mono` suffix (for instance [OudsLinkTokens.colorContentEnabledMono]).
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
  *
- * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
+ *
+ * > Design version: 2.1.0
  *
  * @param label Label describing what is being linked to.
  * @param arrow Navigation arrow displayed in the link. See [OudsLink.Arrow] for allowed values.
@@ -118,6 +155,8 @@ fun OudsLink(
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link. See [OudsLink.Size] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithArrowSample
  */
 @Composable
 fun OudsLink(
@@ -139,7 +178,6 @@ fun OudsLink(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OudsLink(
     label: String,
@@ -157,18 +195,19 @@ private fun OudsLink(
     val isTextOnly = icon == null && arrow == null
 
     val (minWidth, minHeight) = when (size) {
-        OudsLink.Size.Default -> linkTokens.sizeMinWidthMedium.dp to linkTokens.sizeMinHeightMedium.dp
+        OudsLink.Size.Default -> linkTokens.sizeMinWidthDefault.value to linkTokens.sizeMinHeightDefault.value
         OudsLink.Size.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
     }
 
+    val monochrome = LocalColorMode.current?.monochrome == true
     val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
         val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        contentColor(state = linkState, monochrome = LocalUseMonoComponents.current)
+        contentColor(state = linkState, monochrome = monochrome)
     }
 
     val arrowColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
         val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        arrowColor(state = linkState, monochrome = LocalUseMonoComponents.current)
+        arrowColor(state = linkState, monochrome = monochrome)
     }
 
     // Underlined text style cannot be animated with alpha, thus we use an interaction boolean to make it appear while the other animations are ongoing
@@ -185,71 +224,72 @@ private fun OudsLink(
         isTextOnly || linkState in listOf(OudsLink.State.Hovered, OudsLink.State.Pressed, OudsLink.State.Focused)
     }
 
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
-        Box(
-            modifier = modifier
-                .widthIn(min = minWidth)
-                .heightIn(min = minHeight)
-                .outerBorder(state = state)
-                .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlock.value)
-                .clickable(
-                    interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(contentColor, arrowColor, isUnderlined),
-                    enabled = state != OudsLink.State.Disabled,
-                    onClick = onClick
-                ),
-            contentAlignment = Alignment.Center
+    Box(
+        modifier = modifier
+            .widthIn(min = minWidth)
+            .heightIn(min = minHeight)
+            .outerBorder(state = state)
+            .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlock.value)
+            .semantics {
+                role = Role.Button
+            }
+            .clickable(
+                interactionSource = interactionSource,
+                indication = InteractionValuesIndication(contentColor, arrowColor, isUnderlined),
+                enabled = state != OudsLink.State.Disabled,
+                onClick = onClick
+            ),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        val columnGap: Dp
+        val iconSize: Dp
+        var textStyle: TextStyle
+        with(linkTokens) {
+            when (size) {
+                OudsLink.Size.Default -> {
+                    columnGap = if (arrow != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
+                    iconSize = sizeIconDefault.value
+                    textStyle = OudsTheme.typography.label.strong.large
+                }
+                OudsLink.Size.Small -> {
+                    columnGap = if (arrow != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
+                    iconSize = sizeIconSmall.value
+                    textStyle = OudsTheme.typography.label.strong.medium
+                }
+            }
+        }
+
+        if (isUnderlined.value) {
+            textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
+        }
+
+        val iconTint = if (arrow != null) arrowColor.value else contentColor.value
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(columnGap),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            val columnGap: Dp
-            val iconSize: Dp
-            var textStyle: TextStyle
-            with(linkTokens) {
-                when (size) {
-                    OudsLink.Size.Default -> {
-                        columnGap = if (arrow != null) spaceColumnGapArrowMedium.value else spaceColumnGapIconMedium.value
-                        iconSize = sizeIconMedium.value
-                        textStyle = OudsTheme.typography.label.strong.large
-                    }
-                    OudsLink.Size.Small -> {
-                        columnGap = if (arrow != null) spaceColumnGapArrowSmall.value else spaceColumnGapIconSmall.value
-                        iconSize = sizeIconSmall.value
-                        textStyle = OudsTheme.typography.label.strong.medium
-                    }
-                }
-            }
-
-            if (isUnderlined.value) {
-                textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
-            }
-
-            val iconTint = if (arrow != null) arrowColor.value else contentColor.value
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(columnGap),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (icon != null || arrow == OudsLink.Arrow.Back) {
-                    icon.orElse { OudsLink.Icon(painterResource(R.drawable.chevron_left)) }.Content(
-                        modifier = Modifier.size(iconSize),
-                        extraParameters = ExtraParameters(tint = iconTint)
-                    )
-                }
-                Text(
-                    modifier = Modifier.weight(1f, fill = false),
-                    text = label,
-                    color = contentColor.value,
-                    style = textStyle
+            if (icon != null || arrow == OudsLink.Arrow.Back) {
+                icon.orElse { OudsLink.Icon(painterResource(OudsTheme.drawableResources.chevronLeft)) }.Content(
+                    modifier = Modifier.size(iconSize),
+                    extraParameters = ExtraParameters(tint = iconTint)
                 )
-                if (arrow == OudsLink.Arrow.Next) {
-                    OudsLink.Icon(painterResource(R.drawable.chevron_left)).Content(
-                        modifier = Modifier
-                            .size(iconSize)
-                            .rotate(180f)
-                            .fillMaxHeight()
-                            .align(Alignment.Bottom),
-                        extraParameters = ExtraParameters(tint = iconTint)
-                    )
-                }
+            }
+            Text(
+                modifier = Modifier.weight(1f, fill = false),
+                text = label,
+                color = contentColor.value,
+                style = textStyle
+            )
+            if (arrow == OudsLink.Arrow.Next) {
+                OudsLink.Icon(painterResource(OudsTheme.drawableResources.chevronLeft)).Content(
+                    modifier = Modifier
+                        .size(iconSize)
+                        .rotate(180f)
+                        .fillMaxHeight()
+                        .align(Alignment.Bottom),
+                    extraParameters = ExtraParameters(tint = iconTint)
+                )
             }
         }
     }
@@ -257,7 +297,7 @@ private fun OudsLink(
 
 @Composable
 private fun getLinkState(enabled: Boolean, interactionState: InteractionState): OudsLink.State {
-    return getPreviewState<OudsLink.State>().orElse {
+    return getPreviewEnumEntry<OudsLink.State>().orElse {
         when {
             !enabled -> OudsLink.State.Disabled
             interactionState == InteractionState.Hovered -> OudsLink.State.Hovered
@@ -270,16 +310,18 @@ private fun getLinkState(enabled: Boolean, interactionState: InteractionState): 
 
 @Composable
 private fun contentColor(state: OudsLink.State, monochrome: Boolean): Color {
-    return with(OudsTheme.componentsTokens.link) {
-        if (monochrome) {
+    return if (monochrome) {
+        with(OudsTheme.componentsTokens.linkMonochrome) {
             when (state) {
-                OudsLink.State.Enabled -> colorContentEnabledMono
-                OudsLink.State.Focused -> colorContentFocusMono
-                OudsLink.State.Hovered -> colorContentHoverMono
-                OudsLink.State.Pressed -> colorContentPressedMono
-                OudsLink.State.Disabled -> colorContentDisabledMono
+                OudsLink.State.Enabled -> colorContentEnabled
+                OudsLink.State.Focused -> colorContentFocus
+                OudsLink.State.Hovered -> colorContentHover
+                OudsLink.State.Pressed -> colorContentPressed
+                OudsLink.State.Disabled -> colorContentDisabled
             }.value
-        } else {
+        }
+    } else {
+        with(OudsTheme.componentsTokens.link) {
             when (state) {
                 OudsLink.State.Enabled -> colorContentEnabled.value
                 OudsLink.State.Focused -> colorContentFocus.value
@@ -298,10 +340,10 @@ private fun arrowColor(state: OudsLink.State, monochrome: Boolean): Color {
             contentColor(state = state, monochrome = true)
         } else {
             when (state) {
-                OudsLink.State.Enabled -> colorArrowEnabled.value
-                OudsLink.State.Focused -> colorArrowFocus.value
-                OudsLink.State.Hovered -> colorArrowHover.value
-                OudsLink.State.Pressed -> colorArrowPressed.value
+                OudsLink.State.Enabled -> colorChevronEnabled.value
+                OudsLink.State.Focused -> colorChevronFocus.value
+                OudsLink.State.Hovered -> colorChevronHover.value
+                OudsLink.State.Pressed -> colorChevronPressed.value
                 OudsLink.State.Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }
@@ -358,8 +400,8 @@ object OudsLink {
     }
 
     /**
-     * A link icon in an [OudsLink].
-     * It is non-clickable and no content description is needed because a link label is always present.
+     * An icon in an [OudsLink].
+     * This icon is non-clickable and no content description is needed because a link label is always present.
      */
     open class Icon private constructor(
         graphicsObject: Any
@@ -433,9 +475,9 @@ internal fun PreviewOudsLink(
     parameter: OudsLinkPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val icon = if (hasIcon) OudsLink.Icon(painter = painterResource(id = android.R.drawable.star_on)) else null
+        val icon = if (hasIcon) OudsLink.Icon(Icons.Filled.FavoriteBorder) else null
         val linkPreview: @Composable () -> Unit = {
-            PreviewStates<OudsLink.State>(columnCount = 3) {
+            PreviewEnumEntries<OudsLink.State>(columnCount = 3) {
                 OudsLink(
                     icon = icon,
                     label = "Label",

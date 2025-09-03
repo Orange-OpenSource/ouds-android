@@ -29,41 +29,29 @@ import com.orange.ouds.foundation.extensions.orElse
  */
 abstract class OudsComponentIcon<T> protected constructor(
     extraParametersClass: Class<T>,
-    private val graphicsObject: Any,
+    private val graphicsObjectProvider: @Composable () -> Any,
     private val contentDescription: String
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters {
 
-    val painter: Painter? = graphicsObject as? Painter
-    val imageVector: ImageVector? = graphicsObject as? ImageVector
-    val bitmap: ImageBitmap? = graphicsObject as? ImageBitmap
+    protected constructor(
+        extraParametersClass: Class<T>,
+        graphicsObject: Any,
+        contentDescription: String
+    ) : this(extraParametersClass, { graphicsObject }, contentDescription)
 
     protected open val tint: Color?
         @Composable
         get() = null
-
-    protected constructor(
-        extraParametersClass: Class<T>,
-        painter: Painter,
-        contentDescription: String
-    ) : this(extraParametersClass, painter as Any, contentDescription)
-
-    protected constructor(
-        extraParametersClass: Class<T>,
-        imageVector: ImageVector,
-        contentDescription: String
-    ) : this(extraParametersClass, imageVector as Any, contentDescription)
-
-    protected constructor(
-        extraParametersClass: Class<T>,
-        bitmap: ImageBitmap,
-        contentDescription: String
-    ) : this(extraParametersClass, bitmap as Any, contentDescription)
+    
+    private val graphicsObject: Any
+        @Composable
+        get() = graphicsObjectProvider()
 
     @Composable
     override fun Content(modifier: Modifier) {
         val iconTint = tint.orElse { LocalContentColor.current }
 
-        when (graphicsObject) {
+        when (val graphicsObject = graphicsObject) {
             is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
             is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
             is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)

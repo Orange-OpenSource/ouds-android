@@ -22,15 +22,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -41,12 +37,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
+import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
     @Composable
-    get() = OudsTheme.typography.body.strong.large
+    get() = OudsTheme.typography.label.default.large
 
 private val valueLabelTextStyle: TextStyle
     @Composable
@@ -58,15 +56,15 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
         checked = checked,
         label = label,
         onCheckedChange = onCheckedChange,
-        reversed = true,
+        divider = false,
         enabled = enabled
     )
 }
 
 @Composable
-fun CustomizationChoiceChips(
+fun CustomizationFilterChips(
     label: String,
-    chipsLabels: List<String>,
+    chipLabels: List<String>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
     modifier: Modifier = Modifier
@@ -78,26 +76,14 @@ fun CustomizationChoiceChips(
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
-            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.shorter)
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
-            chipsLabels.forEachIndexed { id, label ->
-                val isSelected = selectedChipIndex == id
-                FilterChip(
-                    selected = isSelected,
-                    leadingIcon = if (isSelected) {
-                        {
-                            Icon(
-                                imageVector = Icons.Filled.Done,
-                                contentDescription = null,
-                                modifier = Modifier.size(FilterChipDefaults.IconSize)
-                            )
-                        }
-                    } else {
-                        null
-                    },
+            chipLabels.forEachIndexed { id, label ->
+                OudsFilterChip(
+                    selected = selectedChipIndex == id,
                     onClick = { onSelectionChange(id) },
-                    label = { Text(text = label) }
+                    label = label
                 )
             }
         }
@@ -109,17 +95,46 @@ fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+) {
+    var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value)) }
+
+    CustomizationTextField(
+        label = label,
+        value = textFieldValue,
+        onValueChange = { newTextFieldValue ->
+            textFieldValue = newTextFieldValue
+            onValueChange(newTextFieldValue.text)
+        },
+        modifier = modifier,
+        enabled = enabled,
+        keyboardOptions = keyboardOptions
+    )
+}
+
+@Composable
+fun CustomizationTextField(
+    label: String,
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.shorter),
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             value = value,
             onValueChange = onValueChange,
+            enabled = enabled,
+            keyboardOptions = keyboardOptions,
             singleLine = true,
+            textStyle = valueLabelTextStyle
         )
     }
 }
@@ -128,17 +143,16 @@ fun CustomizationTextField(
 @Composable
 fun CustomizationDropdownMenu(
     label: String,
-    itemLabels: List<String>,
+    items: List<CustomizationDropdownMenuItem>,
     selectedItemIndex: Int,
     onSelectionChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
-    itemLeadingIcons: List<@Composable () -> Unit>? = null
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium), text = label, style = labelTextStyle)
+        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
-            modifier = Modifier.padding(horizontal = OudsTheme.spaces.fixed.medium, vertical = OudsTheme.spaces.fixed.shorter),
+            modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             expanded = expanded,
             onExpandedChange = { expanded = !expanded }
         ) {
@@ -147,12 +161,12 @@ fun CustomizationDropdownMenu(
                 modifier = Modifier
                     .menuAnchor(MenuAnchorType.PrimaryNotEditable)
                     .fillMaxWidth(),
-                value = itemLabels[selectedItemIndex],
+                value = items[selectedItemIndex].label,
                 onValueChange = {},
                 readOnly = true,
                 singleLine = true,
                 textStyle = valueLabelTextStyle,
-                leadingIcon = itemLeadingIcons?.get(selectedItemIndex)?.let { { Box(modifier = leadingIconBoxModifier) { it() } } },
+                leadingIcon = items[selectedItemIndex].leadingIcon?.let { { Box(modifier = leadingIconBoxModifier) { it() } } },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = ExposedDropdownMenuDefaults.textFieldColors(),
             )
@@ -160,17 +174,20 @@ fun CustomizationDropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                itemLabels.forEachIndexed { index, itemLabel ->
+                items.forEachIndexed { index, item ->
                     DropdownMenuItem(
-                        text = { Text(text = itemLabel, style = valueLabelTextStyle) },
+                        text = { Text(text = item.label, style = valueLabelTextStyle) },
                         onClick = {
                             onSelectionChange(index)
                             expanded = false
                         },
-                        leadingIcon = itemLeadingIcons?.get(index)?.let { { Box(modifier = leadingIconBoxModifier) { it() } } }
+                        leadingIcon = item.leadingIcon?.let { { Box(modifier = leadingIconBoxModifier) { it() } } },
+                        enabled = item.enabled
                     )
                 }
             }
         }
     }
 }
+
+data class CustomizationDropdownMenuItem(val label: String, val leadingIcon: (@Composable () -> Unit)? = null, val enabled: Boolean = true)

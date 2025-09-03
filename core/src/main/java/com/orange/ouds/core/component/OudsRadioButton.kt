@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import com.orange.ouds.core.component.common.outerBorder
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
@@ -37,24 +36,25 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">**OUDS Radio button design guidelines**</a>
- *
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
  *
  * The **standalone radio button variant** can be used when the radio selector control is nested within another component and an alternative label is provided.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+ *
+ * > Design version: 1.1.0
  *
  * @see [OudsRadioButtonItem] If you want to use a radio button with an associated label and other optional elements.
  *
@@ -78,7 +78,7 @@ fun OudsRadioButton(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val isDisabledPreviewState = getPreviewState<OudsControl.State>() == OudsControl.State.Disabled
+    val isDisabledPreviewState = getPreviewEnumEntry<OudsControl.State>() == OudsControl.State.Disabled
     val isForbidden = error && (!enabled || isDisabledPreviewState)
     CheckedContent(
         expression = !isForbidden,
@@ -106,8 +106,8 @@ fun OudsRadioButton(
 
         Box(
             modifier = modifier
-                .widthIn(radioButtonTokens.sizeMinWidth.dp)
-                .heightIn(min = radioButtonTokens.sizeMinHeight.dp, max = radioButtonTokens.sizeMaxHeight.dp)
+                .widthIn(radioButtonTokens.sizeMinWidth.value)
+                .heightIn(min = radioButtonTokens.sizeMinHeight.value, max = radioButtonTokens.sizeMaxHeight.value)
                 .background(color = backgroundColor.value)
                 .outerBorder(state = state, handleHighContrastMode = true)
                 .then(selectableModifier),
@@ -129,7 +129,7 @@ internal fun OudsRadioButtonIndicator(state: OudsControl.State, selected: Boolea
         if (selected) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                painter = painterResource(R.drawable.radiobutton_selected),
+                painter = painterResource(OudsTheme.drawableResources.radioButtonSelected),
                 tint = indicatorColor(state = state, selected = true, error = error),
                 contentDescription = null
             )
@@ -219,7 +219,7 @@ internal fun PreviewOudsRadioButton(
     highContrastModeEnabled: Boolean = false
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControl.State> {
+        PreviewEnumEntries<OudsControl.State> {
             OudsRadioButton(
                 selected = selected,
                 onClick = {},

@@ -27,6 +27,7 @@ import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
@@ -41,7 +42,8 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
                 CheckboxItemDemoContent(state = state)
             }
         },
-        demoContentPaddingValues = PaddingValues()
+        demoContentPaddingValues = PaddingValues(),
+        version = OudsVersion.Component.Checkbox
     )
 }
 

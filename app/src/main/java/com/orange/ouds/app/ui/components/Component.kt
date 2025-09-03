@@ -16,74 +16,108 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.ThemeState
+import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
+import com.orange.ouds.app.ui.components.chip.FilterChipDemoScreen
+import com.orange.ouds.app.ui.components.chip.SuggestionChipDemoScreen
+import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
-import com.orange.ouds.app.ui.utilities.LightDarkResourceId
+import com.orange.ouds.app.ui.components.tag.TagDemoScreen
+import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
 @Immutable
 sealed class Component(
     @StringRes val nameRes: Int,
-    val imageRes: LightDarkResourceId,
     @StringRes val descriptionRes: Int,
+    val illustration: @Composable () -> Unit,
     val variants: List<Variant> = emptyList(),
-    val demoScreen: (@Composable () -> Unit)? = null
+    val demoScreen: (@Composable (ThemeState) -> Unit)? = null
 ) {
 
     companion object {
         fun fromId(componentId: Long) = components.firstOrNull { component -> component.id == componentId }
     }
 
-    val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
+    val id: Long = Component::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
+
+    data object Badge : Component(
+        R.string.app_components_badge_label,
+        R.string.app_components_badge_description_text,
+        { BadgeIllustration() },
+        demoScreen = { BadgeDemoScreen() }
+    )
 
     data object Button : Component(
         R.string.app_components_button_label,
-        LightDarkResourceId(R.drawable.il_components_button, R.drawable.il_components_button_dark),
         R.string.app_components_button_description_text,
-        demoScreen = { ButtonDemoScreen() }
+        { ButtonIllustration() },
+        demoScreen = { ButtonDemoScreen(it) }
     )
 
     data object Checkbox : Component(
         R.string.app_components_checkbox_label,
-        LightDarkResourceId(R.drawable.il_components_checkbox, R.drawable.il_components_checkbox_dark),
         R.string.app_components_checkbox_description_text,
+        { CheckboxIllustration() },
         listOf(Variant.Checkbox, Variant.CheckboxItem, Variant.IndeterminateCheckbox, Variant.IndeterminateCheckboxItem)
+    )
+
+    data object Chip : Component(
+        R.string.app_components_chip_label,
+        R.string.app_components_chip_description_text,
+        { ChipIllustration() },
+        listOf(Variant.FilterChip, Variant.SuggestionChip)
+    )
+
+    data object ColoredBackground : Component(
+        R.string.app_components_coloredBackground_label,
+        R.string.app_components_coloredBackground_description_text,
+        { ColoredBackgroundIllustration() },
+        demoScreen = { ColoredBackgroundDemoScreen() }
     )
 
     data object Divider : Component(
         R.string.app_components_divider_label,
-        LightDarkResourceId(R.drawable.il_components_divider, R.drawable.il_components_divider_dark),
         R.string.app_components_divider_description_text,
+        { DividerIllustration() },
         listOf(Variant.HorizontalDivider, Variant.VerticalDivider)
     )
 
     data object Link : Component(
         R.string.app_components_link_label,
-        LightDarkResourceId(R.drawable.il_components_link, R.drawable.il_components_link_dark),
         R.string.app_components_link_description_text,
+        { LinkIllustration() },
         demoScreen = { LinkDemoScreen() }
     )
 
     data object RadioButton : Component(
         R.string.app_components_radioButton_label,
-        LightDarkResourceId(R.drawable.il_components_radiobutton, R.drawable.il_components_radiobutton_dark),
         R.string.app_components_radioButton_description_text,
+        { RadioButtonIllustration() },
         listOf(Variant.RadioButton, Variant.RadioButtonItem)
     )
 
     data object Switch : Component(
         R.string.app_components_switch_label,
-        LightDarkResourceId(R.drawable.il_components_switch, R.drawable.il_components_switch_dark),
         R.string.app_components_switch_description_text,
+        { SwitchIllustration() },
         listOf(Variant.Switch, Variant.SwitchItem)
+    )
+
+    data object Tag : Component(
+        R.string.app_components_tag_label,
+        R.string.app_components_tag_description_text,
+        { TagIllustration() },
+        demoScreen = { TagDemoScreen() }
     )
 }
 
@@ -96,7 +130,7 @@ sealed class Variant(
         fun fromId(variantId: Long?) = components.flatMap { it.variants }.firstOrNull { it.id == variantId }
     }
 
-    val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
+    val id: Long = Variant::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })
@@ -104,6 +138,10 @@ sealed class Variant(
     data object IndeterminateCheckbox : Variant(R.string.app_components_checkbox_indeterminateCheckbox_label, { CheckboxDemoScreen(indeterminate = true) })
     data object IndeterminateCheckboxItem :
         Variant(R.string.app_components_checkbox_indeterminateCheckboxItem_label, { CheckboxItemDemoScreen(indeterminate = true) })
+
+    // Chip
+    data object FilterChip : Variant(R.string.app_components_chip_filterChip_label, { FilterChipDemoScreen() })
+    data object SuggestionChip : Variant(R.string.app_components_chip_suggestionChip_label, { SuggestionChipDemoScreen() })
 
     // Divider
     data object HorizontalDivider : Variant(R.string.app_components_divider_horizontalDivider_label, { DividerDemoScreen() })

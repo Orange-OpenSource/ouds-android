@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.ui.navigation.AppNavigationState
 
 class TopBarState(
@@ -24,7 +25,7 @@ class TopBarState(
         @Composable get() = navigationState.currentScreen?.isHome() == false
 
     val title: String
-        @Composable get() = navigationState.currentScreen?.title?.asString().orEmpty()
+        @Composable get() = navigationState.currentScreen?.title?.let { stringResource(it) }.orEmpty()
 
     val actions = listOf(TopBarAction.ChangeTheme, TopBarAction.ChangeMode)
 }

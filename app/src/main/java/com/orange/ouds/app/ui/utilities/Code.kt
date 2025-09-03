@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.utilities
 
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -130,10 +131,14 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
         inline fun <reified T> typedArgument(name: String?, value: T) {
             elements.add(Argument(name, value, T::class.java))
         }
-
-        fun rawArgument(name: String?, value: String) = formattableArgument(name, { value })
-
+        
         fun formattableArgument(name: String?, format: (Context) -> String) = typedArgument(name, Formattable(format))
+
+        fun rawArgument(name: String?, value: String) = formattableArgument(name) { value }
+
+        fun stringResourceArgument(name: String?, @StringRes id: Int, vararg formatArgs: Any) {
+            formattableArgument(name) { "\"${it.getString(id, formatArgs)}\"" }
+        }
 
         fun lambdaArgument(name: String?, init: Code.Builder.() -> Unit = {}) {
             val code = Code.Builder().apply(init).build()
@@ -182,7 +187,7 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : F
             is Formattable -> value.format(context)
             else -> {
                 val valueClass = value?.let { it::class }.orElse { null }
-                if (valueClass?.isData == true) {
+                if (valueClass?.previewCompatibleClass?.isData == true) {
                     // Displays OudsButton.Style.Loading(progress = null) instead of Loading(progress=null)
                     "${valueClass.java.nestedName.substringBeforeLast(".")}.${value.toString().replace("=", " = ")}"
                 } else {
@@ -227,6 +232,7 @@ internal fun PreviewCode() = OudsPreview {
             functionCallArgument("list", "listOf") {
                 isMultiline = false
                 rawArgument(null, "OudsTheme.shapes") // Raw
+                stringResourceArgument(null, R.string.app_name)
                 typedArgument(null, "Text") // String
                 typedArgument(null, 1.234) // Double
                 comment("Comment") { isMultiline = true }

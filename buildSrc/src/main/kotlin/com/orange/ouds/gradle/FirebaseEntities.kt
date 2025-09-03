@@ -13,6 +13,7 @@
 package com.orange.ouds.gradle
 
 data class FirebaseAppDistributionRelease(
+    val displayVersion: String,
     val buildVersion: Int,
     val binaryDownloadUri: String,
 )

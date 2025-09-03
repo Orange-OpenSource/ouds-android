@@ -38,8 +38,6 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
@@ -47,17 +45,19 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
- *
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
  * The **standalone checkbox variant** is used when the checkbox input is nested within another component and an alternative label is provided. For example,
  * a checkbox can be used in a data table where its purpose is clear from its position or its connection to other items in the same row or column.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+ *
+ * > Design version: 2.1.0
  *
  * @see [OudsTriStateCheckbox] If you require support for an indeterminate state.
  * @see [OudsCheckboxItem] If you want to use a checkbox with an associated label and other optional elements.
@@ -95,9 +95,6 @@ fun OudsCheckbox(
 }
 
 /**
- *
- * <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">**OUDS Checkbox design guidelines**</a>
- *
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
  * This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,
@@ -106,6 +103,10 @@ fun OudsCheckbox(
  *
  * The **indeterminate standalone checkbox variant** allows to manage a checkbox with an indeterminate state that can be used when the checkbox input is nested
  * within another component and an alternative label is provided.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+ *
+ * > Design version: 2.1.0
  *
  * @see [OudsCheckbox] If you need a simple component that represents [Boolean] state.
  * @see [OudsTriStateCheckboxItem] If you want to use an indeterminate checkbox with an associated label and other optional elements.
@@ -130,7 +131,7 @@ fun OudsTriStateCheckbox(
     error: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val isDisabledPreviewState = getPreviewState<OudsControl.State>() == OudsControl.State.Disabled
+    val isDisabledPreviewState = getPreviewEnumEntry<OudsControl.State>() == OudsControl.State.Disabled
     val isForbidden = error && (!enabled || isDisabledPreviewState)
     CheckedContent(
         expression = !isForbidden,
@@ -162,8 +163,8 @@ fun OudsTriStateCheckbox(
         Box(
             modifier = modifier
                 .then(toggleableModifier)
-                .widthIn(checkboxTokens.sizeMinWidth.dp)
-                .heightIn(min = checkboxTokens.sizeMinHeight.dp, max = checkboxTokens.sizeMaxHeight.dp)
+                .widthIn(checkboxTokens.sizeMinWidth.value)
+                .heightIn(min = checkboxTokens.sizeMinHeight.value, max = checkboxTokens.sizeMaxHeight.value)
                 .background(color = backgroundColor.value)
                 .outerBorder(state = checkboxState, handleHighContrastMode = true),
             contentAlignment = Alignment.Center,
@@ -189,9 +190,9 @@ internal fun OudsCheckboxIndicator(
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
         val indicatorResource = when (value) {
-            ToggleableState.On -> R.drawable.checkbox_selected
+            ToggleableState.On -> OudsTheme.drawableResources.checkboxSelected
             ToggleableState.Off -> null
-            ToggleableState.Indeterminate -> R.drawable.checkbox_indeterminate
+            ToggleableState.Indeterminate -> OudsTheme.drawableResources.checkboxIndeterminate
         }
 
         indicatorResource?.let { resource ->
@@ -287,7 +288,7 @@ internal fun PreviewOudsCheckbox(
     highContrastModeEnabled: Boolean = false
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControl.State> {
+        PreviewEnumEntries<OudsControl.State> {
             OudsTriStateCheckbox(
                 state = toggleableState,
                 onClick = null,

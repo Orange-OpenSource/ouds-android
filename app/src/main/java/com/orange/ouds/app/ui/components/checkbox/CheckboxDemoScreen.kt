@@ -14,7 +14,10 @@ package com.orange.ouds.app.ui.components.checkbox
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
@@ -25,6 +28,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun CheckboxDemoScreen(indeterminate: Boolean = false) {
@@ -38,7 +42,8 @@ fun CheckboxDemoScreen(indeterminate: Boolean = false) {
             } else {
                 CheckboxDemoContent(state = state)
             }
-        }
+        },
+        version = OudsVersion.Component.Checkbox
     )
 }
 
@@ -65,7 +70,11 @@ private fun CheckboxDemoContent(state: CheckboxDemoState) {
     with(state) {
         Row {
             CheckboxIdentifier.entries.forEach { identifier ->
+                val contentDescription = stringResource(R.string.app_components_checkbox_checkbox_a11y, identifier.name)
                 OudsCheckbox(
+                    modifier = Modifier.semantics {
+                        this.contentDescription = contentDescription
+                    },
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first
                         CheckboxIdentifier.Second -> checkedValues.second
@@ -89,7 +98,11 @@ private fun IndeterminateCheckboxDemoContent(state: CheckboxDemoState) {
     with(state) {
         Row {
             CheckboxIdentifier.entries.forEach { identifier ->
+                val contentDescription = stringResource(R.string.app_components_checkbox_indeterminateCheckbox_a11y, identifier.name)
                 OudsTriStateCheckbox(
+                    modifier = Modifier.semantics {
+                        this.contentDescription = contentDescription
+                    },
                     state = when (identifier) {
                         CheckboxIdentifier.First -> toggleableStateValues.first
                         CheckboxIdentifier.Second -> toggleableStateValues.second

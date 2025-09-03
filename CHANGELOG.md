@@ -5,6 +5,60 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0](https://github.com/Orange-OpenSource/ouds-android/compare/0.2.0...0.3.0) (2025-09-01)
+
+### Features
+
+- **button** change apis by replacing the style parameter by a loading parameter ([#696](https://github.com/Orange-OpenSource/ouds-android/issues/696))
+- upgrade button component to v3.0 with tokens 1.5.0 ([#685](https://github.com/Orange-OpenSource/ouds-android/issues/685))
+- create component - tag ([#654](https://github.com/Orange-OpenSource/ouds-android/issues/654))
+- each theme can provide their own components drawable resources  ([#641](https://github.com/Orange-OpenSource/ouds-android/issues/641))
+- use color mode for colored background behavior ([#377](https://github.com/Orange-OpenSource/ouds-android/issues/377))
+- create component - chips ([#585](https://github.com/Orange-OpenSource/ouds-android/issues/585))
+- create component - badge ([#601](https://github.com/Orange-OpenSource/ouds-android/issues/601))
+- add Sosh theme ([#616](https://github.com/Orange-OpenSource/ouds-android/issues/616))
+
+### Bug Fixes
+
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.38.0 ([#712](https://github.com/Orange-OpenSource/ouds-android/issues/712))
+- **deps** update grpc-java monorepo to v1.75.0 ([#711](https://github.com/Orange-OpenSource/ouds-android/issues/711))
+- **deps** update hilt to v2.57.1 ([#709](https://github.com/Orange-OpenSource/ouds-android/issues/709))
+- **deps** update gradle to v8.12.2 ([#708](https://github.com/Orange-OpenSource/ouds-android/issues/708))
+- **deps** update dependency androidx.core:core-ktx to v1.17.0 ([#705](https://github.com/Orange-OpenSource/ouds-android/issues/705))
+- **deps** update dependency org.mockito:mockito-android to v5.19.0 ([#707](https://github.com/Orange-OpenSource/ouds-android/issues/707))
+- **deps** update kotlin to v2.2.10 ([#706](https://github.com/Orange-OpenSource/ouds-android/issues/706))
+- **deps** update dependency androidx.compose:compose-bom to v2025.08.01 ([#704](https://github.com/Orange-OpenSource/ouds-android/issues/704))
+- **tag** update muted tag display with colored bullets and icons ([#694](https://github.com/Orange-OpenSource/ouds-android/issues/694))
+- **tag** manage the bullet as an icon ([#695](https://github.com/Orange-OpenSource/ouds-android/issues/695))
+- **deps** update dependency androidx.browser:browser to v1.9.0 ([#682](https://github.com/Orange-OpenSource/ouds-android/issues/682))
+- **deps** update gradle to v8.12.0 ([#683](https://github.com/Orange-OpenSource/ouds-android/issues/683))
+- **deps** update dependency androidx.navigation:navigation-compose to v2.9.3 ([#681](https://github.com/Orange-OpenSource/ouds-android/issues/681))
+- **deps** update gitchangelog ([#677](https://github.com/Orange-OpenSource/ouds-android/issues/677))
+- **deps** update grpc-java monorepo to v1.74.0 ([#676](https://github.com/Orange-OpenSource/ouds-android/issues/676))
+- **deps** update dependency org.mockito.kotlin:mockito-kotlin to v6 ([#648](https://github.com/Orange-OpenSource/ouds-android/issues/648))
+- **deps** update dependency androidx.navigation:navigation-compose to v2.9.2 ([#649](https://github.com/Orange-OpenSource/ouds-android/issues/649))
+- **deps** update dependency androidx.compose:compose-bom to v2025.07.00 ([#651](https://github.com/Orange-OpenSource/ouds-android/issues/651))
+- **deps** update hilt to v2.57 ([#652](https://github.com/Orange-OpenSource/ouds-android/issues/652))
+- **deps** update gradle to v8.11.1 ([#632](https://github.com/Orange-OpenSource/ouds-android/issues/632))
+- switch focus border should have corner radius ([#627](https://github.com/Orange-OpenSource/ouds-android/issues/627))
+- **deps** update dependency androidx.navigation:navigation-compose to v2.9.1 ([#619](https://github.com/Orange-OpenSource/ouds-android/issues/619))
+- OudsButton and OudsLink are not described as buttons by TalkBack ([#612](https://github.com/Orange-OpenSource/ouds-android/issues/612))
+- **deps** update kotlin to v2.2.0 ([#592](https://github.com/Orange-OpenSource/ouds-android/issues/592))
+- **deps** update dependency com.google.firebase:firebase-bom to v33.16.0 ([#602](https://github.com/Orange-OpenSource/ouds-android/issues/602))
+- divider implement ordered display of color options ([#598](https://github.com/Orange-OpenSource/ouds-android/issues/598))
+- **deps** update gradle to v8.11.0 ([#596](https://github.com/Orange-OpenSource/ouds-android/issues/596))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.37.1 ([#590](https://github.com/Orange-OpenSource/ouds-android/issues/590))
+- OudsLink content horizontal alignment ([#584](https://github.com/Orange-OpenSource/ouds-android/issues/584))
+- **deps** update dependency androidx.compose:compose-bom to v2025.06.01 ([#587](https://github.com/Orange-OpenSource/ouds-android/issues/587))
+- update components initial settings to be in accordance with Figma ([#537](https://github.com/Orange-OpenSource/ouds-android/issues/537))
+- **deps** update dependency com.google.firebase:firebase-bom to v33.15.0 ([#557](https://github.com/Orange-OpenSource/ouds-android/issues/557))
+- **deps** update dependency androidx.appcompat:appcompat to v1.7.1 ([#550](https://github.com/Orange-OpenSource/ouds-android/issues/550))
+- **deps** update dependency androidx.compose:compose-bom to v2025.06.00 ([#551](https://github.com/Orange-OpenSource/ouds-android/issues/551))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.37.0 ([#552](https://github.com/Orange-OpenSource/ouds-android/issues/552))
+- **deps** update gradle to v8.10.1 ([#546](https://github.com/Orange-OpenSource/ouds-android/issues/546))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.36.0 ([#547](https://github.com/Orange-OpenSource/ouds-android/issues/547))
+- **deps** update grpc-java monorepo to v1.73.0 ([#544](https://github.com/Orange-OpenSource/ouds-android/issues/544))
+
 ## [0.2.0](https://github.com/Orange-OpenSource/ouds-android/compare/0.1.0...0.2.0) (2025-05-27)
 
 ### Features

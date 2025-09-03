@@ -22,3 +22,8 @@ data class GitHubIssueComment(
     val id: Long,
     val body: String,
 )
+
+data class GitHubIssue(
+    val number: Int,
+    val title: String
+)

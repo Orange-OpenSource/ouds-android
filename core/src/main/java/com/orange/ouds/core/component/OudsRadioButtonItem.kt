@@ -34,11 +34,9 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.PreviewStates
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 
 /**
- * <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank">**OUDS Radio button design guidelines**</a>
- *
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
  *
  * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as
@@ -48,6 +46,10 @@ import com.orange.ouds.core.utilities.PreviewStates
  *
  * In most cases, OUDS radio button items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
  * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+ *
+ * > Design version: 1.1.0
  *
  * @see [OudsRadioButton] If you want to use a standalone radio button.
  *
@@ -81,7 +83,7 @@ fun OudsRadioButtonItem(
     additionalLabel: String? = null,
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
-    divider: Boolean = false,
+    divider: Boolean = true,
     outlined: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -114,7 +116,6 @@ fun OudsRadioButtonItem(
         helperText = helperText,
         icon = icon,
         divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
-        reversed = reversed,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
@@ -126,6 +127,7 @@ fun OudsRadioButtonItem(
                 error = error
             )
         },
+        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
         checkedContentPreviewStatus = if (selected) "Selected" else "Unselected",
         modifier = modifier
             .then(selectableModifier)
@@ -185,7 +187,7 @@ internal fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -215,7 +217,7 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
 ) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewStates<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",

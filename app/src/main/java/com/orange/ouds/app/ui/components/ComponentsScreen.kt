@@ -24,7 +24,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
-import com.orange.ouds.app.ui.utilities.painterResource
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -49,7 +48,7 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
             components.forEach { component ->
                 LargeCard(
                     title = stringResource(id = component.nameRes),
-                    painter = painterResource(id = component.imageRes),
+                    illustration = component.illustration,
                     onClick = { onComponentClick(component.id) }
                 )
             }
@@ -61,6 +60,7 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
 @Composable
 private fun PreviewComponentsScreen() = OudsPreview {
     ComponentsScreen(
-        components = listOf(Component.Button, Component.Link)
-    ) {}
+        components = listOf(Component.Button, Component.Link),
+        onComponentClick = {}
+    )
 }

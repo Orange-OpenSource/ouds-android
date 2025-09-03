@@ -44,7 +44,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
 import com.orange.ouds.core.utilities.edgeToEdgePadding
-import com.orange.ouds.core.utilities.getPreviewState
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -59,18 +59,18 @@ internal fun OudsControlItem(
     helperText: String?,
     icon: OudsControlItem.Icon?,
     divider: Boolean,
-    reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
     errorComponentName: String,
     indicator: @Composable () -> Unit,
+    indicatorPosition: OudsControlItem.IndicatorPosition,
     checkedContentPreviewStatus: String,
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
     handleHighContrastMode: Boolean = false
 ) {
-    val previewState = getPreviewState<OudsControlItem.State>()
+    val previewState = getPreviewEnumEntry<OudsControlItem.State>()
     val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
     val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
@@ -98,8 +98,9 @@ internal fun OudsControlItem(
             }
         }
 
-        val leadingElement: (@Composable () -> Unit)? = if (reversed) itemIcon else indicator
-        val trailingElement: (@Composable () -> Unit)? = if (reversed) indicator else itemIcon
+
+        val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItem.IndicatorPosition.Start) indicator else itemIcon
+        val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItem.IndicatorPosition.Start) itemIcon else indicator
 
         val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
         Box(
@@ -173,6 +174,10 @@ object OudsControlItem {
         }
     }
 
+    internal enum class IndicatorPosition {
+        Start, End
+    }
+
     /**
      * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
      * It is non-clickable and no content description is needed because a control item label is always present.
@@ -220,7 +225,7 @@ object OudsControlItem {
 
 @Composable
 internal fun getControlItemState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsControlItem.State {
-    return getPreviewState<OudsControlItem.State>().orElse {
+    return getPreviewEnumEntry<OudsControlItem.State>().orElse {
         when {
             !enabled -> OudsControlItem.State.Disabled
             readOnly -> OudsControlItem.State.ReadOnly
@@ -245,7 +250,7 @@ internal fun rememberControlItemBackgroundColor(
 @Composable
 private fun LeadingTrailingBox(content: @Composable () -> Unit) {
     val assetContainerMaxHeight = OudsTheme.componentsTokens.controlItem.sizeMaxHeightAssetsContainer.dp
-    val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.dp
+    val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.value
 
     val maxHeight = max(assetContainerMaxHeight, checkboxIndicatorSize)
     Box(
@@ -298,7 +303,7 @@ internal data class OudsControlItemPreviewParameter<T, S>(
     val value: T,
     val extraParameter: S?,
     val helperText: String? = null,
-    val divider: Boolean = false,
+    val divider: Boolean = true,
     val hasIcon: Boolean = false,
     val error: Boolean = false,
     val reversed: Boolean = false,
@@ -331,7 +336,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                     when (index) {
                         0 -> this
                         1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
-                        else -> copy(helperText = helperText, divider = true, error = true)
+                        else -> copy(helperText = helperText, divider = false, error = true)
                     }
                 }
             }

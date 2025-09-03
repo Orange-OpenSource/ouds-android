@@ -36,3 +36,6 @@ docs/dokka/
 
 # App
 app/src/main/res/raw/changelog.md
+
+# Mustache output
+Module.md

@@ -1,0 +1,579 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Color</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../../images/logo-icon.svg">
+<link href="../../../../images/banner.png">
+<link href="../../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../../index.html">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.core.component/-ouds-colored-box/-color/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0">0.3.0</div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+    <div><a href="index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.3.0</a></div>
+    <div><a href="../../../../older/0.2.0/core/com.orange.ouds.core.component/-ouds-colored-box/-color/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.2.0</a></div>
+    <div><a href="../../../../older/0.1.0/core/com.orange.ouds.core.component/-ouds-colored-box/-color/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option">0.1.0</a></div>
+  </div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":core/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":core/release" data-filter=":core/release">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="core::com.orange.ouds.core.component/OudsColoredBox.Color///PointingToDeclaration//-1261813462">
+  <div class="breadcrumbs"><a href="../../../index.html">core</a><span class="delimiter">/</span><a href="../../index.html">com.orange.ouds.core.component</a><span class="delimiter">/</span><a href="../index.html">OudsColoredBox</a><span class="delimiter">/</span><span class="current">Color</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Color</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">Color</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">OudsColoredBox.Color</a><span class="token operator">&gt; </span></div><p class="paragraph">Represents the possible background colors of an <a href="../index.html">OudsColoredBox</a>.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="ENTRY">Entries</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="ENTRY">
+        <h2 class="">Entries</h2>
+        <div class="table"><a data-name="-939987836%2FClasslikes%2F-1261813462" anchor-label="BackgroundEmphasized" id="-939987836%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-background-emphasized/index.html">BackgroundEmphasized</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-939987836%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-background-emphasized/index.html">BackgroundEmphasized</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="106545608%2FClasslikes%2F-1261813462" anchor-label="BackgroundPrimary" id="106545608%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-background-primary/index.html">BackgroundPrimary</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="106545608%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-background-primary/index.html">BackgroundPrimary</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="816190778%2FClasslikes%2F-1261813462" anchor-label="BackgroundSecondary" id="816190778%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-background-secondary/index.html">BackgroundSecondary</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="816190778%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-background-secondary/index.html">BackgroundSecondary</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1987735820%2FClasslikes%2F-1261813462" anchor-label="BackgroundTertiary" id="-1987735820%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-background-tertiary/index.html">BackgroundTertiary</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1987735820%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-background-tertiary/index.html">BackgroundTertiary</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-500491633%2FClasslikes%2F-1261813462" anchor-label="BrandPrimary" id="-500491633%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-primary/index.html">BrandPrimary</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-500491633%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-brand-primary/index.html">BrandPrimary</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1568954433%2FClasslikes%2F-1261813462" anchor-label="BrandSecondary" id="1568954433%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-secondary/index.html">BrandSecondary</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1568954433%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-brand-secondary/index.html">BrandSecondary</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="668946189%2FClasslikes%2F-1261813462" anchor-label="BrandTertiary" id="668946189%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-tertiary/index.html">BrandTertiary</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="668946189%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-brand-tertiary/index.html">BrandTertiary</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1404128411%2FClasslikes%2F-1261813462" anchor-label="OverlayDefault" id="-1404128411%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-overlay-default/index.html">OverlayDefault</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1404128411%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-overlay-default/index.html">OverlayDefault</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-684553690%2FClasslikes%2F-1261813462" anchor-label="OverlayEmphasized" id="-684553690%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-overlay-emphasized/index.html">OverlayEmphasized</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-684553690%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-overlay-emphasized/index.html">OverlayEmphasized</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1695962833%2FClasslikes%2F-1261813462" anchor-label="OverlayModal" id="1695962833%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-overlay-modal/index.html">OverlayModal</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1695962833%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-overlay-modal/index.html">OverlayModal</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2099440818%2FClasslikes%2F-1261813462" anchor-label="StatusAccentEmphasized" id="2099440818%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-accent-emphasized/index.html">StatusAccentEmphasized</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2099440818%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-accent-emphasized/index.html">StatusAccentEmphasized</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-683066621%2FClasslikes%2F-1261813462" anchor-label="StatusAccentMuted" id="-683066621%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-accent-muted/index.html">StatusAccentMuted</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-683066621%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-accent-muted/index.html">StatusAccentMuted</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="199632150%2FClasslikes%2F-1261813462" anchor-label="StatusInfoEmphasized" id="199632150%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-info-emphasized/index.html">StatusInfoEmphasized</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="199632150%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-info-emphasized/index.html">StatusInfoEmphasized</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-856337377%2FClasslikes%2F-1261813462" anchor-label="StatusInfoMuted" id="-856337377%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-info-muted/index.html">StatusInfoMuted</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-856337377%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-info-muted/index.html">StatusInfoMuted</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1409625245%2FClasslikes%2F-1261813462" anchor-label="StatusNegativeEmphasized" id="1409625245%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-negative-emphasized/index.html">StatusNegativeEmphasized</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1409625245%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-negative-emphasized/index.html">StatusNegativeEmphasized</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-715951048%2FClasslikes%2F-1261813462" anchor-label="StatusNegativeMuted" id="-715951048%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-negative-muted/index.html">StatusNegativeMuted</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-715951048%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-negative-muted/index.html">StatusNegativeMuted</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-178503093%2FClasslikes%2F-1261813462" anchor-label="StatusNeutralEmphasized" id="-178503093%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-neutral-emphasized/index.html">StatusNeutralEmphasized</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-178503093%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-neutral-emphasized/index.html">StatusNeutralEmphasized</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-673904182%2FClasslikes%2F-1261813462" anchor-label="StatusNeutralMuted" id="-673904182%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-neutral-muted/index.html">StatusNeutralMuted</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-673904182%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-neutral-muted/index.html">StatusNeutralMuted</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="14186081%2FClasslikes%2F-1261813462" anchor-label="StatusPositiveEmphasized" id="14186081%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-positive-emphasized/index.html">StatusPositiveEmphasized</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="14186081%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-positive-emphasized/index.html">StatusPositiveEmphasized</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1791107060%2FClasslikes%2F-1261813462" anchor-label="StatusPositiveMuted" id="1791107060%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-positive-muted/index.html">StatusPositiveMuted</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1791107060%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-positive-muted/index.html">StatusPositiveMuted</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="107011872%2FClasslikes%2F-1261813462" anchor-label="StatusWarningEmphasized" id="107011872%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-warning-emphasized/index.html">StatusWarningEmphasized</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="107011872%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-warning-emphasized/index.html">StatusWarningEmphasized</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="113048533%2FClasslikes%2F-1261813462" anchor-label="StatusWarningMuted" id="113048533%2FClasslikes%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-warning-muted/index.html">StatusWarningMuted</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="113048533%2FClasslikes%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><a href="-status-warning-muted/index.html">StatusWarningMuted</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1181994190%2FProperties%2F-1261813462" anchor-label="entries" id="1181994190%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="entries.html"><span><span>entries</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1181994190%2FProperties%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="entries.html">entries</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.enums/-enum-entries/index.html">EnumEntries</a><span class="token operator">&lt;</span><a href="index.html">OudsColoredBox.Color</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns a representation of an immutable list of all enum entries, in the order they're declared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1659988103%2FProperties%2F-1261813462" anchor-label="mode" id="-1659988103%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mode.html"><span><span>mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1659988103%2FProperties%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@get:</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">val </span><a href="mode.html">mode</a><span class="token operator">: </span><a href="../../../com.orange.ouds.core.theme/-ouds-color-mode/index.html">OudsColorMode</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-372974862%2FProperties%2F-1261813462" anchor-label="name" id="-372974862%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../../com.orange.ouds.core.theme/-ouds-theme/-tweak/-force-light/index.html#-372974862%2FProperties%2F-1261813462"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../../com.orange.ouds.core.theme/-ouds-theme/-tweak/-force-light/index.html#-372974862%2FProperties%2F-1261813462">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-739389684%2FProperties%2F-1261813462" anchor-label="ordinal" id="-739389684%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../../com.orange.ouds.core.theme/-ouds-theme/-tweak/-force-light/index.html#-739389684%2FProperties%2F-1261813462"><span><span>ordinal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../../com.orange.ouds.core.theme/-ouds-theme/-tweak/-force-light/index.html#-739389684%2FProperties%2F-1261813462">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="663339853%2FProperties%2F-1261813462" anchor-label="value" id="663339853%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="value.html"><span><span>value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="663339853%2FProperties%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@get:</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-2024026226%2FFunctions%2F-1261813462" anchor-label="valueOf" id="-2024026226%2FFunctions%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="value-of.html"><span>value</span><wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2024026226%2FFunctions%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">OudsColoredBox.Color</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="654953754%2FFunctions%2F-1261813462" anchor-label="values" id="654953754%2FFunctions%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="values.html"><span><span>values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="654953754%2FFunctions%2F-1261813462"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="index.html">OudsColoredBox.Color</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>Copyright © Orange 2024</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

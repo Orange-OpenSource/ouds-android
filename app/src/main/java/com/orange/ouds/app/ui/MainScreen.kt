@@ -64,8 +64,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orangecountry.OrangeCountryTheme
-import com.orange.ouds.theme.whitelabel.WhiteLabelTheme
+import com.orange.ouds.theme.sosh.SoshTheme
 
 @Composable
 fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = viewModel()) {
@@ -98,7 +97,8 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
 
     OudsTheme(
         themeContract = mainState.themeState.currentTheme,
-        darkThemeEnabled = isSystemInDarkTheme
+        darkThemeEnabled = isSystemInDarkTheme,
+        settings = mainState.themeState.settings
     ) {
         Scaffold(
             contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
@@ -132,7 +132,7 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
                     .consumeWindowInsets(innerPadding)
                     .padding(innerPadding)
             ) {
-                appNavGraph(mainState.navigationState.navController)
+                appNavGraph(mainState)
             }
 
             if (changeThemeDialogVisible) {
@@ -173,7 +173,7 @@ private fun ChangeThemeDialog(themeState: ThemeState, dismissDialog: () -> Unit,
             Text(
                 text = stringResource(R.string.app_themeDialog_label),
                 modifier = Modifier
-                    .padding(top = OudsTheme.spaces.fixed.medium, bottom = OudsTheme.spaces.fixed.short)
+                    .padding(top = OudsTheme.spaces.fixed.medium, bottom = OudsTheme.spaces.fixed.small)
                     .padding(horizontal = OudsTheme.spaces.fixed.medium),
                 style = MaterialTheme.typography.titleLarge
             )
@@ -225,11 +225,10 @@ private fun getCurrentTheme(
 @PreviewLightDark
 @Composable
 private fun PreviewMainScreen() = OudsPreview {
-    // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which returns an empty list in Compose previews
-    // Fixing this issue implies several modifications which would add unnecessary complexity to the code
+    // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which does not work in Compose previews
     // See https://issuetracker.google.com/issues/240601093
     MainScreen(
-        themes = listOf(OrangeTheme(), OrangeCountryTheme(), WhiteLabelTheme()),
+        themes = listOf(OrangeTheme(), SoshTheme()),
         userThemeName = ORANGE_THEME_NAME,
         onThemeSelected = {}
     )
