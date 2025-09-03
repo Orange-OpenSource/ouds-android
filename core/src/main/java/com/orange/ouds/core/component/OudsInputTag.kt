@@ -84,7 +84,6 @@ fun OudsInputTag(
     interactionSource: MutableInteractionSource? = null
 ) {
     val tagTokens = OudsTheme.componentsTokens.tag
-    val inputTagTokens = OudsTheme.componentsTokens.tagInput
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getInputTagState(enabled = enabled, interactionState = interactionState)
