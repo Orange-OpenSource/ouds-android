@@ -38,7 +38,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -50,7 +49,6 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
-import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 
 // TODO: Update documentation URL once it is available
@@ -147,8 +145,7 @@ fun OudsInputTag(
                 color = contentColor.value,
                 style = OudsTheme.typography.label.strong.medium.run {
                     copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
-                },
-                textAlign = TextAlign.Center
+                }
             )
             Icon(
                 modifier = Modifier.size(tagTokens.sizeAssetDefault.value * LocalConfiguration.current.fontScale),
@@ -229,7 +226,7 @@ private fun contentColor(state: OudsInputTag.State): Color {
  * Contains classes to build an [OudsInputTag].
  */
 object OudsInputTag {
-    
+
     internal enum class State {
         Enabled, Hovered, Pressed, Disabled, Focused
     }

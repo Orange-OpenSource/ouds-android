@@ -42,7 +42,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.outerBorder
@@ -165,8 +164,7 @@ internal fun OudsChip(
                 Text(
                     text = label,
                     color = contentColor.value,
-                    style = OudsTheme.typography.label.strong.medium,
-                    textAlign = TextAlign.Center
+                    style = OudsTheme.typography.label.strong.medium
                 )
             }
             if (iconPosition == OudsChip.IconPosition.End) {
