@@ -50,6 +50,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 
 // TODO: Update documentation URL once it is available
@@ -89,7 +90,7 @@ fun OudsInputTag(
     val state = getInputTagState(enabled = enabled, interactionState = interactionState)
     val shape = RoundedCornerShape(tagTokens.borderRadius.value)
 
-    val backgroundColor = rememberInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
+    val backgroundColor = rememberNullableInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
         val inputTagState = getInputTagState(enabled = enabled, interactionState = inputTagInteractionState)
         backgroundColor(state = inputTagState)
     }
@@ -120,18 +121,24 @@ fun OudsInputTag(
             modifier = modifier
                 .widthIn(min = tagTokens.sizeMinWidthDefault.dp)
                 .heightIn(min = tagTokens.sizeMinHeightDefault.dp)
-                .background(color = backgroundColor.value, shape = shape)
+                .run {
+                    backgroundColor.value?.let { color ->
+                        background(color = color, shape = shape)
+                    }.orElse {
+                        this
+                    }
+                }
                 .border(width = borderWidth.value, color = borderColor.value, shape = shape)
                 .outerBorder(state = state, shape = shape)
                 .padding(vertical = tagTokens.spacePaddingBlockDefault.value)
                 .padding(start = tagTokens.spacePaddingInlineDefault.value, end = tagTokens.spacePaddingInlineAssetDefault.value)
                 .clickable(
-                        enabled = enabled,
-                        interactionSource = interactionSource,
-                        indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
-                        onClick = onClick,
-                        role = Role.Button
-                    ),
+                    enabled = enabled,
+                    interactionSource = interactionSource,
+                    indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
+                    onClick = onClick,
+                    role = Role.Button
+                ),
             horizontalArrangement = Arrangement.spacedBy(tagTokens.spaceColumnGapDefault.value, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -167,14 +174,14 @@ private fun getInputTagState(interactionState: InteractionState, enabled: Boolea
 }
 
 @Composable
-private fun backgroundColor(state: OudsInputTag.State): Color {
+private fun backgroundColor(state: OudsInputTag.State): Color? {
     return with(OudsTheme.componentsTokens.tagInput) {
         when (state) {
             OudsInputTag.State.Enabled -> colorBgEnabled.value
             OudsInputTag.State.Focused -> colorBgFocus.value
             OudsInputTag.State.Hovered -> colorBgHover.value
             OudsInputTag.State.Pressed -> colorBgPressed.value
-            OudsInputTag.State.Disabled -> Color.Unspecified
+            OudsInputTag.State.Disabled -> null
         }
     }
 }
