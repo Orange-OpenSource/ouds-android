@@ -28,6 +28,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MenuAnchorType
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -36,6 +37,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
@@ -62,6 +64,7 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomizationFilterChips(
     label: String,
@@ -76,11 +79,16 @@ fun CustomizationFilterChips(
             .semantics(mergeDescendants = true) {}
     ) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
+        // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
+        // in the parent Column of CustomizationBottomSheetScaffold
+        // That is why we set canFocus here again
+        val sheetValue = LocalCustomizationBottomSheetValue.current
         Row(
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
+                .focusProperties { canFocus = sheetValue == SheetValue.Expanded }
                 .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
