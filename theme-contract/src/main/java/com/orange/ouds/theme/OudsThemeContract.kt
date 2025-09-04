@@ -15,7 +15,6 @@ package com.orange.ouds.theme
 import android.os.Parcelable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
@@ -36,11 +35,6 @@ interface OudsThemeContract : Parcelable {
      * Theme display name
      */
     val name: String
-
-    /**
-     * Material color matching used in the theme
-     */
-    val materialColorTokens: OudsMaterialColorTokens
 
     /**
      * Color semantic tokens values used in the theme
