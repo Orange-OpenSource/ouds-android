@@ -23,6 +23,8 @@ class SoshDrawableResources : OudsDrawableResources() {
         get() = R.drawable.sosh_chevron_left
     override val delete: Int
         get() = R.drawable.sosh_delete
+    override val important: Int
+        get() = R.drawable.sosh_important
     override val tick: Int
         get() = R.drawable.sosh_tick
     override val radioButtonSelected: Int

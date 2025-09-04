@@ -25,6 +25,8 @@ open class OudsDrawableResources {
         @DrawableRes get() = R.drawable.ic_chevron_left
     open val delete: Int
         @DrawableRes get() = R.drawable.ic_delete
+    open val important: Int
+        @DrawableRes get() = R.drawable.ic_important
     open val radioButtonSelected: Int
         @DrawableRes get() = R.drawable.ic_radio_button_selected
     open val switchSelected: Int
