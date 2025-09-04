@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component.content
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
@@ -20,24 +22,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonAppearance
+import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
- * An icon in a component.
+ * An icon or in a component. If clickable, it is displayed as an icon-only [OudsButton].
  *
  * @suppress
  */
 abstract class OudsComponentIcon<T, S> protected constructor(
     extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
-    private val contentDescription: String
+    private val contentDescription: String,
+    private var enabled: Boolean = true,
+    private val onClick: (() -> Unit)? = null,
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
     protected constructor(
         extraParametersClass: Class<T>,
         graphicsObject: Any,
-        contentDescription: String
-    ) : this(extraParametersClass, { graphicsObject }, contentDescription)
+        contentDescription: String,
+        enabled: Boolean = true,
+        onClick: (() -> Unit)? = null,
+    ) : this(extraParametersClass, { graphicsObject }, contentDescription, enabled, onClick)
 
     protected open val tint: Color?
         @Composable
@@ -52,11 +61,28 @@ abstract class OudsComponentIcon<T, S> protected constructor(
     override fun Content(modifier: Modifier) {
         val iconTint = tint.orElse { LocalContentColor.current }
 
-        when (val graphicsObject = graphicsObject) {
-            is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-            is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-            is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-            else -> {}
+        onClick?.let { onClick ->
+            when (val graphicsObject = graphicsObject) {
+                is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription)
+                is ImageVector -> OudsButtonIcon(imageVector = graphicsObject, contentDescription = contentDescription)
+                is ImageBitmap -> OudsButtonIcon(bitmap = graphicsObject, contentDescription = contentDescription)
+                else -> null
+            }?.let { buttonIcon ->
+                OudsButton(
+                    icon = OudsButtonIcon(Icons.Filled.FavoriteBorder, contentDescription = ""),
+                    appearance = OudsButtonAppearance.Minimal,
+                    onClick = onClick,
+                    modifier = modifier,
+                    enabled = enabled,
+                )
+            }
+        }.orElse {
+            when (val graphicsObject = graphicsObject) {
+                is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
+                is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
+                is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
+                else -> {}
+            }
         }
     }
 }
