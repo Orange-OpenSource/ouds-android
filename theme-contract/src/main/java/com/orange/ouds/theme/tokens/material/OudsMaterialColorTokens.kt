@@ -16,102 +16,103 @@
 package com.orange.ouds.theme.tokens.material
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.tokens.raw.ColorRawTokens
 
-interface OudsMaterialColorTokens {
-    val backgroundDark: Color
-    val backgroundLight: Color
-    val errorContainerDark: Color
-    val errorContainerLight: Color
-    val errorDark: Color
-    val errorLight: Color
-    val inverseOnSurfaceDark: Color
-    val inverseOnSurfaceLight: Color
-    val inversePrimaryDark: Color
-    val inversePrimaryLight: Color
-    val inverseSurfaceDark: Color
-    val inverseSurfaceLight: Color
-    val onBackgroundDark: Color
-    val onBackgroundLight: Color
-    val onErrorContainerDark: Color
-    val onErrorContainerLight: Color
-    val onErrorDark: Color
-    val onErrorLight: Color
-    val onPrimaryContainerDark: Color
-    val onPrimaryContainerLight: Color
-    val onPrimaryDark: Color
-    val onPrimaryFixedDark: Color
-    val onPrimaryFixedLight: Color
-    val onPrimaryFixedVariantDark: Color
-    val onPrimaryFixedVariantLight: Color
-    val onPrimaryLight: Color
-    val onSecondaryContainerDark: Color
-    val onSecondaryContainerLight: Color
-    val onSecondaryDark: Color
-    val onSecondaryFixedDark: Color
-    val onSecondaryFixedLight: Color
-    val onSecondaryFixedVariantDark: Color
-    val onSecondaryFixedVariantLight: Color
-    val onSecondaryLight: Color
-    val onSurfaceDark: Color
-    val onSurfaceLight: Color
-    val onSurfaceVariantDark: Color
-    val onSurfaceVariantLight: Color
-    val onTertiaryContainerDark: Color
-    val onTertiaryContainerLight: Color
-    val onTertiaryDark: Color
-    val onTertiaryFixedDark: Color
-    val onTertiaryFixedLight: Color
-    val onTertiaryFixedVariantDark: Color
-    val onTertiaryFixedVariantLight: Color
-    val onTertiaryLight: Color
-    val outlineDark: Color
-    val outlineLight: Color
-    val outlineVariantDark: Color
-    val outlineVariantLight: Color
-    val primaryContainerDark: Color
-    val primaryContainerLight: Color
-    val primaryDark: Color
-    val primaryFixedDark: Color
-    val primaryFixedDimDark: Color
-    val primaryFixedDimLight: Color
-    val primaryFixedLight: Color
-    val primaryLight: Color
-    val scrimDark: Color
-    val scrimLight: Color
-    val secondaryContainerDark: Color
-    val secondaryContainerLight: Color
-    val secondaryDark: Color
-    val secondaryFixedDark: Color
-    val secondaryFixedDimDark: Color
-    val secondaryFixedDimLight: Color
-    val secondaryFixedLight: Color
-    val secondaryLight: Color
-    val surfaceBrightDark: Color
-    val surfaceBrightLight: Color
-    val surfaceDark: Color
-    val surfaceDimDark: Color
-    val surfaceDimLight: Color
-    val surfaceLight: Color
-    val surfaceTintDark: Color
-    val surfaceTintLight: Color
-    val surfaceVariantDark: Color
-    val surfaceVariantLight: Color
-    val surfContainerDark: Color
-    val surfContainerHighDark: Color
-    val surfContainerHighestDark: Color
-    val surfContainerHighestLight: Color
-    val surfContainerHighLight: Color
-    val surfContainerLight: Color
-    val surfContainerLowDark: Color
-    val surfContainerLowestDark: Color
-    val surfContainerLowestLight: Color
-    val surfContainerLowLight: Color
-    val tertiaryContainerDark: Color
-    val tertiaryContainerLight: Color
-    val tertiaryDark: Color
-    val tertiaryFixedDark: Color
-    val tertiaryFixedDimDark: Color
-    val tertiaryFixedDimLight: Color
-    val tertiaryFixedLight: Color
-    val tertiaryLight: Color
+object OudsMaterialColorTokens {
+    val backgroundDark: Color = ColorRawTokens.colorFunctionalGrayDark880
+    val backgroundLight: Color = ColorRawTokens.colorFunctionalWhite
+    val errorContainerDark: Color = ColorRawTokens.colorFunctionalScarlet900
+    val errorContainerLight: Color = ColorRawTokens.colorFunctionalScarlet100
+    val errorDark: Color = ColorRawTokens.colorFunctionalScarlet300
+    val errorLight: Color = ColorRawTokens.colorFunctionalScarlet600
+    val inverseOnSurfaceDark: Color = ColorRawTokens.colorFunctionalBlack
+    val inverseOnSurfaceLight: Color = ColorRawTokens.colorFunctionalWhite
+    val inversePrimaryDark: Color = ColorRawTokens.colorFunctionalBlack
+    val inversePrimaryLight: Color = ColorRawTokens.colorFunctionalWhite
+    val inverseSurfaceDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val inverseSurfaceLight: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val onBackgroundDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val onBackgroundLight: Color = ColorRawTokens.colorFunctionalBlack
+    val onErrorContainerDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val onErrorContainerLight: Color = ColorRawTokens.colorFunctionalBlack
+    val onErrorDark: Color = ColorRawTokens.colorFunctionalBlack
+    val onErrorLight: Color = ColorRawTokens.colorFunctionalWhite
+    val onPrimaryContainerDark: Color = ColorRawTokens.colorFunctionalBlack
+    val onPrimaryContainerLight: Color = ColorRawTokens.colorFunctionalWhite
+    val onPrimaryDark: Color = ColorRawTokens.colorFunctionalBlack
+    val onPrimaryFixedDark: Color = ColorRawTokens.colorFunctionalWhite
+    val onPrimaryFixedLight: Color = ColorRawTokens.colorFunctionalWhite
+    val onPrimaryFixedVariantDark: Color = ColorRawTokens.colorOpacityWhite640
+    val onPrimaryFixedVariantLight: Color = ColorRawTokens.colorOpacityWhite640
+    val onPrimaryLight: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val onSecondaryContainerDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val onSecondaryContainerLight: Color = ColorRawTokens.colorFunctionalBlack
+    val onSecondaryDark: Color = ColorRawTokens.colorFunctionalBlack
+    val onSecondaryFixedDark: Color = ColorRawTokens.colorFunctionalWhite
+    val onSecondaryFixedLight: Color = ColorRawTokens.colorFunctionalWhite
+    val onSecondaryFixedVariantDark: Color = ColorRawTokens.colorOpacityWhite640
+    val onSecondaryFixedVariantLight: Color = ColorRawTokens.colorOpacityWhite640
+    val onSecondaryLight: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val onSurfaceDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val onSurfaceLight: Color = ColorRawTokens.colorFunctionalBlack
+    val onSurfaceVariantDark: Color = ColorRawTokens.colorOpacityWhite640
+    val onSurfaceVariantLight: Color = ColorRawTokens.colorOpacityBlack680
+    val onTertiaryContainerDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val onTertiaryContainerLight: Color = ColorRawTokens.colorFunctionalBlack
+    val onTertiaryDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val onTertiaryFixedDark: Color = ColorRawTokens.colorFunctionalBlack
+    val onTertiaryFixedLight: Color = ColorRawTokens.colorFunctionalBlack
+    val onTertiaryFixedVariantDark: Color = ColorRawTokens.colorOpacityBlack680
+    val onTertiaryFixedVariantLight: Color = ColorRawTokens.colorOpacityBlack680
+    val onTertiaryLight: Color = ColorRawTokens.colorFunctionalBlack
+    val outlineDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val outlineLight: Color = ColorRawTokens.colorFunctionalBlack
+    val outlineVariantDark: Color = ColorRawTokens.colorOpacityWhite200
+    val outlineVariantLight: Color = ColorRawTokens.colorOpacityBlack200
+    val primaryContainerDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val primaryContainerLight: Color = ColorRawTokens.colorFunctionalBlack
+    val primaryDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val primaryFixedDark: Color = ColorRawTokens.colorFunctionalBlack
+    val primaryFixedDimDark: Color = ColorRawTokens.colorFunctionalBlack
+    val primaryFixedDimLight: Color = ColorRawTokens.colorFunctionalBlack
+    val primaryFixedLight: Color = ColorRawTokens.colorFunctionalBlack
+    val primaryLight: Color = ColorRawTokens.colorFunctionalBlack
+    val scrimDark: Color = ColorRawTokens.colorFunctionalBlack
+    val scrimLight: Color = ColorRawTokens.colorFunctionalBlack
+    val secondaryContainerDark: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val secondaryContainerLight: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val secondaryDark: Color = ColorRawTokens.colorFunctionalGrayLight160
+    val secondaryFixedDark: Color = ColorRawTokens.colorFunctionalBlack
+    val secondaryFixedDimDark: Color = ColorRawTokens.colorFunctionalBlack
+    val secondaryFixedDimLight: Color = ColorRawTokens.colorFunctionalBlack
+    val secondaryFixedLight: Color = ColorRawTokens.colorFunctionalBlack
+    val secondaryLight: Color = ColorRawTokens.colorFunctionalBlack
+    val surfaceBrightDark: Color = ColorRawTokens.colorFunctionalGrayDark640
+    val surfaceBrightLight: Color = ColorRawTokens.colorFunctionalWhite
+    val surfaceDark: Color = ColorRawTokens.colorFunctionalGrayDark880
+    val surfaceDimDark: Color = ColorRawTokens.colorFunctionalBlack
+    val surfaceDimLight: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val surfaceLight: Color = ColorRawTokens.colorFunctionalWhite
+    val surfaceTintDark: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val surfaceTintLight: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val surfaceVariantDark: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val surfaceVariantLight: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val surfContainerDark: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val surfContainerHighDark: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val surfContainerHighestDark: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val surfContainerHighestLight: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val surfContainerHighLight: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val surfContainerLight: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val surfContainerLowDark: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val surfContainerLowestDark: Color = ColorRawTokens.colorFunctionalGrayDark720
+    val surfContainerLowestLight: Color = ColorRawTokens.colorFunctionalWhite
+    val surfContainerLowLight: Color = ColorRawTokens.colorFunctionalWhite
+    val tertiaryContainerDark: Color = ColorRawTokens.colorFunctionalGrayDark880
+    val tertiaryContainerLight: Color = ColorRawTokens.colorFunctionalWhite
+    val tertiaryDark: Color = ColorRawTokens.colorFunctionalGrayDark880
+    val tertiaryFixedDark: Color = ColorRawTokens.colorFunctionalWhite
+    val tertiaryFixedDimDark: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val tertiaryFixedDimLight: Color = ColorRawTokens.colorFunctionalGrayLight80
+    val tertiaryFixedLight: Color = ColorRawTokens.colorFunctionalWhite
+    val tertiaryLight: Color = ColorRawTokens.colorFunctionalWhite
 }
