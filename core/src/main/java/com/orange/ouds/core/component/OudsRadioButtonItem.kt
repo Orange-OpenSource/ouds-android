@@ -88,7 +88,7 @@ fun OudsRadioButtonItem(
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false,
+    error: OudsControlItem.Error? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -119,16 +119,16 @@ fun OudsRadioButtonItem(
         enabled = enabled,
         readOnly = readOnly,
         error = error,
-        errorComponentName = "OudsRadioButtonItem",
         indicator = {
             OudsRadioButtonIndicator(
                 state = state.toControlState(),
                 selected = selected,
-                error = error
+                error = error != null
             )
         },
         indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
-        checkedContentPreviewStatus = if (selected) "Selected" else "Unselected",
+        checkedContentComponentName = "OudsRadioButtonItem",
+        checkedContentSelectionStatus = if (selected) "Selected" else "Unselected",
         modifier = modifier
             .then(selectableModifier)
             .background(color = backgroundColor.value)
@@ -139,7 +139,7 @@ fun OudsRadioButtonItem(
 }
 
 @Composable
-private fun Modifier.border(outlined: Boolean, selected: Boolean, error: Boolean, state: OudsControlItem.State): Modifier {
+private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsControlItem.Error?, state: OudsControlItem.State): Modifier {
     val borderColor = outlineBorderColor(state, selected, error)
 
     return if (outlined && borderColor != null) {
@@ -150,8 +150,8 @@ private fun Modifier.border(outlined: Boolean, selected: Boolean, error: Boolean
 }
 
 @Composable
-private fun outlineBorderColor(state: OudsControlItem.State, selected: Boolean, error: Boolean): Color? {
-    return if (error) {
+private fun outlineBorderColor(state: OudsControlItem.State, selected: Boolean, error: OudsControlItem.Error?): Color? {
+    return if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
                 OudsControlItem.State.Enabled -> if (selected) enabled else null

@@ -31,6 +31,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.error
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import com.orange.ouds.core.component.common.outerBorder
@@ -61,11 +63,11 @@ internal fun OudsControlItem(
     divider: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
-    error: Boolean,
-    errorComponentName: String,
+    error: OudsControlItem.Error?,
     indicator: @Composable () -> Unit,
     indicatorPosition: OudsControlItem.IndicatorPosition,
-    checkedContentPreviewStatus: String,
+    checkedContentComponentName: String,
+    checkedContentSelectionStatus: String,
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
     handleHighContrastMode: Boolean = false
@@ -73,17 +75,17 @@ internal fun OudsControlItem(
     val previewState = getPreviewEnumEntry<OudsControlItem.State>()
     val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
-    val isForbidden = error && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
+    val isForbidden = error != null && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
 
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = {
             val parameter = if (readOnly) "readOnly" else "disabled"
-            "An $errorComponentName set to $parameter with error parameter activated is not allowed."
+            "An $checkedContentComponentName set to $parameter with error parameter activated is not allowed."
         },
         previewMessage = {
             val stateDescription = if (isReadOnlyPreviewState) "Read only" else "Disabled"
-            "Error $checkedContentPreviewStatus status for $stateDescription state is not relevant"
+            "Error $checkedContentSelectionStatus status for $stateDescription state is not relevant"
         }
     ) {
         val controlItemTokens = OudsTheme.componentsTokens.controlItem
@@ -108,7 +110,16 @@ internal fun OudsControlItem(
                 .height(IntrinsicSize.Min)
                 .heightIn(min = controlItemTokens.sizeMinHeight.dp)
                 .widthIn(min = controlItemTokens.sizeMinWidth.dp)
-                .outerBorder(state = state, handleHighContrastMode = handleHighContrastMode),
+                .outerBorder(state = state, handleHighContrastMode = handleHighContrastMode)
+                .run {
+                    error?.description?.let { description ->
+                        semantics {
+                            error(description)
+                        }
+                    }.orElse {
+                        this
+                    }
+                },
             contentAlignment = Alignment.BottomCenter
         ) {
             val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
@@ -221,6 +232,13 @@ object OudsControlItem {
             super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeIcon.value))
         }
     }
+
+    /**
+     * An OudsControlItem error.
+     *
+     * @param description A localized description explaining the error for the accessibility services.
+     */
+    class Error(val description: String)
 }
 
 @Composable
@@ -276,8 +294,8 @@ private fun backgroundColor(state: OudsControlItem.State): Color {
 }
 
 @Composable
-private fun labelColor(state: OudsControlItem.State, error: Boolean) =
-    if (error) {
+private fun labelColor(state: OudsControlItem.State, error: OudsControlItem.Error?) =
+    if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
                 OudsControlItem.State.Enabled -> enabled
@@ -305,7 +323,7 @@ internal data class OudsControlItemPreviewParameter<T, S>(
     val helperText: String? = null,
     val divider: Boolean = true,
     val hasIcon: Boolean = false,
-    val error: Boolean = false,
+    val error: OudsControlItem.Error? = null,
     val reversed: Boolean = false,
     val additionalLabel: String? = null
 )
@@ -336,7 +354,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                     when (index) {
                         0 -> this
                         1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
-                        else -> copy(helperText = helperText, divider = false, error = true)
+                        else -> copy(helperText = helperText, divider = false, error = OudsControlItem.Error(""))
                     }
                 }
             }

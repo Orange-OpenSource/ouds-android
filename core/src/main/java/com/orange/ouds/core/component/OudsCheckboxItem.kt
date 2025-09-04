@@ -83,7 +83,7 @@ fun OudsCheckboxItem(
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false,
+    error: OudsControlItem.Error? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsTriStateCheckboxItem(
@@ -158,7 +158,7 @@ fun OudsTriStateCheckboxItem(
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false,
+    error: OudsControlItem.Error? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -188,16 +188,16 @@ fun OudsTriStateCheckboxItem(
         enabled = enabled,
         readOnly = readOnly,
         error = error,
-        errorComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
         indicator = {
             OudsCheckboxIndicator(
                 state = checkboxItemState.toControlState(),
                 value = state,
-                error = error
+                error = error != null
             )
         },
         indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
-        checkedContentPreviewStatus = when (state) {
+        checkedContentComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
+        checkedContentSelectionStatus = when (state) {
             ToggleableState.On -> "Selected"
             ToggleableState.Off -> "Unselected"
             ToggleableState.Indeterminate -> "Indeterminate"

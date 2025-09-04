@@ -87,7 +87,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = error
+                    error = if (error) OudsControlItem.Error(stringResource(R.string.app_components_controlItem_error_a11y)) else null
                 )
             }
         }
