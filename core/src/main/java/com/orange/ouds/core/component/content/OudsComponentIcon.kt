@@ -12,8 +12,6 @@
 
 package com.orange.ouds.core.component.content
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
@@ -36,7 +34,6 @@ abstract class OudsComponentIcon<T, S> protected constructor(
     extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
     private val contentDescription: String,
-    private var enabled: Boolean = true,
     private val onClick: (() -> Unit)? = null,
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
@@ -44,11 +41,14 @@ abstract class OudsComponentIcon<T, S> protected constructor(
         extraParametersClass: Class<T>,
         graphicsObject: Any,
         contentDescription: String,
-        enabled: Boolean = true,
         onClick: (() -> Unit)? = null,
-    ) : this(extraParametersClass, { graphicsObject }, contentDescription, enabled, onClick)
+    ) : this(extraParametersClass, { graphicsObject }, contentDescription, onClick)
 
     protected open val tint: Color?
+        @Composable
+        get() = null
+
+    protected open val enabled: Boolean?
         @Composable
         get() = null
 
@@ -60,7 +60,6 @@ abstract class OudsComponentIcon<T, S> protected constructor(
     @Composable
     override fun Content(modifier: Modifier) {
         val iconTint = tint.orElse { LocalContentColor.current }
-
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
                 is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription)
@@ -69,11 +68,11 @@ abstract class OudsComponentIcon<T, S> protected constructor(
                 else -> null
             }?.let { buttonIcon ->
                 OudsButton(
-                    icon = OudsButtonIcon(Icons.Filled.FavoriteBorder, contentDescription = ""),
+                    icon = buttonIcon,
                     appearance = OudsButtonAppearance.Minimal,
                     onClick = onClick,
                     modifier = modifier,
-                    enabled = enabled,
+                    enabled = enabled.orElse { true },
                 )
             }
         }.orElse {
