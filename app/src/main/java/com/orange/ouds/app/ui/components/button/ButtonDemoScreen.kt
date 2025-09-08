@@ -12,19 +12,15 @@
 
 package com.orange.ouds.app.ui.components.button
 
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.lifecycle.compose.LifecycleStartEffect
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.MainViewModel
 import com.orange.ouds.app.ui.ThemeState
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
@@ -33,7 +29,6 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.rememberThemeState
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -41,55 +36,39 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeDefaults
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.OudsVersion
-import com.orange.ouds.theme.orange.OrangeTheme
 
 @Composable
-fun ButtonDemoScreen(themeState: ThemeState) {
-    val state = rememberButtonDemoState()
-    var shouldUpdateThemeSettings by remember { mutableStateOf(true) }
-    var themeSettings by remember { mutableStateOf(themeState.settings) }
-    // Don't update displayed theme settings when leaving the screen
-    // Otherwise the switch is automatically unchecked and the button corner radius goes back to its default value while screen disappears
-    if (shouldUpdateThemeSettings) {
-        themeSettings = themeState.settings
-    }
-
-    // Wrap the demo screen into another call to OudsTheme in order to override the theme settings and avoid glitches while screen disappears
-    OudsTheme(
-        themeContract = themeState.currentTheme,
-        settings = themeSettings
-    ) {
-        DemoScreen(
-            description = stringResource(id = Component.Button.descriptionRes),
-            bottomSheetContent = {
-                ButtonDemoBottomSheetContent(
-                    state = state,
-                    roundedCorners = themeSettings.buttonRoundedCorners,
-                    onRoundedCornersChange = { roundedCorners ->
-                        themeState.settings = themeState.settings.copy(buttonRoundedCorners = roundedCorners)
-                    }
-                )
-            },
-            codeSnippet = { buttonDemoCodeSnippet(state = state) },
-            demoContent = { ButtonDemoContent(state = state) },
-            demoContentOnColoredBox = state.onColoredBox,
-            version = OudsVersion.Component.Button
-        )
-    }
-
-    // Reset roundedCorners to its default value when screen disappears
-    val activity = LocalActivity.current
-    LifecycleStartEffect(Unit) {
-        onStopOrDispose {
-            if (activity?.isChangingConfigurations == false) {
-                shouldUpdateThemeSettings = false
-                themeState.settings = themeState.settings.copy(buttonRoundedCorners = OudsThemeDefaults.Settings.buttonRoundedCorners)
-            }
+fun ButtonDemoScreen(themeState: ThemeState, viewModel: MainViewModel = hiltViewModel()) {
+    ButtonDemoScreen(
+        roundedCorners = themeState.settings.roundedButtonCorners,
+        onRoundedCornersChange = { roundedCorners ->
+            val themeSettings = themeState.settings.copy(roundedButtonCorners = roundedCorners)
+            themeState.settings = themeSettings
+            viewModel.storeUserThemeSettings(themeSettings)
         }
-    }
+    )
+}
+
+@Composable
+fun ButtonDemoScreen(roundedCorners: Boolean, onRoundedCornersChange: (Boolean) -> Unit) {
+    val state = rememberButtonDemoState()
+    DemoScreen(
+        description = stringResource(id = Component.Button.descriptionRes),
+        bottomSheetContent = {
+            ButtonDemoBottomSheetContent(
+                state = state,
+                roundedCorners = roundedCorners,
+                onRoundedCornersChange = onRoundedCornersChange
+            )
+        },
+        codeSnippet = { buttonDemoCodeSnippet(state = state) },
+        demoContent = { ButtonDemoContent(state = state) },
+        demoContentOnColoredBox = state.onColoredBox,
+        version = OudsVersion.Component.Button
+    )
 }
 
 @Composable
@@ -210,11 +189,11 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewButtonDemoScreen() = OudsPreview {
-    ButtonDemoScreen(
-        themeState = rememberThemeState(
-            availableThemes = listOf(OrangeTheme()),
-            currentTheme = OrangeTheme()
+private fun PreviewButtonDemoScreen() = with(OudsThemeSettings(roundedButtonCorners = false)) {
+    OudsPreview(themeSettings = this) {
+        ButtonDemoScreen(
+            roundedCorners = roundedButtonCorners,
+            onRoundedCornersChange = {}
         )
-    )
+    }
 }

@@ -23,13 +23,13 @@ plugins {
  * Please change this value if you want to have a custom theme preview for the OUDS library and
  * don't forget to add a dependency to your custom theme in this case.
  */
-val previewThemeClass = "com.orange.ouds.theme.orange.OrangeTheme"
+val previewThemeConstructorCall = "com.orange.ouds.theme.orange.OrangeTheme(false)"
 
 android {
     namespace = "com.orange.ouds.core"
 
     defaultConfig {
-        buildConfigField("com.orange.ouds.theme.OudsThemeContract", "PREVIEW_THEME", "new $previewThemeClass()")
+        buildConfigField("com.orange.ouds.theme.OudsThemeContract", "PREVIEW_THEME", "new $previewThemeConstructorCall")
     }
 
     buildFeatures {

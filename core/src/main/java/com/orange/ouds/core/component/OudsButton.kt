@@ -63,9 +63,8 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalColorMode
-import com.orange.ouds.core.theme.LocalSettings
+import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeDefaults
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -75,6 +74,7 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 /**
@@ -266,7 +266,7 @@ private fun OudsButton(
         val state = getButtonState(enabled = enabled, loader = loader, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.value * iconScale else Dp.Unspecified
-        val borderRadius = if (LocalSettings.current.buttonRoundedCorners) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
+        val borderRadius = if (LocalThemeSettings.current.roundedButtonCorners) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
 
         val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
@@ -766,7 +766,7 @@ private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvid
 
 @Preview
 @Composable
-internal fun PreviewOudsButtonWithRoundedCorners() = OudsPreview(themeSettings = OudsThemeDefaults.Settings.copy(buttonRoundedCorners = true)) {
+internal fun PreviewOudsButtonWithRoundedCorners() = OudsPreview(themeSettings = OudsThemeSettings().copy(roundedButtonCorners = true)) {
     val hierarchy = OudsButton.Hierarchy.Default
     PreviewEnumEntries<OudsButton.State>(columnCount = 2) { state ->
         OudsButton(

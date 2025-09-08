@@ -15,8 +15,6 @@ package com.orange.ouds.app.ui
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.sosh.SoshTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen(themes = listOf(OrangeTheme(), SoshTheme()))
+            MainScreen()
         }
     }
 }
