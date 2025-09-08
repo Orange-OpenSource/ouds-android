@@ -24,13 +24,17 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
+import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
@@ -43,13 +47,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.BlendMode
-import androidx.compose.ui.graphics.BlendModeColorFilter
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -60,11 +63,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
@@ -101,6 +104,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
  *   False by default.
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
+ * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
+ *   stroke outlining the field.
  * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
  *   does not meet validation rules or expected formatting
  *   False by default.
@@ -110,6 +115,11 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
  *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
  *   [ImeAction.Next] would switch the focus to the next focusable item on the screen.
+ * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [TextFieldState] made by the user. The transformation
+ *   will be applied to changes made by hardware and software keyboard events, pasting or dropping text, accessibility services, and tests. The transformation
+ *   will _not_ be applied when changing the [textFieldState] programmatically, or when the transformation is changed. If the transformation is changed on an
+ *   existing text field, it will be applied to the next user edit. the transformation will not immediately affect the current [textFieldState].
+ * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
  */
@@ -126,17 +136,16 @@ fun OudsTextInput(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     loader: OudsTextInput.Loader? = null,
+    outlined: Boolean = false,
     error: Boolean = false,
     helperText: String? = null,
     helperLink: OudsTextInput.HelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onKeyboardAction: KeyboardActionHandler? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
-
-    // TODO manage alternative display in theme configuration
-    val outlined = false
-
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
@@ -169,28 +178,32 @@ fun OudsTextInput(
         BasicTextField(
             modifier = modifier.fillMaxWidth(),
             state = textFieldState,
-            enabled = enabled,
+            enabled = enabled && state != OudsTextInput.State.Loading,
             readOnly = readOnly,
             textStyle = OudsTheme.typography.label.default.large.copy(color = OudsTheme.colorScheme.content.default),
-            lineLimits = TextFieldLineLimits.SingleLine,
+            lineLimits = TextFieldLineLimits.SingleLine, //TODO check if ok
             cursorBrush = SolidColor(cursorColor(state = state, error = error)),
             keyboardOptions = keyboardOptions,
             onKeyboardAction = onKeyboardAction,
+            inputTransformation = inputTransformation,
+            outputTransformation = outputTransformation,
             interactionSource = interactionSource,
             decorator = { innerTextField ->
                 with(OudsTheme.componentsTokens.textInput) {
+                    val borderRadius = borderRadiusDefault.value
+                    val shape = RoundedCornerShape(borderRadius)
                     val rowModifier = if (outlined) {
                         Modifier.border(
                             width = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
                             color = indicatorColor(state = state, error = error),
-                            shape = RoundedCornerShape(borderRadiusDefault.value)
+                            shape = shape
                         )
                     } else {
                         Modifier
-                            .indicator(state = state, error = error, cornerRadius = borderRadiusDefault.value)
+                            .indicator(state = state, error = error, cornerRadius = borderRadius)
                             .background(
                                 color = containerColor(state = state, error = error),
-                                shape = RoundedCornerShape(borderRadiusDefault.value)
+                                shape = shape
                             )
                     }
 
@@ -202,14 +215,13 @@ fun OudsTextInput(
                                 .padding(vertical = spacePaddingBlockDefault.value)
                                 .padding(
                                     start = spacePaddingInlineDefault.value,
-                                    end = if (trailingIconButton != null) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
+                                    end = if (trailingIconButton != null || state == OudsTextInput.State.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
                                 ),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
-
                         ) {
                             // Leading icon
-                            leadingIcon?.Content()
+                            leadingIcon?.Content(modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeIconOnly.value))
 
                             // Central content
                             Column(
@@ -269,12 +281,20 @@ fun OudsTextInput(
 
                                 if (state == OudsTextInput.State.Loading) {
                                     val progress = if (getPreviewEnumEntry<OudsTextInput.State>() == OudsTextInput.State.Loading) 0.75f else loader?.progress
-                                    OudsCircularProgressIndicator(
-                                        color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                                        progress = progress
-                                    )
+                                    val buttonTokens = OudsTheme.componentsTokens.button
+                                    Box(
+                                        modifier = Modifier
+                                            .widthIn(min = buttonTokens.sizeMinWidth.value)
+                                            .heightIn(min = buttonTokens.sizeMinHeight.value),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        OudsCircularProgressIndicator(
+                                            color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
+                                            progress = progress
+                                        )
+                                    }
                                 } else {
-                                    trailingIconButton?.Content()
+                                    trailingIconButton?.Content(extraParameters = OudsTextInput.TrailingIconButton.ExtraParameters(enabled = state != OudsTextInput.State.Disabled))
                                 }
                             }
                         }
@@ -304,31 +324,80 @@ private fun Modifier.indicator(state: OudsTextInput.State, error: Boolean, corne
         border(width = OudsTextInput.defaultBorderWidth, color = OudsTheme.colorScheme.border.muted)
     } else {
         bottomBorder(
-            width = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
+            thickness = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
             color = indicatorColor(state = state, error = error),
             cornerRadius = cornerRadius
         )
     }
 
+/**
+ * Draws a bottom border on the text input by respecting corner radius of the component.
+ */
 @Composable
-private fun Modifier.bottomBorder(width: Dp, color: Color, cornerRadius: Dp): Modifier {
-val backgroundColor = OudsTheme.colorScheme.background.primary
-    return drawWithContent {
-        val cornerRadiusPx = cornerRadius.toPx()
-        drawRoundRect(
-            color = color,
-            topLeft = Offset(x = 0f, y = size.height - 2 * cornerRadiusPx),
-            size = size.copy(width = size.width, height = 2 * cornerRadiusPx + width.toPx()),
-            cornerRadius = CornerRadius(cornerRadiusPx),
-        )
-        drawRoundRect(
-            color = Color.Transparent,
-            topLeft = Offset(x = 0f, y = 0f),
-            size = size.copy(width = size.width, height = size.height),
-            cornerRadius = CornerRadius(cornerRadiusPx),
-            colorFilter = BlendModeColorFilter(backgroundColor, BlendMode.SrcOut)
-        )
-        drawContent()
+private fun Modifier.bottomBorder(thickness: Dp, color: Color, cornerRadius: Dp): Modifier {
+    return drawBehind {
+        if (cornerRadius > 0.dp) {
+            val cornerRadiusPx = cornerRadius.toPx()
+            val path = Path().apply {
+                arcTo(
+                    rect = Rect(
+                        top = size.height - 2 * cornerRadiusPx,
+                        left = 0f,
+                        bottom = size.height,
+                        right = 2 * cornerRadiusPx
+                    ),
+                    startAngleDegrees = 180f,
+                    sweepAngleDegrees = -90f,
+                    forceMoveTo = false
+                )
+
+                arcTo(
+                    rect = Rect(
+                        top = size.height - 2 * cornerRadiusPx,
+                        left = size.width - 2 * cornerRadiusPx,
+                        bottom = size.height,
+                        right = size.width,
+                    ),
+                    startAngleDegrees = 90f,
+                    sweepAngleDegrees = -90f,
+                    forceMoveTo = false
+                )
+
+                arcTo(
+                    rect = Rect(
+                        top = size.height - 2 * cornerRadiusPx,
+                        left = size.width - 2 * cornerRadiusPx,
+                        bottom = size.height - thickness.toPx(),
+                        right = size.width,
+                    ),
+                    startAngleDegrees = 0f,
+                    sweepAngleDegrees = 90f,
+                    forceMoveTo = false
+                )
+
+                arcTo(
+                    rect = Rect(
+                        top = size.height - 2 * cornerRadiusPx,
+                        left = 0f,
+                        right = 2 * cornerRadiusPx,
+                        bottom = size.height - thickness.toPx()
+                    ),
+                    startAngleDegrees = 90f,
+                    sweepAngleDegrees = 90f,
+                    forceMoveTo = false
+                )
+
+                close()
+            }
+            drawPath(path, color = color)
+        } else {
+            drawLine(
+                color = color,
+                start = Offset(0f, size.height),
+                end = Offset(size.width, size.height),
+                strokeWidth = thickness.toPx()
+            )
+        }
     }
 }
 
@@ -477,57 +546,56 @@ object OudsTextInput {
     class TrailingIconButton private constructor(
         graphicsObject: Any,
         val contentDescription: String,
-        val enabled: Boolean = true,
         val onClick: () -> Unit
-    ) : OudsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription, enabled, onClick) {
+    ) : OudsComponentIcon<TrailingIconButton.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, onClick) {
+
+        @ConsistentCopyVisibility
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean
+        ) : OudsComponentContent.ExtraParameters()
 
         /**
          * Creates an instance of [OudsTextInput.TrailingIconButton].
          *
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OudsTextInput.TrailingIconButton].
-         * @param enabled Controls the enabled state of the [OudsTextInput.TrailingIconButton]. When `false`, this button will not
-         * be clickable, true by default.
          * @param onClick Callback invoked when the button is clicked.
          */
         constructor(
             painter: Painter,
             contentDescription: String,
-            enabled: Boolean = true,
             onClick: () -> Unit
-        ) : this(painter as Any, contentDescription, enabled, onClick)
+        ) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OudsTextInput.TrailingIconButton].
          *
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OudsTextInput.TrailingIconButton].
-         * @param enabled Controls the enabled state of the [OudsTextInput.TrailingIconButton]. When `false`, this button will not
-         * be clickable, true by default.
          * @param onClick Callback invoked when the button is clicked.
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            enabled: Boolean = true,
             onClick: () -> Unit
-        ) : this(imageVector as Any, contentDescription, enabled, onClick)
+        ) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OudsTextInput.TrailingIconButton].
          *
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OudsTextInput.TrailingIconButton].
-         * @param enabled Controls the enabled state of the [OudsTextInput.TrailingIconButton]. When `false`, this button will not
-         * be clickable, true by default.
          * @param onClick Callback invoked when the button is clicked.
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            enabled: Boolean = true,
             onClick: () -> Unit
-        ) : this(bitmap as Any, contentDescription, enabled, onClick)
+        ) : this(bitmap as Any, contentDescription, onClick)
+
+        override val enabled: Boolean?
+            @Composable
+            get() = extraParameters.enabled
     }
 }
 
@@ -551,6 +619,7 @@ internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsText
                 textFieldState = rememberTextFieldState(initialValue),
                 label = label,
                 placeholder = placeholder,
+                // outlined = true,
                 leadingIcon = leadingIcon,
                 trailingIconButton = trailingIconButton,
                 prefix = prefix,
@@ -595,7 +664,16 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
                 suffix = "€",
                 error = true
             ),
-            OudsTextInputPreviewParameter("Text input", label = label, helperText = "Helper text."),
+            OudsTextInputPreviewParameter(
+                "Text",
+                label = label,
+                placeholder = "Placeholder",
+                leadingIcon = leadingIcon,
+                trailingIconButton = trailingIconButton,
+                prefix = "£",
+                suffix = "€",
+                helperText = "Helper text."
+            ),
             OudsTextInputPreviewParameter("Error text", label = label, error = true, helperText = "The format is not valid.")
         )
     }
