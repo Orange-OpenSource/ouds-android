@@ -21,7 +21,6 @@ import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
 
 interface OudsSwitchTokens {
     val borderRadiusCursor: OudsBorderKeyToken.Radius
