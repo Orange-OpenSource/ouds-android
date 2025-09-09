@@ -35,5 +35,7 @@ object OudsVersion {
         const val OrangeBrand = "1.5.0"
         const val SoshCore = "1.1.0"
         const val SoshBrand = "1.5.0"
+        const val WireframeCore = "1.0.0"
+        const val WireframeBrand = "1.5.0"
     }
 }

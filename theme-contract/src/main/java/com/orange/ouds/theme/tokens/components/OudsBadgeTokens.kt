@@ -16,7 +16,6 @@
 package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
 
 interface OudsBadgeTokens {
     val sizeLarge: Float
