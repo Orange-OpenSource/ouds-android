@@ -72,7 +72,6 @@ theme-contract/src/main/res/drawable/ic_checkbox_selected.xml
 theme-contract/src/main/res/drawable/ic_chevron_left.xml
 theme-contract/src/main/res/drawable/ic_radio_button_selected.xml
 theme-contract/src/main/res/drawable/ic_switch_selected.xml
-theme-contract/src/main/res/drawable/ic_tag_bullet.xml
 theme-contract/src/main/res/drawable/ic_tick.xml
 
 theme-sosh/src/main/res/drawable/sosh_checkbox_indeterminate.xml

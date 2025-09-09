@@ -36,7 +36,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
@@ -411,7 +410,22 @@ object OudsTag {
          * A bullet in an [OudsTag].
          * This bullet is non-clickable. No content description is needed because a tag always contains a label.
          */
-        data object Bullet : Icon({ painterResource(OudsTheme.drawableResources.tagBullet) })
+        data object Bullet : Icon({}) {
+
+            @Composable
+            override fun Content(modifier: Modifier) {
+                // The bullet is a simple shape
+                // Thus instead of adding an XML drawable we override the default icon content
+                // That's why the graphicsObjectProvider parameter of the constructor is an empty lambda
+                tint?.let { tint ->
+                    Box(
+                        modifier = modifier
+                            .size(10.dp)
+                            .background(tint, shape = RoundedCornerShape(percent = 50))
+                    )
+                }
+            }
+        }
 
         @ConsistentCopyVisibility
         data class ExtraParameters internal constructor(
