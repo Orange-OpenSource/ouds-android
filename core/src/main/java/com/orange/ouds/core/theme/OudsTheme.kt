@@ -27,6 +27,7 @@ import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import kotlinx.parcelize.Parcelize
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
@@ -165,7 +166,7 @@ fun OudsTheme(
 ) {
     with(themeContract) {
         val colorScheme = if (darkThemeEnabled) colorTokens.darkColorScheme else colorTokens.lightColorScheme
-        val materialColorScheme = if (darkThemeEnabled) materialColorTokens.materialDarkColorScheme else materialColorTokens.materialLightColorScheme
+        val materialColorScheme = if (darkThemeEnabled) OudsMaterialColorTokens.materialDarkColorScheme else OudsMaterialColorTokens.materialLightColorScheme
         val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
 
         CompositionLocalProvider(
@@ -174,8 +175,8 @@ fun OudsTheme(
             LocalColorScheme provides colorScheme,
             LocalLightColorScheme provides colorTokens.lightColorScheme,
             LocalDarkColorScheme provides colorTokens.darkColorScheme,
-            LocalMaterialLightColorScheme provides materialColorTokens.materialLightColorScheme,
-            LocalMaterialDarkColorScheme provides materialColorTokens.materialDarkColorScheme,
+            LocalMaterialLightColorScheme provides OudsMaterialColorTokens.materialLightColorScheme,
+            LocalMaterialDarkColorScheme provides OudsMaterialColorTokens.materialDarkColorScheme,
             LocalBorders provides borderTokens.getBorders(),
             LocalElevations provides elevationTokens.getElevation(),
             LocalTypography provides fontTokens.getTypography(fontFamily, windowWidthSizeClass),
