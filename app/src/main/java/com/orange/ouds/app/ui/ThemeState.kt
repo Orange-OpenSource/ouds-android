@@ -25,11 +25,13 @@ import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
 import com.orange.ouds.theme.sosh.SoshTheme
+import com.orange.ouds.theme.wireframe.WIREFRAME_THEME_NAME
+import com.orange.ouds.theme.wireframe.WireframeTheme
 
 @Composable
 fun rememberThemeState(
     settings: OudsThemeSettings = OudsThemeSettings(),
-    themeNames: List<String> = listOf(ORANGE_THEME_NAME, SOSH_THEME_NAME),
+    themeNames: List<String> = listOf(ORANGE_THEME_NAME, SOSH_THEME_NAME, WIREFRAME_THEME_NAME),
     currentThemeName: String = ORANGE_THEME_NAME
 ) = rememberSaveable(settings, themeNames, currentThemeName, saver = ThemeState.Saver) {
     ThemeState(settings, themeNames, currentThemeName)
@@ -99,6 +101,7 @@ class ThemeState(
                 when (name) {
                     ORANGE_THEME_NAME -> OrangeTheme(roundedCornerButtons = roundedCornerButtons.orElse { false })
                     SOSH_THEME_NAME -> SoshTheme()
+                    WIREFRAME_THEME_NAME -> WireframeTheme()
                     else -> null
                 }
             }

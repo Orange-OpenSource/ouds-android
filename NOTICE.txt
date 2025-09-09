@@ -89,4 +89,14 @@ theme-sosh/src/main/res/font/sosh_medium.ttf
 theme-sosh/src/main/res/font/sosh_regular.ttf
 theme-sosh/src/main/res/font/sosh_thin.ttf
 
+theme-wireframe/src/main/res/drawable/wireframe_checkbox_indeterminate.xml
+theme-wireframe/src/main/res/drawable/wireframe_checkbox_selected.xml
+theme-wireframe/src/main/res/drawable/wireframe_chevron_left.xml
+theme-wireframe/src/main/res/drawable/wireframe_radio_button_selected.xml
+theme-wireframe/src/main/res/drawable/wireframe_switch_selected.xml
+theme-wireframe/src/main/res/drawable/wireframe_tick.xml
+theme-wireframe/src/main/res/font/chalkboardse_bold.ttf
+theme-wireframe/src/main/res/font/chalkboardse_light.ttf
+theme-wireframe/src/main/res/font/chalkboardse_regular.ttf
+  
 End of the parts list under Orange SA Copyright

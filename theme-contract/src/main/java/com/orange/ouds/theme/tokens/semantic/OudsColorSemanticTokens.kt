@@ -20,7 +20,6 @@ interface OudsColorSemanticTokens {
     val backgroundColorTokens: OudsColorBgSemanticTokens
     val borderColorTokens: OudsColorBorderSemanticTokens
     val contentColorTokens: OudsColorContentSemanticTokens
-    val decorativeColorTokens: OudsColorDecorativeSemanticTokens
     val opacityColorTokens: OudsColorOpacitySemanticTokens
     val overlayColorTokens: OudsColorOverlaySemanticTokens
     val surfaceColorTokens: OudsColorSurfaceSemanticTokens
