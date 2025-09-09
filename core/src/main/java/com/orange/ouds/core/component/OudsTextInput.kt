@@ -42,6 +42,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -192,17 +193,18 @@ fun OudsTextInput(
                 with(OudsTheme.componentsTokens.textInput) {
                     val borderRadius = borderRadiusDefault.value
                     val shape = RoundedCornerShape(borderRadius)
-                    val rowModifier = if (outlined) {
+
+                    val rowModifier = if ((outlined && state != OudsTextInput.State.ReadOnly) || (!outlined && state == OudsTextInput.State.ReadOnly)) {
                         Modifier.border(
                             width = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
-                            color = indicatorColor(state = state, error = error),
+                            color = indicatorColor(state = state, outlined = outlined, error = error),
                             shape = shape
                         )
                     } else {
                         Modifier
-                            .indicator(state = state, error = error, cornerRadius = borderRadius)
+                            .indicator(state = state, outlined = outlined, cornerRadius = borderRadius, error = error)
                             .background(
-                                color = containerColor(state = state, error = error),
+                                color = containerColor(state = state, outlined = outlined, error = error),
                                 shape = shape
                             )
                     }
@@ -300,15 +302,25 @@ fun OudsTextInput(
                         }
 
                         // Helper text
-                        if (helperText != null) {
+                        helperText?.let { text ->
                             Text(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(top = spacePaddingBlockTopHelperText.value)
                                     .padding(horizontal = spacePaddingInlineDefault.value),
-                                text = helperText,
+                                text = text,
                                 style = OudsTheme.typography.label.default.medium,
                                 color = if (error) OudsTheme.colorScheme.content.status.negative else OudsTheme.colorScheme.content.muted
+                            )
+                        }
+
+                        // Helper link
+                        helperLink?.let { link ->
+                            OudsLink(
+                                modifier = Modifier.padding(start = spacePaddingInlineDefault.value),
+                                label = link.text,
+                                onClick = link.onClick,
+                                size = OudsLink.Size.Small
                             )
                         }
                     }
@@ -319,16 +331,12 @@ fun OudsTextInput(
 }
 
 @Composable
-private fun Modifier.indicator(state: OudsTextInput.State, error: Boolean, cornerRadius: Dp) =
-    if (state == OudsTextInput.State.ReadOnly) {
-        border(width = OudsTextInput.defaultBorderWidth, color = OudsTheme.colorScheme.border.muted)
-    } else {
-        bottomBorder(
-            thickness = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
-            color = indicatorColor(state = state, error = error),
-            cornerRadius = cornerRadius
-        )
-    }
+private fun Modifier.indicator(state: OudsTextInput.State, outlined: Boolean, cornerRadius: Dp, error: Boolean) =
+    bottomBorder(
+        thickness = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
+        color = indicatorColor(state = state, outlined = outlined, error = error),
+        cornerRadius = cornerRadius
+    )
 
 /**
  * Draws a bottom border on the text input by respecting corner radius of the component.
@@ -416,7 +424,6 @@ private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsT
                 !enabled -> OudsTextInput.State.Disabled
                 readOnly -> OudsTextInput.State.ReadOnly
                 interactionState == InteractionState.Hovered -> OudsTextInput.State.Hovered
-                interactionState == InteractionState.Pressed -> OudsTextInput.State.Pressed
                 interactionState == InteractionState.Focused -> OudsTextInput.State.Focused
                 else -> OudsTextInput.State.Enabled
             }
@@ -425,16 +432,16 @@ private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsT
 }
 
 @Composable
-private fun containerColor(state: OudsTextInput.State, error: Boolean): Color {
+private fun containerColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
     return if (error) {
         OudsTheme.colorScheme.surface.status.negative.muted
     } else {
         when (state) {
             OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.support.enabled
             OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.support.hover
-            OudsTextInput.State.Pressed, OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.support.pressed
+            OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.support.pressed
             OudsTextInput.State.Disabled -> OudsTheme.colorScheme.action.support.disabled
-            OudsTextInput.State.ReadOnly -> Color.Transparent
+            OudsTextInput.State.ReadOnly -> if (outlined) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
             OudsTextInput.State.Loading -> OudsTheme.colorScheme.action.support.loading
         }
     }
@@ -445,7 +452,26 @@ private fun cursorColor(state: OudsTextInput.State, error: Boolean) =
     if (error) errorContentColor(state = state) else OudsTheme.colorScheme.content.default
 
 @Composable
-private fun indicatorColor(state: OudsTextInput.State, error: Boolean) = labelColor(state = state, error = error)
+private fun indicatorColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
+    return if (outlined) {
+        if (error) {
+            errorContentColor(state = state)
+        } else {
+            with(OudsTheme.componentsTokens.textInput) {
+                when (state) {
+                    OudsTextInput.State.Enabled -> colorBorderEnabled.value
+                    OudsTextInput.State.Hovered -> colorBorderHover.value
+                    OudsTextInput.State.Focused -> colorBorderFocus.value
+                    OudsTextInput.State.Disabled -> OudsTheme.colorScheme.action.disabled
+                    OudsTextInput.State.Loading -> colorBorderLoading.value
+                    OudsTextInput.State.ReadOnly -> Color.Unspecified
+                }
+            }
+        }
+    } else {
+        labelColor(state = state, error = error)
+    }
+}
 
 @Composable
 private fun labelColor(state: OudsTextInput.State, error: Boolean): Color {
@@ -464,7 +490,7 @@ private fun labelColor(state: OudsTextInput.State, error: Boolean): Color {
 private fun errorContentColor(state: OudsTextInput.State) = when (state) {
     OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
     OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-    OudsTextInput.State.Pressed, OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.negative.pressed
+    OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.negative.pressed
     OudsTextInput.State.Disabled, OudsTextInput.State.ReadOnly, OudsTextInput.State.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
 }
 
@@ -484,11 +510,11 @@ object OudsTextInput {
     internal val focusBorderWidth = 2.dp
 
     internal enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly, Loading
+        Enabled, Hovered, Disabled, Focused, ReadOnly, Loading
     }
 
     /**
-     * An helper link displayed below the text input, below or in place of the helper text.
+     * An helper link displayed below or in place of the helper text.
      */
     data class HelperLink(val text: String, val onClick: () -> Unit)
 
@@ -600,7 +626,7 @@ object OudsTextInput {
 }
 
 internal object OudsTextInputPreview {
-    const val heightDp = 950
+    const val heightDp = 1100
 }
 
 @Preview(name = "Light", heightDp = OudsTextInputPreview.heightDp)
@@ -611,6 +637,8 @@ private fun PreviewOudsTextInput(@PreviewParameter(OudsTextInputPreviewParameter
     PreviewOudsTextInput(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
+// TODO accessibility check
+
 @Composable
 internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsTextInputPreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
@@ -619,16 +647,27 @@ internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsText
                 textFieldState = rememberTextFieldState(initialValue),
                 label = label,
                 placeholder = placeholder,
-                // outlined = true,
+                outlined = true,
                 leadingIcon = leadingIcon,
                 trailingIconButton = trailingIconButton,
                 prefix = prefix,
                 suffix = suffix,
                 error = error,
-                helperText = helperText
+                helperText = helperText,
+                helperLink = helperLink
             )
         }
     }
+}
+
+@Preview
+@Composable
+internal fun PreviewOudsTextInputWithTwoLinesLabel() = OudsPreview {
+    OudsTextInput(
+        modifier = Modifier.padding(all = 10.dp),
+        textFieldState = rememberTextFieldState(),
+        label = "Very long label displayed \non two lines",
+    )
 }
 
 internal data class OudsTextInputPreviewParameter(
@@ -642,7 +681,8 @@ internal data class OudsTextInputPreviewParameter(
     val enabled: Boolean = true,
     val readOnly: Boolean = false,
     val error: Boolean = false,
-    val helperText: String? = null
+    val helperText: String? = null,
+    val helperLink: OudsTextInput.HelperLink? = null
 )
 
 internal class OudsTextInputPreviewParameterProvider : BasicPreviewParameterProvider<OudsTextInputPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -672,7 +712,8 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
                 trailingIconButton = trailingIconButton,
                 prefix = "£",
                 suffix = "€",
-                helperText = "Helper text."
+                helperText = "Helper text.",
+                helperLink = OudsTextInput.HelperLink("Helper link") {}
             ),
             OudsTextInputPreviewParameter("Error text", label = label, error = true, helperText = "The format is not valid.")
         )
