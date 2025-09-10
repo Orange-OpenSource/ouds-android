@@ -499,7 +499,7 @@ internal fun OudsTextInputDecorator(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.Center
                 ) {
-                    if (label != null && (!emptyText || !placeholder.isNullOrEmpty())) {
+                    if (label != null && (!emptyText || !placeholder.isNullOrEmpty() || state == OudsTextInput.State.Focused)) {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             text = label,
@@ -522,7 +522,7 @@ internal fun OudsTextInputDecorator(
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
-                                } else if (!label.isNullOrEmpty()) {
+                                } else if (!label.isNullOrEmpty() && state != OudsTextInput.State.Focused) {
                                     Text(
                                         text = label,
                                         style = OudsTheme.typography.label.default.large,
