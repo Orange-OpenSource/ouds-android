@@ -43,7 +43,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -59,6 +58,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -169,7 +169,7 @@ fun OudsTextInput(
                 enabled = textFieldEnabled(enabled = enabled, state = state),
                 readOnly = readOnly,
                 textStyle = textStyle(),
-                lineLimits = TextFieldLineLimits.SingleLine, //TODO check if ok
+                lineLimits = TextFieldLineLimits.SingleLine,
                 cursorBrush = cursorBrush(state = state, error = error),
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
@@ -266,7 +266,7 @@ fun OudsTextInput(
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsTextInput(
-        value = TextFieldValue(text = value),
+        value = TextFieldValue(text = value, TextRange(value.length)),
         onValueChange = { onValueChange(it.text) },
         modifier = modifier,
         label = label,
@@ -374,7 +374,7 @@ fun OudsTextInput(
                 enabled = textFieldEnabled(enabled = enabled, state = state),
                 readOnly = readOnly,
                 textStyle = textStyle(),
-                singleLine = false,//TODO check if ok
+                singleLine = true,
                 cursorBrush = cursorBrush(state = state, error = error),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
