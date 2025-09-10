@@ -54,35 +54,22 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.content.getSystemService
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
-import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.sosh.SoshTheme
 
 @Composable
-fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = viewModel()) {
-    MainScreen(
-        themes = themes,
-        userThemeName = mainViewModel.getUserThemeName(),
-        onThemeSelected = { themeName ->
-            mainViewModel.storeUserThemeName(themeName)
-        }
-    )
-}
-
-@Composable
-private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, onThemeSelected: (String) -> Unit) {
+fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
     val mainState = rememberMainState(
         themeState = rememberThemeState(
-            currentTheme = getCurrentTheme(userThemeName, themes),
-            availableThemes = themes
+            settings = mainViewModel.getUserThemeSettings().orElse { OudsThemeSettings() },
+            currentThemeName = mainViewModel.getUserThemeName().orElse { ORANGE_THEME_NAME }
         )
     )
 
@@ -98,7 +85,6 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
     OudsTheme(
         themeContract = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
-        settings = mainState.themeState.settings
     ) {
         Scaffold(
             contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
@@ -141,7 +127,10 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
                     dismissDialog = {
                         changeThemeDialogVisible = false
                     },
-                    onThemeSelected = onThemeSelected
+                    onThemeSelected = { themeName ->
+                        mainViewModel.storeUserThemeName(themeName)
+                        mainState.themeState.setCurrentTheme(themeName)
+                    }
                 )
             }
         }
@@ -177,7 +166,7 @@ private fun ChangeThemeDialog(themeState: ThemeState, dismissDialog: () -> Unit,
                     .padding(horizontal = OudsTheme.spaces.fixed.medium),
                 style = MaterialTheme.typography.titleLarge
             )
-            themeState.availableThemes.forEach { theme ->
+            themeState.themes.forEach { theme ->
                 Row(
                     Modifier
                         .fillMaxWidth()
@@ -212,24 +201,10 @@ private fun ChangeThemeDialog(themeState: ThemeState, dismissDialog: () -> Unit,
     }
 }
 
-/**
- * Returns the stored user theme if it exists. Otherwise, returns the Orange theme or the first existing theme.
- */
-private fun getCurrentTheme(
-    storedUserThemeName: String?,
-    themes: List<OudsThemeContract>
-) = themes.firstOrNull { it.name == storedUserThemeName }
-    .orElse { themes.firstOrNull { it.name == ORANGE_THEME_NAME } }
-    .orElse { themes.first() }
-
 @PreviewLightDark
 @Composable
 private fun PreviewMainScreen() = OudsPreview {
     // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which does not work in Compose previews
     // See https://issuetracker.google.com/issues/240601093
-    MainScreen(
-        themes = listOf(OrangeTheme(), SoshTheme()),
-        userThemeName = ORANGE_THEME_NAME,
-        onThemeSelected = {}
-    )
+    MainScreen()
 }

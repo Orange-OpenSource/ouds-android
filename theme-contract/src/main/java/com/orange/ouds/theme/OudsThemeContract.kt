@@ -32,54 +32,59 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 interface OudsThemeContract : Parcelable {
 
     /**
-     * Theme display name
+     * The theme display name.
      */
     val name: String
 
     /**
-     * Color semantic tokens values used in the theme
+     * The theme settings.
+     */
+    val settings: OudsThemeSettings
+
+    /**
+     * Color semantic tokens values used in the theme.
      */
     val colorTokens: OudsColorSemanticTokens
 
     /**
-     * Border semantic tokens values used in the theme
+     * Border semantic tokens values used in the theme.
      */
     val borderTokens: OudsBorderSemanticTokens
 
     /**
-     * Elevation semantic tokens values used in the theme
+     * Elevation semantic tokens values used in the theme.
      */
     val elevationTokens: OudsElevationSemanticTokens
 
     /**
-     * Font family used in the theme
-     * You can provide your own theme font family `FontFamily(Font(R.font.my_theme_font))`
+     * Font family used in the theme.
+     * You can provide your own theme font family `FontFamily(Font(R.font.my_theme_font))`.
      */
     val fontFamily: FontFamily
         get() = FontFamily.Default
 
     /**
-     * Font semantic tokens values used in the theme
+     * Font semantic tokens values used in the theme.
      */
     val fontTokens: OudsFontSemanticTokens
 
     /**
-     * Grid semantic tokens values used in the theme
+     * Grid semantic tokens values used in the theme.
      */
     val gridTokens: OudsGridSemanticTokens
 
     /**
-     * Opacity semantic tokens values used in the theme
+     * Opacity semantic tokens values used in the theme.
      */
     val opacityTokens: OudsOpacitySemanticTokens
 
     /**
-     * Size semantic tokens values used in the theme
+     * Size semantic tokens values used in the theme.
      */
     val sizeTokens: OudsSizeSemanticTokens
 
     /**
-     * Space semantic tokens values used in the theme
+     * Space semantic tokens values used in the theme.
      */
     val spaceTokens: OudsSpaceSemanticTokens
 

@@ -15,6 +15,7 @@ package com.orange.ouds.app.domain.datastore
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -25,15 +26,30 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 
 class DataStoreServiceImpl @Inject constructor(private val context: Context) : DataStoreService {
 
-    override suspend fun putString(key: String, value: String) {
-        val preferenceKey = stringPreferencesKey(key)
+    override suspend fun putString(key: String, value: String?) = putValue(key, value)
+
+    override suspend fun getString(key: String): String? = getValue(key)
+
+    override suspend fun putBoolean(key: String, value: Boolean?) = putValue(key, value)
+
+    override suspend fun getBoolean(key: String): Boolean? = getValue(key)
+
+    private suspend inline fun <reified T> putValue(key: String, value: T) {
         context.dataStore.edit { preferences ->
-            preferences[preferenceKey] = value
+            preferences[preferencesKey(key)] = value
         }
     }
 
-    override suspend fun getString(key: String): String? {
-        val preferenceKey = stringPreferencesKey(key)
-        return context.dataStore.data.first()[preferenceKey]
+    private suspend inline fun <reified T> getValue(key: String): T? {
+        return context.dataStore.data.first()[preferencesKey(key)]
+    }
+
+    private inline fun <reified T> preferencesKey(key: String): Preferences.Key<T> {
+        @Suppress("UNCHECKED_CAST")
+        return when (T::class) {
+            String::class -> stringPreferencesKey(key)
+            Boolean::class -> booleanPreferencesKey(key)
+            else -> error("Type of preferences key not supported.")
+        } as Preferences.Key<T>
     }
 }

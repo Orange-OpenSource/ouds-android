@@ -34,8 +34,9 @@ import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
+import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeDefaults
+import com.orange.ouds.theme.OudsThemeSettings
 import kotlin.enums.enumEntries
 
 private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
@@ -55,7 +56,7 @@ private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 fun OudsPreview(
     modifier: Modifier = Modifier,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
-    themeSettings: OudsTheme.Settings = OudsThemeDefaults.Settings,
+    themeSettings: OudsThemeSettings = BuildConfig.PREVIEW_THEME.settings,
     highContrastModeEnabled: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -67,18 +68,20 @@ fun OudsPreview(
     CompositionLocalProvider(value = LocalConfiguration provides configuration) {
         OudsTheme(
             themeContract = BuildConfig.PREVIEW_THEME,
-            darkThemeEnabled = darkThemeEnabled,
-            settings = themeSettings
+            darkThemeEnabled = darkThemeEnabled
         ) {
-            // Add a box to be able to see components
-            // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
-            Box(
-                modifier = Modifier
-                    .background(OudsTheme.colorScheme.background.primary)
-                    .then(modifier)
-            ) {
-                CompositionLocalProvider(LocalHighContrastModeEnabled provides highContrastModeEnabled) {
-                    content()
+            // Override theme settings
+            CompositionLocalProvider(LocalThemeSettings provides themeSettings) {
+                // Add a box to be able to see components
+                // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
+                Box(
+                    modifier = Modifier
+                        .background(OudsTheme.colorScheme.background.primary)
+                        .then(modifier)
+                ) {
+                    CompositionLocalProvider(LocalHighContrastModeEnabled provides highContrastModeEnabled) {
+                        content()
+                    }
                 }
             }
         }

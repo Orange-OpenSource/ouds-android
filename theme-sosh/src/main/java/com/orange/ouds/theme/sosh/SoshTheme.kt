@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.sosh.tokens.components.SoshComponentsTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshBorderSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshColorSemanticTokens
@@ -44,6 +45,9 @@ class SoshTheme : OudsThemeContract {
 
     override val name: String
         get() = SOSH_THEME_NAME
+
+    override val settings: OudsThemeSettings
+        get() = OudsThemeSettings(roundedButtonCorners = null)
 
     override val fontFamily: FontFamily
         get() = FontFamily(

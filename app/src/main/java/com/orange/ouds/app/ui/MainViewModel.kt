@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui
 
 import androidx.lifecycle.ViewModel
 import com.orange.ouds.app.domain.datastore.DataStoreService
+import com.orange.ouds.theme.OudsThemeSettings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -24,11 +25,23 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
 
     companion object {
         private const val USER_THEME_NAME_KEY = "userThemeName"
+        private const val USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY = "userThemeSettingsRoundedButtonCorners"
     }
 
     fun storeUserThemeName(themeName: String) = runBlocking {
         dataStoreService.putString(USER_THEME_NAME_KEY, themeName)
     }
 
-    fun getUserThemeName(): String? = runBlocking { dataStoreService.getString(USER_THEME_NAME_KEY) }
+    fun getUserThemeName(): String? = runBlocking {
+        dataStoreService.getString(USER_THEME_NAME_KEY)
+    }
+
+    fun storeUserThemeSettings(themeSettings: OudsThemeSettings) = runBlocking {
+        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY, themeSettings.roundedButtonCorners)
+    }
+
+    fun getUserThemeSettings(): OudsThemeSettings? = runBlocking {
+        dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY)
+            ?.let { OudsThemeSettings(roundedButtonCorners = it) }
+    }
 }

@@ -19,6 +19,7 @@ dataStorePreferences = "1.1.7"
 gradle = "8.13.0"
 grpc = "1.75.0"
 hilt = "2.57.1"
+hiltNavigationCompose = "1.2.0"
 javaPoet = "1.13.0"
 json = "20250517"
 kotlin = "2.2.10"
@@ -45,6 +46,7 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStorePreferences" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 dokka-android-documentation-plugin = { module = "org.jetbrains.dokka:android-documentation-plugin", version.ref = "dokka" }
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
