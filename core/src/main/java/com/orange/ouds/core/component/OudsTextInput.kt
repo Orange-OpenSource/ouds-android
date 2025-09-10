@@ -31,6 +31,7 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
@@ -42,7 +43,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -60,6 +60,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -151,7 +153,265 @@ fun OudsTextInput(
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
 
-    val isForbidden = (state == OudsTextInput.State.Loading && (textFieldState.text.isEmpty() || error)) || (error && state in listOf(
+    val emptyText = textFieldState.text.isEmpty()
+
+    OudsTextInput(
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            BasicTextField(
+                modifier = modifier.fillMaxWidth(),
+                state = textFieldState,
+                enabled = textFieldEnabled(enabled = enabled, state = state),
+                readOnly = readOnly,
+                textStyle = textStyle(),
+                lineLimits = TextFieldLineLimits.SingleLine, //TODO check if ok
+                cursorBrush = cursorBrush(state = state, error = error),
+                keyboardOptions = keyboardOptions,
+                onKeyboardAction = onKeyboardAction,
+                inputTransformation = inputTransformation,
+                outputTransformation = outputTransformation,
+                interactionSource = interactionSource,
+                decorator = { innerTextField ->
+                    OudsTextInputDecorator(
+                        innerTextField = innerTextField,
+                        emptyText = emptyText,
+                        state = state,
+                        label = label,
+                        placeholder = placeholder,
+                        leadingIcon = leadingIcon,
+                        trailingIconButton = trailingIconButton,
+                        prefix = prefix,
+                        suffix = suffix,
+                        loader = loader,
+                        outlined = outlined,
+                        error = error,
+                        helperText = helperText,
+                        helperLink = helperLink
+                    )
+                }
+            )
+        }
+    )
+}
+
+// TODO: Update documentation URL once it is available
+/**
+ * A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental
+ * form elements used to capture user input such as names, emails, passwords, or search queries.
+ *
+ * It provides a visual and interactive affordance for text entry while supporting labels, placeholders, icons, helper messages, and validation feedback.
+ *
+ * // TODO specify where to customize outlined/filled and rounded corners
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.1.0
+ *
+ * @param value Input text to be shown in the text field.
+ * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
+ * @param modifier [Modifier] applied to the text input.
+ * @param label Label displayed above the text input. It describe the purpose of the input.
+ * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
+ * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
+ *   envelope for email, etc.).
+ * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
+ *   clear input, toggle password visibility, etc.
+ * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting like a country code, a unit...
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (kg, %, cm…).
+ * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
+ *   True by default.
+ * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
+ *   False by default.
+ * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
+ * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
+ *   stroke outlining the field.
+ * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
+ *   does not meet validation rules or expected formatting
+ *   False by default.
+ * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be used.
+ * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
+ * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
+ * you specified in [KeyboardOptions.imeAction].
+ * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ */
+@Composable
+fun OudsTextInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInput.LeadingIcon? = null,
+    trailingIconButton: OudsTextInput.TrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInput.Loader? = null,
+    outlined: Boolean = false,
+    error: Boolean = false,
+    helperText: String? = null,
+    helperLink: OudsTextInput.HelperLink? = null,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        value = TextFieldValue(text = value),
+        onValueChange = { onValueChange(it.text) },
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        helperLink = helperLink,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+// TODO: Update documentation URL once it is available
+/**
+ * A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental
+ * form elements used to capture user input such as names, emails, passwords, or search queries.
+ *
+ * It provides a visual and interactive affordance for text entry while supporting labels, placeholders, icons, helper messages, and validation feedback.
+ *
+ * // TODO specify where to customize outlined/filled and rounded corners
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.1.0
+ *
+ * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
+ * @param onValueChange Called when the input service updates the values in [TextFieldValue].
+ * @param modifier [Modifier] applied to the text input.
+ * @param label Label displayed above the text input. It describe the purpose of the input.
+ * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
+ * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
+ *   envelope for email, etc.).
+ * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
+ *   clear input, toggle password visibility, etc.
+ * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting like a country code, a unit...
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (kg, %, cm…).
+ * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
+ *   True by default.
+ * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
+ *   False by default.
+ * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
+ * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
+ *   stroke outlining the field.
+ * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
+ *   does not meet validation rules or expected formatting
+ *   False by default.
+ * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be used.
+ * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
+ * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
+ * you specified in [KeyboardOptions.imeAction].
+ * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ */
+@Composable
+fun OudsTextInput(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInput.LeadingIcon? = null,
+    trailingIconButton: OudsTextInput.TrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInput.Loader? = null,
+    outlined: Boolean = false,
+    error: Boolean = false,
+    helperText: String? = null,
+    helperLink: OudsTextInput.HelperLink? = null,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
+    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val interactionState by interactionSource.collectInteractionStateAsState()
+    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+
+    val emptyText = value.text.isEmpty()
+
+    OudsTextInput(
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            BasicTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = modifier.fillMaxWidth(),
+                enabled = textFieldEnabled(enabled = enabled, state = state),
+                readOnly = readOnly,
+                textStyle = textStyle(),
+                singleLine = false,//TODO check if ok
+                cursorBrush = cursorBrush(state = state, error = error),
+                keyboardOptions = keyboardOptions,
+                keyboardActions = keyboardActions,
+                visualTransformation = visualTransformation,
+                interactionSource = interactionSource,
+                decorationBox = { innerTextField ->
+                    OudsTextInputDecorator(
+                        innerTextField = innerTextField,
+                        emptyText = emptyText,
+                        state = state,
+                        label = label,
+                        placeholder = placeholder,
+                        leadingIcon = leadingIcon,
+                        trailingIconButton = trailingIconButton,
+                        prefix = prefix,
+                        suffix = suffix,
+                        loader = loader,
+                        outlined = outlined,
+                        error = error,
+                        helperText = helperText,
+                        helperLink = helperLink
+                    )
+
+                }
+            )
+        }
+    )
+}
+
+@Composable
+internal fun OudsTextInput(
+    state: OudsTextInput.State,
+    emptyText: Boolean,
+    readOnly: Boolean,
+    error: Boolean,
+    basicTextField: @Composable () -> Unit
+) {
+
+    val isForbidden = (state == OudsTextInput.State.Loading && (emptyText || error)) || (error && state in listOf(
         OudsTextInput.State.ReadOnly,
         OudsTextInput.State.Disabled
     ))
@@ -176,159 +436,174 @@ fun OudsTextInput(
             }
         }
     ) {
-        BasicTextField(
-            modifier = modifier.fillMaxWidth(),
-            state = textFieldState,
-            enabled = enabled && state != OudsTextInput.State.Loading,
-            readOnly = readOnly,
-            textStyle = OudsTheme.typography.label.default.large.copy(color = OudsTheme.colorScheme.content.default),
-            lineLimits = TextFieldLineLimits.SingleLine, //TODO check if ok
-            cursorBrush = SolidColor(cursorColor(state = state, error = error)),
-            keyboardOptions = keyboardOptions,
-            onKeyboardAction = onKeyboardAction,
-            inputTransformation = inputTransformation,
-            outputTransformation = outputTransformation,
-            interactionSource = interactionSource,
-            decorator = { innerTextField ->
-                with(OudsTheme.componentsTokens.textInput) {
-                    val borderRadius = borderRadiusDefault.value
-                    val shape = RoundedCornerShape(borderRadius)
+        basicTextField()
+    }
+}
 
-                    val rowModifier = if ((outlined && state != OudsTextInput.State.ReadOnly) || (!outlined && state == OudsTextInput.State.ReadOnly)) {
-                        Modifier.border(
-                            width = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
-                            color = indicatorColor(state = state, outlined = outlined, error = error),
-                            shape = shape
+@Composable
+internal fun OudsTextInputDecorator(
+    innerTextField: @Composable () -> Unit,
+    emptyText: Boolean,
+    state: OudsTextInput.State,
+    label: String?,
+    placeholder: String?,
+    leadingIcon: OudsTextInput.LeadingIcon?,
+    trailingIconButton: OudsTextInput.TrailingIconButton?,
+    prefix: String?,
+    suffix: String?,
+    loader: OudsTextInput.Loader?,
+    outlined: Boolean,
+    error: Boolean,
+    helperText: String?,
+    helperLink: OudsTextInput.HelperLink?,
+) {
+    with(OudsTheme.componentsTokens.textInput) {
+        val borderRadius = borderRadiusDefault.value
+        val shape = RoundedCornerShape(borderRadius)
+
+        val rowModifier = if ((outlined && state != OudsTextInput.State.ReadOnly) || (!outlined && state == OudsTextInput.State.ReadOnly)) {
+            Modifier.border(
+                width = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
+                color = indicatorColor(state = state, outlined = outlined, error = error),
+                shape = shape
+            )
+        } else {
+            Modifier
+                .indicator(state = state, outlined = outlined, cornerRadius = borderRadius, error = error)
+                .background(
+                    color = containerColor(state = state, outlined = outlined, error = error),
+                    shape = shape
+                )
+        }
+
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Row(
+                modifier = rowModifier
+                    .fillMaxWidth()
+                    .sizeIn(minHeight = sizeMinHeight.dp)
+                    .padding(vertical = spacePaddingBlockDefault.value)
+                    .padding(
+                        start = spacePaddingInlineDefault.value,
+                        end = if (trailingIconButton != null || state == OudsTextInput.State.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
+                    ),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
+            ) {
+                // Leading icon
+                leadingIcon?.Content(modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeIconOnly.value))
+
+                // Central content
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    if (label != null && (!emptyText || !placeholder.isNullOrEmpty())) {
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = label,
+                            style = OudsTheme.typography.label.default.small,
+                            color = labelColor(state = state, error = error)
                         )
-                    } else {
-                        Modifier
-                            .indicator(state = state, outlined = outlined, cornerRadius = borderRadius, error = error)
-                            .background(
-                                color = containerColor(state = state, outlined = outlined, error = error),
-                                shape = shape
-                            )
                     }
-
-                    Column(modifier = Modifier.fillMaxWidth()) {
-                        Row(
-                            modifier = rowModifier
-                                .fillMaxWidth()
-                                .sizeIn(minHeight = sizeMinHeight.dp)
-                                .padding(vertical = spacePaddingBlockDefault.value)
-                                .padding(
-                                    start = spacePaddingInlineDefault.value,
-                                    end = if (trailingIconButton != null || state == OudsTextInput.State.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
-                                ),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
-                        ) {
-                            // Leading icon
-                            leadingIcon?.Content(modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeIconOnly.value))
-
-                            // Central content
-                            Column(
-                                modifier = Modifier.weight(1f),
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                if (label != null && (textFieldState.text.isNotEmpty() || !placeholder.isNullOrEmpty())) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
+                    ) {
+                        if (prefix != null) PrefixSuffixText(text = prefix)
+                        Box(modifier = Modifier.weight(1f)) {
+                            if (emptyText) {
+                                if (!placeholder.isNullOrEmpty()) {
                                     Text(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        text = placeholder,
+                                        style = OudsTheme.typography.label.default.large,
+                                        color = placeholderColor(state = state)
+                                    )
+                                } else if (!label.isNullOrEmpty()) {
+                                    Text(
                                         text = label,
-                                        style = OudsTheme.typography.label.default.small,
+                                        style = OudsTheme.typography.label.default.large,
                                         color = labelColor(state = state, error = error)
                                     )
                                 }
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
-                                ) {
-                                    if (prefix != null) PrefixSuffixText(text = prefix)
-                                    Box(modifier = Modifier.weight(1f)) {
-                                        if (textFieldState.text.isEmpty()) {
-                                            if (!placeholder.isNullOrEmpty()) {
-                                                Text(
-                                                    text = placeholder,
-                                                    style = OudsTheme.typography.label.default.large,
-                                                    color = placeholderColor(state = state)
-                                                )
-                                            } else if (!label.isNullOrEmpty()) {
-                                                Text(
-                                                    text = label,
-                                                    style = OudsTheme.typography.label.default.large,
-                                                    color = labelColor(state = state, error = error)
-                                                )
-                                            }
-                                        }
-                                        innerTextField()
-                                    }
-                                    if (suffix != null) PrefixSuffixText(text = suffix)
-                                }
                             }
+                            innerTextField()
+                        }
+                        if (suffix != null) PrefixSuffixText(text = suffix)
+                    }
+                }
 
-                            // Trailing elements
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value)
+                // Trailing elements
+                if (error || state == OudsTextInput.State.Loading || trailingIconButton != null) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value)
+                    ) {
+                        if (error) {
+                            // Error icon
+                            Box(
+                                modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeIconOnly.value),
+                                contentAlignment = Alignment.Center
                             ) {
-                                if (error) {
-                                    // Error icon
-                                    Box(modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeIconOnly.value), contentAlignment = Alignment.Center) {
-                                        Icon(
-                                            painter = painterResource(id = OudsTheme.drawableResources.important),
-                                            contentDescription = null,
-                                            tint = errorContentColor(state = state)
-                                        )
-                                    }
-                                }
-
-                                if (state == OudsTextInput.State.Loading) {
-                                    val progress = if (getPreviewEnumEntry<OudsTextInput.State>() == OudsTextInput.State.Loading) 0.75f else loader?.progress
-                                    val buttonTokens = OudsTheme.componentsTokens.button
-                                    Box(
-                                        modifier = Modifier
-                                            .widthIn(min = buttonTokens.sizeMinWidth.value)
-                                            .heightIn(min = buttonTokens.sizeMinHeight.value),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        OudsCircularProgressIndicator(
-                                            color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                                            progress = progress
-                                        )
-                                    }
-                                } else {
-                                    trailingIconButton?.Content(extraParameters = OudsTextInput.TrailingIconButton.ExtraParameters(enabled = state != OudsTextInput.State.Disabled))
-                                }
+                                Icon(
+                                    painter = painterResource(id = OudsTheme.drawableResources.important),
+                                    contentDescription = null,
+                                    tint = errorContentColor(state = state)
+                                )
                             }
                         }
 
-                        // Helper text
-                        helperText?.let { text ->
-                            Text(
+                        if (state == OudsTextInput.State.Loading) {
+                            val progress = if (getPreviewEnumEntry<OudsTextInput.State>() == OudsTextInput.State.Loading) 0.75f else loader?.progress
+                            val buttonTokens = OudsTheme.componentsTokens.button
+                            Box(
                                 modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = spacePaddingBlockTopHelperText.value)
-                                    .padding(horizontal = spacePaddingInlineDefault.value),
-                                text = text,
-                                style = OudsTheme.typography.label.default.medium,
-                                color = if (error) OudsTheme.colorScheme.content.status.negative else OudsTheme.colorScheme.content.muted
-                            )
-                        }
-
-                        // Helper link
-                        helperLink?.let { link ->
-                            OudsLink(
-                                modifier = Modifier.padding(start = spacePaddingInlineDefault.value),
-                                label = link.text,
-                                onClick = link.onClick,
-                                size = OudsLink.Size.Small
-                            )
+                                    .widthIn(min = buttonTokens.sizeMinWidth.value)
+                                    .heightIn(min = buttonTokens.sizeMinHeight.value),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                OudsCircularProgressIndicator(
+                                    color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
+                                    progress = progress
+                                )
+                            }
+                        } else {
+                            trailingIconButton?.Content(extraParameters = OudsTextInput.TrailingIconButton.ExtraParameters(enabled = state != OudsTextInput.State.Disabled))
                         }
                     }
                 }
             }
-        )
+
+            // Helper text
+            helperText?.let { text ->
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = spacePaddingBlockTopHelperText.value)
+                        .padding(horizontal = spacePaddingInlineDefault.value),
+                    text = text,
+                    style = OudsTheme.typography.label.default.medium,
+                    color = if (error) OudsTheme.colorScheme.content.status.negative else OudsTheme.colorScheme.content.muted
+                )
+            }
+
+            // Helper link
+            helperLink?.let { link ->
+                OudsLink(
+                    modifier = Modifier.padding(start = spacePaddingInlineDefault.value),
+                    label = link.text,
+                    onClick = link.onClick,
+                    size = OudsLink.Size.Small
+                )
+            }
+        }
     }
 }
+
+@Composable
+private fun textStyle() = OudsTheme.typography.label.default.large.copy(color = OudsTheme.colorScheme.content.default)
+
+@Composable
+private fun textFieldEnabled(enabled: Boolean, state: OudsTextInput.State) = enabled && state != OudsTextInput.State.Loading
 
 @Composable
 private fun Modifier.indicator(state: OudsTextInput.State, outlined: Boolean, cornerRadius: Dp, error: Boolean) =
@@ -448,8 +723,8 @@ private fun containerColor(state: OudsTextInput.State, outlined: Boolean, error:
 }
 
 @Composable
-private fun cursorColor(state: OudsTextInput.State, error: Boolean) =
-    if (error) errorContentColor(state = state) else OudsTheme.colorScheme.content.default
+private fun cursorBrush(state: OudsTextInput.State, error: Boolean) =
+    SolidColor(if (error) errorContentColor(state = state) else OudsTheme.colorScheme.content.default)
 
 @Composable
 private fun indicatorColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
