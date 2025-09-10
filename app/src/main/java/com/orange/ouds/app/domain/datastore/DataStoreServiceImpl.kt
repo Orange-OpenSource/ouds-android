@@ -26,11 +26,11 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 
 class DataStoreServiceImpl @Inject constructor(private val context: Context) : DataStoreService {
 
-    override suspend fun putString(key: String, value: String) = putValue(key, value)
+    override suspend fun putString(key: String, value: String?) = putValue(key, value)
 
     override suspend fun getString(key: String): String? = getValue(key)
 
-    override suspend fun putBoolean(key: String, value: Boolean) = putValue(key, value)
+    override suspend fun putBoolean(key: String, value: Boolean?) = putValue(key, value)
 
     override suspend fun getBoolean(key: String): Boolean? = getValue(key)
 

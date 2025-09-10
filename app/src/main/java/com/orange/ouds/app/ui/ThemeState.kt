@@ -96,7 +96,7 @@ class ThemeState(
         return with(settings) {
             names.mapNotNull { name ->
                 when (name) {
-                    ORANGE_THEME_NAME -> OrangeTheme(roundedButtonCorners = roundedButtonCorners)
+                    ORANGE_THEME_NAME -> OrangeTheme(roundedButtonCorners = roundedButtonCorners.orElse { false })
                     SOSH_THEME_NAME -> SoshTheme()
                     else -> null
                 }

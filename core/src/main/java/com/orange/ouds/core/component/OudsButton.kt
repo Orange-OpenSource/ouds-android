@@ -266,7 +266,7 @@ private fun OudsButton(
         val state = getButtonState(enabled = enabled, loader = loader, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
         val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.value * iconScale else Dp.Unspecified
-        val borderRadius = if (LocalThemeSettings.current.roundedButtonCorners) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
+        val borderRadius = if (LocalThemeSettings.current.roundedButtonCorners == true) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
 
         val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""

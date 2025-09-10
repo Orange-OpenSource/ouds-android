@@ -37,13 +37,14 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun ButtonDemoScreen(themeState: ThemeState, viewModel: MainViewModel = hiltViewModel()) {
     ButtonDemoScreen(
-        roundedCorners = themeState.settings.roundedButtonCorners,
+        roundedCorners = themeState.settings.roundedButtonCorners.orElse { false },
         onRoundedCornersChange = { roundedCorners ->
             val themeSettings = themeState.settings.copy(roundedButtonCorners = roundedCorners)
             themeState.settings = themeSettings
@@ -192,7 +193,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
 private fun PreviewButtonDemoScreen() = with(OudsThemeSettings(roundedButtonCorners = false)) {
     OudsPreview(themeSettings = this) {
         ButtonDemoScreen(
-            roundedCorners = roundedButtonCorners,
+            roundedCorners = roundedButtonCorners.orElse { false },
             onRoundedCornersChange = {}
         )
     }

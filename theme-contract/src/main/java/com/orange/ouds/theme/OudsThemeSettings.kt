@@ -23,9 +23,9 @@ import kotlinx.parcelize.Parcelize
  *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
  *   For standard or business-oriented journeys, keep the default corners.
  *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
- *   Please note that this setting may have no effect depending on the theme used.
+ *   Set to `null` if this setting has no effect on the associated theme.
  *
  * @constructor Creates an instance of [OudsThemeSettings].
  */
 @Parcelize
-data class OudsThemeSettings(val roundedButtonCorners: Boolean = false) : Parcelable
+data class OudsThemeSettings(val roundedButtonCorners: Boolean? = null) : Parcelable
