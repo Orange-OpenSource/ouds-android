@@ -159,7 +159,7 @@
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
     <string name="app_components_controlItem_helperText_label">نص المساعدة</string>
     <string name="app_components_controlItem_icon_label">أيقونة</string>
-    <string name="app_components_controlItem_readOnly_label">للقراءة فقط</string>
+    <string name="app_components_common_readOnly_label">للقراءة فقط</string>
     <string name="app_components_controlItem_divider_label">فاصل</string>
     <string name="app_components_controlItem_reversed_label">معكوس</string>
 
@@ -198,6 +198,19 @@
     <string name="app_components_tag_tag_label">Tag</string>
     <string name="app_components_tag_inputTag_label">Input tag</string>
     <string name="app_components_tag_roundedCorners_label">Rounded corners</string>
+
+    <!-- Components: text input -->
+    <string name="app_components_textInput_label">Text input</string>
+    <string name="app_components_textInput_description_text">A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It is one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.</string>
+    <string name="app_components_textInput_outlined_label">Outlined</string>
+    <string name="app_components_textInput_leadingIcon_label">Leading icon</string>
+    <string name="app_components_textInput_trailingIcon_label">Trailing icon</string>
+    <string name="app_components_textInput_prefix_label">Prefix</string>
+    <string name="app_components_textInput_suffix_label">Suffix</string>
+    <string name="app_components_textInput_placeholder_label">Placeholder</string>
+    <string name="app_components_textInput_helperText_label">Helper text</string>
+    <string name="app_components_textInput_helperLink_label">Helper link</string>
+    <string name="app_components_textInput_illustration_helperText_label">Helper text.</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
