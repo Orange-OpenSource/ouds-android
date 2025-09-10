@@ -94,7 +94,7 @@ private fun ControlItemEnabledCustomization(state: ControlItemDemoState) {
 private fun ControlItemReadOnlyCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_readOnly_label),
+            label = stringResource(R.string.app_components_common_readOnly_label),
             checked = readOnly,
             onCheckedChange = { readOnly = it },
             enabled = readOnlySwitchEnabled
