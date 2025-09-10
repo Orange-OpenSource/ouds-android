@@ -48,7 +48,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
@@ -367,6 +367,7 @@ fun OudsTextInput(
         readOnly = readOnly,
         error = error,
         basicTextField = {
+            BasicTextField(value = "", onValueChange = {})
             BasicTextField(
                 value = value,
                 onValueChange = onValueChange,
@@ -622,7 +623,8 @@ private fun Modifier.indicator(state: OudsTextInput.State, outlined: Boolean, co
  */
 @Composable
 private fun Modifier.bottomBorder(thickness: Dp, color: Color, cornerRadius: Dp): Modifier {
-    return drawBehind {
+    return drawWithContent {
+        drawContent()
         if (cornerRadius > 0.dp) {
             val cornerRadiusPx = cornerRadius.toPx()
             val path = Path().apply {
@@ -926,7 +928,7 @@ internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsText
                 textFieldState = rememberTextFieldState(initialValue),
                 label = label,
                 placeholder = placeholder,
-                outlined = true,
+                //outlined = true,
                 leadingIcon = leadingIcon,
                 trailingIconButton = trailingIconButton,
                 prefix = prefix,
