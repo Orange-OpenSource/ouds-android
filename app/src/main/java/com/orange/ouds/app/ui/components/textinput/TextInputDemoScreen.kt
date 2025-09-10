@@ -20,6 +20,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -149,7 +151,49 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
 }
 
 private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
-//TODO
+    with(state) {
+        functionCall(OudsTextInput::class.simpleName.orEmpty()) {
+            typedArgument("value", value)
+            lambdaArgument("onValueChange") {
+                comment("Update value")
+            }
+            if (label.isNotEmpty()) typedArgument("label", label)
+            if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
+            typedArgument("outlined", outlined)
+            if (leadingIcon) {
+                constructorCallArgument<OudsTextInput.LeadingIcon>("leadingIcon") {
+                    painterArgument(R.drawable.ic_heart)
+                }
+            }
+            if (trailingIcon) {
+                constructorCallArgument<OudsTextInput.TrailingIconButton>("trailingIconButton") {
+                    painterArgument(R.drawable.ic_heart)
+                    onClickArgument {
+                        comment("Do something")
+                    }
+                }
+            }
+            if (hasLoader) {
+                constructorCallArgument<OudsTextInput.Loader>("loader") {
+                    typedArgument("progress", null)
+                }
+            }
+            if (!enabled) typedArgument("enabled", false)
+            if (readOnly) typedArgument("readOnly", true)
+            if (error) typedArgument("error", true)
+            if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
+            if (suffix.isNotEmpty()) typedArgument("suffix", suffix)
+            if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
+            if (helperLink.isNotEmpty()) {
+                constructorCallArgument<OudsTextInput.HelperLink>("helperLink") {
+                    typedArgument("text", helperLink)
+                    onClickArgument {
+                        comment("Do something")
+                    }
+                }
+            }
+        }
+    }
 }
 
 @PreviewLightDark
