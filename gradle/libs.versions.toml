@@ -2,7 +2,7 @@
 activityCompose = "1.11.0"
 appcompat = "1.7.1"
 androidCompileSdk = "36"
-androidMinSdk = "21"
+androidMinSdk = "23"
 androidTargetSdk = "36"
 browser = "1.9.0"
 composeBom = "2025.09.00"
