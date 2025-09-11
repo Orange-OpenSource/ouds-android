@@ -125,7 +125,7 @@ sealed class Component(
         R.string.app_components_textInput_label,
         R.string.app_components_textInput_description_text,
         { TextInputIllustration() },
-        demoScreen = { TextInputDemoScreen() }
+        demoScreen = { TextInputDemoScreen(it) }
     )
 }
 
