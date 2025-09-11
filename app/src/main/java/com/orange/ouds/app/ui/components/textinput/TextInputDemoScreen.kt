@@ -75,7 +75,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState, roundedCo
             onCheckedChange = onRoundedCornersChange
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_textInput_outlined_label),
+            label = stringResource(R.string.app_components_common_outlined_label),
             checked = outlined,
             onCheckedChange = { outlined = it },
         )
@@ -139,7 +139,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState, roundedCo
         )
         CustomizationTextField(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-            label = stringResource(R.string.app_components_textInput_helperText_label),
+            label = stringResource(R.string.app_components_common_helperText_label),
             value = helperText,
             onValueChange = { value -> helperText = value }
         )

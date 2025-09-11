@@ -131,7 +131,7 @@ private fun ControlItemHelperTextCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_controlItem_helperText_label),
+            label = stringResource(R.string.app_components_common_helperText_label),
             value = helperText.orEmpty(),
             onValueChange = { value -> helperText = value }
         )
