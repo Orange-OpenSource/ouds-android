@@ -180,12 +180,16 @@ fun CustomizationTextField(
         label = label,
         enabled = enabled,
         keyboardOptions = keyboardOptions,
-        trailingIconButton = OudsTextInput.TrailingIconButton(
-            painter = painterResource(R.drawable.ic_delete),
-            contentDescription = "",
-            onClick = {
-                onValueChange(value.copy(text = ""))
-            })
+        trailingIconButton = if (value.text.isNotEmpty()) {
+            OudsTextInput.TrailingIconButton(
+                painter = painterResource(R.drawable.ic_delete),
+                contentDescription = "",
+                onClick = {
+                    onValueChange(value.copy(text = ""))
+                })
+        } else {
+            null
+        }
     )
 }
 
