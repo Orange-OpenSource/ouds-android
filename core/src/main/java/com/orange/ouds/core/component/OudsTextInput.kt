@@ -58,7 +58,6 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -168,7 +167,7 @@ fun OudsTextInput(
                 state = textFieldState,
                 enabled = textFieldEnabled(enabled = enabled, state = state),
                 readOnly = readOnly,
-                textStyle = textStyle(),
+                textStyle = textFieldTextStyle(),
                 lineLimits = TextFieldLineLimits.SingleLine,
                 cursorBrush = cursorBrush(state = state, error = error),
                 keyboardOptions = keyboardOptions,
@@ -265,27 +264,53 @@ fun OudsTextInput(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null
 ) {
+    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val interactionState by interactionSource.collectInteractionStateAsState()
+    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+
+    val emptyText = value.isEmpty()
+
     OudsTextInput(
-        value = TextFieldValue(text = value, TextRange(value.length)),
-        onValueChange = { onValueChange(it.text) },
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIconButton = trailingIconButton,
-        prefix = prefix,
-        suffix = suffix,
-        enabled = enabled,
+        state = state,
+        emptyText = emptyText,
         readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
         error = error,
-        helperText = helperText,
-        helperLink = helperLink,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        visualTransformation = visualTransformation,
-        interactionSource = interactionSource
+        basicTextField = {
+            BasicTextField(value = "", onValueChange = {})
+            BasicTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = modifier.fillMaxWidth(),
+                enabled = textFieldEnabled(enabled = enabled, state = state),
+                readOnly = readOnly,
+                textStyle = textFieldTextStyle(),
+                singleLine = true,
+                cursorBrush = cursorBrush(state = state, error = error),
+                keyboardOptions = keyboardOptions,
+                keyboardActions = keyboardActions,
+                visualTransformation = visualTransformation,
+                interactionSource = interactionSource,
+                decorationBox = { innerTextField ->
+                    OudsTextInputDecorator(
+                        innerTextField = innerTextField,
+                        emptyText = emptyText,
+                        state = state,
+                        label = label,
+                        placeholder = placeholder,
+                        leadingIcon = leadingIcon,
+                        trailingIconButton = trailingIconButton,
+                        prefix = prefix,
+                        suffix = suffix,
+                        loader = loader,
+                        outlined = outlined,
+                        error = error,
+                        helperText = helperText,
+                        helperLink = helperLink
+                    )
+
+                }
+            )
+        }
     )
 }
 
@@ -374,7 +399,7 @@ fun OudsTextInput(
                 modifier = modifier.fillMaxWidth(),
                 enabled = textFieldEnabled(enabled = enabled, state = state),
                 readOnly = readOnly,
-                textStyle = textStyle(),
+                textStyle = textFieldTextStyle(),
                 singleLine = true,
                 cursorBrush = cursorBrush(state = state, error = error),
                 keyboardOptions = keyboardOptions,
@@ -464,13 +489,15 @@ internal fun OudsTextInputDecorator(
         val borderRadius = borderRadiusDefault.value
         val shape = RoundedCornerShape(borderRadius)
 
-        val rowModifier = if ((outlined && state != OudsTextInput.State.ReadOnly) || (!outlined && state == OudsTextInput.State.ReadOnly)) {
+        val styleModifier = if ((outlined && state != OudsTextInput.State.ReadOnly) || (!outlined && state == OudsTextInput.State.ReadOnly)) {
+            // outlined
             Modifier.border(
-                width = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
+                width = borderWidth(state),
                 color = indicatorColor(state = state, outlined = outlined, error = error),
                 shape = shape
             )
         } else {
+            // filled
             Modifier
                 .indicator(state = state, outlined = outlined, cornerRadius = borderRadius, error = error)
                 .background(
@@ -481,7 +508,7 @@ internal fun OudsTextInputDecorator(
 
         Column(modifier = Modifier.fillMaxWidth()) {
             Row(
-                modifier = rowModifier
+                modifier = styleModifier
                     .fillMaxWidth()
                     .sizeIn(minHeight = sizeMinHeight.dp)
                     .padding(vertical = spacePaddingBlockDefault.value)
@@ -500,6 +527,7 @@ internal fun OudsTextInputDecorator(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.Center
                 ) {
+                    // Small label on top
                     if (label != null && (!emptyText || !placeholder.isNullOrEmpty() || state == OudsTextInput.State.Focused)) {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
@@ -508,6 +536,8 @@ internal fun OudsTextInputDecorator(
                             color = labelColor(state = state, error = error)
                         )
                     }
+
+                    // Prefix + Placeholder Label Value + Suffix
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
@@ -543,8 +573,8 @@ internal fun OudsTextInputDecorator(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value)
                     ) {
+                        // Error icon
                         if (error) {
-                            // Error icon
                             Box(
                                 modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeIconOnly.value),
                                 contentAlignment = Alignment.Center
@@ -557,6 +587,7 @@ internal fun OudsTextInputDecorator(
                             }
                         }
 
+                        // Loader
                         if (state == OudsTextInput.State.Loading) {
                             val progress = if (getPreviewEnumEntry<OudsTextInput.State>() == OudsTextInput.State.Loading) 0.75f else loader?.progress
                             val buttonTokens = OudsTheme.componentsTokens.button
@@ -605,21 +636,24 @@ internal fun OudsTextInputDecorator(
 }
 
 @Composable
-private fun textStyle() = OudsTheme.typography.label.default.large.copy(color = OudsTheme.colorScheme.content.default)
-
-@Composable
-private fun textFieldEnabled(enabled: Boolean, state: OudsTextInput.State) = enabled && state != OudsTextInput.State.Loading
-
-@Composable
-private fun Modifier.indicator(state: OudsTextInput.State, outlined: Boolean, cornerRadius: Dp, error: Boolean) =
-    bottomBorder(
-        thickness = if (state == OudsTextInput.State.Focused) OudsTextInput.focusBorderWidth else OudsTextInput.defaultBorderWidth,
-        color = indicatorColor(state = state, outlined = outlined, error = error),
-        cornerRadius = cornerRadius
-    )
+private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInput.Loader?, interactionState: InteractionState): OudsTextInput.State {
+    return getPreviewEnumEntry<OudsTextInput.State>().orElse {
+        if (loader != null) {
+            OudsTextInput.State.Loading
+        } else {
+            when {
+                !enabled -> OudsTextInput.State.Disabled
+                readOnly -> OudsTextInput.State.ReadOnly
+                interactionState == InteractionState.Hovered -> OudsTextInput.State.Hovered
+                interactionState == InteractionState.Focused -> OudsTextInput.State.Focused
+                else -> OudsTextInput.State.Enabled
+            }
+        }
+    }
+}
 
 /**
- * Draws a bottom border on the text input by respecting corner radius of the component.
+ * Draws a bottom border on the text input by respecting [thickness], [color] and [cornerRadius] provided.
  */
 @Composable
 private fun Modifier.bottomBorder(thickness: Dp, color: Color, cornerRadius: Dp): Modifier {
@@ -691,25 +725,13 @@ private fun Modifier.bottomBorder(thickness: Dp, color: Color, cornerRadius: Dp)
 }
 
 @Composable
-private fun PrefixSuffixText(text: String) {
-    Text(text = text, style = OudsTheme.typography.label.default.large, color = OudsTheme.colorScheme.content.muted)
+private fun borderWidth(state: OudsTextInput.State) = with(OudsTheme.componentsTokens.textInput) {
+    if (state == OudsTextInput.State.Focused) borderWidthFocus.value else borderWidthDefault.value
 }
 
 @Composable
-private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInput.Loader?, interactionState: InteractionState): OudsTextInput.State {
-    return getPreviewEnumEntry<OudsTextInput.State>().orElse {
-        if (loader != null) {
-            OudsTextInput.State.Loading
-        } else {
-            when {
-                !enabled -> OudsTextInput.State.Disabled
-                readOnly -> OudsTextInput.State.ReadOnly
-                interactionState == InteractionState.Hovered -> OudsTextInput.State.Hovered
-                interactionState == InteractionState.Focused -> OudsTextInput.State.Focused
-                else -> OudsTextInput.State.Enabled
-            }
-        }
-    }
+private fun PrefixSuffixText(text: String) {
+    Text(text = text, style = OudsTheme.typography.label.default.large, color = OudsTheme.colorScheme.content.muted)
 }
 
 @Composable
@@ -731,6 +753,22 @@ private fun containerColor(state: OudsTextInput.State, outlined: Boolean, error:
 @Composable
 private fun cursorBrush(state: OudsTextInput.State, error: Boolean) =
     SolidColor(if (error) errorContentColor(state = state) else OudsTheme.colorScheme.content.default)
+
+@Composable
+private fun errorContentColor(state: OudsTextInput.State) = when (state) {
+    OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
+    OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
+    OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.negative.pressed
+    OudsTextInput.State.Disabled, OudsTextInput.State.ReadOnly, OudsTextInput.State.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
+}
+
+@Composable
+private fun Modifier.indicator(state: OudsTextInput.State, outlined: Boolean, cornerRadius: Dp, error: Boolean) =
+    bottomBorder(
+        thickness = borderWidth(state),
+        color = indicatorColor(state = state, outlined = outlined, error = error),
+        cornerRadius = cornerRadius
+    )
 
 @Composable
 private fun indicatorColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
@@ -768,27 +806,19 @@ private fun labelColor(state: OudsTextInput.State, error: Boolean): Color {
 }
 
 @Composable
-private fun errorContentColor(state: OudsTextInput.State) = when (state) {
-    OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-    OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-    OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.negative.pressed
-    OudsTextInput.State.Disabled, OudsTextInput.State.ReadOnly, OudsTextInput.State.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
-}
+private fun placeholderColor(state: OudsTextInput.State) =
+    if (state == OudsTextInput.State.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
 
 @Composable
-private fun placeholderColor(state: OudsTextInput.State) =
-    if (state == OudsTextInput.State.Disabled) {
-        OudsTheme.colorScheme.action.disabled
-    } else {
-        OudsTheme.colorScheme.content.muted
-    }
+private fun textFieldTextStyle() = OudsTheme.typography.label.default.large.copy(color = OudsTheme.colorScheme.content.default)
+
+@Composable
+private fun textFieldEnabled(enabled: Boolean, state: OudsTextInput.State) = enabled && state != OudsTextInput.State.Loading
 
 /**
  * Contains classes to build an [OudsTextInput].
  */
 object OudsTextInput {
-    internal val defaultBorderWidth = 1.dp
-    internal val focusBorderWidth = 2.dp
 
     internal enum class State {
         Enabled, Hovered, Disabled, Focused, ReadOnly, Loading
@@ -848,7 +878,7 @@ object OudsTextInput {
 
     /**
      * A trailing icon button in an [OudsTextInput].
-     * Displays an icon only [OudsButton].
+     * Displays an icon-only [OudsButton].
      */
     class TrailingIconButton private constructor(
         graphicsObject: Any,
@@ -917,8 +947,6 @@ internal object OudsTextInputPreview {
 private fun PreviewOudsTextInput(@PreviewParameter(OudsTextInputPreviewParameterProvider::class) parameter: OudsTextInputPreviewParameter) {
     PreviewOudsTextInput(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
-
-// TODO accessibility check
 
 @Composable
 internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsTextInputPreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
