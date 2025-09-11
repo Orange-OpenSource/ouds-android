@@ -1,5 +1,5 @@
 [versions]
-activityCompose = "1.10.1"
+activityCompose = "1.11.0"
 appcompat = "1.7.1"
 androidCompileSdk = "36"
 androidMinSdk = "21"
