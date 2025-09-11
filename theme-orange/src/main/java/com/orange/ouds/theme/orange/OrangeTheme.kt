@@ -37,13 +37,13 @@ import kotlinx.parcelize.Parcelize
 const val ORANGE_THEME_NAME = "Orange"
 
 @Parcelize
-open class OrangeTheme(private val roundedButtonCorners: Boolean = false) : OudsThemeContract {
+open class OrangeTheme(private val roundedCornerButtons: Boolean = false) : OudsThemeContract {
 
     override val name: String
         get() = ORANGE_THEME_NAME
 
     override val settings: OudsThemeSettings
-        get() = OudsThemeSettings(roundedButtonCorners)
+        get() = OudsThemeSettings(roundedCornerButtons)
     
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeColorSemanticTokens()

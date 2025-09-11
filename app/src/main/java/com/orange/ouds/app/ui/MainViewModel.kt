@@ -37,11 +37,11 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
     }
 
     fun storeUserThemeSettings(themeSettings: OudsThemeSettings) = runBlocking {
-        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY, themeSettings.roundedButtonCorners)
+        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY, themeSettings.roundedCornerButtons)
     }
 
     fun getUserThemeSettings(): OudsThemeSettings? = runBlocking {
         dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY)
-            ?.let { OudsThemeSettings(roundedButtonCorners = it) }
+            ?.let { OudsThemeSettings(roundedCornerButtons = it) }
     }
 }
