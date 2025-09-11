@@ -71,6 +71,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -79,6 +80,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeSettings
 
 // TODO: Update documentation URL once it is available
 /**
@@ -87,7 +89,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * It provides a visual and interactive affordance for text entry while supporting labels, placeholders, icons, helper messages, and validation feedback.
  *
- * // TODO specify where to customize outlined/filled and rounded corners
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
@@ -205,7 +208,8 @@ fun OudsTextInput(
  *
  * It provides a visual and interactive affordance for text entry while supporting labels, placeholders, icons, helper messages, and validation feedback.
  *
- * // TODO specify where to customize outlined/filled and rounded corners
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
@@ -321,7 +325,8 @@ fun OudsTextInput(
  *
  * It provides a visual and interactive affordance for text entry while supporting labels, placeholders, icons, helper messages, and validation feedback.
  *
- * // TODO specify where to customize outlined/filled and rounded corners
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
@@ -486,7 +491,7 @@ internal fun OudsTextInputDecorator(
     helperLink: OudsTextInput.HelperLink?,
 ) {
     with(OudsTheme.componentsTokens.textInput) {
-        val borderRadius = borderRadiusDefault.value
+        val borderRadius = if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded.value else borderRadiusDefault.value
         val shape = RoundedCornerShape(borderRadius)
 
         val styleModifier = if ((outlined && state != OudsTextInput.State.ReadOnly) || (!outlined && state == OudsTextInput.State.ReadOnly)) {
@@ -966,6 +971,19 @@ internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsText
                 helperLink = helperLink
             )
         }
+    }
+}
+
+@Preview
+@Composable
+internal fun PreviewOudsTextInputWithRoundedCorners() = OudsPreview(themeSettings = OudsThemeSettings().copy(roundedCornerTextInputs = true)) {
+    PreviewEnumEntries<OudsTextInput.State>(columnCount = 1) { state ->
+        OudsTextInput(
+            textFieldState = rememberTextFieldState(""),
+            label = "Label",
+            placeholder = "Placeholder",
+            leadingIcon = OudsTextInput.LeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon"),
+        )
     }
 }
 

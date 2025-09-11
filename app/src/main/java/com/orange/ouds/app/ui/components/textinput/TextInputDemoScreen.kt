@@ -18,7 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.MainViewModel
+import com.orange.ouds.app.ui.ThemeState
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
@@ -29,14 +32,34 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
-fun TextInputDemoScreen() {
+fun TextInputDemoScreen(themeState: ThemeState, viewModel: MainViewModel = hiltViewModel()) {
+    TextInputDemoScreen(
+        roundedCorners = themeState.settings.roundedCornerTextInputs.orElse { false },
+        onRoundedCornersChange = { roundedCorners ->
+            val themeSettings = themeState.settings.copy(roundedCornerTextInputs = roundedCorners)
+            themeState.settings = themeSettings
+            viewModel.storeUserThemeSettings(themeSettings)
+        }
+    )
+}
+
+@Composable
+fun TextInputDemoScreen(roundedCorners: Boolean, onRoundedCornersChange: (Boolean) -> Unit) {
     val state = rememberTextInputDemoState()
     DemoScreen(
         description = stringResource(id = Component.TextInput.descriptionRes),
-        bottomSheetContent = { TextInputDemoBottomSheetContent(state = state) },
+        bottomSheetContent = {
+            TextInputDemoBottomSheetContent(
+                state = state,
+                roundedCorners = roundedCorners,
+                onRoundedCornersChange = onRoundedCornersChange
+            )
+        },
         codeSnippet = { textInputDemoCodeSnippet(state = state) },
         demoContent = { TextInputDemoContent(state = state) },
         version = OudsVersion.Component.TextInput
@@ -44,8 +67,13 @@ fun TextInputDemoScreen() {
 }
 
 @Composable
-private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
+private fun TextInputDemoBottomSheetContent(state: TextInputDemoState, roundedCorners: Boolean, onRoundedCornersChange: (Boolean) -> Unit) {
     with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_roundedCorners_label),
+            checked = roundedCorners,
+            onCheckedChange = onRoundedCornersChange
+        )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_textInput_outlined_label),
             checked = outlined,
@@ -198,6 +226,11 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewTextInputDemoScreen() = OudsPreview {
-    TextInputDemoScreen()
+private fun PreviewTextInputDemoScreen() = with(OudsThemeSettings(roundedCornerTextInputs = false)) {
+    OudsPreview(themeSettings = this) {
+        TextInputDemoScreen(
+            roundedCorners = roundedCornerTextInputs.orElse { false },
+            onRoundedCornersChange = {}
+        )
+    }
 }
