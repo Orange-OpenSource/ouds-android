@@ -30,19 +30,19 @@ fun rememberTagDemoState(
     label: String = stringResource(id = R.string.app_components_tag_label),
     hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
     layout: TagDemoState.Layout = TagDemoState.Layout.TextOnly,
-    shape: OudsTag.Shape = OudsTagDefaults.Shape,
+    roundedCorners: Boolean = true,
     size: OudsTag.Size = OudsTagDefaults.Size,
     status: OudsTag.Status = OudsTagDefaults.Status,
     hasLoader: Boolean = false
-) = rememberSaveable(label, hierarchy, layout, shape, size, status, hasLoader, saver = TagDemoState.Saver) {
-    TagDemoState(label, hierarchy, layout, shape, size, status, hasLoader)
+) = rememberSaveable(label, hierarchy, layout, roundedCorners, size, status, hasLoader, saver = TagDemoState.Saver) {
+    TagDemoState(label, hierarchy, layout, roundedCorners, size, status, hasLoader)
 }
 
 class TagDemoState(
     label: String,
     hierarchy: OudsTag.Hierarchy,
     layout: Layout,
-    shape: OudsTag.Shape,
+    roundedCorners: Boolean,
     size: OudsTag.Size,
     status: OudsTag.Status,
     hasLoader: Boolean
@@ -57,7 +57,7 @@ class TagDemoState(
                         label,
                         hierarchy,
                         layout,
-                        shape,
+                        roundedCorners,
                         size,
                         status,
                         hasLoader
@@ -69,7 +69,7 @@ class TagDemoState(
                     list[0] as String,
                     list[1] as OudsTag.Hierarchy,
                     list[2] as Layout,
-                    list[3] as OudsTag.Shape,
+                    list[3] as Boolean,
                     list[4] as OudsTag.Size,
                     list[5] as OudsTag.Status,
                     list[6] as Boolean
@@ -84,7 +84,7 @@ class TagDemoState(
 
     var layout: Layout by mutableStateOf(layout)
 
-    var shape: OudsTag.Shape by mutableStateOf(shape)
+    var roundedCorners: Boolean by mutableStateOf(roundedCorners)
 
     var size: OudsTag.Size by mutableStateOf(size)
 

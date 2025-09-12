@@ -188,7 +188,6 @@
     <!-- Components: tag -->
     <string name="app_components_tag_label">Tag</string>
     <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category. It helps users quickly find, group, or understand content.</string>
-    <string name="app_components_tag_shape_label">Shape</string>
     <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
     <string name="app_components_tag_tag_label">Tag</string>
     <string name="app_components_tag_inputTag_label">Input tag</string>

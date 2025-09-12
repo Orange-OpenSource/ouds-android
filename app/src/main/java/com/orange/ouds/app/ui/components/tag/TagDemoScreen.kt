@@ -95,12 +95,10 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             onCheckedChange = { hasLoader = it },
             enabled = loaderSwitchEnabled
         )
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_tag_shape_label),
-            chipLabels = OudsTag.Shape.entries.map { it.name },
-            selectedChipIndex = OudsTag.Shape.entries.indexOf(shape),
-            onSelectionChange = { id -> shape = OudsTag.Shape.entries[id] }
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_roundedCorners_label),
+            checked = roundedCorners,
+            onCheckedChange = { roundedCorners = it },
         )
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -136,7 +134,7 @@ private fun TagDemoContent(state: TagDemoState) {
                 hierarchy = hierarchy,
                 status = status,
                 size = size,
-                shape = shape,
+                roundedCorners = roundedCorners,
                 loader = loader,
             )
         }
@@ -161,7 +159,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
             }
             labelArgument(label)
             typedArgument("hierarchy", hierarchy)
-            typedArgument("shape", shape)
+            typedArgument("roundedCorners", roundedCorners)
             typedArgument("size", size)
             typedArgument("status", status)
             if (hasLoader) {

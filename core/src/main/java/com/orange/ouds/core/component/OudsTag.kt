@@ -84,7 +84,10 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
  * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
  *   A tag with loading spinner cannot have an [OudsTag.Status.Disabled] status. This will throw an [IllegalStateException].
- * @param shape The shape of the tag. This allows to play with its corners appearance.
+ * @param roundedCorners Controls the shape of the tag.
+ *   When `true`, the tag has rounded corners, providing a softer and more approachable look, suitable for most modern interfaces.
+ *   When `false`, the tag has sharp, square corners, providing a more formal, structured, or technical feel. Often used in business context to label
+ *   promotions, offers or important notices.
  * @param size The size of the tag.
  * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
@@ -103,7 +106,7 @@ fun OudsTag(
     icon: OudsTag.Icon? = null,
     hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
     status: OudsTag.Status = OudsTagDefaults.Status,
-    shape: OudsTag.Shape = OudsTagDefaults.Shape,
+    roundedCorners: Boolean = true,
     size: OudsTag.Size = OudsTagDefaults.Size,
     loader: OudsTag.Loader? = null
 ) {
@@ -112,7 +115,7 @@ fun OudsTag(
     val isForbidden = status == OudsTag.Status.Disabled && hasLoader
     val stateDescription = if (hasLoader) stringResource(id = R.string.core_common_loading_a11y) else ""
 
-    val tagShape = shape(shape)
+    val tagShape = shape(roundedCorners = roundedCorners)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsTag with OudsTag.Status.Disabled status cannot have a loader. This is not allowed." },
@@ -166,14 +169,9 @@ fun OudsTag(
 }
 
 @Composable
-private fun shape(shape: OudsTag.Shape): RoundedCornerShape {
+private fun shape(roundedCorners: Boolean): RoundedCornerShape {
     return with(OudsTheme.componentsTokens.tag) {
-        RoundedCornerShape(
-            when (shape) {
-                OudsTag.Shape.Square -> OudsTheme.borders.radius.none
-                OudsTag.Shape.Rounded -> borderRadius.value
-            }
-        )
+        RoundedCornerShape(if (roundedCorners) borderRadius.value else OudsTheme.borders.radius.none)
     }
 }
 
@@ -375,11 +373,6 @@ object OudsTagDefaults {
     val Hierarchy = OudsTag.Hierarchy.Emphasized
 
     /**
-     * Default shape of an [OudsTag].
-     */
-    val Shape = OudsTag.Shape.Rounded
-
-    /**
      * Default size of an [OudsTag].
      */
     val Size = OudsTag.Size.Default
@@ -471,21 +464,6 @@ object OudsTag {
         override val tint: Color?
             @Composable
             get() = extraParameters.tint
-    }
-
-    enum class Shape {
-
-        /**
-         * A tag with sharp, square corners.
-         * Squared tags provide a more formal, structured, or technical feel. They are often used in business contexts to label promotions, offers, or important notices.
-         */
-        Square,
-
-        /**
-         * A tag with fully rounded corners, creating a pill-shaped appearance.
-         * Rounded tags offer a softer and more approachable look, suitable for most modern interfaces.
-         */
-        Rounded
     }
 
     enum class Size {
@@ -587,7 +565,7 @@ internal fun PreviewOudsTag(darkThemeEnabled: Boolean, parameter: OudsTagPreview
                 hierarchy = hierarchy,
                 status = status,
                 size = size,
-                shape = shape,
+                roundedCorners = roundedCorners,
                 loader = loader,
             )
         }
@@ -597,7 +575,7 @@ internal fun PreviewOudsTag(darkThemeEnabled: Boolean, parameter: OudsTagPreview
 internal data class OudsTagPreviewParameter(
     val icon: OudsTag.Icon? = null,
     val hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
-    val shape: OudsTag.Shape = OudsTagDefaults.Shape,
+    val roundedCorners: Boolean = true,
     val loader: OudsTag.Loader? = null
 )
 
@@ -612,7 +590,7 @@ private val previewParameterValues: List<OudsTagPreviewParameter>
             OudsTagPreviewParameter(OudsTag.Icon.Bullet, hierarchy = OudsTag.Hierarchy.Muted),
             OudsTagPreviewParameter(icon, hierarchy = OudsTag.Hierarchy.Muted),
             OudsTagPreviewParameter(loader = loader, hierarchy = OudsTag.Hierarchy.Muted),
-            OudsTagPreviewParameter(icon, shape = OudsTag.Shape.Square),
+            OudsTagPreviewParameter(icon, roundedCorners = false),
             OudsTagPreviewParameter(loader = loader)
         )
     }
