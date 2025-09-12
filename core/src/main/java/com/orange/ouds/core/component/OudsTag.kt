@@ -36,14 +36,17 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
@@ -106,6 +109,7 @@ fun OudsTag(
 ) {
     val hasAsset = icon != null || loader != null
     val isForbidden = status == OudsTag.Status.Disabled && loader != null
+    val stateDescription = if (loader != null) stringResource(id = R.string.core_common_loading_a11y) else ""
 
     val tagShape = shape(shape)
     CheckedContent(
@@ -124,7 +128,9 @@ fun OudsTag(
                     .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
                     .clip(shape = tagShape)
                     .background(backgroundColor(status = status, hierarchy = hierarchy))
-                    .semantics(mergeDescendants = true) {}
+                    .semantics(mergeDescendants = true) {
+                        this.stateDescription = stateDescription
+                    }
                     .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
