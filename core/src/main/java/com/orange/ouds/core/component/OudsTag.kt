@@ -107,9 +107,10 @@ fun OudsTag(
     size: OudsTag.Size = OudsTagDefaults.Size,
     loader: OudsTag.Loader? = null
 ) {
-    val hasAsset = icon != null || loader != null
-    val isForbidden = status == OudsTag.Status.Disabled && loader != null
-    val stateDescription = if (loader != null) stringResource(id = R.string.core_common_loading_a11y) else ""
+    val hasLoader = loader != null
+    val hasAsset = icon != null || hasLoader
+    val isForbidden = status == OudsTag.Status.Disabled && hasLoader
+    val stateDescription = if (hasLoader) stringResource(id = R.string.core_common_loading_a11y) else ""
 
     val tagShape = shape(shape)
     CheckedContent(
@@ -127,7 +128,7 @@ fun OudsTag(
                 modifier = Modifier
                     .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
                     .clip(shape = tagShape)
-                    .background(backgroundColor(status = status, hierarchy = hierarchy))
+                    .background(backgroundColor(status = status, hierarchy = hierarchy, hasLoader = hasLoader))
                     .semantics(mergeDescendants = true) {
                         this.stateDescription = stateDescription
                     }
@@ -135,7 +136,7 @@ fun OudsTag(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
             ) {
-                val contentColor = contentColor(status = status, hierarchy = hierarchy)
+                val contentColor = contentColor(status = status, hierarchy = hierarchy, hasLoader = hasLoader)
 
                 if (hasAsset) {
                     Box(
@@ -143,13 +144,13 @@ fun OudsTag(
                             .size(assetSize(size))
                             .semantics { hideFromAccessibility() }
                     ) {
-                        if (loader != null) {
+                        if (hasLoader) {
                             ProgressIndicator(status = status, hierarchy = hierarchy, size = size, progress = loader.progress)
                         } else {
                             val iconPadding = if (icon is OudsTag.Icon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
                             icon?.Content(
                                 modifier = Modifier.padding(all = iconPadding),
-                                extraParameters = OudsTag.Icon.ExtraParameters(tint = iconColor(status, hierarchy))
+                                extraParameters = OudsTag.Icon.ExtraParameters(tint = iconColor(status = status, hierarchy = hierarchy))
                             )
                         }
                     }
@@ -227,43 +228,51 @@ private fun betweenAssetAndLabelSpace(size: OudsTag.Size): Dp {
 }
 
 @Composable
-private fun backgroundColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
-    return when (hierarchy) {
-        OudsTag.Hierarchy.Emphasized -> status.color()
-        OudsTag.Hierarchy.Muted -> status.mutedColor()
+private fun backgroundColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy, hasLoader: Boolean): Color {
+    return if (hasLoader) {
+        OudsTheme.colorScheme.surface.status.neutral.muted
+    } else {
+        when (hierarchy) {
+            OudsTag.Hierarchy.Emphasized -> status.color()
+            OudsTag.Hierarchy.Muted -> status.mutedColor()
+        }
     }
 }
 
 @Composable
 private fun iconColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
     return when (hierarchy) {
-        OudsTag.Hierarchy.Emphasized -> contentColor(status = status, hierarchy = hierarchy)
+        OudsTag.Hierarchy.Emphasized -> contentColor(status = status, hierarchy = hierarchy, hasLoader = false)
         OudsTag.Hierarchy.Muted -> if (status == OudsTag.Status.Disabled) OudsTheme.colorScheme.content.onAction.disabled else status.color()
     }
 }
 
 @Composable
-private fun contentColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
-    val disabledContentColor = OudsTheme.colorScheme.content.onAction.disabled
-    return with(OudsTheme.colorScheme.content.onStatus) {
-        when (hierarchy) {
-            OudsTag.Hierarchy.Emphasized -> when (status) {
-                OudsTag.Status.Neutral -> neutral.emphasized
-                OudsTag.Status.Accent -> accent.emphasized
-                OudsTag.Status.Positive -> positive.emphasized
-                OudsTag.Status.Warning -> warning.emphasized
-                OudsTag.Status.Negative -> negative.emphasized
-                OudsTag.Status.Info -> info.emphasized
-                OudsTag.Status.Disabled -> disabledContentColor
-            }
-            OudsTag.Hierarchy.Muted -> when (status) {
-                OudsTag.Status.Neutral -> neutral.muted
-                OudsTag.Status.Accent -> accent.muted
-                OudsTag.Status.Positive -> positive.muted
-                OudsTag.Status.Warning -> warning.muted
-                OudsTag.Status.Negative -> negative.muted
-                OudsTag.Status.Info -> info.muted
-                OudsTag.Status.Disabled -> disabledContentColor
+private fun contentColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy, hasLoader: Boolean): Color {
+    return if (hasLoader) {
+        OudsTheme.colorScheme.content.default
+    } else {
+        val disabledContentColor = OudsTheme.colorScheme.content.onAction.disabled
+        with(OudsTheme.colorScheme.content.onStatus) {
+            when (hierarchy) {
+                OudsTag.Hierarchy.Emphasized -> when (status) {
+                    OudsTag.Status.Neutral -> neutral.emphasized
+                    OudsTag.Status.Accent -> accent.emphasized
+                    OudsTag.Status.Positive -> positive.emphasized
+                    OudsTag.Status.Warning -> warning.emphasized
+                    OudsTag.Status.Negative -> negative.emphasized
+                    OudsTag.Status.Info -> info.emphasized
+                    OudsTag.Status.Disabled -> disabledContentColor
+                }
+                OudsTag.Hierarchy.Muted -> when (status) {
+                    OudsTag.Status.Neutral -> neutral.muted
+                    OudsTag.Status.Accent -> accent.muted
+                    OudsTag.Status.Positive -> positive.muted
+                    OudsTag.Status.Warning -> warning.muted
+                    OudsTag.Status.Negative -> negative.muted
+                    OudsTag.Status.Info -> info.muted
+                    OudsTag.Status.Disabled -> disabledContentColor
+                }
             }
         }
     }
@@ -328,7 +337,7 @@ private fun ProgressIndicator(status: OudsTag.Status, hierarchy: OudsTag.Hierarc
         .padding(all = loaderPadding(size = size))
         .fillMaxSize()
         .semantics { hideFromAccessibility() }
-    val color = contentColor(status = status, hierarchy = hierarchy)
+    val color = contentColor(status = status, hierarchy = hierarchy, hasLoader = true)
     val strokeWidth = when (size) {
         OudsTag.Size.Default -> 2.4.dp
         OudsTag.Size.Small -> 2.dp
@@ -507,7 +516,7 @@ object OudsTag {
 
         /** Conveys informational messages or supplementary details. Used for neutral, helpful, or contextual information. */
         Info,
-        
+
         /** Signals caution or a potentially risky situation. Used to draw attention to items requiring user awareness or intervention. */
         Warning,
 
