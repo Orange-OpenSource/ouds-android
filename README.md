@@ -25,10 +25,8 @@ Last version of Design Toolbox app is downloadable at [http://oran.ge/designtool
 
 <table align="center">
     <tr>
-        <td align="center"><img src="readme/screenshot_orange.png" alt="Design Toolbox sample using Orange theme"></td>
-    </tr>
-    <tr>
-        <td align="center"><img src="readme/screenshot_sosh.png" alt="Design Toolbox sample using Sosh theme in dark mode"></td>
+        <td><img src="readme/screenshot_orange.png" width="300" alt="Design Toolbox sample using Orange theme"></td>
+        <td><img src="readme/screenshot_sosh.png" width="300" alt="Design Toolbox sample using Sosh theme in dark mode"></td>
     </tr>
 </table>
 
