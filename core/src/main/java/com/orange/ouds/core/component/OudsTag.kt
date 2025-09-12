@@ -499,14 +499,14 @@ object OudsTag {
         /** Indicates success, confirmation, or a positive status. Commonly used to highlight completed actions or approved items. */
         Positive,
 
+        /** Conveys informational messages or supplementary details. Used for neutral, helpful, or contextual information. */
+        Info,
+        
         /** Signals caution or a potentially risky situation. Used to draw attention to items requiring user awareness or intervention. */
         Warning,
 
         /** Represents errors, critical issues, or urgent attention needed. Used to highlight problems or failed actions. */
         Negative,
-
-        /** Conveys informational messages or supplementary details. Used for neutral, helpful, or contextual information. */
-        Info,
 
         /** Shows that the tag is inactive and cannot be interacted with. Appears faded or greyed out. */
         Disabled;

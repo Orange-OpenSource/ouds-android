@@ -12,9 +12,7 @@
 
 package com.orange.ouds.app.ui.components.link
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -31,7 +29,6 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -63,21 +60,21 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
         )
         val sizes = OudsLink.Size.entries
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-            label = stringResource(R.string.app_components_link_size_label),
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_size_label),
             chipLabels = sizes.map { it.name },
             selectedChipIndex = sizes.indexOf(size),
             onSelectionChange = { id -> size = sizes[id] }
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
         )
         CustomizationTextField(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }

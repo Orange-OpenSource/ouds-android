@@ -15,7 +15,6 @@ package com.orange.ouds.app.ui.components.badge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -39,7 +38,6 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
 import com.orange.ouds.core.component.OudsBadge
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsVersion
@@ -60,13 +58,14 @@ fun BadgeDemoScreen() {
 private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
     with(state) {
         CustomizationFilterChips(
+            applyTopPadding = false,
             label = stringResource(R.string.app_components_badge_type_label),
             chipLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
             onSelectionChange = { id -> type = BadgeDemoState.Type.entries[id] }
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_size_label),
             chips = OudsBadge.Size.entries.map { CustomizationFilterChip(it.formattedName, enabled = it in enabledSizes) },
             selectedChipIndex = OudsBadge.Size.entries.indexOf(size),
@@ -74,7 +73,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         )
         val statuses = OudsBadge.Status.entries
         CustomizationDropdownMenu(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(id = R.string.app_components_common_status_label),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
@@ -92,7 +91,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
             onSelectionChange = { status = statuses[it] }
         )
         CustomizationTextField(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_badge_count_label),
             value = TextFieldValue(count.toString(), TextRange(count.toString().length)),
             onValueChange = { value ->

@@ -24,6 +24,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
+import com.orange.ouds.theme.tokens.components.OudsTagInputTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 
 data class SoshComponentsTokens(
@@ -38,5 +39,6 @@ data class SoshComponentsTokens(
     override val linkMonochrome: OudsLinkMonoTokens = SoshLinkMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = SoshRadioButtonTokens(),
     override val switch: OudsSwitchTokens = SoshSwitchTokens(),
-    override val tag: OudsTagTokens = SoshTagTokens()
+    override val tag: OudsTagTokens = SoshTagTokens(),
+    override val tagInput: OudsTagInputTokens = SoshTagInputTokens()
 ) : OudsComponentsTokens

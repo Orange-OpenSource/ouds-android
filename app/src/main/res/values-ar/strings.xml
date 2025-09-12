@@ -167,7 +167,6 @@
     <string name="app_components_link_description_text">تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).</string>
     <string name="app_components_link_backLayout_label">عوده</string>
     <string name="app_components_link_nextLayout_label">التالي</string>
-    <string name="app_components_link_size_label">حجم</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_label">زر الاختيار</string>
@@ -187,9 +186,11 @@
 
     <!-- Components: tag -->
     <string name="app_components_tag_label">Tag</string>
-    <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.</string>
+    <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category. It helps users quickly find, group, or understand content.</string>
     <string name="app_components_tag_shape_label">Shape</string>
     <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
+    <string name="app_components_tag_tag_label">Tag</string>
+    <string name="app_components_tag_inputTag_label">Input tag</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
