@@ -65,10 +65,29 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
+@JvmName("CustomizationFilterChipsLabels")
 @Composable
 fun CustomizationFilterChips(
     label: String,
     chipLabels: List<String>,
+    selectedChipIndex: Int,
+    onSelectionChange: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    CustomizationFilterChips(
+        label = label,
+        chips = chipLabels.map { CustomizationFilterChip(label = it) },
+        selectedChipIndex = selectedChipIndex,
+        onSelectionChange = onSelectionChange,
+        modifier = modifier
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CustomizationFilterChips(
+    label: String,
+    chips: List<CustomizationFilterChip>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
     modifier: Modifier = Modifier
@@ -92,11 +111,12 @@ fun CustomizationFilterChips(
                 .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
-            chipLabels.forEachIndexed { id, label ->
+            chips.forEachIndexed { id, chip ->
                 OudsFilterChip(
                     selected = selectedChipIndex == id,
                     onClick = { onSelectionChange(id) },
-                    label = label
+                    label = chip.label,
+                    enabled = chip.enabled
                 )
             }
         }
@@ -204,3 +224,5 @@ fun CustomizationDropdownMenu(
 }
 
 data class CustomizationDropdownMenuItem(val label: String, val leadingIcon: (@Composable () -> Unit)? = null, val enabled: Boolean = true)
+
+data class CustomizationFilterChip(val label: String, val enabled: Boolean = true)

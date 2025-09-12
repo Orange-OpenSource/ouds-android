@@ -33,6 +33,7 @@ import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -67,7 +68,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         CustomizationFilterChips(
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_size_label),
-            chipLabels = OudsBadge.Size.entries.map { it.formattedName },
+            chips = OudsBadge.Size.entries.map { CustomizationFilterChip(it.formattedName, enabled = it in enabledSizes) },
             selectedChipIndex = OudsBadge.Size.entries.indexOf(size),
             onSelectionChange = { id -> size = OudsBadge.Size.entries[id] }
         )

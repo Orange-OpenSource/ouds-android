@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.components.badge
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -69,23 +70,36 @@ class BadgeDemoState(
     var type: Type
         get() = _type
         set(value) {
-            if (_type != value
-                && value in listOf(Type.Count, Type.Icon)
-                && size in listOf(OudsBadge.Size.ExtraSmall, OudsBadge.Size.Small)
-            ) {
-                size = OudsBadge.Size.Medium
+            if (_type != value) {
+                _type = value
+                enabledSizes = getEnabledSizes(value)
             }
-            _type = value
         }
 
     var size: OudsBadge.Size by mutableStateOf(size)
 
+    var enabledSizes: List<OudsBadge.Size> = getEnabledSizes(type)
+        private set(value) {
+            field = value
+            if (size !in enabledSizes) {
+                size = enabledSizes.first()
+            }
+        }
+
     var status: OudsBadge.Status by mutableStateOf(status)
 
-    var count: Int by mutableStateOf(count)
+    var count: Int by mutableIntStateOf(count)
 
     val countTextFieldEnabled: Boolean
         get() = type == Type.Count
+
+    private fun getEnabledSizes(type: Type): List<OudsBadge.Size> {
+        return when (type) {
+            Type.Standard -> OudsBadge.Size.entries
+            Type.Count,
+            Type.Icon -> listOf(OudsBadge.Size.Medium, OudsBadge.Size.Large)
+        }
+    }
 
     enum class Type(@StringRes val labelRes: Int) {
         Standard(R.string.app_components_badge_standardType_label),

@@ -51,7 +51,8 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
-            onValueChange = { value -> label = value }
+            onValueChange = { value -> label = value },
+            enabled = labelTextFieldEnabled
         )
     }
 }
