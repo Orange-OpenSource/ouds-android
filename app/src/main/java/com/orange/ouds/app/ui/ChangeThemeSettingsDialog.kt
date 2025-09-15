@@ -25,11 +25,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsSwitchItem
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -71,9 +71,9 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
 
         Row(
             modifier = Modifier
-                .padding(all = 24.dp)
+                .padding(all = OudsTheme.spaces.fixed.large)
                 .align(Alignment.End),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
             OudsButton(
                 label = stringResource(R.string.app_themeSettingsDialog_cancel_label),

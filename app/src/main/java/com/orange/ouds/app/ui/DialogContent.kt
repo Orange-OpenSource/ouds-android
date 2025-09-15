@@ -42,7 +42,7 @@ fun DialogContent(
         Text(
             text = title,
             color = OudsTheme.colorScheme.content.default,
-            modifier = Modifier.padding(all = 24.dp),
+            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.large),
             style = OudsTheme.typography.heading.medium
         )
         Column(modifier = Modifier.padding(contentPadding)) {

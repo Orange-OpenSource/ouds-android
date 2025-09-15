@@ -19,10 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsRadioButtonItem
+import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
 fun ChangeThemeDialog(themeState: ThemeState, onThemeChange: (String) -> Unit, onDismissRequest: () -> Unit) {
@@ -42,7 +42,7 @@ fun ChangeThemeDialog(themeState: ThemeState, onThemeChange: (String) -> Unit, o
 private fun ChangeThemeDialogContent(themeState: ThemeState, onThemeChange: (String) -> Unit) {
     DialogContent(
         title = stringResource(R.string.app_themeDialog_label),
-        contentPadding = PaddingValues(bottom = 8.dp)
+        contentPadding = PaddingValues(bottom = OudsTheme.spaces.fixed.extraSmall)
     ) {
         Column(modifier = Modifier.selectableGroup()) {
             themeState.themes.forEach { theme ->
