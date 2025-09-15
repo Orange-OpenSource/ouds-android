@@ -54,7 +54,7 @@ fun LargeCard(
         interactionSource = interactionSource,
         shape = RectangleShape,
         elevation = cardElevation(defaultElevation = OudsTheme.elevations.raised),
-        onClick = {} // Card onClick is empty because priorityClickable consumes click events first
+        onClick = onClick // Card onClick is needed for keyboard navigation
     ) {
         Column(modifier = Modifier.background(OudsTheme.colorScheme.overlay.default)) {
             illustration()
