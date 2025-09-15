@@ -67,7 +67,7 @@ fun OudsPreview(
     }
     CompositionLocalProvider(value = LocalConfiguration provides configuration) {
         OudsTheme(
-            themeContract = BuildConfig.PREVIEW_THEME,
+            theme = BuildConfig.PREVIEW_THEME,
             darkThemeEnabled = darkThemeEnabled
         ) {
             // Override theme settings
