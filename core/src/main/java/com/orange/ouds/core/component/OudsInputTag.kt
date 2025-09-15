@@ -59,7 +59,7 @@ import com.orange.ouds.foundation.extensions.orElse
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.2.0
  *
  * @param label The label displayed in the input tag.
  * @param onClick Called when the input tag is clicked.

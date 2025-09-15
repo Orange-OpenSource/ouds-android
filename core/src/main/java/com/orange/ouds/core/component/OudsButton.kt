@@ -268,7 +268,7 @@ private fun OudsButton(
         val borderRadius = if (LocalThemeSettings.current.roundedButtonCorners == true) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
 
-        val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_button_loading_a11y) else ""
+        val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_common_loading_a11y) else ""
         val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
             val buttonState = getButtonState(enabled = enabled, loader = loader, interactionState = buttonInteractionState)
             contentColor(hierarchy = hierarchy, state = buttonState)

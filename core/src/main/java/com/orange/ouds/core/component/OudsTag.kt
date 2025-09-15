@@ -36,14 +36,17 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
@@ -73,7 +76,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.2.0
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
@@ -81,7 +84,10 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
  * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
  *   A tag with loading spinner cannot have an [OudsTag.Status.Disabled] status. This will throw an [IllegalStateException].
- * @param shape The shape of the tag. This allows to play with its corners appearance.
+ * @param roundedCorners Controls the shape of the tag.
+ *   When `true`, the tag has rounded corners, providing a softer and more approachable look, suitable for most modern interfaces.
+ *   When `false`, the tag has sharp, square corners, providing a more formal, structured, or technical feel. Often used in business context to label
+ *   promotions, offers or important notices.
  * @param size The size of the tag.
  * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
@@ -100,14 +106,16 @@ fun OudsTag(
     icon: OudsTag.Icon? = null,
     hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
     status: OudsTag.Status = OudsTagDefaults.Status,
-    shape: OudsTag.Shape = OudsTagDefaults.Shape,
+    roundedCorners: Boolean = true,
     size: OudsTag.Size = OudsTagDefaults.Size,
     loader: OudsTag.Loader? = null
 ) {
-    val hasAsset = icon != null || loader != null
-    val isForbidden = status == OudsTag.Status.Disabled && loader != null
+    val hasLoader = loader != null
+    val hasAsset = icon != null || hasLoader
+    val isForbidden = status == OudsTag.Status.Disabled && hasLoader
+    val stateDescription = if (hasLoader) stringResource(id = R.string.core_common_loading_a11y) else ""
 
-    val tagShape = shape(shape)
+    val tagShape = shape(roundedCorners = roundedCorners)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsTag with OudsTag.Status.Disabled status cannot have a loader. This is not allowed." },
@@ -123,13 +131,15 @@ fun OudsTag(
                 modifier = Modifier
                     .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
                     .clip(shape = tagShape)
-                    .background(backgroundColor(status = status, hierarchy = hierarchy))
-                    .semantics(mergeDescendants = true) {}
+                    .background(backgroundColor(status = status, hierarchy = hierarchy, hasLoader = hasLoader))
+                    .semantics(mergeDescendants = true) {
+                        this.stateDescription = stateDescription
+                    }
                     .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
             ) {
-                val contentColor = contentColor(status = status, hierarchy = hierarchy)
+                val contentColor = contentColor(status = status, hierarchy = hierarchy, hasLoader = hasLoader)
 
                 if (hasAsset) {
                     Box(
@@ -137,13 +147,13 @@ fun OudsTag(
                             .size(assetSize(size))
                             .semantics { hideFromAccessibility() }
                     ) {
-                        if (loader != null) {
+                        if (hasLoader) {
                             ProgressIndicator(status = status, hierarchy = hierarchy, size = size, progress = loader.progress)
                         } else {
                             val iconPadding = if (icon is OudsTag.Icon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
                             icon?.Content(
                                 modifier = Modifier.padding(all = iconPadding),
-                                extraParameters = OudsTag.Icon.ExtraParameters(tint = iconColor(status, hierarchy))
+                                extraParameters = OudsTag.Icon.ExtraParameters(tint = iconColor(status = status, hierarchy = hierarchy))
                             )
                         }
                     }
@@ -159,14 +169,9 @@ fun OudsTag(
 }
 
 @Composable
-private fun shape(shape: OudsTag.Shape): RoundedCornerShape {
+private fun shape(roundedCorners: Boolean): RoundedCornerShape {
     return with(OudsTheme.componentsTokens.tag) {
-        RoundedCornerShape(
-            when (shape) {
-                OudsTag.Shape.Square -> OudsTheme.borders.radius.none
-                OudsTag.Shape.Rounded -> borderRadius.value
-            }
-        )
+        RoundedCornerShape(if (roundedCorners) borderRadius.value else OudsTheme.borders.radius.none)
     }
 }
 
@@ -221,43 +226,51 @@ private fun betweenAssetAndLabelSpace(size: OudsTag.Size): Dp {
 }
 
 @Composable
-private fun backgroundColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
-    return when (hierarchy) {
-        OudsTag.Hierarchy.Emphasized -> status.color()
-        OudsTag.Hierarchy.Muted -> status.mutedColor()
+private fun backgroundColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy, hasLoader: Boolean): Color {
+    return if (hasLoader) {
+        OudsTheme.colorScheme.surface.status.neutral.muted
+    } else {
+        when (hierarchy) {
+            OudsTag.Hierarchy.Emphasized -> status.color()
+            OudsTag.Hierarchy.Muted -> status.mutedColor()
+        }
     }
 }
 
 @Composable
 private fun iconColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
     return when (hierarchy) {
-        OudsTag.Hierarchy.Emphasized -> contentColor(status = status, hierarchy = hierarchy)
+        OudsTag.Hierarchy.Emphasized -> contentColor(status = status, hierarchy = hierarchy, hasLoader = false)
         OudsTag.Hierarchy.Muted -> if (status == OudsTag.Status.Disabled) OudsTheme.colorScheme.content.onAction.disabled else status.color()
     }
 }
 
 @Composable
-private fun contentColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy): Color {
-    val disabledContentColor = OudsTheme.colorScheme.content.onAction.disabled
-    return with(OudsTheme.colorScheme.content.onStatus) {
-        when (hierarchy) {
-            OudsTag.Hierarchy.Emphasized -> when (status) {
-                OudsTag.Status.Neutral -> neutral.emphasized
-                OudsTag.Status.Accent -> accent.emphasized
-                OudsTag.Status.Positive -> positive.emphasized
-                OudsTag.Status.Warning -> warning.emphasized
-                OudsTag.Status.Negative -> negative.emphasized
-                OudsTag.Status.Info -> info.emphasized
-                OudsTag.Status.Disabled -> disabledContentColor
-            }
-            OudsTag.Hierarchy.Muted -> when (status) {
-                OudsTag.Status.Neutral -> neutral.muted
-                OudsTag.Status.Accent -> accent.muted
-                OudsTag.Status.Positive -> positive.muted
-                OudsTag.Status.Warning -> warning.muted
-                OudsTag.Status.Negative -> negative.muted
-                OudsTag.Status.Info -> info.muted
-                OudsTag.Status.Disabled -> disabledContentColor
+private fun contentColor(status: OudsTag.Status, hierarchy: OudsTag.Hierarchy, hasLoader: Boolean): Color {
+    return if (hasLoader) {
+        OudsTheme.colorScheme.content.default
+    } else {
+        val disabledContentColor = OudsTheme.colorScheme.content.onAction.disabled
+        with(OudsTheme.colorScheme.content.onStatus) {
+            when (hierarchy) {
+                OudsTag.Hierarchy.Emphasized -> when (status) {
+                    OudsTag.Status.Neutral -> neutral.emphasized
+                    OudsTag.Status.Accent -> accent.emphasized
+                    OudsTag.Status.Positive -> positive.emphasized
+                    OudsTag.Status.Warning -> warning.emphasized
+                    OudsTag.Status.Negative -> negative.emphasized
+                    OudsTag.Status.Info -> info.emphasized
+                    OudsTag.Status.Disabled -> disabledContentColor
+                }
+                OudsTag.Hierarchy.Muted -> when (status) {
+                    OudsTag.Status.Neutral -> neutral.muted
+                    OudsTag.Status.Accent -> accent.muted
+                    OudsTag.Status.Positive -> positive.muted
+                    OudsTag.Status.Warning -> warning.muted
+                    OudsTag.Status.Negative -> negative.muted
+                    OudsTag.Status.Info -> info.muted
+                    OudsTag.Status.Disabled -> disabledContentColor
+                }
             }
         }
     }
@@ -322,7 +335,7 @@ private fun ProgressIndicator(status: OudsTag.Status, hierarchy: OudsTag.Hierarc
         .padding(all = loaderPadding(size = size))
         .fillMaxSize()
         .semantics { hideFromAccessibility() }
-    val color = contentColor(status = status, hierarchy = hierarchy)
+    val color = contentColor(status = status, hierarchy = hierarchy, hasLoader = true)
     val strokeWidth = when (size) {
         OudsTag.Size.Default -> 2.4.dp
         OudsTag.Size.Small -> 2.dp
@@ -358,11 +371,6 @@ object OudsTagDefaults {
      * Default hierarchy of an [OudsTag].
      */
     val Hierarchy = OudsTag.Hierarchy.Emphasized
-
-    /**
-     * Default shape of an [OudsTag].
-     */
-    val Shape = OudsTag.Shape.Rounded
 
     /**
      * Default size of an [OudsTag].
@@ -458,21 +466,6 @@ object OudsTag {
             get() = extraParameters.tint
     }
 
-    enum class Shape {
-
-        /**
-         * A tag with sharp, square corners.
-         * Squared tags provide a more formal, structured, or technical feel. They are often used in business contexts to label promotions, offers, or important notices.
-         */
-        Square,
-
-        /**
-         * A tag with fully rounded corners, creating a pill-shaped appearance.
-         * Rounded tags offer a softer and more approachable look, suitable for most modern interfaces.
-         */
-        Rounded
-    }
-
     enum class Size {
 
         /** The standard tag size, suitable for most use cases and offering good readability. */
@@ -501,7 +494,7 @@ object OudsTag {
 
         /** Conveys informational messages or supplementary details. Used for neutral, helpful, or contextual information. */
         Info,
-        
+
         /** Signals caution or a potentially risky situation. Used to draw attention to items requiring user awareness or intervention. */
         Warning,
 
@@ -572,7 +565,7 @@ internal fun PreviewOudsTag(darkThemeEnabled: Boolean, parameter: OudsTagPreview
                 hierarchy = hierarchy,
                 status = status,
                 size = size,
-                shape = shape,
+                roundedCorners = roundedCorners,
                 loader = loader,
             )
         }
@@ -582,7 +575,7 @@ internal fun PreviewOudsTag(darkThemeEnabled: Boolean, parameter: OudsTagPreview
 internal data class OudsTagPreviewParameter(
     val icon: OudsTag.Icon? = null,
     val hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
-    val shape: OudsTag.Shape = OudsTagDefaults.Shape,
+    val roundedCorners: Boolean = true,
     val loader: OudsTag.Loader? = null
 )
 
@@ -597,7 +590,7 @@ private val previewParameterValues: List<OudsTagPreviewParameter>
             OudsTagPreviewParameter(OudsTag.Icon.Bullet, hierarchy = OudsTag.Hierarchy.Muted),
             OudsTagPreviewParameter(icon, hierarchy = OudsTag.Hierarchy.Muted),
             OudsTagPreviewParameter(loader = loader, hierarchy = OudsTag.Hierarchy.Muted),
-            OudsTagPreviewParameter(icon, shape = OudsTag.Shape.Square),
+            OudsTagPreviewParameter(icon, roundedCorners = false),
             OudsTagPreviewParameter(loader = loader)
         )
     }

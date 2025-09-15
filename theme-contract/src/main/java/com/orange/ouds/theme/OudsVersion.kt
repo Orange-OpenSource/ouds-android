@@ -24,8 +24,9 @@ object OudsVersion {
         const val Link = "2.1.0"
         const val RadioButton = "1.1.0"
         const val Switch = "1.2.0"
-        const val Tag = "1.1.0"
+        const val Tag = "1.2.0"
     }
+
     object Tokens {
         const val OudsCore = "1.5.0"
         const val AndroidCore = "1.0.0"
