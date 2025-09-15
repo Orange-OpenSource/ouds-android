@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
@@ -70,7 +71,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = error
+                    error = if (error) OudsControlItem.Error(stringResource(R.string.app_components_controlItem_error_a11y)) else null
                 )
             }
         }
@@ -102,7 +103,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = error
+                    error = if (error) OudsControlItem.Error(stringResource(R.string.app_components_controlItem_error_a11y)) else null
                 )
             }
         }

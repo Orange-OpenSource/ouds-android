@@ -166,6 +166,7 @@
     <string name="app_components_controlItem_readOnly_label">Read only</string>
     <string name="app_components_controlItem_divider_label">Divider</string>
     <string name="app_components_controlItem_reversed_label">Reversed</string>
+    <string name="app_components_controlItem_error_a11y">Error message</string>
 
     <!-- Components: divider -->
     <string name="app_components_divider_label">Divider</string>

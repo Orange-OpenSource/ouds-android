@@ -83,7 +83,7 @@ fun OudsSwitchItem(
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false,
+    error: OudsControlItem.Error? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -113,7 +113,6 @@ fun OudsSwitchItem(
         enabled = enabled,
         readOnly = readOnly,
         error = error,
-        errorComponentName = "OudsSwitchItem",
         indicator = {
             OudsSwitchIndicator(
                 state = state.toControlState(),
@@ -121,7 +120,8 @@ fun OudsSwitchItem(
             )
         },
         indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.Start else OudsControlItem.IndicatorPosition.End,
-        checkedContentPreviewStatus = if (checked) "Selected" else "Unselected",
+        checkedContentComponentName = "OudsSwitchItem",
+        checkedContentSelectionStatus = if (checked) "Selected" else "Unselected",
         modifier = modifier
             .then(toggleableModifier)
             .background(color = backgroundColor.value)

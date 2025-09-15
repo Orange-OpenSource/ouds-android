@@ -155,6 +155,7 @@
     <string name="app_components_controlItem_readOnly_label">للقراءة فقط</string>
     <string name="app_components_controlItem_divider_label">فاصل</string>
     <string name="app_components_controlItem_reversed_label">معكوس</string>
+    <string name="app_components_controlItem_error_a11y">Error message</string>
 
     <!-- Components: divider -->
     <string name="app_components_divider_label">فاصل</string>
