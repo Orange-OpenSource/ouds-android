@@ -38,6 +38,7 @@
     <string name="app_themeSettingsDialog_cancel_label">Cancel</string>
     <string name="app_themeSettingsDialog_label">Change theme settings</string>
     <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner button</string>
+    <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Rounded corner text inputs</string>
 
     <!-- Bottom navigation -->
     <string name="app_bottomBar_tokens_label">الرموز</string>
