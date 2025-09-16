@@ -163,11 +163,6 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewButtonDemoScreen() = with(OudsThemeSettings(roundedCornerButtons = false)) {
-    OudsPreview(themeSettings = this) {
-        ButtonDemoScreen(
-            roundedCorners = roundedCornerButtons.orElse { false },
-            onRoundedCornersChange = {}
-        )
-    }
+private fun PreviewButtonDemoScreen() = OudsPreview {
+    ButtonDemoScreen()
 }
