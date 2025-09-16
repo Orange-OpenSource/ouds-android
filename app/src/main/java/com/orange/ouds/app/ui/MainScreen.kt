@@ -86,7 +86,7 @@ fun MainScreen(
     var changeThemeSettingsDialogVisible by rememberSaveable { mutableStateOf(false) }
 
     OudsTheme(
-        themeContract = mainState.themeState.currentTheme,
+        theme = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
         Scaffold(

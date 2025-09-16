@@ -123,19 +123,19 @@ object OudsTheme {
 /**
  * [OudsTheme] is the theme to apply to your screens in a Jetpack Compose application. Use it at the top of
  * your application in replacement of the `MaterialTheme`.
- * Cause OUDS supports multi-theme, you should pass a [themeContract] as theme configuration to use an OUDS supported theme.
+ * Cause OUDS supports multi-theme, you should pass the OUDS supported [theme] used by your application.
  *
- * @param themeContract Theme contract which contain the configuration of the OudsTheme: colors, typography...
+ * @param theme Theme to apply to your application. It must implement [OudsThemeContract] (e.g. OrangeTheme, Sosh Theme, ...)
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
- * @param content Theme nested content. OudsTheme will be applied to this content.
+ * @param content Theme nested content. The provided [theme] will be applied to this content.
  */
 @Composable
 fun OudsTheme(
-    themeContract: OudsThemeContract,
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    with(themeContract) {
+    with(theme) {
         val colorScheme = if (darkThemeEnabled) colorTokens.darkColorScheme else colorTokens.lightColorScheme
         val materialColorScheme = if (darkThemeEnabled) OudsMaterialColorTokens.materialDarkColorScheme else OudsMaterialColorTokens.materialLightColorScheme
         val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
