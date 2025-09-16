@@ -59,11 +59,13 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
             OudsSwitchItem(
                 checked = when (themeSetting) {
                     ThemeSetting.RoundedCornerButtons -> themeSettings.roundedCornerButtons.orElse { false }
+                    ThemeSetting.RoundedCornerTextInputs -> themeSettings.roundedCornerTextInputs.orElse { false }
                 },
                 label = stringResource(themeSetting.titleResId),
                 onCheckedChange = { checked ->
                     themeSettings = when (themeSetting) {
                         ThemeSetting.RoundedCornerButtons -> themeSettings.copy(roundedCornerButtons = checked)
+                        ThemeSetting.RoundedCornerTextInputs -> themeSettings.copy(roundedCornerTextInputs = checked)
                     }
                 },
                 divider = false
@@ -94,6 +96,7 @@ private fun getSupportedThemeSettings(theme: OudsThemeContract): List<ThemeSetti
         with(theme.settings) {
             when (themeSetting) {
                 ThemeSetting.RoundedCornerButtons -> roundedCornerButtons != null
+                ThemeSetting.RoundedCornerTextInputs -> roundedCornerTextInputs != null
             }
         }
     }
@@ -108,12 +111,13 @@ object ChangeThemeSettingsDialog {
 
 private enum class ThemeSetting {
 
-    RoundedCornerButtons;
+    RoundedCornerButtons, RoundedCornerTextInputs;
 
     val titleResId: Int
         @StringRes
         get() = when (this) {
             RoundedCornerButtons -> R.string.app_themeSettingsDialog_roundedCornerButtons_label
+            RoundedCornerTextInputs -> R.string.app_themeSettingsDialog_roundedCornerTextInputs_label
         }
 }
 
