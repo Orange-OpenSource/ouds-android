@@ -16,10 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.MainViewModel
-import com.orange.ouds.app.ui.ThemeState
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
@@ -34,34 +31,14 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
-fun ButtonDemoScreen(themeState: ThemeState, viewModel: MainViewModel = hiltViewModel()) {
-    ButtonDemoScreen(
-        roundedCorners = themeState.settings.roundedButtonCorners.orElse { false },
-        onRoundedCornersChange = { roundedCorners ->
-            val themeSettings = themeState.settings.copy(roundedButtonCorners = roundedCorners)
-            themeState.settings = themeSettings
-            viewModel.storeUserThemeSettings(themeSettings)
-        }
-    )
-}
-
-@Composable
-fun ButtonDemoScreen(roundedCorners: Boolean, onRoundedCornersChange: (Boolean) -> Unit) {
+fun ButtonDemoScreen() {
     val state = rememberButtonDemoState()
     DemoScreen(
         description = stringResource(id = Component.Button.descriptionRes),
-        bottomSheetContent = {
-            ButtonDemoBottomSheetContent(
-                state = state,
-                roundedCorners = roundedCorners,
-                onRoundedCornersChange = onRoundedCornersChange
-            )
-        },
+        bottomSheetContent = { ButtonDemoBottomSheetContent(state = state) },
         codeSnippet = { buttonDemoCodeSnippet(state = state) },
         demoContent = { ButtonDemoContent(state = state) },
         demoContentOnColoredBox = state.onColoredBox,
@@ -70,13 +47,8 @@ fun ButtonDemoScreen(roundedCorners: Boolean, onRoundedCornersChange: (Boolean) 
 }
 
 @Composable
-private fun ButtonDemoBottomSheetContent(state: ButtonDemoState, roundedCorners: Boolean, onRoundedCornersChange: (Boolean) -> Unit) {
+private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
     with(state) {
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_roundedCorners_label),
-            checked = roundedCorners,
-            onCheckedChange = onRoundedCornersChange
-        )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_common_enabled_label),
             checked = enabled,
@@ -188,11 +160,6 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewButtonDemoScreen() = with(OudsThemeSettings(roundedButtonCorners = false)) {
-    OudsPreview(themeSettings = this) {
-        ButtonDemoScreen(
-            roundedCorners = roundedButtonCorners.orElse { false },
-            onRoundedCornersChange = {}
-        )
-    }
+private fun PreviewButtonDemoScreen() = OudsPreview {
+    ButtonDemoScreen()
 }

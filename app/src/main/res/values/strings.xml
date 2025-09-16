@@ -27,11 +27,18 @@
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">Change theme</string>
+    <string name="app_topBar_themeSettings_button_a11y">Change theme settings</string>
     <string name="app_topBar_darkMode_button_a11y">Apply dark mode</string>
     <string name="app_topBar_lightMode_button_a11y">Apply light mode</string>
 
     <!-- Change theme dialog -->
     <string name="app_themeDialog_label">Change theme</string>
+
+    <!-- Change theme settings dialog -->
+    <string name="app_themeSettingsDialog_apply_label">Apply</string>
+    <string name="app_themeSettingsDialog_cancel_label">Cancel</string>
+    <string name="app_themeSettingsDialog_label">Change theme settings</string>
+    <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner button</string>
 
     <!-- Bottom navigation -->
     <string name="app_bottomBar_tokens_label">Tokens</string>
@@ -116,7 +123,6 @@
     <string name="app_components_common_layout_label">Layout</string>
     <string name="app_components_common_loader_label">Loader</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
-    <string name="app_components_common_roundedCorners_label">Rounded corners</string>
     <string name="app_components_common_size_label">Size</string>
     <string name="app_components_common_status_label">Status</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
@@ -202,6 +208,7 @@
     <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
     <string name="app_components_tag_tag_label">Tag</string>
     <string name="app_components_tag_inputTag_label">Input tag</string>
+    <string name="app_components_tag_roundedCorners_label">Rounded corners</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>

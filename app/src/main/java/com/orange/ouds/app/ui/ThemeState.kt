@@ -80,6 +80,7 @@ class ThemeState(
         private set
 
     var currentTheme by mutableStateOf(getCurrentTheme(currentThemeName))
+        private set
 
     fun setCurrentTheme(name: String) {
         currentThemeName = name
@@ -96,7 +97,7 @@ class ThemeState(
         return with(settings) {
             names.mapNotNull { name ->
                 when (name) {
-                    ORANGE_THEME_NAME -> OrangeTheme(roundedButtonCorners = roundedButtonCorners.orElse { false })
+                    ORANGE_THEME_NAME -> OrangeTheme(roundedCornerButtons = roundedCornerButtons.orElse { false })
                     SOSH_THEME_NAME -> SoshTheme()
                     else -> null
                 }

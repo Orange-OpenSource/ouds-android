@@ -32,7 +32,7 @@ class MainState(
 fun rememberMainState(
     themeState: ThemeState = rememberThemeState(),
     appNavigationState: AppNavigationState = rememberAppNavigationState(),
-    topBarState: TopBarState = rememberTopBarState(appNavigationState),
+    topBarState: TopBarState = rememberTopBarState(appNavigationState, themeState),
 ) = remember(themeState, appNavigationState, topBarState) {
     MainState(themeState, appNavigationState, topBarState)
 }

@@ -16,7 +16,6 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.ThemeState
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
@@ -42,7 +41,7 @@ sealed class Component(
     @StringRes val descriptionRes: Int,
     val illustration: @Composable () -> Unit,
     val variants: List<Variant> = emptyList(),
-    val demoScreen: (@Composable (ThemeState) -> Unit)? = null
+    val demoScreen: (@Composable () -> Unit)? = null
 ) {
 
     companion object {
@@ -62,7 +61,7 @@ sealed class Component(
         R.string.app_components_button_label,
         R.string.app_components_button_description_text,
         { ButtonIllustration() },
-        demoScreen = { ButtonDemoScreen(it) }
+        demoScreen = { ButtonDemoScreen() }
     )
 
     data object Checkbox : Component(

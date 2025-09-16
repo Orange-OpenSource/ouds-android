@@ -18,7 +18,7 @@ import kotlinx.parcelize.Parcelize
 /**
  * Theme settings.
  *
- * @property roundedButtonCorners Indicates if rounded corners should be applied to every buttons.
+ * @property roundedCornerButtons Indicates if rounded corners should be applied to every buttons.
  *   Set to `false` for a default finish, or `true` for a finish with rounded corner.
  *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
  *   For standard or business-oriented journeys, keep the default corners.
@@ -28,4 +28,4 @@ import kotlinx.parcelize.Parcelize
  * @constructor Creates an instance of [OudsThemeSettings].
  */
 @Parcelize
-data class OudsThemeSettings(val roundedButtonCorners: Boolean? = null) : Parcelable
+data class OudsThemeSettings(val roundedCornerButtons: Boolean? = null) : Parcelable

@@ -96,7 +96,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             enabled = loaderSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_roundedCorners_label),
+            label = stringResource(R.string.app_components_tag_roundedCorners_label),
             checked = roundedCorners,
             onCheckedChange = { roundedCorners = it },
         )

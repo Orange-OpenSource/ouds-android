@@ -38,7 +38,7 @@ fun NavGraphBuilder.addComponentsNavGraph(mainState: MainState) {
         val component = remember(routeComponentId) { Component.fromId(routeComponentId) }
         component?.let {
             if (component.variants.isEmpty()) {
-                component.demoScreen?.invoke(mainState.themeState)
+                component.demoScreen?.invoke()
             } else {
                 ComponentVariantsScreen(component = component, onVariantClick = { id ->
                     mainState.navigationState.navController.navigateToElement(ComponentsNavigation.ComponentVariantRoute, id, from)
