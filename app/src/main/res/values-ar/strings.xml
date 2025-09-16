@@ -197,6 +197,7 @@
     <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
     <string name="app_components_tag_tag_label">Tag</string>
     <string name="app_components_tag_inputTag_label">Input tag</string>
+    <string name="app_components_tag_roundedCorners_label">Rounded corners</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
