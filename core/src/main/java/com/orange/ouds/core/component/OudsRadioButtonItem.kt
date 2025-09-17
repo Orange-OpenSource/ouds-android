@@ -30,6 +30,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
@@ -68,7 +69,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  * will not be clickable.
  * @param readOnly Controls the read only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
  * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the radio button item will be displayed in disabled state.
- * @param error Controls the error state of the radio button item.
+ * @param error Optional [OudsError] to provide in the case of the radio button item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's radio button. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -88,7 +89,7 @@ fun OudsRadioButtonItem(
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: OudsControlItem.Error? = null,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -139,7 +140,7 @@ fun OudsRadioButtonItem(
 }
 
 @Composable
-private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsControlItem.Error?, state: OudsControlItem.State): Modifier {
+private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlItem.State): Modifier {
     val borderColor = outlineBorderColor(state, selected, error)
 
     return if (outlined && borderColor != null) {
@@ -150,7 +151,7 @@ private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsCon
 }
 
 @Composable
-private fun outlineBorderColor(state: OudsControlItem.State, selected: Boolean, error: OudsControlItem.Error?): Color? {
+private fun outlineBorderColor(state: OudsControlItem.State, selected: Boolean, error: OudsError?): Color? {
     return if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {

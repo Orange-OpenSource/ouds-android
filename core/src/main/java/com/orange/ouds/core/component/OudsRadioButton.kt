@@ -33,9 +33,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.error
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
@@ -45,6 +48,7 @@ import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -63,7 +67,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button.
  * @param enabled Controls the enabled state of the radio button. When `false`, this radio button will not be clickable.
- * @param error Controls the error state of the radio button.
+ * @param error Optional [OudsError] to provide in the case of the radio button should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this radio button. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -75,11 +79,11 @@ fun OudsRadioButton(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    error: Boolean = false,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     val isDisabledPreviewState = getPreviewEnumEntry<OudsControl.State>() == OudsControl.State.Disabled
-    val isForbidden = error && (!enabled || isDisabledPreviewState)
+    val isForbidden = error != null && (!enabled || isDisabledPreviewState)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsRadioButton set to disabled with error parameter activated is not allowed." }
@@ -110,10 +114,19 @@ fun OudsRadioButton(
                 .heightIn(min = radioButtonTokens.sizeMinHeight.value, max = radioButtonTokens.sizeMaxHeight.value)
                 .background(color = backgroundColor.value)
                 .outerBorder(state = state, handleHighContrastMode = true)
-                .then(selectableModifier),
+                .then(selectableModifier)
+                .run {
+                    error?.description?.let { description ->
+                        semantics {
+                            error(description)
+                        }
+                    }.orElse {
+                        this
+                    }
+                },
             contentAlignment = Alignment.Center,
         ) {
-            OudsRadioButtonIndicator(state = state, selected = selected, error = error)
+            OudsRadioButtonIndicator(state = state, selected = selected, error = error != null)
         }
     }
 }
@@ -231,15 +244,15 @@ internal fun PreviewOudsRadioButton(
 
 internal data class OudsRadioButtonPreviewParameter(
     val selected: Boolean,
-    val error: Boolean
+    val error: OudsError? = null
 )
 
 internal class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsRadioButtonPreviewParameter>
     get() = listOf(
-        OudsRadioButtonPreviewParameter(selected = false, error = false),
-        OudsRadioButtonPreviewParameter(selected = false, error = true),
-        OudsRadioButtonPreviewParameter(selected = true, error = false),
-        OudsRadioButtonPreviewParameter(selected = true, error = true)
+        OudsRadioButtonPreviewParameter(selected = false),
+        OudsRadioButtonPreviewParameter(selected = false, error = OudsError("")),
+        OudsRadioButtonPreviewParameter(selected = true),
+        OudsRadioButtonPreviewParameter(selected = true, error = OudsError(""))
     )

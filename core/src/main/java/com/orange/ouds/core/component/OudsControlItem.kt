@@ -35,6 +35,7 @@ import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -63,7 +64,7 @@ internal fun OudsControlItem(
     divider: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
-    error: OudsControlItem.Error?,
+    error: OudsError?,
     indicator: @Composable () -> Unit,
     indicatorPosition: OudsControlItem.IndicatorPosition,
     checkedContentComponentName: String,
@@ -232,13 +233,6 @@ object OudsControlItem {
             super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeIcon.value))
         }
     }
-
-    /**
-     * An OudsControlItem error.
-     *
-     * @param description A localized description explaining the error for the accessibility services.
-     */
-    class Error(val description: String)
 }
 
 @Composable
@@ -294,7 +288,7 @@ private fun backgroundColor(state: OudsControlItem.State): Color {
 }
 
 @Composable
-private fun labelColor(state: OudsControlItem.State, error: OudsControlItem.Error?) =
+private fun labelColor(state: OudsControlItem.State, error: OudsError?) =
     if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
@@ -323,7 +317,7 @@ internal data class OudsControlItemPreviewParameter<T, S>(
     val helperText: String? = null,
     val divider: Boolean = true,
     val hasIcon: Boolean = false,
-    val error: OudsControlItem.Error? = null,
+    val error: OudsError? = null,
     val reversed: Boolean = false,
     val additionalLabel: String? = null
 )
@@ -354,7 +348,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                     when (index) {
                         0 -> this
                         1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
-                        else -> copy(helperText = helperText, divider = false, error = OudsControlItem.Error(""))
+                        else -> copy(helperText = helperText, divider = false, error = OudsError(""))
                     }
                 }
             }
