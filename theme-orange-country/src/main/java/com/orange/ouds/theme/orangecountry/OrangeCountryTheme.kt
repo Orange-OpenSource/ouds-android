@@ -14,7 +14,6 @@ package com.orange.ouds.theme.orangecountry
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orange.tokens.components.OrangeComponentsTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorActionSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorBorderSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorContentSemanticTokens
