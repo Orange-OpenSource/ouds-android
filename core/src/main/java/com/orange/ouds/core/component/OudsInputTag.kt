@@ -157,6 +157,21 @@ fun OudsInputTag(
     }
 }
 
+/**
+ * Please use OudsInputTag composable instead, which is the equivalent in OUDS environment.
+ * @suppress
+ */
+@Composable
+fun OudsInputChip(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsInputTag(label = label, onClick = onClick, modifier = modifier, enabled = enabled, interactionSource = interactionSource)
+}
+
 @Composable
 private fun getInputTagState(interactionState: InteractionState, enabled: Boolean): OudsInputTag.State {
     return getPreviewEnumEntry<OudsInputTag.State>().orElse {
