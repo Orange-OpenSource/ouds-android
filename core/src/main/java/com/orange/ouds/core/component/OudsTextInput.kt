@@ -538,7 +538,7 @@ private fun OudsTextInputDecorator(
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
                         start = spacePaddingInlineDefault.value,
-                        end = if (trailingIconButton != null || state == OudsTextInput.State.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
+                        end = if (trailingIconButton != null || error || state == OudsTextInput.State.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
                     ),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
