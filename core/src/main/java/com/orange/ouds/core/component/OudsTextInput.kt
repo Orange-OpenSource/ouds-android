@@ -448,7 +448,6 @@ fun OudsTextInput(
                         helperText = helperText,
                         helperLink = helperLink
                     )
-
                 }
             )
         }
@@ -655,7 +654,7 @@ private fun OudsTextInputDecorator(
             // Helper link
             helperLink?.let { link ->
                 OudsLink(
-                    modifier = Modifier.padding(start = spacePaddingInlineDefault.value),
+                    modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
                     label = link.text,
                     onClick = link.onClick,
                     size = OudsLink.Size.Small
