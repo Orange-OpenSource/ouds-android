@@ -119,7 +119,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   does not meet validation rules or expected formatting.
  *   False by default.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- *   used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
+ *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
@@ -247,7 +247,7 @@ fun OudsTextInput(
  *   does not meet validation rules or expected formatting.
  *   False by default.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- *   used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
+ *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
@@ -369,7 +369,7 @@ fun OudsTextInput(
  *   does not meet validation rules or expected formatting.
  *   False by default.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- * used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
+ * used. It should ideally only take up a single line, though may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
