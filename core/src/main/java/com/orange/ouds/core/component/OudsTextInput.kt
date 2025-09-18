@@ -597,17 +597,20 @@ private fun OudsTextInputDecorator(
 
                 // Trailing elements
                 if (error || state == OudsTextInput.State.Loading || trailingIconButton != null) {
+                    val buttonTokens = OudsTheme.componentsTokens.button
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value)
                     ) {
                         // Error icon
                         if (error) {
+
                             Box(
-                                modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeIconOnly.value),
+                                modifier = Modifier.padding(all = if (trailingIconButton != null) 0.dp else buttonTokens.spaceInsetIconOnly.value),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
+                                    modifier = Modifier.size(buttonTokens.sizeIconOnly.value),
                                     painter = painterResource(id = OudsTheme.drawableResources.important),
                                     contentDescription = null,
                                     tint = errorContentColor(state = state)
@@ -618,7 +621,6 @@ private fun OudsTextInputDecorator(
                         // Loader
                         if (state == OudsTextInput.State.Loading) {
                             val progress = if (getPreviewEnumEntry<OudsTextInput.State>() == OudsTextInput.State.Loading) 0.75f else loader?.progress
-                            val buttonTokens = OudsTheme.componentsTokens.button
                             Box(
                                 modifier = Modifier
                                     .widthIn(min = buttonTokens.sizeMinWidth.value)
