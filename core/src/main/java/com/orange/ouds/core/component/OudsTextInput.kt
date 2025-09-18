@@ -534,7 +534,7 @@ private fun OudsTextInputDecorator(
         Column {
             Row(
                 modifier = styleModifier
-                    .sizeIn(minHeight = sizeMinHeight.dp)
+                    .sizeIn(minWidth = sizeMinWidth.dp, maxWidth = sizeMaxWidth.dp, minHeight = sizeMinHeight.dp)
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
                         start = spacePaddingInlineDefault.value,
