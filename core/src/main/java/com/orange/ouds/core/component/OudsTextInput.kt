@@ -544,7 +544,7 @@ private fun OudsTextInputDecorator(
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
             ) {
                 // Leading icon
-                leadingIcon?.Content(modifier = Modifier.size(OudsTheme.componentsTokens.button.sizeIconOnly.value))
+                leadingIcon?.Content(modifier = Modifier.size(sizeLeadingIcon.value))
 
                 // Central content
                 Column(
