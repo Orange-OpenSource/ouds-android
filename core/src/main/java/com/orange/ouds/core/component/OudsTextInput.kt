@@ -295,7 +295,6 @@ fun OudsTextInput(
         readOnly = readOnly,
         error = error,
         basicTextField = {
-            BasicTextField(value = "", onValueChange = {})
             BasicTextField(
                 value = value,
                 onValueChange = onValueChange,
@@ -418,7 +417,6 @@ fun OudsTextInput(
         readOnly = readOnly,
         error = error,
         basicTextField = {
-            BasicTextField(value = "", onValueChange = {})
             BasicTextField(
                 value = value,
                 onValueChange = onValueChange,
