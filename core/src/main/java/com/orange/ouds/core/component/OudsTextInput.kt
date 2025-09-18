@@ -975,7 +975,7 @@ internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsText
     with(parameter) {
         PreviewEnumEntries<OudsTextInput.State>(columnCount = 1) { state ->
             OudsTextInput(
-                textFieldState = rememberTextFieldState(initialValue),
+                textFieldState = rememberTextFieldState(value),
                 label = label,
                 placeholder = placeholder,
                 //outlined = true,
@@ -1026,7 +1026,7 @@ internal fun PreviewOudsTextInputWithLongLabels() = OudsPreview {
 }
 
 internal data class OudsTextInputPreviewParameter(
-    val initialValue: String,
+    val value: String,
     val label: String? = null,
     val placeholder: String? = null,
     val leadingIcon: OudsTextInput.LeadingIcon? = null,
