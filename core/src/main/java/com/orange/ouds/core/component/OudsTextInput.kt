@@ -557,7 +557,9 @@ private fun OudsTextInputDecorator(
                             modifier = Modifier.fillMaxWidth(),
                             text = label,
                             style = OudsTheme.typography.label.default.small,
-                            color = labelColor(state = state, error = error)
+                            color = labelColor(state = state, error = error),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
 
@@ -581,7 +583,9 @@ private fun OudsTextInputDecorator(
                                     Text(
                                         text = label,
                                         style = OudsTheme.typography.label.default.large,
-                                        color = labelColor(state = state, error = error)
+                                        color = labelColor(state = state, error = error),
+                                        maxLines = 2,
+                                        overflow = TextOverflow.Ellipsis
                                     )
                                 }
                             }
@@ -1000,12 +1004,23 @@ internal fun PreviewOudsTextInputWithRoundedCorners() = OudsPreview(themeSetting
 
 @Preview
 @Composable
-internal fun PreviewOudsTextInputWithTwoLinesLabel() = OudsPreview {
-    OudsTextInput(
-        modifier = Modifier.padding(all = 10.dp),
-        textFieldState = rememberTextFieldState(),
-        label = "Very long label displayed \non two lines",
-    )
+internal fun PreviewOudsTextInputWithLongLabels() = OudsPreview {
+    val labels = listOf("Two lines\nlabel", "Three\nlines\nlabel")
+    val modifier = Modifier.padding(all = 10.dp)
+    Column {
+        labels.forEach { label ->
+            OudsTextInput(
+                modifier = modifier,
+                textFieldState = rememberTextFieldState(),
+                label = label,
+            )
+            OudsTextInput(
+                modifier = modifier,
+                textFieldState = rememberTextFieldState("text"),
+                label = label,
+            )
+        }
+    }
 }
 
 internal data class OudsTextInputPreviewParameter(
