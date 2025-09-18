@@ -96,7 +96,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design version: 1.1.0
  *
- * @param textFieldState [TextFieldState] object that holds the internal editing state of [BasicTextField] used in [OudsTextInput].
+ * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text input.
  * @param label Label displayed above the text input. It describe the purpose of the input.
  * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
