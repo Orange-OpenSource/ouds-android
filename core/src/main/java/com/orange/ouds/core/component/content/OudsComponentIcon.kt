@@ -26,7 +26,7 @@ import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
- * An icon or in a component. If clickable, it is displayed as an icon-only [OudsButton].
+ * An icon in a component. If clickable, it is displayed as an icon-only [OudsButton] with [OudsButton.Hierarchy.Minimal].
  *
  * @suppress
  */
