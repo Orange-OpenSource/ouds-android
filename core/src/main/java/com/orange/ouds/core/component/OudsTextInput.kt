@@ -785,10 +785,11 @@ private fun Modifier.bottomBorder(state: OudsTextInput.State, outlined: Boolean,
             }
             drawPath(path, color = color)
         } else {
+            val lineY = size.height - (thickness.toPx() / 2)
             drawLine(
                 color = color,
-                start = Offset(0f, size.height),
-                end = Offset(size.width, size.height),
+                start = Offset(0f, lineY),
+                end = Offset(size.width, lineY),
                 strokeWidth = thickness.toPx()
             )
         }
