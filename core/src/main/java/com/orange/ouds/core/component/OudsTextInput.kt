@@ -549,7 +549,7 @@ private fun OudsTextInputDecorator(
                 // Central content
                 Column(
                     modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
                 ) {
                     // Small label on top
                     if (label != null && (!emptyText || !placeholder.isNullOrEmpty() || state == OudsTextInput.State.Focused)) {
