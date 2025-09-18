@@ -101,9 +101,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param label Label displayed above the text input. It describe the purpose of the input.
  * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
  * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
- *   envelope for email, etc.).
+ *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
- *   clear input, toggle password visibility, etc.
+ *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
  * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting like a country code, a unit...
  * @param suffix Text placed after the user's input, often used to display a currency or a unit (kg, %, cm…).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
@@ -114,9 +114,10 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
  * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
- *   does not meet validation rules or expected formatting
+ *   does not meet validation rules or expected formatting.
  *   False by default.
- * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be used.
+ * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
+ * used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
@@ -221,9 +222,9 @@ fun OudsTextInput(
  * @param label Label displayed above the text input. It describe the purpose of the input.
  * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
  * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
- *   envelope for email, etc.).
+ *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
- *   clear input, toggle password visibility, etc.
+ *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
  * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting like a country code, a unit...
  * @param suffix Text placed after the user's input, often used to display a currency or a unit (kg, %, cm…).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
@@ -234,9 +235,10 @@ fun OudsTextInput(
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
  * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
- *   does not meet validation rules or expected formatting
+ *   does not meet validation rules or expected formatting.
  *   False by default.
- * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be used.
+ * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
+ * used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
@@ -338,9 +340,9 @@ fun OudsTextInput(
  * @param label Label displayed above the text input. It describe the purpose of the input.
  * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
  * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
- *   envelope for email, etc.).
+ *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
- *   clear input, toggle password visibility, etc.
+ *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
  * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting like a country code, a unit...
  * @param suffix Text placed after the user's input, often used to display a currency or a unit (kg, %, cm…).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
@@ -351,9 +353,10 @@ fun OudsTextInput(
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
  * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
- *   does not meet validation rules or expected formatting
+ *   does not meet validation rules or expected formatting.
  *   False by default.
- * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be used.
+ * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
+ * used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
