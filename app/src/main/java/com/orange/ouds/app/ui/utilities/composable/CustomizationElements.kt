@@ -43,7 +43,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
-import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.OudsTextInput
@@ -179,7 +178,7 @@ fun CustomizationTextField(
         keyboardOptions = keyboardOptions,
         trailingIconButton = if (value.text.isNotEmpty()) {
             OudsTextInput.TrailingIconButton(
-                painter = painterResource(R.drawable.ic_delete),
+                painter = painterResource(com.orange.ouds.theme.R.drawable.ic_delete),
                 contentDescription = "",
                 onClick = {
                     onValueChange(value.copy(text = ""))
