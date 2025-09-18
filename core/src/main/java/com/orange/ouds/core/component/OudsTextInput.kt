@@ -177,7 +177,7 @@ fun OudsTextInput(
             BasicTextField(
                 modifier = modifier.fillMaxWidth(),
                 state = textFieldState,
-                enabled = textFieldEnabled(enabled = enabled, state = state),
+                enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(),
                 lineLimits = TextFieldLineLimits.SingleLine,
@@ -300,7 +300,7 @@ fun OudsTextInput(
                 value = value,
                 onValueChange = onValueChange,
                 modifier = modifier.fillMaxWidth(),
-                enabled = textFieldEnabled(enabled = enabled, state = state),
+                enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(),
                 singleLine = true,
@@ -423,7 +423,7 @@ fun OudsTextInput(
                 value = value,
                 onValueChange = onValueChange,
                 modifier = modifier.fillMaxWidth(),
-                enabled = textFieldEnabled(enabled = enabled, state = state),
+                enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(),
                 singleLine = true,
@@ -840,7 +840,7 @@ private fun placeholderColor(state: OudsTextInput.State) =
 private fun textFieldTextStyle() = OudsTheme.typography.label.default.large.copy(color = OudsTheme.colorScheme.content.default)
 
 @Composable
-private fun textFieldEnabled(enabled: Boolean, state: OudsTextInput.State) = enabled && state != OudsTextInput.State.Loading
+private fun textFieldEnabled(state: OudsTextInput.State) = state != OudsTextInput.State.Disabled && state != OudsTextInput.State.Loading
 
 /**
  * Contains classes to build an [OudsTextInput].
