@@ -95,7 +95,7 @@ internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (Ou
 internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme()
 
 @Composable
-internal fun <T> getPreviewEnumEntry(): T? {
+internal inline fun <reified T> getPreviewEnumEntry(): T? {
     @Suppress("UNCHECKED_CAST")
     return LocalPreviewEnumEntry.current as? T
 }
