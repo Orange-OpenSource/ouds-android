@@ -163,7 +163,7 @@ fun TagIllustration() = ComponentIllustration {
 @Composable
 fun TextInputIllustration() = ComponentIllustration {
     OudsTextInput(
-        modifier = Modifier.padding(horizontal = 16.dp),
+        modifier = Modifier.padding(horizontal = 12.dp),
         textFieldState = rememberTextFieldState(),
         label = stringResource(id = R.string.app_components_common_label_label),
         helperText = stringResource(id = R.string.app_components_textInput_illustration_helperText_label)
