@@ -518,13 +518,13 @@ private fun OudsTextInputDecorator(
             // outlined
             Modifier.border(
                 width = borderWidth(state),
-                color = indicatorColor(state = state, outlined = outlined, error = error),
+                color = borderColor(state = state, outlined = outlined, error = error),
                 shape = shape
             )
         } else {
             // filled
             Modifier
-                .indicator(state = state, outlined = outlined, cornerRadius = borderRadius, error = error)
+                .bottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = error)
                 .background(
                     color = containerColor(state = state, outlined = outlined, error = error),
                     shape = shape
@@ -677,11 +677,53 @@ private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsT
     }
 }
 
+@Composable
+private fun borderWidth(state: OudsTextInput.State) = with(OudsTheme.componentsTokens.textInput) {
+    if (state == OudsTextInput.State.Focused) borderWidthFocus.value else borderWidthDefault.value
+}
+
+@Composable
+private fun PrefixSuffixText(text: String) {
+    Text(text = text, style = OudsTheme.typography.label.default.large, color = OudsTheme.colorScheme.content.muted)
+}
+
+@Composable
+private fun containerColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
+    return if (error) {
+        OudsTheme.colorScheme.surface.status.negative.muted
+    } else {
+        when (state) {
+            OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.support.enabled
+            OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.support.hover
+            OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.support.pressed
+            OudsTextInput.State.Disabled -> OudsTheme.colorScheme.action.support.disabled
+            OudsTextInput.State.ReadOnly -> if (outlined) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
+            OudsTextInput.State.Loading -> OudsTheme.colorScheme.action.support.loading
+        }
+    }
+}
+
+@Composable
+private fun cursorBrush(state: OudsTextInput.State, error: Boolean) =
+    SolidColor(if (error) errorContentColor(state = state) else OudsTheme.colorScheme.content.default)
+
+@Composable
+private fun errorContentColor(state: OudsTextInput.State) = when (state) {
+    OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
+    OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
+    OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.negative.pressed
+    OudsTextInput.State.Disabled, OudsTextInput.State.ReadOnly, OudsTextInput.State.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
+}
+
 /**
- * Draws a bottom border on the text input by respecting [thickness], [color] and [cornerRadius] provided.
+ * Draws a bottom border on the text input by respecting [cornerRadius] provided.
+ * Color and thickness of the border are provided by [state].
  */
 @Composable
-private fun Modifier.bottomBorder(thickness: Dp, color: Color, cornerRadius: Dp): Modifier {
+private fun Modifier.bottomBorder(state: OudsTextInput.State, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
+    val thickness = borderWidth(state)
+    val color = borderColor(state = state, outlined = outlined, error = error)
+
     return drawWithContent {
         drawContent()
         if (cornerRadius > 0.dp) {
@@ -750,53 +792,7 @@ private fun Modifier.bottomBorder(thickness: Dp, color: Color, cornerRadius: Dp)
 }
 
 @Composable
-private fun borderWidth(state: OudsTextInput.State) = with(OudsTheme.componentsTokens.textInput) {
-    if (state == OudsTextInput.State.Focused) borderWidthFocus.value else borderWidthDefault.value
-}
-
-@Composable
-private fun PrefixSuffixText(text: String) {
-    Text(text = text, style = OudsTheme.typography.label.default.large, color = OudsTheme.colorScheme.content.muted)
-}
-
-@Composable
-private fun containerColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
-    return if (error) {
-        OudsTheme.colorScheme.surface.status.negative.muted
-    } else {
-        when (state) {
-            OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.support.enabled
-            OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.support.hover
-            OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.support.pressed
-            OudsTextInput.State.Disabled -> OudsTheme.colorScheme.action.support.disabled
-            OudsTextInput.State.ReadOnly -> if (outlined) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
-            OudsTextInput.State.Loading -> OudsTheme.colorScheme.action.support.loading
-        }
-    }
-}
-
-@Composable
-private fun cursorBrush(state: OudsTextInput.State, error: Boolean) =
-    SolidColor(if (error) errorContentColor(state = state) else OudsTheme.colorScheme.content.default)
-
-@Composable
-private fun errorContentColor(state: OudsTextInput.State) = when (state) {
-    OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-    OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-    OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.negative.pressed
-    OudsTextInput.State.Disabled, OudsTextInput.State.ReadOnly, OudsTextInput.State.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
-}
-
-@Composable
-private fun Modifier.indicator(state: OudsTextInput.State, outlined: Boolean, cornerRadius: Dp, error: Boolean) =
-    bottomBorder(
-        thickness = borderWidth(state),
-        color = indicatorColor(state = state, outlined = outlined, error = error),
-        cornerRadius = cornerRadius
-    )
-
-@Composable
-private fun indicatorColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
+private fun borderColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
     return if (outlined) {
         if (error) {
             errorContentColor(state = state)
