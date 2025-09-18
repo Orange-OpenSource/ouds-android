@@ -44,6 +44,8 @@ fun rememberTextInputDemoState(
     outlined,
     leadingIcon,
     trailingIcon,
+    enabled,
+    readOnly,
     hasLoader,
     error,
     prefix,
