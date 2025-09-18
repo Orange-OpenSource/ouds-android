@@ -77,7 +77,6 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
             onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
         )
         CustomizationTextField(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }

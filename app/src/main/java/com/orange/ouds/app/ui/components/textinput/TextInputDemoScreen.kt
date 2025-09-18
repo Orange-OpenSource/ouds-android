@@ -83,37 +83,31 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             enabled = errorSwitchEnabled
         )
         CustomizationTextField(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
         )
         CustomizationTextField(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_placeholder_label),
             value = placeholder,
             onValueChange = { value -> placeholder = value }
         )
         CustomizationTextField(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_prefix_label),
             value = prefix,
             onValueChange = { value -> prefix = value }
         )
         CustomizationTextField(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_suffix_label),
             value = suffix,
             onValueChange = { value -> suffix = value }
         )
         CustomizationTextField(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_label),
             value = helperText,
             onValueChange = { value -> helperText = value }
         )
         CustomizationTextField(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_helperLink_label),
             value = helperLink,
             onValueChange = { value -> helperLink = value }
