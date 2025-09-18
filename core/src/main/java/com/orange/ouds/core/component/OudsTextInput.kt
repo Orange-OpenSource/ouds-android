@@ -814,14 +814,10 @@ private fun borderColor(state: OudsTextInput.State, outlined: Boolean, error: Bo
 
 @Composable
 private fun labelColor(state: OudsTextInput.State, error: Boolean): Color {
-    return if (error) {
-        errorContentColor(state = state)
-    } else {
-        if (state == OudsTextInput.State.Disabled) {
-            OudsTheme.colorScheme.action.disabled
-        } else {
-            OudsTheme.colorScheme.content.muted
-        }
+    return when {
+        error -> errorContentColor(state = state)
+        state == OudsTextInput.State.Disabled -> OudsTheme.colorScheme.action.disabled
+        else -> OudsTheme.colorScheme.content.muted
     }
 }
 
