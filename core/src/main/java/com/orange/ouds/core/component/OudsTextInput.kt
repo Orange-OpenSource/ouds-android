@@ -58,6 +58,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -65,6 +66,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -117,12 +119,17 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   does not meet validation rules or expected formatting.
  *   False by default.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- * used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
+ *   used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
  *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
  *   [ImeAction.Next] would switch the focus to the next focusable item on the screen.
+ * @param onTextLayout Callback that is executed when the text layout becomes queryable. The callback receives a function that returns a [TextLayoutResult] if
+ *   the layout can be calculated, or null if it cannot. The function reads the layout result from a snapshot state object, and will invalidate its caller when
+ *   the layout result changes. A [TextLayoutResult] object contains paragraph information, size of the text, baselines and other details. The callback can be
+ *   used to add additional decoration or functionality to the text. For example, to draw a cursor or selection around the text. [Density] scope is the one that
+ *   was used while creating the given text layout.
  * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [TextFieldState] made by the user. The transformation
  *   will be applied to changes made by hardware and software keyboard events, pasting or dropping text, accessibility services, and tests. The transformation
  *   will _not_ be applied when changing the [textFieldState] programmatically, or when the transformation is changed. If the transformation is changed on an
@@ -150,6 +157,7 @@ fun OudsTextInput(
     helperLink: OudsTextInput.HelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     inputTransformation: InputTransformation? = null,
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null
@@ -176,6 +184,7 @@ fun OudsTextInput(
                 cursorBrush = cursorBrush(state = state, error = error),
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
+                onTextLayout = onTextLayout,
                 inputTransformation = inputTransformation,
                 outputTransformation = outputTransformation,
                 interactionSource = interactionSource,
@@ -238,11 +247,14 @@ fun OudsTextInput(
  *   does not meet validation rules or expected formatting.
  *   False by default.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- * used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
+ *   used. It should ideally only take up a single line, though may wrap to multiple lines if required, and be either persistently visible or visible only on focus.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
- * you specified in [KeyboardOptions.imeAction].
+ *   you specified in [KeyboardOptions.imeAction].
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
+ *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
+ *   For example, to draw a cursor or selection around the text.
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
@@ -267,6 +279,7 @@ fun OudsTextInput(
     helperLink: OudsTextInput.HelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -294,6 +307,7 @@ fun OudsTextInput(
                 cursorBrush = cursorBrush(state = state, error = error),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
+                onTextLayout = onTextLayout,
                 visualTransformation = visualTransformation,
                 interactionSource = interactionSource,
                 decorationBox = { innerTextField ->
@@ -360,7 +374,10 @@ fun OudsTextInput(
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
- * you specified in [KeyboardOptions.imeAction].
+ *   you specified in [KeyboardOptions.imeAction].
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
+ *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
+ *   For example, to draw a cursor or selection around the text.
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
@@ -385,6 +402,7 @@ fun OudsTextInput(
     helperLink: OudsTextInput.HelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -412,6 +430,7 @@ fun OudsTextInput(
                 cursorBrush = cursorBrush(state = state, error = error),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
+                onTextLayout = onTextLayout,
                 visualTransformation = visualTransformation,
                 interactionSource = interactionSource,
                 decorationBox = { innerTextField ->
