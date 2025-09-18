@@ -1045,6 +1045,9 @@ internal class OudsTextInputPreviewParameterProvider : BasicPreviewParameterProv
 private val previewParameterValues: List<OudsTextInputPreviewParameter>
     get() {
         val label = "Label"
+        val placeholder = "Placeholder"
+        val prefix = "£"
+        val suffix = "€"
         val leadingIcon = OudsTextInput.LeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon")
         val trailingIconButton = OudsTextInput.TrailingIconButton(Icons.Filled.FavoriteBorder, contentDescription = "Icon", onClick = {})
         return listOf(
@@ -1052,21 +1055,21 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
             OudsTextInputPreviewParameter(
                 "",
                 label = label,
-                placeholder = "Placeholder",
+                placeholder = placeholder,
                 leadingIcon = leadingIcon,
                 trailingIconButton = trailingIconButton,
-                prefix = "£",
-                suffix = "€",
+                prefix = prefix,
+                suffix = suffix,
                 error = true
             ),
             OudsTextInputPreviewParameter(
                 "Text",
                 label = label,
-                placeholder = "Placeholder",
+                placeholder = placeholder,
                 leadingIcon = leadingIcon,
                 trailingIconButton = trailingIconButton,
-                prefix = "£",
-                suffix = "€",
+                prefix = prefix,
+                suffix = suffix,
                 helperText = "Helper text.",
                 helperLink = OudsTextInput.HelperLink("Helper link") {}
             ),
