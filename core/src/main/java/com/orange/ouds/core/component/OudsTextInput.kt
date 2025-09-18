@@ -551,7 +551,7 @@ private fun OudsTextInputDecorator(
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
                 ) {
                     // Small label on top
-                    if (label != null && (!emptyText || !placeholder.isNullOrEmpty() || state == OudsTextInput.State.Focused)) {
+                    if (!label.isNullOrEmpty() && (!emptyText || !placeholder.isNullOrEmpty() || state == OudsTextInput.State.Focused)) {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             text = label,
@@ -567,7 +567,7 @@ private fun OudsTextInputDecorator(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
                     ) {
-                        if (prefix != null) PrefixSuffixText(text = prefix)
+                        if (!prefix.isNullOrEmpty()) PrefixSuffixText(text = prefix)
                         Box(modifier = Modifier.weight(1f)) {
                             if (emptyText) {
                                 if (!placeholder.isNullOrEmpty()) {
@@ -590,7 +590,7 @@ private fun OudsTextInputDecorator(
                             }
                             innerTextField()
                         }
-                        if (suffix != null) PrefixSuffixText(text = suffix)
+                        if (!suffix.isNullOrEmpty()) PrefixSuffixText(text = suffix)
                     }
                 }
 
@@ -603,7 +603,6 @@ private fun OudsTextInputDecorator(
                     ) {
                         // Error icon
                         if (error) {
-
                             Box(
                                 modifier = Modifier.padding(all = if (trailingIconButton != null) 0.dp else buttonTokens.spaceInsetIconOnly.value),
                                 contentAlignment = Alignment.Center
@@ -639,13 +638,13 @@ private fun OudsTextInputDecorator(
             }
 
             // Helper text
-            helperText?.let { text ->
+            if (!helperText.isNullOrEmpty()) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = spacePaddingBlockTopHelperText.value)
                         .padding(horizontal = spacePaddingInlineDefault.value),
-                    text = text,
+                    text = helperText,
                     style = OudsTheme.typography.label.default.medium,
                     color = if (error) OudsTheme.colorScheme.content.status.negative else OudsTheme.colorScheme.content.muted
                 )

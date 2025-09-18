@@ -127,8 +127,8 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
         OudsTextInput(
             value = value,
             onValueChange = { value = it },
-            label = label.ifEmpty { null },
-            placeholder = placeholder.ifEmpty { null },
+            label = label,
+            placeholder = placeholder,
             outlined = outlined,
             leadingIcon = if (leadingIcon) OudsTextInput.LeadingIcon(painterResource(id = R.drawable.ic_heart), contentDescription = "") else null,
             trailingIconButton = if (trailingIcon) OudsTextInput.TrailingIconButton(
@@ -139,9 +139,9 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             enabled = enabled,
             readOnly = readOnly,
             error = error,
-            prefix = prefix.ifEmpty { null },
-            suffix = suffix.ifEmpty { null },
-            helperText = helperText.ifEmpty { null },
+            prefix = prefix,
+            suffix = suffix,
+            helperText = helperText,
             helperLink = if (helperLink.isNotEmpty()) OudsTextInput.HelperLink(text = helperLink, onClick = { }) else null
         )
     }
