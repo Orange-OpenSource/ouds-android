@@ -526,7 +526,7 @@ private fun OudsTextInputDecorator(
             Modifier
                 .bottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = error)
                 .background(
-                    color = containerColor(state = state, outlined = outlined, error = error),
+                    color = backgroundColor(state = state, outlined = outlined, error = error),
                     shape = shape
                 )
         }
@@ -688,7 +688,7 @@ private fun PrefixSuffixText(text: String) {
 }
 
 @Composable
-private fun containerColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
+private fun backgroundColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
     return if (error) {
         OudsTheme.colorScheme.surface.status.negative.muted
     } else {
