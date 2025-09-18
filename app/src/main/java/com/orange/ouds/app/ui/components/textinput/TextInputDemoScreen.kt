@@ -131,10 +131,14 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             placeholder = placeholder,
             outlined = outlined,
             leadingIcon = if (leadingIcon) OudsTextInput.LeadingIcon(painterResource(id = R.drawable.ic_heart), contentDescription = "") else null,
-            trailingIconButton = if (trailingIcon) OudsTextInput.TrailingIconButton(
-                painterResource(id = R.drawable.ic_heart),
-                contentDescription = "",
-                onClick = { }) else null,
+            trailingIconButton = if (trailingIcon) {
+                OudsTextInput.TrailingIconButton(
+                    painterResource(id = R.drawable.ic_heart),
+                    contentDescription = "",
+                    onClick = { })
+            } else {
+                null
+            },
             loader = if (hasLoader) OudsTextInput.Loader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
