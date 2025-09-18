@@ -494,7 +494,7 @@ internal fun OudsTextInput(
 }
 
 @Composable
-internal fun OudsTextInputDecorator(
+private fun OudsTextInputDecorator(
     innerTextField: @Composable () -> Unit,
     emptyText: Boolean,
     state: OudsTextInput.State,
