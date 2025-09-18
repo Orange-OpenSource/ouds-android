@@ -140,7 +140,6 @@ fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
-    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
@@ -148,7 +147,6 @@ fun CustomizationTextField(
     var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value)) }
 
     CustomizationTextField(
-        applyTopPadding = applyTopPadding,
         label = label,
         value = textFieldValue,
         onValueChange = { newTextFieldValue ->
@@ -166,7 +164,6 @@ fun CustomizationTextField(
     label: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
-    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
