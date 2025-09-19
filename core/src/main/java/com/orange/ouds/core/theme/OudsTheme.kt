@@ -125,7 +125,7 @@ object OudsTheme {
  * your application in replacement of the `MaterialTheme`.
  * Cause OUDS supports multi-theme, you should pass the OUDS supported [theme] used by your application.
  *
- * @param theme Theme to apply to your application. It must implement [OudsThemeContract] (e.g. OrangeTheme, Sosh Theme, ...)
+ * @param theme Theme to apply to your application. It must implement [OudsThemeContract] (e.g. OrangeTheme, SoshTheme, ...)
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
  * @param content Theme nested content. The provided [theme] will be applied to this content.
  */
