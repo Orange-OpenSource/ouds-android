@@ -55,6 +55,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -70,10 +71,11 @@ import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
-import com.orange.ouds.theme.OudsThemeSettings
+import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 /**
@@ -759,28 +761,15 @@ object OudsButton {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvider::class) parameter: OudsButtonPreviewParameter) {
-    PreviewOudsButton(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
-}
-
-@Preview
-@Composable
-internal fun PreviewOudsButtonWithRoundedCorners() = OudsPreview(themeSettings = OudsThemeSettings().copy(roundedCornerButtons = true)) {
-    val appearance = OudsButton.Appearance.Default
-    PreviewEnumEntries<OudsButton.State>(columnCount = 2) { state ->
-        OudsButton(
-            nullableIcon = OudsButton.Icon(Icons.Filled.FavoriteBorder, ""),
-            nullableLabel = appearance.name,
-            onClick = {},
-            appearance = appearance
-        )
-    }
+    PreviewOudsButton(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsButton(
+fun PreviewOudsButton(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsButtonPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) appearance.name else null
         val icon = if (hasIcon) OudsButton.Icon(Icons.Filled.FavoriteBorder, "") else null
@@ -799,14 +788,33 @@ internal fun PreviewOudsButton(
     }
 }
 
-internal data class OudsButtonPreviewParameter(
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRoundedCorners(theme = BuildConfig.PREVIEW_THEME)
+
+@Composable
+fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
+    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
+        val appearance = OudsButton.Appearance.Default
+        PreviewEnumEntries<OudsButton.State>(columnCount = 2) { state ->
+            OudsButton(
+                nullableIcon = OudsButton.Icon(Icons.Filled.FavoriteBorder, ""),
+                nullableLabel = appearance.name,
+                onClick = {},
+                appearance = appearance
+            )
+        }
+    }
+
+data class OudsButtonPreviewParameter(
     val appearance: OudsButton.Appearance,
     val hasLabel: Boolean,
     val hasIcon: Boolean,
     val onColoredBox: Boolean = false
 )
 
-internal class OudsButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
+class OudsButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsButtonPreviewParameter>
     get() = buildList {

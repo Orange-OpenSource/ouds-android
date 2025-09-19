@@ -21,9 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
@@ -198,27 +200,30 @@ private fun OudsSuggestionChip(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSuggestionChip(@PreviewParameter(OudsSuggestionChipPreviewParameterProvider::class) parameter: OudsSuggestionChipPreviewParameter) {
-    PreviewOudsSuggestionChip(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsSuggestionChip(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsSuggestionChip(darkThemeEnabled: Boolean, parameter: OudsSuggestionChipPreviewParameter) =
-    OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-        with(parameter) {
-            val label = if (hasLabel) "Label" else null
-            val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
-            PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
-                OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
-            }
+fun PreviewOudsSuggestionChip(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    parameter: OudsSuggestionChipPreviewParameter
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    with(parameter) {
+        val label = if (hasLabel) "Label" else null
+        val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
+        PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
+            OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
         }
     }
+}
 
-internal data class OudsSuggestionChipPreviewParameter(
+data class OudsSuggestionChipPreviewParameter(
     val hasLabel: Boolean,
     val hasIcon: Boolean
 )
 
-internal class OudsSuggestionChipPreviewParameterProvider :
+class OudsSuggestionChipPreviewParameterProvider :
     BasicPreviewParameterProvider<OudsSuggestionChipPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsSuggestionChipPreviewParameter>

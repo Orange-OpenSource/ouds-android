@@ -34,8 +34,8 @@ import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
-import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import kotlin.enums.enumEntries
 
@@ -45,8 +45,8 @@ private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
  * Configures the Compose OUDS preview environment in Android Studio.
  *
  * @param modifier The modifier for the preview content.
+ * @param theme The preview theme.
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
- * @param themeSettings The theme settings for the preview.
  * @param highContrastModeEnabled Indicates whether the high contrast mode is enabled for the preview.
  * @param content The content of the preview.
  *
@@ -55,8 +55,8 @@ private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 @Composable
 fun OudsPreview(
     modifier: Modifier = Modifier,
+    theme: OudsThemeContract = BuildConfig.PREVIEW_THEME,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
-    themeSettings: OudsThemeSettings = BuildConfig.PREVIEW_THEME.settings,
     highContrastModeEnabled: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -67,24 +67,29 @@ fun OudsPreview(
     }
     CompositionLocalProvider(value = LocalConfiguration provides configuration) {
         OudsTheme(
-            theme = BuildConfig.PREVIEW_THEME,
+            theme = theme,
             darkThemeEnabled = darkThemeEnabled
         ) {
             // Override theme settings
-            CompositionLocalProvider(LocalThemeSettings provides themeSettings) {
-                // Add a box to be able to see components
-                // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
-                Box(
-                    modifier = Modifier
-                        .background(OudsTheme.colorScheme.background.primary)
-                        .then(modifier)
-                ) {
-                    CompositionLocalProvider(LocalHighContrastModeEnabled provides highContrastModeEnabled) {
-                        content()
-                    }
+            // Add a box to be able to see components
+            // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
+            Box(
+                modifier = Modifier
+                    .background(OudsTheme.colorScheme.background.primary)
+                    .then(modifier)
+            ) {
+                CompositionLocalProvider(LocalHighContrastModeEnabled provides highContrastModeEnabled) {
+                    content()
                 }
             }
         }
+    }
+}
+
+
+internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (OudsThemeSettings)): OudsThemeContract {
+    return object : OudsThemeContract by this {
+        override val settings = transform(this@mapSettings.settings)
     }
 }
 

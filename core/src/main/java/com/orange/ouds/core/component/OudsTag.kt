@@ -46,6 +46,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -55,6 +56,7 @@ import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * A tag is a small element that shows short info like a label, keyword, or category.
@@ -550,35 +552,39 @@ object OudsTag {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTag(@PreviewParameter(OudsTagPreviewParameterProvider::class) parameter: OudsTagPreviewParameter) {
-    PreviewOudsTag(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsTag(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsTag(darkThemeEnabled: Boolean, parameter: OudsTagPreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    val label = "Label"
-    with(parameter) {
-        PreviewEnumEntries<OudsTag.Size, OudsTag.Status> { size, status ->
-            OudsTag(
-                label = label,
-                icon = icon,
-                hierarchy = hierarchy,
-                status = status,
-                size = size,
-                roundedCorners = roundedCorners,
-                loader = loader,
-            )
+fun PreviewOudsTag(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    parameter: OudsTagPreviewParameter
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+        val label = "Label"
+        with(parameter) {
+            PreviewEnumEntries<OudsTag.Size, OudsTag.Status> { size, status ->
+                OudsTag(
+                    label = label,
+                    icon = icon,
+                    hierarchy = hierarchy,
+                    status = status,
+                    size = size,
+                    roundedCorners = roundedCorners,
+                    loader = loader,
+                )
+            }
         }
     }
-}
 
-internal data class OudsTagPreviewParameter(
+data class OudsTagPreviewParameter(
     val icon: OudsTag.Icon? = null,
     val hierarchy: OudsTag.Hierarchy = OudsTagDefaults.Hierarchy,
     val roundedCorners: Boolean = true,
     val loader: OudsTag.Loader? = null
 )
 
-internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
+class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsTagPreviewParameter>
     get() {

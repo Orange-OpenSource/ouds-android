@@ -311,7 +311,7 @@ private fun additionalLabelColor(state: OudsControlItem.State) =
 private fun helperTextColor(state: OudsControlItem.State) =
     if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
 
-internal data class OudsControlItemPreviewParameter<T, S>(
+data class OudsControlItemPreviewParameter<T, S>(
     val value: T,
     val extraParameter: S?,
     val helperText: String? = null,
@@ -322,7 +322,7 @@ internal data class OudsControlItemPreviewParameter<T, S>(
     val additionalLabel: String? = null
 )
 
-internal open class OudsControlItemPreviewParameterProvider<T, S>(
+open class OudsControlItemPreviewParameterProvider<T, S>(
     values: List<T>,
     extraParameters: List<S> = listOf()
 ) : BasicPreviewParameterProvider<OudsControlItemPreviewParameter<T, S>>(*getPreviewParameterValues(values, extraParameters).toTypedArray()) {
@@ -357,11 +357,11 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
     }
 }
 
-internal data class OudsControlItemHighContrastModePreviewParameter<T>(
+data class OudsControlItemHighContrastModePreviewParameter<T>(
     val value: T,
 )
 
-internal open class OudsControlItemHighContrastModePreviewParameterProvider<T>(
+open class OudsControlItemHighContrastModePreviewParameterProvider<T>(
     values: List<T>
 ) : BasicPreviewParameterProvider<OudsControlItemHighContrastModePreviewParameter<T>>(*getHighContrastModePreviewParameterValues(values).toTypedArray())
 

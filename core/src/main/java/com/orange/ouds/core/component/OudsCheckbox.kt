@@ -40,6 +40,7 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -52,6 +53,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
@@ -285,21 +287,22 @@ private fun backgroundColor(state: OudsControl.State): Color {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckbox(@PreviewParameter(OudsCheckboxPreviewParameterProvider::class) parameter: OudsCheckboxPreviewParameter) {
-    PreviewOudsCheckbox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsCheckbox(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @PreviewLightDark
 @Composable
 internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCheckboxPreviewParameterProvider::class) parameter: OudsCheckboxPreviewParameter) {
-    PreviewOudsCheckbox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter, highContrastModeEnabled = true)
+    PreviewOudsCheckbox(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter, highContrastModeEnabled = true)
 }
 
 @Composable
-internal fun PreviewOudsCheckbox(
+fun PreviewOudsCheckbox(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCheckboxPreviewParameter,
     highContrastModeEnabled: Boolean = false
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsControl.State> {
             OudsTriStateCheckbox(
@@ -312,12 +315,12 @@ internal fun PreviewOudsCheckbox(
     }
 }
 
-internal data class OudsCheckboxPreviewParameter(
+data class OudsCheckboxPreviewParameter(
     val toggleableState: ToggleableState,
     val error: OudsError? = null
 )
 
-internal class OudsCheckboxPreviewParameterProvider : BasicPreviewParameterProvider<OudsCheckboxPreviewParameter>(*previewParameterValues.toTypedArray())
+class OudsCheckboxPreviewParameterProvider : BasicPreviewParameterProvider<OudsCheckboxPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsCheckboxPreviewParameter>
     get() = buildList {

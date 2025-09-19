@@ -43,6 +43,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
@@ -50,6 +51,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 
 /**
@@ -419,7 +421,7 @@ object OudsBadge {
     }
 }
 
-internal object OudsBadgePreview {
+object OudsBadgePreview {
 
     const val widthDp = 420
 }
@@ -429,34 +431,35 @@ internal object OudsBadgePreview {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsBadge(@PreviewParameter(OudsBadgePreviewParameterProvider::class) parameter: OudsBadgePreviewParameter) {
-    PreviewOudsBadge(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsBadge(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsBadge(darkThemeEnabled: Boolean, parameter: OudsBadgePreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    with(parameter) {
-        PreviewEnumEntries<OudsBadge.Size, OudsBadge.Status> { size, status ->
-            OudsBadge(
-                count = count,
-                icon = icon?.let {
-                    OudsBadge.Icon(
-                        imageVector = it,
-                        contentDescription = ""
-                    )
-                },
-                status = status,
-                size = size
-            )
+fun PreviewOudsBadge(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBadgePreviewParameter) =
+    OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+        with(parameter) {
+            PreviewEnumEntries<OudsBadge.Size, OudsBadge.Status> { size, status ->
+                OudsBadge(
+                    count = count,
+                    icon = icon?.let {
+                        OudsBadge.Icon(
+                            imageVector = it,
+                            contentDescription = ""
+                        )
+                    },
+                    status = status,
+                    size = size
+                )
+            }
         }
     }
-}
 
-internal data class OudsBadgePreviewParameter(
+data class OudsBadgePreviewParameter(
     val count: Int?,
     val icon: ImageVector?
 )
 
-internal class OudsBadgePreviewParameterProvider : BasicPreviewParameterProvider<OudsBadgePreviewParameter>(*previewParameterValues.toTypedArray())
+class OudsBadgePreviewParameterProvider : BasicPreviewParameterProvider<OudsBadgePreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsBadgePreviewParameter>
     get() = listOf(

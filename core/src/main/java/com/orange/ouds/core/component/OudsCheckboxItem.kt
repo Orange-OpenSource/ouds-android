@@ -29,11 +29,13 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
@@ -215,14 +217,15 @@ fun OudsTriStateCheckboxItem(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItem(@PreviewParameter(OudsCheckboxItemPreviewParameterProvider::class) parameter: OudsCheckboxItemPreviewParameter) {
-    PreviewOudsCheckboxItem(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsCheckboxItem(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsCheckboxItem(
+fun PreviewOudsCheckboxItem(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCheckboxItemPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsTriStateCheckboxItem(
@@ -244,14 +247,15 @@ internal fun PreviewOudsCheckboxItem(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(OudsCheckboxItemHighContrastModePreviewParameterProvider::class) parameter: OudsCheckboxItemHighContrastModePreviewParameter) {
-    PreviewOudsCheckboxItemHighContrastModeEnabled(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsCheckboxItemHighContrastModeEnabled(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
+fun PreviewOudsCheckboxItemHighContrastModeEnabled(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
         PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsTriStateCheckboxItem(
@@ -264,10 +268,13 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     }
 }
 
-
 @Preview
 @Composable
-internal fun PreviewOudsCheckboxItemWithLongHelperText() = OudsPreview {
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsCheckboxItemWithLongHelperText() = PreviewOudsCheckboxItemWithLongHelperText(theme = BuildConfig.PREVIEW_THEME)
+
+@Composable
+fun PreviewOudsCheckboxItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsCheckboxItem(
         checked = true,
         label = "Label",
@@ -277,12 +284,12 @@ internal fun PreviewOudsCheckboxItemWithLongHelperText() = OudsPreview {
     )
 }
 
-internal typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewParameter<ToggleableState, Nothing>
+typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewParameter<ToggleableState, Nothing>
 
-internal class OudsCheckboxItemPreviewParameterProvider :
+class OudsCheckboxItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<ToggleableState, Nothing>(DefaultBooleanValues.map { ToggleableState(it) })
 
-internal typealias OudsCheckboxItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<ToggleableState>
+typealias OudsCheckboxItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<ToggleableState>
 
-internal class OudsCheckboxItemHighContrastModePreviewParameterProvider :
+class OudsCheckboxItemHighContrastModePreviewParameterProvider :
     OudsControlItemHighContrastModePreviewParameterProvider<ToggleableState>(listOf(ToggleableState.Off, ToggleableState.On))

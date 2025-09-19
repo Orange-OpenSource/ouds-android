@@ -50,6 +50,8 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.core.os.BuildCompat
+import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
@@ -57,6 +59,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
@@ -226,14 +229,15 @@ private fun animateHorizontalAlignmentAsState(targetBiasValue: Float, animationS
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitch(@PreviewParameter(OudsSwitchPreviewParameterProvider::class) checked: Boolean) {
-    PreviewOudsSwitch(darkThemeEnabled = isSystemInDarkTheme(), checked = checked)
+    PreviewOudsSwitch(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), checked = checked)
 }
 
 @Composable
-internal fun PreviewOudsSwitch(
+fun PreviewOudsSwitch(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     checked: Boolean
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme= theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsControl.State>(columnCount = 3) {
         OudsSwitch(
             checked = checked,
@@ -242,4 +246,4 @@ internal fun PreviewOudsSwitch(
     }
 }
 
-internal class OudsSwitchPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+class OudsSwitchPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

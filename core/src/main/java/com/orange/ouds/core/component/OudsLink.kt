@@ -47,6 +47,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.component.OudsLink.Icon.ExtraParameters
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -61,6 +62,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 
 /**
@@ -448,32 +450,15 @@ object OudsLink {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsLink(@PreviewParameter(OudsLinkPreviewParameterProvider::class) parameter: OudsLinkPreviewParameter) {
-    PreviewOudsLink(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsLink(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
-@Preview
 @Composable
-internal fun PreviewOudsLinkOnTwoLines() {
-    OudsPreview {
-        val label = "Link\non two lines"
-        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            listOf(OudsLink.Arrow.Back, OudsLink.Arrow.Next).forEach { arrow ->
-                OudsLink(
-                    label = label,
-                    arrow = arrow,
-                    onClick = {},
-                )
-            }
-        }
-    }
-}
-
-
-@Composable
-internal fun PreviewOudsLink(
+fun PreviewOudsLink(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsLinkPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val icon = if (hasIcon) OudsLink.Icon(Icons.Filled.FavoriteBorder) else null
         val linkPreview: @Composable () -> Unit = {
@@ -498,14 +483,35 @@ internal fun PreviewOudsLink(
     }
 }
 
-internal data class OudsLinkPreviewParameter(
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsLinkOnTwoLines() = PreviewOudsLinkOnTwoLines(theme = BuildConfig.PREVIEW_THEME)
+
+@Composable
+fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
+    OudsPreview(theme = theme) {
+        val label = "Link\non two lines"
+        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            listOf(OudsLink.Arrow.Back, OudsLink.Arrow.Next).forEach { arrow ->
+                OudsLink(
+                    label = label,
+                    arrow = arrow,
+                    onClick = {},
+                )
+            }
+        }
+    }
+}
+
+data class OudsLinkPreviewParameter(
     val hasIcon: Boolean,
     val onColoredBackground: Boolean,
     val size: OudsLink.Size,
     val arrow: OudsLink.Arrow? = null
 )
 
-internal class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkPreviewParameter>(*previewParameterValues.toTypedArray())
+class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsLinkPreviewParameter>
     get() = buildList {
