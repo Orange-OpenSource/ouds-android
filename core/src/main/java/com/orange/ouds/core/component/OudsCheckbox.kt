@@ -121,7 +121,6 @@ fun OudsCheckbox(
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
  * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
- * vocalized by screen readers.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
  *
