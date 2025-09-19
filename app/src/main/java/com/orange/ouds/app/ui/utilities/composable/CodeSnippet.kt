@@ -110,7 +110,7 @@ internal fun PreviewCodeSnippet() = OudsPreview {
         comment("Apply Orange theme")
         functionCall("OudsTheme") {
             trailingLambda = true
-            constructorCallArgument<OrangeTheme>("themeContract")
+            constructorCallArgument<OrangeTheme>("theme")
             functionCallArgument("darkThemeEnabled", "isSystemInDarkTheme")
             lambdaArgument("content") {
                 comment("Content")
