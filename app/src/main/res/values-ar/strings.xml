@@ -104,6 +104,7 @@
 
     <!-- Components -->
     <string name="app_components_common_color_label">اللون</string>
+    <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label">خطأ</string>
     <string name="app_components_common_hierarchy_label">التسلسل</string>
     <string name="app_components_common_icon_a11y">أيقون</string>
@@ -161,7 +162,6 @@
     <string name="app_components_controlItem_readOnly_label">للقراءة فقط</string>
     <string name="app_components_controlItem_divider_label">فاصل</string>
     <string name="app_components_controlItem_reversed_label">معكوس</string>
-    <string name="app_components_controlItem_error_a11y">Error message</string>
 
     <!-- Components: divider -->
     <string name="app_components_divider_label">فاصل</string>

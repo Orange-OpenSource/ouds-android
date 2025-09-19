@@ -24,6 +24,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItem
 import com.orange.ouds.core.component.OudsSwitchItem
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -52,7 +53,7 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             reversed = reversed,
             enabled = enabled,
             readOnly = readOnly,
-            error = if (error) OudsControlItem.Error(stringResource(R.string.app_components_controlItem_error_a11y)) else null
+            error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
         )
     }
 }

@@ -34,10 +34,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.error
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
@@ -47,6 +50,7 @@ import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -67,7 +71,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
- * @param error Controls the error state of the checkbox.
+ * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -79,7 +83,7 @@ fun OudsCheckbox(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    error: Boolean = false,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsTriStateCheckbox(
@@ -116,7 +120,7 @@ fun OudsCheckbox(
  * and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
- * @param error Controls the error state of the checkbox.
+ * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -128,11 +132,11 @@ fun OudsTriStateCheckbox(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    error: Boolean = false,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     val isDisabledPreviewState = getPreviewEnumEntry<OudsControl.State>() == OudsControl.State.Disabled
-    val isForbidden = error && (!enabled || isDisabledPreviewState)
+    val isForbidden = error != null && (!enabled || isDisabledPreviewState)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." }
@@ -166,10 +170,19 @@ fun OudsTriStateCheckbox(
                 .widthIn(checkboxTokens.sizeMinWidth.value)
                 .heightIn(min = checkboxTokens.sizeMinHeight.value, max = checkboxTokens.sizeMaxHeight.value)
                 .background(color = backgroundColor.value)
-                .outerBorder(state = checkboxState, handleHighContrastMode = true),
+                .outerBorder(state = checkboxState, handleHighContrastMode = true)
+                .run {
+                    error?.description?.let { description ->
+                        semantics {
+                            error(description)
+                        }
+                    }.orElse {
+                        this
+                    }
+                },
             contentAlignment = Alignment.Center,
         ) {
-            OudsCheckboxIndicator(state = checkboxState, value = state, error = error)
+            OudsCheckboxIndicator(state = checkboxState, value = state, error = error != null)
         }
     }
 }
@@ -301,7 +314,7 @@ internal fun PreviewOudsCheckbox(
 
 internal data class OudsCheckboxPreviewParameter(
     val toggleableState: ToggleableState,
-    val error: Boolean
+    val error: OudsError? = null
 )
 
 internal class OudsCheckboxPreviewParameterProvider : BasicPreviewParameterProvider<OudsCheckboxPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -310,8 +323,8 @@ private val previewParameterValues: List<OudsCheckboxPreviewParameter>
     get() = buildList {
         ToggleableState.entries.forEach { toggleableState ->
             val parameters = listOf(
-                OudsCheckboxPreviewParameter(toggleableState = toggleableState, error = false),
-                OudsCheckboxPreviewParameter(toggleableState = toggleableState, error = true)
+                OudsCheckboxPreviewParameter(toggleableState = toggleableState),
+                OudsCheckboxPreviewParameter(toggleableState = toggleableState, error = OudsError(""))
             )
             addAll(parameters)
         }

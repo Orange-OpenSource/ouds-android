@@ -29,6 +29,7 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
@@ -65,7 +66,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  * will not be clickable.
  * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
  * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
- * @param error Controls the error state of the checkbox item.
+ * @param error Optional [OudsError] to provide in the case of the checkbox item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -83,7 +84,7 @@ fun OudsCheckboxItem(
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: OudsControlItem.Error? = null,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsTriStateCheckboxItem(
@@ -140,7 +141,7 @@ fun OudsCheckboxItem(
  * will not be clickable.
  * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
  * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
- * @param error Controls the error state of the checkbox item.
+ * @param error Optional [OudsError] to provide in the case of the checkbox item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that
  * if `null` is provided, interactions will still happen internally.
  *
@@ -158,7 +159,7 @@ fun OudsTriStateCheckboxItem(
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: OudsControlItem.Error? = null,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
