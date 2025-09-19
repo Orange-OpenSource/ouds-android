@@ -158,10 +158,29 @@ fun OudsInputTag(
 }
 
 /**
- * Please use OudsInputTag composable instead, which is the equivalent in OUDS environment.
- * @suppress
+ * An input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing
+ * enter, comma, or tab), each value is transformed into a Tag.
+ * Input tags are often used for adding labels, categories, or participants. They typically support editing, removing, and validating individual tags.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.2.0
+ *
+ * @param label The label displayed in the input tag.
+ * @param onClick Called when the input tag is clicked.
+ * @param modifier [Modifier] applied to the input tag.
+ * @param enabled Controls the enabled state of this input tag. When `false`, this component will not
+ *   respond to user input, and it will appear visually disabled and disabled to accessibility
+ *   services.
+ * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this input tag. You can use this to change the input tag's appearance or
+ *   preview the input tag in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsInputTagSample
  */
 @Composable
+@Deprecated("Please use OudsInputTag composable instead, which is the equivalent of Material InputChip in OUDS Android.")
 fun OudsInputChip(
     label: String,
     onClick: () -> Unit,
