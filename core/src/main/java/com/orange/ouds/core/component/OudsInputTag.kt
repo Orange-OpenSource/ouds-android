@@ -51,13 +51,12 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 
-// TODO: Update documentation URL once it is available
 /**
  * An input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing
  * enter, comma, or tab), each value is transformed into a Tag.
  * Input tags are often used for adding labels, categories, or participants. They typically support editing, removing, and validating individual tags.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/7565ce-tag/t/697817ca4d)
  *
  * > Design version: 1.2.0
  *

@@ -51,7 +51,6 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 
-// TODO: Update documentation URL once it is available
 /**
  * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
  * It is often displayed as a label or indicator with a distinct background color and text.
@@ -66,7 +65,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
  *
  * > Design version: 1.1.0
  *
@@ -91,7 +90,6 @@ fun OudsBadge(
     )
 }
 
-// TODO: Update documentation URL once it is available
 /**
  * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
  * It is often displayed as a label or indicator with a distinct background color and text.
@@ -104,7 +102,7 @@ fun OudsBadge(
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge/t/7f61fd0dac)
  *
  * > Design version: 1.1.0
  *
@@ -134,7 +132,6 @@ fun OudsBadge(
     )
 }
 
-// TODO: Update documentation URL once it is available
 /**
  * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
  * It is often displayed as a label or indicator with a distinct background color and text.
@@ -147,7 +144,7 @@ fun OudsBadge(
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge/t/cb0a05d005)
  *
  * > Design version: 1.1.0
  *
