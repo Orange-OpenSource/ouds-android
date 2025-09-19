@@ -63,7 +63,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_appearance_label),
+            label = stringResource(R.string.app_components_button_appearance_label),
             chipLabels = OudsButton.Appearance.entries.map { it.name },
             selectedChipIndex = OudsButton.Appearance.entries.indexOf(appearance),
             onSelectionChange = { id -> appearance = OudsButton.Appearance.entries[id] }

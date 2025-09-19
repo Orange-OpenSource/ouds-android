@@ -52,7 +52,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_common_appearance_label),
+            label = stringResource(R.string.app_components_tag_hierarchy_label),
             chipLabels = OudsTag.Hierarchy.entries.map { it.name },
             selectedChipIndex = OudsTag.Hierarchy.entries.indexOf(hierarchy),
             onSelectionChange = { id -> hierarchy = OudsTag.Hierarchy.entries[id] }

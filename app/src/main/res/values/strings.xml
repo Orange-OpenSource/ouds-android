@@ -114,7 +114,6 @@
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
 
     <!-- Components -->
-    <string name="app_components_common_appearance_label">Appearance</string>
     <string name="app_components_common_color_label">Color</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label">Error</string>
@@ -142,6 +141,7 @@
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>
     <string name="app_components_button_description_text">Buttons allow users to make choices or perform an action. They have multiple styles for various needs.</string>
+    <string name="app_components_button_appearance_label">Appearance</string>
 
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_label">Checkbox</string>
@@ -205,6 +205,7 @@
     <!-- Components: tag -->
     <string name="app_components_tag_label">Tag</string>
     <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category. It helps users quickly find, group, or understand content.</string>
+    <string name="app_components_tag_hierarchy_label">Hierarchy</string>
     <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
     <string name="app_components_tag_tag_label">Tag</string>
     <string name="app_components_tag_inputTag_label">Input tag</string>
