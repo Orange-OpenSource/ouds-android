@@ -100,7 +100,8 @@ internal fun OudsChip(
     }
 
     Box(
-        modifier = Modifier.heightIn(min = chipTokens.sizeMinHeightInteractiveArea.value),
+        modifier = Modifier
+            .heightIn(min = chipTokens.sizeMinHeightInteractiveArea.value),
         contentAlignment = Alignment.Center
     ) {
         Row(
@@ -110,7 +111,6 @@ internal fun OudsChip(
                 .background(color = backgroundColor.value, shape = shape)
                 .border(width = borderWidth.value, color = borderColor.value, shape = shape)
                 .outerBorder(state = state, shape = shape)
-                .padding(paddingValues = contentPadding(label, icon, iconPosition, selected))
                 .run {
                     val indication = InteractionValuesIndication(contentColor, tickColor, backgroundColor, borderColor, borderWidth)
                     if (selectable) {
@@ -131,7 +131,8 @@ internal fun OudsChip(
                             role = Role.Button
                         )
                     }
-                },
+                }
+                .padding(paddingValues = contentPadding(label, icon, iconPosition, selected)),
             horizontalArrangement = Arrangement.spacedBy(chipTokens.spaceColumnGapIcon.value, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
