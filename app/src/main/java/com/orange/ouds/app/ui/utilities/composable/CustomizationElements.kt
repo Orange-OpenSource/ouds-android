@@ -198,7 +198,11 @@ fun CustomizationDropdownMenu(
 ) {
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
 
-    Column(modifier = modifier.fillMaxWidth()) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .semantics(mergeDescendants = true) {}
+    ) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
