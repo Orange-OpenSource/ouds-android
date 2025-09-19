@@ -131,7 +131,7 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
         inline fun <reified T> typedArgument(name: String?, value: T) {
             elements.add(Argument(name, value, T::class.java))
         }
-        
+
         fun formattableArgument(name: String?, format: (Context) -> String) = typedArgument(name, Formattable(format))
 
         fun rawArgument(name: String?, value: String) = formattableArgument(name) { value }
@@ -183,7 +183,7 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : F
                 val resourceTypeName = tryOrNull { context.resources.getResourceTypeName(value) }
                 if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else value.toString()
             }
-            is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButton.Hierarchy.Strong instead of Strong
+            is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButton.Appearance.Strong instead of Strong
             is Formattable -> value.format(context)
             else -> {
                 val valueClass = value?.let { it::class }.orElse { null }

@@ -77,7 +77,7 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
         ) {
             OudsButton(
                 label = stringResource(R.string.app_themeSettingsDialog_cancel_label),
-                hierarchy = OudsButton.Hierarchy.Minimal,
+                appearance = OudsButton.Appearance.Minimal,
                 onClick = { onThemeSettingsChange(themeState.currentTheme.settings) }
             )
             OudsButton(

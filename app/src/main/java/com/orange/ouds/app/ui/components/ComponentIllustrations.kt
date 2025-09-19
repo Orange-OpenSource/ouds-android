@@ -56,12 +56,12 @@ fun ButtonIllustration() = ComponentIllustration {
         OudsButton(
             label = label,
             onClick = {},
-            hierarchy = if (isOudsInDarkTheme()) OudsButton.Hierarchy.Default else OudsButton.Hierarchy.Strong
+            appearance = if (isOudsInDarkTheme()) OudsButton.Appearance.Default else OudsButton.Appearance.Strong
         )
         OudsButton(
             label = label,
             onClick = {},
-            hierarchy = if (isOudsInDarkTheme()) OudsButton.Hierarchy.Strong else OudsButton.Hierarchy.Default
+            appearance = if (isOudsInDarkTheme()) OudsButton.Appearance.Strong else OudsButton.Appearance.Default
         )
     }
 }
