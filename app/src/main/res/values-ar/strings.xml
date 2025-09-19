@@ -103,10 +103,10 @@
     <string name="app_tokens_typography_description_text">الطباعة هي نظامنا للخطوط وأنماط النصوص. إنها تعزز الاتصال وتدعم أسلوب العلامة التجارية.</string>
 
     <!-- Components -->
+    <string name="app_components_common_appearance_label">التسلسل</string>
     <string name="app_components_common_color_label">اللون</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label">خطأ</string>
-    <string name="app_components_common_hierarchy_label">التسلسل</string>
     <string name="app_components_common_icon_a11y">أيقون</string>
     <string name="app_components_common_iconOnlyLayout_label">رمز فقط</string>
     <string name="app_components_common_label_label">التسمية</string>

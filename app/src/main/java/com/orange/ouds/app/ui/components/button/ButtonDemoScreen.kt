@@ -63,10 +63,10 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_hierarchy_label),
-            chipLabels = OudsButton.Hierarchy.entries.map { it.name },
-            selectedChipIndex = OudsButton.Hierarchy.entries.indexOf(hierarchy),
-            onSelectionChange = { id -> hierarchy = OudsButton.Hierarchy.entries[id] }
+            label = stringResource(R.string.app_components_common_appearance_label),
+            chipLabels = OudsButton.Appearance.entries.map { it.name },
+            selectedChipIndex = OudsButton.Appearance.entries.indexOf(appearance),
+            onSelectionChange = { id -> appearance = OudsButton.Appearance.entries[id] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_label),
@@ -106,7 +106,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    hierarchy = hierarchy
+                    appearance = appearance
                 )
             }
             ButtonDemoState.Layout.TextAndIcon -> {
@@ -116,7 +116,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    hierarchy = hierarchy
+                    appearance = appearance
                 )
             }
             ButtonDemoState.Layout.IconOnly -> {
@@ -125,7 +125,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    hierarchy = hierarchy
+                    appearance = appearance
                 )
             }
         }
@@ -152,7 +152,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
                         typedArgument("progress", null)
                     }
                 }
-                typedArgument("hierarchy", hierarchy)
+                typedArgument("appearance", appearance)
             }
         }
     }
