@@ -56,7 +56,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
-// TODO: Update documentation URL once it is available
 /**
  * A tag is a small element that shows short info like a label, keyword, or category.
  * It helps users quickly find, group, or understand content.
@@ -74,7 +73,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *   - Text and loader: when [loader] is `true`, the tag combines a loading spinner (or progress indicator) with text.
  *     Used to indicate that a process or action related to the tag is in progress.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
  *
  * > Design version: 1.2.0
  *
