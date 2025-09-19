@@ -25,7 +25,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
-// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -39,7 +38,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * Best suited for category-based filters that do not require additional visual elements.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/2d71fd4bb4)
  *
  * > Design version: 1.3.0
  *
@@ -74,7 +73,6 @@ fun OudsSuggestionChip(
     )
 }
 
-// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -88,7 +86,7 @@ fun OudsSuggestionChip(
  * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/2d71fd4bb4)
  *
  * > Design version: 1.3.0
  *
@@ -123,7 +121,6 @@ fun OudsSuggestionChip(
     )
 }
 
-// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -137,7 +134,7 @@ fun OudsSuggestionChip(
  * Ideal when a visual cue helps reinforce the filter’s meaning.
  * Other layouts are available for this component: *text only* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/2d71fd4bb4)
  *
  * > Design version: 1.3.0
  *
