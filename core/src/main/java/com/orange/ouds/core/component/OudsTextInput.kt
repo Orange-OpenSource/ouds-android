@@ -369,7 +369,7 @@ fun OudsTextInput(
  *   does not meet validation rules or expected formatting.
  *   False by default.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- * used. It should ideally only take up a single line, though may wrap to multiple lines if required.
+ *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
@@ -548,10 +548,10 @@ private fun OudsTextInputDecorator(
                 // Central content
                 Column(
                     modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
+                    verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value, Alignment.CenterVertically),
                 ) {
                     // Small label on top
-                    if (!label.isNullOrEmpty() && (!emptyText || !placeholder.isNullOrEmpty() || state == OudsTextInput.State.Focused)) {
+                    if (!label.isNullOrBlank() && (!emptyText || !placeholder.isNullOrBlank() || state == OudsTextInput.State.Focused)) {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             text = label,
@@ -567,10 +567,10 @@ private fun OudsTextInputDecorator(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
                     ) {
-                        if (!prefix.isNullOrEmpty()) PrefixSuffixText(text = prefix)
+                        if (!prefix.isNullOrBlank()) PrefixSuffixText(text = prefix)
                         Box(modifier = Modifier.weight(1f)) {
                             if (emptyText) {
-                                if (!placeholder.isNullOrEmpty()) {
+                                if (!placeholder.isNullOrBlank()) {
                                     Text(
                                         text = placeholder,
                                         style = OudsTheme.typography.label.default.large,
@@ -578,7 +578,7 @@ private fun OudsTextInputDecorator(
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
-                                } else if (!label.isNullOrEmpty() && state != OudsTextInput.State.Focused) {
+                                } else if (!label.isNullOrBlank() && state != OudsTextInput.State.Focused) {
                                     Text(
                                         text = label,
                                         style = OudsTheme.typography.label.default.large,
@@ -590,7 +590,7 @@ private fun OudsTextInputDecorator(
                             }
                             innerTextField()
                         }
-                        if (!suffix.isNullOrEmpty()) PrefixSuffixText(text = suffix)
+                        if (!suffix.isNullOrBlank()) PrefixSuffixText(text = suffix)
                     }
                 }
 
@@ -638,7 +638,7 @@ private fun OudsTextInputDecorator(
             }
 
             // Helper text
-            if (!helperText.isNullOrEmpty()) {
+            if (!helperText.isNullOrBlank()) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -651,11 +651,11 @@ private fun OudsTextInputDecorator(
             }
 
             // Helper link
-            helperLink?.let { link ->
+            if (!helperLink?.text.isNullOrBlank()) {
                 OudsLink(
                     modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
-                    label = link.text,
-                    onClick = link.onClick,
+                    label = helperLink.text,
+                    onClick = helperLink.onClick,
                     size = OudsLink.Size.Small
                 )
             }
@@ -707,8 +707,11 @@ private fun backgroundColor(state: OudsTextInput.State, outlined: Boolean, error
 }
 
 @Composable
+private fun contentColor() = OudsTheme.colorScheme.content.default
+
+@Composable
 private fun cursorBrush(state: OudsTextInput.State, error: Boolean) =
-    SolidColor(if (error) errorContentColor(state = state) else OudsTheme.colorScheme.content.default)
+    SolidColor(if (error) errorContentColor(state = state) else contentColor())
 
 @Composable
 private fun errorContentColor(state: OudsTextInput.State) = when (state) {
@@ -813,7 +816,11 @@ private fun borderColor(state: OudsTextInput.State, outlined: Boolean, error: Bo
             }
         }
     } else {
-        labelColor(state = state, error = error)
+        if (state == OudsTextInput.State.ReadOnly) {
+            OudsTheme.colorScheme.border.muted
+        } else {
+            labelColor(state, error)
+        }
     }
 }
 
@@ -831,7 +838,7 @@ private fun placeholderColor(state: OudsTextInput.State) =
     if (state == OudsTextInput.State.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
 
 @Composable
-private fun textFieldTextStyle() = OudsTheme.typography.label.default.large.copy(color = OudsTheme.colorScheme.content.default)
+private fun textFieldTextStyle() = OudsTheme.typography.label.default.large.copy(color = contentColor())
 
 @Composable
 private fun textFieldEnabled(state: OudsTextInput.State) = state != OudsTextInput.State.Disabled && state != OudsTextInput.State.Loading
