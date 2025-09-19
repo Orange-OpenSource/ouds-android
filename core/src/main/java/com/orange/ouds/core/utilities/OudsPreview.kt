@@ -96,7 +96,6 @@ internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme()
 
 @Composable
 internal inline fun <reified T> getPreviewEnumEntry(): T? {
-    @Suppress("UNCHECKED_CAST")
     return LocalPreviewEnumEntry.current as? T
 }
 
