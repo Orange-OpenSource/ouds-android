@@ -16,12 +16,11 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsTagPreviewParameter
 import com.orange.ouds.core.component.OudsTagPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsTag
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-abstract class OudsTagTest(private val parameter: OudsTagPreviewParameter, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+class OudsTagTest(private val parameter: OudsTagPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
     companion object {
         @JvmStatic

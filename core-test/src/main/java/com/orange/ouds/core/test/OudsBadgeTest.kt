@@ -17,15 +17,11 @@ import com.orange.ouds.core.component.OudsBadgePreview
 import com.orange.ouds.core.component.OudsBadgePreviewParameter
 import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsBadge
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-abstract class OudsBadgeTest(
-    private val parameter: OudsBadgePreviewParameter,
-    theme: OudsThemeContract
-) : OudsSnapshotTest(theme, OudsBadgePreview.widthDp) {
+class OudsBadgeTest(private val parameter: OudsBadgePreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme, OudsBadgePreview.widthDp) {
 
     companion object {
         @JvmStatic

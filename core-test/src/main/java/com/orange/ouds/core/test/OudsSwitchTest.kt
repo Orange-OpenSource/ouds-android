@@ -15,12 +15,11 @@ package com.orange.ouds.core.test
 import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsSwitchPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsSwitch
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-abstract class OudsSwitchTest(private val checked: Boolean, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+class OudsSwitchTest(private val checked: Boolean) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
     companion object {
         @JvmStatic

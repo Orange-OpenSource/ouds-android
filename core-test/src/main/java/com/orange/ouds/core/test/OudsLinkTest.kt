@@ -17,15 +17,14 @@ import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsLink
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 
 @RunWith(Enclosed::class)
-abstract class OudsLinkTest {
+class OudsLinkTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
-    abstract class Parameterized(private val parameter: OudsLinkPreviewParameter, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+    class Parameterized(private val parameter: OudsLinkPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
@@ -42,7 +41,7 @@ abstract class OudsLinkTest {
         }
     }
 
-    abstract class NonParameterized(theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+    class NonParameterized() : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
         override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
 

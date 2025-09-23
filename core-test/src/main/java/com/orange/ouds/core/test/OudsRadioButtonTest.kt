@@ -16,12 +16,11 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsRadioButton
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-abstract class OudsRadioButtonTest(private val parameter: OudsRadioButtonPreviewParameter, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+class OudsRadioButtonTest(private val parameter: OudsRadioButtonPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
     companion object {
         @JvmStatic

@@ -17,15 +17,14 @@ import com.orange.ouds.core.component.OudsSwitchItemPreviewParameter
 import com.orange.ouds.core.component.OudsSwitchItemPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsSwitchItem
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongHelperText
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 
 @RunWith(Enclosed::class)
-abstract class OudsSwitchItemTest {
+class OudsSwitchItemTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
-    abstract class Parameterized(private val parameter: OudsSwitchItemPreviewParameter, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+    class Parameterized(private val parameter: OudsSwitchItemPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
         companion object {
             @JvmStatic
@@ -43,7 +42,7 @@ abstract class OudsSwitchItemTest {
         }
     }
 
-    abstract class NonParameterized(theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+    class NonParameterized : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
         override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
 

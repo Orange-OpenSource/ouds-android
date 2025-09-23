@@ -16,12 +16,11 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsColoredBox
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-abstract class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+class OudsColoredBoxTest(private val parameter: OudsColoredBox.Color) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
     companion object {
         @JvmStatic

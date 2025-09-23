@@ -16,12 +16,11 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsSuggestionChipPreviewParameter
 import com.orange.ouds.core.component.OudsSuggestionChipPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-abstract class OudsSuggestionChipTest(private val parameter: OudsSuggestionChipPreviewParameter, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+class OudsSuggestionChipTest(private val parameter: OudsSuggestionChipPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
     companion object {
         @JvmStatic

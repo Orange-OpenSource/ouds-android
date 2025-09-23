@@ -10,9 +10,19 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.theme.sosh.component
+package com.orange.ouds.theme.orange
 
-import com.orange.ouds.core.test.OudsInputTagTest
-import com.orange.ouds.theme.sosh.SoshTheme
+import com.orange.ouds.core.test.OudsComponentTestSuite
+import org.junit.BeforeClass
 
-class SoshInputTagTest() : OudsInputTagTest(SoshTheme())
+class OrangeComponentTestSuite : OudsComponentTestSuite() {
+
+    companion object {
+
+        @BeforeClass
+        @JvmStatic
+        fun setUpClass() {
+            theme = OrangeTheme()
+        }
+    }
+}

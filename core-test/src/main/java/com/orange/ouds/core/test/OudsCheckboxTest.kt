@@ -16,12 +16,11 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsCheckboxPreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsCheckbox
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-abstract class OudsCheckboxTest(private val parameter: OudsCheckboxPreviewParameter, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+class OudsCheckboxTest(private val parameter: OudsCheckboxPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
     companion object {
         @JvmStatic

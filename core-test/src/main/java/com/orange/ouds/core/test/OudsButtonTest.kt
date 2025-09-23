@@ -17,16 +17,15 @@ import com.orange.ouds.core.component.OudsButtonPreviewParameter
 import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsButton
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
-abstract class OudsButtonTest {
+class OudsButtonTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
-    abstract class Parameterized(private val parameter: OudsButtonPreviewParameter, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+    class Parameterized(private val parameter: OudsButtonPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
         companion object {
             @JvmStatic
@@ -44,7 +43,7 @@ abstract class OudsButtonTest {
         }
     }
 
-    abstract class NonParameterized(theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+    class NonParameterized : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
         override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
 

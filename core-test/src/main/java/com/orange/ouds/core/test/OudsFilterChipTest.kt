@@ -16,12 +16,11 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameter
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsFilterChip
-import com.orange.ouds.theme.OudsThemeContract
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-abstract class OudsFilterChipTest(private val parameter: OudsFilterChipPreviewParameter, theme: OudsThemeContract) : OudsSnapshotTest(theme) {
+class OudsFilterChipTest(private val parameter: OudsFilterChipPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
     companion object {
         @JvmStatic
