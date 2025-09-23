@@ -46,7 +46,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -55,6 +54,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -552,7 +552,7 @@ object OudsTag {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTag(@PreviewParameter(OudsTagPreviewParameterProvider::class) parameter: OudsTagPreviewParameter) {
-    PreviewOudsTag(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsTag(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
@@ -561,21 +561,21 @@ fun PreviewOudsTag(
     darkThemeEnabled: Boolean,
     parameter: OudsTagPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-        val label = "Label"
-        with(parameter) {
-            PreviewEnumEntries<OudsTag.Size, OudsTag.Status> { size, status ->
-                OudsTag(
-                    label = label,
-                    icon = icon,
-                    hierarchy = hierarchy,
-                    status = status,
-                    size = size,
-                    roundedCorners = roundedCorners,
-                    loader = loader,
-                )
-            }
+    val label = "Label"
+    with(parameter) {
+        PreviewEnumEntries<OudsTag.Size, OudsTag.Status> { size, status ->
+            OudsTag(
+                label = label,
+                icon = icon,
+                hierarchy = hierarchy,
+                status = status,
+                size = size,
+                roundedCorners = roundedCorners,
+                loader = loader,
+            )
         }
     }
+}
 
 data class OudsTagPreviewParameter(
     val icon: OudsTag.Icon? = null,

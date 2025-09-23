@@ -31,12 +31,12 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+import com.orange.ouds.theme.orange.OrangeTheme
 import kotlin.enums.enumEntries
 
 private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
@@ -55,7 +55,7 @@ private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 @Composable
 fun OudsPreview(
     modifier: Modifier = Modifier,
-    theme: OudsThemeContract = BuildConfig.PREVIEW_THEME,
+    theme: OudsThemeContract = getPreviewTheme(),
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     highContrastModeEnabled: Boolean = false,
     content: @Composable () -> Unit
@@ -92,6 +92,8 @@ internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (Ou
         override val settings = transform(this@mapSettings.settings)
     }
 }
+
+internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme()
 
 @Composable
 internal fun <T> getPreviewEnumEntry(): T? {

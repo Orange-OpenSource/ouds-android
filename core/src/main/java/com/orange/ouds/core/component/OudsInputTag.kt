@@ -41,7 +41,6 @@ import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -50,6 +49,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -271,7 +271,7 @@ object OudsInputTag {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsInputTag() {
-    PreviewOudsInputTag(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme())
+    PreviewOudsInputTag(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
 }
 
 @Composable

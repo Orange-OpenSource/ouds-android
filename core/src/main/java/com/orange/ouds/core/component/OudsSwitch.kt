@@ -50,14 +50,13 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import androidx.core.os.BuildCompat
-import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -229,7 +228,7 @@ private fun animateHorizontalAlignmentAsState(targetBiasValue: Float, animationS
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitch(@PreviewParameter(OudsSwitchPreviewParameterProvider::class) checked: Boolean) {
-    PreviewOudsSwitch(theme = BuildConfig.PREVIEW_THEME, darkThemeEnabled = isSystemInDarkTheme(), checked = checked)
+    PreviewOudsSwitch(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), checked = checked)
 }
 
 @Composable
@@ -237,7 +236,7 @@ fun PreviewOudsSwitch(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     checked: Boolean
-) = OudsPreview(theme= theme, darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsControl.State>(columnCount = 3) {
         OudsSwitch(
             checked = checked,
