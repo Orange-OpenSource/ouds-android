@@ -486,7 +486,7 @@ fun PreviewOudsLink(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsLinkOnTwoLines() = PreviewOudsLinkOnTwoLines(theme = getPreviewTheme())
+private fun PreviewOudsLinkOnTwoLines() = PreviewOudsLinkOnTwoLines(theme = getPreviewTheme())
 
 @Composable
 fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {

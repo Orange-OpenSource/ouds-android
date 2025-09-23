@@ -240,7 +240,7 @@ fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsRadioButtonItemWithLongHelperText() = PreviewOudsRadioButtonItemWithLongHelperText(theme = getPreviewTheme())
+private fun PreviewOudsRadioButtonItemWithLongHelperText() = PreviewOudsRadioButtonItemWithLongHelperText(theme = getPreviewTheme())
 
 @Composable
 fun PreviewOudsRadioButtonItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {

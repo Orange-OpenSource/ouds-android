@@ -24,13 +24,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":foundation"))
     api(project(":core"))
+    implementation(project(":foundation"))
 
-    implementation(libs.paparazzi)
     api(libs.androidx.compose.ui.test.junit4)
-    api(libs.mockito.android)
-    api(libs.mockito.kotlin)
-    // Needed for createComposeRule(), but not for createAndroidComposeRule<YourActivity>():
-    api(libs.androidx.compose.ui.test.manifest)
+    implementation(libs.paparazzi)
 }

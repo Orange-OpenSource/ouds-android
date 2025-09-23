@@ -15,7 +15,7 @@ package com.orange.ouds.core.test
 import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.PreviewOudsInputTag
 
-class OudsInputTagTest() : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+class OudsInputTagTest : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
     @Composable
     override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {

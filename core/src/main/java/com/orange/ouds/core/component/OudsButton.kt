@@ -791,7 +791,7 @@ fun PreviewOudsButton(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRoundedCorners(theme = getPreviewTheme())
+private fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRoundedCorners(theme = getPreviewTheme())
 
 @Composable
 fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =

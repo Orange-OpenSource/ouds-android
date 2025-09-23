@@ -41,7 +41,7 @@ class OudsLinkTest {
         }
     }
 
-    class NonParameterized() : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+    class NonParameterized : OudsSnapshotTest(OudsComponentTestSuite.theme) {
 
         override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
 

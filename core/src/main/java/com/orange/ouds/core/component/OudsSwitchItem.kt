@@ -165,7 +165,7 @@ fun PreviewOudsSwitchItem(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsSwitchItemWithLongHelperText() = PreviewOudsSwitchItemWithLongHelperText(theme = getPreviewTheme())
+private fun PreviewOudsSwitchItemWithLongHelperText() = PreviewOudsSwitchItemWithLongHelperText(theme = getPreviewTheme())
 
 @Composable
 fun PreviewOudsSwitchItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {

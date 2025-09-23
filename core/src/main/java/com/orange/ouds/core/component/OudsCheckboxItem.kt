@@ -275,7 +275,7 @@ fun PreviewOudsCheckboxItemHighContrastModeEnabled(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsCheckboxItemWithLongHelperText() = PreviewOudsCheckboxItemWithLongHelperText(theme = getPreviewTheme())
+private fun PreviewOudsCheckboxItemWithLongHelperText() = PreviewOudsCheckboxItemWithLongHelperText(theme = getPreviewTheme())
 
 @Composable
 fun PreviewOudsCheckboxItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
