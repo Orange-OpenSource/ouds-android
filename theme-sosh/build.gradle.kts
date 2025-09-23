@@ -33,12 +33,15 @@ android {
 }
 
 dependencies {
-    // The core dependency is needed otherwise core resources are not found during Paparazzi tests
-    // The drawback is that this includes the core module as a dependency of the final package of this module,
-    // but this is not really a problem because using OUDS Android requires the core module anyway
-    // Also, we can't use implementation otherwise there is a cyclic dependency with core if this theme is used as the preview theme
-    // TODO Remove when https://github.com/cashapp/paparazzi/issues/1060 is fixed
-    runtimeOnly(project(":core"))
+    // TODO Remove the core dependency when https://github.com/cashapp/paparazzi/issues/1060 is fixed
+    // A few considerations about this fix:
+    // - The core dependency is needed otherwise core resources are not found during Paparazzi tests
+    // - We use runtimeOnly instead of implementation otherwise there is a cyclic dependency between core and this module if it is used as the preview theme
+    // - Moreover, although using runtimeOnly works when launching tests, this leads to a cyclic dependency when launching the linter,
+    //   that's why we only add this dependency when launching Paparazzi tasks
+    if (gradle.startParameter.taskNames.any { it.contains("paparazzi", ignoreCase = true) }) {
+        runtimeOnly(project(":core"))
+    }
     implementation(project(":foundation"))
     implementation(project(":global-raw-tokens"))
     implementation(project(":theme-contract"))
