@@ -31,7 +31,7 @@ fun rememberCheckboxItemDemoState(
         ToggleableState.Off
     ), // only used for indeterminate checkbox item demo
     icon: Boolean = false,
-    divider: Boolean = true,
+    divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,

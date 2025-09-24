@@ -26,7 +26,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 fun rememberSwitchItemDemoState(
     checked: Boolean = false,
     icon: Boolean = false,
-    divider: Boolean = true,
+    divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
