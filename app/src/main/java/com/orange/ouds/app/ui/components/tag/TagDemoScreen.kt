@@ -139,9 +139,10 @@ private fun TagDemoContent(state: TagDemoState) {
             )
         }
 
-        content(size, true)
         // Reserve space to avoid changing the height of the demo box when switching between sizes
+        // Draw this invisible composable first otherwise the actual tag cannot be directly selected when TalkBack is enabled
         content(OudsTag.Size.Default, false)
+        content(size, true)
     }
 }
 
