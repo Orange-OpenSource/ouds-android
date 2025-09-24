@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.sosh
 
+import androidx.annotation.DrawableRes
 import com.orange.ouds.theme.OudsDrawableResources
 
 class SoshDrawableResources : OudsDrawableResources() {
@@ -23,10 +24,18 @@ class SoshDrawableResources : OudsDrawableResources() {
         get() = R.drawable.sosh_chevron_left
     override val delete: Int
         get() = R.drawable.sosh_delete
+    override val error: Int
+        @DrawableRes get() = R.drawable.sosh_error
+    override val important: Int
+        @DrawableRes get() = R.drawable.sosh_important
+    override val information: Int
+        @DrawableRes get() = R.drawable.sosh_information
     override val tick: Int
         get() = R.drawable.sosh_tick
     override val radioButtonSelected: Int
         get() = R.drawable.sosh_radio_button_selected
+    override val success: Int
+        @DrawableRes get() = R.drawable.sosh_success
     override val switchSelected: Int
         get() = R.drawable.sosh_switch_selected
 }

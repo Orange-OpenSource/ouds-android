@@ -72,7 +72,11 @@ theme-contract/src/main/res/drawable/ic_checkbox_indeterminate.xml
 theme-contract/src/main/res/drawable/ic_checkbox_selected.xml
 theme-contract/src/main/res/drawable/ic_chevron_left.xml
 theme-contract/src/main/res/drawable/ic_delete.xml
+theme-contract/src/main/res/drawable/ic_error.xml
+theme-contract/src/main/res/drawable/ic_important.xml
+theme-contract/src/main/res/drawable/ic_information.xml
 theme-contract/src/main/res/drawable/ic_radio_button_selected.xml
+theme-contract/src/main/res/drawable/ic_success.xml
 theme-contract/src/main/res/drawable/ic_switch_selected.xml
 theme-contract/src/main/res/drawable/ic_tick.xml
 
@@ -80,7 +84,11 @@ theme-sosh/src/main/res/drawable/sosh_checkbox_indeterminate.xml
 theme-sosh/src/main/res/drawable/sosh_checkbox_selected.xml
 theme-sosh/src/main/res/drawable/sosh_chevron_left.xml
 theme-sosh/src/main/res/drawable/sosh_delete.xml
+theme-sosh/src/main/res/drawable/sosh_error.xml
+theme-sosh/src/main/res/drawable/sosh_important.xml
+theme-sosh/src/main/res/drawable/sosh_information.xml
 theme-sosh/src/main/res/drawable/sosh_radio_button_selected.xml
+theme-sosh/src/main/res/drawable/sosh_success.xml
 theme-sosh/src/main/res/drawable/sosh_switch_selected.xml
 theme-sosh/src/main/res/drawable/sosh_tick.xml
 theme-sosh/src/main/res/font/sosh_black.ttf
