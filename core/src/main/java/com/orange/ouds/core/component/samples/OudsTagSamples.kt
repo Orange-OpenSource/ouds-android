@@ -35,17 +35,23 @@ internal fun OudsTagSample() {
 internal fun OudsTagWithBulletSample() {
     OudsTag(
         label = "Tag",
-        icon = OudsTagIcon.Bullet,
-        status = OudsTagStatus.Positive
+        status = OudsTag.StatusPositive(icon = OudsTagIcon.Bullet)
     )
 }
 
 @Composable
-internal fun OudsTagWithIconSample() {
+internal fun OudsTagWithDefaultIconSample() {
     OudsTag(
         label = "Tag",
-        icon = OudsTagIcon(imageVector = Icons.Filled.FavoriteBorder),
-        status = OudsTagStatus.Positive
+        status = OudsTagStatus.Positive(icon = OudsTagIcon.Default)
+    )
+}
+
+@Composable
+internal fun OudsTagWithCustomIconSample() {
+    OudsTag(
+        label = "Tag",
+        status = OudsTagStatus.Neutral(icon = OudsTagIcon.Custom(imageVector = Icons.Filled.FavoriteBorder))
     )
 }
 
@@ -64,5 +70,5 @@ private fun PreviewOudsTagWithBulletSample() = OudsPreview {
 @PreviewLightDark
 @Composable
 private fun PreviewOudsTagWithIconSample() = OudsPreview {
-    OudsTagWithIconSample()
+    OudsTagWithDefaultIconSample()
 }
