@@ -155,7 +155,7 @@ fun SwitchIllustration() = ComponentIllustration {
 
 @Composable
 fun TagIllustration() = ComponentIllustration {
-    OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTagStatus.Positive)
+    OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTagStatus.Positive(null))
 }
 
 @Composable

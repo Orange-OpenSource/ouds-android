@@ -26,6 +26,7 @@ import com.orange.ouds.core.component.OudsTagHierarchy
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
 
+import kotlin.reflect.full.createInstance
 
 @Composable
 fun rememberTagDemoState(
@@ -35,9 +36,10 @@ fun rememberTagDemoState(
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
     status: OudsTagStatus = OudsTagDefaults.Status,
-    hasLoader: Boolean = false
-) = rememberSaveable(label, hierarchy, layout, roundedCorners, size, status, hasLoader, saver = TagDemoState.Saver) {
-    TagDemoState(label, hierarchy, layout, roundedCorners, size, status, hasLoader)
+    hasLoader: Boolean = false,
+    enabled: Boolean = true
+) = rememberSaveable(label, hierarchy, layout, roundedCorners, size, status, hasLoader, enabled, saver = TagDemoState.Saver) {
+    TagDemoState(label, hierarchy, layout, roundedCorners, size, status, hasLoader, enabled)
 }
 
 class TagDemoState(
@@ -47,7 +49,8 @@ class TagDemoState(
     roundedCorners: Boolean,
     size: OudsTagSize,
     status: OudsTagStatus,
-    hasLoader: Boolean
+    hasLoader: Boolean,
+    enabled: Boolean
 ) {
 
     companion object {
@@ -61,20 +64,25 @@ class TagDemoState(
                         layout,
                         roundedCorners,
                         size,
-                        status,
-                        hasLoader
+                        status::class.java.name,
+                        hasLoader,
+                        enabled
                     )
                 }
             },
             restore = { list: List<Any?> ->
+                val statusName = list[5] as String
+                val status = Class.forName(statusName).kotlin.createInstance() as OudsTagStatus
+
                 TagDemoState(
                     list[0] as String,
                     list[1] as OudsTagHierarchy,
                     list[2] as Layout,
                     list[3] as Boolean,
                     list[4] as OudsTagSize,
-                    list[5] as OudsTagStatus,
-                    list[6] as Boolean
+                    status,
+                    list[6] as Boolean,
+                    list[7] as Boolean
                 )
             }
         )
@@ -94,8 +102,10 @@ class TagDemoState(
 
     var hasLoader: Boolean by mutableStateOf(hasLoader)
 
+    var enabled: Boolean by mutableStateOf(enabled)
+
     val loaderSwitchEnabled: Boolean
-        get() = status != OudsTagStatus.Disabled
+        get() = enabled
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),
