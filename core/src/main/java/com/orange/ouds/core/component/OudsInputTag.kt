@@ -127,15 +127,15 @@ fun OudsInputTag(
                 }
                 .border(width = borderWidth.value, color = borderColor.value, shape = shape)
                 .outerBorder(state = state, shape = shape)
-                .padding(vertical = tagTokens.spacePaddingBlockDefault.value)
-                .padding(start = tagTokens.spacePaddingInlineDefault.value, end = tagTokens.spacePaddingInlineAssetDefault.value)
                 .clickable(
                     enabled = enabled,
                     interactionSource = interactionSource,
                     indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                     onClick = onClick,
                     role = Role.Button
-                ),
+                )
+                .padding(vertical = tagTokens.spacePaddingBlockDefault.value)
+                .padding(start = tagTokens.spacePaddingInlineDefault.value, end = tagTokens.spacePaddingInlineAssetDefault.value),
             horizontalArrangement = Arrangement.spacedBy(tagTokens.spaceColumnGapDefault.value, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {

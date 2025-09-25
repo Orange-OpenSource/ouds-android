@@ -143,10 +143,11 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
             }
         }
 
-        content(type, size, true)
         // Reserve space to avoid changing the height of the demo box when switching between sizes and types
         // A large count badge has the biggest height because font size can be increased by the user
+        // Draw this invisible composable first otherwise the actual badge cannot be directly selected when TalkBack is enabled
         content(BadgeDemoState.Type.Count, OudsBadge.Size.Large, false)
+        content(type, size, true)
     }
 }
 
