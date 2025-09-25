@@ -27,7 +27,7 @@ material = "1.13.0"
 mockitoAndroid = "5.20.0"
 mockitoKotlin = "6.0.0"
 mustacheJava = "0.9.14"
-navigationCompose = "2.9.4"
+navigationCompose = "2.9.5"
 paparazzi = "2.0.0-alpha02"
 zxing = "3.5.3"
 
