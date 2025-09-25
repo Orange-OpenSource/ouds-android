@@ -315,7 +315,7 @@ internal data class OudsControlItemPreviewParameter<T, S>(
     val value: T,
     val extraParameter: S?,
     val helperText: String? = null,
-    val divider: Boolean = true,
+    val divider: Boolean = false,
     val hasIcon: Boolean = false,
     val error: OudsError? = null,
     val reversed: Boolean = false,
@@ -348,7 +348,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                     when (index) {
                         0 -> this
                         1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
-                        else -> copy(helperText = helperText, divider = false, error = OudsError(""))
+                        else -> copy(helperText = helperText, divider = true, error = OudsError(""))
                     }
                 }
             }
