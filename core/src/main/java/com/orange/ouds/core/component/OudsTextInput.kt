@@ -57,6 +57,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
@@ -600,6 +601,7 @@ private fun OudsTextInputDecorator(
                 // Trailing elements
                 if (error || state == OudsTextInput.State.Loading || trailingIconButton != null) {
                     val buttonTokens = OudsTheme.componentsTokens.button
+                    val iconScale = LocalConfiguration.current.fontScale
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value)
@@ -611,7 +613,7 @@ private fun OudsTextInputDecorator(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
-                                    modifier = Modifier.size(buttonTokens.sizeIconOnly.value),
+                                    modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
                                     painter = painterResource(id = OudsTheme.drawableResources.important),
                                     contentDescription = null,
                                     tint = errorContentColor(state = state)
@@ -630,7 +632,8 @@ private fun OudsTextInputDecorator(
                             ) {
                                 OudsCircularProgressIndicator(
                                     color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                                    progress = progress
+                                    progress = progress,
+                                    scale = iconScale
                                 )
                             }
                         } else {
