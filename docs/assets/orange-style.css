@@ -11,6 +11,7 @@
   --color-background-nav-dt: #000;
   --elements-border-color: rgba(0, 0, 0, 0.2);
   --color-action-hover: rgba(0, 0, 0, 0.68);
+  --bs-color-surface-status-negative-muted: rgba(234, 3, 5, 0.08);
 
   --default-font-family: "Helvetica Neue", helvetica, "Noto Sans",
     "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -259,10 +260,25 @@
   line-height: var(--font-line-height-display-small);
   letter-spacing: var(--font-letter-spacing-display-small);
 }
-.main-content :is(h2, h3) {
+h2, h3 {
   font-size: var(--font-size-heading-large);
   line-height: var(--font-line-height-heading-large);
   letter-spacing: var(--font-letter-spacing-heading-large);
+}
+
+/* deprecation content */
+.deprecation-content {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    border: none;
+    padding: 1rem;
+    background-color: var(--bs-color-surface-status-negative-muted);
+}
+
+.deprecation-content > h3 {
+    font-size: var(--font-size-heading-small);
 }
 
 /* links in content */
