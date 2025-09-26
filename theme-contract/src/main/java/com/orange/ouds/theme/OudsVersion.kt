@@ -18,12 +18,12 @@ object OudsVersion {
     object Component {
         const val Badge = "1.1.0"
         const val Button = "3.0.0"
-        const val Checkbox = "2.1.0"
+        const val Checkbox = "2.2.0"
         const val Chip = "1.3.0"
         const val Divider = "1.0.0"
         const val Link = "2.1.0"
-        const val RadioButton = "1.1.0"
-        const val Switch = "1.2.0"
+        const val RadioButton = "1.2.0"
+        const val Switch = "1.3.0"
         const val Tag = "1.2.0"
     }
 

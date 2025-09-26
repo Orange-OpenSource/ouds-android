@@ -50,7 +50,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.2.0
  *
  * @see [OudsRadioButton] If you want to use a standalone radio button.
  *
@@ -84,7 +84,7 @@ fun OudsRadioButtonItem(
     additionalLabel: String? = null,
     helperText: String? = null,
     icon: OudsControlItem.Icon? = null,
-    divider: Boolean = true,
+    divider: Boolean = false,
     outlined: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,

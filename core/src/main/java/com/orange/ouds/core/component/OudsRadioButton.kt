@@ -58,7 +58,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.2.0
  *
  * @see [OudsRadioButtonItem] If you want to use a radio button with an associated label and other optional elements.
  *
