@@ -51,9 +51,9 @@ class WireframeTheme : OudsThemeContract {
 
     override val fontFamily: FontFamily
         get() = FontFamily(
-            Font(R.font.chalkboardse_bold, weight = FontWeight.Bold),
-            Font(R.font.chalkboardse_regular, weight = FontWeight.Normal),
-            Font(R.font.chalkboardse_light, weight = FontWeight.Light)
+            Font(R.font.shantellsans_bold, weight = FontWeight.Bold),
+            Font(R.font.shantellsans_regular, weight = FontWeight.Normal),
+            Font(R.font.shantellsans_light, weight = FontWeight.Light)
         )
 
     override val colorTokens: OudsColorSemanticTokens

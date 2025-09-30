@@ -100,13 +100,13 @@ End of the parts list under Orange SA Copyright
 
 ===========================================================================
 
-Parts list under Apple Computer, Inc. Copyright
-Copyright 2003-10 Apple Computer, Inc.
+Parts list under The Shantell Sans Project Authors Copyright (https://github.com/arrowtype/shantell-sans)
+Copyright 2022 The Shantell Sans Project Authors
 
-The following font files are proprietary information of Apple Computer, Inc.
+The following font files are licensed under the SIL Open Font License, Version 1.1
 
-theme-wireframe/src/main/res/font/chalkboardse_bold.ttf
-theme-wireframe/src/main/res/font/chalkboardse_light.ttf
-theme-wireframe/src/main/res/font/chalkboardse_regular.ttf
+theme-wireframe/src/main/res/font/shantellsans_bold.ttf
+theme-wireframe/src/main/res/font/shantellsans_light.ttf
+theme-wireframe/src/main/res/font/shantellsans_regular.ttf
 
-End of the parts list under Apple Computer, Inc. Copyright
+End of the parts list under The Shantell Sans Project Authors Copyright
