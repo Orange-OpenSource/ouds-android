@@ -34,7 +34,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.core.component.OudsTag
-import com.orange.ouds.core.component.OudsTagHierarchy
+import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagIcon
 import com.orange.ouds.core.component.OudsTagLoader
 import com.orange.ouds.core.component.OudsTagSize
@@ -60,10 +60,10 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_tag_hierarchy_label),
-            chipLabels = OudsTagHierarchy.entries.map { it.name },
-            selectedChipIndex = OudsTagHierarchy.entries.indexOf(hierarchy),
-            onSelectionChange = { id -> hierarchy = OudsTagHierarchy.entries[id] }
+            label = stringResource(R.string.app_components_common_appearance_label),
+            chipLabels = OudsTagAppearance.entries.map { it.name },
+            selectedChipIndex = OudsTagAppearance.entries.indexOf(appearance),
+            onSelectionChange = { id -> appearance = OudsTagAppearance.entries[id] }
         )
         val statuses = if (LocalInspectionMode.current) {
             // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
@@ -94,9 +94,9 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(
-                                    when (hierarchy) {
-                                        OudsTagHierarchy.Emphasized -> status.color()
-                                        OudsTagHierarchy.Muted -> status.mutedColor()
+                                    when (appearance) {
+                                        OudsTagAppearance.Emphasized -> status.color()
+                                        OudsTagAppearance.Muted -> status.mutedColor()
                                     }
                                 )
                         )
@@ -151,7 +151,7 @@ private fun TagDemoContent(state: TagDemoState) {
             OudsTag(
                 modifier = Modifier.alpha(alpha),
                 label = label,
-                hierarchy = hierarchy,
+                appearance = appearance,
                 status = when (status) {
                     is OudsTagStatus.Neutral -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Neutral()
@@ -202,7 +202,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
     with(state) {
         functionCall("OudsTag") {
             labelArgument(label)
-            typedArgument("hierarchy", hierarchy)
+            typedArgument("appearance", appearance)
             typedArgument("roundedCorners", roundedCorners)
             typedArgument("size", size)
             functionCallArgument("status", status::class.java.nestedName) {

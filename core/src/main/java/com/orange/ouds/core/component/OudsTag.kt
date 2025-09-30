@@ -87,9 +87,9 @@ import kotlin.enums.enumEntries
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
- * @param hierarchy The importance of the tag. Its background color and its content color are based on this hierarchy combined with the [status] of the tag.
- * @param status The status of the tag. Its background color and its content color are based on this status combined with the [hierarchy] of the tag.
- *   A tag with loading spinner cannot be disabled. This will throw an [IllegalStateException].
+ * @param appearance Appearance of the tag among [OudsTagAppearance] values. Combined with the [status] of the tag, the appearance determines tag's background
+ *   and content colors.
+ * @param status The status of the tag. Its background color and its content color are based on this status combined with the [appearance] of the tag.
  *   There are two types of status:
  *     - Non-functional statuses (`OudsTagStatus.Neutral` or `OudsTagStatus.Accent`) used to display categories, default states, or to draw attention without
  *       carrying a specific functional meaning (unlike functional tags such as success, info, etc.).
@@ -122,7 +122,7 @@ import kotlin.enums.enumEntries
 fun OudsTag(
     label: String,
     modifier: Modifier = Modifier,
-    hierarchy: OudsTagHierarchy = OudsTagDefaults.Hierarchy,
+    appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     status: OudsTagStatus = OudsTagDefaults.Status,
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
@@ -150,7 +150,7 @@ fun OudsTag(
                 modifier = Modifier
                     .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
                     .clip(shape = tagShape)
-                    .background(backgroundColor(status = status, hierarchy = hierarchy, hasLoader = hasLoader, enabled = enabled))
+                    .background(backgroundColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled))
                     .semantics(mergeDescendants = true) {
                         this.stateDescription = stateDescription
                     }
@@ -158,7 +158,7 @@ fun OudsTag(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
             ) {
-                val contentColor = contentColor(status = status, hierarchy = hierarchy, hasLoader = hasLoader, enabled = enabled)
+                val contentColor = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled)
 
                 if (hasAsset) {
                     Box(
@@ -167,13 +167,13 @@ fun OudsTag(
                             .semantics { hideFromAccessibility() }
                     ) {
                         if (hasLoader) {
-                            ProgressIndicator(status = status, hierarchy = hierarchy, size = size, progress = loader.progress, enabled = enabled)
+                            ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
                         } else {
                             val iconPadding = if (status.icon is OudsTagIcon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
                             status.icon?.Content(
                                 modifier = Modifier.padding(all = iconPadding),
                                 extraParameters = OudsTagIcon.ExtraParameters(
-                                    tint = iconColor(status = status, hierarchy = hierarchy, enabled = enabled),
+                                    tint = iconColor(status = status, appearance = appearance, enabled = enabled),
                                     status = status
                                 )
                             )
@@ -248,31 +248,31 @@ private fun betweenAssetAndLabelSpace(size: OudsTagSize): Dp {
 }
 
 @Composable
-private fun backgroundColor(status: OudsTagStatus, hierarchy: OudsTagHierarchy, hasLoader: Boolean, enabled: Boolean): Color {
+private fun backgroundColor(status: OudsTagStatus, appearance: OudsTagAppearance, hasLoader: Boolean, enabled: Boolean): Color {
     return if (!enabled) {
         OudsTheme.colorScheme.action.disabled
     } else {
         if (hasLoader) {
             OudsTheme.colorScheme.surface.secondary
         } else {
-            when (hierarchy) {
-                OudsTagHierarchy.Emphasized -> status.color()
-                OudsTagHierarchy.Muted -> status.mutedColor()
+            when (appearance) {
+                OudsTagAppearance.Emphasized -> status.color()
+                OudsTagAppearance.Muted -> status.mutedColor()
             }
         }
     }
 }
 
 @Composable
-private fun iconColor(status: OudsTagStatus, hierarchy: OudsTagHierarchy, enabled: Boolean): Color {
-    return when (hierarchy) {
-        OudsTagHierarchy.Emphasized -> contentColor(status = status, hierarchy = hierarchy, hasLoader = false, enabled = enabled)
-        OudsTagHierarchy.Muted -> if (!enabled) OudsTheme.colorScheme.content.onAction.disabled else status.color()
+private fun iconColor(status: OudsTagStatus, appearance: OudsTagAppearance, enabled: Boolean): Color {
+    return when (appearance) {
+        OudsTagAppearance.Emphasized -> contentColor(status = status, appearance = appearance, hasLoader = false, enabled = enabled)
+        OudsTagAppearance.Muted -> if (!enabled) OudsTheme.colorScheme.content.onAction.disabled else status.color()
     }
 }
 
 @Composable
-private fun contentColor(status: OudsTagStatus, hierarchy: OudsTagHierarchy, hasLoader: Boolean, enabled: Boolean): Color {
+private fun contentColor(status: OudsTagStatus, appearance: OudsTagAppearance, hasLoader: Boolean, enabled: Boolean): Color {
     return if (hasLoader) {
         OudsTheme.colorScheme.content.default
     } else {
@@ -280,8 +280,8 @@ private fun contentColor(status: OudsTagStatus, hierarchy: OudsTagHierarchy, has
             OudsTheme.colorScheme.content.onAction.disabled
         } else {
             with(OudsTheme.colorScheme.content) {
-                when (hierarchy) {
-                    OudsTagHierarchy.Emphasized -> when (status) {
+                when (appearance) {
+                    OudsTagAppearance.Emphasized -> when (status) {
                         is OudsTagStatus.Neutral -> inverse
                         is OudsTagStatus.Accent -> onStatus.accent.emphasized
                         is OudsTagStatus.Positive -> onStatus.positive.emphasized
@@ -289,7 +289,7 @@ private fun contentColor(status: OudsTagStatus, hierarchy: OudsTagHierarchy, has
                         is OudsTagStatus.Negative -> onStatus.negative.emphasized
                         is OudsTagStatus.Info -> onStatus.info.emphasized
                     }
-                    OudsTagHierarchy.Muted -> when (status) {
+                    OudsTagAppearance.Muted -> when (status) {
                         is OudsTagStatus.Neutral -> default
                         is OudsTagStatus.Accent -> onStatus.accent.muted
                         is OudsTagStatus.Positive -> onStatus.positive.muted
@@ -357,12 +357,12 @@ private fun loaderPadding(size: OudsTagSize): Dp {
 }
 
 @Composable
-private fun ProgressIndicator(status: OudsTagStatus, hierarchy: OudsTagHierarchy, size: OudsTagSize, progress: Float?, enabled: Boolean) {
+private fun ProgressIndicator(status: OudsTagStatus, appearance: OudsTagAppearance, size: OudsTagSize, progress: Float?, enabled: Boolean) {
     val modifier = Modifier
         .padding(all = loaderPadding(size = size))
         .fillMaxSize()
         .semantics { hideFromAccessibility() }
-    val color = contentColor(status = status, hierarchy = hierarchy, hasLoader = true, enabled = enabled)
+    val color = contentColor(status = status, appearance = appearance, hasLoader = true, enabled = enabled)
     val strokeWidth = when (size) {
         OudsTagSize.Default -> 2.4.dp
         OudsTagSize.Small -> 2.dp
@@ -395,9 +395,9 @@ private fun ProgressIndicator(status: OudsTagStatus, hierarchy: OudsTagHierarchy
 object OudsTagDefaults {
 
     /**
-     * Default hierarchy of an [OudsTag].
+     * Default appearance of an [OudsTag].
      */
-    val Hierarchy = OudsTagHierarchy.Emphasized
+    val Appearance = OudsTagAppearance.Emphasized
 
     /**
      * Default size of an [OudsTag].
@@ -410,7 +410,7 @@ object OudsTagDefaults {
     val Status = OudsTagStatus.Neutral()
 }
 
-enum class OudsTagHierarchy {
+enum class OudsTagAppearance {
 
     /**
      * A tag with a solid, high-contrast background.
@@ -509,7 +509,7 @@ data class OudsTagLoader(val progress: Float?)
 /**
  * Represents the size of an OUDS tag.
  */
-enum class Size {
+enum class OudsTagSize {
 
     /** The standard tag size, suitable for most use cases and offering good readability. */
     Default,
@@ -671,15 +671,6 @@ private interface FunctionalStatus {
     fun getDedicatedIconResId(): Int
 }
 
-enum class OudsTagSize {
-
-    /** The standard tag size, suitable for most use cases and offering good readability. */
-    Default,
-
-    /** A compact tag with reduced height and font size. Used when saving space is important or when grouping elements visually. */
-    Small
-}
-
 @PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
@@ -719,7 +710,7 @@ internal fun PreviewOudsTag(
                                     OudsTag(
                                         label = label,
                                         status = status,
-                                        hierarchy = hierarchy,
+                                        appearance = appearance,
                                         size = size,
                                         roundedCorners = roundedCorners,
                                         loader = loader,
@@ -755,7 +746,7 @@ internal data class OudsTagPreviewParameter(
         OudsTagStatus.Negative(null),
         OudsTagStatus.Info(null)
     ),
-    val hierarchy: OudsTagHierarchy = OudsTagDefaults.Hierarchy,
+    val appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     val roundedCorners: Boolean = true,
     val loader: OudsTagLoader? = null,
     val enabled: Boolean = true
@@ -786,10 +777,10 @@ private val previewParameterValues: List<OudsTagPreviewParameter>
 
         return listOf(
             OudsTagPreviewParameter(),
-            OudsTagPreviewParameter(statusesWithBullet, hierarchy = OudsTagHierarchy.Muted),
-            OudsTagPreviewParameter(statusesWithIcon, hierarchy = OudsTagHierarchy.Muted),
+            OudsTagPreviewParameter(statusesWithBullet, appearance = OudsTagAppearance.Muted),
+            OudsTagPreviewParameter(statusesWithIcon, appearance = OudsTagAppearance.Muted),
             OudsTagPreviewParameter(statusesWithIcon, roundedCorners = false),
             OudsTagPreviewParameter(loader = loader),
-            OudsTagPreviewParameter(enabled = false, hierarchy = OudsTagHierarchy.Muted),
+            OudsTagPreviewParameter(enabled = false, appearance = OudsTagAppearance.Muted),
         )
     }

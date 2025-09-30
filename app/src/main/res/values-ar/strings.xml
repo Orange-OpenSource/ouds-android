@@ -103,6 +103,7 @@
     <string name="app_tokens_typography_description_text">الطباعة هي نظامنا للخطوط وأنماط النصوص. إنها تعزز الاتصال وتدعم أسلوب العلامة التجارية.</string>
 
     <!-- Components -->
+    <string name="app_components_common_appearance_label">التسلسل</string>
     <string name="app_components_common_color_label">اللون</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label">خطأ</string>
@@ -130,7 +131,6 @@
     <!-- Components: button -->
     <string name="app_components_button_label">زر</string>
     <string name="app_components_button_description_text">الأزرار تسمح للمستخدمين باتخاذ قرارات أو أداء إجراء. لها عدة أنماط لتلبية احتياجات مختلفة.</string>
-    <string name="app_components_button_appearance_label">Appearance</string>
 
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_label">مربع اختيار</string>
@@ -194,7 +194,6 @@
     <!-- Components: tag -->
     <string name="app_components_tag_label">Tag</string>
     <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category. It helps users quickly find, group, or understand content.</string>
-    <string name="app_components_tag_hierarchy_label">التسلسل</string>
     <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
     <string name="app_components_tag_tag_label">Tag</string>
     <string name="app_components_tag_inputTag_label">Input tag</string>
