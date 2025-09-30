@@ -51,6 +51,7 @@ dependencies {
     compileOnly(project(":theme-orange")) // Only useful for previews
 
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material3.adaptive)
     debugImplementation(libs.androidx.compose.ui.tooling)
