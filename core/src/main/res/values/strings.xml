@@ -12,4 +12,9 @@
 
 <resources>
     <string name="core_common_loading_a11y">Loading</string>
+
+    <string name="core_textInput_empty_a11y">Empty</string>
+    <string name="core_textInput_error_a11y">Error</string>
+    <string name="core_textInput_helperTextError_a11y">Error, %s</string>
+
 </resources>

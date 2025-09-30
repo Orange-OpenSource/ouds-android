@@ -59,6 +59,13 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.hideFromAccessibility
+import androidx.compose.ui.semantics.isTraversalGroup
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -70,6 +77,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -179,7 +187,9 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.fillMaxWidth(),
+                modifier = modifier
+                    .fillMaxWidth()
+                    .semantic(label),
                 state = textFieldState,
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
@@ -195,7 +205,7 @@ fun OudsTextInput(
                 decorator = { innerTextField ->
                     OudsTextInputDecorator(
                         innerTextField = innerTextField,
-                        emptyText = emptyText,
+                        value = textFieldState.text.toString(),
                         state = state,
                         label = label,
                         placeholder = placeholder,
@@ -302,7 +312,9 @@ fun OudsTextInput(
             BasicTextField(
                 value = value,
                 onValueChange = onValueChange,
-                modifier = modifier.fillMaxWidth(),
+                modifier = modifier
+                    .fillMaxWidth()
+                    .semantic(label),
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(),
@@ -316,7 +328,7 @@ fun OudsTextInput(
                 decorationBox = { innerTextField ->
                     OudsTextInputDecorator(
                         innerTextField = innerTextField,
-                        emptyText = emptyText,
+                        value = value,
                         state = state,
                         label = label,
                         placeholder = placeholder,
@@ -424,7 +436,9 @@ fun OudsTextInput(
             BasicTextField(
                 value = value,
                 onValueChange = onValueChange,
-                modifier = modifier.fillMaxWidth(),
+                modifier = modifier
+                    .fillMaxWidth()
+                    .semantic(label),
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(),
@@ -438,7 +452,7 @@ fun OudsTextInput(
                 decorationBox = { innerTextField ->
                     OudsTextInputDecorator(
                         innerTextField = innerTextField,
-                        emptyText = emptyText,
+                        value = value.text,
                         state = state,
                         label = label,
                         placeholder = placeholder,
@@ -456,6 +470,10 @@ fun OudsTextInput(
             )
         }
     )
+}
+
+private fun Modifier.semantic(label: String?): Modifier = this.semantics {
+    contentDescription = label.orEmpty()
 }
 
 @Composable
@@ -499,7 +517,7 @@ internal fun OudsTextInput(
 @Composable
 private fun OudsTextInputDecorator(
     innerTextField: @Composable () -> Unit,
-    emptyText: Boolean,
+    value: String,
     state: OudsTextInput.State,
     label: String?,
     placeholder: String?,
@@ -551,13 +569,19 @@ private fun OudsTextInputDecorator(
 
                 // Central content
                 Column(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .weight(1f)
+                        .semantics {
+                            isTraversalGroup = true
+                        },
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value, Alignment.CenterVertically),
                 ) {
                     // Small label on top
-                    if (!label.isNullOrBlank() && (!emptyText || !placeholder.isNullOrBlank() || state == OudsTextInput.State.Focused)) {
+                    if (!label.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInput.State.Focused)) {
                         Text(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .semantics { hideFromAccessibility() },
                             text = label,
                             style = OudsTheme.typography.label.default.small,
                             color = labelColor(state = state, error = error),
@@ -571,11 +595,26 @@ private fun OudsTextInputDecorator(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
                     ) {
-                        if (!prefix.isNullOrBlank()) PrefixSuffixText(text = prefix)
+                        if (!prefix.isNullOrBlank()) {
+                            PrefixSuffixText(
+                                modifier = Modifier.semantics {
+                                    if (value.isEmpty()) hideFromAccessibility()
+                                    traversalIndex = 1f
+                                },
+                                text = prefix
+                            )
+                        }
                         Box(modifier = Modifier.weight(1f)) {
-                            if (emptyText) {
+                            // Hidden text to manage a11y (value for screen reader)
+                            Text(
+                                modifier = Modifier.semantics { traversalIndex = 2f },
+                                text = value.ifEmpty { stringResource(R.string.core_textInput_empty_a11y) },
+                                color = Color.Transparent
+                            )
+                            if (value.isEmpty()) {
                                 if (!placeholder.isNullOrBlank()) {
                                     Text(
+                                        modifier = Modifier.semantics { hideFromAccessibility() },
                                         text = placeholder,
                                         style = OudsTheme.typography.label.default.large,
                                         color = placeholderColor(state = state),
@@ -584,6 +623,7 @@ private fun OudsTextInputDecorator(
                                     )
                                 } else if (!label.isNullOrBlank() && state != OudsTextInput.State.Focused) {
                                     Text(
+                                        modifier = Modifier.semantics { hideFromAccessibility() },
                                         text = label,
                                         style = OudsTheme.typography.label.default.large,
                                         color = labelColor(state = state, error = error),
@@ -594,7 +634,15 @@ private fun OudsTextInputDecorator(
                             }
                             innerTextField()
                         }
-                        if (!suffix.isNullOrBlank()) PrefixSuffixText(text = suffix)
+                        if (!suffix.isNullOrBlank()) {
+                            PrefixSuffixText(
+                                modifier = Modifier.semantics {
+                                    if (value.isEmpty()) hideFromAccessibility()
+                                    traversalIndex = 3f
+                                },
+                                text = suffix
+                            )
+                        }
                     }
                 }
 
@@ -615,7 +663,7 @@ private fun OudsTextInputDecorator(
                                 Icon(
                                     modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
                                     painter = painterResource(id = OudsTheme.drawableResources.important),
-                                    contentDescription = null,
+                                    contentDescription = if (helperText.isNullOrBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
                                     tint = errorContentColor(state = state)
                                 )
                             }
@@ -645,11 +693,15 @@ private fun OudsTextInputDecorator(
 
             // Helper text
             if (!helperText.isNullOrBlank()) {
+                val helperTextContentDescription = if (error) stringResource(R.string.core_textInput_helperTextError_a11y, helperText) else helperText
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = spacePaddingBlockTopHelperText.value)
-                        .padding(horizontal = spacePaddingInlineDefault.value),
+                        .padding(horizontal = spacePaddingInlineDefault.value)
+                        .clearAndSetSemantics {
+                            contentDescription = helperTextContentDescription
+                        },
                     text = helperText,
                     style = OudsTheme.typography.label.default.medium,
                     color = if (error) OudsTheme.colorScheme.content.status.negative else OudsTheme.colorScheme.content.muted
@@ -692,8 +744,8 @@ private fun borderWidth(state: OudsTextInput.State) = with(OudsTheme.componentsT
 }
 
 @Composable
-private fun PrefixSuffixText(text: String) {
-    Text(text = text, style = OudsTheme.typography.label.default.large, color = OudsTheme.colorScheme.content.muted)
+private fun PrefixSuffixText(text: String, modifier: Modifier = Modifier) {
+    Text(modifier = modifier, text = text, style = OudsTheme.typography.label.default.large, color = OudsTheme.colorScheme.content.muted)
 }
 
 @Composable
@@ -847,7 +899,8 @@ private fun placeholderColor(state: OudsTextInput.State) =
 private fun textFieldTextStyle() = OudsTheme.typography.label.default.large.copy(color = contentColor())
 
 @Composable
-private fun textFieldEnabled(state: OudsTextInput.State) = state != OudsTextInput.State.Disabled && state != OudsTextInput.State.Loading
+private fun textFieldEnabled(state: OudsTextInput.State) =
+    state != OudsTextInput.State.Disabled && state != OudsTextInput.State.ReadOnly && state != OudsTextInput.State.Loading
 
 /**
  * Contains classes to build an [OudsTextInput].
