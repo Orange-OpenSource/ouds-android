@@ -51,7 +51,7 @@ jobs:
           script: ./gradlew :core:connectedCheck
 
       - name: Run snapshot tests
-        run: ./gradlew :core:verifyPaparazziDebug
+        run: ./gradlew verifyPaparazziDebug
 
       - name: Run Android Linter
         run: ./gradlew lintProdDebug lintProdRelease
