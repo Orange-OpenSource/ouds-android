@@ -34,7 +34,6 @@ data class OudsColorScheme(
     val background: Background,
     val border: Border,
     val content: Content,
-    val decorative: Decorative,
     val opacity: Opacity,
     val overlay: Overlay,
     internal val repository: Repository,
@@ -193,93 +192,6 @@ data class OudsColorScheme(
             val negative: Color,
             val positive: Color,
             val warning: Color
-        )
-    }
-
-    data class Decorative(
-        val accent1: Accent1,
-        val accent2: Accent2,
-        val accent3: Accent3,
-        val accent4: Accent4,
-        val accent5: Accent5,
-        val brand: Brand,
-        val neutral: Neutral,
-        val skin: Skin
-    ) {
-        data class Accent1(
-            val default: Color,
-            val emphasized: Color,
-            val muted: Color
-        )
-
-        data class Accent2(
-            val default: Color,
-            val emphasized: Color,
-            val muted: Color
-        )
-
-        data class Accent3(
-            val default: Color,
-            val emphasized: Color,
-            val muted: Color
-        )
-
-        data class Accent4(
-            val default: Color,
-            val emphasized: Color,
-            val muted: Color
-        )
-
-        data class Accent5(
-            val default: Color,
-            val emphasized: Color,
-            val muted: Color
-        )
-
-        data class Brand(
-            val primaryEmphasized: Color,
-            val primaryMuted: Color,
-            val primary: Color,
-            val secondaryEmphasized: Color,
-            val secondaryMuted: Color,
-            val secondary: Color,
-            val tertiaryEmphasized: Color,
-            val tertiaryMuted: Color,
-            val tertiary: Color
-        )
-
-        data class Neutral(val emphasized: Emphasized, val muted: Muted) {
-            data class Emphasized(
-                val high: Color,
-                val higher: Color,
-                val highest: Color,
-                val low: Color,
-                val lower: Color,
-                val lowest: Color,
-                val medium: Color
-            )
-
-            data class Muted(
-                val high: Color,
-                val higher: Color,
-                val highest: Color,
-                val low: Color,
-                val lower: Color,
-                val lowest: Color,
-                val medium: Color
-            )
-        }
-
-        data class Skin(
-            val tint100: Color,
-            val tint200: Color,
-            val tint300: Color,
-            val tint400: Color,
-            val tint500: Color,
-            val tint600: Color,
-            val tint700: Color,
-            val tint800: Color,
-            val tint900: Color
         )
     }
 
@@ -704,7 +616,6 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 ),
             )
         },
-        decorative = decorativeColorScheme,
         opacity = with(opacityColorTokens) {
             OudsColorScheme.Opacity(
                 transparent = opacityTransparentLight,
@@ -928,7 +839,6 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 ),
             )
         },
-        decorative = decorativeColorScheme,
         opacity = with(opacityColorTokens) {
             OudsColorScheme.Opacity(
                 transparent = opacityTransparentDark,
@@ -1036,80 +946,6 @@ private val OudsColorSemanticTokens.alwaysColorScheme: OudsColorScheme.Always
             onBlack = alwaysOnBlack,
             onWhite = alwaysOnWhite,
             white = alwaysWhite,
-        )
-    }
-
-// Decorative colors are the same in light & dark modes
-private val OudsColorSemanticTokens.decorativeColorScheme: OudsColorScheme.Decorative
-    get() = with(decorativeColorTokens) {
-        OudsColorScheme.Decorative(
-            accent1 = OudsColorScheme.Decorative.Accent1(
-                default = decorativeAccent1Default,
-                emphasized = decorativeAccent1Emphasized,
-                muted = decorativeAccent1Muted,
-            ),
-            accent2 = OudsColorScheme.Decorative.Accent2(
-                default = decorativeAccent2Default,
-                emphasized = decorativeAccent2Emphasized,
-                muted = decorativeAccent2Muted,
-            ),
-            accent3 = OudsColorScheme.Decorative.Accent3(
-                default = decorativeAccent3Default,
-                emphasized = decorativeAccent3Emphasized,
-                muted = decorativeAccent3Muted,
-            ),
-            accent4 = OudsColorScheme.Decorative.Accent4(
-                default = decorativeAccent4Default,
-                emphasized = decorativeAccent4Emphasized,
-                muted = decorativeAccent4Muted,
-            ),
-            accent5 = OudsColorScheme.Decorative.Accent5(
-                default = decorativeAccent5Default,
-                emphasized = decorativeAccent5Emphasized,
-                muted = decorativeAccent5Muted,
-            ),
-            brand = OudsColorScheme.Decorative.Brand(
-                primaryEmphasized = decorativeBrandPrimaryEmphasized,
-                primaryMuted = decorativeBrandPrimaryMuted,
-                primary = decorativeBrandPrimary,
-                secondary = decorativeBrandSecondary,
-                secondaryEmphasized = decorativeBrandSecondaryEmphasized,
-                secondaryMuted = decorativeBrandSecondaryMuted,
-                tertiary = decorativeBrandTertiary,
-                tertiaryEmphasized = decorativeBrandTertiaryEmphasized,
-                tertiaryMuted = decorativeBrandTertiaryMuted,
-            ),
-            neutral = OudsColorScheme.Decorative.Neutral(
-                emphasized = OudsColorScheme.Decorative.Neutral.Emphasized(
-                    high = decorativeNeutralEmphasizedHigh,
-                    higher = decorativeNeutralEmphasizedHigher,
-                    highest = decorativeNeutralEmphasizedHighest,
-                    low = decorativeNeutralEmphasizedLow,
-                    lower = decorativeNeutralEmphasizedLower,
-                    lowest = decorativeNeutralEmphasizedLowest,
-                    medium = decorativeNeutralEmphasizedMedium
-                ),
-                muted = OudsColorScheme.Decorative.Neutral.Muted(
-                    high = decorativeNeutralMutedHigh,
-                    higher = decorativeNeutralMutedHigher,
-                    highest = decorativeNeutralMutedHighest,
-                    lower = decorativeNeutralMutedLower,
-                    lowest = decorativeNeutralMutedLowest,
-                    low = decorativeNeutralMutedLow,
-                    medium = decorativeNeutralMutedMedium
-                )
-            ),
-            skin = OudsColorScheme.Decorative.Skin(
-                tint100 = decorativeSkinTint100,
-                tint200 = decorativeSkinTint200,
-                tint300 = decorativeSkinTint300,
-                tint400 = decorativeSkinTint400,
-                tint500 = decorativeSkinTint500,
-                tint600 = decorativeSkinTint600,
-                tint700 = decorativeSkinTint700,
-                tint800 = decorativeSkinTint800,
-                tint900 = decorativeSkinTint900,
-            ),
         )
     }
 
@@ -1374,61 +1210,6 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
 }
 
 @Stable
-private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Decorative): Color {
-    return with(decorative) {
-        when (token) {
-            OudsColorKeyToken.Decorative.Accent1.Default -> accent1.default
-            OudsColorKeyToken.Decorative.Accent1.Emphasized -> accent1.emphasized
-            OudsColorKeyToken.Decorative.Accent1.Muted -> accent1.muted
-            OudsColorKeyToken.Decorative.Accent2.Default -> accent2.default
-            OudsColorKeyToken.Decorative.Accent2.Emphasized -> accent2.emphasized
-            OudsColorKeyToken.Decorative.Accent2.Muted -> accent2.muted
-            OudsColorKeyToken.Decorative.Accent3.Default -> accent3.default
-            OudsColorKeyToken.Decorative.Accent3.Emphasized -> accent3.emphasized
-            OudsColorKeyToken.Decorative.Accent3.Muted -> accent3.muted
-            OudsColorKeyToken.Decorative.Accent4.Default -> accent4.default
-            OudsColorKeyToken.Decorative.Accent4.Emphasized -> accent4.emphasized
-            OudsColorKeyToken.Decorative.Accent4.Muted -> accent4.muted
-            OudsColorKeyToken.Decorative.Accent5.Default -> accent5.default
-            OudsColorKeyToken.Decorative.Accent5.Emphasized -> accent5.emphasized
-            OudsColorKeyToken.Decorative.Accent5.Muted -> accent5.muted
-            OudsColorKeyToken.Decorative.Brand.Primary -> brand.primary
-            OudsColorKeyToken.Decorative.Brand.PrimaryEmphasized -> brand.primaryEmphasized
-            OudsColorKeyToken.Decorative.Brand.PrimaryMuted -> brand.primaryMuted
-            OudsColorKeyToken.Decorative.Brand.Secondary -> brand.secondary
-            OudsColorKeyToken.Decorative.Brand.SecondaryEmphasized -> brand.secondaryEmphasized
-            OudsColorKeyToken.Decorative.Brand.SecondaryMuted -> brand.secondaryMuted
-            OudsColorKeyToken.Decorative.Brand.Tertiary -> brand.tertiary
-            OudsColorKeyToken.Decorative.Brand.TertiaryEmphasized -> brand.tertiaryEmphasized
-            OudsColorKeyToken.Decorative.Brand.TertiaryMuted -> brand.tertiaryMuted
-            OudsColorKeyToken.Decorative.Neutral.Emphasized.High -> neutral.emphasized.high
-            OudsColorKeyToken.Decorative.Neutral.Emphasized.Higher -> neutral.emphasized.higher
-            OudsColorKeyToken.Decorative.Neutral.Emphasized.Highest -> neutral.emphasized.highest
-            OudsColorKeyToken.Decorative.Neutral.Emphasized.Low -> neutral.emphasized.low
-            OudsColorKeyToken.Decorative.Neutral.Emphasized.Lower -> neutral.emphasized.lower
-            OudsColorKeyToken.Decorative.Neutral.Emphasized.Lowest -> neutral.emphasized.lowest
-            OudsColorKeyToken.Decorative.Neutral.Emphasized.Medium -> neutral.emphasized.medium
-            OudsColorKeyToken.Decorative.Neutral.Muted.High -> neutral.muted.high
-            OudsColorKeyToken.Decorative.Neutral.Muted.Higher -> neutral.muted.higher
-            OudsColorKeyToken.Decorative.Neutral.Muted.Highest -> neutral.muted.highest
-            OudsColorKeyToken.Decorative.Neutral.Muted.Low -> neutral.muted.low
-            OudsColorKeyToken.Decorative.Neutral.Muted.Lower -> neutral.muted.lower
-            OudsColorKeyToken.Decorative.Neutral.Muted.Lowest -> neutral.muted.lowest
-            OudsColorKeyToken.Decorative.Neutral.Muted.Medium -> neutral.muted.medium
-            OudsColorKeyToken.Decorative.Skin.Tint100 -> skin.tint100
-            OudsColorKeyToken.Decorative.Skin.Tint200 -> skin.tint200
-            OudsColorKeyToken.Decorative.Skin.Tint300 -> skin.tint300
-            OudsColorKeyToken.Decorative.Skin.Tint400 -> skin.tint400
-            OudsColorKeyToken.Decorative.Skin.Tint500 -> skin.tint500
-            OudsColorKeyToken.Decorative.Skin.Tint600 -> skin.tint600
-            OudsColorKeyToken.Decorative.Skin.Tint700 -> skin.tint700
-            OudsColorKeyToken.Decorative.Skin.Tint800 -> skin.tint800
-            OudsColorKeyToken.Decorative.Skin.Tint900 -> skin.tint900
-        }
-    }
-}
-
-@Stable
 private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Color {
     return with(repository) {
         when (token) {
@@ -1680,7 +1461,6 @@ val OudsColorKeyToken.value: Color
         is OudsColorKeyToken.Background -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Border -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Content -> OudsTheme.colorScheme.fromToken(this)
-        is OudsColorKeyToken.Decorative -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Opacity -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Overlay -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Repository -> OudsTheme.colorScheme.fromToken(this)

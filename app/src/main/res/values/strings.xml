@@ -65,7 +65,6 @@
     <string name="app_tokens_color_border_label" translatable="false">Border</string>
     <string name="app_tokens_color_brand_label" translatable="false">Brand</string>
     <string name="app_tokens_color_content_label" translatable="false">Content</string>
-    <string name="app_tokens_color_decorative_label" translatable="false">Decorative</string>
     <string name="app_tokens_color_overlay_label" translatable="false">Overlay</string>
     <string name="app_tokens_color_surface_label" translatable="false">Surface</string>
 

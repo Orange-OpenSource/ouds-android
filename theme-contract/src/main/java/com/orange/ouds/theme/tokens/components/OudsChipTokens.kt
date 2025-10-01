@@ -19,7 +19,6 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
 
 interface OudsChipTokens {
     val badgeColorBg: OudsColorKeyToken
