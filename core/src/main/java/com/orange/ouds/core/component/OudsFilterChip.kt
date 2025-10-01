@@ -23,7 +23,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
@@ -205,27 +207,28 @@ private fun OudsFilterChip(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsFilterChip(@PreviewParameter(OudsFilterChipPreviewParameterProvider::class) parameter: OudsFilterChipPreviewParameter) {
-    PreviewOudsFilterChip(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsFilterChip(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsFilterChip(darkThemeEnabled: Boolean, parameter: OudsFilterChipPreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    with(parameter) {
-        val label = if (hasLabel) "Label" else null
-        val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
-        PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
-            OudsFilterChip(selected = selected, nullableIcon = icon, nullableLabel = label, onClick = {})
+fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsFilterChipPreviewParameter) =
+    OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+        with(parameter) {
+            val label = if (hasLabel) "Label" else null
+            val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
+            PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
+                OudsFilterChip(selected = selected, nullableIcon = icon, nullableLabel = label, onClick = {})
+            }
         }
     }
-}
 
-internal data class OudsFilterChipPreviewParameter(
+data class OudsFilterChipPreviewParameter(
     val selected: Boolean,
     val hasLabel: Boolean,
     val hasIcon: Boolean
 )
 
-internal class OudsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<OudsFilterChipPreviewParameter>(*previewParameterValues.toTypedArray())
+class OudsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<OudsFilterChipPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsFilterChipPreviewParameter>
     get() = listOf(

@@ -48,8 +48,10 @@ import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
@@ -216,21 +218,27 @@ private fun backgroundColor(state: OudsControl.State): Color {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsRadioButton(@PreviewParameter(OudsRadioButtonPreviewParameterProvider::class) parameter: OudsRadioButtonPreviewParameter) {
-    PreviewOudsRadioButton(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsRadioButton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @PreviewLightDark
 @Composable
 internal fun PreviewOudsRadioButtonHighContrastModeEnabled(@PreviewParameter(OudsRadioButtonPreviewParameterProvider::class) parameter: OudsRadioButtonPreviewParameter) {
-    PreviewOudsRadioButton(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter, highContrastModeEnabled = true)
+    PreviewOudsRadioButton(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        parameter = parameter,
+        highContrastModeEnabled = true
+    )
 }
 
 @Composable
-internal fun PreviewOudsRadioButton(
+fun PreviewOudsRadioButton(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsRadioButtonPreviewParameter,
     highContrastModeEnabled: Boolean = false
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsControl.State> {
             OudsRadioButton(
@@ -242,12 +250,12 @@ internal fun PreviewOudsRadioButton(
     }
 }
 
-internal data class OudsRadioButtonPreviewParameter(
+data class OudsRadioButtonPreviewParameter(
     val selected: Boolean,
     val error: OudsError? = null
 )
 
-internal class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
+class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsRadioButtonPreviewParameter>
     get() = listOf(

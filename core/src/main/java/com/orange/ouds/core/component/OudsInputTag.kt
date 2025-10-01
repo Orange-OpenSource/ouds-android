@@ -49,7 +49,9 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * An input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing
@@ -269,12 +271,12 @@ object OudsInputTag {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsInputTag() {
-    PreviewOudsInputTag(darkThemeEnabled = isSystemInDarkTheme())
+    PreviewOudsInputTag(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
 }
 
 @Composable
-internal fun PreviewOudsInputTag(darkThemeEnabled: Boolean) =
-    OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+fun PreviewOudsInputTag(theme: OudsThemeContract, darkThemeEnabled: Boolean) =
+    OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         PreviewEnumEntries<OudsInputTag.State>(columnCount = 3) {
             OudsInputTag(label = "Label", onClick = {})
         }

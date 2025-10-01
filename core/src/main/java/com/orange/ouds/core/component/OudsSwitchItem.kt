@@ -33,6 +33,8 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
@@ -134,14 +136,15 @@ fun OudsSwitchItem(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitchItem(@PreviewParameter(OudsSwitchItemPreviewParameterProvider::class) parameter: OudsSwitchItemPreviewParameter) {
-    PreviewOudsSwitchItem(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsSwitchItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsSwitchItem(
+fun PreviewOudsSwitchItem(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsSwitchItemPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
             OudsSwitchItem(
@@ -161,7 +164,11 @@ internal fun PreviewOudsSwitchItem(
 
 @Preview
 @Composable
-internal fun PreviewOudsSwitchItemWithLongHelperText() = OudsPreview {
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSwitchItemWithLongHelperText() = PreviewOudsSwitchItemWithLongHelperText(theme = getPreviewTheme())
+
+@Composable
+fun PreviewOudsSwitchItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsSwitchItem(
         checked = true,
         label = "Label",
@@ -171,6 +178,6 @@ internal fun PreviewOudsSwitchItemWithLongHelperText() = OudsPreview {
     )
 }
 
-internal typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
+typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
 
-internal class OudsSwitchItemPreviewParameterProvider : OudsControlItemPreviewParameterProvider<Boolean, Nothing>(DefaultBooleanValues)
+class OudsSwitchItemPreviewParameterProvider : OudsControlItemPreviewParameterProvider<Boolean, Nothing>(DefaultBooleanValues)

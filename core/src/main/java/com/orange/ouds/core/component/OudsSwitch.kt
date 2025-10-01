@@ -56,7 +56,9 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
@@ -226,14 +228,15 @@ private fun animateHorizontalAlignmentAsState(targetBiasValue: Float, animationS
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitch(@PreviewParameter(OudsSwitchPreviewParameterProvider::class) checked: Boolean) {
-    PreviewOudsSwitch(darkThemeEnabled = isSystemInDarkTheme(), checked = checked)
+    PreviewOudsSwitch(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), checked = checked)
 }
 
 @Composable
-internal fun PreviewOudsSwitch(
+fun PreviewOudsSwitch(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     checked: Boolean
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsControl.State>(columnCount = 3) {
         OudsSwitch(
             checked = checked,
@@ -242,4 +245,4 @@ internal fun PreviewOudsSwitch(
     }
 }
 
-internal class OudsSwitchPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+class OudsSwitchPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

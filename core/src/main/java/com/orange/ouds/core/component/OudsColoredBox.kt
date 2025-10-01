@@ -35,7 +35,9 @@ import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /**
@@ -225,14 +227,15 @@ object OudsColoredBox {
 @PreviewLightDark
 @Composable
 private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) parameter: OudsColoredBox.Color) {
-    PreviewOudsColoredBox(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsColoredBox(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsColoredBox(
+fun PreviewOudsColoredBox(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsColoredBox.Color
-) = OudsPreview(modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
     OudsColoredBox(color = parameter) {
         Column(
             modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
@@ -252,4 +255,4 @@ internal fun PreviewOudsColoredBox(
     }
 }
 
-internal class OudsColoredBoxPreviewParameterProvider : EnumPreviewParameterProvider(OudsColoredBox.Color::class.java)
+class OudsColoredBoxPreviewParameterProvider : EnumPreviewParameterProvider(OudsColoredBox.Color::class.java)
