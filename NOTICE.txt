@@ -106,7 +106,16 @@ Copyright 2022 The Shantell Sans Project Authors
 The following font files are licensed under the SIL Open Font License, Version 1.1
 
 theme-wireframe/src/main/res/font/shantellsans_bold.ttf
+theme-wireframe/src/main/res/font/shantellsans_bolditalic.ttf
+theme-wireframe/src/main/res/font/shantellsans_extrabold.ttf
+theme-wireframe/src/main/res/font/shantellsans_extrabolditalic.ttf
+theme-wireframe/src/main/res/font/shantellsans_italic.ttf
 theme-wireframe/src/main/res/font/shantellsans_light.ttf
+theme-wireframe/src/main/res/font/shantellsans_lightitalic.ttf
+theme-wireframe/src/main/res/font/shantellsans_medium.ttf
+theme-wireframe/src/main/res/font/shantellsans_mediumitalic.ttf
 theme-wireframe/src/main/res/font/shantellsans_regular.ttf
+theme-wireframe/src/main/res/font/shantellsans_semibold.ttf
+theme-wireframe/src/main/res/font/shantellsans_semibolditalic.ttf
 
 End of the parts list under The Shantell Sans Project Authors Copyright

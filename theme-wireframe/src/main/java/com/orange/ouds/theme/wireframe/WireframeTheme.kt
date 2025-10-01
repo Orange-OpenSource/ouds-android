@@ -14,6 +14,7 @@ package com.orange.ouds.theme.wireframe
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
@@ -51,9 +52,18 @@ class WireframeTheme : OudsThemeContract {
 
     override val fontFamily: FontFamily
         get() = FontFamily(
+            Font(R.font.shantellsans_extrabold, weight = FontWeight.ExtraBold),
+            Font(R.font.shantellsans_extrabolditalic, weight = FontWeight.ExtraBold, style = FontStyle.Italic),
             Font(R.font.shantellsans_bold, weight = FontWeight.Bold),
+            Font(R.font.shantellsans_bolditalic, weight = FontWeight.Bold, style = FontStyle.Italic),
+            Font(R.font.shantellsans_semibold, weight = FontWeight.SemiBold),
+            Font(R.font.shantellsans_semibolditalic, weight = FontWeight.SemiBold, style = FontStyle.Italic),
+            Font(R.font.shantellsans_medium, weight = FontWeight.Medium),
+            Font(R.font.shantellsans_mediumitalic, weight = FontWeight.Medium, style = FontStyle.Italic),
             Font(R.font.shantellsans_regular, weight = FontWeight.Normal),
-            Font(R.font.shantellsans_light, weight = FontWeight.Light)
+            Font(R.font.shantellsans_italic, weight = FontWeight.Normal, style = FontStyle.Italic),
+            Font(R.font.shantellsans_light, weight = FontWeight.Light),
+            Font(R.font.shantellsans_lightitalic, weight = FontWeight.Light, style = FontStyle.Italic)
         )
 
     override val colorTokens: OudsColorSemanticTokens
