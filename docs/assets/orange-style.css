@@ -11,7 +11,7 @@
   --color-background-nav-dt: #000;
   --elements-border-color: rgba(0, 0, 0, 0.2);
   --color-action-hover: rgba(0, 0, 0, 0.68);
-  --bs-color-surface-status-negative-muted: rgba(234, 3, 5, 0.08);
+  --bs-color-surface-status-warning-muted: rgba(255, 208, 0, 0.16);
 
   --default-font-family: "Helvetica Neue", helvetica, "Noto Sans",
     "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -274,7 +274,7 @@ h2, h3 {
     margin-right: 0;
     border: none;
     padding: 1rem;
-    background-color: var(--bs-color-surface-status-negative-muted);
+    background-color: var(--bs-color-surface-status-warning-muted);
 }
 
 .deprecation-content > h3 {
