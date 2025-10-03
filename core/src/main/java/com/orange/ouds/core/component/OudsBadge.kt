@@ -418,13 +418,10 @@ enum class OudsBadgeSize {
     }
 }
 
-object OudsBadgePreview {
+const val OudsBadgePreviewWidthDp = 420
 
-    const val widthDp = 420
-}
-
-@Preview(name = "Light", widthDp = OudsBadgePreview.widthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsBadgePreview.widthDp)
+@Preview(name = "Light", widthDp = OudsBadgePreviewWidthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsBadgePreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsBadge(@PreviewParameter(OudsBadgePreviewParameterProvider::class) parameter: OudsBadgePreviewParameter) {
