@@ -42,6 +42,7 @@ import com.orange.ouds.core.component.OudsLinkArrow
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
+import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 
 @Composable
@@ -154,7 +155,7 @@ fun SwitchIllustration() = ComponentIllustration {
 
 @Composable
 fun TagIllustration() = ComponentIllustration {
-    OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTag.Status.Positive)
+    OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTagStatus.Positive)
 }
 
 @Composable
