@@ -24,7 +24,7 @@ object OudsVersion {
         const val Link = "2.1.0"
         const val RadioButton = "1.2.0"
         const val Switch = "1.3.0"
-        const val Tag = "1.1.0"
+        const val Tag = "1.2.0"
         const val TextInput = "1.1.0"
     }
 
