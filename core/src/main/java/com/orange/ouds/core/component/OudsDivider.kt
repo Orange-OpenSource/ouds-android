@@ -20,6 +20,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -34,7 +35,7 @@ import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
  *
  * The **horizontal divider** renders an horizontal line to separate stacked vertical sections.
  *
- * The color of the divider can be specified using the [OudsDivider.Color] enum, and the thickness is defined by the current theme's divider border width.
+ * The color of the divider can be specified using the [OudsDividerColor] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
@@ -42,14 +43,14 @@ import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
  * > Design version: 1.0.0
  *
  * @param modifier [Modifier] applied to the divider.
- * @param color The color of the divider, chosen from the [OudsDivider.Color] enum. Default value set to `OudsDivider.Color.Default`.
+ * @param color The color of the divider, chosen from the [OudsDividerColor] enum. Default value set to [OudsDividerColor.Default].
  *
  * @sample com.orange.ouds.core.component.samples.OudsHorizontalDividerSample
  */
 @Composable
 fun OudsHorizontalDivider(
     modifier: Modifier = Modifier,
-    color: OudsDivider.Color = OudsDivider.Color.Default
+    color: OudsDividerColor = OudsDividerColor.Default
 ) {
     HorizontalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
 }
@@ -60,7 +61,7 @@ fun OudsHorizontalDivider(
  *
  * The **vertical divider** renders an vertical line to separate horizontally aligned elements.
  *
- * The color of the divider can be specified using the [OudsDivider.Color] enum, and the thickness is defined by the current theme's divider border width.
+ * The color of the divider can be specified using the [OudsDividerColor] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
@@ -68,85 +69,79 @@ fun OudsHorizontalDivider(
  * > Design version: 1.0.0
  *
  * @param modifier [Modifier] applied to the divider.
- * @param color The color of the divider, chosen from the [OudsDivider.Color] enum. Default value set to `OudsDivider.Color.Default`.
+ * @param color The color of the divider, chosen from the [OudsDividerColor] enum. Default value set to [OudsDividerColor.Default].
  *
  * @sample com.orange.ouds.core.component.samples.OudsVerticalDividerSample
  */
 @Composable
 fun OudsVerticalDivider(
     modifier: Modifier = Modifier,
-    color: OudsDivider.Color = OudsDivider.Color.Default
+    color: OudsDividerColor = OudsDividerColor.Default
 ) {
     VerticalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
 }
 
 /**
- * Contains classes to build an [OudsHorizontalDivider] or an [OudsVerticalDivider].
+ * Represents the possible colors for an [OudsHorizontalDivider] or an [OudsVerticalDivider].
+ * Each color corresponds to a specific color key token from the Design System.
  */
-object OudsDivider {
+enum class OudsDividerColor {
+    Default,
+    Muted,
+    Emphasized,
+    BrandPrimary,
+    OnBrandPrimary,
+    AlwaysBlack,
+    AlwaysWhite,
+    AlwaysOnBlack,
+    AlwaysOnWhite;
 
-    /**
-     * Represents the possible colors for an [OudsHorizontalDivider] or an [OudsVerticalDivider].
-     * Each color corresponds to a specific color key token from the Design System.
-     */
-    enum class Color {
-        Default,
-        Muted,
-        Emphasized,
-        BrandPrimary,
-        OnBrandPrimary,
-        AlwaysBlack,
-        AlwaysWhite,
-        AlwaysOnBlack,
-        AlwaysOnWhite;
-
-        val value: androidx.compose.ui.graphics.Color
-            @Composable
-            get() {
-                with(OudsTheme.colorScheme) {
-                    return when (this@Color) {
-                        Default -> border.default
-                        Muted -> border.muted
-                        Emphasized -> border.emphasized
-                        OnBrandPrimary -> border.onBrand.primary
-                        BrandPrimary -> border.brandPrimary
-                        AlwaysBlack -> always.black
-                        AlwaysOnBlack -> always.onBlack
-                        AlwaysWhite -> always.white
-                        AlwaysOnWhite -> always.onWhite
-                    }
+    val value: Color
+        @Composable
+        get() {
+            with(OudsTheme.colorScheme) {
+                return when (this@OudsDividerColor) {
+                    Default -> border.default
+                    Muted -> border.muted
+                    Emphasized -> border.emphasized
+                    OnBrandPrimary -> border.onBrand.primary
+                    BrandPrimary -> border.brandPrimary
+                    AlwaysBlack -> always.black
+                    AlwaysOnBlack -> always.onBlack
+                    AlwaysWhite -> always.white
+                    AlwaysOnWhite -> always.onWhite
                 }
             }
-    }
+        }
 }
 
-internal enum class DividerOrientation {
+internal enum class OudsDividerOrientation {
     Horizontal, Vertical
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsHorizontalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) color: OudsDivider.Color) {
-    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = DividerOrientation.Horizontal, color = color)
+private fun PreviewOudsHorizontalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) color: OudsDividerColor) {
+    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = OudsDividerOrientation.Horizontal, color = color)
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsVerticalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) color: OudsDivider.Color) {
-    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = DividerOrientation.Vertical, color = color)
+private fun PreviewOudsVerticalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) color: OudsDividerColor) {
+    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = OudsDividerOrientation.Vertical, color = color)
 }
 
 @Composable
 internal fun PreviewOudsDivider(
     darkThemeEnabled: Boolean,
-    orientation: DividerOrientation,
-    color: OudsDivider.Color
+    orientation: OudsDividerOrientation,
+    color: OudsDividerColor
 ) = OudsPreview(modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
     val length = 100.dp
     when (orientation) {
-        DividerOrientation.Horizontal -> OudsHorizontalDivider(modifier = Modifier.width(length), color = color)
-        DividerOrientation.Vertical -> OudsVerticalDivider(modifier = Modifier.height(length), color = color)
+        OudsDividerOrientation.Horizontal -> OudsHorizontalDivider(modifier = Modifier.width(length), color = color)
+        OudsDividerOrientation.Vertical -> OudsVerticalDivider(modifier = Modifier.height(length), color = color)
     }
 }
 
-internal class OudsDividerPreviewParameterProvider : EnumPreviewParameterProvider(OudsDivider.Color::class.java)
+internal class OudsDividerPreviewParameterProvider : EnumPreviewParameterProvider(OudsDividerColor::class.java)

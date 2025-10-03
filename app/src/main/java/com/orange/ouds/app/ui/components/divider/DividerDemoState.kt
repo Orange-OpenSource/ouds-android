@@ -18,24 +18,24 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.orange.ouds.core.component.OudsDivider
+import com.orange.ouds.core.component.OudsDividerColor
 
 @Composable
 fun rememberDividerDemoState(
-    color: OudsDivider.Color = OudsDivider.Color.Default
+    color: OudsDividerColor = OudsDividerColor.Default
 ) = rememberSaveable(color, saver = DividerDemoState.Saver) {
     DividerDemoState(color)
 }
 
 class DividerDemoState(
-    color: OudsDivider.Color
+    color: OudsDividerColor
 ) {
     companion object {
-        val Saver = Saver<DividerDemoState, OudsDivider.Color>(
+        val Saver = Saver<DividerDemoState, OudsDividerColor>(
             save = { it.color },
             restore = { DividerDemoState(it) }
         )
     }
 
-    var color: OudsDivider.Color by mutableStateOf(color)
+    var color: OudsDividerColor by mutableStateOf(color)
 }

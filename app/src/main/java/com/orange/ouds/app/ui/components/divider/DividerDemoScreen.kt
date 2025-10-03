@@ -29,7 +29,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
-import com.orange.ouds.core.component.OudsDivider
+import com.orange.ouds.core.component.OudsDividerColor
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsVerticalDivider
 import com.orange.ouds.core.theme.OudsTheme
@@ -50,7 +50,7 @@ fun DividerDemoScreen(vertical: Boolean = false) {
 @Composable
 private fun DividerDemoBottomSheetContent(state: DividerDemoState) {
     with(state) {
-        val colors = OudsDivider.Color.entries
+        val colors = OudsDividerColor.entries
         CustomizationDropdownMenu(
             applyTopPadding = false,
             label = stringResource(id = R.string.app_components_common_color_label),
