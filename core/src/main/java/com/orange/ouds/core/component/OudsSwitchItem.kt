@@ -81,7 +81,7 @@ fun OudsSwitchItem(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
+    icon: OudsControlItemIcon? = null,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -122,7 +122,7 @@ fun OudsSwitchItem(
                 checked = checked
             )
         },
-        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.Start else OudsControlItem.IndicatorPosition.End,
+        indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.Start else OudsControlItemIndicatorPosition.End,
         checkedContentComponentName = "OudsSwitchItem",
         checkedContentSelectionStatus = if (checked) "Selected" else "Unselected",
         modifier = modifier
@@ -146,13 +146,13 @@ fun PreviewOudsSwitchItem(
     parameter: OudsSwitchItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",
                 onCheckedChange = {},
                 helperText = helperText,
-                icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null,
+                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null,
                 divider = divider,
                 reversed = reversed,
                 error = error,
@@ -174,7 +174,7 @@ fun PreviewOudsSwitchItemWithLongHelperText(theme: OudsThemeContract) = OudsPrev
         label = "Label",
         onCheckedChange = {},
         helperText = LoremIpsumText,
-        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }
 

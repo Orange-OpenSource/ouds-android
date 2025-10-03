@@ -57,25 +57,25 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  */
 @Composable
 internal fun OudsControlItem(
-    state: OudsControlItem.State,
+    state: OudsControlItemState,
     label: String,
     helperText: String?,
-    icon: OudsControlItem.Icon?,
+    icon: OudsControlItemIcon?,
     divider: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: OudsError?,
     indicator: @Composable () -> Unit,
-    indicatorPosition: OudsControlItem.IndicatorPosition,
+    indicatorPosition: OudsControlItemIndicatorPosition,
     checkedContentComponentName: String,
     checkedContentSelectionStatus: String,
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
     handleHighContrastMode: Boolean = false
 ) {
-    val previewState = getPreviewEnumEntry<OudsControlItem.State>()
-    val isReadOnlyPreviewState = previewState == OudsControlItem.State.ReadOnly
-    val isDisabledPreviewState = previewState == OudsControlItem.State.Disabled
+    val previewState = getPreviewEnumEntry<OudsControlItemState>()
+    val isReadOnlyPreviewState = previewState == OudsControlItemState.ReadOnly
+    val isDisabledPreviewState = previewState == OudsControlItemState.Disabled
     val isForbidden = error != null && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
 
     CheckedContent(
@@ -94,16 +94,15 @@ internal fun OudsControlItem(
         val itemIcon: (@Composable () -> Unit)? = icon?.let {
             {
                 icon.Content(
-                    extraParameters = OudsControlItem.Icon.ExtraParameters(
-                        tint = if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+                    extraParameters = OudsControlItemIcon.ExtraParameters(
+                        tint = if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
                     )
                 )
             }
         }
 
-
-        val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItem.IndicatorPosition.Start) indicator else itemIcon
-        val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItem.IndicatorPosition.Start) itemIcon else indicator
+        val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) indicator else itemIcon
+        val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
 
         val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
         Box(
@@ -168,83 +167,78 @@ internal fun OudsControlItem(
     }
 }
 
-/**
- * Contains classes to build a control item: [OudsCheckboxItem], [OudsRadioButtonItem].
- */
-object OudsControlItem {
-    internal enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly;
+internal enum class OudsControlItemState {
+    Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly;
 
-        fun toControlState(): OudsControlState {
-            return when (this) {
-                Enabled -> OudsControlState.Enabled
-                Hovered -> OudsControlState.Hovered
-                Pressed -> OudsControlState.Pressed
-                Focused -> OudsControlState.Focused
-                Disabled, ReadOnly -> OudsControlState.Disabled
-            }
-        }
-    }
-
-    internal enum class IndicatorPosition {
-        Start, End
-    }
-
-    /**
-     * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
-     * It is non-clickable and no content description is needed because a control item label is always present.
-     */
-    class Icon private constructor(
-        graphicsObject: Any,
-    ) : OudsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, "") {
-
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(
-            internal val tint: Color
-        ) : OudsComponentContent.ExtraParameters()
-
-        /**
-         * Creates an instance of [OudsControlItem.Icon].
-         *
-         * @param painter Painter of the icon.
-         */
-        constructor(painter: Painter) : this(painter as Any)
-
-        /**
-         * Creates an instance of [OudsControlItem.Icon].
-         *
-         * @param imageVector Image vector of the icon.
-         */
-        constructor(imageVector: ImageVector) : this(imageVector as Any)
-
-        /**
-         * Creates an instance of [OudsControlItem.Icon].
-         *
-         * @param bitmap Image bitmap of the icon.
-         */
-        constructor(bitmap: ImageBitmap) : this(bitmap as Any)
-
-        override val tint: Color?
-            @Composable
-            get() = extraParameters.tint
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeIcon.value))
+    fun toControlState(): OudsControlState {
+        return when (this) {
+            Enabled -> OudsControlState.Enabled
+            Hovered -> OudsControlState.Hovered
+            Pressed -> OudsControlState.Pressed
+            Focused -> OudsControlState.Focused
+            Disabled, ReadOnly -> OudsControlState.Disabled
         }
     }
 }
 
+internal enum class OudsControlItemIndicatorPosition {
+    Start, End
+}
+
+/**
+ * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
+ * It is non-clickable and no content description is needed because a control item label is always present.
+ */
+class OudsControlItemIcon private constructor(
+    graphicsObject: Any,
+) : OudsComponentIcon<OudsControlItemIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, "") {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val tint: Color
+    ) : OudsComponentContent.ExtraParameters()
+
+    /**
+     * Creates an instance of [OudsControlItemIcon].
+     *
+     * @param painter Painter of the icon.
+     */
+    constructor(painter: Painter) : this(painter as Any)
+
+    /**
+     * Creates an instance of [OudsControlItemIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     */
+    constructor(imageVector: ImageVector) : this(imageVector as Any)
+
+    /**
+     * Creates an instance of [OudsControlItemIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     */
+    constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+
+    override val tint: Color?
+        @Composable
+        get() = extraParameters.tint
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeIcon.value))
+    }
+}
+
 @Composable
-internal fun getControlItemState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsControlItem.State {
-    return getPreviewEnumEntry<OudsControlItem.State>().orElse {
+internal fun getControlItemState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsControlItemState {
+    return getPreviewEnumEntry<OudsControlItemState>().orElse {
         when {
-            !enabled -> OudsControlItem.State.Disabled
-            readOnly -> OudsControlItem.State.ReadOnly
-            interactionState == InteractionState.Hovered -> OudsControlItem.State.Hovered
-            interactionState == InteractionState.Pressed -> OudsControlItem.State.Pressed
-            interactionState == InteractionState.Focused -> OudsControlItem.State.Focused
-            else -> OudsControlItem.State.Enabled
+            !enabled -> OudsControlItemState.Disabled
+            readOnly -> OudsControlItemState.ReadOnly
+            interactionState == InteractionState.Hovered -> OudsControlItemState.Hovered
+            interactionState == InteractionState.Pressed -> OudsControlItemState.Pressed
+            interactionState == InteractionState.Focused -> OudsControlItemState.Focused
+            else -> OudsControlItemState.Enabled
         }
     }
 }
@@ -276,40 +270,40 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun backgroundColor(state: OudsControlItem.State): Color {
+private fun backgroundColor(state: OudsControlItemState): Color {
     return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
-            OudsControlItem.State.Enabled, OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> Color.Transparent
-            OudsControlItem.State.Hovered -> colorBgHover.value
-            OudsControlItem.State.Pressed -> colorBgPressed.value
-            OudsControlItem.State.Focused -> colorBgFocus.value
+            OudsControlItemState.Enabled, OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Transparent
+            OudsControlItemState.Hovered -> colorBgHover.value
+            OudsControlItemState.Pressed -> colorBgPressed.value
+            OudsControlItemState.Focused -> colorBgFocus.value
         }
     }
 }
 
 @Composable
-private fun labelColor(state: OudsControlItem.State, error: OudsError?) =
+private fun labelColor(state: OudsControlItemState, error: OudsError?) =
     if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
-                OudsControlItem.State.Enabled -> enabled
-                OudsControlItem.State.Hovered -> hover
-                OudsControlItem.State.Pressed -> pressed
-                OudsControlItem.State.Focused -> focus
-                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
+                OudsControlItemState.Enabled -> enabled
+                OudsControlItemState.Hovered -> hover
+                OudsControlItemState.Pressed -> pressed
+                OudsControlItemState.Focused -> focus
+                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
             }
         }
     } else {
-        if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+        if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
     }
 
 @Composable
-private fun additionalLabelColor(state: OudsControlItem.State) =
-    if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+private fun additionalLabelColor(state: OudsControlItemState) =
+    if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
-private fun helperTextColor(state: OudsControlItem.State) =
-    if (state == OudsControlItem.State.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
+private fun helperTextColor(state: OudsControlItemState) =
+    if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
 
 data class OudsControlItemPreviewParameter<T, S>(
     val value: T,

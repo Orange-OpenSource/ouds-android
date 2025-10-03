@@ -81,7 +81,7 @@ fun OudsCheckboxItem(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
+    icon: OudsControlItemIcon? = null,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -156,7 +156,7 @@ fun OudsTriStateCheckboxItem(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
+    icon: OudsControlItemIcon? = null,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -198,7 +198,7 @@ fun OudsTriStateCheckboxItem(
                 error = error != null
             )
         },
-        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
+        indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.End else OudsControlItemIndicatorPosition.Start,
         checkedContentComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
         checkedContentSelectionStatus = when (state) {
             ToggleableState.On -> "Selected"
@@ -227,7 +227,7 @@ fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -236,7 +236,7 @@ fun PreviewOudsCheckboxItem(
                 divider = divider,
                 error = error,
                 reversed = reversed,
-                icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null,
+                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null,
                 interactionSource = remember { MutableInteractionSource() }
             )
         }
@@ -261,7 +261,7 @@ fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -284,7 +284,7 @@ fun PreviewOudsCheckboxItemWithLongHelperText(theme: OudsThemeContract) = OudsPr
         label = "Label",
         onCheckedChange = {},
         helperText = LoremIpsumText,
-        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }
 
