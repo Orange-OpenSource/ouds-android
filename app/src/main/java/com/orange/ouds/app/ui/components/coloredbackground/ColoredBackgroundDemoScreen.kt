@@ -38,6 +38,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -56,7 +57,7 @@ fun ColoredBackgroundDemoScreen() {
 @Composable
 private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemoState) {
     with(state) {
-        val colors = OudsColoredBox.Color.entries.filter { it.mode.isSupported }
+        val colors = OudsColoredBoxColor.entries.filter { it.mode.isSupported }
         CustomizationDropdownMenu(
             applyTopPadding = false,
             label = stringResource(id = R.string.app_components_coloredBackground_color_label),
@@ -120,7 +121,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
 
 private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgroundDemoState) {
     with(state) {
-        functionCall(OudsColoredBox::class.simpleName.orEmpty()) {
+        functionCall("OudsColoredBox") {
             trailingLambda = true
             typedArgument("color", color)
             lambdaArgument(null) {

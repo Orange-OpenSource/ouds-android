@@ -773,7 +773,7 @@ fun PreviewOudsButton(
             }
         }
         if (onColoredBox) {
-            OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary) {
+            OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) {
                 content()
             }
         } else {

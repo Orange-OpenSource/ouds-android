@@ -474,7 +474,7 @@ fun PreviewOudsLink(
         }
 
         if (onColoredBackground) {
-            OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary) {
+            OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) {
                 linkPreview()
             }
         } else {

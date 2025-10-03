@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -31,7 +32,7 @@ internal fun OudsButtonTextOnlySample() {
 
 @Composable
 internal fun OudsButtonTextOnlyOnColoredBackgroundSample() {
-    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+    OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             label = "Label",
@@ -53,7 +54,7 @@ internal fun OudsButtonIconOnlySample() {
 
 @Composable
 internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
-    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+    OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButtonIcon(
@@ -79,7 +80,7 @@ internal fun OudsButtonTextAndIconSample() {
 
 @Composable
 internal fun OudsButtonTextAndIconOnColoredBackgroundSample() {
-    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+    OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             icon = OudsButtonIcon(
