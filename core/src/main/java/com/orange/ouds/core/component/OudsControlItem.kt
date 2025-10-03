@@ -175,13 +175,13 @@ object OudsControlItem {
     internal enum class State {
         Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly;
 
-        fun toControlState(): OudsControl.State {
+        fun toControlState(): OudsControlState {
             return when (this) {
-                Enabled -> OudsControl.State.Enabled
-                Hovered -> OudsControl.State.Hovered
-                Pressed -> OudsControl.State.Pressed
-                Focused -> OudsControl.State.Focused
-                Disabled, ReadOnly -> OudsControl.State.Disabled
+                Enabled -> OudsControlState.Enabled
+                Hovered -> OudsControlState.Hovered
+                Pressed -> OudsControlState.Pressed
+                Focused -> OudsControlState.Focused
+                Disabled, ReadOnly -> OudsControlState.Disabled
             }
         }
     }
