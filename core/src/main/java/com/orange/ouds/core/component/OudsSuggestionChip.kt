@@ -108,7 +108,7 @@ fun OudsSuggestionChip(
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
-    icon: OudsChip.Icon,
+    icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -158,7 +158,7 @@ fun OudsSuggestionChip(
 fun OudsSuggestionChip(
     onClick: () -> Unit,
     label: String,
-    icon: OudsChip.Icon,
+    icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -178,7 +178,7 @@ fun OudsSuggestionChip(
 private fun OudsSuggestionChip(
     onClick: () -> Unit,
     nullableLabel: String?,
-    nullableIcon: OudsChip.Icon?,
+    nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -189,7 +189,7 @@ private fun OudsSuggestionChip(
         onClick = onClick,
         label = nullableLabel,
         icon = nullableIcon,
-        iconPosition = OudsChip.IconPosition.Start,
+        iconPosition = OudsChipIconPosition.Start,
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -211,8 +211,8 @@ fun PreviewOudsSuggestionChip(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) "Label" else null
-        val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
-        PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
+        val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
+        PreviewEnumEntries<OudsChipState>(columnCount = 3) {
             OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
         }
     }
