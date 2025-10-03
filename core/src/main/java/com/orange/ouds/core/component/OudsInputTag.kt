@@ -207,7 +207,7 @@ private fun getInputTagState(interactionState: InteractionState, enabled: Boolea
 
 @Composable
 private fun backgroundColor(state: OudsInputTag.State): Color? {
-    return with(OudsTheme.componentsTokens.tagInput) {
+    return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
             OudsInputTag.State.Enabled -> colorBgEnabled.value
             OudsInputTag.State.Focused -> colorBgFocus.value
@@ -220,7 +220,7 @@ private fun backgroundColor(state: OudsInputTag.State): Color? {
 
 @Composable
 private fun borderWidth(state: OudsInputTag.State): Dp {
-    return with(OudsTheme.componentsTokens.tagInput) {
+    return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
             OudsInputTag.State.Enabled,
             OudsInputTag.State.Disabled -> borderWidthDefault
@@ -233,7 +233,7 @@ private fun borderWidth(state: OudsInputTag.State): Dp {
 
 @Composable
 private fun borderColor(state: OudsInputTag.State): Color {
-    return with(OudsTheme.componentsTokens.tagInput) {
+    return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
             OudsInputTag.State.Enabled -> colorBorderEnabled.value
             OudsInputTag.State.Focused -> colorBorderFocus.value
@@ -246,7 +246,7 @@ private fun borderColor(state: OudsInputTag.State): Color {
 
 @Composable
 private fun contentColor(state: OudsInputTag.State): Color {
-    return with(OudsTheme.componentsTokens.tagInput) {
+    return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
             OudsInputTag.State.Enabled -> colorContentEnabled.value
             OudsInputTag.State.Focused -> colorContentFocus.value
