@@ -128,7 +128,7 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
                     typedArgument("text", color.formattedName)
                     rawArgument("color", "OudsTheme.colorScheme.content.default")
                 }
-                functionCall(OudsButton::class.java.simpleName) {
+                functionCall("OudsButton") {
                     labelArgument(R.string.app_components_button_label)
                     onClickArgument {}
                 }

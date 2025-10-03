@@ -32,6 +32,7 @@ import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
@@ -58,12 +59,12 @@ fun ButtonIllustration() = ComponentIllustration {
         OudsButton(
             label = label,
             onClick = {},
-            appearance = if (isOudsInDarkTheme()) OudsButton.Appearance.Default else OudsButton.Appearance.Strong
+            appearance = if (isOudsInDarkTheme()) OudsButtonAppearance.Default else OudsButtonAppearance.Strong
         )
         OudsButton(
             label = label,
             onClick = {},
-            appearance = if (isOudsInDarkTheme()) OudsButton.Appearance.Strong else OudsButton.Appearance.Default
+            appearance = if (isOudsInDarkTheme()) OudsButtonAppearance.Strong else OudsButtonAppearance.Default
         )
     }
 }

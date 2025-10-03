@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.window.Dialog
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -77,7 +78,7 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
         ) {
             OudsButton(
                 label = stringResource(R.string.app_themeSettingsDialog_cancel_label),
-                appearance = OudsButton.Appearance.Minimal,
+                appearance = OudsButtonAppearance.Minimal,
                 onClick = { onThemeSettingsChange(themeState.currentTheme.settings) }
             )
             OudsButton(
