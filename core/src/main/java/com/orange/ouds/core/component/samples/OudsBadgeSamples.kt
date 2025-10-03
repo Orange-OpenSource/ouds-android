@@ -25,20 +25,23 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsBadge
+import com.orange.ouds.core.component.OudsBadgeIcon
+import com.orange.ouds.core.component.OudsBadgeSize
+import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsBadgeSample() {
     OudsBadge(
-        status = OudsBadge.Status.Info,
-        size = OudsBadge.Size.Small
+        status = OudsBadgeStatus.Info,
+        size = OudsBadgeSize.Small
     )
 }
 
 @Composable
 internal fun OudsBadgeWithCountSample() {
     OudsBadge(
-        status = OudsBadge.Status.Info,
+        status = OudsBadgeStatus.Info,
         count = 10
     )
 }
@@ -46,12 +49,12 @@ internal fun OudsBadgeWithCountSample() {
 @Composable
 internal fun OudsBadgeWithIconSample() {
     OudsBadge(
-        icon = OudsBadge.Icon(
+        icon = OudsBadgeIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         ),
-        status = OudsBadge.Status.Info,
-        size = OudsBadge.Size.Large
+        status = OudsBadgeStatus.Info,
+        size = OudsBadgeSize.Large
     )
 }
 
@@ -68,7 +71,7 @@ internal fun OudsBadgeWithCountInNavigationBarItemSample() {
                                 contentDescription = "$count new notifications"
                             },
                             count = count,
-                            status = OudsBadge.Status.Accent
+                            status = OudsBadgeStatus.Accent
                         )
                     }
                 ) {

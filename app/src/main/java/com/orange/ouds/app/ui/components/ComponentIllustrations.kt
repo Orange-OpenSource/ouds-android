@@ -29,6 +29,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoStateDefaults
 import com.orange.ouds.app.ui.utilities.composable.Illustration
 import com.orange.ouds.core.component.OudsBadge
+import com.orange.ouds.core.component.OudsBadgeSize
+import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsColoredBox
@@ -44,8 +46,8 @@ import com.orange.ouds.core.theme.isOudsInDarkTheme
 fun BadgeIllustration() = ComponentIllustration {
     OudsBadge(
         count = 1,
-        status = OudsBadge.Status.Negative,
-        size = OudsBadge.Size.Large
+        status = OudsBadgeStatus.Negative,
+        size = OudsBadgeSize.Large
     )
 }
 

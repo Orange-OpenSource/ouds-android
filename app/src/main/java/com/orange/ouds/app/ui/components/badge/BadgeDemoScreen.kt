@@ -38,6 +38,9 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
 import com.orange.ouds.core.component.OudsBadge
+import com.orange.ouds.core.component.OudsBadgeIcon
+import com.orange.ouds.core.component.OudsBadgeSize
+import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsVersion
@@ -67,11 +70,11 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_size_label),
-            chips = OudsBadge.Size.entries.map { CustomizationFilterChip(it.formattedName, enabled = it in enabledSizes) },
-            selectedChipIndex = OudsBadge.Size.entries.indexOf(size),
-            onSelectionChange = { id -> size = OudsBadge.Size.entries[id] }
+            chips = OudsBadgeSize.entries.map { CustomizationFilterChip(it.formattedName, enabled = it in enabledSizes) },
+            selectedChipIndex = OudsBadgeSize.entries.indexOf(size),
+            onSelectionChange = { id -> size = OudsBadgeSize.entries[id] }
         )
-        val statuses = OudsBadge.Status.entries
+        val statuses = OudsBadgeStatus.entries
         CustomizationDropdownMenu(
             applyTopPadding = true,
             label = stringResource(id = R.string.app_components_common_status_label),
@@ -110,7 +113,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
 @Composable
 private fun BadgeDemoContent(state: BadgeDemoState) {
     with(state) {
-        val content: @Composable (BadgeDemoState.Type, OudsBadge.Size, Boolean) -> Unit = { type, size, visible ->
+        val content: @Composable (BadgeDemoState.Type, OudsBadgeSize, Boolean) -> Unit = { type, size, visible ->
             val alpha = if (visible) 1f else 0f
             val modifier = Modifier.alpha(alpha)
             when (type) {
@@ -132,7 +135,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                 BadgeDemoState.Type.Icon -> {
                     OudsBadge(
                         modifier = modifier,
-                        icon = OudsBadge.Icon(
+                        icon = OudsBadgeIcon(
                             painter = painterResource(R.drawable.ic_heart),
                             contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
                         ),
@@ -146,18 +149,18 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
         // Reserve space to avoid changing the height of the demo box when switching between sizes and types
         // A large count badge has the biggest height because font size can be increased by the user
         // Draw this invisible composable first otherwise the actual badge cannot be directly selected when TalkBack is enabled
-        content(BadgeDemoState.Type.Count, OudsBadge.Size.Large, false)
+        content(BadgeDemoState.Type.Count, OudsBadgeSize.Large, false)
         content(type, size, true)
     }
 }
 
 private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState) {
     with(state) {
-        functionCall(OudsBadge::class.simpleName.orEmpty()) {
+        functionCall("OudsBadge") {
             when (type) {
                 BadgeDemoState.Type.Standard -> {}
                 BadgeDemoState.Type.Count -> typedArgument("count", count)
-                BadgeDemoState.Type.Icon -> constructorCallArgument<OudsBadge.Icon>("icon") {
+                BadgeDemoState.Type.Icon -> constructorCallArgument<OudsBadgeIcon>("icon") {
                     painterArgument(R.drawable.ic_heart)
                     contentDescriptionArgument(R.string.app_components_common_icon_a11y)
                 }
