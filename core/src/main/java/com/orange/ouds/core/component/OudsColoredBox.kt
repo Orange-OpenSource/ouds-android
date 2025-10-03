@@ -243,7 +243,7 @@ fun PreviewOudsColoredBox(
             OudsButton(label = "Button", onClick = {})
             OudsLink(
                 label = "Link",
-                arrow = OudsLink.Arrow.Next,
+                arrow = OudsLinkArrow.Next,
                 onClick = {},
             )
         }

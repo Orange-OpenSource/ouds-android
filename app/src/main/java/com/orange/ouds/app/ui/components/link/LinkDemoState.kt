@@ -21,15 +21,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkDefaults
+import com.orange.ouds.core.component.OudsLinkSize
 
 @Composable
 fun rememberLinkDemoState(
     label: String = stringResource(R.string.app_components_link_label),
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
-    size: OudsLink.Size = OudsLinkDefaults.Size,
+    size: OudsLinkSize = OudsLinkDefaults.Size,
     layout: LinkDemoState.Layout = LinkDemoState.Layout.entries.first()
 ) = rememberSaveable(label, enabled, onColoredBox, size, layout, saver = LinkDemoState.Saver) {
     LinkDemoState(label, enabled, onColoredBox, size, layout)
@@ -39,7 +39,7 @@ class LinkDemoState(
     label: String,
     enabled: Boolean,
     onColoredBox: Boolean,
-    size: OudsLink.Size,
+    size: OudsLinkSize,
     layout: Layout
 ) {
 
@@ -65,7 +65,7 @@ class LinkDemoState(
                         map[labelKey] as String,
                         map[enabledKey] as Boolean,
                         map[onColoredBoxKey] as Boolean,
-                        map[sizeKey] as OudsLink.Size,
+                        map[sizeKey] as OudsLinkSize,
                         map[layoutKey] as Layout
                     )
                 }
@@ -79,7 +79,7 @@ class LinkDemoState(
 
     var onColoredBox: Boolean by mutableStateOf(onColoredBox)
 
-    var size: OudsLink.Size by mutableStateOf(size)
+    var size: OudsLinkSize by mutableStateOf(size)
 
     var layout: Layout by mutableStateOf(layout)
 

@@ -40,8 +40,10 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsLink
+import com.orange.ouds.core.component.OudsLinkArrow
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import kotlin.jvm.java
 
 @Composable
 fun ColoredBackgroundDemoScreen() {
@@ -111,7 +113,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
                 )
                 OudsLink(
                     label = stringResource(id = R.string.app_components_link_label),
-                    arrow = OudsLink.Arrow.Next,
+                    arrow = OudsLinkArrow.Next,
                     onClick = {},
                 )
             }
@@ -133,9 +135,9 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
                     labelArgument(R.string.app_components_button_label)
                     onClickArgument {}
                 }
-                functionCall(OudsLink::class.java.simpleName) {
+                functionCall("OudsLink") {
                     labelArgument(R.string.app_components_link_label)
-                    typedArgument("arrow", OudsLink.Arrow.Next)
+                    typedArgument("arrow", OudsLinkArrow.Next)
                     onClickArgument {}
                 }
             }
