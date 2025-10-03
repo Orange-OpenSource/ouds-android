@@ -43,14 +43,14 @@ import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
  * > Design version: 1.0.0
  *
  * @param modifier [Modifier] applied to the divider.
- * @param color The color of the divider, chosen from the [OudsDividerColor] enum. Default value set to [OudsDividerColor.Default].
+ * @param color The color of the divider, chosen from the [OudsDividerColor] enum.
  *
  * @sample com.orange.ouds.core.component.samples.OudsHorizontalDividerSample
  */
 @Composable
 fun OudsHorizontalDivider(
     modifier: Modifier = Modifier,
-    color: OudsDividerColor = OudsDividerColor.Default
+    color: OudsDividerColor = OudsDividerDefaults.Color
 ) {
     HorizontalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
 }
@@ -69,16 +69,27 @@ fun OudsHorizontalDivider(
  * > Design version: 1.0.0
  *
  * @param modifier [Modifier] applied to the divider.
- * @param color The color of the divider, chosen from the [OudsDividerColor] enum. Default value set to [OudsDividerColor.Default].
+ * @param color The color of the divider, chosen from the [OudsDividerColor] enum.
  *
  * @sample com.orange.ouds.core.component.samples.OudsVerticalDividerSample
  */
 @Composable
 fun OudsVerticalDivider(
     modifier: Modifier = Modifier,
-    color: OudsDividerColor = OudsDividerColor.Default
+    color: OudsDividerColor = OudsDividerDefaults.Color
 ) {
     VerticalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
+}
+
+/**
+ * Default values for an [OudsHorizontalDivider] or an [OudsVerticalDivider].
+ */
+object OudsDividerDefaults {
+
+    /**
+     * Default color of an [OudsHorizontalDivider] or an [OudsVerticalDivider].
+     */
+    val Color = OudsDividerColor.Default
 }
 
 /**

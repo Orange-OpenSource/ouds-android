@@ -19,10 +19,11 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.core.component.OudsDividerColor
+import com.orange.ouds.core.component.OudsDividerDefaults
 
 @Composable
 fun rememberDividerDemoState(
-    color: OudsDividerColor = OudsDividerColor.Default
+    color: OudsDividerColor = OudsDividerDefaults.Color
 ) = rememberSaveable(color, saver = DividerDemoState.Saver) {
     DividerDemoState(color)
 }
