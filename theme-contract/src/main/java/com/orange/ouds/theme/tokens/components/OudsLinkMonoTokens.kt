@@ -16,7 +16,6 @@
 package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
-import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 
 interface OudsLinkMonoTokens {
     val colorContentDisabled: OudsColorKeyToken
