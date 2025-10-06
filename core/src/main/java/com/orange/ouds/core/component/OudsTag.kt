@@ -613,7 +613,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconResId() = OudsTheme.drawableResources.important
+        override fun getDedicatedIconResId() = OudsTheme.drawableResources.warning
     }
 
     /**
@@ -632,7 +632,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconResId() = OudsTheme.drawableResources.error
+        override fun getDedicatedIconResId() = OudsTheme.drawableResources.important
     }
 
     /**

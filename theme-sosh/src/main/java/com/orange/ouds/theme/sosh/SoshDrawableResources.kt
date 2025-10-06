@@ -17,25 +17,25 @@ import com.orange.ouds.theme.OudsDrawableResources
 
 class SoshDrawableResources : OudsDrawableResources() {
     override val checkboxIndeterminate
-        get() = R.drawable.sosh_checkbox_indeterminate
+        @DrawableRes get() = R.drawable.sosh_checkbox_indeterminate
     override val checkboxSelected: Int
-        get() = R.drawable.sosh_checkbox_selected
+        @DrawableRes get() = R.drawable.sosh_checkbox_selected
     override val chevronLeft: Int
-        get() = R.drawable.sosh_chevron_left
+        @DrawableRes get() = R.drawable.sosh_chevron_left
     override val delete: Int
-        get() = R.drawable.sosh_delete
-    override val error: Int
-        @DrawableRes get() = R.drawable.sosh_error
+        @DrawableRes get() = R.drawable.sosh_delete
     override val important: Int
         @DrawableRes get() = R.drawable.sosh_important
     override val information: Int
         @DrawableRes get() = R.drawable.sosh_information
-    override val tick: Int
-        get() = R.drawable.sosh_tick
     override val radioButtonSelected: Int
-        get() = R.drawable.sosh_radio_button_selected
+        @DrawableRes get() = R.drawable.sosh_radio_button_selected
     override val success: Int
         @DrawableRes get() = R.drawable.sosh_success
     override val switchSelected: Int
-        get() = R.drawable.sosh_switch_selected
+        @DrawableRes get() = R.drawable.sosh_switch_selected
+    override val tick: Int
+        @DrawableRes get() = R.drawable.sosh_tick
+    override val warning: Int
+        @DrawableRes get() = R.drawable.sosh_warning
 }
