@@ -12,16 +12,10 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.PreviewOudsInputTag
+import com.orange.ouds.core.utilities.PreviewableComponent
 
-class OudsInputTagTest : OudsSnapshotTest(OudsComponentTestSuite.theme) {
-
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsInputTag(
-            theme = theme,
-            darkThemeEnabled = darkThemeEnabled
-        )
-    }
-}
+class OudsInputTagTest : OudsComponentSnapshotTest(
+    PreviewableComponent.OudsInputTag,
+    parameter = null,
+    OudsComponentTestSuite.theme
+)

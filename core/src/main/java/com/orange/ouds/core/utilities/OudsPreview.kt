@@ -86,7 +86,6 @@ fun OudsPreview(
     }
 }
 
-
 internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (OudsThemeSettings)): OudsThemeContract {
     return object : OudsThemeContract by this {
         override val settings = transform(this@mapSettings.settings)

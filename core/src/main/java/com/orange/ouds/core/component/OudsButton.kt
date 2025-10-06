@@ -760,7 +760,7 @@ private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvid
 }
 
 @Composable
-fun PreviewOudsButton(
+internal fun PreviewOudsButton(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsButtonPreviewParameter
@@ -789,7 +789,7 @@ fun PreviewOudsButton(
 private fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRoundedCorners(theme = getPreviewTheme())
 
 @Composable
-fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
+internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
         val appearance = OudsButtonAppearance.Default
         PreviewEnumEntries<OudsButtonState>(columnCount = 2) { state ->
@@ -802,14 +802,14 @@ fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
         }
     }
 
-data class OudsButtonPreviewParameter(
+internal data class OudsButtonPreviewParameter(
     val appearance: OudsButtonAppearance,
     val hasLabel: Boolean,
     val hasIcon: Boolean,
     val onColoredBox: Boolean = false
 )
 
-class OudsButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsButtonPreviewParameter>
     get() = buildList {

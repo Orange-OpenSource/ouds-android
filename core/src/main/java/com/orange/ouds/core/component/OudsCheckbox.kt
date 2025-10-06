@@ -302,7 +302,7 @@ internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCh
 }
 
 @Composable
-fun PreviewOudsCheckbox(
+internal fun PreviewOudsCheckbox(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCheckboxPreviewParameter,
@@ -320,12 +320,12 @@ fun PreviewOudsCheckbox(
     }
 }
 
-data class OudsCheckboxPreviewParameter(
+internal data class OudsCheckboxPreviewParameter(
     val toggleableState: ToggleableState,
     val error: OudsError? = null
 )
 
-class OudsCheckboxPreviewParameterProvider : BasicPreviewParameterProvider<OudsCheckboxPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsCheckboxPreviewParameterProvider : BasicPreviewParameterProvider<OudsCheckboxPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsCheckboxPreviewParameter>
     get() = buildList {

@@ -211,7 +211,7 @@ private fun PreviewOudsFilterChip(@PreviewParameter(OudsFilterChipPreviewParamet
 }
 
 @Composable
-fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsFilterChipPreviewParameter) =
+internal fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsFilterChipPreviewParameter) =
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
             val label = if (hasLabel) "Label" else null
@@ -222,13 +222,13 @@ fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: Boolean, p
         }
     }
 
-data class OudsFilterChipPreviewParameter(
+internal data class OudsFilterChipPreviewParameter(
     val selected: Boolean,
     val hasLabel: Boolean,
     val hasIcon: Boolean
 )
 
-class OudsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<OudsFilterChipPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<OudsFilterChipPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsFilterChipPreviewParameter>
     get() = listOf(

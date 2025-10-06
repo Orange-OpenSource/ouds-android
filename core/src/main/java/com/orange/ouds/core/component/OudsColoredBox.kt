@@ -226,7 +226,7 @@ private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParamet
 }
 
 @Composable
-fun PreviewOudsColoredBox(
+internal fun PreviewOudsColoredBox(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsColoredBoxColor
@@ -250,4 +250,4 @@ fun PreviewOudsColoredBox(
     }
 }
 
-class OudsColoredBoxPreviewParameterProvider : EnumPreviewParameterProvider(OudsColoredBoxColor::class.java)
+internal class OudsColoredBoxPreviewParameterProvider : EnumPreviewParameterProvider(OudsColoredBoxColor::class.java)

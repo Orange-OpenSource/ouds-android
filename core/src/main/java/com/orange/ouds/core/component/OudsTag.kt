@@ -550,7 +550,7 @@ private fun PreviewOudsTag(@PreviewParameter(OudsTagPreviewParameterProvider::cl
 }
 
 @Composable
-fun PreviewOudsTag(
+internal fun PreviewOudsTag(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsTagPreviewParameter
@@ -571,14 +571,14 @@ fun PreviewOudsTag(
     }
 }
 
-data class OudsTagPreviewParameter(
+internal data class OudsTagPreviewParameter(
     val icon: OudsTagIcon? = null,
     val hierarchy: OudsTagHierarchy = OudsTagDefaults.Hierarchy,
     val roundedCorners: Boolean = true,
     val loader: OudsTagLoader? = null
 )
 
-class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsTagPreviewParameter>
     get() {

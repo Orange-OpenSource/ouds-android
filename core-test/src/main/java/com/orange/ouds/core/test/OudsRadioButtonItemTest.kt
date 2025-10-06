@@ -12,14 +12,7 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameter
-import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameterProvider
-import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
-import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameterProvider
-import com.orange.ouds.core.component.PreviewOudsRadioButtonItem
-import com.orange.ouds.core.component.PreviewOudsRadioButtonItemHighContrastModeEnabled
-import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithLongHelperText
+import com.orange.ouds.core.utilities.PreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 
@@ -27,54 +20,36 @@ import org.junit.runner.RunWith
 class OudsRadioButtonItemTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(private val parameter: OudsRadioButtonItemPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
+        PreviewableComponent.OudsRadioButtonItem.Parameterized,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
 
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsRadioButtonItemPreviewParameterProvider().values.toList()
-        }
-
-        @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-            PreviewOudsRadioButtonItem(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter
-            )
+            internal fun data() = PreviewableComponent.OudsRadioButtonItem.Parameterized.parameters
         }
     }
 
     @RunWith(org.junit.runners.Parameterized::class)
-    class ParameterizedHighContrastMode(
-        private val parameter: OudsRadioButtonItemHighContrastModePreviewParameter
-    ) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+    class ParameterizedHighContrastMode(parameter: Any) : OudsComponentSnapshotTest(
+        PreviewableComponent.OudsRadioButtonItem.ParameterizedHighContrastMode,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
 
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsRadioButtonItemHighContrastModePreviewParameterProvider().values.toList()
-        }
-
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !highContrastModeEnabled
-
-        @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-            PreviewOudsRadioButtonItemHighContrastModeEnabled(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter
-            )
+            internal fun data() = PreviewableComponent.OudsRadioButtonItem.ParameterizedHighContrastMode.parameters
         }
     }
 
-    class NonParameterized : OudsSnapshotTest(OudsComponentTestSuite.theme) {
-
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
-
-        @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-            PreviewOudsRadioButtonItemWithLongHelperText(theme = theme)
-        }
-    }
+    class NonParameterized : OudsComponentSnapshotTest(
+        PreviewableComponent.OudsRadioButtonItem.NonParameterized,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

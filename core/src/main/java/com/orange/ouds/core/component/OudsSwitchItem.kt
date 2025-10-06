@@ -140,7 +140,7 @@ private fun PreviewOudsSwitchItem(@PreviewParameter(OudsSwitchItemPreviewParamet
 }
 
 @Composable
-fun PreviewOudsSwitchItem(
+internal fun PreviewOudsSwitchItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsSwitchItemPreviewParameter
@@ -168,7 +168,7 @@ fun PreviewOudsSwitchItem(
 private fun PreviewOudsSwitchItemWithLongHelperText() = PreviewOudsSwitchItemWithLongHelperText(theme = getPreviewTheme())
 
 @Composable
-fun PreviewOudsSwitchItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+internal fun PreviewOudsSwitchItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsSwitchItem(
         checked = true,
         label = "Label",
@@ -178,6 +178,6 @@ fun PreviewOudsSwitchItemWithLongHelperText(theme: OudsThemeContract) = OudsPrev
     )
 }
 
-typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
+internal typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
 
-class OudsSwitchItemPreviewParameterProvider : OudsControlItemPreviewParameterProvider<Boolean, Nothing>(DefaultBooleanValues)
+internal class OudsSwitchItemPreviewParameterProvider : OudsControlItemPreviewParameterProvider<Boolean, Nothing>(DefaultBooleanValues)
