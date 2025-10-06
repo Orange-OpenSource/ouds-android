@@ -366,7 +366,7 @@ object OudsLinkDefaults {
 }
 
 /**
- * Represents the size of an OUDS link.
+ * Represents the size of an [OudsLink].
  */
 enum class OudsLinkSize {
     /**
@@ -382,7 +382,7 @@ enum class OudsLinkSize {
 }
 
 /**
- * Represents the type of arrow displayed in an OUDS link.
+ * Represents the type of arrow displayed in an [OudsLink].
  */
 enum class OudsLinkArrow {
     /**

@@ -76,6 +76,7 @@ import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 /**
@@ -87,7 +88,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -140,7 +141,7 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -194,7 +195,7 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -705,7 +706,7 @@ class OudsButtonIcon private constructor(
 }
 
 /**
- * Represents the appearance of an OUDS button.
+ * Represents the appearance of an [OudsButton].
  */
 enum class OudsButtonAppearance {
     /**
@@ -739,7 +740,7 @@ enum class OudsButtonAppearance {
 }
 
 /**
- * A circular loading indicator displayed in the button.
+ * A circular loading indicator displayed in an [OudsButton].
  *
  * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
  *   Values outside of this range are coerced into the range.
