@@ -80,8 +80,11 @@ import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 
 // TODO: Update documentation URL once it is available
@@ -656,7 +659,7 @@ private fun OudsTextInputDecorator(
                     modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
                     label = helperLink.text,
                     onClick = helperLink.onClick,
-                    size = OudsLink.Size.Small
+                    size = OudsLinkSize.Small
                 )
             }
         }
@@ -999,7 +1002,11 @@ internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsText
 
 @Preview
 @Composable
-internal fun PreviewOudsTextInputWithRoundedCorners() = OudsPreview(themeSettings = OudsThemeSettings().copy(roundedCornerTextInputs = true)) {
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTextInputWithRoundedCorners() = PreviewOudsTextInputWithRoundedCorners(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
     PreviewEnumEntries<OudsTextInput.State>(columnCount = 1) { state ->
         OudsTextInput(
             textFieldState = rememberTextFieldState(""),
