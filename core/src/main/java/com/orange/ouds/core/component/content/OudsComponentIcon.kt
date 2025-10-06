@@ -21,6 +21,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonAppearance
+import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -59,14 +61,14 @@ abstract class OudsComponentIcon<T> protected constructor(
         val iconTint = tint.orElse { LocalContentColor.current }
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
-                is Painter -> OudsButton.Icon(painter = graphicsObject, contentDescription = contentDescription)
-                is ImageVector -> OudsButton.Icon(imageVector = graphicsObject, contentDescription = contentDescription)
-                is ImageBitmap -> OudsButton.Icon(bitmap = graphicsObject, contentDescription = contentDescription)
+                is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription)
+                is ImageVector -> OudsButtonIcon(imageVector = graphicsObject, contentDescription = contentDescription)
+                is ImageBitmap -> OudsButtonIcon(bitmap = graphicsObject, contentDescription = contentDescription)
                 else -> null
             }?.let { buttonIcon ->
                 OudsButton(
                     icon = buttonIcon,
-                    hierarchy = OudsButton.Hierarchy.Minimal,
+                    appearance = OudsButtonAppearance.Minimal,
                     onClick = onClick,
                     modifier = modifier,
                     enabled = enabled.orElse { true },
