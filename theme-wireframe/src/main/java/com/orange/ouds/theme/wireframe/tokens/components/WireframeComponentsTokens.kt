@@ -20,6 +20,7 @@ import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
+import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
@@ -35,10 +36,11 @@ data class WireframeComponentsTokens(
     override val chip: OudsChipTokens = WireframeChipTokens(),
     override val controlItem: OudsControlItemTokens = WireframeControlItemTokens(),
     override val divider: OudsDividerTokens = WireframeDividerTokens(),
+    override val icon: OudsIconTokens = WireframeIconTokens(),
+    override val inputTag: OudsInputTagTokens = WireframeInputTagTokens(),
     override val link: OudsLinkTokens = WireframeLinkTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = WireframeLinkMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = WireframeRadioButtonTokens(),
     override val switch: OudsSwitchTokens = WireframeSwitchTokens(),
     override val tag: OudsTagTokens = WireframeTagTokens(),
-    override val inputTag: OudsInputTagTokens = WireframeInputTagTokens()
 ) : OudsComponentsTokens
