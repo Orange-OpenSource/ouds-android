@@ -91,7 +91,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
- * > Design version: 3.0.0
+ * > Design version: 3.1.0
  *
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
@@ -144,7 +144,7 @@ fun OudsButton(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
- * > Design version: 3.0.0
+ * > Design version: 3.1.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
@@ -198,7 +198,7 @@ fun OudsButton(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
- * > Design version: 3.0.0
+ * > Design version: 3.1.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
@@ -499,10 +499,10 @@ private fun backgroundColor(appearance: OudsButton.Appearance, state: OudsButton
                 }
                 OudsButton.Appearance.Brand -> when (state) {
                     OudsButton.State.Enabled -> colorBgBrandEnabled.value
-                    OudsButton.State.Focused -> OudsTheme.colorScheme.action.focus
-                    OudsButton.State.Hovered -> OudsTheme.colorScheme.action.hover
-                    OudsButton.State.Pressed -> OudsTheme.colorScheme.action.pressed
-                    OudsButton.State.Loading -> OudsTheme.colorScheme.action.loading
+                    OudsButton.State.Focused -> colorBgBrandFocus.value
+                    OudsButton.State.Hovered -> colorBgBrandHover.value
+                    OudsButton.State.Pressed -> colorBgBrandPressed.value
+                    OudsButton.State.Loading -> colorBgBrandLoading.value
                     OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
                 }
                 OudsButton.Appearance.Negative -> when (state) {
@@ -580,10 +580,10 @@ private fun contentColor(appearance: OudsButton.Appearance, state: OudsButton.St
                 }
                 OudsButton.Appearance.Brand -> when (state) {
                     OudsButton.State.Enabled -> colorContentBrandEnabled.value
-                    OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.focus
-                    OudsButton.State.Hovered -> OudsTheme.colorScheme.content.onAction.hover
-                    OudsButton.State.Pressed -> OudsTheme.colorScheme.content.onAction.pressed
-                    OudsButton.State.Loading -> OudsTheme.colorScheme.content.onAction.loading
+                    OudsButton.State.Focused -> colorContentBrandFocus.value
+                    OudsButton.State.Hovered -> colorContentBrandHover.value
+                    OudsButton.State.Pressed -> colorContentBrandPressed.value
+                    OudsButton.State.Loading -> colorContentBrandLoading.value
                     OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 }
                 OudsButton.Appearance.Negative -> when (state) {

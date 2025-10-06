@@ -19,11 +19,11 @@ import com.orange.ouds.theme.orange.tokens.components.OrangeCheckboxTokens
 import com.orange.ouds.theme.orange.tokens.components.OrangeChipTokens
 import com.orange.ouds.theme.orange.tokens.components.OrangeControlItemTokens
 import com.orange.ouds.theme.orange.tokens.components.OrangeDividerTokens
+import com.orange.ouds.theme.orange.tokens.components.OrangeInputTagTokens
 import com.orange.ouds.theme.orange.tokens.components.OrangeLinkMonoTokens
 import com.orange.ouds.theme.orange.tokens.components.OrangeLinkTokens
 import com.orange.ouds.theme.orange.tokens.components.OrangeRadioButtonTokens
 import com.orange.ouds.theme.orange.tokens.components.OrangeSwitchTokens
-import com.orange.ouds.theme.orange.tokens.components.OrangeTagInputTokens
 import com.orange.ouds.theme.orange.tokens.components.OrangeTagTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
@@ -35,11 +35,11 @@ import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
+import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
-import com.orange.ouds.theme.tokens.components.OudsTagInputTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 
 class OrangeCountryComponentsTokens(
@@ -58,5 +58,5 @@ class OrangeCountryComponentsTokens(
     override val radioButton: OudsRadioButtonTokens = OrangeRadioButtonTokens(),
     override val switch: OudsSwitchTokens = OrangeSwitchTokens(),
     override val tag: OudsTagTokens = OrangeTagTokens(),
-    override val tagInput: OudsTagInputTokens = OrangeTagInputTokens()
+    override val inputTag: OudsInputTagTokens = OrangeInputTagTokens()
 ) : OudsComponentsTokens
