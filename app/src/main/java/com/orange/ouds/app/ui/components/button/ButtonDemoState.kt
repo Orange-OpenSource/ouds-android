@@ -21,7 +21,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonDefaults
 
 @Composable
@@ -30,7 +30,7 @@ fun rememberButtonDemoState(
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
-    appearance: OudsButton.Appearance = OudsButtonDefaults.Appearance,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first()
 ) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, saver = ButtonDemoState.Saver) {
     ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout)
@@ -41,12 +41,12 @@ class ButtonDemoState(
     enabled: Boolean,
     onColoredBox: Boolean,
     hasLoader: Boolean,
-    appearance: OudsButton.Appearance,
+    appearance: OudsButtonAppearance,
     layout: Layout
 ) {
 
     companion object {
-        private val ForbiddenAppearancesOnColoredBox = listOf(OudsButton.Appearance.Brand, OudsButton.Appearance.Negative)
+        private val ForbiddenAppearancesOnColoredBox = listOf(OudsButtonAppearance.Brand, OudsButtonAppearance.Negative)
 
         val Saver = listSaver(
             save = { state ->
@@ -67,7 +67,7 @@ class ButtonDemoState(
                     list[1] as Boolean,
                     list[2] as Boolean,
                     list[3] as Boolean,
-                    list[4] as OudsButton.Appearance,
+                    list[4] as OudsButtonAppearance,
                     list[5] as Layout,
                 )
             }
@@ -82,8 +82,8 @@ class ButtonDemoState(
 
     var hasLoader: Boolean by mutableStateOf(hasLoader)
 
-    private var _appearance: OudsButton.Appearance by mutableStateOf(appearance)
-    var appearance: OudsButton.Appearance
+    private var _appearance: OudsButtonAppearance by mutableStateOf(appearance)
+    var appearance: OudsButtonAppearance
         get() = _appearance
         set(value) {
             _appearance = value

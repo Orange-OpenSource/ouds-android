@@ -76,6 +76,7 @@ import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 /**
@@ -87,7 +88,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -100,8 +101,8 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *   When `false`, this button will not be clickable.
  *   Has no effect when [loader] is not null.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
- * @param appearance Appearance of the button among [OudsButton.Appearance] values.
- *   A button with [OudsButton.Appearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param appearance Appearance of the button among [OudsButtonAppearance] values.
+ *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -115,8 +116,8 @@ fun OudsButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButton.Loader? = null,
-    appearance: OudsButton.Appearance = OudsButtonDefaults.Appearance,
+    loader: OudsButtonLoader? = null,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
@@ -140,7 +141,7 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -153,8 +154,8 @@ fun OudsButton(
  *   When `false`, this button will not be clickable.
  *   Has no effect when [loader] is not null.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
- * @param appearance Appearance of the button among [OudsButton.Appearance] values.
- *   A button with [OudsButton.Appearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param appearance Appearance of the button among [OudsButtonAppearance] values.
+ *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -164,12 +165,12 @@ fun OudsButton(
  */
 @Composable
 fun OudsButton(
-    icon: OudsButton.Icon,
+    icon: OudsButtonIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButton.Loader? = null,
-    appearance: OudsButton.Appearance = OudsButtonDefaults.Appearance,
+    loader: OudsButtonLoader? = null,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
@@ -194,7 +195,7 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsTheme.Settings.buttonRoundedCorners] property of an [OudsTheme.Settings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -208,8 +209,8 @@ fun OudsButton(
  *   When `false`, this button will not be clickable.
  *   Has no effect when [loader] is not null.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
- * @param appearance Appearance of the button among [OudsButton.Appearance] values.
- *   A button with [OudsButton.Appearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param appearance Appearance of the button among [OudsButtonAppearance] values.
+ *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -219,13 +220,13 @@ fun OudsButton(
  */
 @Composable
 fun OudsButton(
-    icon: OudsButton.Icon,
+    icon: OudsButtonIcon,
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButton.Loader? = null,
-    appearance: OudsButton.Appearance = OudsButtonDefaults.Appearance,
+    loader: OudsButtonLoader? = null,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
@@ -243,18 +244,18 @@ fun OudsButton(
 @Composable
 @JvmName("OudsButtonNullableIconAndLabel")
 private fun OudsButton(
-    nullableIcon: OudsButton.Icon?,
+    nullableIcon: OudsButtonIcon?,
     nullableLabel: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButton.Loader? = null,
-    appearance: OudsButton.Appearance = OudsButtonDefaults.Appearance,
+    loader: OudsButtonLoader? = null,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
     val icon = nullableIcon
     val label = nullableLabel
-    val forbiddenAppearancesOnColoredBox = remember { listOf(OudsButton.Appearance.Brand, OudsButton.Appearance.Negative) }
+    val forbiddenAppearancesOnColoredBox = remember { listOf(OudsButtonAppearance.Brand, OudsButtonAppearance.Negative) }
     val isForbidden = (appearance in forbiddenAppearancesOnColoredBox) && LocalColorMode.current != null
     CheckedContent(
         expression = !isForbidden,
@@ -270,7 +271,7 @@ private fun OudsButton(
         val borderRadius = if (LocalThemeSettings.current.roundedCornerButtons == true) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
 
-        val stateDescription = if (state == OudsButton.State.Loading) stringResource(id = R.string.core_common_loading_a11y) else ""
+        val stateDescription = if (state == OudsButtonState.Loading) stringResource(id = R.string.core_common_loading_a11y) else ""
         val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
             val buttonState = getButtonState(enabled = enabled, loader = loader, interactionState = buttonInteractionState)
             contentColor(appearance = appearance, state = buttonState)
@@ -310,19 +311,19 @@ private fun OudsButton(
                     role = Role.Button
                 }
                 .clickable(
-                    enabled = state !in remember { listOf(OudsButton.State.Disabled, OudsButton.State.Loading) },
+                    enabled = state !in remember { listOf(OudsButtonState.Disabled, OudsButtonState.Loading) },
                     interactionSource = interactionSource,
                     indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                     onClick = onClick
                 ),
             contentAlignment = Alignment.Center
         ) {
-            if (state == OudsButton.State.Loading) {
-                val progress = if (getPreviewEnumEntry<OudsButton.State>() == OudsButton.State.Loading) 0.75f else loader?.progress
+            if (state == OudsButtonState.Loading) {
+                val progress = if (getPreviewEnumEntry<OudsButtonState>() == OudsButtonState.Loading) 0.75f else loader?.progress
                 ProgressIndicator(appearance = appearance, progress = progress, scale = iconScale)
             }
 
-            val alpha = if (state == OudsButton.State.Loading) 0f else 1f
+            val alpha = if (state == OudsButtonState.Loading) 0f else 1f
             Row(
                 modifier = Modifier
                     .alpha(alpha = alpha)
@@ -338,7 +339,7 @@ private fun OudsButton(
                             .semantics {
                                 contentDescription = if (label == null) icon.contentDescription else ""
                             },
-                        extraParameters = OudsButton.Icon.ExtraParameters(tint = contentColor.value)
+                        extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
                     )
                 }
                 if (label != null) {
@@ -355,163 +356,163 @@ private fun OudsButton(
 }
 
 @Composable
-private fun getButtonState(enabled: Boolean, loader: OudsButton.Loader?, interactionState: InteractionState): OudsButton.State {
-    return getPreviewEnumEntry<OudsButton.State>().orElse {
+private fun getButtonState(enabled: Boolean, loader: OudsButtonLoader?, interactionState: InteractionState): OudsButtonState {
+    return getPreviewEnumEntry<OudsButtonState>().orElse {
         if (loader != null) {
-            OudsButton.State.Loading
+            OudsButtonState.Loading
         } else {
             when {
-                !enabled -> OudsButton.State.Disabled
-                interactionState == InteractionState.Hovered -> OudsButton.State.Hovered
-                interactionState == InteractionState.Pressed -> OudsButton.State.Pressed
-                interactionState == InteractionState.Focused -> OudsButton.State.Focused
-                else -> OudsButton.State.Enabled
+                !enabled -> OudsButtonState.Disabled
+                interactionState == InteractionState.Hovered -> OudsButtonState.Hovered
+                interactionState == InteractionState.Pressed -> OudsButtonState.Pressed
+                interactionState == InteractionState.Focused -> OudsButtonState.Focused
+                else -> OudsButtonState.Enabled
             }
         }
     }
 }
 
 @Composable
-private fun borderWidth(appearance: OudsButton.Appearance, state: OudsButton.State): Dp? {
+private fun borderWidth(appearance: OudsButtonAppearance, state: OudsButtonState): Dp? {
     return with(OudsTheme.componentsTokens.button) {
         when (appearance) {
-            OudsButton.Appearance.Default -> when (state) {
-                OudsButton.State.Enabled,
-                OudsButton.State.Disabled -> borderWidthDefault.value
-                OudsButton.State.Hovered,
-                OudsButton.State.Pressed,
-                OudsButton.State.Loading -> if (LocalColorMode.current?.monochrome == true) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
-                OudsButton.State.Focused -> OudsTheme.borders.width.focusInset
+            OudsButtonAppearance.Default -> when (state) {
+                OudsButtonState.Enabled,
+                OudsButtonState.Disabled -> borderWidthDefault.value
+                OudsButtonState.Hovered,
+                OudsButtonState.Pressed,
+                OudsButtonState.Loading -> if (LocalColorMode.current?.monochrome == true) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
+                OudsButtonState.Focused -> OudsTheme.borders.width.focusInset
             }
-            OudsButton.Appearance.Strong,
-            OudsButton.Appearance.Brand,
-            OudsButton.Appearance.Minimal,
-            OudsButton.Appearance.Negative -> if (state == OudsButton.State.Focused) OudsTheme.borders.width.focusInset else null
+            OudsButtonAppearance.Strong,
+            OudsButtonAppearance.Brand,
+            OudsButtonAppearance.Minimal,
+            OudsButtonAppearance.Negative -> if (state == OudsButtonState.Focused) OudsTheme.borders.width.focusInset else null
         }
     }
 }
 
 @Composable
-private fun borderColor(appearance: OudsButton.Appearance, state: OudsButton.State): Color? {
+private fun borderColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color? {
     return if (LocalColorMode.current?.monochrome == true) {
         with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (appearance) {
-                OudsButton.Appearance.Default -> when (state) {
-                    OudsButton.State.Enabled -> colorBorderDefaultEnabled
-                    OudsButton.State.Hovered -> colorBorderDefaultHover
-                    OudsButton.State.Pressed -> colorBorderDefaultPressed
-                    OudsButton.State.Loading -> colorBorderDefaultLoading
-                    OudsButton.State.Disabled -> colorBorderDefaultDisabled
-                    OudsButton.State.Focused -> colorBorderDefaultFocus
+                OudsButtonAppearance.Default -> when (state) {
+                    OudsButtonState.Enabled -> colorBorderDefaultEnabled
+                    OudsButtonState.Hovered -> colorBorderDefaultHover
+                    OudsButtonState.Pressed -> colorBorderDefaultPressed
+                    OudsButtonState.Loading -> colorBorderDefaultLoading
+                    OudsButtonState.Disabled -> colorBorderDefaultDisabled
+                    OudsButtonState.Focused -> colorBorderDefaultFocus
                 }.value
-                OudsButton.Appearance.Strong -> when (state) {
-                    OudsButton.State.Enabled -> colorBorderStrongEnabled
-                    OudsButton.State.Hovered -> colorBorderStrongHover
-                    OudsButton.State.Pressed -> colorBorderStrongPressed
-                    OudsButton.State.Loading -> colorBorderStrongLoading
-                    OudsButton.State.Disabled -> colorBorderStrongDisabled
-                    OudsButton.State.Focused -> colorBorderStrongFocus
+                OudsButtonAppearance.Strong -> when (state) {
+                    OudsButtonState.Enabled -> colorBorderStrongEnabled
+                    OudsButtonState.Hovered -> colorBorderStrongHover
+                    OudsButtonState.Pressed -> colorBorderStrongPressed
+                    OudsButtonState.Loading -> colorBorderStrongLoading
+                    OudsButtonState.Disabled -> colorBorderStrongDisabled
+                    OudsButtonState.Focused -> colorBorderStrongFocus
                 }.value
-                OudsButton.Appearance.Minimal -> null
-                OudsButton.Appearance.Brand,
-                OudsButton.Appearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
+                OudsButtonAppearance.Minimal -> null
+                OudsButtonAppearance.Brand,
+                OudsButtonAppearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
             }
         }
     } else {
         with(OudsTheme.componentsTokens.button) {
             when (appearance) {
-                OudsButton.Appearance.Default -> when (state) {
-                    OudsButton.State.Enabled -> colorBorderDefaultEnabled
-                    OudsButton.State.Hovered -> colorBorderDefaultHover
-                    OudsButton.State.Pressed -> colorBorderDefaultPressed
-                    OudsButton.State.Loading -> colorBorderDefaultLoading
-                    OudsButton.State.Disabled -> colorBorderDefaultDisabled
-                    OudsButton.State.Focused -> colorBorderDefaultFocus
+                OudsButtonAppearance.Default -> when (state) {
+                    OudsButtonState.Enabled -> colorBorderDefaultEnabled
+                    OudsButtonState.Hovered -> colorBorderDefaultHover
+                    OudsButtonState.Pressed -> colorBorderDefaultPressed
+                    OudsButtonState.Loading -> colorBorderDefaultLoading
+                    OudsButtonState.Disabled -> colorBorderDefaultDisabled
+                    OudsButtonState.Focused -> colorBorderDefaultFocus
                 }
-                OudsButton.Appearance.Strong,
-                OudsButton.Appearance.Brand,
-                OudsButton.Appearance.Minimal,
-                OudsButton.Appearance.Negative -> null
+                OudsButtonAppearance.Strong,
+                OudsButtonAppearance.Brand,
+                OudsButtonAppearance.Minimal,
+                OudsButtonAppearance.Negative -> null
             }
         }?.value
     }
 }
 
 @Composable
-private fun backgroundColor(appearance: OudsButton.Appearance, state: OudsButton.State): Color {
+private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color {
     return if (LocalColorMode.current?.monochrome == true) {
         with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (appearance) {
-                OudsButton.Appearance.Default -> when (state) {
-                    OudsButton.State.Enabled -> colorBgDefaultEnabled
-                    OudsButton.State.Focused -> colorBgDefaultFocus
-                    OudsButton.State.Hovered -> colorBgDefaultHover
-                    OudsButton.State.Pressed -> colorBgDefaultPressed
-                    OudsButton.State.Loading -> colorBgDefaultLoading
-                    OudsButton.State.Disabled -> colorBgDefaultDisabled
+                OudsButtonAppearance.Default -> when (state) {
+                    OudsButtonState.Enabled -> colorBgDefaultEnabled
+                    OudsButtonState.Focused -> colorBgDefaultFocus
+                    OudsButtonState.Hovered -> colorBgDefaultHover
+                    OudsButtonState.Pressed -> colorBgDefaultPressed
+                    OudsButtonState.Loading -> colorBgDefaultLoading
+                    OudsButtonState.Disabled -> colorBgDefaultDisabled
                 }.value
-                OudsButton.Appearance.Minimal -> when (state) {
-                    OudsButton.State.Enabled,
-                    OudsButton.State.Disabled -> Color.Transparent
-                    OudsButton.State.Focused -> colorBgMinimalFocus.value
-                    OudsButton.State.Hovered -> colorBgMinimalHover.value
-                    OudsButton.State.Pressed -> colorBgMinimalPressed.value
-                    OudsButton.State.Loading -> if (isOudsInDarkTheme()) OudsTheme.colorScheme.repository.opacity.black.higher else OudsTheme.colorScheme.repository.opacity.white.higher
+                OudsButtonAppearance.Minimal -> when (state) {
+                    OudsButtonState.Enabled,
+                    OudsButtonState.Disabled -> Color.Transparent
+                    OudsButtonState.Focused -> colorBgMinimalFocus.value
+                    OudsButtonState.Hovered -> colorBgMinimalHover.value
+                    OudsButtonState.Pressed -> colorBgMinimalPressed.value
+                    OudsButtonState.Loading -> if (isOudsInDarkTheme()) OudsTheme.colorScheme.repository.opacity.black.higher else OudsTheme.colorScheme.repository.opacity.white.higher
                 }
-                OudsButton.Appearance.Strong -> when (state) {
-                    OudsButton.State.Enabled -> colorBgStrongEnabled
-                    OudsButton.State.Focused -> colorBgStrongFocus
-                    OudsButton.State.Hovered -> colorBgStrongHover
-                    OudsButton.State.Pressed -> colorBgStrongPressed
-                    OudsButton.State.Loading -> colorBgStrongLoading
-                    OudsButton.State.Disabled -> colorBgStrongDisabled
+                OudsButtonAppearance.Strong -> when (state) {
+                    OudsButtonState.Enabled -> colorBgStrongEnabled
+                    OudsButtonState.Focused -> colorBgStrongFocus
+                    OudsButtonState.Hovered -> colorBgStrongHover
+                    OudsButtonState.Pressed -> colorBgStrongPressed
+                    OudsButtonState.Loading -> colorBgStrongLoading
+                    OudsButtonState.Disabled -> colorBgStrongDisabled
                 }.value
-                OudsButton.Appearance.Brand,
-                OudsButton.Appearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
+                OudsButtonAppearance.Brand,
+                OudsButtonAppearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
             }
         }
     } else {
         with(OudsTheme.componentsTokens.button) {
             when (appearance) {
-                OudsButton.Appearance.Default -> when (state) {
-                    OudsButton.State.Enabled -> colorBgDefaultEnabled
-                    OudsButton.State.Focused -> colorBgDefaultFocus
-                    OudsButton.State.Hovered -> colorBgDefaultHover
-                    OudsButton.State.Pressed -> colorBgDefaultPressed
-                    OudsButton.State.Loading -> colorBgDefaultLoading
-                    OudsButton.State.Disabled -> colorBgDefaultDisabled
+                OudsButtonAppearance.Default -> when (state) {
+                    OudsButtonState.Enabled -> colorBgDefaultEnabled
+                    OudsButtonState.Focused -> colorBgDefaultFocus
+                    OudsButtonState.Hovered -> colorBgDefaultHover
+                    OudsButtonState.Pressed -> colorBgDefaultPressed
+                    OudsButtonState.Loading -> colorBgDefaultLoading
+                    OudsButtonState.Disabled -> colorBgDefaultDisabled
                 }.value
-                OudsButton.Appearance.Minimal -> when (state) {
-                    OudsButton.State.Enabled,
-                    OudsButton.State.Disabled -> Color.Transparent
-                    OudsButton.State.Focused -> colorBgMinimalFocus.value
-                    OudsButton.State.Hovered -> colorBgMinimalHover.value
-                    OudsButton.State.Pressed -> colorBgMinimalPressed.value
-                    OudsButton.State.Loading -> OudsTheme.colorScheme.action.support.loading
+                OudsButtonAppearance.Minimal -> when (state) {
+                    OudsButtonState.Enabled,
+                    OudsButtonState.Disabled -> Color.Transparent
+                    OudsButtonState.Focused -> colorBgMinimalFocus.value
+                    OudsButtonState.Hovered -> colorBgMinimalHover.value
+                    OudsButtonState.Pressed -> colorBgMinimalPressed.value
+                    OudsButtonState.Loading -> OudsTheme.colorScheme.action.support.loading
                 }
-                OudsButton.Appearance.Strong -> when (state) {
-                    OudsButton.State.Enabled -> OudsTheme.colorScheme.action.enabled
-                    OudsButton.State.Focused -> OudsTheme.colorScheme.action.focus
-                    OudsButton.State.Hovered -> OudsTheme.colorScheme.action.hover
-                    OudsButton.State.Pressed -> OudsTheme.colorScheme.action.pressed
-                    OudsButton.State.Loading -> OudsTheme.colorScheme.action.loading
-                    OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
+                OudsButtonAppearance.Strong -> when (state) {
+                    OudsButtonState.Enabled -> OudsTheme.colorScheme.action.enabled
+                    OudsButtonState.Focused -> OudsTheme.colorScheme.action.focus
+                    OudsButtonState.Hovered -> OudsTheme.colorScheme.action.hover
+                    OudsButtonState.Pressed -> OudsTheme.colorScheme.action.pressed
+                    OudsButtonState.Loading -> OudsTheme.colorScheme.action.loading
+                    OudsButtonState.Disabled -> OudsTheme.colorScheme.action.disabled
                 }
-                OudsButton.Appearance.Brand -> when (state) {
-                    OudsButton.State.Enabled -> colorBgBrandEnabled.value
-                    OudsButton.State.Focused -> colorBgBrandFocus.value
-                    OudsButton.State.Hovered -> colorBgBrandHover.value
-                    OudsButton.State.Pressed -> colorBgBrandPressed.value
-                    OudsButton.State.Loading -> colorBgBrandLoading.value
-                    OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
+                OudsButtonAppearance.Brand -> when (state) {
+                    OudsButtonState.Enabled -> colorBgBrandEnabled.value
+                    OudsButtonState.Focused -> colorBgBrandFocus.value
+                    OudsButtonState.Hovered -> colorBgBrandHover.value
+                    OudsButtonState.Pressed -> colorBgBrandPressed.value
+                    OudsButtonState.Loading -> colorBgBrandLoading.value
+                    OudsButtonState.Disabled -> OudsTheme.colorScheme.action.disabled
                 }
-                OudsButton.Appearance.Negative -> when (state) {
-                    OudsButton.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-                    OudsButton.State.Focused -> OudsTheme.colorScheme.action.negative.focus
-                    OudsButton.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-                    OudsButton.State.Pressed -> OudsTheme.colorScheme.action.negative.pressed
-                    OudsButton.State.Loading -> OudsTheme.colorScheme.action.negative.loading
-                    OudsButton.State.Disabled -> OudsTheme.colorScheme.action.disabled
+                OudsButtonAppearance.Negative -> when (state) {
+                    OudsButtonState.Enabled -> OudsTheme.colorScheme.action.negative.enabled
+                    OudsButtonState.Focused -> OudsTheme.colorScheme.action.negative.focus
+                    OudsButtonState.Hovered -> OudsTheme.colorScheme.action.negative.hover
+                    OudsButtonState.Pressed -> OudsTheme.colorScheme.action.negative.pressed
+                    OudsButtonState.Loading -> OudsTheme.colorScheme.action.negative.loading
+                    OudsButtonState.Disabled -> OudsTheme.colorScheme.action.disabled
                 }
             }
         }
@@ -519,80 +520,80 @@ private fun backgroundColor(appearance: OudsButton.Appearance, state: OudsButton
 }
 
 @Composable
-private fun contentColor(appearance: OudsButton.Appearance, state: OudsButton.State): Color {
+private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color {
     return if (LocalColorMode.current?.monochrome == true) {
         with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (appearance) {
-                OudsButton.Appearance.Default -> when (state) {
-                    OudsButton.State.Enabled -> colorContentDefaultEnabled
-                    OudsButton.State.Focused -> colorContentDefaultFocus
-                    OudsButton.State.Hovered -> colorContentDefaultHover
-                    OudsButton.State.Pressed -> colorContentDefaultPressed
-                    OudsButton.State.Loading -> colorContentDefaultLoading
-                    OudsButton.State.Disabled -> colorContentDefaultDisabled
+                OudsButtonAppearance.Default -> when (state) {
+                    OudsButtonState.Enabled -> colorContentDefaultEnabled
+                    OudsButtonState.Focused -> colorContentDefaultFocus
+                    OudsButtonState.Hovered -> colorContentDefaultHover
+                    OudsButtonState.Pressed -> colorContentDefaultPressed
+                    OudsButtonState.Loading -> colorContentDefaultLoading
+                    OudsButtonState.Disabled -> colorContentDefaultDisabled
                 }.value
-                OudsButton.Appearance.Minimal -> when (state) {
-                    OudsButton.State.Enabled -> colorContentMinimalEnabled
-                    OudsButton.State.Focused -> colorContentMinimalFocus
-                    OudsButton.State.Hovered -> colorContentMinimalHover
-                    OudsButton.State.Pressed -> colorContentMinimalPressed
-                    OudsButton.State.Loading -> colorContentMinimalLoading
-                    OudsButton.State.Disabled -> colorContentMinimalDisabled
+                OudsButtonAppearance.Minimal -> when (state) {
+                    OudsButtonState.Enabled -> colorContentMinimalEnabled
+                    OudsButtonState.Focused -> colorContentMinimalFocus
+                    OudsButtonState.Hovered -> colorContentMinimalHover
+                    OudsButtonState.Pressed -> colorContentMinimalPressed
+                    OudsButtonState.Loading -> colorContentMinimalLoading
+                    OudsButtonState.Disabled -> colorContentMinimalDisabled
                 }.value
-                OudsButton.Appearance.Strong -> when (state) {
-                    OudsButton.State.Enabled -> colorContentStrongEnabled
-                    OudsButton.State.Focused -> colorContentStrongFocus
-                    OudsButton.State.Hovered -> colorContentStrongHover
-                    OudsButton.State.Pressed -> colorContentStrongPressed
-                    OudsButton.State.Loading -> colorContentStrongLoading
-                    OudsButton.State.Disabled -> colorContentStrongDisabled
+                OudsButtonAppearance.Strong -> when (state) {
+                    OudsButtonState.Enabled -> colorContentStrongEnabled
+                    OudsButtonState.Focused -> colorContentStrongFocus
+                    OudsButtonState.Hovered -> colorContentStrongHover
+                    OudsButtonState.Pressed -> colorContentStrongPressed
+                    OudsButtonState.Loading -> colorContentStrongLoading
+                    OudsButtonState.Disabled -> colorContentStrongDisabled
                 }.value
-                OudsButton.Appearance.Brand,
-                OudsButton.Appearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
+                OudsButtonAppearance.Brand,
+                OudsButtonAppearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
             }
         }
     } else {
         with(OudsTheme.componentsTokens.button) {
             when (appearance) {
-                OudsButton.Appearance.Default -> when (state) {
-                    OudsButton.State.Enabled -> colorContentDefaultEnabled
-                    OudsButton.State.Focused -> colorContentDefaultFocus
-                    OudsButton.State.Hovered -> colorContentDefaultHover
-                    OudsButton.State.Pressed -> colorContentDefaultPressed
-                    OudsButton.State.Loading -> colorContentDefaultLoading
-                    OudsButton.State.Disabled -> colorContentDefaultDisabled
+                OudsButtonAppearance.Default -> when (state) {
+                    OudsButtonState.Enabled -> colorContentDefaultEnabled
+                    OudsButtonState.Focused -> colorContentDefaultFocus
+                    OudsButtonState.Hovered -> colorContentDefaultHover
+                    OudsButtonState.Pressed -> colorContentDefaultPressed
+                    OudsButtonState.Loading -> colorContentDefaultLoading
+                    OudsButtonState.Disabled -> colorContentDefaultDisabled
                 }.value
-                OudsButton.Appearance.Minimal -> when (state) {
-                    OudsButton.State.Enabled -> colorContentMinimalEnabled
-                    OudsButton.State.Focused -> colorContentMinimalFocus
-                    OudsButton.State.Hovered -> colorContentMinimalHover
-                    OudsButton.State.Pressed -> colorContentMinimalPressed
-                    OudsButton.State.Loading -> colorContentMinimalLoading
-                    OudsButton.State.Disabled -> colorContentMinimalDisabled
+                OudsButtonAppearance.Minimal -> when (state) {
+                    OudsButtonState.Enabled -> colorContentMinimalEnabled
+                    OudsButtonState.Focused -> colorContentMinimalFocus
+                    OudsButtonState.Hovered -> colorContentMinimalHover
+                    OudsButtonState.Pressed -> colorContentMinimalPressed
+                    OudsButtonState.Loading -> colorContentMinimalLoading
+                    OudsButtonState.Disabled -> colorContentMinimalDisabled
                 }.value
-                OudsButton.Appearance.Strong -> when (state) {
-                    OudsButton.State.Enabled -> OudsTheme.colorScheme.content.onAction.enabled
-                    OudsButton.State.Focused -> OudsTheme.colorScheme.content.onAction.focus
-                    OudsButton.State.Hovered -> OudsTheme.colorScheme.content.onAction.hover
-                    OudsButton.State.Pressed -> OudsTheme.colorScheme.content.onAction.pressed
-                    OudsButton.State.Loading -> OudsTheme.colorScheme.content.onAction.loading
-                    OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+                OudsButtonAppearance.Strong -> when (state) {
+                    OudsButtonState.Enabled -> OudsTheme.colorScheme.content.onAction.enabled
+                    OudsButtonState.Focused -> OudsTheme.colorScheme.content.onAction.focus
+                    OudsButtonState.Hovered -> OudsTheme.colorScheme.content.onAction.hover
+                    OudsButtonState.Pressed -> OudsTheme.colorScheme.content.onAction.pressed
+                    OudsButtonState.Loading -> OudsTheme.colorScheme.content.onAction.loading
+                    OudsButtonState.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 }
-                OudsButton.Appearance.Brand -> when (state) {
-                    OudsButton.State.Enabled -> colorContentBrandEnabled.value
-                    OudsButton.State.Focused -> colorContentBrandFocus.value
-                    OudsButton.State.Hovered -> colorContentBrandHover.value
-                    OudsButton.State.Pressed -> colorContentBrandPressed.value
-                    OudsButton.State.Loading -> colorContentBrandLoading.value
-                    OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+                OudsButtonAppearance.Brand -> when (state) {
+                    OudsButtonState.Enabled -> colorContentBrandEnabled.value
+                    OudsButtonState.Focused -> colorContentBrandFocus.value
+                    OudsButtonState.Hovered -> colorContentBrandHover.value
+                    OudsButtonState.Pressed -> colorContentBrandPressed.value
+                    OudsButtonState.Loading -> colorContentBrandLoading.value
+                    OudsButtonState.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 }
-                OudsButton.Appearance.Negative -> when (state) {
-                    OudsButton.State.Enabled,
-                    OudsButton.State.Hovered,
-                    OudsButton.State.Pressed,
-                    OudsButton.State.Loading,
-                    OudsButton.State.Focused -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
-                    OudsButton.State.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+                OudsButtonAppearance.Negative -> when (state) {
+                    OudsButtonState.Enabled,
+                    OudsButtonState.Hovered,
+                    OudsButtonState.Pressed,
+                    OudsButtonState.Loading,
+                    OudsButtonState.Focused -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
+                    OudsButtonState.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 }
             }
         }
@@ -600,7 +601,7 @@ private fun contentColor(appearance: OudsButton.Appearance, state: OudsButton.St
 }
 
 @Composable
-private fun contentPadding(icon: OudsButton.Icon?, label: String?): PaddingValues {
+private fun contentPadding(icon: OudsButtonIcon?, label: String?): PaddingValues {
     return with(OudsTheme.componentsTokens.button) {
         when {
             icon != null && label != null -> PaddingValues(
@@ -622,11 +623,11 @@ private fun contentPadding(icon: OudsButton.Icon?, label: String?): PaddingValue
 }
 
 @Composable
-private fun ProgressIndicator(appearance: OudsButton.Appearance, progress: Float?, scale: Float) {
+private fun ProgressIndicator(appearance: OudsButtonAppearance, progress: Float?, scale: Float) {
     val modifier = Modifier
         .size(OudsTheme.componentsTokens.button.sizeLoader.value * scale)
         .semantics { hideFromAccessibility() }
-    val color = contentColor(appearance = appearance, state = OudsButton.State.Loading)
+    val color = contentColor(appearance = appearance, state = OudsButtonState.Loading)
     val strokeWidth = 3.dp * scale
     val trackColor = Color.Transparent
     val strokeCap = StrokeCap.Square
@@ -658,103 +659,97 @@ object OudsButtonDefaults {
     /**
      * Default appearance of an [OudsButton].
      */
-    val Appearance = OudsButton.Appearance.Default
+    val Appearance = OudsButtonAppearance.Default
 }
 
 /**
- * Contains classes to build an [OudsButton].
+ * An icon in an [OudsButton].
+ * This icon is non-clickable.
  */
-object OudsButton {
+class OudsButtonIcon private constructor(
+    graphicsObject: Any,
+    val contentDescription: String
+) : OudsComponentIcon<OudsButtonIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val tint: Color
+    ) : OudsComponentContent.ExtraParameters()
 
     /**
-     * An icon in an [OudsButton].
-     * This icon is non-clickable.
-     */
-    class Icon private constructor(
-        graphicsObject: Any,
-        val contentDescription: String
-    ) : OudsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
-
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(
-            internal val tint: Color
-        ) : OudsComponentContent.ExtraParameters()
-
-        /**
-         * Creates an instance of [OudsButton.Icon].
-         *
-         * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
-         */
-        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
-
-        /**
-         * Creates an instance of [OudsButton.Icon].
-         *
-         * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
-         */
-        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
-
-        /**
-         * Creates an instance of [OudsButton.Icon].
-         *
-         * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsButton.Icon]. This value is ignored if the button also contains label.
-         */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
-
-        override val tint: Color?
-            @Composable
-            get() = extraParameters.tint
-    }
-
-    /**
-     * Represents the appearance of an OUDS button.
-     */
-    enum class Appearance {
-        /**
-         * Default buttons are used for actions which are not mandatory or essential for the user.
-         * Often screens will include multiple Outline buttons alongside one of the Full button.
-         */
-        Default,
-
-        /**
-         * The Strong button on the page should be singular and prominent, ideally limited to one per view.
-         * It should be reserved for the most critical action, such as "Buy," "Save," "Submit," etc.
-         */
-        Strong,
-
-        /**
-         * A brand primary color alternative to the Strong button. To be used sparingly for high-value specific actions or to visually anchor a brand moment.
-         * Do not use it as the default primary button in your interfaces.
-         */
-        Brand,
-
-        /**
-         * Minimal buttons are commonly used for actions that are considered less crucial. They can be used independently or together with a strong button.
-         */
-        Minimal,
-
-        /**
-         * Negative buttons should be used sparingly to warn of a destructive action, for example, delete or remove, typically resulting in the opening of a
-         * confirmation dialog.
-         */
-        Negative
-    }
-
-    /**
-     * A circular loading indicator displayed in the button.
+     * Creates an instance of [OudsButtonIcon].
      *
-     * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
-     *   Values outside of this range are coerced into the range.
-     *   Set this value to `null` to display a circular indeterminate progress indicator.
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
      */
-    data class Loader(val progress: Float?)
+    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
-    internal enum class State {
-        Enabled, Hovered, Pressed, Loading, Disabled, Focused
-    }
+    /**
+     * Creates an instance of [OudsButtonIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
+     */
+    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
+
+    /**
+     * Creates an instance of [OudsButtonIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
+
+    override val tint: Color?
+        @Composable
+        get() = extraParameters.tint
+}
+
+/**
+ * Represents the appearance of an [OudsButton].
+ */
+enum class OudsButtonAppearance {
+    /**
+     * Default buttons are used for actions which are not mandatory or essential for the user.
+     * Often screens will include multiple Outline buttons alongside one of the Full button.
+     */
+    Default,
+
+    /**
+     * The Strong button on the page should be singular and prominent, ideally limited to one per view.
+     * It should be reserved for the most critical action, such as "Buy," "Save," "Submit," etc.
+     */
+    Strong,
+
+    /**
+     * A brand primary color alternative to the Strong button. To be used sparingly for high-value specific actions or to visually anchor a brand moment.
+     * Do not use it as the default primary button in your interfaces.
+     */
+    Brand,
+
+    /**
+     * Minimal buttons are commonly used for actions that are considered less crucial. They can be used independently or together with a strong button.
+     */
+    Minimal,
+
+    /**
+     * Negative buttons should be used sparingly to warn of a destructive action, for example, delete or remove, typically resulting in the opening of a
+     * confirmation dialog.
+     */
+    Negative
+}
+
+/**
+ * A circular loading indicator displayed in an [OudsButton].
+ *
+ * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
+ *   Values outside of this range are coerced into the range.
+ *   Set this value to `null` to display a circular indeterminate progress indicator.
+ */
+data class OudsButtonLoader(val progress: Float?)
+
+internal enum class OudsButtonState {
+    Enabled, Hovered, Pressed, Loading, Disabled, Focused
 }
 
 @PreviewLightDark
@@ -772,14 +767,14 @@ fun PreviewOudsButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) appearance.name else null
-        val icon = if (hasIcon) OudsButton.Icon(Icons.Filled.FavoriteBorder, "") else null
+        val icon = if (hasIcon) OudsButtonIcon(Icons.Filled.FavoriteBorder, "") else null
         val content: @Composable () -> Unit = {
-            PreviewEnumEntries<OudsButton.State>(columnCount = 2) {
+            PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
                 OudsButton(nullableIcon = icon, nullableLabel = label, onClick = {}, appearance = appearance)
             }
         }
         if (onColoredBox) {
-            OudsColoredBox(color = OudsColoredBox.Color.BrandPrimary) {
+            OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) {
                 content()
             }
         } else {
@@ -796,10 +791,10 @@ private fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRounded
 @Composable
 fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
-        val appearance = OudsButton.Appearance.Default
-        PreviewEnumEntries<OudsButton.State>(columnCount = 2) { state ->
+        val appearance = OudsButtonAppearance.Default
+        PreviewEnumEntries<OudsButtonState>(columnCount = 2) { state ->
             OudsButton(
-                nullableIcon = OudsButton.Icon(Icons.Filled.FavoriteBorder, ""),
+                nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
                 nullableLabel = appearance.name,
                 onClick = {},
                 appearance = appearance
@@ -808,7 +803,7 @@ fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
     }
 
 data class OudsButtonPreviewParameter(
-    val appearance: OudsButton.Appearance,
+    val appearance: OudsButtonAppearance,
     val hasLabel: Boolean,
     val hasIcon: Boolean,
     val onColoredBox: Boolean = false
@@ -818,7 +813,7 @@ class OudsButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsBut
 
 private val previewParameterValues: List<OudsButtonPreviewParameter>
     get() = buildList {
-        OudsButton.Appearance.entries.forEach { appearance ->
+        OudsButtonAppearance.entries.forEach { appearance ->
             val parameters = listOf(
                 OudsButtonPreviewParameter(appearance, hasLabel = true, hasIcon = false),
                 OudsButtonPreviewParameter(appearance, hasLabel = true, hasIcon = true),

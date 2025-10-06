@@ -25,7 +25,7 @@ import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
-import com.orange.ouds.core.component.OudsControlItem
+import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.utilities.OudsPreview
@@ -67,7 +67,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     },
                     label = label,
                     helperText = helperText,
-                    icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
@@ -99,7 +99,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     },
                     label = label,
                     helperText = helperText,
-                    icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,

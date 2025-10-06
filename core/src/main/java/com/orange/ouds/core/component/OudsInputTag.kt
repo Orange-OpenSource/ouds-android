@@ -193,78 +193,72 @@ fun OudsInputChip(
 }
 
 @Composable
-private fun getInputTagState(interactionState: InteractionState, enabled: Boolean): OudsInputTag.State {
-    return getPreviewEnumEntry<OudsInputTag.State>().orElse {
+private fun getInputTagState(interactionState: InteractionState, enabled: Boolean): OudsInputTagState {
+    return getPreviewEnumEntry<OudsInputTagState>().orElse {
         when {
-            !enabled -> OudsInputTag.State.Disabled
-            interactionState == InteractionState.Hovered -> OudsInputTag.State.Hovered
-            interactionState == InteractionState.Pressed -> OudsInputTag.State.Pressed
-            interactionState == InteractionState.Focused -> OudsInputTag.State.Focused
-            else -> OudsInputTag.State.Enabled
+            !enabled -> OudsInputTagState.Disabled
+            interactionState == InteractionState.Hovered -> OudsInputTagState.Hovered
+            interactionState == InteractionState.Pressed -> OudsInputTagState.Pressed
+            interactionState == InteractionState.Focused -> OudsInputTagState.Focused
+            else -> OudsInputTagState.Enabled
         }
     }
 }
 
 @Composable
-private fun backgroundColor(state: OudsInputTag.State): Color? {
+private fun backgroundColor(state: OudsInputTagState): Color? {
     return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
-            OudsInputTag.State.Enabled -> colorBgEnabled.value
-            OudsInputTag.State.Focused -> colorBgFocus.value
-            OudsInputTag.State.Hovered -> colorBgHover.value
-            OudsInputTag.State.Pressed -> colorBgPressed.value
-            OudsInputTag.State.Disabled -> null
+            OudsInputTagState.Enabled -> colorBgEnabled.value
+            OudsInputTagState.Focused -> colorBgFocus.value
+            OudsInputTagState.Hovered -> colorBgHover.value
+            OudsInputTagState.Pressed -> colorBgPressed.value
+            OudsInputTagState.Disabled -> null
         }
     }
 }
 
 @Composable
-private fun borderWidth(state: OudsInputTag.State): Dp {
+private fun borderWidth(state: OudsInputTagState): Dp {
     return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
-            OudsInputTag.State.Enabled,
-            OudsInputTag.State.Disabled -> borderWidthDefault
-            OudsInputTag.State.Hovered,
-            OudsInputTag.State.Pressed,
-            OudsInputTag.State.Focused -> borderWidthDefaultInteraction
+            OudsInputTagState.Enabled,
+            OudsInputTagState.Disabled -> borderWidthDefault
+            OudsInputTagState.Hovered,
+            OudsInputTagState.Pressed,
+            OudsInputTagState.Focused -> borderWidthDefaultInteraction
         }
     }.value
 }
 
 @Composable
-private fun borderColor(state: OudsInputTag.State): Color {
+private fun borderColor(state: OudsInputTagState): Color {
     return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
-            OudsInputTag.State.Enabled -> colorBorderEnabled.value
-            OudsInputTag.State.Focused -> colorBorderFocus.value
-            OudsInputTag.State.Hovered -> colorBorderHover.value
-            OudsInputTag.State.Pressed -> colorBorderPressed.value
-            OudsInputTag.State.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsInputTagState.Enabled -> colorBorderEnabled.value
+            OudsInputTagState.Focused -> colorBorderFocus.value
+            OudsInputTagState.Hovered -> colorBorderHover.value
+            OudsInputTagState.Pressed -> colorBorderPressed.value
+            OudsInputTagState.Disabled -> OudsTheme.colorScheme.action.disabled
         }
     }
 }
 
 @Composable
-private fun contentColor(state: OudsInputTag.State): Color {
+private fun contentColor(state: OudsInputTagState): Color {
     return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
-            OudsInputTag.State.Enabled -> colorContentEnabled.value
-            OudsInputTag.State.Focused -> colorContentFocus.value
-            OudsInputTag.State.Hovered -> colorContentHover.value
-            OudsInputTag.State.Pressed -> colorContentPressed.value
-            OudsInputTag.State.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsInputTagState.Enabled -> colorContentEnabled.value
+            OudsInputTagState.Focused -> colorContentFocus.value
+            OudsInputTagState.Hovered -> colorContentHover.value
+            OudsInputTagState.Pressed -> colorContentPressed.value
+            OudsInputTagState.Disabled -> OudsTheme.colorScheme.action.disabled
         }
     }
 }
 
-/**
- * Contains classes to build an [OudsInputTag].
- */
-object OudsInputTag {
-
-    internal enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused
-    }
+internal enum class OudsInputTagState {
+    Enabled, Hovered, Pressed, Disabled, Focused
 }
 
 @PreviewLightDark
@@ -277,7 +271,7 @@ private fun PreviewOudsInputTag() {
 @Composable
 fun PreviewOudsInputTag(theme: OudsThemeContract, darkThemeEnabled: Boolean) =
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-        PreviewEnumEntries<OudsInputTag.State>(columnCount = 3) {
+        PreviewEnumEntries<OudsInputTagState>(columnCount = 3) {
             OudsInputTag(label = "Label", onClick = {})
         }
     }

@@ -33,6 +33,11 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.formattedName
 import com.orange.ouds.core.component.OudsTag
+import com.orange.ouds.core.component.OudsTagHierarchy
+import com.orange.ouds.core.component.OudsTagIcon
+import com.orange.ouds.core.component.OudsTagLoader
+import com.orange.ouds.core.component.OudsTagSize
+import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -53,11 +58,11 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
         CustomizationFilterChips(
             applyTopPadding = false,
             label = stringResource(R.string.app_components_tag_hierarchy_label),
-            chipLabels = OudsTag.Hierarchy.entries.map { it.name },
-            selectedChipIndex = OudsTag.Hierarchy.entries.indexOf(hierarchy),
-            onSelectionChange = { id -> hierarchy = OudsTag.Hierarchy.entries[id] }
+            chipLabels = OudsTagHierarchy.entries.map { it.name },
+            selectedChipIndex = OudsTagHierarchy.entries.indexOf(hierarchy),
+            onSelectionChange = { id -> hierarchy = OudsTagHierarchy.entries[id] }
         )
-        val statuses = OudsTag.Status.entries
+        val statuses = OudsTagStatus.entries
         CustomizationDropdownMenu(
             applyTopPadding = true,
             label = stringResource(id = R.string.app_components_common_status_label),
@@ -70,13 +75,13 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
                                 .fillMaxSize()
                                 .background(
                                     when (hierarchy) {
-                                        OudsTag.Hierarchy.Emphasized -> status.color()
-                                        OudsTag.Hierarchy.Muted -> status.mutedColor()
+                                        OudsTagHierarchy.Emphasized -> status.color()
+                                        OudsTagHierarchy.Muted -> status.mutedColor()
                                     }
                                 )
                         )
                     },
-                    enabled = !(status == OudsTag.Status.Disabled && hasLoader)
+                    enabled = !(status == OudsTagStatus.Disabled && hasLoader)
                 )
             },
             selectedItemIndex = statuses.indexOf(status),
@@ -103,9 +108,9 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_size_label),
-            chipLabels = OudsTag.Size.entries.map { it.name },
-            selectedChipIndex = OudsTag.Size.entries.indexOf(size),
-            onSelectionChange = { id -> size = OudsTag.Size.entries[id] }
+            chipLabels = OudsTagSize.entries.map { it.name },
+            selectedChipIndex = OudsTagSize.entries.indexOf(size),
+            onSelectionChange = { id -> size = OudsTagSize.entries[id] }
         )
         CustomizationTextField(
             applyTopPadding = true,
@@ -119,12 +124,12 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
 @Composable
 private fun TagDemoContent(state: TagDemoState) {
     with(state) {
-        val content: @Composable (OudsTag.Size, Boolean) -> Unit = { size, visible ->
-            val loader = if (hasLoader) OudsTag.Loader(null) else null
+        val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
+            val loader = if (hasLoader) OudsTagLoader(null) else null
             val icon = when (layout) {
                 TagDemoState.Layout.TextOnly -> null
-                TagDemoState.Layout.TextAndBullet -> OudsTag.Icon.Bullet
-                TagDemoState.Layout.TextAndIcon -> OudsTag.Icon(painter = painterResource(R.drawable.ic_heart))
+                TagDemoState.Layout.TextAndBullet -> OudsTagIcon.Bullet
+                TagDemoState.Layout.TextAndIcon -> OudsTagIcon(painter = painterResource(R.drawable.ic_heart))
             }
             val alpha = if (visible) 1f else 0f
             OudsTag(
@@ -141,19 +146,19 @@ private fun TagDemoContent(state: TagDemoState) {
 
         // Reserve space to avoid changing the height of the demo box when switching between sizes
         // Draw this invisible composable first otherwise the actual tag cannot be directly selected when TalkBack is enabled
-        content(OudsTag.Size.Default, false)
+        content(OudsTagSize.Default, false)
         content(size, true)
     }
 }
 
 private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
     with(state) {
-        functionCall(OudsTag::class.simpleName.orEmpty()) {
+        functionCall("OudsTag") {
             when (layout) {
                 TagDemoState.Layout.TextOnly -> {}
-                TagDemoState.Layout.TextAndBullet -> typedArgument("icon", OudsTag.Icon.Bullet)
+                TagDemoState.Layout.TextAndBullet -> typedArgument("icon", OudsTagIcon.Bullet)
                 TagDemoState.Layout.TextAndIcon -> {
-                    constructorCallArgument<OudsTag.Icon>("icon") {
+                    constructorCallArgument<OudsTagIcon>("icon") {
                         painterArgument(R.drawable.ic_heart)
                     }
                 }
@@ -164,7 +169,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
             typedArgument("size", size)
             typedArgument("status", status)
             if (hasLoader) {
-                constructorCallArgument<OudsTag.Loader>("loader") {
+                constructorCallArgument<OudsTagLoader>("loader") {
                     typedArgument("progress", null)
                 }
             }

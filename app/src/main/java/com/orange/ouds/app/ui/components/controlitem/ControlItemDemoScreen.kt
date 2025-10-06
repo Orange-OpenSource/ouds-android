@@ -21,7 +21,7 @@ import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
-import com.orange.ouds.core.component.OudsControlItem
+import com.orange.ouds.core.component.OudsControlItemIcon
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
 
@@ -142,7 +142,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = wit
     labelArgument(label)
     if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
     if (icon) {
-        constructorCallArgument<OudsControlItem.Icon>("icon") {
+        constructorCallArgument<OudsControlItemIcon>("icon") {
             painterArgument(R.drawable.ic_heart)
         }
     }

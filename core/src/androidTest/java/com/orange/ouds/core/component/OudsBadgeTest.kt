@@ -26,7 +26,7 @@ internal class OudsBadgeTest {
     @Test
     fun oudsBadge_maxCount_succeeds() {
         with(composeTestRule) {
-            val count = OudsBadge.MaxCount
+            val count = OudsBadgeMaxCount
 
             setOudsContent {
                 OudsBadge(count = count)
@@ -39,14 +39,14 @@ internal class OudsBadgeTest {
     @Test
     fun oudsBadge_maxCountOverflow_succeeds() {
         with(composeTestRule) {
-            val count = OudsBadge.MaxCount + 1
+            val count = OudsBadgeMaxCount + 1
 
             setOudsContent {
                 OudsBadge(count = count)
             }
 
             onNodeWithText(count.toString()).assertDoesNotExist()
-            onNodeWithText("+${OudsBadge.MaxCount}").assertExists()
+            onNodeWithText("+${OudsBadgeMaxCount}").assertExists()
         }
     }
 }

@@ -111,7 +111,7 @@ fun OudsFilterChip(
 fun OudsFilterChip(
     selected: Boolean,
     onClick: () -> Unit,
-    icon: OudsChip.Icon,
+    icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -163,7 +163,7 @@ fun OudsFilterChip(
     selected: Boolean,
     onClick: () -> Unit,
     label: String,
-    icon: OudsChip.Icon,
+    icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -185,7 +185,7 @@ private fun OudsFilterChip(
     selected: Boolean,
     onClick: () -> Unit,
     nullableLabel: String?,
-    nullableIcon: OudsChip.Icon?,
+    nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -196,7 +196,7 @@ private fun OudsFilterChip(
         onClick = onClick,
         label = nullableLabel,
         icon = nullableIcon,
-        iconPosition = OudsChip.IconPosition.End,
+        iconPosition = OudsChipIconPosition.End,
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -215,8 +215,8 @@ fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: Boolean, p
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
             val label = if (hasLabel) "Label" else null
-            val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
-            PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
+            val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
+            PreviewEnumEntries<OudsChipState>(columnCount = 3) {
                 OudsFilterChip(selected = selected, nullableIcon = icon, nullableLabel = label, onClick = {})
             }
         }

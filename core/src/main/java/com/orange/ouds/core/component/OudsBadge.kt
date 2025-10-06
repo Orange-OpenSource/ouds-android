@@ -81,8 +81,8 @@ import com.orange.ouds.theme.OudsThemeContract
 @Composable
 fun OudsBadge(
     modifier: Modifier = Modifier,
-    status: OudsBadge.Status = OudsBadgeDefaults.Status,
-    size: OudsBadge.Size = OudsBadgeDefaults.Size
+    status: OudsBadgeStatus = OudsBadgeDefaults.Status,
+    size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
     OudsBadge(
         count = null,
@@ -113,7 +113,7 @@ fun OudsBadge(
  *   Values greater than 99 are displayed as "+99".
  * @param modifier The [Modifier] to be applied to this badge.
  * @param status The status of this badge. The background color of the badge and the number color are based on this status.
- * @param size The size of this badge. The number is not displayed when size is [OudsBadge.Size.ExtraSmall] or [OudsBadge.Size.Small].
+ * @param size The size of this badge. The number is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
  *
  * @sample com.orange.ouds.core.component.samples.OudsBadgeWithIconSample
  *
@@ -123,8 +123,8 @@ fun OudsBadge(
 fun OudsBadge(
     count: Int,
     modifier: Modifier = Modifier,
-    status: OudsBadge.Status = OudsBadgeDefaults.Status,
-    size: OudsBadge.Size = OudsBadgeDefaults.Size
+    status: OudsBadgeStatus = OudsBadgeDefaults.Status,
+    size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
     OudsBadge(
         count = count,
@@ -154,16 +154,16 @@ fun OudsBadge(
  * @param icon The icon displayed in the badge.
  * @param modifier The [Modifier] to be applied to this badge.
  * @param status The status of this badge. The background color of the badge and the icon color are based on this status.
- * @param size The size of this badge. The icon is not displayed when size is [OudsBadge.Size.ExtraSmall] or [OudsBadge.Size.Small].
+ * @param size The size of this badge. The icon is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
  *
  * @sample com.orange.ouds.core.component.samples.OudsBadgeWithIconSample
  */
 @Composable
 fun OudsBadge(
-    icon: OudsBadge.Icon,
+    icon: OudsBadgeIcon,
     modifier: Modifier = Modifier,
-    status: OudsBadge.Status = OudsBadgeDefaults.Status,
-    size: OudsBadge.Size = OudsBadgeDefaults.Size
+    status: OudsBadgeStatus = OudsBadgeDefaults.Status,
+    size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
     OudsBadge(
         count = null,
@@ -177,10 +177,10 @@ fun OudsBadge(
 @Composable
 private fun OudsBadge(
     count: Int?,
-    icon: OudsBadge.Icon?,
+    icon: OudsBadgeIcon?,
     modifier: Modifier = Modifier,
-    status: OudsBadge.Status = OudsBadgeDefaults.Status,
-    size: OudsBadge.Size = OudsBadgeDefaults.Size
+    status: OudsBadgeStatus = OudsBadgeDefaults.Status,
+    size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
     // This outer box is necessary otherwise the user can change the size of the badge through the modifier
     Box(
@@ -198,7 +198,7 @@ private fun OudsBadge(
                 .clip(shape = RoundedCornerShape(OudsTheme.borders.radius.pill))
                 .background(status.color)
                 .run {
-                    if (count != null && size in OudsBadge.Size.countEntries) {
+                    if (count != null && size in OudsBadgeSize.countEntries) {
                         sizeIn(minWidth = sizeDp, minHeight = sizeDp)
                     } else {
                         size(sizeDp)
@@ -208,9 +208,9 @@ private fun OudsBadge(
                 .padding(paddingValues = contentPadding(size = size, count = count, icon = icon, scale = scale)),
             contentAlignment = Alignment.Center
         ) {
-            val text = count?.let { if (it > OudsBadge.MaxCount) "+${OudsBadge.MaxCount}" else it.coerceAtLeast(0).toString() }
+            val text = count?.let { if (it > OudsBadgeMaxCount) "+${OudsBadgeMaxCount}" else it.coerceAtLeast(0).toString() }
             val contentColor = contentColor(status = status)
-            if (size in OudsBadge.Size.countEntries && text != null) {
+            if (size in OudsBadgeSize.countEntries && text != null) {
                 val textStyle = textStyle(size = size)
                 if (textStyle != null) {
                     Text(
@@ -220,10 +220,10 @@ private fun OudsBadge(
                     )
                 }
             }
-            if (size in OudsBadge.Size.iconEntries) {
+            if (size in OudsBadgeSize.iconEntries) {
                 icon?.Content(
                     modifier = Modifier.fillMaxSize(),
-                    extraParameters = OudsBadge.Icon.ExtraParameters(tint = contentColor)
+                    extraParameters = OudsBadgeIcon.ExtraParameters(tint = contentColor)
                 )
             }
         }
@@ -231,49 +231,49 @@ private fun OudsBadge(
 }
 
 @Composable
-private fun size(size: OudsBadge.Size): Dp {
+private fun size(size: OudsBadgeSize): Dp {
     return with(OudsTheme.componentsTokens.badge) {
         when (size) {
-            OudsBadge.Size.ExtraSmall -> sizeXsmall
-            OudsBadge.Size.Small -> sizeSmall
-            OudsBadge.Size.Medium -> sizeMedium
-            OudsBadge.Size.Large -> sizeLarge
+            OudsBadgeSize.ExtraSmall -> sizeXsmall
+            OudsBadgeSize.Small -> sizeSmall
+            OudsBadgeSize.Medium -> sizeMedium
+            OudsBadgeSize.Large -> sizeLarge
         }.dp
     }
 }
 
 @Composable
-private fun contentColor(status: OudsBadge.Status): Color {
+private fun contentColor(status: OudsBadgeStatus): Color {
     return when (status) {
-        OudsBadge.Status.Neutral -> OudsTheme.colorScheme.content.onStatus.neutral.emphasized
-        OudsBadge.Status.Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
-        OudsBadge.Status.Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
-        OudsBadge.Status.Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
-        OudsBadge.Status.Warning -> OudsTheme.colorScheme.content.onStatus.warning.emphasized
-        OudsBadge.Status.Negative -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
-        OudsBadge.Status.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+        OudsBadgeStatus.Neutral -> OudsTheme.colorScheme.content.onStatus.neutral.emphasized
+        OudsBadgeStatus.Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
+        OudsBadgeStatus.Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
+        OudsBadgeStatus.Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
+        OudsBadgeStatus.Warning -> OudsTheme.colorScheme.content.onStatus.warning.emphasized
+        OudsBadgeStatus.Negative -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
+        OudsBadgeStatus.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
     }
 }
 
 @Composable
-private fun textStyle(size: OudsBadge.Size): TextStyle? {
+private fun textStyle(size: OudsBadgeSize): TextStyle? {
     return when (size) {
-        OudsBadge.Size.ExtraSmall,
-        OudsBadge.Size.Small -> null
-        OudsBadge.Size.Medium -> OudsTheme.typography.label.default.small
-        OudsBadge.Size.Large -> OudsTheme.typography.label.default.medium
+        OudsBadgeSize.ExtraSmall,
+        OudsBadgeSize.Small -> null
+        OudsBadgeSize.Medium -> OudsTheme.typography.label.default.small
+        OudsBadgeSize.Large -> OudsTheme.typography.label.default.medium
     }?.run {
         copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
     }
 }
 
 @Composable
-private fun contentPadding(size: OudsBadge.Size, count: Int?, icon: OudsBadge.Icon?, scale: Float): PaddingValues {
+private fun contentPadding(size: OudsBadgeSize, count: Int?, icon: OudsBadgeIcon?, scale: Float): PaddingValues {
     return with(OudsTheme.componentsTokens.badge) {
         when {
-            count != null && size == OudsBadge.Size.Medium -> PaddingValues(horizontal = spacePaddingInlineMedium.value * scale)
-            count != null && size == OudsBadge.Size.Large -> PaddingValues(horizontal = spacePaddingInlineLarge.value * scale)
-            icon != null && size in OudsBadge.Size.iconEntries -> PaddingValues(all = spaceInset.dp * scale)
+            count != null && size == OudsBadgeSize.Medium -> PaddingValues(horizontal = spacePaddingInlineMedium.value * scale)
+            count != null && size == OudsBadgeSize.Large -> PaddingValues(horizontal = spacePaddingInlineLarge.value * scale)
+            icon != null && size in OudsBadgeSize.iconEntries -> PaddingValues(all = spaceInset.dp * scale)
             else -> PaddingValues(all = 0.dp)
         }
     }
@@ -287,147 +287,141 @@ object OudsBadgeDefaults {
     /**
      * Default status of an [OudsBadge].
      */
-    val Status = OudsBadge.Status.Neutral
+    val Status = OudsBadgeStatus.Neutral
 
     /**
      * Default size of an [OudsBadge].
      */
-    val Size = OudsBadge.Size.Medium
+    val Size = OudsBadgeSize.Medium
 }
 
 /**
- * Contains classes to build an [OudsBadge].
+ * The maximum count value.
  */
-object OudsBadge {
+const val OudsBadgeMaxCount = 99
+
+/**
+ * An icon in an [OudsBadge].
+ * This icon is non-clickable.
+ */
+class OudsBadgeIcon private constructor(
+    graphicsObject: Any,
+    val contentDescription: String
+) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val tint: Color
+    ) : OudsComponentContent.ExtraParameters()
 
     /**
-     * The maximum count value.
+     * Creates an instance of [OudsBadgeIcon].
+     *
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated with this [OudsBadgeIcon]. This value is ignored if the badge also contains label.
      */
-    const val MaxCount = 99
+    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
     /**
-     * An icon in an [OudsBadge].
-     * This icon is non-clickable.
+     * Creates an instance of [OudsBadgeIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated with this [OudsBadgeIcon]. This value is ignored if the badge also contains label.
      */
-    class Icon private constructor(
-        graphicsObject: Any,
-        val contentDescription: String
-    ) : OudsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
-
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(
-            internal val tint: Color
-        ) : OudsComponentContent.ExtraParameters()
-
-        /**
-         * Creates an instance of [OudsBadge.Icon].
-         *
-         * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the badge also contains label.
-         */
-        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
-
-        /**
-         * Creates an instance of [OudsBadge.Icon].
-         *
-         * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the badge also contains label.
-         */
-        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
-
-        /**
-         * Creates an instance of [OudsBadge.Icon].
-         *
-         * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsBadge.Icon]. This value is ignored if the badge also contains label.
-         */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
-
-        override val tint: Color?
-            @Composable
-            get() = extraParameters.tint
-    }
+    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
     /**
-     * The status of an [OudsBadge]. This status determines the background and content colors of the badge.
+     * Creates an instance of [OudsBadgeIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated with this [OudsBadgeIcon]. This value is ignored if the badge also contains label.
      */
-    enum class Status {
+    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
-        /** Used for general labels without specific emphasis. */
-        Neutral,
+    override val tint: Color?
+        @Composable
+        get() = extraParameters.tint
+}
 
-        /** Employed to highlight discovery or exploration-related content. */
-        Accent,
+/**
+ * The status of an [OudsBadge]. This status determines the background and content colors of the badge.
+ */
+enum class OudsBadgeStatus {
 
-        /** Indicates success, completion, or approval. */
-        Positive,
+    /** Used for general labels without specific emphasis. */
+    Neutral,
 
-        /** Provides informational context without urgency. */
-        Info,
+    /** Employed to highlight discovery or exploration-related content. */
+    Accent,
 
-        /** Negatives the user to potential risks or cautionary messages. */
-        Warning,
+    /** Indicates success, completion, or approval. */
+    Positive,
 
-        /**
-         * Draws attention to important or critical information.
-         * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
-         */
-        Negative,
+    /** Provides informational context without urgency. */
+    Info,
 
-        /**
-         * Indicate when the user isn’t allowed to interact with an element.
-         * They remove all interactivity from a text or icon elements.
-         */
-        Disabled;
+    /** Negatives the user to potential risks or cautionary messages. */
+    Warning,
 
-        /**
-         * The color associated with this status.
-         */
-        val color: Color
-            @Composable
-            get() = when (this) {
-                Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
-                Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
-                Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
-                Info -> OudsTheme.colorScheme.surface.status.info.emphasized
-                Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
-                Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
-                Disabled -> OudsTheme.colorScheme.action.disabled
-            }
-    }
+    /**
+     * Draws attention to important or critical information.
+     * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
+     */
+    Negative,
 
-    enum class Size {
+    /**
+     * Indicate when the user isn’t allowed to interact with an element.
+     * They remove all interactivity from a text or icon elements.
+     */
+    Disabled;
 
-        /** A compact badge for minimal space usage, ideal for small UI elements like icons or tooltips. */
-        ExtraSmall,
-
-        /** A slightly larger badge that remains subtle but improves readability, often used for inline labels. */
-        Small,
-
-        /** The default size, providing a balance between visibility and space efficiency, suitable for most use cases. */
-        Medium,
-
-        /** A prominent badge for drawing more attention, often used in dashboards or highlighted sections. */
-        Large;
-
-        internal companion object {
-
-            val countEntries: List<Size>
-                get() = listOf(Medium, Large)
-
-            val iconEntries: List<Size>
-                get() = listOf(Medium, Large)
+    /**
+     * The color associated with this status.
+     */
+    val color: Color
+        @Composable
+        get() = when (this) {
+            Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
+            Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
+            Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
+            Info -> OudsTheme.colorScheme.surface.status.info.emphasized
+            Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
+            Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
+            Disabled -> OudsTheme.colorScheme.action.disabled
         }
+}
+
+/**
+ * The size of an [OudsBadge].
+ */
+enum class OudsBadgeSize {
+
+    /** A compact badge for minimal space usage, ideal for small UI elements like icons or tooltips. */
+    ExtraSmall,
+
+    /** A slightly larger badge that remains subtle but improves readability, often used for inline labels. */
+    Small,
+
+    /** The default size, providing a balance between visibility and space efficiency, suitable for most use cases. */
+    Medium,
+
+    /** A prominent badge for drawing more attention, often used in dashboards or highlighted sections. */
+    Large;
+
+    internal companion object {
+
+        val countEntries: List<OudsBadgeSize>
+            get() = listOf(Medium, Large)
+
+        val iconEntries: List<OudsBadgeSize>
+            get() = listOf(Medium, Large)
     }
 }
 
-object OudsBadgePreview {
+const val OudsBadgePreviewWidthDp = 420
 
-    const val widthDp = 420
-}
-
-@Preview(name = "Light", widthDp = OudsBadgePreview.widthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsBadgePreview.widthDp)
+@Preview(name = "Light", widthDp = OudsBadgePreviewWidthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsBadgePreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsBadge(@PreviewParameter(OudsBadgePreviewParameterProvider::class) parameter: OudsBadgePreviewParameter) {
@@ -438,11 +432,11 @@ private fun PreviewOudsBadge(@PreviewParameter(OudsBadgePreviewParameterProvider
 fun PreviewOudsBadge(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBadgePreviewParameter) =
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
-            PreviewEnumEntries<OudsBadge.Size, OudsBadge.Status> { size, status ->
+            PreviewEnumEntries<OudsBadgeSize, OudsBadgeStatus> { size, status ->
                 OudsBadge(
                     count = count,
                     icon = icon?.let {
-                        OudsBadge.Icon(
+                        OudsBadgeIcon(
                             imageVector = it,
                             contentDescription = ""
                         )

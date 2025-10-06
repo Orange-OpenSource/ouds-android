@@ -13,15 +13,15 @@
 package com.orange.ouds.core.test
 
 import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsBadgePreview
 import com.orange.ouds.core.component.OudsBadgePreviewParameter
 import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
+import com.orange.ouds.core.component.OudsBadgePreviewWidthDp
 import com.orange.ouds.core.component.PreviewOudsBadge
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsBadgeTest(private val parameter: OudsBadgePreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme, OudsBadgePreview.widthDp) {
+class OudsBadgeTest(private val parameter: OudsBadgePreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme, OudsBadgePreviewWidthDp) {
 
     companion object {
         @JvmStatic

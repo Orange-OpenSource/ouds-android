@@ -17,7 +17,9 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -30,7 +32,7 @@ internal fun OudsButtonTextOnlySample() {
 
 @Composable
 internal fun OudsButtonTextOnlyOnColoredBackgroundSample() {
-    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+    OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
             label = "Label",
@@ -42,7 +44,7 @@ internal fun OudsButtonTextOnlyOnColoredBackgroundSample() {
 @Composable
 internal fun OudsButtonIconOnlySample() {
     OudsButton(
-        icon = OudsButton.Icon(
+        icon = OudsButtonIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         ),
@@ -52,10 +54,10 @@ internal fun OudsButtonIconOnlySample() {
 
 @Composable
 internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
-    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+    OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
-            icon = OudsButton.Icon(
+            icon = OudsButtonIcon(
                 imageVector = Icons.Filled.FavoriteBorder,
                 contentDescription = "Content description"
             ),
@@ -67,7 +69,7 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
 @Composable
 internal fun OudsButtonTextAndIconSample() {
     OudsButton(
-        icon = OudsButton.Icon(
+        icon = OudsButtonIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = ""
         ),
@@ -78,10 +80,10 @@ internal fun OudsButtonTextAndIconSample() {
 
 @Composable
 internal fun OudsButtonTextAndIconOnColoredBackgroundSample() {
-    OudsColoredBox(color = OudsColoredBox.Color.StatusInfoEmphasized) {
+    OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
-            icon = OudsButton.Icon(
+            icon = OudsButtonIcon(
                 imageVector = Icons.Filled.FavoriteBorder,
                 contentDescription = ""
             ),

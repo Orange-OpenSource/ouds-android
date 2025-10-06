@@ -22,7 +22,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.core.component.OudsControlItem
+import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.utilities.OudsPreview
@@ -48,7 +48,7 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             label = label,
             onCheckedChange = { checked = it },
             helperText = helperText,
-            icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+            icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
             divider = divider,
             reversed = reversed,
             enabled = enabled,

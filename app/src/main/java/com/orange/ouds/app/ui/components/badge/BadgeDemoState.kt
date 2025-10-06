@@ -21,14 +21,15 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.R
-import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeDefaults
+import com.orange.ouds.core.component.OudsBadgeSize
+import com.orange.ouds.core.component.OudsBadgeStatus
 
 @Composable
 fun rememberBadgeDemoState(
     type: BadgeDemoState.Type = BadgeDemoState.Type.Count,
-    size: OudsBadge.Size = OudsBadgeDefaults.Size,
-    status: OudsBadge.Status = OudsBadgeDefaults.Status,
+    size: OudsBadgeSize = OudsBadgeDefaults.Size,
+    status: OudsBadgeStatus = OudsBadgeDefaults.Status,
     count: Int = 1
 ) = rememberSaveable(type, size, status, count, saver = BadgeDemoState.Saver) {
     BadgeDemoState(type, size, status, count)
@@ -36,8 +37,8 @@ fun rememberBadgeDemoState(
 
 class BadgeDemoState(
     type: Type,
-    size: OudsBadge.Size,
-    status: OudsBadge.Status,
+    size: OudsBadgeSize,
+    status: OudsBadgeStatus,
     count: Int
 ) {
 
@@ -57,8 +58,8 @@ class BadgeDemoState(
             restore = { list: List<Any?> ->
                 BadgeDemoState(
                     list[0] as Type,
-                    list[1] as OudsBadge.Size,
-                    list[2] as OudsBadge.Status,
+                    list[1] as OudsBadgeSize,
+                    list[2] as OudsBadgeStatus,
                     list[3] as Int
                 )
             }
@@ -76,9 +77,9 @@ class BadgeDemoState(
             }
         }
 
-    var size: OudsBadge.Size by mutableStateOf(size)
+    var size: OudsBadgeSize by mutableStateOf(size)
 
-    var enabledSizes: List<OudsBadge.Size> = getEnabledSizes(type)
+    var enabledSizes: List<OudsBadgeSize> = getEnabledSizes(type)
         private set(value) {
             field = value
             if (size !in enabledSizes) {
@@ -86,18 +87,18 @@ class BadgeDemoState(
             }
         }
 
-    var status: OudsBadge.Status by mutableStateOf(status)
+    var status: OudsBadgeStatus by mutableStateOf(status)
 
     var count: Int by mutableIntStateOf(count)
 
     val countTextFieldEnabled: Boolean
         get() = type == Type.Count
 
-    private fun getEnabledSizes(type: Type): List<OudsBadge.Size> {
+    private fun getEnabledSizes(type: Type): List<OudsBadgeSize> {
         return when (type) {
-            Type.Standard -> OudsBadge.Size.entries
+            Type.Standard -> OudsBadgeSize.entries
             Type.Count,
-            Type.Icon -> listOf(OudsBadge.Size.Medium, OudsBadge.Size.Large)
+            Type.Icon -> listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large)
         }
     }
 

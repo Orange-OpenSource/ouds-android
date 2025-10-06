@@ -29,6 +29,9 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLink
+import com.orange.ouds.core.component.OudsLinkArrow
+import com.orange.ouds.core.component.OudsLinkIcon
+import com.orange.ouds.core.component.OudsLinkSize
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -58,7 +61,7 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
             checked = onColoredBox,
             onCheckedChange = { onColoredBox = it },
         )
-        val sizes = OudsLink.Size.entries
+        val sizes = OudsLinkSize.entries
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_size_label),
@@ -97,7 +100,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
             LinkDemoState.Layout.TextAndIcon -> {
                 OudsLink(
                     label = label,
-                    icon = OudsLink.Icon(painterResource(id = R.drawable.ic_heart)),
+                    icon = OudsLinkIcon(painterResource(id = R.drawable.ic_heart)),
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -106,7 +109,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
             LinkDemoState.Layout.ArrowBack -> {
                 OudsLink(
                     label = label,
-                    arrow = OudsLink.Arrow.Back,
+                    arrow = OudsLinkArrow.Back,
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -115,7 +118,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
             LinkDemoState.Layout.ArrowNext -> {
                 OudsLink(
                     label = label,
-                    arrow = OudsLink.Arrow.Next,
+                    arrow = OudsLinkArrow.Next,
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -128,17 +131,17 @@ private fun LinkDemoContent(state: LinkDemoState) {
 private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState) {
     with(state) {
         coloredBoxCall(onColoredBox) {
-            functionCall(OudsLink::class.simpleName.orEmpty()) {
+            functionCall("OudsLink") {
                 labelArgument(label)
                 when (layout) {
                     LinkDemoState.Layout.TextOnly -> {}
                     LinkDemoState.Layout.TextAndIcon -> {
-                        constructorCallArgument<OudsLink.Icon>("icon") {
+                        constructorCallArgument<OudsLinkIcon>("icon") {
                             painterArgument(R.drawable.ic_heart)
                         }
                     }
-                    LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLink.Arrow.Back)
-                    LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLink.Arrow.Next)
+                    LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLinkArrow.Back)
+                    LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLinkArrow.Next)
                 }
                 onClickArgument()
                 enabledArgument(enabled)

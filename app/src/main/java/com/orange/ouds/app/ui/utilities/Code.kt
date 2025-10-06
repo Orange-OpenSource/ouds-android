@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.BottomBarItem
-import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.asOrNull
@@ -183,12 +183,12 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : F
                 val resourceTypeName = tryOrNull { context.resources.getResourceTypeName(value) }
                 if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else value.toString()
             }
-            is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButton.Appearance.Strong instead of Strong
+            is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButtonAppearance.Strong instead of Strong
             is Formattable -> value.format(context)
             else -> {
                 val valueClass = value?.let { it::class }.orElse { null }
                 if (valueClass?.previewCompatibleClass?.isData == true) {
-                    // Displays OudsButton.Style.Loading(progress = null) instead of Loading(progress=null)
+                    // Displays OudsButtonStyle.Loading(progress = null) instead of Loading(progress=null)
                     "${valueClass.java.nestedName.substringBeforeLast(".")}.${value.toString().replace("=", " = ")}"
                 } else {
                     value.toString()
@@ -221,7 +221,7 @@ internal fun PreviewCode() = OudsPreview {
         newline()
         functionCall("OudsComponent") {
             trailingLambda = true
-            constructorCallArgument<OudsButton.Icon>("icon") {
+            constructorCallArgument<OudsButtonIcon>("icon") {
                 functionCallArgument("painter", "painterResource") {
                     typedArgument("id", R.drawable.ic_heart)
                 }

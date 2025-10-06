@@ -67,7 +67,7 @@ private fun InputTagDemoContent(state: InputTagDemoState) {
 
 private fun Code.Builder.inputTagDemoCodeSnippet(state: InputTagDemoState) {
     with(state) {
-        functionCall(OudsInputTag::class.simpleName.orEmpty()) {
+        functionCall("OudsInputTag") {
             labelArgument(label)
             onClickArgument()
             typedArgument("enabled", enabled)

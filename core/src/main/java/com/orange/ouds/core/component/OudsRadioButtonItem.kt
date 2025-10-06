@@ -85,7 +85,7 @@ fun OudsRadioButtonItem(
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
     helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
+    icon: OudsControlItemIcon? = null,
     divider: Boolean = false,
     outlined: Boolean = false,
     reversed: Boolean = false,
@@ -129,7 +129,7 @@ fun OudsRadioButtonItem(
                 error = error != null
             )
         },
-        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
+        indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.End else OudsControlItemIndicatorPosition.Start,
         checkedContentComponentName = "OudsRadioButtonItem",
         checkedContentSelectionStatus = if (selected) "Selected" else "Unselected",
         modifier = modifier
@@ -142,7 +142,7 @@ fun OudsRadioButtonItem(
 }
 
 @Composable
-private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlItem.State): Modifier {
+private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlItemState): Modifier {
     val borderColor = outlineBorderColor(state, selected, error)
 
     return if (outlined && borderColor != null) {
@@ -153,25 +153,25 @@ private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsErr
 }
 
 @Composable
-private fun outlineBorderColor(state: OudsControlItem.State, selected: Boolean, error: OudsError?): Color? {
+private fun outlineBorderColor(state: OudsControlItemState, selected: Boolean, error: OudsError?): Color? {
     return if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
-                OudsControlItem.State.Enabled -> if (selected) enabled else null
-                OudsControlItem.State.Hovered -> hover
-                OudsControlItem.State.Pressed -> pressed
-                OudsControlItem.State.Focused -> null
-                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
+                OudsControlItemState.Enabled -> if (selected) enabled else null
+                OudsControlItemState.Hovered -> hover
+                OudsControlItemState.Pressed -> pressed
+                OudsControlItemState.Focused -> null
+                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
             }
         }
     } else {
         with(OudsTheme.colorScheme.action) {
             when (state) {
-                OudsControlItem.State.Enabled -> if (selected) this.selected else null
-                OudsControlItem.State.Hovered -> hover
-                OudsControlItem.State.Pressed -> pressed
-                OudsControlItem.State.Focused -> null
-                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> if (selected) disabled else null
+                OudsControlItemState.Enabled -> if (selected) this.selected else null
+                OudsControlItemState.Hovered -> hover
+                OudsControlItemState.Pressed -> pressed
+                OudsControlItemState.Focused -> null
+                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> if (selected) disabled else null
             }
         }
     }
@@ -191,7 +191,7 @@ fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -202,7 +202,7 @@ fun PreviewOudsRadioButtonItem(
                 error = error,
                 outlined = checkNotNull(extraParameter),
                 reversed = reversed,
-                icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null
+                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null
             )
         }
     }
@@ -226,7 +226,7 @@ fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -250,7 +250,7 @@ fun PreviewOudsRadioButtonItemWithLongHelperText(theme: OudsThemeContract) = Oud
         onClick = {},
         additionalLabel = "Additional label",
         helperText = LoremIpsumText,
-        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }
 

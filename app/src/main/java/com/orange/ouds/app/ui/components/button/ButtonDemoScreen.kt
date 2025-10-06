@@ -30,6 +30,9 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonAppearance
+import com.orange.ouds.core.component.OudsButtonIcon
+import com.orange.ouds.core.component.OudsButtonLoader
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -64,9 +67,9 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_button_appearance_label),
-            chipLabels = OudsButton.Appearance.entries.map { it.name },
-            selectedChipIndex = OudsButton.Appearance.entries.indexOf(appearance),
-            onSelectionChange = { id -> appearance = OudsButton.Appearance.entries[id] }
+            chipLabels = OudsButtonAppearance.entries.map { it.name },
+            selectedChipIndex = OudsButtonAppearance.entries.indexOf(appearance),
+            onSelectionChange = { id -> appearance = OudsButtonAppearance.entries[id] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_label),
@@ -93,12 +96,12 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
 
 @Composable
 private fun ButtonDemoContent(state: ButtonDemoState) {
-    val icon = OudsButton.Icon(
+    val icon = OudsButtonIcon(
         painter = painterResource(id = R.drawable.ic_heart),
         contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
     )
     with(state) {
-        val loader = if (hasLoader) OudsButton.Loader(null) else null
+        val loader = if (hasLoader) OudsButtonLoader(null) else null
         when (layout) {
             ButtonDemoState.Layout.TextOnly -> {
                 OudsButton(
@@ -135,9 +138,9 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
 private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
     with(state) {
         coloredBoxCall(onColoredBox) {
-            functionCall(OudsButton::class.simpleName.orEmpty()) {
+            functionCall("OudsButton") {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
-                    constructorCallArgument<OudsButton.Icon>("icon") {
+                    constructorCallArgument<OudsButtonIcon>("icon") {
                         painterArgument(R.drawable.ic_heart)
                         contentDescriptionArgument(R.string.app_components_common_icon_a11y)
                     }
@@ -148,7 +151,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
                 onClickArgument()
                 enabledArgument(enabled)
                 if (hasLoader) {
-                    constructorCallArgument<OudsButton.Loader>("loader") {
+                    constructorCallArgument<OudsButtonLoader>("loader") {
                         typedArgument("progress", null)
                     }
                 }
