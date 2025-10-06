@@ -21,7 +21,13 @@ Documentation for OUDS Android is available at [android.unified-design-system.or
 The `app` directory of this repository contains Design Toolbox app which is a showcase of what OUDS Android library offers.
 It allows you to benefit from sample codes to help you learn about OUDS Android use.
 
-Last version of Design Toolbox app is downloadable at [http://oran.ge/designtoolbox](http://oran.ge/designtoolbox)
+Scan the following QR code with your device to download the latest version of the Design Toolbox app:
+
+<img src="readme/design_toolbox_qr_code.png" width="250" height="250" alt="Design Toolbox QR code">
+
+Or, follow this link: [http://oran.ge/designtoolbox](http://oran.ge/designtoolbox)
+
+The Design Toolbox app allows you to test OUDS components in several themes in light or dark mode.
 
 <table align="center">
     <tr>
