@@ -26,7 +26,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 internal fun OudsTagSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Positive,
+        status = OudsTagStatus.Positive(),
         size = OudsTagSize.Small
     )
 }
@@ -35,7 +35,7 @@ internal fun OudsTagSample() {
 internal fun OudsTagWithBulletSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTag.StatusPositive(icon = OudsTagIcon.Bullet)
+        status = OudsTagStatus.Positive(icon = OudsTagIcon.Bullet)
     )
 }
 

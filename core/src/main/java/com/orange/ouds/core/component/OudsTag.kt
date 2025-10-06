@@ -57,6 +57,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -169,12 +170,14 @@ fun OudsTag(
                         if (hasLoader) {
                             ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
                         } else {
-                            val iconPadding = if (status.icon is OudsTagIcon.Bullet) bulletPadding(size = size) else iconPadding(size = size)
+                            val isBulletIcon = status.icon is OudsTagIcon.Bullet
+                            val iconPadding = if (isBulletIcon) bulletPadding(size = size) else iconPadding(size = size)
                             status.icon?.Content(
                                 modifier = Modifier.padding(all = iconPadding),
                                 extraParameters = OudsTagIcon.ExtraParameters(
-                                    tint = iconColor(status = status, appearance = appearance, enabled = enabled),
-                                    status = status
+                                    tint = iconColor(status = status, appearance = appearance, enabled = enabled, isBulletIcon = isBulletIcon),
+                                    status = status,
+                                    appearance = appearance
                                 )
                             )
                         }
@@ -264,10 +267,14 @@ private fun backgroundColor(status: OudsTagStatus, appearance: OudsTagAppearance
 }
 
 @Composable
-private fun iconColor(status: OudsTagStatus, appearance: OudsTagAppearance, enabled: Boolean): Color {
+private fun iconColor(status: OudsTagStatus, appearance: OudsTagAppearance, enabled: Boolean, isBulletIcon: Boolean): Color {
     return when (appearance) {
         OudsTagAppearance.Emphasized -> contentColor(status = status, appearance = appearance, hasLoader = false, enabled = enabled)
-        OudsTagAppearance.Muted -> if (!enabled) OudsTheme.colorScheme.content.onAction.disabled else status.color()
+        OudsTagAppearance.Muted -> when {
+            !enabled -> OudsTheme.colorScheme.content.onAction.disabled
+            !isBulletIcon && status is OudsTagStatus.Warning -> Color.Unspecified // Case of two colors icon. Colors are managed by the `LayeredTintedPainter`.
+            else -> status.color()
+        }
     }
 }
 
@@ -482,20 +489,20 @@ open class OudsTagIcon protected constructor(
     }
 
     data object Default : OudsTagIcon({ extraParameters ->
-        painterResource((extraParameters.status as? FunctionalStatus)?.getDedicatedIconResId().orElse { error("No predefined icon for status") })
+       (extraParameters.status as? FunctionalStatus)?.getDedicatedIconPainter(extraParameters.appearance).orElse { error("No predefined icon for status") }
     })
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color,
-        internal val status: OudsTagStatus
+        internal val status: OudsTagStatus,
+        internal val appearance: OudsTagAppearance
     ) : OudsComponentContent.ExtraParameters()
 
     override val tint: Color?
         @Composable
         get() = extraParameters.tint
 }
-
 
 /**
  * A circular progress indicator displayed in the input or tag area to indicate that tags are being loaded or processed.
@@ -575,7 +582,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconResId() = OudsTheme.drawableResources.success
+        override fun getDedicatedIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.success)
     }
 
     /**
@@ -594,7 +601,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconResId() = OudsTheme.drawableResources.information
+        override fun getDedicatedIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.information)
     }
 
     /**
@@ -613,7 +620,18 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconResId() = OudsTheme.drawableResources.warning
+        override fun getDedicatedIconPainter(appearance: OudsTagAppearance): Painter {
+            val iconTokens = OudsTheme.componentsTokens.icon
+            return when (appearance) {
+                OudsTagAppearance.Emphasized -> painterResource(id = OudsTheme.drawableResources.warning)
+                OudsTagAppearance.Muted -> LayeredTintedPainter(
+                    bottomPainter = painterResource(id = OudsTheme.drawableResources.warning),
+                    bottomPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                    topPainter = painterResource(id = OudsTheme.drawableResources.checkboxSelected),
+                    topPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                )
+            }
+        }
     }
 
     /**
@@ -632,7 +650,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconResId() = OudsTheme.drawableResources.important
+        override fun getDedicatedIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.important)
     }
 
     /**
@@ -668,7 +686,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
 
 private interface FunctionalStatus {
     @Composable
-    fun getDedicatedIconResId(): Int
+    fun getDedicatedIconPainter(appearance: OudsTagAppearance): Painter
 }
 
 @PreviewLightDark
