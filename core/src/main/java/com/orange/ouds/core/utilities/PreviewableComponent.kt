@@ -25,6 +25,9 @@ import com.orange.ouds.core.component.OudsCheckboxPreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxPreviewParameterProvider
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsColoredBoxPreviewParameterProvider
+import com.orange.ouds.core.component.OudsDividerColor
+import com.orange.ouds.core.component.OudsDividerOrientation
+import com.orange.ouds.core.component.OudsDividerPreviewParameterProvider
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameter
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
@@ -50,6 +53,7 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItem
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongHelperText
 import com.orange.ouds.core.component.PreviewOudsColoredBox
+import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsFilterChip
 import com.orange.ouds.core.component.PreviewOudsInputTag
 import com.orange.ouds.core.component.PreviewOudsLink
@@ -192,7 +196,7 @@ interface PreviewableComponent {
             PreviewOudsColoredBox(
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsColoredBoxColor
+                color = parameter as OudsColoredBoxColor
             )
         }
     }
@@ -207,6 +211,21 @@ interface PreviewableComponent {
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsFilterChipPreviewParameter
+            )
+        }
+    }
+
+    object OudsHorizontalDivider : PreviewableComponent {
+
+        override val parameters: List<Any> = OudsDividerPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsDivider(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                orientation = OudsDividerOrientation.Horizontal,
+                color = parameter as OudsDividerColor
             )
         }
     }
@@ -385,6 +404,21 @@ interface PreviewableComponent {
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsTagPreviewParameter
+            )
+        }
+    }
+
+    object OudsVerticalDivider : PreviewableComponent {
+
+        override val parameters: List<Any> = OudsDividerPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsDivider(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                orientation = OudsDividerOrientation.Vertical,
+                color = parameter as OudsDividerColor
             )
         }
     }

@@ -221,23 +221,23 @@ enum class OudsColoredBoxColor {
 @Suppress("PreviewShouldNotBeCalledRecursively")
 @PreviewLightDark
 @Composable
-private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) parameter: OudsColoredBoxColor) {
-    PreviewOudsColoredBox(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) color: OudsColoredBoxColor) {
+    PreviewOudsColoredBox(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), color = color)
 }
 
 @Composable
 internal fun PreviewOudsColoredBox(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsColoredBoxColor
+    color: OudsColoredBoxColor
 ) = OudsPreview(theme = theme, modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
-    OudsColoredBox(color = parameter) {
+    OudsColoredBox(color = color) {
         Column(
             modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),
             verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
         ) {
             Text(
-                text = parameter.name,
+                text = color.name,
                 color = OudsTheme.colorScheme.content.default
             )
             OudsButton(label = "Button", onClick = {})
