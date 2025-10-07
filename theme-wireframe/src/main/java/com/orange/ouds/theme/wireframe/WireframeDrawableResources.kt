@@ -34,6 +34,8 @@ class WireframeDrawableResources : OudsDrawableResources() {
         @DrawableRes get() = R.drawable.wireframe_switch_selected
     override val tick: Int
         @DrawableRes get() = R.drawable.wireframe_tick
-    override val warning: Int
-        @DrawableRes get() = R.drawable.wireframe_warning
+    override val warningExternalShape: Int
+        @DrawableRes get() = R.drawable.wireframe_warning_external_shape
+    override val warningInternalShape: Int
+        @DrawableRes get() = R.drawable.wireframe_warning_internal_shape
 }

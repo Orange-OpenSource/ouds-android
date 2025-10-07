@@ -623,11 +623,11 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         override fun getDedicatedIconPainter(appearance: OudsTagAppearance): Painter {
             val iconTokens = OudsTheme.componentsTokens.icon
             return when (appearance) {
-                OudsTagAppearance.Emphasized -> painterResource(id = OudsTheme.drawableResources.warning)
+                OudsTagAppearance.Emphasized -> painterResource(id = OudsTheme.drawableResources.warningExternalShape)
                 OudsTagAppearance.Muted -> LayeredTintedPainter(
-                    bottomPainter = painterResource(id = OudsTheme.drawableResources.warning),
+                    bottomPainter = painterResource(id = OudsTheme.drawableResources.warningExternalShape),
                     bottomPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                    topPainter = painterResource(id = OudsTheme.drawableResources.checkboxSelected),
+                    topPainter = painterResource(id = OudsTheme.drawableResources.warningInternalShape),
                     topPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
                 )
             }

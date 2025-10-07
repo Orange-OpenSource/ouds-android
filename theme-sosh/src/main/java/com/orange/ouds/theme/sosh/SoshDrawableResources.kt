@@ -36,6 +36,8 @@ class SoshDrawableResources : OudsDrawableResources() {
         @DrawableRes get() = R.drawable.sosh_switch_selected
     override val tick: Int
         @DrawableRes get() = R.drawable.sosh_tick
-    override val warning: Int
-        @DrawableRes get() = R.drawable.sosh_warning
+    override val warningExternalShape: Int
+        @DrawableRes get() = R.drawable.sosh_warning_external_shape
+    override val warningInternalShape: Int
+        @DrawableRes get() = R.drawable.sosh_warning_internal_shape
 }

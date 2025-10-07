@@ -37,6 +37,8 @@ open class OudsDrawableResources {
         @DrawableRes get() = R.drawable.ic_success
     open val tick: Int
         @DrawableRes get() = R.drawable.ic_tick
-    open val warning: Int
-        @DrawableRes get() = R.drawable.ic_warning
+    open val warningExternalShape: Int
+        @DrawableRes get() = R.drawable.ic_warning_external_shape
+    open val warningInternalShape: Int
+        @DrawableRes get() = R.drawable.ic_warning_internal_shape
 }

@@ -78,7 +78,8 @@ theme-contract/src/main/res/drawable/ic_radio_button_selected.xml
 theme-contract/src/main/res/drawable/ic_success.xml
 theme-contract/src/main/res/drawable/ic_switch_selected.xml
 theme-contract/src/main/res/drawable/ic_tick.xml
-theme-contract/src/main/res/drawable/ic_warning.xml
+theme-contract/src/main/res/drawable/ic_warning_external_shape.xml
+theme-contract/src/main/res/drawable/ic_warning_internal_shape.xml
 
 theme-sosh/src/main/res/drawable/sosh_checkbox_indeterminate.xml
 theme-sosh/src/main/res/drawable/sosh_checkbox_selected.xml
@@ -90,7 +91,8 @@ theme-sosh/src/main/res/drawable/sosh_radio_button_selected.xml
 theme-sosh/src/main/res/drawable/sosh_success.xml
 theme-sosh/src/main/res/drawable/sosh_switch_selected.xml
 theme-sosh/src/main/res/drawable/sosh_tick.xml
-theme-sosh/src/main/res/drawable/sosh_warning.xml
+theme-sosh/src/main/res/drawable/sosh_warning_external_shape.xml
+theme-sosh/src/main/res/drawable/sosh_warning_internal_shape.xml
 theme-sosh/src/main/res/font/sosh_black.ttf
 theme-sosh/src/main/res/font/sosh_bold.ttf
 theme-sosh/src/main/res/font/sosh_medium.ttf
@@ -106,7 +108,8 @@ theme-wireframe/src/main/res/drawable/wireframe_radio_button_selected.xml
 theme-wireframe/src/main/res/drawable/wireframe_success.xml
 theme-wireframe/src/main/res/drawable/wireframe_switch_selected.xml
 theme-wireframe/src/main/res/drawable/wireframe_tick.xml
-theme-wireframe/src/main/res/drawable/wireframe_warning.xml
+theme-wireframe/src/main/res/drawable/wireframe_warning_external_shape.xml
+theme-wireframe/src/main/res/drawable/wireframe_warning_internal_shape.xml
   
 End of the parts list under Orange SA Copyright
 
