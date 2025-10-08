@@ -21,6 +21,12 @@ android {
     buildFeatures {
         compose = true
     }
+
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs.add("-opt-in=com.orange.ouds.foundation.InternalOudsApi")
+        }
+    }
 }
 
 dependencies {
