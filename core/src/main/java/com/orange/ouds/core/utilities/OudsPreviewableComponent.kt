@@ -69,7 +69,7 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongHelperText
 import com.orange.ouds.core.component.PreviewOudsTag
 import com.orange.ouds.theme.OudsThemeContract
 
-interface PreviewableComponent {
+interface OudsPreviewableComponent {
 
     val parameters: List<Any>
 
@@ -78,7 +78,7 @@ interface PreviewableComponent {
     @Composable
     fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?)
 
-    object OudsBadge : PreviewableComponent {
+    object Badge : OudsPreviewableComponent {
 
         const val PreviewWidthDp = 420
 
@@ -94,9 +94,9 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsButton {
+    object Button {
 
-        object Parameterized : PreviewableComponent {
+        object Parameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsButtonPreviewParameterProvider().values.toList()
 
@@ -110,7 +110,7 @@ interface PreviewableComponent {
             }
         }
 
-        object NonParameterized : PreviewableComponent {
+        object NonParameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -123,9 +123,9 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsCheckboxItem {
+    object CheckboxItem {
 
-        object Parameterized : PreviewableComponent {
+        object Parameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsCheckboxItemPreviewParameterProvider().values.toList()
 
@@ -140,7 +140,7 @@ interface PreviewableComponent {
             }
         }
 
-        object ParameterizedHighContrastMode : PreviewableComponent {
+        object ParameterizedHighContrastMode : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsCheckboxItemHighContrastModePreviewParameterProvider().values.toList()
 
@@ -157,7 +157,7 @@ interface PreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
         }
 
-        object NonParameterized : PreviewableComponent {
+        object NonParameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -170,7 +170,7 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsCheckbox : PreviewableComponent {
+    object Checkbox : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsCheckboxPreviewParameterProvider().values.toList()
 
@@ -187,7 +187,7 @@ interface PreviewableComponent {
         override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = true
     }
 
-    object OudsColoredBox : PreviewableComponent {
+    object ColoredBox : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsColoredBoxPreviewParameterProvider().values.toList()
 
@@ -201,7 +201,7 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsFilterChip : PreviewableComponent {
+    object FilterChip : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsFilterChipPreviewParameterProvider().values.toList()
 
@@ -215,7 +215,7 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsHorizontalDivider : PreviewableComponent {
+    object HorizontalDivider : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsDividerPreviewParameterProvider().values.toList()
 
@@ -230,7 +230,7 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsInputTag : PreviewableComponent {
+    object InputTag : OudsPreviewableComponent {
 
         override val parameters: List<Any> = emptyList()
 
@@ -243,9 +243,9 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsLink {
+    object Link {
 
-        object Parameterized : PreviewableComponent {
+        object Parameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsLinkPreviewParameterProvider().values.toList()
 
@@ -259,7 +259,7 @@ interface PreviewableComponent {
             }
         }
 
-        object NonParameterized : PreviewableComponent {
+        object NonParameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -272,9 +272,9 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsRadioButtonItem {
+    object RadioButtonItem {
 
-        object Parameterized : PreviewableComponent {
+        object Parameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsRadioButtonItemPreviewParameterProvider().values.toList()
 
@@ -289,7 +289,7 @@ interface PreviewableComponent {
             }
         }
 
-        object ParameterizedHighContrastMode : PreviewableComponent {
+        object ParameterizedHighContrastMode : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsRadioButtonItemHighContrastModePreviewParameterProvider().values.toList()
 
@@ -306,7 +306,7 @@ interface PreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
         }
 
-        object NonParameterized : PreviewableComponent {
+        object NonParameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -319,7 +319,7 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsRadioButton : PreviewableComponent {
+    object RadioButton : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsRadioButtonPreviewParameterProvider().values.toList()
 
@@ -336,7 +336,7 @@ interface PreviewableComponent {
         override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = true
     }
 
-    object OudsSuggestionChip : PreviewableComponent {
+    object SuggestionChip : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsSuggestionChipPreviewParameterProvider().values.toList()
 
@@ -350,9 +350,9 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsSwitchItem {
+    object SwitchItem {
 
-        object Parameterized : PreviewableComponent {
+        object Parameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsSwitchItemPreviewParameterProvider().values.toList()
 
@@ -367,7 +367,7 @@ interface PreviewableComponent {
             }
         }
 
-        object NonParameterized : PreviewableComponent {
+        object NonParameterized : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -380,7 +380,7 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsSwitch : PreviewableComponent {
+    object Switch : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsSwitchPreviewParameterProvider().values.toList()
 
@@ -394,7 +394,7 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsTag : PreviewableComponent {
+    object Tag : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsTagPreviewParameterProvider().values.toList()
 
@@ -408,7 +408,7 @@ interface PreviewableComponent {
         }
     }
 
-    object OudsVerticalDivider : PreviewableComponent {
+    object VerticalDivider : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsDividerPreviewParameterProvider().values.toList()
 

@@ -12,13 +12,13 @@
 
 package com.orange.ouds.core.test
 
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
 class OudsSuggestionChipTest(parameter: Any) : OudsComponentSnapshotTest(
-    PreviewableComponent.OudsSuggestionChip,
+    OudsPreviewableComponent.SuggestionChip,
     parameter,
     OudsComponentTestSuite.theme
 ) {
@@ -26,6 +26,6 @@ class OudsSuggestionChipTest(parameter: Any) : OudsComponentSnapshotTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = PreviewableComponent.OudsSuggestionChip.parameters
+        internal fun data() = OudsPreviewableComponent.SuggestionChip.parameters
     }
 }

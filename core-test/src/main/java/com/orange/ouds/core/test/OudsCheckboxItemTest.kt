@@ -12,7 +12,7 @@
 
 package com.orange.ouds.core.test
 
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 
@@ -21,7 +21,7 @@ class OudsCheckboxItemTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
     class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsCheckboxItem.Parameterized,
+        OudsPreviewableComponent.CheckboxItem.Parameterized,
         parameter,
         OudsComponentTestSuite.theme
     ) {
@@ -29,13 +29,13 @@ class OudsCheckboxItemTest {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = PreviewableComponent.OudsCheckboxItem.Parameterized.parameters
+            internal fun data() = OudsPreviewableComponent.CheckboxItem.Parameterized.parameters
         }
     }
 
     @RunWith(org.junit.runners.Parameterized::class)
     class ParameterizedHighContrastMode(parameter: Any) : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsCheckboxItem.ParameterizedHighContrastMode,
+        OudsPreviewableComponent.CheckboxItem.ParameterizedHighContrastMode,
         parameter,
         OudsComponentTestSuite.theme
     ) {
@@ -43,12 +43,12 @@ class OudsCheckboxItemTest {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = PreviewableComponent.OudsCheckboxItem.ParameterizedHighContrastMode.parameters
+            internal fun data() = OudsPreviewableComponent.CheckboxItem.ParameterizedHighContrastMode.parameters
         }
     }
 
     class NonParameterized : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsCheckboxItem.NonParameterized,
+        OudsPreviewableComponent.CheckboxItem.NonParameterized,
         parameter = null,
         OudsComponentTestSuite.theme
     )

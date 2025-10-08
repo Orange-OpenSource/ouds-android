@@ -12,10 +12,10 @@
 
 package com.orange.ouds.core.test
 
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 
 class OudsInputTagTest : OudsComponentSnapshotTest(
-    PreviewableComponent.OudsInputTag,
+    OudsPreviewableComponent.InputTag,
     parameter = null,
     OudsComponentTestSuite.theme
 )

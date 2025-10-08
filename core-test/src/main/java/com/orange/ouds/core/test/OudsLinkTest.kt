@@ -12,7 +12,7 @@
 
 package com.orange.ouds.core.test
 
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 
@@ -21,19 +21,19 @@ class OudsLinkTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
     class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsLink.Parameterized,
+        OudsPreviewableComponent.Link.Parameterized,
         parameter,
         OudsComponentTestSuite.theme
     ) {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = PreviewableComponent.OudsLink.Parameterized.parameters
+            internal fun data() = OudsPreviewableComponent.Link.Parameterized.parameters
         }
     }
 
     class NonParameterized : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsLink.NonParameterized,
+        OudsPreviewableComponent.Link.NonParameterized,
         parameter = null,
         OudsComponentTestSuite.theme
     )

@@ -12,7 +12,7 @@
 
 package com.orange.ouds.core.test
 
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 
@@ -21,7 +21,7 @@ class OudsRadioButtonItemTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
     class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsRadioButtonItem.Parameterized,
+        OudsPreviewableComponent.RadioButtonItem.Parameterized,
         parameter,
         OudsComponentTestSuite.theme
     ) {
@@ -29,13 +29,13 @@ class OudsRadioButtonItemTest {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = PreviewableComponent.OudsRadioButtonItem.Parameterized.parameters
+            internal fun data() = OudsPreviewableComponent.RadioButtonItem.Parameterized.parameters
         }
     }
 
     @RunWith(org.junit.runners.Parameterized::class)
     class ParameterizedHighContrastMode(parameter: Any) : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsRadioButtonItem.ParameterizedHighContrastMode,
+        OudsPreviewableComponent.RadioButtonItem.ParameterizedHighContrastMode,
         parameter,
         OudsComponentTestSuite.theme
     ) {
@@ -43,12 +43,12 @@ class OudsRadioButtonItemTest {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = PreviewableComponent.OudsRadioButtonItem.ParameterizedHighContrastMode.parameters
+            internal fun data() = OudsPreviewableComponent.RadioButtonItem.ParameterizedHighContrastMode.parameters
         }
     }
 
     class NonParameterized : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsRadioButtonItem.NonParameterized,
+        OudsPreviewableComponent.RadioButtonItem.NonParameterized,
         parameter = null,
         OudsComponentTestSuite.theme
     )

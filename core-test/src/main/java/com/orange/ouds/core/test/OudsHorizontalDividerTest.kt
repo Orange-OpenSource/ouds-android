@@ -12,13 +12,13 @@
 
 package com.orange.ouds.core.test
 
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
 class OudsHorizontalDividerTest(parameter: Any) : OudsComponentSnapshotTest(
-    PreviewableComponent.OudsHorizontalDivider,
+    OudsPreviewableComponent.HorizontalDivider,
     parameter,
     OudsComponentTestSuite.theme
 ) {
@@ -26,6 +26,6 @@ class OudsHorizontalDividerTest(parameter: Any) : OudsComponentSnapshotTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = PreviewableComponent.OudsHorizontalDivider.parameters
+        internal fun data() = OudsPreviewableComponent.HorizontalDivider.parameters
     }
 }

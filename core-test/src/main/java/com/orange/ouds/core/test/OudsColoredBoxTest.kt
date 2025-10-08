@@ -13,13 +13,13 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.component.OudsColoredBoxColor
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
 class OudsColoredBoxTest(parameter: OudsColoredBoxColor) : OudsComponentSnapshotTest(
-    PreviewableComponent.OudsColoredBox,
+    OudsPreviewableComponent.ColoredBox,
     parameter,
     OudsComponentTestSuite.theme
 ) {
@@ -27,6 +27,6 @@ class OudsColoredBoxTest(parameter: OudsColoredBoxColor) : OudsComponentSnapshot
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = PreviewableComponent.OudsColoredBox.parameters
+        internal fun data() = OudsPreviewableComponent.ColoredBox.parameters
     }
 }

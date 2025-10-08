@@ -12,7 +12,7 @@
 
 package com.orange.ouds.core.test
 
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
@@ -22,7 +22,7 @@ class OudsButtonTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
     class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsButton.Parameterized,
+        OudsPreviewableComponent.Button.Parameterized,
         parameter,
         OudsComponentTestSuite.theme
     ) {
@@ -30,12 +30,12 @@ class OudsButtonTest {
         companion object {
             @JvmStatic
             @Parameterized.Parameters
-            internal fun data() = PreviewableComponent.OudsButton.Parameterized.parameters
+            internal fun data() = OudsPreviewableComponent.Button.Parameterized.parameters
         }
     }
 
     class NonParameterized : OudsComponentSnapshotTest(
-        PreviewableComponent.OudsButton.NonParameterized,
+        OudsPreviewableComponent.Button.NonParameterized,
         parameter = null,
         OudsComponentTestSuite.theme
     )

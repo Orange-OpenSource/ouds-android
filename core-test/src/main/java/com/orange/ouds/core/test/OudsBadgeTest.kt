@@ -12,21 +12,21 @@
 
 package com.orange.ouds.core.test
 
-import com.orange.ouds.core.utilities.PreviewableComponent
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
 class OudsBadgeTest(parameter: Any) : OudsComponentSnapshotTest(
-    PreviewableComponent.OudsBadge,
+    OudsPreviewableComponent.Badge,
     parameter,
     OudsComponentTestSuite.theme,
-    PreviewableComponent.OudsBadge.PreviewWidthDp
+    OudsPreviewableComponent.Badge.PreviewWidthDp
 ) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = PreviewableComponent.OudsBadge.parameters
+        internal fun data() = OudsPreviewableComponent.Badge.parameters
     }
 }
