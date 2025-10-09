@@ -15,26 +15,27 @@ package com.orange.ouds.core.test
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
 class OudsSwitchItemTest {
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.SwitchItem.Parameterized,
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.Default,
         parameter,
         OudsComponentTestSuite.theme
     ) {
 
         companion object {
             @JvmStatic
-            @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.SwitchItem.Parameterized.parameters
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.SwitchItem.Default.parameters
         }
     }
 
-    class NonParameterized : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.SwitchItem.NonParameterized,
+    class WithLongHelperText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.WithLongHelperText,
         parameter = null,
         OudsComponentTestSuite.theme
     )
