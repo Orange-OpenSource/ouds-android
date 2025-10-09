@@ -38,13 +38,13 @@ internal class LayeredTintedPainter(
         with(bottomPainter) {
             draw(
                 size = this@onDraw.size,
-                colorFilter = ColorFilter.Companion.tint(bottomPainterColor)
+                colorFilter = ColorFilter.tint(bottomPainterColor)
             )
         }
         with(topPainter) {
             draw(
                 size = this@onDraw.size,
-                colorFilter = ColorFilter.Companion.tint(topPainterColor)
+                colorFilter = ColorFilter.tint(topPainterColor)
             )
         }
     }
