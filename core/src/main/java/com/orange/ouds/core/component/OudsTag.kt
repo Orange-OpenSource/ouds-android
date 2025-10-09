@@ -22,8 +22,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -44,13 +42,11 @@ import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -59,6 +55,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -698,55 +695,25 @@ internal fun PreviewOudsTag(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     val label = "Label"
     with(parameter) {
-        val space = 16.dp
-        val sizes = enumEntries<OudsTagSize>()
-        val columnCount = sizes.count()
-        val rowCount = statuses.size
-
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(1 + columnCount),
-            contentPadding = PaddingValues(all = space),
-            horizontalArrangement = Arrangement.spacedBy(space),
-            verticalArrangement = Arrangement.spacedBy(space)
-        ) {
-            repeat(1 + rowCount) { rowIndex ->
-                repeat(1 + columnCount) { columnIndex ->
-                    val status = statuses.getOrNull(rowIndex - 1)
-                    val size = sizes.getOrNull(columnIndex - 1)
-                    item {
-                        when {
-                            status == null && size != null -> PreviewTableHeader(size.name)
-                            status != null && size == null -> PreviewTableHeader(status::class.simpleName.orEmpty())
-                            status != null && size != null -> {
-                                Box {
-                                    OudsTag(
-                                        label = label,
-                                        status = status,
-                                        appearance = appearance,
-                                        size = size,
-                                        roundedCorners = roundedCorners,
-                                        loader = loader,
-                                        enabled = enabled
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
+        PreviewGrid(
+            columns = enumEntries<OudsTagSize>(),
+            rows = statuses,
+            columnTitle = { it.name },
+            rowTitle = { it::class.simpleName.orEmpty() }
+        ) { size, status ->
+            Box {
+                OudsTag(
+                    label = label,
+                    status = status,
+                    appearance = appearance,
+                    size = size,
+                    roundedCorners = roundedCorners,
+                    loader = loader,
+                    enabled = enabled
+                )
             }
         }
     }
-}
-
-@Composable
-private fun PreviewTableHeader(header: String, modifier: Modifier = Modifier) {
-    Text(
-        modifier = modifier,
-        text = header,
-        color = OudsTheme.colorScheme.content.default,
-        fontFamily = FontFamily.Monospace,
-        fontSize = 10.sp
-    )
 }
 
 internal data class OudsTagPreviewParameter(
