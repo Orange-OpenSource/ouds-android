@@ -79,7 +79,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
         } else {
             OudsTagStatus::class.sealedSubclasses.mapNotNull { kClass ->
                 tryOrNull {
-                    kClass.createInstance() as? OudsTagStatus
+                    kClass.createInstance()
                 }
             }
         }
