@@ -12,28 +12,20 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsFilterChipPreviewParameter
-import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
-import com.orange.ouds.core.component.PreviewOudsFilterChip
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsFilterChipTest(private val parameter: OudsFilterChipPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+class OudsFilterChipTest(parameter: Any) : OudsComponentSnapshotTest(
+    OudsPreviewableComponent.FilterChip,
+    parameter,
+    OudsComponentTestSuite.theme
+) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsFilterChipPreviewParameterProvider().values.toList()
-    }
-
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsFilterChip(
-            theme = theme,
-            darkThemeEnabled = darkThemeEnabled,
-            parameter = parameter
-        )
+        internal fun data() = OudsPreviewableComponent.FilterChip.parameters
     }
 }

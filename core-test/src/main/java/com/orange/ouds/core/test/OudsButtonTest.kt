@@ -12,11 +12,7 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsButtonPreviewParameter
-import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
-import com.orange.ouds.core.component.PreviewOudsButton
-import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
@@ -25,31 +21,22 @@ import org.junit.runners.Parameterized
 class OudsButtonTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(private val parameter: OudsButtonPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Button.Parameterized,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
 
         companion object {
             @JvmStatic
             @Parameterized.Parameters
-            internal fun data() = OudsButtonPreviewParameterProvider().values.toList()
-        }
-
-        @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-            PreviewOudsButton(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter
-            )
+            internal fun data() = OudsPreviewableComponent.Button.Parameterized.parameters
         }
     }
 
-    class NonParameterized : OudsSnapshotTest(OudsComponentTestSuite.theme) {
-
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
-
-        @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-            PreviewOudsButtonWithRoundedCorners(theme = theme)
-        }
-    }
+    class NonParameterized : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Button.NonParameterized,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

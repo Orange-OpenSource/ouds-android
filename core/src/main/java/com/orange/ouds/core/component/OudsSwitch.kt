@@ -232,7 +232,7 @@ private fun PreviewOudsSwitch(@PreviewParameter(OudsSwitchPreviewParameterProvid
 }
 
 @Composable
-fun PreviewOudsSwitch(
+internal fun PreviewOudsSwitch(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     checked: Boolean
@@ -245,4 +245,4 @@ fun PreviewOudsSwitch(
     }
 }
 
-class OudsSwitchPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+internal class OudsSwitchPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

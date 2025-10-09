@@ -221,7 +221,7 @@ private fun PreviewOudsCheckboxItem(@PreviewParameter(OudsCheckboxItemPreviewPar
 }
 
 @Composable
-fun PreviewOudsCheckboxItem(
+internal fun PreviewOudsCheckboxItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCheckboxItemPreviewParameter
@@ -255,7 +255,7 @@ private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(Oud
 }
 
 @Composable
-fun PreviewOudsCheckboxItemHighContrastModeEnabled(
+internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
@@ -278,7 +278,7 @@ fun PreviewOudsCheckboxItemHighContrastModeEnabled(
 private fun PreviewOudsCheckboxItemWithLongHelperText() = PreviewOudsCheckboxItemWithLongHelperText(theme = getPreviewTheme())
 
 @Composable
-fun PreviewOudsCheckboxItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+internal fun PreviewOudsCheckboxItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsCheckboxItem(
         checked = true,
         label = "Label",
@@ -288,12 +288,12 @@ fun PreviewOudsCheckboxItemWithLongHelperText(theme: OudsThemeContract) = OudsPr
     )
 }
 
-typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewParameter<ToggleableState, Nothing>
+internal typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewParameter<ToggleableState, Nothing>
 
-class OudsCheckboxItemPreviewParameterProvider :
+internal class OudsCheckboxItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<ToggleableState, Nothing>(DefaultBooleanValues.map { ToggleableState(it) })
 
-typealias OudsCheckboxItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<ToggleableState>
+internal typealias OudsCheckboxItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<ToggleableState>
 
-class OudsCheckboxItemHighContrastModePreviewParameterProvider :
+internal class OudsCheckboxItemHighContrastModePreviewParameterProvider :
     OudsControlItemHighContrastModePreviewParameterProvider<ToggleableState>(listOf(ToggleableState.Off, ToggleableState.On))

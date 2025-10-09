@@ -27,7 +27,9 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
@@ -133,21 +135,22 @@ internal enum class OudsDividerOrientation {
 @PreviewLightDark
 @Composable
 private fun PreviewOudsHorizontalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) color: OudsDividerColor) {
-    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = OudsDividerOrientation.Horizontal, color = color)
+    PreviewOudsDivider(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), orientation = OudsDividerOrientation.Horizontal, color = color)
 }
 
 @PreviewLightDark
 @Composable
 private fun PreviewOudsVerticalDivider(@PreviewParameter(OudsDividerPreviewParameterProvider::class) color: OudsDividerColor) {
-    PreviewOudsDivider(darkThemeEnabled = isSystemInDarkTheme(), orientation = OudsDividerOrientation.Vertical, color = color)
+    PreviewOudsDivider(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), orientation = OudsDividerOrientation.Vertical, color = color)
 }
 
 @Composable
 internal fun PreviewOudsDivider(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     orientation: OudsDividerOrientation,
     color: OudsDividerColor
-) = OudsPreview(modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
     val length = 100.dp
     when (orientation) {
         OudsDividerOrientation.Horizontal -> OudsHorizontalDivider(modifier = Modifier.width(length), color = color)

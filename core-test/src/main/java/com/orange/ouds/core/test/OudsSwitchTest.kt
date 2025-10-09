@@ -12,27 +12,20 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsSwitchPreviewParameterProvider
-import com.orange.ouds.core.component.PreviewOudsSwitch
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsSwitchTest(private val checked: Boolean) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+class OudsSwitchTest(parameter: Any) : OudsComponentSnapshotTest(
+    OudsPreviewableComponent.Switch,
+    parameter,
+    OudsComponentTestSuite.theme
+) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsSwitchPreviewParameterProvider().values.toList()
-    }
-
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsSwitch(
-            theme = theme,
-            darkThemeEnabled = darkThemeEnabled,
-            checked = checked
-        )
+        internal fun data() = OudsPreviewableComponent.Switch.parameters
     }
 }

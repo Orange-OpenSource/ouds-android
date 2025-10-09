@@ -233,7 +233,7 @@ internal fun PreviewOudsRadioButtonHighContrastModeEnabled(@PreviewParameter(Oud
 }
 
 @Composable
-fun PreviewOudsRadioButton(
+internal fun PreviewOudsRadioButton(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsRadioButtonPreviewParameter,
@@ -250,12 +250,12 @@ fun PreviewOudsRadioButton(
     }
 }
 
-data class OudsRadioButtonPreviewParameter(
+internal data class OudsRadioButtonPreviewParameter(
     val selected: Boolean,
     val error: OudsError? = null
 )
 
-class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsRadioButtonPreviewParameter>
     get() = listOf(

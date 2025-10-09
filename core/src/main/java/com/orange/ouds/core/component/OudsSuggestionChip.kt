@@ -204,7 +204,7 @@ private fun PreviewOudsSuggestionChip(@PreviewParameter(OudsSuggestionChipPrevie
 }
 
 @Composable
-fun PreviewOudsSuggestionChip(
+internal fun PreviewOudsSuggestionChip(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsSuggestionChipPreviewParameter
@@ -218,12 +218,12 @@ fun PreviewOudsSuggestionChip(
     }
 }
 
-data class OudsSuggestionChipPreviewParameter(
+internal data class OudsSuggestionChipPreviewParameter(
     val hasLabel: Boolean,
     val hasIcon: Boolean
 )
 
-class OudsSuggestionChipPreviewParameterProvider :
+internal class OudsSuggestionChipPreviewParameterProvider :
     BasicPreviewParameterProvider<OudsSuggestionChipPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsSuggestionChipPreviewParameter>

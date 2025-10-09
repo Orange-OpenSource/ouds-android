@@ -12,31 +12,16 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsCheckboxPreviewParameter
-import com.orange.ouds.core.component.OudsCheckboxPreviewParameterProvider
-import com.orange.ouds.core.component.PreviewOudsCheckbox
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsCheckboxTest(private val parameter: OudsCheckboxPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+class OudsCheckboxTest(parameter: Any) : OudsComponentSnapshotTest(OudsPreviewableComponent.Checkbox, parameter, OudsComponentTestSuite.theme) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsCheckboxPreviewParameterProvider().values.toList()
-    }
-
-    override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = false
-
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsCheckbox(
-            theme = theme,
-            darkThemeEnabled = darkThemeEnabled,
-            highContrastModeEnabled = highContrastModeEnabled,
-            parameter = parameter
-        )
+        internal fun data() = OudsPreviewableComponent.Checkbox.parameters
     }
 }

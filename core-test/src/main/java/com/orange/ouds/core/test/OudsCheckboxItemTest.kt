@@ -12,14 +12,7 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
-import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameterProvider
-import com.orange.ouds.core.component.OudsCheckboxItemPreviewParameter
-import com.orange.ouds.core.component.OudsCheckboxItemPreviewParameterProvider
-import com.orange.ouds.core.component.PreviewOudsCheckboxItem
-import com.orange.ouds.core.component.PreviewOudsCheckboxItemHighContrastModeEnabled
-import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongHelperText
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 
@@ -27,54 +20,36 @@ import org.junit.runner.RunWith
 class OudsCheckboxItemTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(private val parameter: OudsCheckboxItemPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.Parameterized,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
 
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsCheckboxItemPreviewParameterProvider().values.toList()
-        }
-
-        @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-            PreviewOudsCheckboxItem(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter
-            )
+            internal fun data() = OudsPreviewableComponent.CheckboxItem.Parameterized.parameters
         }
     }
 
     @RunWith(org.junit.runners.Parameterized::class)
-    class ParameterizedHighContrastMode(
-        private val parameter: OudsCheckboxItemHighContrastModePreviewParameter
-    ) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+    class ParameterizedHighContrastMode(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.ParameterizedHighContrastMode,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
 
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsCheckboxItemHighContrastModePreviewParameterProvider().values.toList()
-        }
-
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !highContrastModeEnabled
-
-        @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-            PreviewOudsCheckboxItemHighContrastModeEnabled(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter
-            )
+            internal fun data() = OudsPreviewableComponent.CheckboxItem.ParameterizedHighContrastMode.parameters
         }
     }
 
-    class NonParameterized : OudsSnapshotTest(OudsComponentTestSuite.theme) {
-
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
-
-        @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-            PreviewOudsCheckboxItemWithLongHelperText(theme)
-        }
-    }
+    class NonParameterized : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.NonParameterized,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

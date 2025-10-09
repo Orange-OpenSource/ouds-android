@@ -447,7 +447,7 @@ private fun PreviewOudsLink(@PreviewParameter(OudsLinkPreviewParameterProvider::
 }
 
 @Composable
-fun PreviewOudsLink(
+internal fun PreviewOudsLink(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsLinkPreviewParameter
@@ -482,7 +482,7 @@ fun PreviewOudsLink(
 private fun PreviewOudsLinkOnTwoLines() = PreviewOudsLinkOnTwoLines(theme = getPreviewTheme())
 
 @Composable
-fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
+internal fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
     OudsPreview(theme = theme) {
         val label = "Link\non two lines"
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -497,14 +497,14 @@ fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
     }
 }
 
-data class OudsLinkPreviewParameter(
+internal data class OudsLinkPreviewParameter(
     val hasIcon: Boolean,
     val onColoredBackground: Boolean,
     val size: OudsLinkSize,
     val arrow: OudsLinkArrow? = null
 )
 
-class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsLinkPreviewParameter>
     get() = buildList {

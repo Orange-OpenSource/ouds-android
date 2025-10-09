@@ -12,28 +12,21 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsColoredBoxColor
-import com.orange.ouds.core.component.OudsColoredBoxPreviewParameterProvider
-import com.orange.ouds.core.component.PreviewOudsColoredBox
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsColoredBoxTest(private val parameter: OudsColoredBoxColor) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+class OudsColoredBoxTest(parameter: OudsColoredBoxColor) : OudsComponentSnapshotTest(
+    OudsPreviewableComponent.ColoredBox,
+    parameter,
+    OudsComponentTestSuite.theme
+) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsColoredBoxPreviewParameterProvider().values.toList()
-    }
-
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsColoredBox(
-            theme = theme,
-            darkThemeEnabled = darkThemeEnabled,
-            parameter = parameter
-        )
+        internal fun data() = OudsPreviewableComponent.ColoredBox.parameters
     }
 }

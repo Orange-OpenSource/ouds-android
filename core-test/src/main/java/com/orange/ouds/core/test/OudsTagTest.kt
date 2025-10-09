@@ -12,28 +12,20 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsTagPreviewParameter
-import com.orange.ouds.core.component.OudsTagPreviewParameterProvider
-import com.orange.ouds.core.component.PreviewOudsTag
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsTagTest(private val parameter: OudsTagPreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme) {
+class OudsTagTest(parameter: Any) : OudsComponentSnapshotTest(
+    OudsPreviewableComponent.Tag,
+    parameter,
+    OudsComponentTestSuite.theme
+) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsTagPreviewParameterProvider().values.toList()
-    }
-
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsTag(
-            theme = theme,
-            darkThemeEnabled = darkThemeEnabled,
-            parameter = parameter
-        )
+        internal fun data() = OudsPreviewableComponent.Tag.parameters
     }
 }

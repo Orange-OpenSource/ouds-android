@@ -12,29 +12,21 @@
 
 package com.orange.ouds.core.test
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.core.component.OudsBadgePreviewParameter
-import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
-import com.orange.ouds.core.component.OudsBadgePreviewWidthDp
-import com.orange.ouds.core.component.PreviewOudsBadge
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsBadgeTest(private val parameter: OudsBadgePreviewParameter) : OudsSnapshotTest(OudsComponentTestSuite.theme, OudsBadgePreviewWidthDp) {
+class OudsBadgeTest(parameter: Any) : OudsComponentSnapshotTest(
+    OudsPreviewableComponent.Badge,
+    parameter,
+    OudsComponentTestSuite.theme,
+    OudsPreviewableComponent.Badge.PreviewWidthDp
+) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsBadgePreviewParameterProvider().values.toList()
-    }
-
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsBadge(
-            theme = theme,
-            darkThemeEnabled = darkThemeEnabled,
-            parameter = parameter
-        )
+        internal fun data() = OudsPreviewableComponent.Badge.parameters
     }
 }
