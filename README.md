@@ -46,6 +46,13 @@ yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-android
 Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-android/blob/main/CONTRIBUTING.md).
 Included are directions for opening issues, coding standards, and notes on development.
 
+## Data privacy
+
+The Orange Unified Design System library is an SDK that allows a developer to create Orange branded mobile application. As such:
+
+- this SDK does not handle any personal data.
+- this SDK does not require any device permission to work.
+
 ## Copyright and license
 
 Code released under the [MIT License](https://github.com/Orange-OpenSource/ouds-android/blob/main/LICENSE).
