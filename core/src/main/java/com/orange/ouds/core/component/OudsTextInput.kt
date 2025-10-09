@@ -63,9 +63,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.hideFromAccessibility
-import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -569,11 +567,7 @@ private fun OudsTextInputDecorator(
 
                 // Central content
                 Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .semantics {
-                            isTraversalGroup = true
-                        },
+                    modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value, Alignment.CenterVertically),
                 ) {
                     // Small label on top
@@ -599,18 +593,11 @@ private fun OudsTextInputDecorator(
                             PrefixSuffixText(
                                 modifier = Modifier.semantics {
                                     if (value.isEmpty()) hideFromAccessibility()
-                                    traversalIndex = 1f
                                 },
                                 text = prefix
                             )
                         }
                         Box(modifier = Modifier.weight(1f)) {
-                            // Hidden text to manage a11y (value for screen reader)
-                            Text(
-                                modifier = Modifier.semantics { traversalIndex = 2f },
-                                text = value.ifEmpty { stringResource(R.string.core_textInput_empty_a11y) },
-                                color = Color.Transparent
-                            )
                             if (value.isEmpty()) {
                                 if (!placeholder.isNullOrBlank()) {
                                     Text(
@@ -638,7 +625,6 @@ private fun OudsTextInputDecorator(
                             PrefixSuffixText(
                                 modifier = Modifier.semantics {
                                     if (value.isEmpty()) hideFromAccessibility()
-                                    traversalIndex = 3f
                                 },
                                 text = suffix
                             )
@@ -1062,16 +1048,17 @@ internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsText
 private fun PreviewOudsTextInputWithRoundedCorners() = PreviewOudsTextInputWithRoundedCorners(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
-    PreviewEnumEntries<OudsTextInput.State>(columnCount = 1) { state ->
-        OudsTextInput(
-            textFieldState = rememberTextFieldState(""),
-            label = "Label",
-            placeholder = "Placeholder",
-            leadingIcon = OudsTextInput.LeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon"),
-        )
+internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
+    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
+        PreviewEnumEntries<OudsTextInput.State>(columnCount = 1) { state ->
+            OudsTextInput(
+                textFieldState = rememberTextFieldState(""),
+                label = "Label",
+                placeholder = "Placeholder",
+                leadingIcon = OudsTextInput.LeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon"),
+            )
+        }
     }
-}
 
 @Preview
 @Composable
