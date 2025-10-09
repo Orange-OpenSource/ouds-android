@@ -481,7 +481,9 @@ open class OudsTagIcon protected constructor(
     }
 
     data object Default : OudsTagIcon({ extraParameters ->
-        (extraParameters.status as? FunctionalStatus)?.getDedicatedIconPainter(extraParameters.appearance).orElse { error("No predefined icon for status") }
+        (extraParameters.status as? FunctionalStatus)?.getDedicatedIconPainter(extraParameters.appearance).orElse {
+            error("No default icon for status ${extraParameters.status::class.simpleName}")
+        }
     })
 
     @ConsistentCopyVisibility
