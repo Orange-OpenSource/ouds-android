@@ -224,7 +224,6 @@
     <string name="app_components_textInput_helperLink_label">Helper link</string>
     <string name="app_components_textInput_illustration_helperText_label">Helper text.</string>
 
-
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
     <plurals name="app_about_issues_label">
