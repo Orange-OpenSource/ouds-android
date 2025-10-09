@@ -481,7 +481,7 @@ open class OudsTagIcon protected constructor(
     }
 
     data object Default : OudsTagIcon({ extraParameters ->
-        (extraParameters.status as? FunctionalStatus)?.getDedicatedIconPainter(extraParameters.appearance).orElse {
+        (extraParameters.status as? FunctionalStatus)?.getDefaultIconPainter(extraParameters.appearance).orElse {
             error("No default icon for status ${extraParameters.status::class.simpleName}")
         }
     })
@@ -576,7 +576,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.success)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.success)
     }
 
     /**
@@ -595,7 +595,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.information)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.information)
     }
 
     /**
@@ -614,7 +614,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconPainter(appearance: OudsTagAppearance): Painter {
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter {
             val iconTokens = OudsTheme.componentsTokens.icon
             return when (appearance) {
                 OudsTagAppearance.Emphasized -> painterResource(id = OudsTheme.drawableResources.warningExternalShape)
@@ -644,7 +644,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDedicatedIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.important)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.important)
     }
 
     /**
@@ -680,7 +680,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
 
 private interface FunctionalStatus {
     @Composable
-    fun getDedicatedIconPainter(appearance: OudsTagAppearance): Painter
+    fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter
 }
 
 @PreviewLightDark
