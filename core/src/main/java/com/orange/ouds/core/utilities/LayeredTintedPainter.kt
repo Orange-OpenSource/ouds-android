@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
+import kotlin.math.max
 
 /**
  * A custom painter that draws two other painters layered on top of each other, allowing a specific Color to be applied to each.
@@ -49,6 +50,13 @@ internal class LayeredTintedPainter(
     }
 
     override val intrinsicSize: Size
-        get() = bottomPainter.intrinsicSize
+        get() {
+            val bottomSize = bottomPainter.intrinsicSize
+            val topSize = topPainter.intrinsicSize
+            return Size(
+                width = max(bottomSize.width, topSize.width),
+                height = max(bottomSize.height, topSize.height)
+            )
+        }
 
 }
