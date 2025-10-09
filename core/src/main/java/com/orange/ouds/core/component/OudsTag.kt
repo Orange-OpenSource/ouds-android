@@ -757,12 +757,12 @@ private fun PreviewTableHeader(header: String, modifier: Modifier = Modifier) {
 
 internal data class OudsTagPreviewParameter(
     val statuses: List<OudsTagStatus> = listOf(
-        OudsTagStatus.Neutral(null),
-        OudsTagStatus.Accent(null),
-        OudsTagStatus.Positive(null),
-        OudsTagStatus.Warning(null),
-        OudsTagStatus.Negative(null),
-        OudsTagStatus.Info(null)
+        OudsTagStatus.Neutral(),
+        OudsTagStatus.Accent(),
+        OudsTagStatus.Positive(),
+        OudsTagStatus.Warning(),
+        OudsTagStatus.Negative(),
+        OudsTagStatus.Info()
     ),
     val appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     val roundedCorners: Boolean = true,
