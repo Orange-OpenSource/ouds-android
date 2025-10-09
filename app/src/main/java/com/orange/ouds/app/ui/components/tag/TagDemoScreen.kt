@@ -33,6 +33,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
+import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagIcon
@@ -88,7 +89,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             label = stringResource(id = R.string.app_components_common_status_label),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
-                    label = status::class.simpleName.orEmpty(),
+                    label = status::class.simpleName.orEmpty().toSentenceCase(),
                     leadingIcon = {
                         Box(
                             modifier = Modifier
