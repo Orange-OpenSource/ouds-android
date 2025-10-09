@@ -92,14 +92,14 @@ import kotlin.enums.enumEntries
  *   and content colors.
  * @param status The status of the tag. Its background color and its content color are based on this status combined with the [appearance] of the tag.
  *   There are two types of status:
- *     - Non-functional statuses (`OudsTagStatus.Neutral` or `OudsTagStatus.Accent`) used to display categories, default states, or to draw attention without
- *       carrying a specific functional meaning (unlike functional tags such as success, info, etc.).
- *       Using a non-functional status, you can provide a custom icon related to the tag’s context to enhance recognition by providing an `OudsTagIcon.Custom`
- *       as the icon of the status.
- *     - Functional statuses communicate specific information or system feedback: `OudsTagStatus.Positive`, `OudsTagStatus.Warning`, `OudsTagStatus.Negative`,
- *       `OudsTagStatus.Info`.
- *       Each functional status has its dedicated functional icon that matches the meaning of the tag. This icon will appear by providing `OudsTagIcon.Default`
- *       as icon value of the status.
+ *   - Non-functional statuses ([OudsTagStatus.Neutral] or [OudsTagStatus.Accent]) used to display categories, default states, or to draw attention without
+ *     carrying a specific functional meaning (unlike functional tags such as success, info, etc.).
+ *     Using a non-functional status, you can provide a custom icon related to the tag’s context to enhance recognition by providing an [OudsTagIcon.Custom]
+ *     as the icon of the status.
+ *   - Functional statuses communicate specific information or system feedback: [OudsTagStatus.Positive], [OudsTagStatus.Warning], [OudsTagStatus.Negative],
+ *     `OudsTagStatus.Info`.
+ *     Each functional status has its dedicated functional icon that matches the meaning of the tag. This icon will appear by providing [OudsTagIcon.Default]
+ *     as icon value of the status.
  * @param roundedCorners Controls the shape of the tag.
  *   When `true`, the tag has rounded corners, providing a softer and more approachable look, suitable for most modern interfaces.
  *   When `false`, the tag has sharp, square corners, providing a more formal, structured, or technical feel. Often used in business context to label
@@ -489,7 +489,7 @@ open class OudsTagIcon protected constructor(
     }
 
     data object Default : OudsTagIcon({ extraParameters ->
-       (extraParameters.status as? FunctionalStatus)?.getDedicatedIconPainter(extraParameters.appearance).orElse { error("No predefined icon for status") }
+        (extraParameters.status as? FunctionalStatus)?.getDedicatedIconPainter(extraParameters.appearance).orElse { error("No predefined icon for status") }
     })
 
     @ConsistentCopyVisibility
