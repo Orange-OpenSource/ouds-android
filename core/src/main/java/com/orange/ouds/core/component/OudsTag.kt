@@ -554,8 +554,8 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
          */
         constructor(icon: OudsTagIcon.Bullet) : this(icon as OudsTagIcon)
 
-        /*
-         * Creates an instance of [OudsTagStatus.Custom] with a custom icon or no asset if [icon] is null.
+        /**
+         * Creates an instance of [OudsTagStatus.Accent] with a custom icon or no asset if [icon] is null.
          */
         constructor(icon: OudsTagIcon.Custom? = null) : this(icon as? OudsTagIcon)
     }
