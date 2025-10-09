@@ -184,7 +184,6 @@ private fun TagDemoContent(state: TagDemoState) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Negative()
                         TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Negative(icon = OudsTagIcon.Bullet)
                         TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Negative(icon = OudsTagIcon.Default)
-
                     }
                     is OudsTagStatus.Info -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Info()
