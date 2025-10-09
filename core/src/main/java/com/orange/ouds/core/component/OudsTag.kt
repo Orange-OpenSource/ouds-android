@@ -276,30 +276,26 @@ private fun iconColor(status: OudsTagStatus, appearance: OudsTagAppearance, enab
 
 @Composable
 private fun contentColor(status: OudsTagStatus, appearance: OudsTagAppearance, hasLoader: Boolean, enabled: Boolean): Color {
-    return if (hasLoader) {
-        OudsTheme.colorScheme.content.default
-    } else {
-        if (!enabled) {
-            OudsTheme.colorScheme.content.onAction.disabled
-        } else {
-            with(OudsTheme.colorScheme.content) {
-                when (appearance) {
-                    OudsTagAppearance.Emphasized -> when (status) {
-                        is OudsTagStatus.Neutral -> inverse
-                        is OudsTagStatus.Accent -> onStatus.accent.emphasized
-                        is OudsTagStatus.Positive -> onStatus.positive.emphasized
-                        is OudsTagStatus.Warning -> onStatus.warning.emphasized
-                        is OudsTagStatus.Negative -> onStatus.negative.emphasized
-                        is OudsTagStatus.Info -> onStatus.info.emphasized
-                    }
-                    OudsTagAppearance.Muted -> when (status) {
-                        is OudsTagStatus.Neutral -> default
-                        is OudsTagStatus.Accent -> onStatus.accent.muted
-                        is OudsTagStatus.Positive -> onStatus.positive.muted
-                        is OudsTagStatus.Warning -> onStatus.warning.muted
-                        is OudsTagStatus.Negative -> onStatus.negative.muted
-                        is OudsTagStatus.Info -> onStatus.info.muted
-                    }
+    return when {
+        hasLoader -> OudsTheme.colorScheme.content.default
+        !enabled -> OudsTheme.colorScheme.content.onAction.disabled
+        else -> with(OudsTheme.colorScheme.content) {
+            when (appearance) {
+                OudsTagAppearance.Emphasized -> when (status) {
+                    is OudsTagStatus.Neutral -> inverse
+                    is OudsTagStatus.Accent -> onStatus.accent.emphasized
+                    is OudsTagStatus.Positive -> onStatus.positive.emphasized
+                    is OudsTagStatus.Warning -> onStatus.warning.emphasized
+                    is OudsTagStatus.Negative -> onStatus.negative.emphasized
+                    is OudsTagStatus.Info -> onStatus.info.emphasized
+                }
+                OudsTagAppearance.Muted -> when (status) {
+                    is OudsTagStatus.Neutral -> default
+                    is OudsTagStatus.Accent -> onStatus.accent.muted
+                    is OudsTagStatus.Positive -> onStatus.positive.muted
+                    is OudsTagStatus.Warning -> onStatus.warning.muted
+                    is OudsTagStatus.Negative -> onStatus.negative.muted
+                    is OudsTagStatus.Info -> onStatus.info.muted
                 }
             }
         }
