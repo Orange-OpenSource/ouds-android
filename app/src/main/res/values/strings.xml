@@ -118,7 +118,6 @@
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label">Error</string>
     <string name="app_components_common_helperText_label">Helper text</string>
-    <string name="app_components_common_hierarchy_label">Hierarchy</string>
     <string name="app_components_common_icon_a11y">Icon</string>
     <string name="app_components_common_iconOnlyLayout_label">Icon only</string>
     <string name="app_components_common_label_label">Label</string>
