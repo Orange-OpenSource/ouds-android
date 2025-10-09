@@ -69,6 +69,12 @@ private fun PreviewOudsTagWithBulletSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsTagWithIconSample() = OudsPreview {
+private fun PreviewOudsTagWithDefaultIconSample() = OudsPreview {
     OudsTagWithDefaultIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTagWithCustomIconSample() = OudsPreview {
+    OudsTagWithCustomIconSample()
 }
