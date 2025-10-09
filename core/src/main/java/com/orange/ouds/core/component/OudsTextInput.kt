@@ -154,17 +154,17 @@ fun OudsTextInput(
     modifier: Modifier = Modifier,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: OudsTextInput.LeadingIcon? = null,
-    trailingIconButton: OudsTextInput.TrailingIconButton? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
     prefix: String? = null,
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInput.Loader? = null,
+    loader: OudsTextInputLoader? = null,
     outlined: Boolean = false,
     error: Boolean = false,
     helperText: String? = null,
-    helperLink: OudsTextInput.HelperLink? = null,
+    helperLink: OudsTextInputHelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onKeyboardAction: KeyboardActionHandler? = null,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
@@ -278,17 +278,17 @@ fun OudsTextInput(
     modifier: Modifier = Modifier,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: OudsTextInput.LeadingIcon? = null,
-    trailingIconButton: OudsTextInput.TrailingIconButton? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
     prefix: String? = null,
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInput.Loader? = null,
+    loader: OudsTextInputLoader? = null,
     outlined: Boolean = false,
     error: Boolean = false,
     helperText: String? = null,
-    helperLink: OudsTextInput.HelperLink? = null,
+    helperLink: OudsTextInputHelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
@@ -402,17 +402,17 @@ fun OudsTextInput(
     modifier: Modifier = Modifier,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: OudsTextInput.LeadingIcon? = null,
-    trailingIconButton: OudsTextInput.TrailingIconButton? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
     prefix: String? = null,
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInput.Loader? = null,
+    loader: OudsTextInputLoader? = null,
     outlined: Boolean = false,
     error: Boolean = false,
     helperText: String? = null,
-    helperLink: OudsTextInput.HelperLink? = null,
+    helperLink: OudsTextInputHelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
@@ -476,22 +476,22 @@ private fun Modifier.semantic(label: String?): Modifier = this.semantics {
 
 @Composable
 internal fun OudsTextInput(
-    state: OudsTextInput.State,
+    state: OudsTextInputState,
     emptyText: Boolean,
     readOnly: Boolean,
     error: Boolean,
     basicTextField: @Composable () -> Unit
 ) {
 
-    val isForbidden = (state == OudsTextInput.State.Loading && (emptyText || error)) || (error && state in listOf(
-        OudsTextInput.State.ReadOnly,
-        OudsTextInput.State.Disabled
+    val isForbidden = (state == OudsTextInputState.Loading && (emptyText || error)) || (error && state in listOf(
+        OudsTextInputState.ReadOnly,
+        OudsTextInputState.Disabled
     ))
 
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = {
-            if (state == OudsTextInput.State.Loading) {
+            if (state == OudsTextInputState.Loading) {
                 "An OudsTextInput with error parameter activated or an empty value cannot have a loader."
             } else {
                 val parameter = if (readOnly) "readOnly" else "disabled"
@@ -499,7 +499,7 @@ internal fun OudsTextInput(
             }
         },
         previewMessage = {
-            if (state == OudsTextInput.State.Loading) {
+            if (state == OudsTextInputState.Loading) {
                 val statusDescription = if (error) "Error" else "Empty"
                 "$statusDescription status for Loading state is not relevant"
             } else {
@@ -516,24 +516,24 @@ internal fun OudsTextInput(
 private fun OudsTextInputDecorator(
     innerTextField: @Composable () -> Unit,
     value: String,
-    state: OudsTextInput.State,
+    state: OudsTextInputState,
     label: String?,
     placeholder: String?,
-    leadingIcon: OudsTextInput.LeadingIcon?,
-    trailingIconButton: OudsTextInput.TrailingIconButton?,
+    leadingIcon: OudsTextInputLeadingIcon?,
+    trailingIconButton: OudsTextInputTrailingIconButton?,
     prefix: String?,
     suffix: String?,
-    loader: OudsTextInput.Loader?,
+    loader: OudsTextInputLoader?,
     outlined: Boolean,
     error: Boolean,
     helperText: String?,
-    helperLink: OudsTextInput.HelperLink?,
+    helperLink: OudsTextInputHelperLink?,
 ) {
     with(OudsTheme.componentsTokens.textInput) {
         val borderRadius = if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded.value else borderRadiusDefault.value
         val shape = RoundedCornerShape(borderRadius)
 
-        val styleModifier = if ((outlined && state != OudsTextInput.State.ReadOnly) || (!outlined && state == OudsTextInput.State.ReadOnly)) {
+        val styleModifier = if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
             // outlined
             Modifier.border(
                 width = borderWidth(state),
@@ -557,7 +557,7 @@ private fun OudsTextInputDecorator(
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
                         start = spacePaddingInlineDefault.value,
-                        end = if (trailingIconButton != null || error || state == OudsTextInput.State.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
+                        end = if (trailingIconButton != null || error || state == OudsTextInputState.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
                     ),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
@@ -571,7 +571,7 @@ private fun OudsTextInputDecorator(
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value, Alignment.CenterVertically),
                 ) {
                     // Small label on top
-                    if (!label.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInput.State.Focused)) {
+                    if (!label.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused)) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -608,7 +608,7 @@ private fun OudsTextInputDecorator(
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
-                                } else if (!label.isNullOrBlank() && state != OudsTextInput.State.Focused) {
+                                } else if (!label.isNullOrBlank() && state != OudsTextInputState.Focused) {
                                     Text(
                                         modifier = Modifier.semantics { hideFromAccessibility() },
                                         text = label,
@@ -633,7 +633,7 @@ private fun OudsTextInputDecorator(
                 }
 
                 // Trailing elements
-                if (error || state == OudsTextInput.State.Loading || trailingIconButton != null) {
+                if (error || state == OudsTextInputState.Loading || trailingIconButton != null) {
                     val buttonTokens = OudsTheme.componentsTokens.button
                     val iconScale = LocalConfiguration.current.fontScale
                     Row(
@@ -656,8 +656,8 @@ private fun OudsTextInputDecorator(
                         }
 
                         // Loader
-                        if (state == OudsTextInput.State.Loading) {
-                            val progress = if (getPreviewEnumEntry<OudsTextInput.State>() == OudsTextInput.State.Loading) 0.75f else loader?.progress
+                        if (state == OudsTextInputState.Loading) {
+                            val progress = if (getPreviewEnumEntry<OudsTextInputState>() == OudsTextInputState.Loading) 0.75f else loader?.progress
                             Box(
                                 modifier = Modifier
                                     .widthIn(min = buttonTokens.sizeMinWidth.value)
@@ -671,7 +671,7 @@ private fun OudsTextInputDecorator(
                                 )
                             }
                         } else {
-                            trailingIconButton?.Content(extraParameters = OudsTextInput.TrailingIconButton.ExtraParameters(enabled = state != OudsTextInput.State.Disabled))
+                            trailingIconButton?.Content(extraParameters = OudsTextInputTrailingIconButton.ExtraParameters(enabled = state != OudsTextInputState.Disabled))
                         }
                     }
                 }
@@ -711,25 +711,25 @@ private fun OudsTextInputDecorator(
 }
 
 @Composable
-private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInput.Loader?, interactionState: InteractionState): OudsTextInput.State {
-    return getPreviewEnumEntry<OudsTextInput.State>().orElse {
+private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInputLoader?, interactionState: InteractionState): OudsTextInputState {
+    return getPreviewEnumEntry<OudsTextInputState>().orElse {
         if (loader != null) {
-            OudsTextInput.State.Loading
+            OudsTextInputState.Loading
         } else {
             when {
-                !enabled -> OudsTextInput.State.Disabled
-                readOnly -> OudsTextInput.State.ReadOnly
-                interactionState == InteractionState.Hovered -> OudsTextInput.State.Hovered
-                interactionState == InteractionState.Focused -> OudsTextInput.State.Focused
-                else -> OudsTextInput.State.Enabled
+                !enabled -> OudsTextInputState.Disabled
+                readOnly -> OudsTextInputState.ReadOnly
+                interactionState == InteractionState.Hovered -> OudsTextInputState.Hovered
+                interactionState == InteractionState.Focused -> OudsTextInputState.Focused
+                else -> OudsTextInputState.Enabled
             }
         }
     }
 }
 
 @Composable
-private fun borderWidth(state: OudsTextInput.State) = with(OudsTheme.componentsTokens.textInput) {
-    if (state == OudsTextInput.State.Focused) borderWidthFocus.value else borderWidthDefault.value
+private fun borderWidth(state: OudsTextInputState) = with(OudsTheme.componentsTokens.textInput) {
+    if (state == OudsTextInputState.Focused) borderWidthFocus.value else borderWidthDefault.value
 }
 
 @Composable
@@ -738,17 +738,17 @@ private fun PrefixSuffixText(text: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun backgroundColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
+private fun backgroundColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
     return if (error) {
         OudsTheme.colorScheme.surface.status.negative.muted
     } else {
         when (state) {
-            OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.support.enabled
-            OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.support.hover
-            OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.support.pressed
-            OudsTextInput.State.Disabled -> OudsTheme.colorScheme.action.support.disabled
-            OudsTextInput.State.ReadOnly -> if (outlined) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
-            OudsTextInput.State.Loading -> OudsTheme.colorScheme.action.support.loading
+            OudsTextInputState.Enabled -> OudsTheme.colorScheme.action.support.enabled
+            OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.support.hover
+            OudsTextInputState.Focused -> OudsTheme.colorScheme.action.support.pressed
+            OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.support.disabled
+            OudsTextInputState.ReadOnly -> if (outlined) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
+            OudsTextInputState.Loading -> OudsTheme.colorScheme.action.support.loading
         }
     }
 }
@@ -757,15 +757,15 @@ private fun backgroundColor(state: OudsTextInput.State, outlined: Boolean, error
 private fun contentColor() = OudsTheme.colorScheme.content.default
 
 @Composable
-private fun cursorBrush(state: OudsTextInput.State, error: Boolean) =
+private fun cursorBrush(state: OudsTextInputState, error: Boolean) =
     SolidColor(if (error) errorContentColor(state = state) else contentColor())
 
 @Composable
-private fun errorContentColor(state: OudsTextInput.State) = when (state) {
-    OudsTextInput.State.Enabled -> OudsTheme.colorScheme.action.negative.enabled
-    OudsTextInput.State.Hovered -> OudsTheme.colorScheme.action.negative.hover
-    OudsTextInput.State.Focused -> OudsTheme.colorScheme.action.negative.pressed
-    OudsTextInput.State.Disabled, OudsTextInput.State.ReadOnly, OudsTextInput.State.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
+private fun errorContentColor(state: OudsTextInputState) = when (state) {
+    OudsTextInputState.Enabled -> OudsTheme.colorScheme.action.negative.enabled
+    OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.negative.hover
+    OudsTextInputState.Focused -> OudsTheme.colorScheme.action.negative.pressed
+    OudsTextInputState.Disabled, OudsTextInputState.ReadOnly, OudsTextInputState.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
 }
 
 /**
@@ -773,7 +773,7 @@ private fun errorContentColor(state: OudsTextInput.State) = when (state) {
  * Color and thickness of the border are provided by [state].
  */
 @Composable
-private fun Modifier.bottomBorder(state: OudsTextInput.State, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
+private fun Modifier.bottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
     val thickness = borderWidth(state)
     val color = borderColor(state = state, outlined = outlined, error = error)
 
@@ -846,24 +846,24 @@ private fun Modifier.bottomBorder(state: OudsTextInput.State, outlined: Boolean,
 }
 
 @Composable
-private fun borderColor(state: OudsTextInput.State, outlined: Boolean, error: Boolean): Color {
+private fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
     return if (outlined) {
         if (error) {
             errorContentColor(state = state)
         } else {
             with(OudsTheme.componentsTokens.textInput) {
                 when (state) {
-                    OudsTextInput.State.Enabled -> colorBorderEnabled.value
-                    OudsTextInput.State.Hovered -> colorBorderHover.value
-                    OudsTextInput.State.Focused -> colorBorderFocus.value
-                    OudsTextInput.State.Disabled -> OudsTheme.colorScheme.action.disabled
-                    OudsTextInput.State.Loading -> colorBorderLoading.value
-                    OudsTextInput.State.ReadOnly -> Color.Unspecified
+                    OudsTextInputState.Enabled -> colorBorderEnabled.value
+                    OudsTextInputState.Hovered -> colorBorderHover.value
+                    OudsTextInputState.Focused -> colorBorderFocus.value
+                    OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
+                    OudsTextInputState.Loading -> colorBorderLoading.value
+                    OudsTextInputState.ReadOnly -> Color.Unspecified
                 }
             }
         }
     } else {
-        if (state == OudsTextInput.State.ReadOnly) {
+        if (state == OudsTextInputState.ReadOnly) {
             OudsTheme.colorScheme.border.muted
         } else {
             labelColor(state, error)
@@ -872,144 +872,138 @@ private fun borderColor(state: OudsTextInput.State, outlined: Boolean, error: Bo
 }
 
 @Composable
-private fun labelColor(state: OudsTextInput.State, error: Boolean): Color {
+private fun labelColor(state: OudsTextInputState, error: Boolean): Color {
     return when {
         error -> errorContentColor(state = state)
-        state == OudsTextInput.State.Disabled -> OudsTheme.colorScheme.action.disabled
+        state == OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
         else -> OudsTheme.colorScheme.content.muted
     }
 }
 
 @Composable
-private fun placeholderColor(state: OudsTextInput.State) =
-    if (state == OudsTextInput.State.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
+private fun placeholderColor(state: OudsTextInputState) =
+    if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
 
 @Composable
 private fun textFieldTextStyle() = OudsTheme.typography.label.default.large.copy(color = contentColor())
 
 @Composable
-private fun textFieldEnabled(state: OudsTextInput.State) =
-    state != OudsTextInput.State.Disabled && state != OudsTextInput.State.ReadOnly && state != OudsTextInput.State.Loading
+private fun textFieldEnabled(state: OudsTextInputState) =
+    state != OudsTextInputState.Disabled && state != OudsTextInputState.ReadOnly && state != OudsTextInputState.Loading
+
+internal enum class OudsTextInputState {
+    Enabled, Hovered, Disabled, Focused, ReadOnly, Loading
+}
 
 /**
- * Contains classes to build an [OudsTextInput].
+ * An helper link displayed below or in place of the helper text.
  */
-object OudsTextInput {
+data class OudsTextInputHelperLink(val text: String, val onClick: () -> Unit)
 
-    internal enum class State {
-        Enabled, Hovered, Disabled, Focused, ReadOnly, Loading
-    }
+/**
+ * A circular loading indicator displayed in the text input.
+ *
+ * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
+ *   Values outside of this range are coerced into the range.
+ *   Set this value to `null` to display a circular indeterminate progress indicator.
+ */
+data class OudsTextInputLoader(val progress: Float?)
+
+/**
+ * A leading icon in an [OudsTextInput].
+ * This icon is non-clickable.
+ */
+class OudsTextInputLeadingIcon private constructor(
+    graphicsObject: Any,
+    val contentDescription: String
+) : OudsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
     /**
-     * An helper link displayed below or in place of the helper text.
-     */
-    data class HelperLink(val text: String, val onClick: () -> Unit)
-
-    /**
-     * A circular loading indicator displayed in the text input.
+     * Creates an instance of [OudsTextInputLeadingIcon].
      *
-     * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
-     *   Values outside of this range are coerced into the range.
-     *   Set this value to `null` to display a circular indeterminate progress indicator.
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated with this [OudsTextInputLeadingIcon].
      */
-    data class Loader(val progress: Float?)
+    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
     /**
-     * A leading icon in an [OudsTextInput].
-     * This icon is non-clickable.
+     * Creates an instance of [OudsTextInputLeadingIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated with this [OudsTextInputLeadingIcon].
      */
-    class LeadingIcon private constructor(
-        graphicsObject: Any,
-        val contentDescription: String
-    ) : OudsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
-
-        /**
-         * Creates an instance of [OudsTextInput.LeadingIcon].
-         *
-         * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsTextInput.LeadingIcon].
-         */
-        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
-
-        /**
-         * Creates an instance of [OudsTextInput.LeadingIcon].
-         *
-         * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsTextInput.LeadingIcon].
-         */
-        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
-
-        /**
-         * Creates an instance of [OudsTextInput.LeadingIcon].
-         *
-         * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsTextInput.LeadingIcon].
-         */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
-
-        override val tint: Color?
-            @Composable
-            get() = OudsTheme.colorScheme.content.default
-    }
+    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
     /**
-     * A trailing icon button in an [OudsTextInput].
-     * Displays an icon-only [OudsButton].
+     * Creates an instance of [OudsTextInputLeadingIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated with this [OudsTextInputLeadingIcon].
      */
-    class TrailingIconButton private constructor(
-        graphicsObject: Any,
-        val contentDescription: String,
-        val onClick: () -> Unit
-    ) : OudsComponentIcon<TrailingIconButton.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, onClick) {
+    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(
-            internal val enabled: Boolean
-        ) : OudsComponentContent.ExtraParameters()
+    override val tint: Color?
+        @Composable
+        get() = OudsTheme.colorScheme.content.default
+}
 
-        /**
-         * Creates an instance of [OudsTextInput.TrailingIconButton].
-         *
-         * @param painter Painter of the icon.
-         * @param contentDescription The content description associated to this [OudsTextInput.TrailingIconButton].
-         * @param onClick Callback invoked when the button is clicked.
-         */
-        constructor(
-            painter: Painter,
-            contentDescription: String,
-            onClick: () -> Unit
-        ) : this(painter as Any, contentDescription, onClick)
+/**
+ * A trailing icon button in an [OudsTextInput].
+ * Displays an icon-only [OudsButton].
+ */
+class OudsTextInputTrailingIconButton private constructor(
+    graphicsObject: Any,
+    val contentDescription: String,
+    val onClick: () -> Unit
+) : OudsComponentIcon<OudsTextInputTrailingIconButton.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, onClick) {
 
-        /**
-         * Creates an instance of [OudsTextInput.TrailingIconButton].
-         *
-         * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated to this [OudsTextInput.TrailingIconButton].
-         * @param onClick Callback invoked when the button is clicked.
-         */
-        constructor(
-            imageVector: ImageVector,
-            contentDescription: String,
-            onClick: () -> Unit
-        ) : this(imageVector as Any, contentDescription, onClick)
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val enabled: Boolean
+    ) : OudsComponentContent.ExtraParameters()
 
-        /**
-         * Creates an instance of [OudsTextInput.TrailingIconButton].
-         *
-         * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated to this [OudsTextInput.TrailingIconButton].
-         * @param onClick Callback invoked when the button is clicked.
-         */
-        constructor(
-            bitmap: ImageBitmap,
-            contentDescription: String,
-            onClick: () -> Unit
-        ) : this(bitmap as Any, contentDescription, onClick)
+    /**
+     * Creates an instance of [OudsTextInputTrailingIconButton].
+     *
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
+     * @param onClick Callback invoked when the button is clicked.
+     */
+    constructor(
+        painter: Painter,
+        contentDescription: String,
+        onClick: () -> Unit
+    ) : this(painter as Any, contentDescription, onClick)
 
-        override val enabled: Boolean?
-            @Composable
-            get() = extraParameters.enabled
-    }
+    /**
+     * Creates an instance of [OudsTextInputTrailingIconButton].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
+     * @param onClick Callback invoked when the button is clicked.
+     */
+    constructor(
+        imageVector: ImageVector,
+        contentDescription: String,
+        onClick: () -> Unit
+    ) : this(imageVector as Any, contentDescription, onClick)
+
+    /**
+     * Creates an instance of [OudsTextInputTrailingIconButton].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
+     * @param onClick Callback invoked when the button is clicked.
+     */
+    constructor(
+        bitmap: ImageBitmap,
+        contentDescription: String,
+        onClick: () -> Unit
+    ) : this(bitmap as Any, contentDescription, onClick)
+
+    override val enabled: Boolean?
+        @Composable
+        get() = extraParameters.enabled
 }
 
 internal object OudsTextInputPreview {
@@ -1027,7 +1021,7 @@ private fun PreviewOudsTextInput(@PreviewParameter(OudsTextInputPreviewParameter
 @Composable
 internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsTextInputPreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsTextInput.State>(columnCount = 1) { state ->
+        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { state ->
             OudsTextInput(
                 textFieldState = rememberTextFieldState(value),
                 label = label,
@@ -1053,12 +1047,12 @@ private fun PreviewOudsTextInputWithRoundedCorners() = PreviewOudsTextInputWithR
 @Composable
 internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
-        PreviewEnumEntries<OudsTextInput.State>(columnCount = 1) { state ->
+        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { state ->
             OudsTextInput(
                 textFieldState = rememberTextFieldState(""),
                 label = "Label",
                 placeholder = "Placeholder",
-                leadingIcon = OudsTextInput.LeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon"),
+                leadingIcon = OudsTextInputLeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon"),
             )
         }
     }
@@ -1088,15 +1082,15 @@ internal data class OudsTextInputPreviewParameter(
     val value: String,
     val label: String? = null,
     val placeholder: String? = null,
-    val leadingIcon: OudsTextInput.LeadingIcon? = null,
-    val trailingIconButton: OudsTextInput.TrailingIconButton? = null,
+    val leadingIcon: OudsTextInputLeadingIcon? = null,
+    val trailingIconButton: OudsTextInputTrailingIconButton? = null,
     val prefix: String? = null,
     val suffix: String? = null,
     val enabled: Boolean = true,
     val readOnly: Boolean = false,
     val error: Boolean = false,
     val helperText: String? = null,
-    val helperLink: OudsTextInput.HelperLink? = null
+    val helperLink: OudsTextInputHelperLink? = null
 )
 
 internal class OudsTextInputPreviewParameterProvider : BasicPreviewParameterProvider<OudsTextInputPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -1107,8 +1101,8 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
         val placeholder = "Placeholder"
         val prefix = "£"
         val suffix = "€"
-        val leadingIcon = OudsTextInput.LeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon")
-        val trailingIconButton = OudsTextInput.TrailingIconButton(Icons.Filled.FavoriteBorder, contentDescription = "Icon", onClick = {})
+        val leadingIcon = OudsTextInputLeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon")
+        val trailingIconButton = OudsTextInputTrailingIconButton(Icons.Filled.FavoriteBorder, contentDescription = "Icon", onClick = {})
         return listOf(
             OudsTextInputPreviewParameter("", label = label),
             OudsTextInputPreviewParameter(
@@ -1130,7 +1124,7 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
                 prefix = prefix,
                 suffix = suffix,
                 helperText = "Helper text.",
-                helperLink = OudsTextInput.HelperLink("Helper link") {}
+                helperLink = OudsTextInputHelperLink("Helper link") {}
             ),
             OudsTextInputPreviewParameter("Error text", label = label, error = true, helperText = "The format is not valid.")
         )
