@@ -88,6 +88,8 @@ import kotlin.enums.enumEntries
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
+ * @param enabled Controls the enabled appearance of the tag.
+ *   A tag with loading spinner cannot be disabled. This will throw an [IllegalStateException].
  * @param appearance Appearance of the tag among [OudsTagAppearance] values. Combined with the [status] of the tag, the appearance determines tag's background
  *   and content colors.
  * @param status The status of the tag. Its background color and its content color are based on this status combined with the [appearance] of the tag.
@@ -108,8 +110,6 @@ import kotlin.enums.enumEntries
  * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
  *   A disabled tag cannot have a loader. This will throw an [IllegalStateException].
- * @param enabled Controls the enabled appearance of the tag.
- *   A tag with loading spinner cannot be disabled. This will throw an [IllegalStateException].
  *
  * @sample com.orange.ouds.core.component.samples.OudsTagSample
  *
@@ -123,12 +123,12 @@ import kotlin.enums.enumEntries
 fun OudsTag(
     label: String,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     status: OudsTagStatus = OudsTagDefaults.Status,
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
-    loader: OudsTagLoader? = null,
-    enabled: Boolean = true
+    loader: OudsTagLoader? = null
 ) {
     val hasLoader = loader != null
     val hasAsset = status.icon != null || hasLoader
