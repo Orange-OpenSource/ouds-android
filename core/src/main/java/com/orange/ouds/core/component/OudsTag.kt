@@ -252,16 +252,12 @@ private fun betweenAssetAndLabelSpace(size: OudsTagSize): Dp {
 
 @Composable
 private fun backgroundColor(status: OudsTagStatus, appearance: OudsTagAppearance, hasLoader: Boolean, enabled: Boolean): Color {
-    return if (!enabled) {
-        OudsTheme.colorScheme.action.disabled
-    } else {
-        if (hasLoader) {
-            OudsTheme.colorScheme.surface.secondary
-        } else {
-            when (appearance) {
-                OudsTagAppearance.Emphasized -> status.color()
-                OudsTagAppearance.Muted -> status.mutedColor()
-            }
+    return when {
+        !enabled -> OudsTheme.colorScheme.action.disabled
+        hasLoader -> OudsTheme.colorScheme.surface.secondary
+        else -> when (appearance) {
+            OudsTagAppearance.Emphasized -> status.color()
+            OudsTagAppearance.Muted -> status.mutedColor()
         }
     }
 }
