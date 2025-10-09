@@ -679,14 +679,17 @@ private fun OudsTextInputDecorator(
 
             // Helper text
             if (!helperText.isNullOrBlank()) {
-                val helperTextContentDescription = if (error) stringResource(R.string.core_textInput_helperTextError_a11y, helperText) else helperText
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = spacePaddingBlockTopHelperText.value)
                         .padding(horizontal = spacePaddingInlineDefault.value)
                         .clearAndSetSemantics {
-                            contentDescription = helperTextContentDescription
+                            if (error) {
+                                error(helperText)
+                            } else {
+                                contentDescription = helperText
+                            }
                         },
                     text = helperText,
                     style = OudsTheme.typography.label.default.medium,
