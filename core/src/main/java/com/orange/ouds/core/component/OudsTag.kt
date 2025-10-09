@@ -616,10 +616,10 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
             return when (appearance) {
                 OudsTagAppearance.Emphasized -> painterResource(id = OudsTheme.drawableResources.warningExternalShape)
                 OudsTagAppearance.Muted -> LayeredTintedPainter(
-                    bottomPainter = painterResource(id = OudsTheme.drawableResources.warningExternalShape),
-                    bottomPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                    topPainter = painterResource(id = OudsTheme.drawableResources.warningInternalShape),
-                    topPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                    backPainter = painterResource(id = OudsTheme.drawableResources.warningExternalShape),
+                    backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                    frontPainter = painterResource(id = OudsTheme.drawableResources.warningInternalShape),
+                    frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
                 )
             }
         }

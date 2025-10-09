@@ -22,40 +22,40 @@ import kotlin.math.max
 /**
  * A custom painter that draws two other painters layered on top of each other, allowing a specific Color to be applied to each.
  *
- * @param bottomPainter The painter for the bottom layer.
- * @param bottomPainterColor The color to tint the bottom painter.
- * @param topPainter The painter for the top layer.
- * @param topPainterColor The color to tint the top painter.
+ * @param backPainter The painter for the back layer.
+ * @param backPainterColor The color to tint the back painter.
+ * @param frontPainter The painter for the front layer.
+ * @param frontPainterColor The color to tint the front painter.
  */
 internal class LayeredTintedPainter(
-    private val bottomPainter: Painter,
-    private val bottomPainterColor: Color,
-    private val topPainter: Painter,
-    private val topPainterColor: Color
+    private val backPainter: Painter,
+    private val backPainterColor: Color,
+    private val frontPainter: Painter,
+    private val frontPainterColor: Color
 ) : Painter() {
 
     override fun DrawScope.onDraw() {
-        with(bottomPainter) {
+        with(backPainter) {
             draw(
                 size = this@onDraw.size,
-                colorFilter = ColorFilter.tint(bottomPainterColor)
+                colorFilter = ColorFilter.tint(backPainterColor)
             )
         }
-        with(topPainter) {
+        with(frontPainter) {
             draw(
                 size = this@onDraw.size,
-                colorFilter = ColorFilter.tint(topPainterColor)
+                colorFilter = ColorFilter.tint(frontPainterColor)
             )
         }
     }
 
     override val intrinsicSize: Size
         get() {
-            val bottomSize = bottomPainter.intrinsicSize
-            val topSize = topPainter.intrinsicSize
+            val backPainterSize = backPainter.intrinsicSize
+            val frontPainterSize = frontPainter.intrinsicSize
             return Size(
-                width = max(bottomSize.width, topSize.width),
-                height = max(bottomSize.height, topSize.height)
+                width = max(backPainterSize.width, frontPainterSize.width),
+                height = max(backPainterSize.height, frontPainterSize.height)
             )
         }
 
