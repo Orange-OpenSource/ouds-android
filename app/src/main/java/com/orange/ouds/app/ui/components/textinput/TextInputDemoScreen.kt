@@ -128,7 +128,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             trailingIconButton = if (trailingIcon) {
                 OudsTextInput.TrailingIconButton(
                     painterResource(id = R.drawable.ic_heart),
-                    contentDescription = "",
+                    contentDescription = stringResource(id = R.string.app_components_textInput_trailingIcon_a11y),
                     onClick = { })
             } else {
                 null
