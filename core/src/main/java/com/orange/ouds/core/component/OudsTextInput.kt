@@ -62,6 +62,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextLayoutResult
@@ -85,6 +86,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -1006,20 +1008,20 @@ class OudsTextInputTrailingIconButton private constructor(
         get() = extraParameters.enabled
 }
 
-internal object OudsTextInputPreview {
-    const val heightDp = 1100
-}
-
-@Preview(name = "Light", heightDp = OudsTextInputPreview.heightDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = OudsTextInputPreview.heightDp)
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.TextInput.PreviewHeightDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = OudsPreviewableComponent.TextInput.PreviewHeightDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTextInput(@PreviewParameter(OudsTextInputPreviewParameterProvider::class) parameter: OudsTextInputPreviewParameter) {
-    PreviewOudsTextInput(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsTextInput(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsTextInput(darkThemeEnabled: Boolean, parameter: OudsTextInputPreviewParameter) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+internal fun PreviewOudsTextInput(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    parameter: OudsTextInputPreviewParameter
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { state ->
             OudsTextInput(
@@ -1059,7 +1061,11 @@ internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
 
 @Preview
 @Composable
-internal fun PreviewOudsTextInputWithLongLabels() = OudsPreview {
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTextInputWithLongLabels() = PreviewOudsTextInputWithLongLabels(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsTextInputWithLongLabels(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     val labels = listOf("Two lines\nlabel", "Three\nlines\nlabel")
     val modifier = Modifier.padding(all = 10.dp)
     Column {
