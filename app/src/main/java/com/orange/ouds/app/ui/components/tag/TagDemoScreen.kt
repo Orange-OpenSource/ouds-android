@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
@@ -59,8 +60,14 @@ fun TagDemoScreen() {
 @Composable
 private fun TagDemoBottomSheetContent(state: TagDemoState) {
     with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_common_enabled_label),
+            checked = enabled,
+            onCheckedChange = { enabled = it },
+            enabled = enabledSwitchEnabled
+        )
         CustomizationFilterChips(
-            applyTopPadding = false,
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_appearance_label),
             chipLabels = OudsTagAppearance.entries.map { it.name },
             selectedChipIndex = OudsTagAppearance.entries.indexOf(appearance),
@@ -101,8 +108,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
                                     }
                                 )
                         )
-                    },
-                    enabled = enabled && !hasLoader
+                    }
                 )
             },
             selectedItemIndex = statuses.indexOfFirst { it::class.qualifiedName == status::class.qualifiedName },
@@ -187,6 +193,7 @@ private fun TagDemoContent(state: TagDemoState) {
                     }
                 },
                 size = size,
+                enabled = enabled,
                 roundedCorners = roundedCorners,
                 loader = loader,
             )
@@ -205,6 +212,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState) {
             labelArgument(label)
             typedArgument("appearance", appearance)
             typedArgument("roundedCorners", roundedCorners)
+            enabledArgument(enabled)
             typedArgument("size", size)
             functionCallArgument("status", status::class.java.nestedName) {
                 when (layout) {

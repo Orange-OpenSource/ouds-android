@@ -103,6 +103,9 @@ class TagDemoState(
 
     var enabled: Boolean by mutableStateOf(enabled)
 
+    val enabledSwitchEnabled: Boolean
+        get() = !hasLoader
+
     val loaderSwitchEnabled: Boolean
         get() = enabled
 
