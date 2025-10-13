@@ -313,7 +313,7 @@ object OudsNavigationBarItem {
      *
      * @see [OudsBadge]
      *
-     * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadge.Size.Medium] size. Otherwise, it has an [OudsBadge.Size.Small] size.
+     * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.Small] size.
      */
     class Badge(val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
 
@@ -321,18 +321,18 @@ object OudsNavigationBarItem {
          * Status of the badge.
          * In a navigation bar it has always a negative status.
          */
-        private val status = OudsBadge.Status.Negative
+        private val status = OudsBadgeStatus.Negative
 
         @Composable
         override fun Content(modifier: Modifier) {
             if (count != null) {
-                OudsBadge(count = count, modifier = modifier, status = this.status, size = OudsBadge.Size.Medium)
+                OudsBadge(count = count, modifier = modifier, status = this.status, size = OudsBadgeSize.Medium)
             } else {
                 val startPosition = Icon.Size / 2
                 val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
                 val xOffset = startPosition - badgeSize
                 val yOffset = (startPosition - badgeSize) + 2.dp
-                OudsBadge(modifier = modifier.offset(x = xOffset, y = -yOffset), status = this.status, size = OudsBadge.Size.ExtraSmall)
+                OudsBadge(modifier = modifier.offset(x = xOffset, y = -yOffset), status = this.status, size = OudsBadgeSize.ExtraSmall)
             }
         }
 
