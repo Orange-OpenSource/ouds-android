@@ -65,6 +65,17 @@ interface OudsDrawableResources {
             val warningInternalShape: Int
         }
 
+        interface BulletList {
+            @get:DrawableRes
+            val level0: Int
+
+            @get:DrawableRes
+            val level1: Int
+
+            @get:DrawableRes
+            val level2: Int
+        }
+
         interface Checkbox {
             @get:DrawableRes
             val selected: Int
