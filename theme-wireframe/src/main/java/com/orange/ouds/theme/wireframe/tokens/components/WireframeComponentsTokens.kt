@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.wireframe.tokens.components
 
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
+import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
@@ -29,6 +30,7 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 
 data class WireframeComponentsTokens(
     override val badge: OudsBadgeTokens = WireframeBadgeTokens(),
+    override val bulletList: OudsBulletListTokens = WireframeBulletListTokens(),
     override val button: OudsButtonTokens = WireframeButtonTokens(),
     override val buttonMonochrome: OudsButtonMonoTokens = WireframeButtonMonoTokens(),
     override val checkbox: OudsCheckboxTokens = WireframeCheckboxTokens(),

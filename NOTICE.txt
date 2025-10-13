@@ -68,6 +68,9 @@ app/src/prod/res/drawable/ic_launcher_foreground.xml
 docs/assets/banner.png
 docs/assets/logo-icon.svg
 
+theme-contract/src/main/res/drawable/ic_bullet_list_level0.xml
+theme-contract/src/main/res/drawable/ic_bullet_list_level1.xml
+theme-contract/src/main/res/drawable/ic_bullet_list_level2.xml
 theme-contract/src/main/res/drawable/ic_checkbox_indeterminate.xml
 theme-contract/src/main/res/drawable/ic_checkbox_selected.xml
 theme-contract/src/main/res/drawable/ic_chevron_left.xml

@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.sosh.tokens.components
 
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
+import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
@@ -29,6 +30,7 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 
 data class SoshComponentsTokens(
     override val badge: OudsBadgeTokens = SoshBadgeTokens(),
+    override val bulletList: OudsBulletListTokens = SoshBulletListTokens(),
     override val button: OudsButtonTokens = SoshButtonTokens(),
     override val buttonMonochrome: OudsButtonMonoTokens = SoshButtonMonoTokens(),
     override val checkbox: OudsCheckboxTokens = SoshCheckboxTokens(),
