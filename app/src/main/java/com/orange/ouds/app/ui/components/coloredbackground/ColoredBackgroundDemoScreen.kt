@@ -35,7 +35,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.formattedName
+import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
@@ -43,7 +43,6 @@ import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkArrow
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
-import kotlin.jvm.java
 
 @Composable
 fun ColoredBackgroundDemoScreen() {
@@ -65,7 +64,7 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
             label = stringResource(id = R.string.app_components_coloredBackground_color_label),
             items = colors.map { color ->
                 CustomizationDropdownMenuItem(
-                    label = color.formattedName,
+                    label = color.name.toSentenceCase(),
                     leadingIcon = {
                         Box(
                             modifier = Modifier
@@ -87,7 +86,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
         if (!color.mode.isSupported) {
             Toast.makeText(
                 LocalContext.current,
-                stringResource(id = R.string.app_components_coloredBackground_unsupportedColor_text, color.formattedName),
+                stringResource(id = R.string.app_components_coloredBackground_unsupportedColor_text, color.name.toSentenceCase()),
                 Toast.LENGTH_LONG
             ).show()
             color = ColoredBackgroundDemoStateDefaults.Color
@@ -104,7 +103,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = color.formattedName,
+                    text = color.name.toSentenceCase(),
                     color = OudsTheme.colorScheme.content.default
                 )
                 OudsButton(
@@ -128,7 +127,7 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
             typedArgument("color", color)
             lambdaArgument(null) {
                 functionCall("Text") {
-                    typedArgument("text", color.formattedName)
+                    typedArgument("text", color.name.toSentenceCase())
                     rawArgument("color", "OudsTheme.colorScheme.content.default")
                 }
                 functionCall("OudsButton") {

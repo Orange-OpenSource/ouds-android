@@ -28,7 +28,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.formattedName
+import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsDividerColor
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsVerticalDivider
@@ -56,7 +56,7 @@ private fun DividerDemoBottomSheetContent(state: DividerDemoState) {
             label = stringResource(id = R.string.app_components_common_color_label),
             items = colors.map { color ->
                 CustomizationDropdownMenuItem(
-                    label = color.formattedName,
+                    label = color.name.toSentenceCase(),
                     leadingIcon = {
                         Box(
                             modifier = Modifier
