@@ -12,33 +12,30 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.theme.tokens.Mode
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
-import com.orange.ouds.theme.tokens.OudsSingleModeColorKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
 
-class OudsNavigationBarTokens(
-    val topActiveIndicatorBorderRadiusBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
-    val topActiveIndicatorSizeHeight: Float = DimensionRawTokens.dimensionOutOfSystem75,
-    val topActiveIndicatorSizeWidth: Float = DimensionRawTokens.dimension650,
-    val topActiveIndicatorOpacity: OudsOpacityKeyToken = OudsOpacityKeyToken.Opaque,
-    val colorBg: OudsColorKeyToken = OudsColorKeyToken.Always.Black,
-    val materialActiveIndicatorColorBgSelectedEnabled: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Opacity.Transparent, Mode.Dark),
-    val materialActiveIndicatorColorBgSelectedHover: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Opacity.Transparent, Mode.Dark),
-    val materialActiveIndicatorColorBgSelectedPressed: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Opacity.Transparent, Mode.Dark),
-    val materialActiveIndicatorColorBgSelectedFocus: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Opacity.Transparent, Mode.Dark),
-    val materialActiveIndicatorColorBgUnselectedHover: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Opacity.Transparent, Mode.Dark),
-    val materialActiveIndicatorColorBgUnselectedPressed: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Opacity.Transparent, Mode.Dark),
-    val materialActiveIndicatorColorBgUnselectedFocus: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Opacity.Transparent, Mode.Dark),
-    val colorContentSelectedEnabled: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Action.Selected, Mode.Dark),
-    val colorContentSelectedFocus: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Action.Focus, Mode.Dark),
-    val colorContentSelectedHover: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Action.Hover, Mode.Dark),
-    val colorContentSelectedPressed: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Action.Pressed, Mode.Dark),
-    val colorContentUnselectedDisabled: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Action.Disabled, Mode.Dark),
-    val colorContentUnselectedEnabled: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Content.Default, Mode.Dark),
-    val colorContentUnselectedFocus: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Action.Focus, Mode.Dark),
-    val colorContentUnselectedHover: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Action.Hover, Mode.Dark),
-    val colorContentUnselectedPressed: OudsColorKeyToken = OudsSingleModeColorKeyToken(OudsColorKeyToken.Action.Pressed, Mode.Dark),
-)
+interface OudsNavigationBarTokens {
+    val topActiveIndicatorBorderRadiusBottom: OudsBorderKeyToken.Radius
+    val topActiveIndicatorSizeHeight: Float
+    val topActiveIndicatorSizeWidth: Float
+    val topActiveIndicatorOpacity: OudsOpacityKeyToken
+    val colorBg: OudsColorKeyToken
+    val materialActiveIndicatorColorBgSelectedEnabled: OudsColorKeyToken
+    val materialActiveIndicatorColorBgSelectedHover: OudsColorKeyToken
+    val materialActiveIndicatorColorBgSelectedPressed: OudsColorKeyToken
+    val materialActiveIndicatorColorBgSelectedFocus: OudsColorKeyToken
+    val materialActiveIndicatorColorBgUnselectedHover: OudsColorKeyToken
+    val materialActiveIndicatorColorBgUnselectedPressed: OudsColorKeyToken
+    val materialActiveIndicatorColorBgUnselectedFocus: OudsColorKeyToken
+    val colorContentSelectedEnabled: OudsColorKeyToken
+    val colorContentSelectedFocus: OudsColorKeyToken
+    val colorContentSelectedHover: OudsColorKeyToken
+    val colorContentSelectedPressed: OudsColorKeyToken
+    val colorContentUnselectedDisabled: OudsColorKeyToken
+    val colorContentUnselectedEnabled: OudsColorKeyToken
+    val colorContentUnselectedFocus: OudsColorKeyToken
+    val colorContentUnselectedHover: OudsColorKeyToken
+    val colorContentUnselectedPressed: OudsColorKeyToken
+}

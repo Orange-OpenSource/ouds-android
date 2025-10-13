@@ -1542,7 +1542,6 @@ val OudsColorKeyToken.value: Color
                 is OudsColorKeyToken.Background -> colorScheme.fromToken(keyToken)
                 is OudsColorKeyToken.Border -> colorScheme.fromToken(keyToken)
                 is OudsColorKeyToken.Content -> colorScheme.fromToken(keyToken)
-                is OudsColorKeyToken.Decorative -> colorScheme.fromToken(keyToken)
                 is OudsColorKeyToken.Opacity -> colorScheme.fromToken(keyToken)
                 is OudsColorKeyToken.Overlay -> colorScheme.fromToken(keyToken)
                 is OudsColorKeyToken.Repository -> colorScheme.fromToken(keyToken)

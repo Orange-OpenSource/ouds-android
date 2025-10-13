@@ -12,43 +12,43 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.runtime.Composable
-import com.orange.ouds.OudsSnapshotTest
+import com.orange.ouds.core.test.OudsComponentSnapshotTest
+import com.orange.ouds.core.test.OudsComponentTestSuite
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsNavigationBarTest(private val parameter: OudsNavigationBarPreviewParameter) : OudsSnapshotTest() {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsNavigationBarPreviewParameterProvider().values.toList()
-    }
+@RunWith(Enclosed::class)
+class OudsNavigationBarTest {
 
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsNavigationBar(
-            darkThemeEnabled = darkThemeEnabled,
-            parameter = parameter
-        )
+    @RunWith(org.junit.runners.Parameterized::class)
+    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationBar.Parameterized,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        companion object {
+            @JvmStatic
+            @org.junit.runners.Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBar.Parameterized.parameters
+        }
     }
 }
 
-@RunWith(Parameterized::class)
-internal class OudsNavigationBarItemTest(private val parameter: OudsNavigationBarItemPreviewParameter) : OudsSnapshotTest() {
+@RunWith(Enclosed::class)
+class OudsNavigationBarItemTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsNavigationBarItemPreviewParameterProvider().values.toList()
-    }
-
-    @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
-        PreviewOudsNavigationBarItem(
-            darkThemeEnabled = darkThemeEnabled,
-            parameter = parameter
-        )
+    @RunWith(org.junit.runners.Parameterized::class)
+    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationBarItem.Parameterized,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        companion object {
+            @JvmStatic
+            @org.junit.runners.Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBarItem.Parameterized.parameters
+        }
     }
 }
