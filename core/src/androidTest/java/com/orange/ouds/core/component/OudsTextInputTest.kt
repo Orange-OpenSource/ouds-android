@@ -132,6 +132,26 @@ internal class OudsTextInputTest {
             onNodeWithText(label).assertIsNotDisplayed()
         }
     }
+    
+    @Test
+    fun oudsTextInput_withLabelAndPlaceholder_labelAndPlaceholderDisplayed() {
+        with(composeTestRule) {
+            val label = "Label"
+            val placeholder = "Placeholder"
+
+            setOudsContent {
+                OudsTextInput(
+                    value = "",
+                    onValueChange = {},
+                    label = label,
+                    placeholder = placeholder
+                )
+            }
+
+            onNodeWithText(label).assertIsDisplayed()
+            onNodeWithText(placeholder).assertIsDisplayed()
+        }
+    }
 
     @Test
     fun oudsTextInput_withPlaceholder_placeholderDisplayed() {
