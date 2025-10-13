@@ -15,40 +15,41 @@ package com.orange.ouds.core.test
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
 class OudsCheckboxItemTest {
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.CheckboxItem.Parameterized,
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.Default,
         parameter,
         OudsComponentTestSuite.theme
     ) {
 
         companion object {
             @JvmStatic
-            @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.CheckboxItem.Parameterized.parameters
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.CheckboxItem.Default.parameters
         }
     }
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class ParameterizedHighContrastMode(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.CheckboxItem.ParameterizedHighContrastMode,
+    @RunWith(Parameterized::class)
+    class HighContrastModeEnabled(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.HighContrastModeEnabled,
         parameter,
         OudsComponentTestSuite.theme
     ) {
 
         companion object {
             @JvmStatic
-            @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.CheckboxItem.ParameterizedHighContrastMode.parameters
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.CheckboxItem.HighContrastModeEnabled.parameters
         }
     }
 
-    class NonParameterized : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.CheckboxItem.NonParameterized,
+    class WithLongHelperText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.WithLongHelperText,
         parameter = null,
         OudsComponentTestSuite.theme
     )

@@ -33,6 +33,7 @@ import org.junit.runners.Suite
     OudsSwitchItemTest::class,
     OudsSwitchTest::class,
     OudsTagTest::class,
+    OudsTextInputTest::class,
     OudsVerticalDividerTest::class
 )
 abstract class OudsComponentTestSuite {

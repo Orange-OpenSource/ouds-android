@@ -25,6 +25,10 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsTextInput
+import com.orange.ouds.core.component.OudsTextInputHelperLink
+import com.orange.ouds.core.component.OudsTextInputLeadingIcon
+import com.orange.ouds.core.component.OudsTextInputLoader
+import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -124,30 +128,30 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             label = label,
             placeholder = placeholder,
             outlined = outlined,
-            leadingIcon = if (leadingIcon) OudsTextInput.LeadingIcon(painterResource(id = R.drawable.ic_heart), contentDescription = "") else null,
+            leadingIcon = if (leadingIcon) OudsTextInputLeadingIcon(painterResource(id = R.drawable.ic_heart), contentDescription = "") else null,
             trailingIconButton = if (trailingIcon) {
-                OudsTextInput.TrailingIconButton(
+                OudsTextInputTrailingIconButton(
                     painterResource(id = R.drawable.ic_heart),
                     contentDescription = stringResource(id = R.string.app_components_textInput_trailingIcon_a11y),
                     onClick = { })
             } else {
                 null
             },
-            loader = if (hasLoader) OudsTextInput.Loader(null) else null,
+            loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
             error = error,
             prefix = prefix,
             suffix = suffix,
             helperText = helperText,
-            helperLink = if (helperLink.isNotEmpty()) OudsTextInput.HelperLink(text = helperLink, onClick = { }) else null
+            helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null
         )
     }
 }
 
 private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
     with(state) {
-        functionCall(OudsTextInput::class.simpleName.orEmpty()) {
+        functionCall("OudsTextInput") {
             typedArgument("value", value)
             lambdaArgument("onValueChange") {
                 comment("Update value")
@@ -156,12 +160,12 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
             if (leadingIcon) {
-                constructorCallArgument<OudsTextInput.LeadingIcon>("leadingIcon") {
+                constructorCallArgument<OudsTextInputLeadingIcon>("leadingIcon") {
                     painterArgument(R.drawable.ic_heart)
                 }
             }
             if (trailingIcon) {
-                constructorCallArgument<OudsTextInput.TrailingIconButton>("trailingIconButton") {
+                constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
                     painterArgument(R.drawable.ic_heart)
                     onClickArgument {
                         comment("Do something")
@@ -169,7 +173,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
                 }
             }
             if (hasLoader) {
-                constructorCallArgument<OudsTextInput.Loader>("loader") {
+                constructorCallArgument<OudsTextInputLoader>("loader") {
                     typedArgument("progress", null)
                 }
             }
@@ -180,7 +184,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
             if (suffix.isNotEmpty()) typedArgument("suffix", suffix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
             if (helperLink.isNotEmpty()) {
-                constructorCallArgument<OudsTextInput.HelperLink>("helperLink") {
+                constructorCallArgument<OudsTextInputHelperLink>("helperLink") {
                     typedArgument("text", helperLink)
                     onClickArgument {
                         comment("Do something")

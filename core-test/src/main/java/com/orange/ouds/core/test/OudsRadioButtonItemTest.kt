@@ -15,40 +15,41 @@ package com.orange.ouds.core.test
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
 class OudsRadioButtonItemTest {
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.RadioButtonItem.Parameterized,
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.Default,
         parameter,
         OudsComponentTestSuite.theme
     ) {
 
         companion object {
             @JvmStatic
-            @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.RadioButtonItem.Parameterized.parameters
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.RadioButtonItem.Default.parameters
         }
     }
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class ParameterizedHighContrastMode(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.RadioButtonItem.ParameterizedHighContrastMode,
+    @RunWith(Parameterized::class)
+    class HighContrastModeEnabled(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.HighContrastModeEnabled,
         parameter,
         OudsComponentTestSuite.theme
     ) {
 
         companion object {
             @JvmStatic
-            @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.RadioButtonItem.ParameterizedHighContrastMode.parameters
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.RadioButtonItem.HighContrastModeEnabled.parameters
         }
     }
 
-    class NonParameterized : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.RadioButtonItem.NonParameterized,
+    class WithLongHelperText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.WithLongHelperText,
         parameter = null,
         OudsComponentTestSuite.theme
     )
