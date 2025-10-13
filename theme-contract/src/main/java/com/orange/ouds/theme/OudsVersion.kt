@@ -17,26 +17,26 @@ package com.orange.ouds.theme
 object OudsVersion {
     object Component {
         const val Badge = "1.1.0"
-        const val Button = "3.1.0"
+        const val BulletList = "1.0.0"
+        const val Button = "3.2.0"
         const val Checkbox = "2.2.0"
         const val Chip = "1.3.0"
         const val Divider = "1.0.0"
-        const val Link = "2.1.0"
+        const val Link = "2.2.0"
         const val RadioButton = "1.2.0"
         const val Switch = "1.3.0"
-        const val Tag = "1.2.0"
+        const val Tag = "1.1.0"
         const val TextInput = "1.1.0"
     }
-
     object Tokens {
-        const val OudsCore = "1.6.0"
+        const val OudsCore = "1.7.0"
         const val AndroidCore = "1.0.0"
-        const val AndroidSystem = "1.0.0"
-        const val OrangeCore = "1.1.0"
-        const val OrangeBrand = "1.6.0"
-        const val SoshCore = "1.1.0"
-        const val SoshBrand = "1.6.0"
-        const val WireframeCore = "1.0.0"
-        const val WireframeBrand = "1.6.0"
+        const val AndroidSystem = "1.2.0"
+        const val OrangeCore = "1.2.0"
+        const val OrangeBrand = "2.0.0"
+        const val SoshCore = "1.2.0"
+        const val SoshBrand = "2.0.0"
+        const val WireframeCore = "1.2.0"
+        const val WireframeBrand = "2.0.0"
     }
 }
