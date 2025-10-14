@@ -100,11 +100,6 @@ enum class OudsColoredBoxColor {
     BrandPrimary,
     BrandSecondary,
     BrandTertiary,
-    InverseHigh,
-    InverseLow,
-    Primary,
-    Secondary,
-    Tertiary,
     OverlayDropdown,
     OverlayModal,
     OverlayTooltip,
@@ -117,7 +112,12 @@ enum class OudsColoredBoxColor {
     StatusPositiveEmphasized,
     StatusPositiveMuted,
     StatusWarningEmphasized,
-    StatusWarningMuted;
+    StatusWarningMuted,
+    SurfaceInverseHigh,
+    SurfaceInverseLow,
+    SurfacePrimary,
+    SurfaceSecondary,
+    SurfaceTertiary;
 
     private companion object {
 
@@ -146,10 +146,6 @@ enum class OudsColoredBoxColor {
                 OudsColorKeyToken.Surface.Brand.Primary -> BrandPrimary
                 OudsColorKeyToken.Surface.Brand.Secondary -> BrandSecondary
                 OudsColorKeyToken.Surface.Brand.Tertiary -> BrandTertiary
-                OudsColorKeyToken.Surface.InverseHigh -> InverseHigh
-                OudsColorKeyToken.Surface.InverseLow -> InverseLow
-                OudsColorKeyToken.Surface.Primary -> Primary
-                OudsColorKeyToken.Surface.Secondary -> Secondary
                 OudsColorKeyToken.Surface.Status.Accent.Emphasized -> StatusAccentEmphasized
                 OudsColorKeyToken.Surface.Status.Accent.Muted -> StatusAccentMuted
                 OudsColorKeyToken.Surface.Status.Info.Emphasized -> StatusInfoEmphasized
@@ -160,7 +156,11 @@ enum class OudsColoredBoxColor {
                 OudsColorKeyToken.Surface.Status.Positive.Muted -> StatusPositiveMuted
                 OudsColorKeyToken.Surface.Status.Warning.Emphasized -> StatusWarningEmphasized
                 OudsColorKeyToken.Surface.Status.Warning.Muted -> StatusWarningMuted
-                OudsColorKeyToken.Surface.Tertiary -> Tertiary
+                OudsColorKeyToken.Surface.InverseHigh -> SurfaceInverseHigh
+                OudsColorKeyToken.Surface.InverseLow -> SurfaceInverseLow
+                OudsColorKeyToken.Surface.Primary -> SurfacePrimary
+                OudsColorKeyToken.Surface.Secondary -> SurfaceSecondary
+                OudsColorKeyToken.Surface.Tertiary -> SurfaceTertiary
             }
         }
     }
@@ -177,13 +177,9 @@ enum class OudsColoredBoxColor {
                 BrandPrimary -> OudsColorKeyToken.Surface.Brand.Primary
                 BrandSecondary -> OudsColorKeyToken.Surface.Brand.Secondary
                 BrandTertiary -> OudsColorKeyToken.Surface.Brand.Tertiary
-                InverseHigh -> OudsColorKeyToken.Surface.InverseHigh
-                InverseLow -> OudsColorKeyToken.Surface.InverseLow
                 OverlayDropdown -> OudsColorKeyToken.Overlay.Dropdown
                 OverlayModal -> OudsColorKeyToken.Overlay.Modal
                 OverlayTooltip -> OudsColorKeyToken.Overlay.Tooltip
-                Primary -> OudsColorKeyToken.Surface.Primary
-                Secondary -> OudsColorKeyToken.Surface.Secondary
                 StatusAccentEmphasized -> OudsColorKeyToken.Surface.Status.Accent.Emphasized
                 StatusAccentMuted -> OudsColorKeyToken.Surface.Status.Accent.Muted
                 StatusInfoEmphasized -> OudsColorKeyToken.Surface.Status.Info.Emphasized
@@ -194,7 +190,11 @@ enum class OudsColoredBoxColor {
                 StatusPositiveMuted -> OudsColorKeyToken.Surface.Status.Positive.Muted
                 StatusWarningEmphasized -> OudsColorKeyToken.Surface.Status.Warning.Emphasized
                 StatusWarningMuted -> OudsColorKeyToken.Surface.Status.Warning.Muted
-                Tertiary -> OudsColorKeyToken.Surface.Tertiary
+                SurfaceInverseHigh -> OudsColorKeyToken.Surface.InverseHigh
+                SurfaceInverseLow -> OudsColorKeyToken.Surface.InverseLow
+                SurfacePrimary -> OudsColorKeyToken.Surface.Primary
+                SurfaceSecondary -> OudsColorKeyToken.Surface.Secondary
+                SurfaceTertiary -> OudsColorKeyToken.Surface.Tertiary
             }.value
         }
 
@@ -203,13 +203,17 @@ enum class OudsColoredBoxColor {
         get() {
             return with(OudsTheme.colorScheme.modes) {
                 when (this@OudsColoredBoxColor) {
+                    BackgroundInverseHigh -> onBackground.inverseHigh
+                    BackgroundInverseLow -> onBackground.inverseLow
                     BackgroundPrimary -> onBackground.primary
                     BackgroundSecondary -> onBackground.secondary
                     BackgroundTertiary -> onBackground.tertiary
                     BrandPrimary -> onBrand.primary
                     BrandSecondary -> onBrand.secondary
                     BrandTertiary -> onBrand.tertiary
+                    OverlayDropdown -> onOverlay.dropdown
                     OverlayModal -> onOverlay.modal
+                    OverlayTooltip -> onOverlay.tooltip
                     StatusAccentEmphasized -> onStatus.accent.emphasized
                     StatusAccentMuted -> onStatus.accent.muted
                     StatusInfoEmphasized -> onStatus.info.emphasized
@@ -220,16 +224,11 @@ enum class OudsColoredBoxColor {
                     StatusPositiveMuted -> onStatus.positive.muted
                     StatusWarningEmphasized -> onStatus.warning.emphasized
                     StatusWarningMuted -> onStatus.warning.muted
-
-                    BackgroundInverseHigh -> TODO()
-                    BackgroundInverseLow -> TODO()
-                    OverlayDropdown -> TODO()
-                    OverlayTooltip -> TODO()
-                    InverseHigh -> TODO()
-                    InverseLow -> TODO()
-                    Primary -> TODO()
-                    Secondary -> TODO()
-                    Tertiary -> TODO()
+                    SurfaceInverseHigh -> onSurface.inverseHigh
+                    SurfaceInverseLow -> onSurface.inverseLow
+                    SurfacePrimary -> onSurface.primary
+                    SurfaceSecondary -> onSurface.secondary
+                    SurfaceTertiary -> onSurface.tertiary
                 }
             }
         }
