@@ -77,7 +77,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.4.0
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.

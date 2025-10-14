@@ -73,7 +73,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
  *
- * > Design version: 2.1.0
+ * > Design version: 2.2.0
  *
  * @param label Label describing what is being linked to.
  * @param onClick Callback invoked when the link is clicked.
@@ -110,7 +110,7 @@ fun OudsLink(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
  *
- * > Design version: 2.1.0
+ * > Design version: 2.2.0
  *
  * @param label Label describing what is being linked to.
  * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
@@ -149,7 +149,7 @@ fun OudsLink(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
  *
- * > Design version: 2.1.0
+ * > Design version: 2.2.0
  *
  * @param label Label describing what is being linked to.
  * @param arrow Navigation arrow displayed in the link. See [OudsLinkArrow] for allowed values.

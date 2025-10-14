@@ -92,7 +92,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
- * > Design version: 3.1.0
+ * > Design version: 3.2.0
  *
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
@@ -145,7 +145,7 @@ fun OudsButton(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
- * > Design version: 3.1.0
+ * > Design version: 3.2.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
@@ -199,7 +199,7 @@ fun OudsButton(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
- * > Design version: 3.1.0
+ * > Design version: 3.2.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
