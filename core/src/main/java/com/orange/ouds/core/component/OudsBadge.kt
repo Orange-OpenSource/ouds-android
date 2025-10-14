@@ -246,7 +246,7 @@ private fun size(size: OudsBadgeSize): Dp {
 @Composable
 private fun contentColor(status: OudsBadgeStatus): Color {
     return when (status) {
-        OudsBadgeStatus.Neutral -> OudsTheme.colorScheme.content.onStatus.neutral.emphasized
+        OudsBadgeStatus.Neutral -> OudsTheme.colorScheme.content.inverse
         OudsBadgeStatus.Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
         OudsBadgeStatus.Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
         OudsBadgeStatus.Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
@@ -382,7 +382,7 @@ enum class OudsBadgeStatus {
     val color: Color
         @Composable
         get() = when (this) {
-            Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
+            Neutral -> OudsTheme.colorScheme.surface.inverseHigh
             Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
             Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
             Info -> OudsTheme.colorScheme.surface.status.info.emphasized

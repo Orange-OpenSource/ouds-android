@@ -405,14 +405,7 @@ private fun borderColor(appearance: OudsButtonAppearance, state: OudsButtonState
                     OudsButtonState.Disabled -> colorBorderDefaultDisabled
                     OudsButtonState.Focused -> colorBorderDefaultFocus
                 }.value
-                OudsButtonAppearance.Strong -> when (state) {
-                    OudsButtonState.Enabled -> colorBorderStrongEnabled
-                    OudsButtonState.Hovered -> colorBorderStrongHover
-                    OudsButtonState.Pressed -> colorBorderStrongPressed
-                    OudsButtonState.Loading -> colorBorderStrongLoading
-                    OudsButtonState.Disabled -> colorBorderStrongDisabled
-                    OudsButtonState.Focused -> colorBorderStrongFocus
-                }.value
+                OudsButtonAppearance.Strong,
                 OudsButtonAppearance.Minimal -> null
                 OudsButtonAppearance.Brand,
                 OudsButtonAppearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
