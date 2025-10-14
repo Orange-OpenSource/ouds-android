@@ -61,7 +61,7 @@ fun GridHeader(modifier: Modifier = Modifier) {
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(OudsTheme.colorScheme.surface.status.neutral.muted),
+                    .background(OudsTheme.colorScheme.surface.secondary),
                 painter = painterResource(id = resourceId),
                 contentDescription = null
             )
@@ -77,7 +77,7 @@ fun SizeIconWithTextHeader(
 ) {
     Row(
         modifier = modifier
-            .background(color = OudsTheme.colorScheme.surface.status.neutral.muted)
+            .background(color = OudsTheme.colorScheme.surface.secondary)
             .padding(all = OudsTheme.spaces.fixed.medium),
         horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall),
         verticalAlignment = Alignment.CenterVertically
@@ -112,7 +112,7 @@ fun SpaceHeader(
 ) {
     Box(
         modifier = modifier
-            .background(color = OudsTheme.colorScheme.surface.status.neutral.muted)
+            .background(color = OudsTheme.colorScheme.surface.secondary)
             .padding(all = OudsTheme.spaces.fixed.medium)
     ) {
         SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
@@ -188,7 +188,7 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
         Text(
             modifier = modifier
                 .background(color = OudsTheme.colorScheme.background.primary)
-                .background(color = OudsTheme.colorScheme.surface.status.neutral.muted),
+                .background(color = OudsTheme.colorScheme.surface.secondary),
             text = stringResource(id = textResId),
             color = OudsTheme.colorScheme.content.default,
             style = OudsTheme.typography.body.default.medium
