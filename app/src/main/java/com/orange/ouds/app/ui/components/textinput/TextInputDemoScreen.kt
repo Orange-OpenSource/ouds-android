@@ -29,6 +29,7 @@ import com.orange.ouds.core.component.OudsTextInputHelperLink
 import com.orange.ouds.core.component.OudsTextInputLeadingIcon
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -87,6 +88,12 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             enabled = errorSwitchEnabled
         )
         CustomizationTextField(
+            label = stringResource(R.string.app_components_textInput_errorDescription_label),
+            value = errorDescription,
+            onValueChange = { value -> errorDescription = value },
+            enabled = errorDescriptionTextInputEnabled
+        )
+        CustomizationTextField(
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
@@ -140,7 +147,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
-            error = error,
+            error = if (error) { OudsError(errorDescription) } else null,
             prefix = prefix,
             suffix = suffix,
             helperText = helperText,

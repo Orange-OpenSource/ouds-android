@@ -76,6 +76,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -126,9 +127,8 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
- *   does not meet validation rules or expected formatting.
- *   False by default.
+ * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicates that the user input does not meet
+ *   validation rules or expected formatting, `null` otherwise.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
@@ -163,7 +163,7 @@ fun OudsTextInput(
     readOnly: Boolean = false,
     loader: OudsTextInputLoader? = null,
     outlined: Boolean = false,
-    error: Boolean = false,
+    error: OudsError? = null,
     helperText: String? = null,
     helperLink: OudsTextInputHelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -194,7 +194,7 @@ fun OudsTextInput(
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(),
                 lineLimits = TextFieldLineLimits.SingleLine,
-                cursorBrush = cursorBrush(state = state, error = error),
+                cursorBrush = cursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
                 onTextLayout = onTextLayout,
@@ -256,9 +256,8 @@ fun OudsTextInput(
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
- *   does not meet validation rules or expected formatting.
- *   False by default.
+ * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicates that the user input does not meet
+ *   validation rules or expected formatting, `null` otherwise.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
@@ -287,7 +286,7 @@ fun OudsTextInput(
     readOnly: Boolean = false,
     loader: OudsTextInputLoader? = null,
     outlined: Boolean = false,
-    error: Boolean = false,
+    error: OudsError? = null,
     helperText: String? = null,
     helperLink: OudsTextInputHelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -318,7 +317,7 @@ fun OudsTextInput(
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(),
                 singleLine = true,
-                cursorBrush = cursorBrush(state = state, error = error),
+                cursorBrush = cursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
                 onTextLayout = onTextLayout,
@@ -380,9 +379,8 @@ fun OudsTextInput(
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Controls the error state of the text input. When `true`, the text input will be displayed in an error state to indicates that the user input
- *   does not meet validation rules or expected formatting.
- *   False by default.
+ * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicates that the user input does not meet
+ *   validation rules or expected formatting, `null` otherwise.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
@@ -411,7 +409,7 @@ fun OudsTextInput(
     readOnly: Boolean = false,
     loader: OudsTextInputLoader? = null,
     outlined: Boolean = false,
-    error: Boolean = false,
+    error: OudsError? = null,
     helperText: String? = null,
     helperLink: OudsTextInputHelperLink? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -442,7 +440,7 @@ fun OudsTextInput(
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(),
                 singleLine = true,
-                cursorBrush = cursorBrush(state = state, error = error),
+                cursorBrush = cursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
                 onTextLayout = onTextLayout,
@@ -480,11 +478,11 @@ internal fun OudsTextInput(
     state: OudsTextInputState,
     emptyText: Boolean,
     readOnly: Boolean,
-    error: Boolean,
+    error: OudsError?,
     basicTextField: @Composable () -> Unit
 ) {
 
-    val isForbidden = (state == OudsTextInputState.Loading && (emptyText || error)) || (error && state in listOf(
+    val isForbidden = (state == OudsTextInputState.Loading && (emptyText || error != null)) || (error != null && state in listOf(
         OudsTextInputState.ReadOnly,
         OudsTextInputState.Disabled
     ))
@@ -501,7 +499,7 @@ internal fun OudsTextInput(
         },
         previewMessage = {
             if (state == OudsTextInputState.Loading) {
-                val statusDescription = if (error) "Error" else "Empty"
+                val statusDescription = if (error != null) "Error" else "Empty"
                 "$statusDescription status for Loading state is not relevant"
             } else {
                 val stateDescription = if (readOnly) "Read only" else "Disabled"
@@ -526,10 +524,11 @@ private fun OudsTextInputDecorator(
     suffix: String?,
     loader: OudsTextInputLoader?,
     outlined: Boolean,
-    error: Boolean,
+    error: OudsError?,
     helperText: String?,
     helperLink: OudsTextInputHelperLink?,
 ) {
+    val hasError = error != null
     with(OudsTheme.componentsTokens.textInput) {
         val borderRadius = if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded.value else borderRadiusDefault.value
         val shape = RoundedCornerShape(borderRadius)
@@ -538,15 +537,15 @@ private fun OudsTextInputDecorator(
             // outlined
             Modifier.border(
                 width = borderWidth(state),
-                color = borderColor(state = state, outlined = outlined, error = error),
+                color = borderColor(state = state, outlined = outlined, error = hasError),
                 shape = shape
             )
         } else {
             // filled
             Modifier
-                .bottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = error)
+                .bottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = hasError)
                 .background(
-                    color = backgroundColor(state = state, outlined = outlined, error = error),
+                    color = backgroundColor(state = state, outlined = outlined, error = hasError),
                     shape = shape
                 )
         }
@@ -558,7 +557,7 @@ private fun OudsTextInputDecorator(
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
                         start = spacePaddingInlineDefault.value,
-                        end = if (trailingIconButton != null || error || state == OudsTextInputState.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
+                        end = if (trailingIconButton != null || hasError || state == OudsTextInputState.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
                     ),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
@@ -579,7 +578,7 @@ private fun OudsTextInputDecorator(
                                 .semantics { hideFromAccessibility() },
                             text = label,
                             style = OudsTheme.typography.label.default.small,
-                            color = labelColor(state = state, error = error),
+                            color = labelColor(state = state, error = hasError),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -614,7 +613,7 @@ private fun OudsTextInputDecorator(
                                         modifier = Modifier.semantics { hideFromAccessibility() },
                                         text = label,
                                         style = OudsTheme.typography.label.default.large,
-                                        color = labelColor(state = state, error = error),
+                                        color = labelColor(state = state, error = hasError),
                                         maxLines = 2,
                                         overflow = TextOverflow.Ellipsis
                                     )
@@ -634,7 +633,7 @@ private fun OudsTextInputDecorator(
                 }
 
                 // Trailing elements
-                if (error || state == OudsTextInputState.Loading || trailingIconButton != null) {
+                if (hasError || state == OudsTextInputState.Loading || trailingIconButton != null) {
                     val buttonTokens = OudsTheme.componentsTokens.button
                     val iconScale = LocalConfiguration.current.fontScale
                     Row(
@@ -642,7 +641,7 @@ private fun OudsTextInputDecorator(
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value)
                     ) {
                         // Error icon
-                        if (error) {
+                        if (hasError) {
                             Box(
                                 modifier = Modifier.padding(all = if (trailingIconButton != null) 0.dp else buttonTokens.spaceInsetIconOnly.value),
                                 contentAlignment = Alignment.Center
@@ -650,7 +649,7 @@ private fun OudsTextInputDecorator(
                                 Icon(
                                     modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
                                     painter = painterResource(id = OudsTheme.drawableResources.important),
-                                    contentDescription = if (helperText.isNullOrBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
+                                    contentDescription = if (error.description.isBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
                                     tint = errorContentColor(state = state)
                                 )
                             }
@@ -678,23 +677,23 @@ private fun OudsTextInputDecorator(
                 }
             }
 
-            // Helper text
-            if (!helperText.isNullOrBlank()) {
+            // Helper text / Error description
+            if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.description.isNotBlank())) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = spacePaddingBlockTopHelperText.value)
                         .padding(horizontal = spacePaddingInlineDefault.value)
                         .semantics {
-                            if (error) {
-                                error(helperText)
+                            if (hasError) {
+                                error(error.description)
                             } else {
-                                contentDescription = helperText
+                                contentDescription = helperText.orEmpty()
                             }
                         },
-                    text = helperText,
+                    text = if (hasError) error.description else helperText.orEmpty(),
                     style = OudsTheme.typography.label.default.medium,
-                    color = if (error) OudsTheme.colorScheme.content.status.negative else OudsTheme.colorScheme.content.muted
+                    color = if (hasError) OudsTheme.colorScheme.content.status.negative else OudsTheme.colorScheme.content.muted
                 )
             }
 
@@ -1098,7 +1097,7 @@ internal data class OudsTextInputPreviewParameter(
     val suffix: String? = null,
     val enabled: Boolean = true,
     val readOnly: Boolean = false,
-    val error: Boolean = false,
+    val error: OudsError? = null,
     val helperText: String? = null,
     val helperLink: OudsTextInputHelperLink? = null
 )
@@ -1111,6 +1110,7 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
         val placeholder = "Placeholder"
         val prefix = "£"
         val suffix = "€"
+        val error = OudsError("Error description")
         val leadingIcon = OudsTextInputLeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon")
         val trailingIconButton = OudsTextInputTrailingIconButton(Icons.Filled.FavoriteBorder, contentDescription = "Icon", onClick = {})
         return listOf(
@@ -1123,7 +1123,7 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
                 trailingIconButton = trailingIconButton,
                 prefix = prefix,
                 suffix = suffix,
-                error = true
+                error = error
             ),
             OudsTextInputPreviewParameter(
                 "Text",
@@ -1136,6 +1136,6 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
                 helperText = "Helper text.",
                 helperLink = OudsTextInputHelperLink("Helper link") {}
             ),
-            OudsTextInputPreviewParameter("Error text", label = label, error = true, helperText = "The format is not valid.")
+            OudsTextInputPreviewParameter("Error text", label = label, error = error, helperText = "The format is not valid.")
         )
     }

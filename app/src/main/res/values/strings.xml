@@ -219,6 +219,7 @@
     <string name="app_components_textInput_prefix_label">Prefix</string>
     <string name="app_components_textInput_suffix_label">Suffix</string>
     <string name="app_components_textInput_placeholder_label">Placeholder</string>
+    <string name="app_components_textInput_errorDescription_label">Error description</string>
     <string name="app_components_textInput_helperLink_label">Helper link</string>
     <string name="app_components_textInput_illustration_helperText_label">Helper text.</string>
 
