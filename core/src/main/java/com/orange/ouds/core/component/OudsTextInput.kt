@@ -1110,7 +1110,8 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
         val placeholder = "Placeholder"
         val prefix = "£"
         val suffix = "€"
-        val error = OudsError("Error description")
+        val error = OudsError("Error description.")
+        val helperText = "Helper text."
         val leadingIcon = OudsTextInputLeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon")
         val trailingIconButton = OudsTextInputTrailingIconButton(Icons.Filled.FavoriteBorder, contentDescription = "Icon", onClick = {})
         return listOf(
@@ -1133,9 +1134,9 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
                 trailingIconButton = trailingIconButton,
                 prefix = prefix,
                 suffix = suffix,
-                helperText = "Helper text.",
+                helperText = helperText,
                 helperLink = OudsTextInputHelperLink("Helper link") {}
             ),
-            OudsTextInputPreviewParameter("Error text", label = label, error = error, helperText = "The format is not valid.")
+            OudsTextInputPreviewParameter("Error text", label = label, error = error, helperText = helperText)
         )
     }
