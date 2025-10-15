@@ -655,7 +655,7 @@ private fun OudsTextInputDecorator(
                                     modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
                                     painter = painterResource(id = OudsTheme.drawableResources.important),
                                     contentDescription = if (error.description.isBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
-                                    tint = errorContentColor(state = state)
+                                    tint = errorIconColor(state = state)
                                 )
                             }
                         }
@@ -772,6 +772,14 @@ private fun errorContentColor(state: OudsTextInputState) = when (state) {
     OudsTextInputState.Enabled -> OudsTheme.colorScheme.action.negative.enabled
     OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.negative.hover
     OudsTextInputState.Focused -> OudsTheme.colorScheme.action.negative.pressed
+    OudsTextInputState.Disabled, OudsTextInputState.ReadOnly, OudsTextInputState.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
+}
+
+@Composable
+private fun errorIconColor(state: OudsTextInputState) = when (state) {
+    OudsTextInputState.Enabled -> OudsTheme.colorScheme.action.negative.enabled
+    OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.negative.hover
+    OudsTextInputState.Focused -> OudsTheme.colorScheme.action.negative.focus
     OudsTextInputState.Disabled, OudsTextInputState.ReadOnly, OudsTextInputState.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
 }
 
