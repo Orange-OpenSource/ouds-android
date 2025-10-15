@@ -92,35 +92,40 @@ fun OudsColoredBox(
  * Represents the possible background colors of an [OudsColoredBox].
  */
 enum class OudsColoredBoxColor {
-    BackgroundEmphasized,
+    BackgroundInverseHigh,
+    BackgroundInverseLow,
     BackgroundPrimary,
     BackgroundSecondary,
     BackgroundTertiary,
     BrandPrimary,
     BrandSecondary,
     BrandTertiary,
-    OverlayDefault,
-    OverlayEmphasized,
+    OverlayDropdown,
     OverlayModal,
+    OverlayTooltip,
     StatusAccentEmphasized,
     StatusAccentMuted,
     StatusInfoEmphasized,
     StatusInfoMuted,
     StatusNegativeEmphasized,
     StatusNegativeMuted,
-    StatusNeutralEmphasized,
-    StatusNeutralMuted,
     StatusPositiveEmphasized,
     StatusPositiveMuted,
     StatusWarningEmphasized,
-    StatusWarningMuted;
+    StatusWarningMuted,
+    SurfaceInverseHigh,
+    SurfaceInverseLow,
+    SurfacePrimary,
+    SurfaceSecondary,
+    SurfaceTertiary;
 
     private companion object {
 
         // These methods are unused but they allows to be notified with a build error if background, overlay or surface key tokens are updated
         fun fromKeyToken(keyToken: OudsColorKeyToken.Background): OudsColoredBoxColor {
             return when (keyToken) {
-                OudsColorKeyToken.Background.Emphasized -> BackgroundEmphasized
+                OudsColorKeyToken.Background.InverseHigh -> BackgroundInverseHigh
+                OudsColorKeyToken.Background.InverseLow -> BackgroundInverseLow
                 OudsColorKeyToken.Background.Primary -> BackgroundPrimary
                 OudsColorKeyToken.Background.Secondary -> BackgroundSecondary
                 OudsColorKeyToken.Background.Tertiary -> BackgroundTertiary
@@ -129,10 +134,10 @@ enum class OudsColoredBoxColor {
 
         fun fromKeyToken(keyToken: OudsColorKeyToken.Overlay): OudsColoredBoxColor {
             return when (keyToken) {
-                OudsColorKeyToken.Overlay.Default -> OverlayDefault
                 OudsColorKeyToken.Overlay.Drag -> error("OudsColoredBox does not support this color.")
-                OudsColorKeyToken.Overlay.Emphasized -> OverlayEmphasized
+                OudsColorKeyToken.Overlay.Dropdown -> OverlayDropdown
                 OudsColorKeyToken.Overlay.Modal -> OverlayModal
+                OudsColorKeyToken.Overlay.Tooltip -> OverlayTooltip
             }
         }
 
@@ -147,12 +152,15 @@ enum class OudsColoredBoxColor {
                 OudsColorKeyToken.Surface.Status.Info.Muted -> StatusInfoMuted
                 OudsColorKeyToken.Surface.Status.Negative.Emphasized -> StatusNegativeEmphasized
                 OudsColorKeyToken.Surface.Status.Negative.Muted -> StatusNegativeMuted
-                OudsColorKeyToken.Surface.Status.Neutral.Emphasized -> StatusNeutralEmphasized
-                OudsColorKeyToken.Surface.Status.Neutral.Muted -> StatusNeutralMuted
                 OudsColorKeyToken.Surface.Status.Positive.Emphasized -> StatusPositiveEmphasized
                 OudsColorKeyToken.Surface.Status.Positive.Muted -> StatusPositiveMuted
                 OudsColorKeyToken.Surface.Status.Warning.Emphasized -> StatusWarningEmphasized
                 OudsColorKeyToken.Surface.Status.Warning.Muted -> StatusWarningMuted
+                OudsColorKeyToken.Surface.InverseHigh -> SurfaceInverseHigh
+                OudsColorKeyToken.Surface.InverseLow -> SurfaceInverseLow
+                OudsColorKeyToken.Surface.Primary -> SurfacePrimary
+                OudsColorKeyToken.Surface.Secondary -> SurfaceSecondary
+                OudsColorKeyToken.Surface.Tertiary -> SurfaceTertiary
             }
         }
     }
@@ -161,28 +169,32 @@ enum class OudsColoredBoxColor {
         @Composable
         get() {
             return when (this) {
-                BackgroundEmphasized -> OudsColorKeyToken.Background.Emphasized
+                BackgroundInverseHigh -> OudsColorKeyToken.Background.InverseHigh
+                BackgroundInverseLow -> OudsColorKeyToken.Background.InverseLow
                 BackgroundPrimary -> OudsColorKeyToken.Background.Primary
                 BackgroundSecondary -> OudsColorKeyToken.Background.Secondary
                 BackgroundTertiary -> OudsColorKeyToken.Background.Tertiary
                 BrandPrimary -> OudsColorKeyToken.Surface.Brand.Primary
                 BrandSecondary -> OudsColorKeyToken.Surface.Brand.Secondary
                 BrandTertiary -> OudsColorKeyToken.Surface.Brand.Tertiary
-                OverlayDefault -> OudsColorKeyToken.Overlay.Default
-                OverlayEmphasized -> OudsColorKeyToken.Overlay.Emphasized
+                OverlayDropdown -> OudsColorKeyToken.Overlay.Dropdown
                 OverlayModal -> OudsColorKeyToken.Overlay.Modal
+                OverlayTooltip -> OudsColorKeyToken.Overlay.Tooltip
                 StatusAccentEmphasized -> OudsColorKeyToken.Surface.Status.Accent.Emphasized
                 StatusAccentMuted -> OudsColorKeyToken.Surface.Status.Accent.Muted
                 StatusInfoEmphasized -> OudsColorKeyToken.Surface.Status.Info.Emphasized
                 StatusInfoMuted -> OudsColorKeyToken.Surface.Status.Info.Muted
                 StatusNegativeEmphasized -> OudsColorKeyToken.Surface.Status.Negative.Emphasized
                 StatusNegativeMuted -> OudsColorKeyToken.Surface.Status.Negative.Muted
-                StatusNeutralEmphasized -> OudsColorKeyToken.Surface.Status.Neutral.Emphasized
-                StatusNeutralMuted -> OudsColorKeyToken.Surface.Status.Neutral.Muted
                 StatusPositiveEmphasized -> OudsColorKeyToken.Surface.Status.Positive.Emphasized
                 StatusPositiveMuted -> OudsColorKeyToken.Surface.Status.Positive.Muted
                 StatusWarningEmphasized -> OudsColorKeyToken.Surface.Status.Warning.Emphasized
                 StatusWarningMuted -> OudsColorKeyToken.Surface.Status.Warning.Muted
+                SurfaceInverseHigh -> OudsColorKeyToken.Surface.InverseHigh
+                SurfaceInverseLow -> OudsColorKeyToken.Surface.InverseLow
+                SurfacePrimary -> OudsColorKeyToken.Surface.Primary
+                SurfaceSecondary -> OudsColorKeyToken.Surface.Secondary
+                SurfaceTertiary -> OudsColorKeyToken.Surface.Tertiary
             }.value
         }
 
@@ -191,28 +203,32 @@ enum class OudsColoredBoxColor {
         get() {
             return with(OudsTheme.colorScheme.modes) {
                 when (this@OudsColoredBoxColor) {
-                    BackgroundEmphasized -> onBackground.emphasized
+                    BackgroundInverseHigh -> onBackground.inverseHigh
+                    BackgroundInverseLow -> onBackground.inverseLow
                     BackgroundPrimary -> onBackground.primary
                     BackgroundSecondary -> onBackground.secondary
                     BackgroundTertiary -> onBackground.tertiary
                     BrandPrimary -> onBrand.primary
                     BrandSecondary -> onBrand.secondary
                     BrandTertiary -> onBrand.tertiary
-                    OverlayDefault -> onOverlay.default
-                    OverlayEmphasized -> onOverlay.emphasized
+                    OverlayDropdown -> onOverlay.dropdown
                     OverlayModal -> onOverlay.modal
+                    OverlayTooltip -> onOverlay.tooltip
                     StatusAccentEmphasized -> onStatus.accent.emphasized
                     StatusAccentMuted -> onStatus.accent.muted
                     StatusInfoEmphasized -> onStatus.info.emphasized
                     StatusInfoMuted -> onStatus.info.muted
                     StatusNegativeEmphasized -> onStatus.negative.emphasized
                     StatusNegativeMuted -> onStatus.negative.muted
-                    StatusNeutralEmphasized -> onStatus.neutral.emphasized
-                    StatusNeutralMuted -> onStatus.neutral.muted
                     StatusPositiveEmphasized -> onStatus.positive.emphasized
                     StatusPositiveMuted -> onStatus.positive.muted
                     StatusWarningEmphasized -> onStatus.warning.emphasized
                     StatusWarningMuted -> onStatus.warning.muted
+                    SurfaceInverseHigh -> onSurface.inverseHigh
+                    SurfaceInverseLow -> onSurface.inverseLow
+                    SurfacePrimary -> onSurface.primary
+                    SurfaceSecondary -> onSurface.secondary
+                    SurfaceTertiary -> onSurface.tertiary
                 }
             }
         }

@@ -168,7 +168,7 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
             extraLarge = paddingInlineXlarge.dp,
             twoExtraLarge = paddingInline2xlarge.dp,
             threeExtraLarge = paddingInline3xlarge.dp,
-            fourExtraLarge = paddingInline4xl.dp,
+            fourExtraLarge = paddingInline4xlarge.dp,
         ),
         paddingBlock = OudsSpaces.PaddingBlock(
             none = paddingBlockNone.dp,
@@ -206,7 +206,7 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
             medium = columnGapMedium.dp,
             large = columnGapLarge.dp,
             extraLarge = columnGapXlarge.dp,
-            twoExtraLarge = columnGap2xl.dp,
+            twoExtraLarge = columnGap2xlarge.dp,
         ),
         rowGap = OudsSpaces.RowGap(
             none = rowGapNone.dp,

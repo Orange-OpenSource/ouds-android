@@ -26,37 +26,31 @@ import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
  */
 data class OudsElevations(
     val none: Dp,
-    val raised: Dp,
-    val overlayDefault: Dp,
-    val stickyDefault: Dp,
-    val stickyEmphasized: Dp,
-    val stickyNavigationScrolled: Dp,
+    val default: Dp,
     val drag: Dp,
-    val overlayEmphasized: Dp,
+    val emphasized: Dp,
+    val raised: Dp,
+    val sticky: Dp,
 )
 
 internal fun OudsElevationSemanticTokens.getElevation() = OudsElevations(
     none = none.dp,
     raised = raised.dp,
-    overlayDefault = overlayDefault.dp,
-    stickyDefault = stickyDefault.dp,
-    stickyEmphasized = stickyEmphasized.dp,
-    stickyNavigationScrolled = stickyNavigationScrolled.dp,
+    default = default.dp,
+    sticky = sticky.dp,
     drag = drag.dp,
-    overlayEmphasized = overlayEmphasized.dp
+    emphasized = emphasized.dp
 )
 
 @Stable
 private fun OudsElevations.fromToken(token: OudsElevationKeyToken): Dp {
     return when (token) {
         OudsElevationKeyToken.None -> none
-        OudsElevationKeyToken.Raised -> raised
-        OudsElevationKeyToken.OverlayDefault -> overlayDefault
-        OudsElevationKeyToken.StickyDefault -> stickyDefault
-        OudsElevationKeyToken.StickyEmphasized -> stickyEmphasized
-        OudsElevationKeyToken.StickyNavigationScrolled -> stickyNavigationScrolled
+        OudsElevationKeyToken.Default -> default
         OudsElevationKeyToken.Drag -> drag
-        OudsElevationKeyToken.OverlayEmphasized -> overlayEmphasized
+        OudsElevationKeyToken.Emphasized -> emphasized
+        OudsElevationKeyToken.Sticky -> sticky
+        OudsElevationKeyToken.Raised -> raised
     }
 }
 

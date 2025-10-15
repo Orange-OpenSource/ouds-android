@@ -171,15 +171,15 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
     OudsSizes(
         icon = OudsSizes.Icon(
             decorative = OudsSizes.Icon.Decorative(
-                fourExtraSmall = iconDecorative4xs.dp,
-                threeExtraSmall = iconDecorative3xs.dp,
-                twoExtraSmall = iconDecorative2xs.dp,
-                extraSmall = iconDecorativeXs.dp,
-                small = iconDecorativeSm.dp,
-                medium = iconDecorativeMd.dp,
-                large = iconDecorativeLg.dp,
-                extraLarge = iconDecorativeXl.dp,
-                twoExtraLarge = iconDecorative2xl.dp,
+                fourExtraSmall = iconDecorative4xsmall.dp,
+                threeExtraSmall = iconDecorative3xsmall.dp,
+                twoExtraSmall = iconDecorative2xsmall.dp,
+                extraSmall = iconDecorativeXsmall.dp,
+                small = iconDecorativeSmall.dp,
+                medium = iconDecorativeMedium.dp,
+                large = iconDecorativeLarge.dp,
+                extraLarge = iconDecorativeXlarge.dp,
+                twoExtraLarge = iconDecorative2xlarge.dp,
             ),
             withHeading = OudsSizes.Icon.WithHeading(
                 small = OudsSizes.Icon.WithHeading.Small(

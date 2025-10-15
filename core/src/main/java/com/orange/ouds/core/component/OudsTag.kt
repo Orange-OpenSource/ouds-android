@@ -77,7 +77,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.4.0
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
@@ -229,7 +229,7 @@ private fun betweenAssetAndLabelSpace(size: OudsTagSize): Dp {
 @Composable
 private fun backgroundColor(status: OudsTagStatus, hierarchy: OudsTagHierarchy, hasLoader: Boolean): Color {
     return if (hasLoader) {
-        OudsTheme.colorScheme.surface.status.neutral.muted
+        OudsTheme.colorScheme.surface.secondary
     } else {
         when (hierarchy) {
             OudsTagHierarchy.Emphasized -> status.color()
@@ -252,24 +252,24 @@ private fun contentColor(status: OudsTagStatus, hierarchy: OudsTagHierarchy, has
         OudsTheme.colorScheme.content.default
     } else {
         val disabledContentColor = OudsTheme.colorScheme.content.onAction.disabled
-        with(OudsTheme.colorScheme.content.onStatus) {
+        with(OudsTheme.colorScheme.content) {
             when (hierarchy) {
                 OudsTagHierarchy.Emphasized -> when (status) {
-                    OudsTagStatus.Neutral -> neutral.emphasized
-                    OudsTagStatus.Accent -> accent.emphasized
-                    OudsTagStatus.Positive -> positive.emphasized
-                    OudsTagStatus.Warning -> warning.emphasized
-                    OudsTagStatus.Negative -> negative.emphasized
-                    OudsTagStatus.Info -> info.emphasized
+                    OudsTagStatus.Neutral -> inverse
+                    OudsTagStatus.Accent -> onStatus.accent.emphasized
+                    OudsTagStatus.Positive -> onStatus.positive.emphasized
+                    OudsTagStatus.Warning -> onStatus.warning.emphasized
+                    OudsTagStatus.Negative -> onStatus.negative.emphasized
+                    OudsTagStatus.Info -> onStatus.info.emphasized
                     OudsTagStatus.Disabled -> disabledContentColor
                 }
                 OudsTagHierarchy.Muted -> when (status) {
-                    OudsTagStatus.Neutral -> neutral.muted
-                    OudsTagStatus.Accent -> accent.muted
-                    OudsTagStatus.Positive -> positive.muted
-                    OudsTagStatus.Warning -> warning.muted
-                    OudsTagStatus.Negative -> negative.muted
-                    OudsTagStatus.Info -> info.muted
+                    OudsTagStatus.Neutral -> default
+                    OudsTagStatus.Accent -> onStatus.accent.muted
+                    OudsTagStatus.Positive -> onStatus.positive.muted
+                    OudsTagStatus.Warning -> onStatus.warning.muted
+                    OudsTagStatus.Negative -> onStatus.negative.muted
+                    OudsTagStatus.Info -> onStatus.info.muted
                     OudsTagStatus.Disabled -> disabledContentColor
                 }
             }
@@ -506,7 +506,7 @@ enum class OudsTagStatus {
     @Composable
     fun color(): Color {
         return when (this) {
-            Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
+            Neutral -> OudsTheme.colorScheme.surface.inverseHigh
             Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
             Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
             Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
@@ -522,7 +522,7 @@ enum class OudsTagStatus {
     @Composable
     fun mutedColor(): Color {
         return when (this) {
-            Neutral -> OudsTheme.colorScheme.surface.status.neutral.muted
+            Neutral -> OudsTheme.colorScheme.surface.secondary
             Accent -> OudsTheme.colorScheme.surface.status.accent.muted
             Positive -> OudsTheme.colorScheme.surface.status.positive.muted
             Warning -> OudsTheme.colorScheme.surface.status.warning.muted

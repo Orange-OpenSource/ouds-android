@@ -71,7 +71,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.2.0
  *
  * @param modifier The [Modifier] to be applied to this badge.
  * @param status The status of this badge. The background color of the badge is based on this status.
@@ -108,7 +108,7 @@ fun OudsBadge(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge/t/7f61fd0dac)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.2.0
  *
  * @param count The number displayed in the badge. Minimum and maximum values are 0 and 99 respectively.
  *   Values greater than 99 are displayed as "+99".
@@ -150,7 +150,7 @@ fun OudsBadge(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge/t/cb0a05d005)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.2.0
  *
  * @param icon The icon displayed in the badge.
  * @param modifier The [Modifier] to be applied to this badge.
@@ -246,7 +246,7 @@ private fun size(size: OudsBadgeSize): Dp {
 @Composable
 private fun contentColor(status: OudsBadgeStatus): Color {
     return when (status) {
-        OudsBadgeStatus.Neutral -> OudsTheme.colorScheme.content.onStatus.neutral.emphasized
+        OudsBadgeStatus.Neutral -> OudsTheme.colorScheme.content.inverse
         OudsBadgeStatus.Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
         OudsBadgeStatus.Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
         OudsBadgeStatus.Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
@@ -382,7 +382,7 @@ enum class OudsBadgeStatus {
     val color: Color
         @Composable
         get() = when (this) {
-            Neutral -> OudsTheme.colorScheme.surface.status.neutral.emphasized
+            Neutral -> OudsTheme.colorScheme.surface.inverseHigh
             Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
             Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
             Info -> OudsTheme.colorScheme.surface.status.info.emphasized

@@ -56,7 +56,7 @@ fun LargeCard(
         elevation = cardElevation(defaultElevation = OudsTheme.elevations.raised),
         onClick = onClick // Card onClick is needed for keyboard navigation
     ) {
-        Column(modifier = Modifier.background(OudsTheme.colorScheme.overlay.default)) {
+        Column(modifier = Modifier.background(OudsTheme.colorScheme.overlay.dropdown)) {
             illustration()
             Text(
                 modifier = Modifier
