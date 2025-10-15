@@ -192,7 +192,7 @@ fun OudsTextInput(
                 state = textFieldState,
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(),
+                textStyle = textFieldTextStyle(state = state),
                 lineLimits = TextFieldLineLimits.SingleLine,
                 cursorBrush = cursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
@@ -315,7 +315,7 @@ fun OudsTextInput(
                     .semantic(label),
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(),
+                textStyle = textFieldTextStyle(state = state),
                 singleLine = true,
                 cursorBrush = cursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
@@ -438,7 +438,7 @@ fun OudsTextInput(
                     .semantic(label),
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(),
+                textStyle = textFieldTextStyle(state = state),
                 singleLine = true,
                 cursorBrush = cursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
@@ -563,7 +563,10 @@ private fun OudsTextInputDecorator(
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
             ) {
                 // Leading icon
-                leadingIcon?.Content(modifier = Modifier.size(sizeLeadingIcon.value))
+                leadingIcon?.Content(
+                    extraParameters = OudsTextInputLeadingIcon.ExtraParameters(tint = decorativeContentColor(state = state)),
+                    modifier = Modifier.size(sizeLeadingIcon.value)
+                )
 
                 // Central content
                 Column(
@@ -594,7 +597,8 @@ private fun OudsTextInputDecorator(
                                 modifier = Modifier.semantics {
                                     if (value.isEmpty()) hideFromAccessibility()
                                 },
-                                text = prefix
+                                text = prefix,
+                                state = state
                             )
                         }
                         Box(modifier = Modifier.weight(1f)) {
@@ -604,7 +608,7 @@ private fun OudsTextInputDecorator(
                                         modifier = Modifier.semantics { hideFromAccessibility() },
                                         text = placeholder,
                                         style = OudsTheme.typography.label.default.large,
-                                        color = placeholderColor(state = state),
+                                        color = decorativeContentColor(state = state),
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
@@ -626,7 +630,8 @@ private fun OudsTextInputDecorator(
                                 modifier = Modifier.semantics {
                                     if (value.isEmpty()) hideFromAccessibility()
                                 },
-                                text = suffix
+                                text = suffix,
+                                state = state
                             )
                         }
                     }
@@ -693,7 +698,7 @@ private fun OudsTextInputDecorator(
                         },
                     text = if (hasError) error.description else helperText.orEmpty(),
                     style = OudsTheme.typography.label.default.medium,
-                    color = if (hasError) OudsTheme.colorScheme.content.status.negative else OudsTheme.colorScheme.content.muted
+                    color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(state = state)
                 )
             }
 
@@ -703,7 +708,8 @@ private fun OudsTextInputDecorator(
                     modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
                     label = helperLink.text,
                     onClick = helperLink.onClick,
-                    size = OudsLinkSize.Small
+                    size = OudsLinkSize.Small,
+                    enabled = state != OudsTextInputState.Disabled
                 )
             }
         }
@@ -733,8 +739,8 @@ private fun borderWidth(state: OudsTextInputState) = with(OudsTheme.componentsTo
 }
 
 @Composable
-private fun PrefixSuffixText(text: String, modifier: Modifier = Modifier) {
-    Text(modifier = modifier, text = text, style = OudsTheme.typography.label.default.large, color = OudsTheme.colorScheme.content.muted)
+private fun PrefixSuffixText(text: String, state: OudsTextInputState, modifier: Modifier = Modifier) {
+    Text(modifier = modifier, text = text, style = OudsTheme.typography.label.default.large, color = decorativeContentColor(state = state))
 }
 
 @Composable
@@ -754,11 +760,12 @@ private fun backgroundColor(state: OudsTextInputState, outlined: Boolean, error:
 }
 
 @Composable
-private fun contentColor() = OudsTheme.colorScheme.content.default
+private fun contentColor(state: OudsTextInputState) =
+    if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
 private fun cursorBrush(state: OudsTextInputState, error: Boolean) =
-    SolidColor(if (error) errorContentColor(state = state) else contentColor())
+    SolidColor(if (error) errorContentColor(state = state) else contentColor(state))
 
 @Composable
 private fun errorContentColor(state: OudsTextInputState) = when (state) {
@@ -881,11 +888,11 @@ private fun labelColor(state: OudsTextInputState, error: Boolean): Color {
 }
 
 @Composable
-private fun placeholderColor(state: OudsTextInputState) =
+private fun decorativeContentColor(state: OudsTextInputState) =
     if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
 
 @Composable
-private fun textFieldTextStyle() = OudsTheme.typography.label.default.large.copy(color = contentColor())
+private fun textFieldTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))
 
 @Composable
 private fun textFieldEnabled(state: OudsTextInputState) =
@@ -916,7 +923,12 @@ data class OudsTextInputLoader(val progress: Float?)
 class OudsTextInputLeadingIcon private constructor(
     graphicsObject: Any,
     val contentDescription: String
-) : OudsComponentIcon<Nothing, OudsTextInputLeadingIcon>(Nothing::class.java, graphicsObject, contentDescription) {
+) : OudsComponentIcon<OudsTextInputLeadingIcon.ExtraParameters, OudsTextInputLeadingIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val tint: Color
+    ) : OudsComponentContent.ExtraParameters()
 
     /**
      * Creates an instance of [OudsTextInputLeadingIcon].
@@ -944,7 +956,7 @@ class OudsTextInputLeadingIcon private constructor(
 
     override val tint: Color?
         @Composable
-        get() = OudsTheme.colorScheme.content.default
+        get() = extraParameters.tint
 }
 
 /**
