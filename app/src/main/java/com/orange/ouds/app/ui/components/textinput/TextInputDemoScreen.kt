@@ -147,7 +147,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
-            error = if (error) { OudsError(errorDescription) } else null,
+            error = if (error) OudsError(errorDescription) else null,
             prefix = prefix,
             suffix = suffix,
             helperText = helperText,

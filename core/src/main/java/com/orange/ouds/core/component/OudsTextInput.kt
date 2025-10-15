@@ -127,7 +127,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicates that the user input does not meet
+ * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicate that the user input does not meet
  *   validation rules or expected formatting, `null` otherwise.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
@@ -256,7 +256,7 @@ fun OudsTextInput(
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicates that the user input does not meet
+ * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicate that the user input does not meet
  *   validation rules or expected formatting, `null` otherwise.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
@@ -379,7 +379,7 @@ fun OudsTextInput(
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicates that the user input does not meet
+ * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicate that the user input does not meet
  *   validation rules or expected formatting, `null` otherwise.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
