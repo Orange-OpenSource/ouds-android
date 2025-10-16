@@ -102,3 +102,10 @@ OudsThemeTweak(tweak = OudsTheme.Tweak.ForceDark) {
 
 If you want to use a custom theme, you can create your own `OudsThemeContract` implementation or extend `OrangeTheme` to create a customized theme close to that
 of Orange.
+
+## Data privacy
+
+The Orange Unified Design System library is an SDK that allows a developer to create Orange branded mobile application. As such:
+
+- this SDK does not handle any personal data.
+- this SDK does not require any device permission to work.
