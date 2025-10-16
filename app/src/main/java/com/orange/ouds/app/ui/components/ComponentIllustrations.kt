@@ -166,7 +166,7 @@ fun TextInputIllustration() = ComponentIllustration {
         modifier = Modifier.padding(horizontal = 12.dp),
         textFieldState = rememberTextFieldState(),
         label = stringResource(id = R.string.app_components_common_label_label),
-        helperText = stringResource(id = R.string.app_components_textInput_illustration_helperText_label)
+        helperText = stringResource(id = R.string.app_components_textInputHelperText_label)
     )
 }
 

@@ -132,6 +132,7 @@
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_textAndIconLayout_label">Text + icon</string>
     <string name="app_components_common_version_label">Component design version</string>
+    <string name="app_components_textInputHelperText_label">Helper text.</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label">Badge</string>
@@ -221,7 +222,6 @@
     <string name="app_components_textInput_placeholder_label">Placeholder</string>
     <string name="app_components_textInput_errorDescription_label">Error description</string>
     <string name="app_components_textInput_helperLink_label">Helper link</string>
-    <string name="app_components_textInput_illustration_helperText_label">Helper text.</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>

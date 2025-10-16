@@ -115,7 +115,6 @@
     <string name="app_components_common_layout_label">التخطيط</string>
     <string name="app_components_common_loader_label">Loader</string>
     <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
-
     <string name="app_components_common_outlined_label">مخطط</string>
     <string name="app_components_common_readOnly_label">للقراءة فقط</string>
     <string name="app_components_common_size_label">الحجم</string>
@@ -123,6 +122,7 @@
     <string name="app_components_common_textAndIconLayout_label">رمز + نص</string>
     <string name="app_components_common_textOnlyLayout_label">نص فقط</string>
     <string name="app_components_common_version_label">Component design version</string>
+    <string name="app_components_textInputHelperText_label">Helper text.</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label">شارة</string>
@@ -212,7 +212,6 @@
     <string name="app_components_textInput_placeholder_label">Placeholder</string>
     <string name="app_components_textInput_errorDescription_label">Error description</string>
     <string name="app_components_textInput_helperLink_label">Helper link</string>
-    <string name="app_components_textInput_illustration_helperText_label">Helper text.</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
