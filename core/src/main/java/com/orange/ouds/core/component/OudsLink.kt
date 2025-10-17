@@ -41,6 +41,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -281,7 +282,9 @@ private fun OudsLink(
                 modifier = Modifier.weight(1f, fill = false),
                 text = label,
                 color = contentColor.value,
-                style = textStyle
+                style = textStyle.run {
+                    copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
+                }
             )
             if (arrow == OudsLinkArrow.Next) {
                 OudsLinkIcon(painterResource(OudsTheme.drawableResources.chevronLeft)).Content(
