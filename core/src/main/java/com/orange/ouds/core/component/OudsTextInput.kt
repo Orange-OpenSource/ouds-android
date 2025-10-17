@@ -726,7 +726,7 @@ private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsT
                 !enabled -> OudsTextInputState.Disabled
                 readOnly -> OudsTextInputState.ReadOnly
                 interactionState == InteractionState.Hovered -> OudsTextInputState.Hovered
-                interactionState == InteractionState.Focused -> OudsTextInputState.Focused
+                interactionState in listOf(InteractionState.Focused, InteractionState.Pressed) -> OudsTextInputState.Focused
                 else -> OudsTextInputState.Enabled
             }
         }
