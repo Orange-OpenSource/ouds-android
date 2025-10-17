@@ -402,7 +402,7 @@ enum class OudsLinkArrow {
  */
 open class OudsLinkIcon private constructor(
     graphicsObject: Any
-) : OudsComponentIcon<ExtraParameters>(ExtraParameters::class.java, graphicsObject, "") {
+) : OudsComponentIcon<ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(

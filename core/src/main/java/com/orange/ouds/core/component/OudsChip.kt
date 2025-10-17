@@ -292,7 +292,7 @@ private fun contentPadding(label: String?, icon: OudsChipIcon?, iconPosition: Ou
 class OudsChipIcon private constructor(
     graphicsObject: Any,
     val contentDescription: String
-) : OudsComponentIcon<OudsChipIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
+) : OudsComponentIcon<OudsChipIcon.ExtraParameters, OudsChipIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(

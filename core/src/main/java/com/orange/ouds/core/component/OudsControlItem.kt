@@ -191,7 +191,7 @@ internal enum class OudsControlItemIndicatorPosition {
  */
 class OudsControlItemIcon private constructor(
     graphicsObject: Any,
-) : OudsComponentIcon<OudsControlItemIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, "") {
+) : OudsComponentIcon<OudsControlItemIcon.ExtraParameters, OudsControlItemIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(

@@ -428,8 +428,8 @@ enum class OudsTagAppearance {
  * This icon is non-clickable. No content description is needed because a tag always contains a label.
  */
 open class OudsTagIcon protected constructor(
-    graphicsObjectProvider: @Composable (ExtraParameters) -> Any,
-) : OudsComponentIcon<OudsTagIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObjectProvider, "") {
+    graphicsObjectProvider: @Composable (OudsTagIcon) -> Any,
+) : OudsComponentIcon<OudsTagIcon.ExtraParameters, OudsTagIcon>(ExtraParameters::class.java, graphicsObjectProvider, "") {
 
     /**
      * A bullet in an [OudsTag].
@@ -452,7 +452,7 @@ open class OudsTagIcon protected constructor(
     }
 
     open class Custom internal constructor(
-        graphicsObjectProvider: @Composable (ExtraParameters) -> Any,
+        graphicsObjectProvider: @Composable (OudsTagIcon) -> Any,
     ) : OudsTagIcon(graphicsObjectProvider) {
 
         /**
@@ -477,9 +477,11 @@ open class OudsTagIcon protected constructor(
         constructor(bitmap: ImageBitmap) : this({ bitmap })
     }
 
-    data object Default : OudsTagIcon({ extraParameters ->
-        (extraParameters.status as? FunctionalStatus)?.getDefaultIconPainter(extraParameters.appearance).orElse {
-            error("No default icon for status ${extraParameters.status::class.simpleName}")
+    data object Default : OudsTagIcon({ icon ->
+        with(icon.extraParameters) {
+            (status as? FunctionalStatus)?.getDefaultIconPainter(appearance).orElse {
+                error("No default icon for status ${status::class.simpleName}")
+            }
         }
     })
 
