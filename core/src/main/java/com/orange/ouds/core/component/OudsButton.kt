@@ -662,7 +662,7 @@ object OudsButtonDefaults {
 class OudsButtonIcon private constructor(
     graphicsObject: Any,
     val contentDescription: String
-) : OudsComponentIcon<OudsButtonIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
+) : OudsComponentIcon<OudsButtonIcon.ExtraParameters, OudsButtonIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(

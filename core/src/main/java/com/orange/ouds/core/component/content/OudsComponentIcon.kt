@@ -27,11 +27,11 @@ import com.orange.ouds.foundation.extensions.orElse
  *
  * @suppress
  */
-abstract class OudsComponentIcon<T> protected constructor(
+abstract class OudsComponentIcon<T, S> protected constructor(
     extraParametersClass: Class<T>,
-    private val graphicsObjectProvider: @Composable (T) -> Any,
+    private val graphicsObjectProvider: @Composable (S) -> Any,
     private val contentDescription: String
-) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters {
+) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
     protected constructor(
         extraParametersClass: Class<T>,
@@ -42,10 +42,11 @@ abstract class OudsComponentIcon<T> protected constructor(
     protected open val tint: Color?
         @Composable
         get() = null
-    
+
     private val graphicsObject: Any
         @Composable
-        get() = graphicsObjectProvider(extraParameters)
+        @Suppress("UNCHECKED_CAST")
+        get() = graphicsObjectProvider(this as S)
 
     @Composable
     override fun Content(modifier: Modifier) {
