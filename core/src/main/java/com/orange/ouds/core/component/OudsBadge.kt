@@ -74,6 +74,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * > Design version: 1.2.0
  *
  * @param modifier The [Modifier] to be applied to this badge.
+ * @param enabled Controls the enabled appearance of the badge.
  * @param status The status of this badge. The background color of the badge is based on this status.
  * @param size The size of this badge.
  *
@@ -82,6 +83,7 @@ import com.orange.ouds.theme.OudsThemeContract
 @Composable
 fun OudsBadge(
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     status: OudsBadgeStatus = OudsBadgeDefaults.Status,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
@@ -89,6 +91,7 @@ fun OudsBadge(
         count = null,
         icon = null,
         modifier = modifier,
+        enabled = enabled,
         status = status,
         size = size
     )
@@ -113,6 +116,7 @@ fun OudsBadge(
  * @param count The number displayed in the badge. Minimum and maximum values are 0 and 99 respectively.
  *   Values greater than 99 are displayed as "+99".
  * @param modifier The [Modifier] to be applied to this badge.
+ * @param enabled Controls the enabled appearance of the badge.
  * @param status The status of this badge. The background color of the badge and the number color are based on this status.
  * @param size The size of this badge. The number is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
  *
@@ -124,6 +128,7 @@ fun OudsBadge(
 fun OudsBadge(
     count: Int,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     status: OudsBadgeStatus = OudsBadgeDefaults.Status,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
@@ -131,6 +136,7 @@ fun OudsBadge(
         count = count,
         icon = null,
         modifier = modifier,
+        enabled = enabled,
         status = status,
         size = size
     )
@@ -154,6 +160,7 @@ fun OudsBadge(
  *
  * @param icon The icon displayed in the badge.
  * @param modifier The [Modifier] to be applied to this badge.
+ * @param enabled Controls the enabled appearance of the badge.
  * @param status The status of this badge. The background color of the badge and the icon color are based on this status.
  * @param size The size of this badge. The icon is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
  *
@@ -163,6 +170,7 @@ fun OudsBadge(
 fun OudsBadge(
     icon: OudsBadgeIcon,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     status: OudsBadgeStatus = OudsBadgeDefaults.Status,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
@@ -170,6 +178,7 @@ fun OudsBadge(
         count = null,
         icon = icon,
         modifier = modifier,
+        enabled = enabled,
         status = status,
         size = size
     )
@@ -180,6 +189,7 @@ private fun OudsBadge(
     count: Int?,
     icon: OudsBadgeIcon?,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     status: OudsBadgeStatus = OudsBadgeDefaults.Status,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
@@ -197,7 +207,7 @@ private fun OudsBadge(
         Box(
             modifier = Modifier
                 .clip(shape = RoundedCornerShape(OudsTheme.borders.radius.pill))
-                .background(status.color)
+                .background(backgroundColor(status = status, enabled = enabled))
                 .run {
                     if (count != null && size in OudsBadgeSize.countEntries) {
                         sizeIn(minWidth = sizeDp, minHeight = sizeDp)
@@ -210,7 +220,7 @@ private fun OudsBadge(
             contentAlignment = Alignment.Center
         ) {
             val text = count?.let { if (it > OudsBadgeMaxCount) "+${OudsBadgeMaxCount}" else it.coerceAtLeast(0).toString() }
-            val contentColor = contentColor(status = status)
+            val contentColor = contentColor(status = status, enabled = enabled)
             if (size in OudsBadgeSize.countEntries && text != null) {
                 val textStyle = textStyle(size = size)
                 if (textStyle != null) {
@@ -244,15 +254,24 @@ private fun size(size: OudsBadgeSize): Dp {
 }
 
 @Composable
-private fun contentColor(status: OudsBadgeStatus): Color {
-    return when (status) {
-        OudsBadgeStatus.Neutral -> OudsTheme.colorScheme.content.inverse
-        OudsBadgeStatus.Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
-        OudsBadgeStatus.Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
-        OudsBadgeStatus.Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
-        OudsBadgeStatus.Warning -> OudsTheme.colorScheme.content.onStatus.warning.emphasized
-        OudsBadgeStatus.Negative -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
-        OudsBadgeStatus.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+private fun backgroundColor(status: OudsBadgeStatus, enabled: Boolean): Color {
+    return if (!enabled) OudsTheme.colorScheme.action.disabled else status.color
+}
+
+
+@Composable
+private fun contentColor(status: OudsBadgeStatus, enabled: Boolean): Color {
+    return if (!enabled) {
+        OudsTheme.colorScheme.content.onAction.disabled
+    } else {
+        when (status) {
+            OudsBadgeStatus.Neutral -> OudsTheme.colorScheme.content.inverse
+            OudsBadgeStatus.Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
+            OudsBadgeStatus.Positive -> OudsTheme.colorScheme.content.onStatus.positive.emphasized
+            OudsBadgeStatus.Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
+            OudsBadgeStatus.Warning -> OudsTheme.colorScheme.content.onStatus.warning.emphasized
+            OudsBadgeStatus.Negative -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
+        }
     }
 }
 
@@ -368,13 +387,7 @@ enum class OudsBadgeStatus {
      * Draws attention to important or critical information.
      * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
      */
-    Negative,
-
-    /**
-     * Indicate when the user isn’t allowed to interact with an element.
-     * They remove all interactivity from a text or icon elements.
-     */
-    Disabled;
+    Negative;
 
     /**
      * The color associated with this status.
@@ -388,7 +401,6 @@ enum class OudsBadgeStatus {
             Info -> OudsTheme.colorScheme.surface.status.info.emphasized
             Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
             Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
-            Disabled -> OudsTheme.colorScheme.action.disabled
         }
 }
 
@@ -441,7 +453,8 @@ internal fun PreviewOudsBadge(theme: OudsThemeContract, darkThemeEnabled: Boolea
                         )
                     },
                     status = status,
-                    size = size
+                    size = size,
+                    enabled = enabled
                 )
             }
         }
@@ -449,7 +462,8 @@ internal fun PreviewOudsBadge(theme: OudsThemeContract, darkThemeEnabled: Boolea
 
 internal data class OudsBadgePreviewParameter(
     val count: Int?,
-    val icon: ImageVector?
+    val icon: ImageVector?,
+    val enabled: Boolean = true
 )
 
 internal class OudsBadgePreviewParameterProvider : BasicPreviewParameterProvider<OudsBadgePreviewParameter>(*previewParameterValues.toTypedArray())
@@ -460,5 +474,6 @@ private val previewParameterValues: List<OudsBadgePreviewParameter>
         OudsBadgePreviewParameter(1, null),
         OudsBadgePreviewParameter(99, null),
         OudsBadgePreviewParameter(100, null),
-        OudsBadgePreviewParameter(null, Icons.Filled.FavoriteBorder)
+        OudsBadgePreviewParameter(null, Icons.Filled.FavoriteBorder),
+        OudsBadgePreviewParameter(27, null, false),
     )
