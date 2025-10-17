@@ -592,7 +592,7 @@ private fun OudsTextInputDecorator(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
                     ) {
-                        if (!prefix.isNullOrBlank()) {
+                        if (!prefix.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused)) {
                             PrefixSuffixText(
                                 modifier = Modifier.semantics {
                                     if (value.isEmpty()) hideFromAccessibility()
@@ -625,7 +625,7 @@ private fun OudsTextInputDecorator(
                             }
                             innerTextField()
                         }
-                        if (!suffix.isNullOrBlank()) {
+                        if (!suffix.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused)) {
                             PrefixSuffixText(
                                 modifier = Modifier.semantics {
                                     if (value.isEmpty()) hideFromAccessibility()
