@@ -29,7 +29,7 @@ import com.orange.ouds.foundation.extensions.orElse
  */
 abstract class OudsComponentIcon<T> protected constructor(
     extraParametersClass: Class<T>,
-    private val graphicsObjectProvider: @Composable () -> Any,
+    private val graphicsObjectProvider: @Composable (T) -> Any,
     private val contentDescription: String
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters {
 
@@ -45,7 +45,7 @@ abstract class OudsComponentIcon<T> protected constructor(
     
     private val graphicsObject: Any
         @Composable
-        get() = graphicsObjectProvider()
+        get() = graphicsObjectProvider(extraParameters)
 
     @Composable
     override fun Content(modifier: Modifier) {

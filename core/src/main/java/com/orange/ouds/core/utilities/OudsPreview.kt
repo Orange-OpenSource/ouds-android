@@ -101,6 +101,43 @@ internal fun <T> getPreviewEnumEntry(): T? {
 }
 
 @Composable
+internal fun <T, S> PreviewGrid(
+    columns: List<T>,
+    rows: List<S>,
+    columnTitle: (T) -> String,
+    rowTitle: (S) -> String,
+    content: @Composable (T, S) -> Unit
+) {
+    val space = 16.dp
+    val columnCount = columns.count()
+    val rowCount = rows.count()
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(1 + columnCount),
+        contentPadding = PaddingValues(all = space),
+        horizontalArrangement = Arrangement.spacedBy(space),
+        verticalArrangement = Arrangement.spacedBy(space)
+    ) {
+        repeat(1 + rowCount) { rowIndex ->
+            repeat(1 + columnCount) { columnIndex ->
+                val row = rows.getOrNull(rowIndex - 1)
+                val column = columns.getOrNull(columnIndex - 1)
+                item {
+                    when {
+                        row == null && column != null -> DimensionTitle(columnTitle(column))
+                        row != null && column == null -> DimensionTitle(rowTitle(row))
+                        row != null && column != null -> {
+                            Box {
+                                content(column, row)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
 internal inline fun <reified T> PreviewEnumEntries(
     columnCount: Int = enumEntries<T>().count(),
     crossinline content: @Composable (T) -> Unit
@@ -113,9 +150,9 @@ internal inline fun <reified T> PreviewEnumEntries(
                 val columnEnumEntries = chunkedEnumEntries.mapNotNull { it.getOrNull(columnIndex) }
                 Column {
                     columnEnumEntries.forEachIndexed { rowIndex, enumEntry ->
-                        EnumEntryName(
+                        DimensionTitle(
                             modifier = Modifier.padding(top = if (rowIndex == 0) 0.dp else space, bottom = 8.dp),
-                            enumEntry = enumEntry
+                            title = enumEntry.name
                         )
                         CompositionLocalProvider(LocalPreviewEnumEntry provides enumEntry) {
                             content(enumEntry)
@@ -128,41 +165,21 @@ internal inline fun <reified T> PreviewEnumEntries(
 }
 
 @Composable
-internal inline fun <reified T, reified S> PreviewEnumEntries(crossinline content: @Composable (T, S) -> Unit) where T : Enum<T>, S : Enum<S> {
-    val space = 16.dp
-    val columnCount = enumEntries<T>().count()
-    val rowCount = enumEntries<S>().count()
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(1 + columnCount),
-        contentPadding = PaddingValues(all = space),
-        horizontalArrangement = Arrangement.spacedBy(space),
-        verticalArrangement = Arrangement.spacedBy(space)
-    ) {
-        repeat(1 + rowCount) { rowIndex ->
-            repeat(1 + columnCount) { columnIndex ->
-                val rowEnumEntry = enumEntries<S>().getOrNull(rowIndex - 1)
-                val columnEnumEntry = enumEntries<T>().getOrNull(columnIndex - 1)
-                item {
-                    when {
-                        rowEnumEntry == null && columnEnumEntry != null -> EnumEntryName(columnEnumEntry)
-                        rowEnumEntry != null && columnEnumEntry == null -> EnumEntryName(rowEnumEntry)
-                        rowEnumEntry != null && columnEnumEntry != null -> {
-                            Box {
-                                content(columnEnumEntry, rowEnumEntry)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+internal inline fun <reified T, reified S> PreviewEnumEntries(noinline content: @Composable (T, S) -> Unit) where T : Enum<T>, S : Enum<S> {
+    PreviewGrid(
+        columns = enumEntries<T>(),
+        rows = enumEntries<S>(),
+        columnTitle = { it.name },
+        rowTitle = { it.name },
+        content = content
+    )
 }
 
 @Composable
-private fun <T> EnumEntryName(enumEntry: T, modifier: Modifier = Modifier) where T : Enum<T> {
+private fun <T> DimensionTitle(title: String, modifier: Modifier = Modifier) where T : Enum<T> {
     Text(
         modifier = modifier,
-        text = enumEntry.name,
+        text = title,
         color = OudsTheme.colorScheme.content.default,
         fontFamily = FontFamily.Monospace,
         fontSize = 10.sp

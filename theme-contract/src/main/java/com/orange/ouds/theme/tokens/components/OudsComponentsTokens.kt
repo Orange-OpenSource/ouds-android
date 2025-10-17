@@ -20,6 +20,7 @@ interface OudsComponentsTokens {
     val chip: OudsChipTokens
     val controlItem: OudsControlItemTokens
     val divider: OudsDividerTokens
+    val icon: OudsIconTokens
     val inputTag: OudsInputTagTokens
     val link: OudsLinkTokens
     val linkMonochrome: OudsLinkMonoTokens

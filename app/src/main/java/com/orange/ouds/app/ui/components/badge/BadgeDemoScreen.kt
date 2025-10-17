@@ -36,7 +36,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.formattedName
+import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
@@ -70,7 +70,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_size_label),
-            chips = OudsBadgeSize.entries.map { CustomizationFilterChip(it.formattedName, enabled = it in enabledSizes) },
+            chips = OudsBadgeSize.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = it in enabledSizes) },
             selectedChipIndex = OudsBadgeSize.entries.indexOf(size),
             onSelectionChange = { id -> size = OudsBadgeSize.entries[id] }
         )
@@ -80,7 +80,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
             label = stringResource(id = R.string.app_components_common_status_label),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
-                    label = status.formattedName,
+                    label = status.name.toSentenceCase(),
                     leadingIcon = {
                         Box(
                             modifier = Modifier

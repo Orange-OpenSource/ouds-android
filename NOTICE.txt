@@ -72,17 +72,27 @@ theme-contract/src/main/res/drawable/ic_checkbox_indeterminate.xml
 theme-contract/src/main/res/drawable/ic_checkbox_selected.xml
 theme-contract/src/main/res/drawable/ic_chevron_left.xml
 theme-contract/src/main/res/drawable/ic_delete.xml
+theme-contract/src/main/res/drawable/ic_important.xml
+theme-contract/src/main/res/drawable/ic_information.xml
 theme-contract/src/main/res/drawable/ic_radio_button_selected.xml
+theme-contract/src/main/res/drawable/ic_success.xml
 theme-contract/src/main/res/drawable/ic_switch_selected.xml
 theme-contract/src/main/res/drawable/ic_tick.xml
+theme-contract/src/main/res/drawable/ic_warning_external_shape.xml
+theme-contract/src/main/res/drawable/ic_warning_internal_shape.xml
 
 theme-sosh/src/main/res/drawable/sosh_checkbox_indeterminate.xml
 theme-sosh/src/main/res/drawable/sosh_checkbox_selected.xml
 theme-sosh/src/main/res/drawable/sosh_chevron_left.xml
 theme-sosh/src/main/res/drawable/sosh_delete.xml
+theme-sosh/src/main/res/drawable/sosh_important.xml
+theme-sosh/src/main/res/drawable/sosh_information.xml
 theme-sosh/src/main/res/drawable/sosh_radio_button_selected.xml
+theme-sosh/src/main/res/drawable/sosh_success.xml
 theme-sosh/src/main/res/drawable/sosh_switch_selected.xml
 theme-sosh/src/main/res/drawable/sosh_tick.xml
+theme-sosh/src/main/res/drawable/sosh_warning_external_shape.xml
+theme-sosh/src/main/res/drawable/sosh_warning_internal_shape.xml
 theme-sosh/src/main/res/font/sosh_black.ttf
 theme-sosh/src/main/res/font/sosh_bold.ttf
 theme-sosh/src/main/res/font/sosh_medium.ttf
@@ -92,9 +102,14 @@ theme-sosh/src/main/res/font/sosh_thin.ttf
 theme-wireframe/src/main/res/drawable/wireframe_checkbox_indeterminate.xml
 theme-wireframe/src/main/res/drawable/wireframe_checkbox_selected.xml
 theme-wireframe/src/main/res/drawable/wireframe_chevron_left.xml
+theme-wireframe/src/main/res/drawable/wireframe_important.xml
+theme-wireframe/src/main/res/drawable/wireframe_information.xml
 theme-wireframe/src/main/res/drawable/wireframe_radio_button_selected.xml
+theme-wireframe/src/main/res/drawable/wireframe_success.xml
 theme-wireframe/src/main/res/drawable/wireframe_switch_selected.xml
 theme-wireframe/src/main/res/drawable/wireframe_tick.xml
+theme-wireframe/src/main/res/drawable/wireframe_warning_external_shape.xml
+theme-wireframe/src/main/res/drawable/wireframe_warning_internal_shape.xml
   
 End of the parts list under Orange SA Copyright
 

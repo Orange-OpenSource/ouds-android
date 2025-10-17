@@ -12,19 +12,30 @@
 
 package com.orange.ouds.theme.wireframe
 
+import androidx.annotation.DrawableRes
 import com.orange.ouds.theme.OudsDrawableResources
 
 class WireframeDrawableResources : OudsDrawableResources() {
     override val checkboxIndeterminate
-        get() = R.drawable.wireframe_checkbox_indeterminate
+        @DrawableRes get() = R.drawable.wireframe_checkbox_indeterminate
     override val checkboxSelected: Int
-        get() = R.drawable.wireframe_checkbox_selected
+        @DrawableRes get() = R.drawable.wireframe_checkbox_selected
     override val chevronLeft: Int
-        get() = R.drawable.wireframe_chevron_left
-    override val tick: Int
-        get() = R.drawable.wireframe_tick
+        @DrawableRes get() = R.drawable.wireframe_chevron_left
+    override val important: Int
+        @DrawableRes get() = R.drawable.wireframe_important
+    override val information: Int
+        @DrawableRes get() = R.drawable.wireframe_information
     override val radioButtonSelected: Int
-        get() = R.drawable.wireframe_radio_button_selected
+        @DrawableRes get() = R.drawable.wireframe_radio_button_selected
+    override val success: Int
+        @DrawableRes get() = R.drawable.wireframe_success
     override val switchSelected: Int
-        get() = R.drawable.wireframe_switch_selected
+        @DrawableRes get() = R.drawable.wireframe_switch_selected
+    override val tick: Int
+        @DrawableRes get() = R.drawable.wireframe_tick
+    override val warningExternalShape: Int
+        @DrawableRes get() = R.drawable.wireframe_warning_external_shape
+    override val warningInternalShape: Int
+        @DrawableRes get() = R.drawable.wireframe_warning_internal_shape
 }

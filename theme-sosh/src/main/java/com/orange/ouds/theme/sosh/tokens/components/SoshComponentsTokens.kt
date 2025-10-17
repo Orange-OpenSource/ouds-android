@@ -20,6 +20,7 @@ import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
+import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
@@ -35,10 +36,11 @@ data class SoshComponentsTokens(
     override val chip: OudsChipTokens = SoshChipTokens(),
     override val controlItem: OudsControlItemTokens = SoshControlItemTokens(),
     override val divider: OudsDividerTokens = SoshDividerTokens(),
+    override val icon: OudsIconTokens = SoshIconTokens(),
+    override val inputTag: OudsInputTagTokens = SoshInputTagTokens(),
     override val link: OudsLinkTokens = SoshLinkTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = SoshLinkMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = SoshRadioButtonTokens(),
     override val switch: OudsSwitchTokens = SoshSwitchTokens(),
     override val tag: OudsTagTokens = SoshTagTokens(),
-    override val inputTag: OudsInputTagTokens = SoshInputTagTokens()
 ) : OudsComponentsTokens

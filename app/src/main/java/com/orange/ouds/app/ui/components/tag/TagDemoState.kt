@@ -21,33 +21,35 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagDefaults
-import com.orange.ouds.core.component.OudsTagHierarchy
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
-
+import kotlin.reflect.full.createInstance
 
 @Composable
 fun rememberTagDemoState(
     label: String = stringResource(id = R.string.app_components_tag_label),
-    hierarchy: OudsTagHierarchy = OudsTagDefaults.Hierarchy,
+    appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     layout: TagDemoState.Layout = TagDemoState.Layout.TextOnly,
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
     status: OudsTagStatus = OudsTagDefaults.Status,
-    hasLoader: Boolean = false
-) = rememberSaveable(label, hierarchy, layout, roundedCorners, size, status, hasLoader, saver = TagDemoState.Saver) {
-    TagDemoState(label, hierarchy, layout, roundedCorners, size, status, hasLoader)
+    hasLoader: Boolean = false,
+    enabled: Boolean = true
+) = rememberSaveable(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, saver = TagDemoState.Saver) {
+    TagDemoState(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled)
 }
 
 class TagDemoState(
     label: String,
-    hierarchy: OudsTagHierarchy,
+    appearance: OudsTagAppearance,
     layout: Layout,
     roundedCorners: Boolean,
     size: OudsTagSize,
     status: OudsTagStatus,
-    hasLoader: Boolean
+    hasLoader: Boolean,
+    enabled: Boolean
 ) {
 
     companion object {
@@ -57,24 +59,29 @@ class TagDemoState(
                 with(state) {
                     listOf(
                         label,
-                        hierarchy,
+                        appearance,
                         layout,
                         roundedCorners,
                         size,
-                        status,
-                        hasLoader
+                        status::class.java.name,
+                        hasLoader,
+                        enabled
                     )
                 }
             },
             restore = { list: List<Any?> ->
+                val statusName = list[5] as String
+                val status = Class.forName(statusName).kotlin.createInstance() as OudsTagStatus
+
                 TagDemoState(
                     list[0] as String,
-                    list[1] as OudsTagHierarchy,
+                    list[1] as OudsTagAppearance,
                     list[2] as Layout,
                     list[3] as Boolean,
                     list[4] as OudsTagSize,
-                    list[5] as OudsTagStatus,
-                    list[6] as Boolean
+                    status,
+                    list[6] as Boolean,
+                    list[7] as Boolean
                 )
             }
         )
@@ -82,7 +89,7 @@ class TagDemoState(
 
     var label: String by mutableStateOf(label)
 
-    var hierarchy: OudsTagHierarchy by mutableStateOf(hierarchy)
+    var appearance: OudsTagAppearance by mutableStateOf(appearance)
 
     var layout: Layout by mutableStateOf(layout)
 
@@ -94,8 +101,13 @@ class TagDemoState(
 
     var hasLoader: Boolean by mutableStateOf(hasLoader)
 
+    var enabled: Boolean by mutableStateOf(enabled)
+
+    val enabledSwitchEnabled: Boolean
+        get() = !hasLoader
+
     val loaderSwitchEnabled: Boolean
-        get() = status != OudsTagStatus.Disabled
+        get() = enabled
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),
