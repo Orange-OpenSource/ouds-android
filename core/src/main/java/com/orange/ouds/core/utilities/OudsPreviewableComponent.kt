@@ -45,6 +45,8 @@ import com.orange.ouds.core.component.OudsSwitchItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSwitchPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTagPreviewParameter
 import com.orange.ouds.core.component.OudsTagPreviewParameterProvider
+import com.orange.ouds.core.component.OudsTextInputPreviewParameter
+import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsButton
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
@@ -67,6 +69,9 @@ import com.orange.ouds.core.component.PreviewOudsSwitch
 import com.orange.ouds.core.component.PreviewOudsSwitchItem
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongHelperText
 import com.orange.ouds.core.component.PreviewOudsTag
+import com.orange.ouds.core.component.PreviewOudsTextInput
+import com.orange.ouds.core.component.PreviewOudsTextInputWithLongLabels
+import com.orange.ouds.core.component.PreviewOudsTextInputWithRoundedCorners
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -100,7 +105,7 @@ interface OudsPreviewableComponent {
 
     object Button {
 
-        object Parameterized : OudsPreviewableComponent {
+        object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsButtonPreviewParameterProvider().values.toList()
 
@@ -114,7 +119,7 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object NonParameterized : OudsPreviewableComponent {
+        object WithRoundedCorners : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -129,7 +134,7 @@ interface OudsPreviewableComponent {
 
     object CheckboxItem {
 
-        object Parameterized : OudsPreviewableComponent {
+        object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsCheckboxItemPreviewParameterProvider().values.toList()
 
@@ -144,7 +149,7 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object ParameterizedHighContrastMode : OudsPreviewableComponent {
+        object HighContrastModeEnabled : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsCheckboxItemHighContrastModePreviewParameterProvider().values.toList()
 
@@ -161,7 +166,7 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
         }
 
-        object NonParameterized : OudsPreviewableComponent {
+        object WithLongHelperText : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -249,7 +254,7 @@ interface OudsPreviewableComponent {
 
     object Link {
 
-        object Parameterized : OudsPreviewableComponent {
+        object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsLinkPreviewParameterProvider().values.toList()
 
@@ -263,7 +268,7 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object NonParameterized : OudsPreviewableComponent {
+        object OnTwoLines : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -278,7 +283,7 @@ interface OudsPreviewableComponent {
 
     object RadioButtonItem {
 
-        object Parameterized : OudsPreviewableComponent {
+        object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsRadioButtonItemPreviewParameterProvider().values.toList()
 
@@ -293,7 +298,7 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object ParameterizedHighContrastMode : OudsPreviewableComponent {
+        object HighContrastModeEnabled : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsRadioButtonItemHighContrastModePreviewParameterProvider().values.toList()
 
@@ -310,7 +315,7 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
         }
 
-        object NonParameterized : OudsPreviewableComponent {
+        object WithLongHelperText : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -356,7 +361,7 @@ interface OudsPreviewableComponent {
 
     object SwitchItem {
 
-        object Parameterized : OudsPreviewableComponent {
+        object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = OudsSwitchItemPreviewParameterProvider().values.toList()
 
@@ -371,7 +376,7 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object NonParameterized : OudsPreviewableComponent {
+        object WithLongHelperText : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
@@ -409,6 +414,49 @@ interface OudsPreviewableComponent {
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsTagPreviewParameter
             )
+        }
+    }
+
+    object TextInput {
+
+        const val PreviewHeightDp = 1100
+
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsTextInputPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextInput(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTextInputPreviewParameter
+                )
+            }
+        }
+
+        object WithRoundedCorners : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextInputWithRoundedCorners(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object WithLongLabels : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextInputWithLongLabels(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

@@ -140,7 +140,6 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             onSelectionChange = { id -> size = OudsTagSize.entries[id] }
         )
         CustomizationTextField(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }

@@ -53,14 +53,13 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
         val extraCustomizations = listOf(
             controlItemCustomization(2) {
                 CustomizationSwitchItem(
-                    label = stringResource(R.string.app_components_radioButton_radioButtonItem_outlined_label),
+                    label = stringResource(R.string.app_components_common_outlined_label),
                     checked = outlined,
                     onCheckedChange = { outlined = it },
                 )
             },
             controlItemCustomization(8) {
                 CustomizationTextField(
-                    applyTopPadding = true,
                     label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
                     value = additionalLabel.orEmpty(),
                     onValueChange = { value -> additionalLabel = value }

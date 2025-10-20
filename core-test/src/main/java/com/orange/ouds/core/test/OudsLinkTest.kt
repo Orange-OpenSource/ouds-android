@@ -15,25 +15,26 @@ package com.orange.ouds.core.test
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
 class OudsLinkTest {
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.Link.Parameterized,
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Link.Default,
         parameter,
         OudsComponentTestSuite.theme
     ) {
         companion object {
             @JvmStatic
-            @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.Link.Parameterized.parameters
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Link.Default.parameters
         }
     }
 
-    class NonParameterized : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.Link.NonParameterized,
+    class OnTwoLines : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Link.OnTwoLines,
         parameter = null,
         OudsComponentTestSuite.theme
     )

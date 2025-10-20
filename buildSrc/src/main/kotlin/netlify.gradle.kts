@@ -14,7 +14,6 @@ import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.gitHubRestApi
 import com.orange.ouds.gradle.requireTypedProperty
-import org.gradle.process.internal.ExecException
 
 // This string is prepended to the Netlify comment and is used to retrieve and update the comment instead of creating another one
 private val netlifyCommentPreamble = "<!-- Netlify comment -->"
@@ -33,7 +32,7 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
 
         val output = try {
             execute("npx", *args.toTypedArray(), logLevel = LogLevel.LIFECYCLE)
-        } catch (exception: ExecException) {
+        } catch (exception: ProcessExecutionException) {
             logger.lifecycle(exception.stackTraceToString())
             null
         }

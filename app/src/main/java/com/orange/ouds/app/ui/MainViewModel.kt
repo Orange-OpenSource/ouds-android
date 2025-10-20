@@ -25,7 +25,8 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
 
     companion object {
         private const val USER_THEME_NAME_KEY = "userThemeName"
-        private const val USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY = "userThemeSettingsRoundedButtonCorners"
+        private const val USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY = "userThemeSettingsRoundedCornerButtons"
+        private const val USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY = "userThemeSettingsRoundedCornerTextInputs"
     }
 
     fun storeUserThemeName(themeName: String) = runBlocking {
@@ -37,11 +38,14 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
     }
 
     fun storeUserThemeSettings(themeSettings: OudsThemeSettings) = runBlocking {
-        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY, themeSettings.roundedCornerButtons)
+        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY, themeSettings.roundedCornerButtons)
+        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY, themeSettings.roundedCornerTextInputs)
     }
 
     fun getUserThemeSettings(): OudsThemeSettings? = runBlocking {
-        dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_BUTTON_CORNERS_KEY)
-            ?.let { OudsThemeSettings(roundedCornerButtons = it) }
+        OudsThemeSettings(
+            roundedCornerButtons = dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY),
+            roundedCornerTextInputs = dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY)
+        )
     }
 }

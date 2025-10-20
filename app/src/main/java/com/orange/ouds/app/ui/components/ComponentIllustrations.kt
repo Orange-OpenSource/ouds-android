@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -43,6 +44,7 @@ import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 
 @Composable
@@ -156,6 +158,16 @@ fun SwitchIllustration() = ComponentIllustration {
 @Composable
 fun TagIllustration() = ComponentIllustration {
     OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTagStatus.Positive())
+}
+
+@Composable
+fun TextInputIllustration() = ComponentIllustration {
+    OudsTextInput(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        textFieldState = rememberTextFieldState(),
+        label = stringResource(id = R.string.app_components_common_label_label),
+        helperText = stringResource(id = R.string.app_components_textInputHelperText_label)
+    )
 }
 
 @Composable

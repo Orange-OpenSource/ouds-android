@@ -20,9 +20,9 @@ import org.junit.runners.Parameterized
 @RunWith(Enclosed::class)
 class OudsButtonTest {
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.Button.Parameterized,
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Button.Default,
         parameter,
         OudsComponentTestSuite.theme
     ) {
@@ -30,12 +30,12 @@ class OudsButtonTest {
         companion object {
             @JvmStatic
             @Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.Button.Parameterized.parameters
+            internal fun data() = OudsPreviewableComponent.Button.Default.parameters
         }
     }
 
-    class NonParameterized : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.Button.NonParameterized,
+    class WithRoundedCorners : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Button.WithRoundedCorners,
         parameter = null,
         OudsComponentTestSuite.theme
     )

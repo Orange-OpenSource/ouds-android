@@ -29,7 +29,6 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,7 +38,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
@@ -88,7 +86,8 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -141,7 +140,8 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -195,7 +195,8 @@ fun OudsButton(
  * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -621,27 +622,8 @@ private fun ProgressIndicator(appearance: OudsButtonAppearance, progress: Float?
         .size(OudsTheme.componentsTokens.button.sizeLoader.value * scale)
         .semantics { hideFromAccessibility() }
     val color = contentColor(appearance = appearance, state = OudsButtonState.Loading)
-    val strokeWidth = 3.dp * scale
-    val trackColor = Color.Transparent
-    val strokeCap = StrokeCap.Square
-    if (progress != null) {
-        CircularProgressIndicator(
-            progress = { progress },
-            modifier = modifier,
-            color = color,
-            strokeWidth = strokeWidth,
-            trackColor = trackColor,
-            strokeCap = strokeCap
-        )
-    } else {
-        CircularProgressIndicator(
-            modifier = modifier,
-            color = color,
-            strokeWidth = strokeWidth,
-            trackColor = trackColor,
-            strokeCap = strokeCap
-        )
-    }
+
+    OudsCircularProgressIndicator(modifier = modifier, color = color, progress = progress, scale = scale)
 }
 
 /**

@@ -38,12 +38,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusProperties
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
+import com.orange.ouds.core.component.OudsTextInput
+import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
@@ -137,7 +140,6 @@ fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
-    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
@@ -145,7 +147,6 @@ fun CustomizationTextField(
     var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value)) }
 
     CustomizationTextField(
-        applyTopPadding = applyTopPadding,
         label = label,
         value = textFieldValue,
         onValueChange = { newTextFieldValue ->
@@ -154,7 +155,7 @@ fun CustomizationTextField(
         },
         modifier = modifier,
         enabled = enabled,
-        keyboardOptions = keyboardOptions
+        keyboardOptions = keyboardOptions,
     )
 }
 
@@ -163,31 +164,30 @@ fun CustomizationTextField(
     label: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
-    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
-    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
-
-    Column(
+    OudsTextInput(
         modifier = modifier
             .fillMaxWidth()
-            .semantics(mergeDescendants = true) {}
-    ) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
-        TextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
-            value = value,
-            onValueChange = onValueChange,
-            enabled = enabled,
-            keyboardOptions = keyboardOptions,
-            singleLine = true,
-            textStyle = valueLabelTextStyle
-        )
-    }
+            .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
+        value = value,
+        onValueChange = onValueChange,
+        label = label,
+        enabled = enabled,
+        keyboardOptions = keyboardOptions,
+        trailingIconButton = if (value.text.isNotEmpty()) {
+            OudsTextInputTrailingIconButton(
+                painter = painterResource(com.orange.ouds.theme.R.drawable.ic_delete),
+                contentDescription = "",
+                onClick = {
+                    onValueChange(value.copy(text = ""))
+                })
+        } else {
+            null
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
