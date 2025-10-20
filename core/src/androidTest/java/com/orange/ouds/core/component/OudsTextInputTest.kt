@@ -132,7 +132,7 @@ internal class OudsTextInputTest {
             onNodeWithText(label).assertIsNotDisplayed()
         }
     }
-    
+
     @Test
     fun oudsTextInput_withLabelAndPlaceholder_labelAndPlaceholderDisplayed() {
         with(composeTestRule) {
@@ -205,7 +205,42 @@ internal class OudsTextInputTest {
     }
 
     @Test
-    fun oudsTextInput_withPrefix_prefixDisplayed() {
+    fun oudsTextInput_withPrefixAndValue_prefixDisplayed() {
+        with(composeTestRule) {
+            val prefix = "Prefix"
+
+            setOudsContent {
+                OudsTextInput(
+                    value = "value",
+                    onValueChange = {},
+                    prefix = prefix
+                )
+            }
+
+            onNodeWithText(prefix).assertIsDisplayed()
+        }
+    }
+
+    @Test
+    fun oudsTextInput_withPrefixAndPlaceholder_prefixDisplayed() {
+        with(composeTestRule) {
+            val prefix = "Prefix"
+
+            setOudsContent {
+                OudsTextInput(
+                    value = "",
+                    placeholder = "Placeholder",
+                    onValueChange = {},
+                    prefix = prefix
+                )
+            }
+
+            onNodeWithText(prefix).assertIsDisplayed()
+        }
+    }
+
+    @Test
+    fun oudsTextInput_withPrefixWithoutValueNorPlaceholder_prefixNotDisplayed() {
         with(composeTestRule) {
             val prefix = "Prefix"
 
@@ -217,12 +252,12 @@ internal class OudsTextInputTest {
                 )
             }
 
-            onNodeWithText(prefix).assertIsDisplayed()
+            onNodeWithText(prefix).assertIsNotDisplayed()
         }
     }
 
     @Test
-    fun oudsTextInput_withPrefix_prefixNotDisplayed() {
+    fun oudsTextInput_withBlankPrefix_prefixNotDisplayed() {
         with(composeTestRule) {
             val prefix = "   "
 
@@ -239,13 +274,13 @@ internal class OudsTextInputTest {
     }
 
     @Test
-    fun oudsTextInput_withSuffix_suffixDisplayed() {
+    fun oudsTextInput_withSuffixAndValue_suffixDisplayed() {
         with(composeTestRule) {
             val suffix = "Suffix"
 
             setOudsContent {
                 OudsTextInput(
-                    value = "",
+                    value = "value",
                     onValueChange = {},
                     suffix = suffix
                 )
@@ -256,7 +291,43 @@ internal class OudsTextInputTest {
     }
 
     @Test
-    fun oudsTextInput_withSuffix_suffixNotDisplayed() {
+    fun oudsTextInput_withSuffixAndPlaceholder_suffixDisplayed() {
+        with(composeTestRule) {
+            val suffix = "Suffix"
+
+            setOudsContent {
+                OudsTextInput(
+                    value = "",
+                    placeholder = "Placeholder",
+                    onValueChange = {},
+                    suffix = suffix
+                )
+            }
+
+            onNodeWithText(suffix).assertIsDisplayed()
+        }
+    }
+
+    @Test
+    fun oudsTextInput_withSuffixWithoutValueNorPlaceholder_suffixNotDisplayed() {
+        with(composeTestRule) {
+            val suffix = "Suffix"
+
+            setOudsContent {
+                OudsTextInput(
+                    value = "",
+                    placeholder = "",
+                    onValueChange = {},
+                    suffix = suffix
+                )
+            }
+
+            onNodeWithText(suffix).assertIsNotDisplayed()
+        }
+    }
+
+    @Test
+    fun oudsTextInput_withBlankSuffix_suffixNotDisplayed() {
         with(composeTestRule) {
             val suffix = "   "
 
