@@ -293,3 +293,9 @@ private fun DrawScope.drawOuterBorder(width: Dp, color: Color, shape: Shape) {
         }
     }
 }
+
+/**
+ * Returns [this] if it is not equal to [Dp.Hairline], otherwise returns `null`.
+ */
+val Dp.takeUnlessHairline: Dp?
+    get() = takeUnless { it == Dp.Hairline }

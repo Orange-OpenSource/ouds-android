@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -144,9 +145,10 @@ fun OudsRadioButtonItem(
 @Composable
 private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlItemState): Modifier {
     val borderColor = outlineBorderColor(state, selected, error)
-
-    return if (outlined && borderColor != null) {
-        border(width = OudsTheme.borders.width.default, color = borderColor)
+    val width = OudsTheme.borders.width.default.takeUnlessHairline
+    
+    return if (outlined && borderColor != null && width != null) {
+        border(width = width, color = borderColor)
     } else {
         this
     }

@@ -43,6 +43,7 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
@@ -154,16 +155,19 @@ internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean
 
 @Composable
 private fun Modifier.indicatorBorder(state: OudsControlState, selected: Boolean, error: Boolean): Modifier {
-    val indicatorBorderWidth = indicatorBorderWidth(state = state, selected = selected)
-    return border(
-        width = indicatorBorderWidth,
-        color = indicatorColor(state = state, selected = selected, error = error),
-        shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
-    )
+    return indicatorBorderWidth(state = state, selected = selected)?.let { indicatorBorderWidth ->
+        border(
+            width = indicatorBorderWidth,
+            color = indicatorColor(state = state, selected = selected, error = error),
+            shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
+        )
+    }.orElse {
+        this
+    }
 }
 
 @Composable
-private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp {
+private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp? {
     return with(OudsTheme.componentsTokens.radioButton) {
         when (state) {
             OudsControlState.Enabled, OudsControlState.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
@@ -171,7 +175,7 @@ private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp
             OudsControlState.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
             OudsControlState.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
         }.value
-    }
+    }.takeUnlessHairline
 }
 
 @Composable

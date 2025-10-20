@@ -83,6 +83,7 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
@@ -535,11 +536,15 @@ private fun OudsTextInputDecorator(
 
         val styleModifier = if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
             // outlined
-            Modifier.border(
-                width = borderWidth(state),
-                color = borderColor(state = state, outlined = outlined, error = hasError),
-                shape = shape
-            )
+            borderWidth(state)?.let { borderWidth ->
+                Modifier.border(
+                    width = borderWidth,
+                    color = borderColor(state = state, outlined = outlined, error = hasError),
+                    shape = shape
+                )
+            }.orElse {
+                Modifier
+            }
         } else {
             // filled
             Modifier
@@ -734,8 +739,9 @@ private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsT
 }
 
 @Composable
-private fun borderWidth(state: OudsTextInputState) = with(OudsTheme.componentsTokens.textInput) {
-    if (state == OudsTextInputState.Focused) borderWidthFocus.value else borderWidthDefault.value
+private fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.componentsTokens.textInput) {
+    val borderWidth = if (state == OudsTextInputState.Focused) borderWidthFocus else borderWidthDefault
+    return@with borderWidth.value.takeUnlessHairline
 }
 
 @Composable
@@ -794,68 +800,70 @@ private fun Modifier.bottomBorder(state: OudsTextInputState, outlined: Boolean, 
 
     return drawWithContent {
         drawContent()
-        if (cornerRadius > 0.dp) {
-            val cornerRadiusPx = cornerRadius.toPx()
-            val path = Path().apply {
-                arcTo(
-                    rect = Rect(
-                        top = size.height - 2 * cornerRadiusPx,
-                        left = 0f,
-                        bottom = size.height,
-                        right = 2 * cornerRadiusPx
-                    ),
-                    startAngleDegrees = 180f,
-                    sweepAngleDegrees = -90f,
-                    forceMoveTo = false
-                )
+        if (thickness != null) {
+            if (cornerRadius > 0.dp) {
+                val cornerRadiusPx = cornerRadius.toPx()
+                val path = Path().apply {
+                    arcTo(
+                        rect = Rect(
+                            top = size.height - 2 * cornerRadiusPx,
+                            left = 0f,
+                            bottom = size.height,
+                            right = 2 * cornerRadiusPx
+                        ),
+                        startAngleDegrees = 180f,
+                        sweepAngleDegrees = -90f,
+                        forceMoveTo = false
+                    )
 
-                arcTo(
-                    rect = Rect(
-                        top = size.height - 2 * cornerRadiusPx,
-                        left = size.width - 2 * cornerRadiusPx,
-                        bottom = size.height,
-                        right = size.width,
-                    ),
-                    startAngleDegrees = 90f,
-                    sweepAngleDegrees = -90f,
-                    forceMoveTo = false
-                )
+                    arcTo(
+                        rect = Rect(
+                            top = size.height - 2 * cornerRadiusPx,
+                            left = size.width - 2 * cornerRadiusPx,
+                            bottom = size.height,
+                            right = size.width,
+                        ),
+                        startAngleDegrees = 90f,
+                        sweepAngleDegrees = -90f,
+                        forceMoveTo = false
+                    )
 
-                arcTo(
-                    rect = Rect(
-                        top = size.height - 2 * cornerRadiusPx,
-                        left = size.width - 2 * cornerRadiusPx,
-                        bottom = size.height - thickness.toPx(),
-                        right = size.width,
-                    ),
-                    startAngleDegrees = 0f,
-                    sweepAngleDegrees = 90f,
-                    forceMoveTo = false
-                )
+                    arcTo(
+                        rect = Rect(
+                            top = size.height - 2 * cornerRadiusPx,
+                            left = size.width - 2 * cornerRadiusPx,
+                            bottom = size.height - thickness.toPx(),
+                            right = size.width,
+                        ),
+                        startAngleDegrees = 0f,
+                        sweepAngleDegrees = 90f,
+                        forceMoveTo = false
+                    )
 
-                arcTo(
-                    rect = Rect(
-                        top = size.height - 2 * cornerRadiusPx,
-                        left = 0f,
-                        right = 2 * cornerRadiusPx,
-                        bottom = size.height - thickness.toPx()
-                    ),
-                    startAngleDegrees = 90f,
-                    sweepAngleDegrees = 90f,
-                    forceMoveTo = false
-                )
+                    arcTo(
+                        rect = Rect(
+                            top = size.height - 2 * cornerRadiusPx,
+                            left = 0f,
+                            right = 2 * cornerRadiusPx,
+                            bottom = size.height - thickness.toPx()
+                        ),
+                        startAngleDegrees = 90f,
+                        sweepAngleDegrees = 90f,
+                        forceMoveTo = false
+                    )
 
-                close()
+                    close()
+                }
+                drawPath(path, color = color)
+            } else {
+                val lineY = size.height - (thickness.toPx() / 2)
+                drawLine(
+                    color = color,
+                    start = Offset(0f, lineY),
+                    end = Offset(size.width, lineY),
+                    strokeWidth = thickness.toPx()
+                )
             }
-            drawPath(path, color = color)
-        } else {
-            val lineY = size.height - (thickness.toPx() / 2)
-            drawLine(
-                color = color,
-                start = Offset(0f, lineY),
-                end = Offset(size.width, lineY),
-                strokeWidth = thickness.toPx()
-            )
         }
     }
 }
