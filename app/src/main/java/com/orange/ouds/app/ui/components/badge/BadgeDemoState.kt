@@ -20,10 +20,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsBadgeDefaults
+import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsBadgeWithIconStatus
 
 @Composable
 fun rememberBadgeDemoState(
@@ -88,6 +92,27 @@ class BadgeDemoState(
         }
 
     var status: OudsBadgeStatus by mutableStateOf(status)
+
+    val badgeWithIconStatus: OudsBadgeWithIconStatus
+        @Composable
+        get() = when (status) {
+            OudsBadgeStatus.Neutral -> OudsBadgeWithIconStatus.Neutral(
+                OudsBadgeIcon.Custom(
+                    painterResource(R.drawable.ic_heart),
+                    stringResource(id = R.string.app_components_common_icon_a11y)
+                )
+            )
+            OudsBadgeStatus.Accent -> OudsBadgeWithIconStatus.Accent(
+                OudsBadgeIcon.Custom(
+                    painterResource(R.drawable.ic_heart),
+                    stringResource(id = R.string.app_components_common_icon_a11y)
+                )
+            )
+            OudsBadgeStatus.Positive -> OudsBadgeWithIconStatus.Positive()
+            OudsBadgeStatus.Info -> OudsBadgeWithIconStatus.Info()
+            OudsBadgeStatus.Warning -> OudsBadgeWithIconStatus.Warning()
+            OudsBadgeStatus.Negative -> OudsBadgeWithIconStatus.Negative()
+        }
 
     var count: Int by mutableIntStateOf(count)
 
