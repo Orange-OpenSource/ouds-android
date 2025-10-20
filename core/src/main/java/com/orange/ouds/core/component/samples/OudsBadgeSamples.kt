@@ -28,6 +28,7 @@ import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsBadgeWithIconStatus
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -47,16 +48,26 @@ internal fun OudsBadgeWithCountSample() {
 }
 
 @Composable
-internal fun OudsBadgeWithIconSample() {
+internal fun OudsBadgeWithDefaultIconSample() {
     OudsBadge(
-        icon = OudsBadgeIcon(
-            imageVector = Icons.Filled.FavoriteBorder,
-            contentDescription = "Content description"
-        ),
-        status = OudsBadgeStatus.Info,
+        status = OudsBadgeWithIconStatus.Info(),
         size = OudsBadgeSize.Large
     )
 }
+
+@Composable
+internal fun OudsBadgeWithCustomIconSample() {
+    OudsBadge(
+        status = OudsBadgeWithIconStatus.Accent(
+            OudsBadgeIcon.Custom(
+                imageVector = Icons.Filled.FavoriteBorder,
+                contentDescription = "Content description"
+            )
+        ),
+        size = OudsBadgeSize.Large
+    )
+}
+
 
 @Composable
 internal fun OudsBadgeWithCountInNavigationBarItemSample() {
@@ -101,8 +112,14 @@ private fun PreviewOudsBadgeWithCountSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsBadgeWithIconSample() = OudsPreview {
-    OudsBadgeWithIconSample()
+private fun PreviewOudsBadgeWithDefaultIconSample() = OudsPreview {
+    OudsBadgeWithDefaultIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsBadgeWithCustomIconSample() = OudsPreview {
+    OudsBadgeWithCustomIconSample()
 }
 
 @PreviewLightDark
