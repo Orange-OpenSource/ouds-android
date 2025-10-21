@@ -13,20 +13,39 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-class OudsBadgeTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.Badge,
-    parameter,
-    OudsComponentTestSuite.theme,
-    OudsPreviewableComponent.Badge.PreviewWidthDp
-) {
+@RunWith(Enclosed::class)
+class OudsBadgeTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.Badge.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Badge.Default,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Badge.Default.parameters
+        }
     }
+
+    @RunWith(Parameterized::class)
+    class WithIcon(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Badge.WithIcon,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Badge.WithIcon.parameters
+        }
+    }
+
 }
