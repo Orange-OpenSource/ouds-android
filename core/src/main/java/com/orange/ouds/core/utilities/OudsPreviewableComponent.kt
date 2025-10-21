@@ -15,6 +15,8 @@ package com.orange.ouds.core.utilities
 import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsBadgePreviewParameter
 import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
+import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameter
+import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonPreviewParameter
 import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
@@ -48,6 +50,7 @@ import com.orange.ouds.core.component.OudsTagPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextInputPreviewParameter
 import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsBadge
+import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsButton
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsCheckbox
@@ -87,19 +90,36 @@ interface OudsPreviewableComponent {
     @Composable
     fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?)
 
-    object Badge : OudsPreviewableComponent {
+    object Badge {
 
         const val PreviewWidthDp = 420
 
-        override val parameters: List<Any> = OudsBadgePreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsBadge(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsBadgePreviewParameter
-            )
+            override val parameters: List<Any> = OudsBadgePreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBadge(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsBadgePreviewParameter
+                )
+            }
+        }
+
+        object WithIcon : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsBadgeWithIconPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBadgeWithIcon(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsBadgeWithIconPreviewParameter
+                )
+            }
         }
     }
 
