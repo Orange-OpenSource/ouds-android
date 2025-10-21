@@ -45,6 +45,7 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -101,7 +102,7 @@ fun OudsInputTag(
 
     val borderWidth = rememberInteractionValue(
         interactionState = interactionState,
-        toAnimatableFloat = { it.value },
+        toAnimatableFloat = { it?.value.orElse { 0f } },
         fromAnimatableFloat = { it.dp }
     ) { inputTagInteractionState ->
         val inputTagState = getInputTagState(enabled = enabled, interactionState = inputTagInteractionState)
@@ -127,7 +128,13 @@ fun OudsInputTag(
                         this
                     }
                 }
-                .border(width = borderWidth.value, color = borderColor.value, shape = shape)
+                .run {
+                    borderWidth.value?.let { borderWidth ->
+                        border(width = borderWidth, color = borderColor.value, shape = shape)
+                    }.orElse {
+                        this
+                    }
+                }
                 .outerBorder(state = state, shape = shape)
                 .clickable(
                     enabled = enabled,
@@ -219,7 +226,7 @@ private fun backgroundColor(state: OudsInputTagState): Color? {
 }
 
 @Composable
-private fun borderWidth(state: OudsInputTagState): Dp {
+private fun borderWidth(state: OudsInputTagState): Dp? {
     return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
             OudsInputTagState.Enabled,
@@ -228,7 +235,7 @@ private fun borderWidth(state: OudsInputTagState): Dp {
             OudsInputTagState.Pressed,
             OudsInputTagState.Focused -> borderWidthDefaultInteraction
         }
-    }.value
+    }.value.takeUnlessHairline
 }
 
 @Composable

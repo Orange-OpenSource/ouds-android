@@ -50,6 +50,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
@@ -88,7 +89,7 @@ internal fun OudsChip(
     }
     val borderWidth = rememberInteractionValue(
         interactionState = interactionState,
-        toAnimatableFloat = { it.value },
+        toAnimatableFloat = { it?.value.orElse { 0f } },
         fromAnimatableFloat = { it.dp }
     ) { chipInteractionState ->
         val chipState = getChipState(enabled = enabled, interactionState = chipInteractionState)
@@ -109,7 +110,13 @@ internal fun OudsChip(
                 .widthIn(min = chipTokens.sizeMinWidth.dp)
                 .heightIn(min = chipTokens.sizeMinHeight.dp)
                 .background(color = backgroundColor.value, shape = shape)
-                .border(width = borderWidth.value, color = borderColor.value, shape = shape)
+                .run {
+                    borderWidth.value?.let { borderWidth ->
+                        border(width = borderWidth, color = borderColor.value, shape = shape)
+                    }.orElse {
+                        this
+                    }
+                }
                 .outerBorder(state = state, shape = shape)
                 .run {
                     val indication = InteractionValuesIndication(contentColor, tickColor, backgroundColor, borderColor, borderWidth)
@@ -189,7 +196,7 @@ private fun getChipState(interactionState: InteractionState, enabled: Boolean): 
 }
 
 @Composable
-private fun borderWidth(state: OudsChipState, selected: Boolean): Dp {
+private fun borderWidth(state: OudsChipState, selected: Boolean): Dp? {
     return with(OudsTheme.componentsTokens.chip) {
         if (selected) {
             borderWidthSelected
@@ -202,7 +209,7 @@ private fun borderWidth(state: OudsChipState, selected: Boolean): Dp {
                 OudsChipState.Focused -> borderWidthUnselectedInteraction
             }
         }.value
-    }
+    }.takeUnlessHairline
 }
 
 @Composable

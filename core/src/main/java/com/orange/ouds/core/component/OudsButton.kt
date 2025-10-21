@@ -63,6 +63,7 @@ import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.isOudsInDarkTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
@@ -390,7 +391,7 @@ private fun borderWidth(appearance: OudsButtonAppearance, state: OudsButtonState
             OudsButtonAppearance.Minimal,
             OudsButtonAppearance.Negative -> if (state == OudsButtonState.Focused) OudsTheme.borders.width.focusInset else null
         }
-    }
+    }?.takeUnlessHairline
 }
 
 @Composable
