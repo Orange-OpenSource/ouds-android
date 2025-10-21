@@ -109,7 +109,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.3.0
  *
  * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text input.
@@ -237,7 +237,7 @@ fun OudsTextInput(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.3.0
  *
  * @param value Input text to be shown in the text field.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -360,7 +360,7 @@ fun OudsTextInput(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.3.0
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].

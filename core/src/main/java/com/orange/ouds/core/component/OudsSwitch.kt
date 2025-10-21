@@ -68,7 +68,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
  *
- * > Design version: 1.3.0
+ * > Design version: 1.4.0
  *
  * @see [OudsSwitchItem] If you want to use a switch with an associated label and other optional elements.
  *
