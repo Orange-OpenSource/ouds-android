@@ -345,7 +345,7 @@ const val OudsBadgeMaxCount = 99
  * This icon is non-clickable.
  */
 open class OudsBadgeIcon protected constructor(
-    graphicsObjectProvider: @Composable (ExtraParameters) -> Any,
+    graphicsObjectProvider: @Composable (OudsBadgeIcon) -> Any,
     val contentDescription: String
 ) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(ExtraParameters::class.java, graphicsObjectProvider, contentDescription) {
 
@@ -356,7 +356,7 @@ open class OudsBadgeIcon protected constructor(
     ) : OudsComponentContent.ExtraParameters()
 
     open class Custom internal constructor(
-        graphicsObjectProvider: @Composable (ExtraParameters) -> Any,
+        graphicsObjectProvider: @Composable (OudsBadgeIcon) -> Any,
         contentDescription: String
     ) : OudsBadgeIcon(graphicsObjectProvider, contentDescription) {
 
@@ -385,9 +385,11 @@ open class OudsBadgeIcon protected constructor(
         constructor(bitmap: ImageBitmap, contentDescription: String) : this({ bitmap }, contentDescription)
     }
 
-    data object Default : OudsBadgeIcon({ extraParameters ->
-        (extraParameters.status as? BadgeFunctionalStatus)?.getDefaultIconPainter().orElse {
-            error("No default icon for status ${extraParameters.status::class.simpleName}")
+    data object Default : OudsBadgeIcon({ icon ->
+        with(icon.extraParameters) {
+            (status as? BadgeFunctionalStatus)?.getDefaultIconPainter().orElse {
+                error("No default icon for status ${status::class.simpleName}")
+            }
         }
     }, "") //TODO Vocalize functional status icons for A11Y
 
