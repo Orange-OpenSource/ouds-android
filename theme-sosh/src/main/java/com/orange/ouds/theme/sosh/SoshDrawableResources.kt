@@ -16,28 +16,30 @@ import androidx.annotation.DrawableRes
 import com.orange.ouds.theme.OudsDrawableResources
 
 class SoshDrawableResources : OudsDrawableResources() {
-    override val checkboxIndeterminate
+    override val alertImportant: Int
+        @DrawableRes get() = R.drawable.sosh_alert_important
+    override val alertInformation: Int
+        @DrawableRes get() = R.drawable.sosh_alert_information
+    override val alertSuccess: Int
+        @DrawableRes get() = R.drawable.sosh_alert_success
+    override val alertWarningExternalShape: Int
+        @DrawableRes get() = R.drawable.sosh_alert_warning_external_shape
+    override val alertWarningInternalShape: Int
+        @DrawableRes get() = R.drawable.sosh_alert_warning_internal_shape
+    override val checkboxIndeterminate: Int
         @DrawableRes get() = R.drawable.sosh_checkbox_indeterminate
     override val checkboxSelected: Int
         @DrawableRes get() = R.drawable.sosh_checkbox_selected
-    override val chevronLeft: Int
-        @DrawableRes get() = R.drawable.sosh_chevron_left
-    override val delete: Int
-        @DrawableRes get() = R.drawable.sosh_delete
-    override val important: Int
-        @DrawableRes get() = R.drawable.sosh_important
-    override val information: Int
-        @DrawableRes get() = R.drawable.sosh_information
+    override val chipTick: Int
+        @DrawableRes get() = R.drawable.sosh_chip_tick
+    override val linkNext: Int
+        @DrawableRes get() = R.drawable.sosh_link_next
+    override val linkPrevious: Int
+        @DrawableRes get() = R.drawable.sosh_link_previous
     override val radioButtonSelected: Int
         @DrawableRes get() = R.drawable.sosh_radio_button_selected
-    override val success: Int
-        @DrawableRes get() = R.drawable.sosh_success
     override val switchSelected: Int
         @DrawableRes get() = R.drawable.sosh_switch_selected
-    override val tick: Int
-        @DrawableRes get() = R.drawable.sosh_tick
-    override val warningExternalShape: Int
-        @DrawableRes get() = R.drawable.sosh_warning_external_shape
-    override val warningInternalShape: Int
-        @DrawableRes get() = R.drawable.sosh_warning_internal_shape
+    override val tagClose: Int
+        @DrawableRes get() = R.drawable.sosh_tag_close
 }

@@ -17,28 +17,30 @@ import com.orange.ouds.foundation.InternalOudsApi
 
 @InternalOudsApi
 open class OudsDrawableResources {
+    open val alertImportant: Int
+        @DrawableRes get() = R.drawable.ic_alert_important
+    open val alertInformation: Int
+        @DrawableRes get() = R.drawable.ic_alert_information
+    open val alertSuccess: Int
+        @DrawableRes get() = R.drawable.ic_alert_success
+    open val alertWarningExternalShape: Int
+        @DrawableRes get() = R.drawable.ic_alert_warning_external_shape
+    open val alertWarningInternalShape: Int
+        @DrawableRes get() = R.drawable.ic_alert_warning_internal_shape
     open val checkboxIndeterminate: Int
         @DrawableRes get() = R.drawable.ic_checkbox_indeterminate
     open val checkboxSelected: Int
         @DrawableRes get() = R.drawable.ic_checkbox_selected
-    open val chevronLeft: Int
-        @DrawableRes get() = R.drawable.ic_chevron_left
-    open val delete: Int
-        @DrawableRes get() = R.drawable.ic_delete
-    open val important: Int
-        @DrawableRes get() = R.drawable.ic_important
-    open val information: Int
-        @DrawableRes get() = R.drawable.ic_information
+    open val chipTick: Int
+        @DrawableRes get() = R.drawable.ic_chip_tick
+    open val linkNext: Int
+        @DrawableRes get() = R.drawable.ic_link_next
+    open val linkPrevious: Int
+        @DrawableRes get() = R.drawable.ic_link_previous
     open val radioButtonSelected: Int
         @DrawableRes get() = R.drawable.ic_radio_button_selected
     open val switchSelected: Int
         @DrawableRes get() = R.drawable.ic_switch_selected
-    open val success: Int
-        @DrawableRes get() = R.drawable.ic_success
-    open val tick: Int
-        @DrawableRes get() = R.drawable.ic_tick
-    open val warningExternalShape: Int
-        @DrawableRes get() = R.drawable.ic_warning_external_shape
-    open val warningInternalShape: Int
-        @DrawableRes get() = R.drawable.ic_warning_internal_shape
+    open val tagClose: Int
+        @DrawableRes get() = R.drawable.ic_tag_close
 }

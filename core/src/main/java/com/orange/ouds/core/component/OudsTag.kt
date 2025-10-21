@@ -575,7 +575,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.success)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.alertSuccess)
     }
 
     /**
@@ -594,7 +594,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.information)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.alertInformation)
     }
 
     /**
@@ -616,11 +616,11 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         override fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter {
             val iconTokens = OudsTheme.componentsTokens.icon
             return when (appearance) {
-                OudsTagAppearance.Emphasized -> painterResource(id = OudsTheme.drawableResources.warningExternalShape)
+                OudsTagAppearance.Emphasized -> painterResource(id = OudsTheme.drawableResources.alertWarningExternalShape)
                 OudsTagAppearance.Muted -> LayeredTintedPainter(
-                    backPainter = painterResource(id = OudsTheme.drawableResources.warningExternalShape),
+                    backPainter = painterResource(id = OudsTheme.drawableResources.alertWarningExternalShape),
                     backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                    frontPainter = painterResource(id = OudsTheme.drawableResources.warningInternalShape),
+                    frontPainter = painterResource(id = OudsTheme.drawableResources.alertWarningInternalShape),
                     frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
                 )
             }
@@ -643,7 +643,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
         constructor(icon: OudsTagIcon.Default? = null) : this(icon as? OudsTagIcon)
 
         @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.important)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.alertImportant)
     }
 
     /**

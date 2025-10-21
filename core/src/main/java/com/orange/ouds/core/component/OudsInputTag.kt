@@ -157,7 +157,7 @@ fun OudsInputTag(
             )
             Icon(
                 modifier = Modifier.size(tagTokens.sizeAssetDefault.value * LocalConfiguration.current.fontScale),
-                painter = painterResource(id = OudsTheme.drawableResources.delete),
+                painter = painterResource(id = OudsTheme.drawableResources.tagClose),
                 contentDescription = null,
                 tint = contentColor.value
             )

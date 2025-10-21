@@ -16,26 +16,30 @@ import androidx.annotation.DrawableRes
 import com.orange.ouds.theme.OudsDrawableResources
 
 class WireframeDrawableResources : OudsDrawableResources() {
-    override val checkboxIndeterminate
+    override val alertImportant: Int
+        @DrawableRes get() = R.drawable.wireframe_alert_important
+    override val alertInformation: Int
+        @DrawableRes get() = R.drawable.wireframe_alert_information
+    override val alertSuccess: Int
+        @DrawableRes get() = R.drawable.wireframe_alert_success
+    override val alertWarningExternalShape: Int
+        @DrawableRes get() = R.drawable.wireframe_alert_warning_external_shape
+    override val alertWarningInternalShape: Int
+        @DrawableRes get() = R.drawable.wireframe_alert_warning_internal_shape
+    override val checkboxIndeterminate: Int
         @DrawableRes get() = R.drawable.wireframe_checkbox_indeterminate
     override val checkboxSelected: Int
         @DrawableRes get() = R.drawable.wireframe_checkbox_selected
-    override val chevronLeft: Int
-        @DrawableRes get() = R.drawable.wireframe_chevron_left
-    override val important: Int
-        @DrawableRes get() = R.drawable.wireframe_important
-    override val information: Int
-        @DrawableRes get() = R.drawable.wireframe_information
+    override val chipTick: Int
+        @DrawableRes get() = R.drawable.wireframe_chip_tick
+    override val linkNext: Int
+        @DrawableRes get() = R.drawable.wireframe_link_next
+    override val linkPrevious: Int
+        @DrawableRes get() = R.drawable.wireframe_link_previous
     override val radioButtonSelected: Int
         @DrawableRes get() = R.drawable.wireframe_radio_button_selected
-    override val success: Int
-        @DrawableRes get() = R.drawable.wireframe_success
     override val switchSelected: Int
         @DrawableRes get() = R.drawable.wireframe_switch_selected
-    override val tick: Int
-        @DrawableRes get() = R.drawable.wireframe_tick
-    override val warningExternalShape: Int
-        @DrawableRes get() = R.drawable.wireframe_warning_external_shape
-    override val warningInternalShape: Int
-        @DrawableRes get() = R.drawable.wireframe_warning_internal_shape
+    override val tagClose: Int
+        @DrawableRes get() = R.drawable.wireframe_tag_close
 }

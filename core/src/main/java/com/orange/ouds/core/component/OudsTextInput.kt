@@ -658,7 +658,7 @@ private fun OudsTextInputDecorator(
                             ) {
                                 Icon(
                                     modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
-                                    painter = painterResource(id = OudsTheme.drawableResources.important),
+                                    painter = painterResource(id = OudsTheme.drawableResources.alertImportant),
                                     contentDescription = if (error.description.isBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
                                     tint = errorIconColor(state = state)
                                 )
