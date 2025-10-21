@@ -123,7 +123,7 @@ fun OudsBadge(
  * @param status The status of this badge. The background color of the badge and the number color are based on this status.
  * @param size The size of this badge. The number is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
  *
- * @sample com.orange.ouds.core.component.samples.OudsBadgeWithIconSample
+ * @sample com.orange.ouds.core.component.samples.OudsBadgeWithCountSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsBadgeWithCountInNavigationBarItemSample
  */
