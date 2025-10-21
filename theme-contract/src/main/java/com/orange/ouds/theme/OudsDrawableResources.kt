@@ -17,6 +17,12 @@ import com.orange.ouds.foundation.InternalOudsApi
 
 @InternalOudsApi
 open class OudsDrawableResources {
+    open val bulletListLevel0: Int
+        @DrawableRes get() = R.drawable.ic_bullet_list_level0
+    open val bulletListLevel1: Int
+        @DrawableRes get() = R.drawable.ic_bullet_list_level1
+    open val bulletListLevel2: Int
+        @DrawableRes get() = R.drawable.ic_bullet_list_level2
     open val checkboxIndeterminate: Int
         @DrawableRes get() = R.drawable.ic_checkbox_indeterminate
     open val checkboxSelected: Int
