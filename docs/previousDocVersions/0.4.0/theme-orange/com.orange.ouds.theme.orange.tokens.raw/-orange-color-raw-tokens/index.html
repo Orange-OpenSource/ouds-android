@@ -1,0 +1,1292 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OrangeColorRawTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.orange.tokens.raw/-orange-color-raw-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-orange/com.orange.ouds.theme.orange.tokens.raw/-orange-color-raw-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../not-found-version.html?v=0.2.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-orange/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-orange/main" data-filter=":theme-orange/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-orange::com.orange.ouds.theme.orange.tokens.raw/OrangeColorRawTokens///PointingToDeclaration//1802211767">
+  <div class="breadcrumbs"><a href="../../index.html">theme-orange</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.orange.tokens.raw</a><span class="delimiter">/</span><span class="current">OrangeColorRawTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Orange</span><wbr><span>Color</span><wbr><span>Raw</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">OrangeColorRawTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-785491096%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber100" id="-785491096%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber100.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-785491096%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber100.html">colorDecorativeAmber100</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1040227641%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber200" id="-1040227641%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber200.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1040227641%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber200.html">colorDecorativeAmber200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1294964186%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber300" id="-1294964186%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber300.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1294964186%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber300.html">colorDecorativeAmber300</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1549700731%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber400" id="-1549700731%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber400.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1549700731%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber400.html">colorDecorativeAmber400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1804437276%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber500" id="-1804437276%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber500.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1804437276%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber500.html">colorDecorativeAmber500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2059173821%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber600" id="-2059173821%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber600.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2059173821%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber600.html">colorDecorativeAmber600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1981056930%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber700" id="1981056930%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber700.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1981056930%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber700.html">colorDecorativeAmber700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1726320385%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber800" id="1726320385%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber800.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1726320385%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber800.html">colorDecorativeAmber800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1471583840%2FProperties%2F1802211767" anchor-label="colorDecorativeAmber900" id="1471583840%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amber900.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amber900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1471583840%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amber900.html">colorDecorativeAmber900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-80270272%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst100" id="-80270272%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst100.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-80270272%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst100.html">colorDecorativeAmethyst100</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-335006817%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst200" id="-335006817%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst200.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-335006817%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst200.html">colorDecorativeAmethyst200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-589743362%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst300" id="-589743362%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst300.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-589743362%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst300.html">colorDecorativeAmethyst300</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-844479907%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst400" id="-844479907%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst400.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-844479907%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst400.html">colorDecorativeAmethyst400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1099216452%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst500" id="-1099216452%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst500.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1099216452%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst500.html">colorDecorativeAmethyst500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1353952997%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst600" id="-1353952997%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst600.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1353952997%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst600.html">colorDecorativeAmethyst600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1608689542%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst700" id="-1608689542%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst700.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1608689542%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst700.html">colorDecorativeAmethyst700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1863426087%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst800" id="-1863426087%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst800.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1863426087%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst800.html">colorDecorativeAmethyst800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2118162632%2FProperties%2F1802211767" anchor-label="colorDecorativeAmethyst900" id="-2118162632%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-amethyst900.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Amethyst900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2118162632%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-amethyst900.html">colorDecorativeAmethyst900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-825331734%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach100" id="-825331734%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach100.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-825331734%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach100.html">colorDecorativeDeepPeach100</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1080068279%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach200" id="-1080068279%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach200.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1080068279%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach200.html">colorDecorativeDeepPeach200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1334804824%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach300" id="-1334804824%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach300.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1334804824%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach300.html">colorDecorativeDeepPeach300</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1589541369%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach400" id="-1589541369%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach400.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1589541369%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach400.html">colorDecorativeDeepPeach400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1844277914%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach500" id="-1844277914%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach500.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1844277914%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach500.html">colorDecorativeDeepPeach500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2099014459%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach600" id="-2099014459%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach600.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2099014459%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach600.html">colorDecorativeDeepPeach600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1941216292%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach700" id="1941216292%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach700.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1941216292%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach700.html">colorDecorativeDeepPeach700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1686479747%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach800" id="1686479747%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach800.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1686479747%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach800.html">colorDecorativeDeepPeach800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1431743202%2FProperties%2F1802211767" anchor-label="colorDecorativeDeepPeach900" id="1431743202%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-deep-peach900.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Deep</span><wbr><span><span>Peach900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1431743202%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-deep-peach900.html">colorDecorativeDeepPeach900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2028930327%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald100" id="-2028930327%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald100.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2028930327%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald100.html">colorDecorativeEmerald100</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2011300424%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald200" id="2011300424%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald200.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2011300424%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald200.html">colorDecorativeEmerald200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1756563879%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald300" id="1756563879%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald300.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1756563879%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald300.html">colorDecorativeEmerald300</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1501827334%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald400" id="1501827334%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald400.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1501827334%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald400.html">colorDecorativeEmerald400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1247090789%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald500" id="1247090789%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald500.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1247090789%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald500.html">colorDecorativeEmerald500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="992354244%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald600" id="992354244%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald600.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="992354244%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald600.html">colorDecorativeEmerald600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="737617699%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald700" id="737617699%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald700.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="737617699%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald700.html">colorDecorativeEmerald700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="482881154%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald800" id="482881154%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald800.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="482881154%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald800.html">colorDecorativeEmerald800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="228144609%2FProperties%2F1802211767" anchor-label="colorDecorativeEmerald900" id="228144609%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-emerald900.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Emerald900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="228144609%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-emerald900.html">colorDecorativeEmerald900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2029374135%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink100" id="-2029374135%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink100.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2029374135%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink100.html">colorDecorativeShockingPink100</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2010856616%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink200" id="2010856616%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink200.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2010856616%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink200.html">colorDecorativeShockingPink200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1756120071%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink300" id="1756120071%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink300.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1756120071%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink300.html">colorDecorativeShockingPink300</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1501383526%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink400" id="1501383526%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink400.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1501383526%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink400.html">colorDecorativeShockingPink400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1246646981%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink500" id="1246646981%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink500.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1246646981%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink500.html">colorDecorativeShockingPink500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="991910436%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink600" id="991910436%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink600.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="991910436%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink600.html">colorDecorativeShockingPink600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="737173891%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink700" id="737173891%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink700.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="737173891%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink700.html">colorDecorativeShockingPink700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="482437346%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink800" id="482437346%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink800.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="482437346%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink800.html">colorDecorativeShockingPink800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="227700801%2FProperties%2F1802211767" anchor-label="colorDecorativeShockingPink900" id="227700801%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-shocking-pink900.html"><span>color</span><wbr><span>Decorative</span><wbr><span>Shocking</span><wbr><span><span>Pink900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="227700801%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-shocking-pink900.html">colorDecorativeShockingPink900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1088565478%2FProperties%2F1802211767" anchor-label="colorDecorativeSky100" id="1088565478%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky100.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1088565478%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky100.html">colorDecorativeSky100</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="833828933%2FProperties%2F1802211767" anchor-label="colorDecorativeSky200" id="833828933%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky200.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="833828933%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky200.html">colorDecorativeSky200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="579092388%2FProperties%2F1802211767" anchor-label="colorDecorativeSky300" id="579092388%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky300.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="579092388%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky300.html">colorDecorativeSky300</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="324355843%2FProperties%2F1802211767" anchor-label="colorDecorativeSky400" id="324355843%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky400.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="324355843%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky400.html">colorDecorativeSky400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="69619298%2FProperties%2F1802211767" anchor-label="colorDecorativeSky500" id="69619298%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky500.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="69619298%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky500.html">colorDecorativeSky500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-185117247%2FProperties%2F1802211767" anchor-label="colorDecorativeSky600" id="-185117247%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky600.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-185117247%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky600.html">colorDecorativeSky600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-439853792%2FProperties%2F1802211767" anchor-label="colorDecorativeSky700" id="-439853792%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky700.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-439853792%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky700.html">colorDecorativeSky700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-694590337%2FProperties%2F1802211767" anchor-label="colorDecorativeSky800" id="-694590337%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky800.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-694590337%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky800.html">colorDecorativeSky800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-949326882%2FProperties%2F1802211767" anchor-label="colorDecorativeSky900" id="-949326882%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-decorative-sky900.html"><span>color</span><wbr><span>Decorative</span><wbr><span><span>Sky900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-949326882%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-decorative-sky900.html">colorDecorativeSky900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2144999925%2FProperties%2F1802211767" anchor-label="colorOpacityWarmGray400" id="2144999925%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-opacity-warm-gray400.html"><span>color</span><wbr><span>Opacity</span><wbr><span>Warm</span><wbr><span><span>Gray400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2144999925%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-opacity-warm-gray400.html">colorOpacityWarmGray400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2025367207%2FProperties%2F1802211767" anchor-label="colorOpacityWarmGray80" id="-2025367207%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-opacity-warm-gray80.html"><span>color</span><wbr><span>Opacity</span><wbr><span>Warm</span><wbr><span><span>Gray80</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2025367207%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-opacity-warm-gray80.html">colorOpacityWarmGray80</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="865249345%2FProperties%2F1802211767" anchor-label="colorOrange100" id="865249345%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange100.html"><span>color</span><wbr><span><span>Orange100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="865249345%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange100.html">colorOrange100</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="610512800%2FProperties%2F1802211767" anchor-label="colorOrange200" id="610512800%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange200.html"><span>color</span><wbr><span><span>Orange200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="610512800%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange200.html">colorOrange200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="355776255%2FProperties%2F1802211767" anchor-label="colorOrange300" id="355776255%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange300.html"><span>color</span><wbr><span><span>Orange300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="355776255%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange300.html">colorOrange300</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="101039710%2FProperties%2F1802211767" anchor-label="colorOrange400" id="101039710%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange400.html"><span>color</span><wbr><span><span>Orange400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="101039710%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange400.html">colorOrange400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1235365491%2FProperties%2F1802211767" anchor-label="colorOrange50" id="-1235365491%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange50.html"><span>color</span><wbr><span><span>Orange50</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1235365491%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange50.html">colorOrange50</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-153696835%2FProperties%2F1802211767" anchor-label="colorOrange500" id="-153696835%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange500.html"><span>color</span><wbr><span><span>Orange500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-153696835%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange500.html">colorOrange500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="359405954%2FProperties%2F1802211767" anchor-label="colorOrange550" id="359405954%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange550.html"><span>color</span><wbr><span><span>Orange550</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="359405954%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange550.html">colorOrange550</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-408433380%2FProperties%2F1802211767" anchor-label="colorOrange600" id="-408433380%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange600.html"><span>color</span><wbr><span><span>Orange600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-408433380%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange600.html">colorOrange600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-663169925%2FProperties%2F1802211767" anchor-label="colorOrange700" id="-663169925%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange700.html"><span>color</span><wbr><span><span>Orange700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-663169925%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange700.html">colorOrange700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-917906470%2FProperties%2F1802211767" anchor-label="colorOrange800" id="-917906470%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange800.html"><span>color</span><wbr><span><span>Orange800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-917906470%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange800.html">colorOrange800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1172643015%2FProperties%2F1802211767" anchor-label="colorOrange900" id="-1172643015%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-orange900.html"><span>color</span><wbr><span><span>Orange900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1172643015%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-orange900.html">colorOrange900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="175321051%2FProperties%2F1802211767" anchor-label="colorWarmGray100" id="175321051%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray100.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="175321051%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray100.html">colorWarmGray100</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="627913007%2FProperties%2F1802211767" anchor-label="colorWarmGray1000" id="627913007%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray1000.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray1000</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="627913007%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray1000.html">colorWarmGray1000</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-79415494%2FProperties%2F1802211767" anchor-label="colorWarmGray200" id="-79415494%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray200.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-79415494%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray200.html">colorWarmGray200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-334152039%2FProperties%2F1802211767" anchor-label="colorWarmGray300" id="-334152039%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray300.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-334152039%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray300.html">colorWarmGray300</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-588888584%2FProperties%2F1802211767" anchor-label="colorWarmGray400" id="-588888584%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray400.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-588888584%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray400.html">colorWarmGray400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-843625129%2FProperties%2F1802211767" anchor-label="colorWarmGray500" id="-843625129%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray500.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-843625129%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray500.html">colorWarmGray500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1098361674%2FProperties%2F1802211767" anchor-label="colorWarmGray600" id="-1098361674%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray600.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1098361674%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray600.html">colorWarmGray600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1353098219%2FProperties%2F1802211767" anchor-label="colorWarmGray700" id="-1353098219%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray700.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1353098219%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray700.html">colorWarmGray700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1607834764%2FProperties%2F1802211767" anchor-label="colorWarmGray800" id="-1607834764%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray800.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1607834764%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray800.html">colorWarmGray800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1862571309%2FProperties%2F1802211767" anchor-label="colorWarmGray900" id="-1862571309%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-warm-gray900.html"><span>color</span><wbr><span>Warm</span><wbr><span><span>Gray900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1862571309%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-warm-gray900.html">colorWarmGray900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

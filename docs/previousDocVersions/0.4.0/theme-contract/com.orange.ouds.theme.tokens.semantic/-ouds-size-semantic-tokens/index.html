@@ -1,0 +1,1457 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OudsSizeSemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.tokens.semantic/-ouds-size-semantic-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-size-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../older/0.2.0/theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-size-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../older/0.1.0/theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-size-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-contract/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-contract/main" data-filter=":theme-contract/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-contract::com.orange.ouds.theme.tokens.semantic/OudsSizeSemanticTokens///PointingToDeclaration//-743151213">
+  <div class="breadcrumbs"><a href="../../index.html">theme-contract</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.tokens.semantic</a><span class="delimiter">/</span><span class="current">OudsSizeSemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Ouds</span><wbr><span>Size</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">OudsSizeSemanticTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="1262638426%2FProperties%2F-743151213" anchor-label="iconDecorative2xlarge" id="1262638426%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative2xlarge.html"><span>icon</span><wbr><span><span>Decorative2xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1262638426%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative2xlarge.html">iconDecorative2xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1834932494%2FProperties%2F-743151213" anchor-label="iconDecorative2xsmall" id="1834932494%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative2xsmall.html"><span>icon</span><wbr><span><span>Decorative2xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1834932494%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative2xsmall.html">iconDecorative2xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-175171347%2FProperties%2F-743151213" anchor-label="iconDecorative3xsmall" id="-175171347%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative3xsmall.html"><span>icon</span><wbr><span><span>Decorative3xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-175171347%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative3xsmall.html">iconDecorative3xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2109692108%2FProperties%2F-743151213" anchor-label="iconDecorative4xsmall" id="2109692108%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative4xsmall.html"><span>icon</span><wbr><span><span>Decorative4xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2109692108%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative4xsmall.html">iconDecorative4xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1251933684%2FProperties%2F-743151213" anchor-label="iconDecorativeLarge" id="1251933684%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative-large.html"><span>icon</span><wbr><span>Decorative</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1251933684%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative-large.html">iconDecorativeLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1485568234%2FProperties%2F-743151213" anchor-label="iconDecorativeMedium" id="-1485568234%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative-medium.html"><span>icon</span><wbr><span>Decorative</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1485568234%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative-medium.html">iconDecorativeMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1824227752%2FProperties%2F-743151213" anchor-label="iconDecorativeSmall" id="1824227752%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative-small.html"><span>icon</span><wbr><span>Decorative</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1824227752%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative-small.html">iconDecorativeSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1549624456%2FProperties%2F-743151213" anchor-label="iconDecorativeXlarge" id="1549624456%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative-xlarge.html"><span>icon</span><wbr><span>Decorative</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1549624456%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative-xlarge.html">iconDecorativeXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2121918524%2FProperties%2F-743151213" anchor-label="iconDecorativeXsmall" id="2121918524%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-decorative-xsmall.html"><span>icon</span><wbr><span>Decorative</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2121918524%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-decorative-xsmall.html">iconDecorativeXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2003307070%2FProperties%2F-743151213" anchor-label="iconWithBodyLargeSizeLargeMobile" id="-2003307070%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-large-size-large-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2003307070%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-large-size-large-mobile.html">iconWithBodyLargeSizeLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1853590654%2FProperties%2F-743151213" anchor-label="iconWithBodyLargeSizeLargeTablet" id="1853590654%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-large-size-large-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1853590654%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-large-size-large-tablet.html">iconWithBodyLargeSizeLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1339824196%2FProperties%2F-743151213" anchor-label="iconWithBodyLargeSizeMediumMobile" id="1339824196%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-large-size-medium-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1339824196%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-large-size-medium-mobile.html">iconWithBodyLargeSizeMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="901754624%2FProperties%2F-743151213" anchor-label="iconWithBodyLargeSizeMediumTablet" id="901754624%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-large-size-medium-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="901754624%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-large-size-medium-tablet.html">iconWithBodyLargeSizeMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1477975434%2FProperties%2F-743151213" anchor-label="iconWithBodyLargeSizeSmallMobile" id="-1477975434%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-large-size-small-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1477975434%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-large-size-small-mobile.html">iconWithBodyLargeSizeSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1916045006%2FProperties%2F-743151213" anchor-label="iconWithBodyLargeSizeSmallTablet" id="-1916045006%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-large-size-small-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1916045006%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-large-size-small-tablet.html">iconWithBodyLargeSizeSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-973347216%2FProperties%2F-743151213" anchor-label="iconWithBodyMediumSizeLargeMobile" id="-973347216%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-medium-size-large-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-973347216%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-medium-size-large-mobile.html">iconWithBodyMediumSizeLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1411416788%2FProperties%2F-743151213" anchor-label="iconWithBodyMediumSizeLargeTablet" id="-1411416788%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-medium-size-large-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1411416788%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-medium-size-large-tablet.html">iconWithBodyMediumSizeLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1091158698%2FProperties%2F-743151213" anchor-label="iconWithBodyMediumSizeMediumMobile" id="-1091158698%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-medium-size-medium-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1091158698%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-medium-size-medium-mobile.html">iconWithBodyMediumSizeMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1529228270%2FProperties%2F-743151213" anchor-label="iconWithBodyMediumSizeMediumTablet" id="-1529228270%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-medium-size-medium-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1529228270%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-medium-size-medium-tablet.html">iconWithBodyMediumSizeMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-448015580%2FProperties%2F-743151213" anchor-label="iconWithBodyMediumSizeSmallMobile" id="-448015580%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-medium-size-small-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-448015580%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-medium-size-small-mobile.html">iconWithBodyMediumSizeSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-886085152%2FProperties%2F-743151213" anchor-label="iconWithBodyMediumSizeSmallTablet" id="-886085152%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-medium-size-small-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-886085152%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-medium-size-small-tablet.html">iconWithBodyMediumSizeSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1441459314%2FProperties%2F-743151213" anchor-label="iconWithBodySmallSizeLargeMobile" id="-1441459314%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-small-size-large-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1441459314%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-small-size-large-mobile.html">iconWithBodySmallSizeLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1879528886%2FProperties%2F-743151213" anchor-label="iconWithBodySmallSizeLargeTablet" id="-1879528886%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-small-size-large-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1879528886%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-small-size-large-tablet.html">iconWithBodySmallSizeLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1577235448%2FProperties%2F-743151213" anchor-label="iconWithBodySmallSizeMediumMobile" id="1577235448%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-small-size-medium-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1577235448%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-small-size-medium-mobile.html">iconWithBodySmallSizeMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1139165876%2FProperties%2F-743151213" anchor-label="iconWithBodySmallSizeMediumTablet" id="1139165876%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-small-size-medium-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1139165876%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-small-size-medium-tablet.html">iconWithBodySmallSizeMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-916127678%2FProperties%2F-743151213" anchor-label="iconWithBodySmallSizeSmallMobile" id="-916127678%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-small-size-small-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-916127678%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-small-size-small-mobile.html">iconWithBodySmallSizeSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1354197250%2FProperties%2F-743151213" anchor-label="iconWithBodySmallSizeSmallTablet" id="-1354197250%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-body-small-size-small-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1354197250%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-body-small-size-small-tablet.html">iconWithBodySmallSizeSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1689128686%2FProperties%2F-743151213" anchor-label="iconWithHeadingLargeSizeLargeMobile" id="-1689128686%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-large-size-large-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1689128686%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-large-size-large-mobile.html">iconWithHeadingLargeSizeLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2127198258%2FProperties%2F-743151213" anchor-label="iconWithHeadingLargeSizeLargeTablet" id="-2127198258%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-large-size-large-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2127198258%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-large-size-large-tablet.html">iconWithHeadingLargeSizeLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1805547788%2FProperties%2F-743151213" anchor-label="iconWithHeadingLargeSizeMediumMobile" id="-1805547788%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-large-size-medium-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1805547788%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-large-size-medium-mobile.html">iconWithHeadingLargeSizeMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2051349936%2FProperties%2F-743151213" anchor-label="iconWithHeadingLargeSizeMediumTablet" id="2051349936%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-large-size-medium-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2051349936%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-large-size-medium-tablet.html">iconWithHeadingLargeSizeMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1163797050%2FProperties%2F-743151213" anchor-label="iconWithHeadingLargeSizeSmallMobile" id="-1163797050%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-large-size-small-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1163797050%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-large-size-small-mobile.html">iconWithHeadingLargeSizeSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1601866622%2FProperties%2F-743151213" anchor-label="iconWithHeadingLargeSizeSmallTablet" id="-1601866622%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-large-size-small-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1601866622%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-large-size-small-tablet.html">iconWithHeadingLargeSizeSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="176248096%2FProperties%2F-743151213" anchor-label="iconWithHeadingMediumSizeLargeMobile" id="176248096%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-medium-size-large-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="176248096%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-medium-size-large-mobile.html">iconWithHeadingMediumSizeLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-261821476%2FProperties%2F-743151213" anchor-label="iconWithHeadingMediumSizeLargeTablet" id="-261821476%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-medium-size-large-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-261821476%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-medium-size-large-tablet.html">iconWithHeadingMediumSizeLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="186557606%2FProperties%2F-743151213" anchor-label="iconWithHeadingMediumSizeMediumMobile" id="186557606%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-medium-size-medium-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="186557606%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-medium-size-medium-mobile.html">iconWithHeadingMediumSizeMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-251511966%2FProperties%2F-743151213" anchor-label="iconWithHeadingMediumSizeMediumTablet" id="-251511966%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-medium-size-medium-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-251511966%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-medium-size-medium-tablet.html">iconWithHeadingMediumSizeMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="701579732%2FProperties%2F-743151213" anchor-label="iconWithHeadingMediumSizeSmallMobile" id="701579732%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-medium-size-small-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="701579732%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-medium-size-small-mobile.html">iconWithHeadingMediumSizeSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="263510160%2FProperties%2F-743151213" anchor-label="iconWithHeadingMediumSizeSmallTablet" id="263510160%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-medium-size-small-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="263510160%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-medium-size-small-tablet.html">iconWithHeadingMediumSizeSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1127280930%2FProperties%2F-743151213" anchor-label="iconWithHeadingSmallSizeLargeMobile" id="-1127280930%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-small-size-large-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1127280930%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-small-size-large-mobile.html">iconWithHeadingSmallSizeLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1565350502%2FProperties%2F-743151213" anchor-label="iconWithHeadingSmallSizeLargeTablet" id="-1565350502%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-small-size-large-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1565350502%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-small-size-large-tablet.html">iconWithHeadingSmallSizeLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1568136536%2FProperties%2F-743151213" anchor-label="iconWithHeadingSmallSizeMediumMobile" id="-1568136536%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-small-size-medium-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1568136536%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-small-size-medium-mobile.html">iconWithHeadingSmallSizeMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2006206108%2FProperties%2F-743151213" anchor-label="iconWithHeadingSmallSizeMediumTablet" id="-2006206108%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-small-size-medium-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2006206108%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-small-size-medium-tablet.html">iconWithHeadingSmallSizeMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-601949294%2FProperties%2F-743151213" anchor-label="iconWithHeadingSmallSizeSmallMobile" id="-601949294%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-small-size-small-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-601949294%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-small-size-small-mobile.html">iconWithHeadingSmallSizeSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1040018866%2FProperties%2F-743151213" anchor-label="iconWithHeadingSmallSizeSmallTablet" id="-1040018866%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-small-size-small-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1040018866%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-small-size-small-tablet.html">iconWithHeadingSmallSizeSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="923215214%2FProperties%2F-743151213" anchor-label="iconWithHeadingXlargeSizeLargeMobile" id="923215214%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-xlarge-size-large-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="923215214%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-xlarge-size-large-mobile.html">iconWithHeadingXlargeSizeLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="485145642%2FProperties%2F-743151213" anchor-label="iconWithHeadingXlargeSizeLargeTablet" id="485145642%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-xlarge-size-large-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="485145642%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-xlarge-size-large-tablet.html">iconWithHeadingXlargeSizeLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1867701784%2FProperties%2F-743151213" anchor-label="iconWithHeadingXlargeSizeMediumMobile" id="1867701784%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-xlarge-size-medium-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1867701784%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-xlarge-size-medium-mobile.html">iconWithHeadingXlargeSizeMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1429632212%2FProperties%2F-743151213" anchor-label="iconWithHeadingXlargeSizeMediumTablet" id="1429632212%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-xlarge-size-medium-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1429632212%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-xlarge-size-medium-tablet.html">iconWithHeadingXlargeSizeMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1448546850%2FProperties%2F-743151213" anchor-label="iconWithHeadingXlargeSizeSmallMobile" id="1448546850%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-xlarge-size-small-mobile.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1448546850%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-xlarge-size-small-mobile.html">iconWithHeadingXlargeSizeSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1010477278%2FProperties%2F-743151213" anchor-label="iconWithHeadingXlargeSizeSmallTablet" id="1010477278%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-heading-xlarge-size-small-tablet.html"><span>icon</span><wbr><span>With</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1010477278%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-heading-xlarge-size-small-tablet.html">iconWithHeadingXlargeSizeSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-596703838%2FProperties%2F-743151213" anchor-label="iconWithLabelLargeSizeLarge" id="-596703838%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-large-size-large.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-596703838%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-large-size-large.html">iconWithLabelLargeSizeLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1336210728%2FProperties%2F-743151213" anchor-label="iconWithLabelLargeSizeMedium" id="1336210728%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-large-size-medium.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1336210728%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-large-size-medium.html">iconWithLabelLargeSizeMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-24409770%2FProperties%2F-743151213" anchor-label="iconWithLabelLargeSizeSmall" id="-24409770%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-large-size-small.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-24409770%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-large-size-small.html">iconWithLabelLargeSizeSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="76436122%2FProperties%2F-743151213" anchor-label="iconWithLabelLargeSizeXlarge" id="76436122%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-large-size-xlarge.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="76436122%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-large-size-xlarge.html">iconWithLabelLargeSizeXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="648730190%2FProperties%2F-743151213" anchor-label="iconWithLabelLargeSizeXsmall" id="648730190%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-large-size-xsmall.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Large</span><wbr><span>Size</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="648730190%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-large-size-xsmall.html">iconWithLabelLargeSizeXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1802120108%2FProperties%2F-743151213" anchor-label="iconWithLabelMediumSizeLarge" id="-1802120108%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-medium-size-large.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1802120108%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-medium-size-large.html">iconWithLabelMediumSizeLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1671955274%2FProperties%2F-743151213" anchor-label="iconWithLabelMediumSizeMedium" id="-1671955274%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-medium-size-medium.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1671955274%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-medium-size-medium.html">iconWithLabelMediumSizeMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1229826040%2FProperties%2F-743151213" anchor-label="iconWithLabelMediumSizeSmall" id="-1229826040%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-medium-size-small.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1229826040%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-medium-size-small.html">iconWithLabelMediumSizeSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1935531484%2FProperties%2F-743151213" anchor-label="iconWithLabelMediumSizeXsmall" id="1935531484%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-medium-size-xsmall.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Medium</span><wbr><span>Size</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1935531484%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-medium-size-xsmall.html">iconWithLabelMediumSizeXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1302762386%2FProperties%2F-743151213" anchor-label="iconWithLabelSmallSizeLarge" id="-1302762386%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-small-size-large.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1302762386%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-small-size-large.html">iconWithLabelSmallSizeLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="923232220%2FProperties%2F-743151213" anchor-label="iconWithLabelSmallSizeMedium" id="923232220%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-small-size-medium.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="923232220%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-small-size-medium.html">iconWithLabelSmallSizeMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-730468318%2FProperties%2F-743151213" anchor-label="iconWithLabelSmallSizeSmall" id="-730468318%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-small-size-small.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-730468318%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-small-size-small.html">iconWithLabelSmallSizeSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="235751682%2FProperties%2F-743151213" anchor-label="iconWithLabelSmallSizeXsmall" id="235751682%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-small-size-xsmall.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Small</span><wbr><span>Size</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="235751682%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-small-size-xsmall.html">iconWithLabelSmallSizeXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-862357726%2FProperties%2F-743151213" anchor-label="iconWithLabelXlargeSizeLarge" id="-862357726%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-xlarge-size-large.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-862357726%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-xlarge-size-large.html">iconWithLabelXlargeSizeLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1690874792%2FProperties%2F-743151213" anchor-label="iconWithLabelXlargeSizeMedium" id="1690874792%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-xlarge-size-medium.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1690874792%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-xlarge-size-medium.html">iconWithLabelXlargeSizeMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-290063658%2FProperties%2F-743151213" anchor-label="iconWithLabelXlargeSizeSmall" id="-290063658%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon-with-label-xlarge-size-small.html"><span>icon</span><wbr><span>With</span><wbr><span>Label</span><wbr><span>Xlarge</span><wbr><span>Size</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-290063658%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="icon-with-label-xlarge-size-small.html">iconWithLabelXlargeSizeSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1987964041%2FProperties%2F-743151213" anchor-label="maxWidthTypeBodyLargeMobile" id="-1987964041%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-body-large-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1987964041%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-body-large-mobile.html">maxWidthTypeBodyLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1868933683%2FProperties%2F-743151213" anchor-label="maxWidthTypeBodyLargeTablet" id="1868933683%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-body-large-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Body</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1868933683%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-body-large-tablet.html">maxWidthTypeBodyLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1815458095%2FProperties%2F-743151213" anchor-label="maxWidthTypeBodyMediumMobile" id="1815458095%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-body-medium-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1815458095%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-body-medium-mobile.html">maxWidthTypeBodyMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1377388523%2FProperties%2F-743151213" anchor-label="maxWidthTypeBodyMediumTablet" id="1377388523%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-body-medium-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Body</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1377388523%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-body-medium-tablet.html">maxWidthTypeBodyMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1462632405%2FProperties%2F-743151213" anchor-label="maxWidthTypeBodySmallMobile" id="-1462632405%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-body-small-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1462632405%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-body-small-mobile.html">maxWidthTypeBodySmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1900701977%2FProperties%2F-743151213" anchor-label="maxWidthTypeBodySmallTablet" id="-1900701977%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-body-small-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Body</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1900701977%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-body-small-tablet.html">maxWidthTypeBodySmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1452234317%2FProperties%2F-743151213" anchor-label="maxWidthTypeDisplayLargeMobile" id="1452234317%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-display-large-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Display</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1452234317%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-display-large-mobile.html">maxWidthTypeDisplayLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1014164745%2FProperties%2F-743151213" anchor-label="maxWidthTypeDisplayLargeTablet" id="1014164745%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-display-large-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Display</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1014164745%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-display-large-tablet.html">maxWidthTypeDisplayLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1087424793%2FProperties%2F-743151213" anchor-label="maxWidthTypeDisplayMediumMobile" id="1087424793%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-display-medium-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Display</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1087424793%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-display-medium-mobile.html">maxWidthTypeDisplayMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="649355221%2FProperties%2F-743151213" anchor-label="maxWidthTypeDisplayMediumTablet" id="649355221%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-display-medium-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Display</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="649355221%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-display-medium-tablet.html">maxWidthTypeDisplayMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1977565953%2FProperties%2F-743151213" anchor-label="maxWidthTypeDisplaySmallMobile" id="1977565953%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-display-small-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Display</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1977565953%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-display-small-mobile.html">maxWidthTypeDisplaySmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1539496381%2FProperties%2F-743151213" anchor-label="maxWidthTypeDisplaySmallTablet" id="1539496381%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-display-small-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Display</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1539496381%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-display-small-tablet.html">maxWidthTypeDisplaySmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="163060621%2FProperties%2F-743151213" anchor-label="maxWidthTypeHeadingLargeMobile" id="163060621%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-heading-large-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="163060621%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-heading-large-mobile.html">maxWidthTypeHeadingLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-275008951%2FProperties%2F-743151213" anchor-label="maxWidthTypeHeadingLargeTablet" id="-275008951%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-heading-large-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Heading</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-275008951%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-heading-large-tablet.html">maxWidthTypeHeadingLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-222254119%2FProperties%2F-743151213" anchor-label="maxWidthTypeHeadingMediumMobile" id="-222254119%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-heading-medium-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-222254119%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-heading-medium-mobile.html">maxWidthTypeHeadingMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-660323691%2FProperties%2F-743151213" anchor-label="maxWidthTypeHeadingMediumTablet" id="-660323691%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-heading-medium-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Heading</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-660323691%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-heading-medium-tablet.html">maxWidthTypeHeadingMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="688392257%2FProperties%2F-743151213" anchor-label="maxWidthTypeHeadingSmallMobile" id="688392257%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-heading-small-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="688392257%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-heading-small-mobile.html">maxWidthTypeHeadingSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="250322685%2FProperties%2F-743151213" anchor-label="maxWidthTypeHeadingSmallTablet" id="250322685%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-heading-small-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Heading</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="250322685%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-heading-small-tablet.html">maxWidthTypeHeadingSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-956912693%2FProperties%2F-743151213" anchor-label="maxWidthTypeHeadingXlargeMobile" id="-956912693%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-heading-xlarge-mobile.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-956912693%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-heading-xlarge-mobile.html">maxWidthTypeHeadingXlargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1394982265%2FProperties%2F-743151213" anchor-label="maxWidthTypeHeadingXlargeTablet" id="-1394982265%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-width-type-heading-xlarge-tablet.html"><span>max</span><wbr><span>Width</span><wbr><span>Type</span><wbr><span>Heading</span><wbr><span>Xlarge</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1394982265%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="max-width-type-heading-xlarge-tablet.html">maxWidthTypeHeadingXlargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1438121351%2FProperties%2F-743151213" anchor-label="minInteractiveArea" id="1438121351%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="min-interactive-area.html"><span>min</span><wbr><span>Interactive</span><wbr><span><span>Area</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1438121351%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="min-interactive-area.html">minInteractiveArea</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

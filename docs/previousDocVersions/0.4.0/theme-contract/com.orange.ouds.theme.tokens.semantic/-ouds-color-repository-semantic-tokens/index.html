@@ -1,0 +1,1772 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OudsColorRepositorySemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.tokens.semantic/-ouds-color-repository-semantic-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-color-repository-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../older/0.2.0/theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-color-repository-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../older/0.1.0/theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-color-repository-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-contract/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-contract/main" data-filter=":theme-contract/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-contract::com.orange.ouds.theme.tokens.semantic/OudsColorRepositorySemanticTokens///PointingToDeclaration//-743151213">
+  <div class="breadcrumbs"><a href="../../index.html">theme-contract</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.tokens.semantic</a><span class="delimiter">/</span><span class="current">OudsColorRepositorySemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Ouds</span><wbr><span>Color</span><wbr><span>Repository</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">OudsColorRepositorySemanticTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-734790009%2FProperties%2F-743151213" anchor-label="repositoryAccentDefault" id="-734790009%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-accent-default.html"><span>repository</span><wbr><span>Accent</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-734790009%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-accent-default.html">repositoryAccentDefault</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1298830768%2FProperties%2F-743151213" anchor-label="repositoryAccentHigh" id="-1298830768%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-accent-high.html"><span>repository</span><wbr><span>Accent</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1298830768%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-accent-high.html">repositoryAccentHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-369053309%2FProperties%2F-743151213" anchor-label="repositoryAccentHigher" id="-369053309%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-accent-higher.html"><span>repository</span><wbr><span>Accent</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-369053309%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-accent-higher.html">repositoryAccentHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-291829372%2FProperties%2F-743151213" anchor-label="repositoryAccentHighest" id="-291829372%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-accent-highest.html"><span>repository</span><wbr><span>Accent</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-291829372%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-accent-highest.html">repositoryAccentHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1424861780%2FProperties%2F-743151213" anchor-label="repositoryAccentLow" id="1424861780%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-accent-low.html"><span>repository</span><wbr><span>Accent</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1424861780%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-accent-low.html">repositoryAccentLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1464402055%2FProperties%2F-743151213" anchor-label="repositoryAccentLower" id="1464402055%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-accent-lower.html"><span>repository</span><wbr><span>Accent</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1464402055%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-accent-lower.html">repositoryAccentLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="710712064%2FProperties%2F-743151213" anchor-label="repositoryAccentLowest" id="710712064%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-accent-lowest.html"><span>repository</span><wbr><span>Accent</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="710712064%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-accent-lowest.html">repositoryAccentLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-146511189%2FProperties%2F-743151213" anchor-label="repositoryInfoDefault" id="-146511189%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-info-default.html"><span>repository</span><wbr><span>Info</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-146511189%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-info-default.html">repositoryInfoDefault</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2026180780%2FProperties%2F-743151213" anchor-label="repositoryInfoHigh" id="2026180780%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-info-high.html"><span>repository</span><wbr><span>Info</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2026180780%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-info-high.html">repositoryInfoHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-488623905%2FProperties%2F-743151213" anchor-label="repositoryInfoHigher" id="-488623905%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-info-higher.html"><span>repository</span><wbr><span>Info</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-488623905%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-info-higher.html">repositoryInfoHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="296449448%2FProperties%2F-743151213" anchor-label="repositoryInfoHighest" id="296449448%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-info-highest.html"><span>repository</span><wbr><span>Info</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="296449448%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-info-highest.html">repositoryInfoHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="423741560%2FProperties%2F-743151213" anchor-label="repositoryInfoLow" id="423741560%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-info-low.html"><span>repository</span><wbr><span>Info</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="423741560%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-info-low.html">repositoryInfoLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1460544939%2FProperties%2F-743151213" anchor-label="repositoryInfoLower" id="1460544939%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-info-lower.html"><span>repository</span><wbr><span>Info</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1460544939%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-info-lower.html">repositoryInfoLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="591141468%2FProperties%2F-743151213" anchor-label="repositoryInfoLowest" id="591141468%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-info-lowest.html"><span>repository</span><wbr><span>Info</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="591141468%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-info-lowest.html">repositoryInfoLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2075808334%2FProperties%2F-743151213" anchor-label="repositoryNegativeDefault" id="-2075808334%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-negative-default.html"><span>repository</span><wbr><span>Negative</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2075808334%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-negative-default.html">repositoryNegativeDefault</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1588657403%2FProperties%2F-743151213" anchor-label="repositoryNegativeHigh" id="-1588657403%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-negative-high.html"><span>repository</span><wbr><span>Negative</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1588657403%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-negative-high.html">repositoryNegativeHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="280424696%2FProperties%2F-743151213" anchor-label="repositoryNegativeHigher" id="280424696%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-negative-higher.html"><span>repository</span><wbr><span>Negative</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="280424696%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-negative-higher.html">repositoryNegativeHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1632847697%2FProperties%2F-743151213" anchor-label="repositoryNegativeHighest" id="-1632847697%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-negative-highest.html"><span>repository</span><wbr><span>Negative</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1632847697%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-negative-highest.html">repositoryNegativeHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1493981441%2FProperties%2F-743151213" anchor-label="repositoryNegativeLow" id="-1493981441%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-negative-low.html"><span>repository</span><wbr><span>Negative</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1493981441%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-negative-low.html">repositoryNegativeLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1069710962%2FProperties%2F-743151213" anchor-label="repositoryNegativeLower" id="1069710962%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-negative-lower.html"><span>repository</span><wbr><span>Negative</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1069710962%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-negative-lower.html">repositoryNegativeLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1360190069%2FProperties%2F-743151213" anchor-label="repositoryNegativeLowest" id="1360190069%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-negative-lowest.html"><span>repository</span><wbr><span>Negative</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1360190069%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-negative-lowest.html">repositoryNegativeLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-973324890%2FProperties%2F-743151213" anchor-label="repositoryNeutralEmphasizedBlack" id="-973324890%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-emphasized-black.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span><span>Black</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-973324890%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-emphasized-black.html">repositoryNeutralEmphasizedBlack</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="798278227%2FProperties%2F-743151213" anchor-label="repositoryNeutralEmphasizedHigh" id="798278227%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-emphasized-high.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="798278227%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-emphasized-high.html">repositoryNeutralEmphasizedHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="613029062%2FProperties%2F-743151213" anchor-label="repositoryNeutralEmphasizedHigher" id="613029062%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-emphasized-higher.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="613029062%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-emphasized-higher.html">repositoryNeutralEmphasizedHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="87953057%2FProperties%2F-743151213" anchor-label="repositoryNeutralEmphasizedHighest" id="87953057%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-emphasized-highest.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="87953057%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-emphasized-highest.html">repositoryNeutralEmphasizedHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1215415793%2FProperties%2F-743151213" anchor-label="repositoryNeutralEmphasizedLow" id="1215415793%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-emphasized-low.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1215415793%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-emphasized-low.html">repositoryNeutralEmphasizedLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2050271460%2FProperties%2F-743151213" anchor-label="repositoryNeutralEmphasizedLower" id="2050271460%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-emphasized-lower.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2050271460%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-emphasized-lower.html">repositoryNeutralEmphasizedLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1692794435%2FProperties%2F-743151213" anchor-label="repositoryNeutralEmphasizedLowest" id="1692794435%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-emphasized-lowest.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1692794435%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-emphasized-lowest.html">repositoryNeutralEmphasizedLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1961421344%2FProperties%2F-743151213" anchor-label="repositoryNeutralEmphasizedMedium" id="-1961421344%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-emphasized-medium.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Emphasized</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1961421344%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-emphasized-medium.html">repositoryNeutralEmphasizedMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-74952138%2FProperties%2F-743151213" anchor-label="repositoryNeutralMutedHigh" id="-74952138%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-muted-high.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-74952138%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-muted-high.html">repositoryNeutralMutedHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1042728983%2FProperties%2F-743151213" anchor-label="repositoryNeutralMutedHigher" id="-1042728983%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-muted-higher.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1042728983%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-muted-higher.html">repositoryNeutralMutedHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="299061214%2FProperties%2F-743151213" anchor-label="repositoryNeutralMutedHighest" id="299061214%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-muted-highest.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="299061214%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-muted-highest.html">repositoryNeutralMutedHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-475320914%2FProperties%2F-743151213" anchor-label="repositoryNeutralMutedLow" id="-475320914%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-muted-low.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-475320914%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-muted-low.html">repositoryNeutralMutedLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="749933921%2FProperties%2F-743151213" anchor-label="repositoryNeutralMutedLower" id="749933921%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-muted-lower.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="749933921%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-muted-lower.html">repositoryNeutralMutedLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="37036390%2FProperties%2F-743151213" anchor-label="repositoryNeutralMutedLowest" id="37036390%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-muted-lowest.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="37036390%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-muted-lowest.html">repositoryNeutralMutedLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="677787907%2FProperties%2F-743151213" anchor-label="repositoryNeutralMutedMedium" id="677787907%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-muted-medium.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="677787907%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-muted-medium.html">repositoryNeutralMutedMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="725061945%2FProperties%2F-743151213" anchor-label="repositoryNeutralMutedWhite" id="725061945%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-neutral-muted-white.html"><span>repository</span><wbr><span>Neutral</span><wbr><span>Muted</span><wbr><span><span>White</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="725061945%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-neutral-muted-white.html">repositoryNeutralMutedWhite</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1105362333%2FProperties%2F-743151213" anchor-label="repositoryOpacityAccentLow" id="1105362333%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-accent-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Accent</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1105362333%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-accent-low.html">repositoryOpacityAccentLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="790965940%2FProperties%2F-743151213" anchor-label="repositoryOpacityAccentMedium" id="790965940%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-accent-medium.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Accent</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="790965940%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-accent-medium.html">repositoryOpacityAccentMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-150080154%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackHigh" id="-150080154%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-high.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-150080154%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-high.html">repositoryOpacityBlackHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-226308327%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackHigher" id="-226308327%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-higher.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-226308327%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-higher.html">repositoryOpacityBlackHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-161702226%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackHighest" id="-161702226%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-highest.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-161702226%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-highest.html">repositoryOpacityBlackHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-62102402%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackLow" id="-62102402%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-62102402%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-low.html">repositoryOpacityBlackLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1579034575%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackLower" id="-1579034575%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-lower.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1579034575%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-lower.html">repositoryOpacityBlackLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="853457046%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackLowest" id="853457046%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-lowest.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="853457046%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-lowest.html">repositoryOpacityBlackLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1494208563%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackMedium" id="1494208563%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-medium.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1494208563%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-medium.html">repositoryOpacityBlackMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1548455503%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackMediumHigh" id="-1548455503%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-medium-high.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span>Medium</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1548455503%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-medium-high.html">repositoryOpacityBlackMediumHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-938495277%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackMediumLow" id="-938495277%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-medium-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span>Medium</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-938495277%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-medium-low.html">repositoryOpacityBlackMediumLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2146164544%2FProperties%2F-743151213" anchor-label="repositoryOpacityBlackTransparent" id="2146164544%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-black-transparent.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Black</span><wbr><span><span>Transparent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2146164544%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-black-transparent.html">repositoryOpacityBlackTransparent</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1766532607%2FProperties%2F-743151213" anchor-label="repositoryOpacityInfoLow" id="-1766532607%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-info-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Info</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1766532607%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-info-low.html">repositoryOpacityInfoLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-82655280%2FProperties%2F-743151213" anchor-label="repositoryOpacityInfoMedium" id="-82655280%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-info-medium.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Info</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-82655280%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-info-medium.html">repositoryOpacityInfoMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="704695304%2FProperties%2F-743151213" anchor-label="repositoryOpacityNegativeLow" id="704695304%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-negative-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Negative</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="704695304%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-negative-low.html">repositoryOpacityNegativeLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="233620585%2FProperties%2F-743151213" anchor-label="repositoryOpacityNegativeMedium" id="233620585%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-negative-medium.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Negative</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="233620585%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-negative-medium.html">repositoryOpacityNegativeMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-483275828%2FProperties%2F-743151213" anchor-label="repositoryOpacityPositiveLow" id="-483275828%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-positive-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Positive</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-483275828%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-positive-low.html">repositoryOpacityPositiveLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-83853787%2FProperties%2F-743151213" anchor-label="repositoryOpacityPositiveMedium" id="-83853787%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-positive-medium.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Positive</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-83853787%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-positive-medium.html">repositoryOpacityPositiveMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="31076291%2FProperties%2F-743151213" anchor-label="repositoryOpacityPrimaryHigh" id="31076291%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-primary-high.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Primary</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="31076291%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-primary-high.html">repositoryOpacityPrimaryHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2066343478%2FProperties%2F-743151213" anchor-label="repositoryOpacityPrimaryHigher" id="2066343478%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-primary-higher.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Primary</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2066343478%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-primary-higher.html">repositoryOpacityPrimaryHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2103940303%2FProperties%2F-743151213" anchor-label="repositoryOpacityPrimaryHighest" id="-2103940303%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-primary-highest.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Primary</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2103940303%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-primary-highest.html">repositoryOpacityPrimaryHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1441731967%2FProperties%2F-743151213" anchor-label="repositoryOpacityPrimaryLow" id="-1441731967%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-primary-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Primary</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1441731967%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-primary-low.html">repositoryOpacityPrimaryLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-258152076%2FProperties%2F-743151213" anchor-label="repositoryOpacityPrimaryLower" id="-258152076%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-primary-lower.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Primary</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-258152076%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-primary-lower.html">repositoryOpacityPrimaryLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1148858445%2FProperties%2F-743151213" anchor-label="repositoryOpacityPrimaryLowest" id="-1148858445%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-primary-lowest.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Primary</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1148858445%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-primary-lowest.html">repositoryOpacityPrimaryLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-508106928%2FProperties%2F-743151213" anchor-label="repositoryOpacityPrimaryMedium" id="-508106928%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-primary-medium.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Primary</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-508106928%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-primary-medium.html">repositoryOpacityPrimaryMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1198017981%2FProperties%2F-743151213" anchor-label="repositoryOpacityPrimaryTransparent" id="-1198017981%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-primary-transparent.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Primary</span><wbr><span><span>Transparent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1198017981%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-primary-transparent.html">repositoryOpacityPrimaryTransparent</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="480084251%2FProperties%2F-743151213" anchor-label="repositoryOpacityWarningLow" id="480084251%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-warning-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Warning</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="480084251%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-warning-low.html">repositoryOpacityWarningLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="404787830%2FProperties%2F-743151213" anchor-label="repositoryOpacityWarningMedium" id="404787830%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-warning-medium.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>Warning</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="404787830%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-warning-medium.html">repositoryOpacityWarningMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1540005508%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteHigh" id="-1540005508%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-high.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1540005508%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-high.html">repositoryOpacityWhiteHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-209744465%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteHigher" id="-209744465%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-higher.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-209744465%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-higher.html">repositoryOpacityWhiteHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="351777496%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteHighest" id="351777496%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-highest.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="351777496%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-highest.html">repositoryOpacityWhiteHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-384033368%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteLow" id="-384033368%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-384033368%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-low.html">repositoryOpacityWhiteLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1717047589%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteLower" id="-1717047589%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-lower.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1717047589%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-lower.html">repositoryOpacityWhiteLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="870020908%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteLowest" id="870020908%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-lowest.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="870020908%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-lowest.html">repositoryOpacityWhiteLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1510772425%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteMedium" id="1510772425%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-medium.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1510772425%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-medium.html">repositoryOpacityWhiteMedium</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1405721475%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteMediumLow" id="-1405721475%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-medium-low.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span>Medium</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1405721475%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-medium-low.html">repositoryOpacityWhiteMediumLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-181612950%2FProperties%2F-743151213" anchor-label="repositoryOpacityWhiteTransparent" id="-181612950%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-opacity-white-transparent.html"><span>repository</span><wbr><span>Opacity</span><wbr><span>White</span><wbr><span><span>Transparent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-181612950%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-opacity-white-transparent.html">repositoryOpacityWhiteTransparent</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="967388022%2FProperties%2F-743151213" anchor-label="repositoryPositiveDefault" id="967388022%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-positive-default.html"><span>repository</span><wbr><span>Positive</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="967388022%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-positive-default.html">repositoryPositiveDefault</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="238943169%2FProperties%2F-743151213" anchor-label="repositoryPositiveHigh" id="238943169%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-positive-high.html"><span>repository</span><wbr><span>Positive</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="238943169%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-positive-high.html">repositoryPositiveHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-37049676%2FProperties%2F-743151213" anchor-label="repositoryPositiveHigher" id="-37049676%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-positive-higher.html"><span>repository</span><wbr><span>Positive</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-37049676%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-positive-higher.html">repositoryPositiveHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1410348659%2FProperties%2F-743151213" anchor-label="repositoryPositiveHighest" id="1410348659%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-positive-highest.html"><span>repository</span><wbr><span>Positive</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1410348659%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-positive-highest.html">repositoryPositiveHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1613014723%2FProperties%2F-743151213" anchor-label="repositoryPositiveLow" id="1613014723%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-positive-low.html"><span>repository</span><wbr><span>Positive</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1613014723%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-positive-low.html">repositoryPositiveLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1890753846%2FProperties%2F-743151213" anchor-label="repositoryPositiveLower" id="1890753846%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-positive-lower.html"><span>repository</span><wbr><span>Positive</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1890753846%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-positive-lower.html">repositoryPositiveLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1042715697%2FProperties%2F-743151213" anchor-label="repositoryPositiveLowest" id="1042715697%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-positive-lowest.html"><span>repository</span><wbr><span>Positive</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1042715697%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-positive-lowest.html">repositoryPositiveLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-779579939%2FProperties%2F-743151213" anchor-label="repositoryPrimaryDefault" id="-779579939%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-primary-default.html"><span>repository</span><wbr><span>Primary</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-779579939%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-primary-default.html">repositoryPrimaryDefault</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2127366842%2FProperties%2F-743151213" anchor-label="repositoryPrimaryHigh" id="2127366842%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-primary-high.html"><span>repository</span><wbr><span>Primary</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2127366842%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-primary-high.html">repositoryPrimaryHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2033066131%2FProperties%2F-743151213" anchor-label="repositoryPrimaryHigher" id="-2033066131%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-primary-higher.html"><span>repository</span><wbr><span>Primary</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2033066131%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-primary-higher.html">repositoryPrimaryHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-336619302%2FProperties%2F-743151213" anchor-label="repositoryPrimaryHighest" id="-336619302%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-primary-highest.html"><span>repository</span><wbr><span>Primary</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-336619302%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-primary-highest.html">repositoryPrimaryHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-127183702%2FProperties%2F-743151213" anchor-label="repositoryPrimaryLow" id="-127183702%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-primary-low.html"><span>repository</span><wbr><span>Primary</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-127183702%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-primary-low.html">repositoryPrimaryLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="302345565%2FProperties%2F-743151213" anchor-label="repositoryPrimaryLower" id="302345565%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-primary-lower.html"><span>repository</span><wbr><span>Primary</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="302345565%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-primary-lower.html">repositoryPrimaryLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-953300758%2FProperties%2F-743151213" anchor-label="repositoryPrimaryLowest" id="-953300758%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-primary-lowest.html"><span>repository</span><wbr><span>Primary</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-953300758%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-primary-lowest.html">repositoryPrimaryLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="560684431%2FProperties%2F-743151213" anchor-label="repositorySecondaryDefault" id="560684431%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-secondary-default.html"><span>repository</span><wbr><span>Secondary</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="560684431%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-secondary-default.html">repositorySecondaryDefault</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-49698744%2FProperties%2F-743151213" anchor-label="repositorySecondaryHigh" id="-49698744%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-secondary-high.html"><span>repository</span><wbr><span>Secondary</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-49698744%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-secondary-high.html">repositorySecondaryHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1750946171%2FProperties%2F-743151213" anchor-label="repositorySecondaryHigher" id="1750946171%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-secondary-higher.html"><span>repository</span><wbr><span>Secondary</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1750946171%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-secondary-higher.html">repositorySecondaryHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1003645068%2FProperties%2F-743151213" anchor-label="repositorySecondaryHighest" id="1003645068%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-secondary-highest.html"><span>repository</span><wbr><span>Secondary</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1003645068%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-secondary-highest.html">repositorySecondaryHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-58864292%2FProperties%2F-743151213" anchor-label="repositorySecondaryLow" id="-58864292%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-secondary-low.html"><span>repository</span><wbr><span>Secondary</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-58864292%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-secondary-low.html">repositorySecondaryLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1532789135%2FProperties%2F-743151213" anchor-label="repositorySecondaryLower" id="1532789135%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-secondary-lower.html"><span>repository</span><wbr><span>Secondary</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1532789135%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-secondary-lower.html">repositorySecondaryLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1464255752%2FProperties%2F-743151213" anchor-label="repositorySecondaryLowest" id="-1464255752%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-secondary-lowest.html"><span>repository</span><wbr><span>Secondary</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1464255752%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-secondary-lowest.html">repositorySecondaryLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-572983857%2FProperties%2F-743151213" anchor-label="repositoryTertiaryDefault" id="-572983857%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-tertiary-default.html"><span>repository</span><wbr><span>Tertiary</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-572983857%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-tertiary-default.html">repositoryTertiaryDefault</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="469563400%2FProperties%2F-743151213" anchor-label="repositoryTertiaryHigh" id="469563400%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-tertiary-high.html"><span>repository</span><wbr><span>Tertiary</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="469563400%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-tertiary-high.html">repositoryTertiaryHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1749307077%2FProperties%2F-743151213" anchor-label="repositoryTertiaryHigher" id="-1749307077%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-tertiary-higher.html"><span>repository</span><wbr><span>Tertiary</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1749307077%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-tertiary-higher.html">repositoryTertiaryHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-130023220%2FProperties%2F-743151213" anchor-label="repositoryTertiaryHighest" id="-130023220%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-tertiary-highest.html"><span>repository</span><wbr><span>Tertiary</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-130023220%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-tertiary-highest.html">repositoryTertiaryHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="234980764%2FProperties%2F-743151213" anchor-label="repositoryTertiaryLow" id="234980764%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-tertiary-low.html"><span>repository</span><wbr><span>Tertiary</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="234980764%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-tertiary-low.html">repositoryTertiaryLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="450046415%2FProperties%2F-743151213" anchor-label="repositoryTertiaryLower" id="450046415%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-tertiary-lower.html"><span>repository</span><wbr><span>Tertiary</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="450046415%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-tertiary-lower.html">repositoryTertiaryLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-669541704%2FProperties%2F-743151213" anchor-label="repositoryTertiaryLowest" id="-669541704%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-tertiary-lowest.html"><span>repository</span><wbr><span>Tertiary</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-669541704%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-tertiary-lowest.html">repositoryTertiaryLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1750353783%2FProperties%2F-743151213" anchor-label="repositoryWarningDefault" id="1750353783%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-warning-default.html"><span>repository</span><wbr><span>Warning</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1750353783%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-warning-default.html">repositoryWarningDefault</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1574127456%2FProperties%2F-743151213" anchor-label="repositoryWarningHigh" id="1574127456%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-warning-high.html"><span>repository</span><wbr><span>Warning</span><wbr><span><span>High</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1574127456%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-warning-high.html">repositoryWarningHigh</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1120171373%2FProperties%2F-743151213" anchor-label="repositoryWarningHigher" id="-1120171373%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-warning-higher.html"><span>repository</span><wbr><span>Warning</span><wbr><span><span>Higher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1120171373%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-warning-higher.html">repositoryWarningHigher</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2101652876%2FProperties%2F-743151213" anchor-label="repositoryWarningHighest" id="-2101652876%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-warning-highest.html"><span>repository</span><wbr><span>Warning</span><wbr><span><span>Highest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2101652876%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-warning-highest.html">repositoryWarningHighest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1794632516%2FProperties%2F-743151213" anchor-label="repositoryWarningLow" id="1794632516%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-warning-low.html"><span>repository</span><wbr><span>Warning</span><wbr><span><span>Low</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1794632516%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-warning-low.html">repositoryWarningLow</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="331793783%2FProperties%2F-743151213" anchor-label="repositoryWarningLower" id="331793783%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-warning-lower.html"><span>repository</span><wbr><span>Warning</span><wbr><span><span>Lower</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="331793783%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-warning-lower.html">repositoryWarningLower</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-40406000%2FProperties%2F-743151213" anchor-label="repositoryWarningLowest" id="-40406000%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repository-warning-lowest.html"><span>repository</span><wbr><span>Warning</span><wbr><span><span>Lowest</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-40406000%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="repository-warning-lowest.html">repositoryWarningLowest</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
