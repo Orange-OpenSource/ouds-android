@@ -98,14 +98,12 @@ class BadgeDemoState(
         get() = when (status) {
             OudsBadgeStatus.Neutral -> OudsBadgeWithIconStatus.Neutral(
                 OudsBadgeIcon.Custom(
-                    painterResource(R.drawable.ic_heart),
-                    stringResource(id = R.string.app_components_common_icon_a11y)
+                    painterResource(R.drawable.ic_heart)
                 )
             )
             OudsBadgeStatus.Accent -> OudsBadgeWithIconStatus.Accent(
                 OudsBadgeIcon.Custom(
-                    painterResource(R.drawable.ic_heart),
-                    stringResource(id = R.string.app_components_common_icon_a11y)
+                    painterResource(R.drawable.ic_heart)
                 )
             )
             OudsBadgeStatus.Positive -> OudsBadgeWithIconStatus.Positive()

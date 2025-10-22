@@ -69,6 +69,8 @@ import kotlin.enums.enumEntries
  * It is used for status indicators (e.g., "New", "Pending", "Success").
  * The size remains unchanged despite the increase in the interface size.
  *
+ * **A11Y recommendation:** Provide a `contentDescription` semantics to clarify the meaning of this badge.
+ *
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
  *
@@ -108,6 +110,8 @@ fun OudsBadge(
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
  *
  * This version of the badge displays numerical values (e.g., unread messages, notifications).
+ *
+ * **A11Y recommendation:** Provide a more explicit `contentDescription` than the count alone by using a semantics Modifier.
  *
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
@@ -153,6 +157,8 @@ fun OudsBadge(
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
  *
  * This version of the badge displays an icon to visually reinforce meaning.
+ *
+ * **A11Y recommendation:** Provide a `contentDescription` semantics to clarify the meaning of this badge.
  *
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
@@ -208,7 +214,7 @@ private fun OudsBadge(
 ) {
     // This outer box is necessary otherwise the user can change the size of the badge through the modifier
     Box(
-        modifier = modifier,
+        modifier = modifier.semantics(mergeDescendants = true) { },
         contentAlignment = Alignment.Center
     ) {
         // Apply the font scale to the size when displaying a count or an icon badge.
@@ -228,7 +234,6 @@ private fun OudsBadge(
                         size(sizeDp)
                     }
                 }
-                .semantics(mergeDescendants = true) { }
                 .padding(paddingValues = contentPadding(size = size, count = count, icon = icon, scale = scale)),
             contentAlignment = Alignment.Center
         ) {
@@ -346,8 +351,7 @@ const val OudsBadgeMaxCount = 99
  */
 open class OudsBadgeIcon protected constructor(
     graphicsObjectProvider: @Composable (OudsBadgeIcon) -> Any,
-    val contentDescription: String
-) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(ExtraParameters::class.java, graphicsObjectProvider, contentDescription) {
+) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(ExtraParameters::class.java, graphicsObjectProvider, "") {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
@@ -356,33 +360,32 @@ open class OudsBadgeIcon protected constructor(
     ) : OudsComponentContent.ExtraParameters()
 
     open class Custom internal constructor(
-        graphicsObjectProvider: @Composable (OudsBadgeIcon) -> Any,
-        contentDescription: String
-    ) : OudsBadgeIcon(graphicsObjectProvider, contentDescription) {
+        graphicsObjectProvider: @Composable (OudsBadgeIcon) -> Any
+    ) : OudsBadgeIcon(graphicsObjectProvider) {
 
         /**
          * Creates an instance of [OudsBadgeIcon.Custom].
+         * A content description should be specified at [OudsBadge] level through semantics Modifier.
          *
          * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsBadgeIcon].
          */
-        constructor(painter: Painter, contentDescription: String) : this({ painter }, contentDescription)
+        constructor(painter: Painter) : this({ painter })
 
         /**
          * Creates an instance of [OudsBadgeIcon.Custom].
+         * A content description should be specified at [OudsBadge] level through semantics Modifier.
          *
          * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsBadgeIcon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : this({ imageVector }, contentDescription)
+        constructor(imageVector: ImageVector) : this({ imageVector })
 
         /**
          * Creates an instance of [OudsBadgeIcon.Custom].
+         * A content description should be specified at [OudsBadge] level through semantics Modifier.
          *
          * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsBadgeIcon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : this({ bitmap }, contentDescription)
+        constructor(bitmap: ImageBitmap) : this({ bitmap })
     }
 
     data object Default : OudsBadgeIcon({ icon ->
@@ -391,7 +394,7 @@ open class OudsBadgeIcon protected constructor(
                 error("No default icon for status ${status::class.simpleName}")
             }
         }
-    }, "") //TODO Vocalize functional status icons for A11Y
+    })
 
     override val tint: Color?
         @Composable
@@ -425,6 +428,7 @@ enum class OudsBadgeStatus {
  * The status of an [OudsBadge] with icon. This status determines the background and content colors of the badge.
  * It also carries the optional icon to be displayed in the badge. Depending on the status, this icon can be customizable or be a status dedicated icon.
  * For a badge without icon, please use [OudsBadgeStatus].
+ * A content description should be specified at [OudsBadge] level through semantics Modifier.
  */
 sealed class OudsBadgeWithIconStatus(val icon: OudsBadgeIcon) {
 
@@ -433,7 +437,7 @@ sealed class OudsBadgeWithIconStatus(val icon: OudsBadgeIcon) {
      * Its [icon] is an [OudsBadgeIcon.Custom].
      */
     class Neutral internal constructor(icon: OudsBadgeIcon) : OudsBadgeWithIconStatus(icon) {
-        /*
+        /**
          * Creates an instance of [OudsBadgeStatus.Neutral] with a custom icon.
          */
         constructor(icon: OudsBadgeIcon.Custom) : this(icon as OudsBadgeIcon)
@@ -640,8 +644,8 @@ internal fun PreviewOudsBadgeWithIcon(theme: OudsThemeContract, darkThemeEnabled
 
 internal data class OudsBadgeWithIconPreviewParameter(
     val statuses: List<OudsBadgeWithIconStatus> = listOf(
-        OudsBadgeWithIconStatus.Neutral(OudsBadgeIcon.Custom(Icons.Filled.FavoriteBorder, "")),
-        OudsBadgeWithIconStatus.Accent(OudsBadgeIcon.Custom(Icons.Filled.FavoriteBorder, "")),
+        OudsBadgeWithIconStatus.Neutral(OudsBadgeIcon.Custom(Icons.Filled.FavoriteBorder)),
+        OudsBadgeWithIconStatus.Accent(OudsBadgeIcon.Custom(Icons.Filled.FavoriteBorder)),
         OudsBadgeWithIconStatus.Positive(),
         OudsBadgeWithIconStatus.Warning(),
         OudsBadgeWithIconStatus.Negative(),

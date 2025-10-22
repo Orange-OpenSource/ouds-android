@@ -19,8 +19,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -45,9 +48,7 @@ import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.component.OudsBadgeWithIconStatus
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
-import kotlin.reflect.full.createInstance
 
 @Composable
 fun BadgeDemoScreen() {
@@ -122,23 +123,26 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
             val modifier = Modifier.alpha(alpha)
             when (type) {
                 BadgeDemoState.Type.Standard -> {
+                    val contentDescription = stringResource(id = R.string.app_components_badge_unreadNotifications_a11y)
                     OudsBadge(
-                        modifier = modifier,
+                        modifier = modifier.semantics { this.contentDescription = contentDescription },
                         status = status,
                         size = size
                     )
                 }
                 BadgeDemoState.Type.Count -> {
+                    val contentDescription = pluralStringResource(id = R.plurals.app_components_badge_unreadMessageCount_a11y, count = count, count)
                     OudsBadge(
-                        modifier = modifier,
+                        modifier = modifier.clearAndSetSemantics { this.contentDescription = contentDescription },
                         count = count,
                         status = status,
                         size = size
                     )
                 }
                 BadgeDemoState.Type.Icon -> {
+                    val contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
                     OudsBadge(
-                        modifier = modifier,
+                        modifier = modifier.semantics { this.contentDescription = contentDescription },
                         status = badgeWithIconStatus,
                         size = size
                     )

@@ -142,6 +142,12 @@
     <string name="app_components_badge_countType_label">Count</string>
     <string name="app_components_badge_iconType_label">Icon</string>
     <string name="app_components_badge_count_label">Count</string>
+    <string name="app_components_badge_unreadNotifications_a11y">Unread notifications</string>
+    <plurals name="app_components_badge_unreadMessageCount_a11y">
+        <item quantity="zero">no unread message</item>
+        <item quantity="one">%d unread message</item>
+        <item quantity="other">%d unread messages</item>
+    </plurals>
 
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>
