@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.orange
 
+import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.tokens.components.OrangeComponentsTokens
@@ -74,4 +75,7 @@ open class OrangeTheme(
 
     override val componentsTokens: OudsComponentsTokens
         get() = OrangeComponentsTokens()
+
+    override val drawableResources: OudsDrawableResources
+        get() = OrangeDrawableResources()
 }
