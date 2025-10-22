@@ -127,11 +127,11 @@ fun OudsNavigationBar(
 fun RowScope.OudsNavigationBarItem(
     selected: Boolean,
     onClick: () -> Unit,
-    icon: OudsNavigationBarItem.Icon,
+    icon: OudsNavigationBarItemIcon,
     modifier: Modifier = Modifier,
     label: String? = null,
     enabled: Boolean = true,
-    badge: OudsNavigationBarItem.Badge? = null,
+    badge: OudsNavigationBarItemBadge? = null,
     alwaysShowLabel: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -141,7 +141,7 @@ fun RowScope.OudsNavigationBarItem(
     with(OudsTheme.componentsTokens.navigationBar) {
         val selectedContentColor = contentColor(state = state, selected = true)
         val unselectedContentColor = contentColor(state = state, selected = false)
-        val disabledContentColor = contentColor(state = OudsNavigationBarItem.State.Disabled, selected = false)
+        val disabledContentColor = contentColor(state = OudsNavigationBarItemState.Disabled, selected = false)
 
         ConstraintLayout(
             modifier = modifier
@@ -171,7 +171,7 @@ fun RowScope.OudsNavigationBarItem(
                     height = Dimension.value(topActiveIndicatorSizeHeight.dp)
                     width = Dimension.value(topActiveIndicatorSizeWidth.dp)
                 },
-                visible = selected || state == OudsNavigationBarItem.State.Hovered,
+                visible = selected || state == OudsNavigationBarItemState.Hovered,
                 enter = fadeIn() + slideInVertically { -it * 2 },
                 exit = fadeOut() + slideOutVertically { -it * 2 }
             ) {
@@ -223,120 +223,113 @@ fun RowScope.OudsNavigationBarItem(
 }
 
 @Composable
-private fun getNavigationBarItemState(enabled: Boolean, interactionState: InteractionState): OudsNavigationBarItem.State {
-    return getPreviewEnumEntry<OudsNavigationBarItem.State>().orElse {
+private fun getNavigationBarItemState(enabled: Boolean, interactionState: InteractionState): OudsNavigationBarItemState {
+    return getPreviewEnumEntry<OudsNavigationBarItemState>().orElse {
         when {
-            !enabled -> OudsNavigationBarItem.State.Disabled
-            interactionState == InteractionState.Hovered -> OudsNavigationBarItem.State.Hovered
-            interactionState == InteractionState.Pressed -> OudsNavigationBarItem.State.Pressed
-            interactionState == InteractionState.Focused -> OudsNavigationBarItem.State.Focused
-            else -> OudsNavigationBarItem.State.Enabled
+            !enabled -> OudsNavigationBarItemState.Disabled
+            interactionState == InteractionState.Hovered -> OudsNavigationBarItemState.Hovered
+            interactionState == InteractionState.Pressed -> OudsNavigationBarItemState.Pressed
+            interactionState == InteractionState.Focused -> OudsNavigationBarItemState.Focused
+            else -> OudsNavigationBarItemState.Enabled
         }
     }
 }
 
 @Composable
-private fun contentColor(state: OudsNavigationBarItem.State, selected: Boolean): Color {
+private fun contentColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.navigationBar) {
         when (state) {
-            OudsNavigationBarItem.State.Enabled -> if (selected) colorContentSelectedEnabled else colorContentUnselectedEnabled
-            OudsNavigationBarItem.State.Hovered -> if (selected) colorContentSelectedHover else colorContentUnselectedHover
-            OudsNavigationBarItem.State.Pressed -> if (selected) colorContentSelectedPressed else colorContentUnselectedPressed
-            OudsNavigationBarItem.State.Disabled -> colorContentUnselectedDisabled
-            OudsNavigationBarItem.State.Focused -> if (selected) colorContentSelectedFocus else colorContentUnselectedFocus
+            OudsNavigationBarItemState.Enabled -> if (selected) colorContentSelectedEnabled else colorContentUnselectedEnabled
+            OudsNavigationBarItemState.Hovered -> if (selected) colorContentSelectedHover else colorContentUnselectedHover
+            OudsNavigationBarItemState.Pressed -> if (selected) colorContentSelectedPressed else colorContentUnselectedPressed
+            OudsNavigationBarItemState.Disabled -> colorContentUnselectedDisabled
+            OudsNavigationBarItemState.Focused -> if (selected) colorContentSelectedFocus else colorContentUnselectedFocus
         }.value
     }
 }
 
 @Composable
-private fun materialIndicatorColor(state: OudsNavigationBarItem.State, selected: Boolean): Color {
+private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.navigationBar) {
         when (state) {
-            OudsNavigationBarItem.State.Enabled -> if (selected) materialActiveIndicatorColorBgSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItem.State.Hovered -> if (selected) materialActiveIndicatorColorBgSelectedHover.value else materialActiveIndicatorColorBgUnselectedHover.value
-            OudsNavigationBarItem.State.Pressed -> if (selected) materialActiveIndicatorColorBgSelectedPressed.value else materialActiveIndicatorColorBgUnselectedPressed.value
-            OudsNavigationBarItem.State.Disabled -> OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItem.State.Focused -> if (selected) materialActiveIndicatorColorBgSelectedFocus.value else materialActiveIndicatorColorBgUnselectedFocus.value
+            OudsNavigationBarItemState.Enabled -> if (selected) materialActiveIndicatorColorBgSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
+            OudsNavigationBarItemState.Hovered -> if (selected) materialActiveIndicatorColorBgSelectedHover.value else materialActiveIndicatorColorBgUnselectedHover.value
+            OudsNavigationBarItemState.Pressed -> if (selected) materialActiveIndicatorColorBgSelectedPressed.value else materialActiveIndicatorColorBgUnselectedPressed.value
+            OudsNavigationBarItemState.Disabled -> OudsTheme.colorScheme.opacity.transparent
+            OudsNavigationBarItemState.Focused -> if (selected) materialActiveIndicatorColorBgSelectedFocus.value else materialActiveIndicatorColorBgUnselectedFocus.value
         }
     }
 }
 
 /**
- * Contains classes to build an [OudsNavigationBarItem].
+ * An icon in an [OudsNavigationBarItem].
+ * To be accessible, its [contentDescription] should not be empty if there is no label for the item or if `alwaysShowLabel` is set to false.
  */
-object OudsNavigationBarItem {
+class OudsNavigationBarItemIcon private constructor(
+    graphicsObject: Any,
+    val contentDescription: String
+) : OudsComponentIcon<Nothing, OudsNavigationBarItemIcon>(Nothing::class.java, graphicsObject, contentDescription) {
 
-    internal enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused
+    companion object {
+        val Size = 24.dp
     }
 
     /**
-     * An icon in an [OudsNavigationBarItem].
-     * To be accessible, its [contentDescription] should not be empty if there is no label for the item or if `alwaysShowLabel` is set to false.
+     * Creates an instance of [OudsNavigationBarItemIcon].
+     *
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated with the [OudsNavigationBarItemIcon].
      */
-    class Icon private constructor(
-        graphicsObject: Any,
-        val contentDescription: String
-    ) : OudsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
-
-        companion object {
-            val Size = 24.dp
-        }
-
-        /**
-         * Creates an instance of [OudsNavigationBarItem.Icon].
-         *
-         * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with the [OudsNavigationBarItem.Icon].
-         */
-        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
-
-        /**
-         * Creates an instance of [OudsNavigationBarItem.Icon].
-         *
-         * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with the [OudsNavigationBarItem.Icon].
-         */
-        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
-
-        /**
-         * Creates an instance of [OudsNavigationBarItem.Icon].
-         *
-         * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with the [OudsNavigationBarItem.Icon].
-         */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
-    }
+    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
     /**
-     * A badge in an [OudsNavigationBarItem].
+     * Creates an instance of [OudsNavigationBarItemIcon].
      *
-     * @see [OudsBadge]
-     *
-     * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.Small] size.
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated with the [OudsNavigationBarItem.Icon].
      */
-    class Badge(val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
+    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
-        /**
-         * Status of the badge.
-         * In a navigation bar it has always a negative status.
-         */
-        private val status = OudsBadgeStatus.Negative
+    /**
+     * Creates an instance of [OudsNavigationBarItemIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated with the [OudsNavigationBarItemIcon].
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
+}
 
-        @Composable
-        override fun Content(modifier: Modifier) {
-            if (count != null) {
-                OudsBadge(count = count, modifier = modifier, status = this.status, size = OudsBadgeSize.Medium)
-            } else {
-                val startPosition = Icon.Size / 2
-                val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
-                val xOffset = startPosition - badgeSize
-                val yOffset = (startPosition - badgeSize) + 2.dp
-                OudsBadge(modifier = modifier.offset(x = xOffset, y = -yOffset), status = this.status, size = OudsBadgeSize.ExtraSmall)
-            }
+/**
+ * A badge in an [OudsNavigationBarItem].
+ *
+ * @see [OudsBadge]
+ *
+ * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.Small] size.
+ */
+class OudsNavigationBarItemBadge(val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
+
+    /**
+     * Status of the badge.
+     * In a navigation bar it has always a negative status.
+     */
+    private val status = OudsBadgeStatus.Negative
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        if (count != null) {
+            OudsBadge(count = count, modifier = modifier, status = this.status, size = OudsBadgeSize.Medium)
+        } else {
+            val startPosition = OudsNavigationBarItemIcon.Size / 2
+            val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
+            val xOffset = startPosition - badgeSize
+            val yOffset = (startPosition - badgeSize) + 2.dp
+            OudsBadge(modifier = modifier.offset(x = xOffset, y = -yOffset), status = this.status, size = OudsBadgeSize.ExtraSmall)
         }
-
     }
+}
+
+internal enum class OudsNavigationBarItemState {
+    Enabled, Hovered, Pressed, Disabled, Focused
 }
 
 @PreviewLightDark
@@ -356,7 +349,7 @@ internal fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarIte
 private data class OudsNavigationBarPreviewItem(
     val imageVector: ImageVector,
     val label: String? = null,
-    val badge: OudsNavigationBarItem.Badge? = null,
+    val badge: OudsNavigationBarItemBadge? = null,
     val enabled: Boolean = true
 )
 
@@ -368,12 +361,12 @@ private val navigationBarPreviewItems = listOf(
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.Email,
         label = "Emails",
-        badge = OudsNavigationBarItem.Badge(count = 24)
+        badge = OudsNavigationBarItemBadge(count = 24)
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.DateRange,
         label = "Agenda",
-        badge = OudsNavigationBarItem.Badge()
+        badge = OudsNavigationBarItemBadge()
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.AccountCircle,
@@ -400,7 +393,7 @@ internal fun PreviewOudsNavigationBar(
                         modifier = Modifier.weight(1f),
                         selected = index == 0,
                         onClick = {},
-                        icon = OudsNavigationBarItem.Icon(imageVector = item.imageVector, contentDescription = ""),
+                        icon = OudsNavigationBarItemIcon(imageVector = item.imageVector, contentDescription = ""),
                         label = item.label,
                         badge = item.badge,
                         enabled = item.enabled,
@@ -420,14 +413,14 @@ internal fun PreviewOudsNavigationBarItem(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         Row {
-            PreviewEnumEntries<OudsNavigationBarItem.State>(columnCount = 2) {
+            PreviewEnumEntries<OudsNavigationBarItemState>(columnCount = 2) {
                 OudsNavigationBarItem(
                     modifier = Modifier
                         .size(width = 80.dp, height = 64.dp)
                         .background(OudsTheme.componentsTokens.navigationBar.colorBg.value),
                     selected = selected,
                     onClick = {},
-                    icon = OudsNavigationBarItem.Icon(imageVector = Icons.Default.Star, contentDescription = ""),
+                    icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star, contentDescription = ""),
                     label = "Label",
                     enabled = true,
                     alwaysShowLabel = true
