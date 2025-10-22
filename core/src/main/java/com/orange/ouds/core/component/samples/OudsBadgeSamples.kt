@@ -21,6 +21,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -34,6 +35,9 @@ import com.orange.ouds.core.utilities.OudsPreview
 @Composable
 internal fun OudsBadgeSample() {
     OudsBadge(
+        modifier = Modifier.semantics {
+            contentDescription = "Information"
+        },
         status = OudsBadgeStatus.Info,
         size = OudsBadgeSize.Small
     )
@@ -41,15 +45,23 @@ internal fun OudsBadgeSample() {
 
 @Composable
 internal fun OudsBadgeWithCountSample() {
+    val count = 10
     OudsBadge(
+        // Use clearAnSetSemantics to totally replace the reading of the displayed badge count.
+        modifier = Modifier.clearAndSetSemantics {
+            contentDescription = "$count unread emails"
+        },
         status = OudsBadgeStatus.Info,
-        count = 10
+        count = count
     )
 }
 
 @Composable
 internal fun OudsBadgeWithDefaultIconSample() {
     OudsBadge(
+        modifier = Modifier.semantics {
+            contentDescription = "Information"
+        },
         status = OudsBadgeWithIconStatus.Info(),
         size = OudsBadgeSize.Large
     )
@@ -58,10 +70,12 @@ internal fun OudsBadgeWithDefaultIconSample() {
 @Composable
 internal fun OudsBadgeWithCustomIconSample() {
     OudsBadge(
+        modifier = Modifier.semantics {
+            contentDescription = "Favorite"
+        },
         status = OudsBadgeWithIconStatus.Accent(
             OudsBadgeIcon.Custom(
-                imageVector = Icons.Filled.FavoriteBorder,
-                contentDescription = "Content description"
+                imageVector = Icons.Filled.FavoriteBorder
             )
         ),
         size = OudsBadgeSize.Large
@@ -78,7 +92,8 @@ internal fun OudsBadgeWithCountInNavigationBarItemSample() {
                     badge = {
                         val count = 8
                         OudsBadge(
-                            modifier = Modifier.semantics {
+                            // Use clearAnSetSemantics to totally replace the reading of the displayed badge count.
+                            modifier = Modifier.clearAndSetSemantics {
                                 contentDescription = "$count new notifications"
                             },
                             count = count,
