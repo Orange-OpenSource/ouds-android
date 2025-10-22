@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextRange
@@ -133,7 +132,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                 BadgeDemoState.Type.Count -> {
                     val contentDescription = pluralStringResource(id = R.plurals.app_components_badge_unreadMessageCount_a11y, count = count, count)
                     OudsBadge(
-                        modifier = modifier.clearAndSetSemantics { this.contentDescription = contentDescription },
+                        modifier = modifier.semantics { this.contentDescription = contentDescription },
                         count = count,
                         status = status,
                         size = size
@@ -172,7 +171,6 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
                         is OudsBadgeWithIconStatus.Neutral, is OudsBadgeWithIconStatus.Accent ->
                             constructorCallArgument<OudsBadgeIcon.Custom>("icon") {
                                 painterArgument(R.drawable.ic_heart)
-                                contentDescriptionArgument(R.string.app_components_common_icon_a11y)
                             }
                         is OudsBadgeWithIconStatus.Positive, is OudsBadgeWithIconStatus.Warning, is OudsBadgeWithIconStatus.Info, is OudsBadgeWithIconStatus.Negative -> {}
                     }

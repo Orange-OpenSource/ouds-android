@@ -13,7 +13,7 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
 import org.junit.Test
@@ -32,7 +32,7 @@ internal class OudsBadgeTest {
                 OudsBadge(count = count)
             }
 
-            onNodeWithText(count.toString()).assertExists()
+            onNodeWithContentDescription(count.toString()).assertExists()
         }
     }
 
@@ -45,8 +45,8 @@ internal class OudsBadgeTest {
                 OudsBadge(count = count)
             }
 
-            onNodeWithText(count.toString()).assertDoesNotExist()
-            onNodeWithText("+${OudsBadgeMaxCount}").assertExists()
+            onNodeWithContentDescription(count.toString()).assertDoesNotExist()
+            onNodeWithContentDescription("+${OudsBadgeMaxCount}").assertExists()
         }
     }
 }

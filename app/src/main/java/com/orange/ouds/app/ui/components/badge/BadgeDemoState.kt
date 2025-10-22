@@ -21,7 +21,6 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsBadgeDefaults
 import com.orange.ouds.core.component.OudsBadgeIcon
@@ -96,16 +95,8 @@ class BadgeDemoState(
     val badgeWithIconStatus: OudsBadgeWithIconStatus
         @Composable
         get() = when (status) {
-            OudsBadgeStatus.Neutral -> OudsBadgeWithIconStatus.Neutral(
-                OudsBadgeIcon.Custom(
-                    painterResource(R.drawable.ic_heart)
-                )
-            )
-            OudsBadgeStatus.Accent -> OudsBadgeWithIconStatus.Accent(
-                OudsBadgeIcon.Custom(
-                    painterResource(R.drawable.ic_heart)
-                )
-            )
+            OudsBadgeStatus.Neutral -> OudsBadgeWithIconStatus.Neutral(OudsBadgeIcon.Custom(painterResource(R.drawable.ic_heart)))
+            OudsBadgeStatus.Accent -> OudsBadgeWithIconStatus.Accent(OudsBadgeIcon.Custom(painterResource(R.drawable.ic_heart)))
             OudsBadgeStatus.Positive -> OudsBadgeWithIconStatus.Positive()
             OudsBadgeStatus.Info -> OudsBadgeWithIconStatus.Info()
             OudsBadgeStatus.Warning -> OudsBadgeWithIconStatus.Warning()
