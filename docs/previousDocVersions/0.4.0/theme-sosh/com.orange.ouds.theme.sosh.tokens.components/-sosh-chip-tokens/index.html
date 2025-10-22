@@ -1,0 +1,891 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>SoshChipTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.sosh.tokens.components/-sosh-chip-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-sosh/com.orange.ouds.theme.sosh.tokens.components/-sosh-chip-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../not-found-version.html?v=0.2.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-sosh/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-sosh/main" data-filter=":theme-sosh/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-sosh::com.orange.ouds.theme.sosh.tokens.components/SoshChipTokens///PointingToDeclaration//-262350444">
+  <div class="breadcrumbs"><a href="../../index.html">theme-sosh</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.sosh.tokens.components</a><span class="delimiter">/</span><span class="current">SoshChipTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Sosh</span><wbr><span>Chip</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">SoshChipTokens</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>badgeColorBg<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Enabled<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>badgeColorContent<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.Default<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderRadius<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-radius/index.html">OudsBorderKeyToken.Radius</a><span class="token operator"> = </span>OudsBorderKeyToken.Radius.Pill<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderWidthSelected<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a><span class="token operator"> = </span>OudsBorderKeyToken.Width.None<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderWidthUnselected<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a><span class="token operator"> = </span>OudsBorderKeyToken.Width.Thin<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderWidthUnselectedInteraction<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a><span class="token operator"> = </span>OudsBorderKeyToken.Width.Default<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgSelectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Disabled<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgSelectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Selected<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgSelectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Focus<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgSelectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Hover<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgSelectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Pressed<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgUnselectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgUnselectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgUnselectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgUnselectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBgUnselectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderSelectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderSelectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderSelectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderSelectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderSelectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderUnselectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Disabled<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderUnselectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Border.Emphasized<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderUnselectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Focus<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderUnselectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Hover<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorBorderUnselectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Pressed<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentSelectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Disabled<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentSelectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Selected<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentSelectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Focus<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentSelectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Hover<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentSelectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Pressed<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentSelectedTickEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Selected<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentUnselectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Disabled<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentUnselectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.Default<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentUnselectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Focus<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentUnselectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Hover<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colorContentUnselectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Pressed<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeIcon<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-size-key-token/-icon/index.html">OudsSizeKeyToken.Icon</a><span class="token operator"> = </span>OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeMinHeight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeMinHeightInteractiveArea<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-size-key-token/index.html">OudsSizeKeyToken</a><span class="token operator"> = </span>OudsSizeKeyToken.MinInteractiveArea<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sizeMinWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension650<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spaceColumnGapBadgeChevron<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-column-gap/index.html">OudsSpaceKeyToken.ColumnGap</a><span class="token operator"> = </span>OudsSpaceKeyToken.ColumnGap.TwoExtraSmall<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spaceColumnGapIcon<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-column-gap/index.html">OudsSpaceKeyToken.ColumnGap</a><span class="token operator"> = </span>OudsSpaceKeyToken.ColumnGap.ExtraSmall<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spacePaddingBlock<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-block/index.html">OudsSpaceKeyToken.PaddingBlock</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spacePaddingBlockIconOnly<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-block/index.html">OudsSpaceKeyToken.PaddingBlock</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingBlock.ExtraSmall<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spacePaddingInlineBadgeStart<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingInline.FourExtraSmall<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spacePaddingInlineChevronEnd<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingInline.ExtraSmall<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spacePaddingInlineIcon<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingInline.Small<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spacePaddingInlineIconNone<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingInline.Large</span></span><span class="token punctuation">)</span> : <a href="../../../theme-contract/com.orange.ouds.theme.tokens.components/-ouds-chip-tokens/index.html">OudsChipTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1015300517%2FConstructors%2F-262350444" anchor-label="SoshChipTokens" id="-1015300517%2FConstructors%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-sosh-chip-tokens.html"><span>Sosh</span><wbr><span>Chip</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1015300517%2FConstructors%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">badgeColorBg<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Enabled<span class="token punctuation">, </span></span><span class="parameter ">badgeColorContent<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.Default<span class="token punctuation">, </span></span><span class="parameter ">borderRadius<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-radius/index.html">OudsBorderKeyToken.Radius</a><span class="token operator"> = </span>OudsBorderKeyToken.Radius.Pill<span class="token punctuation">, </span></span><span class="parameter ">borderWidthSelected<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a><span class="token operator"> = </span>OudsBorderKeyToken.Width.None<span class="token punctuation">, </span></span><span class="parameter ">borderWidthUnselected<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a><span class="token operator"> = </span>OudsBorderKeyToken.Width.Thin<span class="token punctuation">, </span></span><span class="parameter ">borderWidthUnselectedInteraction<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a><span class="token operator"> = </span>OudsBorderKeyToken.Width.Default<span class="token punctuation">, </span></span><span class="parameter ">colorBgSelectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Disabled<span class="token punctuation">, </span></span><span class="parameter ">colorBgSelectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Selected<span class="token punctuation">, </span></span><span class="parameter ">colorBgSelectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Focus<span class="token punctuation">, </span></span><span class="parameter ">colorBgSelectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Hover<span class="token punctuation">, </span></span><span class="parameter ">colorBgSelectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Pressed<span class="token punctuation">, </span></span><span class="parameter ">colorBgUnselectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBgUnselectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBgUnselectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBgUnselectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBgUnselectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBorderSelectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBorderSelectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBorderSelectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBorderSelectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBorderSelectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Opacity.Transparent<span class="token punctuation">, </span></span><span class="parameter ">colorBorderUnselectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Disabled<span class="token punctuation">, </span></span><span class="parameter ">colorBorderUnselectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Border.Emphasized<span class="token punctuation">, </span></span><span class="parameter ">colorBorderUnselectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Focus<span class="token punctuation">, </span></span><span class="parameter ">colorBorderUnselectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Hover<span class="token punctuation">, </span></span><span class="parameter ">colorBorderUnselectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Pressed<span class="token punctuation">, </span></span><span class="parameter ">colorContentSelectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Disabled<span class="token punctuation">, </span></span><span class="parameter ">colorContentSelectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Selected<span class="token punctuation">, </span></span><span class="parameter ">colorContentSelectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Focus<span class="token punctuation">, </span></span><span class="parameter ">colorContentSelectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Hover<span class="token punctuation">, </span></span><span class="parameter ">colorContentSelectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Pressed<span class="token punctuation">, </span></span><span class="parameter ">colorContentSelectedTickEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.OnAction.Selected<span class="token punctuation">, </span></span><span class="parameter ">colorContentUnselectedDisabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Disabled<span class="token punctuation">, </span></span><span class="parameter ">colorContentUnselectedEnabled<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Content.Default<span class="token punctuation">, </span></span><span class="parameter ">colorContentUnselectedFocus<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Focus<span class="token punctuation">, </span></span><span class="parameter ">colorContentUnselectedHover<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Hover<span class="token punctuation">, </span></span><span class="parameter ">colorContentUnselectedPressed<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a><span class="token operator"> = </span>OudsColorKeyToken.Action.Pressed<span class="token punctuation">, </span></span><span class="parameter ">sizeIcon<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-size-key-token/-icon/index.html">OudsSizeKeyToken.Icon</a><span class="token operator"> = </span>OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall<span class="token punctuation">, </span></span><span class="parameter ">sizeMinHeight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter ">sizeMinHeightInteractiveArea<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-size-key-token/index.html">OudsSizeKeyToken</a><span class="token operator"> = </span>OudsSizeKeyToken.MinInteractiveArea<span class="token punctuation">, </span></span><span class="parameter ">sizeMinWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension650<span class="token punctuation">, </span></span><span class="parameter ">spaceColumnGapBadgeChevron<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-column-gap/index.html">OudsSpaceKeyToken.ColumnGap</a><span class="token operator"> = </span>OudsSpaceKeyToken.ColumnGap.TwoExtraSmall<span class="token punctuation">, </span></span><span class="parameter ">spaceColumnGapIcon<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-column-gap/index.html">OudsSpaceKeyToken.ColumnGap</a><span class="token operator"> = </span>OudsSpaceKeyToken.ColumnGap.ExtraSmall<span class="token punctuation">, </span></span><span class="parameter ">spacePaddingBlock<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-block/index.html">OudsSpaceKeyToken.PaddingBlock</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall<span class="token punctuation">, </span></span><span class="parameter ">spacePaddingBlockIconOnly<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-block/index.html">OudsSpaceKeyToken.PaddingBlock</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingBlock.ExtraSmall<span class="token punctuation">, </span></span><span class="parameter ">spacePaddingInlineBadgeStart<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingInline.FourExtraSmall<span class="token punctuation">, </span></span><span class="parameter ">spacePaddingInlineChevronEnd<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingInline.ExtraSmall<span class="token punctuation">, </span></span><span class="parameter ">spacePaddingInlineIcon<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingInline.Small<span class="token punctuation">, </span></span><span class="parameter ">spacePaddingInlineIconNone<span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a><span class="token operator"> = </span>OudsSpaceKeyToken.PaddingInline.Large</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-634906185%2FProperties%2F-262350444" anchor-label="badgeColorBg" id="-634906185%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="badge-color-bg.html"><span>badge</span><wbr><span>Color</span><wbr><span><span>Bg</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-634906185%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="badge-color-bg.html">badgeColorBg</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1731827163%2FProperties%2F-262350444" anchor-label="badgeColorContent" id="-1731827163%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="badge-color-content.html"><span>badge</span><wbr><span>Color</span><wbr><span><span>Content</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1731827163%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="badge-color-content.html">badgeColorContent</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-55037474%2FProperties%2F-262350444" anchor-label="borderRadius" id="-55037474%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-radius.html"><span>border</span><wbr><span><span>Radius</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-55037474%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-radius.html">borderRadius</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-radius/index.html">OudsBorderKeyToken.Radius</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1867759241%2FProperties%2F-262350444" anchor-label="borderWidthSelected" id="1867759241%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width-selected.html"><span>border</span><wbr><span>Width</span><wbr><span><span>Selected</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1867759241%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-width-selected.html">borderWidthSelected</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="667910480%2FProperties%2F-262350444" anchor-label="borderWidthUnselected" id="667910480%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width-unselected.html"><span>border</span><wbr><span>Width</span><wbr><span><span>Unselected</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="667910480%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-width-unselected.html">borderWidthUnselected</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2044680856%2FProperties%2F-262350444" anchor-label="borderWidthUnselectedInteraction" id="2044680856%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-width-unselected-interaction.html"><span>border</span><wbr><span>Width</span><wbr><span>Unselected</span><wbr><span><span>Interaction</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2044680856%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-width-unselected-interaction.html">borderWidthUnselectedInteraction</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-border-key-token/-width/index.html">OudsBorderKeyToken.Width</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1301108127%2FProperties%2F-262350444" anchor-label="colorBgSelectedDisabled" id="1301108127%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-selected-disabled.html"><span>color</span><wbr><span>Bg</span><wbr><span>Selected</span><wbr><span><span>Disabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1301108127%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-selected-disabled.html">colorBgSelectedDisabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="766940926%2FProperties%2F-262350444" anchor-label="colorBgSelectedEnabled" id="766940926%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-selected-enabled.html"><span>color</span><wbr><span>Bg</span><wbr><span>Selected</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="766940926%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-selected-enabled.html">colorBgSelectedEnabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="295069127%2FProperties%2F-262350444" anchor-label="colorBgSelectedFocus" id="295069127%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-selected-focus.html"><span>color</span><wbr><span>Bg</span><wbr><span>Selected</span><wbr><span><span>Focus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="295069127%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-selected-focus.html">colorBgSelectedFocus</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1535699427%2FProperties%2F-262350444" anchor-label="colorBgSelectedHover" id="1535699427%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-selected-hover.html"><span>color</span><wbr><span>Bg</span><wbr><span>Selected</span><wbr><span><span>Hover</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1535699427%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-selected-hover.html">colorBgSelectedHover</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1306229443%2FProperties%2F-262350444" anchor-label="colorBgSelectedPressed" id="-1306229443%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-selected-pressed.html"><span>color</span><wbr><span>Bg</span><wbr><span>Selected</span><wbr><span><span>Pressed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1306229443%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-selected-pressed.html">colorBgSelectedPressed</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1981047578%2FProperties%2F-262350444" anchor-label="colorBgUnselectedDisabled" id="-1981047578%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-unselected-disabled.html"><span>color</span><wbr><span>Bg</span><wbr><span>Unselected</span><wbr><span><span>Disabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1981047578%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-unselected-disabled.html">colorBgUnselectedDisabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="106875607%2FProperties%2F-262350444" anchor-label="colorBgUnselectedEnabled" id="106875607%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-unselected-enabled.html"><span>color</span><wbr><span>Bg</span><wbr><span>Unselected</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="106875607%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-unselected-enabled.html">colorBgUnselectedEnabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2117843936%2FProperties%2F-262350444" anchor-label="colorBgUnselectedFocus" id="2117843936%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-unselected-focus.html"><span>color</span><wbr><span>Bg</span><wbr><span>Unselected</span><wbr><span><span>Focus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2117843936%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-unselected-focus.html">colorBgUnselectedFocus</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-936493060%2FProperties%2F-262350444" anchor-label="colorBgUnselectedHover" id="-936493060%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-unselected-hover.html"><span>color</span><wbr><span>Bg</span><wbr><span>Unselected</span><wbr><span><span>Hover</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-936493060%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-unselected-hover.html">colorBgUnselectedHover</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1966294762%2FProperties%2F-262350444" anchor-label="colorBgUnselectedPressed" id="-1966294762%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-bg-unselected-pressed.html"><span>color</span><wbr><span>Bg</span><wbr><span>Unselected</span><wbr><span><span>Pressed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1966294762%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-bg-unselected-pressed.html">colorBgUnselectedPressed</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="268701336%2FProperties%2F-262350444" anchor-label="colorBorderSelectedDisabled" id="268701336%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-selected-disabled.html"><span>color</span><wbr><span>Border</span><wbr><span>Selected</span><wbr><span><span>Disabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="268701336%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-selected-disabled.html">colorBorderSelectedDisabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="595090149%2FProperties%2F-262350444" anchor-label="colorBorderSelectedEnabled" id="595090149%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-selected-enabled.html"><span>color</span><wbr><span>Border</span><wbr><span>Selected</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="595090149%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-selected-enabled.html">colorBorderSelectedEnabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1626732398%2FProperties%2F-262350444" anchor-label="colorBorderSelectedFocus" id="1626732398%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-selected-focus.html"><span>color</span><wbr><span>Border</span><wbr><span>Selected</span><wbr><span><span>Focus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1626732398%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-selected-focus.html">colorBorderSelectedFocus</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1427604598%2FProperties%2F-262350444" anchor-label="colorBorderSelectedHover" id="-1427604598%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-selected-hover.html"><span>color</span><wbr><span>Border</span><wbr><span>Selected</span><wbr><span><span>Hover</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1427604598%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-selected-hover.html">colorBorderSelectedHover</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1478080220%2FProperties%2F-262350444" anchor-label="colorBorderSelectedPressed" id="-1478080220%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-selected-pressed.html"><span>color</span><wbr><span>Border</span><wbr><span>Selected</span><wbr><span><span>Pressed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1478080220%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-selected-pressed.html">colorBorderSelectedPressed</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1986528353%2FProperties%2F-262350444" anchor-label="colorBorderUnselectedDisabled" id="-1986528353%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-unselected-disabled.html"><span>color</span><wbr><span>Border</span><wbr><span>Unselected</span><wbr><span><span>Disabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1986528353%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-unselected-disabled.html">colorBorderUnselectedDisabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1832963842%2FProperties%2F-262350444" anchor-label="colorBorderUnselectedEnabled" id="-1832963842%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-unselected-enabled.html"><span>color</span><wbr><span>Border</span><wbr><span>Unselected</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1832963842%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-unselected-enabled.html">colorBorderUnselectedEnabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1945993159%2FProperties%2F-262350444" anchor-label="colorBorderUnselectedFocus" id="1945993159%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-unselected-focus.html"><span>color</span><wbr><span>Border</span><wbr><span>Unselected</span><wbr><span><span>Focus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1945993159%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-unselected-focus.html">colorBorderUnselectedFocus</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1108343837%2FProperties%2F-262350444" anchor-label="colorBorderUnselectedHover" id="-1108343837%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-unselected-hover.html"><span>color</span><wbr><span>Border</span><wbr><span>Unselected</span><wbr><span><span>Hover</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1108343837%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-unselected-hover.html">colorBorderUnselectedHover</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="388833085%2FProperties%2F-262350444" anchor-label="colorBorderUnselectedPressed" id="388833085%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-border-unselected-pressed.html"><span>color</span><wbr><span>Border</span><wbr><span>Unselected</span><wbr><span><span>Pressed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="388833085%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-border-unselected-pressed.html">colorBorderUnselectedPressed</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1067301039%2FProperties%2F-262350444" anchor-label="colorContentSelectedDisabled" id="1067301039%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-selected-disabled.html"><span>color</span><wbr><span>Content</span><wbr><span>Selected</span><wbr><span><span>Disabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1067301039%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-selected-disabled.html">colorContentSelectedDisabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="897946094%2FProperties%2F-262350444" anchor-label="colorContentSelectedEnabled" id="897946094%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-selected-enabled.html"><span>color</span><wbr><span>Content</span><wbr><span>Selected</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="897946094%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-selected-enabled.html">colorContentSelectedEnabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1640455351%2FProperties%2F-262350444" anchor-label="colorContentSelectedFocus" id="1640455351%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-selected-focus.html"><span>color</span><wbr><span>Content</span><wbr><span>Selected</span><wbr><span><span>Focus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1640455351%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-selected-focus.html">colorContentSelectedFocus</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1413881645%2FProperties%2F-262350444" anchor-label="colorContentSelectedHover" id="-1413881645%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-selected-hover.html"><span>color</span><wbr><span>Content</span><wbr><span>Selected</span><wbr><span><span>Hover</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1413881645%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-selected-hover.html">colorContentSelectedHover</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1175224275%2FProperties%2F-262350444" anchor-label="colorContentSelectedPressed" id="-1175224275%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-selected-pressed.html"><span>color</span><wbr><span>Content</span><wbr><span>Selected</span><wbr><span><span>Pressed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1175224275%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-selected-pressed.html">colorContentSelectedPressed</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="559069867%2FProperties%2F-262350444" anchor-label="colorContentSelectedTickEnabled" id="559069867%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-selected-tick-enabled.html"><span>color</span><wbr><span>Content</span><wbr><span>Selected</span><wbr><span>Tick</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="559069867%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-selected-tick-enabled.html">colorContentSelectedTickEnabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="963607542%2FProperties%2F-262350444" anchor-label="colorContentUnselectedDisabled" id="963607542%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-unselected-disabled.html"><span>color</span><wbr><span>Content</span><wbr><span>Unselected</span><wbr><span><span>Disabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="963607542%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-unselected-disabled.html">colorContentUnselectedDisabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1448790471%2FProperties%2F-262350444" anchor-label="colorContentUnselectedEnabled" id="1448790471%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-unselected-enabled.html"><span>color</span><wbr><span>Content</span><wbr><span>Unselected</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1448790471%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-unselected-enabled.html">colorContentUnselectedEnabled</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2046118192%2FProperties%2F-262350444" anchor-label="colorContentUnselectedFocus" id="-2046118192%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-unselected-focus.html"><span>color</span><wbr><span>Content</span><wbr><span>Unselected</span><wbr><span><span>Focus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2046118192%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-unselected-focus.html">colorContentUnselectedFocus</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-805487892%2FProperties%2F-262350444" anchor-label="colorContentUnselectedHover" id="-805487892%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-unselected-hover.html"><span>color</span><wbr><span>Content</span><wbr><span>Unselected</span><wbr><span><span>Hover</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-805487892%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-unselected-hover.html">colorContentUnselectedHover</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-624379898%2FProperties%2F-262350444" anchor-label="colorContentUnselectedPressed" id="-624379898%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-content-unselected-pressed.html"><span>color</span><wbr><span>Content</span><wbr><span>Unselected</span><wbr><span><span>Pressed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-624379898%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="color-content-unselected-pressed.html">colorContentUnselectedPressed</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-color-key-token/index.html">OudsColorKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-640714590%2FProperties%2F-262350444" anchor-label="sizeIcon" id="-640714590%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-icon.html"><span>size</span><wbr><span><span>Icon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-640714590%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-icon.html">sizeIcon</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-size-key-token/-icon/index.html">OudsSizeKeyToken.Icon</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="346059590%2FProperties%2F-262350444" anchor-label="sizeMinHeight" id="346059590%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-min-height.html"><span>size</span><wbr><span>Min</span><wbr><span><span>Height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="346059590%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-min-height.html">sizeMinHeight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1285918331%2FProperties%2F-262350444" anchor-label="sizeMinHeightInteractiveArea" id="-1285918331%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-min-height-interactive-area.html"><span>size</span><wbr><span>Min</span><wbr><span>Height</span><wbr><span>Interactive</span><wbr><span><span>Area</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1285918331%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-min-height-interactive-area.html">sizeMinHeightInteractiveArea</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-size-key-token/index.html">OudsSizeKeyToken</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2128981991%2FProperties%2F-262350444" anchor-label="sizeMinWidth" id="2128981991%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-min-width.html"><span>size</span><wbr><span>Min</span><wbr><span><span>Width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2128981991%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="size-min-width.html">sizeMinWidth</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-238500214%2FProperties%2F-262350444" anchor-label="spaceColumnGapBadgeChevron" id="-238500214%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-column-gap-badge-chevron.html"><span>space</span><wbr><span>Column</span><wbr><span>Gap</span><wbr><span>Badge</span><wbr><span><span>Chevron</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-238500214%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="space-column-gap-badge-chevron.html">spaceColumnGapBadgeChevron</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-column-gap/index.html">OudsSpaceKeyToken.ColumnGap</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2120702793%2FProperties%2F-262350444" anchor-label="spaceColumnGapIcon" id="2120702793%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-column-gap-icon.html"><span>space</span><wbr><span>Column</span><wbr><span>Gap</span><wbr><span><span>Icon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2120702793%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="space-column-gap-icon.html">spaceColumnGapIcon</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-column-gap/index.html">OudsSpaceKeyToken.ColumnGap</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1015931388%2FProperties%2F-262350444" anchor-label="spacePaddingBlock" id="1015931388%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-padding-block.html"><span>space</span><wbr><span>Padding</span><wbr><span><span>Block</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1015931388%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="space-padding-block.html">spacePaddingBlock</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-block/index.html">OudsSpaceKeyToken.PaddingBlock</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1710825143%2FProperties%2F-262350444" anchor-label="spacePaddingBlockIconOnly" id="1710825143%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-padding-block-icon-only.html"><span>space</span><wbr><span>Padding</span><wbr><span>Block</span><wbr><span>Icon</span><wbr><span><span>Only</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1710825143%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="space-padding-block-icon-only.html">spacePaddingBlockIconOnly</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-block/index.html">OudsSpaceKeyToken.PaddingBlock</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1140858087%2FProperties%2F-262350444" anchor-label="spacePaddingInlineBadgeStart" id="-1140858087%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-padding-inline-badge-start.html"><span>space</span><wbr><span>Padding</span><wbr><span>Inline</span><wbr><span>Badge</span><wbr><span><span>Start</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1140858087%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="space-padding-inline-badge-start.html">spacePaddingInlineBadgeStart</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="411159576%2FProperties%2F-262350444" anchor-label="spacePaddingInlineChevronEnd" id="411159576%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-padding-inline-chevron-end.html"><span>space</span><wbr><span>Padding</span><wbr><span>Inline</span><wbr><span>Chevron</span><wbr><span><span>End</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="411159576%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="space-padding-inline-chevron-end.html">spacePaddingInlineChevronEnd</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="329290399%2FProperties%2F-262350444" anchor-label="spacePaddingInlineIcon" id="329290399%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-padding-inline-icon.html"><span>space</span><wbr><span>Padding</span><wbr><span>Inline</span><wbr><span><span>Icon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="329290399%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="space-padding-inline-icon.html">spacePaddingInlineIcon</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1920409927%2FProperties%2F-262350444" anchor-label="spacePaddingInlineIconNone" id="1920409927%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-padding-inline-icon-none.html"><span>space</span><wbr><span>Padding</span><wbr><span>Inline</span><wbr><span>Icon</span><wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1920409927%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="space-padding-inline-icon-none.html">spacePaddingInlineIconNone</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme.tokens/-ouds-space-key-token/-padding-inline/index.html">OudsSpaceKeyToken.PaddingInline</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

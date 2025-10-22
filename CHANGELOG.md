@@ -5,7 +5,56 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.3.0](https://github.com/Orange-OpenSource/ouds-android/compare/0.2.0...0.3.0) (2025-09-01)
+## [0.4.0](https://github.com/Orange-OpenSource/ouds-android/compare/0.3.0...0.4.0) (2025-10-21)
+
+### Features
+
+- **typography** manage the new medium font weight ([#862](https://github.com/Orange-OpenSource/ouds-android/issues/862))
+- create component - text input ([#729](https://github.com/Orange-OpenSource/ouds-android/issues/729))
+- **tag** update to version 1.4.0 ([#789](https://github.com/Orange-OpenSource/ouds-android/issues/789))
+- rename component objects to avoid confusion with composables ([#818](https://github.com/Orange-OpenSource/ouds-android/issues/818))
+- update README file to add a QR code to download Design Toolbox app ([#824](https://github.com/Orange-OpenSource/ouds-android/issues/824))
+- **checkbox-item** **radio-button-item** **switch-item** set divider to false by default ([#792](https://github.com/Orange-OpenSource/ouds-android/issues/792))
+- add an OudsInputChip alias to OudsInputTag ([#767](https://github.com/Orange-OpenSource/ouds-android/issues/767))
+- **button** change api signature by renaming hierarchy parameter into appearance ([#772](https://github.com/Orange-OpenSource/ouds-android/issues/772))
+- **tag** update to version 1.2.0 ([#754](https://github.com/Orange-OpenSource/ouds-android/issues/754))
+- create component - input tag ([#701](https://github.com/Orange-OpenSource/ouds-android/issues/701))
+- refactor theme settings ([#734](https://github.com/Orange-OpenSource/ouds-android/issues/734))
+
+### Bug Fixes
+
+- **deps** update dokka to v2.1.0 ([#858](https://github.com/Orange-OpenSource/ouds-android/issues/858))
+- **link** flip back and next chevron to support RTL ([#848](https://github.com/Orange-OpenSource/ouds-android/issues/848))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.40.0 ([#857](https://github.com/Orange-OpenSource/ouds-android/issues/857))
+- crash with an OudsComponentIcon without any extra parameters ([#856](https://github.com/Orange-OpenSource/ouds-android/issues/856))
+- **deps** update dependency androidx.compose:compose-bom to v2025.10.00 ([#835](https://github.com/Orange-OpenSource/ouds-android/issues/835))
+- **deps** update grpc-java monorepo to v1.76.0 ([#833](https://github.com/Orange-OpenSource/ouds-android/issues/833))
+- **deps** update dependency org.mockito.kotlin:mockito-kotlin to v6.1.0 ([#822](https://github.com/Orange-OpenSource/ouds-android/issues/822))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-lib to v2.6.3 ([#819](https://github.com/Orange-OpenSource/ouds-android/issues/819))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-lib to v2.6.2 ([#809](https://github.com/Orange-OpenSource/ouds-android/issues/809))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-gradle-plugin to v3.1.1 ([#808](https://github.com/Orange-OpenSource/ouds-android/issues/808))
+- **deps** update dependency androidx.compose:compose-bom to v2025.09.01 ([#794](https://github.com/Orange-OpenSource/ouds-android/issues/794))
+- **deps** update hilt to v2.57.2 ([#796](https://github.com/Orange-OpenSource/ouds-android/issues/796))
+- **deps** update dependency androidx.navigation:navigation-compose to v2.9.5 ([#795](https://github.com/Orange-OpenSource/ouds-android/issues/795))
+- adjust talkback frames so that they fit to the entire component ([#778](https://github.com/Orange-OpenSource/ouds-android/issues/778))
+- **deps** update dependency org.mockito:mockito-android to v5.20.0 ([#784](https://github.com/Orange-OpenSource/ouds-android/issues/784))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-gradle-plugin to v3.1.0 ([#783](https://github.com/Orange-OpenSource/ouds-android/issues/783))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.39.1 ([#766](https://github.com/Orange-OpenSource/ouds-android/issues/766))
+- **checkbox** **radio-button** [a11y] error status and description not returned by talkback ([#760](https://github.com/Orange-OpenSource/ouds-android/issues/760))
+- **checkbox** **radio-button** **switch** [bug][a11y] error status not returned by TalkBack ([#727](https://github.com/Orange-OpenSource/ouds-android/issues/727))
+- **deps** update dependency androidx.hilt:hilt-navigation-compose to v1.3.0 ([#748](https://github.com/Orange-OpenSource/ouds-android/issues/748))
+- **deps** update kotlin to v2.2.20 ([#744](https://github.com/Orange-OpenSource/ouds-android/issues/744))
+- **deps** update dependency androidx.activity:activity-compose to v1.11.0 ([#746](https://github.com/Orange-OpenSource/ouds-android/issues/746))
+- **deps** update dependency androidx.compose:compose-bom to v2025.09.00 ([#747](https://github.com/Orange-OpenSource/ouds-android/issues/747))
+- **deps** update dependency androidx.navigation:navigation-compose to v2.9.4 ([#745](https://github.com/Orange-OpenSource/ouds-android/issues/745))
+- **tag** tag bullet icon should not be overridable in a theme ([#731](https://github.com/Orange-OpenSource/ouds-android/issues/731))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.39.0 ([#732](https://github.com/Orange-OpenSource/ouds-android/issues/732))
+- **deps** update dependency com.google.android.material:material to v1.13.0 ([#725](https://github.com/Orange-OpenSource/ouds-android/issues/725))
+- **badge** icon doesn&#x27;t resize when system font size is increased ([#720](https://github.com/Orange-OpenSource/ouds-android/issues/720))
+- **tag** unlabelled image vocalized by talkback ([#719](https://github.com/Orange-OpenSource/ouds-android/issues/719))
+- **deps** update gradle to v8.13.0 ([#721](https://github.com/Orange-OpenSource/ouds-android/issues/721))
+
+## [0.3.0](https://github.com/Orange-OpenSource/ouds-android/compare/0.2.0...0.3.0) (2025-09-03)
 
 ### Features
 

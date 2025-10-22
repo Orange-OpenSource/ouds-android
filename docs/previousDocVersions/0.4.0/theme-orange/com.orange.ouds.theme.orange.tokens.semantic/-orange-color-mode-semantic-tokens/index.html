@@ -1,0 +1,966 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OrangeColorModeSemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.orange.tokens.semantic/-orange-color-mode-semantic-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-orange/com.orange.ouds.theme.orange.tokens.semantic/-orange-color-mode-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../not-found-version.html?v=0.2.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-orange/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-orange/main" data-filter=":theme-orange/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-orange::com.orange.ouds.theme.orange.tokens.semantic/OrangeColorModeSemanticTokens///PointingToDeclaration//1802211767">
+  <div class="breadcrumbs"><a href="../../index.html">theme-orange</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.orange.tokens.semantic</a><span class="delimiter">/</span><span class="current">OrangeColorModeSemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Orange</span><wbr><span>Color</span><wbr><span>Mode</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">OrangeColorModeSemanticTokens</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>navigationBarDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>navigationBarLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgInverseHighDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgInverseHighLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgInverseLowDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgInverseLowLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgPrimaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgPrimaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgSecondaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgSecondaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgTertiaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBgTertiaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBrandPrimaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBrandPrimaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBrandSecondaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"⛔️"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBrandSecondaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"⛔️"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBrandTertiaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"⛔️"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onBrandTertiaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"⛔️"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onOverlayDropdownDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onOverlayDropdownLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onOverlayModalDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onOverlayModalLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onOverlayTooltipDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onOverlayTooltipLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusAccentEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusAccentEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusAccentMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusAccentMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusInfoEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusInfoEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusInfoMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusInfoMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusNegativeEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusNegativeEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusNegativeMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusNegativeMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusPositiveEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusPositiveEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusPositiveMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusPositiveMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusWarningEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusWarningEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusWarningMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onStatusWarningMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfaceInverseHighDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfaceInverseHighLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfaceInverseLowDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfaceInverseLowLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfacePrimaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfacePrimaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfaceSecondaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfaceSecondaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfaceTertiaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurfaceTertiaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span></span></span><span class="token punctuation">)</span> : <a href="../../../theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-color-mode-semantic-tokens/index.html">OudsColorModeSemanticTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1959806489%2FConstructors%2F1802211767" anchor-label="OrangeColorModeSemanticTokens" id="-1959806489%2FConstructors%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-orange-color-mode-semantic-tokens.html"><span>Orange</span><wbr><span>Color</span><wbr><span>Mode</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1959806489%2FConstructors%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">navigationBarDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">navigationBarLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgInverseHighDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgInverseHighLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgInverseLowDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgInverseLowLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgPrimaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgPrimaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgSecondaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgSecondaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgTertiaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onBgTertiaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onBrandPrimaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onBrandPrimaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onBrandSecondaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"⛔️"</span><span class="token punctuation">, </span></span><span class="parameter ">onBrandSecondaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"⛔️"</span><span class="token punctuation">, </span></span><span class="parameter ">onBrandTertiaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"⛔️"</span><span class="token punctuation">, </span></span><span class="parameter ">onBrandTertiaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"⛔️"</span><span class="token punctuation">, </span></span><span class="parameter ">onOverlayDropdownDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onOverlayDropdownLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onOverlayModalDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onOverlayModalLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onOverlayTooltipDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onOverlayTooltipLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusAccentEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusAccentEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusAccentMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusAccentMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusInfoEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusInfoEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusInfoMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusInfoMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusNegativeEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusNegativeEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusNegativeMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusNegativeMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusPositiveEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusPositiveEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusPositiveMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusPositiveMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusWarningEmphasizedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusWarningEmphasizedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"mono-light"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusWarningMutedDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onStatusWarningMutedLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfaceInverseHighDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfaceInverseHighLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfaceInverseLowDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfaceInverseLowLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfacePrimaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfacePrimaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfaceSecondaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfaceSecondaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfaceTertiaryDark<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"dark"</span><span class="token punctuation">, </span></span><span class="parameter ">onSurfaceTertiaryLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"light"</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-1534407415%2FProperties%2F1802211767" anchor-label="navigationBarDark" id="-1534407415%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="navigation-bar-dark.html"><span>navigation</span><wbr><span>Bar</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1534407415%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="navigation-bar-dark.html">navigationBarDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1762047067%2FProperties%2F1802211767" anchor-label="navigationBarLight" id="-1762047067%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="navigation-bar-light.html"><span>navigation</span><wbr><span>Bar</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1762047067%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="navigation-bar-light.html">navigationBarLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="65625274%2FProperties%2F1802211767" anchor-label="onBgInverseHighDark" id="65625274%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-inverse-high-dark.html"><span>on</span><wbr><span>Bg</span><wbr><span>Inverse</span><wbr><span>High</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="65625274%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-inverse-high-dark.html">onBgInverseHighDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="594326036%2FProperties%2F1802211767" anchor-label="onBgInverseHighLight" id="594326036%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-inverse-high-light.html"><span>on</span><wbr><span>Bg</span><wbr><span>Inverse</span><wbr><span>High</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="594326036%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-inverse-high-light.html">onBgInverseHighLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="856628542%2FProperties%2F1802211767" anchor-label="onBgInverseLowDark" id="856628542%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-inverse-low-dark.html"><span>on</span><wbr><span>Bg</span><wbr><span>Inverse</span><wbr><span>Low</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="856628542%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-inverse-low-dark.html">onBgInverseLowDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-654376432%2FProperties%2F1802211767" anchor-label="onBgInverseLowLight" id="-654376432%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-inverse-low-light.html"><span>on</span><wbr><span>Bg</span><wbr><span>Inverse</span><wbr><span>Low</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-654376432%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-inverse-low-light.html">onBgInverseLowLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1651984426%2FProperties%2F1802211767" anchor-label="onBgPrimaryDark" id="1651984426%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-primary-dark.html"><span>on</span><wbr><span>Bg</span><wbr><span>Primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1651984426%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-primary-dark.html">onBgPrimaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1768147804%2FProperties%2F1802211767" anchor-label="onBgPrimaryLight" id="-1768147804%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-primary-light.html"><span>on</span><wbr><span>Bg</span><wbr><span>Primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1768147804%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-primary-light.html">onBgPrimaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1350515528%2FProperties%2F1802211767" anchor-label="onBgSecondaryDark" id="-1350515528%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-secondary-dark.html"><span>on</span><wbr><span>Bg</span><wbr><span>Secondary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1350515528%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-secondary-dark.html">onBgSecondaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-356365866%2FProperties%2F1802211767" anchor-label="onBgSecondaryLight" id="-356365866%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-secondary-light.html"><span>on</span><wbr><span>Bg</span><wbr><span>Secondary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-356365866%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-secondary-light.html">onBgSecondaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1176345712%2FProperties%2F1802211767" anchor-label="onBgTertiaryDark" id="1176345712%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-tertiary-dark.html"><span>on</span><wbr><span>Bg</span><wbr><span>Tertiary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1176345712%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-tertiary-dark.html">onBgTertiaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="666921246%2FProperties%2F1802211767" anchor-label="onBgTertiaryLight" id="666921246%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bg-tertiary-light.html"><span>on</span><wbr><span>Bg</span><wbr><span>Tertiary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="666921246%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-bg-tertiary-light.html">onBgTertiaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-704886228%2FProperties%2F1802211767" anchor-label="onBrandPrimaryDark" id="-704886228%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-brand-primary-dark.html"><span>on</span><wbr><span>Brand</span><wbr><span>Primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-704886228%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-brand-primary-dark.html">onBrandPrimaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1816694046%2FProperties%2F1802211767" anchor-label="onBrandPrimaryLight" id="-1816694046%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-brand-primary-light.html"><span>on</span><wbr><span>Brand</span><wbr><span>Primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1816694046%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-brand-primary-light.html">onBrandPrimaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1439518266%2FProperties%2F1802211767" anchor-label="onBrandSecondaryDark" id="1439518266%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-brand-secondary-dark.html"><span>on</span><wbr><span>Brand</span><wbr><span>Secondary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1439518266%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-brand-secondary-dark.html">onBrandSecondaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="235335828%2FProperties%2F1802211767" anchor-label="onBrandSecondaryLight" id="235335828%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-brand-secondary-light.html"><span>on</span><wbr><span>Brand</span><wbr><span>Secondary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="235335828%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-brand-secondary-light.html">onBrandSecondaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1127799470%2FProperties%2F1802211767" anchor-label="onBrandTertiaryDark" id="1127799470%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-brand-tertiary-dark.html"><span>on</span><wbr><span>Brand</span><wbr><span>Tertiary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1127799470%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-brand-tertiary-dark.html">onBrandTertiaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-838012256%2FProperties%2F1802211767" anchor-label="onBrandTertiaryLight" id="-838012256%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-brand-tertiary-light.html"><span>on</span><wbr><span>Brand</span><wbr><span>Tertiary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-838012256%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-brand-tertiary-light.html">onBrandTertiaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-948042714%2FProperties%2F1802211767" anchor-label="onOverlayDropdownDark" id="-948042714%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-overlay-dropdown-dark.html"><span>on</span><wbr><span>Overlay</span><wbr><span>Dropdown</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-948042714%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-overlay-dropdown-dark.html">onOverlayDropdownDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-764610520%2FProperties%2F1802211767" anchor-label="onOverlayDropdownLight" id="-764610520%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-overlay-dropdown-light.html"><span>on</span><wbr><span>Overlay</span><wbr><span>Dropdown</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-764610520%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-overlay-dropdown-light.html">onOverlayDropdownLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1647319638%2FProperties%2F1802211767" anchor-label="onOverlayModalDark" id="-1647319638%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-overlay-modal-dark.html"><span>on</span><wbr><span>Overlay</span><wbr><span>Modal</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1647319638%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-overlay-modal-dark.html">onOverlayModalDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-967358684%2FProperties%2F1802211767" anchor-label="onOverlayModalLight" id="-967358684%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-overlay-modal-light.html"><span>on</span><wbr><span>Overlay</span><wbr><span>Modal</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-967358684%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-overlay-modal-light.html">onOverlayModalLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2144535572%2FProperties%2F1802211767" anchor-label="onOverlayTooltipDark" id="2144535572%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-overlay-tooltip-dark.html"><span>on</span><wbr><span>Overlay</span><wbr><span>Tooltip</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2144535572%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-overlay-tooltip-dark.html">onOverlayTooltipDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="616035834%2FProperties%2F1802211767" anchor-label="onOverlayTooltipLight" id="616035834%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-overlay-tooltip-light.html"><span>on</span><wbr><span>Overlay</span><wbr><span>Tooltip</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="616035834%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-overlay-tooltip-light.html">onOverlayTooltipLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1647526999%2FProperties%2F1802211767" anchor-label="onStatusAccentEmphasizedDark" id="-1647526999%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-accent-emphasized-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Accent</span><wbr><span>Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1647526999%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-accent-emphasized-dark.html">onStatusAccentEmphasizedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-973786875%2FProperties%2F1802211767" anchor-label="onStatusAccentEmphasizedLight" id="-973786875%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-accent-emphasized-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Accent</span><wbr><span>Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-973786875%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-accent-emphasized-light.html">onStatusAccentEmphasizedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="613179384%2FProperties%2F1802211767" anchor-label="onStatusAccentMutedDark" id="613179384%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-accent-muted-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Accent</span><wbr><span>Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="613179384%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-accent-muted-dark.html">onStatusAccentMutedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="388634262%2FProperties%2F1802211767" anchor-label="onStatusAccentMutedLight" id="388634262%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-accent-muted-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Accent</span><wbr><span>Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="388634262%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-accent-muted-light.html">onStatusAccentMutedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1848286917%2FProperties%2F1802211767" anchor-label="onStatusInfoEmphasizedDark" id="1848286917%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-info-emphasized-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Info</span><wbr><span>Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1848286917%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-info-emphasized-dark.html">onStatusInfoEmphasizedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="22262121%2FProperties%2F1802211767" anchor-label="onStatusInfoEmphasizedLight" id="22262121%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-info-emphasized-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Info</span><wbr><span>Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="22262121%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-info-emphasized-light.html">onStatusInfoEmphasizedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-413402276%2FProperties%2F1802211767" anchor-label="onStatusInfoMutedDark" id="-413402276%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-info-muted-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Info</span><wbr><span>Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-413402276%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-info-muted-dark.html">onStatusInfoMutedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1370626126%2FProperties%2F1802211767" anchor-label="onStatusInfoMutedLight" id="-1370626126%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-info-muted-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Info</span><wbr><span>Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1370626126%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-info-muted-light.html">onStatusInfoMutedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1113184674%2FProperties%2F1802211767" anchor-label="onStatusNegativeEmphasizedDark" id="-1113184674%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-negative-emphasized-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Negative</span><wbr><span>Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1113184674%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-negative-emphasized-dark.html">onStatusNegativeEmphasizedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1589043984%2FProperties%2F1802211767" anchor-label="onStatusNegativeEmphasizedLight" id="-1589043984%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-negative-emphasized-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Negative</span><wbr><span>Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1589043984%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-negative-emphasized-light.html">onStatusNegativeEmphasizedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-661759965%2FProperties%2F1802211767" anchor-label="onStatusNegativeMutedDark" id="-661759965%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-negative-muted-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Negative</span><wbr><span>Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-661759965%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-negative-muted-dark.html">onStatusNegativeMutedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-479779893%2FProperties%2F1802211767" anchor-label="onStatusNegativeMutedLight" id="-479779893%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-negative-muted-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Negative</span><wbr><span>Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-479779893%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-negative-muted-light.html">onStatusNegativeMutedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1043489818%2FProperties%2F1802211767" anchor-label="onStatusPositiveEmphasizedDark" id="1043489818%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-positive-emphasized-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Positive</span><wbr><span>Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1043489818%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-positive-emphasized-dark.html">onStatusPositiveEmphasizedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="843355828%2FProperties%2F1802211767" anchor-label="onStatusPositiveEmphasizedLight" id="843355828%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-positive-emphasized-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Positive</span><wbr><span>Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="843355828%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-positive-emphasized-light.html">onStatusPositiveEmphasizedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1022790425%2FProperties%2F1802211767" anchor-label="onStatusPositiveMutedDark" id="-1022790425%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-positive-muted-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Positive</span><wbr><span>Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1022790425%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-positive-muted-dark.html">onStatusPositiveMutedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1213177735%2FProperties%2F1802211767" anchor-label="onStatusPositiveMutedLight" id="1213177735%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-positive-muted-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Positive</span><wbr><span>Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1213177735%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-positive-muted-light.html">onStatusPositiveMutedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="151642171%2FProperties%2F1802211767" anchor-label="onStatusWarningEmphasizedDark" id="151642171%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-warning-emphasized-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Warning</span><wbr><span>Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="151642171%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-warning-emphasized-dark.html">onStatusWarningEmphasizedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1034117453%2FProperties%2F1802211767" anchor-label="onStatusWarningEmphasizedLight" id="-1034117453%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-warning-emphasized-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Warning</span><wbr><span>Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1034117453%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-warning-emphasized-light.html">onStatusWarningEmphasizedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1479858138%2FProperties%2F1802211767" anchor-label="onStatusWarningMutedDark" id="-1479858138%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-warning-muted-dark.html"><span>on</span><wbr><span>Status</span><wbr><span>Warning</span><wbr><span>Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1479858138%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-warning-muted-dark.html">onStatusWarningMutedDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-71019480%2FProperties%2F1802211767" anchor-label="onStatusWarningMutedLight" id="-71019480%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-status-warning-muted-light.html"><span>on</span><wbr><span>Status</span><wbr><span>Warning</span><wbr><span>Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-71019480%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-status-warning-muted-light.html">onStatusWarningMutedLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1293752546%2FProperties%2F1802211767" anchor-label="onSurfaceInverseHighDark" id="1293752546%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-inverse-high-dark.html"><span>on</span><wbr><span>Surface</span><wbr><span>Inverse</span><wbr><span>High</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1293752546%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-inverse-high-dark.html">onSurfaceInverseHighDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="11565804%2FProperties%2F1802211767" anchor-label="onSurfaceInverseHighLight" id="11565804%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-inverse-high-light.html"><span>on</span><wbr><span>Surface</span><wbr><span>Inverse</span><wbr><span>High</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="11565804%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-inverse-high-light.html">onSurfaceInverseHighLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="64961558%2FProperties%2F1802211767" anchor-label="onSurfaceInverseLowDark" id="64961558%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-inverse-low-dark.html"><span>on</span><wbr><span>Surface</span><wbr><span>Inverse</span><wbr><span>Low</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="64961558%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-inverse-low-dark.html">onSurfaceInverseLowDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="573750840%2FProperties%2F1802211767" anchor-label="onSurfaceInverseLowLight" id="573750840%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-inverse-low-light.html"><span>on</span><wbr><span>Surface</span><wbr><span>Inverse</span><wbr><span>Low</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="573750840%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-inverse-low-light.html">onSurfaceInverseLowLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-872458158%2FProperties%2F1802211767" anchor-label="onSurfacePrimaryDark" id="-872458158%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-primary-dark.html"><span>on</span><wbr><span>Surface</span><wbr><span>Primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-872458158%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-primary-dark.html">onSurfacePrimaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1578510716%2FProperties%2F1802211767" anchor-label="onSurfacePrimaryLight" id="1578510716%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-primary-light.html"><span>on</span><wbr><span>Surface</span><wbr><span>Primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1578510716%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-primary-light.html">onSurfacePrimaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-683316512%2FProperties%2F1802211767" anchor-label="onSurfaceSecondaryDark" id="-683316512%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-secondary-dark.html"><span>on</span><wbr><span>Surface</span><wbr><span>Secondary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-683316512%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-secondary-dark.html">onSurfaceSecondaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1148032850%2FProperties%2F1802211767" anchor-label="onSurfaceSecondaryLight" id="-1148032850%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-secondary-light.html"><span>on</span><wbr><span>Surface</span><wbr><span>Secondary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1148032850%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-secondary-light.html">onSurfaceSecondaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="228036936%2FProperties%2F1802211767" anchor-label="onSurfaceTertiaryDark" id="228036936%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-tertiary-dark.html"><span>on</span><wbr><span>Surface</span><wbr><span>Tertiary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="228036936%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-tertiary-dark.html">onSurfaceTertiaryDark</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1334120262%2FProperties%2F1802211767" anchor-label="onSurfaceTertiaryLight" id="1334120262%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-tertiary-light.html"><span>on</span><wbr><span>Surface</span><wbr><span>Tertiary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1334120262%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="on-surface-tertiary-light.html">onSurfaceTertiaryLight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

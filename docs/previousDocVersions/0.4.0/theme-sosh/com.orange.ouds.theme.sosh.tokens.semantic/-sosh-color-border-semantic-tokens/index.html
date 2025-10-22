@@ -1,0 +1,636 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>SoshColorBorderSemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.sosh.tokens.semantic/-sosh-color-border-semantic-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-sosh/com.orange.ouds.theme.sosh.tokens.semantic/-sosh-color-border-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../not-found-version.html?v=0.2.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-sosh/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-sosh/main" data-filter=":theme-sosh/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-sosh::com.orange.ouds.theme.sosh.tokens.semantic/SoshColorBorderSemanticTokens///PointingToDeclaration//-262350444">
+  <div class="breadcrumbs"><a href="../../index.html">theme-sosh</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.sosh.tokens.semantic</a><span class="delimiter">/</span><span class="current">SoshColorBorderSemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Sosh</span><wbr><span>Color</span><wbr><span>Border</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">SoshColorBorderSemanticTokens</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>borderBrandPrimaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorMagenta300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderBrandPrimaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorMagenta500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderBrandSecondaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckLight800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderBrandSecondaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckDark400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderBrandTertiaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorCitrine300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderBrandTertiaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorCitrine500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderDefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderDefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderEmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite920<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderEmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderFocusDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalGrayLight160<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderFocusInsetDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalGrayDark880<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderFocusInsetLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderFocusLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderMutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite80<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderMutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack80<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderOnBrandPrimaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckDark960<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderOnBrandPrimaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderOnBrandSecondaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckDark960<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderOnBrandSecondaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderOnBrandTertiaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckDark960<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderOnBrandTertiaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusAccentDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorMagenta300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusAccentLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorMagenta500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusInfoDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDodgerBlue300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusInfoLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDodgerBlue700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusNegativeDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusNegativeLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet600<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusPositiveDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalMalachite300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusPositiveLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalMalachite750<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusWarningDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>borderStatusWarningLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun500</span></span><span class="token punctuation">)</span> : <a href="../../../theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-color-border-semantic-tokens/index.html">OudsColorBorderSemanticTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1813708184%2FConstructors%2F-262350444" anchor-label="SoshColorBorderSemanticTokens" id="-1813708184%2FConstructors%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-sosh-color-border-semantic-tokens.html"><span>Sosh</span><wbr><span>Color</span><wbr><span>Border</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1813708184%2FConstructors%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">borderBrandPrimaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorMagenta300<span class="token punctuation">, </span></span><span class="parameter ">borderBrandPrimaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorMagenta500<span class="token punctuation">, </span></span><span class="parameter ">borderBrandSecondaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckLight800<span class="token punctuation">, </span></span><span class="parameter ">borderBrandSecondaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckDark400<span class="token punctuation">, </span></span><span class="parameter ">borderBrandTertiaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorCitrine300<span class="token punctuation">, </span></span><span class="parameter ">borderBrandTertiaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorCitrine500<span class="token punctuation">, </span></span><span class="parameter ">borderDefaultDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite200<span class="token punctuation">, </span></span><span class="parameter ">borderDefaultLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack200<span class="token punctuation">, </span></span><span class="parameter ">borderEmphasizedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite920<span class="token punctuation">, </span></span><span class="parameter ">borderEmphasizedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">borderFocusDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalGrayLight160<span class="token punctuation">, </span></span><span class="parameter ">borderFocusInsetDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalGrayDark880<span class="token punctuation">, </span></span><span class="parameter ">borderFocusInsetLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter ">borderFocusLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">borderMutedDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityWhite80<span class="token punctuation">, </span></span><span class="parameter ">borderMutedLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorOpacityBlack80<span class="token punctuation">, </span></span><span class="parameter ">borderOnBrandPrimaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckDark960<span class="token punctuation">, </span></span><span class="parameter ">borderOnBrandPrimaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter ">borderOnBrandSecondaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckDark960<span class="token punctuation">, </span></span><span class="parameter ">borderOnBrandSecondaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalWhite<span class="token punctuation">, </span></span><span class="parameter ">borderOnBrandTertiaryDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorBlueDuckDark960<span class="token punctuation">, </span></span><span class="parameter ">borderOnBrandTertiaryLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalBlack<span class="token punctuation">, </span></span><span class="parameter ">borderStatusAccentDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorMagenta300<span class="token punctuation">, </span></span><span class="parameter ">borderStatusAccentLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>SoshColorRawTokens.colorMagenta500<span class="token punctuation">, </span></span><span class="parameter ">borderStatusInfoDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDodgerBlue300<span class="token punctuation">, </span></span><span class="parameter ">borderStatusInfoLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalDodgerBlue700<span class="token punctuation">, </span></span><span class="parameter ">borderStatusNegativeDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet300<span class="token punctuation">, </span></span><span class="parameter ">borderStatusNegativeLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalScarlet600<span class="token punctuation">, </span></span><span class="parameter ">borderStatusPositiveDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalMalachite300<span class="token punctuation">, </span></span><span class="parameter ">borderStatusPositiveLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalMalachite750<span class="token punctuation">, </span></span><span class="parameter ">borderStatusWarningDark<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun300<span class="token punctuation">, </span></span><span class="parameter ">borderStatusWarningLight<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>ColorRawTokens.colorFunctionalSun500</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-243406488%2FProperties%2F-262350444" anchor-label="borderBrandPrimaryDark" id="-243406488%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-brand-primary-dark.html"><span>border</span><wbr><span>Brand</span><wbr><span>Primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-243406488%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-brand-primary-dark.html">borderBrandPrimaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-395723994%2FProperties%2F-262350444" anchor-label="borderBrandPrimaryLight" id="-395723994%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-brand-primary-light.html"><span>border</span><wbr><span>Brand</span><wbr><span>Primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-395723994%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-brand-primary-light.html">borderBrandPrimaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1755050378%2FProperties%2F-262350444" anchor-label="borderBrandSecondaryDark" id="-1755050378%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-brand-secondary-dark.html"><span>border</span><wbr><span>Brand</span><wbr><span>Secondary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1755050378%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-brand-secondary-dark.html">borderBrandSecondaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-12044328%2FProperties%2F-262350444" anchor-label="borderBrandSecondaryLight" id="-12044328%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-brand-secondary-light.html"><span>border</span><wbr><span>Brand</span><wbr><span>Secondary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-12044328%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-brand-secondary-light.html">borderBrandSecondaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1746197774%2FProperties%2F-262350444" anchor-label="borderBrandTertiaryDark" id="-1746197774%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-brand-tertiary-dark.html"><span>border</span><wbr><span>Brand</span><wbr><span>Tertiary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1746197774%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-brand-tertiary-dark.html">borderBrandTertiaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="262386396%2FProperties%2F-262350444" anchor-label="borderBrandTertiaryLight" id="262386396%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-brand-tertiary-light.html"><span>border</span><wbr><span>Brand</span><wbr><span>Tertiary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="262386396%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-brand-tertiary-light.html">borderBrandTertiaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1298075050%2FProperties%2F-262350444" anchor-label="borderDefaultDark" id="1298075050%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-default-dark.html"><span>border</span><wbr><span>Default</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1298075050%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-default-dark.html">borderDefaultDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="145563428%2FProperties%2F-262350444" anchor-label="borderDefaultLight" id="145563428%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-default-light.html"><span>border</span><wbr><span>Default</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="145563428%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-default-light.html">borderDefaultLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1777775841%2FProperties%2F-262350444" anchor-label="borderEmphasizedDark" id="1777775841%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-emphasized-dark.html"><span>border</span><wbr><span>Emphasized</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1777775841%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-emphasized-dark.html">borderEmphasizedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2131386061%2FProperties%2F-262350444" anchor-label="borderEmphasizedLight" id="2131386061%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-emphasized-light.html"><span>border</span><wbr><span>Emphasized</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2131386061%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-emphasized-light.html">borderEmphasizedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1745677453%2FProperties%2F-262350444" anchor-label="borderFocusDark" id="-1745677453%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-focus-dark.html"><span>border</span><wbr><span>Focus</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1745677453%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-focus-dark.html">borderFocusDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-670828034%2FProperties%2F-262350444" anchor-label="borderFocusInsetDark" id="-670828034%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-focus-inset-dark.html"><span>border</span><wbr><span>Focus</span><wbr><span>Inset</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-670828034%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-focus-inset-dark.html">borderFocusInsetDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-760890032%2FProperties%2F-262350444" anchor-label="borderFocusInsetLight" id="-760890032%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-focus-inset-light.html"><span>border</span><wbr><span>Focus</span><wbr><span>Inset</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-760890032%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-focus-inset-light.html">borderFocusInsetLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="278516347%2FProperties%2F-262350444" anchor-label="borderFocusLight" id="278516347%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-focus-light.html"><span>border</span><wbr><span>Focus</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="278516347%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-focus-light.html">borderFocusLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-378960960%2FProperties%2F-262350444" anchor-label="borderMutedDark" id="-378960960%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-muted-dark.html"><span>border</span><wbr><span>Muted</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-378960960%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-muted-dark.html">borderMutedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-302945330%2FProperties%2F-262350444" anchor-label="borderMutedLight" id="-302945330%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-muted-light.html"><span>border</span><wbr><span>Muted</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-302945330%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-muted-light.html">borderMutedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="386927433%2FProperties%2F-262350444" anchor-label="borderOnBrandPrimaryDark" id="386927433%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-on-brand-primary-dark.html"><span>border</span><wbr><span>On</span><wbr><span>Brand</span><wbr><span>Primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="386927433%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-on-brand-primary-dark.html">borderOnBrandPrimaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1964758373%2FProperties%2F-262350444" anchor-label="borderOnBrandPrimaryLight" id="1964758373%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-on-brand-primary-light.html"><span>border</span><wbr><span>On</span><wbr><span>Brand</span><wbr><span>Primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1964758373%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-on-brand-primary-light.html">borderOnBrandPrimaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1594541033%2FProperties%2F-262350444" anchor-label="borderOnBrandSecondaryDark" id="-1594541033%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-on-brand-secondary-dark.html"><span>border</span><wbr><span>On</span><wbr><span>Brand</span><wbr><span>Secondary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1594541033%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-on-brand-secondary-dark.html">borderOnBrandSecondaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="668778071%2FProperties%2F-262350444" anchor-label="borderOnBrandSecondaryLight" id="668778071%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-on-brand-secondary-light.html"><span>border</span><wbr><span>On</span><wbr><span>Brand</span><wbr><span>Secondary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="668778071%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-on-brand-secondary-light.html">borderOnBrandSecondaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="614284593%2FProperties%2F-262350444" anchor-label="borderOnBrandTertiaryDark" id="614284593%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-on-brand-tertiary-dark.html"><span>border</span><wbr><span>On</span><wbr><span>Brand</span><wbr><span>Tertiary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="614284593%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-on-brand-tertiary-dark.html">borderOnBrandTertiaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="422895741%2FProperties%2F-262350444" anchor-label="borderOnBrandTertiaryLight" id="422895741%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-on-brand-tertiary-light.html"><span>border</span><wbr><span>On</span><wbr><span>Brand</span><wbr><span>Tertiary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="422895741%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-on-brand-tertiary-light.html">borderOnBrandTertiaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="841740839%2FProperties%2F-262350444" anchor-label="borderStatusAccentDark" id="841740839%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-accent-dark.html"><span>border</span><wbr><span>Status</span><wbr><span>Accent</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="841740839%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-accent-dark.html">borderStatusAccentDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1115895225%2FProperties%2F-262350444" anchor-label="borderStatusAccentLight" id="-1115895225%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-accent-light.html"><span>border</span><wbr><span>Status</span><wbr><span>Accent</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1115895225%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-accent-light.html">borderStatusAccentLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1701865283%2FProperties%2F-262350444" anchor-label="borderStatusInfoDark" id="1701865283%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-info-dark.html"><span>border</span><wbr><span>Status</span><wbr><span>Info</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1701865283%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-info-dark.html">borderStatusInfoDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-221841237%2FProperties%2F-262350444" anchor-label="borderStatusInfoLight" id="-221841237%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-info-light.html"><span>border</span><wbr><span>Status</span><wbr><span>Info</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-221841237%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-info-light.html">borderStatusInfoLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1513526244%2FProperties%2F-262350444" anchor-label="borderStatusNegativeDark" id="-1513526244%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-negative-dark.html"><span>border</span><wbr><span>Status</span><wbr><span>Negative</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1513526244%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-negative-dark.html">borderStatusNegativeDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1114730766%2FProperties%2F-262350444" anchor-label="borderStatusNegativeLight" id="-1114730766%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-negative-light.html"><span>border</span><wbr><span>Status</span><wbr><span>Negative</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1114730766%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-negative-light.html">borderStatusNegativeLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="314074328%2FProperties%2F-262350444" anchor-label="borderStatusPositiveDark" id="314074328%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-positive-dark.html"><span>border</span><wbr><span>Status</span><wbr><span>Positive</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="314074328%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-positive-dark.html">borderStatusPositiveDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-293687882%2FProperties%2F-262350444" anchor-label="borderStatusPositiveLight" id="-293687882%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-positive-light.html"><span>border</span><wbr><span>Status</span><wbr><span>Positive</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-293687882%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-positive-light.html">borderStatusPositiveLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1771105857%2FProperties%2F-262350444" anchor-label="borderStatusWarningDark" id="1771105857%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-warning-dark.html"><span>border</span><wbr><span>Status</span><wbr><span>Warning</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1771105857%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-warning-dark.html">borderStatusWarningDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1924616557%2FProperties%2F-262350444" anchor-label="borderStatusWarningLight" id="1924616557%2FProperties%2F-262350444" data-filterable-set=":theme-sosh/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-sosh/main" data-filterable-set=":theme-sosh/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-status-warning-light.html"><span>border</span><wbr><span>Status</span><wbr><span>Warning</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1924616557%2FProperties%2F-262350444"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-sosh/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="border-status-warning-light.html">borderStatusWarningLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
