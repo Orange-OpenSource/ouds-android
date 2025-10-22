@@ -21,7 +21,6 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -47,8 +46,7 @@ internal fun OudsBadgeSample() {
 internal fun OudsBadgeWithCountSample() {
     val count = 10
     OudsBadge(
-        // Use clearAnSetSemantics to totally replace the reading of the displayed badge count.
-        modifier = Modifier.clearAndSetSemantics {
+        modifier = Modifier.semantics {
             contentDescription = "$count unread emails"
         },
         status = OudsBadgeStatus.Info,
@@ -82,7 +80,6 @@ internal fun OudsBadgeWithCustomIconSample() {
     )
 }
 
-
 @Composable
 internal fun OudsBadgeWithCountInNavigationBarItemSample() {
     NavigationBar {
@@ -92,8 +89,7 @@ internal fun OudsBadgeWithCountInNavigationBarItemSample() {
                     badge = {
                         val count = 8
                         OudsBadge(
-                            // Use clearAnSetSemantics to totally replace the reading of the displayed badge count.
-                            modifier = Modifier.clearAndSetSemantics {
+                            modifier = Modifier.semantics {
                                 contentDescription = "$count new notifications"
                             },
                             count = count,

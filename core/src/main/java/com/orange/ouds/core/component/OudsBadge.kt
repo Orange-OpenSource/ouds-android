@@ -37,6 +37,8 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
@@ -212,9 +214,16 @@ private fun OudsBadge(
     withIconStatus: OudsBadgeWithIconStatus? = null,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
+    val text = count?.let { if (it > OudsBadgeMaxCount) "+${OudsBadgeMaxCount}" else it.coerceAtLeast(0).toString() }
     // This outer box is necessary otherwise the user can change the size of the badge through the modifier
     Box(
-        modifier = modifier.semantics(mergeDescendants = true) { },
+        modifier = modifier.semantics(mergeDescendants = true) {
+            if (text != null) {
+                // The content description for a count badge is applied here instead of the Text composable
+                // That way it can be overridden by the caller through the semantics method on the modifier 
+                contentDescription = text
+            }
+        },
         contentAlignment = Alignment.Center
     ) {
         // Apply the font scale to the size when displaying a count or an icon badge.
@@ -237,12 +246,12 @@ private fun OudsBadge(
                 .padding(paddingValues = contentPadding(size = size, count = count, icon = icon, scale = scale)),
             contentAlignment = Alignment.Center
         ) {
-            val text = count?.let { if (it > OudsBadgeMaxCount) "+${OudsBadgeMaxCount}" else it.coerceAtLeast(0).toString() }
             val contentColor = contentColor(status = status, enabled = enabled)
             if (size in OudsBadgeSize.countEntries && text != null) {
                 val textStyle = textStyle(size = size)
                 if (textStyle != null) {
                     Text(
+                        modifier = Modifier.clearAndSetSemantics {},
                         text = text,
                         color = contentColor,
                         style = textStyle
