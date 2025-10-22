@@ -212,33 +212,33 @@ data class OudsColorScheme(
         val warning: Warning
     ) {
         data class Accent(
-            val default: Color,
             val high: Color,
             val higher: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
-            val lowest: Color
+            val lowest: Color,
+            val medium: Color
         )
 
         data class Info(
-            val default: Color,
             val high: Color,
             val higher: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
-            val lowest: Color
+            val lowest: Color,
+            val medium: Color
         )
 
         data class Negative(
-            val default: Color,
             val high: Color,
             val higher: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
-            val lowest: Color
+            val lowest: Color,
+            val medium: Color
         )
 
         data class Neutral(
@@ -341,53 +341,53 @@ data class OudsColorScheme(
         }
 
         data class Positive(
-            val default: Color,
             val high: Color,
             val higher: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
-            val lowest: Color
+            val lowest: Color,
+            val medium: Color
         )
 
         data class Primary(
-            val default: Color,
             val high: Color,
             val higher: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
-            val lowest: Color
+            val lowest: Color,
+            val medium: Color
         )
 
         data class Secondary(
-            val default: Color,
             val high: Color,
             val higher: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
-            val lowest: Color
+            val lowest: Color,
+            val medium: Color
         )
 
         data class Tertiary(
-            val default: Color,
             val high: Color,
             val higher: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
-            val lowest: Color
+            val lowest: Color,
+            val medium: Color
         )
 
         data class Warning(
-            val default: Color,
             val high: Color,
             val higher: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
-            val lowest: Color
+            val lowest: Color,
+            val medium: Color
         )
     }
 
@@ -977,31 +977,31 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
     get() = with(repositoryColorTokens) {
         OudsColorScheme.Repository(
             accent = OudsColorScheme.Repository.Accent(
-                default = repositoryAccentDefault,
                 high = repositoryAccentHigh,
                 higher = repositoryAccentHigher,
                 highest = repositoryAccentHighest,
                 low = repositoryAccentLow,
                 lower = repositoryAccentLower,
                 lowest = repositoryAccentLowest,
+                medium = repositoryAccentMedium,
             ),
             info = OudsColorScheme.Repository.Info(
-                default = repositoryInfoDefault,
                 high = repositoryInfoHigh,
                 higher = repositoryInfoHigher,
                 highest = repositoryInfoHighest,
                 low = repositoryInfoLow,
                 lower = repositoryInfoLower,
                 lowest = repositoryInfoLowest,
+                medium = repositoryInfoMedium,
             ),
             negative = OudsColorScheme.Repository.Negative(
-                default = repositoryNegativeDefault,
                 high = repositoryNegativeHigh,
                 higher = repositoryNegativeHigher,
                 highest = repositoryNegativeHighest,
                 low = repositoryNegativeLow,
                 lower = repositoryNegativeLower,
                 lowest = repositoryNegativeLowest,
+                medium = repositoryNegativeMedium,
             ),
             neutral = OudsColorScheme.Repository.Neutral(
                 emphasized = OudsColorScheme.Repository.Neutral.Emphasized(
@@ -1081,49 +1081,49 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
                 ),
             ),
             positive = OudsColorScheme.Repository.Positive(
-                default = repositoryPositiveDefault,
                 high = repositoryPositiveHigh,
                 higher = repositoryPositiveHigher,
                 highest = repositoryPositiveHighest,
                 low = repositoryPositiveLow,
                 lower = repositoryPositiveLower,
                 lowest = repositoryPositiveLowest,
+                medium = repositoryPositiveMedium,
             ),
             primary = OudsColorScheme.Repository.Primary(
-                default = repositoryPrimaryDefault,
                 high = repositoryPrimaryHigh,
                 higher = repositoryPrimaryHigher,
                 highest = repositoryPrimaryHighest,
                 low = repositoryPrimaryLow,
                 lower = repositoryPrimaryLower,
                 lowest = repositoryPrimaryLowest,
+                medium = repositoryPrimaryMedium,
             ),
             secondary = OudsColorScheme.Repository.Secondary(
-                default = repositorySecondaryDefault,
                 high = repositorySecondaryHigh,
                 higher = repositorySecondaryHigher,
                 highest = repositorySecondaryHighest,
                 low = repositorySecondaryLow,
                 lower = repositorySecondaryLower,
-                lowest = repositorySecondaryLowest
+                lowest = repositorySecondaryLowest,
+                medium = repositorySecondaryMedium,
             ),
             tertiary = OudsColorScheme.Repository.Tertiary(
-                default = repositoryTertiaryDefault,
                 high = repositoryTertiaryHigh,
                 higher = repositoryTertiaryHigher,
                 highest = repositoryTertiaryHighest,
                 low = repositoryTertiaryLow,
                 lower = repositoryTertiaryLower,
-                lowest = repositoryTertiaryLowest
+                lowest = repositoryTertiaryLowest,
+                medium = repositoryTertiaryMedium,
             ),
             warning = OudsColorScheme.Repository.Warning(
-                default = repositoryWarningDefault,
                 high = repositoryWarningHigh,
                 higher = repositoryWarningHigher,
                 highest = repositoryWarningHighest,
                 low = repositoryWarningLow,
                 lower = repositoryWarningLower,
                 lowest = repositoryWarningLowest,
+                medium = repositoryWarningMedium,
             ),
         )
     }
@@ -1250,27 +1250,27 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
 private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Color {
     return with(repository) {
         when (token) {
-            OudsColorKeyToken.Repository.Accent.Default -> accent.default
             OudsColorKeyToken.Repository.Accent.High -> accent.high
             OudsColorKeyToken.Repository.Accent.Higher -> accent.higher
             OudsColorKeyToken.Repository.Accent.Highest -> accent.highest
             OudsColorKeyToken.Repository.Accent.Low -> accent.low
             OudsColorKeyToken.Repository.Accent.Lower -> accent.lower
             OudsColorKeyToken.Repository.Accent.Lowest -> accent.lowest
-            OudsColorKeyToken.Repository.Info.Default -> info.default
+            OudsColorKeyToken.Repository.Accent.Medium -> accent.medium
             OudsColorKeyToken.Repository.Info.High -> info.high
             OudsColorKeyToken.Repository.Info.Higher -> info.higher
             OudsColorKeyToken.Repository.Info.Highest -> info.highest
             OudsColorKeyToken.Repository.Info.Low -> info.low
             OudsColorKeyToken.Repository.Info.Lower -> info.lower
             OudsColorKeyToken.Repository.Info.Lowest -> info.lowest
-            OudsColorKeyToken.Repository.Negative.Default -> negative.default
+            OudsColorKeyToken.Repository.Info.Medium -> info.medium
             OudsColorKeyToken.Repository.Negative.High -> negative.high
             OudsColorKeyToken.Repository.Negative.Higher -> negative.higher
             OudsColorKeyToken.Repository.Negative.Highest -> negative.highest
             OudsColorKeyToken.Repository.Negative.Low -> negative.low
             OudsColorKeyToken.Repository.Negative.Lower -> negative.lower
             OudsColorKeyToken.Repository.Negative.Lowest -> negative.lowest
+            OudsColorKeyToken.Repository.Negative.Medium -> negative.medium
             OudsColorKeyToken.Repository.Neutral.Emphasized.Black -> neutral.emphasized.black
             OudsColorKeyToken.Repository.Neutral.Emphasized.High -> neutral.emphasized.high
             OudsColorKeyToken.Repository.Neutral.Emphasized.Higher -> neutral.emphasized.higher
@@ -1324,41 +1324,41 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Colo
             OudsColorKeyToken.Repository.Opacity.White.Medium -> opacity.white.medium
             OudsColorKeyToken.Repository.Opacity.White.MediumLow -> opacity.white.mediumLow
             OudsColorKeyToken.Repository.Opacity.White.Transparent -> opacity.white.transparent
-            OudsColorKeyToken.Repository.Positive.Default -> positive.default
             OudsColorKeyToken.Repository.Positive.High -> positive.high
             OudsColorKeyToken.Repository.Positive.Higher -> positive.higher
             OudsColorKeyToken.Repository.Positive.Highest -> positive.highest
             OudsColorKeyToken.Repository.Positive.Low -> positive.low
             OudsColorKeyToken.Repository.Positive.Lower -> positive.lower
             OudsColorKeyToken.Repository.Positive.Lowest -> positive.lowest
-            OudsColorKeyToken.Repository.Primary.Default -> primary.default
+            OudsColorKeyToken.Repository.Positive.Medium -> positive.medium
             OudsColorKeyToken.Repository.Primary.High -> primary.high
             OudsColorKeyToken.Repository.Primary.Higher -> primary.higher
             OudsColorKeyToken.Repository.Primary.Highest -> primary.highest
             OudsColorKeyToken.Repository.Primary.Low -> primary.low
             OudsColorKeyToken.Repository.Primary.Lower -> primary.lower
             OudsColorKeyToken.Repository.Primary.Lowest -> primary.lowest
-            OudsColorKeyToken.Repository.Secondary.Default -> secondary.default
+            OudsColorKeyToken.Repository.Primary.Medium -> primary.medium
             OudsColorKeyToken.Repository.Secondary.High -> secondary.high
             OudsColorKeyToken.Repository.Secondary.Higher -> secondary.higher
             OudsColorKeyToken.Repository.Secondary.Highest -> secondary.highest
             OudsColorKeyToken.Repository.Secondary.Low -> secondary.low
             OudsColorKeyToken.Repository.Secondary.Lower -> secondary.lower
             OudsColorKeyToken.Repository.Secondary.Lowest -> secondary.lowest
-            OudsColorKeyToken.Repository.Tertiary.Default -> tertiary.default
+            OudsColorKeyToken.Repository.Secondary.Medium -> secondary.medium
             OudsColorKeyToken.Repository.Tertiary.High -> tertiary.high
             OudsColorKeyToken.Repository.Tertiary.Higher -> tertiary.higher
             OudsColorKeyToken.Repository.Tertiary.Highest -> tertiary.highest
             OudsColorKeyToken.Repository.Tertiary.Low -> tertiary.low
             OudsColorKeyToken.Repository.Tertiary.Lower -> tertiary.lower
             OudsColorKeyToken.Repository.Tertiary.Lowest -> tertiary.lowest
-            OudsColorKeyToken.Repository.Warning.Default -> warning.default
+            OudsColorKeyToken.Repository.Tertiary.Medium -> tertiary.medium
             OudsColorKeyToken.Repository.Warning.High -> warning.high
             OudsColorKeyToken.Repository.Warning.Higher -> warning.higher
             OudsColorKeyToken.Repository.Warning.Highest -> warning.highest
             OudsColorKeyToken.Repository.Warning.Low -> warning.low
             OudsColorKeyToken.Repository.Warning.Lower -> warning.lower
             OudsColorKeyToken.Repository.Warning.Lowest -> warning.lowest
+            OudsColorKeyToken.Repository.Warning.Medium -> warning.medium
         }
     }
 }

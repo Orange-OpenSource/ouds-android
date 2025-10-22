@@ -25,6 +25,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 data class OudsOpacities(
     val disabled: Float,
     val invisible: Float,
+    val weakest: Float,
     val weaker: Float,
     val weak: Float,
     val medium: Float,
@@ -35,6 +36,7 @@ data class OudsOpacities(
 internal fun OudsOpacitySemanticTokens.getOpacity() = OudsOpacities(
     disabled = disabled,
     invisible = invisible,
+    weakest = weakest,
     weaker = weaker,
     weak = weak,
     medium = medium,
@@ -52,6 +54,7 @@ private fun OudsOpacities.fromToken(token: OudsOpacityKeyToken): Float {
         OudsOpacityKeyToken.Strong -> strong
         OudsOpacityKeyToken.Weak -> weak
         OudsOpacityKeyToken.Weaker -> weaker
+        OudsOpacityKeyToken.Weakest -> weakest
     }
 }
 
