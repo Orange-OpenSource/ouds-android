@@ -24,7 +24,8 @@ class OudsBadgeTest {
     class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.Badge.Default,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.Badge.PreviewWidthDp
     ) {
 
         companion object {
@@ -38,7 +39,8 @@ class OudsBadgeTest {
     class WithIcon(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.Badge.WithIcon,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.Badge.PreviewWidthDp
     ) {
 
         companion object {
