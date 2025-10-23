@@ -479,7 +479,7 @@ open class OudsTagIcon protected constructor(
 
     data object Default : OudsTagIcon({ icon ->
         with(icon.extraParameters) {
-            (status as? FunctionalStatus)?.getDefaultIconPainter(appearance).orElse {
+            (status as? TagFunctionalStatus)?.getDefaultIconPainter(appearance).orElse {
                 error("No default icon for status ${status::class.simpleName}")
             }
         }
@@ -563,7 +563,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
      * Indicates success, confirmation, or a positive status. This functional status is commonly used to highlight completed actions or approved items.
      * Its [icon] can be an [OudsTagIcon.Bullet], an [OudsTagIcon.Default] or `null` if no icon is needed.
      */
-    class Positive internal constructor(icon: OudsTagIcon?) : OudsTagStatus(icon), FunctionalStatus {
+    class Positive internal constructor(icon: OudsTagIcon?) : OudsTagStatus(icon), TagFunctionalStatus {
         /**
          * Creates an instance of [OudsTagStatus.Positive] with a bullet.
          */
@@ -582,7 +582,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
      * Conveys informational messages or supplementary details. This functional status is used for neutral, helpful, or contextual information.
      * Its [icon] can be an [OudsTagIcon.Bullet], an [OudsTagIcon.Default] or `null` if no icon is needed.
      */
-    class Info internal constructor(icon: OudsTagIcon?) : OudsTagStatus(icon), FunctionalStatus {
+    class Info internal constructor(icon: OudsTagIcon?) : OudsTagStatus(icon), TagFunctionalStatus {
         /**
          * Creates an instance of [OudsTagStatus.Info] with a bullet.
          */
@@ -601,7 +601,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
      * Signals caution or a potentially risky situation. This functional status is used to draw attention to items requiring user awareness or intervention.
      * Its [icon] can be an [OudsTagIcon.Bullet], an [OudsTagIcon.Default] or `null` if no icon is needed.
      */
-    class Warning internal constructor(icon: OudsTagIcon?) : OudsTagStatus(icon), FunctionalStatus {
+    class Warning internal constructor(icon: OudsTagIcon?) : OudsTagStatus(icon), TagFunctionalStatus {
         /**
          * Creates an instance of [OudsTagStatus.Warning] with a bullet.
          */
@@ -631,7 +631,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
      * Represents errors, critical issues, or urgent attention needed. This functional status is used to highlight problems or failed actions.
      * Its [icon] can be an [OudsTagIcon.Bullet], an [OudsTagIcon.Default] or `null` if no icon is needed.
      */
-    class Negative internal constructor(icon: OudsTagIcon?) : OudsTagStatus(icon), FunctionalStatus {
+    class Negative internal constructor(icon: OudsTagIcon?) : OudsTagStatus(icon), TagFunctionalStatus {
         /**
          * Creates an instance of [OudsTagStatus.Negative] with a bullet.
          */
@@ -677,7 +677,7 @@ sealed class OudsTagStatus(val icon: OudsTagIcon? = null) {
     }
 }
 
-private interface FunctionalStatus {
+private interface TagFunctionalStatus {
     @Composable
     fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter
 }

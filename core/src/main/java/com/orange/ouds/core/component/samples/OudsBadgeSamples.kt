@@ -28,11 +28,15 @@ import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsBadgeSample() {
     OudsBadge(
+        modifier = Modifier.semantics {
+            contentDescription = "Information"
+        },
         status = OudsBadgeStatus.Info,
         size = OudsBadgeSize.Small
     )
@@ -40,20 +44,36 @@ internal fun OudsBadgeSample() {
 
 @Composable
 internal fun OudsBadgeWithCountSample() {
+    val count = 10
     OudsBadge(
+        modifier = Modifier.semantics {
+            contentDescription = "$count unread emails"
+        },
         status = OudsBadgeStatus.Info,
-        count = 10
+        count = count
     )
 }
 
 @Composable
-internal fun OudsBadgeWithIconSample() {
+internal fun OudsBadgeWithDefaultIconSample() {
     OudsBadge(
-        icon = OudsBadgeIcon(
-            imageVector = Icons.Filled.FavoriteBorder,
-            contentDescription = "Content description"
+        modifier = Modifier.semantics {
+            contentDescription = "Information"
+        },
+        status = OudsIconBadgeStatus.Info,
+        size = OudsBadgeSize.Large
+    )
+}
+
+@Composable
+internal fun OudsBadgeWithCustomIconSample() {
+    OudsBadge(
+        modifier = Modifier.semantics {
+            contentDescription = "Favorite"
+        },
+        status = OudsIconBadgeStatus.Accent(
+            OudsBadgeIcon(imageVector = Icons.Filled.FavoriteBorder)
         ),
-        status = OudsBadgeStatus.Info,
         size = OudsBadgeSize.Large
     )
 }
@@ -101,8 +121,14 @@ private fun PreviewOudsBadgeWithCountSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsBadgeWithIconSample() = OudsPreview {
-    OudsBadgeWithIconSample()
+private fun PreviewOudsBadgeWithDefaultIconSample() = OudsPreview {
+    OudsBadgeWithDefaultIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsBadgeWithCustomIconSample() = OudsPreview {
+    OudsBadgeWithCustomIconSample()
 }
 
 @PreviewLightDark

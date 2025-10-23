@@ -19,15 +19,16 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
@@ -36,11 +37,13 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsVersion
@@ -48,10 +51,11 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun BadgeDemoScreen() {
     val state = rememberBadgeDemoState()
+    val badgeWithIconStatus = state.badgeWithIconStatus
     DemoScreen(
         description = stringResource(id = Component.Badge.descriptionRes),
         bottomSheetContent = { BadgeDemoBottomSheetContent(state = state) },
-        codeSnippet = { badgeDemoCodeSnippet(state = state) },
+        codeSnippet = { badgeDemoCodeSnippet(state = state, badgeWithIconStatus = badgeWithIconStatus) },
         demoContent = { BadgeDemoContent(state = state) },
         version = OudsVersion.Component.Badge
     )
@@ -85,7 +89,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(status.color)
+                                .background(status.color())
                         )
                     }
                 )
@@ -117,28 +121,27 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
             val modifier = Modifier.alpha(alpha)
             when (type) {
                 BadgeDemoState.Type.Standard -> {
+                    val contentDescription = stringResource(id = R.string.app_components_badge_unreadNotifications_a11y)
                     OudsBadge(
-                        modifier = modifier,
+                        modifier = modifier.semantics { this.contentDescription = contentDescription },
                         status = status,
                         size = size
                     )
                 }
                 BadgeDemoState.Type.Count -> {
+                    val contentDescription = pluralStringResource(id = R.plurals.app_components_badge_unreadMessageCount_a11y, count = count, count)
                     OudsBadge(
-                        modifier = modifier,
+                        modifier = modifier.semantics { this.contentDescription = contentDescription },
                         count = count,
                         status = status,
                         size = size
                     )
                 }
                 BadgeDemoState.Type.Icon -> {
+                    val contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
                     OudsBadge(
-                        modifier = modifier,
-                        icon = OudsBadgeIcon(
-                            painter = painterResource(R.drawable.ic_heart),
-                            contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
-                        ),
-                        status = status,
+                        modifier = modifier.semantics { this.contentDescription = contentDescription },
+                        status = badgeWithIconStatus,
                         size = size
                     )
                 }
@@ -153,18 +156,35 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
     }
 }
 
-private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState) {
+private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIconStatus: OudsIconBadgeStatus) {
     with(state) {
         functionCall("OudsBadge") {
-            when (type) {
-                BadgeDemoState.Type.Standard -> {}
-                BadgeDemoState.Type.Count -> typedArgument("count", count)
-                BadgeDemoState.Type.Icon -> constructorCallArgument<OudsBadgeIcon>("icon") {
-                    painterArgument(R.drawable.ic_heart)
-                    contentDescriptionArgument(R.string.app_components_common_icon_a11y)
-                }
+            if (type == BadgeDemoState.Type.Count) {
+                typedArgument("count", count)
             }
-            typedArgument("status", status)
+
+            val statusParameterName = "status"
+            if (type == BadgeDemoState.Type.Icon) {
+                when (badgeWithIconStatus) {
+                    is OudsIconBadgeStatus.Neutral,
+                    is OudsIconBadgeStatus.Accent -> {
+                        functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
+                            constructorCallArgument<OudsBadgeIcon>("icon") {
+                                painterArgument(R.drawable.ic_heart)
+                            }
+                        }
+                    }
+                    OudsIconBadgeStatus.Positive,
+                    OudsIconBadgeStatus.Warning,
+                    OudsIconBadgeStatus.Info,
+                    OudsIconBadgeStatus.Negative -> {
+                        typedArgument(statusParameterName, badgeWithIconStatus)
+                    }
+                }
+            } else {
+                typedArgument(statusParameterName, status)
+            }
+
             typedArgument("size", size)
         }
     }
