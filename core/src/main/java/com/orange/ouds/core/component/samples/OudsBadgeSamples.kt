@@ -28,7 +28,7 @@ import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
-import com.orange.ouds.core.component.OudsBadgeWithIconStatus
+import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -60,7 +60,7 @@ internal fun OudsBadgeWithDefaultIconSample() {
         modifier = Modifier.semantics {
             contentDescription = "Information"
         },
-        status = OudsBadgeWithIconStatus.Info,
+        status = OudsIconBadgeStatus.Info,
         size = OudsBadgeSize.Large
     )
 }
@@ -71,7 +71,7 @@ internal fun OudsBadgeWithCustomIconSample() {
         modifier = Modifier.semantics {
             contentDescription = "Favorite"
         },
-        status = OudsBadgeWithIconStatus.Accent(
+        status = OudsIconBadgeStatus.Accent(
             OudsBadgeIcon(imageVector = Icons.Filled.FavoriteBorder)
         ),
         size = OudsBadgeSize.Large

@@ -26,7 +26,7 @@ import com.orange.ouds.core.component.OudsBadgeDefaults
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
-import com.orange.ouds.core.component.OudsBadgeWithIconStatus
+import com.orange.ouds.core.component.OudsIconBadgeStatus
 
 @Composable
 fun rememberBadgeDemoState(
@@ -92,15 +92,15 @@ class BadgeDemoState(
 
     var status: OudsBadgeStatus by mutableStateOf(status)
 
-    val badgeWithIconStatus: OudsBadgeWithIconStatus
+    val badgeWithIconStatus: OudsIconBadgeStatus
         @Composable
         get() = when (status) {
-            OudsBadgeStatus.Neutral -> OudsBadgeWithIconStatus.Neutral(OudsBadgeIcon(painterResource(R.drawable.ic_heart)))
-            OudsBadgeStatus.Accent -> OudsBadgeWithIconStatus.Accent(OudsBadgeIcon(painterResource(R.drawable.ic_heart)))
-            OudsBadgeStatus.Positive -> OudsBadgeWithIconStatus.Positive
-            OudsBadgeStatus.Info -> OudsBadgeWithIconStatus.Info
-            OudsBadgeStatus.Warning -> OudsBadgeWithIconStatus.Warning
-            OudsBadgeStatus.Negative -> OudsBadgeWithIconStatus.Negative
+            OudsBadgeStatus.Neutral -> OudsIconBadgeStatus.Neutral(OudsBadgeIcon(painterResource(R.drawable.ic_heart)))
+            OudsBadgeStatus.Accent -> OudsIconBadgeStatus.Accent(OudsBadgeIcon(painterResource(R.drawable.ic_heart)))
+            OudsBadgeStatus.Positive -> OudsIconBadgeStatus.Positive
+            OudsBadgeStatus.Info -> OudsIconBadgeStatus.Info
+            OudsBadgeStatus.Warning -> OudsIconBadgeStatus.Warning
+            OudsBadgeStatus.Negative -> OudsIconBadgeStatus.Negative
         }
 
     var count: Int by mutableIntStateOf(count)

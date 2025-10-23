@@ -43,7 +43,7 @@ import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
-import com.orange.ouds.core.component.OudsBadgeWithIconStatus
+import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsVersion
@@ -156,7 +156,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
     }
 }
 
-private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIconStatus: OudsBadgeWithIconStatus) {
+private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIconStatus: OudsIconBadgeStatus) {
     with(state) {
         functionCall("OudsBadge") {
             if (type == BadgeDemoState.Type.Count) {
@@ -166,18 +166,18 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
             val statusParameterName = "status"
             if (type == BadgeDemoState.Type.Icon) {
                 when (badgeWithIconStatus) {
-                    is OudsBadgeWithIconStatus.Neutral,
-                    is OudsBadgeWithIconStatus.Accent -> {
+                    is OudsIconBadgeStatus.Neutral,
+                    is OudsIconBadgeStatus.Accent -> {
                         functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
                             constructorCallArgument<OudsBadgeIcon>("icon") {
                                 painterArgument(R.drawable.ic_heart)
                             }
                         }
                     }
-                    OudsBadgeWithIconStatus.Positive,
-                    OudsBadgeWithIconStatus.Warning,
-                    OudsBadgeWithIconStatus.Info,
-                    OudsBadgeWithIconStatus.Negative -> {
+                    OudsIconBadgeStatus.Positive,
+                    OudsIconBadgeStatus.Warning,
+                    OudsIconBadgeStatus.Info,
+                    OudsIconBadgeStatus.Negative -> {
                         typedArgument(statusParameterName, badgeWithIconStatus)
                     }
                 }
