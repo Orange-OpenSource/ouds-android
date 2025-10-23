@@ -408,7 +408,37 @@ open class OudsBadgeIcon protected constructor(
  * For a badge with icon, please use [OudsBadgeWithIconStatus].
  */
 enum class OudsBadgeStatus {
-    Neutral, Accent, Positive, Info, Warning, Negative;
+
+    /**
+     * Used for general labels without specific emphasis.
+     */
+    Neutral,
+
+    /**
+     * Employed to highlight discovery or exploration-related content.
+     */
+    Accent,
+
+    /**
+     * Indicates success, completion, or approval.
+     */
+    Positive,
+
+    /**
+     * Provides informational context without urgency.
+     */
+    Info,
+
+    /**
+     * Negatives the user to potential risks or cautionary messages.
+     */
+    Warning,
+    
+    /**
+     * Draws attention to important or critical information.
+     * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
+     */
+    Negative;
 
     /**
      * The color associated with this status.
@@ -499,10 +529,6 @@ sealed class OudsBadgeWithIconStatus(val icon: OudsBadgeIcon) {
         override fun getDefaultIconPainter() = painterResource(OudsTheme.drawableResources.warningExternalShape)
     }
 
-    /**
-     * Draws attention to important or critical information.
-     * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
-     */
     /**
      * Draws attention to important or critical information.
      * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
