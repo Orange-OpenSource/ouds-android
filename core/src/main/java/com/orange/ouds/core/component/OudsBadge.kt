@@ -173,7 +173,7 @@ fun OudsBadge(
  * @param enabled Controls the enabled appearance of the badge.
  * @param status The status of this badge. The background color of the badge and the icon color are based on this status.
  *   There are two types of status:
- *   - Non-functional statuses: [OudsBadgeWithIconStatus.Neutral] or [OudsBadgeWithIconStatus.Accent]
+ *   - Non-functional statuses: [OudsIconBadgeStatus.Neutral] or [OudsIconBadgeStatus.Accent]
  *   Using a non-functional status, you can provide a custom icon related to the badge’s context to enhance recognition by providing an [OudsBadgeIcon]
  *   as the icon of the status.
  *   - Functional statuses: [OudsTagStatus.Positive], [OudsTagStatus.Warning], [OudsTagStatus.Negative], [OudsTagStatus.Info].
@@ -189,7 +189,7 @@ fun OudsBadge(
 fun OudsBadge(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    status: OudsBadgeWithIconStatus = OudsBadgeDefaults.WithIconStatus,
+    status: OudsIconBadgeStatus = OudsBadgeDefaults.WithIconStatus,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
     OudsBadge(
@@ -208,7 +208,7 @@ private fun OudsBadge(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     status: OudsBadgeStatus = OudsBadgeDefaults.Status,
-    withIconStatus: OudsBadgeWithIconStatus? = null,
+    withIconStatus: OudsIconBadgeStatus? = null,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
     val text = count?.let { if (it > OudsBadgeMaxCount) "+${OudsBadgeMaxCount}" else it.coerceAtLeast(0).toString() }
@@ -335,7 +335,7 @@ object OudsBadgeDefaults {
     /**
      * Default status of an [OudsBadge] with icon.
      */
-    val WithIconStatus = OudsBadgeWithIconStatus.Negative
+    val WithIconStatus = OudsIconBadgeStatus.Negative
 
     /**
      * Default size of an [OudsBadge].
@@ -359,7 +359,7 @@ open class OudsBadgeIcon internal constructor(
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color,
-        internal val status: OudsBadgeWithIconStatus
+        internal val status: OudsIconBadgeStatus
     ) : OudsComponentContent.ExtraParameters()
 
     /**
@@ -401,7 +401,7 @@ open class OudsBadgeIcon internal constructor(
 
 /**
  * The status of an [OudsBadge] without content or with a count. This status determines the background and content colors of the badge.
- * For a badge with icon, please use [OudsBadgeWithIconStatus].
+ * For a badge with icon, please use [OudsIconBadgeStatus].
  */
 enum class OudsBadgeStatus {
 
@@ -458,56 +458,56 @@ enum class OudsBadgeStatus {
  * For a badge without icon, please use [OudsBadgeStatus].
  * A content description should be specified at [OudsBadge] level through semantics Modifier.
  */
-sealed class OudsBadgeWithIconStatus(val icon: OudsBadgeIcon) {
+sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
 
     /**
      * Used for general labels without specific emphasis.
      * Its [icon] is an [OudsBadgeIcon].
      *
-     * @constructor Creates an instance of [OudsBadgeWithIconStatus.Neutral] with a custom icon.
+     * @constructor Creates an instance of [OudsIconBadgeStatus.Neutral] with a custom icon.
      */
-    class Neutral(icon: OudsBadgeIcon) : OudsBadgeWithIconStatus(icon)
+    class Neutral(icon: OudsBadgeIcon) : OudsIconBadgeStatus(icon)
 
     /**
      * Employed to highlight discovery or exploration-related content.
      * Its [icon] is an [OudsBadgeIcon].
      *
-     * @constructor Creates an instance of [OudsBadgeWithIconStatus.Accent] with a custom icon.
+     * @constructor Creates an instance of [OudsIconBadgeStatus.Accent] with a custom icon.
      */
-    class Accent(icon: OudsBadgeIcon) : OudsBadgeWithIconStatus(icon)
+    class Accent(icon: OudsBadgeIcon) : OudsIconBadgeStatus(icon)
 
     /**
      * Indicates success, completion, or approval.
      * Its [icon] is fixed and cannot be changed.
      *
-     * @constructor Creates an instance of [OudsBadgeWithIconStatus.Positive] with its default dedicated icon.
+     * @constructor Creates an instance of [OudsIconBadgeStatus.Positive] with its default dedicated icon.
      */
-    data object Positive : OudsBadgeWithIconStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.success) }))
+    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.success) }))
 
     /**
      * Provides informational context without urgency.
      * Its [icon] is fixed and cannot be changed.
      *
-     * @constructor Creates an instance of [OudsBadgeWithIconStatus.Info] with its default dedicated icon.
+     * @constructor Creates an instance of [OudsIconBadgeStatus.Info] with its default dedicated icon.
      */
-    data object Info : OudsBadgeWithIconStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.information) }))
+    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.information) }))
 
     /**
      * Negatives the user to potential risks or cautionary messages.
      * Its [icon] is fixed and cannot be changed.
      *
-     * @constructor Creates an instance of [OudsBadgeWithIconStatus.Warning] with its default dedicated icon.
+     * @constructor Creates an instance of [OudsIconBadgeStatus.Warning] with its default dedicated icon.
      */
-    data object Warning : OudsBadgeWithIconStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.warningExternalShape) }))
+    data object Warning : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.warningExternalShape) }))
 
     /**
      * Draws attention to important or critical information.
      * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
      * Its [icon] is fixed and cannot be changed.
      *
-     * @constructor Creates an instance of [OudsBadgeWithIconStatus.Negative] with its default dedicated icon.
+     * @constructor Creates an instance of [OudsIconBadgeStatus.Negative] with its default dedicated icon.
      */
-    data object Negative : OudsBadgeWithIconStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.important) }))
+    data object Negative : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.important) }))
 
     /**
      * The color associated with this status.
@@ -617,13 +617,13 @@ internal fun PreviewOudsBadgeWithIcon(theme: OudsThemeContract, darkThemeEnabled
     }
 
 internal data class OudsBadgeWithIconPreviewParameter(
-    val statuses: List<OudsBadgeWithIconStatus> = listOf(
-        OudsBadgeWithIconStatus.Neutral(OudsBadgeIcon(Icons.Filled.FavoriteBorder)),
-        OudsBadgeWithIconStatus.Accent(OudsBadgeIcon(Icons.Filled.FavoriteBorder)),
-        OudsBadgeWithIconStatus.Positive,
-        OudsBadgeWithIconStatus.Warning,
-        OudsBadgeWithIconStatus.Negative,
-        OudsBadgeWithIconStatus.Info
+    val statuses: List<OudsIconBadgeStatus> = listOf(
+        OudsIconBadgeStatus.Neutral(OudsBadgeIcon(Icons.Filled.FavoriteBorder)),
+        OudsIconBadgeStatus.Accent(OudsBadgeIcon(Icons.Filled.FavoriteBorder)),
+        OudsIconBadgeStatus.Positive,
+        OudsIconBadgeStatus.Warning,
+        OudsIconBadgeStatus.Negative,
+        OudsIconBadgeStatus.Info
     ),
     val enabled: Boolean = true
 )
