@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isSpecified
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
@@ -277,17 +278,21 @@ fun Modifier.outerBorder(
     insetColor: Color = Color.Unspecified
 ) = drawWithContent {
     drawContent()
-    drawOuterBorder(width, color, shape)
+    // Make the border 1 pixel smaller on the inner side if there is an inset
+    // Otherwise, for some reason the border can be visible behind the inset on the inner side
+    val innerOffsetPx = if (insetWidth.isSpecified && insetWidth > 0.dp && insetColor.alpha != 0f) 1f else 0f
+    drawOuterBorder(width, color, shape, innerOffsetPx)
     drawOuterBorder(insetWidth, insetColor, shape)
 }
 
-private fun DrawScope.drawOuterBorder(width: Dp, color: Color, shape: Shape) {
+private fun DrawScope.drawOuterBorder(width: Dp, color: Color, shape: Shape, innerOffsetPx: Float = 0f) {
     if (width != Dp.Unspecified) {
-        val outerSize = Size(size.width + width.toPx(), size.height + width.toPx())
-        translate(-width.toPx() / 2f, -width.toPx() / 2f) {
+        val outerSizeDimensionOffset = width.toPx() + innerOffsetPx
+        val outerSize = Size(size.width + outerSizeDimensionOffset, size.height + outerSizeDimensionOffset)
+        translate(-outerSizeDimensionOffset / 2f, -outerSizeDimensionOffset / 2f) {
             drawOutline(
                 outline = shape.createOutline(outerSize, layoutDirection, this),
-                style = Stroke(width.toPx()),
+                style = Stroke(width.toPx() - innerOffsetPx),
                 brush = SolidColor(color)
             )
         }
