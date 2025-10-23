@@ -192,7 +192,6 @@ fun OudsBadge(
     status: OudsBadgeWithIconStatus = OudsBadgeDefaults.WithIconStatus,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
-    status.icon
     OudsBadge(
         count = null,
         icon = status.icon,
