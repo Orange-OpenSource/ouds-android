@@ -147,7 +147,7 @@ fun OudsTriStateCheckbox(
         expression = !isForbidden,
         exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." },
         previewDashedBorderShape = shape,
-        previewDashedBorderPhase = 7.5.dp
+        previewDashedBorderPhase = OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value
     ) {
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()

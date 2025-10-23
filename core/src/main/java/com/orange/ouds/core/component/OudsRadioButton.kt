@@ -95,7 +95,7 @@ fun OudsRadioButton(
         expression = !isForbidden,
         exceptionMessage = { "An OudsRadioButton set to disabled with error parameter activated is not allowed." },
         previewDashedBorderShape = shape,
-        previewDashedBorderPhase = 7.5.dp
+        previewDashedBorderPhase = OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value
     ) {
         val radioButtonTokens = OudsTheme.componentsTokens.radioButton
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
