@@ -627,14 +627,6 @@ internal fun PreviewOudsBadge(theme: OudsThemeContract, darkThemeEnabled: Boolea
     }
 
 internal data class OudsBadgePreviewParameter(
-    val statuses: List<OudsBadgeStatus> = listOf(
-        OudsBadgeStatus.Neutral,
-        OudsBadgeStatus.Accent,
-        OudsBadgeStatus.Positive,
-        OudsBadgeStatus.Warning,
-        OudsBadgeStatus.Negative,
-        OudsBadgeStatus.Info
-    ),
     val count: Int?,
     val enabled: Boolean = true
 )
