@@ -96,7 +96,6 @@ fun OudsBadge(
 ) {
     OudsBadge(
         count = null,
-        icon = null,
         modifier = modifier,
         enabled = enabled,
         status = status,
@@ -143,10 +142,10 @@ fun OudsBadge(
 ) {
     OudsBadge(
         count = count,
-        icon = null,
         modifier = modifier,
         enabled = enabled,
         status = status,
+        withIconStatus = null,
         size = size
     )
 }
@@ -194,7 +193,6 @@ fun OudsBadge(
 ) {
     OudsBadge(
         count = null,
-        icon = status.icon,
         modifier = modifier,
         enabled = enabled,
         status = status.correspondingBadgeStatus,
@@ -206,7 +204,6 @@ fun OudsBadge(
 @Composable
 private fun OudsBadge(
     count: Int?,
-    icon: OudsBadgeIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     status: OudsBadgeStatus = OudsBadgeDefaults.Status,
@@ -229,7 +226,7 @@ private fun OudsBadge(
         // This allows to:
         // - get consistent sizes between count and icon badges
         // - get a round badge with low count values. Otherwise, a count badge with an increase text size and a value of 1 will look like a vertical ellipse
-        val scale = if (count != null || icon != null) LocalConfiguration.current.fontScale else 1.0f
+        val scale = if (count != null || withIconStatus?.icon != null) LocalConfiguration.current.fontScale else 1.0f
         val sizeDp = size(size) * scale
         Box(
             modifier = Modifier
@@ -242,7 +239,7 @@ private fun OudsBadge(
                         size(sizeDp)
                     }
                 }
-                .padding(paddingValues = contentPadding(size = size, count = count, icon = icon, scale = scale)),
+                .padding(paddingValues = contentPadding(size = size, count = count, icon = withIconStatus?.icon, scale = scale)),
             contentAlignment = Alignment.Center
         ) {
             val contentColor = contentColor(status = status, enabled = enabled)
@@ -258,12 +255,10 @@ private fun OudsBadge(
                 }
             }
             if (size in OudsBadgeSize.iconEntries) {
-                if (icon != null && withIconStatus != null) {
-                    icon.Content(
-                        modifier = Modifier.fillMaxSize(),
-                        extraParameters = OudsBadgeIcon.ExtraParameters(tint = contentColor, status = withIconStatus)
-                    )
-                }
+                withIconStatus?.icon?.Content(
+                    modifier = Modifier.fillMaxSize(),
+                    extraParameters = OudsBadgeIcon.ExtraParameters(tint = contentColor, status = withIconStatus)
+                )
             }
         }
     }
