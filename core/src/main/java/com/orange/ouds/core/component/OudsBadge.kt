@@ -330,12 +330,12 @@ object OudsBadgeDefaults {
     /**
      * Default status of an [OudsBadge] without icon or with count.
      */
-    val Status = OudsBadgeStatus.Neutral
+    val Status = OudsBadgeStatus.Negative
 
     /**
      * Default status of an [OudsBadge] with icon.
      */
-    val WithIconStatus = OudsBadgeWithIconStatus.Neutral(icon = OudsBadgeIcon.Default)
+    val WithIconStatus = OudsBadgeWithIconStatus.Negative()
 
     /**
      * Default size of an [OudsBadge].
