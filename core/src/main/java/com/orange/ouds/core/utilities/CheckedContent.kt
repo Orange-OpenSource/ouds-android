@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.theme.LocalColorMode
@@ -40,7 +41,8 @@ internal fun CheckedContent(
     exceptionMessage: () -> String,
     previewMessage: () -> String = { "⛔" },
     previewMessagePaddingValues: PaddingValues = PaddingValues(all = OudsTheme.spaces.fixed.small),
-    shape: Shape = RectangleShape,
+    previewDashedBorderShape: Shape = RectangleShape,
+    previewDashedBorderPhase: Dp = 0.dp,
     content: @Composable () -> Unit
 ) {
     // Throw an exception at runtime if expression is false
@@ -56,7 +58,7 @@ internal fun CheckedContent(
         val backgroundColor = if (LocalColorMode.current != null) Color.Black.copy(alpha = 0.68f) else Color.Transparent
         Box(
             modifier = Modifier
-                .dashedBorder(width = 1.dp, color = color, shape = shape, intervals = listOf(10.dp, 5.dp))
+                .dashedBorder(width = 1.dp, color = color, shape = previewDashedBorderShape, intervals = listOf(10.dp, 5.dp), phase = previewDashedBorderPhase)
                 .background(backgroundColor),
             contentAlignment = Alignment.Center
         ) {
