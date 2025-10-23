@@ -52,6 +52,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -606,12 +607,7 @@ private fun PreviewOudsBadge(@PreviewParameter(OudsBadgePreviewParameterProvider
 internal fun PreviewOudsBadge(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBadgePreviewParameter) =
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
-            PreviewGrid(
-                columns = enumEntries<OudsBadgeSize>(),
-                rows = statuses,
-                columnTitle = { it.name },
-                rowTitle = { it.name }
-            ) { size, status ->
+            PreviewEnumEntries<OudsBadgeSize, OudsBadgeStatus> { size, status ->
                 count?.let {
                     OudsBadge(
                         count = count,
