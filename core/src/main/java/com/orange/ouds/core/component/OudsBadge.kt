@@ -286,7 +286,6 @@ private fun backgroundColor(status: OudsBadgeStatus, enabled: Boolean): Color {
     return if (!enabled) OudsTheme.colorScheme.action.disabled else status.color()
 }
 
-
 @Composable
 private fun contentColor(status: OudsBadgeStatus, enabled: Boolean): Color {
     return if (!enabled) {
