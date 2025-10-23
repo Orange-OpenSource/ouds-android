@@ -165,13 +165,20 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
 
             val statusParameterName = "status"
             if (type == BadgeDemoState.Type.Icon) {
-                functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
-                    when (badgeWithIconStatus) {
-                        is OudsBadgeWithIconStatus.Neutral, is OudsBadgeWithIconStatus.Accent ->
-                            constructorCallArgument<OudsBadgeIcon.Custom>("icon") {
+                when (badgeWithIconStatus) {
+                    is OudsBadgeWithIconStatus.Neutral,
+                    is OudsBadgeWithIconStatus.Accent -> {
+                        functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
+                            constructorCallArgument<OudsBadgeIcon>("icon") {
                                 painterArgument(R.drawable.ic_heart)
                             }
-                        is OudsBadgeWithIconStatus.Positive, is OudsBadgeWithIconStatus.Warning, is OudsBadgeWithIconStatus.Info, is OudsBadgeWithIconStatus.Negative -> {}
+                        }
+                    }
+                    OudsBadgeWithIconStatus.Positive,
+                    OudsBadgeWithIconStatus.Warning,
+                    OudsBadgeWithIconStatus.Info,
+                    OudsBadgeWithIconStatus.Negative -> {
+                        typedArgument(statusParameterName, badgeWithIconStatus)
                     }
                 }
             } else {
