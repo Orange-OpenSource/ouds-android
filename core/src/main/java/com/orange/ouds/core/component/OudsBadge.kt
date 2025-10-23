@@ -195,7 +195,7 @@ fun OudsBadge(
         count = null,
         modifier = modifier,
         enabled = enabled,
-        status = status.correspondingBadgeStatus,
+        status = status.toBadgeStatus,
         withIconStatus = status,
         size = size
     )
@@ -433,7 +433,7 @@ enum class OudsBadgeStatus {
      * Negatives the user to potential risks or cautionary messages.
      */
     Warning,
-    
+
     /**
      * Draws attention to important or critical information.
      * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
@@ -549,9 +549,9 @@ sealed class OudsBadgeWithIconStatus(val icon: OudsBadgeIcon) {
      * The color associated with this status.
      */
     @Composable
-    fun color() = this.correspondingBadgeStatus.color()
+    fun color() = this.toBadgeStatus.color()
 
-    internal val correspondingBadgeStatus
+    internal val toBadgeStatus
         get() = when (this) {
             is Neutral -> OudsBadgeStatus.Neutral
             is Accent -> OudsBadgeStatus.Accent
