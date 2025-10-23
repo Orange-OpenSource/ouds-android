@@ -95,12 +95,12 @@ class BadgeDemoState(
     val badgeWithIconStatus: OudsBadgeWithIconStatus
         @Composable
         get() = when (status) {
-            OudsBadgeStatus.Neutral -> OudsBadgeWithIconStatus.Neutral(OudsBadgeIcon.Custom(painterResource(R.drawable.ic_heart)))
-            OudsBadgeStatus.Accent -> OudsBadgeWithIconStatus.Accent(OudsBadgeIcon.Custom(painterResource(R.drawable.ic_heart)))
-            OudsBadgeStatus.Positive -> OudsBadgeWithIconStatus.Positive()
-            OudsBadgeStatus.Info -> OudsBadgeWithIconStatus.Info()
-            OudsBadgeStatus.Warning -> OudsBadgeWithIconStatus.Warning()
-            OudsBadgeStatus.Negative -> OudsBadgeWithIconStatus.Negative()
+            OudsBadgeStatus.Neutral -> OudsBadgeWithIconStatus.Neutral(OudsBadgeIcon(painterResource(R.drawable.ic_heart)))
+            OudsBadgeStatus.Accent -> OudsBadgeWithIconStatus.Accent(OudsBadgeIcon(painterResource(R.drawable.ic_heart)))
+            OudsBadgeStatus.Positive -> OudsBadgeWithIconStatus.Positive
+            OudsBadgeStatus.Info -> OudsBadgeWithIconStatus.Info
+            OudsBadgeStatus.Warning -> OudsBadgeWithIconStatus.Warning
+            OudsBadgeStatus.Negative -> OudsBadgeWithIconStatus.Negative
         }
 
     var count: Int by mutableIntStateOf(count)

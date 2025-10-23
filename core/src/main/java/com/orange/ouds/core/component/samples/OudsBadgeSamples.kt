@@ -60,7 +60,7 @@ internal fun OudsBadgeWithDefaultIconSample() {
         modifier = Modifier.semantics {
             contentDescription = "Information"
         },
-        status = OudsBadgeWithIconStatus.Info(),
+        status = OudsBadgeWithIconStatus.Info,
         size = OudsBadgeSize.Large
     )
 }
@@ -72,9 +72,7 @@ internal fun OudsBadgeWithCustomIconSample() {
             contentDescription = "Favorite"
         },
         status = OudsBadgeWithIconStatus.Accent(
-            OudsBadgeIcon.Custom(
-                imageVector = Icons.Filled.FavoriteBorder
-            )
+            OudsBadgeIcon(imageVector = Icons.Filled.FavoriteBorder)
         ),
         size = OudsBadgeSize.Large
     )
