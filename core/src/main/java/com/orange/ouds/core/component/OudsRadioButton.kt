@@ -30,7 +30,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.error
@@ -137,10 +139,13 @@ fun OudsRadioButton(
 @Composable
 internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean, error: Boolean) {
     val radioButtonTokens = OudsTheme.componentsTokens.radioButton
+    val shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
+
     Box(
         modifier = Modifier
             .size(radioButtonTokens.sizeIndicator.value)
-            .indicatorBorder(state = state, selected = selected, error = error)
+            .clip(shape)
+            .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
         if (selected) {
             Icon(
@@ -154,12 +159,12 @@ internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean
 }
 
 @Composable
-private fun Modifier.indicatorBorder(state: OudsControlState, selected: Boolean, error: Boolean): Modifier {
+private fun Modifier.indicatorBorder(state: OudsControlState, selected: Boolean, error: Boolean, shape: Shape): Modifier {
     return indicatorBorderWidth(state = state, selected = selected)?.let { indicatorBorderWidth ->
         border(
             width = indicatorBorderWidth,
             color = indicatorColor(state = state, selected = selected, error = error),
-            shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
+            shape = shape
         )
     }.orElse {
         this

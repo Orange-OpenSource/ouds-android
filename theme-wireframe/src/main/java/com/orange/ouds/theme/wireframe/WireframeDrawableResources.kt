@@ -12,30 +12,20 @@
 
 package com.orange.ouds.theme.wireframe
 
-import androidx.annotation.DrawableRes
 import com.orange.ouds.theme.OudsDrawableResources
 
-class WireframeDrawableResources : OudsDrawableResources() {
-    override val checkboxIndeterminate
-        @DrawableRes get() = R.drawable.wireframe_checkbox_indeterminate
-    override val checkboxSelected: Int
-        @DrawableRes get() = R.drawable.wireframe_checkbox_selected
-    override val chevronLeft: Int
-        @DrawableRes get() = R.drawable.wireframe_chevron_left
-    override val important: Int
-        @DrawableRes get() = R.drawable.wireframe_important
-    override val information: Int
-        @DrawableRes get() = R.drawable.wireframe_information
-    override val radioButtonSelected: Int
-        @DrawableRes get() = R.drawable.wireframe_radio_button_selected
-    override val success: Int
-        @DrawableRes get() = R.drawable.wireframe_success
-    override val switchSelected: Int
-        @DrawableRes get() = R.drawable.wireframe_switch_selected
-    override val tick: Int
-        @DrawableRes get() = R.drawable.wireframe_tick
-    override val warningExternalShape: Int
-        @DrawableRes get() = R.drawable.wireframe_warning_external_shape
-    override val warningInternalShape: Int
-        @DrawableRes get() = R.drawable.wireframe_warning_internal_shape
+internal class WireframeDrawableResources : OudsDrawableResources {
+    override val alertImportant: Int = R.drawable.ic_wireframe_alert_important
+    override val alertInformation: Int = R.drawable.ic_wireframe_alert_information
+    override val alertSuccess: Int = R.drawable.ic_wireframe_alert_success
+    override val alertWarningExternalShape: Int = R.drawable.ic_wireframe_alert_warning_external_shape
+    override val alertWarningInternalShape: Int = R.drawable.ic_wireframe_alert_warning_internal_shape
+    override val checkboxIndeterminate: Int = R.drawable.ic_wireframe_checkbox_indeterminate
+    override val checkboxSelected: Int = R.drawable.ic_wireframe_checkbox_selected
+    override val chipTick: Int = R.drawable.ic_wireframe_chip_tick
+    override val linkNext: Int = R.drawable.ic_wireframe_link_next
+    override val linkPrevious: Int = R.drawable.ic_wireframe_link_previous
+    override val radioButtonSelected: Int = R.drawable.ic_wireframe_radio_button_selected
+    override val switchSelected: Int = R.drawable.ic_wireframe_switch_selected
+    override val tagClose: Int = R.drawable.ic_wireframe_tag_close
 }

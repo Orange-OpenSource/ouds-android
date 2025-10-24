@@ -272,7 +272,7 @@ private fun OudsLink(
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (icon != null || arrow == OudsLinkArrow.Back) {
-                icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.chevronLeft)) }.Content(
+                icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.linkPrevious)) }.Content(
                     modifier = Modifier.size(iconSize),
                     extraParameters = ExtraParameters(tint = iconTint)
                 )
@@ -284,10 +284,9 @@ private fun OudsLink(
                 style = textStyle
             )
             if (arrow == OudsLinkArrow.Next) {
-                OudsLinkIcon(painterResource(OudsTheme.drawableResources.chevronLeft)).Content(
+                OudsLinkIcon(painterResource(OudsTheme.drawableResources.linkNext)).Content(
                     modifier = Modifier
                         .size(iconSize)
-                        .rotate(180f)
                         .fillMaxHeight()
                         .align(Alignment.Bottom),
                     extraParameters = ExtraParameters(tint = iconTint)

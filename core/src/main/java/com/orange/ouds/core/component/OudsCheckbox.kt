@@ -30,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
@@ -203,6 +204,7 @@ internal fun OudsCheckboxIndicator(
     Box(
         modifier = Modifier
             .size(checkboxTokens.sizeIndicator.value)
+            .clip(shape)
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
         val indicatorResource = when (value) {

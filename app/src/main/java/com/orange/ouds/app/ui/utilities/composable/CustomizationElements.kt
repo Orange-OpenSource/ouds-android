@@ -179,7 +179,7 @@ fun CustomizationTextField(
         keyboardOptions = keyboardOptions,
         trailingIconButton = if (value.text.isNotEmpty()) {
             OudsTextInputTrailingIconButton(
-                painter = painterResource(com.orange.ouds.theme.R.drawable.ic_delete),
+                painter = painterResource(com.orange.ouds.theme.orange.R.drawable.ic_orange_tag_close),
                 contentDescription = "",
                 onClick = {
                     onValueChange(value.copy(text = ""))

@@ -37,7 +37,10 @@ dependencies {
     dokkaPlugin(project(":dokka-plugin"))
     implementation(project(":foundation"))
     api(project(":theme-contract"))
-    compileOnly(project(":theme-orange")) // Only useful for previews
+    // compileOnly dependencies on themes are needed for previews
+    compileOnly(project(":theme-orange"))
+    compileOnly(project(":theme-sosh"))
+    compileOnly(project(":theme-wireframe"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material.icons.core)
