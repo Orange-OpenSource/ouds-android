@@ -14,6 +14,7 @@ package com.orange.ouds.theme.tokens.components
 
 interface OudsComponentsTokens {
     val badge: OudsBadgeTokens
+    val bar: OudsBarTokens
     val button: OudsButtonTokens
     val buttonMonochrome: OudsButtonMonoTokens
     val checkbox: OudsCheckboxTokens
@@ -24,7 +25,6 @@ interface OudsComponentsTokens {
     val inputTag: OudsInputTagTokens
     val link: OudsLinkTokens
     val linkMonochrome: OudsLinkMonoTokens
-    val navigationBar: OudsNavigationBarTokens
     val radioButton: OudsRadioButtonTokens
     val switch: OudsSwitchTokens
     val tag: OudsTagTokens

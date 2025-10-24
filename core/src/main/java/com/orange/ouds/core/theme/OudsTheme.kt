@@ -38,6 +38,7 @@ internal val LocalDarkColorScheme = compositionLocalOf<OudsColorScheme> { missin
 internal val LocalMaterialLightColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialLightColorScheme") }
 internal val LocalMaterialDarkColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialDarkColorScheme") }
 internal val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
+internal val LocalEffects = staticCompositionLocalOf<OudsEffects> { missingCompositionLocalError("LocalEffects") }
 internal val LocalElevations = staticCompositionLocalOf<OudsElevations> { missingCompositionLocalError("LocalElevations") }
 internal val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 internal val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
@@ -72,6 +73,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalBorders.current
+
+    val effects: OudsEffects
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalEffects.current
 
     val elevations: OudsElevations
         @Composable
@@ -148,6 +154,7 @@ fun OudsTheme(
             LocalMaterialLightColorScheme provides materialColorTokens.materialLightColorScheme,
             LocalMaterialDarkColorScheme provides materialColorTokens.materialDarkColorScheme,
             LocalBorders provides borderTokens.getBorders(),
+            LocalEffects provides effectTokens.getEffect(),
             LocalElevations provides elevationTokens.getElevation(),
             LocalTypography provides fontTokens.getTypography(fontFamily, windowWidthSizeClass),
             LocalGrids provides gridTokens.getGrids(windowWidthSizeClass),
