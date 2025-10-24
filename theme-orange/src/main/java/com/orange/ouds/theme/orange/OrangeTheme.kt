@@ -18,6 +18,7 @@ import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.tokens.components.OrangeComponentsTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeBorderSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorSemanticTokens
+import com.orange.ouds.theme.orange.tokens.semantic.OrangeEffectSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeElevationSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeFontSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeGridSemanticTokens
@@ -27,6 +28,7 @@ import com.orange.ouds.theme.orange.tokens.semantic.OrangeSpaceSemanticTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
@@ -54,6 +56,9 @@ open class OrangeTheme(
 
     override val borderTokens: OudsBorderSemanticTokens
         get() = OrangeBorderSemanticTokens()
+
+    override val effectTokens: OudsEffectSemanticTokens
+        get() = OrangeEffectSemanticTokens()
 
     override val elevationTokens: OudsElevationSemanticTokens
         get() = OrangeElevationSemanticTokens()

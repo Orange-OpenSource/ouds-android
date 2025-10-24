@@ -25,6 +25,7 @@ import com.orange.ouds.app.ui.components.chip.SuggestionChipDemoScreen
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
+import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
@@ -98,6 +99,13 @@ sealed class Component(
         R.string.app_components_link_description_text,
         { LinkIllustration() },
         demoScreen = { LinkDemoScreen() }
+    )
+
+    data object NavigationBar : Component(
+        R.string.app_components_navigationBar_label,
+        R.string.app_components_navigationBar_description_text,
+        { LinkIllustration() },
+        demoScreen = { NavigationBarDemoScreen() }
     )
 
     data object RadioButton : Component(

@@ -22,6 +22,7 @@ import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
@@ -31,6 +32,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.components.WireframeComponentsTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeBorderSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorSemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeEffectSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeElevationSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeFontSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeGridSemanticTokens
@@ -71,6 +73,9 @@ class WireframeTheme : OudsThemeContract {
 
     override val borderTokens: OudsBorderSemanticTokens
         get() = WireframeBorderSemanticTokens()
+
+    override val effectTokens: OudsEffectSemanticTokens
+        get() = WireframeEffectSemanticTokens()
 
     override val elevationTokens: OudsElevationSemanticTokens
         get() = WireframeElevationSemanticTokens()

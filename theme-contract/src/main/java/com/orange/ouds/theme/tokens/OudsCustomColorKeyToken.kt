@@ -27,3 +27,16 @@ data class OudsLightDarkColorKeyToken(val light: OudsColorKeyToken, val dark: Ou
         }
     }
 }
+
+/**
+ * A color key token which forces a mode (light or dark) for a given key token. This token will always use the provided mode to give its value.
+ *
+ * @property keyToken The color key token for which we want to force a mode.
+ * @property mode The [Mode] to use for the given key token.
+ * @constructor Creates an instance of [OudsSingleModeColorKeyToken].
+ */
+data class OudsSingleModeColorKeyToken(val keyToken: OudsColorKeyToken, val mode: Mode) : OudsColorKeyToken
+
+enum class Mode {
+    Dark, Light
+}
