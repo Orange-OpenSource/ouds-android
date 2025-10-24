@@ -136,8 +136,7 @@ fun OudsTag(
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = { "A disabled OudsTag cannot have a loader. This is not allowed." },
-        previewMessagePaddingValues = contentPadding(size, false),
-        shape = tagShape
+        previewMessagePaddingValues = contentPadding(size, false)
     ) {
         // This outer box is necessary otherwise the user can change the size of the tag through the modifier
         Box(
