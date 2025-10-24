@@ -16,7 +16,6 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -31,11 +30,12 @@ import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Co
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MinNavigationBarItemCount
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.composable.CustomizationChoiceChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
+import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -56,10 +56,10 @@ fun NavigationBarDemoScreen() {
 private fun NavigationBarDemoBottomSheetContent(state: NavigationBarDemoState) {
     with(state) {
         val itemCountOptions = remember { (MinNavigationBarItemCount..MaxNavigationBarItemCount).toList() }
-        CustomizationChoiceChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+        CustomizationFilterChips(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_navigationBar_itemCount_label),
-            chipsLabels = itemCountOptions.map { it.toString() },
+            chipLabels = itemCountOptions.map { it.toString() },
             selectedChipIndex = itemCountOptions.indexOf(itemCount),
             onSelectionChange = { id -> itemCount = itemCountOptions[id] }
         )
@@ -96,7 +96,7 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     selected = selectedItemId == index,
                     onClick = { selectedItemId = index },
                     label = label,
-                    icon = OudsNavigationBarItem.Icon(
+                    icon = OudsNavigationBarItemIcon(
                         painter = painterResource(id = item.iconRes),
                         contentDescription = label
                     ),
@@ -109,15 +109,15 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
 }
 
 private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoState, context: Context) {
-    functionCall(OudsNavigationBarItem::class.simpleName.orEmpty()) {
+    functionCall("OudsNavigationBar") {
         functionCallArgument("items", "listOf") {
             NavigationBarItem.entries.take(state.itemCount).forEach { item ->
                 val label = context.resources.getString(item.labelRes)
-                functionCallArgument(null, OudsNavigationBarItem::class.simpleName.orEmpty()) {
+                functionCallArgument(null, "OudsNavigationBarItem") {
                     typedArgument("selected", item == NavigationBarItem.Home)
                     lambdaArgument("onClick", {})
                     labelArgument(label)
-                    functionCallArgument(null, OudsNavigationBarItem.Icon::class.simpleName.orEmpty()) {
+                    functionCallArgument(null, OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
                         painterArgument(id = item.iconRes)
                     }
                 }

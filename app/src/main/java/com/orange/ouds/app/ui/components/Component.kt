@@ -103,8 +103,8 @@ sealed class Component(
 
     data object NavigationBar : Component(
         R.string.app_components_navigationBar_label,
-        LightDarkResourceId(R.drawable.il_components_empty, R.drawable.il_components_empty),
         R.string.app_components_navigationBar_description_text,
+        { LinkIllustration() },
         demoScreen = { NavigationBarDemoScreen() }
     )
 

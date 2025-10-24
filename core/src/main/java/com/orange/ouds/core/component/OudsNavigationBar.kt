@@ -36,16 +36,20 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.focus.focusProperties
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
@@ -61,6 +65,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -90,9 +95,19 @@ fun OudsNavigationBar(
     windowInsets: WindowInsets = NavigationBarDefaults.windowInsets,
     content: @Composable RowScope.() -> Unit
 ) {
-    with(OudsTheme.componentsTokens.navigationBar) {
+    with(OudsTheme.componentsTokens.bar) {
+        val topBorderColor = colorBorder.value
         NavigationBar(
-            modifier = modifier.focusProperties { canFocus = false },
+            modifier = modifier
+                .focusProperties { canFocus = false }
+                .drawBehind {
+                    drawLine(
+                        color = topBorderColor,
+                        start = Offset(x = 0f, y = 0f),
+                        end = Offset(x = size.width, y = 0f),
+                        strokeWidth = 1.dp.toPx()
+                    )
+                },
             containerColor = colorBg.value,
             contentColor = colorContentUnselectedEnabled.value,
             windowInsets = windowInsets,
@@ -138,7 +153,7 @@ fun RowScope.OudsNavigationBarItem(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getNavigationBarItemState(enabled = enabled, interactionState = interactionState)
-    with(OudsTheme.componentsTokens.navigationBar) {
+    with(OudsTheme.componentsTokens.bar) {
         val selectedContentColor = contentColor(state = state, selected = true)
         val unselectedContentColor = contentColor(state = state, selected = false)
         val disabledContentColor = contentColor(state = OudsNavigationBarItemState.Disabled, selected = false)
@@ -155,21 +170,21 @@ fun RowScope.OudsNavigationBarItem(
             val (itemRef, topIndicatorRef) = createRefs()
 
             // Top active indicator: visual alternative for selected item (a11y)
-            val topIndicatorColor = contentColor(state = state, selected = selected)
-            val topIndicatorOpacityColor = topIndicatorColor.copy(alpha = topIndicatorColor.alpha * topActiveIndicatorOpacity.value)
+            val topIndicatorColor = topIndicatorColor(state = state)
+            val topIndicatorOpacityColor = topIndicatorColor.copy(alpha = topIndicatorColor.alpha * opacityTopActiveIndicator.value)
             val topIndicatorShape = RoundedCornerShape(
                 topStart = 0.dp,
                 topEnd = 0.dp,
-                bottomStart = topActiveIndicatorBorderRadiusBottom.value,
-                bottomEnd = topActiveIndicatorBorderRadiusBottom.value
+                bottomStart = borderRadiusTopActiveIndicator.value,
+                bottomEnd = borderRadiusTopActiveIndicator.value
             )
             this@OudsNavigationBarItem.AnimatedVisibility(
                 modifier = Modifier.constrainAs(topIndicatorRef) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                    height = Dimension.value(topActiveIndicatorSizeHeight.dp)
-                    width = Dimension.value(topActiveIndicatorSizeWidth.dp)
+                    height = Dimension.value(sizeHeightTopActiveIndicator.dp)
+                    width = Dimension.value(sizeWidthTopActiveIndicator.dp)
                 },
                 visible = selected || state == OudsNavigationBarItemState.Hovered,
                 enter = fadeIn() + slideInVertically { -it * 2 },
@@ -178,46 +193,48 @@ fun RowScope.OudsNavigationBarItem(
                 Box(modifier = Modifier.background(color = topIndicatorOpacityColor, shape = topIndicatorShape))
             }
 
-            this@OudsNavigationBarItem.NavigationBarItem(
-                selected = selected,
-                onClick = onClick,
-                icon = {
-                    if (badge != null) {
-                        BadgedBox(
-                            badge = { badge.Content() },
-                        ) {
+            CompositionLocalProvider(LocalRippleConfiguration provides null) {
+                this@OudsNavigationBarItem.NavigationBarItem(
+                    selected = selected,
+                    onClick = onClick,
+                    icon = {
+                        if (badge != null) {
+                            BadgedBox(
+                                badge = { badge.Content() },
+                            ) {
+                                icon.Content()
+                            }
+                        } else {
                             icon.Content()
                         }
-                    } else {
-                        icon.Content()
-                    }
-                },
-                modifier = Modifier.constrainAs(itemRef) {
-                    centerTo(parent)
-                },
-                enabled = enabled,
-                label = label?.let {
-                    {
-                        Text(
-                            text = it,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            style = OudsTheme.typography.label.default.small
-                        )
-                    }
-                },
-                alwaysShowLabel = alwaysShowLabel,
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = selectedContentColor,
-                    selectedTextColor = selectedContentColor,
-                    indicatorColor = materialIndicatorColor(state = state, selected = selected),
-                    unselectedIconColor = unselectedContentColor,
-                    unselectedTextColor = unselectedContentColor,
-                    disabledIconColor = disabledContentColor,
-                    disabledTextColor = disabledContentColor,
-                ),
-                interactionSource = interactionSource
-            )
+                    },
+                    modifier = Modifier.constrainAs(itemRef) {
+                        centerTo(parent)
+                    },
+                    enabled = enabled,
+                    label = label?.let {
+                        {
+                            Text(
+                                text = it,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                style = OudsTheme.typography.label.moderate.small
+                            )
+                        }
+                    },
+                    alwaysShowLabel = alwaysShowLabel,
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = selectedContentColor,
+                        selectedTextColor = selectedContentColor,
+                        indicatorColor = materialIndicatorColor(state = state, selected = selected),
+                        unselectedIconColor = unselectedContentColor,
+                        unselectedTextColor = unselectedContentColor,
+                        disabledIconColor = disabledContentColor,
+                        disabledTextColor = disabledContentColor,
+                    ),
+                    interactionSource = interactionSource
+                )
+            }
         }
     }
 }
@@ -237,26 +254,39 @@ private fun getNavigationBarItemState(enabled: Boolean, interactionState: Intera
 
 @Composable
 private fun contentColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
-    return with(OudsTheme.componentsTokens.navigationBar) {
+    return with(OudsTheme.componentsTokens.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> if (selected) colorContentSelectedEnabled else colorContentUnselectedEnabled
-            OudsNavigationBarItemState.Hovered -> if (selected) colorContentSelectedHover else colorContentUnselectedHover
-            OudsNavigationBarItemState.Pressed -> if (selected) colorContentSelectedPressed else colorContentUnselectedPressed
-            OudsNavigationBarItemState.Disabled -> colorContentUnselectedDisabled
-            OudsNavigationBarItemState.Focused -> if (selected) colorContentSelectedFocus else colorContentUnselectedFocus
-        }.value
+            OudsNavigationBarItemState.Enabled -> if (selected) colorContentSelectedEnabled.value else colorContentUnselectedEnabled.value
+            OudsNavigationBarItemState.Hovered -> if (selected) colorContentSelectedHover.value else colorContentUnselectedHover.value
+            OudsNavigationBarItemState.Pressed -> if (selected) colorContentSelectedPressed.value else colorContentUnselectedPressed.value
+            OudsNavigationBarItemState.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsNavigationBarItemState.Focused -> if (selected) colorContentSelectedFocus.value else colorContentUnselectedFocus.value
+        }
     }
 }
 
 @Composable
 private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
-    return with(OudsTheme.componentsTokens.navigationBar) {
+    return with(OudsTheme.componentsTokens.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> if (selected) materialActiveIndicatorColorBgSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItemState.Hovered -> if (selected) materialActiveIndicatorColorBgSelectedHover.value else materialActiveIndicatorColorBgUnselectedHover.value
-            OudsNavigationBarItemState.Pressed -> if (selected) materialActiveIndicatorColorBgSelectedPressed.value else materialActiveIndicatorColorBgUnselectedPressed.value
+            OudsNavigationBarItemState.Enabled -> if (selected) colorMaterialActiveIndicatorSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
+            OudsNavigationBarItemState.Hovered -> if (selected) colorMaterialActiveIndicatorSelectedHover.value else colorMaterialActiveIndicatorUnselectedHover.value
+            OudsNavigationBarItemState.Pressed -> if (selected) colorMaterialActiveIndicatorSelectedPressed.value else colorMaterialActiveIndicatorUnselectedPressed.value
             OudsNavigationBarItemState.Disabled -> OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItemState.Focused -> if (selected) materialActiveIndicatorColorBgSelectedFocus.value else materialActiveIndicatorColorBgUnselectedFocus.value
+            OudsNavigationBarItemState.Focused -> if (selected) colorMaterialActiveIndicatorSelectedFocus.value else colorMaterialActiveIndicatorUnselectedFocus.value
+        }
+    }
+}
+
+@Composable
+private fun topIndicatorColor(state: OudsNavigationBarItemState): Color {
+    return with(OudsTheme.componentsTokens.bar) {
+        when (state) {
+            OudsNavigationBarItemState.Enabled -> colorTopActiveIndicatorSelectedEnabled.value
+            OudsNavigationBarItemState.Hovered -> colorTopActiveIndicatorSelectedHover.value
+            OudsNavigationBarItemState.Pressed -> colorTopActiveIndicatorSelectedPressed.value
+            OudsNavigationBarItemState.Disabled -> OudsTheme.colorScheme.opacity.transparent
+            OudsNavigationBarItemState.Focused -> colorTopActiveIndicatorSelectedFocus.value
         }
     }
 }
@@ -417,7 +447,7 @@ internal fun PreviewOudsNavigationBarItem(
                 OudsNavigationBarItem(
                     modifier = Modifier
                         .size(width = 80.dp, height = 64.dp)
-                        .background(OudsTheme.componentsTokens.navigationBar.colorBg.value),
+                        .background(OudsTheme.componentsTokens.bar.colorBg.value),
                     selected = selected,
                     onClick = {},
                     icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star, contentDescription = ""),

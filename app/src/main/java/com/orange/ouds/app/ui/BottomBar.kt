@@ -42,6 +42,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
+import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -62,7 +63,7 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: 
                     OudsNavigationBarItem(
                         modifier = Modifier.weight(1f),
                         selected = currentRoute == item.route,
-                        icon = OudsNavigationBarItem.Icon(painter = painterResource(item.iconRes), ""),
+                        icon = OudsNavigationBarItemIcon(painter = painterResource(item.iconRes), ""),
                         label = stringResource(item.titleRes),
                         onClick = { navigateToRoute(item.route) }
                     )
