@@ -76,6 +76,11 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
+/**
+ * Height of OUDS navigation bar
+ */
+val OudsNavigationBarHeight = 80.dp
+
 //TODO add DSM link when available:  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Navigation bar design guidelines**</a>
 /**
  * Navigation bars let people switch between UI views on smaller devices.

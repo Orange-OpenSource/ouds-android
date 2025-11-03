@@ -46,7 +46,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
-fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: Boolean = true) {
+fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier: Modifier = Modifier, visible: Boolean = true) {
     Column(modifier = Modifier.windowInsetsPadding(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))) {
         val systemNavigationBackgroundColor = OudsTheme.colorScheme.background.secondary //TODO Temporary color. Waiting for Material colors from Maxime.
         AnimatedVisibility(
@@ -56,7 +56,7 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: 
         ) {
             val items = BottomBarItem.entries.toTypedArray()
             OudsNavigationBar(
-                modifier = Modifier.consumeWindowInsets(WindowInsets.navigationBars)
+                modifier = modifier.consumeWindowInsets(WindowInsets.navigationBars)
             ) {
                 items.forEach { item ->
                     OudsNavigationBarItem(
