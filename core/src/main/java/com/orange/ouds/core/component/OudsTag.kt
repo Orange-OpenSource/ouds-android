@@ -135,8 +135,7 @@ fun OudsTag(
     val tagShape = shape(roundedCorners = roundedCorners)
     CheckedContent(
         expression = !isForbidden,
-        exceptionMessage = { "A disabled OudsTag cannot have a loader. This is not allowed." },
-        previewMessagePaddingValues = contentPadding(size, false)
+        exceptionMessage = { "A disabled OudsTag cannot have a loader. This is not allowed." }
     ) {
         // This outer box is necessary otherwise the user can change the size of the tag through the modifier
         Box(
