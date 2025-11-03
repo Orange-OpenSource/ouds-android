@@ -40,6 +40,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -89,9 +90,12 @@ fun OudsRadioButton(
 ) {
     val isDisabledPreviewState = getPreviewEnumEntry<OudsControlState>() == OudsControlState.Disabled
     val isForbidden = error != null && (!enabled || isDisabledPreviewState)
+    val shape = RoundedCornerShape(OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value)
     CheckedContent(
         expression = !isForbidden,
-        exceptionMessage = { "An OudsRadioButton set to disabled with error parameter activated is not allowed." }
+        exceptionMessage = { "An OudsRadioButton set to disabled with error parameter activated is not allowed." },
+        previewDashedBorderShape = shape,
+        previewDashedBorderPhase = OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value
     ) {
         val radioButtonTokens = OudsTheme.componentsTokens.radioButton
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -117,8 +121,8 @@ fun OudsRadioButton(
             modifier = modifier
                 .widthIn(radioButtonTokens.sizeMinWidth.value)
                 .heightIn(min = radioButtonTokens.sizeMinHeight.value, max = radioButtonTokens.sizeMaxHeight.value)
-                .background(color = backgroundColor.value)
-                .outerBorder(state = state, handleHighContrastMode = true)
+                .background(color = backgroundColor.value, shape = shape)
+                .outerBorder(state = state, shape = shape, handleHighContrastMode = true)
                 .then(selectableModifier)
                 .run {
                     error?.description?.let { description ->

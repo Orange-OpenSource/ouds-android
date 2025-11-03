@@ -41,6 +41,7 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -141,9 +142,12 @@ fun OudsTriStateCheckbox(
 ) {
     val isDisabledPreviewState = getPreviewEnumEntry<OudsControlState>() == OudsControlState.Disabled
     val isForbidden = error != null && (!enabled || isDisabledPreviewState)
+    val shape = RoundedCornerShape(OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value)
     CheckedContent(
         expression = !isForbidden,
-        exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." }
+        exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." },
+        previewDashedBorderShape = shape,
+        previewDashedBorderPhase = OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value
     ) {
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
@@ -173,8 +177,8 @@ fun OudsTriStateCheckbox(
                 .then(toggleableModifier)
                 .widthIn(checkboxTokens.sizeMinWidth.value)
                 .heightIn(min = checkboxTokens.sizeMinHeight.value, max = checkboxTokens.sizeMaxHeight.value)
-                .background(color = backgroundColor.value)
-                .outerBorder(state = checkboxState, handleHighContrastMode = true)
+                .background(color = backgroundColor.value, shape = shape)
+                .outerBorder(state = checkboxState, shape = shape, handleHighContrastMode = true)
                 .run {
                     error?.description?.let { description ->
                         semantics {
