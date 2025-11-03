@@ -66,7 +66,7 @@ jobs:
 
       - name: Upload tests artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: tests
           path: |
@@ -76,7 +76,7 @@ jobs:
             core/build/reports/tests
 
       - name: Upload app artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: app
           path: app/build/outputs/apk/*/*/*.apk
@@ -178,7 +178,7 @@ jobs:
           curl -F 'file=@app/build/outputs/bundle/prodRelease/app-prod-release.aab' https://oma-portal.orange.fr/oma/api/v1/external/applications/${{ secrets.OMA_APP_ID }}/artifacts -H "apiKey:${{ secrets.OMA_APP_TOKEN }}"
 
       - name: Store Google Play Store artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: google-play-store
           path: |
