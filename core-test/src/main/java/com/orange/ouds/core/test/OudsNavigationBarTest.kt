@@ -10,14 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.core.component
+package com.orange.ouds.core.test
 
-import com.orange.ouds.core.test.OudsComponentSnapshotTest
-import com.orange.ouds.core.test.OudsComponentTestSuite
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
-
 
 @RunWith(Enclosed::class)
 class OudsNavigationBarTest {
