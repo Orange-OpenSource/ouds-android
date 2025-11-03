@@ -196,7 +196,7 @@ fun OudsBadge(
         count = null,
         modifier = modifier,
         enabled = enabled,
-        status = status.toBadgeStatus,
+        status = status.toBadgeStatus(),
         withIconStatus = status,
         size = size
     )
@@ -386,14 +386,6 @@ open class OudsBadgeIcon internal constructor(
      */
     constructor(bitmap: ImageBitmap) : this({ bitmap })
 
-    data object Default : OudsBadgeIcon({ icon ->
-        with(icon.extraParameters) {
-            status.icon.orElse {
-                error("No default icon for status ${status::class.simpleName}")
-            }
-        }
-    })
-
     override val tint: Color?
         @Composable
         get() = extraParameters.tint
@@ -513,10 +505,10 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      * The color associated with this status.
      */
     @Composable
-    fun color() = this.toBadgeStatus.color()
+    fun color() = this.toBadgeStatus().color()
 
-    internal val toBadgeStatus
-        get() = when (this) {
+    internal fun toBadgeStatus(): OudsBadgeStatus {
+        return when (this) {
             is Neutral -> OudsBadgeStatus.Neutral
             is Accent -> OudsBadgeStatus.Accent
             is Positive -> OudsBadgeStatus.Positive
@@ -524,6 +516,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
             is Negative -> OudsBadgeStatus.Negative
             is Info -> OudsBadgeStatus.Info
         }
+    }
 }
 
 /**
