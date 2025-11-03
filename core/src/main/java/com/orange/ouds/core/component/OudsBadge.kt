@@ -177,8 +177,7 @@ fun OudsBadge(
  *   Using a non-functional status, you can provide a custom icon related to the badge’s context to enhance recognition by providing an [OudsBadgeIcon]
  *   as the icon of the status.
  *   - Functional statuses: [OudsTagStatus.Positive], [OudsTagStatus.Warning], [OudsTagStatus.Negative], [OudsTagStatus.Info].
- *   Each functional status has its dedicated functional icon that matches the meaning of the badge. This icon will appear by providing [OudsBadgeIcon.Default]
- *   as icon value of the status.
+ *   Each functional status has its dedicated functional icon that matches the meaning of the badge.
  * @param size The size of this badge. The icon is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
  *
  * @sample com.orange.ouds.core.component.samples.OudsBadgeWithDefaultIconSample
@@ -474,7 +473,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Positive] with its default dedicated icon.
      */
-    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.success) }))
+    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.alertSuccess) }))
 
     /**
      * Provides informational context without urgency.
@@ -482,7 +481,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Info] with its default dedicated icon.
      */
-    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.information) }))
+    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.alertInformation) }))
 
     /**
      * Negatives the user to potential risks or cautionary messages.
@@ -490,7 +489,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Warning] with its default dedicated icon.
      */
-    data object Warning : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.warningExternalShape) }))
+    data object Warning : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.alertWarningExternalShape) }))
 
     /**
      * Draws attention to important or critical information.
@@ -499,7 +498,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Negative] with its default dedicated icon.
      */
-    data object Negative : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.important) }))
+    data object Negative : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.alertImportant) }))
 
     /**
      * The color associated with this status.
