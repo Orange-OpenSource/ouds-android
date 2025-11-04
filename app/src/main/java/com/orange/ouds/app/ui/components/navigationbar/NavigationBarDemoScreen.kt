@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.labelArgument
+import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.ItemBadgeCount
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MaxNavigationBarItemCount
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MinNavigationBarItemCount
 import com.orange.ouds.app.ui.components.painterArgument
@@ -35,6 +36,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
+import com.orange.ouds.core.component.OudsNavigationBarItemBadge
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -79,6 +81,13 @@ private fun NavigationBarDemoBottomSheetContent(state: NavigationBarDemoState) {
                 lastItemEnabled = checked
             },
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_navigationBar_secondItemBadge_label),
+            chipLabels = NavigationBarDemoState.ItemBadge.entries.map { it.name },
+            selectedChipIndex = NavigationBarDemoState.ItemBadge.entries.indexOf(secondItemBadge),
+            onSelectionChange = { id -> secondItemBadge = NavigationBarDemoState.ItemBadge.entries[id] }
+        )
     }
 }
 
@@ -101,7 +110,16 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                         contentDescription = label
                     ),
                     alwaysShowLabel = alwaysShowLabel,
-                    enabled = !(isLastItem && !lastItemEnabled)
+                    enabled = !(isLastItem && !lastItemEnabled),
+                    badge = if (index == 1) {
+                        when (secondItemBadge) {
+                            NavigationBarDemoState.ItemBadge.None -> null
+                            NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge()
+                            NavigationBarDemoState.ItemBadge.Count -> OudsNavigationBarItemBadge(count = ItemBadgeCount)
+                        }
+                    } else {
+                        null
+                    }
                 )
             }
         }
@@ -109,16 +127,30 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
 }
 
 private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoState, context: Context) {
-    functionCall("OudsNavigationBar") {
-        functionCallArgument("items", "listOf") {
-            NavigationBarItem.entries.take(state.itemCount).forEach { item ->
-                val label = context.resources.getString(item.labelRes)
-                functionCallArgument(null, "OudsNavigationBarItem") {
-                    typedArgument("selected", item == NavigationBarItem.Home)
-                    lambdaArgument("onClick", {})
-                    labelArgument(label)
-                    functionCallArgument(null, OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
-                        painterArgument(id = item.iconRes)
+    with(state) {
+        val navigationBarItems = NavigationBarItem.entries
+        functionCall("OudsNavigationBar") {
+            functionCallArgument("items", "listOf") {
+                navigationBarItems.take(state.itemCount).forEachIndexed { index, item ->
+                    val isLastItem = index == itemCount - 1
+                    val label = context.resources.getString(item.labelRes)
+                    functionCallArgument(null, "OudsNavigationBarItem") {
+                        typedArgument("selected", item == NavigationBarItem.Home)
+                        lambdaArgument("onClick", {})
+                        labelArgument(label)
+                        functionCallArgument("icon", OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
+                            painterArgument(id = item.iconRes)
+                        }
+                        if (isLastItem && !lastItemEnabled) {
+                            typedArgument("enabled", false)
+                        }
+                        if (index == 1 && secondItemBadge != NavigationBarDemoState.ItemBadge.None) {
+                            functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
+                                if (secondItemBadge == NavigationBarDemoState.ItemBadge.Count) {
+                                    typedArgument("count", ItemBadgeCount)
+                                }
+                            }
+                        }
                     }
                 }
             }
