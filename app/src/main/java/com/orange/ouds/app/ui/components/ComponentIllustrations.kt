@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
@@ -40,6 +41,9 @@ import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkArrow
+import com.orange.ouds.core.component.OudsNavigationBar
+import com.orange.ouds.core.component.OudsNavigationBarItem
+import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
@@ -125,6 +129,24 @@ fun LinkIllustration() = ComponentIllustration {
         arrow = OudsLinkArrow.Next,
         onClick = {}
     )
+}
+
+@Composable
+fun NavigationBarIllustration() = ComponentIllustration {
+    OudsNavigationBar {
+        for (index in 0..2) {
+            OudsNavigationBarItem(
+                modifier = Modifier.weight(1f),
+                selected = index == 0,
+                onClick = {},
+                icon = OudsNavigationBarItemIcon(
+                    painter = painterResource(R.drawable.ic_heart),
+                    contentDescription = ""
+                ),
+                label = stringResource(R.string.app_components_common_label_label)
+            )
+        }
+    }
 }
 
 @Composable

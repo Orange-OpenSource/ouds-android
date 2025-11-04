@@ -104,7 +104,7 @@ sealed class Component(
     data object NavigationBar : Component(
         R.string.app_components_navigationBar_label,
         R.string.app_components_navigationBar_description_text,
-        { LinkIllustration() },
+        { NavigationBarIllustration() },
         demoScreen = { NavigationBarDemoScreen() }
     )
 
