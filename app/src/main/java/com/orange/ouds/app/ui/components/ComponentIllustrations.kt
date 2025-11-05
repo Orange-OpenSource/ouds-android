@@ -133,7 +133,7 @@ fun LinkIllustration() = ComponentIllustration {
 
 @Composable
 fun NavigationBarIllustration() = ComponentIllustration {
-    OudsNavigationBar {
+    OudsNavigationBar(modifier = Modifier.padding(horizontal = 12.dp)) {
         for (index in 0..2) {
             OudsNavigationBarItem(
                 modifier = Modifier.weight(1f),
