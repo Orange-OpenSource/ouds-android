@@ -30,9 +30,7 @@ android {
 }
 
 dependencies {
-    api(project(":core"))
+    implementation(project(":core"))
     implementation(project(":foundation"))
-
-    api(libs.androidx.compose.ui.test.junit4)
     implementation(libs.paparazzi)
 }
