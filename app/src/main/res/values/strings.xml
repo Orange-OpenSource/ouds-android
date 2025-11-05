@@ -131,6 +131,12 @@
     <string name="app_components_common_status_label">Status</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_textAndIconLayout_label">Text + icon</string>
+    <plurals name="app_components_common_unreadMessageCountBadge_a11y">
+        <item quantity="zero">No unread message</item>
+        <item quantity="one">%d unread message</item>
+        <item quantity="other">%d unread messages</item>
+    </plurals>
+    <string name="app_components_common_unreadNotificationsBadge_a11y">Unread notifications</string>
     <string name="app_components_common_version_label">Component design version</string>
     <string name="app_components_textInputHelperText_label">Helper text.</string>
 
@@ -142,12 +148,6 @@
     <string name="app_components_badge_countType_label">Count</string>
     <string name="app_components_badge_iconType_label">Icon</string>
     <string name="app_components_badge_count_label">Count</string>
-    <string name="app_components_badge_unreadNotifications_a11y">Unread notifications</string>
-    <plurals name="app_components_badge_unreadMessageCount_a11y">
-        <item quantity="zero">No unread message</item>
-        <item quantity="one">%d unread message</item>
-        <item quantity="other">%d unread messages</item>
-    </plurals>
 
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>

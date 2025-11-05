@@ -55,6 +55,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -142,6 +144,8 @@ fun OudsNavigationBar(
  * @param badge Optional badge display on the item icon.
  * @param alwaysShowLabel Whether the label should always be shown.
  * @param interactionSource [MutableInteractionSource] that will be used to dispatch events when this item is pressed, hovered or focused.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  */
 @Composable
 fun RowScope.OudsNavigationBarItem(
@@ -213,9 +217,13 @@ fun RowScope.OudsNavigationBarItem(
                             icon.Content()
                         }
                     },
-                    modifier = Modifier.constrainAs(itemRef) {
-                        centerTo(parent)
-                    },
+                    modifier = Modifier
+                        .constrainAs(itemRef) {
+                            centerTo(parent)
+                        }
+                        .semantics {
+                            this.contentDescription = badge?.contentDescription.orEmpty()
+                        },
                     enabled = enabled,
                     label = label?.let {
                         {
@@ -339,9 +347,10 @@ class OudsNavigationBarItemIcon private constructor(
  *
  * @see [OudsBadge]
  *
+ * @property contentDescription Content description of the badge, needed for accessibility support (vocalized by Talkback).
  * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.Small] size.
  */
-class OudsNavigationBarItemBadge(val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
+class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
 
     /**
      * Status of the badge.
@@ -396,12 +405,12 @@ private val navigationBarPreviewItems = listOf(
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.Email,
         label = "Emails",
-        badge = OudsNavigationBarItemBadge(count = 24)
+        badge = OudsNavigationBarItemBadge(contentDescription = "24 unread emails", count = 24)
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.DateRange,
         label = "Agenda",
-        badge = OudsNavigationBarItemBadge()
+        badge = OudsNavigationBarItemBadge("unread notifications")
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.AccountCircle,

@@ -131,7 +131,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
             val modifier = Modifier.alpha(alpha)
             when (type) {
                 BadgeDemoState.Type.Standard -> {
-                    val contentDescription = stringResource(id = R.string.app_components_badge_unreadNotifications_a11y)
+                    val contentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
                     OudsBadge(
                         modifier = modifier.semantics { this.contentDescription = contentDescription },
                         status = status,
@@ -140,7 +140,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                     )
                 }
                 BadgeDemoState.Type.Count -> {
-                    val contentDescription = pluralStringResource(id = R.plurals.app_components_badge_unreadMessageCount_a11y, count = count, count)
+                    val contentDescription = pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = count, count)
                     OudsBadge(
                         modifier = modifier.semantics { this.contentDescription = contentDescription },
                         count = count,

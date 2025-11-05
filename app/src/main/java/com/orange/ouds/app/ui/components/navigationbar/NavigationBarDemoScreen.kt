@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
@@ -100,6 +101,9 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
             navigationBarItems.take(itemCount).forEachIndexed { index, item ->
                 val label = stringResource(id = item.labelRes)
                 val isLastItem = index == itemCount - 1
+                val standardBadgeContentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
+                val countBadgeContentDescription =
+                    pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = ItemBadgeCount, ItemBadgeCount)
                 OudsNavigationBarItem(
                     modifier = Modifier.weight(1f),
                     selected = selectedItemId == index,
@@ -114,8 +118,11 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     badge = if (index == 1) {
                         when (secondItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null
-                            NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge()
-                            NavigationBarDemoState.ItemBadge.Count -> OudsNavigationBarItemBadge(count = ItemBadgeCount)
+                            NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge(standardBadgeContentDescription)
+                            NavigationBarDemoState.ItemBadge.Count -> OudsNavigationBarItemBadge(
+                                contentDescription = countBadgeContentDescription,
+                                count = ItemBadgeCount
+                            )
                         }
                     } else {
                         null
@@ -160,8 +167,8 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
 
 enum class NavigationBarItem(@DrawableRes val iconRes: Int, @StringRes val labelRes: Int) {
     Home(R.drawable.ic_home, R.string.app_components_navigationBar_homeItem_label),
-    Shop(R.drawable.ic_shop_store, R.string.app_components_navigationBar_shopItem_label),
     Notification(R.drawable.ic_notification_alert, R.string.app_components_navigationBar_notificationItem_label),
+    Shop(R.drawable.ic_shop_store, R.string.app_components_navigationBar_shopItem_label),
     Account(R.drawable.ic_avatar, R.string.app_components_navigationBar_accountItem_label),
     Settings(R.drawable.ic_settings, R.string.app_components_navigationBar_settingsItem_label),
 }
