@@ -201,6 +201,10 @@ fun OudsBadge(
     )
 }
 
+internal val OudsBadgeShape
+    @Composable
+    get() = RoundedCornerShape(OudsTheme.borders.radius.pill)
+
 @Composable
 private fun OudsBadge(
     count: Int?,
@@ -230,7 +234,7 @@ private fun OudsBadge(
         val sizeDp = size(size) * scale
         Box(
             modifier = Modifier
-                .clip(shape = RoundedCornerShape(OudsTheme.borders.radius.pill))
+                .clip(shape = OudsBadgeShape)
                 .background(backgroundColor(status = status, enabled = enabled))
                 .run {
                     if (count != null && size in OudsBadgeSize.countEntries) {

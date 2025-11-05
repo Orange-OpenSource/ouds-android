@@ -18,6 +18,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -25,6 +26,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -373,14 +375,22 @@ class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int?
 
     @Composable
     override fun Content(modifier: Modifier) {
+        val borderModifier = Modifier
+            .border(width = 1.dp, color = OudsTheme.componentsTokens.bar.colorBorderBadge.value, shape = OudsBadgeShape)
+            .padding(0.5.dp) // Fixes a bug where background is visible outside shaped border. See https://issuetracker.google.com/issues/228985905?pli=1
+
         if (count != null) {
-            OudsBadge(count = count, modifier = modifier, status = this.status, size = OudsBadgeSize.Medium)
+            OudsBadge(count = count, modifier = modifier.then(borderModifier), status = this.status, size = OudsBadgeSize.Medium)
         } else {
             val startPosition = OudsNavigationBarItemIcon.Size / 2
             val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
             val xOffset = startPosition - badgeSize
             val yOffset = (startPosition - badgeSize) + 2.dp
-            OudsBadge(modifier = modifier.offset(x = xOffset, y = -yOffset), status = this.status, size = OudsBadgeSize.ExtraSmall)
+            OudsBadge(
+                modifier = modifier
+                    .offset(x = xOffset, y = -yOffset)
+                    .then(borderModifier), status = this.status, size = OudsBadgeSize.ExtraSmall
+            )
         }
     }
 }
