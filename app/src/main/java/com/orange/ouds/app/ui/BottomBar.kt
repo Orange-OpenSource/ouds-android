@@ -56,7 +56,8 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier:
         ) {
             val items = BottomBarItem.entries.toTypedArray()
             OudsNavigationBar(
-                modifier = modifier.consumeWindowInsets(WindowInsets.navigationBars)
+                modifier = modifier.consumeWindowInsets(WindowInsets.navigationBars),
+                translucent = true
             ) {
                 items.forEach { item ->
                     OudsNavigationBarItem(

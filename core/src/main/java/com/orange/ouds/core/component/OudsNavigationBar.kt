@@ -91,7 +91,8 @@ val OudsNavigationBarHeight = 80.dp
  * OudsNavigationBar should contain three to five [OudsNavigationBarItem], each representing a singular destination.
  *
  * OudsNavigationBar default appearance is opaque but, if you need a **translucent blurred navigation bar** as specified on OUDS design side, you can implement
- * it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use OudsNavigationBar in your app and follow these steps:
+ * it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use OudsNavigationBar with [translucent] set to true
+ * and follow these steps:
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
@@ -101,6 +102,7 @@ val OudsNavigationBarHeight = 80.dp
  * content that will have the height of OudsNavigationBar. For this, please use `OudsNavigationBarHeight` constant.
  *
  * @param modifier [Modifier] applied to the navigation bar.
+ * @param translucent Whether the navigation bar should be translucent.
  * @param windowInsets Window insets of the navigation bar.
  * @param content Content of the navigation bar.
  *
@@ -109,6 +111,7 @@ val OudsNavigationBarHeight = 80.dp
 @Composable
 fun OudsNavigationBar(
     modifier: Modifier = Modifier,
+    translucent: Boolean = false,
     windowInsets: WindowInsets = NavigationBarDefaults.windowInsets,
     content: @Composable RowScope.() -> Unit
 ) {
@@ -125,7 +128,7 @@ fun OudsNavigationBar(
                         strokeWidth = 1.dp.toPx()
                     )
                 },
-            containerColor = colorBg.value,
+            containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
             contentColor = colorContentUnselectedEnabled.value,
             windowInsets = windowInsets,
             content = content
@@ -471,7 +474,7 @@ internal fun PreviewOudsNavigationBarItem(
                 OudsNavigationBarItem(
                     modifier = Modifier
                         .size(width = 80.dp, height = 64.dp)
-                        .background(OudsTheme.componentsTokens.bar.colorBg.value),
+                        .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value),
                     selected = selected,
                     onClick = {},
                     icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star, contentDescription = ""),
