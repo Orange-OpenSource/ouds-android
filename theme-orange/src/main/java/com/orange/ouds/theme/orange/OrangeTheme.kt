@@ -16,6 +16,7 @@ import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.tokens.components.OrangeComponentsTokens
+import com.orange.ouds.theme.orange.tokens.material.OrangeMaterialColorTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeBorderSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeElevationSemanticTokens
@@ -25,6 +26,7 @@ import com.orange.ouds.theme.orange.tokens.semantic.OrangeOpacitySemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeSizeSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeSpaceSemanticTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
@@ -51,6 +53,9 @@ open class OrangeTheme(
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeColorSemanticTokens()
+    
+    override val materialColorTokens: OudsMaterialColorTokens
+        get() = OrangeMaterialColorTokens()
 
     override val borderTokens: OudsBorderSemanticTokens
         get() = OrangeBorderSemanticTokens()
