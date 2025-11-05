@@ -129,10 +129,9 @@ tasks.register<DefaultTask>("testCentralPublisherPortalDeployment") {
 
             // Replace project dependencies with artifact dependencies in build.gradle.kts files of non published modules
             nonPublishedSubprojects.forEach { nonPublishedSubproject ->
-                File("${nonPublishedSubproject.name}/build.gradle.kts").replace(
-                    "implementation\\(project\\(\":${publishedSubproject.name}\"\\)\\)".toRegex(),
-                    "implementation(\"com.orange.ouds.android:${publishedSubproject.artifactId}:$version\")"
-                )
+                File("${nonPublishedSubproject.name}/build.gradle.kts").replace("(implementation|api)\\(project\\(\":${publishedSubproject.name}\"\\)\\)".toRegex()) { matchResult ->
+                    "${matchResult.groupValues[1]}(\"com.orange.ouds.android:${publishedSubproject.artifactId}:$version\")"
+                }
             }
         }
     }
