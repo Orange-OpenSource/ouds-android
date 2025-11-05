@@ -79,16 +79,26 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Height of OUDS navigation bar
+ * Height of OUDS navigation bar.
  */
 val OudsNavigationBarHeight = 80.dp
 
 //TODO add DSM link when available:  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Navigation bar design guidelines**</a>
 /**
- * Navigation bars let people switch between UI views on smaller devices.
- * They offer a persistent and convenient way to switch between primary destinations in an app.
+ * The navigation bar lets people switch between UI views on smaller devices.
+ * It offers a persistent and convenient way to switch between primary destinations in an app.
  *
  * OudsNavigationBar should contain three to five [OudsNavigationBarItem], each representing a singular destination.
+ *
+ * OudsNavigationBar default appearance is opaque but, if you need a **translucent blurred navigation bar** as specified on OUDS design side, you can implement
+ * it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use OudsNavigationBar in your app and follow these steps:
+ * 1. Add Haze dependency
+ * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
+ * - Use `hazeEffect` Modifier on OudsNavigationBar providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.effects.blurNavigationBar.dp)),`
+ * - Apply `hazeSource` Modifier on the content that scrolls behind the navigation bar: `Modifier.hazeSource(state = hazeState)`
+ * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to adjust paddings and to add a spacer at the end of the screen
+ * content that will have the height of OudsNavigationBar. For this, please use `OudsNavigationBarHeight` constant.
  *
  * @param modifier [Modifier] applied to the navigation bar.
  * @param windowInsets Window insets of the navigation bar.
