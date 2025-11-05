@@ -25,7 +25,6 @@ import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
-import com.orange.ouds.theme.tokens.components.OudsNavigationBarTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
