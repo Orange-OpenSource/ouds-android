@@ -1,0 +1,1577 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OudsMaterialColorTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.tokens.material/-ouds-material-color-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-contract/com.orange.ouds.theme.tokens.material/-ouds-material-color-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../older/0.2.0/theme-contract/com.orange.ouds.theme.tokens.material/-ouds-material-color-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../older/0.1.0/theme-contract/com.orange.ouds.theme.tokens.material/-ouds-material-color-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-contract/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-contract/main" data-filter=":theme-contract/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-contract::com.orange.ouds.theme.tokens.material/OudsMaterialColorTokens///PointingToDeclaration//-743151213">
+  <div class="breadcrumbs"><a href="../../index.html">theme-contract</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.tokens.material</a><span class="delimiter">/</span><span class="current">OudsMaterialColorTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Ouds</span><wbr><span>Material</span><wbr><span>Color</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">OudsMaterialColorTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="692681580%2FProperties%2F-743151213" anchor-label="backgroundDark" id="692681580%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="background-dark.html"><span>background</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="692681580%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="background-dark.html">backgroundDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1441764958%2FProperties%2F-743151213" anchor-label="backgroundLight" id="-1441764958%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="background-light.html"><span>background</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1441764958%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="background-light.html">backgroundLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1942138975%2FProperties%2F-743151213" anchor-label="errorContainerDark" id="-1942138975%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="error-container-dark.html"><span>error</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1942138975%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="error-container-dark.html">errorContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1516823539%2FProperties%2F-743151213" anchor-label="errorContainerLight" id="-1516823539%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="error-container-light.html"><span>error</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1516823539%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="error-container-light.html">errorContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-396816628%2FProperties%2F-743151213" anchor-label="errorDark" id="-396816628%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="error-dark.html"><span>error</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-396816628%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="error-dark.html">errorDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-856471038%2FProperties%2F-743151213" anchor-label="errorLight" id="-856471038%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="error-light.html"><span>error</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-856471038%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="error-light.html">errorLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1345046492%2FProperties%2F-743151213" anchor-label="inverseOnSurfaceDark" id="1345046492%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inverse-on-surface-dark.html"><span>inverse</span><wbr><span>On</span><wbr><span>Surface</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1345046492%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="inverse-on-surface-dark.html">inverseOnSurfaceDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1601678130%2FProperties%2F-743151213" anchor-label="inverseOnSurfaceLight" id="1601678130%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inverse-on-surface-light.html"><span>inverse</span><wbr><span>On</span><wbr><span>Surface</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1601678130%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="inverse-on-surface-light.html">inverseOnSurfaceLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-414373656%2FProperties%2F-743151213" anchor-label="inversePrimaryDark" id="-414373656%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inverse-primary-dark.html"><span>inverse</span><wbr><span>Primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-414373656%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="inverse-primary-dark.html">inversePrimaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1400738906%2FProperties%2F-743151213" anchor-label="inversePrimaryLight" id="-1400738906%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inverse-primary-light.html"><span>inverse</span><wbr><span>Primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1400738906%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="inverse-primary-light.html">inversePrimaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-424956387%2FProperties%2F-743151213" anchor-label="inverseSurfaceDark" id="-424956387%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inverse-surface-dark.html"><span>inverse</span><wbr><span>Surface</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-424956387%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="inverse-surface-dark.html">inverseSurfaceDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1728803567%2FProperties%2F-743151213" anchor-label="inverseSurfaceLight" id="-1728803567%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inverse-surface-light.html"><span>inverse</span><wbr><span>Surface</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1728803567%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="inverse-surface-light.html">inverseSurfaceLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-189970483%2FProperties%2F-743151213" anchor-label="onBackgroundDark" id="-189970483%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-background-dark.html"><span>on</span><wbr><span>Background</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-189970483%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-background-dark.html">onBackgroundDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1260792161%2FProperties%2F-743151213" anchor-label="onBackgroundLight" id="1260792161%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-background-light.html"><span>on</span><wbr><span>Background</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1260792161%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-background-light.html">onBackgroundLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="775029634%2FProperties%2F-743151213" anchor-label="onErrorContainerDark" id="775029634%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-error-container-dark.html"><span>on</span><wbr><span>Error</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="775029634%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-error-container-dark.html">onErrorContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1111024716%2FProperties%2F-743151213" anchor-label="onErrorContainerLight" id="1111024716%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-error-container-light.html"><span>on</span><wbr><span>Error</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1111024716%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-error-container-light.html">onErrorContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-38974965%2FProperties%2F-743151213" anchor-label="onErrorDark" id="-38974965%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-error-dark.html"><span>on</span><wbr><span>Error</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-38974965%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-error-dark.html">onErrorDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1646685923%2FProperties%2F-743151213" anchor-label="onErrorLight" id="1646685923%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-error-light.html"><span>on</span><wbr><span>Error</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1646685923%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-error-light.html">onErrorLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="303230716%2FProperties%2F-743151213" anchor-label="onPrimaryContainerDark" id="303230716%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary-container-dark.html"><span>on</span><wbr><span>Primary</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="303230716%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-primary-container-dark.html">onPrimaryContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-629839854%2FProperties%2F-743151213" anchor-label="onPrimaryContainerLight" id="-629839854%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary-container-light.html"><span>on</span><wbr><span>Primary</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-629839854%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-primary-container-light.html">onPrimaryContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2046864721%2FProperties%2F-743151213" anchor-label="onPrimaryDark" id="2046864721%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary-dark.html"><span>on</span><wbr><span>Primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2046864721%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-primary-dark.html">onPrimaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="938633193%2FProperties%2F-743151213" anchor-label="onPrimaryFixedDark" id="938633193%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary-fixed-dark.html"><span>on</span><wbr><span>Primary</span><wbr><span>Fixed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="938633193%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-primary-fixed-dark.html">onPrimaryFixedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1887767749%2FProperties%2F-743151213" anchor-label="onPrimaryFixedLight" id="1887767749%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary-fixed-light.html"><span>on</span><wbr><span>Primary</span><wbr><span>Fixed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1887767749%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-primary-fixed-light.html">onPrimaryFixedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="892750176%2FProperties%2F-743151213" anchor-label="onPrimaryFixedVariantDark" id="892750176%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary-fixed-variant-dark.html"><span>on</span><wbr><span>Primary</span><wbr><span>Fixed</span><wbr><span>Variant</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="892750176%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-primary-fixed-variant-dark.html">onPrimaryFixedVariantDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="465394222%2FProperties%2F-743151213" anchor-label="onPrimaryFixedVariantLight" id="465394222%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary-fixed-variant-light.html"><span>on</span><wbr><span>Primary</span><wbr><span>Fixed</span><wbr><span>Variant</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="465394222%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-primary-fixed-variant-light.html">onPrimaryFixedVariantLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1883206749%2FProperties%2F-743151213" anchor-label="onPrimaryLight" id="1883206749%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary-light.html"><span>on</span><wbr><span>Primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1883206749%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-primary-light.html">onPrimaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="980346862%2FProperties%2F-743151213" anchor-label="onSecondaryContainerDark" id="980346862%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-container-dark.html"><span>on</span><wbr><span>Secondary</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="980346862%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-secondary-container-dark.html">onSecondaryContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1114075808%2FProperties%2F-743151213" anchor-label="onSecondaryContainerLight" id="-1114075808%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-container-light.html"><span>on</span><wbr><span>Secondary</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1114075808%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-secondary-container-light.html">onSecondaryContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="172325919%2FProperties%2F-743151213" anchor-label="onSecondaryDark" id="172325919%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-dark.html"><span>on</span><wbr><span>Secondary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="172325919%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-secondary-dark.html">onSecondaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="402958811%2FProperties%2F-743151213" anchor-label="onSecondaryFixedDark" id="402958811%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-fixed-dark.html"><span>on</span><wbr><span>Secondary</span><wbr><span>Fixed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="402958811%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-secondary-fixed-dark.html">onSecondaryFixedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1833236205%2FProperties%2F-743151213" anchor-label="onSecondaryFixedLight" id="-1833236205%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-fixed-light.html"><span>on</span><wbr><span>Secondary</span><wbr><span>Fixed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1833236205%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-secondary-fixed-light.html">onSecondaryFixedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-601533650%2FProperties%2F-743151213" anchor-label="onSecondaryFixedVariantDark" id="-601533650%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-fixed-variant-dark.html"><span>on</span><wbr><span>Secondary</span><wbr><span>Fixed</span><wbr><span>Variant</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-601533650%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-secondary-fixed-variant-dark.html">onSecondaryFixedVariantDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1387235872%2FProperties%2F-743151213" anchor-label="onSecondaryFixedVariantLight" id="1387235872%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-fixed-variant-light.html"><span>on</span><wbr><span>Secondary</span><wbr><span>Fixed</span><wbr><span>Variant</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1387235872%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-secondary-fixed-variant-light.html">onSecondaryFixedVariantLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-392921265%2FProperties%2F-743151213" anchor-label="onSecondaryLight" id="-392921265%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-light.html"><span>on</span><wbr><span>Secondary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-392921265%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-secondary-light.html">onSecondaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2036281990%2FProperties%2F-743151213" anchor-label="onSurfaceDark" id="2036281990%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-dark.html"><span>on</span><wbr><span>Surface</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2036281990%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-surface-dark.html">onSurfaceDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1555142088%2FProperties%2F-743151213" anchor-label="onSurfaceLight" id="1555142088%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-light.html"><span>on</span><wbr><span>Surface</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1555142088%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-surface-light.html">onSurfaceLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="617268259%2FProperties%2F-743151213" anchor-label="onSurfaceVariantDark" id="617268259%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-variant-dark.html"><span>on</span><wbr><span>Surface</span><wbr><span>Variant</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="617268259%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-surface-variant-dark.html">onSurfaceVariantDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="515389387%2FProperties%2F-743151213" anchor-label="onSurfaceVariantLight" id="515389387%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-variant-light.html"><span>on</span><wbr><span>Surface</span><wbr><span>Variant</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="515389387%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-surface-variant-light.html">onSurfaceVariantLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="882766628%2FProperties%2F-743151213" anchor-label="onTertiaryContainerDark" id="882766628%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-tertiary-container-dark.html"><span>on</span><wbr><span>Tertiary</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="882766628%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-tertiary-container-dark.html">onTertiaryContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="155904234%2FProperties%2F-743151213" anchor-label="onTertiaryContainerLight" id="155904234%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-tertiary-container-light.html"><span>on</span><wbr><span>Tertiary</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="155904234%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-tertiary-container-light.html">onTertiaryContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="532732969%2FProperties%2F-743151213" anchor-label="onTertiaryDark" id="532732969%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-tertiary-dark.html"><span>on</span><wbr><span>Tertiary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="532732969%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-tertiary-dark.html">onTertiaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="431341585%2FProperties%2F-743151213" anchor-label="onTertiaryFixedDark" id="431341585%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-tertiary-fixed-dark.html"><span>on</span><wbr><span>Tertiary</span><wbr><span>Fixed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="431341585%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-tertiary-fixed-dark.html">onTertiaryFixedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-953370211%2FProperties%2F-743151213" anchor-label="onTertiaryFixedLight" id="-953370211%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-tertiary-fixed-light.html"><span>on</span><wbr><span>Tertiary</span><wbr><span>Fixed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-953370211%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-tertiary-fixed-light.html">onTertiaryFixedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="78574648%2FProperties%2F-743151213" anchor-label="onTertiaryFixedVariantDark" id="78574648%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-tertiary-fixed-variant-dark.html"><span>on</span><wbr><span>Tertiary</span><wbr><span>Fixed</span><wbr><span>Variant</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="78574648%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-tertiary-fixed-variant-dark.html">onTertiaryFixedVariantDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="995756630%2FProperties%2F-743151213" anchor-label="onTertiaryFixedVariantLight" id="995756630%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-tertiary-fixed-variant-light.html"><span>on</span><wbr><span>Tertiary</span><wbr><span>Fixed</span><wbr><span>Variant</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="995756630%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-tertiary-fixed-variant-light.html">onTertiaryFixedVariantLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2105204603%2FProperties%2F-743151213" anchor-label="onTertiaryLight" id="-2105204603%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-tertiary-light.html"><span>on</span><wbr><span>Tertiary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2105204603%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="on-tertiary-light.html">onTertiaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="738288594%2FProperties%2F-743151213" anchor-label="outlineDark" id="738288594%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="outline-dark.html"><span>outline</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="738288594%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="outline-dark.html">outlineDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-27947524%2FProperties%2F-743151213" anchor-label="outlineLight" id="-27947524%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="outline-light.html"><span>outline</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-27947524%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="outline-light.html">outlineLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2007448233%2FProperties%2F-743151213" anchor-label="outlineVariantDark" id="-2007448233%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="outline-variant-dark.html"><span>outline</span><wbr><span>Variant</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2007448233%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="outline-variant-dark.html">outlineVariantDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="753556759%2FProperties%2F-743151213" anchor-label="outlineVariantLight" id="753556759%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="outline-variant-light.html"><span>outline</span><wbr><span>Variant</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="753556759%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="outline-variant-light.html">outlineVariantLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="444313435%2FProperties%2F-743151213" anchor-label="primaryContainerDark" id="444313435%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-container-dark.html"><span>primary</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="444313435%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="primary-container-dark.html">primaryContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-551242861%2FProperties%2F-743151213" anchor-label="primaryContainerLight" id="-551242861%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-container-light.html"><span>primary</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-551242861%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="primary-container-light.html">primaryContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1758410258%2FProperties%2F-743151213" anchor-label="primaryDark" id="1758410258%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-dark.html"><span>primary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1758410258%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="primary-dark.html">primaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1236258872%2FProperties%2F-743151213" anchor-label="primaryFixedDark" id="-1236258872%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-fixed-dark.html"><span>primary</span><wbr><span>Fixed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1236258872%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="primary-fixed-dark.html">primaryFixedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1038528254%2FProperties%2F-743151213" anchor-label="primaryFixedDimDark" id="1038528254%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-fixed-dim-dark.html"><span>primary</span><wbr><span>Fixed</span><wbr><span>Dim</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1038528254%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="primary-fixed-dim-dark.html">primaryFixedDimDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="689547344%2FProperties%2F-743151213" anchor-label="primaryFixedDimLight" id="689547344%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-fixed-dim-light.html"><span>primary</span><wbr><span>Fixed</span><wbr><span>Dim</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="689547344%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="primary-fixed-dim-light.html">primaryFixedDimLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1109376826%2FProperties%2F-743151213" anchor-label="primaryFixedLight" id="-1109376826%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-fixed-light.html"><span>primary</span><wbr><span>Fixed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1109376826%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="primary-fixed-light.html">primaryFixedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1531052988%2FProperties%2F-743151213" anchor-label="primaryLight" id="1531052988%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-light.html"><span>primary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1531052988%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="primary-light.html">primaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1604172046%2FProperties%2F-743151213" anchor-label="scrimDark" id="1604172046%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scrim-dark.html"><span>scrim</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1604172046%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="scrim-dark.html">scrimDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1044635712%2FProperties%2F-743151213" anchor-label="scrimLight" id="1044635712%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scrim-light.html"><span>scrim</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1044635712%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="scrim-light.html">scrimLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-878113651%2FProperties%2F-743151213" anchor-label="secondaryContainerDark" id="-878113651%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-container-dark.html"><span>secondary</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-878113651%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-container-dark.html">secondaryContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1403190433%2FProperties%2F-743151213" anchor-label="secondaryContainerLight" id="1403190433%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-container-light.html"><span>secondary</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1403190433%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-container-light.html">secondaryContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2140461216%2FProperties%2F-743151213" anchor-label="secondaryDark" id="2140461216%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-dark.html"><span>secondary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2140461216%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-dark.html">secondaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1980757498%2FProperties%2F-743151213" anchor-label="secondaryFixedDark" id="1980757498%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-fixed-dark.html"><span>secondary</span><wbr><span>Fixed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1980757498%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-fixed-dark.html">secondaryFixedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1272963980%2FProperties%2F-743151213" anchor-label="secondaryFixedDimDark" id="1272963980%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-fixed-dim-dark.html"><span>secondary</span><wbr><span>Fixed</span><wbr><span>Dim</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1272963980%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-fixed-dim-dark.html">secondaryFixedDimDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-632879742%2FProperties%2F-743151213" anchor-label="secondaryFixedDimLight" id="-632879742%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-fixed-dim-light.html"><span>secondary</span><wbr><span>Fixed</span><wbr><span>Dim</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-632879742%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-fixed-dim-light.html">secondaryFixedDimLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-166117164%2FProperties%2F-743151213" anchor-label="secondaryFixedLight" id="-166117164%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-fixed-light.html"><span>secondary</span><wbr><span>Fixed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-166117164%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-fixed-light.html">secondaryFixedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="489730798%2FProperties%2F-743151213" anchor-label="secondaryLight" id="489730798%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-light.html"><span>secondary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="489730798%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-light.html">secondaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="140191341%2FProperties%2F-743151213" anchor-label="surfaceBrightDark" id="140191341%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-bright-dark.html"><span>surface</span><wbr><span>Bright</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="140191341%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-bright-dark.html">surfaceBrightDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1389093183%2FProperties%2F-743151213" anchor-label="surfaceBrightLight" id="-1389093183%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-bright-light.html"><span>surface</span><wbr><span>Bright</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1389093183%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-bright-light.html">surfaceBrightLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1747827527%2FProperties%2F-743151213" anchor-label="surfaceDark" id="1747827527%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-dark.html"><span>surface</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1747827527%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-dark.html">surfaceDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1571619041%2FProperties%2F-743151213" anchor-label="surfaceDimDark" id="-1571619041%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-dim-dark.html"><span>surface</span><wbr><span>Dim</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1571619041%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-dim-dark.html">surfaceDimDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1379359823%2FProperties%2F-743151213" anchor-label="surfaceDimLight" id="1379359823%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-dim-light.html"><span>surface</span><wbr><span>Dim</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1379359823%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-dim-light.html">surfaceDimLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1202988327%2FProperties%2F-743151213" anchor-label="surfaceLight" id="1202988327%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-light.html"><span>surface</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1202988327%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-light.html">surfaceLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-290767348%2FProperties%2F-743151213" anchor-label="surfaceTintDark" id="-290767348%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-tint-dark.html"><span>surface</span><wbr><span>Tint</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-290767348%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-tint-dark.html">surfaceTintDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1863910654%2FProperties%2F-743151213" anchor-label="surfaceTintLight" id="-1863910654%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-tint-light.html"><span>surface</span><wbr><span>Tint</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1863910654%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-tint-light.html">surfaceTintLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2099900350%2FProperties%2F-743151213" anchor-label="surfaceVariantDark" id="-2099900350%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-variant-dark.html"><span>surface</span><wbr><span>Variant</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2099900350%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-variant-dark.html">surfaceVariantDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2112458868%2FProperties%2F-743151213" anchor-label="surfaceVariantLight" id="-2112458868%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-variant-light.html"><span>surface</span><wbr><span>Variant</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2112458868%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surface-variant-light.html">surfaceVariantLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="591080937%2FProperties%2F-743151213" anchor-label="surfContainerDark" id="591080937%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-dark.html"><span>surf</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="591080937%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-dark.html">surfContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="705182311%2FProperties%2F-743151213" anchor-label="surfContainerHighDark" id="705182311%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-high-dark.html"><span>surf</span><wbr><span>Container</span><wbr><span>High</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="705182311%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-high-dark.html">surfContainerHighDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-133469279%2FProperties%2F-743151213" anchor-label="surfContainerHighestDark" id="-133469279%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-highest-dark.html"><span>surf</span><wbr><span>Container</span><wbr><span>Highest</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-133469279%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-highest-dark.html">surfContainerHighestDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1282637811%2FProperties%2F-743151213" anchor-label="surfContainerHighestLight" id="-1282637811%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-highest-light.html"><span>surf</span><wbr><span>Container</span><wbr><span>Highest</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1282637811%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-highest-light.html">surfContainerHighestLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1054242297%2FProperties%2F-743151213" anchor-label="surfContainerHighLight" id="-1054242297%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-high-light.html"><span>surf</span><wbr><span>Container</span><wbr><span>High</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1054242297%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-high-light.html">surfContainerHighLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-296417595%2FProperties%2F-743151213" anchor-label="surfContainerLight" id="-296417595%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-light.html"><span>surf</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-296417595%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-light.html">surfContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-369666575%2FProperties%2F-743151213" anchor-label="surfContainerLowDark" id="-369666575%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-low-dark.html"><span>surf</span><wbr><span>Container</span><wbr><span>Low</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-369666575%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-low-dark.html">surfContainerLowDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1975440425%2FProperties%2F-743151213" anchor-label="surfContainerLowestDark" id="-1975440425%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-lowest-dark.html"><span>surf</span><wbr><span>Container</span><wbr><span>Lowest</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1975440425%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-lowest-dark.html">surfContainerLowestDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1745798807%2FProperties%2F-743151213" anchor-label="surfContainerLowestLight" id="1745798807%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-lowest-light.html"><span>surf</span><wbr><span>Container</span><wbr><span>Lowest</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1745798807%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-lowest-light.html">surfContainerLowestLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-14819395%2FProperties%2F-743151213" anchor-label="surfContainerLowLight" id="-14819395%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surf-container-low-light.html"><span>surf</span><wbr><span>Container</span><wbr><span>Low</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-14819395%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="surf-container-low-light.html">surfContainerLowLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="961363621%2FProperties%2F-743151213" anchor-label="tertiaryContainerDark" id="961363621%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tertiary-container-dark.html"><span>tertiary</span><wbr><span>Container</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="961363621%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tertiary-container-dark.html">tertiaryContainerDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1702556279%2FProperties%2F-743151213" anchor-label="tertiaryContainerLight" id="-1702556279%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tertiary-container-light.html"><span>tertiary</span><wbr><span>Container</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1702556279%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tertiary-container-light.html">tertiaryContainerLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="180579208%2FProperties%2F-743151213" anchor-label="tertiaryDark" id="180579208%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tertiary-dark.html"><span>tertiary</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="180579208%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tertiary-dark.html">tertiaryDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1729164306%2FProperties%2F-743151213" anchor-label="tertiaryFixedDark" id="1729164306%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tertiary-fixed-dark.html"><span>tertiary</span><wbr><span>Fixed</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1729164306%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tertiary-fixed-dark.html">tertiaryFixedDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="778112628%2FProperties%2F-743151213" anchor-label="tertiaryFixedDimDark" id="778112628%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tertiary-fixed-dim-dark.html"><span>tertiary</span><wbr><span>Fixed</span><wbr><span>Dim</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="778112628%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tertiary-fixed-dim-dark.html">tertiaryFixedDimDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1206597530%2FProperties%2F-743151213" anchor-label="tertiaryFixedDimLight" id="1206597530%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tertiary-fixed-dim-light.html"><span>tertiary</span><wbr><span>Fixed</span><wbr><span>Dim</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1206597530%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tertiary-fixed-dim-light.html">tertiaryFixedDimLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="624428476%2FProperties%2F-743151213" anchor-label="tertiaryFixedLight" id="624428476%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tertiary-fixed-light.html"><span>tertiary</span><wbr><span>Fixed</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="624428476%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tertiary-fixed-light.html">tertiaryFixedLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-137069306%2FProperties%2F-743151213" anchor-label="tertiaryLight" id="-137069306%2FProperties%2F-743151213" data-filterable-set=":theme-contract/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/main" data-filterable-set=":theme-contract/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tertiary-light.html"><span>tertiary</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-137069306%2FProperties%2F-743151213"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tertiary-light.html">tertiaryLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>GridRawTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.tokens.raw/-grid-raw-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/global-raw-tokens/com.orange.ouds.tokens.raw/-grid-raw-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../not-found-version.html?v=0.2.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":global-raw-tokens/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":global-raw-tokens/main" data-filter=":global-raw-tokens/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="global-raw-tokens::com.orange.ouds.tokens.raw/GridRawTokens///PointingToDeclaration//-1500904686">
+  <div class="breadcrumbs"><a href="../../index.html">global-raw-tokens</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.tokens.raw</a><span class="delimiter">/</span><span class="current">GridRawTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Grid</span><wbr><span>Raw</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">GridRawTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-48981993%2FProperties%2F-1500904686" anchor-label="gridColumnCount100" id="-48981993%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-count100.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Count100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-48981993%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-count100.html">gridColumnCount100</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2030514061%2FProperties%2F-1500904686" anchor-label="gridColumnCount1000" id="-2030514061%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-count1000.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Count1000</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2030514061%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-count1000.html">gridColumnCount1000</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1754980145%2FProperties%2F-1500904686" anchor-label="gridColumnCount1200" id="1754980145%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-count1200.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Count1200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1754980145%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-count1200.html">gridColumnCount1200</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">12</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-303718538%2FProperties%2F-1500904686" anchor-label="gridColumnCount200" id="-303718538%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-count200.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Count200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-303718538%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-count200.html">gridColumnCount200</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">2</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-813191628%2FProperties%2F-1500904686" anchor-label="gridColumnCount400" id="-813191628%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-count400.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Count400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-813191628%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-count400.html">gridColumnCount400</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">4</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1322664718%2FProperties%2F-1500904686" anchor-label="gridColumnCount600" id="-1322664718%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-count600.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Count600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1322664718%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-count600.html">gridColumnCount600</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">6</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1832137808%2FProperties%2F-1500904686" anchor-label="gridColumnCount800" id="-1832137808%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-count800.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Count800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1832137808%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-count800.html">gridColumnCount800</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">8</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1441639732%2FProperties%2F-1500904686" anchor-label="gridColumnGap10" id="-1441639732%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-gap10.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Gap10</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1441639732%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-gap10.html">gridColumnGap10</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2041736286%2FProperties%2F-1500904686" anchor-label="gridColumnGap100" id="2041736286%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-gap100.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Gap100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2041736286%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-gap100.html">gridColumnGap100</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1786999741%2FProperties%2F-1500904686" anchor-label="gridColumnGap200" id="1786999741%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-gap200.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Gap200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1786999741%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-gap200.html">gridColumnGap200</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1532263196%2FProperties%2F-1500904686" anchor-label="gridColumnGap300" id="1532263196%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-gap300.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Gap300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1532263196%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-gap300.html">gridColumnGap300</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1277526651%2FProperties%2F-1500904686" anchor-label="gridColumnGap400" id="1277526651%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-gap400.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Gap400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1277526651%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-gap400.html">gridColumnGap400</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="768053561%2FProperties%2F-1500904686" anchor-label="gridColumnGap600" id="768053561%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-gap600.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Gap600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="768053561%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-gap600.html">gridColumnGap600</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="258580471%2FProperties%2F-1500904686" anchor-label="gridColumnGap800" id="258580471%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-column-gap800.html"><span>grid</span><wbr><span>Column</span><wbr><span><span>Gap800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="258580471%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-column-gap800.html">gridColumnGap800</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1552737032%2FProperties%2F-1500904686" anchor-label="gridMargin100" id="1552737032%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin100.html"><span>grid</span><wbr><span><span>Margin100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1552737032%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin100.html">gridMargin100</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="378135458%2FProperties%2F-1500904686" anchor-label="gridMargin1000" id="378135458%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin1000.html"><span>grid</span><wbr><span><span>Margin1000</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="378135458%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin1000.html">gridMargin1000</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="123398913%2FProperties%2F-1500904686" anchor-label="gridMargin1100" id="123398913%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin1100.html"><span>grid</span><wbr><span><span>Margin1100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="123398913%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin1100.html">gridMargin1100</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1405020357%2FProperties%2F-1500904686" anchor-label="gridMargin1700" id="-1405020357%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin1700.html"><span>grid</span><wbr><span><span>Margin1700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1405020357%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin1700.html">gridMargin1700</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-202445570%2FProperties%2F-1500904686" anchor-label="gridMargin2500" id="-202445570%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin2500.html"><span>grid</span><wbr><span><span>Margin2500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-202445570%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin2500.html">gridMargin2500</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1043263942%2FProperties%2F-1500904686" anchor-label="gridMargin300" id="1043263942%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin300.html"><span>grid</span><wbr><span><span>Margin300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1043263942%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin300.html">gridMargin300</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="788527397%2FProperties%2F-1500904686" anchor-label="gridMargin400" id="788527397%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin400.html"><span>grid</span><wbr><span><span>Margin400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="788527397%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin400.html">gridMargin400</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="533790852%2FProperties%2F-1500904686" anchor-label="gridMargin500" id="533790852%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin500.html"><span>grid</span><wbr><span><span>Margin500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="533790852%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin500.html">gridMargin500</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="279054307%2FProperties%2F-1500904686" anchor-label="gridMargin600" id="279054307%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin600.html"><span>grid</span><wbr><span><span>Margin600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="279054307%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin600.html">gridMargin600</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="24317762%2FProperties%2F-1500904686" anchor-label="gridMargin700" id="24317762%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-margin700.html"><span>grid</span><wbr><span><span>Margin700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="24317762%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-margin700.html">gridMargin700</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1096086986%2FProperties%2F-1500904686" anchor-label="gridMaxWidthCompact" id="1096086986%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-max-width-compact.html"><span>grid</span><wbr><span>Max</span><wbr><span>Width</span><wbr><span><span>Compact</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1096086986%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-max-width-compact.html">gridMaxWidthCompact</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">599</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1638797402%2FProperties%2F-1500904686" anchor-label="gridMaxWidthExtraCompact" id="1638797402%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-max-width-extra-compact.html"><span>grid</span><wbr><span>Max</span><wbr><span>Width</span><wbr><span>Extra</span><wbr><span><span>Compact</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1638797402%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-max-width-extra-compact.html">gridMaxWidthExtraCompact</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">389</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-514594792%2FProperties%2F-1500904686" anchor-label="gridMaxWidthMedium" id="-514594792%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-max-width-medium.html"><span>grid</span><wbr><span>Max</span><wbr><span>Width</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-514594792%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-max-width-medium.html">gridMaxWidthMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1200</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1138585188%2FProperties%2F-1500904686" anchor-label="gridMinWidthCompact" id="-1138585188%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-min-width-compact.html"><span>grid</span><wbr><span>Min</span><wbr><span>Width</span><wbr><span><span>Compact</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1138585188%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-min-width-compact.html">gridMinWidthCompact</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">390</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2071787576%2FProperties%2F-1500904686" anchor-label="gridMinWidthExtraCompact" id="-2071787576%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-min-width-extra-compact.html"><span>grid</span><wbr><span>Min</span><wbr><span>Width</span><wbr><span>Extra</span><wbr><span><span>Compact</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2071787576%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-min-width-extra-compact.html">gridMinWidthExtraCompact</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">320</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="660244998%2FProperties%2F-1500904686" anchor-label="gridMinWidthMedium" id="660244998%2FProperties%2F-1500904686" data-filterable-set=":global-raw-tokens/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/main" data-filterable-set=":global-raw-tokens/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-min-width-medium.html"><span>grid</span><wbr><span>Min</span><wbr><span>Width</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="660244998%2FProperties%2F-1500904686"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="grid-min-width-medium.html">gridMinWidthMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">600</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
