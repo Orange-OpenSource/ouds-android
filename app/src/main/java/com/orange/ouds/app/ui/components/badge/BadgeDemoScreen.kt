@@ -29,12 +29,14 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
@@ -64,8 +66,13 @@ fun BadgeDemoScreen() {
 @Composable
 private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
     with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_common_enabled_label),
+            checked = enabled,
+            onCheckedChange = { enabled = it },
+        )
         CustomizationFilterChips(
-            applyTopPadding = false,
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_badge_type_label),
             chipLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
@@ -125,7 +132,8 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                     OudsBadge(
                         modifier = modifier.semantics { this.contentDescription = contentDescription },
                         status = status,
-                        size = size
+                        size = size,
+                        enabled = enabled
                     )
                 }
                 BadgeDemoState.Type.Count -> {
@@ -134,7 +142,8 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                         modifier = modifier.semantics { this.contentDescription = contentDescription },
                         count = count,
                         status = status,
-                        size = size
+                        size = size,
+                        enabled = enabled
                     )
                 }
                 BadgeDemoState.Type.Icon -> {
@@ -142,7 +151,8 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                     OudsBadge(
                         modifier = modifier.semantics { this.contentDescription = contentDescription },
                         status = badgeWithIconStatus,
-                        size = size
+                        size = size,
+                        enabled = enabled
                     )
                 }
             }
@@ -186,6 +196,7 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
             }
 
             typedArgument("size", size)
+            enabledArgument(enabled)
         }
     }
 }
