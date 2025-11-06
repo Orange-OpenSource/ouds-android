@@ -33,16 +33,18 @@ fun rememberBadgeDemoState(
     type: BadgeDemoState.Type = BadgeDemoState.Type.Count,
     size: OudsBadgeSize = OudsBadgeDefaults.Size,
     status: OudsBadgeStatus = OudsBadgeDefaults.Status,
-    count: Int = 1
-) = rememberSaveable(type, size, status, count, saver = BadgeDemoState.Saver) {
-    BadgeDemoState(type, size, status, count)
+    count: Int = 1,
+    enabled: Boolean = true
+) = rememberSaveable(type, size, status, count, enabled, saver = BadgeDemoState.Saver) {
+    BadgeDemoState(type, size, status, count, enabled)
 }
 
 class BadgeDemoState(
     type: Type,
     size: OudsBadgeSize,
     status: OudsBadgeStatus,
-    count: Int
+    count: Int,
+    enabled: Boolean
 ) {
 
     companion object {
@@ -54,7 +56,8 @@ class BadgeDemoState(
                         type,
                         size,
                         status,
-                        count
+                        count,
+                        enabled
                     )
                 }
             },
@@ -63,7 +66,8 @@ class BadgeDemoState(
                     list[0] as Type,
                     list[1] as OudsBadgeSize,
                     list[2] as OudsBadgeStatus,
-                    list[3] as Int
+                    list[3] as Int,
+                    list[4] as Boolean
                 )
             }
         )
@@ -104,6 +108,8 @@ class BadgeDemoState(
         }
 
     var count: Int by mutableIntStateOf(count)
+
+    var enabled: Boolean by mutableStateOf(enabled)
 
     val countTextFieldEnabled: Boolean
         get() = type == Type.Count
