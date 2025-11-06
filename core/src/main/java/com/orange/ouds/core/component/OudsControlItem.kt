@@ -161,7 +161,7 @@ internal fun OudsControlItem(
                 trailingElement?.let { LeadingTrailingBox(trailingElement) }
             }
             if (divider) {
-                OudsHorizontalDivider()
+                OudsHorizontalDivider(color = dividerColor(state = state, error = error))
             }
         }
     }
@@ -282,19 +282,31 @@ private fun backgroundColor(state: OudsControlItemState): Color {
 }
 
 @Composable
+private fun dividerColor(state: OudsControlItemState, error: OudsError?) =
+    if (error != null) {
+        errorColor(state = state)
+    } else {
+        OudsTheme.colorScheme.border.default
+    }
+
+@Composable
 private fun labelColor(state: OudsControlItemState, error: OudsError?) =
     if (error != null) {
-        with(OudsTheme.colorScheme.action.negative) {
-            when (state) {
-                OudsControlItemState.Enabled -> enabled
-                OudsControlItemState.Hovered -> hover
-                OudsControlItemState.Pressed -> pressed
-                OudsControlItemState.Focused -> focus
-                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
-            }
-        }
+        errorColor(state = state)
     } else {
         if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+    }
+
+@Composable
+private fun errorColor(state: OudsControlItemState) =
+    with(OudsTheme.colorScheme.action.negative) {
+        when (state) {
+            OudsControlItemState.Enabled -> enabled
+            OudsControlItemState.Hovered -> hover
+            OudsControlItemState.Pressed -> pressed
+            OudsControlItemState.Focused -> focus
+            OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
+        }
     }
 
 @Composable

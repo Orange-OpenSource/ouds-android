@@ -54,7 +54,7 @@ fun OudsHorizontalDivider(
     modifier: Modifier = Modifier,
     color: OudsDividerColor = OudsDividerDefaults.Color
 ) {
-    HorizontalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
+    OudsHorizontalDivider(color = color.value, modifier = modifier)
 }
 
 /**
@@ -81,6 +81,14 @@ fun OudsVerticalDivider(
     color: OudsDividerColor = OudsDividerDefaults.Color
 ) {
     VerticalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
+}
+
+@Composable
+internal fun OudsHorizontalDivider(
+    color: Color,
+    modifier: Modifier = Modifier,
+) {
+    HorizontalDivider(modifier = modifier, color = color, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
 }
 
 /**
