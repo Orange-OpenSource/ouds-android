@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import android.os.Build
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -92,9 +93,9 @@ val OudsNavigationBarHeight = 80.dp
  *
  * OudsNavigationBar should contain three to five [OudsNavigationBarItem], each representing a singular destination.
  *
- * OudsNavigationBar default appearance is opaque but, if you need a **translucent blurred navigation bar** as specified on OUDS design side, you can implement
- * it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use OudsNavigationBar with [translucent] set to true
- * and follow these steps:
+ * OudsNavigationBar default appearance is opaque but, if you need a **translucent blurred navigation bar** (supported from Android 13) as specified on OUDS design
+ * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use OudsNavigationBar with
+ * [translucent] parameter set to true and follow these steps:
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
@@ -130,7 +131,7 @@ fun OudsNavigationBar(
                         strokeWidth = 1.dp.toPx()
                     )
                 },
-            containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
+            containerColor = if (translucent && Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) colorBgTranslucent.value else colorBgOpaque.value,
             contentColor = colorContentUnselectedEnabled.value,
             windowInsets = windowInsets,
             content = content
