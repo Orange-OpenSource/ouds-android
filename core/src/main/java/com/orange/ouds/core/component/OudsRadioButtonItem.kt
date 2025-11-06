@@ -30,11 +30,15 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
@@ -49,7 +53,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.3.0
  *
  * @see [OudsRadioButton] If you want to use a standalone radio button.
  *
@@ -68,7 +72,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  * will not be clickable.
  * @param readOnly Controls the read only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
  * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the radio button item will be displayed in disabled state.
- * @param error Controls the error state of the radio button item.
+ * @param error Optional [OudsError] to provide in the case of the radio button item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's radio button. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -82,13 +86,13 @@ fun OudsRadioButtonItem(
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
     helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
-    divider: Boolean = true,
+    icon: OudsControlItemIcon? = null,
+    divider: Boolean = false,
     outlined: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -119,16 +123,16 @@ fun OudsRadioButtonItem(
         enabled = enabled,
         readOnly = readOnly,
         error = error,
-        errorComponentName = "OudsRadioButtonItem",
         indicator = {
             OudsRadioButtonIndicator(
                 state = state.toControlState(),
                 selected = selected,
-                error = error
+                error = error != null
             )
         },
-        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
-        checkedContentPreviewStatus = if (selected) "Selected" else "Unselected",
+        indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.End else OudsControlItemIndicatorPosition.Start,
+        checkedContentComponentName = "OudsRadioButtonItem",
+        checkedContentSelectionStatus = if (selected) "Selected" else "Unselected",
         modifier = modifier
             .then(selectableModifier)
             .background(color = backgroundColor.value)
@@ -139,36 +143,37 @@ fun OudsRadioButtonItem(
 }
 
 @Composable
-private fun Modifier.border(outlined: Boolean, selected: Boolean, error: Boolean, state: OudsControlItem.State): Modifier {
+private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlItemState): Modifier {
     val borderColor = outlineBorderColor(state, selected, error)
-
-    return if (outlined && borderColor != null) {
-        border(width = OudsTheme.borders.width.default, color = borderColor)
+    val width = OudsTheme.borders.width.default.takeUnlessHairline
+    
+    return if (outlined && borderColor != null && width != null) {
+        border(width = width, color = borderColor)
     } else {
         this
     }
 }
 
 @Composable
-private fun outlineBorderColor(state: OudsControlItem.State, selected: Boolean, error: Boolean): Color? {
-    return if (error) {
+private fun outlineBorderColor(state: OudsControlItemState, selected: Boolean, error: OudsError?): Color? {
+    return if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
-                OudsControlItem.State.Enabled -> if (selected) enabled else null
-                OudsControlItem.State.Hovered -> hover
-                OudsControlItem.State.Pressed -> pressed
-                OudsControlItem.State.Focused -> null
-                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
+                OudsControlItemState.Enabled -> if (selected) enabled else null
+                OudsControlItemState.Hovered -> hover
+                OudsControlItemState.Pressed -> pressed
+                OudsControlItemState.Focused -> null
+                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
             }
         }
     } else {
         with(OudsTheme.colorScheme.action) {
             when (state) {
-                OudsControlItem.State.Enabled -> if (selected) this.selected else null
-                OudsControlItem.State.Hovered -> hover
-                OudsControlItem.State.Pressed -> pressed
-                OudsControlItem.State.Focused -> null
-                OudsControlItem.State.Disabled, OudsControlItem.State.ReadOnly -> if (selected) disabled else null
+                OudsControlItemState.Enabled -> if (selected) this.selected else null
+                OudsControlItemState.Hovered -> hover
+                OudsControlItemState.Pressed -> pressed
+                OudsControlItemState.Focused -> null
+                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> if (selected) disabled else null
             }
         }
     }
@@ -178,16 +183,17 @@ private fun outlineBorderColor(state: OudsControlItem.State, selected: Boolean, 
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsRadioButtonItem(@PreviewParameter(OudsRadioButtonItemPreviewParameterProvider::class) parameter: OudsRadioButtonItemPreviewParameter) {
-    PreviewOudsRadioButtonItem(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsRadioButtonItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
 internal fun PreviewOudsRadioButtonItem(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsRadioButtonItemPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -198,7 +204,7 @@ internal fun PreviewOudsRadioButtonItem(
                 error = error,
                 outlined = checkNotNull(extraParameter),
                 reversed = reversed,
-                icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null
+                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null
             )
         }
     }
@@ -208,16 +214,21 @@ internal fun PreviewOudsRadioButtonItem(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsRadioButtonItemHighContrastModeEnabled(@PreviewParameter(OudsRadioButtonItemHighContrastModePreviewParameterProvider::class) parameter: OudsRadioButtonItemHighContrastModePreviewParameter) {
-    PreviewOudsRadioButtonItemHighContrastModeEnabled(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsRadioButtonItemHighContrastModeEnabled(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        parameter = parameter
+    )
 }
 
 @Composable
 internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -228,17 +239,20 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     }
 }
 
-
 @Preview
 @Composable
-internal fun PreviewOudsRadioButtonItemWithLongHelperText() = OudsPreview {
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsRadioButtonItemWithLongHelperText() = PreviewOudsRadioButtonItemWithLongHelperText(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsRadioButtonItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsRadioButtonItem(
         selected = true,
         label = "Label",
         onClick = {},
         additionalLabel = "Additional label",
         helperText = LoremIpsumText,
-        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }
 

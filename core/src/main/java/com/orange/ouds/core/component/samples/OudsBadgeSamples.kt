@@ -25,33 +25,56 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsBadge
+import com.orange.ouds.core.component.OudsBadgeIcon
+import com.orange.ouds.core.component.OudsBadgeSize
+import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsBadgeSample() {
     OudsBadge(
-        status = OudsBadge.Status.Info,
-        size = OudsBadge.Size.Small
+        modifier = Modifier.semantics {
+            contentDescription = "Information"
+        },
+        status = OudsBadgeStatus.Info,
+        size = OudsBadgeSize.Small
     )
 }
 
 @Composable
 internal fun OudsBadgeWithCountSample() {
+    val count = 10
     OudsBadge(
-        status = OudsBadge.Status.Info,
-        count = 10
+        modifier = Modifier.semantics {
+            contentDescription = "$count unread emails"
+        },
+        status = OudsBadgeStatus.Info,
+        count = count
     )
 }
 
 @Composable
-internal fun OudsBadgeWithIconSample() {
+internal fun OudsBadgeWithDefaultIconSample() {
     OudsBadge(
-        icon = OudsBadge.Icon(
-            imageVector = Icons.Filled.FavoriteBorder,
-            contentDescription = "Content description"
+        modifier = Modifier.semantics {
+            contentDescription = "Information"
+        },
+        status = OudsIconBadgeStatus.Info,
+        size = OudsBadgeSize.Large
+    )
+}
+
+@Composable
+internal fun OudsBadgeWithCustomIconSample() {
+    OudsBadge(
+        modifier = Modifier.semantics {
+            contentDescription = "Favorite"
+        },
+        status = OudsIconBadgeStatus.Accent(
+            OudsBadgeIcon(imageVector = Icons.Filled.FavoriteBorder)
         ),
-        status = OudsBadge.Status.Info,
-        size = OudsBadge.Size.Large
+        size = OudsBadgeSize.Large
     )
 }
 
@@ -68,7 +91,7 @@ internal fun OudsBadgeWithCountInNavigationBarItemSample() {
                                 contentDescription = "$count new notifications"
                             },
                             count = count,
-                            status = OudsBadge.Status.Accent
+                            status = OudsBadgeStatus.Accent
                         )
                     }
                 ) {
@@ -98,8 +121,14 @@ private fun PreviewOudsBadgeWithCountSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsBadgeWithIconSample() = OudsPreview {
-    OudsBadgeWithIconSample()
+private fun PreviewOudsBadgeWithDefaultIconSample() = OudsPreview {
+    OudsBadgeWithDefaultIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsBadgeWithCustomIconSample() = OudsPreview {
+    OudsBadgeWithCustomIconSample()
 }
 
 @PreviewLightDark

@@ -14,7 +14,6 @@ package com.orange.ouds.app.ui.components.radiobutton
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,9 +29,9 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.core.component.OudsControlItem
+import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsRadioButtonItem
-import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -54,14 +53,13 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
         val extraCustomizations = listOf(
             controlItemCustomization(2) {
                 CustomizationSwitchItem(
-                    label = stringResource(R.string.app_components_radioButton_radioButtonItem_outlined_label),
+                    label = stringResource(R.string.app_components_common_outlined_label),
                     checked = outlined,
                     onCheckedChange = { outlined = it },
                 )
             },
             controlItemCustomization(8) {
                 CustomizationTextField(
-                    modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
                     label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
                     value = additionalLabel.orEmpty(),
                     onValueChange = { value -> additionalLabel = value }
@@ -83,13 +81,13 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     label = label,
                     additionalLabel = additionalLabel,
                     helperText = helperText,
-                    icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
                     divider = divider,
                     outlined = outlined,
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = error
+                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
                 )
             }
         }

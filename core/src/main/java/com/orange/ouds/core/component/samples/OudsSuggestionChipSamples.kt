@@ -16,7 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.orange.ouds.core.component.OudsChip
+import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.component.OudsSuggestionChip
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -32,7 +32,7 @@ internal fun OudsSuggestionChipTextOnlySample() {
 internal fun OudsSuggestionChipIconOnlySample() {
     OudsSuggestionChip(
         onClick = { /* Do something! */ },
-        icon = OudsChip.Icon(
+        icon = OudsChipIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         )
@@ -44,7 +44,7 @@ internal fun OudsSuggestionChipTextAndIconSample() {
     OudsSuggestionChip(
         onClick = { /* Do something! */ },
         label = "Label",
-        icon = OudsChip.Icon(
+        icon = OudsChipIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = ""
         )

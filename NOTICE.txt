@@ -19,6 +19,7 @@ app/src/main/res/drawable/ic_component_atom.xml
 app/src/main/res/drawable/ic_copy.xml
 app/src/main/res/drawable/ic_design_token_figma.xml
 app/src/main/res/drawable/ic_dimension.xml
+app/src/main/res/drawable/ic_filters.xml
 app/src/main/res/drawable/ic_filter_effects.xml
 app/src/main/res/drawable/ic_heart.xml
 app/src/main/res/drawable/ic_info.xml
@@ -67,24 +68,73 @@ app/src/prod/res/drawable/ic_launcher_foreground.xml
 docs/assets/banner.png
 docs/assets/logo-icon.svg
 
-theme-contract/src/main/res/drawable/ic_checkbox_indeterminate.xml
-theme-contract/src/main/res/drawable/ic_checkbox_selected.xml
-theme-contract/src/main/res/drawable/ic_chevron_left.xml
-theme-contract/src/main/res/drawable/ic_radio_button_selected.xml
-theme-contract/src/main/res/drawable/ic_switch_selected.xml
-theme-contract/src/main/res/drawable/ic_tag_bullet.xml
-theme-contract/src/main/res/drawable/ic_tick.xml
+theme-orange/src/main/res/drawable/ic_orange_alert_important.xml
+theme-orange/src/main/res/drawable/ic_orange_alert_information.xml
+theme-orange/src/main/res/drawable/ic_orange_alert_success.xml
+theme-orange/src/main/res/drawable/ic_orange_alert_warning_external_shape.xml
+theme-orange/src/main/res/drawable/ic_orange_alert_warning_internal_shape.xml
+theme-orange/src/main/res/drawable/ic_orange_checkbox_indeterminate.xml
+theme-orange/src/main/res/drawable/ic_orange_checkbox_selected.xml
+theme-orange/src/main/res/drawable/ic_orange_chip_tick.xml
+theme-orange/src/main/res/drawable/ic_orange_link_next.xml
+theme-orange/src/main/res/drawable/ic_orange_link_previous.xml
+theme-orange/src/main/res/drawable/ic_orange_radio_button_selected.xml
+theme-orange/src/main/res/drawable/ic_orange_switch_selected.xml
+theme-orange/src/main/res/drawable/ic_orange_tag_close.xml
 
-theme-sosh/src/main/res/drawable/sosh_checkbox_indeterminate.xml
-theme-sosh/src/main/res/drawable/sosh_checkbox_selected.xml
-theme-sosh/src/main/res/drawable/sosh_chevron_left.xml
-theme-sosh/src/main/res/drawable/sosh_radio_button_selected.xml
-theme-sosh/src/main/res/drawable/sosh_switch_selected.xml
-theme-sosh/src/main/res/drawable/sosh_tick.xml
+theme-sosh/src/main/res/drawable/ic_sosh_alert_important.xml
+theme-sosh/src/main/res/drawable/ic_sosh_alert_information.xml
+theme-sosh/src/main/res/drawable/ic_sosh_alert_success.xml
+theme-sosh/src/main/res/drawable/ic_sosh_alert_warning_external_shape.xml
+theme-sosh/src/main/res/drawable/ic_sosh_alert_warning_internal_shape.xml
+theme-sosh/src/main/res/drawable/ic_sosh_checkbox_indeterminate.xml
+theme-sosh/src/main/res/drawable/ic_sosh_checkbox_selected.xml
+theme-sosh/src/main/res/drawable/ic_sosh_chip_tick.xml
+theme-sosh/src/main/res/drawable/ic_sosh_link_next.xml
+theme-sosh/src/main/res/drawable/ic_sosh_link_previous.xml
+theme-sosh/src/main/res/drawable/ic_sosh_radio_button_selected.xml
+theme-sosh/src/main/res/drawable/ic_sosh_switch_selected.xml
+theme-sosh/src/main/res/drawable/ic_sosh_tag_close.xml
 theme-sosh/src/main/res/font/sosh_black.ttf
 theme-sosh/src/main/res/font/sosh_bold.ttf
 theme-sosh/src/main/res/font/sosh_medium.ttf
 theme-sosh/src/main/res/font/sosh_regular.ttf
 theme-sosh/src/main/res/font/sosh_thin.ttf
 
+theme-wireframe/src/main/res/drawable/ic_wireframe_alert_important.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_alert_information.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_alert_success.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_alert_warning_external_shape.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_alert_warning_internal_shape.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_checkbox_indeterminate.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_checkbox_selected.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_chip_tick.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_link_next.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_link_previous.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_radio_button_selected.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_switch_selected.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_tag_close.xml
+
 End of the parts list under Orange SA Copyright
+
+===========================================================================
+
+Parts list under The Shantell Sans Project Authors Copyright (https://github.com/arrowtype/shantell-sans)
+Copyright 2022 The Shantell Sans Project Authors
+
+The following font files are licensed under the SIL Open Font License, Version 1.1
+
+theme-wireframe/src/main/res/font/shantellsans_bold.ttf
+theme-wireframe/src/main/res/font/shantellsans_bolditalic.ttf
+theme-wireframe/src/main/res/font/shantellsans_extrabold.ttf
+theme-wireframe/src/main/res/font/shantellsans_extrabolditalic.ttf
+theme-wireframe/src/main/res/font/shantellsans_italic.ttf
+theme-wireframe/src/main/res/font/shantellsans_light.ttf
+theme-wireframe/src/main/res/font/shantellsans_lightitalic.ttf
+theme-wireframe/src/main/res/font/shantellsans_medium.ttf
+theme-wireframe/src/main/res/font/shantellsans_mediumitalic.ttf
+theme-wireframe/src/main/res/font/shantellsans_regular.ttf
+theme-wireframe/src/main/res/font/shantellsans_semibold.ttf
+theme-wireframe/src/main/res/font/shantellsans_semibolditalic.ttf
+
+End of the parts list under The Shantell Sans Project Authors Copyright

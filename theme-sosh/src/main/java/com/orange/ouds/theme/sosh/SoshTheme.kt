@@ -17,8 +17,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.sosh.tokens.components.SoshComponentsTokens
-import com.orange.ouds.theme.sosh.tokens.material.SoshMaterialColorTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshBorderSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshColorSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshElevationSemanticTokens
@@ -28,7 +28,6 @@ import com.orange.ouds.theme.sosh.tokens.semantic.SoshOpacitySemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshSizeSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshSpaceSemanticTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
@@ -47,6 +46,9 @@ class SoshTheme : OudsThemeContract {
     override val name: String
         get() = SOSH_THEME_NAME
 
+    override val settings: OudsThemeSettings
+        get() = OudsThemeSettings(roundedCornerButtons = null, roundedCornerTextInputs = null)
+
     override val fontFamily: FontFamily
         get() = FontFamily(
             Font(R.font.sosh_black, weight = FontWeight.Black),
@@ -55,9 +57,6 @@ class SoshTheme : OudsThemeContract {
             Font(R.font.sosh_regular, weight = FontWeight.Normal),
             Font(R.font.sosh_thin, weight = FontWeight.Thin)
         )
-
-    override val materialColorTokens: OudsMaterialColorTokens
-        get() = SoshMaterialColorTokens()
 
     override val colorTokens: OudsColorSemanticTokens
         get() = SoshColorSemanticTokens()

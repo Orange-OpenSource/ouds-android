@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 
@@ -53,7 +54,7 @@ private fun ComponentDemoBox(modifier: Modifier = Modifier, colored: Boolean = f
     if (colored) {
         OudsColoredBox(
             modifier = modifier,
-            color = OudsColoredBox.Color.BrandPrimary,
+            color = OudsColoredBoxColor.BrandPrimary,
             contentAlignment = contentAlignment,
             content = content
         )

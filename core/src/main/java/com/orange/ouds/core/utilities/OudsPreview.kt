@@ -31,11 +31,12 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.orange.ouds.core.BuildConfig
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.OudsThemeDefaults
+import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
+import com.orange.ouds.theme.orange.OrangeTheme
 import kotlin.enums.enumEntries
 
 private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
@@ -44,8 +45,8 @@ private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
  * Configures the Compose OUDS preview environment in Android Studio.
  *
  * @param modifier The modifier for the preview content.
+ * @param theme The preview theme.
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
- * @param themeSettings The theme settings for the preview.
  * @param highContrastModeEnabled Indicates whether the high contrast mode is enabled for the preview.
  * @param content The content of the preview.
  *
@@ -54,8 +55,8 @@ private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 @Composable
 fun OudsPreview(
     modifier: Modifier = Modifier,
+    theme: OudsThemeContract = getPreviewTheme(),
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
-    themeSettings: OudsTheme.Settings = OudsThemeDefaults.Settings,
     highContrastModeEnabled: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -66,10 +67,10 @@ fun OudsPreview(
     }
     CompositionLocalProvider(value = LocalConfiguration provides configuration) {
         OudsTheme(
-            themeContract = BuildConfig.PREVIEW_THEME,
-            darkThemeEnabled = darkThemeEnabled,
-            settings = themeSettings
+            theme = theme,
+            darkThemeEnabled = darkThemeEnabled
         ) {
+            // Override theme settings
             // Add a box to be able to see components
             // Use a box instead of a surface to avoid clipping children in cases where something is drawn outside of the component to preview
             Box(
@@ -85,10 +86,54 @@ fun OudsPreview(
     }
 }
 
+internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (OudsThemeSettings)): OudsThemeContract {
+    return object : OudsThemeContract by this {
+        override val settings = transform(this@mapSettings.settings)
+    }
+}
+
+internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme()
+
 @Composable
-internal fun <T> getPreviewEnumEntry(): T? {
-    @Suppress("UNCHECKED_CAST")
+internal inline fun <reified T> getPreviewEnumEntry(): T? {
     return LocalPreviewEnumEntry.current as? T
+}
+
+@Composable
+internal fun <T, S> PreviewGrid(
+    columns: List<T>,
+    rows: List<S>,
+    columnTitle: (T) -> String,
+    rowTitle: (S) -> String,
+    content: @Composable (T, S) -> Unit
+) {
+    val space = 16.dp
+    val columnCount = columns.count()
+    val rowCount = rows.count()
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(1 + columnCount),
+        contentPadding = PaddingValues(all = space),
+        horizontalArrangement = Arrangement.spacedBy(space),
+        verticalArrangement = Arrangement.spacedBy(space)
+    ) {
+        repeat(1 + rowCount) { rowIndex ->
+            repeat(1 + columnCount) { columnIndex ->
+                val row = rows.getOrNull(rowIndex - 1)
+                val column = columns.getOrNull(columnIndex - 1)
+                item {
+                    when {
+                        row == null && column != null -> DimensionTitle(columnTitle(column))
+                        row != null && column == null -> DimensionTitle(rowTitle(row))
+                        row != null && column != null -> {
+                            Box {
+                                content(column, row)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable
@@ -104,9 +149,9 @@ internal inline fun <reified T> PreviewEnumEntries(
                 val columnEnumEntries = chunkedEnumEntries.mapNotNull { it.getOrNull(columnIndex) }
                 Column {
                     columnEnumEntries.forEachIndexed { rowIndex, enumEntry ->
-                        EnumEntryName(
+                        DimensionTitle(
                             modifier = Modifier.padding(top = if (rowIndex == 0) 0.dp else space, bottom = 8.dp),
-                            enumEntry = enumEntry
+                            title = enumEntry.name
                         )
                         CompositionLocalProvider(LocalPreviewEnumEntry provides enumEntry) {
                             content(enumEntry)
@@ -119,41 +164,21 @@ internal inline fun <reified T> PreviewEnumEntries(
 }
 
 @Composable
-internal inline fun <reified T, reified S> PreviewEnumEntries(crossinline content: @Composable (T, S) -> Unit) where T : Enum<T>, S : Enum<S> {
-    val space = 16.dp
-    val columnCount = enumEntries<T>().count()
-    val rowCount = enumEntries<S>().count()
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(1 + columnCount),
-        contentPadding = PaddingValues(all = space),
-        horizontalArrangement = Arrangement.spacedBy(space),
-        verticalArrangement = Arrangement.spacedBy(space)
-    ) {
-        repeat(1 + rowCount) { rowIndex ->
-            repeat(1 + columnCount) { columnIndex ->
-                val rowEnumEntry = enumEntries<S>().getOrNull(rowIndex - 1)
-                val columnEnumEntry = enumEntries<T>().getOrNull(columnIndex - 1)
-                item {
-                    when {
-                        rowEnumEntry == null && columnEnumEntry != null -> EnumEntryName(columnEnumEntry)
-                        rowEnumEntry != null && columnEnumEntry == null -> EnumEntryName(rowEnumEntry)
-                        rowEnumEntry != null && columnEnumEntry != null -> {
-                            Box {
-                                content(columnEnumEntry, rowEnumEntry)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+internal inline fun <reified T, reified S> PreviewEnumEntries(noinline content: @Composable (T, S) -> Unit) where T : Enum<T>, S : Enum<S> {
+    PreviewGrid(
+        columns = enumEntries<T>(),
+        rows = enumEntries<S>(),
+        columnTitle = { it.name },
+        rowTitle = { it.name },
+        content = content
+    )
 }
 
 @Composable
-private fun <T> EnumEntryName(enumEntry: T, modifier: Modifier = Modifier) where T : Enum<T> {
+private fun <T> DimensionTitle(title: String, modifier: Modifier = Modifier) where T : Enum<T> {
     Text(
         modifier = modifier,
-        text = enumEntry.name,
+        text = title,
         color = OudsTheme.colorScheme.content.default,
         fontFamily = FontFamily.Monospace,
         fontSize = 10.sp

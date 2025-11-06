@@ -19,6 +19,7 @@ import com.orange.ouds.app.ui.navigation.AppNavigationState
 
 class TopBarState(
     private val navigationState: AppNavigationState,
+    private val themeState: ThemeState
 ) {
 
     val showNavigationIcon: Boolean
@@ -27,10 +28,13 @@ class TopBarState(
     val title: String
         @Composable get() = navigationState.currentScreen?.title?.let { stringResource(it) }.orEmpty()
 
-    val actions = listOf(TopBarAction.ChangeTheme, TopBarAction.ChangeMode)
+    val actions: List<TopBarAction>
+        get() = TopBarAction.entries.filter { action ->
+            action != TopBarAction.ChangeThemeSettings || ChangeThemeSettingsDialog.isAvailable(themeState.currentTheme)
+        }
 }
 
 @Composable
-fun rememberTopBarState(navigationState: AppNavigationState) = remember(navigationState) {
-    TopBarState(navigationState)
+fun rememberTopBarState(navigationState: AppNavigationState, themeState: ThemeState) = remember(navigationState) {
+    TopBarState(navigationState, themeState)
 }

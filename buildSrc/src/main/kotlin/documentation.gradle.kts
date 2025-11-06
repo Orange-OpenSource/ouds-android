@@ -46,7 +46,8 @@ tasks.register<DefaultTask>("prepareDocumentation") {
             "global-raw-tokens",
             "theme-contract",
             "theme-orange",
-            "theme-sosh"
+            "theme-sosh",
+            "theme-wireframe"
         )
         moduleDocumentationDirectories.forEach { moduleDocumentationDirectory ->
             val moduleDocumentationWriter = PrintWriter(FileOutputStream("$moduleDocumentationDirectory/Module.md"))

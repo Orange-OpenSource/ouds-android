@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -29,23 +30,29 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoStateDefaults
 import com.orange.ouds.app.ui.utilities.composable.Illustration
 import com.orange.ouds.core.component.OudsBadge
+import com.orange.ouds.core.component.OudsBadgeSize
+import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
+import com.orange.ouds.core.component.OudsLinkArrow
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
+import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 
 @Composable
 fun BadgeIllustration() = ComponentIllustration {
     OudsBadge(
         count = 1,
-        status = OudsBadge.Status.Negative,
-        size = OudsBadge.Size.Large
+        status = OudsBadgeStatus.Negative,
+        size = OudsBadgeSize.Large
     )
 }
 
@@ -56,12 +63,12 @@ fun ButtonIllustration() = ComponentIllustration {
         OudsButton(
             label = label,
             onClick = {},
-            hierarchy = if (isOudsInDarkTheme()) OudsButton.Hierarchy.Default else OudsButton.Hierarchy.Strong
+            appearance = if (isOudsInDarkTheme()) OudsButtonAppearance.Default else OudsButtonAppearance.Strong
         )
         OudsButton(
             label = label,
             onClick = {},
-            hierarchy = if (isOudsInDarkTheme()) OudsButton.Hierarchy.Strong else OudsButton.Hierarchy.Default
+            appearance = if (isOudsInDarkTheme()) OudsButtonAppearance.Strong else OudsButtonAppearance.Default
         )
     }
 }
@@ -115,7 +122,7 @@ fun DividerIllustration() = ComponentIllustration {
 fun LinkIllustration() = ComponentIllustration {
     OudsLink(
         label = stringResource(id = R.string.app_components_common_label_label),
-        arrow = OudsLink.Arrow.Next,
+        arrow = OudsLinkArrow.Next,
         onClick = {}
     )
 }
@@ -150,7 +157,17 @@ fun SwitchIllustration() = ComponentIllustration {
 
 @Composable
 fun TagIllustration() = ComponentIllustration {
-    OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTag.Status.Positive)
+    OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTagStatus.Positive())
+}
+
+@Composable
+fun TextInputIllustration() = ComponentIllustration {
+    OudsTextInput(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        textFieldState = rememberTextFieldState(),
+        label = stringResource(id = R.string.app_components_common_label_label),
+        helperText = stringResource(id = R.string.app_components_textInputHelperText_label)
+    )
 }
 
 @Composable

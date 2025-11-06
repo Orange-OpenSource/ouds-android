@@ -85,13 +85,7 @@ sealed class TokenProperty<T>(
         tokens = getTokens<OudsColorScheme.Content>(),
         categoryClass = TokenCategory.Color::class
     )
-
-    data object ColorDecorative : TokenProperty<TokenCategory.Color>(
-        nameRes = R.string.app_tokens_color_decorative_label,
-        tokens = getTokens<OudsColorScheme.Decorative>(),
-        categoryClass = TokenCategory.Color::class
-    )
-
+    
     data object ColorOverlay : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_overlay_label,
         tokens = getTokens<OudsColorScheme.Overlay>(),

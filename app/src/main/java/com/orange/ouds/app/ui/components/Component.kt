@@ -16,7 +16,6 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.ThemeState
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
@@ -30,7 +29,9 @@ import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
+import com.orange.ouds.app.ui.components.tag.InputTagDemoScreen
 import com.orange.ouds.app.ui.components.tag.TagDemoScreen
+import com.orange.ouds.app.ui.components.textinput.TextInputDemoScreen
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -41,7 +42,7 @@ sealed class Component(
     @StringRes val descriptionRes: Int,
     val illustration: @Composable () -> Unit,
     val variants: List<Variant> = emptyList(),
-    val demoScreen: (@Composable (ThemeState) -> Unit)? = null
+    val demoScreen: (@Composable () -> Unit)? = null
 ) {
 
     companion object {
@@ -61,7 +62,7 @@ sealed class Component(
         R.string.app_components_button_label,
         R.string.app_components_button_description_text,
         { ButtonIllustration() },
-        demoScreen = { ButtonDemoScreen(it) }
+        demoScreen = { ButtonDemoScreen() }
     )
 
     data object Checkbox : Component(
@@ -117,7 +118,14 @@ sealed class Component(
         R.string.app_components_tag_label,
         R.string.app_components_tag_description_text,
         { TagIllustration() },
-        demoScreen = { TagDemoScreen() }
+        listOf(Variant.Tag, Variant.InputTag)
+    )
+
+    data object TextInput : Component(
+        R.string.app_components_textInput_label,
+        R.string.app_components_textInput_description_text,
+        { TextInputIllustration() },
+        demoScreen = { TextInputDemoScreen() }
     )
 }
 
@@ -154,4 +162,9 @@ sealed class Variant(
     // Switch
     data object Switch : Variant(R.string.app_components_switch_switch_label, { SwitchDemoScreen() })
     data object SwitchItem : Variant(R.string.app_components_switch_switchItem_label, { SwitchItemDemoScreen() })
+
+    // Tag
+    data object Tag : Variant(R.string.app_components_tag_tag_label, { TagDemoScreen() })
+    data object InputTag : Variant(R.string.app_components_tag_inputTag_label, { InputTagDemoScreen() })
+
 }

@@ -28,10 +28,13 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
@@ -48,7 +51,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.4.0
  *
  * @see [OudsSwitch] If you want to use a standalone switch.
  *
@@ -65,7 +68,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  * will not be clickable.
  * @param readOnly Controls the read only state of the switch item. When `true` the item's switch is disabled but the texts and the icon remain in
  * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the switch item will be displayed in disabled state.
- * @param error Controls the error state of the switch item.
+ * @param error Optional [OudsError] to provide in the case of the switch item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's switch. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -78,12 +81,12 @@ fun OudsSwitchItem(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
-    divider: Boolean = true,
+    icon: OudsControlItemIcon? = null,
+    divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -113,15 +116,15 @@ fun OudsSwitchItem(
         enabled = enabled,
         readOnly = readOnly,
         error = error,
-        errorComponentName = "OudsSwitchItem",
         indicator = {
             OudsSwitchIndicator(
                 state = state.toControlState(),
                 checked = checked
             )
         },
-        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.Start else OudsControlItem.IndicatorPosition.End,
-        checkedContentPreviewStatus = if (checked) "Selected" else "Unselected",
+        indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.Start else OudsControlItemIndicatorPosition.End,
+        checkedContentComponentName = "OudsSwitchItem",
+        checkedContentSelectionStatus = if (checked) "Selected" else "Unselected",
         modifier = modifier
             .then(toggleableModifier)
             .background(color = backgroundColor.value)
@@ -133,22 +136,23 @@ fun OudsSwitchItem(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitchItem(@PreviewParameter(OudsSwitchItemPreviewParameterProvider::class) parameter: OudsSwitchItemPreviewParameter) {
-    PreviewOudsSwitchItem(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsSwitchItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
 internal fun PreviewOudsSwitchItem(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsSwitchItemPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",
                 onCheckedChange = {},
                 helperText = helperText,
-                icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null,
+                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null,
                 divider = divider,
                 reversed = reversed,
                 error = error,
@@ -160,13 +164,17 @@ internal fun PreviewOudsSwitchItem(
 
 @Preview
 @Composable
-internal fun PreviewOudsSwitchItemWithLongHelperText() = OudsPreview {
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSwitchItemWithLongHelperText() = PreviewOudsSwitchItemWithLongHelperText(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsSwitchItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsSwitchItem(
         checked = true,
         label = "Label",
         onCheckedChange = {},
         helperText = LoremIpsumText,
-        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }
 

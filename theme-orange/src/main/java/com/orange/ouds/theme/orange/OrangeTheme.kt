@@ -12,9 +12,10 @@
 
 package com.orange.ouds.theme.orange
 
+import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.tokens.components.OrangeComponentsTokens
-import com.orange.ouds.theme.orange.tokens.material.OrangeMaterialColorTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeBorderSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeColorSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeElevationSemanticTokens
@@ -24,7 +25,6 @@ import com.orange.ouds.theme.orange.tokens.semantic.OrangeOpacitySemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeSizeSemanticTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeSpaceSemanticTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
@@ -38,13 +38,16 @@ import kotlinx.parcelize.Parcelize
 const val ORANGE_THEME_NAME = "Orange"
 
 @Parcelize
-open class OrangeTheme : OudsThemeContract {
+open class OrangeTheme(
+    private val roundedCornerButtons: Boolean = false,
+    private val roundedCornerTextInputs: Boolean = false
+) : OudsThemeContract {
 
     override val name: String
         get() = ORANGE_THEME_NAME
 
-    override val materialColorTokens: OudsMaterialColorTokens
-        get() = OrangeMaterialColorTokens()
+    override val settings: OudsThemeSettings
+        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs)
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeColorSemanticTokens()
@@ -72,4 +75,7 @@ open class OrangeTheme : OudsThemeContract {
 
     override val componentsTokens: OudsComponentsTokens
         get() = OrangeComponentsTokens()
+
+    override val drawableResources: OudsDrawableResources
+        get() = OrangeDrawableResources()
 }

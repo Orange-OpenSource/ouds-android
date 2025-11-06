@@ -28,6 +28,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsRadioButton
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -76,7 +77,7 @@ private fun RadioButtonDemoContent(state: RadioButtonDemoState) {
                     selected = value == selectedValue,
                     onClick = { selectedValue = value },
                     enabled = enabled,
-                    error = error
+                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
                 )
             }
         }

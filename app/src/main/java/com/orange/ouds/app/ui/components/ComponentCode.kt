@@ -16,13 +16,13 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
-import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.component.OudsColoredBoxColor
 
 fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() -> Unit) {
     if (onColoredBox) {
-        functionCall(OudsColoredBox::class.simpleName.orEmpty()) {
+        functionCall("OudsColoredBox") {
             trailingLambda = true
-            typedArgument(Argument.Color, OudsColoredBox.Color.BrandPrimary)
+            typedArgument(Argument.Color, OudsColoredBoxColor.BrandPrimary)
             lambdaArgument(Argument.Content, content)
         }
     } else {

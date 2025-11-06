@@ -23,7 +23,9 @@ enum class Component {
     Divider,
     Link,
     RadioButton,
-    Switch;
+    Switch,
+    Tag,
+    TextInput;
 
     val version: String
         get() = with(OudsVersion.Component) {
@@ -36,6 +38,8 @@ enum class Component {
                 Component.Link -> Link
                 Component.RadioButton -> RadioButton
                 Component.Switch -> Switch
+                Component.Tag -> Tag
+                Component.TextInput -> TextInput
             }
         }
 
@@ -49,6 +53,8 @@ enum class Component {
             Component.Link -> listOf("OudsLink")
             Component.RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
             Component.Switch -> listOf("OudsSwitch", "OudsSwitchItem")
+            Component.Tag -> listOf("OudsTag", "OudsInputTag")
+            Component.TextInput -> listOf("OudsTextInput")
         }
 
         return filenames.map { "${project.rootProject.projectDir}/core/src/main/java/com/orange/ouds/core/component/$it.kt" }

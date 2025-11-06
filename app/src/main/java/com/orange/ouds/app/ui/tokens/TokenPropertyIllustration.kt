@@ -41,13 +41,15 @@ import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
 import com.orange.ouds.core.theme.dottedBorder
+import com.orange.ouds.core.theme.takeUnlessHairline
+import com.orange.ouds.foundation.extensions.orElse
 
 private val defaultIllustrationSize = 64.dp
 
 @Composable
 fun IllustrationBox(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = OudsTheme.colorScheme.surface.status.neutral.muted,
+    backgroundColor: Color = OudsTheme.colorScheme.surface.secondary,
     contentAlignment: Alignment = Alignment.TopStart,
     content: @Composable BoxScope.() -> Unit = { }
 ) {
@@ -68,11 +70,17 @@ fun BorderIllustrationBox(
     backgroundColor: Color = OudsTheme.colorScheme.background.secondary
 ) {
     val borderColor = OudsTheme.colorScheme.border.emphasized
-    val modifier = when (style) {
-        OudsBorderStyle.None -> Modifier
-        OudsBorderStyle.Solid -> Modifier.border(width = width, color = borderColor, shape = shape)
-        OudsBorderStyle.Dashed -> Modifier.dashedBorder(width = width, color = borderColor, shape = shape)
-        OudsBorderStyle.Dotted -> Modifier.dottedBorder(width = width, color = borderColor, shape = shape)
+    val modifier = Modifier.run {
+        width.takeUnlessHairline?.let {
+            when (style) {
+                OudsBorderStyle.None -> this
+                OudsBorderStyle.Solid -> border(width = it, color = borderColor, shape = shape)
+                OudsBorderStyle.Dashed -> dashedBorder(width = it, color = borderColor, shape = shape)
+                OudsBorderStyle.Dotted -> dottedBorder(width = it, color = borderColor, shape = shape)
+            }
+        }.orElse {
+            this
+        }
     }
     IllustrationBox(modifier = modifier.clip(shape), backgroundColor = backgroundColor)
 }

@@ -15,14 +15,16 @@ package com.orange.ouds.app.ui.components.switch
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.core.component.OudsControlItem
+import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsSwitchItem
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
@@ -46,12 +48,12 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             label = label,
             onCheckedChange = { checked = it },
             helperText = helperText,
-            icon = if (icon) OudsControlItem.Icon(painterResource(id = R.drawable.ic_heart)) else null,
+            icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
             divider = divider,
             reversed = reversed,
             enabled = enabled,
             readOnly = readOnly,
-            error = error
+            error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
         )
     }
 }

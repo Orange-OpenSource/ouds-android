@@ -21,7 +21,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.core.component.OudsButton
+import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonDefaults
 
 @Composable
@@ -30,10 +30,10 @@ fun rememberButtonDemoState(
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
-    hierarchy: OudsButton.Hierarchy = OudsButtonDefaults.Hierarchy,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first()
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, hierarchy, layout, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(label, enabled, onColoredBox, hasLoader, hierarchy, layout)
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, saver = ButtonDemoState.Saver) {
+    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout)
 }
 
 class ButtonDemoState(
@@ -41,12 +41,12 @@ class ButtonDemoState(
     enabled: Boolean,
     onColoredBox: Boolean,
     hasLoader: Boolean,
-    hierarchy: OudsButton.Hierarchy,
+    appearance: OudsButtonAppearance,
     layout: Layout
 ) {
 
     companion object {
-        private val ForbiddenHierarchiesOnColoredBox = listOf(OudsButton.Hierarchy.Brand, OudsButton.Hierarchy.Negative)
+        private val ForbiddenAppearancesOnColoredBox = listOf(OudsButtonAppearance.Brand, OudsButtonAppearance.Negative)
 
         val Saver = listSaver(
             save = { state ->
@@ -56,7 +56,7 @@ class ButtonDemoState(
                         enabled,
                         onColoredBox,
                         hasLoader,
-                        hierarchy,
+                        appearance,
                         layout
                     )
                 }
@@ -67,7 +67,7 @@ class ButtonDemoState(
                     list[1] as Boolean,
                     list[2] as Boolean,
                     list[3] as Boolean,
-                    list[4] as OudsButton.Hierarchy,
+                    list[4] as OudsButtonAppearance,
                     list[5] as Layout,
                 )
             }
@@ -82,12 +82,12 @@ class ButtonDemoState(
 
     var hasLoader: Boolean by mutableStateOf(hasLoader)
 
-    private var _hierarchy: OudsButton.Hierarchy by mutableStateOf(hierarchy)
-    var hierarchy: OudsButton.Hierarchy
-        get() = _hierarchy
+    private var _appearance: OudsButtonAppearance by mutableStateOf(appearance)
+    var appearance: OudsButtonAppearance
+        get() = _appearance
         set(value) {
-            _hierarchy = value
-            if (value in ForbiddenHierarchiesOnColoredBox) {
+            _appearance = value
+            if (value in ForbiddenAppearancesOnColoredBox) {
                 onColoredBox = false
             }
         }
@@ -98,10 +98,13 @@ class ButtonDemoState(
         get() = !hasLoader
 
     val onColoredBoxSwitchEnabled: Boolean
-        get() = hierarchy !in ForbiddenHierarchiesOnColoredBox
+        get() = appearance !in ForbiddenAppearancesOnColoredBox
 
     val loaderSwitchEnabled: Boolean
         get() = enabled
+
+    val labelTextFieldEnabled: Boolean
+        get() = layout != Layout.IconOnly
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),

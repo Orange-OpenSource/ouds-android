@@ -94,12 +94,20 @@ private fun TopBar(
 }
 
 enum class TopBarAction {
-    ChangeTheme, ChangeMode;
+    ChangeThemeSettings, ChangeTheme, ChangeMode;
 
     @Composable
     fun TopBarIconButton(onActionClick: (TopBarAction) -> Unit) = when (this) {
+        ChangeThemeSettings -> ChangeThemeSettingsAction(onActionClick)
         ChangeTheme -> ChangeThemeAction(onActionClick)
         ChangeMode -> ChangeModeAction(onActionClick)
+    }
+}
+
+@Composable
+private fun ChangeThemeSettingsAction(onClick: (TopBarAction) -> Unit) {
+    IconButton(onClick = { onClick(TopBarAction.ChangeThemeSettings) }) {
+        Icon(painter = painterResource(id = R.drawable.ic_filters), contentDescription = stringResource(id = R.string.app_topBar_themeSettings_button_a11y))
     }
 }
 
@@ -127,7 +135,7 @@ private fun PreviewTopBar() = OudsPreview {
     TopBar(
         showNavigationIcon = true,
         title = "Title",
-        actions = listOf(TopBarAction.ChangeTheme, TopBarAction.ChangeMode),
+        actions = listOf(TopBarAction.ChangeThemeSettings, TopBarAction.ChangeTheme, TopBarAction.ChangeMode),
         upPress = {},
         onActionClick = {}
     )

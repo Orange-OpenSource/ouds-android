@@ -56,7 +56,9 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
@@ -66,7 +68,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
  *
- * > Design version: 1.2.0
+ * > Design version: 1.4.0
  *
  * @see [OudsSwitchItem] If you want to use a switch with an associated label and other optional elements.
  *
@@ -122,7 +124,7 @@ fun OudsSwitch(
 }
 
 @Composable
-internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean, modifier: Modifier = Modifier) {
+internal fun OudsSwitchIndicator(state: OudsControlState, checked: Boolean, modifier: Modifier = Modifier) {
     val switchTokens = OudsTheme.componentsTokens.switch
 
     // The cursor animation is obtained by using a column and updating its horizontalAlignment parameter
@@ -175,24 +177,24 @@ internal fun OudsSwitchIndicator(state: OudsControl.State, checked: Boolean, mod
 private fun indicatorShape(): Shape = RoundedCornerShape(OudsTheme.componentsTokens.switch.borderRadiusTrack.value)
 
 @Composable
-private fun indicatorBackgroundColor(state: OudsControl.State, checked: Boolean): Color {
+private fun indicatorBackgroundColor(state: OudsControlState, checked: Boolean): Color {
     return with(OudsTheme.componentsTokens.switch) {
         when (state) {
-            OudsControl.State.Enabled -> if (checked) colorTrackSelected.value else colorTrackUnselected.value
-            OudsControl.State.Hovered,
-            OudsControl.State.Pressed,
-            OudsControl.State.Focused -> if (checked) colorTrackSelectedInteraction.value else colorTrackUnselectedInteraction.value
-            OudsControl.State.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsControlState.Enabled -> if (checked) colorTrackSelected.value else colorTrackUnselected.value
+            OudsControlState.Hovered,
+            OudsControlState.Pressed,
+            OudsControlState.Focused -> if (checked) colorTrackSelectedInteraction.value else colorTrackUnselectedInteraction.value
+            OudsControlState.Disabled -> OudsTheme.colorScheme.action.disabled
         }
     }
 }
 
 @Composable
-private fun cursorSize(state: OudsControl.State, checked: Boolean): Size {
+private fun cursorSize(state: OudsControlState, checked: Boolean): Size {
     return with(OudsTheme.componentsTokens.switch) {
         val width = when {
-            state == OudsControl.State.Pressed && checked -> sizeWidthCursorSelectedPressed
-            state == OudsControl.State.Pressed && !checked -> sizeWidthCursorUnselectedPressed
+            state == OudsControlState.Pressed && checked -> sizeWidthCursorSelectedPressed
+            state == OudsControlState.Pressed && !checked -> sizeWidthCursorUnselectedPressed
             checked -> sizeWidthCursorSelected
             else -> sizeWidthCursorUnselected
         }
@@ -202,14 +204,14 @@ private fun cursorSize(state: OudsControl.State, checked: Boolean): Size {
 }
 
 @Composable
-private fun checkColor(state: OudsControl.State, checked: Boolean): Color? {
+private fun checkColor(state: OudsControlState, checked: Boolean): Color? {
     return if (checked) {
         when (state) {
-            OudsControl.State.Enabled,
-            OudsControl.State.Hovered,
-            OudsControl.State.Focused -> OudsTheme.componentsTokens.switch.colorCheck.value
-            OudsControl.State.Pressed -> null
-            OudsControl.State.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsControlState.Enabled,
+            OudsControlState.Hovered,
+            OudsControlState.Focused -> OudsTheme.componentsTokens.switch.colorCheck.value
+            OudsControlState.Pressed -> null
+            OudsControlState.Disabled -> OudsTheme.colorScheme.action.disabled
         }
     } else {
         null
@@ -226,15 +228,16 @@ private fun animateHorizontalAlignmentAsState(targetBiasValue: Float, animationS
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitch(@PreviewParameter(OudsSwitchPreviewParameterProvider::class) checked: Boolean) {
-    PreviewOudsSwitch(darkThemeEnabled = isSystemInDarkTheme(), checked = checked)
+    PreviewOudsSwitch(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), checked = checked)
 }
 
 @Composable
 internal fun PreviewOudsSwitch(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     checked: Boolean
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-    PreviewEnumEntries<OudsControl.State>(columnCount = 3) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    PreviewEnumEntries<OudsControlState>(columnCount = 3) {
         OudsSwitch(
             checked = checked,
             onCheckedChange = {}

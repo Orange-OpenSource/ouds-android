@@ -22,6 +22,7 @@ class MainState(
     val navigationState: AppNavigationState,
     val topBarState: TopBarState
 ) {
+
     val showBottomBar: Boolean
         @Composable
         get() = navigationState.currentScreen?.isHome() == true
@@ -29,9 +30,9 @@ class MainState(
 
 @Composable
 fun rememberMainState(
-    themeState: ThemeState,
+    themeState: ThemeState = rememberThemeState(),
     appNavigationState: AppNavigationState = rememberAppNavigationState(),
-    topBarState: TopBarState = rememberTopBarState(appNavigationState),
+    topBarState: TopBarState = rememberTopBarState(appNavigationState, themeState),
 ) = remember(themeState, appNavigationState, topBarState) {
     MainState(themeState, appNavigationState, topBarState)
 }

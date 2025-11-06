@@ -16,19 +16,31 @@ import androidx.annotation.DrawableRes
 import com.orange.ouds.foundation.InternalOudsApi
 
 @InternalOudsApi
-open class OudsDrawableResources {
-    open val checkboxIndeterminate: Int
-        @DrawableRes get() = R.drawable.ic_checkbox_indeterminate
-    open val checkboxSelected: Int
-        @DrawableRes get() = R.drawable.ic_checkbox_selected
-    open val chevronLeft: Int
-        @DrawableRes get() = R.drawable.ic_chevron_left
-    open val radioButtonSelected: Int
-        @DrawableRes get() = R.drawable.ic_radio_button_selected
-    open val switchSelected: Int
-        @DrawableRes get() = R.drawable.ic_switch_selected
-    open val tagBullet: Int
-        @DrawableRes get() = R.drawable.ic_tag_bullet
-    open val tick: Int
-        @DrawableRes get() = R.drawable.ic_tick
+interface OudsDrawableResources {
+    val alertImportant: Int
+        @DrawableRes get
+    val alertInformation: Int
+        @DrawableRes get
+    val alertSuccess: Int
+        @DrawableRes get
+    val alertWarningExternalShape: Int
+        @DrawableRes get
+    val alertWarningInternalShape: Int
+        @DrawableRes get
+    val checkboxIndeterminate: Int
+        @DrawableRes get
+    val checkboxSelected: Int
+        @DrawableRes get
+    val chipTick: Int
+        @DrawableRes get
+    val linkNext: Int
+        @DrawableRes get
+    val linkPrevious: Int
+        @DrawableRes get
+    val radioButtonSelected: Int
+        @DrawableRes get
+    val switchSelected: Int
+        @DrawableRes get
+    val tagClose: Int
+        @DrawableRes get
 }

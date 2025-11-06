@@ -39,7 +39,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 4
+        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 5
         versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -125,13 +125,16 @@ dependencies {
     implementation(project(":foundation"))
     implementation(project(":theme-orange"))
     implementation(project(":theme-sosh"))
+    implementation(project(":theme-wireframe"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.browser)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)

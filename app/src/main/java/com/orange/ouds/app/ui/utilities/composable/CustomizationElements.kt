@@ -25,9 +25,10 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.MenuAnchorType
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -36,10 +37,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
+import com.orange.ouds.core.component.OudsTextInput
+import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
@@ -49,6 +56,10 @@ private val labelTextStyle: TextStyle
 private val valueLabelTextStyle: TextStyle
     @Composable
     get() = OudsTheme.typography.label.strong.large
+
+private val elementTopPadding: Dp
+    @Composable
+    get() = OudsTheme.spaces.fixed.medium
 
 @Composable
 fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit, enabled: Boolean = true) {
@@ -61,29 +72,63 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@JvmName("CustomizationFilterChipsLabels")
 @Composable
 fun CustomizationFilterChips(
     label: String,
     chipLabels: List<String>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
+    CustomizationFilterChips(
+        label = label,
+        chips = chipLabels.map { CustomizationFilterChip(label = it) },
+        selectedChipIndex = selectedChipIndex,
+        onSelectionChange = onSelectionChange,
+        applyTopPadding = applyTopPadding,
+        modifier = modifier
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CustomizationFilterChips(
+    label: String,
+    chips: List<CustomizationFilterChip>,
+    selectedChipIndex: Int,
+    onSelectionChange: (Int) -> Unit,
+    applyTopPadding: Boolean,
+    modifier: Modifier = Modifier
+) {
+    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .semantics(mergeDescendants = true) {}
+    ) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
+        // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
+        // in the parent Column of CustomizationBottomSheetScaffold
+        // That is why we set canFocus here again
+        val sheetValue = LocalCustomizationBottomSheetValue.current
         Row(
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
+                .focusProperties { canFocus = sheetValue == SheetValue.Expanded }
                 .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
-            chipLabels.forEachIndexed { id, label ->
+            chips.forEachIndexed { id, chip ->
                 OudsFilterChip(
                     selected = selectedChipIndex == id,
                     onClick = { onSelectionChange(id) },
-                    label = label
+                    label = chip.label,
+                    enabled = chip.enabled
                 )
             }
         }
@@ -110,7 +155,7 @@ fun CustomizationTextField(
         },
         modifier = modifier,
         enabled = enabled,
-        keyboardOptions = keyboardOptions
+        keyboardOptions = keyboardOptions,
     )
 }
 
@@ -123,20 +168,26 @@ fun CustomizationTextField(
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
-        TextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
-            value = value,
-            onValueChange = onValueChange,
-            enabled = enabled,
-            keyboardOptions = keyboardOptions,
-            singleLine = true,
-            textStyle = valueLabelTextStyle
-        )
-    }
+    OudsTextInput(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
+        value = value,
+        onValueChange = onValueChange,
+        label = label,
+        enabled = enabled,
+        keyboardOptions = keyboardOptions,
+        trailingIconButton = if (value.text.isNotEmpty()) {
+            OudsTextInputTrailingIconButton(
+                painter = painterResource(com.orange.ouds.theme.orange.R.drawable.ic_orange_tag_close),
+                contentDescription = "",
+                onClick = {
+                    onValueChange(value.copy(text = ""))
+                })
+        } else {
+            null
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -146,9 +197,16 @@ fun CustomizationDropdownMenu(
     items: List<CustomizationDropdownMenuItem>,
     selectedItemIndex: Int,
     onSelectionChange: (Int) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
+    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
+
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .semantics(mergeDescendants = true) {}
+    ) {
         Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
@@ -159,7 +217,7 @@ fun CustomizationDropdownMenu(
             val leadingIconBoxModifier = Modifier.size(OudsTheme.sizes.icon.withLabel.medium.sizeMedium)
             TextField(
                 modifier = Modifier
-                    .menuAnchor(MenuAnchorType.PrimaryNotEditable)
+                    .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable)
                     .fillMaxWidth(),
                 value = items[selectedItemIndex].label,
                 onValueChange = {},
@@ -191,3 +249,5 @@ fun CustomizationDropdownMenu(
 }
 
 data class CustomizationDropdownMenuItem(val label: String, val leadingIcon: (@Composable () -> Unit)? = null, val enabled: Boolean = true)
+
+data class CustomizationFilterChip(val label: String, val enabled: Boolean = true)

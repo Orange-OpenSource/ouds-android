@@ -21,68 +21,57 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.LocalActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.displayCutout
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.union
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.core.content.getSystemService
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
-import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.sosh.SoshTheme
 
 @Composable
-fun MainScreen(themes: List<OudsThemeContract>, mainViewModel: MainViewModel = viewModel()) {
+fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
     MainScreen(
-        themes = themes,
-        userThemeName = mainViewModel.getUserThemeName(),
-        onThemeSelected = { themeName ->
+        themeSettings = mainViewModel.getUserThemeSettings().orElse { OudsThemeSettings() },
+        currentThemeName = mainViewModel.getUserThemeName().orElse { ORANGE_THEME_NAME },
+        onThemeChange = { themeName ->
             mainViewModel.storeUserThemeName(themeName)
+        },
+        onThemeSettingsChange = { themeSettings ->
+            mainViewModel.storeUserThemeSettings(themeSettings)
         }
     )
 }
 
 @Composable
-private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, onThemeSelected: (String) -> Unit) {
+fun MainScreen(
+    themeSettings: OudsThemeSettings,
+    currentThemeName: String,
+    onThemeChange: (String) -> Unit,
+    onThemeSettingsChange: (OudsThemeSettings) -> Unit
+) {
     val mainState = rememberMainState(
         themeState = rememberThemeState(
-            currentTheme = getCurrentTheme(userThemeName, themes),
-            availableThemes = themes
+            settings = themeSettings,
+            currentThemeName = currentThemeName
         )
     )
 
@@ -93,12 +82,12 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
         SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isSystemInDarkTheme }
     )
 
-    var changeThemeDialogVisible by remember { mutableStateOf(false) }
+    var changeThemeDialogVisible by rememberSaveable { mutableStateOf(false) }
+    var changeThemeSettingsDialogVisible by rememberSaveable { mutableStateOf(false) }
 
     OudsTheme(
-        themeContract = mainState.themeState.currentTheme,
+        theme = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
-        settings = mainState.themeState.settings
     ) {
         Scaffold(
             contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
@@ -109,6 +98,7 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
                     upPress = mainState.navigationState::upPress,
                     onActionClick = { action ->
                         when (action) {
+                            TopBarAction.ChangeThemeSettings -> changeThemeSettingsDialogVisible = true
                             TopBarAction.ChangeTheme -> changeThemeDialogVisible = true
                             TopBarAction.ChangeMode -> setApplicationNightModeEnabled(!isSystemInDarkTheme, context)
                         }
@@ -138,10 +128,26 @@ private fun MainScreen(themes: List<OudsThemeContract>, userThemeName: String?, 
             if (changeThemeDialogVisible) {
                 ChangeThemeDialog(
                     themeState = mainState.themeState,
-                    dismissDialog = {
-                        changeThemeDialogVisible = false
+                    onThemeChange = { themeName ->
+                        mainState.themeState.setCurrentTheme(themeName)
+                        onThemeChange(themeName)
                     },
-                    onThemeSelected = onThemeSelected
+                    onDismissRequest = {
+                        changeThemeDialogVisible = false
+                    }
+                )
+            }
+
+            if (changeThemeSettingsDialogVisible) {
+                ChangeThemeSettingsDialog(
+                    themeState = mainState.themeState,
+                    onThemeSettingsChange = { themeSettings ->
+                        mainState.themeState.settings = themeSettings
+                        onThemeSettingsChange(themeSettings)
+                    },
+                    onDismissRequest = {
+                        changeThemeSettingsDialogVisible = false
+                    }
                 )
             }
         }
@@ -159,77 +165,15 @@ private fun setApplicationNightModeEnabled(night: Boolean, context: Context) {
     }
 }
 
-@Composable
-private fun ChangeThemeDialog(themeState: ThemeState, dismissDialog: () -> Unit, onThemeSelected: (String) -> Unit) {
-    var selectedThemeName by rememberSaveable { mutableStateOf(themeState.currentTheme.name) }
-
-    //TODO Use OudsDialog when available
-    Dialog(onDismissRequest = dismissDialog) {
-        Column(
-            modifier = Modifier
-                .background(OudsTheme.colorScheme.background.secondary)
-                .selectableGroup()
-        ) {
-            Text(
-                text = stringResource(R.string.app_themeDialog_label),
-                modifier = Modifier
-                    .padding(top = OudsTheme.spaces.fixed.medium, bottom = OudsTheme.spaces.fixed.small)
-                    .padding(horizontal = OudsTheme.spaces.fixed.medium),
-                style = MaterialTheme.typography.titleLarge
-            )
-            themeState.availableThemes.forEach { theme ->
-                Row(
-                    Modifier
-                        .fillMaxWidth()
-                        .height(56.dp)
-                        .selectable(
-                            selected = theme.name == selectedThemeName,
-                            onClick = {
-                                selectedThemeName = theme.name
-                                if (theme != themeState.currentTheme) {
-                                    themeState.currentTheme = theme
-                                    onThemeSelected(theme.name)
-                                }
-                                dismissDialog()
-                            },
-                            role = Role.RadioButton
-                        )
-                        .padding(horizontal = OudsTheme.spaces.fixed.medium),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    RadioButton(
-                        selected = theme.name == selectedThemeName,
-                        onClick = null
-                    )
-                    Text(
-                        text = theme.name,
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.padding(start = OudsTheme.spaces.fixed.medium)
-                    )
-                }
-            }
-        }
-    }
-}
-
-/**
- * Returns the stored user theme if it exists. Otherwise, returns the Orange theme or the first existing theme.
- */
-private fun getCurrentTheme(
-    storedUserThemeName: String?,
-    themes: List<OudsThemeContract>
-) = themes.firstOrNull { it.name == storedUserThemeName }
-    .orElse { themes.firstOrNull { it.name == ORANGE_THEME_NAME } }
-    .orElse { themes.first() }
-
 @PreviewLightDark
 @Composable
 private fun PreviewMainScreen() = OudsPreview {
     // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which does not work in Compose previews
     // See https://issuetracker.google.com/issues/240601093
     MainScreen(
-        themes = listOf(OrangeTheme(), SoshTheme()),
-        userThemeName = ORANGE_THEME_NAME,
-        onThemeSelected = {}
+        themeSettings = OudsThemeSettings(),
+        currentThemeName = ORANGE_THEME_NAME,
+        onThemeChange = {},
+        onThemeSettingsChange = {}
     )
 }

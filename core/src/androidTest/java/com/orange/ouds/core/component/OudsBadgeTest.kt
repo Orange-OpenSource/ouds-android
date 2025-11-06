@@ -13,7 +13,7 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
 import org.junit.Test
@@ -26,27 +26,27 @@ internal class OudsBadgeTest {
     @Test
     fun oudsBadge_maxCount_succeeds() {
         with(composeTestRule) {
-            val count = OudsBadge.MaxCount
+            val count = OudsBadgeMaxCount
 
             setOudsContent {
                 OudsBadge(count = count)
             }
 
-            onNodeWithText(count.toString()).assertExists()
+            onNodeWithContentDescription(count.toString()).assertExists()
         }
     }
 
     @Test
     fun oudsBadge_maxCountOverflow_succeeds() {
         with(composeTestRule) {
-            val count = OudsBadge.MaxCount + 1
+            val count = OudsBadgeMaxCount + 1
 
             setOudsContent {
                 OudsBadge(count = count)
             }
 
-            onNodeWithText(count.toString()).assertDoesNotExist()
-            onNodeWithText("+${OudsBadge.MaxCount}").assertExists()
+            onNodeWithContentDescription(count.toString()).assertDoesNotExist()
+            onNodeWithContentDescription("+${OudsBadgeMaxCount}").assertExists()
         }
     }
 }

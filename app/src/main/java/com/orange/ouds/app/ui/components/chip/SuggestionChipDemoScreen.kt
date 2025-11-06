@@ -25,10 +25,9 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun SuggestionChipDemoScreen() {
     val state = rememberSuggestionChipDemoState()
-    val context = LocalContext.current
     DemoScreen(
         bottomSheetContent = { ChipDemoBottomSheetContent(state = state) },
-        codeSnippet = { suggestionChipDemoCodeSnippet(state = state, context = context) },
+        codeSnippet = { suggestionChipDemoCodeSnippet(state = state) },
         demoContent = { SuggestionChipDemoContent(state = state) },
         version = OudsVersion.Component.Chip
     )
@@ -68,7 +67,7 @@ private fun SuggestionChipDemoContent(state: SuggestionChipDemoState) {
     }
 }
 
-private fun Code.Builder.suggestionChipDemoCodeSnippet(state: SuggestionChipDemoState, context: Context) {
+private fun Code.Builder.suggestionChipDemoCodeSnippet(state: SuggestionChipDemoState) {
     with(state) {
         comment("First suggestion chip")
         functionCall("OudsSuggestionChip") {

@@ -106,6 +106,7 @@ import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.SegmentedButton
@@ -849,7 +850,7 @@ private fun SwitchesSample(enabled: Boolean = true) {
 @Composable
 private fun TabsSample() {
     var state by remember { mutableIntStateOf(0) }
-    TabRow(selectedTabIndex = state) {
+    PrimaryTabRow(selectedTabIndex = state) {
         Tabs(state = state, onTabClick = { index -> state = index })
     }
 

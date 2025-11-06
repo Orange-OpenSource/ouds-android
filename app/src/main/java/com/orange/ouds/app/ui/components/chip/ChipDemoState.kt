@@ -55,6 +55,9 @@ open class ChipDemoState(
 
     var label: String by mutableStateOf(label)
 
+    val labelTextFieldEnabled: Boolean
+        get() = layout != Layout.IconOnly
+
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_label),
         TextAndIcon(R.string.app_components_common_textAndIconLayout_label),

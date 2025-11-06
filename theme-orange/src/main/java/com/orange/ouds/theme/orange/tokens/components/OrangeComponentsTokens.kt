@@ -20,11 +20,14 @@ import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
+import com.orange.ouds.theme.tokens.components.OudsIconTokens
+import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
+import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 data class OrangeComponentsTokens(
     override val badge: OudsBadgeTokens = OrangeBadgeTokens(),
@@ -34,9 +37,12 @@ data class OrangeComponentsTokens(
     override val chip: OudsChipTokens = OrangeChipTokens(),
     override val controlItem: OudsControlItemTokens = OrangeControlItemTokens(),
     override val divider: OudsDividerTokens = OrangeDividerTokens(),
+    override val icon: OudsIconTokens = OrangeIconTokens(),
+    override val inputTag: OudsInputTagTokens = OrangeInputTagTokens(),
     override val link: OudsLinkTokens = OrangeLinkTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = OrangeLinkMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = OrangeRadioButtonTokens(),
     override val switch: OudsSwitchTokens = OrangeSwitchTokens(),
-    override val tag: OudsTagTokens = OrangeTagTokens()
+    override val tag: OudsTagTokens = OrangeTagTokens(),
+    override val textInput: OudsTextInputTokens = OrangeTextInputTokens()
 ) : OudsComponentsTokens

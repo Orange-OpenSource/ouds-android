@@ -35,10 +35,12 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.formattedName
+import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsLink
+import com.orange.ouds.core.component.OudsLinkArrow
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -56,12 +58,13 @@ fun ColoredBackgroundDemoScreen() {
 @Composable
 private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemoState) {
     with(state) {
-        val colors = OudsColoredBox.Color.entries.filter { it.mode.isSupported }
+        val colors = OudsColoredBoxColor.entries.filter { it.mode.isSupported }
         CustomizationDropdownMenu(
+            applyTopPadding = false,
             label = stringResource(id = R.string.app_components_coloredBackground_color_label),
             items = colors.map { color ->
                 CustomizationDropdownMenuItem(
-                    label = color.formattedName,
+                    label = color.name.toSentenceCase(),
                     leadingIcon = {
                         Box(
                             modifier = Modifier
@@ -83,7 +86,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
         if (!color.mode.isSupported) {
             Toast.makeText(
                 LocalContext.current,
-                stringResource(id = R.string.app_components_coloredBackground_unsupportedColor_text, color.formattedName),
+                stringResource(id = R.string.app_components_coloredBackground_unsupportedColor_text, color.name.toSentenceCase()),
                 Toast.LENGTH_LONG
             ).show()
             color = ColoredBackgroundDemoStateDefaults.Color
@@ -100,7 +103,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = color.formattedName,
+                    text = color.name.toSentenceCase(),
                     color = OudsTheme.colorScheme.content.default
                 )
                 OudsButton(
@@ -109,7 +112,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
                 )
                 OudsLink(
                     label = stringResource(id = R.string.app_components_link_label),
-                    arrow = OudsLink.Arrow.Next,
+                    arrow = OudsLinkArrow.Next,
                     onClick = {},
                 )
             }
@@ -119,21 +122,21 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
 
 private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgroundDemoState) {
     with(state) {
-        functionCall(OudsColoredBox::class.simpleName.orEmpty()) {
+        functionCall("OudsColoredBox") {
             trailingLambda = true
             typedArgument("color", color)
             lambdaArgument(null) {
                 functionCall("Text") {
-                    typedArgument("text", color.formattedName)
+                    typedArgument("text", color.name.toSentenceCase())
                     rawArgument("color", "OudsTheme.colorScheme.content.default")
                 }
-                functionCall(OudsButton::class.java.simpleName) {
+                functionCall("OudsButton") {
                     labelArgument(R.string.app_components_button_label)
                     onClickArgument {}
                 }
-                functionCall(OudsLink::class.java.simpleName) {
+                functionCall("OudsLink") {
                     labelArgument(R.string.app_components_link_label)
-                    typedArgument("arrow", OudsLink.Arrow.Next)
+                    typedArgument("arrow", OudsLinkArrow.Next)
                     onClickArgument {}
                 }
             }

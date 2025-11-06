@@ -23,9 +23,10 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
-// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -39,7 +40,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * Best suited for category-based filters that do not require additional visual elements.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/2d71fd4bb4)
  *
  * > Design version: 1.3.0
  *
@@ -74,7 +75,6 @@ fun OudsSuggestionChip(
     )
 }
 
-// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -88,7 +88,7 @@ fun OudsSuggestionChip(
  * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/2d71fd4bb4)
  *
  * > Design version: 1.3.0
  *
@@ -108,7 +108,7 @@ fun OudsSuggestionChip(
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
-    icon: OudsChip.Icon,
+    icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -123,7 +123,6 @@ fun OudsSuggestionChip(
     )
 }
 
-// TODO: Update OUDS documentation URL for chips
 /**
  * Chips help people enter information, make selections, filter content, or trigger actions. Chips
  * can show multiple interactive elements together in the same area, such as a list of selectable
@@ -137,7 +136,7 @@ fun OudsSuggestionChip(
  * Ideal when a visual cue helps reinforce the filter’s meaning.
  * Other layouts are available for this component: *text only* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/2d71fd4bb4)
  *
  * > Design version: 1.3.0
  *
@@ -159,7 +158,7 @@ fun OudsSuggestionChip(
 fun OudsSuggestionChip(
     onClick: () -> Unit,
     label: String,
-    icon: OudsChip.Icon,
+    icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -179,7 +178,7 @@ fun OudsSuggestionChip(
 private fun OudsSuggestionChip(
     onClick: () -> Unit,
     nullableLabel: String?,
-    nullableIcon: OudsChip.Icon?,
+    nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -190,7 +189,7 @@ private fun OudsSuggestionChip(
         onClick = onClick,
         label = nullableLabel,
         icon = nullableIcon,
-        iconPosition = OudsChip.IconPosition.Start,
+        iconPosition = OudsChipIconPosition.Start,
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -201,20 +200,23 @@ private fun OudsSuggestionChip(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSuggestionChip(@PreviewParameter(OudsSuggestionChipPreviewParameterProvider::class) parameter: OudsSuggestionChipPreviewParameter) {
-    PreviewOudsSuggestionChip(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsSuggestionChip(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsSuggestionChip(darkThemeEnabled: Boolean, parameter: OudsSuggestionChipPreviewParameter) =
-    OudsPreview(darkThemeEnabled = darkThemeEnabled) {
-        with(parameter) {
-            val label = if (hasLabel) "Label" else null
-            val icon = if (hasIcon) OudsChip.Icon(Icons.Filled.FavoriteBorder, "") else null
-            PreviewEnumEntries<OudsChip.State>(columnCount = 3) {
-                OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
-            }
+internal fun PreviewOudsSuggestionChip(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    parameter: OudsSuggestionChipPreviewParameter
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    with(parameter) {
+        val label = if (hasLabel) "Label" else null
+        val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
+        PreviewEnumEntries<OudsChipState>(columnCount = 3) {
+            OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
         }
     }
+}
 
 internal data class OudsSuggestionChipPreviewParameter(
     val hasLabel: Boolean,

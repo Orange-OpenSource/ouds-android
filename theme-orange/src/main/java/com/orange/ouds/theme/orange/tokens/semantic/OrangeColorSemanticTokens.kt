@@ -18,7 +18,6 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorContentSemanticTokens
-import com.orange.ouds.theme.tokens.semantic.OudsColorDecorativeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorModeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
@@ -32,7 +31,6 @@ data class OrangeColorSemanticTokens(
     override val backgroundColorTokens: OudsColorBgSemanticTokens = OrangeColorBgSemanticTokens(),
     override val borderColorTokens: OudsColorBorderSemanticTokens = OrangeColorBorderSemanticTokens(),
     override val contentColorTokens: OudsColorContentSemanticTokens = OrangeColorContentSemanticTokens(),
-    override val decorativeColorTokens: OudsColorDecorativeSemanticTokens = OrangeColorDecorativeSemanticTokens(),
     override val opacityColorTokens: OudsColorOpacitySemanticTokens = OrangeColorOpacitySemanticTokens(),
     override val overlayColorTokens: OudsColorOverlaySemanticTokens = OrangeColorOverlaySemanticTokens(),
     override val surfaceColorTokens: OudsColorSurfaceSemanticTokens = OrangeColorSurfaceSemanticTokens(),

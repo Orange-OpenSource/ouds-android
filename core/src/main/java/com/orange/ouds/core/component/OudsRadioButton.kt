@@ -30,22 +30,32 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.error
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
@@ -54,7 +64,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
  *
- * > Design version: 1.1.0
+ * > Design version: 1.3.0
  *
  * @see [OudsRadioButtonItem] If you want to use a radio button with an associated label and other optional elements.
  *
@@ -63,7 +73,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button.
  * @param enabled Controls the enabled state of the radio button. When `false`, this radio button will not be clickable.
- * @param error Controls the error state of the radio button.
+ * @param error Optional [OudsError] to provide in the case of the radio button should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this radio button. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -75,14 +85,17 @@ fun OudsRadioButton(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    error: Boolean = false,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val isDisabledPreviewState = getPreviewEnumEntry<OudsControl.State>() == OudsControl.State.Disabled
-    val isForbidden = error && (!enabled || isDisabledPreviewState)
+    val isDisabledPreviewState = getPreviewEnumEntry<OudsControlState>() == OudsControlState.Disabled
+    val isForbidden = error != null && (!enabled || isDisabledPreviewState)
+    val shape = RoundedCornerShape(OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value)
     CheckedContent(
         expression = !isForbidden,
-        exceptionMessage = { "An OudsRadioButton set to disabled with error parameter activated is not allowed." }
+        exceptionMessage = { "An OudsRadioButton set to disabled with error parameter activated is not allowed." },
+        previewDashedBorderShape = shape,
+        previewDashedBorderPhase = OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value
     ) {
         val radioButtonTokens = OudsTheme.componentsTokens.radioButton
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -108,23 +121,35 @@ fun OudsRadioButton(
             modifier = modifier
                 .widthIn(radioButtonTokens.sizeMinWidth.value)
                 .heightIn(min = radioButtonTokens.sizeMinHeight.value, max = radioButtonTokens.sizeMaxHeight.value)
-                .background(color = backgroundColor.value)
-                .outerBorder(state = state, handleHighContrastMode = true)
-                .then(selectableModifier),
+                .background(color = backgroundColor.value, shape = shape)
+                .outerBorder(state = state, shape = shape, handleHighContrastMode = true)
+                .then(selectableModifier)
+                .run {
+                    error?.description?.let { description ->
+                        semantics {
+                            error(description)
+                        }
+                    }.orElse {
+                        this
+                    }
+                },
             contentAlignment = Alignment.Center,
         ) {
-            OudsRadioButtonIndicator(state = state, selected = selected, error = error)
+            OudsRadioButtonIndicator(state = state, selected = selected, error = error != null)
         }
     }
 }
 
 @Composable
-internal fun OudsRadioButtonIndicator(state: OudsControl.State, selected: Boolean, error: Boolean) {
+internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean, error: Boolean) {
     val radioButtonTokens = OudsTheme.componentsTokens.radioButton
+    val shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
+
     Box(
         modifier = Modifier
             .size(radioButtonTokens.sizeIndicator.value)
-            .indicatorBorder(state = state, selected = selected, error = error)
+            .clip(shape)
+            .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
         if (selected) {
             Icon(
@@ -138,63 +163,66 @@ internal fun OudsRadioButtonIndicator(state: OudsControl.State, selected: Boolea
 }
 
 @Composable
-private fun Modifier.indicatorBorder(state: OudsControl.State, selected: Boolean, error: Boolean): Modifier {
-    val indicatorBorderWidth = indicatorBorderWidth(state = state, selected = selected)
-    return border(
-        width = indicatorBorderWidth,
-        color = indicatorColor(state = state, selected = selected, error = error),
-        shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
-    )
-}
-
-@Composable
-private fun indicatorBorderWidth(state: OudsControl.State, selected: Boolean): Dp {
-    return with(OudsTheme.componentsTokens.radioButton) {
-        when (state) {
-            OudsControl.State.Enabled, OudsControl.State.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
-            OudsControl.State.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
-            OudsControl.State.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
-            OudsControl.State.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
-        }.value
+private fun Modifier.indicatorBorder(state: OudsControlState, selected: Boolean, error: Boolean, shape: Shape): Modifier {
+    return indicatorBorderWidth(state = state, selected = selected)?.let { indicatorBorderWidth ->
+        border(
+            width = indicatorBorderWidth,
+            color = indicatorColor(state = state, selected = selected, error = error),
+            shape = shape
+        )
+    }.orElse {
+        this
     }
 }
 
 @Composable
-private fun indicatorColor(state: OudsControl.State, selected: Boolean, error: Boolean): Color {
+private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp? {
+    return with(OudsTheme.componentsTokens.radioButton) {
+        when (state) {
+            OudsControlState.Enabled, OudsControlState.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
+            OudsControlState.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
+            OudsControlState.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
+            OudsControlState.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
+        }.value
+    }.takeUnlessHairline
+}
+
+@Composable
+private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Boolean): Color {
     return with(OudsTheme.colorScheme.action) {
         if (error) {
             when (state) {
-                OudsControl.State.Enabled -> negative.enabled
-                OudsControl.State.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsRadioButton
-                OudsControl.State.Hovered -> negative.hover
-                OudsControl.State.Pressed -> negative.pressed
-                OudsControl.State.Focused -> negative.focus
+                OudsControlState.Enabled -> negative.enabled
+                OudsControlState.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsRadioButton
+                OudsControlState.Hovered -> negative.hover
+                OudsControlState.Pressed -> negative.pressed
+                OudsControlState.Focused -> negative.focus
             }
         } else {
             when (state) {
-                OudsControl.State.Enabled -> if (selected) {
+                OudsControlState.Enabled -> if (selected) {
                     // In order to reach the a11y AAA level, when high contrast mode is enabled, the selected radio button must use `color.content.default` token
                     if (LocalHighContrastModeEnabled.current) OudsTheme.colorScheme.content.default else this.selected
                 } else {
                     OudsTheme.colorScheme.border.emphasized
                 }
-                OudsControl.State.Disabled -> disabled
-                OudsControl.State.Hovered -> hover
-                OudsControl.State.Pressed -> pressed
-                OudsControl.State.Focused -> focus
+                OudsControlState.Disabled -> disabled
+                OudsControlState.Hovered -> hover
+                OudsControlState.Pressed -> pressed
+                OudsControlState.Focused -> focus
             }
         }
     }
 }
 
 @Composable
-private fun backgroundColor(state: OudsControl.State): Color {
+private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
-            OudsControl.State.Enabled, OudsControl.State.Disabled -> Color.Transparent
-            OudsControl.State.Hovered -> colorBgHover.value
-            OudsControl.State.Pressed -> colorBgPressed.value
-            OudsControl.State.Focused -> colorBgFocus.value
+            OudsControlState.Enabled, OudsControlState.Disabled -> Color.Transparent
+            OudsControlState.Hovered -> colorBgHover.value
+            OudsControlState.Pressed -> colorBgPressed.value
+            OudsControlState.Focused -> colorBgFocus.value
         }
     }
 }
@@ -203,23 +231,29 @@ private fun backgroundColor(state: OudsControl.State): Color {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsRadioButton(@PreviewParameter(OudsRadioButtonPreviewParameterProvider::class) parameter: OudsRadioButtonPreviewParameter) {
-    PreviewOudsRadioButton(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsRadioButton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @PreviewLightDark
 @Composable
 internal fun PreviewOudsRadioButtonHighContrastModeEnabled(@PreviewParameter(OudsRadioButtonPreviewParameterProvider::class) parameter: OudsRadioButtonPreviewParameter) {
-    PreviewOudsRadioButton(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter, highContrastModeEnabled = true)
+    PreviewOudsRadioButton(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        parameter = parameter,
+        highContrastModeEnabled = true
+    )
 }
 
 @Composable
 internal fun PreviewOudsRadioButton(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsRadioButtonPreviewParameter,
     highContrastModeEnabled: Boolean = false
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControl.State> {
+        PreviewEnumEntries<OudsControlState> {
             OudsRadioButton(
                 selected = selected,
                 onClick = {},
@@ -231,15 +265,15 @@ internal fun PreviewOudsRadioButton(
 
 internal data class OudsRadioButtonPreviewParameter(
     val selected: Boolean,
-    val error: Boolean
+    val error: OudsError? = null
 )
 
 internal class OudsRadioButtonPreviewParameterProvider : BasicPreviewParameterProvider<OudsRadioButtonPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsRadioButtonPreviewParameter>
     get() = listOf(
-        OudsRadioButtonPreviewParameter(selected = false, error = false),
-        OudsRadioButtonPreviewParameter(selected = false, error = true),
-        OudsRadioButtonPreviewParameter(selected = true, error = false),
-        OudsRadioButtonPreviewParameter(selected = true, error = true)
+        OudsRadioButtonPreviewParameter(selected = false),
+        OudsRadioButtonPreviewParameter(selected = false, error = OudsError("")),
+        OudsRadioButtonPreviewParameter(selected = true),
+        OudsRadioButtonPreviewParameter(selected = true, error = OudsError(""))
     )

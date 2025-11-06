@@ -51,7 +51,7 @@ jobs:
           script: ./gradlew :core:connectedCheck
 
       - name: Run snapshot tests
-        run: ./gradlew :core:verifyPaparazziDebug
+        run: ./gradlew verifyPaparazziDebug
 
       - name: Run Android Linter
         run: ./gradlew lintProdDebug lintProdRelease
@@ -66,7 +66,7 @@ jobs:
 
       - name: Upload tests artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: tests
           path: |
@@ -76,40 +76,10 @@ jobs:
             core/build/reports/tests
 
       - name: Upload app artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: app
           path: app/build/outputs/apk/*/*/*.apk
-
-      - name: Upload core artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: core
-          path: core/build/outputs/aar/*.aar
-
-      - name: Upload foundation artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: foundation
-          path: foundation/build/outputs/aar/*.aar
-
-      - name: Upload global-raw-tokens artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: global-raw-tokens
-          path: global-raw-tokens/build/outputs/aar/*.aar
-
-      - name: Upload theme-contract artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: theme-contract
-          path: theme-contract/build/outputs/aar/*.aar
-
-      - name: Upload theme-orange artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: theme-orange
-          path: theme-orange/build/outputs/aar/*.aar
 
   maven-central-release:
     runs-on: ubuntu-latest
@@ -208,7 +178,7 @@ jobs:
           curl -F 'file=@app/build/outputs/bundle/prodRelease/app-prod-release.aab' https://oma-portal.orange.fr/oma/api/v1/external/applications/${{ secrets.OMA_APP_ID }}/artifacts -H "apiKey:${{ secrets.OMA_APP_TOKEN }}"
 
       - name: Store Google Play Store artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: google-play-store
           path: |

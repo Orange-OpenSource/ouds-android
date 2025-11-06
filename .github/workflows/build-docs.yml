@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew dokkaGenerate
 
       - name: Upload documentation artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: docs
           path: docs/dokka
@@ -46,7 +46,7 @@ jobs:
       id-token: write   # to verify the deployment originates from an appropriate source
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: docs
           path: docs
@@ -84,15 +84,15 @@ jobs:
           java-version: '17'
 
       - name: Download artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: docs
           path: docs
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
+          node-version: '24.x'
 
       - name: Install Netlify CLI
         run: npm ci

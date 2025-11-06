@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui
 
 import androidx.lifecycle.ViewModel
 import com.orange.ouds.app.domain.datastore.DataStoreService
+import com.orange.ouds.theme.OudsThemeSettings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -24,11 +25,27 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
 
     companion object {
         private const val USER_THEME_NAME_KEY = "userThemeName"
+        private const val USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY = "userThemeSettingsRoundedCornerButtons"
+        private const val USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY = "userThemeSettingsRoundedCornerTextInputs"
     }
 
     fun storeUserThemeName(themeName: String) = runBlocking {
         dataStoreService.putString(USER_THEME_NAME_KEY, themeName)
     }
 
-    fun getUserThemeName(): String? = runBlocking { dataStoreService.getString(USER_THEME_NAME_KEY) }
+    fun getUserThemeName(): String? = runBlocking {
+        dataStoreService.getString(USER_THEME_NAME_KEY)
+    }
+
+    fun storeUserThemeSettings(themeSettings: OudsThemeSettings) = runBlocking {
+        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY, themeSettings.roundedCornerButtons)
+        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY, themeSettings.roundedCornerTextInputs)
+    }
+
+    fun getUserThemeSettings(): OudsThemeSettings? = runBlocking {
+        OudsThemeSettings(
+            roundedCornerButtons = dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY),
+            roundedCornerTextInputs = dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY)
+        )
+    }
 }

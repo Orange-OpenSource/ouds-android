@@ -17,22 +17,19 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 
-internal object OudsControl {
-
-    enum class State {
-        Enabled, Hovered, Pressed, Disabled, Focused
-    }
+internal enum class OudsControlState {
+    Enabled, Hovered, Pressed, Disabled, Focused
 }
 
 @Composable
-internal fun getControlState(enabled: Boolean, interactionState: InteractionState): OudsControl.State {
-    return getPreviewEnumEntry<OudsControl.State>().orElse {
+internal fun getControlState(enabled: Boolean, interactionState: InteractionState): OudsControlState {
+    return getPreviewEnumEntry<OudsControlState>().orElse {
         when {
-            !enabled -> OudsControl.State.Disabled
-            interactionState == InteractionState.Hovered -> OudsControl.State.Hovered
-            interactionState == InteractionState.Pressed -> OudsControl.State.Pressed
-            interactionState == InteractionState.Focused -> OudsControl.State.Focused
-            else -> OudsControl.State.Enabled
+            !enabled -> OudsControlState.Disabled
+            interactionState == InteractionState.Hovered -> OudsControlState.Hovered
+            interactionState == InteractionState.Pressed -> OudsControlState.Pressed
+            interactionState == InteractionState.Focused -> OudsControlState.Focused
+            else -> OudsControlState.Enabled
         }
     }
 }

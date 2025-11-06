@@ -29,10 +29,13 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
@@ -47,7 +50,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
  *
- * > Design version: 2.1.0
+ * > Design version: 2.3.0
  *
  * @see [OudsTriStateCheckboxItem] If you need an indeterminate state for the item's checkbox.
  * @see [OudsCheckbox] If you want to use a standalone checkbox without any other element.
@@ -65,7 +68,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
  * will not be clickable.
  * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
  * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
- * @param error Controls the error state of the checkbox item.
+ * @param error Optional [OudsError] to provide in the case of the checkbox item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -78,12 +81,12 @@ fun OudsCheckboxItem(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
-    divider: Boolean = true,
+    icon: OudsControlItemIcon? = null,
+    divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsTriStateCheckboxItem(
@@ -122,7 +125,7 @@ fun OudsCheckboxItem(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
  *
- * > Design version: 2.1.0
+ * > Design version: 2.3.0
  *
  * @see [OudsCheckboxItem] If you need a simple item's checkbox that represents [Boolean] state.
  * @see [OudsTriStateCheckbox] If you only need an indeterminate standalone parent checkbox without any other element.
@@ -140,7 +143,7 @@ fun OudsCheckboxItem(
  * will not be clickable.
  * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
  * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
- * @param error Controls the error state of the checkbox item.
+ * @param error Optional [OudsError] to provide in the case of the checkbox item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that
  * if `null` is provided, interactions will still happen internally.
  *
@@ -153,12 +156,12 @@ fun OudsTriStateCheckboxItem(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     helperText: String? = null,
-    icon: OudsControlItem.Icon? = null,
-    divider: Boolean = true,
+    icon: OudsControlItemIcon? = null,
+    divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false,
+    error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -188,16 +191,16 @@ fun OudsTriStateCheckboxItem(
         enabled = enabled,
         readOnly = readOnly,
         error = error,
-        errorComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
         indicator = {
             OudsCheckboxIndicator(
                 state = checkboxItemState.toControlState(),
                 value = state,
-                error = error
+                error = error != null
             )
         },
-        indicatorPosition = if (reversed) OudsControlItem.IndicatorPosition.End else OudsControlItem.IndicatorPosition.Start,
-        checkedContentPreviewStatus = when (state) {
+        indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.End else OudsControlItemIndicatorPosition.Start,
+        checkedContentComponentName = "OudsCheckboxItem or OudsTriStateCheckboxItem",
+        checkedContentSelectionStatus = when (state) {
             ToggleableState.On -> "Selected"
             ToggleableState.Off -> "Unselected"
             ToggleableState.Indeterminate -> "Indeterminate"
@@ -214,16 +217,17 @@ fun OudsTriStateCheckboxItem(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItem(@PreviewParameter(OudsCheckboxItemPreviewParameterProvider::class) parameter: OudsCheckboxItemPreviewParameter) {
-    PreviewOudsCheckboxItem(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsCheckboxItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
 internal fun PreviewOudsCheckboxItem(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCheckboxItemPreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -232,7 +236,7 @@ internal fun PreviewOudsCheckboxItem(
                 divider = divider,
                 error = error,
                 reversed = reversed,
-                icon = if (hasIcon) OudsControlItem.Icon(imageVector = Icons.Filled.Call) else null,
+                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null,
                 interactionSource = remember { MutableInteractionSource() }
             )
         }
@@ -243,16 +247,21 @@ internal fun PreviewOudsCheckboxItem(
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(OudsCheckboxItemHighContrastModePreviewParameterProvider::class) parameter: OudsCheckboxItemHighContrastModePreviewParameter) {
-    PreviewOudsCheckboxItemHighContrastModeEnabled(darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    PreviewOudsCheckboxItemHighContrastModeEnabled(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        parameter = parameter
+    )
 }
 
 @Composable
 internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
+    theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
-) = OudsPreview(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItem.State>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -263,16 +272,19 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     }
 }
 
-
 @Preview
 @Composable
-internal fun PreviewOudsCheckboxItemWithLongHelperText() = OudsPreview {
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsCheckboxItemWithLongHelperText() = PreviewOudsCheckboxItemWithLongHelperText(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsCheckboxItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsCheckboxItem(
         checked = true,
         label = "Label",
         onCheckedChange = {},
         helperText = LoremIpsumText,
-        icon = OudsControlItem.Icon(imageVector = Icons.Filled.Call)
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }
 

@@ -15,7 +15,6 @@ package com.orange.ouds.theme
 import android.os.Parcelable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
@@ -33,59 +32,59 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 interface OudsThemeContract : Parcelable {
 
     /**
-     * Theme display name
+     * The theme display name.
      */
     val name: String
 
     /**
-     * Material color matching used in the theme
+     * The theme settings.
      */
-    val materialColorTokens: OudsMaterialColorTokens
+    val settings: OudsThemeSettings
 
     /**
-     * Color semantic tokens values used in the theme
+     * Color semantic tokens values used in the theme.
      */
     val colorTokens: OudsColorSemanticTokens
 
     /**
-     * Border semantic tokens values used in the theme
+     * Border semantic tokens values used in the theme.
      */
     val borderTokens: OudsBorderSemanticTokens
 
     /**
-     * Elevation semantic tokens values used in the theme
+     * Elevation semantic tokens values used in the theme.
      */
     val elevationTokens: OudsElevationSemanticTokens
 
     /**
-     * Font family used in the theme
-     * You can provide your own theme font family `FontFamily(Font(R.font.my_theme_font))`
+     * Font family used in the theme.
+     * You can provide your own theme font family `FontFamily(Font(R.font.my_theme_font))`.
      */
     val fontFamily: FontFamily
         get() = FontFamily.Default
 
     /**
-     * Font semantic tokens values used in the theme
+     * Font semantic tokens values used in the theme.
      */
     val fontTokens: OudsFontSemanticTokens
 
     /**
-     * Grid semantic tokens values used in the theme
+     * Grid semantic tokens values used in the theme.
      */
     val gridTokens: OudsGridSemanticTokens
 
     /**
-     * Opacity semantic tokens values used in the theme
+     * Opacity semantic tokens values used in the theme.
      */
     val opacityTokens: OudsOpacitySemanticTokens
 
     /**
-     * Size semantic tokens values used in the theme
+     * Size semantic tokens values used in the theme.
      */
     val sizeTokens: OudsSizeSemanticTokens
 
     /**
-     * Space semantic tokens values used in the theme
+     * Space semantic tokens values used in the theme.
      */
     val spaceTokens: OudsSpaceSemanticTokens
 
@@ -96,12 +95,10 @@ interface OudsThemeContract : Parcelable {
 
     /**
      * Allows customization of drawable resources used by OUDS components.
-     * OUDS includes a set of default drawable resources. You can replace these with your own drawable resources by overriding this property in your theme.
      *
      * Caution:
      * To avoid resource conflicts, Android recommends using a prefix or other consistent naming scheme that is unique to the module (or is unique across all project modules).
-     * So, we strongly recommend that you prefix your resources with the name of your theme. For example, if your theme is called "LoremIpsum" you might name your resources as lorem_ipsum_checkbox_selected, lorem_ipsum_tick, etc.
+     * So, we strongly recommend that you prefix your resources with the name of your theme. For example, if your theme is called "LoremIpsum" you might name your resources as ic_lorem_ipsum_checkbox_selected, ic_lorem_ipsum_chip_tick, etc.
      */
     val drawableResources: OudsDrawableResources
-        get() = OudsDrawableResources()
 }

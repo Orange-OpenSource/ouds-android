@@ -20,7 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.core.component.OudsChip
+import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -40,7 +40,7 @@ internal fun OudsFilterChipIconOnlySample() {
     OudsFilterChip(
         selected = selected,
         onClick = { selected = !selected },
-        icon = OudsChip.Icon(
+        icon = OudsChipIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         )
@@ -54,7 +54,7 @@ internal fun OudsFilterChipTextAndIconSample() {
         selected = selected,
         onClick = { selected = !selected },
         label = "Label",
-        icon = OudsChip.Icon(
+        icon = OudsChipIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = ""
         )

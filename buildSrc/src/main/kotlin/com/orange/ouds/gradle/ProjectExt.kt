@@ -207,7 +207,7 @@ fun Project.updateChangelog(version: String?) {
 
         val untaggedName = version ?: CHANGELOG_UNRELEASED_TAG_NAME
         val gitChangelogApi = withUntaggedName(untaggedName) // Group unreleased commits under the new version tag
-            .withIgnoreTagsIfNameMatches("^refs/tags/ci/.*") // Ignore CI tags
+            .withIgnoreTagsIfNameMatches("^refs/tags/(ci|sprint-demo)/.*") // Ignore CI and sprint demo tags
             .withTemplatePath("${rootProject.projectDir}/CHANGELOG.mustache") // Use a Mustache template to generate changelog
             .withHandlebarsHelper("commitDescriptionWithPullRequestUrl", Helper<Commit> { commit, options ->
                 // This Handlebars helper returns an enriched commit description

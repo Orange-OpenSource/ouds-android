@@ -18,19 +18,8 @@ plugins {
     alias(libs.plugins.paparazzi)
 }
 
-/**
- * The OudsThemeContract implementation used by Android Studio previews for the OUDS library.
- * Please change this value if you want to have a custom theme preview for the OUDS library and
- * don't forget to add a dependency to your custom theme in this case.
- */
-val previewThemeClass = "com.orange.ouds.theme.orange.OrangeTheme"
-
 android {
     namespace = "com.orange.ouds.core"
-
-    defaultConfig {
-        buildConfigField("com.orange.ouds.theme.OudsThemeContract", "PREVIEW_THEME", "new $previewThemeClass()")
-    }
 
     buildFeatures {
         buildConfig = true
@@ -48,9 +37,13 @@ dependencies {
     dokkaPlugin(project(":dokka-plugin"))
     implementation(project(":foundation"))
     api(project(":theme-contract"))
-    compileOnly(project(":theme-orange")) // Only useful for previews
+    // compileOnly dependencies on themes are needed for previews
+    compileOnly(project(":theme-orange"))
+    compileOnly(project(":theme-sosh"))
+    compileOnly(project(":theme-wireframe"))
 
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material3.adaptive)
     debugImplementation(libs.androidx.compose.ui.tooling)

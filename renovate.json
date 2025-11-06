@@ -9,7 +9,7 @@
   "labels": [
     "dependencies"
   ],
-  "baseBranches": [
+  "baseBranchPatterns": [
     "develop"
   ],
   "timezone": "Europe/Paris",
@@ -32,7 +32,7 @@
       "groupName": "github-actions"
     },
     {
-      "matchPackagePatterns": [
+      "matchPackageNames": [
         "^org.jetbrains.kotlin",
         "^com.google.devtools.ksp",
         "^androidx.compose.compiler"
@@ -40,11 +40,12 @@
       "groupName": "kotlin"
     },
     {
-      "matchPackagePatterns": [
+      "matchPackageNames": [
         "^se.bjurr.gitchangelog"
       ],
       "groupName": "gitchangelog"
     }
   ],
-  "platformAutomerge": true
+  "platformAutomerge": true,
+  "minimumReleaseAge": "3 days"
 }

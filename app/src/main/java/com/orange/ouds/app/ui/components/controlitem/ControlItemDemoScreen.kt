@@ -12,9 +12,7 @@
 
 package com.orange.ouds.app.ui.components.controlitem
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
@@ -23,8 +21,7 @@ import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
-import com.orange.ouds.core.component.OudsControlItem
-import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.component.OudsControlItemIcon
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
 
@@ -97,7 +94,7 @@ private fun ControlItemEnabledCustomization(state: ControlItemDemoState) {
 private fun ControlItemReadOnlyCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_readOnly_label),
+            label = stringResource(R.string.app_components_common_readOnly_label),
             checked = readOnly,
             onCheckedChange = { readOnly = it },
             enabled = readOnlySwitchEnabled
@@ -121,7 +118,6 @@ private fun ControlItemErrorCustomization(state: ControlItemDemoState) {
 private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
@@ -133,8 +129,7 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
 private fun ControlItemHelperTextCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
-            label = stringResource(R.string.app_components_controlItem_helperText_label),
+            label = stringResource(R.string.app_components_common_helperText_label),
             value = helperText.orEmpty(),
             onValueChange = { value -> helperText = value }
         )
@@ -145,7 +140,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = wit
     labelArgument(label)
     if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
     if (icon) {
-        constructorCallArgument<OudsControlItem.Icon>("icon") {
+        constructorCallArgument<OudsControlItemIcon>("icon") {
             painterArgument(R.drawable.ic_heart)
         }
     }

@@ -45,7 +45,7 @@ fun Illustration(content: @Composable () -> Unit) {
             .clearAndSetSemantics {}
             .fillMaxWidth()
             .height(184.dp)
-            .background(OudsTheme.colorScheme.surface.status.neutral.muted),
+            .background(OudsTheme.colorScheme.surface.secondary),
         contentAlignment = Alignment.Center,
         content = { content() }
     )

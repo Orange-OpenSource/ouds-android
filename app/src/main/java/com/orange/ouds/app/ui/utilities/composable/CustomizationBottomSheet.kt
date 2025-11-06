@@ -36,15 +36,18 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalDensity
@@ -60,6 +63,10 @@ import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+
+@OptIn(ExperimentalMaterial3Api::class)
+internal val LocalCustomizationBottomSheetValue =
+    staticCompositionLocalOf<SheetValue> { error("CompositionLocal LocalCustomizationBottomSheetValue not present") }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -130,8 +137,21 @@ fun CustomizationBottomSheetScaffold(
                     .heightIn(max = customizationContentMaxHeight)
                     .verticalScrollbar(scrollState)
                     .verticalScroll(scrollState)
+                    // We should write this line to disable the focus on children when the bottom sheet is not expanded:
+                    // focusProperties { canFocus = bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded }
+                    // But for some reason setting canFocus to true breaks the focus in CustomizationFilterChips,
+                    // thus in that case we don't apply focusProperties instead
+                    .run {
+                        if (bottomSheetScaffoldState.bottomSheetState.currentValue != SheetValue.Expanded) {
+                            focusProperties { canFocus = false }
+                        } else {
+                            this
+                        }
+                    }
             ) {
-                bottomSheetContent()
+                CompositionLocalProvider(LocalCustomizationBottomSheetValue provides bottomSheetScaffoldState.bottomSheetState.currentValue) {
+                    bottomSheetContent()
+                }
             }
         },
         content = { innerPadding ->

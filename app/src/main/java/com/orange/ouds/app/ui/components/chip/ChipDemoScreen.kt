@@ -14,9 +14,7 @@ package com.orange.ouds.app.ui.components.chip
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
@@ -29,7 +27,7 @@ import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
-import com.orange.ouds.core.component.OudsChip
+import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
@@ -41,30 +39,30 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             onCheckedChange = { enabled = it }
         )
         CustomizationFilterChips(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = ChipDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ChipDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { id -> layout = ChipDemoState.Layout.entries[id] }
         )
         CustomizationTextField(
-            modifier = Modifier.padding(top = OudsTheme.spaces.fixed.medium),
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
-            onValueChange = { value -> label = value }
+            onValueChange = { value -> label = value },
+            enabled = labelTextFieldEnabled
         )
     }
 }
 
 @Composable
-fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChip.Icon) -> Unit) {
+fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Unit) {
     val icons = listOf(
         R.drawable.ic_call,
         R.drawable.ic_sms_message
     )
     FlowRow(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
         repeat(ChipDemoState.ChipCount) { index ->
-            val icon = OudsChip.Icon(
+            val icon = OudsChipIcon(
                 painter = painterResource(icons[index % icons.count()]),
                 contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
             )
@@ -76,7 +74,7 @@ fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChip.Icon) -> Un
 fun FunctionCall.Builder.chipArguments(state: ChipDemoState) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
-        constructorCallArgument<OudsChip.Icon>("icon") {
+        constructorCallArgument<OudsChipIcon>("icon") {
             painterArgument(R.drawable.ic_call)
             contentDescriptionArgument(R.string.app_components_common_icon_a11y)
         }
