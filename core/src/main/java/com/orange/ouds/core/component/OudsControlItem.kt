@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -91,13 +93,17 @@ internal fun OudsControlItem(
     ) {
         val controlItemTokens = OudsTheme.componentsTokens.controlItem
 
-        val itemIcon: (@Composable () -> Unit)? = icon?.let {
-            {
-                icon.Content(
-                    extraParameters = OudsControlItemIcon.ExtraParameters(
-                        tint = if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+        val itemIcon: (@Composable () -> Unit)? = if (error != null) {
+            { errorIcon(state = state) }
+        } else {
+            icon?.let {
+                {
+                    icon.Content(
+                        extraParameters = OudsControlItemIcon.ExtraParameters(
+                            tint = if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+                        )
                     )
-                )
+                }
             }
         }
 
@@ -266,6 +272,20 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
         contentAlignment = Alignment.Center
     ) {
         content()
+    }
+}
+
+@Composable
+private fun errorIcon(state: OudsControlItemState) {
+    with(OudsTheme.componentsTokens.controlItem) {
+        Icon(
+            modifier = Modifier
+                .padding(spacePaddingInlineErrorIcon.value)
+                .size(sizeErrorIcon.value),
+            painter = painterResource(id = OudsTheme.drawableResources.alertImportant),
+            contentDescription = null,
+            tint = errorColor(state = state)
+        )
     }
 }
 
