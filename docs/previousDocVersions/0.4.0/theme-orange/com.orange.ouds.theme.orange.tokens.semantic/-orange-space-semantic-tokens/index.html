@@ -1,0 +1,1401 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OrangeSpaceSemanticTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme.orange.tokens.semantic/-orange-space-semantic-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="0.4.0"><span class="versions-dropdown-button-text">0.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-orange/com.orange.ouds.theme.orange.tokens.semantic/-orange-space-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../older/0.2.0/theme-orange/com.orange.ouds.theme.orange.tokens.semantic/-orange-space-semantic-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-orange/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-orange/main" data-filter=":theme-orange/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-orange::com.orange.ouds.theme.orange.tokens.semantic/OrangeSpaceSemanticTokens///PointingToDeclaration//1802211767">
+  <div class="breadcrumbs"><a href="../../index.html">theme-orange</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme.orange.tokens.semantic</a><span class="delimiter">/</span><span class="current">OrangeSpaceSemanticTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Orange</span><wbr><span>Space</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">OrangeSpaceSemanticTokens</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>columnGap2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>columnGap2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>columnGap3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>columnGapLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>columnGapMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>columnGapNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>columnGapSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>columnGapXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>columnGapXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixed2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixed2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixed3xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension600<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixed3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixed4xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixed5xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension800<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixedLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixedMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixedNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixedSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixedXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fixedXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>inset2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>inset2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>inset3xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>inset3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>inset4xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem25<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>insetLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>insetMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>insetNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>insetSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>insetXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>insetXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlock2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlock2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlock3xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlock3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlock4xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlock4xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlockLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlockMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlockNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlockSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlockXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingBlockXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInline2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInline2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInline3xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension350<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInline3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInline4xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInline4xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInlineLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInlineMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInlineNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInlineSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInlineXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension250<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>paddingInlineXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>rowGap2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>rowGap3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>rowGapLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>rowGapMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>rowGapNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>rowGapSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>rowGapXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaled2xlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaled2xlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension600<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaled2xsmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaled2xsmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaled3xlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension600<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaled3xlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension700<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaled3xsmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaled3xsmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledNoneMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledNoneTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledSmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledSmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledXlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledXlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension500<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledXsmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scaledXsmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150</span></span><span class="token punctuation">)</span> : <a href="../../../theme-contract/com.orange.ouds.theme.tokens.semantic/-ouds-space-semantic-tokens/index.html">OudsSpaceSemanticTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="912468695%2FConstructors%2F1802211767" anchor-label="OrangeSpaceSemanticTokens" id="912468695%2FConstructors%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-orange-space-semantic-tokens.html"><span>Orange</span><wbr><span>Space</span><wbr><span>Semantic</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="912468695%2FConstructors%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">columnGap2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter ">columnGap2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter ">columnGap3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter ">columnGapLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter ">columnGapMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter ">columnGapNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter ">columnGapSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter ">columnGapXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension250<span class="token punctuation">, </span></span><span class="parameter ">columnGapXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter ">fixed2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension500<span class="token punctuation">, </span></span><span class="parameter ">fixed2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter ">fixed3xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension600<span class="token punctuation">, </span></span><span class="parameter ">fixed3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter ">fixed4xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension700<span class="token punctuation">, </span></span><span class="parameter ">fixed5xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension800<span class="token punctuation">, </span></span><span class="parameter ">fixedLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter ">fixedMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter ">fixedNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter ">fixedSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter ">fixedXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter ">fixedXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter ">inset2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter ">inset2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter ">inset3xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension500<span class="token punctuation">, </span></span><span class="parameter ">inset3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter ">inset4xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem25<span class="token punctuation">, </span></span><span class="parameter ">insetLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter ">insetMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter ">insetNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter ">insetSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter ">insetXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter ">insetXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter ">paddingBlock2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter ">paddingBlock2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter ">paddingBlock3xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension350<span class="token punctuation">, </span></span><span class="parameter ">paddingBlock3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter ">paddingBlock4xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter ">paddingBlock4xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter ">paddingBlockLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter ">paddingBlockMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter ">paddingBlockNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter ">paddingBlockSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem250<span class="token punctuation">, </span></span><span class="parameter ">paddingBlockXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension250<span class="token punctuation">, </span></span><span class="parameter ">paddingBlockXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter ">paddingInline2xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter ">paddingInline2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter ">paddingInline3xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension350<span class="token punctuation">, </span></span><span class="parameter ">paddingInline3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter ">paddingInline4xlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter ">paddingInline4xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter ">paddingInlineLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter ">paddingInlineMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter ">paddingInlineNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter ">paddingInlineSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem250<span class="token punctuation">, </span></span><span class="parameter ">paddingInlineXlarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension250<span class="token punctuation">, </span></span><span class="parameter ">paddingInlineXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter ">rowGap2xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter ">rowGap3xsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter ">rowGapLarge<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter ">rowGapMedium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter ">rowGapNone<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter ">rowGapSmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter ">rowGapXsmall<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem150<span class="token punctuation">, </span></span><span class="parameter ">scaled2xlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension500<span class="token punctuation">, </span></span><span class="parameter ">scaled2xlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension600<span class="token punctuation">, </span></span><span class="parameter ">scaled2xsmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter ">scaled2xsmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter ">scaled3xlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension600<span class="token punctuation">, </span></span><span class="parameter ">scaled3xlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension700<span class="token punctuation">, </span></span><span class="parameter ">scaled3xsmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimensionOutOfSystem50<span class="token punctuation">, </span></span><span class="parameter ">scaled3xsmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension50<span class="token punctuation">, </span></span><span class="parameter ">scaledLargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter ">scaledLargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter ">scaledMediumMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter ">scaledMediumTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension300<span class="token punctuation">, </span></span><span class="parameter ">scaledNoneMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter ">scaledNoneTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension0<span class="token punctuation">, </span></span><span class="parameter ">scaledSmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150<span class="token punctuation">, </span></span><span class="parameter ">scaledSmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension200<span class="token punctuation">, </span></span><span class="parameter ">scaledXlargeMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension400<span class="token punctuation">, </span></span><span class="parameter ">scaledXlargeTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension500<span class="token punctuation">, </span></span><span class="parameter ">scaledXsmallMobile<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension100<span class="token punctuation">, </span></span><span class="parameter ">scaledXsmallTablet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span>DimensionRawTokens.dimension150</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="999842983%2FProperties%2F1802211767" anchor-label="columnGap2xlarge" id="999842983%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap2xlarge.html"><span>column</span><wbr><span><span>Gap2xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="999842983%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap2xlarge.html">columnGap2xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1572137051%2FProperties%2F1802211767" anchor-label="columnGap2xsmall" id="1572137051%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap2xsmall.html"><span>column</span><wbr><span><span>Gap2xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1572137051%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap2xsmall.html">columnGap2xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-437966790%2FProperties%2F1802211767" anchor-label="columnGap3xsmall" id="-437966790%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap3xsmall.html"><span>column</span><wbr><span><span>Gap3xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-437966790%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap3xsmall.html">columnGap3xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1680180095%2FProperties%2F1802211767" anchor-label="columnGapLarge" id="-1680180095%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap-large.html"><span>column</span><wbr><span>Gap</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1680180095%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap-large.html">columnGapLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2108185129%2FProperties%2F1802211767" anchor-label="columnGapMedium" id="2108185129%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap-medium.html"><span>column</span><wbr><span>Gap</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2108185129%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap-medium.html">columnGapMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-914520058%2FProperties%2F1802211767" anchor-label="columnGapNone" id="-914520058%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap-none.html"><span>column</span><wbr><span>Gap</span><wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-914520058%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap-none.html">columnGapNone</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1107886027%2FProperties%2F1802211767" anchor-label="columnGapSmall" id="-1107886027%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap-small.html"><span>column</span><wbr><span>Gap</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1107886027%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap-small.html">columnGapSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="848410523%2FProperties%2F1802211767" anchor-label="columnGapXlarge" id="848410523%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap-xlarge.html"><span>column</span><wbr><span>Gap</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="848410523%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap-xlarge.html">columnGapXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1420704591%2FProperties%2F1802211767" anchor-label="columnGapXsmall" id="1420704591%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="column-gap-xsmall.html"><span>column</span><wbr><span>Gap</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1420704591%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="column-gap-xsmall.html">columnGapXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="107571195%2FProperties%2F1802211767" anchor-label="fixed2xlarge" id="107571195%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed2xlarge.html"><span><span>fixed2xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="107571195%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed2xlarge.html">fixed2xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="679865263%2FProperties%2F1802211767" anchor-label="fixed2xsmall" id="679865263%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed2xsmall.html"><span><span>fixed2xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="679865263%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed2xsmall.html">fixed2xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1902532646%2FProperties%2F1802211767" anchor-label="fixed3xlarge" id="-1902532646%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed3xlarge.html"><span><span>fixed3xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1902532646%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed3xlarge.html">fixed3xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1330238578%2FProperties%2F1802211767" anchor-label="fixed3xsmall" id="-1330238578%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed3xsmall.html"><span><span>fixed3xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1330238578%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed3xsmall.html">fixed3xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="382330809%2FProperties%2F1802211767" anchor-label="fixed4xlarge" id="382330809%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed4xlarge.html"><span><span>fixed4xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="382330809%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed4xlarge.html">fixed4xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1627773032%2FProperties%2F1802211767" anchor-label="fixed5xlarge" id="-1627773032%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed5xlarge.html"><span><span>fixed5xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1627773032%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed5xlarge.html">fixed5xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-402897707%2FProperties%2F1802211767" anchor-label="fixedLarge" id="-402897707%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed-large.html"><span>fixed</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-402897707%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed-large.html">fixedLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1245733803%2FProperties%2F1802211767" anchor-label="fixedMedium" id="-1245733803%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed-medium.html"><span>fixed</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1245733803%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed-medium.html">fixedMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1620534578%2FProperties%2F1802211767" anchor-label="fixedNone" id="1620534578%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed-none.html"><span>fixed</span><wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1620534578%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed-none.html">fixedNone</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="169396361%2FProperties%2F1802211767" anchor-label="fixedSmall" id="169396361%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed-small.html"><span>fixed</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="169396361%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed-small.html">fixedSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1789458887%2FProperties%2F1802211767" anchor-label="fixedXlarge" id="1789458887%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed-xlarge.html"><span>fixed</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1789458887%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed-xlarge.html">fixedXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1933214341%2FProperties%2F1802211767" anchor-label="fixedXsmall" id="-1933214341%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fixed-xsmall.html"><span>fixed</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1933214341%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="fixed-xsmall.html">fixedXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1641872804%2FProperties%2F1802211767" anchor-label="inset2xlarge" id="1641872804%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset2xlarge.html"><span><span>inset2xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1641872804%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset2xlarge.html">inset2xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2080800424%2FProperties%2F1802211767" anchor-label="inset2xsmall" id="-2080800424%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset2xsmall.html"><span><span>inset2xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2080800424%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset2xsmall.html">inset2xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-368231037%2FProperties%2F1802211767" anchor-label="inset3xlarge" id="-368231037%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset3xlarge.html"><span><span>inset3xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-368231037%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset3xlarge.html">inset3xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="204063031%2FProperties%2F1802211767" anchor-label="inset3xsmall" id="204063031%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset3xsmall.html"><span><span>inset3xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="204063031%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset3xsmall.html">inset3xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1806040810%2FProperties%2F1802211767" anchor-label="inset4xsmall" id="-1806040810%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset4xsmall.html"><span><span>inset4xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1806040810%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset4xsmall.html">inset4xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="662384830%2FProperties%2F1802211767" anchor-label="insetLarge" id="662384830%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset-large.html"><span>inset</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="662384830%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset-large.html">insetLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1713253772%2FProperties%2F1802211767" anchor-label="insetMedium" id="1713253772%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset-medium.html"><span>inset</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1713253772%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset-medium.html">insetMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-284764119%2FProperties%2F1802211767" anchor-label="insetNone" id="-284764119%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset-none.html"><span>inset</span><wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-284764119%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset-none.html">insetNone</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1234678898%2FProperties%2F1802211767" anchor-label="insetSmall" id="1234678898%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset-small.html"><span>inset</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1234678898%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset-small.html">insetSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="453479166%2FProperties%2F1802211767" anchor-label="insetXlarge" id="453479166%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset-xlarge.html"><span>inset</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="453479166%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset-xlarge.html">insetXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1025773234%2FProperties%2F1802211767" anchor-label="insetXsmall" id="1025773234%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="inset-xsmall.html"><span>inset</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1025773234%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="inset-xsmall.html">insetXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-799880347%2FProperties%2F1802211767" anchor-label="paddingBlock2xlarge" id="-799880347%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block2xlarge.html"><span>padding</span><wbr><span><span>Block2xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-799880347%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block2xlarge.html">paddingBlock2xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-227586279%2FProperties%2F1802211767" anchor-label="paddingBlock2xsmall" id="-227586279%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block2xsmall.html"><span>padding</span><wbr><span><span>Block2xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-227586279%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block2xsmall.html">paddingBlock2xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1484983108%2FProperties%2F1802211767" anchor-label="paddingBlock3xlarge" id="1484983108%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block3xlarge.html"><span>padding</span><wbr><span><span>Block3xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1484983108%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block3xlarge.html">paddingBlock3xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2057277176%2FProperties%2F1802211767" anchor-label="paddingBlock3xsmall" id="2057277176%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block3xsmall.html"><span>padding</span><wbr><span><span>Block3xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2057277176%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block3xsmall.html">paddingBlock3xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-525120733%2FProperties%2F1802211767" anchor-label="paddingBlock4xlarge" id="-525120733%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block4xlarge.html"><span>padding</span><wbr><span><span>Block4xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-525120733%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block4xlarge.html">paddingBlock4xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="47173335%2FProperties%2F1802211767" anchor-label="paddingBlock4xsmall" id="47173335%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block4xsmall.html"><span>padding</span><wbr><span><span>Block4xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="47173335%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block4xsmall.html">paddingBlock4xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1826323135%2FProperties%2F1802211767" anchor-label="paddingBlockLarge" id="1826323135%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block-large.html"><span>padding</span><wbr><span>Block</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1826323135%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block-large.html">paddingBlockLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-859364437%2FProperties%2F1802211767" anchor-label="paddingBlockMedium" id="-859364437%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block-medium.html"><span>padding</span><wbr><span>Block</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-859364437%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block-medium.html">paddingBlockMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1969539592%2FProperties%2F1802211767" anchor-label="paddingBlockNone" id="1969539592%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block-none.html"><span>padding</span><wbr><span>Block</span><wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1969539592%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block-none.html">paddingBlockNone</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1896350093%2FProperties%2F1802211767" anchor-label="paddingBlockSmall" id="-1896350093%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block-small.html"><span>padding</span><wbr><span>Block</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1896350093%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block-small.html">paddingBlockSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2119139043%2FProperties%2F1802211767" anchor-label="paddingBlockXlarge" id="-2119139043%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block-xlarge.html"><span>padding</span><wbr><span>Block</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2119139043%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block-xlarge.html">paddingBlockXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1546844975%2FProperties%2F1802211767" anchor-label="paddingBlockXsmall" id="-1546844975%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-block-xsmall.html"><span>padding</span><wbr><span>Block</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1546844975%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-block-xsmall.html">paddingBlockXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-164342895%2FProperties%2F1802211767" anchor-label="paddingInline2xlarge" id="-164342895%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline2xlarge.html"><span>padding</span><wbr><span><span>Inline2xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-164342895%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline2xlarge.html">paddingInline2xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="407951173%2FProperties%2F1802211767" anchor-label="paddingInline2xsmall" id="407951173%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline2xsmall.html"><span>padding</span><wbr><span><span>Inline2xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="407951173%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline2xsmall.html">paddingInline2xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2120520560%2FProperties%2F1802211767" anchor-label="paddingInline3xlarge" id="2120520560%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline3xlarge.html"><span>padding</span><wbr><span><span>Inline3xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2120520560%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline3xlarge.html">paddingInline3xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1602152668%2FProperties%2F1802211767" anchor-label="paddingInline3xsmall" id="-1602152668%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline3xsmall.html"><span>padding</span><wbr><span><span>Inline3xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1602152668%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline3xsmall.html">paddingInline3xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="110416719%2FProperties%2F1802211767" anchor-label="paddingInline4xlarge" id="110416719%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline4xlarge.html"><span>padding</span><wbr><span><span>Inline4xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="110416719%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline4xlarge.html">paddingInline4xlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="682710787%2FProperties%2F1802211767" anchor-label="paddingInline4xsmall" id="682710787%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline4xsmall.html"><span>padding</span><wbr><span><span>Inline4xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="682710787%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline4xsmall.html">paddingInline4xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1268325867%2FProperties%2F1802211767" anchor-label="paddingInlineLarge" id="1268325867%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline-large.html"><span>padding</span><wbr><span>Inline</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1268325867%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline-large.html">paddingInlineLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-977410561%2FProperties%2F1802211767" anchor-label="paddingInlineMedium" id="-977410561%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline-medium.html"><span>padding</span><wbr><span>Inline</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-977410561%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline-medium.html">paddingInlineMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1812992348%2FProperties%2F1802211767" anchor-label="paddingInlineNone" id="1812992348%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline-none.html"><span>padding</span><wbr><span>Inline</span><wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1812992348%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline-none.html">paddingInlineNone</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1840619935%2FProperties%2F1802211767" anchor-label="paddingInlineSmall" id="1840619935%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline-small.html"><span>padding</span><wbr><span>Inline</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1840619935%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline-small.html">paddingInlineSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2057782129%2FProperties%2F1802211767" anchor-label="paddingInlineXlarge" id="2057782129%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline-xlarge.html"><span>padding</span><wbr><span>Inline</span><wbr><span><span>Xlarge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2057782129%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline-xlarge.html">paddingInlineXlarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1664891099%2FProperties%2F1802211767" anchor-label="paddingInlineXsmall" id="-1664891099%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="padding-inline-xsmall.html"><span>padding</span><wbr><span>Inline</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1664891099%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="padding-inline-xsmall.html">paddingInlineXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1171529593%2FProperties%2F1802211767" anchor-label="rowGap2xsmall" id="1171529593%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="row-gap2xsmall.html"><span>row</span><wbr><span><span>Gap2xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1171529593%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="row-gap2xsmall.html">rowGap2xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-838574248%2FProperties%2F1802211767" anchor-label="rowGap3xsmall" id="-838574248%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="row-gap3xsmall.html"><span>row</span><wbr><span><span>Gap3xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-838574248%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="row-gap3xsmall.html">rowGap3xsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1845959905%2FProperties%2F1802211767" anchor-label="rowGapLarge" id="-1845959905%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="row-gap-large.html"><span>row</span><wbr><span>Gap</span><wbr><span><span>Large</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1845959905%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="row-gap-large.html">rowGapLarge</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1263978315%2FProperties%2F1802211767" anchor-label="rowGapMedium" id="1263978315%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="row-gap-medium.html"><span>row</span><wbr><span>Gap</span><wbr><span><span>Medium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1263978315%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="row-gap-medium.html">rowGapMedium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1019794856%2FProperties%2F1802211767" anchor-label="rowGapNone" id="1019794856%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="row-gap-none.html"><span>row</span><wbr><span>Gap</span><wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1019794856%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="row-gap-none.html">rowGapNone</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1273665837%2FProperties%2F1802211767" anchor-label="rowGapSmall" id="-1273665837%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="row-gap-small.html"><span>row</span><wbr><span>Gap</span><wbr><span><span>Small</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1273665837%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="row-gap-small.html">rowGapSmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="576497777%2FProperties%2F1802211767" anchor-label="rowGapXsmall" id="576497777%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="row-gap-xsmall.html"><span>row</span><wbr><span>Gap</span><wbr><span><span>Xsmall</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="576497777%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="row-gap-xsmall.html">rowGapXsmall</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1777304193%2FProperties%2F1802211767" anchor-label="scaled2xlargeMobile" id="1777304193%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled2xlarge-mobile.html"><span>scaled2xlarge</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1777304193%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled2xlarge-mobile.html">scaled2xlargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1339234621%2FProperties%2F1802211767" anchor-label="scaled2xlargeTablet" id="1339234621%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled2xlarge-tablet.html"><span>scaled2xlarge</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1339234621%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled2xlarge-tablet.html">scaled2xlargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1992331467%2FProperties%2F1802211767" anchor-label="scaled2xsmallMobile" id="-1992331467%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled2xsmall-mobile.html"><span>scaled2xsmall</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1992331467%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled2xsmall-mobile.html">scaled2xsmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1864566257%2FProperties%2F1802211767" anchor-label="scaled2xsmallTablet" id="1864566257%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled2xsmall-tablet.html"><span>scaled2xsmall</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1864566257%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled2xsmall-tablet.html">scaled2xsmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-884859104%2FProperties%2F1802211767" anchor-label="scaled3xlargeMobile" id="-884859104%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled3xlarge-mobile.html"><span>scaled3xlarge</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-884859104%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled3xlarge-mobile.html">scaled3xlargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1322928676%2FProperties%2F1802211767" anchor-label="scaled3xlargeTablet" id="-1322928676%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled3xlarge-tablet.html"><span>scaled3xlarge</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1322928676%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled3xlarge-tablet.html">scaled3xlargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-359527468%2FProperties%2F1802211767" anchor-label="scaled3xsmallMobile" id="-359527468%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled3xsmall-mobile.html"><span>scaled3xsmall</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-359527468%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled3xsmall-mobile.html">scaled3xsmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-797597040%2FProperties%2F1802211767" anchor-label="scaled3xsmallTablet" id="-797597040%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled3xsmall-tablet.html"><span>scaled3xsmall</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-797597040%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled3xsmall-tablet.html">scaled3xsmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-873064997%2FProperties%2F1802211767" anchor-label="scaledLargeMobile" id="-873064997%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-large-mobile.html"><span>scaled</span><wbr><span>Large</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-873064997%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-large-mobile.html">scaledLargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1311134569%2FProperties%2F1802211767" anchor-label="scaledLargeTablet" id="-1311134569%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-large-tablet.html"><span>scaled</span><wbr><span>Large</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1311134569%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-large-tablet.html">scaledLargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2017590091%2FProperties%2F1802211767" anchor-label="scaledMediumMobile" id="2017590091%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-medium-mobile.html"><span>scaled</span><wbr><span>Medium</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2017590091%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-medium-mobile.html">scaledMediumMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1579520519%2FProperties%2F1802211767" anchor-label="scaledMediumTablet" id="1579520519%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-medium-tablet.html"><span>scaled</span><wbr><span>Medium</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1579520519%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-medium-tablet.html">scaledMediumTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1452959848%2FProperties%2F1802211767" anchor-label="scaledNoneMobile" id="1452959848%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-none-mobile.html"><span>scaled</span><wbr><span>None</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1452959848%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-none-mobile.html">scaledNoneMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1014890276%2FProperties%2F1802211767" anchor-label="scaledNoneTablet" id="1014890276%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-none-tablet.html"><span>scaled</span><wbr><span>None</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1014890276%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-none-tablet.html">scaledNoneTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-347733361%2FProperties%2F1802211767" anchor-label="scaledSmallMobile" id="-347733361%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-small-mobile.html"><span>scaled</span><wbr><span>Small</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-347733361%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-small-mobile.html">scaledSmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-785802933%2FProperties%2F1802211767" anchor-label="scaledSmallTablet" id="-785802933%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-small-tablet.html"><span>scaled</span><wbr><span>Small</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-785802933%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-small-tablet.html">scaledSmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1282931517%2FProperties%2F1802211767" anchor-label="scaledXlargeMobile" id="1282931517%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-xlarge-mobile.html"><span>scaled</span><wbr><span>Xlarge</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1282931517%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-xlarge-mobile.html">scaledXlargeMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="844861945%2FProperties%2F1802211767" anchor-label="scaledXlargeTablet" id="844861945%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-xlarge-tablet.html"><span>scaled</span><wbr><span>Xlarge</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="844861945%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-xlarge-tablet.html">scaledXlargeTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1808263153%2FProperties%2F1802211767" anchor-label="scaledXsmallMobile" id="1808263153%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-xsmall-mobile.html"><span>scaled</span><wbr><span>Xsmall</span><wbr><span><span>Mobile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1808263153%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-xsmall-mobile.html">scaledXsmallMobile</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1370193581%2FProperties%2F1802211767" anchor-label="scaledXsmallTablet" id="1370193581%2FProperties%2F1802211767" data-filterable-set=":theme-orange/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-orange/main" data-filterable-set=":theme-orange/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaled-xsmall-tablet.html"><span>scaled</span><wbr><span>Xsmall</span><wbr><span><span>Tablet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1370193581%2FProperties%2F1802211767"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-orange/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="scaled-xsmall-tablet.html">scaledXsmallTablet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
