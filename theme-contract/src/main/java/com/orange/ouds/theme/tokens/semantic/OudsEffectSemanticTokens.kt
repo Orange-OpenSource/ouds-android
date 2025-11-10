@@ -15,21 +15,6 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-interface OudsBorderSemanticTokens {
-    val radiusDefault: Float
-    val radiusLarge: Float
-    val radiusMedium: Float
-    val radiusNone: Float
-    val radiusPill: Float
-    val radiusSmall: Float
-    val styleDefault: String
-    val styleDrag: String
-    val widthDefault: Float
-    val widthFocus: Float
-    val widthFocusInset: Float
-    val widthMedium: Float
-    val widthNone: Float
-    val widthThick: Float
-    val widthThicker: Float
-    val widthThin: Float
+interface OudsEffectSemanticTokens {
+    val blurDrag: Int
 }
