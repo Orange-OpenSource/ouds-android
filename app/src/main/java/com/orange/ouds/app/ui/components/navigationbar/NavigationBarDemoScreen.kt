@@ -71,23 +71,12 @@ private fun NavigationBarDemoBottomSheetContent(state: NavigationBarDemoState) {
             checked = alwaysShowLabel,
             onCheckedChange = { alwaysShowLabel = it },
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_navigationBar_lastItemEnabled_label),
-            checked = lastItemEnabled,
-            onCheckedChange = { checked ->
-                // If the last item is selected when the last item is disabled, select the first item
-                if (!checked && selectedItemId == itemCount - 1) {
-                    selectedItemId = 0
-                }
-                lastItemEnabled = checked
-            },
-        )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_navigationBar_secondItemBadge_label),
+            label = stringResource(R.string.app_components_navigationBar_lastItemBadge_label),
             chipLabels = NavigationBarDemoState.ItemBadge.entries.map { it.name },
-            selectedChipIndex = NavigationBarDemoState.ItemBadge.entries.indexOf(secondItemBadge),
-            onSelectionChange = { id -> secondItemBadge = NavigationBarDemoState.ItemBadge.entries[id] }
+            selectedChipIndex = NavigationBarDemoState.ItemBadge.entries.indexOf(lastItemBadge),
+            onSelectionChange = { id -> lastItemBadge = NavigationBarDemoState.ItemBadge.entries[id] }
         )
     }
 }
@@ -114,9 +103,8 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                         contentDescription = label
                     ),
                     alwaysShowLabel = alwaysShowLabel,
-                    enabled = !(isLastItem && !lastItemEnabled),
-                    badge = if (index == 1) {
-                        when (secondItemBadge) {
+                    badge = if (isLastItem) {
+                        when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null
                             NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge(standardBadgeContentDescription)
                             NavigationBarDemoState.ItemBadge.Count -> OudsNavigationBarItemBadge(
@@ -148,12 +136,9 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
                         functionCallArgument("icon", OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
                             painterArgument(id = item.iconRes)
                         }
-                        if (isLastItem && !lastItemEnabled) {
-                            typedArgument("enabled", false)
-                        }
-                        if (index == 1 && secondItemBadge != NavigationBarDemoState.ItemBadge.None) {
+                        if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
                             functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
-                                if (secondItemBadge == NavigationBarDemoState.ItemBadge.Count) {
+                                if (lastItemBadge == NavigationBarDemoState.ItemBadge.Count) {
                                     typedArgument("count", ItemBadgeCount)
                                 }
                             }

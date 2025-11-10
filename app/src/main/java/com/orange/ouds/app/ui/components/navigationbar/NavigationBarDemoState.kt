@@ -27,18 +27,16 @@ fun rememberNavigationBarDemoState(
     itemCount: Int = NavigationBarDemoState.MinNavigationBarItemCount,
     selectedItemId: Int = 0,
     alwaysShowLabel: Boolean = true,
-    lastItemEnabled: Boolean = true,
-    secondItemBadge: NavigationBarDemoState.ItemBadge = NavigationBarDemoState.ItemBadge.None
-) = rememberSaveable(itemCount, alwaysShowLabel, lastItemEnabled, secondItemBadge, saver = NavigationBarDemoState.Saver) {
-    NavigationBarDemoState(itemCount, selectedItemId, alwaysShowLabel, lastItemEnabled, secondItemBadge)
+    lastItemBadge: NavigationBarDemoState.ItemBadge = NavigationBarDemoState.ItemBadge.None
+) = rememberSaveable(itemCount, alwaysShowLabel, lastItemBadge, saver = NavigationBarDemoState.Saver) {
+    NavigationBarDemoState(itemCount, selectedItemId, alwaysShowLabel, lastItemBadge)
 }
 
 class NavigationBarDemoState(
     itemCount: Int,
     selectedItemId: Int,
     alwaysShowLabel: Boolean,
-    lastItemEnabled: Boolean,
-    secondItemBadge: ItemBadge
+    lastItemBadge: ItemBadge
 ) {
     companion object {
         const val MinNavigationBarItemCount = 3
@@ -49,16 +47,14 @@ class NavigationBarDemoState(
             val itemCountKey = "itemCount"
             val selectedItemIdKey = "selectedItemId"
             val alwaysShowLabelKey = "alwaysShowLabel"
-            val lastItemEnabledKey = "lastItemEnabled"
-            val secondItemBadgeKey = "secondItemBadge"
+            val lastItemBadgeKey = "lastItemBadge"
             mapSaver(
                 save = { state ->
                     mapOf(
                         itemCountKey to state.itemCount,
                         selectedItemIdKey to state.selectedItemId,
                         alwaysShowLabelKey to state.alwaysShowLabel,
-                        lastItemEnabledKey to state.lastItemEnabled,
-                        secondItemBadgeKey to state.secondItemBadge
+                        lastItemBadgeKey to state.lastItemBadge
                     )
                 },
                 restore = { map ->
@@ -66,8 +62,7 @@ class NavigationBarDemoState(
                         map[itemCountKey] as Int,
                         map[selectedItemIdKey] as Int,
                         map[alwaysShowLabelKey] as Boolean,
-                        map[lastItemEnabledKey] as Boolean,
-                        map[secondItemBadgeKey] as ItemBadge
+                        map[lastItemBadgeKey] as ItemBadge
                     )
                 }
             )
@@ -77,11 +72,10 @@ class NavigationBarDemoState(
     var itemCount: Int by mutableIntStateOf(itemCount)
     var selectedItemId: Int by mutableIntStateOf(selectedItemId)
     var alwaysShowLabel: Boolean by mutableStateOf(alwaysShowLabel)
-    var lastItemEnabled: Boolean by mutableStateOf(lastItemEnabled)
-    var secondItemBadge: ItemBadge by mutableStateOf(secondItemBadge)
+    var lastItemBadge: ItemBadge by mutableStateOf(lastItemBadge)
 
     enum class ItemBadge(@StringRes val labelRes: Int) {
-        None(R.string.app_components_navigationBar_secondItemBadgeNone_label),
+        None(R.string.app_components_navigationBar_lastItemBadgeNone_label),
         Standard(R.string.app_components_badge_standardType_label),
         Count(R.string.app_components_badge_countType_label)
     }

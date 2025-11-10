@@ -27,17 +27,18 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
+import com.orange.ouds.core.component.OudsNavigationBarItemBadge
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsNavigationBarSample() {
-    data class Menu(val label: String, val imageVector: ImageVector, val enabled: Boolean = true)
+    data class Menu(val label: String, val imageVector: ImageVector, val count: Int? = null)
 
     val items = listOf(
         Menu("Call", Icons.Default.Call),
-        Menu("Email", Icons.Default.Email),
-        Menu("Agenda", Icons.Default.DateRange, enabled = false),
+        Menu("Email", Icons.Default.Email, count = 27),
+        Menu("Agenda", Icons.Default.DateRange),
         Menu("Settings", Icons.Default.Settings)
     )
     var selectedItemIndex: Int by rememberSaveable { mutableIntStateOf(0) }
@@ -57,7 +58,9 @@ internal fun OudsNavigationBarSample() {
                     contentDescription = item.label
                 ),
                 label = item.label,
-                enabled = item.enabled
+                badge = item.count?.let {
+                    OudsNavigationBarItemBadge(contentDescription = "27 unread emails", count = it)
+                }
             )
         }
     }

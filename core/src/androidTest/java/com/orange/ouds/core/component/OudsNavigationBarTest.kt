@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -42,7 +41,6 @@ class OudsNavigationBarTest {
     private data class TestNavigationBarItem(
         val label: String,
         val icon: ImageVector,
-        val enabled: Boolean = true,
         val badge: OudsNavigationBarItemBadge? = null
     )
 
@@ -55,7 +53,7 @@ class OudsNavigationBarTest {
 
     private val navigationBarItems = listOf(
         TestNavigationBarItem(label = Home, icon = Icons.Filled.Home),
-        TestNavigationBarItem(label = Profile, icon = Icons.Filled.Person, enabled = false),
+        TestNavigationBarItem(label = Profile, icon = Icons.Filled.Person),
         TestNavigationBarItem(
             label = Info,
             icon = Icons.Filled.Info,
@@ -75,7 +73,6 @@ class OudsNavigationBarTest {
                                 onClick = { },
                                 icon = OudsNavigationBarItemIcon(imageVector = item.icon, contentDescription = ""),
                                 label = item.label,
-                                enabled = item.enabled,
                                 badge = item.badge,
                                 modifier = Modifier
                                     .weight(1f)
@@ -89,7 +86,6 @@ class OudsNavigationBarTest {
             onNodeWithTag(Home).assertIsDisplayed()
             onNodeWithTag(Home).assertIsSelected()
             onNodeWithTag(Profile).assertIsDisplayed()
-            onNodeWithTag(Profile).assertIsNotEnabled()
             onNodeWithTag(Info).assertIsDisplayed()
         }
     }
@@ -110,7 +106,6 @@ class OudsNavigationBarTest {
                             },
                             icon = OudsNavigationBarItemIcon(imageVector = item.icon, contentDescription = ""),
                             label = item.label,
-                            enabled = item.enabled,
                             modifier = Modifier
                                 .weight(1f)
                                 .testTag(item.label)
