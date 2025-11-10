@@ -50,6 +50,7 @@ data class OudsColorScheme(
         val loading: Color,
         val negative: Negative,
         val pressed: Color,
+        val readOnly: ReadOnly,
         val selected: Color,
         val support: Support,
         val visited: Color
@@ -60,6 +61,11 @@ data class OudsColorScheme(
             val hover: Color,
             val loading: Color,
             val pressed: Color
+        )
+
+        data class ReadOnly(
+            val primary: Color,
+            val secondary: Color
         )
 
         data class Support(
@@ -95,6 +101,7 @@ data class OudsColorScheme(
         val emphasized: Color,
         val focus: Color,
         val focusInset: Color,
+        val minimal: Color,
         val muted: Color,
         val onBrand: OnBrand,
         val status: Status
@@ -530,6 +537,10 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 hover = actionHoverLight,
                 loading = actionLoadingLight,
                 pressed = actionPressedLight,
+                readOnly = OudsColorScheme.Action.ReadOnly(
+                    primary = actionReadOnlyPrimaryLight,
+                    secondary = actionReadOnlySecondaryLight
+                ),
                 support = OudsColorScheme.Action.Support(
                     disabled = actionSupportDisabledLight,
                     enabled = actionSupportEnabledLight,
@@ -561,6 +572,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 emphasized = borderEmphasizedLight,
                 focus = borderFocusLight,
                 focusInset = borderFocusInsetLight,
+                minimal = borderMinimalLight,
                 muted = borderMutedLight,
                 onBrand = OudsColorScheme.Border.OnBrand(
                     primary = borderOnBrandPrimaryLight,
@@ -754,6 +766,10 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 hover = actionHoverDark,
                 loading = actionLoadingDark,
                 pressed = actionPressedDark,
+                readOnly = OudsColorScheme.Action.ReadOnly(
+                    primary = actionReadOnlyPrimaryDark,
+                    secondary = actionReadOnlySecondaryDark
+                ),
                 support = OudsColorScheme.Action.Support(
                     disabled = actionSupportDisabledDark,
                     enabled = actionSupportEnabledDark,
@@ -785,6 +801,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 emphasized = borderEmphasizedDark,
                 focus = borderFocusDark,
                 focusInset = borderFocusInsetDark,
+                minimal = borderMinimalDark,
                 muted = borderMutedDark,
                 onBrand = OudsColorScheme.Border.OnBrand(
                     primary = borderOnBrandPrimaryDark,
@@ -1144,6 +1161,8 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Action): Color {
             OudsColorKeyToken.Action.Negative.Loading -> negative.loading
             OudsColorKeyToken.Action.Negative.Pressed -> negative.pressed
             OudsColorKeyToken.Action.Pressed -> pressed
+            OudsColorKeyToken.Action.ReadOnlyPrimary -> readOnly.primary
+            OudsColorKeyToken.Action.ReadOnlySecondary -> readOnly.secondary
             OudsColorKeyToken.Action.Selected -> selected
             OudsColorKeyToken.Action.Support.Disabled -> support.disabled
             OudsColorKeyToken.Action.Support.Enabled -> support.enabled
@@ -1192,6 +1211,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Border): Color {
             OudsColorKeyToken.Border.Emphasized -> emphasized
             OudsColorKeyToken.Border.Focus -> focus
             OudsColorKeyToken.Border.FocusInset -> focusInset
+            OudsColorKeyToken.Border.Minimal -> minimal
             OudsColorKeyToken.Border.Muted -> muted
             OudsColorKeyToken.Border.OnBrand.Primary -> onBrand.primary
             OudsColorKeyToken.Border.OnBrand.Secondary -> onBrand.secondary
