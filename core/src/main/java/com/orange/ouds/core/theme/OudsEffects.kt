@@ -23,20 +23,17 @@ import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
  * @suppress
  */
 data class OudsEffects(
-    val blurDrag: Int,
-    val blurNavigationBar: Int
+    val blurDrag: Int
 )
 
 internal fun OudsEffectSemanticTokens.getEffect() = OudsEffects(
     blurDrag = blurDrag,
-    blurNavigationBar = blurNavigationBar
 )
 
 @Stable
 private fun OudsEffects.fromToken(token: OudsEffectKeyToken): Int {
     return when (token) {
         OudsEffectKeyToken.Blur.Drag -> blurDrag
-        OudsEffectKeyToken.Blur.NavigationBar -> blurNavigationBar
     }
 }
 

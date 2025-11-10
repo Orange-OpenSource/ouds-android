@@ -99,7 +99,7 @@ val OudsNavigationBarHeight = 80.dp
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on OudsNavigationBar providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.effects.blurNavigationBar.dp)),`
+ * - Use `hazeEffect` Modifier on OudsNavigationBar providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.navigationBarBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the navigation bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to adjust paddings and to add a spacer at the end of the screen
  * content that will have the height of OudsNavigationBar. For this, please use `OudsNavigationBarHeight` constant.
@@ -118,8 +118,8 @@ fun OudsNavigationBar(
     windowInsets: WindowInsets = NavigationBarDefaults.windowInsets,
     content: @Composable RowScope.() -> Unit
 ) {
+    val topBorderColor = OudsTheme.colorScheme.border.minimal
     with(OudsTheme.componentsTokens.bar) {
-        val topBorderColor = colorBorder.value
         NavigationBar(
             modifier = modifier
                 .focusProperties { canFocus = false }
@@ -196,20 +196,20 @@ fun RowScope.OudsNavigationBarItem(
 
             // Top active indicator: visual alternative for selected item (a11y)
             val topIndicatorColor = topIndicatorColor(state = state)
-            val topIndicatorOpacityColor = topIndicatorColor.copy(alpha = topIndicatorColor.alpha * opacityTopActiveIndicator.value)
+            val topIndicatorOpacityColor = topIndicatorColor.copy(alpha = topIndicatorColor.alpha * opacityActiveIndicatorCustom.value)
             val topIndicatorShape = RoundedCornerShape(
                 topStart = 0.dp,
                 topEnd = 0.dp,
-                bottomStart = borderRadiusTopActiveIndicator.value,
-                bottomEnd = borderRadiusTopActiveIndicator.value
+                bottomStart = borderRadiusActiveIndicatorCustomTop.value,
+                bottomEnd = borderRadiusActiveIndicatorCustomTop.value
             )
             this@OudsNavigationBarItem.AnimatedVisibility(
                 modifier = Modifier.constrainAs(topIndicatorRef) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                    height = Dimension.value(sizeHeightTopActiveIndicator.dp)
-                    width = Dimension.value(sizeWidthTopActiveIndicator.dp)
+                    height = Dimension.value(sizeHeightActiveIndicatorCustom.dp)
+                    width = Dimension.value(sizeWidthActiveIndicatorCustomTop.dp)
                 },
                 visible = selected || state == OudsNavigationBarItemState.Hovered,
                 enter = fadeIn() + slideInVertically { -it * 2 },
@@ -298,11 +298,11 @@ private fun contentColor(state: OudsNavigationBarItemState, selected: Boolean): 
 private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> if (selected) colorMaterialActiveIndicatorSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItemState.Hovered -> if (selected) colorMaterialActiveIndicatorSelectedHover.value else colorMaterialActiveIndicatorUnselectedHover.value
-            OudsNavigationBarItemState.Pressed -> if (selected) colorMaterialActiveIndicatorSelectedPressed.value else colorMaterialActiveIndicatorUnselectedPressed.value
+            OudsNavigationBarItemState.Enabled -> if (selected) colorActiveIndicatorAndroidSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
+            OudsNavigationBarItemState.Hovered -> if (selected) colorActiveIndicatorAndroidSelectedHover.value else colorActiveIndicatorAndroidUnselectedHover.value
+            OudsNavigationBarItemState.Pressed -> if (selected) colorActiveIndicatorAndroidSelectedPressed.value else colorActiveIndicatorAndroidUnselectedPressed.value
             OudsNavigationBarItemState.Disabled -> OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItemState.Focused -> if (selected) colorMaterialActiveIndicatorSelectedFocus.value else colorMaterialActiveIndicatorUnselectedFocus.value
+            OudsNavigationBarItemState.Focused -> if (selected) colorActiveIndicatorAndroidSelectedFocus.value else colorActiveIndicatorAndroidUnselectedFocus.value
         }
     }
 }
@@ -311,11 +311,11 @@ private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: 
 private fun topIndicatorColor(state: OudsNavigationBarItemState): Color {
     return with(OudsTheme.componentsTokens.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> colorTopActiveIndicatorSelectedEnabled.value
-            OudsNavigationBarItemState.Hovered -> colorTopActiveIndicatorSelectedHover.value
-            OudsNavigationBarItemState.Pressed -> colorTopActiveIndicatorSelectedPressed.value
+            OudsNavigationBarItemState.Enabled -> colorActiveIndicatorCustomSelectedEnabled.value
+            OudsNavigationBarItemState.Hovered -> colorActiveIndicatorCustomSelectedHover.value
+            OudsNavigationBarItemState.Pressed -> colorActiveIndicatorCustomSelectedPressed.value
             OudsNavigationBarItemState.Disabled -> OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItemState.Focused -> colorTopActiveIndicatorSelectedFocus.value
+            OudsNavigationBarItemState.Focused -> colorActiveIndicatorCustomSelectedFocus.value
         }
     }
 }

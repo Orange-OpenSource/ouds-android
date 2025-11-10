@@ -109,6 +109,11 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
+    val navigationBarBlur
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalComponentsTokens.current.bar.effectBgBlur
+
     internal val componentsTokens: OudsComponentsTokens
         @Composable
         @ReadOnlyComposable
