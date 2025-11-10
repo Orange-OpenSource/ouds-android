@@ -26,6 +26,8 @@ import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.DrawableResources
+import com.orange.ouds.app.ui.utilities.LocalDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -38,9 +40,10 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun RadioButtonItemDemoScreen() {
     val state = rememberRadioButtonItemDemoState()
+    val drawableResources = LocalDrawableResources.current
     DemoScreen(
         bottomSheetContent = { RadioButtonItemDemoBottomSheetContent(state = state) },
-        codeSnippet = { radioButtonItemDemoCodeSnippet(state = state) },
+        codeSnippet = { radioButtonItemDemoCodeSnippet(state = state, drawableResources = drawableResources) },
         demoContent = { RadioButtonItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(),
         version = OudsVersion.Component.RadioButton
@@ -81,7 +84,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     label = label,
                     additionalLabel = additionalLabel,
                     helperText = helperText,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalDrawableResources.current.heartEmpty)) else null,
                     divider = divider,
                     outlined = outlined,
                     reversed = reversed,
@@ -94,7 +97,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
     }
 }
 
-private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState) {
+private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, drawableResources: DrawableResources) {
     comment("First radio button item")
     with(state) {
         functionCall("OudsRadioButtonItem") {
@@ -102,7 +105,7 @@ private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDe
             onClickArgument {
                 comment("Change selection")
             }
-            controlItemArguments(state)
+            controlItemArguments(state, drawableResources)
             if (!additionalLabel.isNullOrBlank()) typedArgument("additionalLabel", additionalLabel)
             if (outlined) typedArgument("outlined", outlined)
         }

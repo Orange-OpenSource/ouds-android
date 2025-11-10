@@ -30,6 +30,7 @@ import androidx.compose.foundation.layout.union
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -41,6 +42,8 @@ import androidx.core.content.getSystemService
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import com.orange.ouds.app.ui.navigation.appNavGraph
+import com.orange.ouds.app.ui.utilities.DrawableResources
+import com.orange.ouds.app.ui.utilities.LocalDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -89,66 +92,68 @@ fun MainScreen(
         theme = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
-        Scaffold(
-            contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
-            topBar = {
-                val context = LocalContext.current
-                TopBar(
-                    topBarState = mainState.topBarState,
-                    upPress = mainState.navigationState::upPress,
-                    onActionClick = { action ->
-                        when (action) {
-                            TopBarAction.ChangeThemeSettings -> changeThemeSettingsDialogVisible = true
-                            TopBarAction.ChangeTheme -> changeThemeDialogVisible = true
-                            TopBarAction.ChangeMode -> setApplicationNightModeEnabled(!isSystemInDarkTheme, context)
+        CompositionLocalProvider(LocalDrawableResources provides DrawableResources(mainState.themeState.currentTheme)) {
+            Scaffold(
+                contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
+                topBar = {
+                    val context = LocalContext.current
+                    TopBar(
+                        topBarState = mainState.topBarState,
+                        upPress = mainState.navigationState::upPress,
+                        onActionClick = { action ->
+                            when (action) {
+                                TopBarAction.ChangeThemeSettings -> changeThemeSettingsDialogVisible = true
+                                TopBarAction.ChangeTheme -> changeThemeDialogVisible = true
+                                TopBarAction.ChangeMode -> setApplicationNightModeEnabled(!isSystemInDarkTheme, context)
+                            }
                         }
-                    }
-                )
-            },
-            bottomBar = {
-                BottomBar(
-                    currentRoute = mainState.navigationState.currentRoute.orEmpty(),
-                    navigateToRoute = { route ->
-                        mainState.navigationState.navigateToBottomBarRoute(route)
-                    },
-                    visible = mainState.showBottomBar
-                )
-            }
-        ) { innerPadding ->
-            NavHost(
-                navController = mainState.navigationState.navController,
-                startDestination = BottomBarItem.Tokens.route,
-                modifier = Modifier
-                    .consumeWindowInsets(innerPadding)
-                    .padding(innerPadding)
-            ) {
-                appNavGraph(mainState)
-            }
+                    )
+                },
+                bottomBar = {
+                    BottomBar(
+                        currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                        navigateToRoute = { route ->
+                            mainState.navigationState.navigateToBottomBarRoute(route)
+                        },
+                        visible = mainState.showBottomBar
+                    )
+                }
+            ) { innerPadding ->
+                NavHost(
+                    navController = mainState.navigationState.navController,
+                    startDestination = BottomBarItem.Tokens.route,
+                    modifier = Modifier
+                        .consumeWindowInsets(innerPadding)
+                        .padding(innerPadding)
+                ) {
+                    appNavGraph(mainState)
+                }
 
-            if (changeThemeDialogVisible) {
-                ChangeThemeDialog(
-                    themeState = mainState.themeState,
-                    onThemeChange = { themeName ->
-                        mainState.themeState.setCurrentTheme(themeName)
-                        onThemeChange(themeName)
-                    },
-                    onDismissRequest = {
-                        changeThemeDialogVisible = false
-                    }
-                )
-            }
+                if (changeThemeDialogVisible) {
+                    ChangeThemeDialog(
+                        themeState = mainState.themeState,
+                        onThemeChange = { themeName ->
+                            mainState.themeState.setCurrentTheme(themeName)
+                            onThemeChange(themeName)
+                        },
+                        onDismissRequest = {
+                            changeThemeDialogVisible = false
+                        }
+                    )
+                }
 
-            if (changeThemeSettingsDialogVisible) {
-                ChangeThemeSettingsDialog(
-                    themeState = mainState.themeState,
-                    onThemeSettingsChange = { themeSettings ->
-                        mainState.themeState.settings = themeSettings
-                        onThemeSettingsChange(themeSettings)
-                    },
-                    onDismissRequest = {
-                        changeThemeSettingsDialogVisible = false
-                    }
-                )
+                if (changeThemeSettingsDialogVisible) {
+                    ChangeThemeSettingsDialog(
+                        themeState = mainState.themeState,
+                        onThemeSettingsChange = { themeSettings ->
+                            mainState.themeState.settings = themeSettings
+                            onThemeSettingsChange(themeSettings)
+                        },
+                        onDismissRequest = {
+                            changeThemeSettingsDialogVisible = false
+                        }
+                    )
+                }
             }
         }
     }

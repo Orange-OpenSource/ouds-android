@@ -18,6 +18,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.utilities.DrawableResources
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -136,12 +137,12 @@ private fun ControlItemHelperTextCustomization(state: ControlItemDemoState) {
     }
 }
 
-fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = with(state) {
+fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, drawableResources: DrawableResources) = with(state) {
     labelArgument(label)
     if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
     if (icon) {
         constructorCallArgument<OudsControlItemIcon>("icon") {
-            painterArgument(R.drawable.ic_heart)
+            painterArgument(drawableResources.heartEmpty)
         }
     }
     if (divider) typedArgument("divider", divider)

@@ -49,7 +49,7 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
             tokenCategories.forEach { token ->
                 LargeCard(
                     title = stringResource(id = token.nameRes),
-                    illustration = { ImageIllustration(token.imageRes) },
+                    illustration = { ImageIllustration(token.imageRes()) },
                     onClick = { onTokenCategoryClick(token.id) }
                 )
             }

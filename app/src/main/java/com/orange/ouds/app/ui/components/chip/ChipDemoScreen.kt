@@ -23,7 +23,9 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.utilities.DrawableResources
 import com.orange.ouds.app.ui.utilities.FunctionCall
+import com.orange.ouds.app.ui.utilities.LocalDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -56,9 +58,10 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
 
 @Composable
 fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Unit) {
+    val drawableResources = LocalDrawableResources.current
     val icons = listOf(
-        R.drawable.ic_call,
-        R.drawable.ic_sms_message
+        drawableResources.call,
+        LocalDrawableResources.current.smsMessage
     )
     FlowRow(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
         repeat(ChipDemoState.ChipCount) { index ->
@@ -71,11 +74,11 @@ fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Uni
     }
 }
 
-fun FunctionCall.Builder.chipArguments(state: ChipDemoState) = with(state) {
+fun FunctionCall.Builder.chipArguments(state: ChipDemoState, drawableResources: DrawableResources) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
         constructorCallArgument<OudsChipIcon>("icon") {
-            painterArgument(R.drawable.ic_call)
+            painterArgument(drawableResources.call)
             contentDescriptionArgument(R.string.app_components_common_icon_a11y)
         }
     }

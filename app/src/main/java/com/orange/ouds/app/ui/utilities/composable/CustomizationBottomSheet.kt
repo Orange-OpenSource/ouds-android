@@ -59,6 +59,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.LocalDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -119,7 +120,7 @@ fun CustomizationBottomSheetScaffold(
                 val angle by animateFloatAsState(targetValue = degrees, label = "ComponentCustomizationBottomSheetScaffoldIconRotation")
                 Icon(
                     modifier = Modifier.rotate(angle),
-                    painter = painterResource(id = R.drawable.ic_chevron_down),
+                    painter = painterResource(id = LocalDrawableResources.current.formChevronDown),
                     contentDescription = null,
                     tint = OudsTheme.colorScheme.content.default
                 )

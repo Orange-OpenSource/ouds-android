@@ -25,6 +25,8 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.DrawableResources
+import com.orange.ouds.app.ui.utilities.LocalDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -39,10 +41,11 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun ButtonDemoScreen() {
     val state = rememberButtonDemoState()
+    val drawableResources = LocalDrawableResources.current
     DemoScreen(
         description = stringResource(id = Component.Button.descriptionRes),
         bottomSheetContent = { ButtonDemoBottomSheetContent(state = state) },
-        codeSnippet = { buttonDemoCodeSnippet(state = state) },
+        codeSnippet = { buttonDemoCodeSnippet(state = state, drawableResources = drawableResources) },
         demoContent = { ButtonDemoContent(state = state) },
         demoContentOnColoredBox = state.onColoredBox,
         version = OudsVersion.Component.Button
@@ -96,7 +99,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
 @Composable
 private fun ButtonDemoContent(state: ButtonDemoState) {
     val icon = OudsButtonIcon(
-        painter = painterResource(id = R.drawable.ic_heart),
+        painter = painterResource(id = LocalDrawableResources.current.heartEmpty),
         contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
     )
     with(state) {
@@ -134,13 +137,13 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
     }
 }
 
-private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState) {
+private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, drawableResources: DrawableResources) {
     with(state) {
         coloredBoxCall(onColoredBox) {
             functionCall("OudsButton") {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     constructorCallArgument<OudsButtonIcon>("icon") {
-                        painterArgument(R.drawable.ic_heart)
+                        painterArgument(drawableResources.heartEmpty)
                         contentDescriptionArgument(R.string.app_components_common_icon_a11y)
                     }
                 }

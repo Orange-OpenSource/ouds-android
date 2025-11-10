@@ -21,6 +21,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.DrawableResources
+import com.orange.ouds.app.ui.utilities.LocalDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsSwitchItem
@@ -31,9 +33,10 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun SwitchItemDemoScreen() {
     val state = rememberSwitchItemDemoState()
+    val drawableResources = LocalDrawableResources.current
     DemoScreen(
         bottomSheetContent = { ControlItemCustomizations(state = state) },
-        codeSnippet = { switchItemDemoCodeSnippet(state = state) },
+        codeSnippet = { switchItemDemoCodeSnippet(state = state, drawableResources = drawableResources) },
         demoContent = { SwitchItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(),
         version = OudsVersion.Component.Switch
@@ -48,7 +51,7 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             label = label,
             onCheckedChange = { checked = it },
             helperText = helperText,
-            icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
+            icon = if (icon) OudsControlItemIcon(painterResource(id = LocalDrawableResources.current.heartEmpty)) else null,
             divider = divider,
             reversed = reversed,
             enabled = enabled,
@@ -58,14 +61,14 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
     }
 }
 
-private fun Code.Builder.switchItemDemoCodeSnippet(state: SwitchItemDemoState) {
+private fun Code.Builder.switchItemDemoCodeSnippet(state: SwitchItemDemoState, drawableResources: DrawableResources) {
     with(state) {
         functionCall("OudsSwitchItem") {
             typedArgument("checked", checked)
             lambdaArgument("onCheckedChange") {
                 comment("Change state")
             }
-            controlItemArguments(state)
+            controlItemArguments(state, drawableResources)
         }
     }
 }

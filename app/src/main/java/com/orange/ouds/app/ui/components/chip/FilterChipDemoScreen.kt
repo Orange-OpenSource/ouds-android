@@ -12,11 +12,11 @@
 
 package com.orange.ouds.app.ui.components.chip
 
-import android.content.Context
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.DrawableResources
+import com.orange.ouds.app.ui.utilities.LocalDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.utilities.OudsPreview
@@ -25,10 +25,10 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun FilterChipDemoScreen() {
     val state = rememberFilterChipDemoState()
-    val context = LocalContext.current
+    val drawableResources = LocalDrawableResources.current
     DemoScreen(
         bottomSheetContent = { ChipDemoBottomSheetContent(state = state) },
-        codeSnippet = { filterChipDemoCodeSnippet(state = state, context = context) },
+        codeSnippet = { filterChipDemoCodeSnippet(state = state, drawableResources = drawableResources) },
         demoContent = { FilterChipDemoContent(state = state) },
         version = OudsVersion.Component.Chip
     )
@@ -73,12 +73,12 @@ private fun FilterChipDemoContent(state: FilterChipDemoState) {
     }
 }
 
-private fun Code.Builder.filterChipDemoCodeSnippet(state: FilterChipDemoState, context: Context) {
+private fun Code.Builder.filterChipDemoCodeSnippet(state: FilterChipDemoState, drawableResources: DrawableResources) {
     with(state) {
         comment("First filter chip")
         functionCall("OudsFilterChip") {
             typedArgument("selected", selectedValues[0])
-            chipArguments(state)
+            chipArguments(state, drawableResources)
         }
     }
 }
