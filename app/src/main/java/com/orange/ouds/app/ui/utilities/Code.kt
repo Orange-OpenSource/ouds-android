@@ -216,7 +216,7 @@ class Newline : Formattable {
 @Preview
 @Composable
 internal fun PreviewCode() = OudsPreview {
-    val drawableResources = LocalDrawableResources.current
+    val themeDrawableResources = LocalThemeDrawableResources.current
     val code = code {
         comment("Multiline\ncomment") { isMultiline = true }
         newline()
@@ -224,7 +224,7 @@ internal fun PreviewCode() = OudsPreview {
             trailingLambda = true
             constructorCallArgument<OudsButtonIcon>("icon") {
                 functionCallArgument("painter", "painterResource") {
-                    typedArgument("id", drawableResources.heartEmpty)
+                    typedArgument("id", themeDrawableResources.heartEmpty)
                 }
                 lambdaArgument("onClick") {
                     comment("click") { isMultiline = true }

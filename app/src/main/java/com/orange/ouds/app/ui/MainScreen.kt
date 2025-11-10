@@ -42,8 +42,8 @@ import androidx.core.content.getSystemService
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import com.orange.ouds.app.ui.navigation.appNavGraph
-import com.orange.ouds.app.ui.utilities.DrawableResources
-import com.orange.ouds.app.ui.utilities.LocalDrawableResources
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
@@ -92,7 +92,7 @@ fun MainScreen(
         theme = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
-        CompositionLocalProvider(LocalDrawableResources provides DrawableResources(mainState.themeState.currentTheme)) {
+        CompositionLocalProvider(LocalThemeDrawableResources provides ThemeDrawableResources(mainState.themeState.currentTheme)) {
             Scaffold(
                 contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
                 topBar = {

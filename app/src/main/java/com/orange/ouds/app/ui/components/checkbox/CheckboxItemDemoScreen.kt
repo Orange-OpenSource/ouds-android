@@ -23,8 +23,8 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.DrawableResources
-import com.orange.ouds.app.ui.utilities.LocalDrawableResources
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsControlItemIcon
@@ -36,10 +36,10 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
     val state = rememberCheckboxItemDemoState()
-    val drawableResources = LocalDrawableResources.current
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         bottomSheetContent = { ControlItemCustomizations(state = state) },
-        codeSnippet = { checkboxItemDemoCodeSnippet(state = state, indeterminate = indeterminate, drawableResources = drawableResources) },
+        codeSnippet = { checkboxItemDemoCodeSnippet(state = state, indeterminate = indeterminate, themeDrawableResources = themeDrawableResources) },
         demoContent = {
             if (indeterminate) {
                 IndeterminateCheckboxItemDemoContent(state = state)
@@ -70,7 +70,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     },
                     label = label,
                     helperText = helperText,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalDrawableResources.current.heartEmpty)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.heartEmpty)) else null,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
@@ -102,7 +102,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     },
                     label = label,
                     helperText = helperText,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalDrawableResources.current.heartEmpty)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.heartEmpty)) else null,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
@@ -114,7 +114,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
     }
 }
 
-private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indeterminate: Boolean, drawableResources: DrawableResources) {
+private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indeterminate: Boolean, themeDrawableResources: ThemeDrawableResources) {
     val functionName = if (indeterminate) "OudsTriStateCheckboxItem" else "OudsCheckboxItem"
     val lambdaCommentText = "Change state"
     comment("First checkbox item")
@@ -131,7 +131,7 @@ private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoStat
                     comment(lambdaCommentText)
                 }
             }
-            controlItemArguments(state, drawableResources)
+            controlItemArguments(state, themeDrawableResources)
         }
     }
 }

@@ -21,8 +21,8 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.DrawableResources
-import com.orange.ouds.app.ui.utilities.LocalDrawableResources
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -38,11 +38,11 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun TextInputDemoScreen() {
     val state = rememberTextInputDemoState()
-    val drawableResources = LocalDrawableResources.current
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         description = stringResource(id = Component.TextInput.descriptionRes),
         bottomSheetContent = { TextInputDemoBottomSheetContent(state = state) },
-        codeSnippet = { textInputDemoCodeSnippet(state = state, drawableResources = drawableResources) },
+        codeSnippet = { textInputDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { TextInputDemoContent(state = state) },
         version = OudsVersion.Component.TextInput
     )
@@ -140,7 +140,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             outlined = outlined,
             leadingIcon = if (leadingIcon) {
                 OudsTextInputLeadingIcon(
-                    painterResource(id = LocalDrawableResources.current.heartEmpty),
+                    painterResource(id = LocalThemeDrawableResources.current.heartEmpty),
                     contentDescription = ""
                 )
             } else {
@@ -148,7 +148,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             },
             trailingIconButton = if (trailingIcon) {
                 OudsTextInputTrailingIconButton(
-                    painterResource(id = LocalDrawableResources.current.heartEmpty),
+                    painterResource(id = LocalThemeDrawableResources.current.heartEmpty),
                     contentDescription = stringResource(id = R.string.app_components_textInput_trailingIcon_a11y),
                     onClick = { })
             } else {
@@ -166,7 +166,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
     }
 }
 
-private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, drawableResources: DrawableResources) {
+private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsTextInput") {
             typedArgument("value", value)
@@ -178,12 +178,12 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, dra
             typedArgument("outlined", outlined)
             if (leadingIcon) {
                 constructorCallArgument<OudsTextInputLeadingIcon>("leadingIcon") {
-                    painterArgument(drawableResources.heartEmpty)
+                    painterArgument(themeDrawableResources.heartEmpty)
                 }
             }
             if (trailingIcon) {
                 constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
-                    painterArgument(drawableResources.heartEmpty)
+                    painterArgument(themeDrawableResources.heartEmpty)
                     onClickArgument {
                         comment("Do something")
                     }

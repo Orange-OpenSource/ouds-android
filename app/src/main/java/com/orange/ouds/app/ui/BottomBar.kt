@@ -43,7 +43,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.LocalDrawableResources
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -97,7 +97,7 @@ enum class BottomBarItem(
 ) {
     Tokens(R.string.app_bottomBar_tokens_label, { R.drawable.ic_design_token_figma }, "main/tokens"),
     Components(R.string.app_bottomBar_components_label, { R.drawable.ic_component_atom }, "main/components"),
-    About(R.string.app_bottomBar_about_label, { LocalDrawableResources.current.info }, "main/about");
+    About(R.string.app_bottomBar_about_label, { LocalThemeDrawableResources.current.info }, "main/about");
 }
 
 @PreviewLightDark

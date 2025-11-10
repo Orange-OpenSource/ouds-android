@@ -16,7 +16,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.LocalDrawableResources
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -54,7 +54,7 @@ sealed class TokenCategory<T>(
 
     data object Color : TokenCategory<Color>(
         R.string.app_tokens_color_label,
-        { LocalDrawableResources.current.palette },
+        { LocalThemeDrawableResources.current.palette },
         R.string.app_tokens_color_description_text,
         listOf(
             TokenProperty.ColorAction,
@@ -105,7 +105,7 @@ sealed class TokenCategory<T>(
 
     data object Grid : TokenCategory<Grid>(
         R.string.app_tokens_grid_label,
-        { LocalDrawableResources.current.menuGrid },
+        { LocalThemeDrawableResources.current.menuGrid },
         R.string.app_tokens_grid_description_text,
         listOf(TokenProperty.Grid)
     )

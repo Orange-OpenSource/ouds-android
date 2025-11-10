@@ -27,8 +27,8 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.DrawableResources
-import com.orange.ouds.app.ui.utilities.LocalDrawableResources
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
@@ -51,10 +51,10 @@ import kotlin.reflect.full.createInstance
 @Composable
 fun TagDemoScreen() {
     val state = rememberTagDemoState()
-    val drawableResources = LocalDrawableResources.current
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         bottomSheetContent = { TagDemoBottomSheetContent(state = state) },
-        codeSnippet = { tagDemoCodeSnippet(state = state, drawableResources = drawableResources) },
+        codeSnippet = { tagDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { TagDemoContent(state = state) },
         version = OudsVersion.Component.Tag
     )
@@ -155,7 +155,7 @@ private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
             val loader = if (hasLoader) OudsTagLoader(null) else null
-            val customIcon = OudsTagIcon.Custom(painter = painterResource(LocalDrawableResources.current.heartEmpty))
+            val customIcon = OudsTagIcon.Custom(painter = painterResource(LocalThemeDrawableResources.current.heartEmpty))
             val alpha = if (visible) 1f else 0f
             OudsTag(
                 modifier = Modifier.alpha(alpha),
@@ -207,7 +207,7 @@ private fun TagDemoContent(state: TagDemoState) {
     }
 }
 
-private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, drawableResources: DrawableResources) {
+private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsTag") {
             labelArgument(label)
@@ -223,7 +223,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, drawableResourc
                         when (status) {
                             is OudsTagStatus.Neutral, is OudsTagStatus.Accent ->
                                 constructorCallArgument<OudsTagIcon.Custom>("icon") {
-                                    painterArgument(drawableResources.heartEmpty)
+                                    painterArgument(themeDrawableResources.heartEmpty)
                                 }
                             is OudsTagStatus.Positive, is OudsTagStatus.Warning, is OudsTagStatus.Info, is OudsTagStatus.Negative ->
                                 typedArgument("icon", OudsTagIcon.Default)

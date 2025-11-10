@@ -23,9 +23,9 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.utilities.DrawableResources
 import com.orange.ouds.app.ui.utilities.FunctionCall
-import com.orange.ouds.app.ui.utilities.LocalDrawableResources
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -58,10 +58,10 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
 
 @Composable
 fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Unit) {
-    val drawableResources = LocalDrawableResources.current
+    val themeDrawableResources = LocalThemeDrawableResources.current
     val icons = listOf(
-        drawableResources.call,
-        LocalDrawableResources.current.smsMessage
+        themeDrawableResources.call,
+        themeDrawableResources.smsMessage
     )
     FlowRow(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
         repeat(ChipDemoState.ChipCount) { index ->
@@ -74,11 +74,11 @@ fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Uni
     }
 }
 
-fun FunctionCall.Builder.chipArguments(state: ChipDemoState, drawableResources: DrawableResources) = with(state) {
+fun FunctionCall.Builder.chipArguments(state: ChipDemoState, themeDrawableResources: ThemeDrawableResources) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
         constructorCallArgument<OudsChipIcon>("icon") {
-            painterArgument(drawableResources.call)
+            painterArgument(themeDrawableResources.call)
             contentDescriptionArgument(R.string.app_components_common_icon_a11y)
         }
     }

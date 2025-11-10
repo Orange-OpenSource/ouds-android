@@ -60,7 +60,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.LocalDrawableResources
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
@@ -291,7 +291,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                 )
                 Icon(
                     modifier = Modifier.rotate(linkArrowRotation),
-                    painter = painterResource(LocalDrawableResources.current.formChevronDown),
+                    painter = painterResource(LocalThemeDrawableResources.current.formChevronDown),
                     tint = OudsTheme.colorScheme.content.brandPrimary,
                     contentDescription = null
                 )
