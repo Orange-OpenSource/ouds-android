@@ -125,13 +125,13 @@ internal fun OudsControlItem(
             val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
             Row(
                 modifier = Modifier
-                    .padding(vertical = controlItemTokens.spacePaddingBlock.value)
+                    .padding(vertical = controlItemTokens.spacePaddingBlockDefault.value)
                     .edgeToEdgePadding(true)
                     .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
                     .run {
                         // Apply default horizontal padding if edgeToEdgePadding is disabled
                         val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
-                        if (element?.enabled == false) padding(horizontal = controlItemTokens.spacePaddingBlock.value) else this
+                        if (element?.enabled == false) padding(horizontal = controlItemTokens.spacePaddingBlockDefault.value) else this
                     },
                 horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
             ) {

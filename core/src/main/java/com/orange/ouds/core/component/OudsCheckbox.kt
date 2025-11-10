@@ -66,7 +66,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
  *
- * > Design version: 2.3.0
+ * > Design version: 2.4.0
  *
  * @see [OudsTriStateCheckbox] If you require support for an indeterminate state.
  * @see [OudsCheckboxItem] If you want to use a checkbox with an associated label and other optional elements.
@@ -115,7 +115,7 @@ fun OudsCheckbox(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
  *
- * > Design version: 2.3.0
+ * > Design version: 2.4.0
  *
  * @see [OudsCheckbox] If you need a simple component that represents [Boolean] state.
  * @see [OudsTriStateCheckboxItem] If you want to use an indeterminate checkbox with an associated label and other optional elements.
