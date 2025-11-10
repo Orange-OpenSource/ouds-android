@@ -102,7 +102,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
             LinkDemoState.Layout.TextAndIcon -> {
                 OudsLink(
                     label = label,
-                    icon = OudsLinkIcon(painterResource(id = LocalThemeDrawableResources.current.heartEmpty)),
+                    icon = OudsLinkIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)),
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -139,7 +139,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                     LinkDemoState.Layout.TextOnly -> {}
                     LinkDemoState.Layout.TextAndIcon -> {
                         constructorCallArgument<OudsLinkIcon>("icon") {
-                            painterArgument(themeDrawableResources.heartEmpty)
+                            painterArgument(themeDrawableResources.tipsAndTricks)
                         }
                     }
                     LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLinkArrow.Back)

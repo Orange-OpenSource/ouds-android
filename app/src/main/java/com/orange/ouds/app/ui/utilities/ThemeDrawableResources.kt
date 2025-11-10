@@ -52,15 +52,6 @@ class ThemeDrawableResources(val theme: OudsThemeContract) {
             else -> error(ThemeDrawableResources::formChevronDown)
         }
 
-    val heartEmpty: Int
-        @DrawableRes
-        get() = when (theme) {
-            is OrangeTheme -> R.drawable.ic_orange_heart_empty
-            is SoshTheme -> R.drawable.ic_sosh_heart_empty
-            is WireframeTheme -> R.drawable.ic_wireframe_heart_empty
-            else -> error(ThemeDrawableResources::heartEmpty)
-        }
-
     val info: Int
         @DrawableRes
         get() = when (theme) {
@@ -95,6 +86,15 @@ class ThemeDrawableResources(val theme: OudsThemeContract) {
             is SoshTheme -> R.drawable.ic_sosh_sms_message
             is WireframeTheme -> R.drawable.ic_wireframe_sms_message
             else -> error(ThemeDrawableResources::smsMessage)
+        }
+
+    val tipsAndTricks: Int
+        @DrawableRes
+        get() = when (theme) {
+            is OrangeTheme -> R.drawable.ic_orange_tips_and_tricks
+            is SoshTheme -> R.drawable.ic_sosh_tips_and_tricks
+            is WireframeTheme -> R.drawable.ic_wireframe_tips_and_tricks
+            else -> error(ThemeDrawableResources::tipsAndTricks)
         }
 
     private fun error(property: KProperty1<ThemeDrawableResources, Int>): Nothing {

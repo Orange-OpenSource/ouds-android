@@ -100,8 +100,8 @@ class BadgeDemoState(
     val badgeWithIconStatus: OudsIconBadgeStatus
         @Composable
         get() = when (status) {
-            OudsBadgeStatus.Neutral -> OudsIconBadgeStatus.Neutral(OudsBadgeIcon(painterResource(LocalThemeDrawableResources.current.heartEmpty)))
-            OudsBadgeStatus.Accent -> OudsIconBadgeStatus.Accent(OudsBadgeIcon(painterResource(LocalThemeDrawableResources.current.heartEmpty)))
+            OudsBadgeStatus.Neutral -> OudsIconBadgeStatus.Neutral(OudsBadgeIcon(painterResource(LocalThemeDrawableResources.current.tipsAndTricks)))
+            OudsBadgeStatus.Accent -> OudsIconBadgeStatus.Accent(OudsBadgeIcon(painterResource(LocalThemeDrawableResources.current.tipsAndTricks)))
             OudsBadgeStatus.Positive -> OudsIconBadgeStatus.Positive
             OudsBadgeStatus.Info -> OudsIconBadgeStatus.Info
             OudsBadgeStatus.Warning -> OudsIconBadgeStatus.Warning
