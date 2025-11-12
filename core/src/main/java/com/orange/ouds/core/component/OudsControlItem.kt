@@ -12,12 +12,14 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -71,6 +73,7 @@ internal fun OudsControlItem(
     indicatorPosition: OudsControlItemIndicatorPosition,
     checkedContentComponentName: String,
     checkedContentSelectionStatus: String,
+    backgroundColor: Color,
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
     handleHighContrastMode: Boolean = false
@@ -94,7 +97,7 @@ internal fun OudsControlItem(
         val controlItemTokens = OudsTheme.componentsTokens.controlItem
 
         val itemIcon: (@Composable () -> Unit)? = if (error != null) {
-            { errorIcon(state = state) }
+            { ErrorIcon(state = state) }
         } else {
             icon?.let {
                 {
@@ -111,63 +114,61 @@ internal fun OudsControlItem(
         val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
 
         val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
-        Box(
-            modifier = filteredModifier
-                .height(IntrinsicSize.Min)
-                .heightIn(min = controlItemTokens.sizeMinHeight.dp)
-                .widthIn(min = controlItemTokens.sizeMinWidth.dp)
-                .outerBorder(state = state, handleHighContrastMode = handleHighContrastMode)
-                .run {
-                    error?.description?.let { description ->
-                        semantics {
-                            error(description)
-                        }
-                    }.orElse {
-                        this
-                    }
-                },
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
-            Row(
+
+        Column(modifier = filteredModifier) {
+            Box(
                 modifier = Modifier
-                    .padding(vertical = controlItemTokens.spacePaddingBlockDefault.value)
-                    .edgeToEdgePadding(true)
-                    .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
-                    .run {
-                        // Apply default horizontal padding if edgeToEdgePadding is disabled
-                        val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
-                        if (element?.enabled == false) padding(horizontal = controlItemTokens.spacePaddingBlockDefault.value) else this
-                    },
-                horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
+                    .height(IntrinsicSize.Min)
+                    .heightIn(min = controlItemTokens.sizeMinHeight.dp)
+                    .widthIn(min = controlItemTokens.sizeMinWidth.dp)
+                    .background(color = backgroundColor)
+                    .outerBorder(state = state, handleHighContrastMode = handleHighContrastMode),
+                contentAlignment = Alignment.BottomCenter
             ) {
-                leadingElement?.let { LeadingTrailingBox(leadingElement) }
-                Column(
+                val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
+                Row(
                     modifier = Modifier
-                        .weight(1f)
-                        .align(Alignment.CenterVertically),
-                    verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
+                        .padding(vertical = controlItemTokens.spacePaddingBlockDefault.value)
+                        .edgeToEdgePadding(true)
+                        .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
+                        .run {
+                            // Apply default horizontal padding if edgeToEdgePadding is disabled
+                            val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
+                            if (element?.enabled == false) padding(horizontal = controlItemTokens.spacePaddingBlockDefault.value) else this
+                        },
+                    horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
                 ) {
-                    Text(text = label, style = OudsTheme.typography.label.default.large, color = labelColor(state = state, error = error))
-                    if (!additionalLabel.isNullOrBlank()) {
-                        Text(
-                            text = additionalLabel,
-                            style = OudsTheme.typography.label.strong.medium,
-                            color = additionalLabelColor(state = state)
-                        )
+                    leadingElement?.let { LeadingTrailingBox(leadingElement) }
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .align(Alignment.CenterVertically),
+                        verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
+                    ) {
+                        Text(text = label, style = OudsTheme.typography.label.default.large, color = labelColor(state = state, error = error))
+                        if (!additionalLabel.isNullOrBlank()) {
+                            Text(
+                                text = additionalLabel,
+                                style = OudsTheme.typography.label.strong.medium,
+                                color = additionalLabelColor(state = state)
+                            )
+                        }
+                        if (!helperText.isNullOrBlank()) {
+                            Text(
+                                text = helperText,
+                                style = OudsTheme.typography.label.default.medium,
+                                color = helperTextColor(state = state)
+                            )
+                        }
                     }
-                    if (!helperText.isNullOrBlank()) {
-                        Text(
-                            text = helperText,
-                            style = OudsTheme.typography.label.default.medium,
-                            color = helperTextColor(state = state)
-                        )
-                    }
+                    trailingElement?.let { LeadingTrailingBox(trailingElement) }
                 }
-                trailingElement?.let { LeadingTrailingBox(trailingElement) }
+                if (divider) {
+                    OudsHorizontalDivider(color = dividerColor(state = state, error = error))
+                }
             }
-            if (divider) {
-                OudsHorizontalDivider(color = dividerColor(state = state, error = error))
+            if (error != null && error.description.isNotBlank()) {
+                ErrorDescriptionText(text = error.description)
             }
         }
     }
@@ -276,7 +277,25 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun errorIcon(state: OudsControlItemState) {
+private fun ErrorDescriptionText(text: String) {
+    with(OudsTheme.componentsTokens.controlItem) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = spacePaddingBlockTopErrorText.value)
+                .padding(horizontal = spacePaddingInline.value)
+                .semantics {
+                    error(text)
+                },
+            text = text,
+            style = OudsTheme.typography.label.default.medium,
+            color = OudsTheme.colorScheme.content.status.negative
+        )
+    }
+}
+
+@Composable
+private fun ErrorIcon(state: OudsControlItemState) {
     with(OudsTheme.componentsTokens.controlItem) {
         Icon(
             modifier = Modifier
@@ -374,7 +393,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                     when (index) {
                         0 -> this
                         1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
-                        else -> copy(helperText = helperText, divider = true, error = OudsError(""))
+                        else -> copy(helperText = helperText, divider = true, error = OudsError("This field can't be activated"))
                     }
                 }
             }
