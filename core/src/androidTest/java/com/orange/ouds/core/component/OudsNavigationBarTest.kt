@@ -11,21 +11,16 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
@@ -65,28 +60,23 @@ class OudsNavigationBarTest {
     fun oudsNavigationBar_displaysAllItems() {
         with(composeTestRule) {
             setOudsContent {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    OudsNavigationBar {
-                        navigationBarItems.forEachIndexed { index, item ->
-                            OudsNavigationBarItem(
-                                selected = index == 0,
-                                onClick = { },
-                                icon = OudsNavigationBarItemIcon(imageVector = item.icon, contentDescription = ""),
-                                label = item.label,
-                                badge = item.badge,
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .testTag(item.label)
-                            )
-                        }
+                OudsNavigationBar(
+                    items = navigationBarItems.mapIndexed { index, item ->
+                        OudsNavigationBarItem(
+                            selected = index == 0,
+                            onClick = { },
+                            icon = OudsNavigationBarItemIcon(imageVector = item.icon, contentDescription = ""),
+                            label = item.label,
+                            badge = item.badge
+                        )
                     }
-                }
+                )
             }
 
-            onNodeWithTag(Home).assertIsDisplayed()
-            onNodeWithTag(Home).assertIsSelected()
-            onNodeWithTag(Profile).assertIsDisplayed()
-            onNodeWithTag(Info).assertIsDisplayed()
+            onNodeWithText(Home).assertIsDisplayed()
+            onNodeWithText(Home).assertIsSelected()
+            onNodeWithText(Profile).assertIsDisplayed()
+            onNodeWithText(Info).assertIsDisplayed()
         }
     }
 
@@ -95,8 +85,8 @@ class OudsNavigationBarTest {
         with(composeTestRule) {
             val onClick = mock<() -> Unit>()
             setOudsContent {
-                OudsNavigationBar {
-                    navigationBarItems.forEachIndexed { index, item ->
+                OudsNavigationBar(
+                    items = navigationBarItems.mapIndexed { index, item ->
                         OudsNavigationBarItem(
                             selected = false,
                             onClick = if (index == 0) {
@@ -105,17 +95,14 @@ class OudsNavigationBarTest {
                                 {}
                             },
                             icon = OudsNavigationBarItemIcon(imageVector = item.icon, contentDescription = ""),
-                            label = item.label,
-                            modifier = Modifier
-                                .weight(1f)
-                                .testTag(item.label)
+                            label = item.label
                         )
                     }
-                }
+                )
             }
 
-            onNodeWithTag(Home).assertIsNotSelected()
-            onNodeWithTag(Home).performClick()
+            onNodeWithText(Home).assertIsNotSelected()
+            onNodeWithText(Home).performClick()
             verify(onClick).invoke()
         }
     }
