@@ -32,13 +32,13 @@ import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsNavigationBarSample() {
-    data class Menu(val label: String, val imageVector: ImageVector, val count: Int? = null)
+    data class Item(val label: String, val imageVector: ImageVector, val count: Int? = null)
 
     val items = listOf(
-        Menu("Call", Icons.Default.Call),
-        Menu("Email", Icons.Default.Email, count = 27),
-        Menu("Agenda", Icons.Default.DateRange),
-        Menu("Settings", Icons.Default.Settings)
+        Item("Call", Icons.Default.Call),
+        Item("Email", Icons.Default.Email, count = 27),
+        Item("Agenda", Icons.Default.DateRange),
+        Item("Settings", Icons.Default.Settings)
     )
     var selectedItemIndex: Int by rememberSaveable { mutableIntStateOf(0) }
 
