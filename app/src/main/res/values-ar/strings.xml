@@ -195,7 +195,7 @@
     <string name="app_components_navigationBar_itemBadgeNone_label">None</string>
     <string name="app_components_navigationBar_homeItem_label">Home</string>
     <string name="app_components_navigationBar_shopItem_label">Shop</string>
-    <string name="app_components_navigationBar_notificationItem_label">Notifications</string>
+    <string name="app_components_navigationBar_notificationsItem_label">Notifications</string>
     <string name="app_components_navigationBar_accountItem_label">Account</string>
     <string name="app_components_navigationBar_settingsItem_label">Settings</string>
 
