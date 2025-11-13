@@ -400,8 +400,8 @@ internal fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreview
 @PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) parameter: OudsNavigationBarItemPreviewParameter) {
-    PreviewOudsNavigationBarItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+internal fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
+    PreviewOudsNavigationBarItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), selected = selected)
 }
 
 private data class OudsNavigationBarPreviewItem(
@@ -461,24 +461,22 @@ internal fun PreviewOudsNavigationBar(
 internal fun PreviewOudsNavigationBarItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsNavigationBarItemPreviewParameter
+    selected: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    with(parameter) {
-        Row {
-            PreviewEnumEntries<OudsNavigationBarItemState> {
-                OudsNavigationBarItemContent(
-                    item = OudsNavigationBarItem(
-                        selected = selected,
-                        onClick = {},
-                        icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star, contentDescription = ""),
-                        label = "Label",
-                        alwaysShowLabel = true
-                    ),
-                    modifier = Modifier
-                        .size(width = 80.dp, height = 64.dp)
-                        .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value)
-                )
-            }
+    Row {
+        PreviewEnumEntries<OudsNavigationBarItemState> {
+            OudsNavigationBarItemContent(
+                item = OudsNavigationBarItem(
+                    selected = selected,
+                    onClick = {},
+                    icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star, contentDescription = ""),
+                    label = "Label",
+                    alwaysShowLabel = true
+                ),
+                modifier = Modifier
+                    .size(width = 80.dp, height = 64.dp)
+                    .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value)
+            )
         }
     }
 }
@@ -488,24 +486,13 @@ internal data class OudsNavigationBarPreviewParameter(
     val alwaysShowLabel: Boolean = true
 )
 
-internal data class OudsNavigationBarItemPreviewParameter(
-    val selected: Boolean
-)
+internal class OudsNavigationBarItemPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(true, false)
 
 internal class OudsNavigationBarPreviewParameterProvider :
     BasicPreviewParameterProvider<OudsNavigationBarPreviewParameter>(*previewParameterValues.toTypedArray())
-
-internal class OudsNavigationBarItemPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsNavigationBarItemPreviewParameter>(*itemPreviewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsNavigationBarPreviewParameter>
     get() = listOf(
         OudsNavigationBarPreviewParameter(),
         OudsNavigationBarPreviewParameter(navigationBarItemCount = 5, alwaysShowLabel = false),
-    )
-
-private val itemPreviewParameterValues: List<OudsNavigationBarItemPreviewParameter>
-    get() = listOf(
-        OudsNavigationBarItemPreviewParameter(true),
-        OudsNavigationBarItemPreviewParameter(false),
     )
