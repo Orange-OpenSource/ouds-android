@@ -19,7 +19,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -209,9 +208,10 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
                     enter = fadeIn() + slideInVertically { -it * 2 },
                     exit = fadeOut() + slideOutVertically { -it * 2 }
                 ) {
-                    Box(modifier = Modifier
-                        .alpha(opacityActiveIndicatorCustom.value)
-                        .background(color = topIndicatorColor, shape = topIndicatorShape)
+                    Box(
+                        modifier = Modifier
+                            .alpha(opacityActiveIndicatorCustom.value)
+                            .background(color = topIndicatorColor, shape = topIndicatorShape)
                     )
                 }
 
@@ -362,22 +362,26 @@ class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int?
     @Composable
     override fun Content(modifier: Modifier) {
         val status = OudsBadgeStatus.Negative // In a navigation bar a badge has always a negative status.
-        val borderModifier = Modifier
-            .border(width = 1.dp, color = OudsTheme.componentsTokens.bar.colorBorderBadge.value, shape = OudsBadgeShape)
-            .padding(0.5.dp) // Fixes a bug where background is visible outside shaped border. See https://issuetracker.google.com/issues/228985905?pli=1
-
-        if (count != null) {
-            OudsBadge(count = count, modifier = modifier.then(borderModifier), status = status, size = OudsBadgeSize.Medium)
+        val positionModifier = if (count != null) {
+            Modifier
         } else {
             val startPosition = OudsNavigationBarItemIcon.Size / 2
             val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
             val xOffset = startPosition - badgeSize
             val yOffset = (startPosition - badgeSize) + 2.dp
-            OudsBadge(
-                modifier = modifier
-                    .offset(x = xOffset, y = -yOffset)
-                    .then(borderModifier), status = status, size = OudsBadgeSize.ExtraSmall
-            )
+            Modifier.offset(x = xOffset, y = -yOffset)
+        }
+
+        Box(
+            modifier = positionModifier
+                .background(color = OudsTheme.componentsTokens.bar.colorBorderBadge.value, shape = OudsBadgeShape)
+                .padding(1.dp)
+        ) {
+            count?.let {
+                OudsBadge(count = count, modifier = modifier, status = status, size = OudsBadgeSize.Medium)
+            }.orElse {
+                OudsBadge(modifier = modifier, status = status, size = OudsBadgeSize.ExtraSmall)
+            }
         }
     }
 }
