@@ -421,7 +421,7 @@ private val navigationBarPreviewItems = listOf(
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.DateRange,
         label = "Agenda",
-        badge = OudsNavigationBarItemBadge("unread notifications")
+        badge = OudsNavigationBarItemBadge("Unread notifications")
     ),
     OudsNavigationBarPreviewItem(
         imageVector = Icons.Default.AccountCircle,
