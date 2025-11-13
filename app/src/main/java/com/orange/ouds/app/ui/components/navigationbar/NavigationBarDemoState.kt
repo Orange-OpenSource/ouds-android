@@ -17,7 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.R
@@ -43,30 +43,26 @@ class NavigationBarDemoState(
         const val MaxNavigationBarItemCount = 5
         const val ItemBadgeCount = 9
 
-        val Saver = run {
-            val itemCountKey = "itemCount"
-            val selectedItemIdKey = "selectedItemId"
-            val alwaysShowLabelKey = "alwaysShowLabel"
-            val lastItemBadgeKey = "lastItemBadge"
-            mapSaver(
-                save = { state ->
-                    mapOf(
-                        itemCountKey to state.itemCount,
-                        selectedItemIdKey to state.selectedItemId,
-                        alwaysShowLabelKey to state.alwaysShowLabel,
-                        lastItemBadgeKey to state.lastItemBadge
-                    )
-                },
-                restore = { map ->
-                    NavigationBarDemoState(
-                        map[itemCountKey] as Int,
-                        map[selectedItemIdKey] as Int,
-                        map[alwaysShowLabelKey] as Boolean,
-                        map[lastItemBadgeKey] as ItemBadge
+        val Saver = listSaver(
+            save = { state ->
+                with(state) {
+                    listOf(
+                        itemCount,
+                        selectedItemId,
+                        alwaysShowLabel,
+                        lastItemBadge
                     )
                 }
-            )
-        }
+            },
+            restore = { list ->
+                NavigationBarDemoState(
+                    list[0] as Int,
+                    list[1] as Int,
+                    list[2] as Boolean,
+                    list[3] as ItemBadge
+                )
+            }
+        )
     }
 
     var itemCount: Int by mutableIntStateOf(itemCount)
