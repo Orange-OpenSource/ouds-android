@@ -109,7 +109,7 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
-    val navigationBarBlur
+    val navigationBarBlurRadius
         @Composable
         @ReadOnlyComposable
         get() = LocalComponentsTokens.current.bar.effectBgBlur
