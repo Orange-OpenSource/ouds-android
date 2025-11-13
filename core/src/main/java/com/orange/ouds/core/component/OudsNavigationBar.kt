@@ -141,7 +141,7 @@ fun OudsNavigationBar(
 /**
  * An OUDS navigation bar item, used in [OudsNavigationBar].
  *
- * The recommended configuration for an [OudsNavigationBarItem] depends on how many items there are inside a [OudsNavigationBarItem]:
+ * The recommended configuration for an [OudsNavigationBarItem] depends on how many items there are inside a [OudsNavigationBar]:
  * - Three destinations: Display icons and text labels for all destinations.
  * - Four destinations: Active destinations display an icon and text label. Inactive destinations display icons, and text labels are recommended.
  * - Five destinations: Active destinations display an icon and text label. Inactive destinations use icons, and use text labels if space permits.
