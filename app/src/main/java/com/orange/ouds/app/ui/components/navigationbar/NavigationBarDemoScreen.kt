@@ -150,7 +150,7 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
 
 enum class NavigationBarItem(@DrawableRes val iconRes: Int, @StringRes val labelRes: Int) {
     Home(R.drawable.ic_home, R.string.app_components_navigationBar_homeItem_label),
-    Notification(R.drawable.ic_notification_alert, R.string.app_components_navigationBar_notificationItem_label),
+    Notification(R.drawable.ic_notification_alert, R.string.app_components_navigationBar_notificationsItem_label),
     Shop(R.drawable.ic_shop_store, R.string.app_components_navigationBar_shopItem_label),
     Account(R.drawable.ic_avatar, R.string.app_components_navigationBar_accountItem_label),
     Settings(R.drawable.ic_settings, R.string.app_components_navigationBar_settingsItem_label),
