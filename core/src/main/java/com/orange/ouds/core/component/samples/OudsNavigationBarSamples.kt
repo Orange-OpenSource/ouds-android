@@ -22,7 +22,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsNavigationBar
@@ -43,11 +42,10 @@ internal fun OudsNavigationBarSample() {
     )
     var selectedItemIndex: Int by rememberSaveable { mutableIntStateOf(0) }
 
-    OudsNavigationBar {
-        items.forEachIndexed { index, item ->
+    OudsNavigationBar(
+        items = items.mapIndexed { index, item ->
             val isSelected = index == selectedItemIndex
             OudsNavigationBarItem(
-                modifier = Modifier.weight(1f),
                 selected = isSelected,
                 onClick = {
                     selectedItemIndex = index
@@ -63,7 +61,7 @@ internal fun OudsNavigationBarSample() {
                 }
             )
         }
-    }
+    )
 }
 
 @PreviewLightDark

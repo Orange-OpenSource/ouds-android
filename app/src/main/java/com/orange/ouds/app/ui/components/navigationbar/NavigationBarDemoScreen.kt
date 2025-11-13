@@ -18,7 +18,6 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -86,15 +85,14 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
     val navigationBarItems = NavigationBarItem.entries
 
     with(state) {
-        OudsNavigationBar {
-            navigationBarItems.take(itemCount).forEachIndexed { index, item ->
+        OudsNavigationBar(
+            items = navigationBarItems.take(itemCount).mapIndexed { index, item ->
                 val label = stringResource(id = item.labelRes)
                 val isLastItem = index == itemCount - 1
                 val standardBadgeContentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
                 val countBadgeContentDescription =
                     pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = ItemBadgeCount, ItemBadgeCount)
                 OudsNavigationBarItem(
-                    modifier = Modifier.weight(1f),
                     selected = selectedItemId == index,
                     onClick = { selectedItemId = index },
                     label = label,
@@ -117,7 +115,7 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     }
                 )
             }
-        }
+        )
     }
 }
 

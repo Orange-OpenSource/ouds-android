@@ -54,21 +54,18 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier:
             enter = fadeIn(tween(100)),
             exit = fadeOut(tween(100))
         ) {
-            val items = BottomBarItem.entries.toTypedArray()
             OudsNavigationBar(
-                modifier = modifier.consumeWindowInsets(WindowInsets.navigationBars),
-                translucent = true
-            ) {
-                items.forEach { item ->
+                items = BottomBarItem.entries.map { item ->
                     OudsNavigationBarItem(
-                        modifier = Modifier.weight(1f),
                         selected = currentRoute == item.route,
                         icon = OudsNavigationBarItemIcon(painter = painterResource(item.iconRes()), ""),
                         label = stringResource(item.titleRes),
                         onClick = { navigateToRoute(item.route) }
                     )
-                }
-            }
+                },
+                modifier = modifier.consumeWindowInsets(WindowInsets.navigationBars),
+                translucent = true
+            )
         }
         val systemNavigationBarBackgroundColor by animateColorAsState(if (visible) systemNavigationBackgroundColor else MaterialTheme.colorScheme.surface)
         Spacer(
