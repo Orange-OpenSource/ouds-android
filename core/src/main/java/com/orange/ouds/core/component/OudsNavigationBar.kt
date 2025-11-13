@@ -122,7 +122,6 @@ fun OudsNavigationBar(
     with(OudsTheme.componentsTokens.bar) {
         NavigationBar(
             modifier = modifier
-                .focusProperties { canFocus = false }
                 .drawBehind {
                     drawLine(
                         color = topBorderColor,
