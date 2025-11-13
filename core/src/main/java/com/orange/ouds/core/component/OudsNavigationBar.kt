@@ -359,20 +359,15 @@ class OudsNavigationBarItemIcon private constructor(
  */
 class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
 
-    /**
-     * Status of the badge.
-     * In a navigation bar it has always a negative status.
-     */
-    private val status = OudsBadgeStatus.Negative
-
     @Composable
     override fun Content(modifier: Modifier) {
+        val status = OudsBadgeStatus.Negative // In a navigation bar a badge has always a negative status.
         val borderModifier = Modifier
             .border(width = 1.dp, color = OudsTheme.componentsTokens.bar.colorBorderBadge.value, shape = OudsBadgeShape)
             .padding(0.5.dp) // Fixes a bug where background is visible outside shaped border. See https://issuetracker.google.com/issues/228985905?pli=1
 
         if (count != null) {
-            OudsBadge(count = count, modifier = modifier.then(borderModifier), status = this.status, size = OudsBadgeSize.Medium)
+            OudsBadge(count = count, modifier = modifier.then(borderModifier), status = status, size = OudsBadgeSize.Medium)
         } else {
             val startPosition = OudsNavigationBarItemIcon.Size / 2
             val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
@@ -381,7 +376,7 @@ class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int?
             OudsBadge(
                 modifier = modifier
                     .offset(x = xOffset, y = -yOffset)
-                    .then(borderModifier), status = this.status, size = OudsBadgeSize.ExtraSmall
+                    .then(borderModifier), status = status, size = OudsBadgeSize.ExtraSmall
             )
         }
     }
