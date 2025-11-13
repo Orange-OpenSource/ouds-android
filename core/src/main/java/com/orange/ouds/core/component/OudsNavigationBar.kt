@@ -50,6 +50,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -190,7 +191,6 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
 
                 // Top active indicator: visual alternative for selected item
                 val topIndicatorColor = topIndicatorColor(state = state)
-                val topIndicatorOpacityColor = topIndicatorColor.copy(alpha = topIndicatorColor.alpha * opacityActiveIndicatorCustom.value)
                 val topIndicatorShape = RoundedCornerShape(
                     topStart = 0.dp,
                     topEnd = 0.dp,
@@ -209,7 +209,10 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
                     enter = fadeIn() + slideInVertically { -it * 2 },
                     exit = fadeOut() + slideOutVertically { -it * 2 }
                 ) {
-                    Box(modifier = Modifier.background(color = topIndicatorOpacityColor, shape = topIndicatorShape))
+                    Box(modifier = Modifier
+                        .alpha(opacityActiveIndicatorCustom.value)
+                        .background(color = topIndicatorColor, shape = topIndicatorShape)
+                    )
                 }
 
                 CompositionLocalProvider(LocalRippleConfiguration provides null) {
