@@ -465,7 +465,7 @@ internal fun PreviewOudsNavigationBarItem(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         Row {
-            PreviewEnumEntries<OudsNavigationBarItemState>(columnCount = 2) {
+            PreviewEnumEntries<OudsNavigationBarItemState> {
                 OudsNavigationBarItemContent(
                     item = OudsNavigationBarItem(
                         selected = selected,
