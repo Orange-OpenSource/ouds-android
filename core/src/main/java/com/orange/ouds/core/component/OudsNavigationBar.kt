@@ -352,7 +352,7 @@ class OudsNavigationBarItemIcon private constructor(
  * @see [OudsBadge]
  *
  * @property contentDescription Content description of the badge, needed for accessibility support (vocalized by Talkback).
- * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.Small] size.
+ * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.ExtraSmall] size.
  */
 class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
 
