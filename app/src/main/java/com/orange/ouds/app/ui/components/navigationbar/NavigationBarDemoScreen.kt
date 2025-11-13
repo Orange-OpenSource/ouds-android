@@ -128,7 +128,7 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
                     val isLastItem = index == itemCount - 1
                     val label = context.resources.getString(item.labelRes)
                     functionCallArgument(null, "OudsNavigationBarItem") {
-                        typedArgument("selected", item == NavigationBarItem.Home)
+                        typedArgument("selected", index == state.selectedItemId)
                         lambdaArgument("onClick", {})
                         labelArgument(label)
                         functionCallArgument("icon", OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
