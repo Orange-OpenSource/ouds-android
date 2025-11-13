@@ -306,37 +306,31 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object NavigationBar {
+    object NavigationBar : OudsPreviewableComponent {
 
-        object Parameterized : OudsPreviewableComponent {
+        override val parameters: List<Any> = OudsNavigationBarPreviewParameterProvider().values.toList()
 
-            override val parameters: List<Any> = OudsNavigationBarPreviewParameterProvider().values.toList()
-
-            @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsNavigationBar(
-                    theme = theme,
-                    darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsNavigationBarPreviewParameter
-                )
-            }
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsNavigationBar(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter as OudsNavigationBarPreviewParameter
+            )
         }
     }
 
-    object NavigationBarItem {
+    object NavigationBarItem : OudsPreviewableComponent {
 
-        object Parameterized : OudsPreviewableComponent {
+        override val parameters: List<Any> = OudsNavigationBarItemPreviewParameterProvider().values.toList()
 
-            override val parameters: List<Any> = OudsNavigationBarItemPreviewParameterProvider().values.toList()
-
-            @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsNavigationBarItem(
-                    theme = theme,
-                    darkThemeEnabled = darkThemeEnabled,
-                    selected = parameter as Boolean
-                )
-            }
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsNavigationBarItem(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                selected = parameter as Boolean
+            )
         }
     }
 
