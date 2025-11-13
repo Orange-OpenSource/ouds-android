@@ -134,7 +134,7 @@ internal fun OudsControlItem(
                         .run {
                             // Apply default horizontal padding if edgeToEdgePadding is disabled
                             val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
-                            if (element?.enabled == false) padding(horizontal = controlItemTokens.spacePaddingBlockDefault.value) else this
+                            if (element?.enabled == false) padding(horizontal = controlItemTokens.spacePaddingInline.value) else this
                         },
                     horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
                 ) {
