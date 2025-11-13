@@ -21,14 +21,14 @@ class OudsNavigationBarTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
     class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.NavigationBar.Parameterized,
+        OudsPreviewableComponent.NavigationBar,
         parameter,
         OudsComponentTestSuite.theme
     ) {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.NavigationBar.Parameterized.parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBar.parameters
         }
     }
 }
@@ -38,14 +38,14 @@ class OudsNavigationBarItemTest {
 
     @RunWith(org.junit.runners.Parameterized::class)
     class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.NavigationBarItem.Parameterized,
+        OudsPreviewableComponent.NavigationBarItem,
         parameter,
         OudsComponentTestSuite.theme
     ) {
         companion object {
             @JvmStatic
             @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.NavigationBarItem.Parameterized.parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBarItem.parameters
         }
     }
 }
