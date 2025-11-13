@@ -235,7 +235,7 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
                                 centerTo(parent)
                             }
                             .semantics {
-                                this.contentDescription = badge?.contentDescription.orEmpty()
+                                contentDescription = badge?.contentDescription.orEmpty()
                             },
                         label = label?.let {
                             {
