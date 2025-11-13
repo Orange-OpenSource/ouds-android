@@ -188,7 +188,7 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
             ) {
                 val (itemRef, topIndicatorRef) = createRefs()
 
-                // Top active indicator: visual alternative for selected item (a11y)
+                // Top active indicator: visual alternative for selected item
                 val topIndicatorColor = topIndicatorColor(state = state)
                 val topIndicatorOpacityColor = topIndicatorColor.copy(alpha = topIndicatorColor.alpha * opacityActiveIndicatorCustom.value)
                 val topIndicatorShape = RoundedCornerShape(
