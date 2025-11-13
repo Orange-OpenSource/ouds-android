@@ -320,7 +320,7 @@ class OudsNavigationBarItemIcon private constructor(
     val contentDescription: String
 ) : OudsComponentIcon<Nothing, OudsNavigationBarItemIcon>(Nothing::class.java, graphicsObject, contentDescription) {
 
-    companion object {
+    internal companion object {
         val Size = 24.dp
     }
 
