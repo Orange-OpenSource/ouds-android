@@ -71,7 +71,7 @@ class NavigationBarDemoState(
     var lastItemBadge: ItemBadge by mutableStateOf(lastItemBadge)
 
     enum class ItemBadge(@StringRes val labelRes: Int) {
-        None(R.string.app_components_navigationBar_lastItemBadgeNone_label),
+        None(R.string.app_components_navigationBar_itemBadgeNone_label),
         Standard(R.string.app_components_badge_standardType_label),
         Count(R.string.app_components_badge_countType_label)
     }

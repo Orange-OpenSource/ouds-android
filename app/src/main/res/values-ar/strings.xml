@@ -192,7 +192,7 @@
     <string name="app_components_navigationBar_itemCount_label">Item count</string>
     <string name="app_components_navigationBar_alwaysShowLabel_label">Always show label</string>
     <string name="app_components_navigationBar_lastItemBadge_label">Last item badge</string>
-    <string name="app_components_navigationBar_lastItemBadgeNone_label">None</string>
+    <string name="app_components_navigationBar_itemBadgeNone_label">None</string>
     <string name="app_components_navigationBar_homeItem_label">Home</string>
     <string name="app_components_navigationBar_shopItem_label">Shop</string>
     <string name="app_components_navigationBar_notificationItem_label">Notifications</string>
