@@ -325,12 +325,10 @@ private fun topIndicatorColor(state: OudsNavigationBarItemState): Color {
 
 /**
  * An icon in an [OudsNavigationBarItem].
- * To be accessible, its [contentDescription] should not be empty if there is no label for the item.
  */
 class OudsNavigationBarItemIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String
-) : OudsComponentIcon<Nothing, OudsNavigationBarItemIcon>(Nothing::class.java, graphicsObject, contentDescription) {
+) : OudsComponentIcon<Nothing, OudsNavigationBarItemIcon>(Nothing::class.java, graphicsObject, "") {
 
     internal companion object {
         val Size = 24.dp
@@ -340,25 +338,22 @@ class OudsNavigationBarItemIcon private constructor(
      * Creates an instance of [OudsNavigationBarItemIcon].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated with the [OudsNavigationBarItemIcon].
      */
-    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
+    constructor(painter: Painter) : this(painter as Any)
 
     /**
      * Creates an instance of [OudsNavigationBarItemIcon].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated with the [OudsNavigationBarItemIcon].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
+    constructor(imageVector: ImageVector) : this(imageVector as Any)
 
     /**
      * Creates an instance of [OudsNavigationBarItemIcon].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated with the [OudsNavigationBarItemIcon].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
+    constructor(bitmap: ImageBitmap) : this(bitmap as Any)
 }
 
 /**
@@ -459,7 +454,7 @@ internal fun PreviewOudsNavigationBar(
             OudsNavigationBarItem(
                 selected = index == 0,
                 onClick = {},
-                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector, contentDescription = ""),
+                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
                 label = item.label,
                 badge = item.badge
             )
@@ -479,7 +474,7 @@ internal fun PreviewOudsNavigationBarItem(
                 item = OudsNavigationBarItem(
                     selected = selected,
                     onClick = {},
-                    icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star, contentDescription = ""),
+                    icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star),
                     label = "Label"
                 ),
                 modifier = Modifier

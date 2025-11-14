@@ -91,10 +91,7 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     selected = selectedItemId == index,
                     onClick = { selectedItemId = index },
                     label = label,
-                    icon = OudsNavigationBarItemIcon(
-                        painter = painterResource(id = item.iconRes),
-                        contentDescription = label
-                    ),
+                    icon = OudsNavigationBarItemIcon(painter = painterResource(id = item.iconRes)),
                     badge = if (isLastItem) {
                         when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null

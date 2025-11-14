@@ -51,10 +51,7 @@ internal fun OudsNavigationBarSample() {
                     selectedItemIndex = index
                     // Do something else here
                 },
-                icon = OudsNavigationBarItemIcon(
-                    imageVector = item.imageVector,
-                    contentDescription = item.label
-                ),
+                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
                 label = item.label,
                 badge = item.count?.let { count ->
                     OudsNavigationBarItemBadge(contentDescription = "$count unread emails", count = count)

@@ -65,7 +65,7 @@ class OudsNavigationBarTest {
                         OudsNavigationBarItem(
                             selected = index == 0,
                             onClick = { },
-                            icon = OudsNavigationBarItemIcon(imageVector = item.icon, contentDescription = ""),
+                            icon = OudsNavigationBarItemIcon(imageVector = item.icon),
                             label = item.label,
                             badge = item.badge
                         )
@@ -94,7 +94,7 @@ class OudsNavigationBarTest {
                             } else {
                                 {}
                             },
-                            icon = OudsNavigationBarItemIcon(imageVector = item.icon, contentDescription = ""),
+                            icon = OudsNavigationBarItemIcon(imageVector = item.icon),
                             label = item.label
                         )
                     }

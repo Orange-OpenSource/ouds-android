@@ -58,7 +58,7 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier:
                 items = BottomBarItem.entries.map { item ->
                     OudsNavigationBarItem(
                         selected = currentRoute == item.route,
-                        icon = OudsNavigationBarItemIcon(painter = painterResource(item.iconRes()), ""),
+                        icon = OudsNavigationBarItemIcon(painter = painterResource(item.iconRes())),
                         label = stringResource(item.titleRes),
                         onClick = { navigateToRoute(item.route) }
                     )
