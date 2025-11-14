@@ -119,23 +119,30 @@ fun OudsNavigationBar(
     translucent: Boolean = false,
     windowInsets: WindowInsets = NavigationBarDefaults.windowInsets
 ) {
-    val topBorderColor = OudsTheme.colorScheme.border.minimal
     with(OudsTheme.componentsTokens.bar) {
         NavigationBar(
-            modifier = modifier
-                .drawBehind {
-                    val topBorderWidth = 1.dp.toPx()
-                    drawLine(
-                        color = topBorderColor,
-                        start = Offset(x = 0f, y = topBorderWidth / 2f),
-                        end = Offset(x = size.width, y = topBorderWidth / 2f),
-                        strokeWidth = topBorderWidth
-                    )
-                },
-            containerColor = if (translucent && Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) colorBgTranslucent.value else colorBgOpaque.value,
+            modifier = modifier,
+            containerColor = Color.Transparent, // Background color is handled by the Row in content
             contentColor = colorContentUnselectedEnabled.value,
             windowInsets = windowInsets,
-            content = { items.forEach { OudsNavigationBarItemContent(item = it, modifier = Modifier.weight(1f)) } }
+            content = {
+                val topBorderColor = OudsTheme.colorScheme.border.minimal
+                Row(
+                    modifier
+                        .background(color = if (translucent && Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) colorBgTranslucent.value else colorBgOpaque.value)
+                        .drawBehind {
+                            val topBorderWidth = 1.dp.toPx()
+                            drawLine(
+                                color = topBorderColor,
+                                start = Offset(x = 0f, y = topBorderWidth / 2f),
+                                end = Offset(x = size.width, y = topBorderWidth / 2f),
+                                strokeWidth = topBorderWidth
+                            )
+                        }
+                ) {
+                    items.forEach { OudsNavigationBarItemContent(item = it, modifier = Modifier.weight(1f)) }
+                }
+            }
         )
     }
 }
