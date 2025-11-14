@@ -65,11 +65,6 @@ private fun NavigationBarDemoBottomSheetContent(state: NavigationBarDemoState) {
             selectedChipIndex = itemCountOptions.indexOf(itemCount),
             onSelectionChange = { id -> itemCount = itemCountOptions[id] }
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_navigationBar_alwaysShowLabel_label),
-            checked = alwaysShowLabel,
-            onCheckedChange = { alwaysShowLabel = it },
-        )
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_navigationBar_lastItemBadge_label),
@@ -100,7 +95,6 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                         painter = painterResource(id = item.iconRes),
                         contentDescription = label
                     ),
-                    alwaysShowLabel = alwaysShowLabel,
                     badge = if (isLastItem) {
                         when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null

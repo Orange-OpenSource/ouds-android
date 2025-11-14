@@ -155,14 +155,13 @@ fun OudsNavigationBar(
  * - Four destinations: Active destinations display an icon and text label. Inactive destinations display icons, and text labels are recommended.
  * - Five destinations: Active destinations display an icon and text label. Inactive destinations use icons, and use text labels if space permits.
  *
- * A [OudsNavigationBarItem] always shows text labels (if it exists) when selected. Showing text labels if not selected is controlled by [alwaysShowLabel].
+ * [OudsNavigationBarItem] always shows text labels.
  *
  * @param selected Whether this item is selected or not.
  * @param onClick Called when this item is clicked.
  * @param icon Icon of the item.
  * @param label Label of the item.
  * @param badge Optional badge display on the item icon.
- * @param alwaysShowLabel Whether the label should always be shown.
  * @param interactionSource [MutableInteractionSource] that will be used to dispatch events when this item is pressed, hovered or focused.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
@@ -173,7 +172,6 @@ data class OudsNavigationBarItem(
     val icon: OudsNavigationBarItemIcon,
     val label: String? = null,
     val badge: OudsNavigationBarItemBadge? = null,
-    val alwaysShowLabel: Boolean = true,
     val interactionSource: MutableInteractionSource? = null
 )
 
@@ -256,7 +254,6 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
                                 )
                             }
                         },
-                        alwaysShowLabel = alwaysShowLabel,
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = selectedContentColor,
                             selectedTextColor = selectedContentColor,
@@ -322,7 +319,7 @@ private fun topIndicatorColor(state: OudsNavigationBarItemState): Color {
 
 /**
  * An icon in an [OudsNavigationBarItem].
- * To be accessible, its [contentDescription] should not be empty if there is no label for the item or if `alwaysShowLabel` is set to false.
+ * To be accessible, its [contentDescription] should not be empty if there is no label for the item.
  */
 class OudsNavigationBarItemIcon private constructor(
     graphicsObject: Any,
@@ -459,8 +456,7 @@ internal fun PreviewOudsNavigationBar(
                     onClick = {},
                     icon = OudsNavigationBarItemIcon(imageVector = item.imageVector, contentDescription = ""),
                     label = item.label,
-                    badge = item.badge,
-                    alwaysShowLabel = alwaysShowLabel
+                    badge = item.badge
                 )
             }
         )
@@ -480,8 +476,7 @@ internal fun PreviewOudsNavigationBarItem(
                     selected = selected,
                     onClick = {},
                     icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star, contentDescription = ""),
-                    label = "Label",
-                    alwaysShowLabel = true
+                    label = "Label"
                 ),
                 modifier = Modifier
                     .size(width = 80.dp, height = 64.dp)
@@ -493,7 +488,6 @@ internal fun PreviewOudsNavigationBarItem(
 
 internal data class OudsNavigationBarPreviewParameter(
     val navigationBarItemCount: Int = 3,
-    val alwaysShowLabel: Boolean = true
 )
 
 internal class OudsNavigationBarItemPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(true, false)
@@ -504,5 +498,5 @@ internal class OudsNavigationBarPreviewParameterProvider :
 private val previewParameterValues: List<OudsNavigationBarPreviewParameter>
     get() = listOf(
         OudsNavigationBarPreviewParameter(),
-        OudsNavigationBarPreviewParameter(navigationBarItemCount = 5, alwaysShowLabel = false),
+        OudsNavigationBarPreviewParameter(navigationBarItemCount = 5),
     )

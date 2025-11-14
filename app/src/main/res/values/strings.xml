@@ -198,7 +198,6 @@
     <string name="app_components_navigationBar_label">Navigation bar</string>
     <string name="app_components_navigationBar_description_text">Navigation bars let people switch between UI views on smaller devices</string> <!--TODO update with OUDS description-->
     <string name="app_components_navigationBar_itemCount_label">Item count</string>
-    <string name="app_components_navigationBar_alwaysShowLabel_label">Always show label</string>
     <string name="app_components_navigationBar_lastItemBadge_label">Last item badge</string>
     <string name="app_components_navigationBar_itemBadgeNone_label">None</string>
     <string name="app_components_navigationBar_homeItem_label">Home</string>

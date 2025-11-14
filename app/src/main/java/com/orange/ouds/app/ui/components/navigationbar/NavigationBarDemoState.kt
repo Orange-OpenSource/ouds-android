@@ -26,16 +26,14 @@ import com.orange.ouds.app.R
 fun rememberNavigationBarDemoState(
     itemCount: Int = NavigationBarDemoState.MinNavigationBarItemCount,
     selectedItemId: Int = 0,
-    alwaysShowLabel: Boolean = true,
     lastItemBadge: NavigationBarDemoState.ItemBadge = NavigationBarDemoState.ItemBadge.None
-) = rememberSaveable(itemCount, alwaysShowLabel, lastItemBadge, saver = NavigationBarDemoState.Saver) {
-    NavigationBarDemoState(itemCount, selectedItemId, alwaysShowLabel, lastItemBadge)
+) = rememberSaveable(itemCount, lastItemBadge, saver = NavigationBarDemoState.Saver) {
+    NavigationBarDemoState(itemCount, selectedItemId, lastItemBadge)
 }
 
 class NavigationBarDemoState(
     itemCount: Int,
     selectedItemId: Int,
-    alwaysShowLabel: Boolean,
     lastItemBadge: ItemBadge
 ) {
     companion object {
@@ -49,7 +47,6 @@ class NavigationBarDemoState(
                     listOf(
                         itemCount,
                         selectedItemId,
-                        alwaysShowLabel,
                         lastItemBadge
                     )
                 }
@@ -58,8 +55,7 @@ class NavigationBarDemoState(
                 NavigationBarDemoState(
                     list[0] as Int,
                     list[1] as Int,
-                    list[2] as Boolean,
-                    list[3] as ItemBadge
+                    list[2] as ItemBadge
                 )
             }
         )
@@ -67,7 +63,6 @@ class NavigationBarDemoState(
 
     var itemCount: Int by mutableIntStateOf(itemCount)
     var selectedItemId: Int by mutableIntStateOf(selectedItemId)
-    var alwaysShowLabel: Boolean by mutableStateOf(alwaysShowLabel)
     var lastItemBadge: ItemBadge by mutableStateOf(lastItemBadge)
 
     enum class ItemBadge(@StringRes val labelRes: Int) {
