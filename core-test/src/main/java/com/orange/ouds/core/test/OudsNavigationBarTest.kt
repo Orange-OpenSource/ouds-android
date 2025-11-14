@@ -13,40 +13,34 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
-import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
-@RunWith(Enclosed::class)
-class OudsNavigationBarTest {
+@RunWith(Parameterized::class)
+class OudsNavigationBarTest(parameter: Any) : OudsComponentSnapshotTest(
+    OudsPreviewableComponent.NavigationBar,
+    parameter,
+    OudsComponentTestSuite.theme
+) {
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.NavigationBar,
-        parameter,
-        OudsComponentTestSuite.theme
-    ) {
-        companion object {
-            @JvmStatic
-            @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.NavigationBar.parameters
-        }
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters
+        internal fun data() = OudsPreviewableComponent.NavigationBar.parameters
     }
 }
 
-@RunWith(Enclosed::class)
-class OudsNavigationBarItemTest {
+@RunWith(Parameterized::class)
+class OudsNavigationBarItemTest(parameter: Any) : OudsComponentSnapshotTest(
+    OudsPreviewableComponent.NavigationBarItem,
+    parameter,
+    OudsComponentTestSuite.theme,
+    OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp
+) {
 
-    @RunWith(org.junit.runners.Parameterized::class)
-    class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.NavigationBarItem,
-        parameter,
-        OudsComponentTestSuite.theme,
-        OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp
-    ) {
-        companion object {
-            @JvmStatic
-            @org.junit.runners.Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.NavigationBarItem.parameters
-        }
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters
+        internal fun data() = OudsPreviewableComponent.NavigationBarItem.parameters
     }
 }
