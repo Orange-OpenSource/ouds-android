@@ -20,7 +20,7 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 data class SoshControlItemTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
@@ -33,10 +33,10 @@ data class SoshControlItemTokens(
     override val sizeErrorIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
     override val sizeIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeMedium,
     override val sizeLoader: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
-    override val sizeMaxHeightAssetsContainer: Float = DimensionRawTokens.dimension1200,
-    override val sizeMaxWidth: Float = DimensionRawTokens.dimension4000,
-    override val sizeMinHeight: Float = DimensionRawTokens.dimension650,
-    override val sizeMinWidth: Float = DimensionRawTokens.dimension2000,
+    override val sizeMaxHeightAssetsContainer: Float = OudsDimensionRawTokens.Dimension1200,
+    override val sizeMaxWidth: Float = OudsDimensionRawTokens.Dimension4000,
+    override val sizeMinHeight: Float = OudsDimensionRawTokens.Dimension650,
+    override val sizeMinWidth: Float = OudsDimensionRawTokens.Dimension2000,
     override val spaceColumnGap: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Medium,
     override val spacePaddingBlockDefault: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.Medium,
     override val spacePaddingBlockTopErrorText: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ExtraSmall,

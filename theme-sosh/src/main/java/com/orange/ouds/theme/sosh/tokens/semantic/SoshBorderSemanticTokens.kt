@@ -16,23 +16,23 @@
 package com.orange.ouds.theme.sosh.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
-import com.orange.ouds.tokens.raw.BorderRawTokens
+import com.orange.ouds.tokens.raw.OudsBorderRawTokens
 
 data class SoshBorderSemanticTokens(
-    override val radiusDefault: Float = BorderRawTokens.borderRadius100,
-    override val radiusLarge: Float = BorderRawTokens.borderRadius300,
-    override val radiusMedium: Float = BorderRawTokens.borderRadius200,
-    override val radiusNone: Float = BorderRawTokens.borderRadius0,
-    override val radiusPill: Float = BorderRawTokens.borderRadius9999,
-    override val radiusSmall: Float = BorderRawTokens.borderRadius150,
-    override val styleDefault: String = BorderRawTokens.borderStyleSolid,
-    override val styleDrag: String = BorderRawTokens.borderStyleDashed,
-    override val widthDefault: Float = BorderRawTokens.borderWidth50,
-    override val widthFocus: Float = BorderRawTokens.borderWidth125,
-    override val widthFocusInset: Float = BorderRawTokens.borderWidth50,
-    override val widthMedium: Float = BorderRawTokens.borderWidth75,
-    override val widthNone: Float = BorderRawTokens.borderWidth0,
-    override val widthThick: Float = BorderRawTokens.borderWidth100,
-    override val widthThicker: Float = BorderRawTokens.borderWidth150,
-    override val widthThin: Float = BorderRawTokens.borderWidth25
+    override val radiusDefault: Float = OudsBorderRawTokens.BorderRadius100,
+    override val radiusLarge: Float = OudsBorderRawTokens.BorderRadius300,
+    override val radiusMedium: Float = OudsBorderRawTokens.BorderRadius200,
+    override val radiusNone: Float = OudsBorderRawTokens.BorderRadius0,
+    override val radiusPill: Float = OudsBorderRawTokens.BorderRadius9999,
+    override val radiusSmall: Float = OudsBorderRawTokens.BorderRadius150,
+    override val styleDefault: String = OudsBorderRawTokens.BorderStyleSolid,
+    override val styleDrag: String = OudsBorderRawTokens.BorderStyleDashed,
+    override val widthDefault: Float = OudsBorderRawTokens.BorderWidth50,
+    override val widthFocus: Float = OudsBorderRawTokens.BorderWidth125,
+    override val widthFocusInset: Float = OudsBorderRawTokens.BorderWidth50,
+    override val widthMedium: Float = OudsBorderRawTokens.BorderWidth75,
+    override val widthNone: Float = OudsBorderRawTokens.BorderWidth0,
+    override val widthThick: Float = OudsBorderRawTokens.BorderWidth100,
+    override val widthThicker: Float = OudsBorderRawTokens.BorderWidth150,
+    override val widthThin: Float = OudsBorderRawTokens.BorderWidth25
 ) : OudsBorderSemanticTokens

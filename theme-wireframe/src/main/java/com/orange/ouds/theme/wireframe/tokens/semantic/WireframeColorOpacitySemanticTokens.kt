@@ -20,10 +20,10 @@ import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
 
 data class WireframeColorOpacitySemanticTokens(
-    override val opacityLowerDark: Color = WireframeColorRawTokens.colorOpacityWhite80,
-    override val opacityLowerLight: Color = WireframeColorRawTokens.colorOpacityBlack80,
-    override val opacityLowestDark: Color = WireframeColorRawTokens.colorOpacityWhite40,
-    override val opacityLowestLight: Color = WireframeColorRawTokens.colorOpacityBlack40,
-    override val opacityTransparentDark: Color = WireframeColorRawTokens.colorOpacityWhite0,
-    override val opacityTransparentLight: Color = WireframeColorRawTokens.colorOpacityBlack0
+    override val opacityLowerDark: Color = WireframeColorRawTokens.ColorOpacityWhite80,
+    override val opacityLowerLight: Color = WireframeColorRawTokens.ColorOpacityBlack80,
+    override val opacityLowestDark: Color = WireframeColorRawTokens.ColorOpacityWhite40,
+    override val opacityLowestLight: Color = WireframeColorRawTokens.ColorOpacityBlack40,
+    override val opacityTransparentDark: Color = WireframeColorRawTokens.ColorOpacityWhite0,
+    override val opacityTransparentLight: Color = WireframeColorRawTokens.ColorOpacityBlack0
 ) : OudsColorOpacitySemanticTokens

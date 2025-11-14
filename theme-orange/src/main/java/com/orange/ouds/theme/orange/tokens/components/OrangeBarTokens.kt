@@ -17,12 +17,12 @@ package com.orange.ouds.theme.orange.tokens.components
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
-import com.orange.ouds.theme.tokens.components.OudsLightDarkColorToken
+import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
-import com.orange.ouds.tokens.raw.EffectRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 
 data class OrangeBarTokens(
     override val borderRadiusActiveIndicatorCustomBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
@@ -41,20 +41,20 @@ data class OrangeBarTokens(
     override val colorActiveIndicatorCustomSelectedHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
     override val colorActiveIndicatorCustomSelectedPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
     override val colorBgOpaque: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
-    override val colorBgTranslucent: OudsLightDarkColorToken = OudsLightDarkColorToken(Color(0xccf4f4f4), Color(0xcc1f1f1f)),
+    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(Color(0xccf4f4f4), Color(0xcc1f1f1f)),
     override val colorBorderBadge: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
     override val colorContentOnIosAccent: OudsColorKeyToken = OudsColorKeyToken.Content.OnAction.Selected,
     override val colorContentSelectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
     override val colorContentSelectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
     override val colorContentSelectedHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
     override val colorContentSelectedPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    override val colorContentUnselectedEnabled: OudsLightDarkColorToken = OudsLightDarkColorToken(Color(0x99000000), Color(0x99ffffff)),
+    override val colorContentUnselectedEnabled: OudsLightDarkColor = OudsLightDarkColor(Color(0x99000000), Color(0x99ffffff)),
     override val colorContentUnselectedFocus: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
     override val colorContentUnselectedHover: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
     override val colorContentUnselectedPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
-    override val effectBgBlur: Int = EffectRawTokens.effectBlur160,
+    override val effectBgBlur: Int = OudsEffectRawTokens.EffectBlur160,
     override val opacityActiveIndicatorCustom: OudsOpacityKeyToken = OudsOpacityKeyToken.Opaque,
-    override val sizeHeightActiveIndicatorCustom: Float = DimensionRawTokens.dimensionOutOfSystem75,
-    override val sizeWidthActiveIndicatorCustomBottom: Float = DimensionRawTokens.dimension300,
-    override val sizeWidthActiveIndicatorCustomTop: Float = DimensionRawTokens.dimension650
+    override val sizeHeightActiveIndicatorCustom: Float = OudsDimensionRawTokens.DimensionOutOfSystem75,
+    override val sizeWidthActiveIndicatorCustomBottom: Float = OudsDimensionRawTokens.Dimension300,
+    override val sizeWidthActiveIndicatorCustomTop: Float = OudsDimensionRawTokens.Dimension650
 ) : OudsBarTokens

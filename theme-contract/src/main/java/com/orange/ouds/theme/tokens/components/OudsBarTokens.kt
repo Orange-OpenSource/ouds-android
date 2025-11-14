@@ -36,14 +36,14 @@ interface OudsBarTokens {
     val colorActiveIndicatorCustomSelectedHover: OudsColorKeyToken
     val colorActiveIndicatorCustomSelectedPressed: OudsColorKeyToken
     val colorBgOpaque: OudsColorKeyToken
-    val colorBgTranslucent: OudsLightDarkColorToken
+    val colorBgTranslucent: OudsLightDarkColor
     val colorBorderBadge: OudsColorKeyToken
     val colorContentOnIosAccent: OudsColorKeyToken
     val colorContentSelectedEnabled: OudsColorKeyToken
     val colorContentSelectedFocus: OudsColorKeyToken
     val colorContentSelectedHover: OudsColorKeyToken
     val colorContentSelectedPressed: OudsColorKeyToken
-    val colorContentUnselectedEnabled: OudsLightDarkColorToken
+    val colorContentUnselectedEnabled: OudsLightDarkColor
     val colorContentUnselectedFocus: OudsColorKeyToken
     val colorContentUnselectedHover: OudsColorKeyToken
     val colorContentUnselectedPressed: OudsColorKeyToken

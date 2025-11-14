@@ -18,17 +18,17 @@ package com.orange.ouds.theme.sosh.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class SoshColorBgSemanticTokens(
-    override val bgInverseHighDark: Color = ColorRawTokens.colorFunctionalGrayLight160,
-    override val bgInverseHighLight: Color = SoshColorRawTokens.colorBlueDuckDark880,
-    override val bgInverseLowDark: Color = SoshColorRawTokens.colorBlueDuckDark720,
-    override val bgInverseLowLight: Color = SoshColorRawTokens.colorBlueDuckDark880,
-    override val bgPrimaryDark: Color = SoshColorRawTokens.colorBlueDuckDark960,
-    override val bgPrimaryLight: Color = ColorRawTokens.colorFunctionalWhite,
-    override val bgSecondaryDark: Color = SoshColorRawTokens.colorBlueDuckDark880,
-    override val bgSecondaryLight: Color = SoshColorRawTokens.colorBlueDuckLight80,
-    override val bgTertiaryDark: Color = SoshColorRawTokens.colorCitrine950,
-    override val bgTertiaryLight: Color = SoshColorRawTokens.colorCitrine50
+    override val bgInverseHighDark: Color = OudsColorRawTokens.ColorFunctionalGrayLight160,
+    override val bgInverseHighLight: Color = SoshColorRawTokens.ColorBlueDuckDark880,
+    override val bgInverseLowDark: Color = SoshColorRawTokens.ColorBlueDuckDark720,
+    override val bgInverseLowLight: Color = SoshColorRawTokens.ColorBlueDuckDark880,
+    override val bgPrimaryDark: Color = SoshColorRawTokens.ColorBlueDuckDark960,
+    override val bgPrimaryLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
+    override val bgSecondaryDark: Color = SoshColorRawTokens.ColorBlueDuckDark880,
+    override val bgSecondaryLight: Color = SoshColorRawTokens.ColorBlueDuckLight80,
+    override val bgTertiaryDark: Color = SoshColorRawTokens.ColorCitrine950,
+    override val bgTertiaryLight: Color = SoshColorRawTokens.ColorCitrine50
 ) : OudsColorBgSemanticTokens

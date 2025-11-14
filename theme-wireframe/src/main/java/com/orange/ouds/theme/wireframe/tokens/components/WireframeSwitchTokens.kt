@@ -22,7 +22,7 @@ import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 data class WireframeSwitchTokens(
     override val borderRadiusCursor: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Small,
@@ -35,18 +35,18 @@ data class WireframeSwitchTokens(
     override val colorTrackUnselected: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.MediumHigh, OudsColorKeyToken.Repository.Opacity.White.High),
     override val colorTrackUnselectedInteraction: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.High, OudsColorKeyToken.Repository.Opacity.White.Higher),
     override val opacityCheck: OudsOpacityKeyToken = OudsOpacityKeyToken.Opaque,
-    override val sizeHeightCursorSelected: Float = DimensionRawTokens.dimension300,
-    override val sizeHeightCursorUnselected: Float = DimensionRawTokens.dimension200,
-    override val sizeHeightTrack: Float = DimensionRawTokens.dimension400,
-    override val sizeMaxHeight: Float = DimensionRawTokens.dimension400,
-    override val sizeMinHeight: Float = DimensionRawTokens.dimension400,
+    override val sizeHeightCursorSelected: Float = OudsDimensionRawTokens.Dimension300,
+    override val sizeHeightCursorUnselected: Float = OudsDimensionRawTokens.Dimension200,
+    override val sizeHeightTrack: Float = OudsDimensionRawTokens.Dimension400,
+    override val sizeMaxHeight: Float = OudsDimensionRawTokens.Dimension400,
+    override val sizeMinHeight: Float = OudsDimensionRawTokens.Dimension400,
     override val sizeMinHeightInteractiveArea: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    override val sizeMinWidth: Float = DimensionRawTokens.dimension700,
-    override val sizeWidthCursorSelected: Float = DimensionRawTokens.dimension300,
-    override val sizeWidthCursorSelectedPressed: Float = DimensionRawTokens.dimension400,
-    override val sizeWidthCursorUnselected: Float = DimensionRawTokens.dimension200,
-    override val sizeWidthCursorUnselectedPressed: Float = DimensionRawTokens.dimension300,
-    override val sizeWidthTrack: Float = DimensionRawTokens.dimension700,
+    override val sizeMinWidth: Float = OudsDimensionRawTokens.Dimension700,
+    override val sizeWidthCursorSelected: Float = OudsDimensionRawTokens.Dimension300,
+    override val sizeWidthCursorSelectedPressed: Float = OudsDimensionRawTokens.Dimension400,
+    override val sizeWidthCursorUnselected: Float = OudsDimensionRawTokens.Dimension200,
+    override val sizeWidthCursorUnselectedPressed: Float = OudsDimensionRawTokens.Dimension300,
+    override val sizeWidthTrack: Float = OudsDimensionRawTokens.Dimension700,
     override val spacePaddingInlineSelected: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ThreeExtraSmall,
     override val spacePaddingInlineUnselected: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ExtraSmall
 ) : OudsSwitchTokens
