@@ -14,10 +14,9 @@ package com.orange.ouds.core.component
 
 import android.os.Build
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -203,6 +202,13 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
                     bottomStart = borderRadiusActiveIndicatorCustomTop.value,
                     bottomEnd = borderRadiusActiveIndicatorCustomTop.value
                 )
+
+                // This is the same animation spec that the NavigationBarItem internally uses to animate the color of the icon and the text
+                val animationSpec = spring<Float>(
+                    dampingRatio = 1.0f, // StandardMotionTokens.SpringDefaultEffectsDamping
+                    stiffness = 1600.0f // StandardMotionTokens.SpringDefaultEffectsStiffness
+                )
+
                 this@OudsNavigationBarItemContent.AnimatedVisibility(
                     modifier = Modifier.constrainAs(topIndicatorRef) {
                         top.linkTo(parent.top)
@@ -212,8 +218,8 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
                         width = Dimension.value(sizeWidthActiveIndicatorCustomTop.dp)
                     },
                     visible = selected || state == OudsNavigationBarItemState.Hovered,
-                    enter = fadeIn() + slideInVertically { -it * 2 },
-                    exit = fadeOut() + slideOutVertically { -it * 2 }
+                    enter = fadeIn(animationSpec),
+                    exit = fadeOut(animationSpec)
                 ) {
                     Box(
                         modifier = Modifier
