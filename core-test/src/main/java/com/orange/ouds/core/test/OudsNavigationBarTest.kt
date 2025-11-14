@@ -40,7 +40,8 @@ class OudsNavigationBarItemTest {
     class Parameterized(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.NavigationBarItem,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp
     ) {
         companion object {
             @JvmStatic

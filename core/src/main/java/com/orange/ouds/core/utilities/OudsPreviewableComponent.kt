@@ -322,6 +322,8 @@ interface OudsPreviewableComponent {
 
     object NavigationBarItem : OudsPreviewableComponent {
 
+        const val PreviewWidthDp = 400
+
         override val parameters: List<Any> = OudsNavigationBarItemPreviewParameterProvider().values.toList()
 
         @Composable
