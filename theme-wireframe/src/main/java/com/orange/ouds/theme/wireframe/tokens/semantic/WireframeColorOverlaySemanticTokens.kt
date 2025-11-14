@@ -18,15 +18,15 @@ package com.orange.ouds.theme.wireframe.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class WireframeColorOverlaySemanticTokens(
     override val overlayDragDark: Color = WireframeColorRawTokens.colorOpacityWhite80,
     override val overlayDragLight: Color = WireframeColorRawTokens.colorOpacityBlack40,
     override val overlayDropdownDark: Color = WireframeColorRawTokens.colorFunctionalGrayDark560,
-    override val overlayDropdownLight: Color = ColorRawTokens.colorFunctionalWhite,
+    override val overlayDropdownLight: Color = OudsColorRawTokens.colorFunctionalWhite,
     override val overlayModalDark: Color = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    override val overlayModalLight: Color = ColorRawTokens.colorFunctionalWhite,
+    override val overlayModalLight: Color = OudsColorRawTokens.colorFunctionalWhite,
     override val overlayTooltipDark: Color = WireframeColorRawTokens.colorFunctionalGrayDark560,
     override val overlayTooltipLight: Color = WireframeColorRawTokens.colorFunctionalGrayDark720
 ) : OudsColorOverlaySemanticTokens

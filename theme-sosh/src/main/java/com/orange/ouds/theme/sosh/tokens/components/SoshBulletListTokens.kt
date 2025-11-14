@@ -17,14 +17,14 @@ package com.orange.ouds.theme.sosh.tokens.components
 
 import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 data class SoshBulletListTokens(
     override val spaceColumnGapBodyLarge: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,
     override val spaceColumnGapBodyMedium: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,
     override val spacePaddingBlockBodyLarge: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall,
     override val spacePaddingBlockBodyMedium: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall,
-    override val spacePaddingInlineLevel0: Float = DimensionRawTokens.dimension50,
-    override val spacePaddingInlineLevel1: Float = DimensionRawTokens.dimension450,
-    override val spacePaddingInlineLevel2: Float = DimensionRawTokens.dimension850
+    override val spacePaddingInlineLevel0: Float = OudsDimensionRawTokens.dimension50,
+    override val spacePaddingInlineLevel1: Float = OudsDimensionRawTokens.dimension450,
+    override val spacePaddingInlineLevel2: Float = OudsDimensionRawTokens.dimension850
 ) : OudsBulletListTokens

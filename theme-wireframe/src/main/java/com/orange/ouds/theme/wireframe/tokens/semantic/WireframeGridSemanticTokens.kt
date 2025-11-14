@@ -16,19 +16,19 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
-import com.orange.ouds.tokens.raw.GridRawTokens
+import com.orange.ouds.tokens.raw.OudsGridRawTokens
 
 data class WireframeGridSemanticTokens(
-    override val compactColumnGap: Int = GridRawTokens.gridColumnGap100,
-    override val compactMargin: Int = GridRawTokens.gridMargin300,
-    override val compactMaxWidth: Int = GridRawTokens.gridMaxWidthCompact,
-    override val compactMinWidth: Int = GridRawTokens.gridMinWidthCompact,
-    override val extraCompactColumnGap: Int = GridRawTokens.gridColumnGap100,
-    override val extraCompactMargin: Int = GridRawTokens.gridMargin100,
-    override val extraCompactMaxWidth: Int = GridRawTokens.gridMaxWidthExtraCompact,
-    override val extraCompactMinWidth: Int = GridRawTokens.gridMinWidthExtraCompact,
-    override val mediumColumnGap: Int = GridRawTokens.gridColumnGap400,
-    override val mediumMargin: Int = GridRawTokens.gridMargin500,
-    override val mediumMaxWidth: Int = GridRawTokens.gridMaxWidthMedium,
-    override val mediumMinWidth: Int = GridRawTokens.gridMinWidthMedium
+    override val compactColumnGap: Int = OudsGridRawTokens.gridColumnGap100,
+    override val compactMargin: Int = OudsGridRawTokens.gridMargin300,
+    override val compactMaxWidth: Int = OudsGridRawTokens.gridMaxWidthCompact,
+    override val compactMinWidth: Int = OudsGridRawTokens.gridMinWidthCompact,
+    override val extraCompactColumnGap: Int = OudsGridRawTokens.gridColumnGap100,
+    override val extraCompactMargin: Int = OudsGridRawTokens.gridMargin100,
+    override val extraCompactMaxWidth: Int = OudsGridRawTokens.gridMaxWidthExtraCompact,
+    override val extraCompactMinWidth: Int = OudsGridRawTokens.gridMinWidthExtraCompact,
+    override val mediumColumnGap: Int = OudsGridRawTokens.gridColumnGap400,
+    override val mediumMargin: Int = OudsGridRawTokens.gridMargin500,
+    override val mediumMaxWidth: Int = OudsGridRawTokens.gridMaxWidthMedium,
+    override val mediumMinWidth: Int = OudsGridRawTokens.gridMinWidthMedium
 ) : OudsGridSemanticTokens

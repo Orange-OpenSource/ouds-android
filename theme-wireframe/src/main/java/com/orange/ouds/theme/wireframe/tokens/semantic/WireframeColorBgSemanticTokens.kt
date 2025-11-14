@@ -18,7 +18,7 @@ package com.orange.ouds.theme.wireframe.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class WireframeColorBgSemanticTokens(
     override val bgInverseHighDark: Color = WireframeColorRawTokens.colorFunctionalGrayLight160,
@@ -26,7 +26,7 @@ data class WireframeColorBgSemanticTokens(
     override val bgInverseLowDark: Color = WireframeColorRawTokens.colorFunctionalGrayDark720,
     override val bgInverseLowLight: Color = WireframeColorRawTokens.colorFunctionalGrayDark800,
     override val bgPrimaryDark: Color = WireframeColorRawTokens.colorFunctionalGrayDark880,
-    override val bgPrimaryLight: Color = ColorRawTokens.colorFunctionalWhite,
+    override val bgPrimaryLight: Color = OudsColorRawTokens.colorFunctionalWhite,
     override val bgSecondaryDark: Color = WireframeColorRawTokens.colorFunctionalGrayDark800,
     override val bgSecondaryLight: Color = WireframeColorRawTokens.colorFunctionalGrayLight80,
     override val bgTertiaryDark: Color = WireframeColorRawTokens.colorRustyRed1000,

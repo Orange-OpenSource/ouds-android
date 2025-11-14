@@ -16,13 +16,13 @@
 package com.orange.ouds.theme.sosh.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
-import com.orange.ouds.tokens.raw.ElevationRawTokens
+import com.orange.ouds.tokens.raw.OudsElevationRawTokens
 
 data class SoshElevationSemanticTokens(
-    override val default: Float = ElevationRawTokens.elevation2,
-    override val drag: Float = ElevationRawTokens.elevation4,
-    override val emphasized: Float = ElevationRawTokens.elevation5,
-    override val none: Float = ElevationRawTokens.elevation0,
-    override val raised: Float = ElevationRawTokens.elevation1,
-    override val sticky: Float = ElevationRawTokens.elevation3
+    override val default: Float = OudsElevationRawTokens.elevation2,
+    override val drag: Float = OudsElevationRawTokens.elevation4,
+    override val emphasized: Float = OudsElevationRawTokens.elevation5,
+    override val none: Float = OudsElevationRawTokens.elevation0,
+    override val raised: Float = OudsElevationRawTokens.elevation1,
+    override val sticky: Float = OudsElevationRawTokens.elevation3
 ) : OudsElevationSemanticTokens

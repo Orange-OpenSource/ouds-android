@@ -19,20 +19,20 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 data class WireframeTagTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val sizeAssetDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
     override val sizeAssetSmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Small.SizeSmall,
-    override val sizeMinHeightDefault: Float = DimensionRawTokens.dimension400,
+    override val sizeMinHeightDefault: Float = OudsDimensionRawTokens.dimension400,
     override val sizeMinHeightInteractiveArea: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    override val sizeMinHeightSmall: Float = DimensionRawTokens.dimension300,
-    override val sizeMinWidthDefault: Float = DimensionRawTokens.dimension600,
-    override val sizeMinWidthSmall: Float = DimensionRawTokens.dimension550,
+    override val sizeMinHeightSmall: Float = OudsDimensionRawTokens.dimension300,
+    override val sizeMinWidthDefault: Float = OudsDimensionRawTokens.dimension600,
+    override val sizeMinWidthSmall: Float = OudsDimensionRawTokens.dimension550,
     override val spaceColumnGapDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
     override val spaceColumnGapSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
-    override val spaceInsetBulletDefault: Float = DimensionRawTokens.dimensionOutOfSystem75,
+    override val spaceInsetBulletDefault: Float = OudsDimensionRawTokens.dimensionOutOfSystem75,
     override val spaceInsetBulletSmall: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.ThreeExtraSmall,
     override val spaceInsetIconDefault: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.FourExtraSmall,
     override val spaceInsetIconSmall: OudsSpaceKeyToken.Inset = OudsSpaceKeyToken.Inset.None,

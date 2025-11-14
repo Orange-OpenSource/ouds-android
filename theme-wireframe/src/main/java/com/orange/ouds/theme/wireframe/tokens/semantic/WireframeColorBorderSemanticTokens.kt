@@ -18,41 +18,41 @@ package com.orange.ouds.theme.wireframe.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBorderSemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class WireframeColorBorderSemanticTokens(
     override val borderBrandPrimaryDark: Color = WireframeColorRawTokens.colorRoyalBlue300,
     override val borderBrandPrimaryLight: Color = WireframeColorRawTokens.colorRoyalBlue600,
     override val borderBrandSecondaryDark: Color = WireframeColorRawTokens.colorRustyRed400,
     override val borderBrandSecondaryLight: Color = WireframeColorRawTokens.colorRustyRed600,
-    override val borderBrandTertiaryDark: Color = Color(0x00ff0000),
-    override val borderBrandTertiaryLight: Color = Color(0x00ff0000),
+    override val borderBrandTertiaryDark: Color = Color.Unspecified,
+    override val borderBrandTertiaryLight: Color = Color.Unspecified,
     override val borderDefaultDark: Color = WireframeColorRawTokens.colorOpacityWhite200,
     override val borderDefaultLight: Color = WireframeColorRawTokens.colorOpacityBlack200,
     override val borderEmphasizedDark: Color = WireframeColorRawTokens.colorOpacityWhite920,
     override val borderEmphasizedLight: Color = WireframeColorRawTokens.colorFunctionalGrayDark960,
     override val borderFocusDark: Color = WireframeColorRawTokens.colorFunctionalGrayLight160,
     override val borderFocusInsetDark: Color = WireframeColorRawTokens.colorFunctionalGrayDark880,
-    override val borderFocusInsetLight: Color = ColorRawTokens.colorFunctionalWhite,
+    override val borderFocusInsetLight: Color = OudsColorRawTokens.colorFunctionalWhite,
     override val borderFocusLight: Color = WireframeColorRawTokens.colorFunctionalGrayDark960,
     override val borderMinimalDark: Color = WireframeColorRawTokens.colorOpacityWhite40,
     override val borderMinimalLight: Color = WireframeColorRawTokens.colorOpacityBlack40,
     override val borderMutedDark: Color = WireframeColorRawTokens.colorOpacityWhite80,
     override val borderMutedLight: Color = WireframeColorRawTokens.colorOpacityBlack80,
     override val borderOnBrandPrimaryDark: Color = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    override val borderOnBrandPrimaryLight: Color = ColorRawTokens.colorFunctionalWhite,
-    override val borderOnBrandSecondaryDark: Color = Color(0x00ff0000),
-    override val borderOnBrandSecondaryLight: Color = Color(0x00ff0000),
-    override val borderOnBrandTertiaryDark: Color = Color(0x00ff0000),
-    override val borderOnBrandTertiaryLight: Color = Color(0x00ff0000),
+    override val borderOnBrandPrimaryLight: Color = OudsColorRawTokens.colorFunctionalWhite,
+    override val borderOnBrandSecondaryDark: Color = Color.Unspecified,
+    override val borderOnBrandSecondaryLight: Color = Color.Unspecified,
+    override val borderOnBrandTertiaryDark: Color = Color.Unspecified,
+    override val borderOnBrandTertiaryLight: Color = Color.Unspecified,
     override val borderStatusAccentDark: Color = WireframeColorRawTokens.colorRustyRed300,
     override val borderStatusAccentLight: Color = WireframeColorRawTokens.colorRustyRed600,
-    override val borderStatusInfoDark: Color = ColorRawTokens.colorFunctionalDodgerBlue300,
-    override val borderStatusInfoLight: Color = ColorRawTokens.colorFunctionalDodgerBlue700,
-    override val borderStatusNegativeDark: Color = ColorRawTokens.colorFunctionalScarlet300,
-    override val borderStatusNegativeLight: Color = ColorRawTokens.colorFunctionalScarlet600,
-    override val borderStatusPositiveDark: Color = ColorRawTokens.colorFunctionalMalachite300,
-    override val borderStatusPositiveLight: Color = ColorRawTokens.colorFunctionalMalachite750,
-    override val borderStatusWarningDark: Color = ColorRawTokens.colorFunctionalSun300,
-    override val borderStatusWarningLight: Color = ColorRawTokens.colorFunctionalSun500
+    override val borderStatusInfoDark: Color = OudsColorRawTokens.colorFunctionalDodgerBlue300,
+    override val borderStatusInfoLight: Color = OudsColorRawTokens.colorFunctionalDodgerBlue700,
+    override val borderStatusNegativeDark: Color = OudsColorRawTokens.colorFunctionalScarlet300,
+    override val borderStatusNegativeLight: Color = OudsColorRawTokens.colorFunctionalScarlet600,
+    override val borderStatusPositiveDark: Color = OudsColorRawTokens.colorFunctionalMalachite300,
+    override val borderStatusPositiveLight: Color = OudsColorRawTokens.colorFunctionalMalachite750,
+    override val borderStatusWarningDark: Color = OudsColorRawTokens.colorFunctionalSun300,
+    override val borderStatusWarningLight: Color = OudsColorRawTokens.colorFunctionalSun500
 ) : OudsColorBorderSemanticTokens

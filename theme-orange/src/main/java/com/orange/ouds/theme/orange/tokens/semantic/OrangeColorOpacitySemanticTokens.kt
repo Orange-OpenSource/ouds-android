@@ -17,13 +17,13 @@ package com.orange.ouds.theme.orange.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class OrangeColorOpacitySemanticTokens(
-    override val opacityLowerDark: Color = ColorRawTokens.colorOpacityWhite80,
-    override val opacityLowerLight: Color = ColorRawTokens.colorOpacityBlack80,
-    override val opacityLowestDark: Color = ColorRawTokens.colorOpacityWhite40,
-    override val opacityLowestLight: Color = ColorRawTokens.colorOpacityBlack40,
-    override val opacityTransparentDark: Color = ColorRawTokens.colorOpacityWhite0,
-    override val opacityTransparentLight: Color = ColorRawTokens.colorOpacityBlack0
+    override val opacityLowerDark: Color = OudsColorRawTokens.colorOpacityWhite80,
+    override val opacityLowerLight: Color = OudsColorRawTokens.colorOpacityBlack80,
+    override val opacityLowestDark: Color = OudsColorRawTokens.colorOpacityWhite40,
+    override val opacityLowestLight: Color = OudsColorRawTokens.colorOpacityBlack40,
+    override val opacityTransparentDark: Color = OudsColorRawTokens.colorOpacityWhite0,
+    override val opacityTransparentLight: Color = OudsColorRawTokens.colorOpacityBlack0
 ) : OudsColorOpacitySemanticTokens

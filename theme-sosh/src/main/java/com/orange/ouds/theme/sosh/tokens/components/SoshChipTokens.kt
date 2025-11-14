@@ -20,7 +20,7 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 data class SoshChipTokens(
     override val badgeColorBg: OudsColorKeyToken = OudsColorKeyToken.Content.OnAction.Enabled,
@@ -61,9 +61,9 @@ data class SoshChipTokens(
     override val colorContentUnselectedHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
     override val colorContentUnselectedPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Pressed,
     override val sizeIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
-    override val sizeMinHeight: Float = DimensionRawTokens.dimension400,
+    override val sizeMinHeight: Float = OudsDimensionRawTokens.dimension400,
     override val sizeMinHeightInteractiveArea: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    override val sizeMinWidth: Float = DimensionRawTokens.dimension650,
+    override val sizeMinWidth: Float = OudsDimensionRawTokens.dimension650,
     override val spaceColumnGapBadgeChevron: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
     override val spaceColumnGapIcon: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.ExtraSmall,
     override val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall,

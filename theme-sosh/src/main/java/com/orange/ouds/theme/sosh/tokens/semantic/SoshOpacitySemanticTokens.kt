@@ -16,15 +16,15 @@
 package com.orange.ouds.theme.sosh.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
-import com.orange.ouds.tokens.raw.OpacityRawTokens
+import com.orange.ouds.tokens.raw.OudsOpacityRawTokens
 
 data class SoshOpacitySemanticTokens(
-    override val disabled: Float = OpacityRawTokens.opacity200,
-    override val invisible: Float = OpacityRawTokens.opacity0,
-    override val medium: Float = OpacityRawTokens.opacity560,
-    override val opaque: Float = OpacityRawTokens.opacity1000,
-    override val strong: Float = OpacityRawTokens.opacity640,
-    override val weak: Float = OpacityRawTokens.opacity320,
-    override val weaker: Float = OpacityRawTokens.opacity160,
-    override val weakest: Float = OpacityRawTokens.opacity40
+    override val disabled: Float = OudsOpacityRawTokens.opacity200,
+    override val invisible: Float = OudsOpacityRawTokens.opacity0,
+    override val medium: Float = OudsOpacityRawTokens.opacity560,
+    override val opaque: Float = OudsOpacityRawTokens.opacity1000,
+    override val strong: Float = OudsOpacityRawTokens.opacity640,
+    override val weak: Float = OudsOpacityRawTokens.opacity320,
+    override val weaker: Float = OudsOpacityRawTokens.opacity160,
+    override val weakest: Float = OudsOpacityRawTokens.opacity40
 ) : OudsOpacitySemanticTokens

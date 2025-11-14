@@ -17,14 +17,14 @@ package com.orange.ouds.theme.orange.tokens.components
 
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 data class OrangeBadgeTokens(
-    override val sizeLarge: Float = DimensionRawTokens.dimension250,
-    override val sizeMedium: Float = DimensionRawTokens.dimension200,
-    override val sizeSmall: Float = DimensionRawTokens.dimension150,
-    override val sizeXsmall: Float = DimensionRawTokens.dimension100,
-    override val spaceInset: Float = DimensionRawTokens.dimensionOutOfSystem75,
+    override val sizeLarge: Float = OudsDimensionRawTokens.dimension250,
+    override val sizeMedium: Float = OudsDimensionRawTokens.dimension200,
+    override val sizeSmall: Float = OudsDimensionRawTokens.dimension150,
+    override val sizeXsmall: Float = OudsDimensionRawTokens.dimension100,
+    override val spaceInset: Float = OudsDimensionRawTokens.dimensionOutOfSystem75,
     override val spacePaddingInlineLarge: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.TwoExtraSmall,
     override val spacePaddingInlineMedium: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ThreeExtraSmall
 ) : OudsBadgeTokens

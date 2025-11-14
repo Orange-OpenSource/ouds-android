@@ -18,7 +18,7 @@ package com.orange.ouds.theme.wireframe.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class WireframeColorActionSemanticTokens(
     override val actionDisabledDark: Color = WireframeColorRawTokens.colorOpacityWhite200,
@@ -33,16 +33,16 @@ data class WireframeColorActionSemanticTokens(
     override val actionHoverLight: Color = WireframeColorRawTokens.colorRoyalBlue800,
     override val actionLoadingDark: Color = WireframeColorRawTokens.colorRoyalBlue100,
     override val actionLoadingLight: Color = WireframeColorRawTokens.colorRoyalBlue900,
-    override val actionNegativeEnabledDark: Color = ColorRawTokens.colorFunctionalScarlet300,
-    override val actionNegativeEnabledLight: Color = ColorRawTokens.colorFunctionalScarlet600,
-    override val actionNegativeFocusDark: Color = ColorRawTokens.colorFunctionalScarlet200,
-    override val actionNegativeFocusLight: Color = ColorRawTokens.colorFunctionalScarlet700,
-    override val actionNegativeHoverDark: Color = ColorRawTokens.colorFunctionalScarlet200,
-    override val actionNegativeHoverLight: Color = ColorRawTokens.colorFunctionalScarlet700,
-    override val actionNegativeLoadingDark: Color = ColorRawTokens.colorFunctionalScarlet100,
-    override val actionNegativeLoadingLight: Color = ColorRawTokens.colorFunctionalScarlet800,
-    override val actionNegativePressedDark: Color = ColorRawTokens.colorFunctionalScarlet100,
-    override val actionNegativePressedLight: Color = ColorRawTokens.colorFunctionalScarlet800,
+    override val actionNegativeEnabledDark: Color = OudsColorRawTokens.colorFunctionalScarlet300,
+    override val actionNegativeEnabledLight: Color = OudsColorRawTokens.colorFunctionalScarlet600,
+    override val actionNegativeFocusDark: Color = OudsColorRawTokens.colorFunctionalScarlet200,
+    override val actionNegativeFocusLight: Color = OudsColorRawTokens.colorFunctionalScarlet700,
+    override val actionNegativeHoverDark: Color = OudsColorRawTokens.colorFunctionalScarlet200,
+    override val actionNegativeHoverLight: Color = OudsColorRawTokens.colorFunctionalScarlet700,
+    override val actionNegativeLoadingDark: Color = OudsColorRawTokens.colorFunctionalScarlet100,
+    override val actionNegativeLoadingLight: Color = OudsColorRawTokens.colorFunctionalScarlet800,
+    override val actionNegativePressedDark: Color = OudsColorRawTokens.colorFunctionalScarlet100,
+    override val actionNegativePressedLight: Color = OudsColorRawTokens.colorFunctionalScarlet800,
     override val actionPressedDark: Color = WireframeColorRawTokens.colorRoyalBlue100,
     override val actionPressedLight: Color = WireframeColorRawTokens.colorRoyalBlue900,
     override val actionReadOnlyPrimaryDark: Color = WireframeColorRawTokens.colorRoyalBlue200,
@@ -63,6 +63,6 @@ data class WireframeColorActionSemanticTokens(
     override val actionSupportLoadingLight: Color = WireframeColorRawTokens.colorOpacityBlack120,
     override val actionSupportPressedDark: Color = WireframeColorRawTokens.colorOpacityWhite120,
     override val actionSupportPressedLight: Color = WireframeColorRawTokens.colorOpacityBlack120,
-    override val actionVisitedDark: Color = ColorRawTokens.colorFunctionalAmethyst400,
-    override val actionVisitedLight: Color = ColorRawTokens.colorFunctionalAmethyst600
+    override val actionVisitedDark: Color = OudsColorRawTokens.colorFunctionalAmethyst400,
+    override val actionVisitedLight: Color = OudsColorRawTokens.colorFunctionalAmethyst600
 ) : OudsColorActionSemanticTokens
