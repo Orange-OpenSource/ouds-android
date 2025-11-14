@@ -36,6 +36,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -107,7 +108,10 @@ enum class TopBarAction {
 @Composable
 private fun ChangeThemeSettingsAction(onClick: (TopBarAction) -> Unit) {
     IconButton(onClick = { onClick(TopBarAction.ChangeThemeSettings) }) {
-        Icon(painter = painterResource(id = R.drawable.ic_filters), contentDescription = stringResource(id = R.string.app_topBar_themeSettings_button_a11y))
+        Icon(
+            painter = painterResource(id = LocalThemeDrawableResources.current.filters),
+            contentDescription = stringResource(id = R.string.app_topBar_themeSettings_button_a11y)
+        )
     }
 }
 

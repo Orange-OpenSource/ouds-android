@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
@@ -44,6 +43,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -65,7 +65,7 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: 
                         NavigationBarItem(
                             selected = currentRoute == item.route,
                             icon = {
-                                Icon(painterResource(item.iconRes), null)
+                                Icon(painterResource(item.iconRes()), null)
                             },
                             label = {
                                 Text(
@@ -92,12 +92,12 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: 
 
 enum class BottomBarItem(
     @StringRes val titleRes: Int,
-    @DrawableRes val iconRes: Int,
+    val iconRes: @Composable () -> Int,
     val route: String
 ) {
-    Tokens(R.string.app_bottomBar_tokens_label, R.drawable.ic_design_token_figma, "main/tokens"),
-    Components(R.string.app_bottomBar_components_label, R.drawable.ic_component_atom, "main/components"),
-    About(R.string.app_bottomBar_about_label, R.drawable.ic_info, "main/about");
+    Tokens(R.string.app_bottomBar_tokens_label, { R.drawable.ic_design_token_figma }, "main/tokens"),
+    Components(R.string.app_bottomBar_components_label, { R.drawable.ic_component_atom }, "main/components"),
+    About(R.string.app_bottomBar_about_label, { LocalThemeDrawableResources.current.info }, "main/about");
 }
 
 @PreviewLightDark

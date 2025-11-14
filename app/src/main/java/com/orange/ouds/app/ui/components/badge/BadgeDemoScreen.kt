@@ -32,6 +32,8 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
@@ -54,10 +56,11 @@ import com.orange.ouds.theme.OudsVersion
 fun BadgeDemoScreen() {
     val state = rememberBadgeDemoState()
     val badgeWithIconStatus = state.badgeWithIconStatus
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         description = stringResource(id = Component.Badge.descriptionRes),
         bottomSheetContent = { BadgeDemoBottomSheetContent(state = state) },
-        codeSnippet = { badgeDemoCodeSnippet(state = state, badgeWithIconStatus = badgeWithIconStatus) },
+        codeSnippet = { badgeDemoCodeSnippet(state = state, badgeWithIconStatus = badgeWithIconStatus, themeDrawableResources = themeDrawableResources) },
         demoContent = { BadgeDemoContent(state = state) },
         version = OudsVersion.Component.Badge
     )
@@ -166,7 +169,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
     }
 }
 
-private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIconStatus: OudsIconBadgeStatus) {
+private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIconStatus: OudsIconBadgeStatus, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsBadge") {
             if (type == BadgeDemoState.Type.Count) {
@@ -180,7 +183,7 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
                     is OudsIconBadgeStatus.Accent -> {
                         functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
                             constructorCallArgument<OudsBadgeIcon>("icon") {
-                                painterArgument(R.drawable.ic_heart)
+                                painterArgument(themeDrawableResources.heartEmpty)
                             }
                         }
                     }

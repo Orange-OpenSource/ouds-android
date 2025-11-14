@@ -24,6 +24,8 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -38,10 +40,11 @@ import com.orange.ouds.theme.OudsVersion
 @Composable
 fun LinkDemoScreen() {
     val state = rememberLinkDemoState()
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         description = stringResource(id = Component.Link.descriptionRes),
         bottomSheetContent = { LinkDemoBottomSheetContent(state = state) },
-        codeSnippet = { linkDemoCodeSnippet(state = state) },
+        codeSnippet = { linkDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { LinkDemoContent(state = state) },
         demoContentOnColoredBox = state.onColoredBox,
         version = OudsVersion.Component.Link
@@ -99,7 +102,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
             LinkDemoState.Layout.TextAndIcon -> {
                 OudsLink(
                     label = label,
-                    icon = OudsLinkIcon(painterResource(id = R.drawable.ic_heart)),
+                    icon = OudsLinkIcon(painterResource(id = LocalThemeDrawableResources.current.heartEmpty)),
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -127,7 +130,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
     }
 }
 
-private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState) {
+private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         coloredBoxCall(onColoredBox) {
             functionCall("OudsLink") {
@@ -136,7 +139,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState) {
                     LinkDemoState.Layout.TextOnly -> {}
                     LinkDemoState.Layout.TextAndIcon -> {
                         constructorCallArgument<OudsLinkIcon>("icon") {
-                            painterArgument(R.drawable.ic_heart)
+                            painterArgument(themeDrawableResources.heartEmpty)
                         }
                     }
                     LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLinkArrow.Back)
