@@ -21,13 +21,13 @@ import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.orElse
 
 
-internal val localExtraParametersByClass =
+private val LocalExtraParametersByClass =
     mutableMapOf<Class<out OudsComponentContent.ExtraParameters>, ProvidableCompositionLocal<out OudsComponentContent.ExtraParameters>>()
 
 internal fun <T> getLocalExtraParameters(clazz: Class<T>): ProvidableCompositionLocal<T> where T : OudsComponentContent.ExtraParameters {
-    return localExtraParametersByClass[clazz]?.asOrNull<ProvidableCompositionLocal<T>>().orElse {
+    return LocalExtraParametersByClass[clazz]?.asOrNull<ProvidableCompositionLocal<T>>().orElse {
         staticCompositionLocalOf<T> { error("CompositionLocal LocalExtraParameters for class ${clazz.name} not present") }.also { compositionLocal ->
-            localExtraParametersByClass[clazz] = compositionLocal
+            LocalExtraParametersByClass[clazz] = compositionLocal
         }
     }
 }
