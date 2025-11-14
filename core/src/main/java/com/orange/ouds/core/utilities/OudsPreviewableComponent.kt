@@ -35,7 +35,6 @@ import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
-import com.orange.ouds.core.component.OudsNavigationBarPreviewParameter
 import com.orange.ouds.core.component.OudsNavigationBarPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameterProvider
@@ -315,7 +314,7 @@ interface OudsPreviewableComponent {
             PreviewOudsNavigationBar(
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsNavigationBarPreviewParameter
+                itemCount = parameter as Int
             )
         }
     }

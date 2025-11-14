@@ -399,8 +399,8 @@ internal enum class OudsNavigationBarItemState {
 @PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) parameter: OudsNavigationBarPreviewParameter) {
-    PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+internal fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
+    PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount)
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
@@ -446,21 +446,19 @@ private val navigationBarPreviewItems = listOf(
 internal fun PreviewOudsNavigationBar(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsNavigationBarPreviewParameter
+    itemCount: Int
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    with(parameter) {
-        OudsNavigationBar(
-            items = navigationBarPreviewItems.subList(0, navigationBarItemCount).mapIndexed { index, item ->
-                OudsNavigationBarItem(
-                    selected = index == 0,
-                    onClick = {},
-                    icon = OudsNavigationBarItemIcon(imageVector = item.imageVector, contentDescription = ""),
-                    label = item.label,
-                    badge = item.badge
-                )
-            }
-        )
-    }
+    OudsNavigationBar(
+        items = navigationBarPreviewItems.take(itemCount).mapIndexed { index, item ->
+            OudsNavigationBarItem(
+                selected = index == 0,
+                onClick = {},
+                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector, contentDescription = ""),
+                label = item.label,
+                badge = item.badge
+            )
+        }
+    )
 }
 
 @Composable
@@ -486,17 +484,6 @@ internal fun PreviewOudsNavigationBarItem(
     }
 }
 
-internal data class OudsNavigationBarPreviewParameter(
-    val navigationBarItemCount: Int = 3,
-)
-
 internal class OudsNavigationBarItemPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(true, false)
 
-internal class OudsNavigationBarPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsNavigationBarPreviewParameter>(*previewParameterValues.toTypedArray())
-
-private val previewParameterValues: List<OudsNavigationBarPreviewParameter>
-    get() = listOf(
-        OudsNavigationBarPreviewParameter(),
-        OudsNavigationBarPreviewParameter(navigationBarItemCount = 5),
-    )
+internal class OudsNavigationBarPreviewParameterProvider : BasicPreviewParameterProvider<Int>(3, 5)
