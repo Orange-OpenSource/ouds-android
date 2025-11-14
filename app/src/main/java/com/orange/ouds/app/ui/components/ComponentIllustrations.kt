@@ -133,20 +133,16 @@ fun LinkIllustration() = ComponentIllustration {
 
 @Composable
 fun NavigationBarIllustration() = ComponentIllustration {
-    val items = mutableListOf<OudsNavigationBarItem>().apply {
-        for (index in 0..2) {
-            add(
-                OudsNavigationBarItem(
-                    selected = index == 0,
-                    onClick = {},
-                    icon = OudsNavigationBarItemIcon(
-                        painter = painterResource(R.drawable.ic_heart),
-                        contentDescription = ""
-                    ),
-                    label = stringResource(R.string.app_components_common_label_label)
-                )
-            )
-        }
+    val items = List(3) { index ->
+        OudsNavigationBarItem(
+            selected = index == 0,
+            onClick = {},
+            icon = OudsNavigationBarItemIcon(
+                painter = painterResource(R.drawable.ic_heart),
+                contentDescription = ""
+            ),
+            label = stringResource(R.string.app_components_common_label_label)
+        )
     }
     OudsNavigationBar(
         items = items,
