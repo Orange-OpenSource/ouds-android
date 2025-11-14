@@ -139,7 +139,12 @@ fun OudsNavigationBar(
                             )
                         }
                 ) {
-                    items.forEach { OudsNavigationBarItemContent(item = it, modifier = Modifier.weight(1f)) }
+                    items.forEach { item ->
+                        item.Content(
+                            modifier = Modifier.weight(1f),
+                            extraParameters = OudsNavigationBarItem.ExtraParameters(this)
+                        )
+                    }
                 }
             }
         )
@@ -172,11 +177,15 @@ data class OudsNavigationBarItem(
     val label: String? = null,
     val badge: OudsNavigationBarItemBadge? = null,
     val interactionSource: MutableInteractionSource? = null
-)
+) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>(ExtraParameters::class.java) {
 
-@Composable
-private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, modifier: Modifier = Modifier) {
-    with(item) {
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val rowScope: RowScope
+    ) : OudsComponentContent.ExtraParameters()
+
+    @Composable
+    override fun Content(modifier: Modifier) {
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getNavigationBarItemState(interactionState = interactionState)
@@ -209,7 +218,7 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
                     stiffness = 1600.0f // StandardMotionTokens.SpringDefaultEffectsStiffness
                 )
 
-                this@OudsNavigationBarItemContent.AnimatedVisibility(
+                extraParameters.rowScope.AnimatedVisibility(
                     modifier = Modifier.constrainAs(topIndicatorRef) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
@@ -229,7 +238,7 @@ private fun RowScope.OudsNavigationBarItemContent(item: OudsNavigationBarItem, m
                 }
 
                 CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                    this@OudsNavigationBarItemContent.NavigationBarItem(
+                    extraParameters.rowScope.NavigationBarItem(
                         selected = selected,
                         onClick = onClick,
                         icon = {
@@ -469,17 +478,18 @@ internal fun PreviewOudsNavigationBarItem(
     selected: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     Row {
+        val item = OudsNavigationBarItem(
+            selected = selected,
+            onClick = {},
+            icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star),
+            label = "Label"
+        )
         PreviewEnumEntries<OudsNavigationBarItemState> {
-            OudsNavigationBarItemContent(
-                item = OudsNavigationBarItem(
-                    selected = selected,
-                    onClick = {},
-                    icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star),
-                    label = "Label"
-                ),
+            item.Content(
                 modifier = Modifier
                     .size(width = 80.dp, height = 64.dp)
-                    .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value)
+                    .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value),
+                extraParameters = OudsNavigationBarItem.ExtraParameters(this)
             )
         }
     }
