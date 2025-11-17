@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoStateDefaults
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.Illustration
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeSize
@@ -137,7 +139,7 @@ fun NavigationBarIllustration() = ComponentIllustration {
         OudsNavigationBarItem(
             selected = index == 0,
             onClick = {},
-            icon = OudsNavigationBarItemIcon(painter = painterResource(R.drawable.ic_heart)),
+            icon = OudsNavigationBarItemIcon(painter = painterResource(LocalThemeDrawableResources.current.heartEmpty)),
             label = stringResource(R.string.app_components_common_label_label)
         )
     }
