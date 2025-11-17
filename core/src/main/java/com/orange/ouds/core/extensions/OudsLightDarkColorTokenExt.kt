@@ -16,9 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.core.theme.isOudsInDarkTheme
-import com.orange.ouds.theme.tokens.components.OudsLightDarkColorToken
+import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 
-val OudsLightDarkColorToken.value: Color
+val OudsLightDarkColor.value: Color
     @ReadOnlyComposable
     @Composable
     get() = if (isOudsInDarkTheme()) dark else light

@@ -139,7 +139,7 @@ fun NavigationBarIllustration() = ComponentIllustration {
         OudsNavigationBarItem(
             selected = index == 0,
             onClick = {},
-            icon = OudsNavigationBarItemIcon(painter = painterResource(LocalThemeDrawableResources.current.heartEmpty)),
+            icon = OudsNavigationBarItemIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
             label = stringResource(R.string.app_components_common_label_label)
         )
     }
