@@ -49,6 +49,7 @@ internal val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsToke
 internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
+internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 
 /**
  * Object that stores tokens values for the current theme.
@@ -109,10 +110,10 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
-    val navigationBarBlurRadius
+    val components: OudsComponents
         @Composable
         @ReadOnlyComposable
-        get() = LocalComponentsTokens.current.bar.effectBgBlur
+        get() = LocalComponents.current
 
     internal val componentsTokens: OudsComponentsTokens
         @Composable
@@ -168,7 +169,8 @@ fun OudsTheme(
             LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),
             LocalComponentsTokens provides componentsTokens,
             LocalDrawableResources provides drawableResources,
-            LocalThemeSettings provides settings
+            LocalThemeSettings provides settings,
+            LocalComponents provides componentsTokens.getComponents()
         ) {
             MaterialTheme(
                 colorScheme = materialColorScheme,

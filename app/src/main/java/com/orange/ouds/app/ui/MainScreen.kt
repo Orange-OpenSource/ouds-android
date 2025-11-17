@@ -122,7 +122,7 @@ fun MainScreen(
                     BottomBar(
                         modifier = Modifier.hazeEffect(
                             state = hazeState,
-                            style = HazeStyle(tint = null, blurRadius = OudsTheme.navigationBarBlurRadius.dp)
+                            style = HazeStyle(tint = null, blurRadius = OudsTheme.components.navigationBar.blurRadius.dp)
                         ),
                         currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                         navigateToRoute = { route ->
