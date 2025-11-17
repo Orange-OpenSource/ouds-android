@@ -21,10 +21,12 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
+import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsControlItemIcon
@@ -38,7 +40,7 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
     val state = rememberCheckboxItemDemoState()
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
-        bottomSheetContent = { ControlItemCustomizations(state = state) },
+        bottomSheetContent = { CheckboxItemDemoBottomSheetContent(state = state) },
         codeSnippet = { checkboxItemDemoCodeSnippet(state = state, indeterminate = indeterminate, themeDrawableResources = themeDrawableResources) },
         demoContent = {
             if (indeterminate) {
@@ -50,6 +52,23 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
         demoContentPaddingValues = PaddingValues(),
         version = OudsVersion.Component.Checkbox
     )
+}
+
+@Composable
+private fun CheckboxItemDemoBottomSheetContent(state: CheckboxItemDemoState) {
+    with(state) {
+        val extraCustomizations = listOf(
+            controlItemCustomization(6) {
+                CustomizationTextField(
+                    label = stringResource(R.string.app_components_common_errorDescription_label),
+                    value = errorDescription,
+                    onValueChange = { value -> errorDescription = value },
+                    enabled = errorDescriptionEnabled
+                )
+            },
+        )
+        ControlItemCustomizations(state = state, extraCustomizations = extraCustomizations)
+    }
 }
 
 @Composable
@@ -76,7 +95,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) stringResource(R.string.app_components_common_error_a11y) else "") else null
+                    error = if (error) OudsError(if (isLastItem) errorDescription else "") else null
                 )
             }
         }
@@ -109,7 +128,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) stringResource(R.string.app_components_common_error_a11y) else "") else null
+                    error = if (error) OudsError(if (isLastItem) errorDescription else "") else null
                 )
             }
         }

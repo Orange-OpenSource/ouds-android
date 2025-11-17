@@ -36,6 +36,7 @@ fun rememberCheckboxItemDemoState(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
+    errorDescription: String = stringResource(id = R.string.app_components_common_errorDescription_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
     helperText: String? = null
 ) = rememberSaveable(
@@ -47,11 +48,12 @@ fun rememberCheckboxItemDemoState(
     enabled,
     readOnly,
     error,
+    errorDescription,
     label,
     helperText,
     saver = CheckboxItemDemoState.Saver
 ) {
-    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, label, helperText)
+    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, errorDescription, label, helperText)
 }
 
 class CheckboxItemDemoState(
@@ -63,6 +65,7 @@ class CheckboxItemDemoState(
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
+    errorDescription: String,
     label: String,
     helperText: String?
 ) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
@@ -73,11 +76,12 @@ class CheckboxItemDemoState(
                 listOf(
                     state.checkedValues,
                     state.toggleableStateValues,
+                    state.errorDescription,
                     with(ControlItemDemoState.Saver) { save(state) }
                 )
             },
             restore = { list: List<Any?> ->
-                val controlItemDemoState = list[2]?.let { ControlItemDemoState.Saver.restore(it) }
+                val controlItemDemoState = list[3]?.let { ControlItemDemoState.Saver.restore(it) }
                 controlItemDemoState?.run {
                     @Suppress("UNCHECKED_CAST")
                     CheckboxItemDemoState(
@@ -89,6 +93,7 @@ class CheckboxItemDemoState(
                         enabled,
                         readOnly,
                         error,
+                        list[2] as String,
                         label,
                         helperText
                     )
@@ -99,4 +104,8 @@ class CheckboxItemDemoState(
 
     var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)
     var toggleableStateValues: Pair<ToggleableState, ToggleableState> by mutableStateOf(toggleableStateValues)
+    var errorDescription: String by mutableStateOf(errorDescription)
+
+    val errorDescriptionEnabled: Boolean
+        get() = error
 }

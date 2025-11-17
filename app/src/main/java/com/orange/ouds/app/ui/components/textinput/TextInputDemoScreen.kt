@@ -91,7 +91,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             enabled = errorSwitchEnabled
         )
         CustomizationTextField(
-            label = stringResource(R.string.app_components_textInput_errorDescription_label),
+            label = stringResource(R.string.app_components_common_errorDescription_label),
             value = errorDescription,
             onValueChange = { value -> errorDescription = value },
             enabled = errorDescriptionTextInputEnabled

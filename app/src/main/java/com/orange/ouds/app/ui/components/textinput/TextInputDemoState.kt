@@ -33,7 +33,7 @@ fun rememberTextInputDemoState(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
-    errorDescription: String = stringResource(id = R.string.app_components_textInput_errorDescription_label),
+    errorDescription: String = stringResource(id = R.string.app_components_common_errorDescription_label),
     prefix: String = "",
     suffix: String = "",
     helperText: String = "",
