@@ -15,11 +15,11 @@
 
 package com.orange.ouds.tokens.raw
 
-object ElevationRawTokens {
-  const val elevation0 = 0f
-  const val elevation1 = 1f
-  const val elevation2 = 3f
-  const val elevation3 = 6f
-  const val elevation4 = 8f
-  const val elevation5 = 12f
+object OudsElevationRawTokens {
+  const val Elevation0 = 0f
+  const val Elevation1 = 1f
+  const val Elevation2 = 3f
+  const val Elevation3 = 6f
+  const val Elevation4 = 8f
+  const val Elevation5 = 12f
 }

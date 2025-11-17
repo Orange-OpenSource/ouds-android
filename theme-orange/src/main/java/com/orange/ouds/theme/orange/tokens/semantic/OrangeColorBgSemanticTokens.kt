@@ -18,17 +18,17 @@ package com.orange.ouds.theme.orange.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.orange.tokens.raw.OrangeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class OrangeColorBgSemanticTokens(
-    override val bgInverseHighDark: Color = ColorRawTokens.colorFunctionalGrayLight160,
-    override val bgInverseHighLight: Color = ColorRawTokens.colorFunctionalGrayDark880,
-    override val bgInverseLowDark: Color = ColorRawTokens.colorFunctionalGrayDark640,
-    override val bgInverseLowLight: Color = ColorRawTokens.colorFunctionalGrayDark880,
-    override val bgPrimaryDark: Color = ColorRawTokens.colorFunctionalGrayDark880,
-    override val bgPrimaryLight: Color = ColorRawTokens.colorFunctionalWhite,
-    override val bgSecondaryDark: Color = ColorRawTokens.colorFunctionalGrayDark800,
-    override val bgSecondaryLight: Color = ColorRawTokens.colorFunctionalGrayLight80,
-    override val bgTertiaryDark: Color = OrangeColorRawTokens.colorWarmGray900,
-    override val bgTertiaryLight: Color = OrangeColorRawTokens.colorWarmGray100
+    override val bgInverseHighDark: Color = OudsColorRawTokens.ColorFunctionalGrayLight160,
+    override val bgInverseHighLight: Color = OudsColorRawTokens.ColorFunctionalGrayDark880,
+    override val bgInverseLowDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark640,
+    override val bgInverseLowLight: Color = OudsColorRawTokens.ColorFunctionalGrayDark880,
+    override val bgPrimaryDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark880,
+    override val bgPrimaryLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
+    override val bgSecondaryDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark800,
+    override val bgSecondaryLight: Color = OudsColorRawTokens.ColorFunctionalGrayLight80,
+    override val bgTertiaryDark: Color = OrangeColorRawTokens.ColorWarmGray900,
+    override val bgTertiaryLight: Color = OrangeColorRawTokens.ColorWarmGray100
 ) : OudsColorBgSemanticTokens

@@ -15,10 +15,10 @@ package com.orange.ouds.theme.tokens.components
 import androidx.compose.ui.graphics.Color
 
 /**
- * A color token which aggregates two colors, with one being used for the light theme and the other for the dark theme.
+ * An aggregate of two colors, with one being used for the light theme and the other for the dark theme.
  *
  * @property light The color used for the light theme.
  * @property dark The color used for the dark theme.
- * @constructor Creates an instance of [OudsLightDarkColorToken].
+ * @constructor Creates an instance of [OudsLightDarkColor].
  */
-data class OudsLightDarkColorToken(val light: Color, val dark: Color)
+data class OudsLightDarkColor(val light: Color, val dark: Color)

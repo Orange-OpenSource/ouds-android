@@ -18,15 +18,15 @@ package com.orange.ouds.theme.sosh.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class SoshColorOverlaySemanticTokens(
-    override val overlayDragDark: Color = ColorRawTokens.colorOpacityWhite80,
-    override val overlayDragLight: Color = ColorRawTokens.colorOpacityBlack40,
-    override val overlayDropdownDark: Color = ColorRawTokens.colorFunctionalGrayDark560,
-    override val overlayDropdownLight: Color = ColorRawTokens.colorFunctionalWhite,
-    override val overlayModalDark: Color = SoshColorRawTokens.colorBlueDuckDark720,
-    override val overlayModalLight: Color = ColorRawTokens.colorFunctionalWhite,
-    override val overlayTooltipDark: Color = ColorRawTokens.colorFunctionalGrayDark560,
-    override val overlayTooltipLight: Color = ColorRawTokens.colorFunctionalGrayDark720
+    override val overlayDragDark: Color = OudsColorRawTokens.ColorOpacityWhite80,
+    override val overlayDragLight: Color = OudsColorRawTokens.ColorOpacityBlack40,
+    override val overlayDropdownDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark560,
+    override val overlayDropdownLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
+    override val overlayModalDark: Color = SoshColorRawTokens.ColorBlueDuckDark720,
+    override val overlayModalLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
+    override val overlayTooltipDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark560,
+    override val overlayTooltipLight: Color = OudsColorRawTokens.ColorFunctionalGrayDark720
 ) : OudsColorOverlaySemanticTokens

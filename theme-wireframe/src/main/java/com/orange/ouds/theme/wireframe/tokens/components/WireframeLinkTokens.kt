@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 data class WireframeLinkTokens(
     override val colorChevronEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
@@ -33,9 +33,9 @@ data class WireframeLinkTokens(
     override val sizeIconDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
     override val sizeIconSmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
     override val sizeMinHeightDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    override val sizeMinHeightSmall: Float = DimensionRawTokens.dimension550,
+    override val sizeMinHeightSmall: Float = OudsDimensionRawTokens.Dimension550,
     override val sizeMinWidthDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
-    override val sizeMinWidthSmall: Float = DimensionRawTokens.dimension550,
+    override val sizeMinWidthSmall: Float = OudsDimensionRawTokens.Dimension550,
     override val spaceColumnGapChevronDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
     override val spaceColumnGapChevronSmall: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.TwoExtraSmall,
     override val spaceColumnGapIconDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,

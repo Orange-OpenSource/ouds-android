@@ -18,11 +18,11 @@ package com.orange.ouds.theme.wireframe.tokens.semantic
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
-import com.orange.ouds.tokens.raw.ColorRawTokens
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
 data class WireframeColorAlwaysSemanticTokens(
-    override val alwaysBlack: Color = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    override val alwaysOnBlack: Color = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    override val alwaysOnWhite: Color = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    override val alwaysWhite: Color = ColorRawTokens.colorFunctionalWhite
+    override val alwaysBlack: Color = WireframeColorRawTokens.ColorFunctionalGrayDark960,
+    override val alwaysOnBlack: Color = WireframeColorRawTokens.ColorFunctionalGrayLight160,
+    override val alwaysOnWhite: Color = WireframeColorRawTokens.ColorFunctionalGrayDark960,
+    override val alwaysWhite: Color = OudsColorRawTokens.ColorFunctionalWhite
 ) : OudsColorAlwaysSemanticTokens

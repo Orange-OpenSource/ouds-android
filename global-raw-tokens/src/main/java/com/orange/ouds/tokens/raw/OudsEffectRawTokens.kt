@@ -15,7 +15,7 @@
 
 package com.orange.ouds.tokens.raw
 
-object EffectRawTokens {
-  const val effectBlur160 = 16
-  const val effectBlur320 = 32
+object OudsEffectRawTokens {
+  const val EffectBlur160 = 16
+  const val EffectBlur320 = 32
 }

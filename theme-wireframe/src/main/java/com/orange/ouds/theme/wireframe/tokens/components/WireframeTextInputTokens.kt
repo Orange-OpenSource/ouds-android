@@ -20,7 +20,7 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.tokens.raw.DimensionRawTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 data class WireframeTextInputTokens(
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
@@ -32,12 +32,12 @@ data class WireframeTextInputTokens(
     override val colorBorderHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,
     override val colorBorderLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Loading,
     override val sizeCountrySelectorFlagHeight: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
-    override val sizeLabelMaxHeight: Float = DimensionRawTokens.dimension600,
+    override val sizeLabelMaxHeight: Float = OudsDimensionRawTokens.Dimension600,
     override val sizeLeadingIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
-    override val sizeMaxWidth: Float = DimensionRawTokens.dimension4000,
-    override val sizeMinHeight: Float = DimensionRawTokens.dimension750,
-    override val sizeMinWidth: Float = DimensionRawTokens.dimension2500,
-    override val sizeVerticalDividerHeight: Float = DimensionRawTokens.dimension250,
+    override val sizeMaxWidth: Float = OudsDimensionRawTokens.Dimension4000,
+    override val sizeMinHeight: Float = OudsDimensionRawTokens.Dimension750,
+    override val sizeMinWidth: Float = OudsDimensionRawTokens.Dimension2500,
+    override val sizeVerticalDividerHeight: Float = OudsDimensionRawTokens.Dimension250,
     override val spaceColumnGapDefault: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Medium,
     override val spaceColumnGapInlineText: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.ExtraSmall,
     override val spaceColumnGapTrailingErrorAction: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.ExtraSmall,
