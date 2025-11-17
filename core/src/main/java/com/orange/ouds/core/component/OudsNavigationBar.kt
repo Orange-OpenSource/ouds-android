@@ -363,6 +363,11 @@ class OudsNavigationBarItemIcon private constructor(
      * @param bitmap Image bitmap of the icon.
      */
     constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        super.Content(modifier = modifier.size(Size))
+    }
 }
 
 /**
