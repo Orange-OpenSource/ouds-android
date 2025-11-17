@@ -155,7 +155,7 @@ private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
             val loader = if (hasLoader) OudsTagLoader(null) else null
-            val customIcon = OudsTagIcon.Custom(painter = painterResource(LocalThemeDrawableResources.current.heartEmpty))
+            val customIcon = OudsTagIcon.Custom(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
             val alpha = if (visible) 1f else 0f
             OudsTag(
                 modifier = Modifier.alpha(alpha),
@@ -223,7 +223,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
                         when (status) {
                             is OudsTagStatus.Neutral, is OudsTagStatus.Accent ->
                                 constructorCallArgument<OudsTagIcon.Custom>("icon") {
-                                    painterArgument(themeDrawableResources.heartEmpty)
+                                    painterArgument(themeDrawableResources.tipsAndTricks)
                                 }
                             is OudsTagStatus.Positive, is OudsTagStatus.Warning, is OudsTagStatus.Info, is OudsTagStatus.Negative ->
                                 typedArgument("icon", OudsTagIcon.Default)

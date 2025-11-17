@@ -142,7 +142,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
     if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
     if (icon) {
         constructorCallArgument<OudsControlItemIcon>("icon") {
-            painterArgument(themeDrawableResources.heartEmpty)
+            painterArgument(themeDrawableResources.tipsAndTricks)
         }
     }
     if (divider) typedArgument("divider", divider)

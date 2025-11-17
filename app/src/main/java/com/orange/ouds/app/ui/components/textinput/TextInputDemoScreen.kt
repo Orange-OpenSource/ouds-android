@@ -140,7 +140,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             outlined = outlined,
             leadingIcon = if (leadingIcon) {
                 OudsTextInputLeadingIcon(
-                    painterResource(id = LocalThemeDrawableResources.current.heartEmpty),
+                    painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
                     contentDescription = ""
                 )
             } else {
@@ -148,7 +148,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             },
             trailingIconButton = if (trailingIcon) {
                 OudsTextInputTrailingIconButton(
-                    painterResource(id = LocalThemeDrawableResources.current.heartEmpty),
+                    painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
                     contentDescription = stringResource(id = R.string.app_components_textInput_trailingIcon_a11y),
                     onClick = { })
             } else {
@@ -178,12 +178,12 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             typedArgument("outlined", outlined)
             if (leadingIcon) {
                 constructorCallArgument<OudsTextInputLeadingIcon>("leadingIcon") {
-                    painterArgument(themeDrawableResources.heartEmpty)
+                    painterArgument(themeDrawableResources.tipsAndTricks)
                 }
             }
             if (trailingIcon) {
                 constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
-                    painterArgument(themeDrawableResources.heartEmpty)
+                    painterArgument(themeDrawableResources.tipsAndTricks)
                     onClickArgument {
                         comment("Do something")
                     }

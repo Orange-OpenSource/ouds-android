@@ -183,7 +183,7 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
                     is OudsIconBadgeStatus.Accent -> {
                         functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
                             constructorCallArgument<OudsBadgeIcon>("icon") {
-                                painterArgument(themeDrawableResources.heartEmpty)
+                                painterArgument(themeDrawableResources.tipsAndTricks)
                             }
                         }
                     }

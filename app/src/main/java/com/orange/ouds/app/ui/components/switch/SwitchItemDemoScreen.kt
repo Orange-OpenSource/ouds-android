@@ -51,7 +51,7 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             label = label,
             onCheckedChange = { checked = it },
             helperText = helperText,
-            icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.heartEmpty)) else null,
+            icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
             divider = divider,
             reversed = reversed,
             enabled = enabled,

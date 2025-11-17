@@ -224,7 +224,7 @@ internal fun PreviewCode() = OudsPreview {
             trailingLambda = true
             constructorCallArgument<OudsButtonIcon>("icon") {
                 functionCallArgument("painter", "painterResource") {
-                    typedArgument("id", themeDrawableResources.heartEmpty)
+                    typedArgument("id", themeDrawableResources.tipsAndTricks)
                 }
                 lambdaArgument("onClick") {
                     comment("click") { isMultiline = true }

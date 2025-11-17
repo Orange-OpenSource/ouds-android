@@ -84,7 +84,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     label = label,
                     additionalLabel = additionalLabel,
                     helperText = helperText,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.heartEmpty)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
                     divider = divider,
                     outlined = outlined,
                     reversed = reversed,
