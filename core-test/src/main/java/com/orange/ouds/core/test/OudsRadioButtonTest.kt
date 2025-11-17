@@ -20,7 +20,8 @@ import org.junit.runners.Parameterized
 class OudsRadioButtonTest(parameter: Any) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.RadioButton,
     parameter,
-    OudsComponentTestSuite.theme
+    OudsComponentTestSuite.theme,
+    OudsPreviewableComponent.RadioButton.PreviewWidthDp
 ) {
 
     companion object {
