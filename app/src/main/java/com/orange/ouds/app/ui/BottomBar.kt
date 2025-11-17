@@ -39,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
@@ -58,7 +59,7 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier:
                 items = BottomBarItem.entries.map { item ->
                     OudsNavigationBarItem(
                         selected = currentRoute == item.route,
-                        icon = OudsNavigationBarItemIcon(painter = painterResource(item.iconRes())),
+                        icon = OudsNavigationBarItemIcon(painter = painterResource(item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
                         label = stringResource(item.titleRes),
                         onClick = { navigateToRoute(item.route) }
                     )
@@ -79,12 +80,12 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier:
 
 enum class BottomBarItem(
     @StringRes val titleRes: Int,
-    val iconRes: @Composable () -> Int,
+    val iconResourceProvider: ThemeDrawableResourceProvider,
     val route: String
 ) {
     Tokens(R.string.app_bottomBar_tokens_label, { R.drawable.ic_design_token_figma }, "main/tokens"),
     Components(R.string.app_bottomBar_components_label, { R.drawable.ic_component_atom }, "main/components"),
-    About(R.string.app_bottomBar_about_label, { LocalThemeDrawableResources.current.info }, "main/about");
+    About(R.string.app_bottomBar_about_label, { it.info }, "main/about");
 }
 
 @PreviewLightDark

@@ -31,8 +31,10 @@ import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Co
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MinNavigationBarItemCount
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
-import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
@@ -45,10 +47,11 @@ import com.orange.ouds.core.utilities.OudsPreview
 fun NavigationBarDemoScreen() {
     val state = rememberNavigationBarDemoState()
     val context = LocalContext.current
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         description = stringResource(id = Component.NavigationBar.descriptionRes),
         bottomSheetContent = { NavigationBarDemoBottomSheetContent(state = state) },
-        codeSnippet = { navigationBarDemoCodeSnippet(state = state, context = context) },
+        codeSnippet = { navigationBarDemoCodeSnippet(state = state, context = context, themeDrawableResources = themeDrawableResources) },
         demoContent = { NavigationBarDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none)
     )
@@ -91,7 +94,7 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     selected = selectedItemId == index,
                     onClick = { selectedItemId = index },
                     label = label,
-                    icon = OudsNavigationBarItemIcon(painter = painterResource(id = item.iconRes)),
+                    icon = OudsNavigationBarItemIcon(painter = painterResource(id = item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
                     badge = if (isLastItem) {
                         when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null
@@ -110,7 +113,7 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
     }
 }
 
-private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoState, context: Context) {
+private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoState, context: Context, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         val navigationBarItems = NavigationBarItem.entries
         functionCall("OudsNavigationBar") {
@@ -123,7 +126,7 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
                         lambdaArgument("onClick", {})
                         labelArgument(label)
                         functionCallArgument("icon", OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
-                            painterArgument(id = item.iconRes)
+                            painterArgument(id = item.iconResourceProvider.getResource(themeDrawableResources))
                         }
                         if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
                             functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
@@ -139,12 +142,12 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
     }
 }
 
-enum class NavigationBarItem(@DrawableRes val iconRes: Int, @StringRes val labelRes: Int) {
-    Home(R.drawable.ic_home, R.string.app_components_navigationBar_homeItem_label),
-    Notification(R.drawable.ic_notification_alert, R.string.app_components_navigationBar_notificationsItem_label),
-    Shop(R.drawable.ic_shop_store, R.string.app_components_navigationBar_shopItem_label),
-    Account(R.drawable.ic_avatar, R.string.app_components_navigationBar_accountItem_label),
-    Settings(R.drawable.ic_settings, R.string.app_components_navigationBar_settingsItem_label),
+enum class NavigationBarItem(val iconResourceProvider: ThemeDrawableResourceProvider, @StringRes val labelRes: Int) {
+    Home( { it.home }, R.string.app_components_navigationBar_homeItem_label),
+    Notification( { it.notificationAlert }, R.string.app_components_navigationBar_notificationsItem_label),
+    Shop( { it.shop }, R.string.app_components_navigationBar_shopItem_label),
+    Account( { it.avatar }, R.string.app_components_navigationBar_accountItem_label),
+    Settings( { it.settings }, R.string.app_components_navigationBar_settingsItem_label),
 }
 
 @PreviewLightDark
