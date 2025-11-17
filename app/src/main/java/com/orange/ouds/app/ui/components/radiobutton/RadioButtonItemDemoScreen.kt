@@ -63,9 +63,9 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
             },
             controlItemCustomization(9) {
                 CustomizationTextField(
-                    label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
-                    value = additionalLabel.orEmpty(),
-                    onValueChange = { value -> additionalLabel = value }
+                    label = stringResource(R.string.app_components_radioButton_radioButtonItem_extraLabel_label),
+                    value = extraLabel.orEmpty(),
+                    onValueChange = { value -> extraLabel = value }
                 )
             }
         )
@@ -83,7 +83,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
                     label = label,
-                    additionalLabel = additionalLabel,
+                    extraLabel = extraLabel,
                     description = description,
                     icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
                     divider = divider,
@@ -107,7 +107,7 @@ private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDe
                 comment("Change selection")
             }
             controlItemArguments(state, themeDrawableResources)
-            if (!additionalLabel.isNullOrBlank()) typedArgument("additionalLabel", additionalLabel)
+            if (!extraLabel.isNullOrBlank()) typedArgument("extraLabel", extraLabel)
             if (outlined) typedArgument("outlined", outlined)
         }
     }

@@ -76,7 +76,7 @@ internal fun OudsControlItem(
     checkedContentSelectionStatus: String,
     backgroundColor: Color,
     modifier: Modifier = Modifier,
-    additionalLabel: String? = null,
+    extraLabel: String? = null,
     handleHighContrastMode: Boolean = false
 ) {
     val previewState = getPreviewEnumEntry<OudsControlItemState>()
@@ -153,11 +153,11 @@ internal fun OudsControlItem(
                         verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
                     ) {
                         Text(text = label, style = OudsTheme.typography.label.default.large, color = labelColor(state = state, error = error))
-                        if (!additionalLabel.isNullOrBlank()) {
+                        if (!extraLabel.isNullOrBlank()) {
                             Text(
-                                text = additionalLabel,
+                                text = extraLabel,
                                 style = OudsTheme.typography.label.strong.medium,
-                                color = additionalLabelColor(state = state)
+                                color = extraLabelColor(state = state)
                             )
                         }
                         if (!description.isNullOrBlank()) {
@@ -353,7 +353,7 @@ private fun labelColor(state: OudsControlItemState, error: OudsError?) =
 private fun errorColor(state: OudsControlItemState) = state.toControlState().errorColor()
 
 @Composable
-private fun additionalLabelColor(state: OudsControlItemState) =
+private fun extraLabelColor(state: OudsControlItemState) =
     if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
@@ -368,7 +368,7 @@ internal data class OudsControlItemPreviewParameter<T, S>(
     val hasIcon: Boolean = false,
     val error: OudsError? = null,
     val reversed: Boolean = false,
-    val additionalLabel: String? = null
+    val extraLabel: String? = null
 )
 
 internal open class OudsControlItemPreviewParameterProvider<T, S>(
@@ -382,7 +382,7 @@ internal open class OudsControlItemPreviewParameterProvider<T, S>(
 }
 
 private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: List<S> = listOf()): List<OudsControlItemPreviewParameter<T, S>> {
-    val additionalLabel = "Additional label"
+    val extraLabel = "Extra label"
     val description = "Description"
     val reversedValues = listOf(false, true)
 
@@ -396,7 +396,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                 ).run {
                     when (index) {
                         0 -> this
-                        1 -> copy(hasIcon = true, additionalLabel = additionalLabel, description = description)
+                        1 -> copy(hasIcon = true, extraLabel = extraLabel, description = description)
                         else -> copy(description = description, divider = true, error = OudsError("This field can't be activated"))
                     }
                 }
