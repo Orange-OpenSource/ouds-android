@@ -49,6 +49,8 @@ fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringResourceArgum
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
 
+fun FunctionCall.Builder.readOnlyArgument(value: Boolean) = typedArgument(Argument.ReadOnly, value)
+
 private object Argument {
 
     const val Color = "color"
@@ -59,4 +61,5 @@ private object Argument {
     const val Label = "label"
     const val OnClick = "onClick"
     const val Painter = "painter"
+    const val ReadOnly = "readOnly"
 }

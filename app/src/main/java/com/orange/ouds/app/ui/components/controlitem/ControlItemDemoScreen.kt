@@ -18,6 +18,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -151,21 +152,22 @@ private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     }
 }
 
-fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) = with(state) {
-    labelArgument(label)
-    if (!description.isNullOrBlank()) typedArgument("description", description)
-    if (icon) {
-        constructorCallArgument<OudsControlItemIcon>("icon") {
-            painterArgument(themeDrawableResources.tipsAndTricks)
+fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) =
+    with(state) {
+        labelArgument(label)
+        if (!description.isNullOrBlank()) typedArgument("description", description)
+        if (icon) {
+            constructorCallArgument<OudsControlItemIcon>("icon") {
+                painterArgument(themeDrawableResources.tipsAndTricks)
+            }
+        }
+        if (divider) typedArgument("divider", divider)
+        if (reversed) typedArgument("reversed", reversed)
+        if (!enabled) enabledArgument(enabled)
+        if (readOnly) readOnlyArgument(readOnly)
+        if (error) {
+            constructorCallArgument<OudsError>("error") {
+                typedArgument("message", if (hasErrorMessage) errorMessage else "")
+            }
         }
     }
-    if (divider) typedArgument("divider", divider)
-    if (reversed) typedArgument("reversed", reversed)
-    if (!enabled) enabledArgument(enabled)
-    if (readOnly) typedArgument("readOnly", readOnly)
-    if (error) {
-        constructorCallArgument<OudsError>("error") {
-            typedArgument("message", if (hasErrorMessage) errorMessage else "")
-        }
-    }
-}

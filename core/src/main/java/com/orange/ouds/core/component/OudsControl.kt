@@ -20,13 +20,13 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 
 internal enum class OudsControlState {
-    Enabled, Hovered, Pressed, Disabled, Focused;
+    Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly;
 
     @Composable
     fun errorColor(): Color = with(OudsTheme.colorScheme.action.negative) {
         when (this@OudsControlState) {
             Enabled -> enabled
-            Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
+            Disabled, ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
             Hovered -> hover
             Pressed -> pressed
             Focused -> focus
@@ -35,10 +35,11 @@ internal enum class OudsControlState {
 }
 
 @Composable
-internal fun getControlState(enabled: Boolean, interactionState: InteractionState): OudsControlState {
+internal fun getControlState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsControlState {
     return getPreviewEnumEntry<OudsControlState>().orElse {
         when {
             !enabled -> OudsControlState.Disabled
+            readOnly -> OudsControlState.ReadOnly
             interactionState == InteractionState.Hovered -> OudsControlState.Hovered
             interactionState == InteractionState.Pressed -> OudsControlState.Pressed
             interactionState == InteractionState.Focused -> OudsControlState.Focused

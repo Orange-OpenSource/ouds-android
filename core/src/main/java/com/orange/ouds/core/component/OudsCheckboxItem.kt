@@ -165,7 +165,7 @@ fun OudsTriStateCheckboxItem(
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val checkboxItemState = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val checkboxItemState = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
     val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val toggleableModifier = if (onClick != null) {
@@ -192,7 +192,7 @@ fun OudsTriStateCheckboxItem(
         error = error,
         indicator = {
             OudsCheckboxIndicator(
-                state = checkboxItemState.toControlState(),
+                state = checkboxItemState,
                 value = state,
                 error = error != null
             )
@@ -226,7 +226,7 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -260,7 +260,7 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",

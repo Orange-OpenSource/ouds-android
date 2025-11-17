@@ -205,6 +205,8 @@ interface OudsPreviewableComponent {
 
     object Checkbox : OudsPreviewableComponent {
 
+        const val PreviewWidthDp = 410
+
         override val parameters: List<Any> = OudsCheckboxPreviewParameterProvider().values.toList()
 
         @Composable
@@ -384,6 +386,8 @@ interface OudsPreviewableComponent {
 
     object RadioButton : OudsPreviewableComponent {
 
+        const val PreviewWidthDp = 410
+        
         override val parameters: List<Any> = OudsRadioButtonPreviewParameterProvider().values.toList()
 
         @Composable

@@ -96,7 +96,7 @@ fun OudsRadioButtonItem(
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
     val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val selectableModifier = if (onClick != null) {
@@ -124,7 +124,7 @@ fun OudsRadioButtonItem(
         error = error,
         indicator = {
             OudsRadioButtonIndicator(
-                state = state.toControlState(),
+                state = state,
                 selected = selected,
                 error = error != null
             )
@@ -142,7 +142,7 @@ fun OudsRadioButtonItem(
 }
 
 @Composable
-private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlItemState): Modifier {
+private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlState): Modifier {
     val borderColor = outlineBorderColor(state, selected, error)
     val width = OudsTheme.borders.width.default.takeUnlessHairline
 
@@ -154,25 +154,25 @@ private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsErr
 }
 
 @Composable
-private fun outlineBorderColor(state: OudsControlItemState, selected: Boolean, error: OudsError?): Color? {
+private fun outlineBorderColor(state: OudsControlState, selected: Boolean, error: OudsError?): Color? {
     return if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
-                OudsControlItemState.Enabled -> if (selected) enabled else null
-                OudsControlItemState.Hovered -> hover
-                OudsControlItemState.Pressed -> pressed
-                OudsControlItemState.Focused -> null
-                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
+                OudsControlState.Enabled -> if (selected) enabled else null
+                OudsControlState.Hovered -> hover
+                OudsControlState.Pressed -> pressed
+                OudsControlState.Focused -> null
+                OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
             }
         }
     } else {
         with(OudsTheme.colorScheme.action) {
             when (state) {
-                OudsControlItemState.Enabled -> if (selected) this.selected else null
-                OudsControlItemState.Hovered -> hover
-                OudsControlItemState.Pressed -> pressed
-                OudsControlItemState.Focused -> null
-                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> if (selected) disabled else null
+                OudsControlState.Enabled -> if (selected) this.selected else null
+                OudsControlState.Hovered -> hover
+                OudsControlState.Pressed -> pressed
+                OudsControlState.Focused -> null
+                OudsControlState.Disabled, OudsControlState.ReadOnly -> if (selected) disabled else null
             }
         }
     }
@@ -192,7 +192,7 @@ internal fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -227,7 +227,7 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",

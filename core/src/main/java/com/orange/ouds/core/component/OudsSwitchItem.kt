@@ -90,7 +90,7 @@ fun OudsSwitchItem(
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
     val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val toggleableModifier = if (onCheckedChange != null) {
@@ -117,7 +117,7 @@ fun OudsSwitchItem(
         error = error,
         indicator = {
             OudsSwitchIndicator(
-                state = state.toControlState(),
+                state = state,
                 checked = checked
             )
         },
@@ -145,7 +145,7 @@ internal fun PreviewOudsSwitchItem(
     parameter: OudsSwitchItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",

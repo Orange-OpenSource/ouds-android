@@ -77,6 +77,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the switch.
  * @param enabled Controls the enabled state of the switch. When `false`, this switch will not be clickable.
+ * @param readOnly Controls the read only state of the switch. When `true`, this switch is displayed in a specific state (checked or unchecked)
+ * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the switch will be displayed in disabled state.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this switch. Note that if `null`
  * is provided, interactions will still happen internally.
  *
@@ -88,18 +90,19 @@ fun OudsSwitch(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    readOnly: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
     val switchTokens = OudsTheme.componentsTokens.switch
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getControlState(enabled = enabled, interactionState = interactionState)
+    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val toggleableModifier = if (onCheckedChange != null) {
         Modifier.toggleable(
             value = checked,
             onValueChange = onCheckedChange,
-            enabled = enabled,
+            enabled = enabled && !readOnly,
             role = Role.Switch,
             interactionSource = interactionSource,
             indication = null
@@ -181,6 +184,7 @@ private fun indicatorBackgroundColor(state: OudsControlState, checked: Boolean):
     return with(OudsTheme.componentsTokens.switch) {
         when (state) {
             OudsControlState.Enabled -> if (checked) colorTrackSelected.value else colorTrackUnselected.value
+            OudsControlState.ReadOnly -> OudsTheme.colorScheme.action.readOnly.secondary
             OudsControlState.Hovered,
             OudsControlState.Pressed,
             OudsControlState.Focused -> if (checked) colorTrackSelectedInteraction.value else colorTrackUnselectedInteraction.value
@@ -210,6 +214,7 @@ private fun checkColor(state: OudsControlState, checked: Boolean): Color? {
             OudsControlState.Enabled,
             OudsControlState.Hovered,
             OudsControlState.Focused -> OudsTheme.componentsTokens.switch.colorCheck.value
+            OudsControlState.ReadOnly -> OudsTheme.colorScheme.action.readOnly.primary
             OudsControlState.Pressed -> null
             OudsControlState.Disabled -> OudsTheme.colorScheme.action.disabled
         }

@@ -20,6 +20,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -45,6 +46,11 @@ private fun SwitchDemoBottomSheetContent(state: SwitchDemoState) {
             label = stringResource(R.string.app_common_enabled_label),
             checked = enabled,
             onCheckedChange = { enabled = it }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_readOnly_label),
+            checked = readOnly,
+            onCheckedChange = { readOnly = it },
         )
     }
 }
@@ -72,6 +78,7 @@ private fun Code.Builder.switchDemoCodeSnippet(state: SwitchDemoState) {
                 comment("Change state")
             }
             enabledArgument(enabled)
+            readOnlyArgument(readOnly)
         }
     }
 }

@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -53,6 +54,12 @@ private fun RadioButtonDemoBottomSheetContent(state: RadioButtonDemoState) {
             enabled = enabledSwitchEnabled
         )
         CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_readOnly_label),
+            checked = readOnly,
+            onCheckedChange = { readOnly = it },
+            enabled = readOnlySwitchEnabled
+        )
+        CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_error_label),
             checked = error,
             onCheckedChange = { error = it },
@@ -77,6 +84,7 @@ private fun RadioButtonDemoContent(state: RadioButtonDemoState) {
                     selected = value == selectedValue,
                     onClick = { selectedValue = value },
                     enabled = enabled,
+                    readOnly = readOnly,
                     error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
                 )
             }
@@ -94,6 +102,7 @@ private fun Code.Builder.radioButtonDemoCodeSnippet(state: RadioButtonDemoState)
             }
             enabledArgument(enabled)
             typedArgument("error", error)
+            readOnlyArgument(readOnly)
         }
     }
 }

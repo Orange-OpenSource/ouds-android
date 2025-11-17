@@ -22,14 +22,16 @@ import androidx.compose.runtime.setValue
 @Composable
 fun rememberSwitchDemoState(
     checked: Boolean = false,
-    enabled: Boolean = true
-) = rememberSaveable(checked, enabled, saver = SwitchDemoState.Saver) {
-    SwitchDemoState(checked, enabled)
+    enabled: Boolean = true,
+    readOnly: Boolean = false
+) = rememberSaveable(checked, enabled, readOnly, saver = SwitchDemoState.Saver) {
+    SwitchDemoState(checked, enabled, readOnly)
 }
 
 class SwitchDemoState(
     checked: Boolean,
-    enabled: Boolean
+    enabled: Boolean,
+    readOnly: Boolean
 ) {
 
     companion object {
@@ -37,17 +39,20 @@ class SwitchDemoState(
         val Saver = run {
             val checkedKey = "checked"
             val enabledKey = "enabled"
+            val readOnlyKey = "readOnly"
             mapSaver(
                 save = { state ->
                     mapOf(
                         checkedKey to state.checked,
-                        enabledKey to state.enabled
+                        enabledKey to state.enabled,
+                        readOnlyKey to state.readOnly
                     )
                 },
                 restore = { map ->
                     SwitchDemoState(
                         map[checkedKey] as Boolean,
-                        map[enabledKey] as Boolean
+                        map[enabledKey] as Boolean,
+                        map[readOnlyKey] as Boolean
                     )
                 }
             )
@@ -57,4 +62,6 @@ class SwitchDemoState(
     var checked: Boolean by mutableStateOf(checked)
 
     var enabled: Boolean by mutableStateOf(enabled)
+
+    var readOnly: Boolean by mutableStateOf(readOnly)
 }
