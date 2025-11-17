@@ -44,6 +44,8 @@ fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg f
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
+fun FunctionCall.Builder.errorArgument(value: Boolean) = typedArgument(Argument.Error, value)
+
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument(Argument.Label, label)
 fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringResourceArgument(Argument.Label, id)
 
@@ -57,6 +59,7 @@ private object Argument {
     const val ContentDescription = "contentDescription"
     const val Content = "content"
     const val Enabled = "enabled"
+    const val Error = "error"
     const val Id = "id"
     const val Label = "label"
     const val OnClick = "onClick"

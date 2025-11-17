@@ -23,6 +23,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
@@ -101,8 +102,8 @@ private fun Code.Builder.radioButtonDemoCodeSnippet(state: RadioButtonDemoState)
                 comment("Change state")
             }
             enabledArgument(enabled)
-            typedArgument("error", error)
             readOnlyArgument(readOnly)
+            errorArgument(error)
         }
     }
 }
