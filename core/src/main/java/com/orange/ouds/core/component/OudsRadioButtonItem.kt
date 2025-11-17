@@ -43,7 +43,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
  *
  * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as
- * additional label, helper text, a divider, or an icon, allowing it to suit various use cases.
+ * additional label, description, a divider, or an icon, allowing it to suit various use cases.
  *
  * The OUDS radio button item layout contains an [OudsRadioButton]. By clicking on the radio button item, the user changes the selected state of its radio button.
  *
@@ -61,8 +61,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param onClick Callback invoked on radio button click. If `null`, then this radio button will not be interactable, unless something else handles its
  * input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button item.
- * @param additionalLabel Optional strong accompanying label for the main label. It is displayed between the [label] and the [helperText].
- * @param helperText Optional text displayed below the [label] and the [additionalLabel].
+ * @param additionalLabel Optional strong accompanying label for the main label. It is displayed between the [label] and the [description].
+ * @param description Optional text displayed below the [label] and the [additionalLabel].
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the radio button item.
  * @param outlined When set to `true`, the radio button item, if selected, is outlined to stand out and draw the user's attention.
@@ -84,7 +84,7 @@ fun OudsRadioButtonItem(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     additionalLabel: String? = null,
-    helperText: String? = null,
+    description: String? = null,
     icon: OudsControlItemIcon? = null,
     divider: Boolean = false,
     outlined: Boolean = false,
@@ -116,7 +116,7 @@ fun OudsRadioButtonItem(
         state = state,
         label = label,
         additionalLabel = additionalLabel,
-        helperText = helperText,
+        description = description,
         icon = icon,
         divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
         enabled = enabled,
@@ -198,7 +198,7 @@ internal fun PreviewOudsRadioButtonItem(
                 label = "Label",
                 onClick = { },
                 additionalLabel = additionalLabel,
-                helperText = helperText,
+                description = description,
                 divider = divider,
                 error = error,
                 outlined = checkNotNull(extraParameter),
@@ -241,16 +241,16 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsRadioButtonItemWithLongHelperText() = PreviewOudsRadioButtonItemWithLongHelperText(theme = getPreviewTheme())
+private fun PreviewOudsRadioButtonItemWithDescriptionText() = PreviewOudsRadioButtonItemWithDescriptionText(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsRadioButtonItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+internal fun PreviewOudsRadioButtonItemWithDescriptionText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsRadioButtonItem(
         selected = true,
         label = "Label",
         onClick = {},
         additionalLabel = "Additional label",
-        helperText = LoremIpsumText,
+        description = LoremIpsumText,
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }

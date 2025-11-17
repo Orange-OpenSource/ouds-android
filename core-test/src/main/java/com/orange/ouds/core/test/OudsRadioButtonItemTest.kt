@@ -48,8 +48,8 @@ class OudsRadioButtonItemTest {
         }
     }
 
-    class WithLongHelperText : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.RadioButtonItem.WithLongHelperText,
+    class WithLongDescription : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.WithLongDescription,
         parameter = null,
         OudsComponentTestSuite.theme
     )

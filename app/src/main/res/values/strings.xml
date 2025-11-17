@@ -179,8 +179,9 @@
     <string name="app_components_coloredBackground_unsupportedColor_text">Current theme does not support \"%s\" color.</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
-    <string name="app_components_controlItem_icon_label">Icon</string>
+    <string name="app_components_controlItem_description_label">Description</string>
     <string name="app_components_controlItem_divider_label">Divider</string>
+    <string name="app_components_controlItem_icon_label">Icon</string>
     <string name="app_components_controlItem_reversed_label">Reversed</string>
 
     <!-- Components: divider -->

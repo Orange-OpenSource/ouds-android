@@ -84,7 +84,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     onClick = { selectedValue = radioButtonValue },
                     label = label,
                     additionalLabel = additionalLabel,
-                    helperText = helperText,
+                    description = description,
                     icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
                     divider = divider,
                     outlined = outlined,

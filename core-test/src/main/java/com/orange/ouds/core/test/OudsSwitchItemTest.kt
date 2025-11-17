@@ -34,8 +34,8 @@ class OudsSwitchItemTest {
         }
     }
 
-    class WithLongHelperText : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.SwitchItem.WithLongHelperText,
+    class WithLongDescription : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.WithLongDescription,
         parameter = null,
         OudsComponentTestSuite.theme
     )

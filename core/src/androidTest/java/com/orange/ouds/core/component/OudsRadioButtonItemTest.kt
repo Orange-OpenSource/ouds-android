@@ -55,38 +55,38 @@ internal class OudsRadioButtonItemTest {
     }
 
     @Test
-    fun oudsRadioButtonItem_withHelperText_helperTextDisplayed() {
+    fun oudsRadioButtonItem_withDescription_descriptionDisplayed() {
         with(composeTestRule) {
-            val helperText = "Helper text"
+            val description = "Description"
 
             setOudsContent {
                 OudsRadioButtonItem(
                     selected = false,
                     label = "Label",
-                    helperText = helperText,
+                    description = description,
                     onClick = {}
                 )
             }
 
-            onNodeWithText(helperText).assertIsDisplayed()
+            onNodeWithText(description).assertIsDisplayed()
         }
     }
 
     @Test
-    fun oudsRadioButtonItem_withBlankHelperText_helperTextNotDisplayed() {
+    fun oudsRadioButtonItem_withBlankDescription_descriptionNotDisplayed() {
         with(composeTestRule) {
-            val helperText = "   "
+            val description = "   "
 
             setOudsContent {
                 OudsRadioButtonItem(
                     selected = false,
                     label = "Label",
-                    helperText = helperText,
+                    description = description,
                     onClick = {}
                 )
             }
 
-            onNodeWithText(helperText).assertIsNotDisplayed()
+            onNodeWithText(description).assertIsNotDisplayed()
         }
     }
 

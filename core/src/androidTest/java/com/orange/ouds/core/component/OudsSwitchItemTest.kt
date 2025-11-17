@@ -55,38 +55,38 @@ internal class OudsSwitchItemTest {
     }
 
     @Test
-    fun oudsSwitchItem_withHelperText_helperTextDisplayed() {
+    fun oudsSwitchItem_withDescription_descriptionDisplayed() {
         with(composeTestRule) {
-            val helperText = "Helper text"
+            val description = "Description"
 
             setOudsContent {
                 OudsSwitchItem(
                     checked = false,
                     label = "Label",
-                    helperText = helperText,
+                    description = description,
                     onCheckedChange = { },
                 )
             }
 
-            onNodeWithText(helperText).assertIsDisplayed()
+            onNodeWithText(description).assertIsDisplayed()
         }
     }
 
     @Test
-    fun oudsSwitchItem_withBlankHelperText_helperTextNotDisplayed() {
+    fun oudsSwitchItem_withBlankDescription_descriptionNotDisplayed() {
         with(composeTestRule) {
-            val helperText = "   "
+            val description = "   "
 
             setOudsContent {
                 OudsSwitchItem(
                     checked = false,
                     label = "Label",
-                    helperText = helperText,
+                    description = description,
                     onCheckedChange = { },
                 )
             }
 
-            onNodeWithText(helperText).assertIsNotDisplayed()
+            onNodeWithText(description).assertIsNotDisplayed()
         }
     }
 }

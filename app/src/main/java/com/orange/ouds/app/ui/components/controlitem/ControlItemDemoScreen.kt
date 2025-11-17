@@ -40,7 +40,7 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
         { ControlItemErrorCustomization(state = state) },
         { ControlItemErrorMessageCustomization(state = state) },
         { ControlItemLabelCustomization(state = state) },
-        { ControlItemHelperTextCustomization(state = state) }
+        { ControlItemDescriptionCustomization(state = state) }
     )
     extraCustomizations.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -141,19 +141,19 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
 }
 
 @Composable
-private fun ControlItemHelperTextCustomization(state: ControlItemDemoState) {
+private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
-            label = stringResource(R.string.app_components_common_helperText_label),
-            value = helperText.orEmpty(),
-            onValueChange = { value -> helperText = value }
+            label = stringResource(R.string.app_components_controlItem_description_label),
+            value = description.orEmpty(),
+            onValueChange = { value -> description = value }
         )
     }
 }
 
 fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) = with(state) {
     labelArgument(label)
-    if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
+    if (!description.isNullOrBlank()) typedArgument("description", description)
     if (icon) {
         constructorCallArgument<OudsControlItemIcon>("icon") {
             painterArgument(themeDrawableResources.tipsAndTricks)

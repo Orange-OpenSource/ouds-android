@@ -64,7 +64,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 internal fun OudsControlItem(
     state: OudsControlItemState,
     label: String,
-    helperText: String?,
+    description: String?,
     icon: OudsControlItemIcon?,
     divider: Boolean,
     enabled: Boolean,
@@ -160,11 +160,11 @@ internal fun OudsControlItem(
                                 color = additionalLabelColor(state = state)
                             )
                         }
-                        if (!helperText.isNullOrBlank()) {
+                        if (!description.isNullOrBlank()) {
                             Text(
-                                text = helperText,
+                                text = description,
                                 style = OudsTheme.typography.label.default.medium,
-                                color = helperTextColor(state = state)
+                                color = descriptionColor(state = state)
                             )
                         }
                     }
@@ -357,13 +357,13 @@ private fun additionalLabelColor(state: OudsControlItemState) =
     if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
-private fun helperTextColor(state: OudsControlItemState) =
+private fun descriptionColor(state: OudsControlItemState) =
     if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
 
 internal data class OudsControlItemPreviewParameter<T, S>(
     val value: T,
     val extraParameter: S?,
-    val helperText: String? = null,
+    val description: String? = null,
     val divider: Boolean = false,
     val hasIcon: Boolean = false,
     val error: OudsError? = null,
@@ -383,7 +383,7 @@ internal open class OudsControlItemPreviewParameterProvider<T, S>(
 
 private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: List<S> = listOf()): List<OudsControlItemPreviewParameter<T, S>> {
     val additionalLabel = "Additional label"
-    val helperText = "Helper text"
+    val description = "Description"
     val reversedValues = listOf(false, true)
 
     return buildList {
@@ -396,8 +396,8 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                 ).run {
                     when (index) {
                         0 -> this
-                        1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
-                        else -> copy(helperText = helperText, divider = true, error = OudsError("This field can't be activated"))
+                        1 -> copy(hasIcon = true, additionalLabel = additionalLabel, description = description)
+                        else -> copy(description = description, divider = true, error = OudsError("This field can't be activated"))
                     }
                 }
             }

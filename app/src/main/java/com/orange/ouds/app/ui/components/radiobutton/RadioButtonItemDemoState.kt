@@ -36,7 +36,7 @@ fun rememberRadioButtonItemDemoState(
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
     additionalLabel: String? = null,
-    helperText: String? = null
+    description: String? = null
 ) = rememberSaveable(
     selectedValue,
     icon,
@@ -49,10 +49,10 @@ fun rememberRadioButtonItemDemoState(
     errorMessage,
     label,
     additionalLabel,
-    helperText,
+    description,
     saver = RadioButtonItemDemoState.Saver
 ) {
-    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, errorMessage, label, additionalLabel, helperText)
+    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, errorMessage, label, additionalLabel, description)
 }
 
 class RadioButtonItemDemoState(
@@ -67,8 +67,8 @@ class RadioButtonItemDemoState(
     errorMessage: String,
     label: String,
     additionalLabel: String?,
-    helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, helperText) {
+    description: String?
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, description) {
 
     companion object {
         val values = listOf(1, 2)
@@ -98,7 +98,7 @@ class RadioButtonItemDemoState(
                         errorMessage,
                         label,
                         list[2] as String?,
-                        helperText
+                        description
                     )
                 }
             }

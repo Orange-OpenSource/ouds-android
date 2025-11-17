@@ -39,7 +39,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
  * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
  *
- * The **switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text, a divider,
+ * The **switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as description, a divider,
  * or an icon, allowing it to suit various use cases.
  * It can be used in a list as a list item or as a single element to validate general conditions for example.
  *
@@ -59,7 +59,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param onCheckedChange Callback invoked on switch item click. If `null`, then this is passive and relies entirely on a higher-level component to control
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the switch item.
- * @param helperText Optional text displayed below the label.
+ * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a leading position. If [reversed] is set to `true`, it is displayed as a trailing element.
  * @param divider Controls the display of a divider at the bottom of the switch item.
  * @param reversed When `false`, the switch has a trailing position and the optional [icon] has a leading position. Otherwise, it is reversed.
@@ -79,7 +79,7 @@ fun OudsSwitchItem(
     label: String,
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
-    helperText: String? = null,
+    description: String? = null,
     icon: OudsControlItemIcon? = null,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -109,7 +109,7 @@ fun OudsSwitchItem(
     OudsControlItem(
         state = state,
         label = label,
-        helperText = helperText,
+        description = description,
         icon = icon,
         divider = divider,
         enabled = enabled,
@@ -150,7 +150,7 @@ internal fun PreviewOudsSwitchItem(
                 checked = value,
                 label = "Label",
                 onCheckedChange = {},
-                helperText = helperText,
+                description = description,
                 icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null,
                 divider = divider,
                 reversed = reversed,
@@ -164,15 +164,15 @@ internal fun PreviewOudsSwitchItem(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsSwitchItemWithLongHelperText() = PreviewOudsSwitchItemWithLongHelperText(theme = getPreviewTheme())
+private fun PreviewOudsSwitchItemWithLongDescription() = PreviewOudsSwitchItemWithLongDescription(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsSwitchItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+internal fun PreviewOudsSwitchItemWithLongDescription(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsSwitchItem(
         checked = true,
         label = "Label",
         onCheckedChange = {},
-        helperText = LoremIpsumText,
+        description = LoremIpsumText,
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }
