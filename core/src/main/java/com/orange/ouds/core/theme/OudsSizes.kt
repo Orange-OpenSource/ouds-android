@@ -141,10 +141,17 @@ data class OudsSizes(
         val type: Type
     ) {
         data class Type(
+            val body: Body,
             val display: Display,
             val heading: Heading,
-            val body: Body
+            val label: Label
         ) {
+            data class Body(
+                val small: Dp,
+                val medium: Dp,
+                val large: Dp
+            )
+
             data class Display(
                 val small: Dp,
                 val medium: Dp,
@@ -158,10 +165,11 @@ data class OudsSizes(
                 val extraLarge: Dp
             )
 
-            data class Body(
+            data class Label(
                 val small: Dp,
                 val medium: Dp,
-                val large: Dp
+                val large: Dp,
+                val extraLarge: Dp
             )
         }
     }
@@ -249,6 +257,11 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
         ),
         maxWidth = OudsSizes.MaxWidth(
             type = OudsSizes.MaxWidth.Type(
+                body = OudsSizes.MaxWidth.Type.Body(
+                    small = getTokenValue(maxWidthTypeBodySmallMobile, maxWidthTypeBodySmallTablet).dp,
+                    medium = getTokenValue(maxWidthTypeBodyMediumMobile, maxWidthTypeBodyMediumTablet).dp,
+                    large = getTokenValue(maxWidthTypeBodyLargeMobile, maxWidthTypeBodyLargeTablet).dp,
+                ),
                 display = OudsSizes.MaxWidth.Type.Display(
                     small = getTokenValue(maxWidthTypeDisplaySmallMobile, maxWidthTypeDisplaySmallTablet).dp,
                     medium = getTokenValue(maxWidthTypeDisplayMediumMobile, maxWidthTypeDisplayMediumTablet).dp,
@@ -260,10 +273,11 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
                     large = getTokenValue(maxWidthTypeHeadingLargeMobile, maxWidthTypeHeadingLargeTablet).dp,
                     extraLarge = getTokenValue(maxWidthTypeHeadingXlargeMobile, maxWidthTypeHeadingXlargeTablet).dp,
                 ),
-                body = OudsSizes.MaxWidth.Type.Body(
-                    small = getTokenValue(maxWidthTypeBodySmallMobile, maxWidthTypeBodySmallTablet).dp,
-                    medium = getTokenValue(maxWidthTypeBodyMediumMobile, maxWidthTypeBodyMediumTablet).dp,
-                    large = getTokenValue(maxWidthTypeBodyLargeMobile, maxWidthTypeBodyLargeTablet).dp,
+                label = OudsSizes.MaxWidth.Type.Label(
+                    small = getTokenValue(maxWidthTypeLabelSmallMobile, maxWidthTypeLabelSmallTablet).dp,
+                    medium = getTokenValue(maxWidthTypeLabelMediumMobile, maxWidthTypeLabelMediumTablet).dp,
+                    large = getTokenValue(maxWidthTypeLabelLargeMobile, maxWidthTypeLabelLargeTablet).dp,
+                    extraLarge = getTokenValue(maxWidthTypeLabelXlargeMobile, maxWidthTypeLabelXlargeTablet).dp,
                 )
             )
         ),
@@ -353,6 +367,9 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel): Dp {
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
     return with(maxWidth.type) {
         when (token) {
+            OudsSizeKeyToken.MaxWidth.Type.Body.Small -> body.small
+            OudsSizeKeyToken.MaxWidth.Type.Body.Medium -> body.medium
+            OudsSizeKeyToken.MaxWidth.Type.Body.Large -> body.large
             OudsSizeKeyToken.MaxWidth.Type.Display.Small -> display.small
             OudsSizeKeyToken.MaxWidth.Type.Display.Medium -> display.medium
             OudsSizeKeyToken.MaxWidth.Type.Display.Large -> display.large
@@ -360,9 +377,10 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
             OudsSizeKeyToken.MaxWidth.Type.Heading.Medium -> heading.medium
             OudsSizeKeyToken.MaxWidth.Type.Heading.Large -> heading.large
             OudsSizeKeyToken.MaxWidth.Type.Heading.ExtraLarge -> heading.extraLarge
-            OudsSizeKeyToken.MaxWidth.Type.Body.Small -> body.small
-            OudsSizeKeyToken.MaxWidth.Type.Body.Medium -> body.medium
-            OudsSizeKeyToken.MaxWidth.Type.Body.Large -> body.large
+            OudsSizeKeyToken.MaxWidth.Type.Label.ExtraLarge -> label.extraLarge
+            OudsSizeKeyToken.MaxWidth.Type.Label.Large -> label.large
+            OudsSizeKeyToken.MaxWidth.Type.Label.Medium -> label.medium
+            OudsSizeKeyToken.MaxWidth.Type.Label.Small -> label.small
         }
     }
 }
