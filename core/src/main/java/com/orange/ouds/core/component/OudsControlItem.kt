@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -97,7 +98,13 @@ internal fun OudsControlItem(
         val controlItemTokens = OudsTheme.componentsTokens.controlItem
 
         val itemIcon: (@Composable () -> Unit)? = if (error != null) {
-            { ErrorIcon(state = state) }
+            {
+                ErrorIcon(
+                    state = state, modifier = if (error.message.isBlank()) {
+                        Modifier.semantics { error(" ") } // Allows Talkback to vocalize there is an error on this item even if error message is blank
+                    } else Modifier
+                )
+            }
         } else {
             icon?.let {
                 {
@@ -284,7 +291,7 @@ private fun ErrorMessageText(text: String) {
                 .fillMaxWidth()
                 .padding(top = spacePaddingBlockTopErrorText.value)
                 .padding(horizontal = spacePaddingInline.value)
-                .semantics {
+                .clearAndSetSemantics {
                     error(text)
                 },
             text = text,
@@ -295,10 +302,10 @@ private fun ErrorMessageText(text: String) {
 }
 
 @Composable
-private fun ErrorIcon(state: OudsControlItemState) {
+private fun ErrorIcon(state: OudsControlItemState, modifier: Modifier = Modifier) {
     with(OudsTheme.componentsTokens.controlItem) {
         Icon(
-            modifier = Modifier
+            modifier = modifier
                 .padding(spacePaddingInlineErrorIcon.value)
                 .size(sizeErrorIcon.value),
             painter = painterResource(id = OudsTheme.drawableResources.alertImportant),
