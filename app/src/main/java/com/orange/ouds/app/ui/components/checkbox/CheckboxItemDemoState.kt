@@ -80,7 +80,7 @@ class CheckboxItemDemoState(
                 )
             },
             restore = { list: List<Any?> ->
-                val controlItemDemoState = list[3]?.let { ControlItemDemoState.Saver.restore(it) }
+                val controlItemDemoState = list[2]?.let { ControlItemDemoState.Saver.restore(it) }
                 controlItemDemoState?.run {
                     @Suppress("UNCHECKED_CAST")
                     CheckboxItemDemoState(

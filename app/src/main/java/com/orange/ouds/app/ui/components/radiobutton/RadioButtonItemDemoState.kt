@@ -78,14 +78,13 @@ class RadioButtonItemDemoState(
                     listOf(
                         selectedValue,
                         outlined,
-                        this.errorMessage,
                         additionalLabel,
                         with(ControlItemDemoState.Saver) { save(state) }
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                val controlItemDemoState = list[4]?.let { ControlItemDemoState.Saver.restore(it) }
+                val controlItemDemoState = list[3]?.let { ControlItemDemoState.Saver.restore(it) }
                 controlItemDemoState?.run {
                     RadioButtonItemDemoState(
                         list[0] as Int,
@@ -98,7 +97,7 @@ class RadioButtonItemDemoState(
                         error,
                         errorMessage,
                         label,
-                        list[3] as String?,
+                        list[2] as String?,
                         helperText
                     )
                 }
