@@ -36,7 +36,7 @@ fun rememberCheckboxItemDemoState(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
-    errorDescription: String = stringResource(id = R.string.app_components_common_errorDescription_label),
+    errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
     helperText: String? = null
 ) = rememberSaveable(
@@ -48,12 +48,12 @@ fun rememberCheckboxItemDemoState(
     enabled,
     readOnly,
     error,
-    errorDescription,
+    errorMessage,
     label,
     helperText,
     saver = CheckboxItemDemoState.Saver
 ) {
-    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, errorDescription, label, helperText)
+    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, errorMessage, label, helperText)
 }
 
 class CheckboxItemDemoState(
@@ -65,7 +65,7 @@ class CheckboxItemDemoState(
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
-    errorDescription: String,
+    errorMessage: String,
     label: String,
     helperText: String?
 ) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
@@ -76,7 +76,7 @@ class CheckboxItemDemoState(
                 listOf(
                     state.checkedValues,
                     state.toggleableStateValues,
-                    state.errorDescription,
+                    state.errorMessage,
                     with(ControlItemDemoState.Saver) { save(state) }
                 )
             },
@@ -104,8 +104,8 @@ class CheckboxItemDemoState(
 
     var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)
     var toggleableStateValues: Pair<ToggleableState, ToggleableState> by mutableStateOf(toggleableStateValues)
-    var errorDescription: String by mutableStateOf(errorDescription)
+    var errorMessage: String by mutableStateOf(errorMessage)
 
-    val errorDescriptionEnabled: Boolean
+    val errorMessageTextInputEnabled: Boolean
         get() = error
 }

@@ -660,7 +660,7 @@ private fun OudsTextInputDecorator(
                                 Icon(
                                     modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
                                     painter = painterResource(id = OudsTheme.drawableResources.alertImportant),
-                                    contentDescription = if (error.description.isBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
+                                    contentDescription = if (error.message.isBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
                                     tint = errorIconColor(state = state)
                                 )
                             }
@@ -689,7 +689,7 @@ private fun OudsTextInputDecorator(
             }
 
             // Helper text / Error description
-            if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.description.isNotBlank())) {
+            if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.message.isNotBlank())) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -697,12 +697,12 @@ private fun OudsTextInputDecorator(
                         .padding(horizontal = spacePaddingInlineDefault.value)
                         .clearAndSetSemantics {
                             if (hasError) {
-                                error(error.description)
+                                error(error.message)
                             } else {
                                 contentDescription = helperText.orEmpty()
                             }
                         },
-                    text = if (hasError) error.description else helperText.orEmpty(),
+                    text = if (hasError) error.message else helperText.orEmpty(),
                     style = OudsTheme.typography.label.default.medium,
                     color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(state = state)
                 )
@@ -1139,7 +1139,7 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
         val placeholder = "Placeholder"
         val prefix = "£"
         val suffix = "€"
-        val error = OudsError("Error description.")
+        val error = OudsError("Error message.")
         val helperText = "Helper text."
         val leadingIcon = OudsTextInputLeadingIcon(Icons.Filled.FavoriteBorder, contentDescription = "Icon")
         val trailingIconButton = OudsTextInputTrailingIconButton(Icons.Filled.FavoriteBorder, contentDescription = "Icon", onClick = {})

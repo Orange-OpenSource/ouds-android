@@ -167,8 +167,8 @@ internal fun OudsControlItem(
                     OudsHorizontalDivider(color = dividerColor(state = state, error = error))
                 }
             }
-            if (error != null && error.description.isNotBlank()) {
-                ErrorDescriptionText(text = error.description)
+            if (error != null && error.message.isNotBlank()) {
+                ErrorMessageText(text = error.message)
             }
         }
     }
@@ -277,7 +277,7 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun ErrorDescriptionText(text: String) {
+private fun ErrorMessageText(text: String) {
     with(OudsTheme.componentsTokens.controlItem) {
         Text(
             modifier = Modifier

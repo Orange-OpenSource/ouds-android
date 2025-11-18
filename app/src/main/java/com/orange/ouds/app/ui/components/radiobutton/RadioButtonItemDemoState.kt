@@ -33,7 +33,7 @@ fun rememberRadioButtonItemDemoState(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
-    errorDescription: String = stringResource(id = R.string.app_components_common_errorDescription_label),
+    errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
     additionalLabel: String? = null,
     helperText: String? = null
@@ -46,13 +46,13 @@ fun rememberRadioButtonItemDemoState(
     enabled,
     readOnly,
     error,
-    errorDescription,
+    errorMessage,
     label,
     additionalLabel,
     helperText,
     saver = RadioButtonItemDemoState.Saver
 ) {
-    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, errorDescription, label, additionalLabel, helperText)
+    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, errorMessage, label, additionalLabel, helperText)
 }
 
 class RadioButtonItemDemoState(
@@ -64,7 +64,7 @@ class RadioButtonItemDemoState(
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
-    errorDescription: String,
+    errorMessage: String,
     label: String,
     additionalLabel: String?,
     helperText: String?
@@ -78,7 +78,7 @@ class RadioButtonItemDemoState(
                     listOf(
                         selectedValue,
                         outlined,
-                        errorDescription,
+                        this.errorMessage,
                         additionalLabel,
                         with(ControlItemDemoState.Saver) { save(state) }
                     )
@@ -108,9 +108,9 @@ class RadioButtonItemDemoState(
 
     var selectedValue: Int by mutableIntStateOf(selectedValue)
     var outlined: Boolean by mutableStateOf(outlined)
-    var errorDescription: String by mutableStateOf(errorDescription)
+    var errorMessage: String by mutableStateOf(errorMessage)
     var additionalLabel: String? by mutableStateOf(additionalLabel)
 
-    val errorDescriptionEnabled: Boolean
+    val errorMessageTextInputEnabled: Boolean
         get() = error
 }

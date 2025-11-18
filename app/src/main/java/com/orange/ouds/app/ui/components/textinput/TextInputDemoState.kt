@@ -33,7 +33,7 @@ fun rememberTextInputDemoState(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
-    errorDescription: String = stringResource(id = R.string.app_components_common_errorDescription_label),
+    errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     prefix: String = "",
     suffix: String = "",
     helperText: String = "",
@@ -66,7 +66,7 @@ fun rememberTextInputDemoState(
         enabled,
         readOnly,
         error,
-        errorDescription,
+        errorMessage,
         prefix,
         suffix,
         helperText,
@@ -85,7 +85,7 @@ class TextInputDemoState(
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
-    errorDescription: String,
+    errorMessage: String,
     prefix: String,
     suffix: String,
     helperText: String,
@@ -108,7 +108,7 @@ class TextInputDemoState(
                         enabled,
                         readOnly,
                         error,
-                        errorDescription,
+                        this.errorMessage,
                         prefix,
                         suffix,
                         helperText,
@@ -148,7 +148,7 @@ class TextInputDemoState(
 
     var error: Boolean by mutableStateOf(error)
 
-    var errorDescription: String by mutableStateOf(errorDescription)
+    var errorMessage: String by mutableStateOf(errorMessage)
 
     var leadingIcon: Boolean by mutableStateOf(leadingIcon)
 
@@ -174,7 +174,7 @@ class TextInputDemoState(
     val errorSwitchEnabled: Boolean
         get() = !readOnly && !hasLoader && enabled
 
-    val errorDescriptionTextInputEnabled: Boolean
+    val errorMessageTextInputEnabled: Boolean
         get() = error
 
     val readOnlySwitchEnabled: Boolean

@@ -41,7 +41,6 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -180,7 +179,7 @@ fun OudsTriStateCheckbox(
                 .background(color = backgroundColor.value, shape = shape)
                 .outerBorder(state = checkboxState, shape = shape, handleHighContrastMode = true)
                 .run {
-                    error?.description?.let { description ->
+                    error?.message?.let { description ->
                         semantics {
                             error(description)
                         }

@@ -63,10 +63,10 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
             },
             controlItemCustomization(7) {
                 CustomizationTextField(
-                    label = stringResource(R.string.app_components_common_errorDescription_label),
-                    value = errorDescription,
-                    onValueChange = { value -> errorDescription = value },
-                    enabled = errorDescriptionEnabled
+                    label = stringResource(R.string.app_components_common_errorMessage_label),
+                    value = errorMessage,
+                    onValueChange = { value -> errorMessage = value },
+                    enabled = errorMessageTextInputEnabled
                 )
             },
             controlItemCustomization(9) {
@@ -99,7 +99,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) errorDescription else "") else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null
                 )
             }
         }

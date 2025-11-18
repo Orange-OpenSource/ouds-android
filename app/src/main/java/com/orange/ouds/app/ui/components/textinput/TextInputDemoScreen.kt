@@ -91,10 +91,10 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             enabled = errorSwitchEnabled
         )
         CustomizationTextField(
-            label = stringResource(R.string.app_components_common_errorDescription_label),
-            value = errorDescription,
-            onValueChange = { value -> errorDescription = value },
-            enabled = errorDescriptionTextInputEnabled
+            label = stringResource(R.string.app_components_common_errorMessage_label),
+            value = errorMessage,
+            onValueChange = { value -> errorMessage = value },
+            enabled = errorMessageTextInputEnabled
         )
         CustomizationTextField(
             label = stringResource(R.string.app_components_common_label_label),
@@ -157,7 +157,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
-            error = if (error) OudsError(errorDescription) else null,
+            error = if (error) OudsError(errorMessage) else null,
             prefix = prefix,
             suffix = suffix,
             helperText = helperText,

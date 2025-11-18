@@ -40,7 +40,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -125,7 +124,7 @@ fun OudsRadioButton(
                 .outerBorder(state = state, shape = shape, handleHighContrastMode = true)
                 .then(selectableModifier)
                 .run {
-                    error?.description?.let { description ->
+                    error?.message?.let { description ->
                         semantics {
                             error(description)
                         }
