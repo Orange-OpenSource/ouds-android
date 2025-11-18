@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.core.component.OudsControlItemIcon
+import com.orange.ouds.core.component.common.OudsError
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
 
@@ -37,6 +38,7 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
         { ControlItemEnabledCustomization(state = state) },
         { ControlItemReadOnlyCustomization(state = state) },
         { ControlItemErrorCustomization(state = state) },
+        { ControlItemErrorMessageCustomization(state = state) },
         { ControlItemLabelCustomization(state = state) },
         { ControlItemHelperTextCustomization(state = state) }
     )
@@ -116,6 +118,18 @@ private fun ControlItemErrorCustomization(state: ControlItemDemoState) {
 }
 
 @Composable
+private fun ControlItemErrorMessageCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationTextField(
+            label = stringResource(R.string.app_components_common_errorMessage_label),
+            value = errorMessage,
+            onValueChange = { value -> errorMessage = value },
+            enabled = errorMessageTextInputEnabled
+        )
+    }
+}
+
+@Composable
 private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
@@ -137,7 +151,7 @@ private fun ControlItemHelperTextCustomization(state: ControlItemDemoState) {
     }
 }
 
-fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources) = with(state) {
+fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) = with(state) {
     labelArgument(label)
     if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
     if (icon) {
@@ -149,5 +163,9 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
     if (reversed) typedArgument("reversed", reversed)
     if (!enabled) enabledArgument(enabled)
     if (readOnly) typedArgument("readOnly", readOnly)
-    if (error) typedArgument("error", error)
+    if (error) {
+        constructorCallArgument<OudsError>("error") {
+            typedArgument("message", if (hasErrorMessage) errorMessage else "")
+        }
+    }
 }

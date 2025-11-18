@@ -61,14 +61,6 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
                     onCheckedChange = { outlined = it },
                 )
             },
-            controlItemCustomization(7) {
-                CustomizationTextField(
-                    label = stringResource(R.string.app_components_common_errorMessage_label),
-                    value = errorMessage,
-                    onValueChange = { value -> errorMessage = value },
-                    enabled = errorMessageTextInputEnabled
-                )
-            },
             controlItemCustomization(9) {
                 CustomizationTextField(
                     label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),

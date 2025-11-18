@@ -68,7 +68,7 @@ class RadioButtonItemDemoState(
     label: String,
     additionalLabel: String?,
     helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, helperText) {
 
     companion object {
         val values = listOf(1, 2)
@@ -96,7 +96,7 @@ class RadioButtonItemDemoState(
                         enabled,
                         readOnly,
                         error,
-                        list[2] as String,
+                        errorMessage,
                         label,
                         list[3] as String?,
                         helperText
@@ -108,9 +108,5 @@ class RadioButtonItemDemoState(
 
     var selectedValue: Int by mutableIntStateOf(selectedValue)
     var outlined: Boolean by mutableStateOf(outlined)
-    var errorMessage: String by mutableStateOf(errorMessage)
     var additionalLabel: String? by mutableStateOf(additionalLabel)
-
-    val errorMessageTextInputEnabled: Boolean
-        get() = error
 }

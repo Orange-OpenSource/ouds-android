@@ -68,7 +68,7 @@ class CheckboxItemDemoState(
     errorMessage: String,
     label: String,
     helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, helperText) {
 
     companion object {
         val Saver = listSaver(
@@ -76,7 +76,6 @@ class CheckboxItemDemoState(
                 listOf(
                     state.checkedValues,
                     state.toggleableStateValues,
-                    state.errorMessage,
                     with(ControlItemDemoState.Saver) { save(state) }
                 )
             },
@@ -93,7 +92,7 @@ class CheckboxItemDemoState(
                         enabled,
                         readOnly,
                         error,
-                        list[2] as String,
+                        errorMessage,
                         label,
                         helperText
                     )
@@ -104,8 +103,4 @@ class CheckboxItemDemoState(
 
     var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)
     var toggleableStateValues: Pair<ToggleableState, ToggleableState> by mutableStateOf(toggleableStateValues)
-    var errorMessage: String by mutableStateOf(errorMessage)
-
-    val errorMessageTextInputEnabled: Boolean
-        get() = error
 }

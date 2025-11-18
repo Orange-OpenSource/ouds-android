@@ -16,17 +16,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
-import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsControlItemIcon
@@ -40,7 +36,7 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
     val state = rememberCheckboxItemDemoState()
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
-        bottomSheetContent = { CheckboxItemDemoBottomSheetContent(state = state) },
+        bottomSheetContent = { ControlItemCustomizations(state = state) },
         codeSnippet = { checkboxItemDemoCodeSnippet(state = state, indeterminate = indeterminate, themeDrawableResources = themeDrawableResources) },
         demoContent = {
             if (indeterminate) {
@@ -52,23 +48,6 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
         demoContentPaddingValues = PaddingValues(),
         version = OudsVersion.Component.Checkbox
     )
-}
-
-@Composable
-private fun CheckboxItemDemoBottomSheetContent(state: CheckboxItemDemoState) {
-    with(state) {
-        val extraCustomizations = listOf(
-            controlItemCustomization(6) {
-                CustomizationTextField(
-                    label = stringResource(R.string.app_components_common_errorMessage_label),
-                    value = errorMessage,
-                    onValueChange = { value -> errorMessage = value },
-                    enabled = errorMessageTextInputEnabled
-                )
-            },
-        )
-        ControlItemCustomizations(state = state, extraCustomizations = extraCustomizations)
-    }
 }
 
 @Composable

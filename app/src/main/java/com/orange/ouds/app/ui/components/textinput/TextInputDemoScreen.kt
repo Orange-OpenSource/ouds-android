@@ -196,7 +196,11 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             }
             if (!enabled) typedArgument("enabled", false)
             if (readOnly) typedArgument("readOnly", true)
-            if (error) typedArgument("error", true)
+            if (error) {
+                constructorCallArgument<OudsError>("error") {
+                    typedArgument("message", errorMessage)
+                }
+            }
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
             if (suffix.isNotEmpty()) typedArgument("suffix", suffix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)

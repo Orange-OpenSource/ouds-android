@@ -24,6 +24,7 @@ open class ControlItemDemoState(
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
+    errorMessage: String,
     label: String,
     helperText: String?
 ) {
@@ -40,6 +41,7 @@ open class ControlItemDemoState(
                         enabled,
                         readOnly,
                         error,
+                        errorMessage,
                         label,
                         helperText
                     )
@@ -54,7 +56,8 @@ open class ControlItemDemoState(
                     list[4] as Boolean,
                     list[5] as Boolean,
                     list[6] as String,
-                    list[7] as String?
+                    list[7] as String,
+                    list[8] as String?
                 )
             }
         )
@@ -66,6 +69,7 @@ open class ControlItemDemoState(
     var enabled: Boolean by mutableStateOf(enabled)
     var readOnly: Boolean by mutableStateOf(readOnly)
     var error: Boolean by mutableStateOf(error)
+    var errorMessage: String by mutableStateOf(errorMessage)
     var label: String by mutableStateOf(label)
     var helperText: String? by mutableStateOf(helperText)
 
@@ -77,4 +81,7 @@ open class ControlItemDemoState(
 
     val errorSwitchEnabled: Boolean
         get() = enabled && !readOnly
+
+    val errorMessageTextInputEnabled: Boolean
+        get() = error
 }
