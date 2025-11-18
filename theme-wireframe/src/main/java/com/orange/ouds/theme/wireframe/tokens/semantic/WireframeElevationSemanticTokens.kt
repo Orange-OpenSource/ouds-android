@@ -16,13 +16,13 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
-import com.orange.ouds.tokens.raw.OudsElevationRawTokens
+import com.orange.ouds.tokens.raw.ElevationRawTokens
 
 data class WireframeElevationSemanticTokens(
-    override val default: Float = OudsElevationRawTokens.Elevation2,
-    override val drag: Float = OudsElevationRawTokens.Elevation4,
-    override val emphasized: Float = OudsElevationRawTokens.Elevation5,
-    override val none: Float = OudsElevationRawTokens.Elevation0,
-    override val raised: Float = OudsElevationRawTokens.Elevation1,
-    override val sticky: Float = OudsElevationRawTokens.Elevation3
+    override val default: Float = ElevationRawTokens.elevation2,
+    override val drag: Float = ElevationRawTokens.elevation4,
+    override val emphasized: Float = ElevationRawTokens.elevation5,
+    override val none: Float = ElevationRawTokens.elevation0,
+    override val raised: Float = ElevationRawTokens.elevation1,
+    override val sticky: Float = ElevationRawTokens.elevation3
 ) : OudsElevationSemanticTokens
