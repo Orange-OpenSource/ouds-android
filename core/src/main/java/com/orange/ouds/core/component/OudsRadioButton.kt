@@ -190,13 +190,7 @@ private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp
 private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Boolean): Color {
     return with(OudsTheme.colorScheme.action) {
         if (error) {
-            when (state) {
-                OudsControlState.Enabled -> negative.enabled
-                OudsControlState.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsRadioButton
-                OudsControlState.Hovered -> negative.hover
-                OudsControlState.Pressed -> negative.pressed
-                OudsControlState.Focused -> negative.focus
-            }
+            state.errorColor()
         } else {
             when (state) {
                 OudsControlState.Enabled -> if (selected) {

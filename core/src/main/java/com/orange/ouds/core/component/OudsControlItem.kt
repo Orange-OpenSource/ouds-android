@@ -337,16 +337,7 @@ private fun labelColor(state: OudsControlItemState, error: OudsError?) =
     }
 
 @Composable
-private fun errorColor(state: OudsControlItemState) =
-    with(OudsTheme.colorScheme.action.negative) {
-        when (state) {
-            OudsControlItemState.Enabled -> enabled
-            OudsControlItemState.Hovered -> hover
-            OudsControlItemState.Pressed -> pressed
-            OudsControlItemState.Focused -> focus
-            OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
-        }
-    }
+private fun errorColor(state: OudsControlItemState) = state.toControlState().errorColor()
 
 @Composable
 private fun additionalLabelColor(state: OudsControlItemState) =
