@@ -18,8 +18,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -194,8 +196,8 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
                     typedArgument("progress", null)
                 }
             }
-            if (!enabled) typedArgument("enabled", false)
-            if (readOnly) typedArgument("readOnly", true)
+            if (!enabled) enabledArgument(false)
+            if (readOnly) readOnlyArgument(true)
             if (error) {
                 constructorCallArgument<OudsError>("error") {
                     typedArgument("message", errorMessage)
