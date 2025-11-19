@@ -94,7 +94,7 @@ class CheckboxItemDemoState(
                         error,
                         errorMessage,
                         label,
-                        this.description
+                        description
                     )
                 }
             }
