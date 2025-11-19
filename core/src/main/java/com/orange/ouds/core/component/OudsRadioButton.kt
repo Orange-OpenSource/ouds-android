@@ -211,7 +211,7 @@ private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Bo
                     OudsTheme.colorScheme.border.emphasized
                 }
                 OudsControlState.Disabled -> disabled
-                OudsControlState.ReadOnly -> OudsTheme.colorScheme.action.readOnly.secondary
+                OudsControlState.ReadOnly -> readOnly.secondary
                 OudsControlState.Hovered -> hover
                 OudsControlState.Pressed -> pressed
                 OudsControlState.Focused -> focus
