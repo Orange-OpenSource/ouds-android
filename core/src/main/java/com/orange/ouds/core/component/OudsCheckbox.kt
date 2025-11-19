@@ -41,7 +41,6 @@ import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.OudsError
@@ -80,7 +79,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
  * @param readOnly Controls the read only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked or unchecked)
- * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the radio button will be displayed in disabled state.
+ * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
  * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
@@ -133,7 +132,7 @@ fun OudsCheckbox(
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
  * @param readOnly Controls the read only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked, unchecked or indeterminate)
- * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the radio button will be displayed in disabled state.
+ * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
  * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
  * is provided, interactions will still happen internally.
@@ -369,4 +368,5 @@ private val previewParameterValues: List<OudsCheckboxPreviewParameter>
         }
     }
 
-internal class OudsCheckboxHighContrastModePreviewParameterProvider : BasicPreviewParameterProvider<ToggleableState>(ToggleableState.On, ToggleableState.Indeterminate)
+internal class OudsCheckboxHighContrastModePreviewParameterProvider :
+    BasicPreviewParameterProvider<ToggleableState>(ToggleableState.On, ToggleableState.Indeterminate)
