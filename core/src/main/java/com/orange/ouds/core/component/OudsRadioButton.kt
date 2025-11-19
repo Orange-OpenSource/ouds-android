@@ -201,7 +201,7 @@ private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp
 private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Boolean): Color {
     return with(OudsTheme.colorScheme.action) {
         if (error) {
-            state.errorColor()
+            errorColor(state = state)
         } else {
             when (state) {
                 OudsControlState.Enabled -> if (selected) {

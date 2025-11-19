@@ -287,7 +287,7 @@ private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
                 .size(sizeErrorIcon.value),
             painter = painterResource(id = OudsTheme.drawableResources.alertImportant),
             contentDescription = null,
-            tint = state.errorColor()
+            tint = errorColor(state = state)
         )
     }
 }
@@ -307,7 +307,7 @@ private fun backgroundColor(state: OudsControlState): Color {
 @Composable
 private fun dividerColor(state: OudsControlState, error: OudsError?) =
     if (error != null) {
-        state.errorColor()
+        errorColor(state = state)
     } else {
         OudsTheme.colorScheme.border.default
     }
@@ -315,7 +315,7 @@ private fun dividerColor(state: OudsControlState, error: OudsError?) =
 @Composable
 private fun labelColor(state: OudsControlState, error: OudsError?) =
     if (error != null) {
-        state.errorColor()
+        errorColor(state = state)
     } else {
         if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
     }
