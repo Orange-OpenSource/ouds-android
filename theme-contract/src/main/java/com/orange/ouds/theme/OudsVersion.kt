@@ -33,10 +33,10 @@ object OudsVersion {
         const val AndroidCore = "1.0.0"
         const val AndroidSystem = "1.2.0"
         const val OrangeCore = "1.2.0"
-        const val OrangeBrand = "2.2.0"
+        const val OrangeBrand = "2.3.0"
         const val SoshCore = "1.2.0"
-        const val SoshBrand = "2.2.0"
+        const val SoshBrand = "2.3.0"
         const val WireframeCore = "1.3.0"
-        const val WireframeBrand = "2.2.0"
+        const val WireframeBrand = "2.3.0"
     }
 }
