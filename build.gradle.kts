@@ -35,6 +35,7 @@ dependencies {
     dokka(project(":theme-contract"))
     dokka(project(":theme-orange"))
     dokka(project(":theme-sosh"))
+    dokka(project(":theme-wireframe"))
 }
 
 checkNotice {
