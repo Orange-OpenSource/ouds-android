@@ -22,8 +22,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
@@ -81,7 +80,7 @@ class AboutAppSettingsItem(id: Int, @StringRes labelRes: Int) : AboutMenuItem(id
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
     val context = LocalContext.current
     Screen {
-        LazyColumn {
+        LazyColumn(modifier = Modifier.padding(bottom = OudsNavigationBarHeight)) {
             item {
                 val version = stringResource(R.string.app_about_version_label, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
                 val issueNumbers: IntArray? = BuildConfig.ISSUE_NUMBERS
@@ -124,9 +123,6 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                         .listItemHorizontalPadding(),
                     headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.strong.large) }
                 )
-            }
-            item {
-                Spacer(modifier = Modifier.height(OudsNavigationBarHeight))
             }
         }
     }

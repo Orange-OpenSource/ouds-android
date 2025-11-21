@@ -101,8 +101,8 @@ val OudsNavigationBarHeight = 80.dp
  * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
  * - Use `hazeEffect` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.navigationBar.blurRadius.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the navigation bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to adjust paddings and to add a spacer at the end of the screen
- * content that will have the height of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
+ * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to add an additional bottom padding
+ * that will have the height of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
  *
  * @param items List of [OudsNavigationBarItem] to display in the navigation bar.
  * @param modifier [Modifier] applied to the navigation bar.

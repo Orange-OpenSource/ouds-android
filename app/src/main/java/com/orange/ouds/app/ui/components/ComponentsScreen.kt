@@ -45,7 +45,8 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
+                .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
+                .padding(bottom = OudsNavigationBarHeight),
             verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
         ) {
             components.forEach { component ->
@@ -55,7 +56,6 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
                     onClick = { onComponentClick(component.id) }
                 )
             }
-            Spacer(modifier = Modifier.height(OudsNavigationBarHeight))
         }
     }
 }

@@ -47,7 +47,8 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
+                .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
+                .padding(bottom = OudsNavigationBarHeight),
             verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
         ) {
             tokenCategories.forEach { token ->
@@ -57,7 +58,6 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
                     onClick = { onTokenCategoryClick(token.id) }
                 )
             }
-            Spacer(modifier = Modifier.height(OudsNavigationBarHeight))
         }
     }
 }
