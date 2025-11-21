@@ -46,13 +46,9 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
-import com.orange.ouds.core.extensions.filter
-import com.orange.ouds.core.extensions.last
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
-import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
-import com.orange.ouds.core.utilities.edgeToEdgePadding
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -120,10 +116,7 @@ internal fun OudsControlItem(
         val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) indicator else itemIcon
         val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
 
-        val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
-        val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
-
-        Column(modifier = filteredModifier) {
+        Column(modifier = modifier) {
             val shape = RoundedCornerShape(controlItemTokens.borderRadius.value)
             Box(
                 modifier = Modifier
@@ -134,16 +127,12 @@ internal fun OudsControlItem(
                     .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
                 contentAlignment = Alignment.BottomCenter
             ) {
+
                 Row(
-                    modifier = Modifier
-                        .padding(vertical = controlItemTokens.spacePaddingBlockDefault.value)
-                        .edgeToEdgePadding(true)
-                        .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
-                        .run {
-                            // Apply default horizontal padding if edgeToEdgePadding is disabled
-                            val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
-                            if (element?.enabled == false) padding(horizontal = controlItemTokens.spacePaddingInline.value) else this
-                        },
+                    modifier = Modifier.padding(
+                        vertical = controlItemTokens.spacePaddingBlockDefault.value,
+                        horizontal = controlItemTokens.spacePaddingInline.value
+                    ),
                     horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
                 ) {
                     leadingElement?.let { LeadingTrailingBox(leadingElement) }
@@ -176,7 +165,7 @@ internal fun OudsControlItem(
                 }
             }
             if (error != null && error.message.isNotBlank()) {
-                ErrorMessageText(text = error.message, edgeToEdgePaddingModifier = edgeToEdgePaddingModifier)
+                ErrorMessageText(text = error.message)
             }
         }
     }
@@ -257,19 +246,13 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun ErrorMessageText(text: String, edgeToEdgePaddingModifier: Modifier) {
+private fun ErrorMessageText(text: String) {
     with(OudsTheme.componentsTokens.controlItem) {
         Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = spacePaddingBlockTopErrorText.value)
-                .edgeToEdgePadding(true)
-                .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
-                .run {
-                    // Apply default horizontal padding if edgeToEdgePadding is disabled
-                    val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
-                    if (element?.enabled == false) padding(horizontal = spacePaddingInline.value) else this
-                }
+                .padding(horizontal = spacePaddingInline.value)
                 .clearAndSetSemantics {
                     error(text)
                 },
