@@ -11,7 +11,7 @@ jobs:
     if: github.repository == 'Orange-OpenSource/ouds-android'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
