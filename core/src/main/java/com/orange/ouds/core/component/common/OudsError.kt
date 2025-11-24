@@ -13,7 +13,7 @@
 package com.orange.ouds.core.component.common
 
 /**
- * An OUDS error that take into account accessibility.
+ * An OUDS error that takes accessibility into account.
  *
  * @param message A mandatory localized message explaining the error.
  */
