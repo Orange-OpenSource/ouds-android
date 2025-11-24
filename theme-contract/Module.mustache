@@ -1,27 +1,28 @@
 # Module theme-contract
 
-The **OUDS Theme Contract** module defines the **interfaces and data structures** that constitute the Orange Unified Design System theme. It acts as a blueprint
-that guarantees the existence of specific tokens (like "Brand Primary Color" or "Heading Large Typography") without enforcing specific values.
 
-It contains **no values** (no hex codes, no dp sizes), only abstract definitions.
+The **OUDS Theme Contract** module is the cornerstone of the design system's theming architecture. It defines the **abstract interfaces** that all concrete themes (Orange, Sosh, Wireframe, etc.) must implement.
+
+It enforces a strict separation of concerns:
+- **The Contract** defines *what* can be styled (e.g., "Brand Primary Color").
+- **The Implementation** defines *how* it looks (e.g., "Orange #FF7900").
 
 ## Purpose
 
-This module serves two main purposes:
-
-1.  **Abstraction:** It decouples the usage of tokens from their values. This allows different theme implementations (e.g., a "Dark Mode" implementation vs. a "Light Mode" implementation) to share the exact same structure.
-2.  **Type Safety:** It provides the Kotlin interfaces and classes that `OudsTheme` in the Core module implements. This ensures that every theme is complete and strictly follows the design system specifications.
+This module guarantees consistency across applications. By coding against these interfaces rather than specific implementations, developers can switch themes dynamically without changing a single line of UI code.
 
 ## Contract Structure
 
 **Package:** `com.orange.ouds.theme.contract`
 
-The contract is divided into semantic categories mirroring the design system structure.
+This module does not contain any values (hex codes, dp sizes). It only contains:
+1.  **Interfaces:** `OudsThemeContract`, `OudsColorScheme`, `OudsTypography`.
+2.  **Token Objects:** Abstract representations of semantic tokens.
 
 ### 1. Color Contract
-Defines the semantic color slots available in the system.
+Defines semantic color roles available in the system.
 - **Interface:** `OudsColorScheme`
-- **Categories:** `Brand`, `Content`, `Surface`, `Border`, `Status`, etc.
+- **Purpose:** Ensures every theme provides colors for Brand, Surface, Content, Status, etc.
 - **Example:** Defines that a `brand.primary` color *must* exist, but doesn't say it is `#FF7900`.
 
 ### 1.1. Material Color Contract
@@ -32,7 +33,7 @@ Defines the mapping required to bridge OUDS tokens to the standard Material Desi
 ### 2. Typography Contract
 Defines the text styles.
 - **Interface:** `OudsTypography`
-- **Categories:** `Heading`, `Body`, `Label`, `Display`.
+- **Purpose:** Ensures existence of Display, Heading, Title, Body, and Label styles.
 - **Example:** Defines that a `heading.large` style exists with properties for font, weight, and size.
 
 ### 3. Dimension Contracts
@@ -49,7 +50,7 @@ Defines semantic tokens specifically scoped to OUDS custom components.
 ### 5. Other Contracts
 Includes interfaces for `OudsElevations`, `OudsGrids`, and `OudsOpacities`.
 
-## Usage Guidelines
+## Usage
 
 ### For Application Developers
 **You typically do not interact with this module directly.**
