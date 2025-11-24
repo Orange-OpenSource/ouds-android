@@ -68,7 +68,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 /**
  * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
  *
- * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
@@ -105,7 +105,7 @@ fun OudsLink(
 /**
  * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
  *
- * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
@@ -144,7 +144,7 @@ fun OudsLink(
 /**
  * An OUDS link which displays an [arrow] before ([OudsLinkArrow.Back]) or after ([OudsLinkArrow.Next]) a label.
  *
- * In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * If it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
@@ -375,7 +375,7 @@ enum class OudsLinkSize {
 
     /**
      * A small size for a link, particularly useful in an information-dense interface or in a component requiring the use
-     * of small elements ("In-line alert" component, for example).
+     * of small elements ("Inline alert" component, for example).
      */
     Small
 }
@@ -385,12 +385,12 @@ enum class OudsLinkSize {
  */
 enum class OudsLinkArrow {
     /**
-     * Used for "backward" navigation. This arrow is positioned before the label, it features a "chevron left" icon, which is not customizable.
+     * Used for "backward" navigation. This arrow is positioned before the label and features a "chevron left" icon, which is not customizable.
      */
     Back,
 
     /**
-     * Used in a standard navigation context. This arrow is positioned after the label, it features a "chevron right" icon, which is not customizable.
+     * Used in a standard navigation context. This arrow is positioned after the label and features a "chevron right" icon, which is not customizable.
      */
     Next
 }

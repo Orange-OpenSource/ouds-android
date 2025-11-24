@@ -114,14 +114,14 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text input.
- * @param label Label displayed above the text input. It describe the purpose of the input.
+ * @param label Label displayed above the text input. It describes the purpose of the input.
  * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
  * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
  *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
  *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
- * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting like a country code, a unit...
- * @param suffix Text placed after the user's input, often used to display a currency or a unit (kg, %, cm…).
+ * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g. kg, %, cm).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
  *   True by default.
  * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
@@ -129,10 +129,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicate that the user input does not meet
- *   validation rules or expected formatting, `null` otherwise.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
  * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
@@ -146,7 +145,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [TextFieldState] made by the user. The transformation
  *   will be applied to changes made by hardware and software keyboard events, pasting or dropping text, accessibility services, and tests. The transformation
  *   will _not_ be applied when changing the [textFieldState] programmatically, or when the transformation is changed. If the transformation is changed on an
- *   existing text field, it will be applied to the next user edit. the transformation will not immediately affect the current [textFieldState].
+ *   existing text field, it will be applied to the next user edit. The transformation will not immediately affect the current [textFieldState].
  * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
@@ -243,14 +242,14 @@ fun OudsTextInput(
  * @param value Input text to be shown in the text field.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
  * @param modifier [Modifier] applied to the text input.
- * @param label Label displayed above the text input. It describe the purpose of the input.
+ * @param label Label displayed above the text input. It describes the purpose of the input.
  * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
  * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
  *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
  *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
- * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting like a country code, a unit...
- * @param suffix Text placed after the user's input, often used to display a currency or a unit (kg, %, cm…).
+ * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g. kg, %, cm).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
  *   True by default.
  * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
@@ -258,13 +257,12 @@ fun OudsTextInput(
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicate that the user input does not meet
- *   validation rules or expected formatting, `null` otherwise.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
- * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
- * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
+ * @param keyboardOptions Software keyboard options that contain configuration such as [KeyboardType] and [ImeAction].
+ * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
  *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
@@ -366,14 +364,14 @@ fun OudsTextInput(
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
  * @param modifier [Modifier] applied to the text input.
- * @param label Label displayed above the text input. It describe the purpose of the input.
+ * @param label Label displayed above the text input. It describes the purpose of the input.
  * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
  * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
  *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
  *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
- * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting like a country code, a unit...
- * @param suffix Text placed after the user's input, often used to display a currency or a unit (kg, %, cm…).
+ * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g. kg, %, cm).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
  *   True by default.
  * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
@@ -381,13 +379,12 @@ fun OudsTextInput(
  * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
  * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
  *   stroke outlining the field.
- * @param error Optional [OudsError] to provide in the case of the text input item should appear in error state to indicate that the user input does not meet
- *   validation rules or expected formatting, `null` otherwise.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
- *   used. It should ideally only take up a single line, though may wrap to multiple lines if required.
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
- * @param keyboardOptions software keyboard options that contains configuration such as [KeyboardType] and [ImeAction].
- * @param keyboardActions when the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
+ * @param keyboardOptions Software keyboard options that contain configuration such as [KeyboardType] and [ImeAction].
+ * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
  *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.

@@ -15,7 +15,6 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -30,7 +29,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -38,14 +36,14 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
+ * Switches allow the user to toggle between two states, typically "on" and "off". They are represented as sliders that change their position or color to indicate
  * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
  *
  * The **switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as description, a divider,
  * or an icon, allowing it to suit various use cases.
- * It can be used in a list as a list item or as a single element to validate general conditions for example.
+ * It can be used in a list as a list item or as a single element to validate general conditions, for example.
  *
- * The OUDS switch item layout contains an [OudsSwitch]. By clicking on the switch item, the user changes the selected state of its switch.
+ * The OUDS switch item layout contains an [OudsSwitch]. By clicking the switch item, the user changes the checked state of its switch.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
  *
@@ -53,7 +51,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @see [OudsSwitch] If you want to use a standalone switch.
  *
- * @param checked Controls checked state of the item's switch.
+ * @param checked Controls the checked state of the item's switch.
  * @param label The main label of the switch item.
  * @param onCheckedChange Callback invoked on switch item click. If `null`, then this is passive and relies entirely on a higher-level component to control
  * the checked state.
@@ -66,9 +64,9 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param reversed When `false`, the switch has a trailing position and the optional [icon] has a leading position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the switch item. When `false`, the switch, the texts and the optional icon are disabled, and the item
  * will not be clickable.
- * @param readOnly Controls the read only state of the switch item. When `true` the item's switch is disabled but the texts and the icon remain in
- * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the switch item will be displayed in disabled state.
- * @param error Optional [OudsError] to provide in the case of the switch item should appear in error state, `null` otherwise.
+ * @param readOnly Controls the read-only state of the switch item. When `true`, the item's switch is disabled but the texts and the icon remain in the
+ * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the switch item will be displayed in the disabled state.
+ * @param error Optional [OudsError] to provide if the switch item should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's switch. Note that if `null`
  * is provided, interactions will still happen internally.
  *

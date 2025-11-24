@@ -61,7 +61,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
+ * Switches allow the user to toggle between two states, typically "on" and "off". They are represented as sliders that change their position or color to indicate
  * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
  *
  * The **standalone switch variant** can be used when the switch selector control is nested within another component and an alternative label is provided.
@@ -72,7 +72,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @see [OudsSwitchItem] If you want to use a switch with an associated label and other optional elements.
  *
- * @param checked Controls checked state of the switch.
+ * @param checked Controls the checked state of the switch.
  * @param onCheckedChange Callback invoked on switch click. If `null`, then this is passive and relies entirely on a higher-level component to control
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the switch.

@@ -66,7 +66,7 @@ import kotlin.enums.enumEntries
  * A tag is a small element that shows short info like a label, keyword, or category.
  * It helps users quickly find, group, or understand content.
  *
- * Tags have seven status depending on the context of the information they represent. Each state is designed
+ * Tags have six statuses depending on the context of the information they represent. Each status is designed
  * to convey a specific meaning and ensure clarity in communication.
  *
  * Four different layouts are supported:
@@ -76,7 +76,7 @@ import kotlin.enums.enumEntries
  *     Used to show status, presence, or activity next to the label.
  *   - Text and icon: when [status] icon is not `null`, the tag includes an icon before the text.
  *     Used to visually reinforce the meaning of the tag, such as status, type, or action.
- *   - Text and loader: when [loader] is `true`, the tag combines a loading spinner (or progress indicator) with text.
+ *   - Text and loader: when [loader] is not `null`, the tag combines a loading spinner (or progress indicator) with text.
  *     Used to indicate that a process or action related to the tag is in progress.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
@@ -86,11 +86,11 @@ import kotlin.enums.enumEntries
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
  * @param enabled Controls the enabled appearance of the tag.
- *   A tag with loading spinner cannot be disabled. This will throw an [IllegalStateException].
- * @param appearance Appearance of the tag among [OudsTagAppearance] values. Combined with the [status] of the tag, the appearance determines tag's background
+ *   A tag with a loading spinner cannot be disabled. This will throw an [IllegalStateException].
+ * @param appearance Appearance of the tag among [OudsTagAppearance] values. Combined with the [status] of the tag, the appearance determines the tag's background
  *   and content colors.
  * @param status The status of the tag. Its background color and its content color are based on this status combined with the [appearance] of the tag.
- *   There are two types of status:
+ *   There are two types of statuses:
  *   - Non-functional statuses ([OudsTagStatus.Neutral] or [OudsTagStatus.Accent]) used to display categories, default states, or to draw attention without
  *   carrying a specific functional meaning (unlike functional tags such as success, info, etc.).
  *   Using a non-functional status, you can provide a custom icon related to the tag’s context to enhance recognition by providing an [OudsTagIcon.Custom]
@@ -98,10 +98,10 @@ import kotlin.enums.enumEntries
  *   - Functional statuses communicate specific information or system feedback: [OudsTagStatus.Positive], [OudsTagStatus.Warning], [OudsTagStatus.Negative],
  *   [OudsTagStatus.Info].
  *   Each functional status has its dedicated functional icon that matches the meaning of the tag. This icon will appear by providing [OudsTagIcon.Default]
- *   as icon value of the status.
+ *   as the icon of the status.
  * @param roundedCorners Controls the shape of the tag.
  *   When `true`, the tag has rounded corners, providing a softer and more approachable look, suitable for most modern interfaces.
- *   When `false`, the tag has sharp, square corners, providing a more formal, structured, or technical feel. Often used in business context to label
+ *   When `false`, the tag has sharp, square corners, providing a more formal, structured, or technical feel. Often used in a business context to label
  *   promotions, offers or important notices.
  * @param size The size of the tag.
  * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
@@ -496,7 +496,7 @@ open class OudsTagIcon protected constructor(
 }
 
 /**
- * A circular progress indicator displayed in the input or tag area to indicate that tags are being loaded or processed.
+ * A circular progress indicator displayed in the tag area to indicate that tags are being loaded or processed.
  *
  * @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
  *   Values outside of this range are coerced into the range.

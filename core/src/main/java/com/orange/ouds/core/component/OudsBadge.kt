@@ -60,7 +60,6 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import kotlin.enums.enumEntries
 
-
 /**
  * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
  * It is often displayed as a label or indicator with a distinct background color and text.
@@ -68,8 +67,8 @@ import kotlin.enums.enumEntries
  * Badges have five statuses depending on the context of the information they represent.
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
  *
- * This version of the badge renders as a static label without a number.
- * It is used for status indicators (e.g., "New", "Pending", "Success").
+ * This version of the badge renders a static label without a number.
+ * It is used for status indicators (e.g. "New", "Pending", "Success").
  * The size remains unchanged despite the increase in the interface size.
  *
  * **A11Y recommendation:** Provide a `contentDescription` semantics to clarify the meaning of this badge.
@@ -111,7 +110,7 @@ fun OudsBadge(
  * Badges have five statuses depending on the context of the information they represent.
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
  *
- * This version of the badge displays numerical values (e.g., unread messages, notifications).
+ * This version of the badge displays numerical values (e.g. unread messages, notifications).
  *
  * **A11Y recommendation:** Provide a more explicit `contentDescription` than the count alone by using a semantics Modifier.
  *
@@ -220,7 +219,7 @@ private fun OudsBadge(
         modifier = modifier.semantics(mergeDescendants = true) {
             if (text != null) {
                 // The content description for a count badge is applied here instead of the Text composable
-                // That way it can be overridden by the caller through the semantics method on the modifier 
+                // That way it can be overridden by the caller through the semantics method on the modifier
                 contentDescription = text
             }
         },
@@ -353,7 +352,7 @@ const val OudsBadgeMaxCount = 99
 
 /**
  * An icon in an [OudsBadge].
- * This icon is non-clickable.
+ * This icon is not clickable.
  */
 open class OudsBadgeIcon internal constructor(
     graphicsObjectProvider: @Composable (OudsBadgeIcon) -> Any,
