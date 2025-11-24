@@ -30,7 +30,6 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun Screen(content: @Composable () -> Unit) {
@@ -102,6 +101,6 @@ fun DemoScreen(
 
 @PreviewLightDark
 @Composable
-private fun PreviewScreen() = OudsPreview {
+private fun PreviewScreen() = AppPreview {
     Screen {}
 }

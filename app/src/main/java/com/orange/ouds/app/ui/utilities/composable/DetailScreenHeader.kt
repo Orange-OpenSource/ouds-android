@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.priorityClickable
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun DetailScreenHeader(
@@ -72,7 +71,7 @@ fun DetailScreenDescription(
 
 @PreviewLightDark
 @Composable
-private fun PreviewDetailScreenHeader() = OudsPreview {
+private fun PreviewDetailScreenHeader() = AppPreview {
     DetailScreenHeader(
         description = stringResource(id = R.string.app_tokens_elevation_description_text),
         illustration = { ImageIllustration(imageRes = R.drawable.ic_layers) }

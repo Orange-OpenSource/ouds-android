@@ -24,11 +24,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
@@ -62,7 +62,7 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
 
 @PreviewLightDark
 @Composable
-private fun PreviewComponentsScreen() = OudsPreview {
+private fun PreviewComponentsScreen() = AppPreview {
     ComponentsScreen(
         components = listOf(Component.Button, Component.Link),
         onComponentClick = {}

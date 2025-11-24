@@ -14,9 +14,7 @@ package com.orange.ouds.app.ui.tokens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,12 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
@@ -64,7 +62,7 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
 
 @PreviewLightDark
 @Composable
-private fun PreviewTokensScreen() = OudsPreview {
+private fun PreviewTokensScreen() = AppPreview {
     TokensScreen(
         tokenCategories = listOf(
             TokenCategory.Border,

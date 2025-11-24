@@ -27,11 +27,11 @@ import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -110,6 +110,6 @@ private fun Code.Builder.radioButtonDemoCodeSnippet(state: RadioButtonDemoState)
 
 @PreviewLightDark
 @Composable
-private fun PreviewRadioButtonDemoScreen() = OudsPreview {
+private fun PreviewRadioButtonDemoScreen() = AppPreview {
     RadioButtonDemoScreen()
 }

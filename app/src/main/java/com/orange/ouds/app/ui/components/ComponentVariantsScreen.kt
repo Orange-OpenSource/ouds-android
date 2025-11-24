@@ -25,10 +25,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @Composable
@@ -64,7 +64,7 @@ fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> 
 @Composable
 private fun PreviewComponentVariantsScreen(
     @PreviewParameter(ComponentVariantsScreenPreviewParameterProvider::class) parameter: Component
-) = OudsPreview {
+) = AppPreview {
     ComponentVariantsScreen(
         component = parameter,
         onVariantClick = {}

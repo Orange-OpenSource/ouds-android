@@ -40,10 +40,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.painterResource
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @Composable
@@ -198,13 +198,13 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
 
 @PreviewLightDark
 @Composable
-private fun PreviewGridHeader() = OudsPreview {
+private fun PreviewGridHeader() = AppPreview {
     GridHeader()
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewSizeIconWithTextHeader() = OudsPreview {
+private fun PreviewSizeIconWithTextHeader() = AppPreview {
     SizeIconWithTextHeader(
         size = OudsTheme.sizes.icon.withHeading.small.sizeLarge,
         typographyToken = Token("typography.label.strong.extraLarge", "", { OudsTheme.typography.label.strong.extraLarge })
@@ -214,7 +214,7 @@ private fun PreviewSizeIconWithTextHeader() = OudsPreview {
 @PreviewLightDark
 @Composable
 private fun PreviewSpaceHeader(@PreviewParameter(SpaceHeaderPreviewParameterProvider::class) parameter: TokenProperty<TokenCategory.Dimension.Space>) =
-    OudsPreview {
+    AppPreview {
         SpaceHeader(parameter)
     }
 

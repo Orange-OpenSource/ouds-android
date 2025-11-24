@@ -40,11 +40,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.BuildConfig
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(1, R.string.app_about_legalInformation_label, AboutFileMenuItem.File(R.raw.about_legal_information, AboutFileMenuItem.File.Format.Html)),
@@ -142,6 +142,6 @@ private fun Context.openLocaleSettings() {
 
 @PreviewLightDark
 @Composable
-private fun PreviewAboutScreen() = OudsPreview {
+private fun PreviewAboutScreen() = AppPreview {
     AboutScreen {}
 }

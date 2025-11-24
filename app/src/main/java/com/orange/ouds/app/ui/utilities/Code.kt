@@ -22,9 +22,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.BottomBarItem
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.tryOrNull
@@ -215,7 +215,7 @@ class Newline : Formattable {
 
 @Preview
 @Composable
-internal fun PreviewCode() = OudsPreview {
+internal fun PreviewCode() = AppPreview {
     val themeDrawableResources = LocalThemeDrawableResources.current
     val code = code {
         comment("Multiline\ncomment") { isMultiline = true }

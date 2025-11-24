@@ -23,12 +23,12 @@ import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -138,12 +138,12 @@ private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoStat
 
 @PreviewLightDark
 @Composable
-private fun PreviewCheckboxItemDemoScreen() = OudsPreview {
+private fun PreviewCheckboxItemDemoScreen() = AppPreview {
     CheckboxItemDemoScreen()
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewIndeterminateCheckboxItemDemoScreen() = OudsPreview {
+private fun PreviewIndeterminateCheckboxItemDemoScreen() = AppPreview {
     CheckboxItemDemoScreen(indeterminate = true)
 }

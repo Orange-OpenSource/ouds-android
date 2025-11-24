@@ -21,11 +21,11 @@ import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -73,6 +73,6 @@ private fun Code.Builder.switchItemDemoCodeSnippet(state: SwitchItemDemoState, t
 
 @PreviewLightDark
 @Composable
-private fun PreviewSwitchItemDemoScreen() = OudsPreview {
+private fun PreviewSwitchItemDemoScreen() = AppPreview {
     SwitchItemDemoScreen()
 }
