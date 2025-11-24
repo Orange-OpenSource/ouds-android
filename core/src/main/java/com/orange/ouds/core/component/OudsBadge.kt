@@ -111,7 +111,7 @@ fun OudsBadge(
  * Badges have five statuses depending on the context of the information they represent.
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
  *
- * This version of the badge displays numerical values (e.g., unread messages, notifications).
+ * This version of the badge displays numerical values (e.g. unread messages, notifications).
  *
  * **A11Y recommendation:** Provide a more explicit `contentDescription` than the count alone by using a semantics Modifier.
  *
