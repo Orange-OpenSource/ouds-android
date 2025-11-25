@@ -38,6 +38,7 @@ internal val LocalDarkColorScheme = compositionLocalOf<OudsColorScheme> { missin
 internal val LocalMaterialLightColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialLightColorScheme") }
 internal val LocalMaterialDarkColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialDarkColorScheme") }
 internal val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
+internal val LocalEffects = staticCompositionLocalOf<OudsEffects> { missingCompositionLocalError("LocalEffects") }
 internal val LocalElevations = staticCompositionLocalOf<OudsElevations> { missingCompositionLocalError("LocalElevations") }
 internal val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 internal val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
@@ -48,6 +49,7 @@ internal val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsToke
 internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
+internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 
 /**
  * Object that stores tokens values for the current theme.
@@ -72,6 +74,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalBorders.current
+
+    val effects: OudsEffects
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalEffects.current
 
     val elevations: OudsElevations
         @Composable
@@ -102,6 +109,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalSpaces.current
+
+    val components: OudsComponents
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalComponents.current
 
     internal val componentsTokens: OudsComponentsTokens
         @Composable
@@ -148,6 +160,7 @@ fun OudsTheme(
             LocalMaterialLightColorScheme provides materialColorTokens.materialLightColorScheme,
             LocalMaterialDarkColorScheme provides materialColorTokens.materialDarkColorScheme,
             LocalBorders provides borderTokens.getBorders(),
+            LocalEffects provides effectTokens.getEffect(),
             LocalElevations provides elevationTokens.getElevation(),
             LocalTypography provides fontTokens.getTypography(fontFamily, windowWidthSizeClass),
             LocalGrids provides gridTokens.getGrids(windowWidthSizeClass),
@@ -156,7 +169,8 @@ fun OudsTheme(
             LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),
             LocalComponentsTokens provides componentsTokens,
             LocalDrawableResources provides drawableResources,
-            LocalThemeSettings provides settings
+            LocalThemeSettings provides settings,
+            LocalComponents provides componentsTokens.getComponents()
         ) {
             MaterialTheme(
                 colorScheme = materialColorScheme,

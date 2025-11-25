@@ -23,5 +23,6 @@ requirements of the relevant license of the Third Party software they are using.
 |-----------------------------------------------------------------------|-----------------------|--------------------|
 | [Firebase](https://github.com/firebase/firebase-android-sdk)          | © 2019 Google LLC     | Apache License 2.0 |
 | [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib) |                       | Apache License 2.0 |
+| [Haze](https://github.com/chrisbanes/haze)                            | © 2024 Chris Banes    | Apache License 2.0 |
 | [OUDS Android](https://github.com/Orange-OpenSource/ouds-android)     | © 2024-2025 Orange SA | MIT License        |
 | [ZXing](https://github.com/zxing/zxing)                               | © ZXing authors       | Apache License 2.0 |

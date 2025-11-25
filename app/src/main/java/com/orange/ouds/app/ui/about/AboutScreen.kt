@@ -22,6 +22,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
@@ -41,6 +42,7 @@ import com.orange.ouds.app.BuildConfig
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
+import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -78,7 +80,7 @@ class AboutAppSettingsItem(id: Int, @StringRes labelRes: Int) : AboutMenuItem(id
 fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
     val context = LocalContext.current
     Screen {
-        LazyColumn {
+        LazyColumn(modifier = Modifier.padding(bottom = OudsNavigationBarHeight)) {
             item {
                 val version = stringResource(R.string.app_about_version_label, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
                 val issueNumbers: IntArray? = BuildConfig.ISSUE_NUMBERS

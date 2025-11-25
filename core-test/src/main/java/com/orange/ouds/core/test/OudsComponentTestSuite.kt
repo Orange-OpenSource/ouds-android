@@ -27,6 +27,8 @@ import org.junit.runners.Suite
     OudsHorizontalDividerTest::class,
     OudsInputTagTest::class,
     OudsLinkTest::class,
+    OudsNavigationBarTest::class,
+    OudsNavigationBarItemTest::class,
     OudsRadioButtonItemTest::class,
     OudsRadioButtonTest::class,
     OudsSuggestionChipTest::class,

@@ -131,6 +131,12 @@
     <string name="app_components_common_status_label">Status</string>
     <string name="app_components_common_textOnlyLayout_label">Text only</string>
     <string name="app_components_common_textAndIconLayout_label">Text + icon</string>
+    <plurals name="app_components_common_unreadMessageCountBadge_a11y">
+        <item quantity="zero">No unread message</item>
+        <item quantity="one">%d unread message</item>
+        <item quantity="other">%d unread messages</item>
+    </plurals>
+    <string name="app_components_common_unreadNotificationsBadge_a11y">Unread notifications</string>
     <string name="app_components_common_version_label">Component design version</string>
     <string name="app_components_textInputHelperText_label">Helper text.</string>
 
@@ -142,12 +148,6 @@
     <string name="app_components_badge_countType_label">Count</string>
     <string name="app_components_badge_iconType_label">Icon</string>
     <string name="app_components_badge_count_label">Count</string>
-    <string name="app_components_badge_unreadNotifications_a11y">Unread notifications</string>
-    <plurals name="app_components_badge_unreadMessageCount_a11y">
-        <item quantity="zero">No unread message</item>
-        <item quantity="one">%d unread message</item>
-        <item quantity="other">%d unread messages</item>
-    </plurals>
 
     <!-- Components: button -->
     <string name="app_components_button_label">Button</string>
@@ -193,6 +193,18 @@
     <string name="app_components_link_description_text">Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).</string>
     <string name="app_components_link_backLayout_label">Back</string>
     <string name="app_components_link_nextLayout_label">Next</string>
+
+    <!-- Components: navigation bar -->
+    <string name="app_components_navigationBar_label">Navigation bar</string>
+    <string name="app_components_navigationBar_description_text">Navigation bars let people switch between UI views on smaller devices</string> <!--TODO update with OUDS description-->
+    <string name="app_components_navigationBar_itemCount_label">Item count</string>
+    <string name="app_components_navigationBar_lastItemBadge_label">Last item badge</string>
+    <string name="app_components_navigationBar_itemBadgeNone_label">None</string>
+    <string name="app_components_navigationBar_homeItem_label">Home</string>
+    <string name="app_components_navigationBar_shopItem_label">Shop</string>
+    <string name="app_components_navigationBar_notificationsItem_label">Notifications</string>
+    <string name="app_components_navigationBar_accountItem_label">Account</string>
+    <string name="app_components_navigationBar_settingsItem_label">Settings</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_label">Radio button</string>

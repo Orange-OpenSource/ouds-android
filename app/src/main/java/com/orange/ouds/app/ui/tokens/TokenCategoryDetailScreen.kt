@@ -81,7 +81,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
             item {
                 DetailScreenHeader(
                     description = stringResource(id = tokenCategory.descriptionRes),
-                    illustration = { ImageIllustration(imageRes = tokenCategory.imageRes()) }
+                    illustration = { ImageIllustration(imageRes = tokenCategory.imageResourceProvider.getResource(LocalThemeDrawableResources.current)) }
                 )
                 tokenCategory.valueCodeExample?.let { codeExample ->
                     CodeColumn(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall), codeExample = codeExample)

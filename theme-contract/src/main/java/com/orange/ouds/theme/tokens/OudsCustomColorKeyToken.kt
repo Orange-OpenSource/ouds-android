@@ -27,3 +27,7 @@ data class OudsLightDarkColorKeyToken(val light: OudsColorKeyToken, val dark: Ou
         }
     }
 }
+
+enum class Mode {
+    Dark, Light
+}

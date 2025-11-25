@@ -22,9 +22,14 @@ import androidx.activity.compose.LocalActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.displayCutout
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.union
 import androidx.compose.material3.Scaffold
@@ -37,7 +42,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.dp
 import androidx.core.content.getSystemService
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -49,6 +56,10 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
+import dev.chrisbanes.haze.HazeStyle
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.rememberHazeState
 
 @Composable
 fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
@@ -88,6 +99,8 @@ fun MainScreen(
     var changeThemeDialogVisible by rememberSaveable { mutableStateOf(false) }
     var changeThemeSettingsDialogVisible by rememberSaveable { mutableStateOf(false) }
 
+    val hazeState = rememberHazeState(blurEnabled = true)
+
     OudsTheme(
         theme = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
@@ -111,6 +124,10 @@ fun MainScreen(
                 },
                 bottomBar = {
                     BottomBar(
+                        modifier = Modifier.hazeEffect(
+                            state = hazeState,
+                            style = HazeStyle(tint = null, blurRadius = OudsTheme.components.navigationBar.blurRadius.dp)
+                        ),
                         currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                         navigateToRoute = { route ->
                             mainState.navigationState.navigateToBottomBarRoute(route)
@@ -119,12 +136,19 @@ fun MainScreen(
                     )
                 }
             ) { innerPadding ->
+                val paddingValues = PaddingValues(
+                    top = innerPadding.calculateTopPadding(),
+                    bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding(),
+                    start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
+                    end = innerPadding.calculateEndPadding(LocalLayoutDirection.current)
+                )
                 NavHost(
                     navController = mainState.navigationState.navController,
                     startDestination = BottomBarItem.Tokens.route,
                     modifier = Modifier
-                        .consumeWindowInsets(innerPadding)
-                        .padding(innerPadding)
+                        .padding(paddingValues)
+                        .consumeWindowInsets(paddingValues)
+                        .hazeSource(state = hazeState)
                 ) {
                     appNavGraph(mainState)
                 }

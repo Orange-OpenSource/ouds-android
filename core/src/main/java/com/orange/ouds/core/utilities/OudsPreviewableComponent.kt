@@ -34,6 +34,8 @@ import com.orange.ouds.core.component.OudsFilterChipPreviewParameter
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
+import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
+import com.orange.ouds.core.component.OudsNavigationBarPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
@@ -63,6 +65,8 @@ import com.orange.ouds.core.component.PreviewOudsFilterChip
 import com.orange.ouds.core.component.PreviewOudsInputTag
 import com.orange.ouds.core.component.PreviewOudsLink
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
+import com.orange.ouds.core.component.PreviewOudsNavigationBar
+import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsRadioButton
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItem
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemHighContrastModeEnabled
@@ -298,6 +302,36 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+    }
+
+    object NavigationBar : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = OudsNavigationBarPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsNavigationBar(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                itemCount = parameter as Int
+            )
+        }
+    }
+
+    object NavigationBarItem : OudsPreviewableComponent {
+
+        const val PreviewWidthDp = 400
+
+        override val parameters: List<Any> = OudsNavigationBarItemPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsNavigationBarItem(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                selected = parameter as Boolean
+            )
         }
     }
 
