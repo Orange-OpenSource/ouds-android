@@ -18,6 +18,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -40,7 +41,7 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
         { ControlItemErrorCustomization(state = state) },
         { ControlItemErrorMessageCustomization(state = state) },
         { ControlItemLabelCustomization(state = state) },
-        { ControlItemHelperTextCustomization(state = state) }
+        { ControlItemDescriptionCustomization(state = state) }
     )
     extraCustomizations.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -141,31 +142,32 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
 }
 
 @Composable
-private fun ControlItemHelperTextCustomization(state: ControlItemDemoState) {
+private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
-            label = stringResource(R.string.app_components_common_helperText_label),
-            value = helperText.orEmpty(),
-            onValueChange = { value -> helperText = value }
+            label = stringResource(R.string.app_components_controlItem_description_label),
+            value = description.orEmpty(),
+            onValueChange = { value -> description = value }
         )
     }
 }
 
-fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) = with(state) {
-    labelArgument(label)
-    if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
-    if (icon) {
-        constructorCallArgument<OudsControlItemIcon>("icon") {
-            painterArgument(themeDrawableResources.tipsAndTricks)
+fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) =
+    with(state) {
+        labelArgument(label)
+        if (!description.isNullOrBlank()) typedArgument("description", description)
+        if (icon) {
+            constructorCallArgument<OudsControlItemIcon>("icon") {
+                painterArgument(themeDrawableResources.tipsAndTricks)
+            }
+        }
+        if (divider) typedArgument("divider", divider)
+        if (reversed) typedArgument("reversed", reversed)
+        if (!enabled) enabledArgument(enabled)
+        if (readOnly) readOnlyArgument(readOnly)
+        if (error) {
+            constructorCallArgument<OudsError>("error") {
+                typedArgument("message", if (hasErrorMessage) errorMessage else "")
+            }
         }
     }
-    if (divider) typedArgument("divider", divider)
-    if (reversed) typedArgument("reversed", reversed)
-    if (!enabled) enabledArgument(enabled)
-    if (readOnly) typedArgument("readOnly", readOnly)
-    if (error) {
-        constructorCallArgument<OudsError>("error") {
-            typedArgument("message", if (hasErrorMessage) errorMessage else "")
-        }
-    }
-}

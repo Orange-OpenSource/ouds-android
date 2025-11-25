@@ -53,7 +53,6 @@ import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
 import com.orange.ouds.core.utilities.edgeToEdgePadding
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -62,9 +61,9 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  */
 @Composable
 internal fun OudsControlItem(
-    state: OudsControlItemState,
+    state: OudsControlState,
     label: String,
-    helperText: String?,
+    description: String?,
     icon: OudsControlItemIcon?,
     divider: Boolean,
     enabled: Boolean,
@@ -76,12 +75,12 @@ internal fun OudsControlItem(
     checkedContentSelectionStatus: String,
     backgroundColor: Color,
     modifier: Modifier = Modifier,
-    additionalLabel: String? = null,
+    extraLabel: String? = null,
     handleHighContrastMode: Boolean = false
 ) {
-    val previewState = getPreviewEnumEntry<OudsControlItemState>()
-    val isReadOnlyPreviewState = previewState == OudsControlItemState.ReadOnly
-    val isDisabledPreviewState = previewState == OudsControlItemState.Disabled
+    val previewState = getPreviewEnumEntry<OudsControlState>()
+    val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
+    val isDisabledPreviewState = previewState == OudsControlState.Disabled
     val isForbidden = error != null && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
 
     CheckedContent(
@@ -110,7 +109,7 @@ internal fun OudsControlItem(
                 {
                     icon.Content(
                         extraParameters = OudsControlItemIcon.ExtraParameters(
-                            tint = if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+                            tint = if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
                         )
                     )
                 }
@@ -153,18 +152,18 @@ internal fun OudsControlItem(
                         verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
                     ) {
                         Text(text = label, style = OudsTheme.typography.label.default.large, color = labelColor(state = state, error = error))
-                        if (!additionalLabel.isNullOrBlank()) {
+                        if (!extraLabel.isNullOrBlank()) {
                             Text(
-                                text = additionalLabel,
+                                text = extraLabel,
                                 style = OudsTheme.typography.label.strong.medium,
-                                color = additionalLabelColor(state = state)
+                                color = extraLabelColor(state = state)
                             )
                         }
-                        if (!helperText.isNullOrBlank()) {
+                        if (!description.isNullOrBlank()) {
                             Text(
-                                text = helperText,
+                                text = description,
                                 style = OudsTheme.typography.label.default.medium,
-                                color = helperTextColor(state = state)
+                                color = descriptionColor(state = state)
                             )
                         }
                     }
@@ -177,20 +176,6 @@ internal fun OudsControlItem(
             if (error != null && error.message.isNotBlank()) {
                 ErrorMessageText(text = error.message, edgeToEdgePaddingModifier = edgeToEdgePaddingModifier)
             }
-        }
-    }
-}
-
-internal enum class OudsControlItemState {
-    Enabled, Hovered, Pressed, Disabled, Focused, ReadOnly;
-
-    fun toControlState(): OudsControlState {
-        return when (this) {
-            Enabled -> OudsControlState.Enabled
-            Hovered -> OudsControlState.Hovered
-            Pressed -> OudsControlState.Pressed
-            Focused -> OudsControlState.Focused
-            Disabled, ReadOnly -> OudsControlState.Disabled
         }
     }
 }
@@ -244,26 +229,12 @@ class OudsControlItemIcon private constructor(
 }
 
 @Composable
-internal fun getControlItemState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsControlItemState {
-    return getPreviewEnumEntry<OudsControlItemState>().orElse {
-        when {
-            !enabled -> OudsControlItemState.Disabled
-            readOnly -> OudsControlItemState.ReadOnly
-            interactionState == InteractionState.Hovered -> OudsControlItemState.Hovered
-            interactionState == InteractionState.Pressed -> OudsControlItemState.Pressed
-            interactionState == InteractionState.Focused -> OudsControlItemState.Focused
-            else -> OudsControlItemState.Enabled
-        }
-    }
-}
-
-@Composable
 internal fun rememberControlItemBackgroundColor(
     enabled: Boolean,
     readOnly: Boolean,
     interactionState: InteractionState
 ) = rememberInteractionColor(interactionState = interactionState) { controlItemInteractionState ->
-    val state = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = controlItemInteractionState)
+    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = controlItemInteractionState)
     backgroundColor(state = state)
 }
 
@@ -308,7 +279,7 @@ private fun ErrorMessageText(text: String, edgeToEdgePaddingModifier: Modifier) 
 }
 
 @Composable
-private fun ErrorIcon(state: OudsControlItemState, modifier: Modifier = Modifier) {
+private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
     with(OudsTheme.componentsTokens.controlItem) {
         Icon(
             modifier = modifier
@@ -322,19 +293,19 @@ private fun ErrorIcon(state: OudsControlItemState, modifier: Modifier = Modifier
 }
 
 @Composable
-private fun backgroundColor(state: OudsControlItemState): Color {
+private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
-            OudsControlItemState.Enabled, OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Transparent
-            OudsControlItemState.Hovered -> colorBgHover.value
-            OudsControlItemState.Pressed -> colorBgPressed.value
-            OudsControlItemState.Focused -> colorBgFocus.value
+            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
+            OudsControlState.Hovered -> colorBgHover.value
+            OudsControlState.Pressed -> colorBgPressed.value
+            OudsControlState.Focused -> colorBgFocus.value
         }
     }
 }
 
 @Composable
-private fun dividerColor(state: OudsControlItemState, error: OudsError?) =
+private fun dividerColor(state: OudsControlState, error: OudsError?) =
     if (error != null) {
         errorColor(state = state)
     } else {
@@ -342,33 +313,30 @@ private fun dividerColor(state: OudsControlItemState, error: OudsError?) =
     }
 
 @Composable
-private fun labelColor(state: OudsControlItemState, error: OudsError?) =
+private fun labelColor(state: OudsControlState, error: OudsError?) =
     if (error != null) {
         errorColor(state = state)
     } else {
-        if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+        if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
     }
 
 @Composable
-private fun errorColor(state: OudsControlItemState) = state.toControlState().errorColor()
+private fun extraLabelColor(state: OudsControlState) =
+    if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
-private fun additionalLabelColor(state: OudsControlItemState) =
-    if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
-
-@Composable
-private fun helperTextColor(state: OudsControlItemState) =
-    if (state == OudsControlItemState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
+private fun descriptionColor(state: OudsControlState) =
+    if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
 
 internal data class OudsControlItemPreviewParameter<T, S>(
     val value: T,
     val extraParameter: S?,
-    val helperText: String? = null,
+    val description: String? = null,
     val divider: Boolean = false,
     val hasIcon: Boolean = false,
     val error: OudsError? = null,
     val reversed: Boolean = false,
-    val additionalLabel: String? = null
+    val extraLabel: String? = null
 )
 
 internal open class OudsControlItemPreviewParameterProvider<T, S>(
@@ -382,8 +350,8 @@ internal open class OudsControlItemPreviewParameterProvider<T, S>(
 }
 
 private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: List<S> = listOf()): List<OudsControlItemPreviewParameter<T, S>> {
-    val additionalLabel = "Additional label"
-    val helperText = "Helper text"
+    val extraLabel = "Extra label"
+    val description = "Description"
     val reversedValues = listOf(false, true)
 
     return buildList {
@@ -396,8 +364,8 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                 ).run {
                     when (index) {
                         0 -> this
-                        1 -> copy(hasIcon = true, additionalLabel = additionalLabel, helperText = helperText)
-                        else -> copy(helperText = helperText, divider = true, error = OudsError("This field can't be activated"))
+                        1 -> copy(hasIcon = true, extraLabel = extraLabel, description = description)
+                        else -> copy(description = description, divider = true, error = OudsError("This field can't be activated"))
                     }
                 }
             }

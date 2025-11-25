@@ -28,7 +28,7 @@ internal fun OudsSwitchItemSample() = OudsPreview {
     OudsSwitchItem(
         checked = checked,
         label = "Notifications",
-        helperText = "Display app notifications in the notification center",
+        description = "Display app notifications in the notification center",
         onCheckedChange = { value -> checked = value },
         divider = false
     )

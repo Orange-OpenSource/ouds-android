@@ -48,8 +48,8 @@ class OudsCheckboxItemTest {
         }
     }
 
-    class WithLongHelperText : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.CheckboxItem.WithLongHelperText,
+    class WithLongDescription : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.WithLongDescription,
         parameter = null,
         OudsComponentTestSuite.theme
     )

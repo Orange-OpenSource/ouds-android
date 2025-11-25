@@ -44,10 +44,14 @@ fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg f
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
+fun FunctionCall.Builder.errorArgument(value: Boolean) = typedArgument(Argument.Error, value)
+
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument(Argument.Label, label)
 fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringResourceArgument(Argument.Label, id)
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
+
+fun FunctionCall.Builder.readOnlyArgument(value: Boolean) = typedArgument(Argument.ReadOnly, value)
 
 private object Argument {
 
@@ -55,8 +59,10 @@ private object Argument {
     const val ContentDescription = "contentDescription"
     const val Content = "content"
     const val Enabled = "enabled"
+    const val Error = "error"
     const val Id = "id"
     const val Label = "label"
     const val OnClick = "onClick"
     const val Painter = "painter"
+    const val ReadOnly = "readOnly"
 }

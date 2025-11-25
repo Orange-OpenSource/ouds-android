@@ -58,7 +58,7 @@ import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsCheckbox
 import com.orange.ouds.core.component.PreviewOudsCheckboxItem
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemHighContrastModeEnabled
-import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongHelperText
+import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsFilterChip
@@ -70,11 +70,11 @@ import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsRadioButton
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItem
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemHighContrastModeEnabled
-import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithLongHelperText
+import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithDescriptionText
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
 import com.orange.ouds.core.component.PreviewOudsSwitch
 import com.orange.ouds.core.component.PreviewOudsSwitchItem
-import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongHelperText
+import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsTag
 import com.orange.ouds.core.component.PreviewOudsTextInput
 import com.orange.ouds.core.component.PreviewOudsTextInputWithLongLabels
@@ -190,13 +190,13 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
         }
 
-        object WithLongHelperText : OudsPreviewableComponent {
+        object WithLongDescription : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsCheckboxItemWithLongHelperText(theme)
+                PreviewOudsCheckboxItemWithLongDescription(theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
@@ -204,6 +204,8 @@ interface OudsPreviewableComponent {
     }
 
     object Checkbox : OudsPreviewableComponent {
+
+        const val PreviewWidthDp = 410
 
         override val parameters: List<Any> = OudsCheckboxPreviewParameterProvider().values.toList()
 
@@ -369,13 +371,13 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
         }
 
-        object WithLongHelperText : OudsPreviewableComponent {
+        object WithLongDescription : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsRadioButtonItemWithLongHelperText(theme)
+                PreviewOudsRadioButtonItemWithDescriptionText(theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
@@ -384,6 +386,8 @@ interface OudsPreviewableComponent {
 
     object RadioButton : OudsPreviewableComponent {
 
+        const val PreviewWidthDp = 410
+        
         override val parameters: List<Any> = OudsRadioButtonPreviewParameterProvider().values.toList()
 
         @Composable
@@ -430,13 +434,13 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object WithLongHelperText : OudsPreviewableComponent {
+        object WithLongDescription : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsSwitchItemWithLongHelperText(theme)
+                PreviewOudsSwitchItemWithLongDescription(theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled

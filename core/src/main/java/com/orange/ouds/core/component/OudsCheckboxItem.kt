@@ -39,7 +39,7 @@ import com.orange.ouds.theme.OudsThemeContract
 /**
  * Checkboxes are input controls that allow users to select one or more options from a number of choices.
  *
- * The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text, a divider, or an icon,
+ * The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as description, a divider, or an icon,
  * allowing it to suit various use cases.
  *
  * The OUDS checkbox item layout contains an [OudsCheckbox]. By clicking on a checkbox item, the user changes the checked state of its checkbox.
@@ -59,7 +59,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param onCheckedChange Callback invoked on checkbox item click. If `null`, then this is passive and relies entirely on a higher-level component to control
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
- * @param helperText Optional text displayed below the label.
+ * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
@@ -79,7 +79,7 @@ fun OudsCheckboxItem(
     label: String,
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
-    helperText: String? = null,
+    description: String? = null,
     icon: OudsControlItemIcon? = null,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -95,7 +95,7 @@ fun OudsCheckboxItem(
             { onCheckedChange(!checked) }
         } else null,
         modifier = modifier,
-        helperText = helperText,
+        description = description,
         icon = icon,
         divider = divider,
         reversed = reversed,
@@ -113,7 +113,7 @@ fun OudsCheckboxItem(
  * checked, all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are
  * checked, the parent checkbox becomes an indeterminate checkbox.
  *
- * The **indeterminate checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text,
+ * The **indeterminate checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as description,
  * a divider, or an icon, allowing it to suit various use cases.
  *
  * The OUDS indeterminate checkbox item layout contains an [OudsTriStateCheckbox]. By clicking on an indeterminate checkbox item, the user changes the checked
@@ -134,7 +134,7 @@ fun OudsCheckboxItem(
  * @param onClick Callback invoked when checkbox item is being clicked, therefore the change of checkbox [ToggleableState] state is requested. If null, then
  * this is passive and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
- * @param helperText Optional text displayed below the label.
+ * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
@@ -154,7 +154,7 @@ fun OudsTriStateCheckboxItem(
     label: String,
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    helperText: String? = null,
+    description: String? = null,
     icon: OudsControlItemIcon? = null,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -165,7 +165,7 @@ fun OudsTriStateCheckboxItem(
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val checkboxItemState = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val checkboxItemState = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
     val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val toggleableModifier = if (onClick != null) {
@@ -184,7 +184,7 @@ fun OudsTriStateCheckboxItem(
     OudsControlItem(
         state = checkboxItemState,
         label = label,
-        helperText = helperText,
+        description = description,
         icon = icon,
         divider = divider,
         enabled = enabled,
@@ -192,7 +192,7 @@ fun OudsTriStateCheckboxItem(
         error = error,
         indicator = {
             OudsCheckboxIndicator(
-                state = checkboxItemState.toControlState(),
+                state = checkboxItemState,
                 value = state,
                 error = error != null
             )
@@ -226,12 +226,12 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
                 onClick = {},
-                helperText = helperText,
+                description = description,
                 divider = divider,
                 error = error,
                 reversed = reversed,
@@ -260,7 +260,7 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -274,15 +274,15 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsCheckboxItemWithLongHelperText() = PreviewOudsCheckboxItemWithLongHelperText(theme = getPreviewTheme())
+private fun PreviewOudsCheckboxItemWithLongDescription() = PreviewOudsCheckboxItemWithLongDescription(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsCheckboxItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+internal fun PreviewOudsCheckboxItemWithLongDescription(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsCheckboxItem(
         checked = true,
         label = "Label",
         onCheckedChange = {},
-        helperText = LoremIpsumText,
+        description = LoremIpsumText,
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
 }

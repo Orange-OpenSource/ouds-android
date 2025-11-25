@@ -68,7 +68,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                         }
                     },
                     label = label,
-                    helperText = helperText,
+                    description = description,
                     icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
                     divider = divider,
                     reversed = reversed,
@@ -101,7 +101,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                         }
                     },
                     label = label,
-                    helperText = helperText,
+                    description = description,
                     icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
                     divider = divider,
                     reversed = reversed,

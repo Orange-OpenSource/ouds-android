@@ -38,7 +38,7 @@ fun rememberCheckboxItemDemoState(
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
-    helperText: String? = null
+    description: String? = null
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
@@ -50,10 +50,10 @@ fun rememberCheckboxItemDemoState(
     error,
     errorMessage,
     label,
-    helperText,
+    description,
     saver = CheckboxItemDemoState.Saver
 ) {
-    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, errorMessage, label, helperText)
+    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, errorMessage, label, description)
 }
 
 class CheckboxItemDemoState(
@@ -67,8 +67,8 @@ class CheckboxItemDemoState(
     error: Boolean,
     errorMessage: String,
     label: String,
-    helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, helperText) {
+    description: String?
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, description) {
 
     companion object {
         val Saver = listSaver(
@@ -94,7 +94,7 @@ class CheckboxItemDemoState(
                         error,
                         errorMessage,
                         label,
-                        helperText
+                        description
                     )
                 }
             }

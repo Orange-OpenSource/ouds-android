@@ -26,7 +26,7 @@ open class ControlItemDemoState(
     error: Boolean,
     errorMessage: String,
     label: String,
-    helperText: String?
+    description: String?
 ) {
 
     companion object {
@@ -43,7 +43,7 @@ open class ControlItemDemoState(
                         error,
                         errorMessage,
                         label,
-                        helperText
+                        description
                     )
                 }
             },
@@ -71,7 +71,7 @@ open class ControlItemDemoState(
     var error: Boolean by mutableStateOf(error)
     var errorMessage: String by mutableStateOf(errorMessage)
     var label: String by mutableStateOf(label)
-    var helperText: String? by mutableStateOf(helperText)
+    var description: String? by mutableStateOf(description)
 
     val enabledSwitchEnabled: Boolean
         get() = !error

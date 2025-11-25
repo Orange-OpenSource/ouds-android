@@ -55,74 +55,74 @@ internal class OudsRadioButtonItemTest {
     }
 
     @Test
-    fun oudsRadioButtonItem_withHelperText_helperTextDisplayed() {
+    fun oudsRadioButtonItem_withDescription_descriptionDisplayed() {
         with(composeTestRule) {
-            val helperText = "Helper text"
+            val description = "Description"
 
             setOudsContent {
                 OudsRadioButtonItem(
                     selected = false,
                     label = "Label",
-                    helperText = helperText,
+                    description = description,
                     onClick = {}
                 )
             }
 
-            onNodeWithText(helperText).assertIsDisplayed()
+            onNodeWithText(description).assertIsDisplayed()
         }
     }
 
     @Test
-    fun oudsRadioButtonItem_withBlankHelperText_helperTextNotDisplayed() {
+    fun oudsRadioButtonItem_withBlankDescription_descriptionNotDisplayed() {
         with(composeTestRule) {
-            val helperText = "   "
+            val description = "   "
 
             setOudsContent {
                 OudsRadioButtonItem(
                     selected = false,
                     label = "Label",
-                    helperText = helperText,
+                    description = description,
                     onClick = {}
                 )
             }
 
-            onNodeWithText(helperText).assertIsNotDisplayed()
+            onNodeWithText(description).assertIsNotDisplayed()
         }
     }
 
     @Test
-    fun oudsRadioButtonItem_withAdditionalLabel_additionalLabelDisplayed() {
+    fun oudsRadioButtonItem_withExtraLabel_extraLabelDisplayed() {
         with(composeTestRule) {
-            val additionalLabel = "Additional label"
+            val extraLabel = "Extra label"
 
             setOudsContent {
                 OudsRadioButtonItem(
                     selected = false,
                     label = "Label",
-                    additionalLabel = additionalLabel,
+                    extraLabel = extraLabel,
                     onClick = {}
                 )
             }
 
-            onNodeWithText(additionalLabel).assertIsDisplayed()
+            onNodeWithText(extraLabel).assertIsDisplayed()
         }
     }
 
     @Test
-    fun oudsRadioButtonItem_withBlankAdditionalLabel_additionalLabelNotDisplayed() {
+    fun oudsRadioButtonItem_withBlankExtraLabel_extraLabelNotDisplayed() {
         with(composeTestRule) {
-            val additionalLabel = "   "
+            val extraLabel = "   "
 
             setOudsContent {
                 OudsRadioButtonItem(
                     selected = false,
                     label = "Label",
-                    additionalLabel = additionalLabel,
+                    extraLabel = extraLabel,
                     onClick = {}
                 )
             }
 
-            onNodeWithText(additionalLabel).assertIsNotDisplayed()
+            onNodeWithText(extraLabel).assertIsNotDisplayed()
         }
     }
 }

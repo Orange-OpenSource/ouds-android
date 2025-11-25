@@ -48,7 +48,7 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             checked = checked,
             label = label,
             onCheckedChange = { checked = it },
-            helperText = helperText,
+            description = description,
             icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
             divider = divider,
             reversed = reversed,

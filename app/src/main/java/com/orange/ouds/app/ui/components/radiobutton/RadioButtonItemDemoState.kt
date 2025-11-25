@@ -35,8 +35,8 @@ fun rememberRadioButtonItemDemoState(
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
-    additionalLabel: String? = null,
-    helperText: String? = null
+    extraLabel: String? = null,
+    description: String? = null
 ) = rememberSaveable(
     selectedValue,
     icon,
@@ -48,11 +48,11 @@ fun rememberRadioButtonItemDemoState(
     error,
     errorMessage,
     label,
-    additionalLabel,
-    helperText,
+    extraLabel,
+    description,
     saver = RadioButtonItemDemoState.Saver
 ) {
-    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, errorMessage, label, additionalLabel, helperText)
+    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, errorMessage, label, extraLabel, description)
 }
 
 class RadioButtonItemDemoState(
@@ -66,9 +66,9 @@ class RadioButtonItemDemoState(
     error: Boolean,
     errorMessage: String,
     label: String,
-    additionalLabel: String?,
-    helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, helperText) {
+    extraLabel: String?,
+    description: String?
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, description) {
 
     companion object {
         val values = listOf(1, 2)
@@ -78,7 +78,7 @@ class RadioButtonItemDemoState(
                     listOf(
                         selectedValue,
                         outlined,
-                        additionalLabel,
+                        extraLabel,
                         with(ControlItemDemoState.Saver) { save(state) }
                     )
                 }
@@ -98,7 +98,7 @@ class RadioButtonItemDemoState(
                         errorMessage,
                         label,
                         list[2] as String?,
-                        helperText
+                        description
                     )
                 }
             }
@@ -107,5 +107,5 @@ class RadioButtonItemDemoState(
 
     var selectedValue: Int by mutableIntStateOf(selectedValue)
     var outlined: Boolean by mutableStateOf(outlined)
-    var additionalLabel: String? by mutableStateOf(additionalLabel)
+    var extraLabel: String? by mutableStateOf(extraLabel)
 }
