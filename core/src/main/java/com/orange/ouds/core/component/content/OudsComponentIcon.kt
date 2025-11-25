@@ -33,7 +33,7 @@ import com.orange.ouds.foundation.extensions.orElse
 abstract class OudsComponentIcon<T, S> protected constructor(
     extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
-    private val contentDescription: String,
+    private val contentDescriptionProvider: @Composable (S) -> String,
     private val onClick: (() -> Unit)? = null,
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
@@ -42,7 +42,7 @@ abstract class OudsComponentIcon<T, S> protected constructor(
         graphicsObject: Any,
         contentDescription: String,
         onClick: (() -> Unit)? = null,
-    ) : this(extraParametersClass, { graphicsObject }, contentDescription, onClick)
+    ) : this(extraParametersClass, { graphicsObject }, { contentDescription }, onClick)
 
     protected open val tint: Color?
         @Composable
@@ -60,6 +60,7 @@ abstract class OudsComponentIcon<T, S> protected constructor(
     @Composable
     override fun Content(modifier: Modifier) {
         val iconTint = tint.orElse { LocalContentColor.current }
+        @Suppress("UNCHECKED_CAST") val contentDescription = contentDescriptionProvider(this as S)
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
                 is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription)
@@ -80,7 +81,6 @@ abstract class OudsComponentIcon<T, S> protected constructor(
                 is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
                 is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
                 is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-                else -> {}
             }
         }
     }

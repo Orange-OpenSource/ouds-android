@@ -356,7 +356,7 @@ const val OudsBadgeMaxCount = 99
  */
 open class OudsBadgeIcon internal constructor(
     graphicsObjectProvider: @Composable (OudsBadgeIcon) -> Any,
-) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(ExtraParameters::class.java, graphicsObjectProvider, "") {
+) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(ExtraParameters::class.java, graphicsObjectProvider, { "" }) {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(

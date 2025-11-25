@@ -18,6 +18,7 @@ import com.orange.ouds.foundation.InternalOudsApi
 @InternalOudsApi
 interface OudsDrawableResources {
     val component: Component
+    val functional: Functional
 
     interface Component {
         val alert: Alert
@@ -79,6 +80,24 @@ interface OudsDrawableResources {
         interface Tag {
             @get:DrawableRes
             val close: Int
+        }
+    }
+
+    interface Functional {
+        val actions: Actions
+        val navigation: Navigation
+
+        interface Actions {
+            @get:DrawableRes
+            val delete: Int
+        }
+
+        interface Navigation {
+            @get:DrawableRes
+            val formChevronLeft: Int
+
+            @get:DrawableRes
+            val menu: Int
         }
     }
 }
