@@ -86,7 +86,7 @@ import com.orange.ouds.theme.OudsThemeContract
  */
 val OudsNavigationBarHeight = 80.dp
 
-//TODO add DSM link when available:  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Navigation bar design guidelines**</a>
+//TODO update DSM link when available
 /**
  * The navigation bar lets people switch between UI views on smaller devices.
  * It offers a persistent and convenient way to switch between primary destinations in an app.
@@ -103,6 +103,10 @@ val OudsNavigationBarHeight = 80.dp
  * - Apply `hazeSource` Modifier on the content that scrolls behind the navigation bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.0.0
  *
  * @param items List of [OudsNavigationBarItem] to display in the navigation bar.
  * @param modifier [Modifier] applied to the navigation bar.

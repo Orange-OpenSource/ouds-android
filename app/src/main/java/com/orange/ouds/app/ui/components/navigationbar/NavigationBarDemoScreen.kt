@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui.components.navigationbar
 
 import android.content.Context
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -42,6 +41,7 @@ import com.orange.ouds.core.component.OudsNavigationBarItemBadge
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun NavigationBarDemoScreen() {
@@ -53,7 +53,8 @@ fun NavigationBarDemoScreen() {
         bottomSheetContent = { NavigationBarDemoBottomSheetContent(state = state) },
         codeSnippet = { navigationBarDemoCodeSnippet(state = state, context = context, themeDrawableResources = themeDrawableResources) },
         demoContent = { NavigationBarDemoContent(state = state) },
-        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none)
+        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
+        version = OudsVersion.Component.NavigationBar
     )
 }
 
@@ -143,11 +144,11 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
 }
 
 enum class NavigationBarItem(val iconResourceProvider: ThemeDrawableResourceProvider, @StringRes val labelRes: Int) {
-    Home( { it.home }, R.string.app_components_navigationBar_homeItem_label),
-    Notification( { it.notificationAlert }, R.string.app_components_navigationBar_notificationsItem_label),
-    Shop( { it.shop }, R.string.app_components_navigationBar_shopItem_label),
-    Account( { it.avatar }, R.string.app_components_navigationBar_accountItem_label),
-    Settings( { it.settings }, R.string.app_components_navigationBar_settingsItem_label),
+    Home({ it.home }, R.string.app_components_navigationBar_homeItem_label),
+    Notification({ it.notificationAlert }, R.string.app_components_navigationBar_notificationsItem_label),
+    Shop({ it.shop }, R.string.app_components_navigationBar_shopItem_label),
+    Account({ it.avatar }, R.string.app_components_navigationBar_accountItem_label),
+    Settings({ it.settings }, R.string.app_components_navigationBar_settingsItem_label),
 }
 
 @PreviewLightDark

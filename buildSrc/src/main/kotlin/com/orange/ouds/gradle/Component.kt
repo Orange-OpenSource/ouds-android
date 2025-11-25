@@ -22,6 +22,7 @@ enum class Component {
     Chip,
     Divider,
     Link,
+    NavigationBar,
     RadioButton,
     Switch,
     Tag,
@@ -36,6 +37,7 @@ enum class Component {
                 Component.Chip -> Chip
                 Component.Divider -> Divider
                 Component.Link -> Link
+                Component.NavigationBar -> NavigationBar
                 Component.RadioButton -> RadioButton
                 Component.Switch -> Switch
                 Component.Tag -> Tag
@@ -51,6 +53,7 @@ enum class Component {
             Component.Chip -> listOf("OudsFilterChip", "OudsSuggestionChip")
             Component.Divider -> listOf("OudsDivider")
             Component.Link -> listOf("OudsLink")
+            Component.NavigationBar -> listOf("OudsNavigationBar", "OudsTopAppBar")
             Component.RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
             Component.Switch -> listOf("OudsSwitch", "OudsSwitchItem")
             Component.Tag -> listOf("OudsTag", "OudsInputTag")

@@ -66,11 +66,15 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import kotlin.math.ceil
 
-//TODO add DSM link when available:  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS App bar design guidelines**</a>
+//TODO update DSM link when available
 /**
  * Top app bars display information and actions at the top of a screen.
  *
  * This small top app bar has slots for a title, navigation icon, and actions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.0.0
  *
  * @param title The title to be displayed in the top app bar.
  * @param modifier The [Modifier] to be applied to this top app bar.
@@ -118,11 +122,15 @@ fun OudsTopAppBar(
     )
 }
 
-//TODO add DSM link when available:  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS App bar design guidelines**</a>
+//TODO update DSM link when available
 /**
  * Top app bars display information and actions at the top of a screen.
  *
  * This small top app bar has a header title that is horizontally aligned to the center.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.0.0
  *
  * @param title The title to be displayed in the top app bar.
  * @param modifier The [Modifier] to be applied to this top app bar.
@@ -170,12 +178,16 @@ fun OudsCenterAlignedTopAppBar(
     )
 }
 
-//TODO add DSM link when available:  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS App bar design guidelines**</a>
+//TODO update DSM link when available
 /**
  * Top app bars display information and actions at the top of a screen.
  *
  * This medium top app bar has slots for a title, navigation icon, and actions. In its default expanded
  * state, the title is displayed in a second row under the navigation and actions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.0.0
  *
  * @param title The title to be displayed in the top app bar. This title will be used in the app
  *   bar's expanded and collapsed states, although in its collapsed state it will be composed with a
@@ -234,12 +246,16 @@ fun OudsMediumTopAppBar(
     )
 }
 
-//TODO add DSM link when available:  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS App bar design guidelines**</a>
+//TODO update DSM link when available
 /**
  * Top app bars display information and actions at the top of a screen.
  *
  * This LargeTopAppBar has slots for a title, navigation icon, and actions. In its default expanded
  * state, the title is displayed in a second row under the navigation and actions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.0.0
  *
  * @param title The title to be displayed in the top app bar. This title will be used in the app
  *   bar's expanded and collapsed states, although in its collapsed state it will be composed with a
