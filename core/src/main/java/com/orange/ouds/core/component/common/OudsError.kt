@@ -15,6 +15,6 @@ package com.orange.ouds.core.component.common
 /**
  * An OUDS error that take into account accessibility.
  *
- * @param description A mandatory localized description explaining the error for the accessibility services.
+ * @param message A mandatory localized message explaining the error.
  */
-class OudsError(val description: String)
+class OudsError(val message: String)

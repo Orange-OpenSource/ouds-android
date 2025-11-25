@@ -13,12 +13,25 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import com.orange.ouds.core.extensions.InteractionState
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 
 internal enum class OudsControlState {
-    Enabled, Hovered, Pressed, Disabled, Focused
+    Enabled, Hovered, Pressed, Disabled, Focused;
+
+    @Composable
+    fun errorColor(): Color = with(OudsTheme.colorScheme.action.negative) {
+        when (this@OudsControlState) {
+            Enabled -> enabled
+            Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
+            Hovered -> hover
+            Pressed -> pressed
+            Focused -> focus
+        }
+    }
 }
 
 @Composable

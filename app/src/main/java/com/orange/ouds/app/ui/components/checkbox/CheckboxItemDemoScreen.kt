@@ -16,9 +16,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
@@ -56,7 +54,8 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
 private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
         Column {
-            CheckboxIdentifier.entries.forEach { identifier ->
+            CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
+                val isLastItem = index == CheckboxIdentifier.entries.lastIndex
                 OudsCheckboxItem(
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first
@@ -75,7 +74,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null
                 )
             }
         }
@@ -86,7 +85,8 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
 private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
         Column {
-            CheckboxIdentifier.entries.forEach { identifier ->
+            CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
+                val isLastItem = index == CheckboxIdentifier.entries.lastIndex
                 OudsTriStateCheckboxItem(
                     state = when (identifier) {
                         CheckboxIdentifier.First -> toggleableStateValues.first
@@ -107,7 +107,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null
                 )
             }
         }

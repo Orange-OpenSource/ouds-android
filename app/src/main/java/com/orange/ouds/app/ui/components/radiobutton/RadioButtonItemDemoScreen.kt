@@ -61,7 +61,7 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
                     onCheckedChange = { outlined = it },
                 )
             },
-            controlItemCustomization(8) {
+            controlItemCustomization(9) {
                 CustomizationTextField(
                     label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
                     value = additionalLabel.orEmpty(),
@@ -77,7 +77,8 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
 private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
     with(state) {
         Column(modifier = Modifier.selectableGroup()) {
-            RadioButtonItemDemoState.values.forEach { radioButtonValue ->
+            RadioButtonItemDemoState.values.forEachIndexed { index, radioButtonValue ->
+                val isLastItem = index == RadioButtonItemDemoState.values.lastIndex
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
@@ -90,7 +91,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null
                 )
             }
         }

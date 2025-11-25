@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -133,9 +132,9 @@ fun OudsRadioButtonItem(
         indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.End else OudsControlItemIndicatorPosition.Start,
         checkedContentComponentName = "OudsRadioButtonItem",
         checkedContentSelectionStatus = if (selected) "Selected" else "Unselected",
+        backgroundColor = backgroundColor.value,
         modifier = modifier
             .then(selectableModifier)
-            .background(color = backgroundColor.value)
             .border(outlined = outlined, selected = selected, error = error, state = state)
             .semantics(mergeDescendants = true) {},
         handleHighContrastMode = true
@@ -146,7 +145,7 @@ fun OudsRadioButtonItem(
 private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlItemState): Modifier {
     val borderColor = outlineBorderColor(state, selected, error)
     val width = OudsTheme.borders.width.default.takeUnlessHairline
-    
+
     return if (outlined && borderColor != null && width != null) {
         border(width = width, color = borderColor)
     } else {

@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -125,9 +124,9 @@ fun OudsSwitchItem(
         indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.Start else OudsControlItemIndicatorPosition.End,
         checkedContentComponentName = "OudsSwitchItem",
         checkedContentSelectionStatus = if (checked) "Selected" else "Unselected",
+        backgroundColor = backgroundColor.value,
         modifier = modifier
             .then(toggleableModifier)
-            .background(color = backgroundColor.value)
             .semantics(mergeDescendants = true) {}
     )
 }

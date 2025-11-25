@@ -15,9 +15,7 @@ package com.orange.ouds.app.ui.components.switch
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.utilities.Code
@@ -56,7 +54,7 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             reversed = reversed,
             enabled = enabled,
             readOnly = readOnly,
-            error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+            error = if (error) OudsError(errorMessage) else null
         )
     }
 }
@@ -68,7 +66,7 @@ private fun Code.Builder.switchItemDemoCodeSnippet(state: SwitchItemDemoState, t
             lambdaArgument("onCheckedChange") {
                 comment("Change state")
             }
-            controlItemArguments(state, themeDrawableResources)
+            controlItemArguments(state, themeDrawableResources, true)
         }
     }
 }

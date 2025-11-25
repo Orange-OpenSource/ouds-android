@@ -108,6 +108,7 @@
     <string name="app_components_common_color_label">اللون</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label">خطأ</string>
+    <string name="app_components_common_errorMessage_label">Error description</string>
     <string name="app_components_common_helperText_label">نص المساعدة</string>
     <string name="app_components_common_icon_a11y">أيقون</string>
     <string name="app_components_common_iconOnlyLayout_label">رمز فقط</string>
@@ -230,7 +231,6 @@
     <string name="app_components_textInput_prefix_label">Prefix</string>
     <string name="app_components_textInput_suffix_label">Suffix</string>
     <string name="app_components_textInput_placeholder_label">Placeholder</string>
-    <string name="app_components_textInput_errorDescription_label">Error description</string>
     <string name="app_components_textInput_helperLink_label">Helper link</string>
 
     <!-- About -->

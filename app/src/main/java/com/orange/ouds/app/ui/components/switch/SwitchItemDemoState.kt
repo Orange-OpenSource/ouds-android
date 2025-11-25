@@ -31,10 +31,11 @@ fun rememberSwitchItemDemoState(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
+    errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     text: String = stringResource(id = R.string.app_components_common_label_label),
     helperText: String? = null
-) = rememberSaveable(checked, icon, divider, reversed, enabled, readOnly, error, text, helperText, saver = SwitchItemDemoState.Saver) {
-    SwitchItemDemoState(checked, icon, divider, reversed, enabled, readOnly, error, text, helperText)
+) = rememberSaveable(checked, icon, divider, reversed, enabled, readOnly, error, errorMessage, text, helperText, saver = SwitchItemDemoState.Saver) {
+    SwitchItemDemoState(checked, icon, divider, reversed, enabled, readOnly, error, errorMessage, text, helperText)
 }
 
 class SwitchItemDemoState(
@@ -45,9 +46,10 @@ class SwitchItemDemoState(
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
+    errorMessage: String,
     text: String,
     helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, text, helperText) {
+) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, text, helperText) {
 
     companion object {
 
@@ -69,6 +71,7 @@ class SwitchItemDemoState(
                         enabled,
                         readOnly,
                         error,
+                        errorMessage,
                         label,
                         helperText
                     )
