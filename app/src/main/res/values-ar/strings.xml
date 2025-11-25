@@ -105,6 +105,7 @@
 
     <!-- Components -->
     <string name="app_components_common_appearance_label">التسلسل</string>
+    <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
     <string name="app_components_common_color_label">اللون</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label">خطأ</string>
