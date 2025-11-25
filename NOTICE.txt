@@ -112,6 +112,9 @@ theme-orange/src/main/res/drawable/ic_orange_link_previous.xml
 theme-orange/src/main/res/drawable/ic_orange_radio_button_selected.xml
 theme-orange/src/main/res/drawable/ic_orange_switch_selected.xml
 theme-orange/src/main/res/drawable/ic_orange_tag_close.xml
+theme-orange/src/main/res/drawable/ic_orange_top_app_bar_delete.xml
+theme-orange/src/main/res/drawable/ic_orange_top_app_bar_form_chevron_left.xml
+theme-orange/src/main/res/drawable/ic_orange_top_app_bar_menu.xml
 
 theme-sosh/src/main/res/drawable/ic_sosh_alert_important.xml
 theme-sosh/src/main/res/drawable/ic_sosh_alert_information.xml
@@ -126,6 +129,9 @@ theme-sosh/src/main/res/drawable/ic_sosh_link_previous.xml
 theme-sosh/src/main/res/drawable/ic_sosh_radio_button_selected.xml
 theme-sosh/src/main/res/drawable/ic_sosh_switch_selected.xml
 theme-sosh/src/main/res/drawable/ic_sosh_tag_close.xml
+theme-sosh/src/main/res/drawable/ic_sosh_top_app_bar_delete.xml
+theme-sosh/src/main/res/drawable/ic_sosh_top_app_bar_form_chevron_left.xml
+theme-sosh/src/main/res/drawable/ic_sosh_top_app_bar_menu.xml
 theme-sosh/src/main/res/font/sosh_black.ttf
 theme-sosh/src/main/res/font/sosh_bold.ttf
 theme-sosh/src/main/res/font/sosh_medium.ttf
@@ -145,6 +151,9 @@ theme-wireframe/src/main/res/drawable/ic_wireframe_link_previous.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_radio_button_selected.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_switch_selected.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_tag_close.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_top_app_bar_delete.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_top_app_bar_form_chevron_left.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_top_app_bar_menu.xml
 
 End of the parts list under Orange SA Copyright
 

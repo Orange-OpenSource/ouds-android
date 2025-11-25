@@ -33,6 +33,12 @@ interface OudsDrawableResources {
         @DrawableRes get
     val chipTick: Int
         @DrawableRes get
+    val topAppBarDelete: Int
+        @DrawableRes get
+    val topAppBarFormChevronLeft: Int
+        @DrawableRes get
+    val topAppBarMenu: Int
+        @DrawableRes get
     val linkNext: Int
         @DrawableRes get
     val linkPrevious: Int

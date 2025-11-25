@@ -414,7 +414,7 @@ internal enum class OudsNavigationBarItemState {
 @PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
+private fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
     PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount)
 }
 
@@ -422,7 +422,7 @@ internal fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreview
 @Preview(name = "Dark", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
+private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
     PreviewOudsNavigationBarItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), selected = selected)
 }
 

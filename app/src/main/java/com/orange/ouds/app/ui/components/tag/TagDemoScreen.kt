@@ -40,7 +40,7 @@ import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
-import com.orange.ouds.core.component.OudsTagIcon
+import com.orange.ouds.core.component.OudsTagAsset
 import com.orange.ouds.core.component.OudsTagLoader
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
@@ -155,7 +155,7 @@ private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
             val loader = if (hasLoader) OudsTagLoader(null) else null
-            val customIcon = OudsTagIcon.Custom(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
+            val icon = OudsTagAsset.Icon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
             val alpha = if (visible) 1f else 0f
             OudsTag(
                 modifier = Modifier.alpha(alpha),
@@ -164,33 +164,33 @@ private fun TagDemoContent(state: TagDemoState) {
                 status = when (status) {
                     is OudsTagStatus.Neutral -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Neutral()
-                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Neutral(icon = OudsTagIcon.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Neutral(icon = customIcon)
+                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Neutral(asset = OudsTagAsset.Bullet)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Neutral(asset = icon)
                     }
                     is OudsTagStatus.Accent -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Accent()
-                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Accent(icon = OudsTagIcon.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Accent(icon = customIcon)
+                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Accent(asset = OudsTagAsset.Bullet)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Accent(asset = icon)
                     }
                     is OudsTagStatus.Positive -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Positive()
-                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Positive(icon = OudsTagIcon.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Positive(icon = OudsTagIcon.Default)
+                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Positive(asset = OudsTagAsset.Bullet)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Positive(asset = OudsTagAsset.Icon.Default)
                     }
                     is OudsTagStatus.Warning -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Warning()
-                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Warning(icon = OudsTagIcon.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Warning(icon = OudsTagIcon.Default)
+                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Warning(asset = OudsTagAsset.Bullet)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Warning(asset = OudsTagAsset.Icon.Default)
                     }
                     is OudsTagStatus.Negative -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Negative()
-                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Negative(icon = OudsTagIcon.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Negative(icon = OudsTagIcon.Default)
+                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Negative(asset = OudsTagAsset.Bullet)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Negative(asset = OudsTagAsset.Icon.Default)
                     }
                     is OudsTagStatus.Info -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Info()
-                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Info(icon = OudsTagIcon.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Info(icon = OudsTagIcon.Default)
+                        TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Info(asset = OudsTagAsset.Bullet)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Info(asset = OudsTagAsset.Icon.Default)
                     }
                 },
                 size = size,
@@ -218,15 +218,15 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
             functionCallArgument("status", status::class.java.nestedName) {
                 when (layout) {
                     TagDemoState.Layout.TextOnly -> {}
-                    TagDemoState.Layout.TextAndBullet -> typedArgument("icon", OudsTagIcon.Bullet)
+                    TagDemoState.Layout.TextAndBullet -> typedArgument("asset", OudsTagAsset.Bullet)
                     TagDemoState.Layout.TextAndIcon -> {
                         when (status) {
                             is OudsTagStatus.Neutral, is OudsTagStatus.Accent ->
-                                constructorCallArgument<OudsTagIcon.Custom>("icon") {
+                                constructorCallArgument<OudsTagAsset.Icon>("asset") {
                                     painterArgument(themeDrawableResources.tipsAndTricks)
                                 }
                             is OudsTagStatus.Positive, is OudsTagStatus.Warning, is OudsTagStatus.Info, is OudsTagStatus.Negative ->
-                                typedArgument("icon", OudsTagIcon.Default)
+                                typedArgument("asset", OudsTagAsset.Icon.Default)
                         }
                     }
                 }

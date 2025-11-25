@@ -23,6 +23,9 @@ internal class WireframeDrawableResources : OudsDrawableResources {
     override val checkboxIndeterminate: Int = R.drawable.ic_wireframe_checkbox_indeterminate
     override val checkboxSelected: Int = R.drawable.ic_wireframe_checkbox_selected
     override val chipTick: Int = R.drawable.ic_wireframe_chip_tick
+    override val topAppBarDelete: Int = R.drawable.ic_wireframe_top_app_bar_delete
+    override val topAppBarFormChevronLeft: Int = R.drawable.ic_wireframe_top_app_bar_form_chevron_left
+    override val topAppBarMenu: Int = R.drawable.ic_wireframe_top_app_bar_menu
     override val linkNext: Int = R.drawable.ic_wireframe_link_next
     override val linkPrevious: Int = R.drawable.ic_wireframe_link_previous
     override val radioButtonSelected: Int = R.drawable.ic_wireframe_radio_button_selected
