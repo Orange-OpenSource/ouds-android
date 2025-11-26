@@ -41,6 +41,7 @@ import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
@@ -146,7 +147,7 @@ fun CustomizationTextField(
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
-    var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value)) }
+    var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value, selection = TextRange(value.length))) }
 
     CustomizationTextField(
         label = label,
