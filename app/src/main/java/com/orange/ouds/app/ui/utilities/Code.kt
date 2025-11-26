@@ -99,21 +99,23 @@ data class Comment(val text: String, val isMultiline: Boolean) : Formattable {
 data class FunctionCall(val name: String, val elements: List<Formattable>, val isMultiline: Boolean, val trailingLambda: Boolean) : Formattable {
 
     override fun format(context: Context): String {
-        val isMultiline = isMultiline && elements.isNotEmpty()
-        val elementSeparator = if (isMultiline) "\n" else " "
         val lambda = elements.lastOrNull()?.asOrNull<Argument<*>>()?.value?.asOrNull<Lambda>().takeIf { trailingLambda }
         val elements = if (lambda != null) elements.dropLast(1) else elements
+        val isMultiline = isMultiline && elements.isNotEmpty()
+        val elementSeparator = if (isMultiline) "\n" else " "
         val formattedElements = elements.joinToString(elementSeparator) { codeFormattable ->
             val elementSuffix = if (codeFormattable is Argument<*>) "," else ""
             "${codeFormattable.format(context)}$elementSuffix"
         }
             .removeSuffix(",")
             .run { if (isMultiline) prependIndent(CODE_INDENT) else this }
+        val openingParenthesis = if (elements.isEmpty() && trailingLambda) "" else "("
+        val closingParenthesis = if (elements.isEmpty() && trailingLambda) "" else ")"
         val parenthesisSeparator = if (isMultiline) "\n" else ""
 
         val formattedLambda = if (lambda != null) " ${lambda.format(context)}" else ""
 
-        return "$name($parenthesisSeparator$formattedElements$parenthesisSeparator)$formattedLambda"
+        return "$name$openingParenthesis$parenthesisSeparator$formattedElements$parenthesisSeparator$closingParenthesis$formattedLambda"
     }
 
     @CodeDslMarker

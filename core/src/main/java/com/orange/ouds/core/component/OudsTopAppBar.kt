@@ -29,6 +29,7 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Text
@@ -36,6 +37,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,8 +48,13 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -110,7 +117,8 @@ fun OudsTopAppBar(
         title = {
             Title(
                 title = title,
-                type = OudsTopAppBarType.Small
+                size = OudsTopAppBarSize.Small,
+                centerAligned = false
             )
         },
         modifier = modifier,
@@ -166,7 +174,8 @@ fun OudsCenterAlignedTopAppBar(
         title = {
             Title(
                 title = title,
-                type = OudsTopAppBarType.CenterAligned
+                size = OudsTopAppBarSize.Small,
+                centerAligned = true
             )
         },
         modifier = modifier,
@@ -233,7 +242,8 @@ fun OudsMediumTopAppBar(
         title = {
             Title(
                 title = title,
-                type = OudsTopAppBarType.Medium
+                size = OudsTopAppBarSize.Medium,
+                centerAligned = false
             )
         },
         modifier = modifier,
@@ -301,7 +311,8 @@ fun OudsLargeTopAppBar(
         title = {
             Title(
                 title = title,
-                type = OudsTopAppBarType.Large
+                size = OudsTopAppBarSize.Large,
+                centerAligned = false
             )
         },
         modifier = modifier,
@@ -315,9 +326,9 @@ fun OudsLargeTopAppBar(
 }
 
 @Composable
-private fun Title(title: String, type: OudsTopAppBarType) {
-    Column(horizontalAlignment = if (type == OudsTopAppBarType.CenterAligned) Alignment.CenterHorizontally else Alignment.Start) {
-        val maxLines = if (type in listOf(OudsTopAppBarType.Small, OudsTopAppBarType.CenterAligned)) 1 else Int.MAX_VALUE
+private fun Title(title: String, size: OudsTopAppBarSize, centerAligned: Boolean) {
+    Column(horizontalAlignment = if (centerAligned) Alignment.CenterHorizontally else Alignment.Start) {
+        val maxLines = if (size == OudsTopAppBarSize.Small) 1 else Int.MAX_VALUE
         Text(
             text = title,
             maxLines = maxLines,
@@ -477,7 +488,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         private val monogramColor: Color?,
         private val monogramBackgroundColor: Color?,
         private val contentDescription: String,
-        private val onClick: () -> Unit
+        private val onClick: (() -> Unit)?
     ) : OudsTopAppBarAction, OudsComponentContent<Nothing>(Nothing::class.java) {
 
         /**
@@ -490,7 +501,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         constructor(
             painter: Painter,
             contentDescription: String,
-            onClick: () -> Unit
+            onClick: (() -> Unit)?
         ) : this(painter as Any, null, null, null, contentDescription, onClick)
 
         /**
@@ -503,7 +514,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            onClick: () -> Unit
+            onClick: (() -> Unit)?
         ) : this(imageVector as Any, null, null, null, contentDescription, onClick)
 
         /**
@@ -516,7 +527,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            onClick: () -> Unit
+            onClick: (() -> Unit)?
         ) : this(bitmap as Any, null, null, null, contentDescription, onClick)
 
         /**
@@ -533,37 +544,59 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
             color: Color,
             backgroundColor: Color,
             contentDescription: String,
-            onClick: () -> Unit
+            onClick: (() -> Unit)?
         ) : this(null, monogram, color, backgroundColor, contentDescription, onClick)
 
         @Composable
         override fun Content(modifier: Modifier) {
-            Box(
-                modifier = Modifier
-                    .size(48.dp)
-                    .clickable(onClick = onClick),
-                contentAlignment = Alignment.Center
-            ) {
-                val modifier = Modifier
-                    .clip(CircleShape)
-                    .size(32.dp)
-                if (graphicsObject != null) {
-                    when (graphicsObject) {
-                        is Painter -> Image(modifier = modifier, painter = graphicsObject, contentDescription = contentDescription)
-                        is ImageVector -> Image(modifier = modifier, imageVector = graphicsObject, contentDescription = contentDescription)
-                        is ImageBitmap -> Image(modifier = modifier, bitmap = graphicsObject, contentDescription = contentDescription)
-                    }
-                } else if (monogram != null && monogramColor != null && monogramBackgroundColor != null) {
-                    Box(
-                        modifier = modifier.background(monogramBackgroundColor),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = monogram.take(2).uppercase(),
-                            color = monogramColor,
-                            style = MaterialTheme.typography.titleMedium, // This looks like the most accurate style according to Material specs at https://m3.material.io/components/app-bars/specs#606c6564-ce7d-489d-8852-af2b3b478bc6
-                            fontFamily = OudsTheme.typography.fontFamily
-                        )
+            CompositionLocalProvider(LocalRippleConfiguration provides null) {
+                Box(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .run { if (onClick != null) clickable(onClick = onClick, role = Role.Button) else this }
+                        .semantics(mergeDescendants = true) {
+                            contentDescription = this@Avatar.contentDescription
+                        },
+                    contentAlignment = Alignment.Center
+                ) {
+                    val modifier = Modifier
+                        .clip(CircleShape)
+                        .size(32.dp)
+                    val contentScale = ContentScale.Crop
+                    if (graphicsObject != null) {
+                        when (graphicsObject) {
+                            is Painter -> Image(
+                                modifier = modifier,
+                                painter = graphicsObject,
+                                contentDescription = null,
+                                contentScale = contentScale
+                            )
+                            is ImageVector -> Image(
+                                modifier = modifier,
+                                imageVector = graphicsObject,
+                                contentDescription = null,
+                                contentScale = contentScale
+                            )
+                            is ImageBitmap -> Image(
+                                modifier = modifier,
+                                bitmap = graphicsObject,
+                                contentDescription = null,
+                                contentScale = contentScale
+                            )
+                        }
+                    } else if (monogram != null && monogramColor != null && monogramBackgroundColor != null) {
+                        Box(
+                            modifier = modifier.background(monogramBackgroundColor),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                modifier = Modifier.clearAndSetSemantics {},
+                                text = monogram.take(2).uppercase(),
+                                color = monogramColor,
+                                style = MaterialTheme.typography.titleMedium, // This looks like the most accurate style according to Material specs at https://m3.material.io/components/app-bars/specs#606c6564-ce7d-489d-8852-af2b3b478bc6
+                                fontFamily = OudsTheme.typography.fontFamily
+                            )
+                        }
                     }
                 }
             }
@@ -571,9 +604,9 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
     }
 }
 
-private enum class OudsTopAppBarType {
+private enum class OudsTopAppBarSize {
 
-    Small, CenterAligned, Medium, Large
+    Small, Medium, Large
 }
 
 @PreviewLightDark

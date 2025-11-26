@@ -236,6 +236,22 @@
     <string name="app_components_textInput_placeholder_label">Placeholder</string>
     <string name="app_components_textInput_helperLink_label">Helper link</string>
 
+    <!-- Components: top app bar -->
+    <string name="app_components_topAppBar_label">Top app bar</string>
+    <string name="app_components_topAppBar_description_text">Top app bars display information and actions at the top of a screen.</string> <!--TODO update with OUDS description-->
+    <string name="app_components_topAppBar_firstAction_a11y">First action</string>
+    <string name="app_components_topAppBar_secondAction_a11y">Second action</string>
+    <string name="app_components_topAppBar_smallSize_label">Small</string>
+    <string name="app_components_topAppBar_mediumSize_label">Medium</string>
+    <string name="app_components_topAppBar_largeSize_label">Large</string>
+    <string name="app_components_topAppBar_centerAligned_label">Center aligned</string>
+    <string name="app_components_topAppBar_navigationIcon_label">Navigation icon</string>
+    <string name="app_components_topAppBar_title_label">Title</string>
+    <string name="app_components_topAppBar_avatar_label">Avatar</string>
+    <string name="app_components_topAppBar_imageAvatar_label">Image</string>
+    <string name="app_components_topAppBar_monogramAvatar_label">Monogram</string>
+    <string name="app_components_topAppBar_avatarMonogram_label">Avatar monogram</string>
+
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
     <plurals name="app_about_issues_label">

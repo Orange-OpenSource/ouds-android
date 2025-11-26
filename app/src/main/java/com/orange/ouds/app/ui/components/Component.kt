@@ -33,6 +33,7 @@ import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
 import com.orange.ouds.app.ui.components.tag.InputTagDemoScreen
 import com.orange.ouds.app.ui.components.tag.TagDemoScreen
 import com.orange.ouds.app.ui.components.textinput.TextInputDemoScreen
+import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoScreen
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -134,6 +135,13 @@ sealed class Component(
         R.string.app_components_textInput_description_text,
         { TextInputIllustration() },
         demoScreen = { TextInputDemoScreen() }
+    )
+
+    data object TopAppBar : Component(
+        R.string.app_components_topAppBar_label,
+        R.string.app_components_topAppBar_description_text,
+        { TopAppBarIllustration() },
+        demoScreen = { TopAppBarDemoScreen() }
     )
 }
 

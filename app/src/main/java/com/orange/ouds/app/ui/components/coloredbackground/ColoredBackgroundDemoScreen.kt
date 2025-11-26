@@ -126,18 +126,23 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
             trailingLambda = true
             typedArgument("color", color)
             lambdaArgument(null) {
-                functionCall("Text") {
-                    typedArgument("text", color.name.toSentenceCase())
-                    rawArgument("color", "OudsTheme.colorScheme.content.default")
-                }
-                functionCall("OudsButton") {
-                    labelArgument(R.string.app_components_button_label)
-                    onClickArgument {}
-                }
-                functionCall("OudsLink") {
-                    labelArgument(R.string.app_components_link_label)
-                    typedArgument("arrow", OudsLinkArrow.Next)
-                    onClickArgument {}
+                functionCall("Column") {
+                    trailingLambda = true
+                    lambdaArgument(null) {
+                        functionCall("Text") {
+                            typedArgument("text", color.name.toSentenceCase())
+                            rawArgument("color", "OudsTheme.colorScheme.content.default")
+                        }
+                        functionCall("OudsButton") {
+                            labelArgument(R.string.app_components_button_label)
+                            onClickArgument {}
+                        }
+                        functionCall("OudsLink") {
+                            labelArgument(R.string.app_components_link_label)
+                            typedArgument("arrow", OudsLinkArrow.Next)
+                            onClickArgument {}
+                        }
+                    }
                 }
             }
         }
