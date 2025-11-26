@@ -33,6 +33,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsNavigationBar
@@ -40,7 +41,6 @@ import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemBadge
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -153,6 +153,6 @@ enum class NavigationBarItem(val iconResourceProvider: ThemeDrawableResourceProv
 
 @PreviewLightDark
 @Composable
-private fun PreviewNavigationBarDemoScreen() = OudsPreview {
+private fun PreviewNavigationBarDemoScreen() = AppPreview {
     NavigationBarDemoScreen()
 }
