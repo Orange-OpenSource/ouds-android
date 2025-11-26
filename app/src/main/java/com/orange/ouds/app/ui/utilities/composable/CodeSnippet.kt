@@ -45,7 +45,6 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.orange.OrangeTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -105,7 +104,7 @@ private fun copyCodeToClipboard(context: Context, code: String, clipboard: Clipb
 
 @PreviewLightDark
 @Composable
-internal fun PreviewCodeSnippet() = OudsPreview {
+internal fun PreviewCodeSnippet() = AppPreview {
     CodeSnippet {
         comment("Apply Orange theme")
         functionCall("OudsTheme") {

@@ -32,6 +32,7 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -42,7 +43,6 @@ import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkArrow
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun ColoredBackgroundDemoScreen() {
@@ -146,6 +146,6 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
 
 @PreviewLightDark
 @Composable
-private fun PreviewColoredBackgroundDemoScreen() = OudsPreview {
+private fun PreviewColoredBackgroundDemoScreen() = AppPreview {
     ColoredBackgroundDemoScreen()
 }

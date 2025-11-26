@@ -30,7 +30,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.priorityClickable
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 /**
  * Temporary large card used by the demo app
@@ -74,7 +73,7 @@ fun LargeCard(
 
 @PreviewLightDark
 @Composable
-private fun PreviewLargeCard() = OudsPreview {
+private fun PreviewLargeCard() = AppPreview {
     LargeCard(
         title = "Title",
         illustration = { ImageIllustration(imageRes = R.drawable.ic_filter_effects) },

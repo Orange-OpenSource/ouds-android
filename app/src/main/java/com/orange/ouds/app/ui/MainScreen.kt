@@ -51,8 +51,8 @@ import androidx.navigation.compose.NavHost
 import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
@@ -196,7 +196,7 @@ private fun setApplicationNightModeEnabled(night: Boolean, context: Context) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewMainScreen() = OudsPreview {
+private fun PreviewMainScreen() = AppPreview {
     // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which does not work in Compose previews
     // See https://issuetracker.google.com/issues/240601093
     MainScreen(

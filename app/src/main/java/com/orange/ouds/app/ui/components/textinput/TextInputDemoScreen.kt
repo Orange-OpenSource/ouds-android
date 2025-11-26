@@ -25,6 +25,7 @@ import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -34,7 +35,6 @@ import com.orange.ouds.core.component.OudsTextInputLeadingIcon
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -220,6 +220,6 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
 
 @PreviewLightDark
 @Composable
-private fun PreviewTextInputDemoScreen() = OudsPreview {
+private fun PreviewTextInputDemoScreen() = AppPreview {
     TextInputDemoScreen()
 }

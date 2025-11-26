@@ -22,10 +22,10 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSwitch
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -85,6 +85,6 @@ private fun Code.Builder.switchDemoCodeSnippet(state: SwitchDemoState) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewSwitchDemoScreen() = OudsPreview {
+private fun PreviewSwitchDemoScreen() = AppPreview {
     SwitchDemoScreen()
 }

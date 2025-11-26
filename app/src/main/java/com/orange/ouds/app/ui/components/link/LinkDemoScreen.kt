@@ -26,6 +26,7 @@ import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
@@ -34,7 +35,6 @@ import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkArrow
 import com.orange.ouds.core.component.OudsLinkIcon
 import com.orange.ouds.core.component.OudsLinkSize
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -155,6 +155,6 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
 
 @PreviewLightDark
 @Composable
-private fun PreviewLinkDemoScreen() = OudsPreview {
+private fun PreviewLinkDemoScreen() = AppPreview {
     LinkDemoScreen()
 }

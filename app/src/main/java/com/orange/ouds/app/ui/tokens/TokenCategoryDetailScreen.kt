@@ -61,6 +61,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
@@ -68,7 +69,6 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsTypography
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -307,7 +307,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
 @Composable
 private fun PreviewTokenCategoryDetailScreen(
     @PreviewParameter(TokenCategoryDetailScreenPreviewParameterProvider::class) parameter: TokenCategory<*>
-) = OudsPreview {
+) = AppPreview {
     TokenCategoryDetailScreen(parameter) {}
 }
 

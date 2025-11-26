@@ -37,8 +37,8 @@ import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 
 @Composable
@@ -135,7 +135,7 @@ private fun ChangeModeAction(onClick: (TopBarAction) -> Unit) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewTopBar() = OudsPreview {
+private fun PreviewTopBar() = AppPreview {
     TopBar(
         showNavigationIcon = true,
         title = "Title",

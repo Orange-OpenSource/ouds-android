@@ -23,10 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.declaredMemberProperties
 
@@ -101,6 +101,6 @@ private inline fun <reified T : Any> getVersions(): List<Version> {
 
 @PreviewLightDark
 @Composable
-fun PreviewVersionsScreen() = OudsPreview {
+fun PreviewVersionsScreen() = AppPreview {
     AboutVersionsScreen()
 }

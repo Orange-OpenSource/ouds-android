@@ -38,11 +38,11 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier: Modifier = Modifier, visible: Boolean = true) {
@@ -88,6 +88,6 @@ enum class BottomBarItem(
 
 @PreviewLightDark
 @Composable
-private fun PreviewBottomBar() = OudsPreview {
+private fun PreviewBottomBar() = AppPreview {
     BottomBar(currentRoute = "", navigateToRoute = {})
 }

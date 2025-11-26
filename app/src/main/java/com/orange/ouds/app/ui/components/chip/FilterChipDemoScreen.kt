@@ -17,9 +17,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsFilterChip
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -85,6 +85,6 @@ private fun Code.Builder.filterChipDemoCodeSnippet(state: FilterChipDemoState, t
 
 @PreviewLightDark
 @Composable
-private fun PreviewFilterChipDemoScreen() = OudsPreview {
+private fun PreviewFilterChipDemoScreen() = AppPreview {
     FilterChipDemoScreen()
 }
