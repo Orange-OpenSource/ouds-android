@@ -40,6 +40,8 @@ private fun OudsEffects.fromToken(token: OudsEffectKeyToken): Int {
 
 /**
  * Converts an OUDS effect token to the local effect value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsEffectKeyToken.value: Int

@@ -1514,6 +1514,8 @@ val OudsMaterialColorTokens.materialDarkColorScheme: ColorScheme
 
 /**
  * Converts an OUDS color token to the local color value provided by the theme.
+ *
+ * @suppress
  */
 @Suppress("RecursivePropertyAccessor")
 @InternalOudsApi

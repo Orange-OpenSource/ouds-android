@@ -52,6 +52,8 @@ private fun OudsGrids.fromToken(token: OudsGridKeyToken): Dp {
 /**
  * Converts an OUDS grid token to the local grid value provided by the theme.
  * Note that grid token value returned varies depending on the window size.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsGridKeyToken.value: Dp

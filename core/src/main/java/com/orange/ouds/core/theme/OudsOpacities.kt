@@ -61,6 +61,8 @@ private fun OudsOpacities.fromToken(token: OudsOpacityKeyToken): Float {
 
 /**
  * Converts an OUDS opacity token to the local opacity value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsOpacityKeyToken.value: Float

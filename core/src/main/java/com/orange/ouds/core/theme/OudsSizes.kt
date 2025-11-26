@@ -385,6 +385,11 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
     }
 }
 
+/**
+ * Converts an OUDS size token to the local size value provided by the theme.
+ *
+ * @suppress
+ */
 @InternalOudsApi
 val OudsSizeKeyToken.value: Dp
     @Composable

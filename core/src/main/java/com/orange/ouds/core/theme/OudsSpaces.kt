@@ -337,6 +337,8 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
 
 /**
  * Converts an OUDS space token to the local space value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsSpaceKeyToken.value: Dp

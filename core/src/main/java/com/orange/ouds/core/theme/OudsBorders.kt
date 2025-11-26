@@ -134,6 +134,8 @@ private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Style): OudsBorderSt
 
 /**
  * Converts an OUDS border radius token to the local border radius value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsBorderKeyToken.Radius.value: Dp
@@ -143,6 +145,8 @@ val OudsBorderKeyToken.Radius.value: Dp
 
 /**
  * Converts an OUDS border style token to the local [OudsBorderStyle] value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsBorderKeyToken.Style.value: OudsBorderStyle
@@ -152,6 +156,8 @@ val OudsBorderKeyToken.Style.value: OudsBorderStyle
 
 /**
  * Converts an OUDS border width token to the local border width value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsBorderKeyToken.Width.value: Dp

@@ -56,6 +56,8 @@ private fun OudsElevations.fromToken(token: OudsElevationKeyToken): Dp {
 
 /**
  * Converts an OUDS elevation token to the local elevation value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsElevationKeyToken.value: Dp
