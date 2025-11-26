@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
@@ -186,6 +187,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             if (trailingIcon) {
                 constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
                     painterArgument(themeDrawableResources.tipsAndTricks)
+                    contentDescriptionArgument(R.string.app_components_textInput_trailingIcon_a11y)
                     onClickArgument {
                         comment("Do something")
                     }
