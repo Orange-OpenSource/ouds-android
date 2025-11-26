@@ -26,7 +26,7 @@ data class OudsEffects(
     val blurDrag: Int
 )
 
-internal fun OudsEffectSemanticTokens.getEffect() = OudsEffects(
+internal fun OudsEffectSemanticTokens.getEffects() = OudsEffects(
     blurDrag = blurDrag,
 )
 

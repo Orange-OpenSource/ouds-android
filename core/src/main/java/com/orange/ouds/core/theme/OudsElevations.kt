@@ -33,7 +33,7 @@ data class OudsElevations(
     val sticky: Dp,
 )
 
-internal fun OudsElevationSemanticTokens.getElevation() = OudsElevations(
+internal fun OudsElevationSemanticTokens.getElevations() = OudsElevations(
     none = none.dp,
     raised = raised.dp,
     default = default.dp,
