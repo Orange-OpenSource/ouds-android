@@ -58,6 +58,7 @@
     <!-- Tokens: color -->
     <string name="app_tokens_color_label">اللون</string>
     <string name="app_tokens_color_description_text">اللون يعزز هويتنا البصرية ويضمن التناسق عبر تجارب المنتجات.</string>
+    <string name="app_tokens_color_unspecified_label">Unspecified</string>
 
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_label">الأبعاد</string>

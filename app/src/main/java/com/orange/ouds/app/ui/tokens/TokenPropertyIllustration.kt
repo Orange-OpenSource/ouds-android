@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.tokens
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,6 +20,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,9 +32,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.isUnspecified
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -83,6 +88,30 @@ fun BorderIllustrationBox(
         }
     }
     IllustrationBox(modifier = modifier.clip(shape), backgroundColor = backgroundColor)
+}
+
+@Composable
+fun ColorIllustrationBox(color: Color) {
+    IllustrationBox(
+        modifier = Modifier.border(width = 1.dp, color = OudsTheme.colorScheme.border.emphasized),
+        backgroundColor = if (color.isUnspecified) Color.White else color
+    ) {
+        if (color.isUnspecified) {
+            Canvas(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(shape = RectangleShape)
+            ) {
+                drawLine(
+                    color = Color.Red,
+                    start = Offset(x = size.width, y = 0f),
+                    end = Offset(x = 0f, y = size.height),
+                    strokeWidth = 2.dp.toPx(),
+                    cap = StrokeCap.Square
+                )
+            }
+        }
+    }
 }
 
 @Composable
