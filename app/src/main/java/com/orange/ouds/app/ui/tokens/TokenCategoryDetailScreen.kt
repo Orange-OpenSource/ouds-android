@@ -219,23 +219,23 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
 
 @Composable
 private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) = when (tokenProperty) {
-    is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value() as Dp)
-    is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value() as Dp))
-    is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value() as OudsBorderStyle)
+    is TokenProperty.BorderWidth -> BorderIllustration(width = token.value() as Dp)
+    is TokenProperty.BorderRadius -> BorderIllustration(shape = RoundedCornerShape(token.value() as Dp))
+    is TokenProperty.BorderStyle -> BorderIllustration(style = token.value() as OudsBorderStyle)
     is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorContent,
-    TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> BorderIllustrationBox(backgroundColor = token.value() as Color)
-    is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value() as Float)
-    is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value() as Dp)
-    is TokenProperty.SizeIconDecorative -> SizeIconIllustrationBox(size = token.value() as Dp)
-    is TokenProperty.SizeIconWithText -> SizeIconIllustrationBox(size = token.value() as Dp)
-    is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
+    TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> ColorIllustration(color = token.value() as Color)
+    is TokenProperty.Opacity -> OpacityIllustration(opacity = token.value() as Float)
+    is TokenProperty.Elevation -> ElevationIllustration(elevation = token.value() as Dp)
+    is TokenProperty.SizeIconDecorative -> SizeIconIllustration(size = token.value() as Dp)
+    is TokenProperty.SizeIconWithText -> SizeIconIllustration(size = token.value() as Dp)
+    is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustration(
         size = token.value() as Dp,
         contentAlignment = Alignment.Center
     )
-    TokenProperty.SpacePaddingInline -> SpaceIllustrationBox(size = token.value() as Dp)
-    TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value() as Dp)
-    TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value() as Dp, orientation = SpaceOrientation.Vertical)
-    TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value() as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
+    TokenProperty.SpacePaddingInline -> SpaceIllustration(size = token.value() as Dp)
+    TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustration(size = token.value() as Dp)
+    TokenProperty.SpacePaddingStack -> SpaceIllustration(size = token.value() as Dp, orientation = SpaceOrientation.Vertical)
+    TokenProperty.SpaceRowGap -> SpaceIllustration(size = token.value() as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
     TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 
