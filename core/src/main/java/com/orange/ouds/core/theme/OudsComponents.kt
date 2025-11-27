@@ -15,12 +15,24 @@ package com.orange.ouds.core.theme
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 
 /**
- * @suppress
+ * Holds component-specific tokens that are exposed for public use.
+ *
+ * While most component styling is handled automatically by OUDS components,
+ * these properties allow accessing specific token values that might be needed
+ * for custom implementations.
+ *
+ * @property bar Properties specific to the OUDS bars (e.g. [com.orange.ouds.core.component.OudsTopAppBar] or [com.orange.ouds.core.component.OudsNavigationBar]).
  */
 data class OudsComponents(
     val bar: Bar
 ) {
 
+    /**
+     * Properties specific to the OUDS bars.
+     *
+     * @property blurRadius The blur radius applied to the bars background
+     * to create the glassmorphism effect.
+     */
     data class Bar(
         val blurRadius: Int
     )

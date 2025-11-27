@@ -22,7 +22,18 @@ import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 
 /**
- * @suppress
+ * Holds the elevation values defined in the OUDS theme.
+ *
+ * Elevation is used to create a sense of depth and hierarchy in a design, helping to distinguish between layers and interactive elements.
+ *
+ * > Design guidelines: [Elevation tokens documentation](https://unified-design-system.orange.com/472794e18/p/8297c2-elevation)
+ *
+ * @property none No elevation (0 dp). The element is at the same level as the background.
+ * @property default The standard elevation level for components.
+ * @property drag The elevation applied to an element when it is being dragged.
+ * @property emphasized A higher elevation for emphasized elements.
+ * @property raised A slight elevation to detach an element from the surface.
+ * @property sticky The elevation used for sticky elements.
  */
 data class OudsElevations(
     val none: Dp,

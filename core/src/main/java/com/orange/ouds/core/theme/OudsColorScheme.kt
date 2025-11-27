@@ -26,7 +26,22 @@ import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 /**
- * @suppress
+ * Holds all the colour-related properties defined in the OUDS theme.
+ *
+ * Colour reinforces our brand identity and ensures consistency across all product experiences.
+ *
+ * > Design guidelines: [Color tokens documentation](https://unified-design-system.orange.com/472794e18/p/217ac6-color)
+ *
+ * @property action Colors associated with interactive elements and actions.
+ * @property always Colors that remain constant regardless of the theme (Light/Dark).
+ * @property background Colors used for the underlying layers of the interface.
+ * @property border Colors applied to borders and dividers.
+ * @property content Colors used for text, icons, and other foreground elements.
+ * @property opacity Colors representing various levels of opacity (transparency).
+ * @property overlay Colors used for overlay elements like modals or tooltips.
+ * @property repository The raw palette of colors available in the theme (internal use).
+ * @property surface Colors used for surface elements like cards or banners.
+ * @property modes Defines the color modes (Light/Dark) for specific UI contexts (internal use).
  */
 data class OudsColorScheme(
     val action: Action,
@@ -41,6 +56,22 @@ data class OudsColorScheme(
     internal val modes: Modes
 ) {
 
+    /**
+     * Colors associated with interactive elements and actions.
+     *
+     * @property disabled Color for disabled interactive elements.
+     * @property enabled Default color for enabled interactive elements.
+     * @property focus Color indicating focus state.
+     * @property highlighted Color for highlighted elements.
+     * @property hover Color for hover state.
+     * @property loading Color used during loading states within actions.
+     * @property negative Colors for destructive or negative actions.
+     * @property pressed Color for pressed state.
+     * @property readOnly Colors for read-only elements.
+     * @property selected Color for selected state.
+     * @property support Colors for supportive or secondary actions.
+     * @property visited Color for visited links.
+     */
     data class Action(
         val disabled: Color,
         val enabled: Color,
@@ -55,6 +86,16 @@ data class OudsColorScheme(
         val support: Support,
         val visited: Color
     ) {
+
+        /**
+         * Colors for destructive or negative actions.
+         *
+         * @property enabled Default color for negative actions.
+         * @property focus Color for focused negative actions.
+         * @property hover Color for hovered negative actions.
+         * @property loading Color for loading state in negative actions.
+         * @property pressed Color for pressed negative actions.
+         */
         data class Negative(
             val enabled: Color,
             val focus: Color,
@@ -63,11 +104,27 @@ data class OudsColorScheme(
             val pressed: Color
         )
 
+        /**
+         * Colors for read-only elements.
+         *
+         * @property primary Primary read-only color.
+         * @property secondary Secondary read-only color.
+         */
         data class ReadOnly(
             val primary: Color,
             val secondary: Color
         )
 
+        /**
+         * Colors for supportive or secondary actions.
+         *
+         * @property disabled Color for disabled supportive actions.
+         * @property enabled Default color for supportive actions.
+         * @property focus Color for focused supportive actions.
+         * @property hover Color for hovered supportive actions.
+         * @property loading Color for loading state in supportive actions.
+         * @property pressed Color for pressed supportive actions.
+         */
         data class Support(
             val disabled: Color,
             val enabled: Color,
@@ -78,6 +135,14 @@ data class OudsColorScheme(
         )
     }
 
+    /**
+     * Colors that remain constant regardless of the theme (Light/Dark).
+     *
+     * @property black Absolute black.
+     * @property onBlack content color on black background.
+     * @property onWhite content color on white background.
+     * @property white Absolute white.
+     */
     data class Always(
         val black: Color,
         val onBlack: Color,
@@ -85,6 +150,15 @@ data class OudsColorScheme(
         val white: Color
     )
 
+    /**
+     * Colors used for the underlying layers of the interface.
+     *
+     * @property inverseHigh High contrast inverse background color.
+     * @property inverseLow Low contrast inverse background color.
+     * @property primary Primary background color (page background).
+     * @property secondary Secondary background color.
+     * @property tertiary Tertiary background color.
+     */
     data class Background(
         val inverseHigh: Color,
         val inverseLow: Color,
@@ -93,6 +167,21 @@ data class OudsColorScheme(
         val tertiary: Color
     )
 
+    /**
+     * Colors applied to borders and dividers.
+     *
+     * @property brandPrimary Primary brand border color.
+     * @property brandSecondary Secondary brand border color.
+     * @property brandTertiary Tertiary brand border color.
+     * @property default Default border color.
+     * @property emphasized Emphasized border color for better visibility.
+     * @property focus Border color indicating focus.
+     * @property focusInset Inner border color for focus indication.
+     * @property minimal Minimal visibility border color.
+     * @property muted Muted border color.
+     * @property onBrand Border colors used specifically on brand backgrounds.
+     * @property status Border colors associated with specific statuses.
+     */
     data class Border(
         val brandPrimary: Color,
         val brandSecondary: Color,
@@ -106,12 +195,28 @@ data class OudsColorScheme(
         val onBrand: OnBrand,
         val status: Status
     ) {
+        /**
+         * Border colors used specifically on brand backgrounds.
+         *
+         * @property primary Primary border on brand background.
+         * @property secondary Secondary border on brand background.
+         * @property tertiary Tertiary border on brand background.
+         */
         data class OnBrand(
             val primary: Color,
             val secondary: Color,
             val tertiary: Color
         )
 
+        /**
+         * Border colors associated with specific statuses.
+         *
+         * @property accent Accent status border.
+         * @property info Info status border.
+         * @property negative Negative/Error status border.
+         * @property positive Positive/Success status border.
+         * @property warning Warning status border.
+         */
         data class Status(
             val accent: Color,
             val info: Color,
@@ -121,6 +226,22 @@ data class OudsColorScheme(
         )
     }
 
+
+    /**
+     * Colors used for text, icons, and other foreground elements.
+     *
+     * @property brandPrimary Primary brand content color.
+     * @property brandSecondary Secondary brand content color.
+     * @property brandTertiary Tertiary brand content color.
+     * @property default Default content color (e.g., main text).
+     * @property disabled Content color for disabled states.
+     * @property inverse Inverse content color for contrast.
+     * @property muted Muted content color (e.g., secondary text).
+     * @property onAction Content colors displayed on top of action backgrounds.
+     * @property onBrand Content colors displayed on top of brand backgrounds.
+     * @property onStatus Content colors displayed on top of status backgrounds.
+     * @property status Content colors representing statuses directly (e.g. colored text).
+     */
     data class Content(
         val brandPrimary: Color,
         val brandSecondary: Color,
@@ -134,6 +255,18 @@ data class OudsColorScheme(
         val onStatus: OnStatus,
         val status: Status
     ) {
+        /**
+         * Content colors displayed on top of action backgrounds.
+         *
+         * @property disabled On-action color for disabled state.
+         * @property enabled On-action color for enabled state.
+         * @property focus On-action color for focused state.
+         * @property highlighted On-action color for highlighted state.
+         * @property hover On-action color for hover state.
+         * @property loading On-action color for loading state.
+         * @property pressed On-action color for pressed state.
+         * @property selected On-action color for selected state.
+         */
         data class OnAction(
             val disabled: Color,
             val enabled: Color,
@@ -145,12 +278,28 @@ data class OudsColorScheme(
             val selected: Color,
         )
 
+        /**
+         * Content colors displayed on top of brand backgrounds.
+         *
+         * @property primary Primary content on brand background.
+         * @property secondary Secondary content on brand background.
+         * @property tertiary Tertiary content on brand background.
+         */
         data class OnBrand(
             val primary: Color,
             val secondary: Color,
             val tertiary: Color
         )
 
+        /**
+         * Content colors displayed on top of status backgrounds.
+         *
+         * @property positive Content on positive status background.
+         * @property info Content on info status background.
+         * @property warning Content on warning status background.
+         * @property negative Content on negative status background.
+         * @property accent Content on accent status background.
+         */
         data class OnStatus(
             val positive: Positive,
             val info: Info,
@@ -158,32 +307,71 @@ data class OudsColorScheme(
             val negative: Negative,
             val accent: Accent
         ) {
+            /**
+             * Content colors displayed on top of positive status backgrounds.
+             *
+             * @property emphasized Emphasized content color on positive status.
+             * @property muted Muted content color on positive status.
+             */
             data class Positive(
                 val emphasized: Color,
                 val muted: Color
             )
 
+            /**
+             * Content colors displayed on top of info status backgrounds.
+             *
+             * @property emphasized Emphasized content color on info status.
+             * @property muted Muted content color on info status.
+             */
             data class Info(
                 val emphasized: Color,
                 val muted: Color
             )
 
+            /**
+             * Content colors displayed on top of warning status backgrounds.
+             *
+             * @property emphasized Emphasized content color on warning status.
+             * @property muted Muted content color on warning status.
+             */
             data class Warning(
                 val emphasized: Color,
                 val muted: Color
             )
 
+            /**
+             * Content colors displayed on top of negative status backgrounds.
+             *
+             * @property emphasized Emphasized content color on negative status.
+             * @property muted Muted content color on negative status.
+             */
             data class Negative(
                 val emphasized: Color,
                 val muted: Color
             )
 
+            /**
+             * Content colors displayed on top of accent status backgrounds.
+             *
+             * @property emphasized Emphasized content color on accent status.
+             * @property muted Muted content color on accent status.
+             */
             data class Accent(
                 val emphasized: Color,
                 val muted: Color
             )
         }
 
+        /**
+         * Content colors representing statuses directly (e.g. colored text).
+         *
+         * @property accent Accent status content color.
+         * @property info Info status content color.
+         * @property negative Negative/Error status content color.
+         * @property positive Positive/Success status content color.
+         * @property warning Warning status content color.
+         */
         data class Status(
             val accent: Color,
             val info: Color,
@@ -193,12 +381,27 @@ data class OudsColorScheme(
         )
     }
 
+    /**
+     * Colors representing various levels of opacity (transparency).
+     *
+     * @property transparent Fully transparent color.
+     * @property lowest Very high transparency.
+     * @property lower High transparency.
+     */
     data class Opacity(
         val transparent: Color,
         val lowest: Color,
         val lower: Color
     )
 
+    /**
+     * Colors used for overlay elements like modals or tooltips.
+     *
+     * @property dropdown Background color for dropdowns.
+     * @property drag Background color for dragged items.
+     * @property modal Background color for modal dialogs (scrim).
+     * @property tooltip Background color for tooltips.
+     */
     data class Overlay(
         val dropdown: Color,
         val drag: Color,
@@ -206,6 +409,9 @@ data class OudsColorScheme(
         val tooltip: Color
     )
 
+    /**
+     * @suppress
+     */
     data class Repository(
         val accent: Accent,
         val info: Info,
@@ -398,6 +604,17 @@ data class OudsColorScheme(
         )
     }
 
+    /**
+     * Colors used for surface elements like cards or banners.
+     *
+     * @property brand Surfaces using brand colors.
+     * @property inverseHigh High contrast inverse surface color.
+     * @property inverseLow Low contrast inverse surface color.
+     * @property primary Primary surface color.
+     * @property secondary Secondary surface color.
+     * @property status Surfaces using status colors.
+     * @property tertiary Tertiary surface color.
+     */
     data class Surface(
         val brand: Brand,
         val inverseHigh: Color,
@@ -407,12 +624,28 @@ data class OudsColorScheme(
         val status: Status,
         val tertiary: Color
     ) {
+        /**
+         * Surfaces using brand colors.
+         *
+         * @property primary Primary brand surface.
+         * @property secondary Secondary brand surface.
+         * @property tertiary Tertiary brand surface.
+         */
         data class Brand(
             val primary: Color,
             val secondary: Color,
             val tertiary: Color
         )
 
+        /**
+         * Surfaces using status colors.
+         *
+         * @property accent Accent status surface colors.
+         * @property info Info status surface colors.
+         * @property negative Negative/Error status surface colors.
+         * @property positive Positive/Success status surface colors.
+         * @property warning Warning status surface colors.
+         */
         data class Status(
             val accent: Accent,
             val info: Info,
@@ -420,26 +653,56 @@ data class OudsColorScheme(
             val positive: Positive,
             val warning: Warning
         ) {
+            /**
+             * Accent status surface colors.
+             *
+             * @property emphasized Emphasized content color on accent status.
+             * @property muted Muted content color on accent status.
+             */
             data class Accent(
                 val emphasized: Color,
                 val muted: Color
             )
 
+            /**
+             * Info status surface colors.
+             *
+             * @property emphasized Emphasized content color on info status.
+             * @property muted Muted content color on info status.
+             */
             data class Info(
                 val emphasized: Color,
                 val muted: Color
             )
 
+            /**
+             * Negative status surface colors.
+             *
+             * @property emphasized Emphasized content color on negative status.
+             * @property muted Muted content color on negative status.
+             */
             data class Negative(
                 val emphasized: Color,
                 val muted: Color
             )
 
+            /**
+             * Positive status surface colors.
+             *
+             * @property emphasized Emphasized content color on positive status.
+             * @property muted Muted content color on positive status.
+             */
             data class Positive(
                 val emphasized: Color,
                 val muted: Color
             )
 
+            /**
+             * Warning status surface colors.
+             *
+             * @property emphasized Emphasized content color on warning status.
+             * @property muted Muted content color on warning status.
+             */
             data class Warning(
                 val emphasized: Color,
                 val muted: Color
@@ -447,6 +710,9 @@ data class OudsColorScheme(
         }
     }
 
+    /**
+     * @suppress
+     */
     data class Modes(
         val navigationBar: OudsColorMode,
         val onBackground: OnBackground,

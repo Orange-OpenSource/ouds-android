@@ -24,7 +24,14 @@ import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 
 /**
- * @suppress
+ * Holds the typography styles defined in the OUDS theme.
+ *
+ * Typography is managed with a defined set of text styles. It enhances communication and reinforce the attribution to the brand.
+ *
+ * @property display Styles for large, prominent text.
+ * @property heading Styles for headings and titles.
+ * @property body Styles for body text (paragraphs, descriptions).
+ * @property label Styles for smaller utility text (e.g., captions, labels).
  */
 data class OudsTypography(
     val fontFamily: FontFamily,
@@ -33,12 +40,27 @@ data class OudsTypography(
     val body: Body,
     val label: Label
 ) {
+    /**
+     * Styles for large, prominent text, typically used for major application titles.
+     *
+     * @property large Large display text style.
+     * @property medium Medium display text style.
+     * @property small Small display text style.
+     */
     data class Display(
         val large: TextStyle,
         val medium: TextStyle,
         val small: TextStyle
     )
 
+    /**
+     * Styles for headings and titles, used to structure content hierarchy.
+     *
+     * @property extraLarge Extra large heading style.
+     * @property large Large heading style.
+     * @property medium Medium heading style.
+     * @property small Small heading style.
+     */
     data class Heading(
         val extraLarge: TextStyle,
         val large: TextStyle,
@@ -46,23 +68,51 @@ data class OudsTypography(
         val small: TextStyle
     )
 
+    /**
+     * Styles for body text, used for the main content, paragraphs, and descriptions.
+     *
+     * @property default Default font weight styles (Regular).
+     * @property moderate Moderate font weight styles (Medium).
+     * @property strong Strong font weight styles (Bold).
+     */
     data class Body(
         val default: Default,
         val moderate: Moderate,
         val strong: Strong
     ) {
+        /**
+         * Body styles with Default font weight (Regular).
+         *
+         * @property large Large body text.
+         * @property medium Medium body text.
+         * @property small Small body text.
+         */
         data class Default(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
         )
 
+        /**
+         * Body styles with Moderate font weight (Medium).
+         *
+         * @property large Large moderate body text.
+         * @property medium Medium moderate body text.
+         * @property small Small moderate body text.
+         */
         data class Moderate(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
         )
 
+        /**
+         * Body styles with Strong font weight (Bold).
+         *
+         * @property large Large strong body text.
+         * @property medium Medium strong body text.
+         * @property small Small strong body text.
+         */
         data class Strong(
             val large: TextStyle,
             val medium: TextStyle,
@@ -70,11 +120,27 @@ data class OudsTypography(
         )
     }
 
+
+    /**
+     * Styles for utility text such as captions, input labels, and metadata.
+     *
+     * @property default Default font weight styles (Regular).
+     * @property moderate Moderate font weight styles (Medium).
+     * @property strong Strong font weight styles (Bold).
+     */
     data class Label(
         val default: Default,
         val moderate: Moderate,
         val strong: Strong
     ) {
+        /**
+         * Label styles with Default font weight (Regular).
+         *
+         * @property extraLarge Extra large label text.
+         * @property large Large label text.
+         * @property medium Medium label text.
+         * @property small Small label text.
+         */
         data class Default(
             val extraLarge: TextStyle,
             val large: TextStyle,
@@ -82,6 +148,14 @@ data class OudsTypography(
             val small: TextStyle
         )
 
+        /**
+         * Label styles with Moderate font weight (Medium).
+         *
+         * @property extraLarge Extra large moderate label text.
+         * @property large Large moderate label text.
+         * @property medium Medium moderate label text.
+         * @property small Small moderate label text.
+         */
         data class Moderate(
             val extraLarge: TextStyle,
             val large: TextStyle,
@@ -89,6 +163,14 @@ data class OudsTypography(
             val small: TextStyle
         )
 
+        /**
+         * Label styles with Strong font weight (Bold).
+         *
+         * @property extraLarge Extra large strong label text.
+         * @property large Large strong label text.
+         * @property medium Medium strong label text.
+         * @property small Small strong label text.
+         */
         data class Strong(
             val extraLarge: TextStyle,
             val large: TextStyle,

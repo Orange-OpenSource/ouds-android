@@ -21,19 +21,49 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 
 /**
- * @suppress
+ * Holds the size values defined in the OUDS theme.
+ *
+ * These values ensure consistent sizing for icons, touch targets, and layout constraints
+ * across different screen sizes and contexts.
+ *
+ * > Design guidelines: [Size tokens documentation](https://unified-design-system.orange.com/472794e18/p/109b79-dimension/b/37eb1d)
+ *
+ * @property icon Sizes related to icons.
+ * @property maxWidth Max width constraints for layouts.
+ * @property minInteractiveArea The minimum size for an interactive touch target.
  */
 data class OudsSizes(
     val icon: Icon,
     val maxWidth: MaxWidth,
     val minInteractiveArea: Dp
 ) {
+    /**
+     * Sizes for icons depending on their usage context.
+     *
+     * @property decorative Sizes for standalone decorative icons.
+     * @property withHeading Sizes for icons paired with Heading typography.
+     * @property withLabel Sizes for icons paired with Label typography.
+     * @property withBody Sizes for icons paired with Body typography.
+     */
     data class Icon(
         val decorative: Decorative,
         val withHeading: WithHeading,
         val withLabel: WithLabel,
         val withBody: WithBody
     ) {
+        /**
+         * Sizes for standalone decorative icons.
+         *
+         * @property fourExtraSmall 4xs size.
+         * @property threeExtraSmall 3xs size.
+         * @property twoExtraSmall 2xs size.
+         * @property extraSmall Extra small size.
+         * @property small Small size.
+         * @property medium Medium size.
+         * @property large Large size.
+         * @property extraLarge Extra large size.
+         * @property twoExtraLarge 2xl size.
+         */
         data class Decorative(
             val fourExtraSmall: Dp,
             val threeExtraSmall: Dp,
@@ -46,30 +76,44 @@ data class OudsSizes(
             val twoExtraLarge: Dp,
         )
 
+        /**
+         * Sizes for icons paired with Heading typography.
+         *
+         * The properties correspond to the size of the associated Heading text.
+         *
+         * @property small Icons associated with Heading Small.
+         * @property medium Icons associated with Heading Medium.
+         * @property large Icons associated with Heading Large.
+         * @property extraLarge Icons associated with Heading ExtraLarge.
+         */
         data class WithHeading(
             val small: Small,
             val medium: Medium,
             val large: Large,
             val extraLarge: ExtraLarge
         ) {
+            /** Icon sizes for Heading Small. */
             data class Small(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
+            /** Icon sizes for Heading Medium. */
             data class Medium(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
+            /** Icon sizes for Heading Large. */
             data class Large(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
+            /** Icon sizes for Heading ExtraLarge. */
             data class ExtraLarge(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
@@ -77,12 +121,23 @@ data class OudsSizes(
             )
         }
 
+        /**
+         * Sizes for icons paired with Label typography.
+         *
+         * The properties correspond to the size of the associated Label text.
+         *
+         * @property small Icons associated with Label Small.
+         * @property medium Icons associated with Label Medium.
+         * @property large Icons associated with Label Large.
+         * @property extraLarge Icons associated with Label ExtraLarge.
+         */
         data class WithLabel(
             val small: Small,
             val medium: Medium,
             val large: Large,
             val extraLarge: ExtraLarge
         ) {
+            /** Icon sizes for Label Small. */
             data class Small(
                 val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
@@ -90,6 +145,7 @@ data class OudsSizes(
                 val sizeLarge: Dp,
             )
 
+            /** Icon sizes for Label Medium. */
             data class Medium(
                 val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
@@ -97,6 +153,7 @@ data class OudsSizes(
                 val sizeLarge: Dp,
             )
 
+            /** Icon sizes for Label Large. */
             data class Large(
                 val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
@@ -105,6 +162,7 @@ data class OudsSizes(
                 val sizeExtraLarge: Dp,
             )
 
+            /** Icon sizes for Label ExtraLarge. */
             data class ExtraLarge(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
@@ -112,23 +170,35 @@ data class OudsSizes(
             )
         }
 
+        /**
+         * Sizes for icons paired with Body typography.
+         *
+         * The properties correspond to the size of the associated Body text.
+         *
+         * @property small Icons associated with Body Small.
+         * @property medium Icons associated with Body Medium.
+         * @property large Icons associated with Body Large.
+         */
         data class WithBody(
             val small: Small,
             val medium: Medium,
             val large: Large,
         ) {
+            /** Icon sizes for Body Small. */
             data class Small(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
+            /** Icon sizes for Body Medium. */
             data class Medium(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
+            /** Icon sizes for Body Large. */
             data class Large(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
@@ -137,27 +207,43 @@ data class OudsSizes(
         }
     }
 
+    /**
+     * Maximum width constraints used to control line length and layout density.
+     *
+     * @property type Contains max width values grouped by typography type.
+     */
     data class MaxWidth(
         val type: Type
     ) {
+        /**
+         * Max width values grouped by typography type.
+         *
+         * @property body Max widths for Body text contexts.
+         * @property display Max widths for Display text contexts.
+         * @property heading Max widths for Heading text contexts.
+         * @property label Max widths for Label text contexts.
+         */
         data class Type(
             val body: Body,
             val display: Display,
             val heading: Heading,
             val label: Label
         ) {
+            /** Max widths for Body text contexts. */
             data class Body(
                 val small: Dp,
                 val medium: Dp,
                 val large: Dp
             )
 
+            /** Max widths for Display text contexts. */
             data class Display(
                 val small: Dp,
                 val medium: Dp,
                 val large: Dp
             )
 
+            /** Max widths for Heading text contexts. */
             data class Heading(
                 val small: Dp,
                 val medium: Dp,
@@ -165,6 +251,7 @@ data class OudsSizes(
                 val extraLarge: Dp
             )
 
+            /** Max widths for Label text contexts. */
             data class Label(
                 val small: Dp,
                 val medium: Dp,

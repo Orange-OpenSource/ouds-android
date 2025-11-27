@@ -20,7 +20,22 @@ import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 
 /**
- * @suppress
+ * Holds the opacity values defined in the OUDS theme.
+ *
+ * Opacity controls the transparency of elements, ranging from fully invisible (0.0) to fully opaque (1.0).
+ * It can help distinguish foreground elements from background elements, making content easier to read
+ * and important actions more noticeable.
+ *
+ * > Design guidelines: [Opacity tokens documentation](https://unified-design-system.orange.com/472794e18/p/329c0c-opacity)
+ *
+ * @property disabled The opacity applied to disabled elements to indicate they are not interactive.
+ * @property invisible Fully transparent (0.0). The element is not visible.
+ * @property weakest A very low opacity level, barely visible.
+ * @property weaker A low opacity level.
+ * @property weak A moderate opacity level.
+ * @property medium A medium opacity level.
+ * @property strong A high opacity level, almost opaque.
+ * @property opaque Fully opaque (1.0). The element is solid and blocks content behind it.
  */
 data class OudsOpacities(
     val disabled: Float,
