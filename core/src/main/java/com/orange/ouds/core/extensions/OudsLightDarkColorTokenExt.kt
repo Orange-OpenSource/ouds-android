@@ -18,6 +18,14 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 
+/**
+ * Returns the color corresponding to the current theme mode (Light or Dark).
+ *
+ * This extension property checks the current theme state using [isOudsInDarkTheme]
+ * and returns either the [OudsLightDarkColor.dark] or [OudsLightDarkColor.light] value accordingly.
+ *
+ * @return The resolved [Color] for the current theme context.
+ */
 val OudsLightDarkColor.value: Color
     @ReadOnlyComposable
     @Composable
