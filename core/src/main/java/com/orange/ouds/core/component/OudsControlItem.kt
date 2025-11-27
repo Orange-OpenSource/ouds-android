@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -123,13 +124,14 @@ internal fun OudsControlItem(
         val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
 
         Column(modifier = filteredModifier) {
+            val shape = RoundedCornerShape(controlItemTokens.borderRadius.value)
             Box(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
                     .heightIn(min = controlItemTokens.sizeMinHeight.dp)
-                    .widthIn(min = controlItemTokens.sizeMinWidth.dp)
-                    .background(color = backgroundColor)
-                    .outerBorder(state = state, handleHighContrastMode = handleHighContrastMode),
+                    .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = controlItemTokens.sizeMaxWidth.dp)
+                    .background(color = backgroundColor, shape = shape)
+                    .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
                 contentAlignment = Alignment.BottomCenter
             ) {
                 Row(
