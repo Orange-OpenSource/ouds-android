@@ -14,7 +14,6 @@
     <string name="app_name">DesignToolbox</string>
 
     <!-- Common -->
-    <string name="app_common_back_a11y">رجوع</string>
     <string name="app_common_copyCode_a11y">نسخ الكود</string>
     <string name="app_common_codeCopied_text">تم نسخ الكود إلى الحافظة</string>
     <string name="app_common_collapsed_a11y">مطوي</string>

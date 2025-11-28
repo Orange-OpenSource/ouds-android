@@ -14,7 +14,6 @@
     <string name="app_name">DesignToolbox</string>
 
     <!-- Common -->
-    <string name="app_common_back_a11y">Back</string>
     <string name="app_common_copyCode_a11y">Copy code</string>
     <string name="app_common_codeCopied_text">Code copied to the clipboard</string>
     <string name="app_common_codeClipData_label" translatable="false">OUDS code</string>

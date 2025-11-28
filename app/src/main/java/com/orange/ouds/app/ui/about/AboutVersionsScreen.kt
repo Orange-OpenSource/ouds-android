@@ -13,11 +13,19 @@
 package com.orange.ouds.app.ui.about
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -33,7 +41,13 @@ import kotlin.reflect.full.declaredMemberProperties
 @Composable
 fun AboutVersionsScreen() {
     Screen {
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier.consumeWindowInsets(WindowInsets.statusBars.only(WindowInsetsSides.Top)),
+            contentPadding = PaddingValues(
+                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + TopAppBarDefaults.TopAppBarExpandedHeight,
+                bottom = OudsTheme.spaces.fixed.medium
+            )
+        ) {
             item {
                 VersionsSectionTitle(titleRes = R.string.app_about_versions_tokens_label)
             }

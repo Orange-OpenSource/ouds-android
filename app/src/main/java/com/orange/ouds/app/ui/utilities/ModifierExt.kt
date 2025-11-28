@@ -19,7 +19,11 @@ import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -94,4 +98,10 @@ fun Modifier.priorityClickable(
                 this
             }
         }
+}
+
+@Composable
+fun Modifier.topBarsHeightPadding(): Modifier {
+    return windowInsetsPadding(WindowInsets.statusBars)
+        .padding(top = TopAppBarDefaults.TopAppBarExpandedHeight)
 }
