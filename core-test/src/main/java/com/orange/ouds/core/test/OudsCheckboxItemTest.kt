@@ -53,4 +53,10 @@ class OudsCheckboxItemTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.WithEdgeToEdgeDisabled,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }
