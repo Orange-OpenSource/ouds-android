@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import android.os.Build
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
@@ -93,13 +92,13 @@ val OudsNavigationBarHeight = 80.dp
  *
  * [OudsNavigationBar] should contain three to five [OudsNavigationBarItem], each representing a singular destination.
  *
- * [OudsNavigationBar] default appearance is opaque but, if you need a **translucent blurred navigation bar** (supported from Android 13) as specified on OUDS design
+ * [OudsNavigationBar] default appearance is opaque but, if you need a **translucent blurred navigation bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsNavigationBar] with
  * [translucent] parameter set to true and follow these steps:
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.navigationBar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the navigation bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
@@ -125,14 +124,13 @@ fun OudsNavigationBar(
     with(OudsTheme.componentsTokens.bar) {
         NavigationBar(
             modifier = modifier,
-            containerColor = Color.Transparent, // Background color is handled by the Row in content
+            containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
             contentColor = colorContentUnselectedEnabled.value,
             windowInsets = windowInsets,
             content = {
                 val topBorderColor = OudsTheme.colorScheme.border.minimal
                 Row(
-                    modifier
-                        .background(color = if (translucent && Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) colorBgTranslucent.value else colorBgOpaque.value)
+                    modifier = Modifier
                         .drawBehind {
                             val topBorderWidth = 1.dp.toPx()
                             drawLine(

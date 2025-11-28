@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui
 
+import android.os.Build
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
@@ -24,10 +25,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,7 +49,7 @@ import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
 fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier: Modifier = Modifier, visible: Boolean = true) {
-    Column {
+    Column(modifier = Modifier.windowInsetsPadding(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))) {
         val systemNavigationBackgroundColor = OudsTheme.colorScheme.background.secondary //TODO Temporary color. Waiting for Material colors from Maxime.
         AnimatedVisibility(
             visible = visible,
@@ -63,7 +66,7 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier:
                     )
                 },
                 modifier = modifier.consumeWindowInsets(WindowInsets.navigationBars.only(WindowInsetsSides.Bottom)),
-                translucent = true
+                translucent = Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2
             )
         }
         val systemNavigationBarBackgroundColor by animateColorAsState(if (visible) systemNavigationBackgroundColor else MaterialTheme.colorScheme.surface)

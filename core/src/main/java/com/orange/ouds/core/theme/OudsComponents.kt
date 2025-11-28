@@ -18,16 +18,16 @@ import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
  * @suppress
  */
 data class OudsComponents(
-    val navigationBar: NavigationBar
+    val bar: Bar
 ) {
 
-    data class NavigationBar(
+    data class Bar(
         val blurRadius: Int
     )
 }
 
 internal fun OudsComponentsTokens.getComponents() = OudsComponents(
-    navigationBar = OudsComponents.NavigationBar(
+    bar = OudsComponents.Bar(
         blurRadius = bar.effectBgBlur
     )
 )
