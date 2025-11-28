@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
@@ -36,6 +35,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
@@ -159,7 +159,6 @@ fun OudsTag(
                 if (hasAsset) {
                     Box(
                         modifier = Modifier
-                            .size(assetSize(size))
                             .semantics { hideFromAccessibility() }
                     ) {
                         if (hasLoader) {
@@ -167,14 +166,21 @@ fun OudsTag(
                         } else {
                             val isBulletIcon = status.icon is OudsTagIcon.Bullet
                             val iconPadding = if (isBulletIcon) bulletPadding(size = size) else iconPadding(size = size)
-                            status.icon?.Content(
-                                modifier = Modifier.padding(all = iconPadding),
-                                extraParameters = OudsTagIcon.ExtraParameters(
-                                    tint = iconColor(status = status, appearance = appearance, enabled = enabled, isBulletIcon = isBulletIcon),
-                                    status = status,
-                                    appearance = appearance
+                            status.icon?.let {
+                                // Scale the icon only if it is a functional icon (a11y)
+                                val scale = if (it is OudsTagIcon.Default) LocalConfiguration.current.fontScale else 1f
+                                it.Content(
+                                    modifier = Modifier
+                                        .size(assetSize(size) * scale)
+                                        .padding(all = iconPadding),
+                                    extraParameters = OudsTagIcon.ExtraParameters(
+                                        tint = iconColor(status = status, appearance = appearance, enabled = enabled, isBulletIcon = isBulletIcon),
+                                        size = size,
+                                        status = status,
+                                        appearance = appearance
+                                    )
                                 )
-                            )
+                            }
                         }
                     }
                 }
@@ -352,15 +358,16 @@ private fun loaderPadding(size: OudsTagSize): Dp {
 
 @Composable
 private fun ProgressIndicator(status: OudsTagStatus, appearance: OudsTagAppearance, size: OudsTagSize, progress: Float?, enabled: Boolean) {
+    val scale = LocalConfiguration.current.fontScale
     val modifier = Modifier
+        .size(assetSize(size) * scale)
         .padding(all = loaderPadding(size = size))
-        .fillMaxSize()
         .semantics { hideFromAccessibility() }
     val color = contentColor(status = status, appearance = appearance, hasLoader = true, enabled = enabled)
     val strokeWidth = when (size) {
         OudsTagSize.Default -> 2.4.dp
         OudsTagSize.Small -> 2.dp
-    }
+    } * scale
     val trackColor = Color.Transparent
     val strokeCap = StrokeCap.Butt
     if (progress != null) {
@@ -486,6 +493,7 @@ open class OudsTagIcon protected constructor(
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color,
+        internal val size: OudsTagSize,
         internal val status: OudsTagStatus,
         internal val appearance: OudsTagAppearance
     ) : OudsComponentContent.ExtraParameters()
