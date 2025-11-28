@@ -26,6 +26,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 fun rememberSwitchItemDemoState(
     checked: Boolean = false,
     icon: Boolean = false,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -34,13 +35,14 @@ fun rememberSwitchItemDemoState(
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     text: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null
-) = rememberSaveable(checked, icon, divider, reversed, enabled, readOnly, error, errorMessage, text, description, saver = SwitchItemDemoState.Saver) {
-    SwitchItemDemoState(checked, icon, divider, reversed, enabled, readOnly, error, errorMessage, text, description)
+) = rememberSaveable(checked, icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, saver = SwitchItemDemoState.Saver) {
+    SwitchItemDemoState(checked, icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description)
 }
 
 class SwitchItemDemoState(
     checked: Boolean,
     icon: Boolean,
+    edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
     enabled: Boolean,
@@ -49,7 +51,7 @@ class SwitchItemDemoState(
     errorMessage: String,
     text: String,
     description: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, text, description) {
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description) {
 
     companion object {
 
@@ -66,6 +68,7 @@ class SwitchItemDemoState(
                     SwitchItemDemoState(
                         list[0] as Boolean,
                         icon,
+                        edgeToEdge,
                         divider,
                         reversed,
                         enabled,

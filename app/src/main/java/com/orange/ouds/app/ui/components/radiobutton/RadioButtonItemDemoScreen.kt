@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.components.radiobutton
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -35,6 +36,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsRadioButtonItem
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -76,7 +78,13 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
 @Composable
 private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
     with(state) {
-        Column(modifier = Modifier.selectableGroup()) {
+        Column(
+            modifier = if (edgeToEdge) {
+                Modifier
+            } else {
+                Modifier.padding(horizontal = OudsTheme.grids.margin)
+            }.selectableGroup()
+        ) {
             RadioButtonItemDemoState.values.forEachIndexed { index, radioButtonValue ->
                 val isLastItem = index == RadioButtonItemDemoState.values.lastIndex
                 OudsRadioButtonItem(
@@ -86,6 +94,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     extraLabel = extraLabel,
                     description = description,
                     icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+                    edgeToEdge = edgeToEdge,
                     divider = divider,
                     outlined = outlined,
                     reversed = reversed,

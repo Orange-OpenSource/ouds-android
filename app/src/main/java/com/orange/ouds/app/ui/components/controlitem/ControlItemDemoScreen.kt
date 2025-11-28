@@ -34,6 +34,7 @@ fun controlItemCustomization(index: Int, content: @Composable () -> Unit) = Cont
 fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: List<ControlItemCustomization> = listOf()) {
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
         { ControlItemIconCustomization(state = state) },
+        { ControlItemEdgeToEdgeCustomization(state = state) },
         { ControlItemDividerCustomization(state = state) },
         { ControlItemReversedCustomization(state = state) },
         { ControlItemEnabledCustomization(state = state) },
@@ -59,6 +60,18 @@ private fun ControlItemIconCustomization(state: ControlItemDemoState) {
         )
     }
 }
+
+@Composable
+private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_controlItem_edgeToEdge_label),
+            checked = edgeToEdge,
+            onCheckedChange = { edgeToEdge = it },
+        )
+    }
+}
+
 
 @Composable
 private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
@@ -161,6 +174,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
                 painterArgument(themeDrawableResources.tipsAndTricks)
             }
         }
+        if (!edgeToEdge) typedArgument("edgeToEdge", edgeToEdge)
         if (divider) typedArgument("divider", divider)
         if (reversed) typedArgument("reversed", reversed)
         if (!enabled) enabledArgument(enabled)

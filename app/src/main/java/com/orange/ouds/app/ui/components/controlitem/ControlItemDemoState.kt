@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 
 open class ControlItemDemoState(
     icon: Boolean,
+    edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
     enabled: Boolean,
@@ -36,6 +37,7 @@ open class ControlItemDemoState(
                 with(state) {
                     listOf(
                         icon,
+                        edgeToEdge,
                         divider,
                         reversed,
                         enabled,
@@ -55,7 +57,8 @@ open class ControlItemDemoState(
                     list[3] as Boolean,
                     list[4] as Boolean,
                     list[5] as Boolean,
-                    list[6] as String,
+                    list[6] as Boolean,
+                    list[7] as String,
                     list[7] as String,
                     list[8] as String?
                 )
@@ -64,6 +67,7 @@ open class ControlItemDemoState(
     }
 
     var icon: Boolean by mutableStateOf(icon)
+    var edgeToEdge: Boolean by mutableStateOf(edgeToEdge)
     var divider: Boolean by mutableStateOf(divider)
     var reversed: Boolean by mutableStateOf(reversed)
     var enabled: Boolean by mutableStateOf(enabled)

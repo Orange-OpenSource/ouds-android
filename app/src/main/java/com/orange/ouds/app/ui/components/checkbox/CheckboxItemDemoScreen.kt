@@ -12,9 +12,14 @@
 
 package com.orange.ouds.app.ui.components.checkbox
 
+import android.R.attr.description
+import android.R.attr.divider
+import android.R.attr.label
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
@@ -29,6 +34,7 @@ import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -53,7 +59,7 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
 @Composable
 private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
-        Column {
+        Column(modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin)) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
                 val isLastItem = index == CheckboxIdentifier.entries.lastIndex
                 OudsCheckboxItem(
@@ -70,6 +76,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     label = label,
                     description = description,
                     icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+                    edgeToEdge = edgeToEdge,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
