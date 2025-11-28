@@ -16,6 +16,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -61,6 +62,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param extraLabel Optional strong accompanying label for the main label. It is displayed between the [label] and the [description].
  * @param description Optional text displayed below the [label] and the [extraLabel].
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the radio button item.
  * @param outlined When set to `true`, the radio button item, if selected, is outlined to stand out and draw the user's attention.
  * @param reversed When `false`, the radio button has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
@@ -83,6 +86,7 @@ fun OudsRadioButtonItem(
     extraLabel: String? = null,
     description: String? = null,
     icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     outlined: Boolean = false,
     reversed: Boolean = false,
@@ -115,6 +119,7 @@ fun OudsRadioButtonItem(
         extraLabel = extraLabel,
         description = description,
         icon = icon,
+        edgeToEdge = edgeToEdge,
         divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
         enabled = enabled,
         readOnly = readOnly,
@@ -249,6 +254,26 @@ internal fun PreviewOudsRadioButtonItemWithDescriptionText(theme: OudsThemeContr
         extraLabel = "Extra label",
         description = LoremIpsumText,
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
+    )
+}
+
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled() = PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
+
+
+@Composable
+internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsRadioButtonItem(
+        modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
+        selected = true,
+        label = "Label",
+        onClick = {},
+        additionalLabel = "Additional label",
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+        edgeToEdge = false,
+        divider = true
     )
 }
 

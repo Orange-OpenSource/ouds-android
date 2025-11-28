@@ -46,6 +46,7 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
+import com.orange.ouds.core.theme.OudsGrids
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -62,6 +63,7 @@ internal fun OudsControlItem(
     label: String,
     description: String?,
     icon: OudsControlItemIcon?,
+    edgeToEdge: Boolean,
     divider: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
@@ -131,7 +133,7 @@ internal fun OudsControlItem(
                 Row(
                     modifier = Modifier.padding(
                         vertical = controlItemTokens.spacePaddingBlockDefault.value,
-                        horizontal = controlItemTokens.spacePaddingInline.value
+                        horizontal = if (edgeToEdge) OudsTheme.grids.margin else controlItemTokens.spacePaddingInline.value
                     ),
                     horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
                 ) {
@@ -161,7 +163,7 @@ internal fun OudsControlItem(
                     trailingElement?.let { LeadingTrailingBox(trailingElement) }
                 }
                 if (divider) {
-                    OudsHorizontalDivider(color = dividerColor(state = state, error = error))
+                    OudsHorizontalDivider(modifier = if (edgeToEdge) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier, color = dividerColor(state = state, error = error))
                 }
             }
             if (error != null && error.message.isNotBlank()) {

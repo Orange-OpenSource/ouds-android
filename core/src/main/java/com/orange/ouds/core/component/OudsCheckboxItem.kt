@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -30,6 +31,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -58,7 +60,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
- * @param divider Controls the display of a divider at the bottom of the checkbox item.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`. * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
  * will not be clickable.
@@ -78,6 +81,7 @@ fun OudsCheckboxItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -94,6 +98,7 @@ fun OudsCheckboxItem(
         modifier = modifier,
         description = description,
         icon = icon,
+        edgeToEdge = edgeToEdge,
         divider = divider,
         reversed = reversed,
         enabled = enabled,
@@ -130,6 +135,8 @@ fun OudsCheckboxItem(
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
@@ -150,6 +157,7 @@ fun OudsTriStateCheckboxItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -180,6 +188,7 @@ fun OudsTriStateCheckboxItem(
         label = label,
         description = description,
         icon = icon,
+        edgeToEdge = edgeToEdge,
         divider = divider,
         enabled = enabled,
         readOnly = readOnly,
@@ -278,6 +287,24 @@ internal fun PreviewOudsCheckboxItemWithLongDescription(theme: OudsThemeContract
         onCheckedChange = {},
         description = LoremIpsumText,
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
+    )
+}
+
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled() = PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsCheckboxItem(
+        modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
+        checked = true,
+        label = "Label",
+        onCheckedChange = {},
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+        edgeToEdge = false,
+        divider = true
     )
 }
 
