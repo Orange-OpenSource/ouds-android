@@ -59,7 +59,7 @@
 
     <!-- Tokens: color -->
     <string name="app_tokens_color_label">Color</string>
-    <string name="app_tokens_color_description_text">Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the ones you should use when building a mobile app.</string>
+    <string name="app_tokens_color_description_text">Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described here are the ones you should use when building a mobile app.</string>
     <string name="app_tokens_color_action_label" translatable="false">Action</string>
     <string name="app_tokens_color_always_label" translatable="false">Always</string>
     <string name="app_tokens_color_background_label" translatable="false">Background</string>
@@ -87,7 +87,7 @@
     <string name="app_tokens_dimension_space_paddingBlock_label">Padding block</string>
     <string name="app_tokens_dimension_space_paddingBlockHeader_text">Padding block includes the top and bottom padding.</string>
     <string name="app_tokens_dimension_space_inset_label">Inset</string>
-    <string name="app_tokens_dimension_space_insetHeader_text">Insets include the left, right, top, and bottom paddings, with all parameters being equal.</string>
+    <string name="app_tokens_dimension_space_insetHeader_text">Insets include the left, right, top, and bottom padding, with all parameters being equal.</string>
     <string name="app_tokens_dimension_space_columnGap_label">Column gap</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">Column gap is the horizontal spacing between elements.</string>
     <string name="app_tokens_dimension_space_rowGap_label">Row gap</string>
@@ -115,7 +115,7 @@
 
     <!-- Tokens: typography -->
     <string name="app_tokens_typography_label">Typography</string>
-    <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.</string>
+    <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. It enhances communication and reinforces the brand style.</string>
 
     <!-- Components -->
     <string name="app_components_common_appearance_label">Appearance</string>
