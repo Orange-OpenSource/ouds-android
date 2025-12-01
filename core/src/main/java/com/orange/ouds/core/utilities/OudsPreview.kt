@@ -27,8 +27,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.extensions.isNightModeEnabled
@@ -38,6 +44,7 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.OrangeTheme
 import kotlin.enums.enumEntries
+import kotlin.math.ceil
 
 private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 
@@ -190,3 +197,26 @@ private fun <T> DimensionTitle(title: String, modifier: Modifier = Modifier) whe
  */
 internal const val LoremIpsumText =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+
+internal class PreviewCheckerboardPainter(val squareSize: Dp, val primaryColor: Color, val secondaryColor: Color) : Painter() {
+
+    override val intrinsicSize = Size.Unspecified
+
+    override fun DrawScope.onDraw() {
+        val squareSizePx = squareSize.toPx()
+        val columnCount = ceil(size.width / squareSizePx).toInt()
+        val rowCount = ceil(size.height / squareSizePx).toInt()
+        val drawSize = Size(squareSizePx, squareSizePx)
+
+        repeat(rowCount) { row ->
+            repeat(columnCount) { column ->
+                val color = if ((row + column) % 2 == 0) primaryColor else secondaryColor
+                drawRect(
+                    color = color,
+                    topLeft = Offset(column * squareSizePx, row * squareSizePx),
+                    size = drawSize
+                )
+            }
+        }
+    }
+}
