@@ -40,6 +40,7 @@ import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -93,8 +94,8 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
         CustomizationTextField(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_topAppBar_avatarMonogram_label),
-            value = avatarMonogram,
-            onValueChange = { value -> avatarMonogram = value },
+            value = avatarMonogram.toString().trim(),
+            onValueChange = { value -> avatarMonogram = value.firstOrNull().orElse { ' ' } },
             enabled = avatarMonogramTextFieldEnabled
         )
     }

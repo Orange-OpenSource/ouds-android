@@ -82,7 +82,7 @@ class OudsTopAppBarTest {
                             onClick = onImageAvatarClick
                         ),
                         OudsTopAppBarAction.Avatar(
-                            monogram = "A",
+                            monogram = 'A',
                             color = Color.White,
                             backgroundColor = Color.Black,
                             contentDescription = monogramAvatarContentDescription,

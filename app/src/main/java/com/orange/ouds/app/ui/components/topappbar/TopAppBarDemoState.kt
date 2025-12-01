@@ -28,7 +28,7 @@ fun rememberTopAppBarDemoState(
     navigationIcon: Boolean = false,
     title: String = "Title",
     avatar: TopAppBarDemoState.Avatar = TopAppBarDemoState.Avatar.Image,
-    avatarMonogram: String = "A"
+    avatarMonogram: Char = 'A'
 ) = rememberSaveable(size, centerAligned, navigationIcon, title, avatar, avatarMonogram, saver = TopAppBarDemoState.Saver) {
     TopAppBarDemoState(size, centerAligned, navigationIcon, title, avatar, avatarMonogram)
 }
@@ -39,7 +39,7 @@ class TopAppBarDemoState(
     navigationIcon: Boolean,
     title: String,
     avatar: Avatar,
-    avatarMonogram: String
+    avatarMonogram: Char
 ) {
     companion object {
 
@@ -63,7 +63,7 @@ class TopAppBarDemoState(
                     list[2] as Boolean,
                     list[3] as String,
                     list[4] as Avatar,
-                    list[5] as String
+                    list[5] as Char
                 )
             }
         )
@@ -87,7 +87,7 @@ class TopAppBarDemoState(
 
     var avatar: Avatar by mutableStateOf(avatar)
 
-    var avatarMonogram: String by mutableStateOf(avatarMonogram)
+    var avatarMonogram: Char by mutableStateOf(avatarMonogram)
 
     val centerAlignedSwitchEnabled: Boolean
         get() = size == Size.Small
