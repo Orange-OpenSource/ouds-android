@@ -54,7 +54,7 @@ fun NavigationBarDemoScreen() {
         codeSnippet = { navigationBarDemoCodeSnippet(state = state, context = context, themeDrawableResources = themeDrawableResources) },
         demoContent = { NavigationBarDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
-        version = OudsVersion.Component.NavigationBar
+        version = OudsVersion.Component.Bar
     )
 }
 

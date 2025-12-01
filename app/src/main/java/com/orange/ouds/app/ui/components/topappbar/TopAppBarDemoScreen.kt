@@ -52,7 +52,7 @@ fun TopAppBarDemoScreen() {
         codeSnippet = { topAppBarDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { TopAppBarDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
-        version = OudsVersion.Component.NavigationBar
+        version = OudsVersion.Component.Bar
     )
 }
 
