@@ -44,10 +44,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -72,10 +70,10 @@ import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.PreviewCheckerboardPainter
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import kotlin.math.ceil
 
 //TODO update DSM link when available
 /**
@@ -799,40 +797,29 @@ private val previewParameterValues: List<OudsTopAppBarPreviewParameter>
     get() = listOf(
         OudsTopAppBarPreviewParameter(),
         OudsTopAppBarPreviewParameter(
-            navigationIcon = OudsTopAppBarNavigationIcon.Back {},
-            actions = listOf(OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {})
+            navigationIcon = OudsTopAppBarNavigationIcon.Back(onClick = {}),
+            actions = listOf(OudsTopAppBarAction.Icon(imageVector = Icons.Outlined.FavoriteBorder, contentDescription = "", onClick = {}))
         ),
         OudsTopAppBarPreviewParameter(
-            navigationIcon = OudsTopAppBarNavigationIcon(Icons.Outlined.Settings, "") {},
+            navigationIcon = OudsTopAppBarNavigationIcon(imageVector = Icons.Outlined.Settings, contentDescription = "", onClick = {}),
             actions = listOf(
-                OudsTopAppBarAction.Icon(Icons.Outlined.AccountCircle, "") {},
-                OudsTopAppBarAction.Avatar(PreviewCheckerboardPainter(), "") {},
-                OudsTopAppBarAction.Avatar(monogram = "A", color = Color.White, backgroundColor = Color(0xffd5204e), "") {}
+                OudsTopAppBarAction.Icon(imageVector = Icons.Outlined.AccountCircle, contentDescription = "", onClick = {}),
+                OudsTopAppBarAction.Avatar(
+                    painter = PreviewCheckerboardPainter(
+                        squareSize = 6.dp,
+                        primaryColor = Color(0xff247a85),
+                        secondaryColor = Color(0xfffbcd00)
+                    ),
+                    contentDescription = "",
+                    onClick = {}
+                ),
+                OudsTopAppBarAction.Avatar(
+                    monogram = "A",
+                    color = Color.White,
+                    backgroundColor = Color(0xffd5204e),
+                    contentDescription = "",
+                    onClick = {}
+                )
             )
         )
     )
-
-private class PreviewCheckerboardPainter() : Painter() {
-
-    override val intrinsicSize = Size.Unspecified
-
-    override fun DrawScope.onDraw() {
-        val primaryColor = Color(0xff247a85)
-        val secondaryColor = Color(0xfffbcd00)
-        val squareSize = 6.dp.toPx()
-        val columnCount = ceil(size.width / squareSize).toInt()
-        val rowCount = ceil(size.height / squareSize).toInt()
-        val drawSize = Size(squareSize, squareSize)
-
-        repeat(rowCount) { row ->
-            repeat(columnCount) { column ->
-                val color = if ((row + column) % 2 == 0) primaryColor else secondaryColor
-                drawRect(
-                    color = color,
-                    topLeft = Offset(column * squareSize, row * squareSize),
-                    size = drawSize
-                )
-            }
-        }
-    }
-}
