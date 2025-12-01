@@ -34,7 +34,7 @@ internal fun OudsTopAppBarSample() {
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {},
-            OudsTopAppBarAction.Avatar(monogram = "A", color = Color.White, backgroundColor = Color(0xffd5204e), "") {}
+            OudsTopAppBarAction.Avatar(monogram = 'A', color = Color.White, backgroundColor = Color(0xffd5204e), "") {}
         )
     )
 }
@@ -47,7 +47,7 @@ internal fun OudsCenterAlignedTopAppBarSample() {
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {},
-            OudsTopAppBarAction.Avatar(monogram = "A", color = Color.White, backgroundColor = Color(0xff247a85), "") {}
+            OudsTopAppBarAction.Avatar(monogram = 'A', color = Color.White, backgroundColor = Color(0xff247a85), "") {}
         )
     )
 }
@@ -60,7 +60,7 @@ internal fun OudsMediumTopAppBarSample() {
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {},
-            OudsTopAppBarAction.Avatar(monogram = "A", color = Color.Black, backgroundColor = Color(0xfffbcd00), "") {}
+            OudsTopAppBarAction.Avatar(monogram = 'A', color = Color.Black, backgroundColor = Color(0xfffbcd00), "") {}
         )
     )
 }
@@ -73,7 +73,7 @@ internal fun OudsLargeTopAppBarSample() {
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {},
-            OudsTopAppBarAction.Avatar(monogram = "A", color = Color.White, backgroundColor = Color(0xff0073b2), "") {}
+            OudsTopAppBarAction.Avatar(monogram = 'A', color = Color.White, backgroundColor = Color(0xff0073b2), "") {}
         )
     )
 }

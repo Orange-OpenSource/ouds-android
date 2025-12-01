@@ -49,6 +49,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -59,6 +60,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
@@ -564,11 +566,11 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
 
     /**
      * A top app bar action that displays an avatar.
-     * The content of the avatar can either be an image or a monogram consisting of one or two letters.
+     * The content of the avatar can either be an image or a single letter monogram.
      */
     class Avatar private constructor(
         private val graphicsObject: Any?,
-        private val monogram: String?,
+        private val monogram: Char?,
         private val monogramColor: Color?,
         private val monogramBackgroundColor: Color?,
         private val contentDescription: String,
@@ -617,14 +619,14 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         /**
          * Creates an instance of [OudsTopAppBarAction.Avatar].
          *
-         * @param monogram The monogram for this avatar, consisting of one or two letters.
+         * @param monogram The single letter monogram for this avatar.
          * @param color The color of the monogram.
          * @param backgroundColor The background color of the monogram.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
          */
         constructor(
-            monogram: String,
+            monogram: Char,
             color: Color,
             backgroundColor: Color,
             contentDescription: String,
@@ -673,13 +675,18 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
                             modifier = modifier.background(monogramBackgroundColor),
                             contentAlignment = Alignment.Center,
                         ) {
-                            Text(
-                                modifier = Modifier.clearAndSetSemantics {},
-                                text = monogram.take(2).uppercase(),
-                                color = monogramColor,
-                                style = MaterialTheme.typography.titleMedium, // This looks like the most accurate style according to Material specs at https://m3.material.io/components/app-bars/specs#606c6564-ce7d-489d-8852-af2b3b478bc6
-                                fontFamily = OudsTheme.typography.fontFamily
-                            )
+                            CompositionLocalProvider(
+                                // Do not take user font scale into account
+                                value = LocalDensity provides Density(LocalDensity.current.density, 1f)
+                            ) {
+                                Text(
+                                    modifier = Modifier.clearAndSetSemantics {},
+                                    text = monogram.uppercase(),
+                                    color = monogramColor,
+                                    style = MaterialTheme.typography.titleMedium, // This looks like the most accurate style according to Material specs at https://m3.material.io/components/app-bars/specs#606c6564-ce7d-489d-8852-af2b3b478bc6
+                                    fontFamily = OudsTheme.typography.fontFamily
+                                )
+                            }
                         }
                     }
                 }
@@ -814,7 +821,7 @@ private val previewParameterValues: List<OudsTopAppBarPreviewParameter>
                     onClick = {}
                 ),
                 OudsTopAppBarAction.Avatar(
-                    monogram = "A",
+                    monogram = 'A',
                     color = Color.White,
                     backgroundColor = Color(0xffd5204e),
                     contentDescription = "",

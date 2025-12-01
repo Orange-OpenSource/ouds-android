@@ -151,7 +151,7 @@ fun CustomizationTextField(
 
     CustomizationTextField(
         label = label,
-        value = textFieldValue,
+        value = textFieldValue.copy(text = value),
         onValueChange = { newTextFieldValue ->
             textFieldValue = newTextFieldValue
             onValueChange(newTextFieldValue.text)
