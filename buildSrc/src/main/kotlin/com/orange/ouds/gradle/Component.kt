@@ -22,7 +22,7 @@ enum class Component {
     Chip,
     Divider,
     Link,
-    NavigationBar,
+    Bar,
     RadioButton,
     Switch,
     Tag,
@@ -37,7 +37,7 @@ enum class Component {
                 Component.Chip -> Chip
                 Component.Divider -> Divider
                 Component.Link -> Link
-                Component.NavigationBar -> NavigationBar
+                Component.Bar -> Bar
                 Component.RadioButton -> RadioButton
                 Component.Switch -> Switch
                 Component.Tag -> Tag
@@ -47,17 +47,17 @@ enum class Component {
 
     fun getSourceFilePaths(project: Project): List<String> {
         val filenames = when (this) {
-            Component.Badge -> listOf("OudsBadge")
-            Component.Button -> listOf("OudsButton")
-            Component.Checkbox -> listOf("OudsCheckbox", "OudsCheckboxItem")
-            Component.Chip -> listOf("OudsFilterChip", "OudsSuggestionChip")
-            Component.Divider -> listOf("OudsDivider")
-            Component.Link -> listOf("OudsLink")
-            Component.NavigationBar -> listOf("OudsNavigationBar", "OudsTopAppBar")
-            Component.RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
-            Component.Switch -> listOf("OudsSwitch", "OudsSwitchItem")
-            Component.Tag -> listOf("OudsTag", "OudsInputTag")
-            Component.TextInput -> listOf("OudsTextInput")
+            Badge -> listOf("OudsBadge")
+            Button -> listOf("OudsButton")
+            Checkbox -> listOf("OudsCheckbox", "OudsCheckboxItem")
+            Chip -> listOf("OudsFilterChip", "OudsSuggestionChip")
+            Divider -> listOf("OudsDivider")
+            Link -> listOf("OudsLink")
+            Bar -> listOf("OudsNavigationBar", "OudsTopAppBar")
+            RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
+            Switch -> listOf("OudsSwitch", "OudsSwitchItem")
+            Tag -> listOf("OudsTag", "OudsInputTag")
+            TextInput -> listOf("OudsTextInput")
         }
 
         return filenames.map { "${project.rootProject.projectDir}/core/src/main/java/com/orange/ouds/core/component/$it.kt" }
