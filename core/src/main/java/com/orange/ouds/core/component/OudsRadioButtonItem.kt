@@ -270,7 +270,7 @@ internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeCo
         selected = true,
         label = "Label",
         onClick = {},
-        additionalLabel = "Additional label",
+        extraLabel = "Extra label",
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
         edgeToEdge = false,
         divider = true
