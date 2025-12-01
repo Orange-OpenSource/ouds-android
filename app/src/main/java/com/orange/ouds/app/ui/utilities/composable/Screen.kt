@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -32,7 +31,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagStatus
@@ -92,13 +90,6 @@ fun DemoScreen(
                     )
                     OudsTag(modifier = Modifier.padding(start = 10.dp), label = version, appearance = OudsTagAppearance.Muted, status = OudsTagStatus.Info())
                 }
-
-                ListItem(
-                    modifier = Modifier.listItemHorizontalPadding(),
-                    headlineContent = {
-
-                    },
-                )
             }
         }
     }
