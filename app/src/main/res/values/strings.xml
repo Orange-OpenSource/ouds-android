@@ -66,6 +66,7 @@
     <string name="app_tokens_color_border_label" translatable="false">Border</string>
     <string name="app_tokens_color_brand_label" translatable="false">Brand</string>
     <string name="app_tokens_color_content_label" translatable="false">Content</string>
+    <string name="app_tokens_color_opacity_label" translatable="false">Opacity</string>
     <string name="app_tokens_color_overlay_label" translatable="false">Overlay</string>
     <string name="app_tokens_color_surface_label" translatable="false">Surface</string>
     <string name="app_tokens_color_unspecified_label">Unspecified</string>
@@ -83,10 +84,10 @@
     <string name="app_tokens_dimension_space_fixedHeader_text">Fixed spacing refers to a constant distance between elements that remains the same regardless of factors like container size, screen resolution, or layout changes.</string>
     <string name="app_tokens_dimension_space_paddingInline_label">Padding inline</string>
     <string name="app_tokens_dimension_space_paddingInlineHeader_text">Padding inline includes the left and right padding of an object or a group of objects.</string>
-    <string name="app_tokens_dimension_space_paddingStack_label">Padding stack</string>
-    <string name="app_tokens_dimension_space_paddingStackHeader_text">Padding stack includes the top and bottom padding.</string>
-    <string name="app_tokens_dimension_space_paddingInset_label">Padding inset</string>
-    <string name="app_tokens_dimension_space_paddingInsetHeader_text">Padding inset includes the left, right, top, and bottom padding, with all parameters being equal.</string>
+    <string name="app_tokens_dimension_space_paddingBlock_label">Padding block</string>
+    <string name="app_tokens_dimension_space_paddingBlockHeader_text">Padding block includes the top and bottom padding.</string>
+    <string name="app_tokens_dimension_space_inset_label">Inset</string>
+    <string name="app_tokens_dimension_space_insetHeader_text">Insets include the left, right, top, and bottom paddings, with all parameters being equal.</string>
     <string name="app_tokens_dimension_space_columnGap_label">Column gap</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">Column gap is the horizontal spacing between elements.</string>
     <string name="app_tokens_dimension_space_rowGap_label">Row gap</string>
@@ -97,6 +98,8 @@
     <string name="app_tokens_dimension_size_description_text">Size refers to the specific measurements used to define the dimensions of UI elements within the design system.</string>
     <string name="app_tokens_dimension_size_iconDecorative_label">Icon decorative</string>
     <string name="app_tokens_dimension_size_iconWith_label">Icon with</string>
+    <string name="app_tokens_dimension_size_maxWidth_label">Max width</string>
+    <string name="app_tokens_dimension_size_minInteractiveArea_label">Min interactive area</string>
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label">Elevation</string>

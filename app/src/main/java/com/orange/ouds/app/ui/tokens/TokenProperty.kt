@@ -85,7 +85,13 @@ sealed class TokenProperty<T>(
         tokens = getTokens<OudsColorScheme.Content>(),
         categoryClass = TokenCategory.Color::class
     )
-    
+
+    data object ColorOpacity : TokenProperty<TokenCategory.Color>(
+        nameRes = R.string.app_tokens_color_opacity_label,
+        tokens = getTokens<OudsColorScheme.Opacity>(),
+        categoryClass = TokenCategory.Color::class
+    )
+
     data object ColorOverlay : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_overlay_label,
         tokens = getTokens<OudsColorScheme.Overlay>(),
@@ -140,6 +146,30 @@ sealed class TokenProperty<T>(
         categoryClass = TokenCategory.Dimension.Size::class
     )
 
+    data object SizeMaxWidth : TokenProperty<TokenCategory.Dimension.Size>(
+        nameRes = R.string.app_tokens_dimension_size_maxWidth_label,
+        tokens = listOf(
+            OudsSizes.MaxWidth.Type.Display::class,
+            OudsSizes.MaxWidth.Type.Heading::class,
+            OudsSizes.MaxWidth.Type.Body::class,
+            OudsSizes.MaxWidth.Type.Label::class,
+        ).flatMap { getTokens(it) },
+        categoryClass = TokenCategory.Dimension.Size::class
+    )
+
+    data object SizeMinInteractiveArea : TokenProperty<TokenCategory.Dimension.Size>(
+        nameRes = R.string.app_tokens_dimension_size_minInteractiveArea_label,
+        tokens = "sizes.minInteractiveArea".let { tokenPath ->
+            listOf(
+                Token(
+                    tokenPath,
+                    getTokenRelativeName(tokenPath, OudsSizes::class),
+                    { getTokenValue(tokenPath) })
+            )
+        },
+        categoryClass = TokenCategory.Dimension.Size::class
+    )
+
     data object SpaceColumnGap : TokenProperty<TokenCategory.Dimension.Space>(
         nameRes = R.string.app_tokens_dimension_space_columnGap_label,
         tokens = getTokens<OudsSpaces.ColumnGap>(),
@@ -158,14 +188,14 @@ sealed class TokenProperty<T>(
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingInset : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_paddingInset_label,
+    data object SpaceInset : TokenProperty<TokenCategory.Dimension.Space>(
+        nameRes = R.string.app_tokens_dimension_space_inset_label,
         tokens = getTokens<OudsSpaces.Inset>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )
 
-    data object SpacePaddingStack : TokenProperty<TokenCategory.Dimension.Space>(
-        nameRes = R.string.app_tokens_dimension_space_paddingStack_label,
+    data object SpacePaddingBlock : TokenProperty<TokenCategory.Dimension.Space>(
+        nameRes = R.string.app_tokens_dimension_space_paddingBlock_label,
         tokens = getTokens<OudsSpaces.PaddingBlock>(),
         categoryClass = TokenCategory.Dimension.Space::class
     )

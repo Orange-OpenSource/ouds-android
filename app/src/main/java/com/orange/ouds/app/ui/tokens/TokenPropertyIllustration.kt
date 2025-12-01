@@ -53,7 +53,9 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
-private val defaultIllustrationSize = 64.dp
+private val DefaultIllustrationSize = 64.dp
+private val SizeTokenIllustrationSize = 80.dp
+
 
 @Composable
 private fun IllustrationBox(
@@ -64,7 +66,7 @@ private fun IllustrationBox(
 ) {
     Box(
         modifier = modifier
-            .size(defaultIllustrationSize)
+            .size(DefaultIllustrationSize)
             .background(color = backgroundColor),
         contentAlignment = contentAlignment,
         content = content
@@ -142,12 +144,23 @@ fun OpacityIllustration(opacity: Float) {
 
 @Composable
 fun SizeIconIllustration(size: Dp) {
-    IllustrationBox(modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center) {
+    IllustrationBox(modifier = Modifier.size(SizeTokenIllustrationSize), contentAlignment = Alignment.Center) {
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.ic_design_token_figma),
             tint = OudsTheme.colorScheme.content.status.info,
             contentDescription = null
+        )
+    }
+}
+
+@Composable
+fun SizeMinInteractiveArea(size: Dp) {
+    IllustrationBox(modifier = Modifier.size(SizeTokenIllustrationSize), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .size(size)
+                .background(color = OudsTheme.colorScheme.content.status.info),
         )
     }
 }

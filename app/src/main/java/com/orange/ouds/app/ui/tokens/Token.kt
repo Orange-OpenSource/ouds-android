@@ -38,7 +38,16 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
                 if (value.isUnspecified) {
                     stringResource(id = R.string.app_tokens_color_unspecified_label)
                 } else {
-                    stringResource(id = R.string.app_tokens_colorFormat_label, value.value.toString(16).substring(2, 8).uppercase())
+                    stringResource(
+                        id = R.string.app_tokens_colorFormat_label,
+                        value.value.toString(16).let { hex ->
+                            when {
+                                hex == "0" -> "00000000" // Transparent color
+                                hex.startsWith("ff") -> hex.substring(2, 8) // No need to show alpha
+                                else -> hex.substring(0, 8)
+                            }
+                        }.uppercase()
+                    )
                 }
             }
             is Float -> "\u200e${value}f" // "\u200e" forces LTR display even if the app is in arabic
