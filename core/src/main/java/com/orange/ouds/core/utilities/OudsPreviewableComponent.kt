@@ -51,10 +51,13 @@ import com.orange.ouds.core.component.OudsTagPreviewParameter
 import com.orange.ouds.core.component.OudsTagPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextInputPreviewParameter
 import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
+import com.orange.ouds.core.component.OudsTopAppBarPreviewParameter
+import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsButton
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
 import com.orange.ouds.core.component.PreviewOudsCheckbox
 import com.orange.ouds.core.component.PreviewOudsCheckboxItem
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemHighContrastModeEnabled
@@ -64,8 +67,10 @@ import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsFilterChip
 import com.orange.ouds.core.component.PreviewOudsInputTag
+import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
 import com.orange.ouds.core.component.PreviewOudsLink
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
+import com.orange.ouds.core.component.PreviewOudsMediumTopAppBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsRadioButton
@@ -82,6 +87,7 @@ import com.orange.ouds.core.component.PreviewOudsTag
 import com.orange.ouds.core.component.PreviewOudsTextInput
 import com.orange.ouds.core.component.PreviewOudsTextInputWithLongLabels
 import com.orange.ouds.core.component.PreviewOudsTextInputWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsTopAppBar
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -251,6 +257,39 @@ interface OudsPreviewableComponent {
         }
     }
 
+    object Divider {
+
+        object Horizontal : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsDividerPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsDivider(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    orientation = OudsDividerOrientation.Horizontal,
+                    color = parameter as OudsDividerColor
+                )
+            }
+        }
+
+        object Vertical : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsDividerPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsDivider(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    orientation = OudsDividerOrientation.Vertical,
+                    color = parameter as OudsDividerColor
+                )
+            }
+        }
+    }
+
     object FilterChip : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsFilterChipPreviewParameterProvider().values.toList()
@@ -261,21 +300,6 @@ interface OudsPreviewableComponent {
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsFilterChipPreviewParameter
-            )
-        }
-    }
-
-    object HorizontalDivider : OudsPreviewableComponent {
-
-        override val parameters: List<Any> = OudsDividerPreviewParameterProvider().values.toList()
-
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsDivider(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                orientation = OudsDividerOrientation.Horizontal,
-                color = parameter as OudsDividerColor
             )
         }
     }
@@ -557,18 +581,62 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object VerticalDivider : OudsPreviewableComponent {
+    object TopAppBar {
 
-        override val parameters: List<Any> = OudsDividerPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsDivider(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                orientation = OudsDividerOrientation.Vertical,
-                color = parameter as OudsDividerColor
-            )
+            override val parameters: List<Any> = OudsTopAppBarPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTopAppBar(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTopAppBarPreviewParameter
+                )
+            }
+        }
+
+        object CenterAligned : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsTopAppBarPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCenterAlignedTopAppBar(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTopAppBarPreviewParameter
+                )
+            }
+        }
+
+        object Medium : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsTopAppBarPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsMediumTopAppBar(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTopAppBarPreviewParameter
+                )
+            }
+        }
+
+        object Large : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsTopAppBarPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsLargeTopAppBar(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTopAppBarPreviewParameter
+                )
+            }
         }
     }
 }

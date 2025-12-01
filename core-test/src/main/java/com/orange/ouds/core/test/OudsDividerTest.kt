@@ -7,7 +7,7 @@
  * the text of which is available at https://opensource.org/license/MIT/
  * or see the "LICENSE" file for more details.
  *
- * Software description: Android library of reusable graphical components
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ouds.core.test
@@ -18,35 +18,33 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
-class OudsBadgeTest {
+class OudsDividerTest() {
 
     @RunWith(Parameterized::class)
-    class Default(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.Badge.Default,
+    class Horizontal(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Divider.Horizontal,
         parameter,
-        OudsComponentTestSuite.theme,
-        OudsPreviewableComponent.Badge.PreviewWidthDp
+        OudsComponentTestSuite.theme
     ) {
 
         companion object {
             @JvmStatic
             @Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.Badge.Default.parameters
+            internal fun data() = OudsPreviewableComponent.Divider.Horizontal.parameters
         }
     }
 
     @RunWith(Parameterized::class)
-    class WithIcon(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.Badge.WithIcon,
+    class Vertical(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Divider.Vertical,
         parameter,
-        OudsComponentTestSuite.theme,
-        OudsPreviewableComponent.Badge.PreviewWidthDp
+        OudsComponentTestSuite.theme
     ) {
 
         companion object {
             @JvmStatic
             @Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.Badge.WithIcon.parameters
+            internal fun data() = OudsPreviewableComponent.Divider.Vertical.parameters
         }
     }
 }

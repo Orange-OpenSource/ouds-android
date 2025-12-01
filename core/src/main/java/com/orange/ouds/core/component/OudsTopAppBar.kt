@@ -793,7 +793,7 @@ internal data class OudsTopAppBarPreviewParameter(
     val actions: List<OudsTopAppBarAction> = emptyList()
 )
 
-private class OudsTopAppBarPreviewParameterProvider() : BasicPreviewParameterProvider<OudsTopAppBarPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsTopAppBarPreviewParameterProvider() : BasicPreviewParameterProvider<OudsTopAppBarPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsTopAppBarPreviewParameter>
     get() = listOf(
