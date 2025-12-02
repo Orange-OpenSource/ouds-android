@@ -28,6 +28,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsTypography
 import com.orange.ouds.foundation.extensions.asOrNull
 import kotlin.reflect.KClass
+import kotlin.reflect.KParameter
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.primaryConstructor
@@ -130,19 +131,7 @@ sealed class TokenProperty<T>(
 
     data object SizeIconWithText : TokenProperty<TokenCategory.Dimension.Size>(
         nameRes = R.string.app_tokens_dimension_size_iconWith_label,
-        tokens = listOf(
-            OudsSizes.Icon.WithLabel.Small::class,
-            OudsSizes.Icon.WithLabel.Medium::class,
-            OudsSizes.Icon.WithLabel.Large::class,
-            OudsSizes.Icon.WithLabel.ExtraLarge::class,
-            OudsSizes.Icon.WithBody.Small::class,
-            OudsSizes.Icon.WithBody.Medium::class,
-            OudsSizes.Icon.WithBody.Large::class,
-            OudsSizes.Icon.WithHeading.Small::class,
-            OudsSizes.Icon.WithHeading.Medium::class,
-            OudsSizes.Icon.WithHeading.Large::class,
-            OudsSizes.Icon.WithHeading.ExtraLarge::class,
-        ).flatMap { getTokens(it) },
+        tokens = getTokens<OudsSizes.Icon> { clazz, _ -> clazz != OudsSizes.Icon.Decorative::class },
         categoryClass = TokenCategory.Dimension.Size::class
     )
 
@@ -159,14 +148,7 @@ sealed class TokenProperty<T>(
 
     data object SizeMinInteractiveArea : TokenProperty<TokenCategory.Dimension.Size>(
         nameRes = R.string.app_tokens_dimension_size_minInteractiveArea_label,
-        tokens = "sizes.minInteractiveArea".let { tokenPath ->
-            listOf(
-                Token(
-                    tokenPath,
-                    getTokenRelativeName(tokenPath, OudsSizes::class),
-                    { getTokenValue(tokenPath) })
-            )
-        },
+        tokens = getTokens<OudsSizes> { _, parameter -> parameter.name == OudsSizes::minInteractiveArea.name },
         categoryClass = TokenCategory.Dimension.Size::class
     )
 
@@ -219,15 +201,15 @@ sealed class TokenProperty<T>(
     )
 }
 
-inline fun <reified T : Any> getTokens() = getTokens(T::class)
+inline fun <reified T : Any> getTokens(noinline predicate: (KClass<*>, KParameter) -> Boolean = { _, _ -> true }) = getTokens(T::class, predicate)
 
-fun <T : Any> getTokens(clazz: KClass<T>): List<Token<*>> {
+fun <T : Any> getTokens(clazz: KClass<T>, predicate: (KClass<*>, KParameter) -> Boolean = { _, _ -> true }): List<Token<*>> {
     val packageName = clazz.java.`package`?.name.orEmpty()
     val rootClassName = clazz.java.nestedName.substringBefore(".")
     val rootClass = Class.forName("$packageName.$rootClassName").kotlin
     val rootPath = getPath(rootClass)
 
-    return getTokenPaths(rootClass, clazz.takeIf { it != rootClass }, rootPath).map { tokenPath ->
+    return getTokenPaths(rootClass, clazz.takeIf { it != rootClass }, rootPath, predicate).map { tokenPath ->
         Token(tokenPath, getTokenRelativeName(tokenPath, clazz), { getTokenValue(tokenPath) })
     }
 }
@@ -250,8 +232,9 @@ private fun getPath(clazz: KClass<*>): String {
  *   will generate tokens for all children objects of [OudsColorScheme.Action] in the class tree. Other tokens in [OudsColorScheme] such as tokens in
  *   [OudsColorScheme.Background] will be skipped. Pass `null` to take all tokens into account.
  * @param parentPath The path of the parent object in the class tree.
+ * @param predicate A function that takes the class containing the token and its associated constructor parameter, and returns the result of predicate evaluation for this token.
  */
-private fun getTokenPaths(clazz: KClass<*>, fromClass: KClass<*>?, parentPath: String): List<String> {
+private fun getTokenPaths(clazz: KClass<*>, fromClass: KClass<*>?, parentPath: String, predicate: (KClass<*>, KParameter) -> Boolean): List<String> {
     return clazz.primaryConstructor
         ?.parameters // Use primary constructor parameters instead of declaredMemberProperties because parameters are sorted as they are declared
         .orEmpty()
@@ -267,12 +250,13 @@ private fun getTokenPaths(clazz: KClass<*>, fromClass: KClass<*>?, parentPath: S
                     getTokenPaths(
                         parameterClass,
                         fromClass.takeIf { parameterClass != fromClass },
-                        path
+                        path,
+                        predicate
                     )
                 }
                 // parameter is not a nested class thus a token value, we take the token path into account if fromClass is null
                 // meaning we already encountered fromClass when browsing the class tree
-                fromClass == null -> listOf(path)
+                fromClass == null && predicate(clazz, parameter) -> listOf(path)
                 else -> emptyList()
             }
         }
