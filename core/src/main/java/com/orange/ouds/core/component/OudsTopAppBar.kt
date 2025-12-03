@@ -152,7 +152,7 @@ fun OudsTopAppBar(
 /**
  * Top app bars display information and actions at the top of a screen.
  *
- * This small top app bar has a header title that is horizontally aligned to the center.
+ * This small top app bar has slots for a title that is horizontally aligned to the center, navigation icon, and actions.
  *
  * [OudsCenterAlignedTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsCenterAlignedTopAppBar] with
@@ -261,7 +261,7 @@ fun OudsCenterAlignedTopAppBar(
  *   this value must be specified and finite, otherwise it will be ignored and replaced with
  *   [TopAppBarDefaults.MediumAppBarExpandedHeight].
  * @param windowInsets A window insets that app bar will respect.
- * @param scrollBehavior a [TopAppBarScrollBehavior] which holds various offset values that will be
+ * @param scrollBehavior A [TopAppBarScrollBehavior] which holds various offset values that will be
  *   applied by this top app bar to set up its height and colors. A scroll behavior is designed to
  *   work in conjunction with a scrolled content to change the top app bar appearance as the content
  *   scrolls. See [TopAppBarScrollBehavior.nestedScrollConnection].
@@ -344,7 +344,7 @@ fun OudsMediumTopAppBar(
  *   this value must be specified and finite, otherwise it will be ignored and replaced with
  *   [TopAppBarDefaults.LargeAppBarExpandedHeight].
  * @param windowInsets A window insets that app bar will respect.
- * @param scrollBehavior a [TopAppBarScrollBehavior] which holds various offset values that will be
+ * @param scrollBehavior A [TopAppBarScrollBehavior] which holds various offset values that will be
  *   applied by this top app bar to set up its height and colors. A scroll behavior is designed to
  *   work in conjunction with a scrolled content to change the top app bar appearance as the content
  *   scrolls. See [TopAppBarScrollBehavior.nestedScrollConnection].
