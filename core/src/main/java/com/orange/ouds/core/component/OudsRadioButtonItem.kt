@@ -21,6 +21,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -34,6 +35,7 @@ import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
+import com.orange.ouds.core.utilities.LocalPreviewEnumEntry
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -265,16 +267,19 @@ private fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled() = PreviewOudsRadi
 
 @Composable
 internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    OudsRadioButtonItem(
-        modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
-        selected = true,
-        label = "Label",
-        onClick = {},
-        extraLabel = "Extra label",
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
-        edgeToEdge = false,
-        divider = true
-    )
+    CompositionLocalProvider(LocalPreviewEnumEntry provides OudsControlState.Pressed) {
+        OudsRadioButtonItem(
+            modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
+            selected = true,
+            label = "Label",
+            onClick = {},
+            extraLabel = "Extra label",
+            icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+            edgeToEdge = false,
+            divider = true,
+            error = OudsError(ControlItemErrorMessage)
+        )
+    }
 }
 
 internal typealias OudsRadioButtonItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Boolean>

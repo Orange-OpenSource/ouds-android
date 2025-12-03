@@ -20,6 +20,7 @@ import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -31,6 +32,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.utilities.LocalPreviewEnumEntry
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -187,15 +189,18 @@ private fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled() = PreviewOudsSwitchIte
 
 @Composable
 internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    OudsSwitchItem(
-        modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
-        checked = true,
-        label = "Label",
-        onCheckedChange = {},
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
-        edgeToEdge = false,
-        divider = true
-    )
+    CompositionLocalProvider(LocalPreviewEnumEntry provides OudsControlState.Pressed) {
+        OudsSwitchItem(
+            modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
+            checked = true,
+            label = "Label",
+            onCheckedChange = {},
+            icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+            edgeToEdge = false,
+            divider = true,
+            error = OudsError(ControlItemErrorMessage)
+        )
+    }
 }
 
 internal typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>

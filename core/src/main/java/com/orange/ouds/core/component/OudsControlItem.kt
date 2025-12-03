@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import android.R.attr.text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -47,7 +46,6 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
-import com.orange.ouds.core.theme.OudsGrids
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -163,7 +161,10 @@ internal fun OudsControlItem(
                     trailingElement?.let { LeadingTrailingBox(trailingElement) }
                 }
                 if (divider) {
-                    OudsHorizontalDivider(modifier = if (edgeToEdge) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier, color = dividerColor(state = state, error = error))
+                    OudsHorizontalDivider(
+                        modifier = if (edgeToEdge) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
+                        color = dividerColor(state = state, error = error)
+                    )
                 }
             }
             if (error != null && error.message.isNotBlank()) {
@@ -292,7 +293,8 @@ private fun backgroundColor(state: OudsControlState): Color {
 }
 
 @Composable
-private fun contentHorizontalPadding(edgeToEdge: Boolean) = if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.controlItem.spacePaddingInline.value
+private fun contentHorizontalPadding(edgeToEdge: Boolean) =
+    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.controlItem.spacePaddingInline.value
 
 @Composable
 private fun dividerColor(state: OudsControlState, error: OudsError?) =
@@ -355,7 +357,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                     when (index) {
                         0 -> this
                         1 -> copy(hasIcon = true, extraLabel = extraLabel, description = description)
-                        else -> copy(description = description, divider = true, error = OudsError("This field can't be activated"))
+                        else -> copy(description = description, divider = true, error = OudsError(ControlItemErrorMessage))
                     }
                 }
             }
@@ -379,3 +381,8 @@ private fun <T> getHighContrastModePreviewParameterValues(values: List<T>): List
         }
     }
 }
+
+/**
+ * Error message used in control items previews.
+ */
+internal val ControlItemErrorMessage = "This field can't be activated"

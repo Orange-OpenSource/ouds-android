@@ -39,7 +39,7 @@ import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.OrangeTheme
 import kotlin.enums.enumEntries
 
-private val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
