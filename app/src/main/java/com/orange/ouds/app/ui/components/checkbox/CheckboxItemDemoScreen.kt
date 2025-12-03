@@ -56,7 +56,7 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
 @Composable
 private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
-        Column(modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin)) {
+        CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
                 val isLastItem = index == CheckboxIdentifier.entries.lastIndex
                 OudsCheckboxItem(
@@ -88,7 +88,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
 @Composable
 private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
-        Column {
+        CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
                 val isLastItem = index == CheckboxIdentifier.entries.lastIndex
                 OudsTriStateCheckboxItem(
@@ -107,6 +107,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     label = label,
                     description = description,
                     icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+                    edgeToEdge = edgeToEdge,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
@@ -115,6 +116,13 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun CheckboxItemDemoColumn(edgeToEdge: Boolean, content: @Composable () -> Unit) {
+    Column(modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin)) {
+        content()
     }
 }
 
