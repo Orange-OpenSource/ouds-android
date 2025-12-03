@@ -1,6 +1,6 @@
 # OUDS Android
 
-The OUDS Android library is compatible with **Android 5.0 (API level 21) and higher**. It serves as the interface between applications and custom themes,
+The OUDS Android library is compatible with **Android 6.0 (API level 23) and higher**. It serves as the interface between applications and custom themes,
 providing essential components for app development.
 
 ## Getting started
