@@ -53,7 +53,6 @@ import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
 
-
 private val oudsAboutMenuItems = listOf(
     AboutFileMenuItem(1, R.string.app_about_legalInformation_label, AboutFileMenuItem.File(R.raw.about_legal_information, AboutFileMenuItem.File.Format.Html)),
     AboutFileMenuItem(2, R.string.app_about_privacyPolicy_label, AboutFileMenuItem.File(R.raw.about_privacy_policy, AboutFileMenuItem.File.Format.Html)),
