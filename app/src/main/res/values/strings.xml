@@ -126,6 +126,7 @@
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_layout_label">Layout</string>
     <string name="app_components_common_loader_label">Loader</string>
+    <string name="app_components_common_none_label">None</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
     <string name="app_components_common_outlined_label">Outlined</string>
     <string name="app_components_common_readOnly_label">Read only</string>
@@ -202,7 +203,6 @@
     <string name="app_components_navigationBar_description_text">Navigation bars let people switch between UI views on smaller devices.</string> <!--TODO update with OUDS description-->
     <string name="app_components_navigationBar_itemCount_label">Item count</string>
     <string name="app_components_navigationBar_lastItemBadge_label">Last item badge</string>
-    <string name="app_components_navigationBar_itemBadgeNone_label">None</string>
     <string name="app_components_navigationBar_homeItem_label">Home</string>
     <string name="app_components_navigationBar_shopItem_label">Shop</string>
     <string name="app_components_navigationBar_notificationsItem_label">Notifications</string>
@@ -253,6 +253,10 @@
     <string name="app_components_topAppBar_largeSize_label">Large</string>
     <string name="app_components_topAppBar_centerAligned_label">Center aligned</string>
     <string name="app_components_topAppBar_navigationIcon_label">Navigation icon</string>
+    <string name="app_components_topAppBar_backNavigationIcon_label">Back</string>
+    <string name="app_components_topAppBar_closeNavigationIcon_label">Close</string>
+    <string name="app_components_topAppBar_menuNavigationIcon_label">Menu</string>
+    <string name="app_components_topAppBar_customNavigationIcon_label">Custom</string>
     <string name="app_components_topAppBar_title_label">Title</string>
     <string name="app_components_topAppBar_avatar_label">Avatar</string>
     <string name="app_components_topAppBar_imageAvatar_label">Image</string>

@@ -25,7 +25,7 @@ import com.orange.ouds.app.R
 fun rememberTopAppBarDemoState(
     size: TopAppBarDemoState.Size = TopAppBarDemoState.Size.Small,
     centerAligned: Boolean = false,
-    navigationIcon: Boolean = false,
+    navigationIcon: TopAppBarDemoState.NavigationIcon = TopAppBarDemoState.NavigationIcon.None,
     title: String = "Title",
     avatar: TopAppBarDemoState.Avatar = TopAppBarDemoState.Avatar.Image,
     avatarMonogram: Char = 'A'
@@ -36,7 +36,7 @@ fun rememberTopAppBarDemoState(
 class TopAppBarDemoState(
     size: Size,
     centerAligned: Boolean,
-    navigationIcon: Boolean,
+    navigationIcon: NavigationIcon,
     title: String,
     avatar: Avatar,
     avatarMonogram: Char
@@ -60,7 +60,7 @@ class TopAppBarDemoState(
                 TopAppBarDemoState(
                     list[0] as Size,
                     list[1] as Boolean,
-                    list[2] as Boolean,
+                    list[2] as NavigationIcon,
                     list[3] as String,
                     list[4] as Avatar,
                     list[5] as Char
@@ -81,7 +81,7 @@ class TopAppBarDemoState(
 
     var centerAligned: Boolean by mutableStateOf(centerAligned)
 
-    var navigationIcon: Boolean by mutableStateOf(navigationIcon)
+    var navigationIcon: NavigationIcon by mutableStateOf(navigationIcon)
 
     var title: String by mutableStateOf(title)
 
@@ -104,5 +104,13 @@ class TopAppBarDemoState(
     enum class Avatar(@StringRes val labelRes: Int) {
         Image(R.string.app_components_topAppBar_imageAvatar_label),
         Monogram(R.string.app_components_topAppBar_monogramAvatar_label)
+    }
+
+    enum class NavigationIcon(@StringRes val labelRes: Int) {
+        None(R.string.app_components_common_none_label),
+        Back(R.string.app_components_topAppBar_backNavigationIcon_label),
+        Close(R.string.app_components_topAppBar_closeNavigationIcon_label),
+        Menu(R.string.app_components_topAppBar_menuNavigationIcon_label),
+        Custom(R.string.app_components_topAppBar_customNavigationIcon_label)
     }
 }
