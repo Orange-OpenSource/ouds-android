@@ -33,6 +33,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.core.component.OudsCenterAlignedTopAppBar
 import com.orange.ouds.core.component.OudsLargeTopAppBar
 import com.orange.ouds.core.component.OudsMediumTopAppBar
@@ -73,10 +74,12 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
             onCheckedChange = { centerAligned = it },
             enabled = centerAlignedSwitchEnabled
         )
-        CustomizationSwitchItem(
+        CustomizationFilterChips(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_topAppBar_navigationIcon_label),
-            checked = navigationIcon,
-            onCheckedChange = { navigationIcon = it }
+            chipLabels = TopAppBarDemoState.NavigationIcon.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = TopAppBarDemoState.NavigationIcon.entries.indexOf(navigationIcon),
+            onSelectionChange = { id -> navigationIcon = TopAppBarDemoState.NavigationIcon.entries[id] }
         )
         CustomizationTextField(
             applyTopPadding = true,
@@ -104,8 +107,19 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
+    val themeDrawableResources = LocalThemeDrawableResources.current
     with(state) {
-        val navigationIcon = if (navigationIcon) OudsTopAppBarNavigationIcon.Back {} else null
+        val navigationIcon = when (navigationIcon) {
+            TopAppBarDemoState.NavigationIcon.None -> null
+            TopAppBarDemoState.NavigationIcon.Back -> OudsTopAppBarNavigationIcon.Back(onClick = {})
+            TopAppBarDemoState.NavigationIcon.Close -> OudsTopAppBarNavigationIcon.Close(onClick = {})
+            TopAppBarDemoState.NavigationIcon.Menu -> OudsTopAppBarNavigationIcon.Menu(onClick = {})
+            TopAppBarDemoState.NavigationIcon.Custom -> OudsTopAppBarNavigationIcon(
+                painter = painterResource(id = themeDrawableResources.tipsAndTricks),
+                contentDescription = stringResource(R.string.app_components_common_icon_a11y),
+                onClick = {}
+            )
+        }
         val avatarContentDescription = stringResource(R.string.app_components_topAppBar_secondAction_a11y)
         val avatarAction = when (avatar) {
             TopAppBarDemoState.Avatar.Image -> OudsTopAppBarAction.Avatar(
@@ -172,9 +186,20 @@ private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, the
         }
         functionCall(functionName) {
             typedArgument("title", title)
-            if (navigationIcon) {
-                constructorCallArgument<OudsTopAppBarNavigationIcon.Back>("navigationIcon") {
-                    trailingLambda = true
+            val navigationIconClass = when (navigationIcon) {
+                TopAppBarDemoState.NavigationIcon.None -> null
+                TopAppBarDemoState.NavigationIcon.Back -> OudsTopAppBarNavigationIcon.Back::class.java
+                TopAppBarDemoState.NavigationIcon.Close -> OudsTopAppBarNavigationIcon.Close::class.java
+                TopAppBarDemoState.NavigationIcon.Menu -> OudsTopAppBarNavigationIcon.Menu::class.java
+                TopAppBarDemoState.NavigationIcon.Custom -> OudsTopAppBarNavigationIcon::class.java
+            }
+            if (navigationIconClass != null) {
+                functionCallArgument("navigationIcon", navigationIconClass.nestedName) {
+                    trailingLambda = navigationIcon != TopAppBarDemoState.NavigationIcon.Custom
+                    if (navigationIcon == TopAppBarDemoState.NavigationIcon.Custom) {
+                        painterArgument(themeDrawableResources.tipsAndTricks)
+                        contentDescriptionArgument(R.string.app_components_common_icon_a11y)
+                    }
                     onClickArgument()
                 }
             }
