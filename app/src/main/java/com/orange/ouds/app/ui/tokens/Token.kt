@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.tokens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.isUnspecified
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -38,7 +39,10 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
                 if (value.isUnspecified) {
                     stringResource(id = R.string.app_tokens_color_unspecified_label)
                 } else {
-                    stringResource(id = R.string.app_tokens_colorFormat_label, value.value.toString(16).substring(2, 8).uppercase())
+                    stringResource(
+                        id = R.string.app_tokens_colorFormat_label,
+                        value.toArgb().toHexString().uppercase().let { if (it.startsWith("FF")) it.drop(2) else it }
+                    )
                 }
             }
             is Float -> "\u200e${value}f" // "\u200e" forces LTR display even if the app is in arabic

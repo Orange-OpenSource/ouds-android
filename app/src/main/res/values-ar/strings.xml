@@ -73,10 +73,10 @@
     <string name="app_tokens_dimension_space_fixedHeader_text">تشير المسافات الثابتة إلى مسافة محددة بين العناصر التي تظل كما هي بغض النظر عن عوامل مثل حجم الحاوية، دقة الشاشة، أو تغييرات التخطيط.</string>
     <string name="app_tokens_dimension_space_paddingInline_label">الهوامش الجانبية</string>
     <string name="app_tokens_dimension_space_paddingInlineHeader_text">الهوامش الجانبية تشمل المسافة بين الجوانب اليمنى واليسرى للعناصر.</string>
-    <string name="app_tokens_dimension_space_paddingStack_label">الهوامش العلوية والسفلية</string>
-    <string name="app_tokens_dimension_space_paddingStackHeader_text">الهوامش العلوية والسفلية تشمل المسافة بين أعلى وأسفل العنصر.</string>
-    <string name="app_tokens_dimension_space_paddingInset_label">الهوامش المحيطية</string>
-    <string name="app_tokens_dimension_space_paddingInsetHeader_text">الهوامش المحيطية تشمل المسافة بين جميع الجوانب، مع كون جميع المعايير متساوية.</string>
+    <string name="app_tokens_dimension_space_paddingBlock_label">Padding block</string>
+    <string name="app_tokens_dimension_space_paddingBlockHeader_text">Padding block includes the top and bottom padding.</string>
+    <string name="app_tokens_dimension_space_inset_label">Inset</string>
+    <string name="app_tokens_dimension_space_insetHeader_text">Insets include the left, right, top, and bottom paddings, with all parameters being equal.</string>
     <string name="app_tokens_dimension_space_columnGap_label">الفاصل بين الأعمدة</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">الفاصل بين الأعمدة هو التباعد الأفقي بين العناصر.</string>
     <string name="app_tokens_dimension_space_rowGap_label">الفاصل بين الصفوف</string>
@@ -87,6 +87,8 @@
     <string name="app_tokens_dimension_size_description_text">يشير الحجم إلى القياسات المحددة التي تُستخدم لتعريف أبعاد عناصر واجهة المستخدم داخل نظام التصميم.</string>
     <string name="app_tokens_dimension_size_iconDecorative_label">رمز زخرفي</string>
     <string name="app_tokens_dimension_size_iconWith_label">رمز مع نص</string>
+    <string name="app_tokens_dimension_size_maxWidth_label">Max width</string>
+    <string name="app_tokens_dimension_size_minInteractiveArea_label">Min interactive area</string>
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label">الارتفاع</string>

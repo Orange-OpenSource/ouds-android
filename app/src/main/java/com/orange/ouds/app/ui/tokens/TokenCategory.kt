@@ -61,6 +61,7 @@ sealed class TokenCategory<T>(
             TokenProperty.ColorBackground,
             TokenProperty.ColorBorder,
             TokenProperty.ColorContent,
+            TokenProperty.ColorOpacity,
             TokenProperty.ColorOverlay,
             TokenProperty.ColorSurface,
         )
@@ -80,8 +81,8 @@ sealed class TokenCategory<T>(
                 TokenProperty.SpaceScaled,
                 TokenProperty.SpaceFixed,
                 TokenProperty.SpacePaddingInline,
-                TokenProperty.SpacePaddingStack,
-                TokenProperty.SpacePaddingInset,
+                TokenProperty.SpacePaddingBlock,
+                TokenProperty.SpaceInset,
                 TokenProperty.SpaceColumnGap,
                 TokenProperty.SpaceRowGap,
             ),
@@ -91,7 +92,7 @@ sealed class TokenCategory<T>(
             R.string.app_tokens_dimension_size_label,
             { R.drawable.ic_dimension },
             R.string.app_tokens_dimension_size_description_text,
-            listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText),
+            listOf(TokenProperty.SizeMinInteractiveArea, TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText, TokenProperty.SizeMaxWidth),
         )
     }
 

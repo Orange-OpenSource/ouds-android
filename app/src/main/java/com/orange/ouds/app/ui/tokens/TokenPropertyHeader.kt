@@ -127,8 +127,8 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
         TokenProperty.SpaceScaled -> PaddingValues(start = OudsTheme.spaces.fixed.extraSmall, top = OudsTheme.spaces.fixed.twoExtraSmall)
         TokenProperty.SpaceFixed -> PaddingValues(start = OudsTheme.spaces.fixed.extraSmall)
         TokenProperty.SpacePaddingInline -> PaddingValues(horizontal = OudsTheme.spaces.fixed.extraSmall)
-        TokenProperty.SpacePaddingStack -> PaddingValues(vertical = OudsTheme.spaces.fixed.extraSmall)
-        TokenProperty.SpacePaddingInset -> PaddingValues(all = OudsTheme.spaces.fixed.extraSmall)
+        TokenProperty.SpacePaddingBlock -> PaddingValues(vertical = OudsTheme.spaces.fixed.extraSmall)
+        TokenProperty.SpaceInset -> PaddingValues(all = OudsTheme.spaces.fixed.extraSmall)
         else -> PaddingValues(all = 0.dp)
     }
 
@@ -141,7 +141,7 @@ private fun SpaceHeaderContent(spaceTokenProperty: TokenProperty<TokenCategory.D
     val column = remember {
         spaceTokenProperty in listOf(
             TokenProperty.SpaceRowGap,
-            TokenProperty.SpacePaddingStack,
+            TokenProperty.SpacePaddingBlock,
         )
     }
 
@@ -178,8 +178,8 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
         TokenProperty.SpaceColumnGap -> R.string.app_tokens_dimension_space_columnGapHeader_text
         TokenProperty.SpaceFixed -> R.string.app_tokens_dimension_space_fixedHeader_text
         TokenProperty.SpacePaddingInline -> R.string.app_tokens_dimension_space_paddingInlineHeader_text
-        TokenProperty.SpacePaddingInset -> R.string.app_tokens_dimension_space_paddingInsetHeader_text
-        TokenProperty.SpacePaddingStack -> R.string.app_tokens_dimension_space_paddingStackHeader_text
+        TokenProperty.SpaceInset -> R.string.app_tokens_dimension_space_insetHeader_text
+        TokenProperty.SpacePaddingBlock -> R.string.app_tokens_dimension_space_paddingBlockHeader_text
         TokenProperty.SpaceRowGap -> R.string.app_tokens_dimension_space_rowGapHeader_text
         TokenProperty.SpaceScaled -> R.string.app_tokens_dimension_space_scaledHeader_text
         else -> null
@@ -226,8 +226,8 @@ private val previewParameterValues: List<TokenProperty<TokenCategory.Dimension.S
         TokenProperty.SpaceScaled,
 //        TokenProperty.SpaceFixed,
 //        TokenProperty.SpacePaddingInline,
-//        TokenProperty.SpacePaddingStack,
-//        TokenProperty.SpacePaddingInset,
+//        TokenProperty.SpacePaddingBlock,
+//        TokenProperty.SpaceInset,
 //        TokenProperty.SpaceColumnGap,
 //        TokenProperty.SpaceRowGap,
     )

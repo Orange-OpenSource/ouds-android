@@ -112,22 +112,24 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     item {
                         Spacer(modifier = Modifier.height(OudsTheme.spaces.fixed.medium))
                     }
-                    stickyHeader {
-                        tokenProperty.nameRes?.let {
-                            Text(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(color = OudsTheme.colorScheme.background.primary)
-                                    .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
-                                    .semantics {
-                                        heading()
-                                    },
-                                text = stringResource(id = tokenProperty.nameRes),
-                                color = OudsTheme.colorScheme.content.default,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                style = OudsTheme.typography.heading.medium
-                            )
+                    if (tokenProperty != TokenProperty.SizeMinInteractiveArea) {
+                        stickyHeader {
+                            tokenProperty.nameRes?.let {
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(color = OudsTheme.colorScheme.background.primary)
+                                        .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
+                                        .semantics {
+                                            heading()
+                                        },
+                                    text = stringResource(id = tokenProperty.nameRes),
+                                    color = OudsTheme.colorScheme.content.default,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                    style = OudsTheme.typography.heading.medium
+                                )
+                            }
                         }
                     }
                     item {
@@ -193,10 +195,10 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = if (tokenProperty == TokenProperty.SizeIconWithText) {
-                    token.relativeName.substringAfterLast('.')
-                } else {
-                    token.relativeName
+                text = when (tokenProperty) {
+                    is TokenProperty.SizeIconWithText -> token.relativeName.substringAfterLast('.')
+                    is TokenProperty.SizeMaxWidth -> token.name.substringAfter("type.")
+                    else -> token.relativeName
                 },
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
@@ -223,20 +225,21 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
     is TokenProperty.BorderRadius -> BorderIllustration(shape = RoundedCornerShape(token.value() as Dp))
     is TokenProperty.BorderStyle -> BorderIllustration(style = token.value() as OudsBorderStyle)
     is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorContent,
-    TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> ColorIllustration(color = token.value() as Color)
+    TokenProperty.ColorOpacity, TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> ColorIllustration(color = token.value() as Color)
     is TokenProperty.Opacity -> OpacityIllustration(opacity = token.value() as Float)
     is TokenProperty.Elevation -> ElevationIllustration(elevation = token.value() as Dp)
     is TokenProperty.SizeIconDecorative -> SizeIconIllustration(size = token.value() as Dp)
     is TokenProperty.SizeIconWithText -> SizeIconIllustration(size = token.value() as Dp)
+    is TokenProperty.SizeMinInteractiveArea -> SizeMinInteractiveAreaIllustration(size = token.value() as Dp)
     is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustration(
         size = token.value() as Dp,
         contentAlignment = Alignment.Center
     )
     TokenProperty.SpacePaddingInline -> SpaceIllustration(size = token.value() as Dp)
-    TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustration(size = token.value() as Dp)
-    TokenProperty.SpacePaddingStack -> SpaceIllustration(size = token.value() as Dp, orientation = SpaceOrientation.Vertical)
+    TokenProperty.SpaceInset -> SpacePaddingInsetIllustration(size = token.value() as Dp)
+    TokenProperty.SpacePaddingBlock -> SpaceIllustration(size = token.value() as Dp, orientation = SpaceOrientation.Vertical)
     TokenProperty.SpaceRowGap -> SpaceIllustration(size = token.value() as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
-    TokenProperty.Typography, TokenProperty.Grid -> Unit
+    TokenProperty.SizeMaxWidth, TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 
 @Composable
