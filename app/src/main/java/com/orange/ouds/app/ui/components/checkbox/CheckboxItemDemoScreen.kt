@@ -12,9 +12,6 @@
 
 package com.orange.ouds.app.ui.components.checkbox
 
-import android.R.attr.description
-import android.R.attr.divider
-import android.R.attr.label
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
