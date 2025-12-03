@@ -139,18 +139,20 @@ internal fun <T, S> PreviewGrid(
 @Composable
 internal inline fun <reified T> PreviewEnumEntries(
     columnCount: Int = enumEntries<T>().count(),
+    edgeToEdge: Boolean = false,
     crossinline content: @Composable (T) -> Unit
 ) where T : Enum<T> {
     val chunkedEnumEntries = enumEntries<T>().chunked(columnCount)
-    val space = 16.dp
-    Box(modifier = Modifier.padding(space)) {
-        Row(horizontalArrangement = Arrangement.spacedBy(space)) {
+    Box(modifier = Modifier.padding(vertical = PreviewPaddingDefault, horizontal = if (edgeToEdge) 0.dp else PreviewPaddingDefault)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             repeat(columnCount) { columnIndex ->
                 val columnEnumEntries = chunkedEnumEntries.mapNotNull { it.getOrNull(columnIndex) }
                 Column {
                     columnEnumEntries.forEachIndexed { rowIndex, enumEntry ->
                         DimensionTitle(
-                            modifier = Modifier.padding(top = if (rowIndex == 0) 0.dp else space, bottom = 8.dp),
+                            modifier = Modifier
+                                .padding(top = if (rowIndex == 0) 0.dp else PreviewPaddingDefault, bottom = 8.dp)
+                                .padding(horizontal = if (edgeToEdge) PreviewPaddingDefault else 0.dp),
                             title = enumEntry.name
                         )
                         CompositionLocalProvider(LocalPreviewEnumEntry provides enumEntry) {
@@ -184,6 +186,8 @@ private fun <T> DimensionTitle(title: String, modifier: Modifier = Modifier) whe
         fontSize = 10.sp
     )
 }
+
+internal val PreviewPaddingDefault = 16.dp
 
 /**
  * Long text used in previews.

@@ -43,6 +43,7 @@ internal fun CheckedContent(
     previewMessagePaddingValues: PaddingValues = PaddingValues(all = OudsTheme.spaces.fixed.small),
     previewDashedBorderShape: Shape = RectangleShape,
     previewDashedBorderPhase: Dp = 0.dp,
+    edgeToEdgePreview: Boolean = false,
     content: @Composable () -> Unit
 ) {
     // Throw an exception at runtime if expression is false
@@ -58,6 +59,7 @@ internal fun CheckedContent(
         val backgroundColor = if (LocalColorMode.current != null) Color.Black.copy(alpha = 0.68f) else Color.Transparent
         Box(
             modifier = Modifier
+                .padding(horizontal = if (edgeToEdgePreview) PreviewPaddingDefault else 0.dp)
                 .dashedBorder(width = 1.dp, color = color, shape = previewDashedBorderShape, intervals = listOf(10.dp, 5.dp), phase = previewDashedBorderPhase)
                 .background(backgroundColor),
             contentAlignment = Alignment.Center

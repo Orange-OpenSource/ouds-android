@@ -90,7 +90,8 @@ internal fun OudsControlItem(
         previewMessage = {
             val stateDescription = if (isReadOnlyPreviewState) "Read only" else "Disabled"
             "Error $checkedContentSelectionStatus status for $stateDescription state is not relevant"
-        }
+        },
+        edgeToEdgePreview = edgeToEdge
     ) {
         val controlItemTokens = OudsTheme.componentsTokens.controlItem
 
