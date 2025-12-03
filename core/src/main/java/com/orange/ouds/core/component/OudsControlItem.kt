@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import android.R.attr.text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -129,11 +130,10 @@ internal fun OudsControlItem(
                     .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
                 contentAlignment = Alignment.BottomCenter
             ) {
-
                 Row(
                     modifier = Modifier.padding(
                         vertical = controlItemTokens.spacePaddingBlockDefault.value,
-                        horizontal = if (edgeToEdge) OudsTheme.grids.margin else controlItemTokens.spacePaddingInline.value
+                        horizontal = contentHorizontalPadding(edgeToEdge)
                     ),
                     horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
                 ) {
@@ -167,7 +167,7 @@ internal fun OudsControlItem(
                 }
             }
             if (error != null && error.message.isNotBlank()) {
-                ErrorMessageText(text = error.message)
+                ErrorMessageText(text = error.message, edgeToEdge = edgeToEdge)
             }
         }
     }
@@ -248,13 +248,13 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun ErrorMessageText(text: String) {
+private fun ErrorMessageText(text: String, edgeToEdge: Boolean) {
     with(OudsTheme.componentsTokens.controlItem) {
         Text(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
                 .padding(top = spacePaddingBlockTopErrorText.value)
-                .padding(horizontal = spacePaddingInline.value)
                 .clearAndSetSemantics {
                     error(text)
                 },
@@ -290,6 +290,9 @@ private fun backgroundColor(state: OudsControlState): Color {
         }
     }
 }
+
+@Composable
+private fun contentHorizontalPadding(edgeToEdge: Boolean) = if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.controlItem.spacePaddingInline.value
 
 @Composable
 private fun dividerColor(state: OudsControlState, error: OudsError?) =
