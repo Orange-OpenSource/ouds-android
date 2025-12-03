@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.tokens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.isUnspecified
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -40,13 +41,7 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
                 } else {
                     stringResource(
                         id = R.string.app_tokens_colorFormat_label,
-                        value.value.toString(16).let { hex ->
-                            when {
-                                hex == "0" -> "00000000" // Transparent color
-                                hex.startsWith("ff") -> hex.substring(2, 8) // No need to show alpha
-                                else -> hex.substring(0, 8)
-                            }
-                        }.uppercase()
+                        value.toArgb().toHexString().uppercase().let { if (it.startsWith("FF")) it.drop(2) else it }
                     )
                 }
             }
