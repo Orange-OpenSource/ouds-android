@@ -112,7 +112,8 @@ fun CustomizationFilterChips(
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
+        CustomizationText(label = label)
+
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
         // That is why we set canFocus here again
@@ -210,7 +211,8 @@ fun CustomizationDropdownMenu(
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
+        CustomizationText(label = label)
+
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
             modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
@@ -254,3 +256,13 @@ fun CustomizationDropdownMenu(
 data class CustomizationDropdownMenuItem(val label: String, val leadingIcon: (@Composable () -> Unit)? = null, val enabled: Boolean = true)
 
 data class CustomizationFilterChip(val label: String, val enabled: Boolean = true)
+
+@Composable
+private fun CustomizationText(label: String) {
+    Text(
+        modifier = Modifier.padding(horizontal = OudsTheme.grids.margin),
+        text = label,
+        style = labelTextStyle,
+        color = OudsTheme.colorScheme.content.default
+    )
+}
