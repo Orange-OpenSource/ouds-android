@@ -137,12 +137,7 @@ sealed class TokenProperty<T>(
 
     data object SizeMaxWidth : TokenProperty<TokenCategory.Dimension.Size>(
         nameRes = R.string.app_tokens_dimension_size_maxWidth_label,
-        tokens = listOf(
-            OudsSizes.MaxWidth.Type.Display::class,
-            OudsSizes.MaxWidth.Type.Heading::class,
-            OudsSizes.MaxWidth.Type.Body::class,
-            OudsSizes.MaxWidth.Type.Label::class,
-        ).flatMap { getTokens(it) },
+        tokens = getTokens<OudsSizes.MaxWidth>(),
         categoryClass = TokenCategory.Dimension.Size::class
     )
 
