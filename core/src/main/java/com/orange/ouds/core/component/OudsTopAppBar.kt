@@ -134,7 +134,7 @@ fun OudsTopAppBar(
         title = {
             Title(
                 title = title,
-                size = OudsTopAppBarSize.Small,
+                topAppBarSize = OudsTopAppBarSize.Small,
                 centerAligned = false
             )
         },
@@ -205,7 +205,7 @@ fun OudsCenterAlignedTopAppBar(
         title = {
             Title(
                 title = title,
-                size = OudsTopAppBarSize.Small,
+                topAppBarSize = OudsTopAppBarSize.Small,
                 centerAligned = true
             )
         },
@@ -287,7 +287,7 @@ fun OudsMediumTopAppBar(
         title = {
             Title(
                 title = title,
-                size = OudsTopAppBarSize.Medium,
+                topAppBarSize = OudsTopAppBarSize.Medium,
                 centerAligned = false
             )
         },
@@ -370,7 +370,7 @@ fun OudsLargeTopAppBar(
         title = {
             Title(
                 title = title,
-                size = OudsTopAppBarSize.Large,
+                topAppBarSize = OudsTopAppBarSize.Large,
                 centerAligned = false
             )
         },
@@ -386,9 +386,9 @@ fun OudsLargeTopAppBar(
 }
 
 @Composable
-private fun Title(title: String, size: OudsTopAppBarSize, centerAligned: Boolean) {
+private fun Title(title: String, topAppBarSize: OudsTopAppBarSize, centerAligned: Boolean) {
     Column(horizontalAlignment = if (centerAligned) Alignment.CenterHorizontally else Alignment.Start) {
-        val maxLines = if (size == OudsTopAppBarSize.Small) 1 else Int.MAX_VALUE
+        val maxLines = if (topAppBarSize == OudsTopAppBarSize.Small) 1 else Int.MAX_VALUE
         Text(
             text = title,
             maxLines = maxLines,
