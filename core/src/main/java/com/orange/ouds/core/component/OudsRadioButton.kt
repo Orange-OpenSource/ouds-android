@@ -75,7 +75,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button.
  * @param enabled Controls the enabled state of the radio button. When `false`, this radio button will not be clickable.
- * @param readOnly Controls the read only state of the radio button. When `true`, this radio button is displayed in a specific state (selected or unselected)
+ * @param readOnly Controls the read-only state of the radio button. When `true`, this radio button is displayed in a specific state (selected or unselected)
  *   but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the radio button will be displayed in disabled state.
  * @param error Optional [OudsError] to indicate that the radio button should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this radio button. Note that if `null`

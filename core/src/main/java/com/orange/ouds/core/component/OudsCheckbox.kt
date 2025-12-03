@@ -78,7 +78,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
- * @param readOnly Controls the read only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked or unchecked)
+ * @param readOnly Controls the read-only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked or unchecked)
  *   but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
  * @param error Optional [OudsError] to indicate that the checkbox should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
@@ -131,7 +131,7 @@ fun OudsCheckbox(
  *   and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
- * @param readOnly Controls the read only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked, unchecked or indeterminate)
+ * @param readOnly Controls the read-only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked, unchecked or indeterminate)
  *   but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
  * @param error Optional [OudsError] to indicate that the checkbox should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`

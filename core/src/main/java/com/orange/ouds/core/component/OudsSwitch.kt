@@ -77,7 +77,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * the checked state.
  * @param modifier [Modifier] applied to the layout of the switch.
  * @param enabled Controls the enabled state of the switch. When `false`, this switch will not be clickable.
- * @param readOnly Controls the read only state of the switch. When `true`, this switch is displayed in a specific state (checked or unchecked)
+ * @param readOnly Controls the read-only state of the switch. When `true`, this switch is displayed in a specific state (checked or unchecked)
  * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the switch will be displayed in disabled state.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this switch. Note that if `null`
  * is provided, interactions will still happen internally.
