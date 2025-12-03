@@ -155,7 +155,7 @@ fun SizeIconIllustration(size: Dp) {
 }
 
 @Composable
-fun SizeMinInteractiveArea(size: Dp) {
+fun SizeMinInteractiveAreaIllustration(size: Dp) {
     IllustrationBox(modifier = Modifier.size(SizeTokenIllustrationSize), contentAlignment = Alignment.Center) {
         Box(
             modifier = Modifier

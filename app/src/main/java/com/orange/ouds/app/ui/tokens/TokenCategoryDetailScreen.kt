@@ -230,7 +230,7 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
     is TokenProperty.Elevation -> ElevationIllustration(elevation = token.value() as Dp)
     is TokenProperty.SizeIconDecorative -> SizeIconIllustration(size = token.value() as Dp)
     is TokenProperty.SizeIconWithText -> SizeIconIllustration(size = token.value() as Dp)
-    is TokenProperty.SizeMinInteractiveArea -> SizeMinInteractiveArea(size = token.value() as Dp)
+    is TokenProperty.SizeMinInteractiveArea -> SizeMinInteractiveAreaIllustration(size = token.value() as Dp)
     is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustration(
         size = token.value() as Dp,
         contentAlignment = Alignment.Center
