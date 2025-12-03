@@ -15,17 +15,17 @@ package com.orange.ouds.theme.sosh
 import com.orange.ouds.theme.OudsDrawableResources
 
 internal class SoshDrawableResources : OudsDrawableResources {
-    override val alertImportant: Int = R.drawable.ic_sosh_alert_important
-    override val alertInformation: Int = R.drawable.ic_sosh_alert_information
-    override val alertSuccess: Int = R.drawable.ic_sosh_alert_success
-    override val alertWarningExternalShape: Int = R.drawable.ic_sosh_alert_warning_external_shape
-    override val alertWarningInternalShape: Int = R.drawable.ic_sosh_alert_warning_internal_shape
-    override val checkboxIndeterminate: Int = R.drawable.ic_sosh_checkbox_indeterminate
-    override val checkboxSelected: Int = R.drawable.ic_sosh_checkbox_selected
-    override val chipTick: Int = R.drawable.ic_sosh_chip_tick
-    override val linkNext: Int = R.drawable.ic_sosh_link_next
-    override val linkPrevious: Int = R.drawable.ic_sosh_link_previous
-    override val radioButtonSelected: Int = R.drawable.ic_sosh_radio_button_selected
-    override val switchSelected: Int = R.drawable.ic_sosh_switch_selected
-    override val tagClose: Int = R.drawable.ic_sosh_tag_close
+    override val alertImportant: Int = R.drawable.ic_sosh_component_alert_important_fill
+    override val alertInformation: Int = R.drawable.ic_sosh_component_alert_info_fill
+    override val alertSuccess: Int = R.drawable.ic_sosh_component_alert_tick_confirmation_fill
+    override val alertWarningExternalShape: Int = R.drawable.ic_sosh_component_alert_warning_external_shape
+    override val alertWarningInternalShape: Int = R.drawable.ic_sosh_component_alert_warning_internal_shape
+    override val checkboxIndeterminate: Int = R.drawable.ic_sosh_component_checkbox_undetermined
+    override val checkboxSelected: Int = R.drawable.ic_sosh_component_checkbox_selected
+    override val chipTick: Int = R.drawable.ic_sosh_component_chip_tick
+    override val linkNext: Int = R.drawable.ic_sosh_component_link_next
+    override val linkPrevious: Int = R.drawable.ic_sosh_component_link_previous
+    override val radioButtonSelected: Int = R.drawable.ic_sosh_component_radio_button_selected
+    override val switchSelected: Int = R.drawable.ic_sosh_component_switch_selected_switch
+    override val tagClose: Int = R.drawable.ic_sosh_component_tag_close
 }
