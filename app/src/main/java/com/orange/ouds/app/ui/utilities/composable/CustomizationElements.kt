@@ -144,6 +144,7 @@ fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
@@ -157,6 +158,7 @@ fun CustomizationTextField(
             textFieldValue = newTextFieldValue
             onValueChange(newTextFieldValue.text)
         },
+        applyTopPadding = applyTopPadding,
         modifier = modifier,
         enabled = enabled,
         keyboardOptions = keyboardOptions,
@@ -168,10 +170,13 @@ fun CustomizationTextField(
     label: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
+    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
+
     OudsTextInput(
         modifier = modifier
             .fillMaxWidth()

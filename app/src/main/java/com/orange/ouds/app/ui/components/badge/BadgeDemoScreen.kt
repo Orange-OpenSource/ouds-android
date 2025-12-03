@@ -108,6 +108,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
             onSelectionChange = { status = statuses[it] }
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_badge_count_label),
             value = TextFieldValue(count.toString(), TextRange(count.toString().length)),
             onValueChange = { value ->

@@ -65,6 +65,7 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
             },
             controlItemCustomization(9) {
                 CustomizationTextField(
+                    applyTopPadding = true,
                     label = stringResource(R.string.app_components_radioButton_radioButtonItem_extraLabel_label),
                     value = extraLabel.orEmpty(),
                     onValueChange = { value -> extraLabel = value }
