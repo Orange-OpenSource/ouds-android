@@ -638,7 +638,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
             CompositionLocalProvider(LocalRippleConfiguration provides null) {
                 Box(
                     modifier = Modifier
-                        .size(48.dp)
+                        .size(OudsTheme.sizes.minInteractiveArea)
                         .run { if (onClick != null) clickable(onClick = onClick, role = Role.Button) else this }
                         .semantics(mergeDescendants = true) {
                             contentDescription = this@Avatar.contentDescription
