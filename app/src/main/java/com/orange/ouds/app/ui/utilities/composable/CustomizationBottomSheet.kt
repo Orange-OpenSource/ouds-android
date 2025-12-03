@@ -135,6 +135,7 @@ fun CustomizationBottomSheetScaffold(
 
             Column(
                 modifier = Modifier
+                    .padding(bottom = OudsTheme.spaces.fixed.small)
                     .heightIn(max = customizationContentMaxHeight)
                     .verticalScrollbar(scrollState)
                     .verticalScroll(scrollState)
