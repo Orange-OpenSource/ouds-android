@@ -226,8 +226,8 @@ private val previewParameterValues: List<TokenProperty<TokenCategory.Dimension.S
         TokenProperty.SpaceScaled,
 //        TokenProperty.SpaceFixed,
 //        TokenProperty.SpacePaddingInline,
-//        TokenProperty.SpacePaddingStack,
-//        TokenProperty.SpacePaddingInset,
+//        TokenProperty.SpacePaddingBlock,
+//        TokenProperty.SpaceInset,
 //        TokenProperty.SpaceColumnGap,
 //        TokenProperty.SpaceRowGap,
     )
