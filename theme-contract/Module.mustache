@@ -54,7 +54,8 @@ Includes interfaces for `OudsElevationSemanticTokens`, `OudsGridSemanticTokens`,
 
 ### For Application Developers
 **You typically do not interact with this module directly.**
-You will use the *implementation* of this contract provided by the `core` module (via `OudsTheme`). However, understanding this contract helps you know which semantic tokens are guaranteed to exist.
+You will use concrete implementations of this contract (like `OrangeTheme`, `SoshTheme`, etc.) via the `OudsTheme` composable provided by the `core` module.
+However, understanding this contract helps you know which semantic tokens are guaranteed to exist regardless of the chosen theme.
 
 ### For Theme Creators
 If you are creating a custom theme implementation (e.g., for a specific sub-brand) while maintaining full compatibility with OUDS components, you must implement `OudsThemeContract`.
@@ -63,9 +64,10 @@ If you are creating a custom theme implementation (e.g., for a specific sub-bran
 
 | Module | Role | Analogy |
 | :--- | :--- | :--- |
-| **global-raw-tokens** | The Ingredients | "Flour", "Eggs", "Milk" |
-| **theme-contract** | **The Recipe Template** | **"A cake must have a base, a filling, and icing"** |
-| **core** | The Implementation | "This specific cake uses flour for the base and chocolate for the filling" |
+| **global-raw-tokens** | The Ingredients | "Flour", "Eggs", "Milk" (The raw values like `#FF7900`, `16dp`) |
+| **theme-contract** | **The Recipe Template** | **"A cake must have a base, a filling, and icing" (The rules defining what a theme is)** |
+| **theme-orange** / **theme-sosh** / ... | The Concrete Cakes | "The Orange Cake" or "The Sosh Cake" (Specific implementations of the template) |
+| **core** | The Bakery Window | The access point (`OudsTheme`) that serves the chosen cake to the customer |
 
 ## Tokens versions
 
