@@ -73,7 +73,7 @@ internal fun OudsControlItem(
     checkedContentSelectionStatus: String,
     backgroundColor: Color,
     modifier: Modifier = Modifier,
-    outlineBorderModifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier,
     extraLabel: String? = null,
     handleHighContrastMode: Boolean = false
 ) {
@@ -127,7 +127,7 @@ internal fun OudsControlItem(
                     .heightIn(min = controlItemTokens.sizeMinHeight.dp)
                     .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = controlItemTokens.sizeMaxWidth.dp)
                     .background(color = backgroundColor, shape = shape)
-                    .then(outlineBorderModifier)
+                    .then(contentModifier)
                     .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
                 contentAlignment = Alignment.BottomCenter
             ) {

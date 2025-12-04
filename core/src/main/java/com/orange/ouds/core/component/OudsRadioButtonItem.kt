@@ -16,7 +16,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -113,7 +112,7 @@ fun OudsRadioButtonItem(
         Modifier
     }
 
-    val hasVisibleOutline = outlined && (state == OudsControlState.Focused ||outlineBorderColor(state = state, selected = selected, error = error) != null)
+    val hasVisibleOutline = outlined && (state == OudsControlState.Focused || outlineBorderColor(state = state, selected = selected, error = error) != null)
 
     OudsControlItem(
         state = state,
@@ -140,7 +139,7 @@ fun OudsRadioButtonItem(
         modifier = modifier
             .then(selectableModifier)
             .semantics(mergeDescendants = true) {},
-        outlineBorderModifier = Modifier.border(outlined = outlined, selected = selected, error = error, state = state),
+        contentModifier = Modifier.border(outlined = outlined, selected = selected, error = error, state = state),
         handleHighContrastMode = true
     )
 }
