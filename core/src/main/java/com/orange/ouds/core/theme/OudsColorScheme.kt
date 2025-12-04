@@ -978,7 +978,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
         }
     )
 
-// Always colors are the same in light & dark modes
+// Always colors are the same in Light & Dark modes
 private val OudsColorSemanticTokens.alwaysColorScheme: OudsColorScheme.Always
     get() = with(alwaysColorTokens) {
         OudsColorScheme.Always(
@@ -989,7 +989,7 @@ private val OudsColorSemanticTokens.alwaysColorScheme: OudsColorScheme.Always
         )
     }
 
-// Repository colors are the same in light & dark modes
+// Repository colors are the same in Light & Dark modes
 private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repository
     get() = with(repositoryColorTokens) {
         OudsColorScheme.Repository(

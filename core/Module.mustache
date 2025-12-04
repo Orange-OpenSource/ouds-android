@@ -53,7 +53,7 @@ Box(
 
 #### Colors
 
-Access the semantic color palette via `OudsTheme.colorScheme`. This ensures your UI adapts automatically to light or dark mode.
+Access the semantic color palette via `OudsTheme.colorScheme`. This ensures your UI adapts automatically to Light or Dark mode.
 
 ```kotlin
 Text(
@@ -232,7 +232,7 @@ internal fun OudsNavigationBarSample() {
 1. **Do not mix Material 3 components directly with OUDS components** if an OUDS equivalent exists. Using the native components might result in incorrect colors
 or spacing that violates the brand guidelines.
 2. **Use `OudsTheme` tokens** for custom layouts. If you need to build a custom card or row, use OudsTheme.colorScheme instead of Color.Black or Color.White to
-ensure dark mode compatibility.
+ensure Dark mode compatibility.
 3. **Window Insets:** The library is designed to work edge-to-edge. Components like OudsNavigationBar can be transparent to allow content to blur behind them (
 if supported), but they require proper handling of WindowInsets in your layouts.
 
