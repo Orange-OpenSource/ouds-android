@@ -137,8 +137,8 @@ fun OudsRadioButtonItem(
         backgroundColor = backgroundColor.value,
         modifier = modifier
             .then(selectableModifier)
-            .border(outlined = outlined, selected = selected, error = error, state = state)
             .semantics(mergeDescendants = true) {},
+        outlineBorderModifier = Modifier.border(outlined = outlined, selected = selected, error = error, state = state),
         handleHighContrastMode = true
     )
 }
@@ -281,7 +281,7 @@ internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeCo
 
 internal typealias OudsRadioButtonItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Boolean>
 
-private val previewOutlinedValues = listOf(true, true, false)
+private val previewOutlinedValues = listOf(false, true, true)
 
 internal class OudsRadioButtonItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<Boolean, Boolean>(DefaultBooleanValues, previewOutlinedValues)
