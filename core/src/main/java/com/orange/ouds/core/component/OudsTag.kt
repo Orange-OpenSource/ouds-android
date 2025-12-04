@@ -167,8 +167,7 @@ fun OudsTag(
                             val isBulletIcon = status.icon is OudsTagIcon.Bullet
                             val iconPadding = if (isBulletIcon) bulletPadding(size = size) else iconPadding(size = size)
                             status.icon?.let {
-                                // Scale the icon only if it is a functional icon (a11y)
-                                val scale = if (it is OudsTagIcon.Default) LocalConfiguration.current.fontScale else 1f
+                                val scale = LocalConfiguration.current.fontScale
                                 it.Content(
                                     modifier = Modifier
                                         .size(assetSize(size) * scale)
