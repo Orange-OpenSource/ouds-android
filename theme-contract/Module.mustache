@@ -16,12 +16,12 @@ This module guarantees consistency across applications. By coding against these 
 **Package:** `com.orange.ouds.theme.contract`
 
 This module does not contain any values (hex codes, dp sizes). It only contains:
-1.  **Interfaces:** `OudsThemeContract`, `OudsColorScheme`, `OudsTypography`.
+1.  **Interfaces:** `OudsThemeContract`, `OudsColorSemanticTokens`, `OudsFontSemanticTokens`.
 2.  **Token Objects:** Abstract representations of semantic tokens.
 
 ### 1. Color Contract
 Defines semantic color roles available in the system.
-- **Interface:** `OudsColorScheme`
+- **Interface:** `OudsColorSemanticTokens`
 - **Purpose:** Ensures every theme provides colors for Brand, Surface, Content, Status, etc.
 - **Example:** Defines that a `brand.primary` color *must* exist, but doesn't say it is `#FF7900`.
 
@@ -32,23 +32,23 @@ Defines the mapping required to bridge OUDS tokens to the standard Material Desi
 
 ### 2. Typography Contract
 Defines the text styles.
-- **Interface:** `OudsTypography`
+- **Interface:** `OudsFontSemanticTokens`
 - **Purpose:** Ensures existence of Display, Heading, Title, Body, and Label styles.
 - **Example:** Defines that a `heading.large` style exists with properties for font, weight, and size.
 
 ### 3. Dimension Contracts
 Defines abstract sizes, spaces, and borders.
-- **Interfaces:** `OudsBorders`, `OudsSizes`, `OudsSpaces`.
+- **Interfaces:** `OudsBorderSemanticTokens`, `OudsSizeSemanticTokens`, `OudsSpaceSemanticTokens`.
 - **Example:** Defines that a `spaces.fixed.medium` token exists.
 
 ### 4. Component Tokens Contract
 Defines semantic tokens specifically scoped to OUDS custom components.
-- **Interface:** `OudsComponentTokens`
+- **Interface:** `OudsComponentsTokens`
 - **Purpose:** Allows overriding default values for specific components without altering the global semantic theme.
 - **Example:** Defines specific tokens for an `OudsButton` (e.g., specific background color) independent of the generic theme.
 
 ### 5. Other Contracts
-Includes interfaces for `OudsElevations`, `OudsGrids`, and `OudsOpacities`.
+Includes interfaces for `OudsElevationSemanticTokens`, `OudsGridSemanticTokens`, and `OudsOpacitySemanticTokens`.
 
 ## Usage
 
