@@ -177,9 +177,8 @@ Regardless of the implementation strategy, the API remains consistent and easy t
 
 - **Zero Configuration:** You do not need to pass design parameters like color or shape for standard states. The component knows how to render itself in
 Enabled, Disabled, Selected, Hovered or Focused states.
-- **Controlled Flexibility:** While components often provide parameters for content (like text or icons), they expose Slot APIs only when it aligns with the
-design guidelines. This ensures that while you have the necessary flexibility for your content, the structural integrity and consistency of the Orange Unified
-Design System are always preserved.
+- **Controlled Flexibility:** Components use structured parameters (specific classes or data objects) instead of open composable slots. This ensures that
+while you can customize content like text or icons, the structural integrity and visual consistency of the Orange Unified Design System are always preserved.
 - **Modifier Support:** Following Jetpack Compose best practices, every OUDS component exposes a modifier parameter. This allows you to easily customize layout
 behavior (padding, positioning, semantics) externally without modifying the component's internal logic.
 
