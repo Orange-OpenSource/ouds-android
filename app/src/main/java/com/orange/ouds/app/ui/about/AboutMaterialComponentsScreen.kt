@@ -146,8 +146,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
-import com.orange.ouds.app.ui.utilities.topBarsHeightPadding
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -168,8 +169,8 @@ fun AboutMaterialComponentsScreen() {
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
-                        .topBarsHeightPadding()
-                        .padding(bottom = OudsTheme.spaces.fixed.medium)
+                        .consumeTopBarsTopWindowInsets()
+                        .padding(top = topBarsTopPadding, bottom = OudsTheme.spaces.fixed.medium)
                 ) {
 
                     // APP BARS

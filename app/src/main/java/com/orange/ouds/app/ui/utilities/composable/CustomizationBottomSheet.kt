@@ -60,7 +60,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.topBarsHeightPadding
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -165,7 +166,8 @@ fun CustomizationBottomSheetScaffold(
                     .verticalScroll(rememberScrollState())
                     .consumeWindowInsets(innerPadding)
                     .padding(innerPadding)
-                    .topBarsHeightPadding(),
+                    .consumeTopBarsTopWindowInsets()
+                    .padding(top = topBarsTopPadding),
             ) {
                 content()
             }

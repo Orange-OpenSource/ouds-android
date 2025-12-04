@@ -49,7 +49,9 @@ import com.orange.ouds.app.BuildConfig
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -88,9 +90,9 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
     val context = LocalContext.current
     Screen {
         LazyColumn(
-            modifier = Modifier.consumeWindowInsets(WindowInsets.statusBars.only(WindowInsetsSides.Top)),
+            modifier = Modifier.consumeTopBarsTopWindowInsets(),
             contentPadding = PaddingValues(
-                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + TopAppBarDefaults.TopAppBarExpandedHeight,
+                top = topBarsTopPadding,
                 bottom = OudsTheme.spaces.fixed.medium + OudsNavigationBarHeight
             )
         ) {

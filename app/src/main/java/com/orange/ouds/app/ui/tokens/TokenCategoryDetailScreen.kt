@@ -27,15 +27,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,7 +37,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -73,6 +66,8 @@ import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsTypography
@@ -84,9 +79,9 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClick: (Long) -> Unit) {
     Screen {
         LazyColumn(
-            modifier = Modifier.consumeWindowInsets(WindowInsets.statusBars.only(WindowInsetsSides.Top)),
+            modifier = Modifier.consumeTopBarsTopWindowInsets(),
             contentPadding = PaddingValues(
-                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + TopAppBarDefaults.TopAppBarExpandedHeight,
+                top = topBarsTopPadding,
                 bottom = OudsTheme.spaces.fixed.medium
             )
         ) {

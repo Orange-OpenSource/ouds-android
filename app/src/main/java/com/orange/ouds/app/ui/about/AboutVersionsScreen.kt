@@ -33,7 +33,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.declaredMemberProperties
@@ -42,9 +44,9 @@ import kotlin.reflect.full.declaredMemberProperties
 fun AboutVersionsScreen() {
     Screen {
         LazyColumn(
-            modifier = Modifier.consumeWindowInsets(WindowInsets.statusBars.only(WindowInsetsSides.Top)),
+            modifier = Modifier.consumeTopBarsTopWindowInsets(),
             contentPadding = PaddingValues(
-                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + TopAppBarDefaults.TopAppBarExpandedHeight,
+                top = topBarsTopPadding,
                 bottom = OudsTheme.spaces.fixed.medium
             )
         ) {
