@@ -27,7 +27,8 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
-import com.orange.ouds.app.ui.utilities.topBarsHeightPadding
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -46,7 +47,8 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .topBarsHeightPadding()
+                .consumeTopBarsTopWindowInsets()
+                .padding(top = topBarsTopPadding)
                 .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
                 .padding(bottom = OudsNavigationBarHeight),
             verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)

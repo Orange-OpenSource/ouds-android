@@ -20,12 +20,10 @@ import android.webkit.WebViewClient
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.statusBars
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -33,6 +31,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.injectLightDarkModeCss
 import com.orange.ouds.app.ui.utilities.launchUrl
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
 import java.io.BufferedReader
 import java.nio.charset.StandardCharsets
@@ -44,7 +43,7 @@ private const val FilePath = "file:///android_res/$FileResourceDir/"
 internal fun AboutFileScreen(fileMenuItem: AboutFileMenuItem) {
     val context = LocalContext.current
     val horizontalPadding = OudsTheme.grids.margin.value
-    val topPadding = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + TopAppBarDefaults.TopAppBarExpandedHeight + OudsTheme.spaces.fixed.medium
+    val topPadding = topBarsTopPadding + OudsTheme.spaces.fixed.medium
     val bottomPadding = OudsTheme.spaces.fixed.medium.value
     val isSystemInDarkTheme = isSystemInDarkTheme()
     Screen {

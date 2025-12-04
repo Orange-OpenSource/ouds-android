@@ -35,6 +35,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -42,9 +44,9 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> Unit) {
     Screen {
         LazyColumn(
-            modifier = Modifier.consumeWindowInsets(WindowInsets.statusBars.only(WindowInsetsSides.Top)),
+            modifier = Modifier.consumeTopBarsTopWindowInsets(),
             contentPadding = PaddingValues(
-                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + TopAppBarDefaults.TopAppBarExpandedHeight,
+                top = topBarsTopPadding,
                 bottom = OudsTheme.spaces.fixed.medium
             )
         ) {
