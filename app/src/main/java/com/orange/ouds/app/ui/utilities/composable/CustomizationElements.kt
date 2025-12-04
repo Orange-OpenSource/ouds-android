@@ -106,6 +106,7 @@ fun CustomizationFilterChips(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier
 ) {
+    @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
     Column(
         modifier = modifier
@@ -175,6 +176,7 @@ fun CustomizationTextField(
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
+    @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
 
     OudsTextInput(
@@ -209,6 +211,7 @@ fun CustomizationDropdownMenu(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
 ) {
+    @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
 
     Column(
