@@ -74,7 +74,7 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
 
         Row(
             modifier = Modifier
-                .padding(all = OudsTheme.spaces.fixed.large)
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.large)
                 .align(Alignment.End),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {

@@ -106,13 +106,15 @@ fun CustomizationFilterChips(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier
 ) {
+    @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
     Column(
         modifier = modifier
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
+        CustomizationText(label = label)
+
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
         // That is why we set canFocus here again
@@ -143,6 +145,7 @@ fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
@@ -156,6 +159,7 @@ fun CustomizationTextField(
             textFieldValue = newTextFieldValue
             onValueChange(newTextFieldValue.text)
         },
+        applyTopPadding = applyTopPadding,
         modifier = modifier,
         enabled = enabled,
         keyboardOptions = keyboardOptions,
@@ -167,10 +171,14 @@ fun CustomizationTextField(
     label: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
+    @Suppress("NAME_SHADOWING")
+    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
+
     OudsTextInput(
         modifier = modifier
             .fillMaxWidth()
@@ -203,6 +211,7 @@ fun CustomizationDropdownMenu(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
 ) {
+    @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
 
     Column(
@@ -210,7 +219,8 @@ fun CustomizationDropdownMenu(
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
+        CustomizationText(label = label)
+
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
             modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
@@ -254,3 +264,13 @@ fun CustomizationDropdownMenu(
 data class CustomizationDropdownMenuItem(val label: String, val leadingIcon: (@Composable () -> Unit)? = null, val enabled: Boolean = true)
 
 data class CustomizationFilterChip(val label: String, val enabled: Boolean = true)
+
+@Composable
+private fun CustomizationText(label: String) {
+    Text(
+        modifier = Modifier.padding(horizontal = OudsTheme.grids.margin),
+        text = label,
+        style = labelTextStyle,
+        color = OudsTheme.colorScheme.content.default
+    )
+}

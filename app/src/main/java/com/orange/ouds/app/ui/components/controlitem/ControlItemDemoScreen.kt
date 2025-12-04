@@ -135,6 +135,7 @@ private fun ControlItemErrorCustomization(state: ControlItemDemoState) {
 private fun ControlItemErrorMessageCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_errorMessage_label),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
@@ -147,6 +148,7 @@ private fun ControlItemErrorMessageCustomization(state: ControlItemDemoState) {
 private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
@@ -158,6 +160,7 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
 private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_controlItem_description_label),
             value = description.orEmpty(),
             onValueChange = { value -> description = value }
