@@ -121,7 +121,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
  *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
  * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
- * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g. kg, %, cm).
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g., kg, %, cm).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
  *   True by default.
  * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
@@ -249,7 +249,7 @@ fun OudsTextInput(
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
  *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
  * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
- * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g. kg, %, cm).
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g., kg, %, cm).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
  *   True by default.
  * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
@@ -371,7 +371,7 @@ fun OudsTextInput(
  * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
  *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
  * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
- * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g. kg, %, cm).
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g., kg, %, cm).
  * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
  *   True by default.
  * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.

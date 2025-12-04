@@ -68,7 +68,7 @@ import kotlin.enums.enumEntries
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
  *
  * This version of the badge renders a static label without a number.
- * It is used for status indicators (e.g. "New", "Pending", "Success").
+ * It is used for status indicators (e.g., "New", "Pending", "Success").
  * The size remains unchanged despite the increase in the interface size.
  *
  * **A11Y recommendation:** Provide a `contentDescription` semantics to clarify the meaning of this badge.
@@ -110,7 +110,7 @@ fun OudsBadge(
  * Badges have five statuses depending on the context of the information they represent.
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
  *
- * This version of the badge displays numerical values (e.g. unread messages, notifications).
+ * This version of the badge displays numerical values (e.g., unread messages, notifications).
  *
  * **A11Y recommendation:** Provide a more explicit `contentDescription` than the count alone by using a semantics Modifier.
  *
