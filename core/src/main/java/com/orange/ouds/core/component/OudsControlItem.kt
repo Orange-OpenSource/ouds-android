@@ -359,7 +359,7 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                 ).run {
                     when (index) {
                         0 -> this
-                        1 -> copy(hasIcon = true, extraLabel = extraLabel, description = description)
+                        1 -> copy(hasIcon = true, divider = true, extraLabel = extraLabel, description = description)
                         else -> copy(description = description, divider = true, error = OudsError(ControlItemErrorMessage))
                     }
                 }

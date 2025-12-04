@@ -113,6 +113,8 @@ fun OudsRadioButtonItem(
         Modifier
     }
 
+    val hasVisibleOutline = outlined && (state == OudsControlState.Focused ||outlineBorderColor(state = state, selected = selected, error = error) != null)
+
     OudsControlItem(
         state = state,
         label = label,
@@ -120,7 +122,7 @@ fun OudsRadioButtonItem(
         description = description,
         icon = icon,
         edgeToEdge = edgeToEdge,
-        divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
+        divider = divider && !hasVisibleOutline,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
