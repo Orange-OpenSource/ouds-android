@@ -136,10 +136,10 @@ fun CustomizationBottomSheetScaffold(
 
             Column(
                 modifier = Modifier
-                    .padding(bottom = OudsTheme.spaces.fixed.small)
                     .heightIn(max = customizationContentMaxHeight)
                     .verticalScrollbar(scrollState)
                     .verticalScroll(scrollState)
+                    .padding(bottom = OudsTheme.spaces.fixed.small)
                     // We should write this line to disable the focus on children when the bottom sheet is not expanded:
                     // focusProperties { canFocus = bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded }
                     // But for some reason setting canFocus to true breaks the focus in CustomizationFilterChips,
