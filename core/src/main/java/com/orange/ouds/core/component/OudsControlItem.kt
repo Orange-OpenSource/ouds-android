@@ -46,13 +46,9 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
-import com.orange.ouds.core.extensions.filter
-import com.orange.ouds.core.extensions.last
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
-import com.orange.ouds.core.utilities.EdgeToEdgePaddingElement
-import com.orange.ouds.core.utilities.edgeToEdgePadding
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -66,6 +62,7 @@ internal fun OudsControlItem(
     label: String,
     description: String?,
     icon: OudsControlItemIcon?,
+    edgeToEdge: Boolean,
     divider: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
@@ -76,6 +73,7 @@ internal fun OudsControlItem(
     checkedContentSelectionStatus: String,
     backgroundColor: Color,
     modifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier,
     extraLabel: String? = null,
     handleHighContrastMode: Boolean = false
 ) {
@@ -93,7 +91,8 @@ internal fun OudsControlItem(
         previewMessage = {
             val stateDescription = if (isReadOnlyPreviewState) "Read only" else "Disabled"
             "Error $checkedContentSelectionStatus status for $stateDescription state is not relevant"
-        }
+        },
+        edgeToEdgePreview = edgeToEdge
     ) {
         val controlItemTokens = OudsTheme.componentsTokens.controlItem
 
@@ -120,10 +119,7 @@ internal fun OudsControlItem(
         val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) indicator else itemIcon
         val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
 
-        val filteredModifier = modifier.filter { it !is EdgeToEdgePaddingElement }
-        val edgeToEdgePaddingModifier = modifier.filter { it is EdgeToEdgePaddingElement }
-
-        Column(modifier = filteredModifier) {
+        Column(modifier = modifier) {
             val shape = RoundedCornerShape(controlItemTokens.borderRadius.value)
             Box(
                 modifier = Modifier
@@ -131,19 +127,15 @@ internal fun OudsControlItem(
                     .heightIn(min = controlItemTokens.sizeMinHeight.dp)
                     .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = controlItemTokens.sizeMaxWidth.dp)
                     .background(color = backgroundColor, shape = shape)
+                    .then(contentModifier)
                     .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
                 contentAlignment = Alignment.BottomCenter
             ) {
                 Row(
-                    modifier = Modifier
-                        .padding(vertical = controlItemTokens.spacePaddingBlockDefault.value)
-                        .edgeToEdgePadding(true)
-                        .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
-                        .run {
-                            // Apply default horizontal padding if edgeToEdgePadding is disabled
-                            val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
-                            if (element?.enabled == false) padding(horizontal = controlItemTokens.spacePaddingInline.value) else this
-                        },
+                    modifier = Modifier.padding(
+                        vertical = controlItemTokens.spacePaddingBlockDefault.value,
+                        horizontal = contentHorizontalPadding(edgeToEdge)
+                    ),
                     horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
                 ) {
                     leadingElement?.let { LeadingTrailingBox(leadingElement) }
@@ -172,11 +164,14 @@ internal fun OudsControlItem(
                     trailingElement?.let { LeadingTrailingBox(trailingElement) }
                 }
                 if (divider) {
-                    OudsHorizontalDivider(color = dividerColor(state = state, error = error))
+                    OudsHorizontalDivider(
+                        modifier = if (edgeToEdge) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
+                        color = dividerColor(state = state, error = error)
+                    )
                 }
             }
             if (error != null && error.message.isNotBlank()) {
-                ErrorMessageText(text = error.message, edgeToEdgePaddingModifier = edgeToEdgePaddingModifier)
+                ErrorMessageText(text = error.message, edgeToEdge = edgeToEdge)
             }
         }
     }
@@ -257,19 +252,13 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun ErrorMessageText(text: String, edgeToEdgePaddingModifier: Modifier) {
+private fun ErrorMessageText(text: String, edgeToEdge: Boolean) {
     with(OudsTheme.componentsTokens.controlItem) {
         Text(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
                 .padding(top = spacePaddingBlockTopErrorText.value)
-                .edgeToEdgePadding(true)
-                .then(edgeToEdgePaddingModifier) // Override edgeToEdgePadding setting
-                .run {
-                    // Apply default horizontal padding if edgeToEdgePadding is disabled
-                    val element = edgeToEdgePaddingModifier.last() as? EdgeToEdgePaddingElement
-                    if (element?.enabled == false) padding(horizontal = spacePaddingInline.value) else this
-                }
                 .clearAndSetSemantics {
                     error(text)
                 },
@@ -305,6 +294,10 @@ private fun backgroundColor(state: OudsControlState): Color {
         }
     }
 }
+
+@Composable
+private fun contentHorizontalPadding(edgeToEdge: Boolean) =
+    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.controlItem.spacePaddingInline.value
 
 @Composable
 private fun dividerColor(state: OudsControlState, error: OudsError?) =
@@ -366,8 +359,8 @@ private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: L
                 ).run {
                     when (index) {
                         0 -> this
-                        1 -> copy(hasIcon = true, extraLabel = extraLabel, description = description)
-                        else -> copy(description = description, divider = true, error = OudsError("This field can't be activated"))
+                        1 -> copy(hasIcon = true, divider = true, extraLabel = extraLabel, description = description)
+                        else -> copy(description = description, divider = true, error = OudsError(ControlItemErrorMessage))
                     }
                 }
             }
@@ -391,3 +384,8 @@ private fun <T> getHighContrastModePreviewParameterValues(values: List<T>): List
         }
     }
 }
+
+/**
+ * Error message used in control items previews.
+ */
+internal val ControlItemErrorMessage = "This field can't be activated"

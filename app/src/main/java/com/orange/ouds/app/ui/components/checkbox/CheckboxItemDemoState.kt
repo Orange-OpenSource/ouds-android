@@ -31,6 +31,7 @@ fun rememberCheckboxItemDemoState(
         ToggleableState.Off
     ), // only used for indeterminate checkbox item demo
     icon: Boolean = false,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -43,6 +44,7 @@ fun rememberCheckboxItemDemoState(
     checkedValues,
     toggleableStateValues,
     icon,
+    edgeToEdge,
     divider,
     reversed,
     enabled,
@@ -53,13 +55,14 @@ fun rememberCheckboxItemDemoState(
     description,
     saver = CheckboxItemDemoState.Saver
 ) {
-    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, errorMessage, label, description)
+    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description)
 }
 
 class CheckboxItemDemoState(
     checkedValues: Pair<Boolean, Boolean>,
     toggleableStateValues: Pair<ToggleableState, ToggleableState>,
     icon: Boolean,
+    edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
     enabled: Boolean,
@@ -68,7 +71,7 @@ class CheckboxItemDemoState(
     errorMessage: String,
     label: String,
     description: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, description) {
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description) {
 
     companion object {
         val Saver = listSaver(
@@ -87,6 +90,7 @@ class CheckboxItemDemoState(
                         list[0] as Pair<Boolean, Boolean>,
                         list[1] as Pair<ToggleableState, ToggleableState>,
                         icon,
+                        edgeToEdge,
                         divider,
                         reversed,
                         enabled,

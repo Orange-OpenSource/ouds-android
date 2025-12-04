@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 fun rememberRadioButtonItemDemoState(
     selectedValue: Int = RadioButtonItemDemoState.values.first(),
     icon: Boolean = false,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     outlined: Boolean = false,
     reversed: Boolean = false,
@@ -40,6 +41,7 @@ fun rememberRadioButtonItemDemoState(
 ) = rememberSaveable(
     selectedValue,
     icon,
+    edgeToEdge,
     divider,
     outlined,
     reversed,
@@ -52,12 +54,13 @@ fun rememberRadioButtonItemDemoState(
     description,
     saver = RadioButtonItemDemoState.Saver
 ) {
-    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, errorMessage, label, extraLabel, description)
+    RadioButtonItemDemoState(selectedValue, icon, edgeToEdge, divider, outlined, reversed, enabled, readOnly, error, errorMessage, label, extraLabel, description)
 }
 
 class RadioButtonItemDemoState(
     selectedValue: Int,
     icon: Boolean,
+    edgeToEdge: Boolean,
     divider: Boolean,
     outlined: Boolean,
     reversed: Boolean,
@@ -68,7 +71,7 @@ class RadioButtonItemDemoState(
     label: String,
     extraLabel: String?,
     description: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, errorMessage, label, description) {
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description) {
 
     companion object {
         val values = listOf(1, 2)
@@ -89,6 +92,7 @@ class RadioButtonItemDemoState(
                     RadioButtonItemDemoState(
                         list[0] as Int,
                         icon,
+                        edgeToEdge,
                         divider,
                         list[1] as Boolean,
                         reversed,

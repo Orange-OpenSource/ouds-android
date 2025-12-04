@@ -53,4 +53,10 @@ class OudsRadioButtonItemTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.WithEdgeToEdgeDisabled,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

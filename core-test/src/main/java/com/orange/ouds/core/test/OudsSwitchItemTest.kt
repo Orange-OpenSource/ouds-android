@@ -39,4 +39,10 @@ class OudsSwitchItemTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.WithEdgeToEdgeDisabled,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

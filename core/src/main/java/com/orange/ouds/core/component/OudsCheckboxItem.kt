@@ -15,10 +15,12 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -30,6 +32,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -43,9 +46,6 @@ import com.orange.ouds.theme.OudsThemeContract
  * allowing it to suit various use cases.
  *
  * The OUDS checkbox item layout contains an [OudsCheckbox]. By clicking on a checkbox item, the user changes the checked state of its checkbox.
- *
- * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
- * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
  *
@@ -61,7 +61,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
- * @param divider Controls the display of a divider at the bottom of the checkbox item.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`. * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
  * will not be clickable.
@@ -81,6 +82,7 @@ fun OudsCheckboxItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -97,6 +99,7 @@ fun OudsCheckboxItem(
         modifier = modifier,
         description = description,
         icon = icon,
+        edgeToEdge = edgeToEdge,
         divider = divider,
         reversed = reversed,
         enabled = enabled,
@@ -119,9 +122,6 @@ fun OudsCheckboxItem(
  * The OUDS indeterminate checkbox item layout contains an [OudsTriStateCheckbox]. By clicking on an indeterminate checkbox item, the user changes the checked
  * state of its checkbox.
  *
- * In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
- * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
- *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
  *
  * > Design version: 2.4.0
@@ -136,6 +136,8 @@ fun OudsCheckboxItem(
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
@@ -156,6 +158,7 @@ fun OudsTriStateCheckboxItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -186,6 +189,7 @@ fun OudsTriStateCheckboxItem(
         label = label,
         description = description,
         icon = icon,
+        edgeToEdge = edgeToEdge,
         divider = divider,
         enabled = enabled,
         readOnly = readOnly,
@@ -226,7 +230,7 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -260,7 +264,7 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -285,6 +289,26 @@ internal fun PreviewOudsCheckboxItemWithLongDescription(theme: OudsThemeContract
         description = LoremIpsumText,
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
+}
+
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled() = PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+        OudsCheckboxItem(
+            checked = true,
+            label = "Label",
+            onCheckedChange = {},
+            icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+            edgeToEdge = false,
+            divider = true,
+            error = OudsError(ControlItemErrorMessage),
+        )
+    }
 }
 
 internal typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewParameter<ToggleableState, Nothing>

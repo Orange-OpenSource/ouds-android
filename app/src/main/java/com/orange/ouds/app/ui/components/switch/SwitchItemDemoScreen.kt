@@ -13,7 +13,9 @@
 package com.orange.ouds.app.ui.components.switch
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
@@ -26,6 +28,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -45,11 +48,13 @@ fun SwitchItemDemoScreen() {
 private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
     with(state) {
         OudsSwitchItem(
+            modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin),
             checked = checked,
             label = label,
             onCheckedChange = { checked = it },
             description = description,
             icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+            edgeToEdge = edgeToEdge,
             divider = divider,
             reversed = reversed,
             enabled = enabled,

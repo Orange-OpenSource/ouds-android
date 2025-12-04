@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -29,6 +30,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -45,9 +47,6 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * The OUDS switch item layout contains an [OudsSwitch]. By clicking on the switch item, the user changes the selected state of its switch.
  *
- * In most cases, OUDS switch items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
- * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
- *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
  *
  * > Design version: 1.5.0
@@ -61,6 +60,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier [Modifier] applied to the layout of the switch item.
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a leading position. If [reversed] is set to `true`, it is displayed as a trailing element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the switch item.
  * @param reversed When `false`, the switch has a trailing position and the optional [icon] has a leading position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the switch item. When `false`, the switch, the texts and the optional icon are disabled, and the item
@@ -81,6 +82,7 @@ fun OudsSwitchItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
@@ -111,6 +113,7 @@ fun OudsSwitchItem(
         label = label,
         description = description,
         icon = icon,
+        edgeToEdge = edgeToEdge,
         divider = divider,
         enabled = enabled,
         readOnly = readOnly,
@@ -145,7 +148,7 @@ internal fun PreviewOudsSwitchItem(
     parameter: OudsSwitchItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",
@@ -175,6 +178,26 @@ internal fun PreviewOudsSwitchItemWithLongDescription(theme: OudsThemeContract) 
         description = LoremIpsumText,
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
     )
+}
+
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled() = PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+        OudsSwitchItem(
+            checked = true,
+            label = "Label",
+            onCheckedChange = {},
+            icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+            edgeToEdge = false,
+            divider = true,
+            error = OudsError(ControlItemErrorMessage),
+        )
+    }
 }
 
 internal typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
