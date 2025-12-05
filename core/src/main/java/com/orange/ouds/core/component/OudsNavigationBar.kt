@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -66,6 +65,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsComponentIconBadge
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.value
@@ -246,7 +246,18 @@ data class OudsNavigationBarItem(
                         icon = {
                             if (badge != null) {
                                 BadgedBox(
-                                    badge = { badge.Content() },
+                                    badge = {
+                                        val badgeModifier = if (badge.count == null) {
+                                            val startPosition = OudsNavigationBarItemIcon.Size / 2
+                                            val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
+                                            val xOffset = startPosition - badgeSize
+                                            val yOffset = (startPosition - badgeSize) + 2.dp
+                                            Modifier.offset(x = xOffset, y = -yOffset)
+                                        } else {
+                                            Modifier
+                                        }
+                                        badge.Content(modifier = badgeModifier)
+                                    }
                                 ) {
                                     icon.Content()
                                 }
@@ -380,33 +391,11 @@ class OudsNavigationBarItemIcon private constructor(
  * @property contentDescription Content description of the badge, needed for accessibility support (vocalized by Talkback).
  * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.ExtraSmall] size.
  */
-class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
+class OudsNavigationBarItemBadge(contentDescription: String, count: Int? = null) : OudsComponentIconBadge(contentDescription, count) {
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        val status = OudsBadgeStatus.Negative // In a navigation bar a badge has always a negative status.
-        val positionModifier = if (count != null) {
-            Modifier
-        } else {
-            val startPosition = OudsNavigationBarItemIcon.Size / 2
-            val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
-            val xOffset = startPosition - badgeSize
-            val yOffset = (startPosition - badgeSize) + 2.dp
-            Modifier.offset(x = xOffset, y = -yOffset)
-        }
-
-        Box(
-            modifier = positionModifier
-                .background(color = OudsTheme.componentsTokens.bar.colorBorderBadge.value, shape = OudsBadgeShape)
-                .padding(1.dp)
-        ) {
-            count?.let {
-                OudsBadge(count = count, modifier = modifier, status = status, size = OudsBadgeSize.Medium)
-            }.orElse {
-                OudsBadge(modifier = modifier, status = status, size = OudsBadgeSize.ExtraSmall)
-            }
-        }
-    }
+    override val borderColor: Color
+        @Composable
+        get() = OudsTheme.componentsTokens.bar.colorBorderBadge.value
 }
 
 internal enum class OudsNavigationBarItemState {

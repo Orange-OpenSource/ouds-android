@@ -269,20 +269,26 @@ fun Modifier.dottedBorder(
  * @param shape The shape of the border.
  * @param insetWidth The width of the border inset in dp. Use [Dp.Hairline] for a hairline border inset.
  * @param insetColor The color to paint the border inset with.
+ * @param innerOffsetPx An offset applied to the inner side of the border, in pixels.
+ *   The offset is applied to the border inset if it exists, or to the border itself otherwise.
+ *   Use this parameter to avoid graphical glitches when drawing borders.
  */
-fun Modifier.outerBorder(
+internal fun Modifier.outerBorder(
     width: Dp,
     color: Color,
     shape: Shape = RectangleShape,
     insetWidth: Dp = Dp.Unspecified,
-    insetColor: Color = Color.Unspecified
+    insetColor: Color = Color.Unspecified,
+    innerOffsetPx: Float = 0f
 ) = drawWithContent {
+    val hasInset = insetWidth.isSpecified && insetWidth > 0.dp && insetColor.alpha != 0f
+    // Make the border 1 pixel smaller on the inner side if there is an inset, otherwise for some reason the border can be visible behind the inset on the inner side
+    // If there is no inset, apply the innerOffsetPx parameter
+    val borderInnerOffsetPx = if (hasInset) 1f else innerOffsetPx
+    val insetInnerOffsetPx = if (hasInset) innerOffsetPx else 0f
+    drawOuterBorder(width, color, shape, borderInnerOffsetPx)
+    drawOuterBorder(insetWidth, insetColor, shape, insetInnerOffsetPx)
     drawContent()
-    // Make the border 1 pixel smaller on the inner side if there is an inset
-    // Otherwise, for some reason the border can be visible behind the inset on the inner side
-    val innerOffsetPx = if (insetWidth.isSpecified && insetWidth > 0.dp && insetColor.alpha != 0f) 1f else 0f
-    drawOuterBorder(width, color, shape, innerOffsetPx)
-    drawOuterBorder(insetWidth, insetColor, shape)
 }
 
 private fun DrawScope.drawOuterBorder(width: Dp, color: Color, shape: Shape, innerOffsetPx: Float = 0f) {
