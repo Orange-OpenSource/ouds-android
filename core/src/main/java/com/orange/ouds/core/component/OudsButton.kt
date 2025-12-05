@@ -20,14 +20,11 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -36,9 +33,7 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -46,7 +41,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -61,15 +55,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.IntSize
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
-import com.orange.ouds.core.component.content.OudsComponentIconBadge
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalColorMode
@@ -350,72 +340,39 @@ internal fun OudsButton(
             ) {
                 if (icon != null) {
                     val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
-                    Box(modifier = Modifier.size(size.value * iconScale)) {
+                    val iconContent: @Composable () -> Unit = {
                         icon.Content(
                             modifier = Modifier
-                                .fillMaxSize()
+                                .size(size.value * iconScale)
                                 .semantics {
                                     contentDescription = if (label == null) icon.contentDescription else ""
                                 },
                             extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
                         )
-                        if (label == null) {
-                            val buttonEndPadding = paddingValues.calculateEndPadding(LocalLayoutDirection.current)
-                            val maximumBorderWidth = OudsButtonAppearance.entries.flatMap { appearance ->
-                                OudsButtonState.entries.mapNotNull { state ->
-                                    borderWidth(appearance, state)
-                                }
-                            }.maxOrNull().orElse { 0.dp }
-                            val availableIconEndPadding = with(LocalDensity.current) {
-                                val iconBadgeEndPadding = OudsTheme.spaces.paddingInline.fourExtraSmall
-                                (buttonEndPadding - maximumBorderWidth - iconBadgeEndPadding).toPx()
+                    }
+
+                    if (iconOnlyBadge != null && label == null) {
+                        val buttonEndPadding = paddingValues.calculateEndPadding(LocalLayoutDirection.current)
+                        val maximumBorderWidth = OudsButtonAppearance.entries.flatMap { appearance ->
+                            OudsButtonState.entries.mapNotNull { state ->
+                                borderWidth(appearance, state)
                             }
-                            var iconBadgeSize by remember { mutableStateOf(IntSize.Zero) }
-                            iconOnlyBadge?.Content(
-                                modifier = Modifier
-                                    .requiredWidth(IntrinsicSize.Min) // This allows to make the badge bigger than it's parent box if needed
-                                    .onSizeChanged { iconBadgeSize = it }
-                                    .align { _, parentSize, layoutDirection ->
-                                        // We should use the first IntSize parameter of the align lambda to retrieve the badge size
-                                        // but the value is incorrect and coerced to the parent size when the badge is bigger than it's parent
-                                        // That is why we retrieve the icon badge size using the onSizeChanged modifier above
-                                        if (iconOnlyBadge.count != null) {
-                                            val xOffset = when {
-                                                // Important: hypothesis for the calculations below is that the box content alignment is equal to Alignment.TopStart
-                                                // Note: parentSize is equal to icon size
-                                                //
-                                                // 1. Badge has enough space to be displayed at it's expected location
-                                                // i.e. start at the horizontal center of the icon and bottom at the vertical center of the icon 
-                                                iconBadgeSize.width < parentSize.width / 2 + availableIconEndPadding -> if (layoutDirection == LayoutDirection.Ltr) {
-                                                    parentSize.width / 2
-                                                } else {
-                                                    parentSize.width / 2 - iconBadgeSize.width
-                                                }
-                                                // 2. Badge does not have enough space to be displayed at it's expected location
-                                                // There are two cases:
-                                                // 2.1. Badge width is bigger than the icon width
-                                                // In that case Compose layouts the badge so that the horizontal center of the badge is the same as the horizontal center of the icon
-                                                // i.e. The initial offset of the badge is equal to (parentSize.width - iconBadgeSize.width) / 2 in LTR
-                                                iconBadgeSize.width > parentSize.width -> if (layoutDirection == LayoutDirection.Ltr) {
-                                                    (parentSize.width - iconBadgeSize.width) / 2 + availableIconEndPadding.toInt()
-                                                } else {
-                                                    (iconBadgeSize.width - parentSize.width) / 2 - availableIconEndPadding.toInt()
-                                                }
-                                                // 2.2. Badge width is smaller than the icon width
-                                                // In that case Compose layouts the badge so that it starts at the start of the icon
-                                                else -> if (layoutDirection == LayoutDirection.Ltr) {
-                                                    parentSize.width + availableIconEndPadding.toInt() - iconBadgeSize.width
-                                                } else {
-                                                    -availableIconEndPadding.toInt()
-                                                }
-                                            }
-                                            IntOffset(x = xOffset, y = parentSize.height / 2 - iconBadgeSize.height)
-                                        } else {
-                                            IntOffset(x = parentSize.width - iconBadgeSize.width, y = 0)
-                                        }
-                                    }
-                            )
+                        }.maxOrNull().orElse { 0.dp }
+                        val maximumEndOverflow = with(LocalDensity.current) {
+                            val iconBadgeEndPadding = OudsTheme.spaces.paddingInline.fourExtraSmall
+                            (buttonEndPadding - maximumBorderWidth - iconBadgeEndPadding)
                         }
+                        OudsBadgedIcon(
+                            modifier = Modifier.size(size.value * iconScale),
+                            badgeContentDescription = iconOnlyBadge.contentDescription,
+                            badgeCount = iconOnlyBadge.count,
+                            badgeBorderColor = iconOnlyBadge.borderColor,
+                            badgeMaximumEndOverflow = maximumEndOverflow,
+                        ) {
+                            iconContent()
+                        }
+                    } else {
+                        iconContent()
                     }
                 }
                 if (label != null) {
@@ -798,14 +755,7 @@ enum class OudsButtonAppearance {
  */
 data class OudsButtonLoader(val progress: Float?)
 
-internal class OudsButtonIconBadge(contentDescription: String, borderColor: Color, count: Int? = null) : OudsComponentIconBadge(contentDescription, count) {
-
-    private val _borderColor = borderColor
-
-    override val borderColor: Color
-        @Composable
-        get() = _borderColor
-}
+internal data class OudsButtonIconBadge(val contentDescription: String, val borderColor: Color, val count: Int? = null)
 
 internal enum class OudsButtonState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused
