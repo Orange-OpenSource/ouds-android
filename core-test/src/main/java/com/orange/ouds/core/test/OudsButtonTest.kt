@@ -39,4 +39,18 @@ class OudsButtonTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    @RunWith(Parameterized::class)
+    class WithIconBadge(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Button.WithIconBadge,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Button.WithIconBadge.parameters
+        }
+    }
 }
