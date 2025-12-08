@@ -21,11 +21,10 @@
     <string name="app_common_bottomSheetExpanded_a11y">القائمة السفلى موسعة</string>
     <string name="app_common_bottomSheetCollapsed_a11y">القائمة السفلية مطوية</string>
     <string name="app_common_customize_label">تخصيص</string>
-    <string name="app_common_enabled_label">مفعل</string>
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">تغيير السمة</string>
-    <string name="app_topBar_themeSettings_button_a11y">Change theme settings</string>
+    <string name="app_topBar_themeSettings_button_a11y">تغيير إعدادات السمة</string>
     <string name="app_topBar_darkMode_button_a11y">الانتقال إلى الوضع المظلم</string>
     <string name="app_topBar_lightMode_button_a11y">الانتقال إلى الوضع الفاتح</string>
 
@@ -33,11 +32,11 @@
     <string name="app_themeDialog_label">تغيير السمة</string>
 
     <!-- Change theme settings dialog -->
-    <string name="app_themeSettingsDialog_apply_label">Apply</string>
-    <string name="app_themeSettingsDialog_cancel_label">Cancel</string>
-    <string name="app_themeSettingsDialog_label">Change theme settings</string>
-    <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner button</string>
-    <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Rounded corner text inputs</string>
+    <string name="app_themeSettingsDialog_apply_label">تطبيق</string>
+    <string name="app_themeSettingsDialog_cancel_label">إلغاء</string>
+    <string name="app_themeSettingsDialog_label">تغيير إعدادات السمة</string>
+    <string name="app_themeSettingsDialog_roundedCornerButtons_label">زر بزوايا مستديرة</string>
+    <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">زر بزوايا مستديرة</string>
 
     <!-- Bottom navigation -->
     <string name="app_bottomBar_tokens_label">الرموز</string>
@@ -48,195 +47,107 @@
     <string name="app_tokens_common_viewCodeExample_label">عرض مثال على كود الرمز</string>
 
     <!-- Tokens: border -->
-    <string name="app_tokens_border_label">الحدود</string>
     <string name="app_tokens_border_description_text">الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.</string>
-    <string name="app_tokens_border_width_label">العرض</string>
-    <string name="app_tokens_border_radius_label">نصف القطر</string>
-    <string name="app_tokens_border_style_label">النمط</string>
 
     <!-- Tokens: color -->
-    <string name="app_tokens_color_label">اللون</string>
     <string name="app_tokens_color_description_text">اللون يعزز هويتنا البصرية ويضمن التناسق عبر تجارب المنتجات.</string>
-    <string name="app_tokens_color_unspecified_label">Unspecified</string>
+    <string name="app_tokens_color_unspecified_label">غير محدد</string>
 
     <!-- Tokens: dimension -->
-    <string name="app_tokens_dimension_label">الأبعاد</string>
     <string name="app_tokens_dimension_description_text"> توفر الأبعاد مقاسات وتباعدًا موحدًا لضمان الاتساق البصري في واجهة المستخدم.</string>
 
     <!-- Tokens: dimension/space -->
-    <string name="app_tokens_dimension_space_label">المسافة</string>
     <string name="app_tokens_dimension_space_description_text">المسافة تشير إلى القياسات المستخدمة لتعريف التباعد بين عناصر واجهة المستخدم.</string>
-    <string name="app_tokens_dimension_space_scaled_label">مقاس متغير</string>
     <string name="app_tokens_dimension_space_scaledHeader_text">المسافة المقاسة المتغيرة تشير إلى التباعد الذي يتغير استنادًا إلى عوامل مثل حجم الحاوية، دقة الشاشة، أو عناصر التخطيط.</string>
-    <string name="app_tokens_dimension_space_fixed_label">مقاس ثابت</string>
     <string name="app_tokens_dimension_space_fixedHeader_text">تشير المسافات الثابتة إلى مسافة محددة بين العناصر التي تظل كما هي بغض النظر عن عوامل مثل حجم الحاوية، دقة الشاشة، أو تغييرات التخطيط.</string>
-    <string name="app_tokens_dimension_space_paddingInline_label">الهوامش الجانبية</string>
     <string name="app_tokens_dimension_space_paddingInlineHeader_text">الهوامش الجانبية تشمل المسافة بين الجوانب اليمنى واليسرى للعناصر.</string>
-    <string name="app_tokens_dimension_space_paddingBlock_label">Padding block</string>
-    <string name="app_tokens_dimension_space_paddingBlockHeader_text">Padding block includes the top and bottom padding.</string>
-    <string name="app_tokens_dimension_space_inset_label">Inset</string>
-    <string name="app_tokens_dimension_space_insetHeader_text">Insets include the left, right, top, and bottom paddings, with all parameters being equal.</string>
-    <string name="app_tokens_dimension_space_columnGap_label">الفاصل بين الأعمدة</string>
+    <string name="app_tokens_dimension_space_paddingBlockHeader_text">تتضمن مساحة الحشو للكتلة الحشو من الأعلى والأسفل.</string>
+    <string name="app_tokens_dimension_space_insetHeader_text">الهوامش الداخلية تتضمن الحشو من اليسار واليمين والأعلى والأسفل، مع جميع المعلمات متساوية.</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">الفاصل بين الأعمدة هو التباعد الأفقي بين العناصر.</string>
-    <string name="app_tokens_dimension_space_rowGap_label">الفاصل بين الصفوف</string>
     <string name="app_tokens_dimension_space_rowGapHeader_text">الفاصل بين الصفوف هو التباعد العمودي بين العناصر.</string>
 
     <!-- Tokens: dimension/size -->
-    <string name="app_tokens_dimension_size_label">الحجم</string>
     <string name="app_tokens_dimension_size_description_text">يشير الحجم إلى القياسات المحددة التي تُستخدم لتعريف أبعاد عناصر واجهة المستخدم داخل نظام التصميم.</string>
     <string name="app_tokens_dimension_size_iconDecorative_label">رمز زخرفي</string>
     <string name="app_tokens_dimension_size_iconWith_label">رمز مع نص</string>
-    <string name="app_tokens_dimension_size_maxWidth_label">Max width</string>
-    <string name="app_tokens_dimension_size_minInteractiveArea_label">Min interactive area</string>
+    <string name="app_tokens_dimension_size_maxWidth_label">الحد الأقصى للعرض</string>
+    <string name="app_tokens_dimension_size_minInteractiveArea_label">الحد الأقصى للعرض</string>
 
     <!-- Tokens: elevation -->
-    <string name="app_tokens_elevation_label">الارتفاع</string>
     <string name="app_tokens_elevation_description_text">الظلال تستخدم لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا إلى تصميماتنا.</string>
 
     <!-- Tokens: grid -->
-    <string name="app_tokens_grid_label">الشبكة</string>
     <string name="app_tokens_grid_description_text">الشبكات تستخدم لوضع المحتوى وإنشاء تخطيطات الصفحة المتناسقة.</string>
 
     <!-- Tokens: opacity -->
-    <string name="app_tokens_opacity_label">الشفافية</string>
     <string name="app_tokens_opacity_description_text">الشفافية يمكن أن تساعد في تمييز العناصر الأمامية عن الخلفية، مما يسهل قراءة المحتوى وجعل الإجراءات الهامة أكثر وضوحًا.</string>
 
     <!-- Tokens: typography -->
-    <string name="app_tokens_typography_label">الطباعة</string>
     <string name="app_tokens_typography_description_text">الطباعة هي نظامنا للخطوط وأنماط النصوص. إنها تعزز الاتصال وتدعم أسلوب العلامة التجارية.</string>
 
     <!-- Components -->
-    <string name="app_components_common_appearance_label">التسلسل</string>
-    <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
-    <string name="app_components_common_color_label">اللون</string>
-    <string name="app_components_common_error_a11y">Error message</string>
-    <string name="app_components_common_error_label">خطأ</string>
-    <string name="app_components_common_errorMessage_label">Error description</string>
-    <string name="app_components_common_helperText_label">نص المساعدة</string>
+    <string name="app_components_common_textInputClearIcon_a11y">مسح المدخلات</string>
+    <string name="app_components_common_error_a11y">الحد الأقصى للعرض</string>
     <string name="app_components_common_icon_a11y">أيقون</string>
-    <string name="app_components_common_iconOnlyLayout_label">رمز فقط</string>
-    <string name="app_components_common_label_label">التسمية</string>
-    <string name="app_components_common_layout_label">التخطيط</string>
-    <string name="app_components_common_loader_label">Loader</string>
-    <string name="app_components_common_none_label">None</string>
-    <string name="app_components_common_onColoredBackground_label">على خلفية ملونة</string>
-    <string name="app_components_common_outlined_label">مخطط</string>
-    <string name="app_components_common_readOnly_label">للقراءة فقط</string>
-    <string name="app_components_common_size_label">الحجم</string>
-    <string name="app_components_common_status_label">الحالة</string>
-    <string name="app_components_common_textAndIconLayout_label">رمز + نص</string>
-    <string name="app_components_common_textOnlyLayout_label">نص فقط</string>
-    <string name="app_components_common_unreadNotificationsBadge_a11y">Unread notifications</string>
+    <string name="app_components_common_unreadNotificationsBadge_a11y">الإشعارات غير المقروءة</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
-        <item quantity="zero">No unread message</item>
-        <item quantity="one">%d unread message</item>
-        <item quantity="two">%d unread messages</item>
-        <item quantity="few">%d unread messages</item>
-        <item quantity="many">%d unread messages</item>
+        <item quantity="zero">لا توجد رسائل غير مقروءة</item>
+        <item quantity="one">نص المساعدة</item>
+        <item quantity="two">نص المساعدة</item>
+        <item quantity="few">%d رسائل غير مقروءة</item>
+        <item quantity="many">%d رسائل غير مقروءة</item>
     </plurals>
-    <string name="app_components_common_version_label">Component design version</string>
-    <string name="app_components_textInputHelperText_label">Helper text.</string>
+    <string name="app_components_common_version_label">نسخة تصميم المكون</string>
+    <string name="app_components_textInputHelperText_label">نص المساعدة</string>
 
     <!-- Components: badge -->
-    <string name="app_components_badge_label">شارة</string>
-    <string name="app_components_badge_description_text">الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
-    <string name="app_components_badge_type_label">النوع</string>
-    <string name="app_components_badge_standardType_label">قياسي</string>
-    <string name="app_components_badge_countType_label">عدد</string>
-    <string name="app_components_badge_iconType_label">أيقونة</string>
-    <string name="app_components_badge_count_label">عدد</string>
+    <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
 
     <!-- Components: button -->
-    <string name="app_components_button_label">زر</string>
-    <string name="app_components_button_description_text">الأزرار تسمح للمستخدمين باتخاذ قرارات أو أداء إجراء. لها عدة أنماط لتلبية احتياجات مختلفة.</string>
+    <string name="app_components_button_description_text">تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.</string>
 
     <!-- Components: checkbox -->
-    <string name="app_components_checkbox_label">مربع اختيار</string>
-    <string name="app_components_checkbox_description_text"> تتيح خانات الاختيار للمستخدمين تحديد خيار واحد أو عدة خيارات من قائمة، أو تفعيل/تعطيل إعدادات، أو تأكيد إجراء معين.</string>
-    <string name="app_components_checkbox_checkbox_label">خانة اختيار</string>
-    <string name="app_components_checkbox_checkboxItem_label">عنصر خانة اختيار</string>
+    <string name="app_components_checkbox_description_text">تتيح Checkboxes للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.</string>
     <string name="app_components_checkbox_checkbox_a11y">وصف محتوى مربع الاختيار %s</string>
-    <string name="app_components_checkbox_indeterminateCheckbox_label">خانة اختيار غير محدد</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">وصف محتوى مربع الاختيار غير المحدد %s</string>
-    <string name="app_components_checkbox_indeterminateCheckboxItem_label">خانة اختيار اختيار غير محدد</string>
 
     <!-- Components: chip -->
-    <string name="app_components_chip_label">عنصر</string>
-    <string name="app_components_chip_description_text">تساعد الـعناصر  المستخدمين على إدخال المعلومات، أو القيام باختيارات، أو تصفية المحتوى، أو تنفيذ إجراءات.</string>
-    <string name="app_components_chip_filterChip_label">نصر تصفية</string>
+    <string name="app_components_chip_description_text">تساعد Chips   المستخدمين على إدخال المعلومات، القيام باختيارات، تصفية المحتوى، أو تنفيذ إجراءات.</string>
     <string name="app_components_chip_filterChip_chipContent_label">تصفية</string>
-    <string name="app_components_chip_suggestionChip_label">عنصر اقتراح</string>
     <string name="app_components_chip_suggestionChip_chipContent_label">اقتراح</string>
 
     <!-- Components: colored background -->
-    <string name="app_components_coloredBackground_label">Colored background</string>
-    <string name="app_components_coloredBackground_description_text">Colored backgrounds use specific colors to maximize the contrast with content. Several components such as buttons or links adapt their display accordingly when they are displayed on colored backgrounds.</string>
-    <string name="app_components_coloredBackground_color_label">Color</string>
-    <string name="app_components_coloredBackground_unsupportedColor_text">Current theme does not support \"%s\" color.</string>
-
-    <!-- Components: control item (common strings for checkbox/radio/switch items) -->
-    <string name="app_components_controlItem_description_label">Description</string>
-    <string name="app_components_controlItem_icon_label">أيقونة</string>
-    <string name="app_components_controlItem_edgeToEdge_label">Edge to edge</string>
-    <string name="app_components_controlItem_divider_label">فاصل</string>
-    <string name="app_components_controlItem_reversed_label">معكوس</string>
+    <string name="app_components_coloredBackground_description_text">تستخدم Colored backgrounds ألوانًا محددة لتعزيز التباين مع المحتوى. يتكيف العديد من المكونات مثل الأزرار أو الروابط مع العرض وفقًا لذلك عند عرضها على خلفيات ملونة.</string>
+    <string name="app_components_coloredBackground_unsupportedColor_text">السمة الحالية لا تدعم لون "%s".</string>
 
     <!-- Components: divider -->
-    <string name="app_components_divider_label">فاصل</string>
-    <string name="app_components_divider_description_text">الفاصل ينظم واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.</string>
-    <string name="app_components_divider_horizontalDivider_label">فاصل أفقي</string>
-    <string name="app_components_divider_verticalDivider_label">فاصل عمودي</string>
+    <string name="app_components_divider_description_text">ينظم Divider واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.</string>
 
     <!-- Components: link -->
-    <string name="app_components_link_label">رابط</string>
-    <string name="app_components_link_description_text">تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).</string>
-    <string name="app_components_link_backLayout_label">عوده</string>
-    <string name="app_components_link_nextLayout_label">التالي</string>
+    <string name="app_components_link_description_text">تُستخدم Links لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).</string>
 
     <!-- Components: navigation bar -->
-    <string name="app_components_navigationBar_label">Navigation bar</string>
-    <string name="app_components_navigationBar_description_text">Navigation bars let people switch between UI views on smaller devices</string> <!--TODO update with OUDS description-->
-    <string name="app_components_navigationBar_itemCount_label">Item count</string>
-    <string name="app_components_navigationBar_lastItemBadge_label">Last item badge</string>
-    <string name="app_components_navigationBar_homeItem_label">Home</string>
-    <string name="app_components_navigationBar_shopItem_label">Shop</string>
-    <string name="app_components_navigationBar_notificationsItem_label">Notifications</string>
-    <string name="app_components_navigationBar_accountItem_label">Account</string>
-    <string name="app_components_navigationBar_settingsItem_label">Settings</string>
+    <string name="app_components_navigationBar_description_text">Navigation bars  يتيح للناس التبديل بين عروض واجهة المستخدم على الأجهزة الصغيرة</string> <!--TODO update with OUDS description-->
+    <string name="app_components_navigationBar_homeItem_label">الصفحة الرئيسية</string>
+    <string name="app_components_navigationBar_shopItem_label">المتجر</string>
+    <string name="app_components_navigationBar_notificationsItem_label">الإشعارات</string>
+    <string name="app_components_navigationBar_accountItem_label">الحساب</string>
+    <string name="app_components_navigationBar_settingsItem_label">الإعدادات</string>
 
     <!-- Components: radio button -->
-    <string name="app_components_radioButton_label">زر الاختيار</string>
     <string name="app_components_radioButton_description_text">يُستخدم زر الاختيار لتمكين المستخدم من تحديد خيار واحد فقط من بين مجموعة خيارات حصرية. يُعرض عادةً كدائرة صغيرة مع تسمية، وتُملأ عند التحديد.</string>
-    <string name="app_components_radioButton_radioButton_label">زر الاختيار</string>
-    <string name="app_components_radioButton_radioButtonItem_label">عنصر زر الاختيار</string>
-    <string name="app_components_radioButton_radioButtonItem_extraLabel_label">Extra label</string>
     <string name="app_components_radioButton_radioButton_a11y">وصف محتوى زر الاختيار %s</string>
 
     <!-- Components: switch -->
-    <string name="app_components_switch_label">مفتاح التبديل</string>
-    <string name="app_components_switch_description_text">يتيح مفتاح التبديل للمستخدم التبديل بين حالتين، عادةً "تشغيل" و "إيقاف". يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.</string>
-    <string name="app_components_switch_switch_label">مفتاح التبديل</string>
+    <string name="app_components_switch_description_text">يتيح Switch للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.</string>
     <string name="app_components_switch_switch_a11y">تبديل وصف المحتوى</string>
-    <string name="app_components_switch_switchItem_label">تبديل العنصر</string>
 
     <!-- Components: tag -->
-    <string name="app_components_tag_label">Tag</string>
-    <string name="app_components_tag_description_text">A tag is a small element that shows short info like a label, keyword, or category. It helps users quickly find, group, or understand content.</string>
-    <string name="app_components_tag_textAndBulletLayout_label">Text + bullet</string>
-    <string name="app_components_tag_tag_label">Tag</string>
-    <string name="app_components_tag_inputTag_label">Input tag</string>
-    <string name="app_components_tag_roundedCorners_label">Rounded corners</string>
+    <string name="app_components_tag_description_text">Tag هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.</string>
 
     <!-- Components: text input -->
-    <string name="app_components_textInput_label">Text input</string>
-    <string name="app_components_textInput_description_text">A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It is one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.</string>
-    <string name="app_components_textInput_leadingIcon_label">Leading icon</string>
-    <string name="app_components_textInput_trailingIcon_label">Trailing icon</string>
-    <string name="app_components_textInput_trailingIcon_a11y">Trailing icon content description</string>
-    <string name="app_components_textInput_prefix_label">Prefix</string>
-    <string name="app_components_textInput_suffix_label">Suffix</string>
-    <string name="app_components_textInput_placeholder_label">Placeholder</string>
-    <string name="app_components_textInput_helperLink_label">Helper link</string>
+    <string name="app_components_textInput_description_text">Text Input هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث</string>
+    <string name="app_components_textInput_trailingIcon_a11y">وصف محتوى أيقونة النهاية</string>
 
     <!-- Components: top app bar -->
     <string name="app_components_topAppBar_label">Top app bar</string>
@@ -262,11 +173,12 @@
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
     <plurals name="app_about_issues_label">
-        <item quantity="zero">Issue\u0020</item>
-        <item quantity="one">Issues\u0020</item>
-        <item quantity="two">Issues\u0020</item>
-        <item quantity="few">Issues\u0020</item>
-        <item quantity="many">Issues\u0020</item>
+        <item quantity="zero">صفر </item>
+        <item quantity="one">واحد </item>
+        <item quantity="two">اثنان </item>
+        <item quantity="few">قليل </item>
+        <item quantity="many">كثير </item>
+        <item quantity="other">أخرى </item>
     </plurals>
     <string name="app_about_issueNumber_label">#%s</string>
     <string name="app_about_tokensVersion_label">إصدار الرموز %s</string>
@@ -275,8 +187,8 @@
     <string name="app_about_materialComponents_label">مكونات Material 3</string>
     <string name="app_about_changelog_label">سجل التغييرات</string>
     <string name="app_about_changeLanguage_label">تغيير اللغة</string>
-    <string name="app_about_versions_label">Versions</string>
-    <string name="app_about_versions_tokens_label">Tokens</string>
-    <string name="app_about_versions_components_label">Components</string>
+    <string name="app_about_versions_label">الإصدارات</string>
+    <string name="app_about_versions_tokens_label">الرموز</string>
+    <string name="app_about_versions_components_label">المكونات</string>
 
 </resources>
