@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.material)
 
+    testImplementation(project(":core-test"))
     testImplementation(project(":theme-orange"))
     androidTestImplementation(project(":theme-orange"))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
