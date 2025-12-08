@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -49,6 +50,19 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
+/**
+ * An OUDS equivalent of the Material [BadgedBox] which is restricted to icons.
+ * Please note that the size of the [OudsBadgedIcon] must be explicitly set to the size of the contained icon,
+ * otherwise the size of the [OudsBadgedIcon] may be bigger than expected when the badge is displayed outside of the icon.
+ *
+ * @param badgeContentDescription The badge content description.
+ * @param modifier The Modifier to be applied to this [OudsBadgedIcon].
+ * @param badgeCount The badge count.
+ * @param badgeBorderColor The badge border color.
+ * @param badgeMaximumEndOverflow The maximum amount of space that the badge can overflow to the end of the icon.
+ *   This allows to constrained the badge layout when space is limited, for instance in an [OudsButton].
+ * @param icon The icon to be displayed.
+ */
 @Composable
 internal fun OudsBadgedIcon(
     badgeContentDescription: String,
