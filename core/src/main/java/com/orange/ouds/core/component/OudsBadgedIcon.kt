@@ -58,7 +58,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param badgeCount The badge count.
  * @param badgeBorderColor The badge border color.
  * @param badgeMaximumEndOverflow The maximum amount of space that the badge can overflow to the end of the icon.
- *   This allows to constrained the badge layout when space is limited, for instance in an [OudsButton].
+ *   This allows to constrain the badge layout when space is limited, for instance in an [OudsButton].
  * @param icon The icon to be displayed.
  */
 @Composable
@@ -171,7 +171,6 @@ internal class OudsBadgedIconPreviewParameterProvider : BasicPreviewParameterPro
 private val previewParameterValues: List<OudsBadgedIconPreviewParameter>
     get() = listOf(
         OudsBadgedIconPreviewParameter(badgeBorderColor = Color.White),
-        // Count badges
         OudsBadgedIconPreviewParameter(badgeCount = 1), // Case 1 when computing x offset
         OudsBadgedIconPreviewParameter(badgeCount = 100), // Case 1 when computing x offset
         OudsBadgedIconPreviewParameter(badgeCount = 100, badgeBorderColor = Color.White, badgeMaximumEndOverflow = 8.dp), // Case 2.1 when computing x offset

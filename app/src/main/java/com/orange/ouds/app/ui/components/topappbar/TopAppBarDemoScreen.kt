@@ -146,18 +146,18 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
             },
             onClick = {}
         )
-        val secondAvatarContentDescription = stringResource(R.string.app_components_topAppBar_secondAction_a11y)
+        val secondActionContentDescription = stringResource(R.string.app_components_topAppBar_secondAction_a11y)
         val secondAction = when (actionAvatar) {
             TopAppBarDemoState.ActionAvatar.Image -> OudsTopAppBarAction.Avatar(
                 painter = painterResource(id = R.drawable.il_top_app_bar_avatar),
-                contentDescription = secondAvatarContentDescription,
+                contentDescription = secondActionContentDescription,
                 onClick = {}
             )
             TopAppBarDemoState.ActionAvatar.Monogram -> OudsTopAppBarAction.Avatar(
                 monogram = actionAvatarMonogram,
                 color = Color.White,
                 backgroundColor = Color(0xff138126),
-                contentDescription = secondAvatarContentDescription,
+                contentDescription = secondActionContentDescription,
                 onClick = {}
             )
         }
@@ -233,7 +233,7 @@ private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, the
                                 TopAppBarDemoState.ActionIconBadge.None -> {}
                                 TopAppBarDemoState.ActionIconBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
                                 TopAppBarDemoState.ActionIconBadge.Count -> contentDescriptionArgument(
-                                    pluralId = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                    id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
                                     count = ActionIconBadgeCount,
                                     ActionIconBadgeCount
                                 )

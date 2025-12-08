@@ -365,7 +365,7 @@ internal fun OudsButton(
                         }.maxOrNull().orElse { 0.dp }
                         val maximumEndOverflow = with(LocalDensity.current) {
                             val iconBadgeEndPadding = OudsTheme.spaces.paddingInline.fourExtraSmall
-                            (buttonEndPadding - maximumBorderWidth - iconBadgeEndPadding)
+                            return@with buttonEndPadding - maximumBorderWidth - iconBadgeEndPadding
                         }
                         OudsBadgedIcon(
                             modifier = Modifier.size(size.value * iconScale),
@@ -828,13 +828,12 @@ private fun PreviewOudsButtonWithIconBadge(@PreviewParameter(OudsButtonWithIconB
 
 @Composable
 internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int) = OudsPreview(theme = theme) {
-    val appearance = OudsButtonAppearance.Default
     PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
         OudsButton(
             nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
             nullableLabel = null,
             onClick = {},
-            appearance = appearance,
+            appearance = OudsButtonAppearance.Default,
             iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.componentsTokens.bar.colorBorderBadge.value, count = count)
         )
     }

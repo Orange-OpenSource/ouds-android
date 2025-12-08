@@ -133,7 +133,7 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
                                     NavigationBarDemoState.ItemBadge.None -> {}
                                     NavigationBarDemoState.ItemBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
                                     NavigationBarDemoState.ItemBadge.Count -> contentDescriptionArgument(
-                                        pluralId = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                        id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
                                         count = ItemBadgeCount,
                                         ItemBadgeCount
                                     )

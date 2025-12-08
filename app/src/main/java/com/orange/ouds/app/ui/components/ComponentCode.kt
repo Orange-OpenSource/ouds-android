@@ -52,8 +52,8 @@ fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = string
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg formatArgs: Any) =
     stringResourceArgument(Argument.ContentDescription, id, *formatArgs)
 
-fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes pluralId: Int, count: Int, vararg formatArgs: Any) =
-    pluralStringResourceArgument(Argument.ContentDescription, pluralId, count, *formatArgs)
+fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes id: Int, count: Int, vararg formatArgs: Any) =
+    pluralStringResourceArgument(Argument.ContentDescription, id, count, *formatArgs)
 
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)

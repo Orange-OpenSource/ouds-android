@@ -30,7 +30,7 @@ fun rememberTopAppBarDemoState(
     actionIconBadge: TopAppBarDemoState.ActionIconBadge = TopAppBarDemoState.ActionIconBadge.None,
     actionAvatar: TopAppBarDemoState.ActionAvatar = TopAppBarDemoState.ActionAvatar.Image,
     actionAvatarMonogram: Char = 'A'
-) = rememberSaveable(size, centerAligned, navigationIcon, title, actionAvatar, actionAvatarMonogram, saver = TopAppBarDemoState.Saver) {
+) = rememberSaveable(size, centerAligned, navigationIcon, title, actionIconBadge, actionAvatar, actionAvatarMonogram, saver = TopAppBarDemoState.Saver) {
     TopAppBarDemoState(size, centerAligned, navigationIcon, title, actionIconBadge, actionAvatar, actionAvatarMonogram)
 }
 
