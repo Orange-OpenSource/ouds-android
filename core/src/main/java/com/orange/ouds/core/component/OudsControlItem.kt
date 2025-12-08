@@ -276,7 +276,7 @@ private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
             modifier = modifier
                 .padding(spacePaddingInlineErrorIcon.value)
                 .size(sizeErrorIcon.value),
-            painter = painterResource(id = OudsTheme.drawableResources.alertImportant),
+            painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
             contentDescription = null,
             tint = errorColor(state = state)
         )

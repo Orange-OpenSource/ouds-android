@@ -164,7 +164,7 @@ internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean
         if (selected) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                painter = painterResource(OudsTheme.drawableResources.radioButtonSelected),
+                painter = painterResource(OudsTheme.drawableResources.component.radioButton.selected),
                 tint = selectionColor(state = state, error = error),
                 contentDescription = null
             )
