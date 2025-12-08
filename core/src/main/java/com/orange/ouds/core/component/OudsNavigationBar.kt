@@ -244,7 +244,6 @@ data class OudsNavigationBarItem(
                             if (badge != null) {
                                 OudsBadgedIcon(
                                     modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
-                                    badgeContentDescription = badge.contentDescription,
                                     badgeCount = badge.count,
                                     badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
                                 ) {

@@ -32,8 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -55,7 +54,6 @@ import com.orange.ouds.theme.OudsThemeContract
  * Please note that the size of the [OudsBadgedIcon] must be explicitly set to the size of the contained icon,
  * otherwise the size of the [OudsBadgedIcon] may be bigger than expected when the badge is displayed outside of the icon.
  *
- * @param badgeContentDescription The badge content description.
  * @param modifier The Modifier to be applied to this [OudsBadgedIcon].
  * @param badgeCount The badge count.
  * @param badgeBorderColor The badge border color.
@@ -65,7 +63,6 @@ import com.orange.ouds.theme.OudsThemeContract
  */
 @Composable
 internal fun OudsBadgedIcon(
-    badgeContentDescription: String,
     modifier: Modifier = Modifier,
     badgeCount: Int? = null,
     badgeBorderColor: Color = Color.Unspecified,
@@ -121,9 +118,7 @@ internal fun OudsBadgedIcon(
                 }
             }
             .outerBorder(1.dp, color = badgeBorderColor, shape = OudsBadgeShape, innerOffsetPx = -1f)
-            .semantics {
-                contentDescription = badgeContentDescription
-            }
+            .clearAndSetSemantics {}
 
         val status = OudsBadgeStatus.Negative // A badge always has a negative status on an icon
         badgeCount?.let {
@@ -151,7 +146,6 @@ internal fun PreviewOudsBadgedIcon(
         val size = 26.dp
         OudsBadgedIcon(
             modifier = Modifier.size(size),
-            badgeContentDescription = "",
             badgeCount = badgeCount,
             badgeBorderColor = badgeBorderColor,
             badgeMaximumEndOverflow = badgeMaximumEndOverflow

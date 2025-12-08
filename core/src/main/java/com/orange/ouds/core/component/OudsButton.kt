@@ -345,7 +345,12 @@ internal fun OudsButton(
                             modifier = Modifier
                                 .size(size.value * iconScale)
                                 .semantics {
-                                    contentDescription = if (label == null) icon.contentDescription else ""
+                                    contentDescription = when (label) {
+                                        // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
+                                        null if iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
+                                        null -> icon.contentDescription
+                                        else -> ""
+                                    }
                                 },
                             extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
                         )
@@ -364,7 +369,6 @@ internal fun OudsButton(
                         }
                         OudsBadgedIcon(
                             modifier = Modifier.size(size.value * iconScale),
-                            badgeContentDescription = iconOnlyBadge.contentDescription,
                             badgeCount = iconOnlyBadge.count,
                             badgeBorderColor = iconOnlyBadge.borderColor,
                             badgeMaximumEndOverflow = maximumEndOverflow,
