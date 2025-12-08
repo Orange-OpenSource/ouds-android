@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.ItemBadgeCount
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MaxNavigationBarItemCount
@@ -88,9 +89,6 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
             items = navigationBarItems.take(itemCount).mapIndexed { index, item ->
                 val label = stringResource(id = item.labelRes)
                 val isLastItem = index == itemCount - 1
-                val standardBadgeContentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
-                val countBadgeContentDescription =
-                    pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = ItemBadgeCount, ItemBadgeCount)
                 OudsNavigationBarItem(
                     selected = selectedItemId == index,
                     onClick = { selectedItemId = index },
@@ -99,9 +97,9 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     badge = if (isLastItem) {
                         when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null
-                            NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge(standardBadgeContentDescription)
+                            NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge(stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y))
                             NavigationBarDemoState.ItemBadge.Count -> OudsNavigationBarItemBadge(
-                                contentDescription = countBadgeContentDescription,
+                                contentDescription = pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = ItemBadgeCount, ItemBadgeCount),
                                 count = ItemBadgeCount
                             )
                         }
@@ -131,6 +129,15 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
                         }
                         if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
                             functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
+                                when (lastItemBadge) {
+                                    NavigationBarDemoState.ItemBadge.None -> {}
+                                    NavigationBarDemoState.ItemBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
+                                    NavigationBarDemoState.ItemBadge.Count -> contentDescriptionArgument(
+                                        pluralId = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                        count = ItemBadgeCount,
+                                        ItemBadgeCount
+                                    )
+                                }
                                 if (lastItemBadge == NavigationBarDemoState.ItemBadge.Count) {
                                     typedArgument("count", ItemBadgeCount)
                                 }

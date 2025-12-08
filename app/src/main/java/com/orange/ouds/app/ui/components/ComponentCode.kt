@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.components
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -49,7 +50,11 @@ fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = form
 
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg formatArgs: Any) =
-    stringResourceArgument(Argument.ContentDescription, id, formatArgs)
+    stringResourceArgument(Argument.ContentDescription, id, *formatArgs)
+
+fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes pluralId: Int, count: Int, vararg formatArgs: Any) =
+    pluralStringResourceArgument(Argument.ContentDescription, pluralId, count, *formatArgs)
+
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
