@@ -521,47 +521,65 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
     class Icon private constructor(
         graphicsObject: Any,
         contentDescription: String,
+        badge: OudsTopAppBarActionBadge?,
         onClick: () -> Unit
-    ) : OudsTopAppBarAction, OudsComponentIcon<Nothing, Icon>(Nothing::class.java, graphicsObject, contentDescription, onClick) {
+    ) : OudsTopAppBarAction, OudsComponentIcon<Nothing, Icon>(Nothing::class.java, { graphicsObject }, { contentDescription }, onClick) {
+
+        private val _badge = badge
+        override val badge: OudsButtonIconBadge?
+            @Composable
+            get() = _badge?.let { badge ->
+                OudsButtonIconBadge(
+                    contentDescription = badge.contentDescription,
+                    count = badge.count,
+                    borderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
+                )
+            }
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Icon].
          *
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
+         * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
          */
         constructor(
             painter: Painter,
             contentDescription: String,
+            badge: OudsTopAppBarActionBadge? = null,
             onClick: () -> Unit
-        ) : this(painter as Any, contentDescription, onClick)
+        ) : this(painter as Any, contentDescription, badge, onClick)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Icon].
          *
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
+         * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
+            badge: OudsTopAppBarActionBadge? = null,
             onClick: () -> Unit
-        ) : this(imageVector as Any, contentDescription, onClick)
+        ) : this(imageVector as Any, contentDescription, badge, onClick)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Icon].
          *
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
+         * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
+            badge: OudsTopAppBarActionBadge? = null,
             onClick: () -> Unit
-        ) : this(bitmap as Any, contentDescription, onClick)
+        ) : this(bitmap as Any, contentDescription, badge, onClick)
     }
 
     /**
@@ -695,6 +713,16 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
     }
 }
 
+/**
+ * A badge in an [OudsTopAppBarAction].
+ *
+ * @see [OudsBadge]
+ *
+ * @property contentDescription Content description of the badge, needed for accessibility support (vocalized by Talkback).
+ * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.ExtraSmall] size.
+ */
+data class OudsTopAppBarActionBadge(val contentDescription: String, val count: Int? = null)
+
 private enum class OudsTopAppBarSize {
 
     Small, Medium, Large
@@ -810,7 +838,12 @@ private val previewParameterValues: List<OudsTopAppBarPreviewParameter>
         OudsTopAppBarPreviewParameter(
             navigationIcon = OudsTopAppBarNavigationIcon(imageVector = Icons.Outlined.Settings, contentDescription = "", onClick = {}),
             actions = listOf(
-                OudsTopAppBarAction.Icon(imageVector = Icons.Outlined.AccountCircle, contentDescription = "", onClick = {}),
+                OudsTopAppBarAction.Icon(
+                    imageVector = Icons.Outlined.AccountCircle,
+                    contentDescription = "",
+                    badge = OudsTopAppBarActionBadge(contentDescription = "", count = 10),
+                    onClick = {}
+                ),
                 OudsTopAppBarAction.Avatar(
                     painter = PreviewCheckerboardPainter(
                         squareSize = 6.dp,

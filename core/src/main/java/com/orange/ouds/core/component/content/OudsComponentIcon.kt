@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
+import com.orange.ouds.core.component.OudsButtonIconBadge
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -48,6 +49,11 @@ abstract class OudsComponentIcon<T, S> protected constructor(
         @Composable
         get() = null
 
+    // The badge is not displayed if onClick is null
+    internal open val badge: OudsButtonIconBadge?
+        @Composable
+        get() = null
+
     protected open val enabled: Boolean?
         @Composable
         get() = null
@@ -69,11 +75,13 @@ abstract class OudsComponentIcon<T, S> protected constructor(
                 else -> null
             }?.let { buttonIcon ->
                 OudsButton(
-                    icon = buttonIcon,
+                    nullableIcon = buttonIcon,
+                    nullableLabel = null,
                     appearance = OudsButtonAppearance.Minimal,
                     onClick = onClick,
                     modifier = modifier,
                     enabled = enabled.orElse { true },
+                    iconOnlyBadge = badge
                 )
             }
         }.orElse {
