@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -82,8 +83,9 @@ fun DemoScreen(
                 init = codeSnippet
             )
             if (version != null) {
-                Row(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), verticalAlignment = Alignment.CenterVertically) {
+                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = OudsTheme.grids.margin), verticalAlignment = Alignment.CenterVertically) {
                     Text(
+                        modifier = Modifier.weight(1f),
                         text = stringResource(R.string.app_components_common_version_label),
                         style = with(OudsTheme.typography.label.strong.large) { copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center)) },
                         color = OudsTheme.colorScheme.content.default
