@@ -439,7 +439,7 @@ class OudsNavigationBarItemIcon private constructor(
  */
 data class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null)
 
-internal enum class OudsNavigationBarItemState {
+private enum class OudsNavigationBarItemState {
     Enabled, Hovered, Pressed, Focused
 }
 

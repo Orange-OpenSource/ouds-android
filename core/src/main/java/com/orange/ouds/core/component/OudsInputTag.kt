@@ -227,7 +227,7 @@ private fun contentColor(state: OudsInputTagState): Color {
     }
 }
 
-internal enum class OudsInputTagState {
+private enum class OudsInputTagState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
