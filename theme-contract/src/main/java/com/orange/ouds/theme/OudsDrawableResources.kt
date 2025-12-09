@@ -19,66 +19,66 @@ import com.orange.ouds.foundation.InternalOudsApi
 interface OudsDrawableResources {
     val component: Component
 
-    abstract class Component {
-        abstract val alert: Alert
-        abstract val checkbox: Checkbox
-        abstract val chip: Chip
-        abstract val link: Link
-        abstract val radioButton: RadioButton
-        abstract val switch: Switch
-        abstract val tag: Tag
+    interface Component {
+        val alert: Alert
+        val checkbox: Checkbox
+        val chip: Chip
+        val link: Link
+        val radioButton: RadioButton
+        val switch: Switch
+        val tag: Tag
 
-        abstract class Alert {
+        interface Alert {
             @get:DrawableRes
-            abstract val importantFill: Int
-
-            @get:DrawableRes
-            abstract val infoFill: Int
+            val importantFill: Int
 
             @get:DrawableRes
-            abstract val tickConfirmationFill: Int
+            val infoFill: Int
 
             @get:DrawableRes
-            abstract val warningExternalShape: Int
+            val tickConfirmationFill: Int
 
             @get:DrawableRes
-            abstract val warningInternalShape: Int
+            val warningExternalShape: Int
+
+            @get:DrawableRes
+            val warningInternalShape: Int
         }
 
-        abstract class Checkbox {
+        interface Checkbox {
             @get:DrawableRes
-            abstract val selected: Int
+            val selected: Int
 
             @get:DrawableRes
-            abstract val undetermined: Int
+            val undetermined: Int
         }
 
-        abstract class Chip {
+        interface Chip {
             @get:DrawableRes
-            abstract val tick: Int
+            val tick: Int
         }
 
-        abstract class Link {
+        interface Link {
             @get:DrawableRes
-            abstract val next: Int
+            val next: Int
 
             @get:DrawableRes
-            abstract val previous: Int
+            val previous: Int
         }
 
-        abstract class RadioButton {
+        interface RadioButton {
             @get:DrawableRes
-            abstract val selected: Int
+            val selected: Int
         }
 
-        abstract class Switch {
+        interface Switch {
             @get:DrawableRes
-            abstract val selected: Int
+            val selected: Int
         }
 
-        abstract class Tag {
+        interface Tag {
             @get:DrawableRes
-            abstract val close: Int
+            val close: Int
         }
     }
 }
