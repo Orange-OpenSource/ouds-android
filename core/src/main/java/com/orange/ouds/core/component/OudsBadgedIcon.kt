@@ -83,7 +83,8 @@ internal fun OudsBadgedIcon(
                 // Important: hypothesis for the calculations below is that the box content alignment is equal to Alignment.TopStart
                 // Note: parentSize is equal to icon size
                 if (badgeCount == null) {
-                    IntOffset(x = parentSize.width - badgeSize.width, y = 0)
+                    val xOffset = if (layoutDirection == LayoutDirection.Ltr) parentSize.width - badgeSize.width else 0
+                    IntOffset(x = xOffset, y = 0)
                 } else {
                     // Compose layouts the badge differently if its width is bigger than the icon width or not
                     val initialXOffset = if (badgeSize.width > parentSize.width) (parentSize.width - badgeSize.width) / 2 else 0
