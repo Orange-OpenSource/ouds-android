@@ -88,7 +88,7 @@ This interface is the central point of the design system's abstraction. It aggre
 # Package com.orange.ouds.theme.tokens
 
 This package contains the **Key Token objects** that define the organization of semantic tokens. It establishes the **hierarchy** (tree structure) used to access token values.
-Instead of a flat list, it groups tokens into logical categories (like `OudsBorders`, `OudsSizes`, or `OudsSpaces`), enabling structured navigation through the theme properties.
+Instead of a flat list, it groups tokens into logical categories (like `OudsBorderSemanticTokens`, `OudsSizeSemanticTokens`, or `OudsSpaceSemanticTokens`), enabling structured navigation through the theme properties.
 
 # Package com.orange.ouds.theme.tokens.components
 
@@ -100,5 +100,5 @@ This package defines the `OudsMaterialColorTokens` interface, which establishes 
 
 # Package com.orange.ouds.theme.tokens.semantic
 
-This package contains the **interfaces** defining the semantic properties of the theme. It hosts the **contracts** for colors (`OudsColorScheme`), typography (`OudsTypography`), borders, elevations, grids, and opacities.
+This package contains the **interfaces** defining the semantic properties of the theme. It hosts the **contracts** for colors (`OudsColorSemanticTokens`), typography (`OudsFontSemanticTokens`), borders, elevations, grids, and opacities.
 It dictates that every theme must implement these specific interfaces to provide the fundamental visual attributes.
