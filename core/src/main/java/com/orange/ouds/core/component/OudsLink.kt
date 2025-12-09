@@ -434,7 +434,7 @@ open class OudsLinkIcon private constructor(
         get() = extraParameters.tint
 }
 
-internal enum class OudsLinkState {
+private enum class OudsLinkState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
