@@ -833,7 +833,7 @@ internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int
             nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
             nullableLabel = null,
             onClick = {},
-            appearance = OudsButtonAppearance.Default,
+            appearance = OudsButtonAppearance.Minimal,
             iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.componentsTokens.bar.colorBorderBadge.value, count = count)
         )
     }
