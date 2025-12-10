@@ -56,20 +56,20 @@ import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * An input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing
- * enter, comma, or tab), each value is transformed into a Tag.
+ * enter, comma, or tab), each value is transformed into a tag.
  * Input tags are often used for adding labels, categories, or participants. They typically support editing, removing, and validating individual tags.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/7565ce-tag/t/697817ca4d)
  *
  * > Design version: 1.4.0
  *
- * @param label The label displayed in the input tag.
+ * @param label The text label displayed inside the input tag.
  * @param onClick Called when the input tag is clicked.
  * @param modifier [Modifier] applied to the input tag.
  * @param enabled Controls the enabled state of this input tag. When `false`, this component will not
  *   respond to user input, and it will appear visually disabled and disabled to accessibility
  *   services.
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this input tag. You can use this to change the input tag's appearance or
  *   preview the input tag in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
@@ -167,20 +167,20 @@ fun OudsInputTag(
 
 /**
  * An input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing
- * enter, comma, or tab), each value is transformed into a Tag.
+ * enter, comma, or tab), each value is transformed into a tag.
  * Input tags are often used for adding labels, categories, or participants. They typically support editing, removing, and validating individual tags.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
  *
  * > Design version: 1.4.0
  *
- * @param label The label displayed in the input tag.
+ * @param label The text label displayed inside the input tag.
  * @param onClick Called when the input tag is clicked.
  * @param modifier [Modifier] applied to the input tag.
  * @param enabled Controls the enabled state of this input tag. When `false`, this component will not
  *   respond to user input, and it will appear visually disabled and disabled to accessibility
  *   services.
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this input tag. You can use this to change the input tag's appearance or
  *   preview the input tag in different states. Note that if `null` is provided, interactions will still
  *   happen internally.

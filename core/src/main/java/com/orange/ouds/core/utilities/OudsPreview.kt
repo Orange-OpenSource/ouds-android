@@ -44,10 +44,10 @@ internal val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
  *
- * @param modifier The modifier for the preview content.
+ * @param modifier The modifier to be applied to the preview content.
  * @param theme The preview theme.
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
- * @param highContrastModeEnabled Indicates whether the high contrast mode is enabled for the preview.
+ * @param highContrastModeEnabled Indicates whether high contrast mode is enabled for the preview.
  * @param content The content of the preview.
  *
  * @suppress

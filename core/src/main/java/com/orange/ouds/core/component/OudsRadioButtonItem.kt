@@ -53,26 +53,26 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @see [OudsRadioButton] If you want to use a standalone radio button.
  *
- * @param selected Controls selected state of the radio button.
+ * @param selected Controls the selected state of the radio button.
  * @param label The main label of the radio button item.
  * @param onClick Callback invoked on radio button click. If `null`, then this radio button will not be interactable, unless something else handles its
- * input events and updates its state.
+ *   input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button item.
  * @param extraLabel Optional strong accompanying label for the main label. It is displayed between the [label] and the [description].
  * @param description Optional text displayed below the [label] and the [extraLabel].
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
- * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the radio button item.
  * @param outlined When set to `true`, the radio button item, if selected, is outlined to stand out and draw the user's attention.
  * @param reversed When `false`, the radio button has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the radio button item. When `false`, the radio button, the texts and the optional icon are disabled, and the item
- * will not be clickable.
- * @param readOnly Controls the read only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
- * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the radio button item will be displayed in disabled state.
- * @param error Optional [OudsError] to provide in the case of the radio button item should appear in error state, `null` otherwise.
+ *   will not be clickable.
+ * @param readOnly Controls the read-only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the radio button item will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the radio button item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's radio button. Note that if `null`
- * is provided, interactions will still happen internally.
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemSample
  */
@@ -291,4 +291,3 @@ internal typealias OudsRadioButtonItemHighContrastModePreviewParameter = OudsCon
 
 internal class OudsRadioButtonItemHighContrastModePreviewParameterProvider :
     OudsControlItemHighContrastModePreviewParameterProvider<Boolean>(listOf(false, true))
-

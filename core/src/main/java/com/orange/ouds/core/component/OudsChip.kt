@@ -294,7 +294,7 @@ private fun contentPadding(label: String?, icon: OudsChipIcon?, iconPosition: Ou
 
 /**
  * An icon in an [OudsFilterChip] or an [OudsSuggestionChip].
- * This icon is non-clickable.
+ * This icon is not clickable.
  */
 class OudsChipIcon private constructor(
     graphicsObject: Any,
@@ -310,7 +310,7 @@ class OudsChipIcon private constructor(
      * Creates an instance of [OudsChipIcon].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains label.
+     * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains a label.
      */
     constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
@@ -318,7 +318,7 @@ class OudsChipIcon private constructor(
      * Creates an instance of [OudsChipIcon].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains label.
+     * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains a label.
      */
     constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
@@ -326,7 +326,7 @@ class OudsChipIcon private constructor(
      * Creates an instance of [OudsChipIcon].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains label.
+     * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains a label.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 

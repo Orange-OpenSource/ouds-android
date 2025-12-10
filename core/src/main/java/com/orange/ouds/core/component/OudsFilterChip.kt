@@ -45,12 +45,12 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
- * @param label Text label for this chip.
+ * @param label Text label displayed in the chip.
  * @param modifier The [Modifier] to be applied to this chip.
  * @param enabled Controls the enabled state of this chip. When `false`, this component will not
  *   respond to user input, and it will appear visually disabled and disabled to accessibility
  *   services.
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
@@ -100,7 +100,7 @@ fun OudsFilterChip(
  * @param enabled Controls the enabled state of this chip. When `false`, this component will not
  *   respond to user input, and it will appear visually disabled and disabled to accessibility
  *   services.
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
@@ -145,13 +145,13 @@ fun OudsFilterChip(
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
- * @param label Text label for this chip.
+ * @param label Text label displayed in the chip.
  * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param modifier The [Modifier] to be applied to this chip.
  * @param enabled Controls the enabled state of this chip. When `false`, this component will not
  *   respond to user input, and it will appear visually disabled and disabled to accessibility
  *   services.
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.

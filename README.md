@@ -27,12 +27,12 @@ Scan the following QR code with your device to download the latest version of th
 
 Or, follow this link: [http://oran.ge/designtoolbox](http://oran.ge/designtoolbox)
 
-The Design Toolbox app allows you to test OUDS components in several themes in light or dark mode.
+The Design Toolbox app allows you to test OUDS components in several themes in Light or Dark mode.
 
 <table align="center">
     <tr>
         <td><img src="readme/screenshot_orange.png" width="300" alt="Design Toolbox sample using Orange theme"></td>
-        <td><img src="readme/screenshot_sosh.png" width="300" alt="Design Toolbox sample using Sosh theme in dark mode"></td>
+        <td><img src="readme/screenshot_sosh.png" width="300" alt="Design Toolbox sample using Sosh theme in Dark mode"></td>
     </tr>
 </table>
 

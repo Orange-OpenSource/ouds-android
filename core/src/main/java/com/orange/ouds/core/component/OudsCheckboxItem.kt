@@ -15,12 +15,10 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -32,7 +30,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -54,23 +51,24 @@ import com.orange.ouds.theme.OudsThemeContract
  * @see [OudsTriStateCheckboxItem] If you need an indeterminate state for the item's checkbox.
  * @see [OudsCheckbox] If you want to use a standalone checkbox without any other element.
  *
- * @param checked Controls checked state of the item's checkbox.
+ * @param checked Controls the checked state of the item's checkbox.
  * @param label The main label of the checkbox item.
  * @param onCheckedChange Callback invoked on checkbox item click. If `null`, then this is passive and relies entirely on a higher-level component to control
- * the checked state.
+ *   the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
- * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`. * @param divider Controls the display of a divider at the bottom of the checkbox item.
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
- * will not be clickable.
- * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
- * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
- * @param error Optional [OudsError] to provide in the case of the checkbox item should appear in error state, `null` otherwise.
+ *   will not be clickable.
+ * @param readOnly Controls the read-only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the checkbox item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
- * is provided, interactions will still happen internally.
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemSample
  */
@@ -131,22 +129,22 @@ fun OudsCheckboxItem(
  *
  * @param state Controls whether item's TriStateCheckbox is checked, unchecked or in indeterminate state.
  * @param label The main label of the checkbox item.
- * @param onClick Callback invoked when checkbox item is being clicked, therefore the change of checkbox [ToggleableState] state is requested. If null, then
- * this is passive and relies entirely on a higher-level component to control the state.
+ * @param onClick Callback invoked when checkbox item is being clicked, therefore the change of checkbox [ToggleableState] state is requested. If `null`, then
+ *   this is passive and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox item.
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
- * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
- * will not be clickable.
- * @param readOnly Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
- * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
- * @param error Optional [OudsError] to provide in the case of the checkbox item should appear in error state, `null` otherwise.
+ *   will not be clickable.
+ * @param readOnly Controls the read-only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the checkbox item should appear in error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that
- * if `null` is provided, interactions will still happen internally.
+ *   if `null` is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemSample
  */

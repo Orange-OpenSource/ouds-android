@@ -1,20 +1,258 @@
 # Module core
 
-Contains the main elements of the OUDS Android library.
+The **OUDS Core** module provides the essential implementation of OUDS Android library. It acts as a semantic wrapper around Material Design 3, ensuring that all UI
+elements strictly adhere to the brand's visual guidelines without requiring manual configuration from the developer.
 
-#### Component versions
+This module is divided into two main pillars:
+
+1. The **OUDS Theme**: Foundation of colors, typography, sizes, etc.
+2. The **OUDS Components**: Ready-to-use UI elements (Buttons, Chips, Navigation Bar, etc.).
+
+## OUDS Theme
+
+**Package:** `com.orange.ouds.core.theme`
+
+The `OudsTheme` composable is the entry point of OUDS Android. It automatically applies the correct color palette (Light or Dark) to the
+entire application hierarchy and provides OUDS tokens values.
+
+### Applying the theme
+
+Wrap your application's root composable or any specific screen with OudsTheme. It internally handles the switch between Light and Dark modes based on the system
+settings.
+
+```kotlin
+import com.orange.ouds.core.theme.OudsTheme
+
+setContent {
+    OudsTheme {
+        // Your app content goes here
+    }
+}
+```
+
+### Accessing theme attributes
+
+The module exposes a singleton object `OudsTheme` (similar to `MaterialTheme`) to access design tokens within your composables. This object provides direct
+access to all semantic design tokens (colors, typography, borders, etc.) defined in the system, allowing you to build custom UIs that remain consistent with
+the global brand style.
+
+**IMPORTANT: You should always use these semantic values instead of hardcoded values.**
+
+#### Borders
+
+Access border width, radius and style tokens via `OudsTheme.borders`.
+
+```kotlin
+Box(
+    modifier = Modifier.border(
+        width = OudsTheme.borders.width.medium,
+        color = OudsTheme.colorScheme.border.default
+    )
+)
+```
+
+#### Colors
+
+Access the semantic color palette via `OudsTheme.colorScheme`. This ensures your UI adapts automatically to Light or Dark mode.
+
+```kotlin
+Text(
+    text = "Hello World",
+    color = OudsTheme.colorScheme.content.default, // Semantic color
+    style = OudsTheme.typography.body.strong.large
+)
+```
+
+#### Elevations
+
+Access elevation tokens via `OudsTheme.elevations`. These values represent the depth of an element on the z-axis (shadows) and follow Material Design elevation principles.
+
+```kotlin
+Surface(
+    shadowElevation = OudsTheme.elevations.default
+) {
+    // Content
+}
+```
+
+#### Grids
+
+Access layout grid definitions (column gaps, margins, min and max widths) based on the window size via `OudsTheme.grids`.
+
+```kotlin
+Column(
+    modifier = Modifier.padding(horizontal = OudsTheme.grids.margin),
+) {
+    // Content
+}
+```
+
+#### Opacities
+
+Access alpha transparency levels via `OudsTheme.opacities`.
+
+```kotlin
+Box(
+    modifier = Modifier.alpha(OudsTheme.opacities.weak)
+)
+```
+
+#### Sizes
+
+Access standardized fixed dimensions (e.g., for icons, avatars, or touch targets) via `OudsTheme.sizes`.
+
+```kotlin
+Icon(
+    painter = painterResource(id = R.drawable.ic_heart),
+    contentDescription = null,
+    modifier = Modifier.size(OudsTheme.sizes.icon.medium)
+)
+```
+
+#### Spaces
+
+Access spacing and padding values via `OudsTheme.spaces`. This is essential for maintaining consistent white space between elements.
+
+```kotlin
+Column(
+    verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
+) {
+    // Content
+}
+```
+
+#### Typography
+
+Access the brand's typography styles via `OudsTheme.typography`.
+
+```kotlin
+Text(
+    text = "Headline",
+    style = OudsTheme.typography.heading.large
+)
+```
+
+### Overriding theme modes
+
+Sometimes you may need to display a specific part of your screen in a different mode than the rest of the application (e.g., a dark section inside a light
+screen). The module provides the `OudsThemeTweak` composable for this purpose.
+
+It allows you to **invert the current mode** or **force a specific mode** (Light or Dark) for its content.
+
+```kotlin
+// Example: Force a specific section to be in Dark Mode
+OudsThemeTweak(tweak = OudsTheme.Tweak.ForceDark) {
+    Surface {
+        Text("This text is always in Dark Mode")
+    }
+}
+
+// Example: Invert the current mode (Light -> Dark, Dark -> Light)
+OudsThemeTweak(tweak = OudsTheme.Tweak.Invert) {
+    // Content with inverted theme
+}
+```
+
+## OUDS Components
+
+**Package:** `com.orange.ouds.core.component`
+
+The Core module exposes a set of Jetpack Compose components prefixed with `Ouds` (e.g., `OudsButton`, `OudsNavigationBar`). These components serve as the
+building blocks for your application's UI.
+
+### Implementation strategy
+
+The library adopts an hybrid approach to component implementation to best serve the design system:
+
+1. **Direct Wrappers:** When the Material Design 3 specification aligns with OUDS, we wrap the standard Material 3 composables and configure them with
+OUDS-specific
+default values (tokens for colors, shapes, typography) to ensure brand consistency without reinventing the wheel.
+2. **Custom Implementations:** When a specific OUDS component diverges significantly from the standard Material 3 behavior or layout, we provide a full custom
+implementation. This ensures that unique design requirements are met pixel-perfectly, rather than forcing a standard component to behave in a way it wasn't
+designed for.
+
+Regardless of the implementation strategy, the API remains consistent and easy to use for the developer.
+
+### Philosophy
+
+- **Zero Configuration:** You do not need to pass design parameters like color or shape for standard states. The component knows how to render itself in
+Enabled, Disabled, Selected, Hovered or Focused states.
+- **Controlled Flexibility:** Components use structured parameters (specific classes or data objects) instead of open composable slots. This ensures that
+while you can customize content like text or icons, the structural integrity and visual consistency of the Orange Unified Design System are always preserved.
+- **Modifier Support:** Following Jetpack Compose best practices, every OUDS component exposes a modifier parameter. This allows you to easily customize layout
+behavior (padding, positioning, semantics) externally without modifying the component's internal logic.
+
+### Example: Navigation Bar
+
+The `OudsNavigationBar` manages the bottom navigation. It works in tandem with `OudsNavigationBarItem`.
+
+```kotlin
+import com.orange.ouds.core.component.OudsNavigationBar
+import com.orange.ouds.core.component.OudsNavigationBarItem
+
+@Composable
+internal fun OudsNavigationBarSample() {
+    data class Item(val label: String, val imageVector: ImageVector)
+    val items = listOf(
+        Item("Call", Icons.Default.Call),
+        Item("Email", Icons.Default.Email),
+        Item("Settings", Icons.Default.Settings)
+    )
+    var selectedItemIndex: Int by rememberSaveable { mutableIntStateOf(0) }
+
+    OudsNavigationBar(
+        items = items.mapIndexed { index, item ->
+            OudsNavigationBarItem(
+                selected =  index == selectedItemIndex,
+                onClick = { selectedItemIndex = index },
+                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
+                label = item.label,
+                // Optional: Add a badge
+                badge = if (index == 1) OudsNavigationBarItemBadge(contentDescription = "Unread emails", count = "2") else null
+            )
+        }
+    )
+}
+```
+
+### Available components and versions
 
 <table>
-{{#versions}}
-<tr><td>{{name}}</td><td>{{value}}</td></tr>
-{{/versions}}
+    {{#versions}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{value}}</td>
+        </tr>
+    {{/versions}}
 </table>
+
+## Best Practices
+
+1. **Do not mix Material 3 components directly with OUDS components** if an OUDS equivalent exists. Using the native components might result in incorrect colors
+or spacing that violates the brand guidelines.
+2. **Use `OudsTheme` tokens** for custom layouts. If you need to build a custom card or row, use OudsTheme.colorScheme instead of Color.Black or Color.White to
+ensure Dark mode compatibility.
+3. **Window Insets:** The library is designed to work edge-to-edge. Components like OudsNavigationBar can be transparent to allow content to blur behind them (if supported),
+but they require proper handling of WindowInsets in your layouts.
 
 # Package com.orange.ouds.core.component
 
-Contains all OUDS basic components: OudsButton, OudsLink,...
+This package contains the catalog of ready-to-use UI components (like OudsButton, OudsNavigationBar) that implement the design system specifications using
+Jetpack Compose.
+
+# Package com.orange.ouds.core.component.common
+
+This package holds shared elements that are reused across multiple higher-level OUDS components to ensure consistent behavior and reduce code duplication.
+
+# Package com.orange.ouds.core.extensions
+
+This package contains Kotlin extension functions, providing shorthand utilities to streamline development within the OUDS ecosystem.
 
 # Package com.orange.ouds.core.theme
 
-Contains the `OudsTheme` composable that can be used in your app to apply a chosen theme. The other files are used to build the theme and don't have to be used
-directly but only through the `OudsTheme`.
+This package contains the logic for the OudsTheme composable, including the OudsThemeTweak mechanism and the implementation of the theme contract that injects
+visual data into the application.
+
+# Package com.orange.ouds.core.utilities
+
+This package provides internal helper classes and extensions used across the core module to support component logic and layout management.

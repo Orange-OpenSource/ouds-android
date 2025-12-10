@@ -53,7 +53,7 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
- * Control item composable helps to factorize common layout elements between [OudsCheckboxItem], [OudsTriStateCheckboxItem], [OudsRadioButtonItem]
+ * The control item composable helps factorize common layout elements shared by [OudsCheckboxItem], [OudsTriStateCheckboxItem], [OudsRadioButtonItem],
  * and [OudsSwitchItem].
  */
 @Composable
@@ -183,7 +183,7 @@ internal enum class OudsControlItemIndicatorPosition {
 
 /**
  * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
- * It is non-clickable and no content description is needed because a control item label is always present.
+ * It is not clickable and requires no content description because a control item label is always present.
  */
 class OudsControlItemIcon private constructor(
     graphicsObject: Any,

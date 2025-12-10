@@ -37,8 +37,8 @@ internal fun <T> getLocalExtraParameters(clazz: Class<T>): ProvidableComposition
  *
  * Subclasses of [OudsComponentContent] should be used instead of composable methods when passing parameters to components.
  * This prevents using generic composable methods that can encapsulate any kind of views and thus helps developers to follow UI guidelines more easily.
- * This also allows to group parameters that are related to the same content inside a component.
- * For instance it is possible to create an `Icon` subclass to replace both `icon: @Composable () -> Unit` and `onIconClick: () -> Unit` parameters with a single `icon: Icon` parameter.
+ * This also allows grouping parameters that are related to the same content inside a component.
+ * For instance, it is possible to create an `Icon` subclass to replace both `icon: @Composable () -> Unit` and `onIconClick: () -> Unit` parameters with a single `icon: Icon` parameter.
  *
  * @param extraParametersClass The extra parameters class.
  * @param T The type of extra parameters.

@@ -81,25 +81,25 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 /**
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * This version of the button uses the *text only* layout which is the most used layout.
+ * This version of the button uses the *text only* layout, which is the most common layout.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
- * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
- * the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
  * > Design version: 3.2.0
  *
- * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
+ * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [loader] is not null.
+ *   Has no effect if [loader] is provided.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param appearance Appearance of the button among [OudsButtonAppearance] values.
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
@@ -135,14 +135,14 @@ fun OudsButton(
 /**
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * This version of the button uses the *icon only* layout which is typically used in business or back-office interfaces, it is rarely used alone (usually part of a group of elements).
+ * This version of the button uses the *icon only* layout, which is typically used in business or back-office interfaces. It is rarely used alone (usually part of a group of elements).
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
- * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
- * the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
@@ -153,7 +153,7 @@ fun OudsButton(
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [loader] is not null.
+ *   Has no effect if [loader] is provided.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param appearance Appearance of the button among [OudsButtonAppearance] values.
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
@@ -189,27 +189,27 @@ fun OudsButton(
 /**
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * This version of the button uses the *text + icon* layout which should remain specific to some clearly identified contexts (e.g. the use of an icon with a
+ * This version of the button uses the *text + icon* layout, which should remain specific to clearly identified contexts (e.g., the use of an icon with a
  * "Play" button is standard in the context of TV or video streaming).
  * Other layouts are available for this component: *text only* and *icon only*.
  *
- * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
- * the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
  *
  * > Design version: 3.2.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
- * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
+ * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [loader] is not null.
+ *   Has no effect if [loader] is provided.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param appearance Appearance of the button among [OudsButtonAppearance] values.
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].

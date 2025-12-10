@@ -42,13 +42,13 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /**
- * A colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
+ * A colored box is a [Box] where the content color is automatically adjusted to maximize the contrast with the chosen background [color].
  *
- * Moreover, the colors of several OUDS Android components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
- * Some tokens associated with these specific colors can be customized and are grouped into `Mono` tokens classes (for instance [com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens]).
+ * Additionally, the colors of several OUDS Android components (such as [OudsButton] or [OudsLink]) are also automatically adjusted.
+ * Some tokens associated with these specific colors can be customized and are grouped into `Mono` token classes (e.g., [com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens]).
  *
  * @param color The background color of the colored box.
- * @param modifier [Modifier] to be applied to the layout corresponding to the colored box.
+ * @param modifier [Modifier] to be applied to the colored box.
  * @param contentAlignment The default [Alignment] inside the colored box.
  * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.
  * @param content The content of this colored box.

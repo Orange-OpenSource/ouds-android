@@ -12,6 +12,7 @@
   --elements-border-color: rgba(0, 0, 0, 0.2);
   --color-action-hover: rgba(0, 0, 0, 0.68);
   --bs-color-surface-status-warning-muted: rgba(255, 208, 0, 0.16);
+  --bs-emphasis-color: #000;
 
   --default-font-family: "Helvetica Neue", helvetica, "Noto Sans",
     "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -35,14 +36,18 @@
   --font-size-heading-large: 1.5rem;
   --font-size-display-small: 2rem;
 
-  --font-line-height-heading-large: 0px;
-  --font-line-height-display-small: 40px;
-  --font-line-height-body-medium: 14px;
+  --font-line-height-heading-large: 1.3333333333;
+  --font-line-height-heading-medium: 1.4;
+  --font-line-height-heading-small: 1.3333333333;
+  --font-line-height-display-small: 1.25;
+  --font-line-height-body-large: 1.5;
+  --font-line-height-body-medium: 1.4285714286;
 
-  --font-letter-spacing-display-small: -0.32px;
-  --font-letter-spacing-heading-large: 0.12px;
-  --font-letter-spacing-heading-small: 0.18px;
-  --font-letter-spacing-body-large: 0.2px;
+  --font-letter-spacing-display-small: -0.02rem;
+  --font-letter-spacing-heading-large: -0.0075rem;
+  --font-letter-spacing-heading-medium: 0rem;
+  --font-letter-spacing-heading-small: 0.01125rem;
+  --font-letter-spacing-body-large: 0.0125rem;
 
   --default-font-size: var(--font-size-body-large);
   --horizontal-spacing-for-content: var(--grid-margin);
@@ -57,18 +62,22 @@
 
     --hero-image-height: 170px;
 
-    --font-size-body-large: 1.125rem;
-    --font-size-heading-small: 1.5rem;
+    --font-size-body-large: 1rem;
+    --font-size-heading-small: 1.25rem;
     --font-size-heading-medium: 1.5rem;
-    --font-size-heading-large: 2.25rem;
+    --font-size-heading-large: 1.75rem;
     --font-size-display-small: 2.5rem;
 
-    --font-line-height-heading-large: 36px;
+    --font-line-height-heading-large: 1.2857142857;
+    --font-line-height-heading-medium: 1.3333333333;
+    --font-line-height-heading-small: 1.4;
+    --font-line-height-body-large: 1.5;
 
-    --font-letter-spacing-display-small: -0.4px;
-    --font-letter-spacing-heading-large: 0.28px;
-    --font-letter-spacing-heading-small: 0px;
-    --font-letter-spacing-body-large: 0.18px;
+    --font-letter-spacing-display-small: -0.025rem;
+    --font-letter-spacing-heading-large: -0.0175rem;
+    --font-letter-spacing-heading-medium: -0.0075rem;
+    --font-letter-spacing-heading-small: 0rem;
+    --font-letter-spacing-body-large: 0.0125rem;
   }
 
   @media (min-width: 1024px) {
@@ -185,6 +194,10 @@
   font-weight: 700;
 }
 
+.toc--icon {
+  line-height: 0px;
+}
+
 .toc--row {
   min-height: 34px;
 }
@@ -245,9 +258,25 @@
 /* Homepage introduction */
 .main-content[pageIds~="OUDS"] > .cover > .cover > .paragraph:first-of-type {
   font-size: var(--font-size-heading-small);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: var(--font-letter-spacing-heading-small);
+  line-height: var(--font-line-height-heading-small);
   margin-bottom: 1rem;
+}
+
+.main-content p.paragraph{
+    margin-top: 24px;
+}
+
+.main-content ul p.paragraph,
+.main-content blockquote p.paragraph,
+.main-content .table p.paragraph,
+.main-content ol li p.paragraph {
+    margin-top: 0px;
+}
+
+.main-content blockquote {
+    margin-top: 18px;
 }
 
 /* section headings, using :is() to select like Dokka */
@@ -260,10 +289,27 @@
   line-height: var(--font-line-height-display-small);
   letter-spacing: var(--font-letter-spacing-display-small);
 }
-h2, h3 {
-  font-size: var(--font-size-heading-large);
-  line-height: var(--font-line-height-heading-large);
-  letter-spacing: var(--font-letter-spacing-heading-large);
+h1 {
+  margin-top: 18px;
+}
+h2 {
+  font-size: var(--font-size-heading-medium);
+  line-height: var(--font-line-height-heading-medium);
+  letter-spacing: var(--font-letter-spacing-heading-medium);
+}
+h3 {
+  font-size: var(--font-size-heading-small);
+  line-height: var(--font-line-height-heading-small);
+  letter-spacing: var(--font-letter-spacing-heading-small);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+h4 {
+  font-size: var(--font-size-body-large);
+  line-height: var(--font-line-height-body-large);
+  letter-spacing: var(--font-letter-spacing-body-large);
+  margin-bottom: 0rem;
+  margin-top: 1.75rem;
 }
 
 /* deprecation content */
@@ -302,7 +348,7 @@ h2, h3 {
 code:not(.block) {
   padding: 0 0.4em 0.175em;
   margin: 0;
-  font-size: 80%;
+  font-size: 95%;
   white-space: break-spaces;
   border-radius: 2px;
 }
@@ -310,6 +356,12 @@ code:not(.block) {
 code.block {
   border: 1px solid var(--elements-border-color);
   border-radius: 0;
+  margin-top: 8px;
+}
+
+/* sample code block */
+.sample-container, div.CodeMirror {
+    margin-top: 24px;
 }
 
 /* mainly fixes dark theme */
@@ -332,7 +384,6 @@ li {
 
 td:first-child {
   width: 25%;
-  padding-left: 0px;
 }
 
 .parameters {

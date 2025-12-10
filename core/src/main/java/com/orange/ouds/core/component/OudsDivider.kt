@@ -32,10 +32,10 @@ import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
+ * Dividers are used to visually structure an interface by clearly separating content sections. They help to improve readability and content organization
  * without introducing a strong hierarchy like a heading or a container would.
  *
- * The **horizontal divider** renders an horizontal line to separate stacked vertical sections.
+ * The **horizontal divider** renders a horizontal line to separate stacked vertical sections.
  *
  * The color of the divider can be specified using the [OudsDividerColor] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
@@ -58,10 +58,10 @@ fun OudsHorizontalDivider(
 }
 
 /**
- * Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
+ * Dividers are used to visually structure an interface by clearly separating content sections. They help to improve readability and content organization
  * without introducing a strong hierarchy like a heading or a container would.
  *
- * The **vertical divider** renders an vertical line to separate horizontally aligned elements.
+ * The **vertical divider** renders a vertical line to separate horizontally aligned elements.
  *
  * The color of the divider can be specified using the [OudsDividerColor] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.

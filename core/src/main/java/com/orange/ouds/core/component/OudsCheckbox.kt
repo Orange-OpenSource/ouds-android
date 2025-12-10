@@ -73,16 +73,16 @@ import com.orange.ouds.theme.OudsThemeContract
  * @see [OudsTriStateCheckbox] If you require support for an indeterminate state.
  * @see [OudsCheckboxItem] If you want to use a checkbox with an associated label and other optional elements.
  *
- * @param checked Controls checked state of the checkbox.
+ * @param checked Controls the checked state of the checkbox.
  * @param onCheckedChange Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control
- * the checked state.
+ *   the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
- * @param readOnly Controls the read only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked or unchecked)
- * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
- * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
+ * @param readOnly Controls the read-only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked or unchecked)
+ *   but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the checkbox should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
- * is provided, interactions will still happen internally.
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxSample
  */
@@ -116,7 +116,7 @@ fun OudsCheckbox(
  * all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are checked,
  * the parent checkbox becomes an indeterminate checkbox.
  *
- * The **indeterminate standalone checkbox variant** allows to manage a checkbox with an indeterminate state that can be used when the checkbox input is nested
+ * The **indeterminate standalone checkbox variant** allows managing a checkbox with an indeterminate state that can be used when the checkbox input is nested
  * within another component and an alternative label is provided.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
@@ -126,16 +126,16 @@ fun OudsCheckbox(
  * @see [OudsCheckbox] If you need a simple component that represents [Boolean] state.
  * @see [OudsTriStateCheckboxItem] If you want to use an indeterminate checkbox with an associated label and other optional elements.
  *
- * @param state Controls whether TriStateCheckbox is checked, unchecked or in indeterminate state.
- * @param onClick Callback invoked when checkbox is being clicked, therefore the change of [ToggleableState] state is requested. If null, then this is passive
- * and relies entirely on a higher-level component to control the state.
+ * @param state Controls whether the TriStateCheckbox is checked, unchecked or in an indeterminate state.
+ * @param onClick Callback invoked when the checkbox is clicked, therefore the change of [ToggleableState] state is requested. If `null`, then this is passive
+ *   and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
- * @param readOnly Controls the read only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked, unchecked or indeterminate)
- * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
- * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
+ * @param readOnly Controls the read-only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked, unchecked or indeterminate)
+ *   but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the checkbox should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
- * is provided, interactions will still happen internally.
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxSample
  */
