@@ -167,7 +167,7 @@ internal fun OudsSwitchIndicator(state: OudsControlState, checked: Boolean, modi
                     modifier = Modifier
                         .alpha(switchTokens.opacityCheck.value)
                         .alpha(checkAlpha),
-                    painter = painterResource(id = OudsTheme.drawableResources.switchSelected),
+                    painter = painterResource(id = OudsTheme.drawableResources.component.switch.selected),
                     contentDescription = null,
                     tint = checkColor
                 )

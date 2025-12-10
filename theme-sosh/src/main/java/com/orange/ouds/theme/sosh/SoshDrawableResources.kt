@@ -15,17 +15,49 @@ package com.orange.ouds.theme.sosh
 import com.orange.ouds.theme.OudsDrawableResources
 
 internal class SoshDrawableResources : OudsDrawableResources {
-    override val alertImportant: Int = R.drawable.ic_sosh_alert_important
-    override val alertInformation: Int = R.drawable.ic_sosh_alert_information
-    override val alertSuccess: Int = R.drawable.ic_sosh_alert_success
-    override val alertWarningExternalShape: Int = R.drawable.ic_sosh_alert_warning_external_shape
-    override val alertWarningInternalShape: Int = R.drawable.ic_sosh_alert_warning_internal_shape
-    override val checkboxIndeterminate: Int = R.drawable.ic_sosh_checkbox_indeterminate
-    override val checkboxSelected: Int = R.drawable.ic_sosh_checkbox_selected
-    override val chipTick: Int = R.drawable.ic_sosh_chip_tick
-    override val linkNext: Int = R.drawable.ic_sosh_link_next
-    override val linkPrevious: Int = R.drawable.ic_sosh_link_previous
-    override val radioButtonSelected: Int = R.drawable.ic_sosh_radio_button_selected
-    override val switchSelected: Int = R.drawable.ic_sosh_switch_selected
-    override val tagClose: Int = R.drawable.ic_sosh_tag_close
+    override val component = Component()
+
+    class Component : OudsDrawableResources.Component {
+        override val alert = Alert()
+        override val checkbox = Checkbox()
+        override val chip = Chip()
+        override val link = Link()
+        override val radioButton = RadioButton()
+        override val switch = Switch()
+        override val tag = Tag()
+    }
+
+    class Alert : OudsDrawableResources.Component.Alert {
+        override val importantFill = R.drawable.ic_sosh_component_alert_important_fill
+        override val infoFill = R.drawable.ic_sosh_component_alert_info_fill
+        override val tickConfirmationFill = R.drawable.ic_sosh_component_alert_tick_confirmation_fill
+        override val warningExternalShape = R.drawable.ic_sosh_component_alert_warning_external_shape
+        override val warningInternalShape = R.drawable.ic_sosh_component_alert_warning_internal_shape
+    }
+
+    class Checkbox : OudsDrawableResources.Component.Checkbox {
+        override val selected = R.drawable.ic_sosh_component_checkbox_selected
+        override val undetermined = R.drawable.ic_sosh_component_checkbox_undetermined
+    }
+
+    class Chip : OudsDrawableResources.Component.Chip {
+        override val tick = R.drawable.ic_sosh_component_chip_tick
+    }
+
+    class Link : OudsDrawableResources.Component.Link {
+        override val next = R.drawable.ic_sosh_component_link_next
+        override val previous = R.drawable.ic_sosh_component_link_previous
+    }
+
+    class RadioButton : OudsDrawableResources.Component.RadioButton {
+        override val selected = R.drawable.ic_sosh_component_radio_button_selected
+    }
+
+    class Switch : OudsDrawableResources.Component.Switch {
+        override val selected = R.drawable.ic_sosh_component_switch_selected_switch
+    }
+
+    class Tag : OudsDrawableResources.Component.Tag {
+        override val close = R.drawable.ic_sosh_component_tag_close
+    }
 }

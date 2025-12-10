@@ -226,9 +226,9 @@ internal fun OudsCheckboxIndicator(
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
         val indicatorResource = when (value) {
-            ToggleableState.On -> OudsTheme.drawableResources.checkboxSelected
+            ToggleableState.On -> OudsTheme.drawableResources.component.checkbox.selected
             ToggleableState.Off -> null
-            ToggleableState.Indeterminate -> OudsTheme.drawableResources.checkboxIndeterminate
+            ToggleableState.Indeterminate -> OudsTheme.drawableResources.component.checkbox.undetermined
         }
 
         indicatorResource?.let { resource ->

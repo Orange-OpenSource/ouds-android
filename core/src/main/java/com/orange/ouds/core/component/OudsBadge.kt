@@ -477,7 +477,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Positive] with its default dedicated icon.
      */
-    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.alertSuccess) }))
+    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill) }))
 
     /**
      * Provides informational context without urgency.
@@ -485,7 +485,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Info] with its default dedicated icon.
      */
-    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.alertInformation) }))
+    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.alert.infoFill) }))
 
     /**
      * Negatives the user to potential risks or cautionary messages.
@@ -493,7 +493,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Warning] with its default dedicated icon.
      */
-    data object Warning : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.alertWarningExternalShape) }))
+    data object Warning : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.alert.warningExternalShape) }))
 
     /**
      * Draws attention to important or critical information.
@@ -502,7 +502,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Negative] with its default dedicated icon.
      */
-    data object Negative : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.alertImportant) }))
+    data object Negative : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.alert.importantFill) }))
 
     /**
      * The color associated with this status.
