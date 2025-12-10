@@ -345,10 +345,10 @@ internal fun OudsButton(
                             modifier = Modifier
                                 .size(size.value * iconScale)
                                 .semantics {
-                                    contentDescription = when (label) {
+                                    contentDescription = when {
                                         // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
-                                        null if iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
-                                        null -> icon.contentDescription
+                                        label == null && iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
+                                        label == null -> icon.contentDescription
                                         else -> ""
                                     }
                                 },
