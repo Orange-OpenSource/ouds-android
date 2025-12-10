@@ -54,21 +54,21 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param checked Controls the checked state of the item's switch.
  * @param label The main label of the switch item.
  * @param onCheckedChange Callback invoked on switch item click. If `null`, then this is passive and relies entirely on a higher-level component to control
- * the checked state.
+ *   the checked state.
  * @param modifier [Modifier] applied to the layout of the switch item.
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a leading position. If [reversed] is set to `true`, it is displayed as a trailing element.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
- * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the switch item.
  * @param reversed When `false`, the switch has a trailing position and the optional [icon] has a leading position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the switch item. When `false`, the switch, the texts and the optional icon are disabled, and the item
- * will not be clickable.
+ *   will not be clickable.
  * @param readOnly Controls the read-only state of the switch item. When `true`, the item's switch is disabled but the texts and the icon remain in the
- * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the switch item will be displayed in the disabled state.
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the switch item will be displayed in the disabled state.
  * @param error Optional [OudsError] to provide if the switch item should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's switch. Note that if `null`
- * is provided, interactions will still happen internally.
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemSample
  */

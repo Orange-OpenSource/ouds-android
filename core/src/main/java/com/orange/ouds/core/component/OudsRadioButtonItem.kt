@@ -62,7 +62,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param description Optional text displayed below the [label] and the [extraLabel].
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
- * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the radio button item.
  * @param outlined When set to `true`, the radio button item, if selected, is outlined to stand out and draw the user's attention.
  * @param reversed When `false`, the radio button has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.

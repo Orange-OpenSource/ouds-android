@@ -59,7 +59,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
- * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`. * @param divider Controls the display of a divider at the bottom of the checkbox item.
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
  *   will not be clickable.
@@ -134,7 +135,7 @@ fun OudsCheckboxItem(
  * @param description Optional text displayed below the label.
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
- * it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the checkbox item.
  * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
