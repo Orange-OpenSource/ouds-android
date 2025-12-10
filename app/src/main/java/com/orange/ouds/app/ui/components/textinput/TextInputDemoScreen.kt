@@ -66,7 +66,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             onCheckedChange = { leadingIcon = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_textInput_trailingIcon_label),
+            label = stringResource(R.string.app_components_textInput_trailingAction_label),
             checked = trailingIcon,
             onCheckedChange = { trailingIcon = it },
         )
@@ -165,7 +165,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             trailingIconButton = if (trailingIcon) {
                 OudsTextInputTrailingIconButton(
                     painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-                    contentDescription = stringResource(id = R.string.app_components_textInput_trailingIcon_a11y),
+                    contentDescription = stringResource(id = R.string.app_components_textInput_trailingAction_a11y),
                     onClick = { })
             } else {
                 null
@@ -201,7 +201,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             if (trailingIcon) {
                 constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
                     painterArgument(themeDrawableResources.tipsAndTricks)
-                    contentDescriptionArgument(R.string.app_components_textInput_trailingIcon_a11y)
+                    contentDescriptionArgument(R.string.app_components_textInput_trailingAction_a11y)
                     onClickArgument {
                         comment("Do something")
                     }

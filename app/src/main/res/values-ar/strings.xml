@@ -147,7 +147,7 @@
 
     <!-- Components: text input -->
     <string name="app_components_textInput_description_text">Text Input هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث</string>
-    <string name="app_components_textInput_trailingIcon_a11y">وصف محتوى أيقونة النهاية</string>
+    <string name="app_components_textInput_trailingAction_a11y">وصف محتوى أيقونة النهاية</string>
 
     <!-- Components: top app bar -->
     <string name="app_components_topAppBar_label">Top app bar</string>
