@@ -64,7 +64,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * The **standalone radio button variant** can be used when the radio selector control is nested within another component and an alternative label is provided.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-radio-button)
  *
  * > Design version: 1.4.0
  *

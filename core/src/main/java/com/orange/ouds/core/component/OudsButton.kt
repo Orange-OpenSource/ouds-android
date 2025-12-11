@@ -93,7 +93,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
  * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
  *
  * > Design version: 3.2.0
  *
@@ -147,7 +147,7 @@ fun OudsButton(
  * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
  * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
  *
  * > Design version: 3.2.0
  *
@@ -202,7 +202,7 @@ fun OudsButton(
  * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
  * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
  *
  * > Design version: 3.2.0
  *

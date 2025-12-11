@@ -45,7 +45,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * The OUDS switch item layout contains an [OudsSwitch]. By clicking the switch item, the user changes the checked state of its switch.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-switch)
  *
  * > Design version: 1.5.0
  *

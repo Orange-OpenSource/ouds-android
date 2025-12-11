@@ -40,7 +40,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * The color of the divider can be specified using the [OudsDividerColor] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-divider)
  *
  * > Design version: 1.0.0
  *
@@ -66,7 +66,7 @@ fun OudsHorizontalDivider(
  * The color of the divider can be specified using the [OudsDividerColor] enum, and the thickness is defined by the current theme's divider border width.
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-divider)
  *
  * > Design version: 1.0.0
  *

@@ -81,7 +81,7 @@ import kotlin.enums.enumEntries
  *   - Text and loader: when [loader] is not `null`, the tag combines a loading spinner (or progress indicator) with text.
  *     Used to indicate that a process or action related to the tag is in progress.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-tag)
  *
  * > Design version: 1.4.0
  *

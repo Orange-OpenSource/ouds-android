@@ -66,7 +66,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * The **standalone switch variant** can be used when the switch selector control is nested within another component and an alternative label is provided.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-switch)
  *
  * > Design version: 1.5.0
  *

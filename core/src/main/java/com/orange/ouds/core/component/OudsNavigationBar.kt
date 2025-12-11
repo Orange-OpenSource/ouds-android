@@ -82,7 +82,6 @@ import com.orange.ouds.theme.OudsThemeContract
  */
 val OudsNavigationBarHeight = 80.dp
 
-//TODO update DSM link when available
 /**
  * The navigation bar lets people switch between UI views on smaller devices.
  * It offers a persistent and convenient way to switch between primary destinations in an app.
@@ -100,7 +99,7 @@ val OudsNavigationBarHeight = 80.dp
  * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
  *
  * > Design version: 1.0.0
  *
@@ -159,6 +158,10 @@ fun OudsNavigationBar(
  * - Five destinations: Active destinations display an icon and text label. Inactive destinations use icons, and use text labels if space permits.
  *
  * [OudsNavigationBarItem] always shows text labels.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
+ *
+ * > Design version: 1.0.0
  *
  * @param selected Whether this item is selected or not.
  * @param onClick Called when this item is clicked.
