@@ -67,7 +67,7 @@ documentation.
 Orange Unified Design System is a multi-brand design system built upon the use of **design tokens**, which are standardized, reusable variables that store
 visual design attributes such as colors, typography, spacing, and more. These tokens enable consistency across different brands and facilitate easier updates
 and maintenance. For a more detailed understanding of design tokens and their role within a design system, please refer
-to [Orange Unified Design System documentation](https://unified-design-system.orange.com/472794e18/p/903414-introduction).
+to [Orange Unified Design System documentation](https://r.orange.fr/r/S-ouds-doc-token-intro).
 
 Semantic tokens in OUDS Android can be accessed using the various properties of the `OudsTheme` singleton. As an example, the token for the small heading font
 can be retrieved as follows:
