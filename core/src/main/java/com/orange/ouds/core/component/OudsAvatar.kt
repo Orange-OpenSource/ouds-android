@@ -169,8 +169,8 @@ internal fun OudsAvatar(
             .outerBorder(state = avatarState, shape = CircleShape)
             .clip(CircleShape)
             .size(AvatarSize)
-        val contentScale = ContentScale.Crop
         if (graphicsObject != null) {
+            val contentScale = ContentScale.Crop
             when (graphicsObject) {
                 is Painter -> Image(
                     modifier = contentModifier,
