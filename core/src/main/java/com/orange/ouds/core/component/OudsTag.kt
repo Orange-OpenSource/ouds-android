@@ -166,20 +166,18 @@ fun OudsTag(
                         } else {
                             val isBulletIcon = status.icon is OudsTagIcon.Bullet
                             val iconPadding = if (isBulletIcon) bulletPadding(size = size) else iconPadding(size = size)
-                            status.icon?.let {
-                                val scale = LocalConfiguration.current.fontScale
-                                it.Content(
-                                    modifier = Modifier
-                                        .size(assetSize(size) * scale)
-                                        .padding(all = iconPadding),
-                                    extraParameters = OudsTagIcon.ExtraParameters(
-                                        tint = iconColor(status = status, appearance = appearance, enabled = enabled, isBulletIcon = isBulletIcon),
-                                        size = size,
-                                        status = status,
-                                        appearance = appearance
-                                    )
+                            val scale = LocalConfiguration.current.fontScale
+                            status.icon?.Content(
+                                modifier = Modifier
+                                    .size(assetSize(size) * scale)
+                                    .padding(all = iconPadding),
+                                extraParameters = OudsTagIcon.ExtraParameters(
+                                    tint = iconColor(status = status, appearance = appearance, enabled = enabled, isBulletIcon = isBulletIcon),
+                                    size = size,
+                                    status = status,
+                                    appearance = appearance
                                 )
-                            }
+                            )
                         }
                     }
                 }
