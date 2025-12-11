@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -41,6 +42,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -245,7 +248,7 @@ fun OudsButton(
 
 @Composable
 @JvmName("OudsButtonNullableIconAndLabel")
-private fun OudsButton(
+internal fun OudsButton(
     nullableIcon: OudsButtonIcon?,
     nullableLabel: String?,
     onClick: () -> Unit,
@@ -253,6 +256,7 @@ private fun OudsButton(
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
+    iconOnlyBadge: OudsButtonIconBadge? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     val icon = nullableIcon
@@ -326,23 +330,54 @@ private fun OudsButton(
             }
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f
+            val paddingValues = contentPadding(icon = icon, label = label)
             Row(
                 modifier = Modifier
                     .alpha(alpha = alpha)
-                    .padding(contentPadding(icon = icon, label = label)),
+                    .padding(paddingValues),
                 horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (icon != null) {
                     val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
-                    icon.Content(
-                        modifier = Modifier
-                            .size(size.value * iconScale)
-                            .semantics {
-                                contentDescription = if (label == null) icon.contentDescription else ""
-                            },
-                        extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
-                    )
+                    val iconContent: @Composable () -> Unit = {
+                        icon.Content(
+                            modifier = Modifier
+                                .size(size.value * iconScale)
+                                .semantics {
+                                    contentDescription = when {
+                                        // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
+                                        label == null && iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
+                                        label == null -> icon.contentDescription
+                                        else -> ""
+                                    }
+                                },
+                            extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
+                        )
+                    }
+
+                    if (iconOnlyBadge != null && label == null) {
+                        val buttonEndPadding = paddingValues.calculateEndPadding(LocalLayoutDirection.current)
+                        val maximumBorderWidth = OudsButtonAppearance.entries.flatMap { appearance ->
+                            OudsButtonState.entries.mapNotNull { state ->
+                                borderWidth(appearance, state)
+                            }
+                        }.maxOrNull().orElse { 0.dp }
+                        val maximumEndOverflow = with(LocalDensity.current) {
+                            val iconBadgeEndPadding = OudsTheme.spaces.paddingInline.fourExtraSmall
+                            return@with buttonEndPadding - maximumBorderWidth - iconBadgeEndPadding
+                        }
+                        OudsBadgedIcon(
+                            modifier = Modifier.size(size.value * iconScale),
+                            badgeCount = iconOnlyBadge.count,
+                            badgeBorderColor = iconOnlyBadge.borderColor,
+                            badgeMaximumEndOverflow = maximumEndOverflow,
+                        ) {
+                            iconContent()
+                        }
+                    } else {
+                        iconContent()
+                    }
                 }
                 if (label != null) {
                     Text(
@@ -724,6 +759,8 @@ enum class OudsButtonAppearance {
  */
 data class OudsButtonLoader(val progress: Float?)
 
+internal data class OudsButtonIconBadge(val contentDescription: String, val borderColor: Color, val count: Int? = null)
+
 internal enum class OudsButtonState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused
 }
@@ -746,7 +783,12 @@ internal fun PreviewOudsButton(
         val icon = if (hasIcon) OudsButtonIcon(Icons.Filled.FavoriteBorder, "") else null
         val content: @Composable () -> Unit = {
             PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
-                OudsButton(nullableIcon = icon, nullableLabel = label, onClick = {}, appearance = appearance)
+                OudsButton(
+                    nullableIcon = icon,
+                    nullableLabel = label,
+                    onClick = {},
+                    appearance = appearance
+                )
             }
         }
         if (onColoredBox) {
@@ -768,7 +810,7 @@ private fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRounded
 internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
         val appearance = OudsButtonAppearance.Default
-        PreviewEnumEntries<OudsButtonState>(columnCount = 2) { state ->
+        PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
             OudsButton(
                 nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
                 nullableLabel = appearance.name,
@@ -777,6 +819,25 @@ internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
             )
         }
     }
+
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsButtonWithIconBadge(@PreviewParameter(OudsButtonWithIconBadgePreviewParameterProvider::class) count: Int) =
+    PreviewOudsButtonWithIconBadge(theme = getPreviewTheme(), count = count)
+
+@Composable
+internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+        OudsButton(
+            nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
+            nullableLabel = null,
+            onClick = {},
+            appearance = OudsButtonAppearance.Minimal,
+            iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.componentsTokens.bar.colorBorderBadge.value, count = count)
+        )
+    }
+}
 
 internal data class OudsButtonPreviewParameter(
     val appearance: OudsButtonAppearance,
@@ -799,3 +860,5 @@ private val previewParameterValues: List<OudsButtonPreviewParameter>
             addAll(parameters.map { it.copy(onColoredBox = true) })
         }
     }
+
+internal class OudsButtonWithIconBadgePreviewParameterProvider : BasicPreviewParameterProvider<Int>(1, OudsBadgeMaxCount + 1)

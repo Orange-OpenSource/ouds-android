@@ -253,10 +253,11 @@
     <string name="app_components_topAppBar_menuNavigationIcon_label">Menu</string>
     <string name="app_components_topAppBar_customNavigationIcon_label">Custom</string>
     <string name="app_components_topAppBar_title_label">Title</string>
-    <string name="app_components_topAppBar_avatar_label">Avatar</string>
-    <string name="app_components_topAppBar_imageAvatar_label">Image</string>
-    <string name="app_components_topAppBar_monogramAvatar_label">Monogram</string>
-    <string name="app_components_topAppBar_avatarMonogram_label">Avatar monogram</string>
+    <string name="app_components_topAppBar_actionIconBadge_label">Action icon badge</string>
+    <string name="app_components_topAppBar_actionAvatar_label">Action avatar</string>
+    <string name="app_components_topAppBar_imageActionAvatar_label">Image</string>
+    <string name="app_components_topAppBar_monogramActionAvatar_label">Monogram</string>
+    <string name="app_components_topAppBar_actionAvatarMonogram_label">Avatar monogram</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>

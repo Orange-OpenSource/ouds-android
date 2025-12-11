@@ -12,11 +12,13 @@
 
 package com.orange.ouds.app.ui.components.topappbar
 
+import android.R.attr.label
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
@@ -25,6 +27,7 @@ import com.orange.ouds.app.ui.components.colorArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoState.Companion.ActionIconBadgeCount
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -39,6 +42,7 @@ import com.orange.ouds.core.component.OudsLargeTopAppBar
 import com.orange.ouds.core.component.OudsMediumTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
+import com.orange.ouds.core.component.OudsTopAppBarActionBadge
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -89,17 +93,24 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_avatar_label),
-            chipLabels = TopAppBarDemoState.Avatar.entries.map { stringResource(it.labelRes) },
-            selectedChipIndex = TopAppBarDemoState.Avatar.entries.indexOf(avatar),
-            onSelectionChange = { id -> avatar = TopAppBarDemoState.Avatar.entries[id] }
+            label = stringResource(R.string.app_components_topAppBar_actionIconBadge_label),
+            chipLabels = TopAppBarDemoState.ActionIconBadge.entries.map { it.name },
+            selectedChipIndex = TopAppBarDemoState.ActionIconBadge.entries.indexOf(actionIconBadge),
+            onSelectionChange = { id -> actionIconBadge = TopAppBarDemoState.ActionIconBadge.entries[id] }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_actionAvatar_label),
+            chipLabels = TopAppBarDemoState.ActionAvatar.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = TopAppBarDemoState.ActionAvatar.entries.indexOf(actionAvatar),
+            onSelectionChange = { id -> actionAvatar = TopAppBarDemoState.ActionAvatar.entries[id] }
         )
         CustomizationTextField(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_avatarMonogram_label),
-            value = avatarMonogram.toString().trim(),
-            onValueChange = { value -> avatarMonogram = value.firstOrNull().orElse { ' ' } },
-            enabled = avatarMonogramTextFieldEnabled
+            label = stringResource(R.string.app_components_topAppBar_actionAvatarMonogram_label),
+            value = actionAvatarMonogram.toString().trim(),
+            onValueChange = { value -> actionAvatarMonogram = value.firstOrNull().orElse { ' ' } },
+            enabled = actionAvatarMonogramTextFieldEnabled
         )
     }
 }
@@ -120,29 +131,41 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
                 onClick = {}
             )
         }
-        val avatarContentDescription = stringResource(R.string.app_components_topAppBar_secondAction_a11y)
-        val avatarAction = when (avatar) {
-            TopAppBarDemoState.Avatar.Image -> OudsTopAppBarAction.Avatar(
+
+        val firstAction = OudsTopAppBarAction.Icon(
+            painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+            contentDescription = stringResource(R.string.app_components_topAppBar_firstAction_a11y),
+            badge = when (actionIconBadge) {
+                TopAppBarDemoState.ActionIconBadge.None -> null
+                TopAppBarDemoState.ActionIconBadge.Standard -> OudsTopAppBarActionBadge(contentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y))
+                TopAppBarDemoState.ActionIconBadge.Count -> OudsTopAppBarActionBadge(
+                    contentDescription = pluralStringResource(
+                        id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                        count = ActionIconBadgeCount,
+                        ActionIconBadgeCount
+                    ),
+                    count = ActionIconBadgeCount
+                )
+            },
+            onClick = {}
+        )
+        val secondActionContentDescription = stringResource(R.string.app_components_topAppBar_secondAction_a11y)
+        val secondAction = when (actionAvatar) {
+            TopAppBarDemoState.ActionAvatar.Image -> OudsTopAppBarAction.Avatar(
                 painter = painterResource(id = R.drawable.il_top_app_bar_avatar),
-                contentDescription = avatarContentDescription,
+                contentDescription = secondActionContentDescription,
                 onClick = {}
             )
-            TopAppBarDemoState.Avatar.Monogram -> OudsTopAppBarAction.Avatar(
-                monogram = avatarMonogram,
+            TopAppBarDemoState.ActionAvatar.Monogram -> OudsTopAppBarAction.Avatar(
+                monogram = actionAvatarMonogram,
                 color = Color.White,
                 backgroundColor = Color(0xff138126),
-                contentDescription = avatarContentDescription,
+                contentDescription = secondActionContentDescription,
                 onClick = {}
             )
         }
-        val actions = listOf(
-            OudsTopAppBarAction.Icon(
-                painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-                contentDescription = stringResource(R.string.app_components_topAppBar_firstAction_a11y),
-                onClick = {}
-            ),
-            avatarAction
-        )
+        val actions = listOf(firstAction, secondAction)
+
         when (size) {
             TopAppBarDemoState.Size.Small -> {
                 if (centerAligned) {
@@ -207,15 +230,31 @@ private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, the
                 constructorCallArgument<OudsTopAppBarAction.Icon>(null) {
                     painterArgument(themeDrawableResources.tipsAndTricks)
                     contentDescriptionArgument(R.string.app_components_topAppBar_firstAction_a11y)
+                    if (actionIconBadge != TopAppBarDemoState.ActionIconBadge.None) {
+                        functionCallArgument("badge", OudsTopAppBarActionBadge::class.simpleName.orEmpty()) {
+                            when (actionIconBadge) {
+                                TopAppBarDemoState.ActionIconBadge.None -> {}
+                                TopAppBarDemoState.ActionIconBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
+                                TopAppBarDemoState.ActionIconBadge.Count -> contentDescriptionArgument(
+                                    id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                    count = ActionIconBadgeCount,
+                                    ActionIconBadgeCount
+                                )
+                            }
+                            if (actionIconBadge == TopAppBarDemoState.ActionIconBadge.Count) {
+                                typedArgument("count", ActionIconBadgeCount)
+                            }
+                        }
+                    }
                     onClickArgument()
                 }
                 constructorCallArgument<OudsTopAppBarAction.Avatar>(null) {
-                    when (avatar) {
-                        TopAppBarDemoState.Avatar.Image -> {
+                    when (actionAvatar) {
+                        TopAppBarDemoState.ActionAvatar.Image -> {
                             painterArgument(R.drawable.il_top_app_bar_avatar)
                         }
-                        TopAppBarDemoState.Avatar.Monogram -> {
-                            typedArgument("monogram", avatarMonogram)
+                        TopAppBarDemoState.ActionAvatar.Monogram -> {
+                            typedArgument("monogram", actionAvatarMonogram)
                             colorArgument("color", Color.White)
                             colorArgument("backgroundColor", Color(0xff138126))
                         }

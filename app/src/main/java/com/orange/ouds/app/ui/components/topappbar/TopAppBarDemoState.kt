@@ -27,10 +27,11 @@ fun rememberTopAppBarDemoState(
     centerAligned: Boolean = false,
     navigationIcon: TopAppBarDemoState.NavigationIcon = TopAppBarDemoState.NavigationIcon.None,
     title: String = "Title",
-    avatar: TopAppBarDemoState.Avatar = TopAppBarDemoState.Avatar.Image,
-    avatarMonogram: Char = 'A'
-) = rememberSaveable(size, centerAligned, navigationIcon, title, avatar, avatarMonogram, saver = TopAppBarDemoState.Saver) {
-    TopAppBarDemoState(size, centerAligned, navigationIcon, title, avatar, avatarMonogram)
+    actionIconBadge: TopAppBarDemoState.ActionIconBadge = TopAppBarDemoState.ActionIconBadge.None,
+    actionAvatar: TopAppBarDemoState.ActionAvatar = TopAppBarDemoState.ActionAvatar.Image,
+    actionAvatarMonogram: Char = 'A'
+) = rememberSaveable(size, centerAligned, navigationIcon, title, actionIconBadge, actionAvatar, actionAvatarMonogram, saver = TopAppBarDemoState.Saver) {
+    TopAppBarDemoState(size, centerAligned, navigationIcon, title, actionIconBadge, actionAvatar, actionAvatarMonogram)
 }
 
 class TopAppBarDemoState(
@@ -38,10 +39,13 @@ class TopAppBarDemoState(
     centerAligned: Boolean,
     navigationIcon: NavigationIcon,
     title: String,
-    avatar: Avatar,
-    avatarMonogram: Char
+    actionIconBadge: ActionIconBadge,
+    actionAvatar: ActionAvatar,
+    actionAvatarMonogram: Char
 ) {
     companion object {
+
+        const val ActionIconBadgeCount = 1
 
         val Saver = listSaver(
             save = { state ->
@@ -51,8 +55,9 @@ class TopAppBarDemoState(
                         centerAligned,
                         navigationIcon,
                         title,
-                        avatar,
-                        avatarMonogram
+                        actionIconBadge,
+                        actionAvatar,
+                        actionAvatarMonogram
                     )
                 }
             },
@@ -62,8 +67,9 @@ class TopAppBarDemoState(
                     list[1] as Boolean,
                     list[2] as NavigationIcon,
                     list[3] as String,
-                    list[4] as Avatar,
-                    list[5] as Char
+                    list[4] as ActionIconBadge,
+                    list[5] as ActionAvatar,
+                    list[6] as Char
                 )
             }
         )
@@ -85,25 +91,22 @@ class TopAppBarDemoState(
 
     var title: String by mutableStateOf(title)
 
-    var avatar: Avatar by mutableStateOf(avatar)
+    var actionIconBadge: ActionIconBadge by mutableStateOf(actionIconBadge)
 
-    var avatarMonogram: Char by mutableStateOf(avatarMonogram)
+    var actionAvatar: ActionAvatar by mutableStateOf(actionAvatar)
+
+    var actionAvatarMonogram: Char by mutableStateOf(actionAvatarMonogram)
 
     val centerAlignedSwitchEnabled: Boolean
         get() = size == Size.Small
 
-    val avatarMonogramTextFieldEnabled: Boolean
-        get() = avatar == Avatar.Monogram
+    val actionAvatarMonogramTextFieldEnabled: Boolean
+        get() = actionAvatar == ActionAvatar.Monogram
 
     enum class Size(@StringRes val labelRes: Int) {
         Small(R.string.app_components_topAppBar_smallSize_label),
         Medium(R.string.app_components_topAppBar_mediumSize_label),
         Large(R.string.app_components_topAppBar_largeSize_label)
-    }
-
-    enum class Avatar(@StringRes val labelRes: Int) {
-        Image(R.string.app_components_topAppBar_imageAvatar_label),
-        Monogram(R.string.app_components_topAppBar_monogramAvatar_label)
     }
 
     enum class NavigationIcon(@StringRes val labelRes: Int) {
@@ -112,5 +115,16 @@ class TopAppBarDemoState(
         Close(R.string.app_components_topAppBar_closeNavigationIcon_label),
         Menu(R.string.app_components_topAppBar_menuNavigationIcon_label),
         Custom(R.string.app_components_topAppBar_customNavigationIcon_label)
+    }
+
+    enum class ActionIconBadge(@StringRes val labelRes: Int) {
+        None(R.string.app_components_common_none_label),
+        Standard(R.string.app_components_badge_standardType_label),
+        Count(R.string.app_components_badge_countType_label)
+    }
+
+    enum class ActionAvatar(@StringRes val labelRes: Int) {
+        Image(R.string.app_components_topAppBar_imageActionAvatar_label),
+        Monogram(R.string.app_components_topAppBar_monogramActionAvatar_label)
     }
 }

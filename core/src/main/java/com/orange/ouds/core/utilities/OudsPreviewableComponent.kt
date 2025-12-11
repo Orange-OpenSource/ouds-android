@@ -19,6 +19,7 @@ import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameter
 import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonPreviewParameter
 import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
+import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemPreviewParameter
@@ -56,6 +57,7 @@ import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsButton
+import com.orange.ouds.core.component.PreviewOudsButtonWithIconBadge
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
 import com.orange.ouds.core.component.PreviewOudsCheckbox
@@ -159,6 +161,21 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsButtonWithRoundedCorners(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object WithIconBadge : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsButtonWithIconBadgePreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsButtonWithIconBadge(
+                    theme = theme,
+                    count = parameter as Int
+                )
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled

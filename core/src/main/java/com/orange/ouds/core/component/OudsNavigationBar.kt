@@ -23,8 +23,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,7 +33,6 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
@@ -245,8 +242,10 @@ data class OudsNavigationBarItem(
                         onClick = onClick,
                         icon = {
                             if (badge != null) {
-                                BadgedBox(
-                                    badge = { badge.Content() },
+                                OudsBadgedIcon(
+                                    modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
+                                    badgeCount = badge.count,
+                                    badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
                                 ) {
                                     icon.Content()
                                 }
@@ -380,34 +379,7 @@ class OudsNavigationBarItemIcon private constructor(
  * @property contentDescription Content description of the badge, needed for accessibility support (vocalized by Talkback).
  * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.ExtraSmall] size.
  */
-class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
-
-    @Composable
-    override fun Content(modifier: Modifier) {
-        val status = OudsBadgeStatus.Negative // In a navigation bar a badge has always a negative status.
-        val positionModifier = if (count != null) {
-            Modifier
-        } else {
-            val startPosition = OudsNavigationBarItemIcon.Size / 2
-            val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
-            val xOffset = startPosition - badgeSize
-            val yOffset = (startPosition - badgeSize) + 2.dp
-            Modifier.offset(x = xOffset, y = -yOffset)
-        }
-
-        Box(
-            modifier = positionModifier
-                .background(color = OudsTheme.componentsTokens.bar.colorBorderBadge.value, shape = OudsBadgeShape)
-                .padding(1.dp)
-        ) {
-            count?.let {
-                OudsBadge(count = count, modifier = modifier, status = status, size = OudsBadgeSize.Medium)
-            }.orElse {
-                OudsBadge(modifier = modifier, status = status, size = OudsBadgeSize.ExtraSmall)
-            }
-        }
-    }
-}
+data class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null)
 
 internal enum class OudsNavigationBarItemState {
     Enabled, Hovered, Pressed, Focused
