@@ -34,16 +34,17 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-internal data class InteractionValuesIndication(val values: List<InteractionValue<*, *>>) : IndicationNodeFactory {
+internal fun interactionValuesIndication(vararg interactionValues: InteractionValue<*, *>): IndicationNodeFactory =
+    InteractionValuesIndicationNodeFactory(values = interactionValues.toList())
 
-    constructor(vararg interactionValues: InteractionValue<*, *>) : this(interactionValues.toList())
+private data class InteractionValuesIndicationNodeFactory(val values: List<InteractionValue<*, *>>) : IndicationNodeFactory {
 
     override fun create(interactionSource: InteractionSource): DelegatableNode {
-        return InteractionValuesNode(interactionSource, values)
+        return InteractionValuesIndicationNode(interactionSource, values)
     }
 }
 
-internal class InteractionValuesNode(
+private class InteractionValuesIndicationNode(
     private val interactionSource: InteractionSource,
     interactionValues: List<InteractionValue<*, *>>
 ) : Modifier.Node(), DrawModifierNode {
@@ -132,7 +133,7 @@ internal class InteractionValuesNode(
 
 /**
  * A value holder that automatically updates its value when the user is interacting with the component it is attached to.
- * [InteractionValuesNode] uses instances of this class and associated animatables to update the value.
+ * [InteractionValuesIndicationNode] uses instances of this class and associated animatables to update the value.
  *
  * @param T The type of the value.
  * @param S The type of the associated animatable value. This must be a Compose [Color] or a [Float].

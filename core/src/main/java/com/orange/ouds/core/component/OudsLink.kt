@@ -237,7 +237,7 @@ private fun OudsLink(
             .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlock.value)
             .clickable(
                 interactionSource = interactionSource,
-                indication = InteractionValuesIndication(contentColor, chevronColor, isUnderlined),
+                indication = interactionValuesIndication(contentColor, chevronColor, isUnderlined),
                 enabled = state != OudsLinkState.Disabled,
                 onClick = onClick
             ),
