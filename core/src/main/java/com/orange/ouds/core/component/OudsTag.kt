@@ -154,8 +154,6 @@ fun OudsTag(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
             ) {
-                val contentColor = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled)
-
                 if (hasAsset) {
                     Box(
                         modifier = Modifier
@@ -173,7 +171,6 @@ fun OudsTag(
                                     .padding(all = iconPadding),
                                 extraParameters = OudsTagIcon.ExtraParameters(
                                     tint = iconColor(status = status, appearance = appearance, enabled = enabled, isBulletIcon = isBulletIcon),
-                                    size = size,
                                     status = status,
                                     appearance = appearance
                                 )
@@ -183,7 +180,7 @@ fun OudsTag(
                 }
                 Text(
                     text = label,
-                    color = contentColor,
+                    color = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled),
                     style = textStyle(size)
                 )
             }
@@ -490,7 +487,6 @@ open class OudsTagIcon protected constructor(
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color,
-        internal val size: OudsTagSize,
         internal val status: OudsTagStatus,
         internal val appearance: OudsTagAppearance
     ) : OudsComponentContent.ExtraParameters()
