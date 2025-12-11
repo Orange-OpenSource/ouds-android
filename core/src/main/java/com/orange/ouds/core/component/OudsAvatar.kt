@@ -13,13 +13,17 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.IndicationNodeFactory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.ripple.RippleAlpha
+import androidx.compose.material.ripple.createRippleModifierNode
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +38,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.node.DelegatableNode
+import androidx.compose.ui.node.DelegatingNode
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -149,7 +155,7 @@ internal fun OudsAvatar(
                 if (onClick != null) {
                     clickable(
                         interactionSource = interactionSource,
-                        indication = null,
+                        indication = avatarRipple(OudsTheme.colorScheme.action.pressed),
                         onClick = onClick,
                         role = Role.Button
                     )
@@ -162,7 +168,7 @@ internal fun OudsAvatar(
         val contentModifier = Modifier
             .outerBorder(state = avatarState, shape = CircleShape)
             .clip(CircleShape)
-            .size(32.dp)
+            .size(AvatarSize)
         val contentScale = ContentScale.Crop
         if (graphicsObject != null) {
             when (graphicsObject) {
@@ -219,8 +225,50 @@ private fun getAvatarState(interactionState: InteractionState): OudsAvatarState 
     }
 }
 
+private val AvatarSize = 32.dp
+
 private enum class OudsAvatarState {
     Enabled, Hovered, Pressed, Focused
+}
+
+private fun avatarRipple(color: Color) = AvatarRippleNodeFactory(color)
+
+private data class AvatarRippleNodeFactory(private val color: Color) : IndicationNodeFactory {
+
+    override fun create(interactionSource: InteractionSource): DelegatableNode {
+        return DelegatingAvatarRippleNode(interactionSource, color)
+    }
+}
+
+private class DelegatingAvatarRippleNode(private val interactionSource: InteractionSource, private val color: Color) : DelegatingNode() {
+
+    private var rippleNode: DelegatableNode? = null
+
+    override fun onAttach() {
+        if (rippleNode == null) {
+            rippleNode = delegate(
+                createRippleModifierNode(
+                    interactionSource = interactionSource,
+                    bounded = true,
+                    radius = AvatarSize / 2,
+                    color = { color },
+                    rippleAlpha = {
+                        RippleAlpha(
+                            pressedAlpha = 1f,
+                            focusedAlpha = 0f,
+                            draggedAlpha = 0f,
+                            hoveredAlpha = 0f
+                        )
+                    }
+                )
+            )
+        }
+    }
+
+    override fun onDetach() {
+        rippleNode?.let { undelegate(it) }
+        rippleNode = null
+    }
 }
 
 @PreviewLightDark

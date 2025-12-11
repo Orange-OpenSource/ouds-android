@@ -179,7 +179,7 @@ fun OudsTriStateCheckbox(
             if (onClick != null) {
                 Modifier.triStateToggleable(
                     interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(backgroundColor),
+                    indication = interactionValuesIndication(backgroundColor),
                     state = state,
                     onClick = onClick,
                     enabled = enabled && !readOnly,
