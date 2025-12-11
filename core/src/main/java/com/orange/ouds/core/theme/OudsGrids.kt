@@ -26,7 +26,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
  * Grids are used to place content and create consistent page layouts across different screen sizes.
  * The values typically adapt based on the current window size class.
  *
- * > Design guidelines: [Grid tokens documentation](https://unified-design-system.orange.com/472794e18/p/26a48e-grid)
+ * > Design guidelines: [Grid tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-grid)
  *
  * @property minWidth The minimum width of the grid container.
  * @property maxWidth The maximum width of the grid container.

@@ -44,7 +44,7 @@ import java.util.Locale
  *
  * Borders are used to define boundaries around UI elements to materialise the visual hierarchy and improve usability.
  *
- * > Design guidelines: [Border tokens documentation](https://unified-design-system.orange.com/472794e18/p/76909d-border)
+ * > Design guidelines: [Border tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-border)
  *
  * @property width Collection of border width values.
  * @property radius Collection of border radius values.

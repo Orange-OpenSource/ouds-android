@@ -26,7 +26,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
  * These values ensure consistent sizing for icons, touch targets, and layout constraints
  * across different screen sizes and contexts.
  *
- * > Design guidelines: [Size tokens documentation](https://unified-design-system.orange.com/472794e18/p/109b79-dimension/b/37eb1d)
+ * > Design guidelines: [Size tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-size)
  *
  * @property icon Sizes related to icons.
  * @property maxWidth Max width constraints for layouts.

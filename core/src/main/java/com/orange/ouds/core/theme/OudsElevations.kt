@@ -26,7 +26,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
  *
  * Elevation is used to create a sense of depth and hierarchy in a design, helping to distinguish between layers and interactive elements.
  *
- * > Design guidelines: [Elevation tokens documentation](https://unified-design-system.orange.com/472794e18/p/8297c2-elevation)
+ * > Design guidelines: [Elevation tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-elevation)
  *
  * @property none No elevation (0 dp). The element is at the same level as the background.
  * @property default The standard elevation level for components.

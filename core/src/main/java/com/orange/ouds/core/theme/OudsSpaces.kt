@@ -26,7 +26,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
  * Spacing tokens are used to define margins, paddings, and gaps between elements,
  * ensuring a consistent rhythm and layout structure across the application.
  *
- * > Design guidelines: [Space tokens documentation](https://unified-design-system.orange.com/472794e18/p/109b79-dimension/b/29d063)
+ * > Design guidelines: [Space tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-space)
  *
  * @property fixed Fixed spacing values that do not change based on screen size.
  * @property scaled Spacing values that scale adaptively based on the screen size (e.g., Mobile vs Tablet).

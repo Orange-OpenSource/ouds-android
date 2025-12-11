@@ -28,7 +28,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
  *
  * Typography is managed with a defined set of text styles. It enhances communication and reinforce the attribution to the brand.
  *
- * > Design guidelines: [Typography tokens documentation](https://unified-design-system.orange.com/472794e18/p/93be68-typography)
+ * > Design guidelines: [Typography tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-typography)
  *
  * @property display Styles for large, prominent text.
  * @property heading Styles for headings and titles.

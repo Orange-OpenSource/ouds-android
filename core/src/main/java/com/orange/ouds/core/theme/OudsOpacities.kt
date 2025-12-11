@@ -26,7 +26,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
  * It can help distinguish foreground elements from background elements, making content easier to read
  * and important actions more noticeable.
  *
- * > Design guidelines: [Opacity tokens documentation](https://unified-design-system.orange.com/472794e18/p/329c0c-opacity)
+ * > Design guidelines: [Opacity tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-opacity)
  *
  * @property disabled The opacity applied to disabled elements to indicate they are not interactive.
  * @property invisible Fully transparent (0.0). The element is not visible.
