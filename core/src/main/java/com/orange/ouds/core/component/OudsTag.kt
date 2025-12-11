@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
@@ -36,6 +35,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
@@ -154,12 +154,9 @@ fun OudsTag(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
             ) {
-                val contentColor = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled)
-
                 if (hasAsset) {
                     Box(
                         modifier = Modifier
-                            .size(assetSize(size))
                             .semantics { hideFromAccessibility() }
                     ) {
                         if (hasLoader) {
@@ -167,8 +164,11 @@ fun OudsTag(
                         } else {
                             val isBulletIcon = status.icon is OudsTagIcon.Bullet
                             val iconPadding = if (isBulletIcon) bulletPadding(size = size) else iconPadding(size = size)
+                            val scale = LocalConfiguration.current.fontScale
                             status.icon?.Content(
-                                modifier = Modifier.padding(all = iconPadding),
+                                modifier = Modifier
+                                    .size(assetSize(size) * scale)
+                                    .padding(all = iconPadding),
                                 extraParameters = OudsTagIcon.ExtraParameters(
                                     tint = iconColor(status = status, appearance = appearance, enabled = enabled, isBulletIcon = isBulletIcon),
                                     status = status,
@@ -180,7 +180,7 @@ fun OudsTag(
                 }
                 Text(
                     text = label,
-                    color = contentColor,
+                    color = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled),
                     style = textStyle(size)
                 )
             }
@@ -352,15 +352,16 @@ private fun loaderPadding(size: OudsTagSize): Dp {
 
 @Composable
 private fun ProgressIndicator(status: OudsTagStatus, appearance: OudsTagAppearance, size: OudsTagSize, progress: Float?, enabled: Boolean) {
+    val scale = LocalConfiguration.current.fontScale
     val modifier = Modifier
+        .size(assetSize(size) * scale)
         .padding(all = loaderPadding(size = size))
-        .fillMaxSize()
         .semantics { hideFromAccessibility() }
     val color = contentColor(status = status, appearance = appearance, hasLoader = true, enabled = enabled)
     val strokeWidth = when (size) {
         OudsTagSize.Default -> 2.4.dp
         OudsTagSize.Small -> 2.dp
-    }
+    } * scale
     val trackColor = Color.Transparent
     val strokeCap = StrokeCap.Butt
     if (progress != null) {
