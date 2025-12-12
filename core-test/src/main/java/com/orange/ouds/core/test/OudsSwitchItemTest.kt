@@ -45,4 +45,17 @@ class OudsSwitchItemTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    @RunWith(Parameterized::class)
+    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.parameters
+        }
+    }
 }

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import android.R.attr.label
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
@@ -34,6 +35,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
+import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldLineLimits
@@ -166,6 +168,7 @@ fun OudsTextInput(
     error: OudsError? = null,
     helperText: String? = null,
     helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onKeyboardAction: KeyboardActionHandler? = null,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
@@ -216,7 +219,8 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        helperLink = helperLink
+                        helperLink = helperLink,
+                        constrainedMaxWidth = constrainedMaxWidth
                     )
                 }
             )
@@ -287,6 +291,7 @@ fun OudsTextInput(
     error: OudsError? = null,
     helperText: String? = null,
     helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
@@ -336,7 +341,8 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        helperLink = helperLink
+                        helperLink = helperLink,
+                        constrainedMaxWidth = constrainedMaxWidth
                     )
 
                 }
@@ -408,6 +414,7 @@ fun OudsTextInput(
     error: OudsError? = null,
     helperText: String? = null,
     helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
@@ -457,7 +464,8 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        helperLink = helperLink
+                        helperLink = helperLink,
+                        constrainedMaxWidth = constrainedMaxWidth
                     )
                 }
             )
@@ -523,6 +531,7 @@ private fun OudsTextInputDecorator(
     error: OudsError?,
     helperText: String?,
     helperLink: OudsTextInputHelperLink?,
+    constrainedMaxWidth: Boolean,
 ) {
     val hasError = error != null
     with(OudsTheme.componentsTokens.textInput) {
@@ -553,7 +562,7 @@ private fun OudsTextInputDecorator(
         Column {
             Row(
                 modifier = styleModifier
-                    .sizeIn(minWidth = sizeMinWidth.dp, maxWidth = sizeMaxWidth.dp, minHeight = sizeMinHeight.dp)
+                    .sizeIn(minWidth = sizeMinWidth.dp, maxWidth = if (constrainedMaxWidth) sizeMaxWidth.dp else Dp.Unspecified, minHeight = sizeMinHeight.dp)
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
                         start = spacePaddingInlineDefault.value,
@@ -1110,6 +1119,24 @@ internal fun PreviewOudsTextInputWithLongLabels(theme: OudsThemeContract) = Ouds
     }
 }
 
+@Preview(widthDp = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.PreviewWidthDp)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsTextInputConstrainedMaxWidth(@PreviewParameter(OudsTextInputConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
+    PreviewOudsTextInputConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
+}
+
+@Composable
+internal fun PreviewOudsTextInputConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
+    OudsTextInput(
+        modifier = Modifier.padding(all = 10.dp),
+        textFieldState = rememberTextFieldState(),
+        label = "Label",
+        placeholder = "Placeholder",
+        constrainedMaxWidth = constrainedMaxWidth
+    )
+}
+
 internal data class OudsTextInputPreviewParameter(
     val value: String,
     val label: String? = null,
@@ -1126,6 +1153,8 @@ internal data class OudsTextInputPreviewParameter(
 )
 
 internal class OudsTextInputPreviewParameterProvider : BasicPreviewParameterProvider<OudsTextInputPreviewParameter>(*previewParameterValues.toTypedArray())
+
+internal class OudsTextInputConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 private val previewParameterValues: List<OudsTextInputPreviewParameter>
     get() {

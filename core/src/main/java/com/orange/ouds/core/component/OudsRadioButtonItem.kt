@@ -16,6 +16,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -29,14 +30,17 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -71,6 +75,9 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param readOnly Controls the read-only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
  *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the radio button item will be displayed in disabled state.
  * @param error Optional [OudsError] to indicate that the radio button item should appear in error state, `null` otherwise.
+ * @param constrainedMaxWidth When `true`, the item width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's radio button. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -92,6 +99,7 @@ fun OudsRadioButtonItem(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -140,6 +148,7 @@ fun OudsRadioButtonItem(
             .then(selectableModifier)
             .semantics(mergeDescendants = true) {},
         contentModifier = Modifier.border(outlined = outlined, selected = selected, error = error, state = state),
+        constrainedMaxWidth = constrainedMaxWidth,
         handleHighContrastMode = true
     )
 }
@@ -280,12 +289,36 @@ internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeCo
     }
 }
 
+@Preview(widthDp = OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth.PreviewWidthDp)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(@PreviewParameter(OudsRadioButtonItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
+    PreviewOudsRadioButtonItemConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
+}
+
+@Composable
+internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
+    OudsRadioButtonItem(
+        modifier = Modifier.padding(all = 10.dp),
+        selected = false,
+        label = "Label",
+        onClick = {},
+        extraLabel = "Extra label",
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+        edgeToEdge = false,
+        divider = true,
+        constrainedMaxWidth = constrainedMaxWidth
+    )
+}
+
 internal typealias OudsRadioButtonItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Boolean>
 
 private val previewOutlinedValues = listOf(false, true, true)
 
 internal class OudsRadioButtonItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<Boolean, Boolean>(DefaultBooleanValues, previewOutlinedValues)
+
+internal class OudsRadioButtonItemConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 internal typealias OudsRadioButtonItemHighContrastModePreviewParameter = OudsControlItemHighContrastModePreviewParameter<Boolean>
 
