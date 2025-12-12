@@ -146,11 +146,20 @@ dependencies {
 
 tasks.register<DefaultTask>("updateAppChangelog") {
     doLast {
-        updateChangelog(null)
-        copy {
-            from("../CHANGELOG.md").into("src/main/res/raw").rename { it.lowercase() }
+        val rawResourcesPath = "src/main/res/raw"
+        val changelogFilename = "CHANGELOG.md"
+        try {
+            delete("$rawResourcesPath/$changelogFilename")
+            updateChangelog(null)
+            copy {
+                from("../$changelogFilename").into(rawResourcesPath).rename { it.lowercase() }
+            }
+            execute("git", "checkout", changelogFilename)
+        } catch (_: Exception) {
+            val errorMessage = "There was an error while generating the changelog."
+            logger.error(errorMessage)
+            file("$rawResourcesPath/${changelogFilename.lowercase()}").writeText(errorMessage)
         }
-        execute("git", "checkout", "CHANGELOG.md")
     }
 }
 
