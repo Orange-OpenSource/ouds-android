@@ -64,7 +64,8 @@ class OudsCheckboxItemTest {
     class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.PreviewWidthDp
     ) {
         companion object {
             @JvmStatic

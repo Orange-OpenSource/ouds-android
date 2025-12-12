@@ -64,7 +64,8 @@ class OudsRadioButtonItemTest {
     class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth.PreviewWidthDp
     ) {
         companion object {
             @JvmStatic

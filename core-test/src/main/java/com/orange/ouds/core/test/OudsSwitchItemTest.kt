@@ -50,7 +50,8 @@ class OudsSwitchItemTest {
     class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.PreviewWidthDp
     ) {
         companion object {
             @JvmStatic
