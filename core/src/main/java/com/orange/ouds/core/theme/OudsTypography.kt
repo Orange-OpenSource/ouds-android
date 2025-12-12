@@ -428,6 +428,8 @@ private fun OudsTypography.fromToken(token: OudsTypographyKeyToken): TextStyle {
 /**
  * Converts an OUDS typography token to the local typography value provided by the theme.
  * Note that the typography value returned varies depending on the window size.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsTypographyKeyToken.value: TextStyle

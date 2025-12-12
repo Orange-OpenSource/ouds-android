@@ -17,6 +17,9 @@ package com.orange.ouds.theme.tokens
 
 import com.orange.ouds.foundation.InternalOudsApi
 
+/**
+ * @suppress
+ */
 @InternalOudsApi
 sealed interface OudsEffectKeyToken : OudsKeyToken {
     sealed interface Blur : OudsEffectKeyToken {

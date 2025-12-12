@@ -24,9 +24,11 @@ interface OudsColorSemanticTokens {
     val overlayColorTokens: OudsColorOverlaySemanticTokens
     val surfaceColorTokens: OudsColorSurfaceSemanticTokens
 
+    /** @suppress */
     @InternalOudsApi
     val repositoryColorTokens: OudsColorRepositorySemanticTokens
 
+    /** @suppress */
     @InternalOudsApi
     val colorModeTokens: OudsColorModeSemanticTokens
 }
