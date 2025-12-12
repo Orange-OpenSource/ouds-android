@@ -48,6 +48,8 @@ fun FunctionCall.Builder.colorArgument(name: String, color: Color) {
 
 fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = formattableArgument(name) { "\"${it.getString(id)}\"" }
 
+fun FunctionCall.Builder.constrainedMaxWidthArgument(value: Boolean) = typedArgument(Argument.ConstrainedMaxWidth, value)
+
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg formatArgs: Any) =
     stringResourceArgument(Argument.ContentDescription, id, *formatArgs)
@@ -70,6 +72,7 @@ fun FunctionCall.Builder.readOnlyArgument(value: Boolean) = typedArgument(Argume
 private object Argument {
 
     const val Color = "color"
+    const val ConstrainedMaxWidth = "constrainedMaxWidth"
     const val ContentDescription = "contentDescription"
     const val Content = "content"
     const val Enabled = "enabled"

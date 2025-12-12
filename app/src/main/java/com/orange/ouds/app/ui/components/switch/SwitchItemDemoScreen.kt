@@ -59,7 +59,8 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             reversed = reversed,
             enabled = enabled,
             readOnly = readOnly,
-            error = if (error) OudsError(errorMessage) else null
+            error = if (error) OudsError(errorMessage) else null,
+            constrainedMaxWidth = constrainedMaxWidth
         )
     }
 }

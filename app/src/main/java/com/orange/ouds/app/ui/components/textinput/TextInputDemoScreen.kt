@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
@@ -136,6 +137,11 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             value = helperLink,
             onValueChange = { value -> helperLink = value }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_constrainedMaxWidth_label),
+            checked = constrainedMaxWidth,
+            onCheckedChange = { constrainedMaxWidth = it },
+        )
     }
 }
 
@@ -171,7 +177,8 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             prefix = prefix,
             suffix = suffix,
             helperText = helperText,
-            helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null
+            helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
+            constrainedMaxWidth = constrainedMaxWidth
         )
     }
 }
@@ -223,6 +230,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
                     }
                 }
             }
+            if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
         }
     }
 }

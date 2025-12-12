@@ -120,6 +120,7 @@
     <string name="app_components_common_appearance_label">Appearance</string>
     <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
     <string name="app_components_common_color_label">Color</string>
+    <string name="app_components_common_constrainedMaxWidth_label" translatable="false">Constrained max width</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label">Error</string>
     <string name="app_components_common_errorMessage_label">Error message</string>

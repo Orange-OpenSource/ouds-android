@@ -27,7 +27,8 @@ open class ControlItemDemoState(
     error: Boolean,
     errorMessage: String,
     label: String,
-    description: String?
+    description: String?,
+    constrainedMaxWidth: Boolean
 ) {
 
     companion object {
@@ -45,7 +46,8 @@ open class ControlItemDemoState(
                         error,
                         errorMessage,
                         label,
-                        description
+                        description,
+                        constrainedMaxWidth
                     )
                 }
             },
@@ -59,14 +61,16 @@ open class ControlItemDemoState(
                     list[5] as Boolean,
                     list[6] as Boolean,
                     list[7] as String,
-                    list[7] as String,
-                    list[8] as String?
+                    list[8] as String,
+                    list[9] as String?,
+                    list[10] as Boolean
                 )
             }
         )
     }
 
     var icon: Boolean by mutableStateOf(icon)
+    var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
     var edgeToEdge: Boolean by mutableStateOf(edgeToEdge)
     var divider: Boolean by mutableStateOf(divider)
     var reversed: Boolean by mutableStateOf(reversed)

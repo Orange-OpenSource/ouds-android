@@ -38,6 +38,7 @@ fun rememberTextInputDemoState(
     suffix: String = "",
     helperText: String = "",
     helperLink: String = "",
+    constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(
     value,
     label,
@@ -53,6 +54,7 @@ fun rememberTextInputDemoState(
     suffix,
     helperText,
     helperLink,
+    constrainedMaxWidth,
     saver = TextInputDemoState.Saver
 ) {
     TextInputDemoState(
@@ -70,7 +72,8 @@ fun rememberTextInputDemoState(
         prefix,
         suffix,
         helperText,
-        helperLink
+        helperLink,
+        constrainedMaxWidth
     )
 }
 
@@ -90,6 +93,7 @@ class TextInputDemoState(
     suffix: String,
     helperText: String,
     helperLink: String,
+    constrainedMaxWidth: Boolean
 ) {
 
     companion object {
@@ -112,7 +116,8 @@ class TextInputDemoState(
                         prefix,
                         suffix,
                         helperText,
-                        helperLink
+                        helperLink,
+                        constrainedMaxWidth
                     )
                 }
             },
@@ -132,7 +137,8 @@ class TextInputDemoState(
                     list[11] as String,
                     list[12] as String,
                     list[13] as String,
-                    list[14] as String
+                    list[14] as String,
+                    list[15] as Boolean
                 )
             }
         )
@@ -167,6 +173,8 @@ class TextInputDemoState(
     var helperText: String by mutableStateOf(helperText)
 
     var helperLink: String by mutableStateOf(helperLink)
+
+    var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
 
     val enabledSwitchEnabled: Boolean
         get() = !error && !hasLoader
