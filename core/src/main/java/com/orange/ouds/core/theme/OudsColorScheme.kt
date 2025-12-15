@@ -142,8 +142,8 @@ data class OudsColorScheme internal constructor(
      * Colors that remain constant regardless of the theme (Light/Dark).
      *
      * @property black Absolute black.
-     * @property onBlack content color on black background.
-     * @property onWhite content color on white background.
+     * @property onBlack Content color on black background.
+     * @property onWhite Content color on white background.
      * @property white Absolute white.
      */
     @ConsistentCopyVisibility
