@@ -112,6 +112,9 @@ theme-orange/src/main/res/drawable/ic_orange_component_link_previous.xml
 theme-orange/src/main/res/drawable/ic_orange_component_radio_button_selected.xml
 theme-orange/src/main/res/drawable/ic_orange_component_switch_selected_switch.xml
 theme-orange/src/main/res/drawable/ic_orange_component_tag_close.xml
+theme-orange/src/main/res/drawable/ic_orange_functional_actions_delete.xml
+theme-orange/src/main/res/drawable/ic_orange_functional_navigation_form_chevron_left.xml
+theme-orange/src/main/res/drawable/ic_orange_functional_navigation_menu.xml
 
 theme-sosh/src/main/res/drawable/ic_sosh_component_alert_important_fill.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_alert_info_fill.xml
@@ -126,6 +129,9 @@ theme-sosh/src/main/res/drawable/ic_sosh_component_link_previous.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_radio_button_selected.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_switch_selected_switch.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_tag_close.xml
+theme-sosh/src/main/res/drawable/ic_sosh_functional_actions_delete.xml
+theme-sosh/src/main/res/drawable/ic_sosh_functional_navigation_form_chevron_left.xml
+theme-sosh/src/main/res/drawable/ic_sosh_functional_navigation_menu.xml
 theme-sosh/src/main/res/font/sosh_black.ttf
 theme-sosh/src/main/res/font/sosh_bold.ttf
 theme-sosh/src/main/res/font/sosh_medium.ttf
@@ -145,6 +151,9 @@ theme-wireframe/src/main/res/drawable/ic_wireframe_component_link_previous.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_radio_button_selected.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_switch_selected_switch.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_tag_close.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_functional_actions_delete.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_functional_navigation_form_chevron_left.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_functional_navigation_menu.xml
 
 End of the parts list under Orange SA Copyright
 

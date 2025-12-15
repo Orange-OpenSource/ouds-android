@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.utilities
 
 import android.content.Context
+import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -99,21 +100,23 @@ data class Comment(val text: String, val isMultiline: Boolean) : Formattable {
 data class FunctionCall(val name: String, val elements: List<Formattable>, val isMultiline: Boolean, val trailingLambda: Boolean) : Formattable {
 
     override fun format(context: Context): String {
-        val isMultiline = isMultiline && elements.isNotEmpty()
-        val elementSeparator = if (isMultiline) "\n" else " "
         val lambda = elements.lastOrNull()?.asOrNull<Argument<*>>()?.value?.asOrNull<Lambda>().takeIf { trailingLambda }
         val elements = if (lambda != null) elements.dropLast(1) else elements
+        val isMultiline = isMultiline && elements.isNotEmpty()
+        val elementSeparator = if (isMultiline) "\n" else " "
         val formattedElements = elements.joinToString(elementSeparator) { codeFormattable ->
             val elementSuffix = if (codeFormattable is Argument<*>) "," else ""
             "${codeFormattable.format(context)}$elementSuffix"
         }
             .removeSuffix(",")
             .run { if (isMultiline) prependIndent(CODE_INDENT) else this }
+        val openingParenthesis = if (elements.isEmpty() && trailingLambda) "" else "("
+        val closingParenthesis = if (elements.isEmpty() && trailingLambda) "" else ")"
         val parenthesisSeparator = if (isMultiline) "\n" else ""
 
         val formattedLambda = if (lambda != null) " ${lambda.format(context)}" else ""
 
-        return "$name($parenthesisSeparator$formattedElements$parenthesisSeparator)$formattedLambda"
+        return "$name$openingParenthesis$parenthesisSeparator$formattedElements$parenthesisSeparator$closingParenthesis$formattedLambda"
     }
 
     @CodeDslMarker
@@ -137,7 +140,11 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
         fun rawArgument(name: String?, value: String) = formattableArgument(name) { value }
 
         fun stringResourceArgument(name: String?, @StringRes id: Int, vararg formatArgs: Any) {
-            formattableArgument(name) { "\"${it.getString(id, formatArgs)}\"" }
+            formattableArgument(name) { "\"${it.getString(id, *formatArgs)}\"" }
+        }
+
+        fun pluralStringResourceArgument(name: String?, @PluralsRes id: Int, count: Int, vararg formatArgs: Any) {
+            formattableArgument(name) { "\"${it.resources.getQuantityString(id, count, *formatArgs)}\"" }
         }
 
         fun lambdaArgument(name: String?, init: Code.Builder.() -> Unit = {}) {
@@ -230,19 +237,24 @@ internal fun PreviewCode() = AppPreview {
                     comment("click") { isMultiline = true }
                 }
             }
+            comment("Single line argument")
             functionCallArgument("list", "listOf") {
                 isMultiline = false
-                rawArgument(null, "OudsTheme.shapes") // Raw
-                stringResourceArgument(null, R.string.app_name)
-                typedArgument(null, "Text") // String
-                typedArgument(null, 1.234) // Double
-                comment("Comment") { isMultiline = true }
-                typedArgument(null, 1.234f) // Float
-                typedArgument(null, 1234) // Int
-                typedArgument(null, true) // Boolean
-                typedArgument(null, BottomBarItem.Tokens) // Enum
-                typedArgument<String?>(null, null) // null
+                rawArgument(null, "1")
+                rawArgument(null, "2")
+                rawArgument(null, "3")
             }
+            comment("Different types of arguments")
+            rawArgument("raw", "OudsTheme.shapes")
+            stringResourceArgument("stringResource", R.string.app_name)
+            pluralStringResourceArgument("pluralStringResource", R.plurals.app_components_common_unreadMessageCountBadge_a11y, 1, 1)
+            typedArgument("string", "Text")
+            typedArgument("double", 1.234)
+            typedArgument("float", 1.234f)
+            typedArgument("int", 1234)
+            typedArgument("boolean", true)
+            typedArgument("enum", BottomBarItem.Tokens)
+            typedArgument<String?>("null", null)
             lambdaArgument("content") {
                 comment("Single line comment")
                 functionCall("content")

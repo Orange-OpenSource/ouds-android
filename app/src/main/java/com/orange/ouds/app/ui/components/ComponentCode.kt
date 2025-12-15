@@ -13,7 +13,10 @@
 package com.orange.ouds.app.ui.components
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.core.component.OudsColoredBoxColor
@@ -36,11 +39,22 @@ fun FunctionCall.Builder.painterArgument(@DrawableRes id: Int) {
     }
 }
 
+fun FunctionCall.Builder.colorArgument(name: String, color: Color) {
+    constructorCallArgument<Color>(name) {
+        isMultiline = false
+        rawArgument(null, "0x${color.toArgb().toHexString()}")
+    }
+}
+
 fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = formattableArgument(name) { "\"${it.getString(id)}\"" }
 
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg formatArgs: Any) =
-    stringResourceArgument(Argument.ContentDescription, id, formatArgs)
+    stringResourceArgument(Argument.ContentDescription, id, *formatArgs)
+
+fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes id: Int, count: Int, vararg formatArgs: Any) =
+    pluralStringResourceArgument(Argument.ContentDescription, id, count, *formatArgs)
+
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 

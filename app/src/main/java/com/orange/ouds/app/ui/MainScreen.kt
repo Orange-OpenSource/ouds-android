@@ -99,18 +99,20 @@ fun MainScreen(
     var changeThemeDialogVisible by rememberSaveable { mutableStateOf(false) }
     var changeThemeSettingsDialogVisible by rememberSaveable { mutableStateOf(false) }
 
-    val hazeState = rememberHazeState(blurEnabled = true)
-
     OudsTheme(
         theme = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
+        val hazeState = rememberHazeState(blurEnabled = true)
+        val hazeStyle = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)
+
         CompositionLocalProvider(LocalThemeDrawableResources provides ThemeDrawableResources(mainState.themeState.currentTheme)) {
             Scaffold(
                 contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
                 topBar = {
                     val context = LocalContext.current
                     TopBar(
+                        modifier = Modifier.hazeEffect(state = hazeState, style = hazeStyle),
                         topBarState = mainState.topBarState,
                         upPress = mainState.navigationState::upPress,
                         onActionClick = { action ->
@@ -124,10 +126,7 @@ fun MainScreen(
                 },
                 bottomBar = {
                     BottomBar(
-                        modifier = Modifier.hazeEffect(
-                            state = hazeState,
-                            style = HazeStyle(tint = null, blurRadius = OudsTheme.components.navigationBar.blurRadius.dp)
-                        ),
+                        modifier = Modifier.hazeEffect(state = hazeState, style = hazeStyle),
                         currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                         navigateToRoute = { route ->
                             mainState.navigationState.navigateToBottomBarRoute(route)
@@ -137,7 +136,7 @@ fun MainScreen(
                 }
             ) { innerPadding ->
                 val paddingValues = PaddingValues(
-                    top = innerPadding.calculateTopPadding(),
+                    top = 0.dp,
                     bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding(),
                     start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
                     end = innerPadding.calculateEndPadding(LocalLayoutDirection.current)

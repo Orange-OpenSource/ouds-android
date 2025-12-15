@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import android.os.Build
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
@@ -24,8 +23,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -36,7 +33,6 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
@@ -86,23 +82,27 @@ import com.orange.ouds.theme.OudsThemeContract
  */
 val OudsNavigationBarHeight = 80.dp
 
-//TODO add DSM link when available:  * <a href="https://unified-design-system.orange.com/472794e18/p/31c33b-link" class="external" target="_blank">**OUDS Navigation bar design guidelines**</a>
+//TODO update DSM link when available
 /**
  * The navigation bar lets people switch between UI views on smaller devices.
  * It offers a persistent and convenient way to switch between primary destinations in an app.
  *
  * [OudsNavigationBar] should contain three to five [OudsNavigationBarItem], each representing a singular destination.
  *
- * [OudsNavigationBar] default appearance is opaque but, if you need a **translucent blurred navigation bar** (supported from Android 13) as specified on OUDS design
+ * [OudsNavigationBar] default appearance is opaque but, if you need a **translucent blurred navigation bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsNavigationBar] with
  * [translucent] parameter set to true and follow these steps:
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.navigationBar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the navigation bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ *
+ * > Design version: 1.0.0
  *
  * @param items List of [OudsNavigationBarItem] to display in the navigation bar.
  * @param modifier [Modifier] applied to the navigation bar.
@@ -121,14 +121,13 @@ fun OudsNavigationBar(
     with(OudsTheme.componentsTokens.bar) {
         NavigationBar(
             modifier = modifier,
-            containerColor = Color.Transparent, // Background color is handled by the Row in content
+            containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
             contentColor = colorContentUnselectedEnabled.value,
             windowInsets = windowInsets,
             content = {
                 val topBorderColor = OudsTheme.colorScheme.border.minimal
                 Row(
-                    modifier
-                        .background(color = if (translucent && Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) colorBgTranslucent.value else colorBgOpaque.value)
+                    modifier = Modifier
                         .drawBehind {
                             val topBorderWidth = 1.dp.toPx()
                             drawLine(
@@ -243,8 +242,10 @@ data class OudsNavigationBarItem(
                         onClick = onClick,
                         icon = {
                             if (badge != null) {
-                                BadgedBox(
-                                    badge = { badge.Content() },
+                                OudsBadgedIcon(
+                                    modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
+                                    badgeCount = badge.count,
+                                    badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
                                 ) {
                                     icon.Content()
                                 }
@@ -378,34 +379,7 @@ class OudsNavigationBarItemIcon private constructor(
  * @property contentDescription Content description of the badge, needed for accessibility support (vocalized by Talkback).
  * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.ExtraSmall] size.
  */
-class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null) : OudsComponentContent<Nothing>(Nothing::class.java) {
-
-    @Composable
-    override fun Content(modifier: Modifier) {
-        val status = OudsBadgeStatus.Negative // In a navigation bar a badge has always a negative status.
-        val positionModifier = if (count != null) {
-            Modifier
-        } else {
-            val startPosition = OudsNavigationBarItemIcon.Size / 2
-            val badgeSize = OudsTheme.componentsTokens.badge.sizeXsmall.dp
-            val xOffset = startPosition - badgeSize
-            val yOffset = (startPosition - badgeSize) + 2.dp
-            Modifier.offset(x = xOffset, y = -yOffset)
-        }
-
-        Box(
-            modifier = positionModifier
-                .background(color = OudsTheme.componentsTokens.bar.colorBorderBadge.value, shape = OudsBadgeShape)
-                .padding(1.dp)
-        ) {
-            count?.let {
-                OudsBadge(count = count, modifier = modifier, status = status, size = OudsBadgeSize.Medium)
-            }.orElse {
-                OudsBadge(modifier = modifier, status = status, size = OudsBadgeSize.ExtraSmall)
-            }
-        }
-    }
-}
+data class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null)
 
 internal enum class OudsNavigationBarItemState {
     Enabled, Hovered, Pressed, Focused
@@ -414,7 +388,7 @@ internal enum class OudsNavigationBarItemState {
 @PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
+private fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
     PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount)
 }
 
@@ -422,7 +396,7 @@ internal fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreview
 @Preview(name = "Dark", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
+private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
     PreviewOudsNavigationBarItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), selected = selected)
 }
 

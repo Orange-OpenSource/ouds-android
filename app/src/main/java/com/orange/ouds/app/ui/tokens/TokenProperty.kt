@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.tokens
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.TextStyle
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
@@ -191,7 +192,11 @@ sealed class TokenProperty<T>(
 
     data object Typography : TokenProperty<TokenCategory.Typography>(
         nameRes = null,
-        tokens = getTokens<OudsTypography>(),
+        tokens = getTokens<OudsTypography> { _, parameter ->
+            val parameterClass = parameter.type.classifier as KClass<*>
+            // Filter fontFamily property
+            return@getTokens parameterClass == TextStyle::class
+        },
         categoryClass = TokenCategory.Typography::class
     )
 }

@@ -14,7 +14,6 @@
     <string name="app_name">DesignToolbox</string>
 
     <!-- Common -->
-    <string name="app_common_back_a11y">Back</string>
     <string name="app_common_copyCode_a11y">Copy code</string>
     <string name="app_common_codeCopied_text">Code copied to the clipboard</string>
     <string name="app_common_codeClipData_label" translatable="false">OUDS code</string>
@@ -130,6 +129,7 @@
     <string name="app_components_common_label_label">Label</string>
     <string name="app_components_common_layout_label">Layout</string>
     <string name="app_components_common_loader_label">Loader</string>
+    <string name="app_components_common_none_label">None</string>
     <string name="app_components_common_onColoredBackground_label">On colored background</string>
     <string name="app_components_common_outlined_label">Outlined</string>
     <string name="app_components_common_readOnly_label">Read only</string>
@@ -204,10 +204,9 @@
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_label">Navigation bar</string>
-    <string name="app_components_navigationBar_description_text">Navigation bars let people switch between UI views on smaller devices</string> <!--TODO update with OUDS description-->
+    <string name="app_components_navigationBar_description_text">Navigation bars let people switch between UI views on smaller devices.</string> <!--TODO update with OUDS description-->
     <string name="app_components_navigationBar_itemCount_label">Item count</string>
     <string name="app_components_navigationBar_lastItemBadge_label">Last item badge</string>
-    <string name="app_components_navigationBar_itemBadgeNone_label">None</string>
     <string name="app_components_navigationBar_homeItem_label">Home</string>
     <string name="app_components_navigationBar_shopItem_label">Shop</string>
     <string name="app_components_navigationBar_notificationsItem_label">Notifications</string>
@@ -247,6 +246,27 @@
     <string name="app_components_textInput_suffix_label">Suffix</string>
     <string name="app_components_textInput_placeholder_label">Placeholder</string>
     <string name="app_components_textInput_helperLink_label">Helper link</string>
+
+    <!-- Components: top app bar -->
+    <string name="app_components_topAppBar_label">Top app bar</string>
+    <string name="app_components_topAppBar_description_text">Top app bars display information and actions at the top of a screen.</string> <!--TODO update with OUDS description-->
+    <string name="app_components_topAppBar_firstAction_a11y">First action</string>
+    <string name="app_components_topAppBar_secondAction_a11y">Second action</string>
+    <string name="app_components_topAppBar_smallSize_label">Small</string>
+    <string name="app_components_topAppBar_mediumSize_label">Medium</string>
+    <string name="app_components_topAppBar_largeSize_label">Large</string>
+    <string name="app_components_topAppBar_centerAligned_label">Center aligned</string>
+    <string name="app_components_topAppBar_navigationIcon_label">Navigation icon</string>
+    <string name="app_components_topAppBar_backNavigationIcon_label">Back</string>
+    <string name="app_components_topAppBar_closeNavigationIcon_label">Close</string>
+    <string name="app_components_topAppBar_menuNavigationIcon_label">Menu</string>
+    <string name="app_components_topAppBar_customNavigationIcon_label">Custom</string>
+    <string name="app_components_topAppBar_title_label">Title</string>
+    <string name="app_components_topAppBar_actionIconBadge_label">Action icon badge</string>
+    <string name="app_components_topAppBar_actionAvatar_label">Action avatar</string>
+    <string name="app_components_topAppBar_imageActionAvatar_label">Image</string>
+    <string name="app_components_topAppBar_monogramActionAvatar_label">Monogram</string>
+    <string name="app_components_topAppBar_actionAvatarMonogram_label">Action avatar monogram</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>

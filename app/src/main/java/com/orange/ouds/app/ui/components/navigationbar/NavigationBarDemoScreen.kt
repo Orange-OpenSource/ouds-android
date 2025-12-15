@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui.components.navigationbar
 
 import android.content.Context
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -25,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.ItemBadgeCount
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MaxNavigationBarItemCount
@@ -34,6 +34,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsNavigationBar
@@ -41,7 +42,7 @@ import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemBadge
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun NavigationBarDemoScreen() {
@@ -53,7 +54,8 @@ fun NavigationBarDemoScreen() {
         bottomSheetContent = { NavigationBarDemoBottomSheetContent(state = state) },
         codeSnippet = { navigationBarDemoCodeSnippet(state = state, context = context, themeDrawableResources = themeDrawableResources) },
         demoContent = { NavigationBarDemoContent(state = state) },
-        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none)
+        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
+        version = OudsVersion.Component.Bar
     )
 }
 
@@ -87,9 +89,6 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
             items = navigationBarItems.take(itemCount).mapIndexed { index, item ->
                 val label = stringResource(id = item.labelRes)
                 val isLastItem = index == itemCount - 1
-                val standardBadgeContentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
-                val countBadgeContentDescription =
-                    pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = ItemBadgeCount, ItemBadgeCount)
                 OudsNavigationBarItem(
                     selected = selectedItemId == index,
                     onClick = { selectedItemId = index },
@@ -98,9 +97,9 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     badge = if (isLastItem) {
                         when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null
-                            NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge(standardBadgeContentDescription)
+                            NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge(stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y))
                             NavigationBarDemoState.ItemBadge.Count -> OudsNavigationBarItemBadge(
-                                contentDescription = countBadgeContentDescription,
+                                contentDescription = pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = ItemBadgeCount, ItemBadgeCount),
                                 count = ItemBadgeCount
                             )
                         }
@@ -130,6 +129,15 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
                         }
                         if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
                             functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
+                                when (lastItemBadge) {
+                                    NavigationBarDemoState.ItemBadge.None -> {}
+                                    NavigationBarDemoState.ItemBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
+                                    NavigationBarDemoState.ItemBadge.Count -> contentDescriptionArgument(
+                                        id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                        count = ItemBadgeCount,
+                                        ItemBadgeCount
+                                    )
+                                }
                                 if (lastItemBadge == NavigationBarDemoState.ItemBadge.Count) {
                                     typedArgument("count", ItemBadgeCount)
                                 }
@@ -143,15 +151,15 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
 }
 
 enum class NavigationBarItem(val iconResourceProvider: ThemeDrawableResourceProvider, @StringRes val labelRes: Int) {
-    Home( { it.home }, R.string.app_components_navigationBar_homeItem_label),
-    Notification( { it.notificationAlert }, R.string.app_components_navigationBar_notificationsItem_label),
-    Shop( { it.shop }, R.string.app_components_navigationBar_shopItem_label),
-    Account( { it.avatar }, R.string.app_components_navigationBar_accountItem_label),
-    Settings( { it.settings }, R.string.app_components_navigationBar_settingsItem_label),
+    Home({ it.home }, R.string.app_components_navigationBar_homeItem_label),
+    Notification({ it.notificationAlert }, R.string.app_components_navigationBar_notificationsItem_label),
+    Shop({ it.shop }, R.string.app_components_navigationBar_shopItem_label),
+    Account({ it.avatar }, R.string.app_components_navigationBar_accountItem_label),
+    Settings({ it.settings }, R.string.app_components_navigationBar_settingsItem_label),
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewNavigationBarDemoScreen() = OudsPreview {
+private fun PreviewNavigationBarDemoScreen() = AppPreview {
     NavigationBarDemoScreen()
 }

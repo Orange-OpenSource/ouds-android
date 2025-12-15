@@ -1,0 +1,274 @@
+/*
+ * Software Name: OUDS Android
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
+ *
+ * Software description: Android library of reusable graphical components 
+ */
+
+package com.orange.ouds.app.ui.components.topappbar
+
+import android.R.attr.label
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.colorArgument
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoState.Companion.ActionIconBadgeCount
+import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.nestedName
+import com.orange.ouds.core.component.OudsCenterAlignedTopAppBar
+import com.orange.ouds.core.component.OudsLargeTopAppBar
+import com.orange.ouds.core.component.OudsMediumTopAppBar
+import com.orange.ouds.core.component.OudsTopAppBar
+import com.orange.ouds.core.component.OudsTopAppBarAction
+import com.orange.ouds.core.component.OudsTopAppBarActionBadge
+import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.theme.OudsVersion
+
+@Composable
+fun TopAppBarDemoScreen() {
+    val state = rememberTopAppBarDemoState()
+    val themeDrawableResources = LocalThemeDrawableResources.current
+    DemoScreen(
+        description = stringResource(id = Component.TopAppBar.descriptionRes),
+        bottomSheetContent = { TopAppBarDemoBottomSheetContent(state = state) },
+        codeSnippet = { topAppBarDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
+        demoContent = { TopAppBarDemoContent(state = state) },
+        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
+        version = OudsVersion.Component.Bar
+    )
+}
+
+@Composable
+private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
+    with(state) {
+        CustomizationFilterChips(
+            applyTopPadding = false,
+            label = stringResource(R.string.app_components_common_size_label),
+            chipLabels = TopAppBarDemoState.Size.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = TopAppBarDemoState.Size.entries.indexOf(size),
+            onSelectionChange = { id -> size = TopAppBarDemoState.Size.entries[id] }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_topAppBar_centerAligned_label),
+            checked = centerAligned,
+            onCheckedChange = { centerAligned = it },
+            enabled = centerAlignedSwitchEnabled
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_navigationIcon_label),
+            chipLabels = TopAppBarDemoState.NavigationIcon.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = TopAppBarDemoState.NavigationIcon.entries.indexOf(navigationIcon),
+            onSelectionChange = { id -> navigationIcon = TopAppBarDemoState.NavigationIcon.entries[id] }
+        )
+        CustomizationTextField(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_title_label),
+            value = title,
+            onValueChange = { value -> title = value }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_actionIconBadge_label),
+            chipLabels = TopAppBarDemoState.ActionIconBadge.entries.map { it.name },
+            selectedChipIndex = TopAppBarDemoState.ActionIconBadge.entries.indexOf(actionIconBadge),
+            onSelectionChange = { id -> actionIconBadge = TopAppBarDemoState.ActionIconBadge.entries[id] }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_actionAvatar_label),
+            chipLabels = TopAppBarDemoState.ActionAvatar.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = TopAppBarDemoState.ActionAvatar.entries.indexOf(actionAvatar),
+            onSelectionChange = { id -> actionAvatar = TopAppBarDemoState.ActionAvatar.entries[id] }
+        )
+        CustomizationTextField(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_actionAvatarMonogram_label),
+            value = actionAvatarMonogram.toString().trim(),
+            onValueChange = { value -> actionAvatarMonogram = value.firstOrNull().orElse { ' ' } },
+            enabled = actionAvatarMonogramTextFieldEnabled
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
+    val themeDrawableResources = LocalThemeDrawableResources.current
+    with(state) {
+        val navigationIcon = when (navigationIcon) {
+            TopAppBarDemoState.NavigationIcon.None -> null
+            TopAppBarDemoState.NavigationIcon.Back -> OudsTopAppBarNavigationIcon.Back(onClick = {})
+            TopAppBarDemoState.NavigationIcon.Close -> OudsTopAppBarNavigationIcon.Close(onClick = {})
+            TopAppBarDemoState.NavigationIcon.Menu -> OudsTopAppBarNavigationIcon.Menu(onClick = {})
+            TopAppBarDemoState.NavigationIcon.Custom -> OudsTopAppBarNavigationIcon(
+                painter = painterResource(id = themeDrawableResources.tipsAndTricks),
+                contentDescription = stringResource(R.string.app_components_common_icon_a11y),
+                onClick = {}
+            )
+        }
+
+        val firstAction = OudsTopAppBarAction.Icon(
+            painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+            contentDescription = stringResource(R.string.app_components_topAppBar_firstAction_a11y),
+            badge = when (actionIconBadge) {
+                TopAppBarDemoState.ActionIconBadge.None -> null
+                TopAppBarDemoState.ActionIconBadge.Standard -> OudsTopAppBarActionBadge(contentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y))
+                TopAppBarDemoState.ActionIconBadge.Count -> OudsTopAppBarActionBadge(
+                    contentDescription = pluralStringResource(
+                        id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                        count = ActionIconBadgeCount,
+                        ActionIconBadgeCount
+                    ),
+                    count = ActionIconBadgeCount
+                )
+            },
+            onClick = {}
+        )
+        val secondActionContentDescription = stringResource(R.string.app_components_topAppBar_secondAction_a11y)
+        val secondAction = when (actionAvatar) {
+            TopAppBarDemoState.ActionAvatar.Image -> OudsTopAppBarAction.Avatar(
+                painter = painterResource(id = R.drawable.il_top_app_bar_avatar),
+                contentDescription = secondActionContentDescription,
+                onClick = {}
+            )
+            TopAppBarDemoState.ActionAvatar.Monogram -> OudsTopAppBarAction.Avatar(
+                monogram = actionAvatarMonogram,
+                color = Color.White,
+                backgroundColor = Color(0xff138126),
+                contentDescription = secondActionContentDescription,
+                onClick = {}
+            )
+        }
+        val actions = listOf(firstAction, secondAction)
+
+        when (size) {
+            TopAppBarDemoState.Size.Small -> {
+                if (centerAligned) {
+                    OudsCenterAlignedTopAppBar(
+                        title = title,
+                        navigationIcon = navigationIcon,
+                        actions = actions
+                    )
+                } else {
+                    OudsTopAppBar(
+                        title = title,
+                        navigationIcon = navigationIcon,
+                        actions = actions
+                    )
+                }
+            }
+            TopAppBarDemoState.Size.Medium -> {
+                OudsMediumTopAppBar(
+                    title = title,
+                    navigationIcon = navigationIcon,
+                    actions = actions
+                )
+            }
+            TopAppBarDemoState.Size.Large -> {
+                OudsLargeTopAppBar(
+                    title = title,
+                    navigationIcon = navigationIcon,
+                    actions = actions
+                )
+            }
+        }
+    }
+}
+
+private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, themeDrawableResources: ThemeDrawableResources) {
+    with(state) {
+        val functionName = when (size) {
+            TopAppBarDemoState.Size.Small -> if (centerAligned) "OudsCenterAlignedTopAppBar" else "OudsTopAppBar"
+            TopAppBarDemoState.Size.Medium -> "OudsMediumTopAppBar"
+            TopAppBarDemoState.Size.Large -> "OudsLargeTopAppBar"
+        }
+        functionCall(functionName) {
+            typedArgument("title", title)
+            val navigationIconClass = when (navigationIcon) {
+                TopAppBarDemoState.NavigationIcon.None -> null
+                TopAppBarDemoState.NavigationIcon.Back -> OudsTopAppBarNavigationIcon.Back::class.java
+                TopAppBarDemoState.NavigationIcon.Close -> OudsTopAppBarNavigationIcon.Close::class.java
+                TopAppBarDemoState.NavigationIcon.Menu -> OudsTopAppBarNavigationIcon.Menu::class.java
+                TopAppBarDemoState.NavigationIcon.Custom -> OudsTopAppBarNavigationIcon::class.java
+            }
+            if (navigationIconClass != null) {
+                functionCallArgument("navigationIcon", navigationIconClass.nestedName) {
+                    trailingLambda = navigationIcon != TopAppBarDemoState.NavigationIcon.Custom
+                    if (navigationIcon == TopAppBarDemoState.NavigationIcon.Custom) {
+                        painterArgument(themeDrawableResources.tipsAndTricks)
+                        contentDescriptionArgument(R.string.app_components_common_icon_a11y)
+                    }
+                    onClickArgument()
+                }
+            }
+            functionCallArgument("actions", "listOf") {
+                constructorCallArgument<OudsTopAppBarAction.Icon>(null) {
+                    painterArgument(themeDrawableResources.tipsAndTricks)
+                    contentDescriptionArgument(R.string.app_components_topAppBar_firstAction_a11y)
+                    if (actionIconBadge != TopAppBarDemoState.ActionIconBadge.None) {
+                        functionCallArgument("badge", OudsTopAppBarActionBadge::class.simpleName.orEmpty()) {
+                            when (actionIconBadge) {
+                                TopAppBarDemoState.ActionIconBadge.None -> {}
+                                TopAppBarDemoState.ActionIconBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
+                                TopAppBarDemoState.ActionIconBadge.Count -> contentDescriptionArgument(
+                                    id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                    count = ActionIconBadgeCount,
+                                    ActionIconBadgeCount
+                                )
+                            }
+                            if (actionIconBadge == TopAppBarDemoState.ActionIconBadge.Count) {
+                                typedArgument("count", ActionIconBadgeCount)
+                            }
+                        }
+                    }
+                    onClickArgument()
+                }
+                constructorCallArgument<OudsTopAppBarAction.Avatar>(null) {
+                    when (actionAvatar) {
+                        TopAppBarDemoState.ActionAvatar.Image -> {
+                            painterArgument(R.drawable.il_top_app_bar_avatar)
+                        }
+                        TopAppBarDemoState.ActionAvatar.Monogram -> {
+                            typedArgument("monogram", actionAvatarMonogram)
+                            colorArgument("color", Color.White)
+                            colorArgument("backgroundColor", Color(0xff138126))
+                        }
+                    }
+                    contentDescriptionArgument(R.string.app_components_topAppBar_secondAction_a11y)
+                    onClickArgument()
+                }
+            }
+        }
+    }
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewTopAppBarDemoScreen() = AppPreview {
+    TopAppBarDemoScreen()
+}

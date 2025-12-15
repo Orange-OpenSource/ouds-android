@@ -27,6 +27,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
  * @suppress
  */
 data class OudsTypography(
+    val fontFamily: FontFamily,
     val display: Display,
     val heading: Heading,
     val body: Body,
@@ -100,6 +101,7 @@ data class OudsTypography(
 internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     val lineHeightStyle = LineHeightStyle(alignment = LineHeightStyle.Alignment.Proportional, trim = LineHeightStyle.Trim.None)
     OudsTypography(
+        fontFamily = fontFamily,
         display = OudsTypography.Display(
             large = TextStyle(
                 fontFamily = fontFamily,

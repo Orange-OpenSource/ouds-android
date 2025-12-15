@@ -49,5 +49,4 @@ class OudsBadgeTest {
             internal fun data() = OudsPreviewableComponent.Badge.WithIcon.parameters
         }
     }
-
 }

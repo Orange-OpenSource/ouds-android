@@ -66,6 +66,8 @@ import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsTypography
@@ -75,9 +77,14 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClick: (Long) -> Unit) {
-
     Screen {
-        LazyColumn(contentPadding = PaddingValues(bottom = OudsTheme.spaces.fixed.medium)) {
+        LazyColumn(
+            modifier = Modifier.consumeTopBarsTopWindowInsets(),
+            contentPadding = PaddingValues(
+                top = topBarsTopPadding,
+                bottom = OudsTheme.spaces.fixed.medium
+            )
+        ) {
             item {
                 DetailScreenHeader(
                     description = stringResource(id = tokenCategory.descriptionRes),

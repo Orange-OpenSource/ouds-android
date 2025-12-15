@@ -13,6 +13,10 @@
 <resources>
     <string name="core_common_loading_a11y">Loading</string>
 
+    <string name="core_topAppBar_backNavigationIcon_a11y">Back</string>
+    <string name="core_topAppBar_closeNavigationIcon_a11y">Close</string>
+    <string name="core_topAppBar_menuNavigationIcon_a11y">Menu</string>
+
     <string name="core_textInput_empty_a11y">Empty</string>
     <string name="core_textInput_error_a11y">Error</string>
 

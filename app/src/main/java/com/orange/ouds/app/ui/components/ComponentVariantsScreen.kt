@@ -14,11 +14,18 @@ package com.orange.ouds.app.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -28,13 +35,21 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @Composable
 fun ComponentVariantsScreen(component: Component, onVariantClick: (id: Long) -> Unit) {
     Screen {
-        LazyColumn(contentPadding = PaddingValues(bottom = OudsTheme.spaces.fixed.medium)) {
+        LazyColumn(
+            modifier = Modifier.consumeTopBarsTopWindowInsets(),
+            contentPadding = PaddingValues(
+                top = topBarsTopPadding,
+                bottom = OudsTheme.spaces.fixed.medium
+            )
+        ) {
             item {
                 DetailScreenHeader(
                     modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.medium),
