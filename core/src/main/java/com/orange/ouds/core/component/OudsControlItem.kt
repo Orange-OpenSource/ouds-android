@@ -387,6 +387,8 @@ private fun <T> getHighContrastModePreviewParameterValues(values: List<T>): List
     }
 }
 
+internal class OudsControlItemConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
 /**
  * Error message used in control items previews.
  */

@@ -20,7 +20,6 @@ import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonPreviewParameter
 import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
-import com.orange.ouds.core.component.OudsCheckboxItemConstrainedMaxWidthPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemPreviewParameter
@@ -29,6 +28,7 @@ import com.orange.ouds.core.component.OudsCheckboxPreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxPreviewParameterProvider
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsColoredBoxPreviewParameterProvider
+import com.orange.ouds.core.component.OudsControlItemConstrainedMaxWidthPreviewParameterProvider
 import com.orange.ouds.core.component.OudsDividerColor
 import com.orange.ouds.core.component.OudsDividerOrientation
 import com.orange.ouds.core.component.OudsDividerPreviewParameterProvider
@@ -38,7 +38,6 @@ import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarPreviewParameterProvider
-import com.orange.ouds.core.component.OudsRadioButtonItemConstrainedMaxWidthPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
@@ -47,7 +46,6 @@ import com.orange.ouds.core.component.OudsRadioButtonPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSuggestionChipPreviewParameter
 import com.orange.ouds.core.component.OudsSuggestionChipPreviewParameterProvider
-import com.orange.ouds.core.component.OudsSwitchItemConstrainedMaxWidthPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSwitchItemPreviewParameter
 import com.orange.ouds.core.component.OudsSwitchItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSwitchPreviewParameterProvider
@@ -256,7 +254,7 @@ interface OudsPreviewableComponent {
 
             const val PreviewWidthDp = 600
 
-            override val parameters: List<Any> = OudsCheckboxItemConstrainedMaxWidthPreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsControlItemConstrainedMaxWidthPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
@@ -481,7 +479,7 @@ interface OudsPreviewableComponent {
 
             const val PreviewWidthDp = 600
 
-            override val parameters: List<Any> = OudsRadioButtonItemConstrainedMaxWidthPreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsControlItemConstrainedMaxWidthPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
@@ -571,7 +569,7 @@ interface OudsPreviewableComponent {
 
             const val PreviewWidthDp = 600
 
-            override val parameters: List<Any> = OudsSwitchItemConstrainedMaxWidthPreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsControlItemConstrainedMaxWidthPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {

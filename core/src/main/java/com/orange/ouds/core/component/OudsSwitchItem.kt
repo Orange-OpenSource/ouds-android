@@ -208,7 +208,7 @@ internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContrac
 @Preview(widthDp = OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.PreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsSwitchItemConstrainedMaxWidth(@PreviewParameter(OudsSwitchItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
+internal fun PreviewOudsSwitchItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider ::class) constrainedMaxWidth: Boolean) {
     PreviewOudsSwitchItemConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
 }
 
@@ -226,5 +226,3 @@ internal fun PreviewOudsSwitchItemConstrainedMaxWidth(theme: OudsThemeContract, 
 internal typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
 
 internal class OudsSwitchItemPreviewParameterProvider : OudsControlItemPreviewParameterProvider<Boolean, Nothing>(DefaultBooleanValues)
-
-internal class OudsSwitchItemConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

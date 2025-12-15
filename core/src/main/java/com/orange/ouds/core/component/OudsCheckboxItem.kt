@@ -35,7 +35,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
-import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -324,7 +323,7 @@ internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContr
 @Preview(widthDp = OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.PreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsCheckboxItemConstrainedMaxWidth(@PreviewParameter(OudsCheckboxItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
+internal fun PreviewOudsCheckboxItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
     PreviewOudsCheckboxItemConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
 }
 
@@ -348,5 +347,3 @@ internal typealias OudsCheckboxItemHighContrastModePreviewParameter = OudsContro
 
 internal class OudsCheckboxItemHighContrastModePreviewParameterProvider :
     OudsControlItemHighContrastModePreviewParameterProvider<ToggleableState>(listOf(ToggleableState.Off, ToggleableState.On))
-
-internal class OudsCheckboxItemConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
