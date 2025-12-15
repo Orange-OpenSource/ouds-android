@@ -77,7 +77,6 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
-//TODO update DSM link when available
 /**
  * Top app bars display information and actions at the top of a screen.
  *
@@ -94,7 +93,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsTopAppBar].
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
  * > Design version: 1.0.0
  *
