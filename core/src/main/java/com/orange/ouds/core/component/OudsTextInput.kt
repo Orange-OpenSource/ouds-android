@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import android.R.attr.label
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
@@ -35,7 +34,6 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
-import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldLineLimits
