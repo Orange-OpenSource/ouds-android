@@ -27,7 +27,8 @@ import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
  *
  * @property blurDrag The radius of the blur effect applied to an element when it is being dragged.
  */
-data class OudsEffects(
+@ConsistentCopyVisibility
+data class OudsEffects internal constructor(
     val blurDrag: Int
 )
 

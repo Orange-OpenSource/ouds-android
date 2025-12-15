@@ -30,12 +30,14 @@ import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
  *
  * > Design guidelines: [Typography tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-typography)
  *
+ * @property fontFamily The default font family used for text.
  * @property display Styles for large, prominent text.
  * @property heading Styles for headings and titles.
  * @property body Styles for body text (paragraphs, descriptions).
  * @property label Styles for smaller utility text (e.g., captions, labels).
  */
-data class OudsTypography(
+@ConsistentCopyVisibility
+data class OudsTypography internal constructor(
     val fontFamily: FontFamily,
     val display: Display,
     val heading: Heading,
@@ -49,7 +51,8 @@ data class OudsTypography(
      * @property medium Medium display text style.
      * @property small Small display text style.
      */
-    data class Display(
+    @ConsistentCopyVisibility
+    data class Display internal constructor(
         val large: TextStyle,
         val medium: TextStyle,
         val small: TextStyle
@@ -63,7 +66,8 @@ data class OudsTypography(
      * @property medium Medium heading style.
      * @property small Small heading style.
      */
-    data class Heading(
+    @ConsistentCopyVisibility
+    data class Heading internal constructor(
         val extraLarge: TextStyle,
         val large: TextStyle,
         val medium: TextStyle,
@@ -77,7 +81,8 @@ data class OudsTypography(
      * @property moderate Moderate font weight styles (Medium).
      * @property strong Strong font weight styles (Bold).
      */
-    data class Body(
+    @ConsistentCopyVisibility
+    data class Body internal constructor(
         val default: Default,
         val moderate: Moderate,
         val strong: Strong
@@ -89,7 +94,8 @@ data class OudsTypography(
          * @property medium Medium body text.
          * @property small Small body text.
          */
-        data class Default(
+        @ConsistentCopyVisibility
+        data class Default internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
@@ -102,7 +108,8 @@ data class OudsTypography(
          * @property medium Medium moderate body text.
          * @property small Small moderate body text.
          */
-        data class Moderate(
+        @ConsistentCopyVisibility
+        data class Moderate internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
@@ -115,7 +122,8 @@ data class OudsTypography(
          * @property medium Medium strong body text.
          * @property small Small strong body text.
          */
-        data class Strong(
+        @ConsistentCopyVisibility
+        data class Strong internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
@@ -130,7 +138,8 @@ data class OudsTypography(
      * @property moderate Moderate font weight styles (Medium).
      * @property strong Strong font weight styles (Bold).
      */
-    data class Label(
+    @ConsistentCopyVisibility
+    data class Label internal constructor(
         val default: Default,
         val moderate: Moderate,
         val strong: Strong
@@ -143,7 +152,8 @@ data class OudsTypography(
          * @property medium Medium label text.
          * @property small Small label text.
          */
-        data class Default(
+        @ConsistentCopyVisibility
+        data class Default internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,
@@ -158,7 +168,8 @@ data class OudsTypography(
          * @property medium Medium moderate label text.
          * @property small Small moderate label text.
          */
-        data class Moderate(
+        @ConsistentCopyVisibility
+        data class Moderate internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,
@@ -173,7 +184,8 @@ data class OudsTypography(
          * @property medium Medium strong label text.
          * @property small Small strong label text.
          */
-        data class Strong(
+        @ConsistentCopyVisibility
+        data class Strong internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,

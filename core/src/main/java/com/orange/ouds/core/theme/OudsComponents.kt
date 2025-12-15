@@ -23,7 +23,8 @@ import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
  *
  * @property bar Properties specific to the OUDS bars (e.g. [com.orange.ouds.core.component.OudsTopAppBar] or [com.orange.ouds.core.component.OudsNavigationBar]).
  */
-data class OudsComponents(
+@ConsistentCopyVisibility
+data class OudsComponents internal constructor(
     val bar: Bar
 ) {
 
@@ -33,7 +34,8 @@ data class OudsComponents(
      * @property blurRadius The blur radius applied to the bars background
      * to create the glassmorphism effect.
      */
-    data class Bar(
+    @ConsistentCopyVisibility
+    data class Bar internal constructor(
         val blurRadius: Int
     )
 }

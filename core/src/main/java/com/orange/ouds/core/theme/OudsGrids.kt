@@ -33,7 +33,8 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
  * @property margin The horizontal spacing between the content and the screen edges.
  * @property columnGap The spacing (gutter) between columns.
  */
-data class OudsGrids(
+@ConsistentCopyVisibility
+data class OudsGrids internal constructor(
     val minWidth: Dp,
     val maxWidth: Dp,
     val margin: Dp,
