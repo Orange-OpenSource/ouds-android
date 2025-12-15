@@ -72,7 +72,7 @@ interface OudsThemeContract : Parcelable {
     val elevationTokens: OudsElevationSemanticTokens
 
     /**
-     * The primary font family used in the theme.
+     * The font family used in the theme.
      *
      * Defaults to [FontFamily.Default] (system font).
      * You can provide a custom font family, for example: `FontFamily(Font(R.font.my_custom_font))`.
