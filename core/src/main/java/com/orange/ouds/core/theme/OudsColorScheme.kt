@@ -1843,7 +1843,6 @@ val OudsMaterialColorTokens.materialDarkColorScheme: ColorScheme
  *
  * @suppress
  */
-@Suppress("RecursivePropertyAccessor")
 @InternalOudsApi
 val OudsColorKeyToken.value: Color
     @ReadOnlyComposable
