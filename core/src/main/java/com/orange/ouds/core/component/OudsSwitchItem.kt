@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -27,6 +28,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
@@ -215,11 +217,13 @@ internal fun PreviewOudsSwitchItemConstrainedMaxWidth(@PreviewParameter(OudsCont
 @Composable
 internal fun PreviewOudsSwitchItemConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
     OudsSwitchItem(
+        modifier = Modifier.padding(all = 10.dp),
         checked = true,
         label = "Label",
         onCheckedChange = {},
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
-        constrainedMaxWidth = constrainedMaxWidth
+        constrainedMaxWidth = constrainedMaxWidth,
+        divider = true
     )
 }
 
