@@ -220,7 +220,7 @@ fun OudsThemeTweak(tweak: OudsTheme.Tweak, content: @Composable () -> Unit) {
  * The OUDS theme can be inverted or forced to light/dark modes using [OudsThemeTweak].
  * The value returned by this function reflects these effective changes.
  *
- * If [OudsThemeTweak] is not used in the layout hierarchy, this function returns the same value as [isSystemInDarkTheme].
+ * If [OudsThemeTweak] is not used in the layout hierarchy, this function returns the value of the `darkThemeEnabled` parameter of the root `OudsTheme` method.
  *
  * @return `true` if the effective OUDS theme is dark, `false` otherwise.
  */
