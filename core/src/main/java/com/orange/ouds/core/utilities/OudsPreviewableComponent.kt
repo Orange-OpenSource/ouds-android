@@ -93,8 +93,12 @@ import com.orange.ouds.core.component.PreviewOudsTopAppBar
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
-// This interface and its nested objects allow to use preview methods and parameters in the core-test module while keeping them internal in the core module.
-// This avoids polluting Android Studio code completion with methods and classes related to component previews.
+/**
+ * This interface and its nested objects allow to use preview methods and parameters in the core-test module while keeping them internal in the core module.
+ * This avoids polluting Android Studio code completion with methods and classes related to component previews.
+ *
+ * @suppress
+ */
 @InternalOudsApi
 interface OudsPreviewableComponent {
 

@@ -20,13 +20,19 @@ import com.orange.ouds.theme.tokens.OudsEffectKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
 
 /**
- * @suppress
+ * Holds the visual effects defined in the OUDS theme.
+ *
+ * Visual effects, such as blurs and shadows, add depth and realism to the UI,
+ * helping to define hierarchy and interaction states.
+ *
+ * @property blurDrag The radius of the blur effect applied to an element when it is being dragged.
  */
-data class OudsEffects(
+@ConsistentCopyVisibility
+data class OudsEffects internal constructor(
     val blurDrag: Int
 )
 
-internal fun OudsEffectSemanticTokens.getEffect() = OudsEffects(
+internal fun OudsEffectSemanticTokens.getEffects() = OudsEffects(
     blurDrag = blurDrag,
 )
 
@@ -40,6 +46,8 @@ private fun OudsEffects.fromToken(token: OudsEffectKeyToken): Int {
 
 /**
  * Converts an OUDS effect token to the local effect value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsEffectKeyToken.value: Int

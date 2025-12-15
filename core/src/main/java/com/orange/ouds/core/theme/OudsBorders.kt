@@ -40,14 +40,36 @@ import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import java.util.Locale
 
 /**
- * @suppress
+ * Holds all the border-related properties defined in the OUDS theme.
+ *
+ * Borders are used to define boundaries around UI elements to materialise the visual hierarchy and improve usability.
+ *
+ * > Design guidelines: [Border tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-border)
+ *
+ * @property width Collection of border width values.
+ * @property radius Collection of border radius values.
+ * @property style Collection of border styles (solid, dashed, etc.).
  */
-data class OudsBorders(
+@ConsistentCopyVisibility
+data class OudsBorders internal constructor(
     val width: Width,
     val radius: Radius,
     val style: Style
 ) {
-    data class Width(
+    /**
+     * Represents the available border widths in OUDS.
+     *
+     * @property none Width of 0 dp, used when no border is visible.
+     * @property default The standard border width used for most cases.
+     * @property thin A thinner border width for subtle separations.
+     * @property medium A medium border width for increased visibility.
+     * @property thick A thick border width for emphasis.
+     * @property thicker A very thick border width for strong emphasis.
+     * @property focus The border width used to indicate focus states.
+     * @property focusInset The width of the inner border (inset) used in focus states to create a double-border effect.
+     */
+    @ConsistentCopyVisibility
+    data class Width internal constructor(
         val none: Dp,
         val default: Dp,
         val thin: Dp,
@@ -58,7 +80,18 @@ data class OudsBorders(
         val focusInset: Dp
     )
 
-    data class Radius(
+    /**
+     * Represents the available border radius in OUDS.
+     *
+     * @property none No radius (0 dp), resulting in square corners.
+     * @property default The standard radius used for most components.
+     * @property small A small radius for subtle rounding.
+     * @property medium A medium radius for noticeable rounding.
+     * @property large A large radius for significantly rounded corners.
+     * @property pill A fully rounded radius.
+     */
+    @ConsistentCopyVisibility
+    data class Radius internal constructor(
         val none: Dp,
         val default: Dp,
         val small: Dp,
@@ -67,7 +100,14 @@ data class OudsBorders(
         val pill: Dp
     )
 
-    data class Style(
+    /**
+     * Represents the available border styles in OUDS.
+     *
+     * @property default The standard border style (usually solid).
+     * @property drag The specific border style used when an element is being dragged (often dashed).
+     */
+    @ConsistentCopyVisibility
+    data class Style internal constructor(
         val default: OudsBorderStyle,
         val drag: OudsBorderStyle
     )
@@ -134,6 +174,8 @@ private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Style): OudsBorderSt
 
 /**
  * Converts an OUDS border radius token to the local border radius value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsBorderKeyToken.Radius.value: Dp
@@ -143,6 +185,8 @@ val OudsBorderKeyToken.Radius.value: Dp
 
 /**
  * Converts an OUDS border style token to the local [OudsBorderStyle] value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsBorderKeyToken.Style.value: OudsBorderStyle
@@ -152,6 +196,8 @@ val OudsBorderKeyToken.Style.value: OudsBorderStyle
 
 /**
  * Converts an OUDS border width token to the local border width value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsBorderKeyToken.Width.value: Dp

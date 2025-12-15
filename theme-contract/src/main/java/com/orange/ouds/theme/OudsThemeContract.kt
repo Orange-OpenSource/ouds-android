@@ -29,88 +29,94 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 /**
  * An interface to create an OUDS supported theme.
  *
- * Any values that are not set will inherit the Orange theme.
+ * Implementations of this interface define the look and feel of the application by providing specific token values
+ * (colors, typography, spacing, etc.). Any values not explicitly set will generally rely on abstract definitions,
+ * but typical implementations should provide full sets of tokens.
  */
 interface OudsThemeContract : Parcelable {
 
     /**
-     * The theme display name.
+     * The display name of the theme (e.g., "Orange", "Sosh").
      */
     val name: String
 
     /**
-     * The theme settings.
+     * The general settings for the theme configuration.
      */
     val settings: OudsThemeSettings
 
     /**
-     * Color semantic tokens values used in the theme.
+     * The collection of semantic color tokens used in the theme.
      */
     val colorTokens: OudsColorSemanticTokens
 
     /**
-     * Material color matching used in the theme.
+     * The mapping of OUDS tokens to standard Material 3 color roles.
+     * This ensures compatibility with standard Material components.
      */
     val materialColorTokens: OudsMaterialColorTokens
 
     /**
-     * Border semantic tokens values used in the theme.
+     * The collection of border-related tokens (width, radius, style) used in the theme.
      */
     val borderTokens: OudsBorderSemanticTokens
 
     /**
-     * Effect semantic tokens values used in the theme.
+     * The collection of visual effect tokens (e.g., blurs) used in the theme.
      */
     val effectTokens: OudsEffectSemanticTokens
 
     /**
-     * Elevation semantic tokens values used in the theme.
+     * The collection of elevation tokens (z-index, shadows) used in the theme.
      */
     val elevationTokens: OudsElevationSemanticTokens
 
     /**
-     * Font family used in the theme.
-     * You can provide your own theme font family `FontFamily(Font(R.font.my_theme_font))`.
+     * The font family used in the theme.
+     *
+     * Defaults to [FontFamily.Default] (system font).
+     * You can provide a custom font family, for example: `FontFamily(Font(R.font.my_custom_font))`.
      */
     val fontFamily: FontFamily
         get() = FontFamily.Default
 
     /**
-     * Font semantic tokens values used in the theme.
+     * The collection of typography semantic tokens (font sizes, weights, line heights) used in the theme.
      */
     val fontTokens: OudsFontSemanticTokens
 
     /**
-     * Grid semantic tokens values used in the theme.
+     * The collection of grid layout tokens used in the theme.
      */
     val gridTokens: OudsGridSemanticTokens
 
     /**
-     * Opacity semantic tokens values used in the theme.
+     * The collection of opacity tokens used in the theme.
      */
     val opacityTokens: OudsOpacitySemanticTokens
 
     /**
-     * Size semantic tokens values used in the theme.
+     * The collection of size tokens (icons, constraints) used in the theme.
      */
     val sizeTokens: OudsSizeSemanticTokens
 
     /**
-     * Space semantic tokens values used in the theme.
+     * The collection of spacing tokens (padding, margins, gaps) used in the theme.
      */
     val spaceTokens: OudsSpaceSemanticTokens
 
     /**
-     * Allows customization of OUDS components.
+     * Specific tokens for customizing the internal behavior or style of OUDS components.
      */
     val componentsTokens: OudsComponentsTokens
 
     /**
-     * Allows customization of drawable resources used by OUDS components.
+     * Allows customization of drawable resources used explicitly by OUDS components.
      *
-     * Caution:
+     * **Caution:**
      * To avoid resource conflicts, Android recommends using a prefix or other consistent naming scheme that is unique to the module (or is unique across all project modules).
-     * So, we strongly recommend that you prefix your resources with the name of your theme. For example, if your theme is called "LoremIpsum" you might name your resources as ic_lorem_ipsum_checkbox_selected, ic_lorem_ipsum_chip_tick, etc.
+     * We strongly recommend that you prefix your resources with the theme name.
+     * Example: If your theme is "LoremIpsum", name resources like `ic_lorem_ipsum_checkbox_selected`, `ic_lorem_ipsum_chip_tick`, etc.
      */
     val drawableResources: OudsDrawableResources
 }

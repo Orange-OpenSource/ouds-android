@@ -21,9 +21,23 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
 /**
- * @suppress
+ * Holds the spacing values defined in the OUDS theme.
+ *
+ * Spacing tokens are used to define margins, paddings, and gaps between elements,
+ * ensuring a consistent rhythm and layout structure across the application.
+ *
+ * > Design guidelines: [Space tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-space)
+ *
+ * @property fixed Fixed spacing values that do not change based on screen size.
+ * @property scaled Spacing values that scale adaptively based on the screen size (e.g., Mobile vs Tablet).
+ * @property paddingInline Spacing used for horizontal padding (start/end).
+ * @property paddingBlock Spacing used for vertical padding (top/bottom).
+ * @property inset Spacing used for inset distances (e.g., distance from the edge of a container).
+ * @property columnGap Spacing used for gaps between columns in a grid or layout.
+ * @property rowGap Spacing used for gaps between rows in a grid or layout.
  */
-data class OudsSpaces(
+@ConsistentCopyVisibility
+data class OudsSpaces internal constructor(
     val fixed: Fixed,
     val scaled: Scaled,
     val paddingInline: PaddingInline,
@@ -33,7 +47,24 @@ data class OudsSpaces(
     val rowGap: RowGap
 ) {
 
-    data class Fixed(
+    /**
+     * Fixed spacing values that remain constant regardless of the screen size context.
+     *
+     * @property none 0dp space.
+     * @property threeExtraSmall 3xs space.
+     * @property twoExtraSmall 2xs space.
+     * @property extraSmall Extra small space.
+     * @property small Small space.
+     * @property medium Medium space.
+     * @property large Large space.
+     * @property extraLarge Extra large space.
+     * @property twoExtraLarge 2xl space.
+     * @property threeExtraLarge 3xl space.
+     * @property fourExtraLarge 4xl space.
+     * @property fiveExtraLarge 5xl space.
+     */
+    @ConsistentCopyVisibility
+    data class Fixed internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -48,7 +79,23 @@ data class OudsSpaces(
         val fiveExtraLarge: Dp
     )
 
-    data class Scaled(
+
+    /**
+     * Scaled spacing values that adapt based on the window size class (e.g. larger on tablets).
+     *
+     * @property none 0dp space.
+     * @property threeExtraSmall 3xs scaled space.
+     * @property twoExtraSmall 2xs scaled space.
+     * @property extraSmall Extra small scaled space.
+     * @property small Small scaled space.
+     * @property medium Medium scaled space.
+     * @property large Large scaled space.
+     * @property extraLarge Extra large scaled space.
+     * @property twoExtraLarge 2xl scaled space.
+     * @property threeExtraLarge 3xl scaled space.
+     */
+    @ConsistentCopyVisibility
+    data class Scaled internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -61,7 +108,24 @@ data class OudsSpaces(
         val threeExtraLarge: Dp
     )
 
-    data class PaddingInline(
+    /**
+     * Spacing values specifically designed for inline padding (Start/End).
+     *
+     * @property none 0dp padding.
+     * @property fourExtraSmall 4xs padding.
+     * @property threeExtraSmall 3xs padding.
+     * @property twoExtraSmall 2xs padding.
+     * @property extraSmall Extra small padding.
+     * @property small Small padding.
+     * @property medium Medium padding.
+     * @property large Large padding.
+     * @property extraLarge Extra large padding.
+     * @property twoExtraLarge 2xl padding.
+     * @property threeExtraLarge 3xl padding.
+     * @property fourExtraLarge 4xl padding.
+     */
+    @ConsistentCopyVisibility
+    data class PaddingInline internal constructor(
         val none: Dp,
         val fourExtraSmall: Dp,
         val threeExtraSmall: Dp,
@@ -76,7 +140,25 @@ data class OudsSpaces(
         val fourExtraLarge: Dp,
     )
 
-    data class PaddingBlock(
+
+    /**
+     * Spacing values specifically designed for block padding (Top/Bottom).
+     *
+     * @property none 0dp padding.
+     * @property fourExtraSmall 4xs padding.
+     * @property threeExtraSmall 3xs padding.
+     * @property twoExtraSmall 2xs padding.
+     * @property extraSmall Extra small padding.
+     * @property small Small padding.
+     * @property medium Medium padding.
+     * @property large Large padding.
+     * @property extraLarge Extra large padding.
+     * @property twoExtraLarge 2xl padding.
+     * @property threeExtraLarge 3xl padding.
+     * @property fourExtraLarge 4xl padding.
+     */
+    @ConsistentCopyVisibility
+    data class PaddingBlock internal constructor(
         val none: Dp,
         val fourExtraSmall: Dp,
         val threeExtraSmall: Dp,
@@ -91,7 +173,23 @@ data class OudsSpaces(
         val fourExtraLarge: Dp,
     )
 
-    data class Inset(
+    /**
+     * Spacing values used for inset positioning.
+     *
+     * @property none 0dp inset.
+     * @property fourExtraSmall 4xs inset.
+     * @property threeExtraSmall 3xs inset.
+     * @property twoExtraSmall 2xs inset.
+     * @property extraSmall Extra small inset.
+     * @property small Small inset.
+     * @property medium Medium inset.
+     * @property large Large inset.
+     * @property extraLarge Extra large inset.
+     * @property twoExtraLarge 2xl inset.
+     * @property threeExtraLarge 3xl inset.
+     */
+    @ConsistentCopyVisibility
+    data class Inset internal constructor(
         val none: Dp,
         val fourExtraSmall: Dp,
         val threeExtraSmall: Dp,
@@ -105,7 +203,21 @@ data class OudsSpaces(
         val threeExtraLarge: Dp,
     )
 
-    data class ColumnGap(
+    /**
+     * Spacing values used for gaps between columns.
+     *
+     * @property none 0dp gap.
+     * @property threeExtraSmall 3xs gap.
+     * @property twoExtraSmall 2xs gap.
+     * @property extraSmall Extra small gap.
+     * @property small Small gap.
+     * @property medium Medium gap.
+     * @property large Large gap.
+     * @property extraLarge Extra large gap.
+     * @property twoExtraLarge 2xl gap.
+     */
+    @ConsistentCopyVisibility
+    data class ColumnGap internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -117,7 +229,19 @@ data class OudsSpaces(
         val twoExtraLarge: Dp,
     )
 
-    data class RowGap(
+    /**
+     * Spacing values used for gaps between rows.
+     *
+     * @property none 0dp gap.
+     * @property threeExtraSmall 3xs gap.
+     * @property twoExtraSmall 2xs gap.
+     * @property extraSmall Extra small gap.
+     * @property small Small gap.
+     * @property medium Medium gap.
+     * @property large Large gap.
+     */
+    @ConsistentCopyVisibility
+    data class RowGap internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -337,6 +461,8 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
 
 /**
  * Converts an OUDS space token to the local space value provided by the theme.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsSpaceKeyToken.value: Dp

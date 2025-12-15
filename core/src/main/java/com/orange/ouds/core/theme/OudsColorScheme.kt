@@ -26,9 +26,23 @@ import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 
 /**
- * @suppress
+ * Holds all the colour-related properties defined in the OUDS theme.
+ *
+ * Colour reinforces our brand identity and ensures consistency across all product experiences.
+ *
+ * > Design guidelines: [Color tokens documentation](https://unified-design-system.orange.com/472794e18/p/217ac6-color)
+ *
+ * @property action Colors associated with interactive elements and actions.
+ * @property always Colors that remain constant regardless of the theme (Light/Dark).
+ * @property background Colors used for the underlying layers of the interface.
+ * @property border Colors applied to borders and dividers.
+ * @property content Colors used for text, icons, and other foreground elements.
+ * @property opacity Colors representing various levels of opacity (transparency).
+ * @property overlay Colors used for overlay elements like modals or tooltips.
+ * @property surface Colors used for surface elements like cards or banners.
  */
-data class OudsColorScheme(
+@ConsistentCopyVisibility
+data class OudsColorScheme internal constructor(
     val action: Action,
     val always: Always,
     val background: Background,
@@ -41,7 +55,24 @@ data class OudsColorScheme(
     internal val modes: Modes
 ) {
 
-    data class Action(
+    /**
+     * Colors associated with interactive elements and actions.
+     *
+     * @property disabled Color for disabled interactive elements.
+     * @property enabled Default color for enabled interactive elements.
+     * @property focus Color indicating focus state.
+     * @property highlighted Color for highlighted elements.
+     * @property hover Color for hover state.
+     * @property loading Color used during loading states within actions.
+     * @property negative Colors for destructive or negative actions.
+     * @property pressed Color for pressed state.
+     * @property readOnly Colors for read-only elements.
+     * @property selected Color for selected state.
+     * @property support Colors for supportive or secondary actions.
+     * @property visited Color for visited links.
+     */
+    @ConsistentCopyVisibility
+    data class Action internal constructor(
         val disabled: Color,
         val enabled: Color,
         val focus: Color,
@@ -55,7 +86,18 @@ data class OudsColorScheme(
         val support: Support,
         val visited: Color
     ) {
-        data class Negative(
+
+        /**
+         * Colors for destructive or negative actions.
+         *
+         * @property enabled Default color for negative actions.
+         * @property focus Color for focused negative actions.
+         * @property hover Color for hovered negative actions.
+         * @property loading Color for loading state in negative actions.
+         * @property pressed Color for pressed negative actions.
+         */
+        @ConsistentCopyVisibility
+        data class Negative internal constructor(
             val enabled: Color,
             val focus: Color,
             val hover: Color,
@@ -63,12 +105,30 @@ data class OudsColorScheme(
             val pressed: Color
         )
 
-        data class ReadOnly(
+        /**
+         * Colors for read-only elements.
+         *
+         * @property primary Primary read-only color.
+         * @property secondary Secondary read-only color.
+         */
+        @ConsistentCopyVisibility
+        data class ReadOnly internal constructor(
             val primary: Color,
             val secondary: Color
         )
 
-        data class Support(
+        /**
+         * Colors for supportive or secondary actions.
+         *
+         * @property disabled Color for disabled supportive actions.
+         * @property enabled Default color for supportive actions.
+         * @property focus Color for focused supportive actions.
+         * @property hover Color for hovered supportive actions.
+         * @property loading Color for loading state in supportive actions.
+         * @property pressed Color for pressed supportive actions.
+         */
+        @ConsistentCopyVisibility
+        data class Support internal constructor(
             val disabled: Color,
             val enabled: Color,
             val focus: Color,
@@ -78,14 +138,33 @@ data class OudsColorScheme(
         )
     }
 
-    data class Always(
+    /**
+     * Colors that remain constant regardless of the theme (Light/Dark).
+     *
+     * @property black Absolute black.
+     * @property onBlack Content color on black background.
+     * @property onWhite Content color on white background.
+     * @property white Absolute white.
+     */
+    @ConsistentCopyVisibility
+    data class Always internal constructor(
         val black: Color,
         val onBlack: Color,
         val onWhite: Color,
         val white: Color
     )
 
-    data class Background(
+    /**
+     * Colors used for the underlying layers of the interface.
+     *
+     * @property inverseHigh High contrast inverse background color.
+     * @property inverseLow Low contrast inverse background color.
+     * @property primary Primary background color (page background).
+     * @property secondary Secondary background color.
+     * @property tertiary Tertiary background color.
+     */
+    @ConsistentCopyVisibility
+    data class Background internal constructor(
         val inverseHigh: Color,
         val inverseLow: Color,
         val primary: Color,
@@ -93,7 +172,23 @@ data class OudsColorScheme(
         val tertiary: Color
     )
 
-    data class Border(
+    /**
+     * Colors applied to borders and dividers.
+     *
+     * @property brandPrimary Primary brand border color.
+     * @property brandSecondary Secondary brand border color.
+     * @property brandTertiary Tertiary brand border color.
+     * @property default Default border color.
+     * @property emphasized Emphasized border color for better visibility.
+     * @property focus Border color indicating focus.
+     * @property focusInset Inner border color for focus indication.
+     * @property minimal Minimal visibility border color.
+     * @property muted Muted border color.
+     * @property onBrand Border colors used specifically on brand backgrounds.
+     * @property status Border colors associated with specific statuses.
+     */
+    @ConsistentCopyVisibility
+    data class Border internal constructor(
         val brandPrimary: Color,
         val brandSecondary: Color,
         val brandTertiary: Color,
@@ -106,13 +201,31 @@ data class OudsColorScheme(
         val onBrand: OnBrand,
         val status: Status
     ) {
-        data class OnBrand(
+        /**
+         * Border colors used specifically on brand backgrounds.
+         *
+         * @property primary Primary border on brand background.
+         * @property secondary Secondary border on brand background.
+         * @property tertiary Tertiary border on brand background.
+         */
+        @ConsistentCopyVisibility
+        data class OnBrand internal constructor(
             val primary: Color,
             val secondary: Color,
             val tertiary: Color
         )
 
-        data class Status(
+        /**
+         * Border colors associated with specific statuses.
+         *
+         * @property accent Accent status border.
+         * @property info Info status border.
+         * @property negative Negative/Error status border.
+         * @property positive Positive/Success status border.
+         * @property warning Warning status border.
+         */
+        @ConsistentCopyVisibility
+        data class Status internal constructor(
             val accent: Color,
             val info: Color,
             val negative: Color,
@@ -121,7 +234,24 @@ data class OudsColorScheme(
         )
     }
 
-    data class Content(
+
+    /**
+     * Colors used for text, icons, and other foreground elements.
+     *
+     * @property brandPrimary Primary brand content color.
+     * @property brandSecondary Secondary brand content color.
+     * @property brandTertiary Tertiary brand content color.
+     * @property default Default content color (e.g., main text).
+     * @property disabled Content color for disabled states.
+     * @property inverse Inverse content color for contrast.
+     * @property muted Muted content color (e.g., secondary text).
+     * @property onAction Content colors displayed on top of action backgrounds.
+     * @property onBrand Content colors displayed on top of brand backgrounds.
+     * @property onStatus Content colors displayed on top of status backgrounds.
+     * @property status Content colors representing statuses directly (e.g. colored text).
+     */
+    @ConsistentCopyVisibility
+    data class Content internal constructor(
         val brandPrimary: Color,
         val brandSecondary: Color,
         val brandTertiary: Color,
@@ -134,7 +264,20 @@ data class OudsColorScheme(
         val onStatus: OnStatus,
         val status: Status
     ) {
-        data class OnAction(
+        /**
+         * Content colors displayed on top of action backgrounds.
+         *
+         * @property disabled On-action color for disabled state.
+         * @property enabled On-action color for enabled state.
+         * @property focus On-action color for focused state.
+         * @property highlighted On-action color for highlighted state.
+         * @property hover On-action color for hover state.
+         * @property loading On-action color for loading state.
+         * @property pressed On-action color for pressed state.
+         * @property selected On-action color for selected state.
+         */
+        @ConsistentCopyVisibility
+        data class OnAction internal constructor(
             val disabled: Color,
             val enabled: Color,
             val focus: Color,
@@ -145,46 +288,109 @@ data class OudsColorScheme(
             val selected: Color,
         )
 
-        data class OnBrand(
+        /**
+         * Content colors displayed on top of brand backgrounds.
+         *
+         * @property primary Primary content on brand background.
+         * @property secondary Secondary content on brand background.
+         * @property tertiary Tertiary content on brand background.
+         */
+        @ConsistentCopyVisibility
+        data class OnBrand internal constructor(
             val primary: Color,
             val secondary: Color,
             val tertiary: Color
         )
 
-        data class OnStatus(
+        /**
+         * Content colors displayed on top of status backgrounds.
+         *
+         * @property positive Content on positive status background.
+         * @property info Content on info status background.
+         * @property warning Content on warning status background.
+         * @property negative Content on negative status background.
+         * @property accent Content on accent status background.
+         */
+        @ConsistentCopyVisibility
+        data class OnStatus internal constructor(
             val positive: Positive,
             val info: Info,
             val warning: Warning,
             val negative: Negative,
             val accent: Accent
         ) {
-            data class Positive(
+            /**
+             * Content colors displayed on top of positive status backgrounds.
+             *
+             * @property emphasized Emphasized content color on positive status.
+             * @property muted Muted content color on positive status.
+             */
+            @ConsistentCopyVisibility
+            data class Positive internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
 
-            data class Info(
+            /**
+             * Content colors displayed on top of info status backgrounds.
+             *
+             * @property emphasized Emphasized content color on info status.
+             * @property muted Muted content color on info status.
+             */
+            @ConsistentCopyVisibility
+            data class Info internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
 
-            data class Warning(
+            /**
+             * Content colors displayed on top of warning status backgrounds.
+             *
+             * @property emphasized Emphasized content color on warning status.
+             * @property muted Muted content color on warning status.
+             */
+            @ConsistentCopyVisibility
+            data class Warning internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
 
-            data class Negative(
+            /**
+             * Content colors displayed on top of negative status backgrounds.
+             *
+             * @property emphasized Emphasized content color on negative status.
+             * @property muted Muted content color on negative status.
+             */
+            @ConsistentCopyVisibility
+            data class Negative internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
 
-            data class Accent(
+            /**
+             * Content colors displayed on top of accent status backgrounds.
+             *
+             * @property emphasized Emphasized content color on accent status.
+             * @property muted Muted content color on accent status.
+             */
+            @ConsistentCopyVisibility
+            data class Accent internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
         }
 
-        data class Status(
+        /**
+         * Content colors representing statuses directly (e.g. colored text).
+         *
+         * @property accent Accent status content color.
+         * @property info Info status content color.
+         * @property negative Negative/Error status content color.
+         * @property positive Positive/Success status content color.
+         * @property warning Warning status content color.
+         */
+        @ConsistentCopyVisibility
+        data class Status internal constructor(
             val accent: Color,
             val info: Color,
             val negative: Color,
@@ -193,20 +399,41 @@ data class OudsColorScheme(
         )
     }
 
-    data class Opacity(
+    /**
+     * Colors representing various levels of opacity (transparency).
+     *
+     * @property transparent Fully transparent color.
+     * @property lowest Very high transparency.
+     * @property lower High transparency.
+     */
+    @ConsistentCopyVisibility
+    data class Opacity internal constructor(
         val transparent: Color,
         val lowest: Color,
         val lower: Color
     )
 
-    data class Overlay(
+    /**
+     * Colors used for overlay elements like modals or tooltips.
+     *
+     * @property dropdown Background color for dropdowns.
+     * @property drag Background color for dragged items.
+     * @property modal Background color for modal dialogs (scrim).
+     * @property tooltip Background color for tooltips.
+     */
+    @ConsistentCopyVisibility
+    data class Overlay internal constructor(
         val dropdown: Color,
         val drag: Color,
         val modal: Color,
         val tooltip: Color
     )
 
-    data class Repository(
+    /**
+     * @suppress
+     */
+    @ConsistentCopyVisibility
+    data class Repository internal constructor(
         val accent: Accent,
         val info: Info,
         val negative: Negative,
@@ -218,7 +445,8 @@ data class OudsColorScheme(
         val tertiary: Tertiary,
         val warning: Warning
     ) {
-        data class Accent(
+        @ConsistentCopyVisibility
+        data class Accent internal constructor(
             val high: Color,
             val higher: Color,
             val highest: Color,
@@ -228,7 +456,8 @@ data class OudsColorScheme(
             val medium: Color
         )
 
-        data class Info(
+        @ConsistentCopyVisibility
+        data class Info internal constructor(
             val high: Color,
             val higher: Color,
             val highest: Color,
@@ -238,7 +467,8 @@ data class OudsColorScheme(
             val medium: Color
         )
 
-        data class Negative(
+        @ConsistentCopyVisibility
+        data class Negative internal constructor(
             val high: Color,
             val higher: Color,
             val highest: Color,
@@ -248,11 +478,13 @@ data class OudsColorScheme(
             val medium: Color
         )
 
-        data class Neutral(
+        @ConsistentCopyVisibility
+        data class Neutral internal constructor(
             val emphasized: Emphasized,
             val muted: Muted
         ) {
-            data class Emphasized(
+            @ConsistentCopyVisibility
+            data class Emphasized internal constructor(
                 val black: Color,
                 val high: Color,
                 val higher: Color,
@@ -263,7 +495,8 @@ data class OudsColorScheme(
                 val medium: Color
             )
 
-            data class Muted(
+            @ConsistentCopyVisibility
+            data class Muted internal constructor(
                 val high: Color,
                 val higher: Color,
                 val highest: Color,
@@ -275,7 +508,8 @@ data class OudsColorScheme(
             )
         }
 
-        data class Opacity(
+        @ConsistentCopyVisibility
+        data class Opacity internal constructor(
             val accent: Accent,
             val black: Black,
             val info: Info,
@@ -285,12 +519,14 @@ data class OudsColorScheme(
             val warning: Warning,
             val white: White
         ) {
-            data class Accent(
+            @ConsistentCopyVisibility
+            data class Accent internal constructor(
                 val low: Color,
                 val medium: Color,
             )
 
-            data class Black(
+            @ConsistentCopyVisibility
+            data class Black internal constructor(
                 val high: Color,
                 val higher: Color,
                 val highest: Color,
@@ -303,22 +539,26 @@ data class OudsColorScheme(
                 val transparent: Color
             )
 
-            data class Info(
+            @ConsistentCopyVisibility
+            data class Info internal constructor(
                 val low: Color,
                 val medium: Color,
             )
 
-            data class Negative(
+            @ConsistentCopyVisibility
+            data class Negative internal constructor(
                 val low: Color,
                 val medium: Color,
             )
 
-            data class Positive(
+            @ConsistentCopyVisibility
+            data class Positive internal constructor(
                 val low: Color,
                 val medium: Color,
             )
 
-            data class Primary(
+            @ConsistentCopyVisibility
+            data class Primary internal constructor(
                 val high: Color,
                 val higher: Color,
                 val highest: Color,
@@ -329,12 +569,14 @@ data class OudsColorScheme(
                 val transparent: Color
             )
 
-            data class Warning(
+            @ConsistentCopyVisibility
+            data class Warning internal constructor(
                 val low: Color,
                 val medium: Color,
             )
 
-            data class White(
+            @ConsistentCopyVisibility
+            data class White internal constructor(
                 val high: Color,
                 val higher: Color,
                 val highest: Color,
@@ -347,7 +589,8 @@ data class OudsColorScheme(
             )
         }
 
-        data class Positive(
+        @ConsistentCopyVisibility
+        data class Positive internal constructor(
             val high: Color,
             val higher: Color,
             val highest: Color,
@@ -357,7 +600,8 @@ data class OudsColorScheme(
             val medium: Color
         )
 
-        data class Primary(
+        @ConsistentCopyVisibility
+        data class Primary internal constructor(
             val high: Color,
             val higher: Color,
             val highest: Color,
@@ -367,7 +611,8 @@ data class OudsColorScheme(
             val medium: Color
         )
 
-        data class Secondary(
+        @ConsistentCopyVisibility
+        data class Secondary internal constructor(
             val high: Color,
             val higher: Color,
             val highest: Color,
@@ -377,7 +622,8 @@ data class OudsColorScheme(
             val medium: Color
         )
 
-        data class Tertiary(
+        @ConsistentCopyVisibility
+        data class Tertiary internal constructor(
             val high: Color,
             val higher: Color,
             val highest: Color,
@@ -387,7 +633,8 @@ data class OudsColorScheme(
             val medium: Color
         )
 
-        data class Warning(
+        @ConsistentCopyVisibility
+        data class Warning internal constructor(
             val high: Color,
             val higher: Color,
             val highest: Color,
@@ -398,7 +645,19 @@ data class OudsColorScheme(
         )
     }
 
-    data class Surface(
+    /**
+     * Colors used for surface elements like cards or banners.
+     *
+     * @property brand Surfaces using brand colors.
+     * @property inverseHigh High contrast inverse surface color.
+     * @property inverseLow Low contrast inverse surface color.
+     * @property primary Primary surface color.
+     * @property secondary Secondary surface color.
+     * @property status Surfaces using status colors.
+     * @property tertiary Tertiary surface color.
+     */
+    @ConsistentCopyVisibility
+    data class Surface internal constructor(
         val brand: Brand,
         val inverseHigh: Color,
         val inverseLow: Color,
@@ -407,47 +666,104 @@ data class OudsColorScheme(
         val status: Status,
         val tertiary: Color
     ) {
-        data class Brand(
+        /**
+         * Surfaces using brand colors.
+         *
+         * @property primary Primary brand surface.
+         * @property secondary Secondary brand surface.
+         * @property tertiary Tertiary brand surface.
+         */
+        @ConsistentCopyVisibility
+        data class Brand internal constructor(
             val primary: Color,
             val secondary: Color,
             val tertiary: Color
         )
 
-        data class Status(
+        /**
+         * Surfaces using status colors.
+         *
+         * @property accent Accent status surface colors.
+         * @property info Info status surface colors.
+         * @property negative Negative/Error status surface colors.
+         * @property positive Positive/Success status surface colors.
+         * @property warning Warning status surface colors.
+         */
+        @ConsistentCopyVisibility
+        data class Status internal constructor(
             val accent: Accent,
             val info: Info,
             val negative: Negative,
             val positive: Positive,
             val warning: Warning
         ) {
-            data class Accent(
+            /**
+             * Accent status surface colors.
+             *
+             * @property emphasized Emphasized content color on accent status.
+             * @property muted Muted content color on accent status.
+             */
+            @ConsistentCopyVisibility
+            data class Accent internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
 
-            data class Info(
+            /**
+             * Info status surface colors.
+             *
+             * @property emphasized Emphasized content color on info status.
+             * @property muted Muted content color on info status.
+             */
+            @ConsistentCopyVisibility
+            data class Info internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
 
-            data class Negative(
+            /**
+             * Negative status surface colors.
+             *
+             * @property emphasized Emphasized content color on negative status.
+             * @property muted Muted content color on negative status.
+             */
+            @ConsistentCopyVisibility
+            data class Negative internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
 
-            data class Positive(
+            /**
+             * Positive status surface colors.
+             *
+             * @property emphasized Emphasized content color on positive status.
+             * @property muted Muted content color on positive status.
+             */
+            @ConsistentCopyVisibility
+            data class Positive internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
 
-            data class Warning(
+            /**
+             * Warning status surface colors.
+             *
+             * @property emphasized Emphasized content color on warning status.
+             * @property muted Muted content color on warning status.
+             */
+            @ConsistentCopyVisibility
+            data class Warning internal constructor(
                 val emphasized: Color,
                 val muted: Color
             )
         }
     }
 
-    data class Modes(
+    /**
+     * @suppress
+     */
+    @ConsistentCopyVisibility
+    data class Modes internal constructor(
         val navigationBar: OudsColorMode,
         val onBackground: OnBackground,
         val onBrand: OnBrand,
@@ -456,7 +772,8 @@ data class OudsColorScheme(
         val onSurface: OnSurface,
     ) {
 
-        data class OnBackground(
+        @ConsistentCopyVisibility
+        data class OnBackground internal constructor(
             val inverseHigh: OudsColorMode,
             val inverseLow: OudsColorMode,
             val primary: OudsColorMode,
@@ -464,52 +781,61 @@ data class OudsColorScheme(
             val tertiary: OudsColorMode
         )
 
-        data class OnBrand(
+        @ConsistentCopyVisibility
+        data class OnBrand internal constructor(
             val primary: OudsColorMode,
             val secondary: OudsColorMode,
             val tertiary: OudsColorMode
         )
 
-        data class OnOverlay(
+        @ConsistentCopyVisibility
+        data class OnOverlay internal constructor(
             val dropdown: OudsColorMode,
             val modal: OudsColorMode,
             val tooltip: OudsColorMode
         )
 
-        data class OnStatus(
+        @ConsistentCopyVisibility
+        data class OnStatus internal constructor(
             val accent: Accent,
             val info: Info,
             val negative: Negative,
             val positive: Positive,
             val warning: Warning
         ) {
-            data class Accent(
+            @ConsistentCopyVisibility
+            data class Accent internal constructor(
                 val emphasized: OudsColorMode,
                 val muted: OudsColorMode
             )
 
-            data class Info(
+            @ConsistentCopyVisibility
+            data class Info internal constructor(
                 val emphasized: OudsColorMode,
                 val muted: OudsColorMode
             )
 
-            data class Negative(
+            @ConsistentCopyVisibility
+            data class Negative internal constructor(
                 val emphasized: OudsColorMode,
                 val muted: OudsColorMode
             )
 
-            data class Positive(
+            @ConsistentCopyVisibility
+            data class Positive internal constructor(
                 val emphasized: OudsColorMode,
                 val muted: OudsColorMode
             )
 
-            data class Warning(
+            @ConsistentCopyVisibility
+            data class Warning internal constructor(
                 val emphasized: OudsColorMode,
                 val muted: OudsColorMode
             )
         }
 
-        data class OnSurface(
+        @ConsistentCopyVisibility
+        data class OnSurface internal constructor(
             val inverseHigh: OudsColorMode,
             val inverseLow: OudsColorMode,
             val primary: OudsColorMode,
@@ -1514,8 +1840,9 @@ val OudsMaterialColorTokens.materialDarkColorScheme: ColorScheme
 
 /**
  * Converts an OUDS color token to the local color value provided by the theme.
+ *
+ * @suppress
  */
-@Suppress("RecursivePropertyAccessor")
 @InternalOudsApi
 val OudsColorKeyToken.value: Color
     @ReadOnlyComposable

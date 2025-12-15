@@ -15,6 +15,9 @@ package com.orange.ouds.theme
 import androidx.annotation.DrawableRes
 import com.orange.ouds.foundation.InternalOudsApi
 
+/**
+ * @suppress
+ */
 @InternalOudsApi
 interface OudsDrawableResources {
     val component: Component
