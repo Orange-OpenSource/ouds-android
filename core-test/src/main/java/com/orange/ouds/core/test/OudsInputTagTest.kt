@@ -14,7 +14,7 @@ package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 
-class OudsInputTagTest : OudsComponentSnapshotTest(
+internal class OudsInputTagTest : OudsComponentSnapshotTest(
     OudsPreviewableComponent.InputTag,
     parameter = null,
     OudsComponentTestSuite.theme

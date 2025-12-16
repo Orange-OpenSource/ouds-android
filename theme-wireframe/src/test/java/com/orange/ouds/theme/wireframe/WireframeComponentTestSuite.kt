@@ -15,7 +15,7 @@ package com.orange.ouds.theme.wireframe
 import com.orange.ouds.core.test.OudsComponentTestSuite
 import org.junit.BeforeClass
 
-class WireframeComponentTestSuite : OudsComponentTestSuite() {
+internal class WireframeComponentTestSuite : OudsComponentTestSuite() {
 
     companion object {
 

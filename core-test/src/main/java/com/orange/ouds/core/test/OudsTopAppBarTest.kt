@@ -19,7 +19,7 @@ import org.junit.runners.Parameterized
 
 
 @RunWith(Enclosed::class)
-class OudsTopAppBarTest() {
+internal class OudsTopAppBarTest() {
 
     @RunWith(Parameterized::class)
     class Default(parameter: Any) : OudsComponentSnapshotTest(

@@ -17,7 +17,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsNavigationBarTest(parameter: Any) : OudsComponentSnapshotTest(
+internal class OudsNavigationBarTest(parameter: Any) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.NavigationBar,
     parameter,
     OudsComponentTestSuite.theme
@@ -31,7 +31,7 @@ class OudsNavigationBarTest(parameter: Any) : OudsComponentSnapshotTest(
 }
 
 @RunWith(Parameterized::class)
-class OudsNavigationBarItemTest(parameter: Any) : OudsComponentSnapshotTest(
+internal class OudsNavigationBarItemTest(parameter: Any) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.NavigationBarItem,
     parameter,
     OudsComponentTestSuite.theme,

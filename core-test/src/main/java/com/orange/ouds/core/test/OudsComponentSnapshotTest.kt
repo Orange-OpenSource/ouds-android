@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.theme.OudsThemeContract
 
-abstract class OudsComponentSnapshotTest(
+internal abstract class OudsComponentSnapshotTest(
     val previewableComponent: OudsPreviewableComponent,
     val parameter: Any?,
     theme: OudsThemeContract,
