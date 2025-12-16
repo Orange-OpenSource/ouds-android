@@ -58,7 +58,7 @@ fun ColoredBackgroundDemoScreen() {
 @Composable
 private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemoState) {
     with(state) {
-        val colors = OudsColoredBoxColor.entries.filter { it.mode.isSupported }
+        val colors = OudsColoredBoxColor.entries.filter { it.isSupported }
         CustomizationDropdownMenu(
             applyTopPadding = false,
             label = stringResource(id = R.string.app_components_coloredBackground_color_label),
@@ -83,7 +83,7 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
 @Composable
 private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
     with(state) {
-        if (!color.mode.isSupported) {
+        if (!color.isSupported) {
             Toast.makeText(
                 LocalContext.current,
                 stringResource(id = R.string.app_components_coloredBackground_unsupportedColor_text, color.name.toSentenceCase()),

@@ -758,12 +758,9 @@ data class OudsColorScheme internal constructor(
             )
         }
     }
-
-    /**
-     * @suppress
-     */
+    
     @ConsistentCopyVisibility
-    data class Modes internal constructor(
+    internal data class Modes internal constructor(
         val navigationBar: OudsColorMode,
         val onBackground: OnBackground,
         val onBrand: OnBrand,

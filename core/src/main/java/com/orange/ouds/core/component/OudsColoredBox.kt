@@ -197,8 +197,12 @@ enum class OudsColoredBoxColor {
                 SurfaceTertiary -> OudsColorKeyToken.Surface.Tertiary
             }.value
         }
+    
+    val isSupported: Boolean
+        @Composable
+        get() = mode.isSupported
 
-    val mode: OudsColorMode
+    internal val mode: OudsColorMode
         @Composable
         get() {
             return with(OudsTheme.colorScheme.modes) {
