@@ -18,7 +18,7 @@ package com.orange.ouds.theme.orange.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.tokens.raw.OudsElevationRawTokens
 
-data class OrangeElevationSemanticTokens(
+internal data class OrangeElevationSemanticTokens(
     override val default: Float = OudsElevationRawTokens.Elevation2,
     override val drag: Float = OudsElevationRawTokens.Elevation4,
     override val emphasized: Float = OudsElevationRawTokens.Elevation5,

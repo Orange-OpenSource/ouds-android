@@ -20,7 +20,7 @@ import com.orange.ouds.theme.orange.tokens.raw.OrangeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class OrangeColorRepositorySemanticTokens(
+internal data class OrangeColorRepositorySemanticTokens(
     override val repositoryAccentHigh: Color = Color.Unspecified,
     override val repositoryAccentHigher: Color = OrangeColorRawTokens.ColorWarmGray900,
     override val repositoryAccentHighest: Color = OrangeColorRawTokens.ColorWarmGray1000,

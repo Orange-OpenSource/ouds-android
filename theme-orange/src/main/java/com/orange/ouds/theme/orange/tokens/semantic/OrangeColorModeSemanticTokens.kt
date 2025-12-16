@@ -17,7 +17,7 @@ package com.orange.ouds.theme.orange.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsColorModeSemanticTokens
 
-data class OrangeColorModeSemanticTokens(
+internal data class OrangeColorModeSemanticTokens(
     override val navigationBarDark: String = "dark",
     override val navigationBarLight: String = "dark",
     override val onBgInverseHighDark: String = "light",

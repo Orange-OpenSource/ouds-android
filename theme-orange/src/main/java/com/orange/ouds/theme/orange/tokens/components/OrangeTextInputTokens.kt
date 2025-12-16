@@ -22,7 +22,7 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class OrangeTextInputTokens(
+internal data class OrangeTextInputTokens(
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Small,
     override val borderWidthDefault: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Default,

@@ -22,7 +22,7 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class OrangeChipTokens(
+internal data class OrangeChipTokens(
     override val badgeColorBg: OudsColorKeyToken = OudsColorKeyToken.Surface.InverseHigh,
     override val badgeColorContent: OudsColorKeyToken = OudsColorKeyToken.Content.Inverse,
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
