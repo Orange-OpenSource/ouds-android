@@ -39,7 +39,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * Best suited for category-based filters that do not require additional visual elements.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/14bf4bd854)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
  *
  * > Design version: 1.3.0
  *
@@ -89,7 +89,7 @@ fun OudsFilterChip(
  * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/14bf4bd854)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
  *
  * > Design version: 1.3.0
  *
@@ -139,7 +139,7 @@ fun OudsFilterChip(
  * Ideal when a visual cue helps reinforce the filter’s meaning.
  * Other layouts are available for this component: *text only* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/14bf4bd854)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
  *
  * > Design version: 1.3.0
  *

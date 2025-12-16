@@ -59,7 +59,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * enter, comma, or tab), each value is transformed into a tag.
  * Input tags are often used for adding labels, categories, or participants. They typically support editing, removing, and validating individual tags.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/7565ce-tag/t/697817ca4d)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-input-tag)
  *
  * > Design version: 1.4.0
  *
@@ -170,7 +170,7 @@ fun OudsInputTag(
  * enter, comma, or tab), each value is transformed into a tag.
  * Input tags are often used for adding labels, categories, or participants. They typically support editing, removing, and validating individual tags.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-input-tag)
  *
  * > Design version: 1.4.0
  *

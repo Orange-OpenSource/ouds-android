@@ -77,7 +77,7 @@ import kotlin.enums.enumEntries
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge)
  *
  * > Design version: 1.2.0
  *
@@ -118,7 +118,7 @@ fun OudsBadge(
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge/t/7f61fd0dac)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge-count)
  *
  * > Design version: 1.2.0
  *
@@ -165,7 +165,7 @@ fun OudsBadge(
  * See [BadgedBox] for a top level layout that will properly place the badge relative to content
  * such as text or an icon.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/698ea8-badge/t/cb0a05d005)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge-icon)
  *
  * > Design version: 1.2.0
  *

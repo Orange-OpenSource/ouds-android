@@ -98,7 +98,6 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 
-// TODO: Update documentation URL once it is available
 /**
  * A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental
  * form elements used to capture user input such as names, emails, passwords, or search queries.
@@ -108,7 +107,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
  *
@@ -225,7 +224,6 @@ fun OudsTextInput(
     )
 }
 
-// TODO: Update documentation URL once it is available
 /**
  * A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental
  * form elements used to capture user input such as names, emails, passwords, or search queries.
@@ -235,7 +233,7 @@ fun OudsTextInput(
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
  *
@@ -347,7 +345,6 @@ fun OudsTextInput(
     )
 }
 
-// TODO: Update documentation URL once it is available
 /**
  * A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental
  * form elements used to capture user input such as names, emails, passwords, or search queries.
@@ -357,7 +354,7 @@ fun OudsTextInput(
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
  *
