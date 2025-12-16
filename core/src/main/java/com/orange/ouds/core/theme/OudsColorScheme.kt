@@ -30,7 +30,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
  *
  * Colour reinforces our brand identity and ensures consistency across all product experiences.
  *
- * > Design guidelines: [Color tokens documentation](https://unified-design-system.orange.com/472794e18/p/217ac6-color)
+ * > Design guidelines: [Color tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-color)
  *
  * @property action Colors associated with interactive elements and actions.
  * @property always Colors that remain constant regardless of the theme (Light/Dark).

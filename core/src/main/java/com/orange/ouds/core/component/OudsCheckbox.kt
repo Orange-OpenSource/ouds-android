@@ -66,7 +66,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * The **standalone checkbox variant** is used when the checkbox input is nested within another component and an alternative label is provided. For example,
  * a checkbox can be used in a data table where its purpose is clear from its position or its connection to other items in the same row or column.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox))
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
  *
  * > Design version: 2.4.0
  *
