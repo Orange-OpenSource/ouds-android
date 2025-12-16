@@ -15,8 +15,11 @@
 
 package com.orange.ouds.theme.tokens.components
 
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
+/** @suppress */
+@InternalOudsApi
 interface OudsBulletListTokens {
     val spaceColumnGapBodyLarge: OudsSpaceKeyToken.ColumnGap
     val spaceColumnGapBodyMedium: OudsSpaceKeyToken.ColumnGap

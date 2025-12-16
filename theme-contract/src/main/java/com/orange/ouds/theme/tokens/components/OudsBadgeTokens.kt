@@ -15,8 +15,11 @@
 
 package com.orange.ouds.theme.tokens.components
 
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
+/** @suppress */
+@InternalOudsApi
 interface OudsBadgeTokens {
     val sizeLarge: Float
     val sizeMedium: Float

@@ -12,6 +12,10 @@
 
 package com.orange.ouds.theme.tokens
 
+import com.orange.ouds.foundation.InternalOudsApi
+
+/** @suppress */
+@InternalOudsApi
 sealed interface OudsKeyToken {
 
     val name: String

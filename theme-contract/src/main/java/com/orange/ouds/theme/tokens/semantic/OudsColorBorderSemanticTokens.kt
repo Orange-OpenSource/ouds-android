@@ -16,7 +16,10 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.foundation.InternalOudsApi
 
+/** @suppress */
+@InternalOudsApi
 interface OudsColorBorderSemanticTokens {
     val borderBrandPrimaryDark: Color
     val borderBrandPrimaryLight: Color
