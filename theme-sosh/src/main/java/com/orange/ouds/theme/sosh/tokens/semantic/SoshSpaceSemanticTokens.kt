@@ -18,7 +18,7 @@ package com.orange.ouds.theme.sosh.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class SoshSpaceSemanticTokens(
+internal data class SoshSpaceSemanticTokens(
     override val columnGap2xlarge: Float = OudsDimensionRawTokens.Dimension300,
     override val columnGap2xsmall: Float = OudsDimensionRawTokens.Dimension50,
     override val columnGap3xsmall: Float = OudsDimensionRawTokens.DimensionOutOfSystem50,

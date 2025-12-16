@@ -30,7 +30,7 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
-data class SoshComponentsTokens(
+internal data class SoshComponentsTokens(
     override val badge: OudsBadgeTokens = SoshBadgeTokens(),
     override val bar: OudsBarTokens = SoshBarTokens(),
     override val button: OudsButtonTokens = SoshButtonTokens(),

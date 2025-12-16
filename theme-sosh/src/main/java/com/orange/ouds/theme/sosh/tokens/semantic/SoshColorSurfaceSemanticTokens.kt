@@ -20,7 +20,7 @@ import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class SoshColorSurfaceSemanticTokens(
+internal data class SoshColorSurfaceSemanticTokens(
     override val surfaceBrandPrimaryDark: Color = SoshColorRawTokens.ColorMagenta300,
     override val surfaceBrandPrimaryLight: Color = SoshColorRawTokens.ColorMagenta500,
     override val surfaceBrandSecondaryDark: Color = SoshColorRawTokens.ColorBlueDuckLight800,

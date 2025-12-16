@@ -20,7 +20,7 @@ import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class SoshColorOverlaySemanticTokens(
+internal data class SoshColorOverlaySemanticTokens(
     override val overlayDragDark: Color = OudsColorRawTokens.ColorOpacityWhite80,
     override val overlayDragLight: Color = OudsColorRawTokens.ColorOpacityBlack40,
     override val overlayDropdownDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark560,
