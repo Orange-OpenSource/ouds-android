@@ -42,7 +42,7 @@ import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.component.OudsLinkArrow
+import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
@@ -131,7 +131,7 @@ fun DividerIllustration() = ComponentIllustration {
 fun LinkIllustration() = ComponentIllustration {
     OudsLink(
         label = stringResource(id = R.string.app_components_common_label_label),
-        arrow = OudsLinkArrow.Next,
+        chevron = OudsLinkChevron.Next,
         onClick = {}
     )
 }

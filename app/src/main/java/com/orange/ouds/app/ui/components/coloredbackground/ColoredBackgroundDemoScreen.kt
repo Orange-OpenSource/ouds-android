@@ -41,7 +41,7 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.component.OudsLinkArrow
+import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
@@ -112,7 +112,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
                 )
                 OudsLink(
                     label = stringResource(id = R.string.app_components_link_label),
-                    arrow = OudsLinkArrow.Next,
+                    chevron = OudsLinkChevron.Next,
                     onClick = {},
                 )
             }
@@ -139,7 +139,7 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
                         }
                         functionCall("OudsLink") {
                             labelArgument(R.string.app_components_link_label)
-                            typedArgument("arrow", OudsLinkArrow.Next)
+                            typedArgument("chevron", OudsLinkChevron.Next)
                             onClickArgument {}
                         }
                     }

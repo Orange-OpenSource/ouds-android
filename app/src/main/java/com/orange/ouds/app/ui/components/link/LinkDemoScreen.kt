@@ -32,7 +32,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.component.OudsLinkArrow
+import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.component.OudsLinkIcon
 import com.orange.ouds.core.component.OudsLinkSize
 import com.orange.ouds.theme.OudsVersion
@@ -109,19 +109,19 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     size = size
                 )
             }
-            LinkDemoState.Layout.ArrowBack -> {
+            LinkDemoState.Layout.ChevronBack -> {
                 OudsLink(
                     label = label,
-                    arrow = OudsLinkArrow.Back,
+                    chevron = OudsLinkChevron.Back,
                     onClick = {},
                     enabled = enabled,
                     size = size
                 )
             }
-            LinkDemoState.Layout.ArrowNext -> {
+            LinkDemoState.Layout.ChevronNext -> {
                 OudsLink(
                     label = label,
-                    arrow = OudsLinkArrow.Next,
+                    chevron = OudsLinkChevron.Next,
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -143,8 +143,8 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                             painterArgument(themeDrawableResources.tipsAndTricks)
                         }
                     }
-                    LinkDemoState.Layout.ArrowBack -> typedArgument("arrow", OudsLinkArrow.Back)
-                    LinkDemoState.Layout.ArrowNext -> typedArgument("arrow", OudsLinkArrow.Next)
+                    LinkDemoState.Layout.ChevronBack -> typedArgument("chevron", OudsLinkChevron.Back)
+                    LinkDemoState.Layout.ChevronNext -> typedArgument("chevron", OudsLinkChevron.Next)
                 }
                 onClickArgument()
                 enabledArgument(enabled)
