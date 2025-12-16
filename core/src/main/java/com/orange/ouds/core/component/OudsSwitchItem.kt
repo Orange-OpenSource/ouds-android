@@ -223,6 +223,7 @@ internal fun PreviewOudsSwitchItemConstrainedMaxWidth(theme: OudsThemeContract, 
         onCheckedChange = {},
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
         constrainedMaxWidth = constrainedMaxWidth,
+        edgeToEdge = false,
         divider = true
     )
 }
