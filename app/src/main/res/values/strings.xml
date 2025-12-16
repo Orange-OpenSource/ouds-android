@@ -249,25 +249,25 @@
     <string name="app_components_textInput_helperLink_label" translatable="false">Helper link</string>
 
     <!-- Components: top app bar -->
-    <string name="app_components_topAppBar_label">Top app bar</string>
+    <string name="app_components_topAppBar_label" translatable="false">Top app bar</string>
     <string name="app_components_topAppBar_description_text">Top app bars display information and actions at the top of a screen.</string> <!--TODO update with OUDS description-->
     <string name="app_components_topAppBar_firstAction_a11y">First action</string>
     <string name="app_components_topAppBar_secondAction_a11y">Second action</string>
-    <string name="app_components_topAppBar_smallSize_label">Small</string>
-    <string name="app_components_topAppBar_mediumSize_label">Medium</string>
-    <string name="app_components_topAppBar_largeSize_label">Large</string>
-    <string name="app_components_topAppBar_centerAligned_label">Center aligned</string>
-    <string name="app_components_topAppBar_navigationIcon_label">Navigation icon</string>
-    <string name="app_components_topAppBar_backNavigationIcon_label">Back</string>
-    <string name="app_components_topAppBar_closeNavigationIcon_label">Close</string>
-    <string name="app_components_topAppBar_menuNavigationIcon_label">Menu</string>
-    <string name="app_components_topAppBar_customNavigationIcon_label">Custom</string>
-    <string name="app_components_topAppBar_title_label">Title</string>
-    <string name="app_components_topAppBar_actionIconBadge_label">Action icon badge</string>
-    <string name="app_components_topAppBar_actionAvatar_label">Action avatar</string>
-    <string name="app_components_topAppBar_imageActionAvatar_label">Image</string>
-    <string name="app_components_topAppBar_monogramActionAvatar_label">Monogram</string>
-    <string name="app_components_topAppBar_actionAvatarMonogram_label">Action avatar monogram</string>
+    <string name="app_components_topAppBar_smallSize_label" translatable="false">Small</string>
+    <string name="app_components_topAppBar_mediumSize_label" translatable="false">Medium</string>
+    <string name="app_components_topAppBar_largeSize_label" translatable="false">Large</string>
+    <string name="app_components_topAppBar_centerAligned_label" translatable="false">Center aligned</string>
+    <string name="app_components_topAppBar_navigationIcon_label" translatable="false">Navigation icon</string>
+    <string name="app_components_topAppBar_backNavigationIcon_label" translatable="false">Back</string>
+    <string name="app_components_topAppBar_closeNavigationIcon_label" translatable="false">Close</string>
+    <string name="app_components_topAppBar_menuNavigationIcon_label" translatable="false">Menu</string>
+    <string name="app_components_topAppBar_customNavigationIcon_label" translatable="false">Custom</string>
+    <string name="app_components_topAppBar_title_label" translatable="false">Title</string>
+    <string name="app_components_topAppBar_actionIconBadge_label" translatable="false">Action icon badge</string>
+    <string name="app_components_topAppBar_actionAvatar_label" translatable="false">Action avatar</string>
+    <string name="app_components_topAppBar_imageActionAvatar_label" translatable="false">Image</string>
+    <string name="app_components_topAppBar_monogramActionAvatar_label" translatable="false">Monogram</string>
+    <string name="app_components_topAppBar_actionAvatarMonogram_label" translatable="false">Action avatar monogram</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>

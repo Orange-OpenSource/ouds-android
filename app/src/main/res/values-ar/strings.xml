@@ -150,25 +150,9 @@
     <string name="app_components_textInput_trailingAction_a11y">وصف محتوى أيقونة النهاية</string>
 
     <!-- Components: top app bar -->
-    <string name="app_components_topAppBar_label">Top app bar</string>
-    <string name="app_components_topAppBar_description_text">Top app bars display information and actions at the top of a screen.</string> <!--TODO update with OUDS description-->
-    <string name="app_components_topAppBar_firstAction_a11y">First action</string>
-    <string name="app_components_topAppBar_secondAction_a11y">Second action</string>
-    <string name="app_components_topAppBar_smallSize_label">Small</string>
-    <string name="app_components_topAppBar_mediumSize_label">Medium</string>
-    <string name="app_components_topAppBar_largeSize_label">Large</string>
-    <string name="app_components_topAppBar_centerAligned_label">Center aligned</string>
-    <string name="app_components_topAppBar_navigationIcon_label">Navigation icon</string>
-    <string name="app_components_topAppBar_backNavigationIcon_label">Back</string>
-    <string name="app_components_topAppBar_closeNavigationIcon_label">Close</string>
-    <string name="app_components_topAppBar_menuNavigationIcon_label">Menu</string>
-    <string name="app_components_topAppBar_customNavigationIcon_label">Custom</string>
-    <string name="app_components_topAppBar_title_label">Title</string>
-    <string name="app_components_topAppBar_actionIconBadge_label">Action icon badge</string>
-    <string name="app_components_topAppBar_actionAvatar_label">Action avatar</string>
-    <string name="app_components_topAppBar_imageActionAvatar_label">Image</string>
-    <string name="app_components_topAppBar_monogramActionAvatar_label">Monogram</string>
-    <string name="app_components_topAppBar_actionAvatarMonogram_label">Avatar monogram</string>
+    <string name="app_components_topAppBar_description_text">ُعرض Top app bars المعلومات والإجراءات في أعلى الشاشة.</string> <!--TODO update with OUDS description-->
+    <string name="app_components_topAppBar_firstAction_a11y">الإجراء الأول</string>
+    <string name="app_components_topAppBar_secondAction_a11y">الإجراء الثاني</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
