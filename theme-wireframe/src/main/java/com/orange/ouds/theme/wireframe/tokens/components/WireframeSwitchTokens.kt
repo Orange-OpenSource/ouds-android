@@ -24,7 +24,7 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class WireframeSwitchTokens(
+internal data class WireframeSwitchTokens(
     override val borderRadiusCursor: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Small,
     override val borderRadiusTrack: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val colorCheck: OudsColorKeyToken = OudsColorKeyToken.Action.Selected,

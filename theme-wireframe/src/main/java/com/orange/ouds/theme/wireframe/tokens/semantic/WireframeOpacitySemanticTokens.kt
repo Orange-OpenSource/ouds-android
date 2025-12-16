@@ -18,7 +18,7 @@ package com.orange.ouds.theme.wireframe.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.tokens.raw.OudsOpacityRawTokens
 
-data class WireframeOpacitySemanticTokens(
+internal data class WireframeOpacitySemanticTokens(
     override val disabled: Float = OudsOpacityRawTokens.Opacity200,
     override val invisible: Float = OudsOpacityRawTokens.Opacity0,
     override val medium: Float = OudsOpacityRawTokens.Opacity560,

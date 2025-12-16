@@ -20,7 +20,7 @@ import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class WireframeColorOverlaySemanticTokens(
+internal data class WireframeColorOverlaySemanticTokens(
     override val overlayDragDark: Color = WireframeColorRawTokens.ColorOpacityWhite80,
     override val overlayDragLight: Color = WireframeColorRawTokens.ColorOpacityBlack40,
     override val overlayDropdownDark: Color = WireframeColorRawTokens.ColorFunctionalGrayDark560,

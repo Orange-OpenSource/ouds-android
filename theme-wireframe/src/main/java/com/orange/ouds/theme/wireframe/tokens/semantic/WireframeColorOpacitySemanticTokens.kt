@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
 
-data class WireframeColorOpacitySemanticTokens(
+internal data class WireframeColorOpacitySemanticTokens(
     override val opacityLowerDark: Color = WireframeColorRawTokens.ColorOpacityWhite80,
     override val opacityLowerLight: Color = WireframeColorRawTokens.ColorOpacityBlack80,
     override val opacityLowestDark: Color = WireframeColorRawTokens.ColorOpacityWhite40,

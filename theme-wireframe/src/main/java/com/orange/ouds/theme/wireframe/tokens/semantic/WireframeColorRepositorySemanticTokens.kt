@@ -20,7 +20,7 @@ import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class WireframeColorRepositorySemanticTokens(
+internal data class WireframeColorRepositorySemanticTokens(
     override val repositoryAccentHigh: Color = Color.Unspecified,
     override val repositoryAccentHigher: Color = WireframeColorRawTokens.ColorRustyRed900,
     override val repositoryAccentHighest: Color = WireframeColorRawTokens.ColorRustyRed1000,

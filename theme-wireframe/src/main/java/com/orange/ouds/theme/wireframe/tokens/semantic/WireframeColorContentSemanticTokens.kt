@@ -20,7 +20,7 @@ import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorContentSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class WireframeColorContentSemanticTokens(
+internal data class WireframeColorContentSemanticTokens(
     override val contentBrandPrimaryDark: Color = WireframeColorRawTokens.ColorRoyalBlue300,
     override val contentBrandPrimaryLight: Color = WireframeColorRawTokens.ColorRoyalBlue600,
     override val contentBrandSecondaryDark: Color = WireframeColorRawTokens.ColorRustyRed400,

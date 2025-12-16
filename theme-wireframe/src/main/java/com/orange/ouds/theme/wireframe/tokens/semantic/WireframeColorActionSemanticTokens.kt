@@ -20,7 +20,7 @@ import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class WireframeColorActionSemanticTokens(
+internal data class WireframeColorActionSemanticTokens(
     override val actionDisabledDark: Color = WireframeColorRawTokens.ColorOpacityWhite200,
     override val actionDisabledLight: Color = WireframeColorRawTokens.ColorOpacityBlack200,
     override val actionEnabledDark: Color = WireframeColorRawTokens.ColorRoyalBlue300,

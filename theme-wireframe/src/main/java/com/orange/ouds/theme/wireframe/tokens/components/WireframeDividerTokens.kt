@@ -18,6 +18,6 @@ package com.orange.ouds.theme.wireframe.tokens.components
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 
-data class WireframeDividerTokens(
+internal data class WireframeDividerTokens(
     override val borderWidth: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Thin
 ) : OudsDividerTokens

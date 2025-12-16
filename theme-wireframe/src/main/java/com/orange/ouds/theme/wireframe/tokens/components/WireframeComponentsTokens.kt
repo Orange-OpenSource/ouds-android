@@ -30,7 +30,7 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
-data class WireframeComponentsTokens(
+internal data class WireframeComponentsTokens(
     override val badge: OudsBadgeTokens = WireframeBadgeTokens(),
     override val bar: OudsBarTokens = WireframeBarTokens(),
     override val button: OudsButtonTokens = WireframeButtonTokens(),
