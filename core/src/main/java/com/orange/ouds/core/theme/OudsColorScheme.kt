@@ -433,7 +433,7 @@ data class OudsColorScheme internal constructor(
      * @suppress
      */
     @ConsistentCopyVisibility
-    data class Repository internal constructor(
+    internal data class Repository internal constructor(
         val accent: Accent,
         val info: Info,
         val negative: Negative,
@@ -758,7 +758,7 @@ data class OudsColorScheme internal constructor(
             )
         }
     }
-    
+
     @ConsistentCopyVisibility
     internal data class Modes internal constructor(
         val navigationBar: OudsColorMode,
@@ -1755,7 +1755,7 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
     }
 }
 
-val OudsMaterialColorTokens.materialLightColorScheme: ColorScheme
+internal val OudsMaterialColorTokens.materialLightColorScheme: ColorScheme
     get() = lightColorScheme(
         primary = primaryLight,
         onPrimary = onPrimaryLight,
@@ -1795,7 +1795,7 @@ val OudsMaterialColorTokens.materialLightColorScheme: ColorScheme
         surfaceTint = surfaceTintLight,
     )
 
-val OudsMaterialColorTokens.materialDarkColorScheme: ColorScheme
+internal val OudsMaterialColorTokens.materialDarkColorScheme: ColorScheme
     get() = darkColorScheme(
         primary = primaryDark,
         onPrimary = onPrimaryDark,

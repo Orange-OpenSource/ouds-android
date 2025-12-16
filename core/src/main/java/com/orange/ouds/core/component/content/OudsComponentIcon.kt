@@ -31,7 +31,7 @@ import com.orange.ouds.foundation.extensions.orElse
  *
  * @suppress
  */
-abstract class OudsComponentIcon<T, S> protected constructor(
+abstract class OudsComponentIcon<T, S> internal constructor(
     extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
     private val contentDescriptionProvider: @Composable (S) -> String,
