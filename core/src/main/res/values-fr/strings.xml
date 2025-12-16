@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Software Name: OUDS Android
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
+
+<resources>
+    <string name="core_common_loading_a11y">Chargement</string>
+
+    <string name="core_topAppBar_backNavigationIcon_a11y">Retour</string>
+    <string name="core_topAppBar_closeNavigationIcon_a11y">Fermer</string>
+    <string name="core_topAppBar_menuNavigationIcon_a11y">Menu</string>
+
+    <string name="core_textInput_empty_a11y">Vide</string>
+    <string name="core_textInput_error_a11y">Erreur</string>
+
+</resources>
