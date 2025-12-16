@@ -39,6 +39,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import com.orange.ouds.core.component.common.OudsError
@@ -75,6 +76,7 @@ internal fun OudsControlItem(
     modifier: Modifier = Modifier,
     contentModifier: Modifier = Modifier,
     extraLabel: String? = null,
+    constrainedMaxWidth: Boolean = false,
     handleHighContrastMode: Boolean = false
 ) {
     val previewState = getPreviewEnumEntry<OudsControlState>()
@@ -125,7 +127,7 @@ internal fun OudsControlItem(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
                     .heightIn(min = controlItemTokens.sizeMinHeight.dp)
-                    .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = controlItemTokens.sizeMaxWidth.dp)
+                    .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = if (constrainedMaxWidth) controlItemTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .background(color = backgroundColor, shape = shape)
                     .then(contentModifier)
                     .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
@@ -384,6 +386,8 @@ private fun <T> getHighContrastModePreviewParameterValues(values: List<T>): List
         }
     }
 }
+
+internal class OudsControlItemConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 /**
  * Error message used in control items previews.

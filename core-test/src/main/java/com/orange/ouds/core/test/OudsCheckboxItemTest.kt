@@ -59,4 +59,18 @@ class OudsCheckboxItemTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    @RunWith(Parameterized::class)
+    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.parameters
+        }
+    }
 }

@@ -45,4 +45,18 @@ class OudsTextInputTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    @RunWith(Parameterized::class)
+    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TextInput.ConstrainedMaxWidth,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.parameters
+        }
+    }
 }

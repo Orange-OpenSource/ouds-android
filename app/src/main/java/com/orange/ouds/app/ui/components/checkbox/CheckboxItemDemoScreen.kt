@@ -78,7 +78,8 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    constrainedMaxWidth = constrainedMaxWidth
                 )
             }
         }
@@ -112,7 +113,8 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    constrainedMaxWidth = constrainedMaxWidth
                 )
             }
         }

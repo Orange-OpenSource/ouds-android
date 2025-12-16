@@ -59,4 +59,18 @@ class OudsRadioButtonItemTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    @RunWith(Parameterized::class)
+    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth.parameters
+        }
+    }
 }

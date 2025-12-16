@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.components.controlitem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
@@ -42,7 +43,8 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
         { ControlItemErrorCustomization(state = state) },
         { ControlItemErrorMessageCustomization(state = state) },
         { ControlItemLabelCustomization(state = state) },
-        { ControlItemDescriptionCustomization(state = state) }
+        { ControlItemDescriptionCustomization(state = state) },
+        { ControlItemConstrainedMaxWidthCustomization(state = state) }
     )
     extraCustomizations.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -168,6 +170,17 @@ private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     }
 }
 
+@Composable
+private fun ControlItemConstrainedMaxWidthCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_constrainedMaxWidth_label),
+            checked = constrainedMaxWidth,
+            onCheckedChange = { constrainedMaxWidth = it },
+        )
+    }
+}
+
 fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) =
     with(state) {
         labelArgument(label)
@@ -187,4 +200,5 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
                 typedArgument("message", if (hasErrorMessage) errorMessage else "")
             }
         }
+        if (constrainedMaxWidth) constrainedMaxWidthArgument(constrainedMaxWidth)
     }

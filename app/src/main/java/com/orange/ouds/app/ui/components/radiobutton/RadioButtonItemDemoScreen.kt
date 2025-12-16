@@ -101,7 +101,8 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    constrainedMaxWidth = constrainedMaxWidth
                 )
             }
         }

@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -28,10 +29,12 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
@@ -67,6 +70,9 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param readOnly Controls the read-only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
  *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
  * @param error Optional [OudsError] to indicate that the checkbox item should appear in error state, `null` otherwise.
+ * @param constrainedMaxWidth When `true`, the item width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -86,6 +92,7 @@ fun OudsCheckboxItem(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsTriStateCheckboxItem(
@@ -103,6 +110,7 @@ fun OudsCheckboxItem(
         enabled = enabled,
         readOnly = readOnly,
         error = error,
+        constrainedMaxWidth = constrainedMaxWidth,
         interactionSource = interactionSource
     )
 }
@@ -143,6 +151,9 @@ fun OudsCheckboxItem(
  * @param readOnly Controls the read-only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
  *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
  * @param error Optional [OudsError] to indicate that the checkbox item should appear in error state, `null` otherwise.
+ * @param constrainedMaxWidth When `true`, the item width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that
  *   if `null` is provided, interactions will still happen internally.
  *
@@ -162,6 +173,7 @@ fun OudsTriStateCheckboxItem(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -210,7 +222,8 @@ fun OudsTriStateCheckboxItem(
         modifier = modifier
             .then(toggleableModifier)
             .semantics(mergeDescendants = true) {},
-        handleHighContrastMode = true
+        handleHighContrastMode = true,
+        constrainedMaxWidth = constrainedMaxWidth
     )
 }
 
@@ -307,6 +320,27 @@ internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContr
             error = OudsError(ControlItemErrorMessage),
         )
     }
+}
+
+@Preview(widthDp = OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.PreviewWidthDp)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsCheckboxItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
+    PreviewOudsCheckboxItemConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
+}
+
+@Composable
+internal fun PreviewOudsCheckboxItemConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
+    OudsCheckboxItem(
+        modifier = Modifier.padding(all = 10.dp),
+        checked = true,
+        label = "Label",
+        onCheckedChange = {},
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+        constrainedMaxWidth = constrainedMaxWidth,
+        edgeToEdge = false,
+        divider = true
+    )
 }
 
 internal typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewParameter<ToggleableState, Nothing>
