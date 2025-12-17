@@ -108,8 +108,6 @@
 
     <!-- Components: chip -->
     <string name="app_components_chip_description_text">تساعد Chips   المستخدمين على إدخال المعلومات، القيام باختيارات، تصفية المحتوى، أو تنفيذ إجراءات.</string>
-    <string name="app_components_chip_filterChip_chipContent_label">تصفية</string>
-    <string name="app_components_chip_suggestionChip_chipContent_label">اقتراح</string>
 
     <!-- Components: colored background -->
     <string name="app_components_coloredBackground_description_text">تستخدم Colored backgrounds ألوانًا محددة لتعزيز التباين مع المحتوى. يتكيف العديد من المكونات مثل الأزرار أو الروابط مع العرض وفقًا لذلك عند عرضها على خلفيات ملونة.</string>

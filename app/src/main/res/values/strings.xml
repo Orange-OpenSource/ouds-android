@@ -174,9 +174,7 @@
     <string name="app_components_chip_label" translatable="false">Chip</string>
     <string name="app_components_chip_description_text">Chips help people enter information, make selections, filter content, or trigger actions.</string>
     <string name="app_components_chip_filterChip_label" translatable="false">Filter chip</string>
-    <string name="app_components_chip_filterChip_chipContent_label">Filter</string>
     <string name="app_components_chip_suggestionChip_label" translatable="false">Suggestion chip</string>
-    <string name="app_components_chip_suggestionChip_chipContent_label">Suggestion</string>
 
     <!-- Components: colored background -->
     <string name="app_components_coloredBackground_label" translatable="false">Colored background</string>
