@@ -150,12 +150,12 @@
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
     <plurals name="app_about_issues_label">
-        <item quantity="zero">صفر </item>
-        <item quantity="one">واحد </item>
-        <item quantity="two">اثنان </item>
-        <item quantity="few">قليل </item>
-        <item quantity="many">كثير </item>
-        <item quantity="other">أخرى </item>
+        <item quantity="zero">صفر\u0020</item>
+        <item quantity="one">واحد\u0020</item>
+        <item quantity="two">اثنان\u0020</item>
+        <item quantity="few">قليل\u0020</item>
+        <item quantity="many">كثير\u0020</item>
+        <item quantity="other">أخرى\u0020</item>
     </plurals>
     <string name="app_about_issueNumber_label">#%s</string>
     <string name="app_about_tokensVersion_label">إصدار الرموز %s</string>
