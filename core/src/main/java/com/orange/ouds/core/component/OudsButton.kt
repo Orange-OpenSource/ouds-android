@@ -65,7 +65,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -483,11 +482,11 @@ private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonS
                 }.value
                 OudsButtonAppearance.Minimal -> when (state) {
                     OudsButtonState.Enabled,
-                    OudsButtonState.Disabled -> Color.Transparent
+                    OudsButtonState.Disabled,
+                    OudsButtonState.Loading -> Color.Transparent
                     OudsButtonState.Focused -> colorBgMinimalFocus.value
                     OudsButtonState.Hovered -> colorBgMinimalHover.value
                     OudsButtonState.Pressed -> colorBgMinimalPressed.value
-                    OudsButtonState.Loading -> if (isOudsInDarkTheme()) OudsTheme.colorScheme.repository.opacity.black.higher else OudsTheme.colorScheme.repository.opacity.white.higher
                 }
                 OudsButtonAppearance.Strong -> when (state) {
                     OudsButtonState.Enabled -> colorBgStrongEnabled
@@ -514,11 +513,11 @@ private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonS
                 }.value
                 OudsButtonAppearance.Minimal -> when (state) {
                     OudsButtonState.Enabled,
-                    OudsButtonState.Disabled -> Color.Transparent
+                    OudsButtonState.Disabled,
+                    OudsButtonState.Loading -> Color.Transparent
                     OudsButtonState.Focused -> colorBgMinimalFocus.value
                     OudsButtonState.Hovered -> colorBgMinimalHover.value
                     OudsButtonState.Pressed -> colorBgMinimalPressed.value
-                    OudsButtonState.Loading -> OudsTheme.colorScheme.action.support.loading
                 }
                 OudsButtonAppearance.Strong -> when (state) {
                     OudsButtonState.Enabled -> OudsTheme.colorScheme.action.enabled
