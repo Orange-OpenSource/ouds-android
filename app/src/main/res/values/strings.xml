@@ -95,10 +95,10 @@
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_label" translatable="false">Size</string>
     <string name="app_tokens_dimension_size_description_text">Size refers to the specific measurements used to define the dimensions of UI elements within the design system.</string>
-    <string name="app_tokens_dimension_size_iconDecorative_label">Icon decorative</string>
-    <string name="app_tokens_dimension_size_iconWith_label">Icon with</string>
-    <string name="app_tokens_dimension_size_maxWidth_label">Max width</string>
-    <string name="app_tokens_dimension_size_minInteractiveArea_label">Min interactive area</string>
+    <string name="app_tokens_dimension_size_iconDecorative_label" translatable="false">Icon decorative</string>
+    <string name="app_tokens_dimension_size_iconWith_label" translatable="false">Icon with</string>
+    <string name="app_tokens_dimension_size_maxWidth_label" translatable="false">Max width</string>
+    <string name="app_tokens_dimension_size_minInteractiveArea_label" translatable="false">Min interactive area</string>
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_label" translatable="false">Elevation</string>
@@ -145,7 +145,7 @@
     </plurals>
     <string name="app_components_common_unreadNotificationsBadge_a11y">Unread notifications</string>
     <string name="app_components_common_version_label">Component design version</string>
-    <string name="app_components_textInputHelperText_label">Helper text.</string>
+    <string name="app_components_textInputHelperText_label" translatable="false">Helper text.</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label" translatable="false">Badge</string>

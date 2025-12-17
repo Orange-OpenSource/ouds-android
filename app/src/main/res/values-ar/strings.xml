@@ -68,10 +68,6 @@
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_description_text">يشير الحجم إلى القياسات المحددة التي تُستخدم لتعريف أبعاد عناصر واجهة المستخدم داخل نظام التصميم.</string>
-    <string name="app_tokens_dimension_size_iconDecorative_label">رمز زخرفي</string>
-    <string name="app_tokens_dimension_size_iconWith_label">رمز مع نص</string>
-    <string name="app_tokens_dimension_size_maxWidth_label">الحد الأقصى للعرض</string>
-    <string name="app_tokens_dimension_size_minInteractiveArea_label">الحد الأقصى للعرض</string>
 
     <!-- Tokens: elevation -->
     <string name="app_tokens_elevation_description_text">الظلال تستخدم لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا إلى تصميماتنا.</string>
@@ -98,7 +94,6 @@
         <item quantity="many">%d رسائل غير مقروءة</item>
     </plurals>
     <string name="app_components_common_version_label">نسخة تصميم المكون</string>
-    <string name="app_components_textInputHelperText_label">نص المساعدة</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
