@@ -11,7 +11,7 @@
   -->
 
 <resources>
-    <string name="app_name">DesignToolbox</string>
+    <string name="app_name" translatable="false">DesignToolbox</string>
 
     <!-- Common -->
     <string name="app_common_copyCode_a11y">Copy code</string>
