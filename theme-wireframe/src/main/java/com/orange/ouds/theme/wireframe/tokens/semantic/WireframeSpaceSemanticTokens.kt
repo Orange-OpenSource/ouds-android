@@ -18,7 +18,7 @@ package com.orange.ouds.theme.wireframe.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class WireframeSpaceSemanticTokens(
+internal data class WireframeSpaceSemanticTokens(
     override val columnGap2xlarge: Float = OudsDimensionRawTokens.Dimension300,
     override val columnGap2xsmall: Float = OudsDimensionRawTokens.Dimension50,
     override val columnGap3xsmall: Float = OudsDimensionRawTokens.DimensionOutOfSystem50,

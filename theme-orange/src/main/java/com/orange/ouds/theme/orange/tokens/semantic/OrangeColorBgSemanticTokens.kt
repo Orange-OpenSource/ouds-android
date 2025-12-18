@@ -20,7 +20,7 @@ import com.orange.ouds.theme.orange.tokens.raw.OrangeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class OrangeColorBgSemanticTokens(
+internal data class OrangeColorBgSemanticTokens(
     override val bgInverseHighDark: Color = OudsColorRawTokens.ColorFunctionalGrayLight160,
     override val bgInverseHighLight: Color = OudsColorRawTokens.ColorFunctionalGrayDark880,
     override val bgInverseLowDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark640,

@@ -20,7 +20,7 @@ import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class WireframeColorBgSemanticTokens(
+internal data class WireframeColorBgSemanticTokens(
     override val bgInverseHighDark: Color = WireframeColorRawTokens.ColorFunctionalGrayLight160,
     override val bgInverseHighLight: Color = WireframeColorRawTokens.ColorFunctionalGrayDark800,
     override val bgInverseLowDark: Color = WireframeColorRawTokens.ColorFunctionalGrayDark720,

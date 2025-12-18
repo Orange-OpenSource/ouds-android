@@ -20,7 +20,7 @@ import com.orange.ouds.theme.orange.tokens.raw.OrangeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class OrangeColorSurfaceSemanticTokens(
+internal data class OrangeColorSurfaceSemanticTokens(
     override val surfaceBrandPrimaryDark: Color = OrangeColorRawTokens.ColorOrange500,
     override val surfaceBrandPrimaryLight: Color = OrangeColorRawTokens.ColorOrange500,
     override val surfaceBrandSecondaryDark: Color = Color.Unspecified,

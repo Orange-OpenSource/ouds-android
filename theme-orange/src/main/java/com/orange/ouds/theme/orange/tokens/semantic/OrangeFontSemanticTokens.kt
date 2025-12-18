@@ -18,7 +18,7 @@ package com.orange.ouds.theme.orange.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.tokens.raw.OudsFontRawTokens
 
-data class OrangeFontSemanticTokens(
+internal data class OrangeFontSemanticTokens(
     override val letterSpacingBodyLargeMobile: Float = OudsFontRawTokens.FontLetterSpacing250,
     override val letterSpacingBodyLargeTablet: Float = OudsFontRawTokens.FontLetterSpacing250,
     override val letterSpacingBodyMediumMobile: Float = OudsFontRawTokens.FontLetterSpacing200,

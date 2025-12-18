@@ -17,7 +17,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsSuggestionChipTest(parameter: Any) : OudsComponentSnapshotTest(
+internal class OudsSuggestionChipTest(parameter: Any) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.SuggestionChip,
     parameter,
     OudsComponentTestSuite.theme

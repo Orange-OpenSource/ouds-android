@@ -18,7 +18,7 @@ package com.orange.ouds.theme.sosh.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.tokens.raw.OudsOpacityRawTokens
 
-data class SoshOpacitySemanticTokens(
+internal data class SoshOpacitySemanticTokens(
     override val disabled: Float = OudsOpacityRawTokens.Opacity200,
     override val invisible: Float = OudsOpacityRawTokens.Opacity0,
     override val medium: Float = OudsOpacityRawTokens.Opacity560,

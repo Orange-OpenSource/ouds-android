@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 
-data class OrangeCheckboxTokens(
+internal data class OrangeCheckboxTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val borderWidthSelected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     override val borderWidthSelectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,

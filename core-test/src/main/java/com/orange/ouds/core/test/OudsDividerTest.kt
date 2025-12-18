@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
-class OudsDividerTest() {
+internal class OudsDividerTest() {
 
     @RunWith(Parameterized::class)
     class Horizontal(parameter: Any) : OudsComponentSnapshotTest(

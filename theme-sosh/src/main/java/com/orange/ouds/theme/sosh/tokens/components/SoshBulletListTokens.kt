@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class SoshBulletListTokens(
+internal data class SoshBulletListTokens(
     override val spaceColumnGapBodyLarge: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,
     override val spaceColumnGapBodyMedium: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,
     override val spacePaddingBlockBodyLarge: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall,

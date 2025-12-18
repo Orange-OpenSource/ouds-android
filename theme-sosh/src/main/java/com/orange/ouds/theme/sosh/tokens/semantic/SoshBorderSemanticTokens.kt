@@ -18,7 +18,7 @@ package com.orange.ouds.theme.sosh.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.tokens.raw.OudsBorderRawTokens
 
-data class SoshBorderSemanticTokens(
+internal data class SoshBorderSemanticTokens(
     override val radiusDefault: Float = OudsBorderRawTokens.BorderRadius100,
     override val radiusLarge: Float = OudsBorderRawTokens.BorderRadius300,
     override val radiusMedium: Float = OudsBorderRawTokens.BorderRadius200,

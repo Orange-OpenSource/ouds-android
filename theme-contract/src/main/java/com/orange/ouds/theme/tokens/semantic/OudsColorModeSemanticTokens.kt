@@ -15,6 +15,10 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
+import com.orange.ouds.foundation.InternalOudsApi
+
+/** @suppress */
+@InternalOudsApi
 interface OudsColorModeSemanticTokens {
     val navigationBarDark: String
     val navigationBarLight: String

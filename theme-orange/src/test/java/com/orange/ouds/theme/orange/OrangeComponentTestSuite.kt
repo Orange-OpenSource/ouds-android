@@ -15,7 +15,7 @@ package com.orange.ouds.theme.orange
 import com.orange.ouds.core.test.OudsComponentTestSuite
 import org.junit.BeforeClass
 
-class OrangeComponentTestSuite : OudsComponentTestSuite() {
+internal class OrangeComponentTestSuite : OudsComponentTestSuite() {
 
     companion object {
 

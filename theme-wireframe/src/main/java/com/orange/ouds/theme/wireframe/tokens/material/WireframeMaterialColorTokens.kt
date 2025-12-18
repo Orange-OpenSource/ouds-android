@@ -20,7 +20,7 @@ import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class WireframeMaterialColorTokens(
+internal data class WireframeMaterialColorTokens(
     override val backgroundDark: Color = WireframeColorRawTokens.ColorFunctionalGrayDark880,
     override val backgroundLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
     override val errorContainerDark: Color = OudsColorRawTokens.ColorFunctionalScarlet900,

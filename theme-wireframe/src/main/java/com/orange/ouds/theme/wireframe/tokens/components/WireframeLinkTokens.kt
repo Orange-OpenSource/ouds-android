@@ -21,7 +21,7 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class WireframeLinkTokens(
+internal data class WireframeLinkTokens(
     override val colorChevronEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
     override val colorChevronFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
     override val colorChevronHover: OudsColorKeyToken = OudsColorKeyToken.Action.Hover,

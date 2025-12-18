@@ -12,13 +12,18 @@
 
 package com.orange.ouds.theme.tokens
 
+import com.orange.ouds.foundation.InternalOudsApi
+
 /**
  * A color key token which aggregates two color key tokens, with one being used for the light theme and the other for the dark theme.
  *
  * @property light The color key token used for the light theme.
  * @property dark The color key token used for the dark theme.
  * @constructor Creates an instance of [OudsLightDarkColorKeyToken].
+ *
+ * @suppress
  */
+@InternalOudsApi
 data class OudsLightDarkColorKeyToken(val light: OudsColorKeyToken, val dark: OudsColorKeyToken) : OudsColorKeyToken {
 
     init {
@@ -26,8 +31,4 @@ data class OudsLightDarkColorKeyToken(val light: OudsColorKeyToken, val dark: Ou
             throw IllegalArgumentException("Light and dark key tokens cannot be of type ${OudsLightDarkColorKeyToken::class.simpleName}.")
         }
     }
-}
-
-enum class Mode {
-    Dark, Light
 }

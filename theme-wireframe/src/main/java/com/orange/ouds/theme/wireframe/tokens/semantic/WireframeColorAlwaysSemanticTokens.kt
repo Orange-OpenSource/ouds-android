@@ -20,7 +20,7 @@ import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-data class WireframeColorAlwaysSemanticTokens(
+internal data class WireframeColorAlwaysSemanticTokens(
     override val alwaysBlack: Color = WireframeColorRawTokens.ColorFunctionalGrayDark960,
     override val alwaysOnBlack: Color = WireframeColorRawTokens.ColorFunctionalGrayLight160,
     override val alwaysOnWhite: Color = WireframeColorRawTokens.ColorFunctionalGrayDark960,

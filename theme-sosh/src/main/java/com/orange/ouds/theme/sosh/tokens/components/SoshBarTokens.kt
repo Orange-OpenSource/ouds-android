@@ -24,7 +24,7 @@ import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 
-data class SoshBarTokens(
+internal data class SoshBarTokens(
     override val borderRadiusActiveIndicatorCustomBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val borderRadiusActiveIndicatorCustomTop: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val colorActiveIndicatorAndroidSelectedDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,

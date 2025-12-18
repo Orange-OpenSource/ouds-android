@@ -22,7 +22,7 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class SoshLinkTokens(
+internal data class SoshLinkTokens(
     override val colorChevronEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
     override val colorChevronFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Enabled,
     override val colorChevronHover: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Content.BrandPrimary, OudsColorKeyToken.Action.Enabled),

@@ -18,7 +18,7 @@ package com.orange.ouds.theme.sosh.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class SoshSizeSemanticTokens(
+internal data class SoshSizeSemanticTokens(
     override val iconDecorative2xlarge: Float = OudsDimensionRawTokens.Dimension900,
     override val iconDecorative2xsmall: Float = OudsDimensionRawTokens.Dimension200,
     override val iconDecorative3xsmall: Float = OudsDimensionRawTokens.Dimension150,

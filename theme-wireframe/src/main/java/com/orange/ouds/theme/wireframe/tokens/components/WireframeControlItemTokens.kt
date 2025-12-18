@@ -22,7 +22,7 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-data class WireframeControlItemTokens(
+internal data class WireframeControlItemTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val borderRadiusItemOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val colorBgFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Focus,

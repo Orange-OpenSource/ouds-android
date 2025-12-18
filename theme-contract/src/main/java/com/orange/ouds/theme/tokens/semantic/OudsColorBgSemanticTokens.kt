@@ -16,7 +16,10 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.foundation.InternalOudsApi
 
+/** @suppress */
+@InternalOudsApi
 interface OudsColorBgSemanticTokens {
     val bgInverseHighDark: Color
     val bgInverseHighLight: Color

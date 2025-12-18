@@ -24,7 +24,7 @@ import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 
-data class OrangeBarTokens(
+internal data class OrangeBarTokens(
     override val borderRadiusActiveIndicatorCustomBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val borderRadiusActiveIndicatorCustomTop: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val colorActiveIndicatorAndroidSelectedDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,

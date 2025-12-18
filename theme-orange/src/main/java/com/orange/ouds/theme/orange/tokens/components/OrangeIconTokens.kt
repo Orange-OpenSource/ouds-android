@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 
-data class OrangeIconTokens(
+internal data class OrangeIconTokens(
     override val colorContentDefault: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.Lower),
     override val colorContentStatusWarningExternalShape: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Warning.Medium, OudsColorKeyToken.Repository.Warning.Low),
     override val colorContentStatusWarningInternalShape: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Warning.High, OudsColorKeyToken.Opacity.Transparent)

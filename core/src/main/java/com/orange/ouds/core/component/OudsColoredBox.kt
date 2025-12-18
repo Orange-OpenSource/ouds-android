@@ -64,7 +64,7 @@ fun OudsColoredBox(
     content: @Composable BoxScope.() -> Unit
 ) {
     CheckedContent(
-        expression = color.mode.isSupported,
+        expression = color.isSupported,
         exceptionMessage = { "Current theme does not support an OudsColoredBox with color parameter set to ${color.name}." },
         previewMessage = { "${color.name} is not supported by current theme" }
     ) {
@@ -197,8 +197,12 @@ enum class OudsColoredBoxColor {
                 SurfaceTertiary -> OudsColorKeyToken.Surface.Tertiary
             }.value
         }
+    
+    val isSupported: Boolean
+        @Composable
+        get() = mode.isSupported
 
-    val mode: OudsColorMode
+    internal val mode: OudsColorMode
         @Composable
         get() {
             return with(OudsTheme.colorScheme.modes) {
@@ -259,7 +263,7 @@ internal fun PreviewOudsColoredBox(
             OudsButton(label = "Button", onClick = {})
             OudsLink(
                 label = "Link",
-                arrow = OudsLinkArrow.Next,
+                chevron = OudsLinkChevron.Next,
                 onClick = {},
             )
         }

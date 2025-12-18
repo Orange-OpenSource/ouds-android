@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 
-data class WireframeInputTagTokens(
+internal data class WireframeInputTagTokens(
     override val borderWidthDefault: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Default,
     override val borderWidthDefaultInteraction: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     override val colorBgEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Enabled,

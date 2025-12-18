@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 
-data class OrangeRadioButtonTokens(
+internal data class OrangeRadioButtonTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val borderWidthSelected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     override val borderWidthSelectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,

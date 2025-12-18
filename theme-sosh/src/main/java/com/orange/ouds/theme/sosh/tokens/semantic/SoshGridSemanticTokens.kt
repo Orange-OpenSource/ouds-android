@@ -18,7 +18,7 @@ package com.orange.ouds.theme.sosh.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.tokens.raw.OudsGridRawTokens
 
-data class SoshGridSemanticTokens(
+internal data class SoshGridSemanticTokens(
     override val compactColumnGap: Int = OudsGridRawTokens.GridColumnGap100,
     override val compactMargin: Int = OudsGridRawTokens.GridMargin300,
     override val compactMaxWidth: Int = OudsGridRawTokens.GridMaxWidthCompact,

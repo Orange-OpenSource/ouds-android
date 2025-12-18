@@ -45,6 +45,6 @@ object ColoredBackgroundDemoStateDefaults {
     val Color: OudsColoredBoxColor
         @Composable
         get() = OudsColoredBoxColor.BrandPrimary
-            .takeIf { it.mode.isSupported }
-            .orElse { OudsColoredBoxColor.entries.first { it.mode.isSupported } }
+            .takeIf { it.isSupported }
+            .orElse { OudsColoredBoxColor.entries.first { it.isSupported } }
 }

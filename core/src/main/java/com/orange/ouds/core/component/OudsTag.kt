@@ -486,7 +486,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
             OudsTagAsset.ExtraParameters::class.java,
             { icon ->
                 with(icon.extraParameters) {
-                    (status as? TagFunctionalStatus)?.getDefaultIconPainter(appearance).orElse {
+                    status.getDefaultIconPainter(appearance).orElse {
                         error("No default icon for status ${status::class.simpleName}")
                     }
                 }
@@ -537,6 +537,9 @@ enum class OudsTagSize {
  */
 sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
+    @Composable
+    internal open fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter? = null
+
     /**
      * Default or inactive status. Used for standard labels, categories, or when no specific status needs to be communicated.
      * Its [asset] can be an [OudsTagAsset.Bullet], an [OudsTagAsset.Icon] or `null` if no asset is needed.
@@ -584,7 +587,7 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
      * Indicates success, confirmation, or a positive status. This functional status is commonly used to highlight completed actions or approved items.
      * Its [asset] can be an [OudsTagAsset.Bullet], an [OudsTagAsset.Icon.Default] or `null` if no asset is needed.
      */
-    class Positive internal constructor(asset: OudsTagAsset?) : OudsTagStatus(asset), TagFunctionalStatus {
+    class Positive internal constructor(asset: OudsTagAsset?) : OudsTagStatus(asset) {
         /**
          * Creates an instance of [OudsTagStatus.Positive] with a bullet.
          */
@@ -608,7 +611,7 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
      * Conveys informational messages or supplementary details. This functional status is used for neutral, helpful, or contextual information.
      * Its [asset] can be an [OudsTagAsset.Bullet], an [OudsTagAsset.Icon.Default] or `null` if no asset is needed.
      */
-    class Info internal constructor(asset: OudsTagAsset?) : OudsTagStatus(asset), TagFunctionalStatus {
+    class Info internal constructor(asset: OudsTagAsset?) : OudsTagStatus(asset) {
         /**
          * Creates an instance of [OudsTagStatus.Info] with a bullet.
          */
@@ -632,7 +635,7 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
      * Signals caution or a potentially risky situation. This functional status is used to draw attention to items requiring user awareness or intervention.
      * Its [asset] can be an [OudsTagAsset.Bullet], an [OudsTagAsset.Icon.Default] or `null` if no asset is needed.
      */
-    class Warning internal constructor(asset: OudsTagAsset?) : OudsTagStatus(asset), TagFunctionalStatus {
+    class Warning internal constructor(asset: OudsTagAsset?) : OudsTagStatus(asset) {
         /**
          * Creates an instance of [OudsTagStatus.Warning] with a bullet.
          */
@@ -667,7 +670,7 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
      * Represents errors, critical issues, or urgent attention needed. This functional status is used to highlight problems or failed actions.
      * Its [asset] can be an [OudsTagAsset.Bullet], an [OudsTagAsset.Icon.Default] or `null` if no asset is needed.
      */
-    class Negative internal constructor(asset: OudsTagAsset?) : OudsTagStatus(asset), TagFunctionalStatus {
+    class Negative internal constructor(asset: OudsTagAsset?) : OudsTagStatus(asset) {
         /**
          * Creates an instance of [OudsTagStatus.Negative] with a bullet.
          */
@@ -716,12 +719,6 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
             is Info -> OudsTheme.colorScheme.surface.status.info.muted
         }
     }
-}
-
-private interface TagFunctionalStatus {
-
-    @Composable
-    fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter
 }
 
 @PreviewLightDark
