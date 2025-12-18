@@ -5,6 +5,41 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0](https://github.com/Orange-OpenSource/ouds-android/compare/0.4.0...1.0.0) (2025-12-18)
+
+### Features
+
+- **button** remove background for minimal buttons in loading state ([#995](https://github.com/Orange-OpenSource/ouds-android/issues/995))
+- **checkbox-item** **radio-button-item** **switch-item** **text-input** add a constrained max width parameter to these components ([#985](https://github.com/Orange-OpenSource/ouds-android/issues/985))
+- create component - top app bar ([#954](https://github.com/Orange-OpenSource/ouds-android/issues/954))
+- update OUDS icons to 1.4 and change the structure to access to icons drawable resources ([#974](https://github.com/Orange-OpenSource/ouds-android/issues/974))
+- **checkbox-item** **radio-button-item** **switch-item** Update edge-to-edge padding management on control items  ([#939](https://github.com/Orange-OpenSource/ouds-android/issues/939))
+- **checkbox-item** **radio-button-item** **switch-item** update to switch 1.5, checkbox v2.4 and radio button 1.4 ([#922](https://github.com/Orange-OpenSource/ouds-android/issues/922))
+- **checkbox-item** **radio-button-item** **switch-item** update design of OudsCheckboxItem to 2.3, OudsRadioButtonItem to 1.3 and OudsSwitchItem to 1.4 ([#896](https://github.com/Orange-OpenSource/ouds-android/issues/896))
+- create component - navigation bar ([#631](https://github.com/Orange-OpenSource/ouds-android/issues/631))
+
+### Bug Fixes
+
+- **deps** update dependency org.mockito:mockito-android to v5.21.0 ([#988](https://github.com/Orange-OpenSource/ouds-android/issues/988))
+- **deps** update gradle to v8.13.2 ([#989](https://github.com/Orange-OpenSource/ouds-android/issues/989))
+- **tag** scale functional icons and loader for a11y reasons ([#960](https://github.com/Orange-OpenSource/ouds-android/issues/960))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.41.0 ([#972](https://github.com/Orange-OpenSource/ouds-android/issues/972))
+- **deps** update dependency androidx.compose:compose-bom to v2025.12.00 ([#971](https://github.com/Orange-OpenSource/ouds-android/issues/971))
+- **deps** update dependency androidx.activity:activity-compose to v1.12.1 ([#970](https://github.com/Orange-OpenSource/ouds-android/issues/970))
+- apply missing tokens to control item component
+- **deps** update dependency dev.chrisbanes.haze:haze to v1.7.1 ([#956](https://github.com/Orange-OpenSource/ouds-android/issues/956))
+- demo app crashes when scrolling through color tokens with orange theme ([#953](https://github.com/Orange-OpenSource/ouds-android/issues/953))
+- **deps** update dependency dev.chrisbanes.haze:haze to v1.7.0 ([#949](https://github.com/Orange-OpenSource/ouds-android/issues/949))
+- **deps** update dependency androidx.compose:compose-bom to v2025.11.01 ([#941](https://github.com/Orange-OpenSource/ouds-android/issues/941))
+- **deps** update dependency androidx.activity:activity-compose to v1.12.0 ([#942](https://github.com/Orange-OpenSource/ouds-android/issues/942))
+- **deps** update dependency androidx.datastore:datastore-preferences to v1.2.0 ([#943](https://github.com/Orange-OpenSource/ouds-android/issues/943))
+- **deps** update grpc-java monorepo to v1.77.0 ([#936](https://github.com/Orange-OpenSource/ouds-android/issues/936))
+- **deps** update zxing to v3.5.4 ([#927](https://github.com/Orange-OpenSource/ouds-android/issues/927))
+- **deps** update gradle to v8.13.1 ([#919](https://github.com/Orange-OpenSource/ouds-android/issues/919))
+- **a11y** **text-input** error description is heard twice with Talkback ([#913](https://github.com/Orange-OpenSource/ouds-android/issues/913))
+- **deps** update dependency androidx.compose:compose-bom to v2025.11.00 ([#906](https://github.com/Orange-OpenSource/ouds-android/issues/906))
+- **deps** update dependency androidx.navigation:navigation-compose to v2.9.6 ([#905](https://github.com/Orange-OpenSource/ouds-android/issues/905))
+
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-android/compare/0.3.0...0.4.0) (2025-11-06)
 
 ### Features
