@@ -269,7 +269,7 @@
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
-    <plurals name="app_about_issues_label">
+    <plurals name="app_about_issues_label" translatable="false">
         <item quantity="one">Issue\u0020</item>
         <item quantity="other">Issues\u0020</item>
     </plurals>
