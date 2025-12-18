@@ -15,7 +15,8 @@ package com.orange.ouds.app.ui.utilities
 import android.webkit.WebView
 import androidx.annotation.RawRes
 import com.orange.ouds.app.R
-import com.orange.ouds.foundation.extensions.contentAsString
+import java.io.InputStream
+import java.util.Scanner
 
 internal fun WebView.injectLightDarkModeCss(darkMode: Boolean) {
     injectCss(R.raw.base_style)
@@ -29,4 +30,9 @@ private fun WebView.injectCss(@RawRes cssResource: Int) {
     val javascript = String.format(injectCssFunction, css.trim { it <= ' ' })
     val code = "javascript:(function() { $javascript })()"
     loadUrl(code)
+}
+
+private fun InputStream.contentAsString(): String? {
+    val scanner = Scanner(this).useDelimiter("\\A")
+    return if (scanner.hasNext()) scanner.next() else null
 }

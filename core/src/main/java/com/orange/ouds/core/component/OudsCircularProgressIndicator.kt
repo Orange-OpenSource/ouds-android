@@ -25,7 +25,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 
 /**
- * Temporary circular progress indicator component used in several public components.
+ * A temporary circular progress indicator component used internally by several public components.
  */
 @Composable
 internal fun OudsCircularProgressIndicator(color: Color, progress: Float?, modifier: Modifier = Modifier, scale: Float = 1.0f) {

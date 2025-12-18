@@ -42,13 +42,13 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /**
- * A colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
+ * A colored box is a [Box] where the content color is automatically adjusted to maximize the contrast with the chosen background [color].
  *
- * Moreover, the colors of several OUDS Android components (for instance [OudsButton] or [OudsLink]) are also automatically adjusted.
- * Some tokens associated with these specific colors can be customized and are grouped into `Mono` tokens classes (for instance [com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens]).
+ * Additionally, the colors of several OUDS Android components (such as [OudsButton] or [OudsLink]) are also automatically adjusted.
+ * Some tokens associated with these specific colors can be customized and are grouped into `Mono` token classes (e.g., [com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens]).
  *
  * @param color The background color of the colored box.
- * @param modifier [Modifier] to be applied to the layout corresponding to the colored box.
+ * @param modifier [Modifier] to be applied to the colored box.
  * @param contentAlignment The default [Alignment] inside the colored box.
  * @param propagateMinConstraints Whether the incoming min constraints should be passed to content.
  * @param content The content of this colored box.
@@ -64,7 +64,7 @@ fun OudsColoredBox(
     content: @Composable BoxScope.() -> Unit
 ) {
     CheckedContent(
-        expression = color.mode.isSupported,
+        expression = color.isSupported,
         exceptionMessage = { "Current theme does not support an OudsColoredBox with color parameter set to ${color.name}." },
         previewMessage = { "${color.name} is not supported by current theme" }
     ) {
@@ -197,8 +197,12 @@ enum class OudsColoredBoxColor {
                 SurfaceTertiary -> OudsColorKeyToken.Surface.Tertiary
             }.value
         }
+    
+    val isSupported: Boolean
+        @Composable
+        get() = mode.isSupported
 
-    val mode: OudsColorMode
+    internal val mode: OudsColorMode
         @Composable
         get() {
             return with(OudsTheme.colorScheme.modes) {
@@ -259,7 +263,7 @@ internal fun PreviewOudsColoredBox(
             OudsButton(label = "Button", onClick = {})
             OudsLink(
                 label = "Link",
-                arrow = OudsLinkArrow.Next,
+                chevron = OudsLinkChevron.Next,
                 onClick = {},
             )
         }

@@ -39,18 +39,18 @@ import com.orange.ouds.theme.OudsThemeContract
  * Best suited for category-based filters that do not require additional visual elements.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/14bf4bd854)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
  *
  * > Design version: 1.3.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
- * @param label Text label for this chip.
+ * @param label Text label displayed in the chip.
  * @param modifier The [Modifier] to be applied to this chip.
  * @param enabled Controls the enabled state of this chip. When `false`, this component will not
  *   respond to user input, and it will appear visually disabled and disabled to accessibility
  *   services.
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
@@ -89,7 +89,7 @@ fun OudsFilterChip(
  * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/14bf4bd854)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
  *
  * > Design version: 1.3.0
  *
@@ -100,7 +100,7 @@ fun OudsFilterChip(
  * @param enabled Controls the enabled state of this chip. When `false`, this component will not
  *   respond to user input, and it will appear visually disabled and disabled to accessibility
  *   services.
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
@@ -139,19 +139,19 @@ fun OudsFilterChip(
  * Ideal when a visual cue helps reinforce the filter’s meaning.
  * Other layouts are available for this component: *text only* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/77fdea-chip/t/14bf4bd854)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
  *
  * > Design version: 1.3.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
- * @param label Text label for this chip.
+ * @param label Text label displayed in the chip.
  * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param modifier The [Modifier] to be applied to this chip.
  * @param enabled Controls the enabled state of this chip. When `false`, this component will not
  *   respond to user input, and it will appear visually disabled and disabled to accessibility
  *   services.
- * @param interactionSource an optional hoisted [MutableInteractionSource] for observing and
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.

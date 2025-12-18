@@ -12,22 +12,23 @@
 
 package com.orange.ouds.app.ui.components.chip
 
-import android.content.Context
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSuggestionChip
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun SuggestionChipDemoScreen() {
     val state = rememberSuggestionChipDemoState()
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         bottomSheetContent = { ChipDemoBottomSheetContent(state = state) },
-        codeSnippet = { suggestionChipDemoCodeSnippet(state = state) },
+        codeSnippet = { suggestionChipDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { SuggestionChipDemoContent(state = state) },
         version = OudsVersion.Component.Chip
     )
@@ -67,17 +68,17 @@ private fun SuggestionChipDemoContent(state: SuggestionChipDemoState) {
     }
 }
 
-private fun Code.Builder.suggestionChipDemoCodeSnippet(state: SuggestionChipDemoState) {
+private fun Code.Builder.suggestionChipDemoCodeSnippet(state: SuggestionChipDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         comment("First suggestion chip")
         functionCall("OudsSuggestionChip") {
-            chipArguments(state)
+            chipArguments(state, themeDrawableResources)
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewSuggestionChipDemoScreen() = OudsPreview {
+private fun PreviewSuggestionChipDemoScreen() = AppPreview {
     SuggestionChipDemoScreen()
 }

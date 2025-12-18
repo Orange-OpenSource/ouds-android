@@ -1,11 +1,11 @@
 # OUDS Android
 
-The OUDS Android library is compatible with **Android 5.0 (API level 21) and higher**. It serves as the interface between applications and custom themes,
+The OUDS Android library is compatible with **Android 6.0 (API level 23) and higher**. It serves as the interface between applications and custom themes,
 providing essential components for app development.
 
 ## Getting started
 
-### Gradle
+### Add OUDS Android to your project
 
 OUDS Android is available through [Maven Central Repository](https://central.sonatype.com/search?q=com.orange.ouds.android). To use it, add the OUDS Android
 library core and the theme you want to use in the `dependencies` section of your app build script:</br></br>
@@ -16,8 +16,8 @@ library core and the theme you want to use in the `dependencies` section of your
 ```kotlin
 dependencies {
     // ...
-    implementation("com.orange.ouds.android:ouds-core:0.4.0")
-    implementation("com.orange.ouds.android:ouds-theme-orange:0.4.0")
+    implementation("com.orange.ouds.android:ouds-core:1.0.0")
+    implementation("com.orange.ouds.android:ouds-theme-orange:1.0.0")
     // ...
 }
 ```
@@ -30,15 +30,22 @@ dependencies {
 ```shell
 dependencies {
     // ...
-    implementation 'com.orange.ouds.android:ouds-core:0.4.0'
-    implementation 'com.orange.ouds.android:ouds-theme-orange:0.4.0'
+    implementation 'com.orange.ouds.android:ouds-core:1.0.0'
+    implementation 'com.orange.ouds.android:ouds-theme-orange:1.0.0'
     // ...
 }
 ```
 
 </details>
 
-### Themes
+### Select and apply your theme
+
+OUDS Android provides several themes:
+
+- `OrangeTheme`, usable by Orange applications. This theme includes several customizable elements such as the possibility of having rounded corners on certain
+  components rather than rectangular ones.
+- `SoshTheme`, usable by Sosh applications.
+- `WireframeTheme`, a white label theme usable by mock-ups, prototypes and proofs of concepts without Orange-flavoured styles.
 
 The `OudsTheme` method is an extension of the `MaterialTheme` method which allows to use the Orange Unified Design System in Jetpack Compose applications.
 Because OUDS Android supports multi-theme, you must provide the theme to use in your application as a parameter. OUDS Android components such as `OudsButton`
@@ -52,11 +59,15 @@ OudsTheme(theme = OrangeTheme()) {
 }
 ```
 
-### Design tokens
+The code above will apply the default Orange theme to your application, but you can modify its settings to customize it to your needs. See `orange-theme` module
+documentation.
 
-Design tokens are a set of platform-agnostic design values that provide a consistent way to manage and maintain the design system across design and development
-for each platforms. You can find more information about design tokens in
-the [Orange Unified Design System documentation](https://unified-design-system.orange.com/472794e18/p/903414-introduction).
+### Use design tokens
+
+Orange Unified Design System is a multi-brand design system built upon the use of **design tokens**, which are standardized, reusable variables that store
+visual design attributes such as colors, typography, spacing, and more. These tokens enable consistency across different brands and facilitate easier updates
+and maintenance. For a more detailed understanding of design tokens and their role within a design system, please refer
+to [Orange Unified Design System documentation](https://r.orange.fr/r/S-ouds-doc-token-intro).
 
 Semantic tokens in OUDS Android can be accessed using the various properties of the `OudsTheme` singleton. As an example, the token for the small heading font
 can be retrieved as follows:
@@ -72,9 +83,9 @@ Figma is equivalent to:
 OudsTheme.colorScheme.content.onStatus.neutral.emphasized
 ```
 
-Raw and component tokens are not directly available in the `OudsTheme` singleton and should only be used when customizing themes.
+> Raw and component tokens are not directly available in the `OudsTheme` singleton and should only be used when customizing themes.
 
-### Components
+### Use OUDS components
 
 OUDS Android components are all prefixed with `Ouds`. For instance, `OudsButton` is the equivalent of the Material `Button` for Orange Unified Design System.
 

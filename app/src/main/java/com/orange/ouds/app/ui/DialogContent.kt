@@ -24,9 +24,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun DialogContent(
@@ -42,7 +42,7 @@ fun DialogContent(
         Text(
             text = title,
             color = OudsTheme.colorScheme.content.default,
-            modifier = Modifier.padding(all = OudsTheme.spaces.fixed.large),
+            modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.large),
             style = OudsTheme.typography.heading.medium
         )
         Column(modifier = Modifier.padding(contentPadding)) {
@@ -52,7 +52,7 @@ fun DialogContent(
 }
 
 @Composable
-fun PreviewDialogContent(content: @Composable () -> Unit) = OudsPreview {
+fun PreviewDialogContent(content: @Composable () -> Unit) = AppPreview {
     OudsThemeTweak(tweak = OudsTheme.Tweak.Invert) {
         Box(
             modifier = Modifier

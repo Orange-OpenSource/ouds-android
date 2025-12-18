@@ -19,13 +19,16 @@ import androidx.compose.runtime.setValue
 
 open class ControlItemDemoState(
     icon: Boolean,
+    edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
+    errorMessage: String,
     label: String,
-    helperText: String?
+    description: String?,
+    constrainedMaxWidth: Boolean
 ) {
 
     companion object {
@@ -35,13 +38,16 @@ open class ControlItemDemoState(
                 with(state) {
                     listOf(
                         icon,
+                        edgeToEdge,
                         divider,
                         reversed,
                         enabled,
                         readOnly,
                         error,
+                        errorMessage,
                         label,
-                        helperText
+                        description,
+                        constrainedMaxWidth
                     )
                 }
             },
@@ -53,21 +59,27 @@ open class ControlItemDemoState(
                     list[3] as Boolean,
                     list[4] as Boolean,
                     list[5] as Boolean,
-                    list[6] as String,
-                    list[7] as String?
+                    list[6] as Boolean,
+                    list[7] as String,
+                    list[8] as String,
+                    list[9] as String?,
+                    list[10] as Boolean
                 )
             }
         )
     }
 
     var icon: Boolean by mutableStateOf(icon)
+    var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
+    var edgeToEdge: Boolean by mutableStateOf(edgeToEdge)
     var divider: Boolean by mutableStateOf(divider)
     var reversed: Boolean by mutableStateOf(reversed)
     var enabled: Boolean by mutableStateOf(enabled)
     var readOnly: Boolean by mutableStateOf(readOnly)
     var error: Boolean by mutableStateOf(error)
+    var errorMessage: String by mutableStateOf(errorMessage)
     var label: String by mutableStateOf(label)
-    var helperText: String? by mutableStateOf(helperText)
+    var description: String? by mutableStateOf(description)
 
     val enabledSwitchEnabled: Boolean
         get() = !error
@@ -77,4 +89,7 @@ open class ControlItemDemoState(
 
     val errorSwitchEnabled: Boolean
         get() = enabled && !readOnly
+
+    val errorMessageTextInputEnabled: Boolean
+        get() = error
 }

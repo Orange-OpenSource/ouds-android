@@ -14,29 +14,33 @@ package com.orange.ouds.app.ui.components.checkbox
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
     val state = rememberCheckboxItemDemoState()
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         bottomSheetContent = { ControlItemCustomizations(state = state) },
-        codeSnippet = { checkboxItemDemoCodeSnippet(state = state, indeterminate = indeterminate) },
+        codeSnippet = { checkboxItemDemoCodeSnippet(state = state, indeterminate = indeterminate, themeDrawableResources = themeDrawableResources) },
         demoContent = {
             if (indeterminate) {
                 IndeterminateCheckboxItemDemoContent(state = state)
@@ -52,8 +56,9 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
 @Composable
 private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
-        Column {
-            CheckboxIdentifier.entries.forEach { identifier ->
+        CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
+            CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
+                val isLastItem = index == CheckboxIdentifier.entries.lastIndex
                 OudsCheckboxItem(
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first
@@ -66,13 +71,15 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                         }
                     },
                     label = label,
-                    helperText = helperText,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
+                    description = description,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+                    edgeToEdge = edgeToEdge,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    constrainedMaxWidth = constrainedMaxWidth
                 )
             }
         }
@@ -82,8 +89,9 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
 @Composable
 private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
-        Column {
-            CheckboxIdentifier.entries.forEach { identifier ->
+        CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
+            CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
+                val isLastItem = index == CheckboxIdentifier.entries.lastIndex
                 OudsTriStateCheckboxItem(
                     state = when (identifier) {
                         CheckboxIdentifier.First -> toggleableStateValues.first
@@ -98,20 +106,29 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                         }
                     },
                     label = label,
-                    helperText = helperText,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
+                    description = description,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+                    edgeToEdge = edgeToEdge,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    constrainedMaxWidth = constrainedMaxWidth
                 )
             }
         }
     }
 }
 
-private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indeterminate: Boolean) {
+@Composable
+private fun CheckboxItemDemoColumn(edgeToEdge: Boolean, content: @Composable () -> Unit) {
+    Column(modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin)) {
+        content()
+    }
+}
+
+private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indeterminate: Boolean, themeDrawableResources: ThemeDrawableResources) {
     val functionName = if (indeterminate) "OudsTriStateCheckboxItem" else "OudsCheckboxItem"
     val lambdaCommentText = "Change state"
     comment("First checkbox item")
@@ -128,19 +145,19 @@ private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoStat
                     comment(lambdaCommentText)
                 }
             }
-            controlItemArguments(state)
+            controlItemArguments(state, themeDrawableResources)
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewCheckboxItemDemoScreen() = OudsPreview {
+private fun PreviewCheckboxItemDemoScreen() = AppPreview {
     CheckboxItemDemoScreen()
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewIndeterminateCheckboxItemDemoScreen() = OudsPreview {
+private fun PreviewIndeterminateCheckboxItemDemoScreen() = AppPreview {
     CheckboxItemDemoScreen(indeterminate = true)
 }

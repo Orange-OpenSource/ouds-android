@@ -18,7 +18,12 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,6 +31,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.injectLightDarkModeCss
 import com.orange.ouds.app.ui.utilities.launchUrl
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
 import java.io.BufferedReader
 import java.nio.charset.StandardCharsets
@@ -37,11 +43,14 @@ private const val FilePath = "file:///android_res/$FileResourceDir/"
 internal fun AboutFileScreen(fileMenuItem: AboutFileMenuItem) {
     val context = LocalContext.current
     val horizontalPadding = OudsTheme.grids.margin.value
-    val verticalPadding = OudsTheme.spaces.fixed.medium.value
+    val topPadding = topBarsTopPadding + OudsTheme.spaces.fixed.medium
+    val bottomPadding = OudsTheme.spaces.fixed.medium.value
     val isSystemInDarkTheme = isSystemInDarkTheme()
     Screen {
         AndroidView(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .consumeWindowInsets(WindowInsets.statusBars.only(WindowInsetsSides.Top)),
             factory = {
                 WebView(context).apply {
                     @SuppressLint("SetJavaScriptEnabled")
@@ -49,7 +58,7 @@ internal fun AboutFileScreen(fileMenuItem: AboutFileMenuItem) {
                     webViewClient = object : WebViewClient() {
                         override fun onPageFinished(view: WebView?, url: String?) {
                             super.onPageFinished(view, url)
-                            view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();")
+                            view?.loadUrl("javascript:(function(){ document.body.style.paddingTop = '${topPadding.value}px'; document.body.style.paddingBottom = '${bottomPadding}px'; document.body.style.paddingLeft = '${horizontalPadding}px'; document.body.style.paddingRight = '${horizontalPadding}px'; })();")
                             view?.injectLightDarkModeCss(isSystemInDarkTheme)
                         }
 

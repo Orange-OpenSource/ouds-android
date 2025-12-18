@@ -31,41 +31,64 @@ fun rememberCheckboxItemDemoState(
         ToggleableState.Off
     ), // only used for indeterminate checkbox item demo
     icon: Boolean = false,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
+    errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
-    helperText: String? = null
+    description: String? = null,
+    constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
     icon,
+    edgeToEdge,
     divider,
     reversed,
     enabled,
     readOnly,
     error,
+    errorMessage,
     label,
-    helperText,
+    description,
+    constrainedMaxWidth,
     saver = CheckboxItemDemoState.Saver
 ) {
-    CheckboxItemDemoState(checkedValues, toggleableStateValues, icon, divider, reversed, enabled, readOnly, error, label, helperText)
+    CheckboxItemDemoState(
+        checkedValues,
+        toggleableStateValues,
+        icon,
+        edgeToEdge,
+        divider,
+        reversed,
+        enabled,
+        readOnly,
+        error,
+        errorMessage,
+        label,
+        description,
+        constrainedMaxWidth
+    )
 }
 
 class CheckboxItemDemoState(
     checkedValues: Pair<Boolean, Boolean>,
     toggleableStateValues: Pair<ToggleableState, ToggleableState>,
     icon: Boolean,
+    edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
+    errorMessage: String,
     label: String,
-    helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
+    description: String?,
+    constrainedMaxWidth: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth) {
 
     companion object {
         val Saver = listSaver(
@@ -84,13 +107,16 @@ class CheckboxItemDemoState(
                         list[0] as Pair<Boolean, Boolean>,
                         list[1] as Pair<ToggleableState, ToggleableState>,
                         icon,
+                        edgeToEdge,
                         divider,
                         reversed,
                         enabled,
                         readOnly,
                         error,
+                        errorMessage,
                         label,
-                        helperText
+                        description,
+                        constrainedMaxWidth
                     )
                 }
             }

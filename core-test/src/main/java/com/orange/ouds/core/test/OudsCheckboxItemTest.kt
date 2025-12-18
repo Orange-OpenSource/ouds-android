@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
-class OudsCheckboxItemTest {
+internal class OudsCheckboxItemTest {
 
     @RunWith(Parameterized::class)
     class Default(parameter: Any) : OudsComponentSnapshotTest(
@@ -48,9 +48,29 @@ class OudsCheckboxItemTest {
         }
     }
 
-    class WithLongHelperText : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.CheckboxItem.WithLongHelperText,
+    class WithLongDescription : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.WithLongDescription,
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.WithEdgeToEdgeDisabled,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
+
+    @RunWith(Parameterized::class)
+    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.parameters
+        }
+    }
 }

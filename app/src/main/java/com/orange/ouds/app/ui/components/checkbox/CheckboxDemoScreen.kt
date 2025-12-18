@@ -21,14 +21,16 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -56,6 +58,12 @@ private fun CheckboxDemoBottomSheetContent(state: CheckboxDemoState) {
             checked = enabled,
             onCheckedChange = { enabled = it },
             enabled = enabledSwitchEnabled
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_readOnly_label),
+            checked = readOnly,
+            onCheckedChange = { readOnly = it },
+            enabled = readOnlySwitchEnabled
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_error_label),
@@ -87,6 +95,7 @@ private fun CheckboxDemoContent(state: CheckboxDemoState) {
                         }
                     },
                     enabled = enabled,
+                    readOnly = readOnly,
                     error = controlError(error)
                 )
             }
@@ -117,6 +126,7 @@ private fun IndeterminateCheckboxDemoContent(state: CheckboxDemoState) {
                         }
                     },
                     enabled = enabled,
+                    readOnly = readOnly,
                     error = controlError(error)
                 )
             }
@@ -145,20 +155,21 @@ private fun Code.Builder.checkboxDemoCodeSnippet(state: CheckboxDemoState, indet
                 }
             }
             enabledArgument(enabled)
-            typedArgument("error", error)
+            readOnlyArgument(readOnly)
+            errorArgument(error)
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewCheckboxDemoScreen() = OudsPreview {
+private fun PreviewCheckboxDemoScreen() = AppPreview {
     CheckboxDemoScreen()
 }
 
 
 @PreviewLightDark
 @Composable
-private fun PreviewIndeterminateCheckboxDemoScreen() = OudsPreview {
+private fun PreviewIndeterminateCheckboxDemoScreen() = AppPreview {
     CheckboxDemoScreen(indeterminate = true)
 }

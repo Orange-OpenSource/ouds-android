@@ -26,28 +26,48 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 fun rememberSwitchItemDemoState(
     checked: Boolean = false,
     icon: Boolean = false,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
+    errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     text: String = stringResource(id = R.string.app_components_common_label_label),
-    helperText: String? = null
-) = rememberSaveable(checked, icon, divider, reversed, enabled, readOnly, error, text, helperText, saver = SwitchItemDemoState.Saver) {
-    SwitchItemDemoState(checked, icon, divider, reversed, enabled, readOnly, error, text, helperText)
+    description: String? = null,
+    constrainedMaxWidth: Boolean = false
+) = rememberSaveable(
+    checked,
+    icon,
+    edgeToEdge,
+    divider,
+    reversed,
+    enabled,
+    readOnly,
+    error,
+    errorMessage,
+    text,
+    description,
+    constrainedMaxWidth,
+    saver = SwitchItemDemoState.Saver
+) {
+    SwitchItemDemoState(checked, icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth)
 }
 
 class SwitchItemDemoState(
     checked: Boolean,
     icon: Boolean,
+    edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
+    errorMessage: String,
     text: String,
-    helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, text, helperText) {
+    description: String?,
+    constrainedMaxWidth: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth) {
 
     companion object {
 
@@ -64,13 +84,16 @@ class SwitchItemDemoState(
                     SwitchItemDemoState(
                         list[0] as Boolean,
                         icon,
+                        edgeToEdge,
                         divider,
                         reversed,
                         enabled,
                         readOnly,
                         error,
+                        errorMessage,
                         label,
-                        helperText
+                        description,
+                        constrainedMaxWidth
                     )
                 }
             }

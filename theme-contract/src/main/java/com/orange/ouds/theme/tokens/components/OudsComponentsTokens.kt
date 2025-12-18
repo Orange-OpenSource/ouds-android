@@ -12,8 +12,13 @@
 
 package com.orange.ouds.theme.tokens.components
 
+import com.orange.ouds.foundation.InternalOudsApi
+
+/** @suppress */
+@InternalOudsApi
 interface OudsComponentsTokens {
     val badge: OudsBadgeTokens
+    val bar: OudsBarTokens
     val button: OudsButtonTokens
     val buttonMonochrome: OudsButtonMonoTokens
     val checkbox: OudsCheckboxTokens

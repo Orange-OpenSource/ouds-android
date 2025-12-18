@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
+import com.orange.ouds.core.component.OudsButtonIconBadge
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -30,10 +31,10 @@ import com.orange.ouds.foundation.extensions.orElse
  *
  * @suppress
  */
-abstract class OudsComponentIcon<T, S> protected constructor(
+abstract class OudsComponentIcon<T, S> internal constructor(
     extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
-    private val contentDescription: String,
+    private val contentDescriptionProvider: @Composable (S) -> String,
     private val onClick: (() -> Unit)? = null,
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
@@ -42,9 +43,14 @@ abstract class OudsComponentIcon<T, S> protected constructor(
         graphicsObject: Any,
         contentDescription: String,
         onClick: (() -> Unit)? = null,
-    ) : this(extraParametersClass, { graphicsObject }, contentDescription, onClick)
+    ) : this(extraParametersClass, { graphicsObject }, { contentDescription }, onClick)
 
     protected open val tint: Color?
+        @Composable
+        get() = null
+
+    // The badge is not displayed if onClick is null
+    internal open val badge: OudsButtonIconBadge?
         @Composable
         get() = null
 
@@ -60,6 +66,7 @@ abstract class OudsComponentIcon<T, S> protected constructor(
     @Composable
     override fun Content(modifier: Modifier) {
         val iconTint = tint.orElse { LocalContentColor.current }
+        @Suppress("UNCHECKED_CAST") val contentDescription = contentDescriptionProvider(this as S)
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
                 is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription)
@@ -68,11 +75,13 @@ abstract class OudsComponentIcon<T, S> protected constructor(
                 else -> null
             }?.let { buttonIcon ->
                 OudsButton(
-                    icon = buttonIcon,
+                    nullableIcon = buttonIcon,
+                    nullableLabel = null,
                     appearance = OudsButtonAppearance.Minimal,
                     onClick = onClick,
                     modifier = modifier,
                     enabled = enabled.orElse { true },
+                    iconOnlyBadge = badge
                 )
             }
         }.orElse {
@@ -80,7 +89,6 @@ abstract class OudsComponentIcon<T, S> protected constructor(
                 is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
                 is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
                 is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-                else -> {}
             }
         }
     }

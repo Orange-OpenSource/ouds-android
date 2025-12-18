@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
@@ -38,10 +40,9 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.state.ToggleableState
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -51,6 +52,7 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -64,21 +66,23 @@ import com.orange.ouds.theme.OudsThemeContract
  * The **standalone checkbox variant** is used when the checkbox input is nested within another component and an alternative label is provided. For example,
  * a checkbox can be used in a data table where its purpose is clear from its position or its connection to other items in the same row or column.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
  *
- * > Design version: 2.3.0
+ * > Design version: 2.4.0
  *
  * @see [OudsTriStateCheckbox] If you require support for an indeterminate state.
  * @see [OudsCheckboxItem] If you want to use a checkbox with an associated label and other optional elements.
  *
- * @param checked Controls checked state of the checkbox.
+ * @param checked Controls the checked state of the checkbox.
  * @param onCheckedChange Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control
- * the checked state.
+ *   the checked state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
- * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
+ * @param readOnly Controls the read-only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked or unchecked)
+ *   but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the checkbox should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
- * is provided, interactions will still happen internally.
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxSample
  */
@@ -88,6 +92,7 @@ fun OudsCheckbox(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    readOnly: Boolean = false,
     error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -98,6 +103,7 @@ fun OudsCheckbox(
         } else null,
         modifier = modifier,
         enabled = enabled,
+        readOnly = readOnly,
         error = error,
         interactionSource = interactionSource
     )
@@ -110,24 +116,26 @@ fun OudsCheckbox(
  * all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are checked,
  * the parent checkbox becomes an indeterminate checkbox.
  *
- * The **indeterminate standalone checkbox variant** allows to manage a checkbox with an indeterminate state that can be used when the checkbox input is nested
+ * The **indeterminate standalone checkbox variant** allows managing a checkbox with an indeterminate state that can be used when the checkbox input is nested
  * within another component and an alternative label is provided.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
  *
- * > Design version: 2.3.0
+ * > Design version: 2.4.0
  *
  * @see [OudsCheckbox] If you need a simple component that represents [Boolean] state.
  * @see [OudsTriStateCheckboxItem] If you want to use an indeterminate checkbox with an associated label and other optional elements.
  *
- * @param state Controls whether TriStateCheckbox is checked, unchecked or in indeterminate state.
- * @param onClick Callback invoked when checkbox is being clicked, therefore the change of [ToggleableState] state is requested. If null, then this is passive
- * and relies entirely on a higher-level component to control the state.
+ * @param state Controls whether the TriStateCheckbox is checked, unchecked or in an indeterminate state.
+ * @param onClick Callback invoked when the checkbox is clicked, therefore the change of [ToggleableState] state is requested. If `null`, then this is passive
+ *   and relies entirely on a higher-level component to control the state.
  * @param modifier [Modifier] applied to the layout of the checkbox.
  * @param enabled Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
- * @param error Optional [OudsError] to provide in the case of the checkbox should appear in error state, `null` otherwise.
+ * @param readOnly Controls the read-only state of the checkbox. When `true`, this checkbox is displayed in a specific state (checked, unchecked or indeterminate)
+ *   but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the checkbox should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
- * is provided, interactions will still happen internally.
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxSample
  */
@@ -137,24 +145,30 @@ fun OudsTriStateCheckbox(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    readOnly: Boolean = false,
     error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val isDisabledPreviewState = getPreviewEnumEntry<OudsControlState>() == OudsControlState.Disabled
-    val isForbidden = error != null && (!enabled || isDisabledPreviewState)
+    val previewState = getPreviewEnumEntry<OudsControlState>()
+    val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
+    val isDisabledPreviewState = previewState == OudsControlState.Disabled
+    val isForbidden = error != null && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
     val shape = RoundedCornerShape(OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value)
     CheckedContent(
         expression = !isForbidden,
-        exceptionMessage = { "An OudsCheckbox or OudsTriStateCheckbox set to disabled with error parameter activated is not allowed." },
+        exceptionMessage = {
+            val parameter = if (readOnly) "readOnly" else "disabled"
+            "An OudsCheckbox or OudsTriStateCheckbox set to $parameter with error parameter activated is not allowed."
+        },
         previewDashedBorderShape = shape,
         previewDashedBorderPhase = OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value
     ) {
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val checkboxTokens = OudsTheme.componentsTokens.checkbox
-        val checkboxState = getControlState(enabled = enabled, interactionState = interactionState)
+        val checkboxState = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
         val backgroundColor = rememberInteractionColor(interactionState = interactionState) { checkboxInteractionState ->
-            val controlState = getControlState(enabled = enabled, interactionState = checkboxInteractionState)
+            val controlState = getControlState(enabled = enabled, readOnly = readOnly, interactionState = checkboxInteractionState)
             backgroundColor(state = controlState)
         }
 
@@ -165,7 +179,7 @@ fun OudsTriStateCheckbox(
                     indication = InteractionValuesIndication(backgroundColor),
                     state = state,
                     onClick = onClick,
-                    enabled = enabled,
+                    enabled = enabled && !readOnly,
                     role = Role.Checkbox
                 )
             } else {
@@ -180,7 +194,7 @@ fun OudsTriStateCheckbox(
                 .background(color = backgroundColor.value, shape = shape)
                 .outerBorder(state = checkboxState, shape = shape, handleHighContrastMode = true)
                 .run {
-                    error?.description?.let { description ->
+                    error?.message?.let { description ->
                         semantics {
                             error(description)
                         }
@@ -212,16 +226,16 @@ internal fun OudsCheckboxIndicator(
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
         val indicatorResource = when (value) {
-            ToggleableState.On -> OudsTheme.drawableResources.checkboxSelected
+            ToggleableState.On -> OudsTheme.drawableResources.component.checkbox.selected
             ToggleableState.Off -> null
-            ToggleableState.Indeterminate -> OudsTheme.drawableResources.checkboxIndeterminate
+            ToggleableState.Indeterminate -> OudsTheme.drawableResources.component.checkbox.undetermined
         }
 
         indicatorResource?.let { resource ->
             Icon(
                 modifier = Modifier.fillMaxSize(),
                 painter = painterResource(resource),
-                tint = indicatorColor(state = state, selected = true, error = error),
+                tint = checkColor(state = state, error = error),
                 contentDescription = null
             )
         }
@@ -245,7 +259,7 @@ private fun Modifier.indicatorBorder(state: OudsControlState, selected: Boolean,
 private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp? {
     return with(OudsTheme.componentsTokens.checkbox) {
         when (state) {
-            OudsControlState.Enabled, OudsControlState.Disabled -> if (selected) borderWidthSelected else borderWidthUnselected
+            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> if (selected) borderWidthSelected else borderWidthUnselected
             OudsControlState.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
             OudsControlState.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
             OudsControlState.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
@@ -257,13 +271,7 @@ private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp
 private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Boolean): Color {
     return with(OudsTheme.colorScheme.action) {
         if (error) {
-            when (state) {
-                OudsControlState.Enabled -> negative.enabled
-                OudsControlState.Disabled -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-                OudsControlState.Hovered -> negative.hover
-                OudsControlState.Pressed -> negative.pressed
-                OudsControlState.Focused -> negative.focus
-            }
+            errorColor(state = state)
         } else {
             when (state) {
                 OudsControlState.Enabled -> if (selected) {
@@ -273,6 +281,7 @@ private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Bo
                     enabled
                 }
                 OudsControlState.Disabled -> disabled
+                OudsControlState.ReadOnly -> readOnly.secondary
                 OudsControlState.Hovered -> hover
                 OudsControlState.Pressed -> pressed
                 OudsControlState.Focused -> focus
@@ -282,10 +291,19 @@ private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Bo
 }
 
 @Composable
+private fun checkColor(state: OudsControlState, error: Boolean): Color {
+    return if (state == OudsControlState.ReadOnly && !error) {
+        OudsTheme.colorScheme.action.readOnly.primary
+    } else {
+        indicatorColor(state = state, selected = true, error = error)
+    }
+}
+
+@Composable
 private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
-            OudsControlState.Enabled, OudsControlState.Disabled -> Color.Transparent
+            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
             OudsControlState.Hovered -> colorBgHover.value
             OudsControlState.Pressed -> colorBgPressed.value
             OudsControlState.Focused -> colorBgFocus.value
@@ -293,20 +311,22 @@ private fun backgroundColor(state: OudsControlState): Color {
     }
 }
 
-@PreviewLightDark
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckbox(@PreviewParameter(OudsCheckboxPreviewParameterProvider::class) parameter: OudsCheckboxPreviewParameter) {
     PreviewOudsCheckbox(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
-@PreviewLightDark
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp)
 @Composable
-internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCheckboxPreviewParameterProvider::class) parameter: OudsCheckboxPreviewParameter) {
+internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCheckboxHighContrastModePreviewParameterProvider::class) parameter: ToggleableState) {
     PreviewOudsCheckbox(
         theme = getPreviewTheme(),
         darkThemeEnabled = isSystemInDarkTheme(),
-        parameter = parameter,
+        parameter = OudsCheckboxPreviewParameter(toggleableState = parameter),
         highContrastModeEnabled = true
     )
 }
@@ -347,3 +367,6 @@ private val previewParameterValues: List<OudsCheckboxPreviewParameter>
             addAll(parameters)
         }
     }
+
+internal class OudsCheckboxHighContrastModePreviewParameterProvider :
+    BasicPreviewParameterProvider<ToggleableState>(ToggleableState.On, ToggleableState.Indeterminate)

@@ -56,7 +56,7 @@ _Note: Please transform `- [ ]` into `- (NA)` in the description when things are
 
 ### Checklist (for Core Team only)
 
-- [ ] Manually test (dark mode, RTL, landscape display, tablet)
+- [ ] Manually test (Dark mode, RTL, landscape display, tablet)
 - [ ] Documentation has been updated if relevant
 - [ ] Design review
 - [ ] A11y review

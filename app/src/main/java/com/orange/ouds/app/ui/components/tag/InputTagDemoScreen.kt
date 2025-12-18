@@ -19,11 +19,11 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsInputTag
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -46,6 +46,7 @@ private fun InputTagDemoBottomSheetContent(state: InputTagDemoState) {
             onCheckedChange = { enabled = it },
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
@@ -76,6 +77,6 @@ private fun Code.Builder.inputTagDemoCodeSnippet(state: InputTagDemoState) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewTagDemoScreen() = OudsPreview {
+private fun PreviewTagDemoScreen() = AppPreview {
     TagDemoScreen()
 }

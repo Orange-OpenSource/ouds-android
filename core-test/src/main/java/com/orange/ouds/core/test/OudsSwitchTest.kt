@@ -17,7 +17,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsSwitchTest(parameter: Any) : OudsComponentSnapshotTest(
+internal class OudsSwitchTest(parameter: Any) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.Switch,
     parameter,
     OudsComponentTestSuite.theme

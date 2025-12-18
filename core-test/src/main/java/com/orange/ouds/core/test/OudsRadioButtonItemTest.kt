@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
-class OudsRadioButtonItemTest {
+internal class OudsRadioButtonItemTest {
 
     @RunWith(Parameterized::class)
     class Default(parameter: Any) : OudsComponentSnapshotTest(
@@ -48,9 +48,29 @@ class OudsRadioButtonItemTest {
         }
     }
 
-    class WithLongHelperText : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.RadioButtonItem.WithLongHelperText,
+    class WithLongDescription : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.WithLongDescription,
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.WithEdgeToEdgeDisabled,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
+
+    @RunWith(Parameterized::class)
+    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth.parameters
+        }
+    }
 }

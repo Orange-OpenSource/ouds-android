@@ -15,7 +15,7 @@ package com.orange.ouds.theme.sosh
 import com.orange.ouds.core.test.OudsComponentTestSuite
 import org.junit.BeforeClass
 
-class SoshComponentTestSuite : OudsComponentTestSuite() {
+internal class SoshComponentTestSuite : OudsComponentTestSuite() {
 
     companion object {
 

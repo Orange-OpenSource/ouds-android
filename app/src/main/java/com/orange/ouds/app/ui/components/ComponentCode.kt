@@ -13,7 +13,10 @@
 package com.orange.ouds.app.ui.components
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.core.component.OudsColoredBoxColor
@@ -36,27 +39,47 @@ fun FunctionCall.Builder.painterArgument(@DrawableRes id: Int) {
     }
 }
 
+fun FunctionCall.Builder.colorArgument(name: String, color: Color) {
+    constructorCallArgument<Color>(name) {
+        isMultiline = false
+        rawArgument(null, "0x${color.toArgb().toHexString()}")
+    }
+}
+
 fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = formattableArgument(name) { "\"${it.getString(id)}\"" }
+
+fun FunctionCall.Builder.constrainedMaxWidthArgument(value: Boolean) = typedArgument(Argument.ConstrainedMaxWidth, value)
 
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
 fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg formatArgs: Any) =
-    stringResourceArgument(Argument.ContentDescription, id, formatArgs)
+    stringResourceArgument(Argument.ContentDescription, id, *formatArgs)
+
+fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes id: Int, count: Int, vararg formatArgs: Any) =
+    pluralStringResourceArgument(Argument.ContentDescription, id, count, *formatArgs)
+
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
+
+fun FunctionCall.Builder.errorArgument(value: Boolean) = typedArgument(Argument.Error, value)
 
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument(Argument.Label, label)
 fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringResourceArgument(Argument.Label, id)
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
 
+fun FunctionCall.Builder.readOnlyArgument(value: Boolean) = typedArgument(Argument.ReadOnly, value)
+
 private object Argument {
 
     const val Color = "color"
+    const val ConstrainedMaxWidth = "constrainedMaxWidth"
     const val ContentDescription = "contentDescription"
     const val Content = "content"
     const val Enabled = "enabled"
+    const val Error = "error"
     const val Id = "id"
     const val Label = "label"
     const val OnClick = "onClick"
     const val Painter = "painter"
+    const val ReadOnly = "readOnly"
 }

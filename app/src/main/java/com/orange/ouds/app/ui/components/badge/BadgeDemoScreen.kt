@@ -32,6 +32,9 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
@@ -46,7 +49,6 @@ import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.component.OudsIconBadgeStatus
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsVersion
 
@@ -54,10 +56,11 @@ import com.orange.ouds.theme.OudsVersion
 fun BadgeDemoScreen() {
     val state = rememberBadgeDemoState()
     val badgeWithIconStatus = state.badgeWithIconStatus
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         description = stringResource(id = Component.Badge.descriptionRes),
         bottomSheetContent = { BadgeDemoBottomSheetContent(state = state) },
-        codeSnippet = { badgeDemoCodeSnippet(state = state, badgeWithIconStatus = badgeWithIconStatus) },
+        codeSnippet = { badgeDemoCodeSnippet(state = state, badgeWithIconStatus = badgeWithIconStatus, themeDrawableResources = themeDrawableResources) },
         demoContent = { BadgeDemoContent(state = state) },
         version = OudsVersion.Component.Badge
     )
@@ -105,6 +108,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
             onSelectionChange = { status = statuses[it] }
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_badge_count_label),
             value = TextFieldValue(count.toString(), TextRange(count.toString().length)),
             onValueChange = { value ->
@@ -128,7 +132,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
             val modifier = Modifier.alpha(alpha)
             when (type) {
                 BadgeDemoState.Type.Standard -> {
-                    val contentDescription = stringResource(id = R.string.app_components_badge_unreadNotifications_a11y)
+                    val contentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
                     OudsBadge(
                         modifier = modifier.semantics { this.contentDescription = contentDescription },
                         status = status,
@@ -137,7 +141,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                     )
                 }
                 BadgeDemoState.Type.Count -> {
-                    val contentDescription = pluralStringResource(id = R.plurals.app_components_badge_unreadMessageCount_a11y, count = count, count)
+                    val contentDescription = pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = count, count)
                     OudsBadge(
                         modifier = modifier.semantics { this.contentDescription = contentDescription },
                         count = count,
@@ -166,7 +170,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
     }
 }
 
-private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIconStatus: OudsIconBadgeStatus) {
+private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIconStatus: OudsIconBadgeStatus, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsBadge") {
             if (type == BadgeDemoState.Type.Count) {
@@ -180,7 +184,7 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
                     is OudsIconBadgeStatus.Accent -> {
                         functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
                             constructorCallArgument<OudsBadgeIcon>("icon") {
-                                painterArgument(R.drawable.ic_heart)
+                                painterArgument(themeDrawableResources.tipsAndTricks)
                             }
                         }
                     }
@@ -203,6 +207,6 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
 
 @PreviewLightDark
 @Composable
-private fun PreviewBadgeDemoScreen() = OudsPreview {
+private fun PreviewBadgeDemoScreen() = AppPreview {
     BadgeDemoScreen()
 }

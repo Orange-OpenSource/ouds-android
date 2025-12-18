@@ -39,10 +39,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.OudsTextInput
@@ -103,13 +106,15 @@ fun CustomizationFilterChips(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier
 ) {
+    @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
     Column(
         modifier = modifier
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
+        CustomizationText(label = label)
+
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
         // That is why we set canFocus here again
@@ -140,19 +145,21 @@ fun CustomizationTextField(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
-    var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value)) }
+    var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value, selection = TextRange(value.length))) }
 
     CustomizationTextField(
         label = label,
-        value = textFieldValue,
+        value = textFieldValue.copy(text = value),
         onValueChange = { newTextFieldValue ->
             textFieldValue = newTextFieldValue
             onValueChange(newTextFieldValue.text)
         },
+        applyTopPadding = applyTopPadding,
         modifier = modifier,
         enabled = enabled,
         keyboardOptions = keyboardOptions,
@@ -164,10 +171,14 @@ fun CustomizationTextField(
     label: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
+    applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
+    @Suppress("NAME_SHADOWING")
+    val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
+
     OudsTextInput(
         modifier = modifier
             .fillMaxWidth()
@@ -179,8 +190,8 @@ fun CustomizationTextField(
         keyboardOptions = keyboardOptions,
         trailingIconButton = if (value.text.isNotEmpty()) {
             OudsTextInputTrailingIconButton(
-                painter = painterResource(com.orange.ouds.theme.orange.R.drawable.ic_orange_tag_close),
-                contentDescription = "",
+                painter = painterResource(com.orange.ouds.theme.orange.R.drawable.ic_orange_component_tag_close),
+                contentDescription = stringResource(R.string.app_components_common_textInputClearIcon_a11y),
                 onClick = {
                     onValueChange(value.copy(text = ""))
                 })
@@ -200,6 +211,7 @@ fun CustomizationDropdownMenu(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
 ) {
+    @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
 
     Column(
@@ -207,7 +219,8 @@ fun CustomizationDropdownMenu(
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        Text(modifier = Modifier.padding(horizontal = OudsTheme.grids.margin), text = label, style = labelTextStyle)
+        CustomizationText(label = label)
+
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
             modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
@@ -251,3 +264,13 @@ fun CustomizationDropdownMenu(
 data class CustomizationDropdownMenuItem(val label: String, val leadingIcon: (@Composable () -> Unit)? = null, val enabled: Boolean = true)
 
 data class CustomizationFilterChip(val label: String, val enabled: Boolean = true)
+
+@Composable
+private fun CustomizationText(label: String) {
+    Text(
+        modifier = Modifier.padding(horizontal = OudsTheme.grids.margin),
+        text = label,
+        style = labelTextStyle,
+        color = OudsTheme.colorScheme.content.default
+    )
+}

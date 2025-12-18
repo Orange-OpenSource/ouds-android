@@ -24,71 +24,168 @@ import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 
 /**
- * @suppress
+ * Holds the typography styles defined in the OUDS theme.
+ *
+ * Typography is managed with a defined set of text styles. It enhances communication and reinforce the attribution to the brand.
+ *
+ * > Design guidelines: [Typography tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-typography)
+ *
+ * @property fontFamily The default font family used for text.
+ * @property display Styles for large, prominent text.
+ * @property heading Styles for headings and titles.
+ * @property body Styles for body text (paragraphs, descriptions).
+ * @property label Styles for smaller utility text (e.g., captions, labels).
  */
-data class OudsTypography(
+@ConsistentCopyVisibility
+data class OudsTypography internal constructor(
+    val fontFamily: FontFamily,
     val display: Display,
     val heading: Heading,
     val body: Body,
     val label: Label
 ) {
-    data class Display(
+    /**
+     * Styles for large, prominent text, typically used for major application titles.
+     *
+     * @property large Large display text style.
+     * @property medium Medium display text style.
+     * @property small Small display text style.
+     */
+    @ConsistentCopyVisibility
+    data class Display internal constructor(
         val large: TextStyle,
         val medium: TextStyle,
         val small: TextStyle
     )
 
-    data class Heading(
+    /**
+     * Styles for headings and titles, used to structure content hierarchy.
+     *
+     * @property extraLarge Extra large heading style.
+     * @property large Large heading style.
+     * @property medium Medium heading style.
+     * @property small Small heading style.
+     */
+    @ConsistentCopyVisibility
+    data class Heading internal constructor(
         val extraLarge: TextStyle,
         val large: TextStyle,
         val medium: TextStyle,
         val small: TextStyle
     )
 
-    data class Body(
+    /**
+     * Styles for body text, used for the main content, paragraphs, and descriptions.
+     *
+     * @property default Default font weight styles (Regular).
+     * @property moderate Moderate font weight styles (Medium).
+     * @property strong Strong font weight styles (Bold).
+     */
+    @ConsistentCopyVisibility
+    data class Body internal constructor(
         val default: Default,
         val moderate: Moderate,
         val strong: Strong
     ) {
-        data class Default(
+        /**
+         * Body styles with Default font weight (Regular).
+         *
+         * @property large Large body text.
+         * @property medium Medium body text.
+         * @property small Small body text.
+         */
+        @ConsistentCopyVisibility
+        data class Default internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
         )
 
-        data class Moderate(
+        /**
+         * Body styles with Moderate font weight (Medium).
+         *
+         * @property large Large moderate body text.
+         * @property medium Medium moderate body text.
+         * @property small Small moderate body text.
+         */
+        @ConsistentCopyVisibility
+        data class Moderate internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
         )
 
-        data class Strong(
+        /**
+         * Body styles with Strong font weight (Bold).
+         *
+         * @property large Large strong body text.
+         * @property medium Medium strong body text.
+         * @property small Small strong body text.
+         */
+        @ConsistentCopyVisibility
+        data class Strong internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
         )
     }
 
-    data class Label(
+
+    /**
+     * Styles for utility text such as captions, input labels, and metadata.
+     *
+     * @property default Default font weight styles (Regular).
+     * @property moderate Moderate font weight styles (Medium).
+     * @property strong Strong font weight styles (Bold).
+     */
+    @ConsistentCopyVisibility
+    data class Label internal constructor(
         val default: Default,
         val moderate: Moderate,
         val strong: Strong
     ) {
-        data class Default(
+        /**
+         * Label styles with Default font weight (Regular).
+         *
+         * @property extraLarge Extra large label text.
+         * @property large Large label text.
+         * @property medium Medium label text.
+         * @property small Small label text.
+         */
+        @ConsistentCopyVisibility
+        data class Default internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
         )
 
-        data class Moderate(
+        /**
+         * Label styles with Moderate font weight (Medium).
+         *
+         * @property extraLarge Extra large moderate label text.
+         * @property large Large moderate label text.
+         * @property medium Medium moderate label text.
+         * @property small Small moderate label text.
+         */
+        @ConsistentCopyVisibility
+        data class Moderate internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
         )
 
-        data class Strong(
+        /**
+         * Label styles with Strong font weight (Bold).
+         *
+         * @property extraLarge Extra large strong label text.
+         * @property large Large strong label text.
+         * @property medium Medium strong label text.
+         * @property small Small strong label text.
+         */
+        @ConsistentCopyVisibility
+        data class Strong internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,
@@ -100,6 +197,7 @@ data class OudsTypography(
 internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     val lineHeightStyle = LineHeightStyle(alignment = LineHeightStyle.Alignment.Proportional, trim = LineHeightStyle.Trim.None)
     OudsTypography(
+        fontFamily = fontFamily,
         display = OudsTypography.Display(
             large = TextStyle(
                 fontFamily = fontFamily,
@@ -342,6 +440,8 @@ private fun OudsTypography.fromToken(token: OudsTypographyKeyToken): TextStyle {
 /**
  * Converts an OUDS typography token to the local typography value provided by the theme.
  * Note that the typography value returned varies depending on the window size.
+ *
+ * @suppress
  */
 @InternalOudsApi
 val OudsTypographyKeyToken.value: TextStyle

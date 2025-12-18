@@ -15,13 +15,17 @@ package com.orange.ouds.app.ui.components.controlitem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.core.component.OudsControlItemIcon
+import com.orange.ouds.core.component.common.OudsError
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
 
@@ -31,13 +35,16 @@ fun controlItemCustomization(index: Int, content: @Composable () -> Unit) = Cont
 fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: List<ControlItemCustomization> = listOf()) {
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
         { ControlItemIconCustomization(state = state) },
+        { ControlItemEdgeToEdgeCustomization(state = state) },
         { ControlItemDividerCustomization(state = state) },
         { ControlItemReversedCustomization(state = state) },
         { ControlItemEnabledCustomization(state = state) },
         { ControlItemReadOnlyCustomization(state = state) },
         { ControlItemErrorCustomization(state = state) },
+        { ControlItemErrorMessageCustomization(state = state) },
         { ControlItemLabelCustomization(state = state) },
-        { ControlItemHelperTextCustomization(state = state) }
+        { ControlItemDescriptionCustomization(state = state) },
+        { ControlItemConstrainedMaxWidthCustomization(state = state) }
     )
     extraCustomizations.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -55,6 +62,18 @@ private fun ControlItemIconCustomization(state: ControlItemDemoState) {
         )
     }
 }
+
+@Composable
+private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_controlItem_edgeToEdge_label),
+            checked = edgeToEdge,
+            onCheckedChange = { edgeToEdge = it },
+        )
+    }
+}
+
 
 @Composable
 private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
@@ -115,9 +134,23 @@ private fun ControlItemErrorCustomization(state: ControlItemDemoState) {
 }
 
 @Composable
+private fun ControlItemErrorMessageCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationTextField(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_errorMessage_label),
+            value = errorMessage,
+            onValueChange = { value -> errorMessage = value },
+            enabled = errorMessageTextInputEnabled
+        )
+    }
+}
+
+@Composable
 private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
@@ -126,27 +159,46 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
 }
 
 @Composable
-private fun ControlItemHelperTextCustomization(state: ControlItemDemoState) {
+private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextField(
-            label = stringResource(R.string.app_components_common_helperText_label),
-            value = helperText.orEmpty(),
-            onValueChange = { value -> helperText = value }
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_controlItem_description_label),
+            value = description.orEmpty(),
+            onValueChange = { value -> description = value }
         )
     }
 }
 
-fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState) = with(state) {
-    labelArgument(label)
-    if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
-    if (icon) {
-        constructorCallArgument<OudsControlItemIcon>("icon") {
-            painterArgument(R.drawable.ic_heart)
-        }
+@Composable
+private fun ControlItemConstrainedMaxWidthCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_constrainedMaxWidth_label),
+            checked = constrainedMaxWidth,
+            onCheckedChange = { constrainedMaxWidth = it },
+        )
     }
-    if (divider) typedArgument("divider", divider)
-    if (reversed) typedArgument("reversed", reversed)
-    if (!enabled) enabledArgument(enabled)
-    if (readOnly) typedArgument("readOnly", readOnly)
-    if (error) typedArgument("error", error)
 }
+
+fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) =
+    with(state) {
+        labelArgument(label)
+        if (!description.isNullOrBlank()) typedArgument("description", description)
+        if (icon) {
+            constructorCallArgument<OudsControlItemIcon>("icon") {
+                painterArgument(themeDrawableResources.tipsAndTricks)
+            }
+        }
+        if (!edgeToEdge) typedArgument("edgeToEdge", edgeToEdge)
+        if (divider) typedArgument("divider", divider)
+        if (reversed) typedArgument("reversed", reversed)
+        if (!enabled) enabledArgument(enabled)
+        if (readOnly) readOnlyArgument(readOnly)
+        if (error) {
+            constructorCallArgument<OudsError>("error") {
+                typedArgument("message", if (hasErrorMessage) errorMessage else "")
+            }
+        }
+        if (constrainedMaxWidth) constrainedMaxWidthArgument(constrainedMaxWidth)
+    }

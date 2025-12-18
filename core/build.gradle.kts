@@ -48,8 +48,10 @@ dependencies {
     implementation(libs.androidx.compose.material3.adaptive)
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.material)
 
+    testImplementation(project(":core-test"))
     testImplementation(project(":theme-orange"))
     androidTestImplementation(project(":theme-orange"))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

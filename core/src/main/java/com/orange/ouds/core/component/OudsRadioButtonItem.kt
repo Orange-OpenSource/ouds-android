@@ -12,11 +12,11 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -30,12 +30,14 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
@@ -44,37 +46,39 @@ import com.orange.ouds.theme.OudsThemeContract
  * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
  *
  * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as
- * additional label, helper text, a divider, or an icon, allowing it to suit various use cases.
+ * extra label, description, a divider, or an icon, allowing it to suit various use cases.
  *
  * The OUDS radio button item layout contains an [OudsRadioButton]. By clicking on the radio button item, the user changes the selected state of its radio button.
  *
- * In most cases, OUDS radio button items span the entire width of the screen. Thus an horizontal padding of `OudsTheme.grids.margin` is applied to the content.
- * This behaviour can be disabled by calling [com.orange.ouds.core.utilities.edgeToEdgePadding] modifier with `enabled` parameter set to `false`.
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-radio-button)
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
- *
- * > Design version: 1.3.0
+ * > Design version: 1.4.0
  *
  * @see [OudsRadioButton] If you want to use a standalone radio button.
  *
- * @param selected Controls selected state of the radio button.
+ * @param selected Controls the selected state of the radio button.
  * @param label The main label of the radio button item.
  * @param onClick Callback invoked on radio button click. If `null`, then this radio button will not be interactable, unless something else handles its
- * input events and updates its state.
+ *   input events and updates its state.
  * @param modifier [Modifier] applied to the layout of the radio button item.
- * @param additionalLabel Optional strong accompanying label for the main label. It is displayed between the [label] and the [helperText].
- * @param helperText Optional text displayed below the [label] and the [additionalLabel].
+ * @param extraLabel Optional strong accompanying label for the main label. It is displayed between the [label] and the [description].
+ * @param description Optional text displayed below the [label] and the [extraLabel].
  * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param divider Controls the display of a divider at the bottom of the radio button item.
  * @param outlined When set to `true`, the radio button item, if selected, is outlined to stand out and draw the user's attention.
  * @param reversed When `false`, the radio button has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
  * @param enabled Controls the enabled state of the radio button item. When `false`, the radio button, the texts and the optional icon are disabled, and the item
- * will not be clickable.
- * @param readOnly Controls the read only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
- * enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the radio button item will be displayed in disabled state.
- * @param error Optional [OudsError] to provide in the case of the radio button item should appear in error state, `null` otherwise.
+ *   will not be clickable.
+ * @param readOnly Controls the read-only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the radio button item will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the radio button item should appear in error state, `null` otherwise.
+ * @param constrainedMaxWidth When `true`, the item width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's radio button. Note that if `null`
- * is provided, interactions will still happen internally.
+ *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemSample
  */
@@ -84,20 +88,22 @@ fun OudsRadioButtonItem(
     label: String,
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    additionalLabel: String? = null,
-    helperText: String? = null,
+    extraLabel: String? = null,
+    description: String? = null,
     icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     outlined: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getControlItemState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
     val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
 
     val selectableModifier = if (onClick != null) {
@@ -113,19 +119,22 @@ fun OudsRadioButtonItem(
         Modifier
     }
 
+    val hasVisibleOutline = outlined && (state == OudsControlState.Focused || outlineBorderColor(state = state, selected = selected, error = error) != null)
+
     OudsControlItem(
         state = state,
         label = label,
-        additionalLabel = additionalLabel,
-        helperText = helperText,
+        extraLabel = extraLabel,
+        description = description,
         icon = icon,
-        divider = if (outlined && outlineBorderColor(state = state, selected = selected, error = error) != null) false else divider,
+        edgeToEdge = edgeToEdge,
+        divider = divider && !hasVisibleOutline,
         enabled = enabled,
         readOnly = readOnly,
         error = error,
         indicator = {
             OudsRadioButtonIndicator(
-                state = state.toControlState(),
+                state = state,
                 selected = selected,
                 error = error != null
             )
@@ -133,20 +142,21 @@ fun OudsRadioButtonItem(
         indicatorPosition = if (reversed) OudsControlItemIndicatorPosition.End else OudsControlItemIndicatorPosition.Start,
         checkedContentComponentName = "OudsRadioButtonItem",
         checkedContentSelectionStatus = if (selected) "Selected" else "Unselected",
+        backgroundColor = backgroundColor.value,
         modifier = modifier
             .then(selectableModifier)
-            .background(color = backgroundColor.value)
-            .border(outlined = outlined, selected = selected, error = error, state = state)
             .semantics(mergeDescendants = true) {},
+        contentModifier = Modifier.border(outlined = outlined, selected = selected, error = error, state = state),
+        constrainedMaxWidth = constrainedMaxWidth,
         handleHighContrastMode = true
     )
 }
 
 @Composable
-private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlItemState): Modifier {
+private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsError?, state: OudsControlState): Modifier {
     val borderColor = outlineBorderColor(state, selected, error)
     val width = OudsTheme.borders.width.default.takeUnlessHairline
-    
+
     return if (outlined && borderColor != null && width != null) {
         border(width = width, color = borderColor)
     } else {
@@ -155,25 +165,25 @@ private fun Modifier.border(outlined: Boolean, selected: Boolean, error: OudsErr
 }
 
 @Composable
-private fun outlineBorderColor(state: OudsControlItemState, selected: Boolean, error: OudsError?): Color? {
+private fun outlineBorderColor(state: OudsControlState, selected: Boolean, error: OudsError?): Color? {
     return if (error != null) {
         with(OudsTheme.colorScheme.action.negative) {
             when (state) {
-                OudsControlItemState.Enabled -> if (selected) enabled else null
-                OudsControlItemState.Hovered -> hover
-                OudsControlItemState.Pressed -> pressed
-                OudsControlItemState.Focused -> null
-                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
+                OudsControlState.Enabled -> if (selected) enabled else null
+                OudsControlState.Hovered -> hover
+                OudsControlState.Pressed -> pressed
+                OudsControlState.Focused -> null
+                OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
             }
         }
     } else {
         with(OudsTheme.colorScheme.action) {
             when (state) {
-                OudsControlItemState.Enabled -> if (selected) this.selected else null
-                OudsControlItemState.Hovered -> hover
-                OudsControlItemState.Pressed -> pressed
-                OudsControlItemState.Focused -> null
-                OudsControlItemState.Disabled, OudsControlItemState.ReadOnly -> if (selected) disabled else null
+                OudsControlState.Enabled -> if (selected) this.selected else null
+                OudsControlState.Hovered -> hover
+                OudsControlState.Pressed -> pressed
+                OudsControlState.Focused -> null
+                OudsControlState.Disabled, OudsControlState.ReadOnly -> if (selected) disabled else null
             }
         }
     }
@@ -193,13 +203,13 @@ internal fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
                 onClick = { },
-                additionalLabel = additionalLabel,
-                helperText = helperText,
+                extraLabel = extraLabel,
+                description = description,
                 divider = divider,
                 error = error,
                 outlined = checkNotNull(extraParameter),
@@ -228,7 +238,7 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlItemState>(columnCount = 1) {
+        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -242,23 +252,67 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
 @Preview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsRadioButtonItemWithLongHelperText() = PreviewOudsRadioButtonItemWithLongHelperText(theme = getPreviewTheme())
+private fun PreviewOudsRadioButtonItemWithDescriptionText() = PreviewOudsRadioButtonItemWithDescriptionText(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsRadioButtonItemWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+internal fun PreviewOudsRadioButtonItemWithDescriptionText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsRadioButtonItem(
         selected = true,
         label = "Label",
         onClick = {},
-        additionalLabel = "Additional label",
-        helperText = LoremIpsumText,
+        extraLabel = "Extra label",
+        description = LoremIpsumText,
         icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
+    )
+}
+
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled() = PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
+
+
+@Composable
+internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+        OudsRadioButtonItem(
+            selected = true,
+            label = "Label",
+            onClick = {},
+            extraLabel = "Extra label",
+            icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+            edgeToEdge = false,
+            divider = true,
+            error = OudsError(ControlItemErrorMessage)
+        )
+    }
+}
+
+@Preview(widthDp = OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth.PreviewWidthDp)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
+    PreviewOudsRadioButtonItemConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
+}
+
+@Composable
+internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
+    OudsRadioButtonItem(
+        modifier = Modifier.padding(all = 10.dp),
+        selected = false,
+        label = "Label",
+        onClick = {},
+        extraLabel = "Extra label",
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+        edgeToEdge = false,
+        divider = true,
+        constrainedMaxWidth = constrainedMaxWidth
     )
 }
 
 internal typealias OudsRadioButtonItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Boolean>
 
-private val previewOutlinedValues = listOf(true, true, false)
+private val previewOutlinedValues = listOf(false, true, true)
 
 internal class OudsRadioButtonItemPreviewParameterProvider :
     OudsControlItemPreviewParameterProvider<Boolean, Boolean>(DefaultBooleanValues, previewOutlinedValues)
@@ -267,4 +321,3 @@ internal typealias OudsRadioButtonItemHighContrastModePreviewParameter = OudsCon
 
 internal class OudsRadioButtonItemHighContrastModePreviewParameterProvider :
     OudsControlItemHighContrastModePreviewParameterProvider<Boolean>(listOf(false, true))
-

@@ -119,7 +119,6 @@ import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -145,10 +144,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
@@ -168,7 +169,8 @@ fun AboutMaterialComponentsScreen() {
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
-                        .padding(bottom = OudsTheme.spaces.fixed.medium)
+                        .consumeTopBarsTopWindowInsets()
+                        .padding(top = topBarsTopPadding, bottom = OudsTheme.spaces.fixed.medium)
                 ) {
 
                     // APP BARS
@@ -925,6 +927,6 @@ private fun SectionColumn(title: String, horizontalPadding: Boolean = true, vert
 
 @PreviewLightDark
 @Composable
-private fun PreviewAboutMaterialComponentsScreen() = OudsPreview {
+private fun PreviewAboutMaterialComponentsScreen() = AppPreview {
     AboutMaterialComponentsScreen()
 }

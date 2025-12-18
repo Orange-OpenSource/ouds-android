@@ -13,27 +13,31 @@
 package com.orange.ouds.app.ui.components.switch
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun SwitchItemDemoScreen() {
     val state = rememberSwitchItemDemoState()
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         bottomSheetContent = { ControlItemCustomizations(state = state) },
-        codeSnippet = { switchItemDemoCodeSnippet(state = state) },
+        codeSnippet = { switchItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { SwitchItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(),
         version = OudsVersion.Component.Switch
@@ -44,34 +48,37 @@ fun SwitchItemDemoScreen() {
 private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
     with(state) {
         OudsSwitchItem(
+            modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin),
             checked = checked,
             label = label,
             onCheckedChange = { checked = it },
-            helperText = helperText,
-            icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
+            description = description,
+            icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+            edgeToEdge = edgeToEdge,
             divider = divider,
             reversed = reversed,
             enabled = enabled,
             readOnly = readOnly,
-            error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+            error = if (error) OudsError(errorMessage) else null,
+            constrainedMaxWidth = constrainedMaxWidth
         )
     }
 }
 
-private fun Code.Builder.switchItemDemoCodeSnippet(state: SwitchItemDemoState) {
+private fun Code.Builder.switchItemDemoCodeSnippet(state: SwitchItemDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsSwitchItem") {
             typedArgument("checked", checked)
             lambdaArgument("onCheckedChange") {
                 comment("Change state")
             }
-            controlItemArguments(state)
+            controlItemArguments(state, themeDrawableResources, true)
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewSwitchItemDemoScreen() = OudsPreview {
+private fun PreviewSwitchItemDemoScreen() = AppPreview {
     SwitchItemDemoScreen()
 }

@@ -27,45 +27,69 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 fun rememberRadioButtonItemDemoState(
     selectedValue: Int = RadioButtonItemDemoState.values.first(),
     icon: Boolean = false,
+    edgeToEdge: Boolean = true,
     divider: Boolean = false,
     outlined: Boolean = false,
     reversed: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
+    errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
-    additionalLabel: String? = null,
-    helperText: String? = null
+    extraLabel: String? = null,
+    description: String? = null,
+    constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(
     selectedValue,
     icon,
+    edgeToEdge,
     divider,
     outlined,
     reversed,
     enabled,
     readOnly,
     error,
+    errorMessage,
     label,
-    additionalLabel,
-    helperText,
+    extraLabel,
+    description,
+    constrainedMaxWidth,
     saver = RadioButtonItemDemoState.Saver
 ) {
-    RadioButtonItemDemoState(selectedValue, icon, divider, outlined, reversed, enabled, readOnly, error, label, additionalLabel, helperText)
+    RadioButtonItemDemoState(
+        selectedValue,
+        icon,
+        edgeToEdge,
+        divider,
+        outlined,
+        reversed,
+        enabled,
+        readOnly,
+        error,
+        errorMessage,
+        label,
+        extraLabel,
+        description,
+        constrainedMaxWidth
+    )
 }
 
 class RadioButtonItemDemoState(
     selectedValue: Int,
     icon: Boolean,
+    edgeToEdge: Boolean,
     divider: Boolean,
     outlined: Boolean,
     reversed: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
+    errorMessage: String,
     label: String,
-    additionalLabel: String?,
-    helperText: String?
-) : ControlItemDemoState(icon, divider, reversed, enabled, readOnly, error, label, helperText) {
+    extraLabel: String?,
+    description: String?,
+    constrainedMaxWidth: Boolean,
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth) {
 
     companion object {
         val values = listOf(1, 2)
@@ -75,7 +99,7 @@ class RadioButtonItemDemoState(
                     listOf(
                         selectedValue,
                         outlined,
-                        additionalLabel,
+                        extraLabel,
                         with(ControlItemDemoState.Saver) { save(state) }
                     )
                 }
@@ -86,15 +110,18 @@ class RadioButtonItemDemoState(
                     RadioButtonItemDemoState(
                         list[0] as Int,
                         icon,
+                        edgeToEdge,
                         divider,
                         list[1] as Boolean,
                         reversed,
                         enabled,
                         readOnly,
                         error,
+                        errorMessage,
                         label,
                         list[2] as String?,
-                        helperText
+                        description,
+                        constrainedMaxWidth
                     )
                 }
             }
@@ -103,5 +130,5 @@ class RadioButtonItemDemoState(
 
     var selectedValue: Int by mutableIntStateOf(selectedValue)
     var outlined: Boolean by mutableStateOf(outlined)
-    var additionalLabel: String? by mutableStateOf(additionalLabel)
+    var extraLabel: String? by mutableStateOf(extraLabel)
 }

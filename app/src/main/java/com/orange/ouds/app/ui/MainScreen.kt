@@ -22,30 +22,44 @@ import androidx.activity.compose.LocalActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.displayCutout
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.union
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.dp
 import androidx.core.content.getSystemService
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import com.orange.ouds.app.ui.navigation.appNavGraph
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
+import dev.chrisbanes.haze.HazeStyle
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.rememberHazeState
 
 @Composable
 fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
@@ -89,66 +103,80 @@ fun MainScreen(
         theme = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
-        Scaffold(
-            contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
-            topBar = {
-                val context = LocalContext.current
-                TopBar(
-                    topBarState = mainState.topBarState,
-                    upPress = mainState.navigationState::upPress,
-                    onActionClick = { action ->
-                        when (action) {
-                            TopBarAction.ChangeThemeSettings -> changeThemeSettingsDialogVisible = true
-                            TopBarAction.ChangeTheme -> changeThemeDialogVisible = true
-                            TopBarAction.ChangeMode -> setApplicationNightModeEnabled(!isSystemInDarkTheme, context)
+        val hazeState = rememberHazeState(blurEnabled = true)
+        val hazeStyle = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)
+
+        CompositionLocalProvider(LocalThemeDrawableResources provides ThemeDrawableResources(mainState.themeState.currentTheme)) {
+            Scaffold(
+                contentWindowInsets = ScaffoldDefaults.contentWindowInsets.union(WindowInsets.displayCutout),
+                topBar = {
+                    val context = LocalContext.current
+                    TopBar(
+                        modifier = Modifier.hazeEffect(state = hazeState, style = hazeStyle),
+                        topBarState = mainState.topBarState,
+                        upPress = mainState.navigationState::upPress,
+                        onActionClick = { action ->
+                            when (action) {
+                                TopBarAction.ChangeThemeSettings -> changeThemeSettingsDialogVisible = true
+                                TopBarAction.ChangeTheme -> changeThemeDialogVisible = true
+                                TopBarAction.ChangeMode -> setApplicationNightModeEnabled(!isSystemInDarkTheme, context)
+                            }
                         }
-                    }
+                    )
+                },
+                bottomBar = {
+                    BottomBar(
+                        modifier = Modifier.hazeEffect(state = hazeState, style = hazeStyle),
+                        currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                        navigateToRoute = { route ->
+                            mainState.navigationState.navigateToBottomBarRoute(route)
+                        },
+                        visible = mainState.showBottomBar
+                    )
+                }
+            ) { innerPadding ->
+                val paddingValues = PaddingValues(
+                    top = 0.dp,
+                    bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding(),
+                    start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
+                    end = innerPadding.calculateEndPadding(LocalLayoutDirection.current)
                 )
-            },
-            bottomBar = {
-                BottomBar(
-                    currentRoute = mainState.navigationState.currentRoute.orEmpty(),
-                    navigateToRoute = { route ->
-                        mainState.navigationState.navigateToBottomBarRoute(route)
-                    },
-                    visible = mainState.showBottomBar
-                )
-            }
-        ) { innerPadding ->
-            NavHost(
-                navController = mainState.navigationState.navController,
-                startDestination = BottomBarItem.Tokens.route,
-                modifier = Modifier
-                    .consumeWindowInsets(innerPadding)
-                    .padding(innerPadding)
-            ) {
-                appNavGraph(mainState)
-            }
+                NavHost(
+                    navController = mainState.navigationState.navController,
+                    startDestination = BottomBarItem.Tokens.route,
+                    modifier = Modifier
+                        .padding(paddingValues)
+                        .consumeWindowInsets(paddingValues)
+                        .hazeSource(state = hazeState)
+                ) {
+                    appNavGraph(mainState)
+                }
 
-            if (changeThemeDialogVisible) {
-                ChangeThemeDialog(
-                    themeState = mainState.themeState,
-                    onThemeChange = { themeName ->
-                        mainState.themeState.setCurrentTheme(themeName)
-                        onThemeChange(themeName)
-                    },
-                    onDismissRequest = {
-                        changeThemeDialogVisible = false
-                    }
-                )
-            }
+                if (changeThemeDialogVisible) {
+                    ChangeThemeDialog(
+                        themeState = mainState.themeState,
+                        onThemeChange = { themeName ->
+                            mainState.themeState.setCurrentTheme(themeName)
+                            onThemeChange(themeName)
+                        },
+                        onDismissRequest = {
+                            changeThemeDialogVisible = false
+                        }
+                    )
+                }
 
-            if (changeThemeSettingsDialogVisible) {
-                ChangeThemeSettingsDialog(
-                    themeState = mainState.themeState,
-                    onThemeSettingsChange = { themeSettings ->
-                        mainState.themeState.settings = themeSettings
-                        onThemeSettingsChange(themeSettings)
-                    },
-                    onDismissRequest = {
-                        changeThemeSettingsDialogVisible = false
-                    }
-                )
+                if (changeThemeSettingsDialogVisible) {
+                    ChangeThemeSettingsDialog(
+                        themeState = mainState.themeState,
+                        onThemeSettingsChange = { themeSettings ->
+                            mainState.themeState.settings = themeSettings
+                            onThemeSettingsChange(themeSettings)
+                        },
+                        onDismissRequest = {
+                            changeThemeSettingsDialogVisible = false
+                        }
+                    )
+                }
             }
         }
     }
@@ -167,7 +195,7 @@ private fun setApplicationNightModeEnabled(night: Boolean, context: Context) {
 
 @PreviewLightDark
 @Composable
-private fun PreviewMainScreen() = OudsPreview {
+private fun PreviewMainScreen() = AppPreview {
     // Tokens screen content is not displayed because the tokenCategories property uses sealedSubclasses which does not work in Compose previews
     // See https://issuetracker.google.com/issues/240601093
     MainScreen(

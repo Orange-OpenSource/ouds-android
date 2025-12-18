@@ -22,11 +22,13 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
+import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceDark
+import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceLight
+import com.orange.ouds.core.theme.OudsTheme.Tweak.Invert
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
@@ -39,6 +41,7 @@ internal val LocalDarkColorScheme = compositionLocalOf<OudsColorScheme> { missin
 internal val LocalMaterialLightColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialLightColorScheme") }
 internal val LocalMaterialDarkColorScheme = compositionLocalOf<ColorScheme> { missingCompositionLocalError("LocalMaterialDarkColorScheme") }
 internal val LocalBorders = staticCompositionLocalOf<OudsBorders> { missingCompositionLocalError("LocalBorders") }
+internal val LocalEffects = staticCompositionLocalOf<OudsEffects> { missingCompositionLocalError("LocalEffects") }
 internal val LocalElevations = staticCompositionLocalOf<OudsElevations> { missingCompositionLocalError("LocalElevations") }
 internal val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 internal val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
@@ -49,6 +52,7 @@ internal val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsToke
 internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
+internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 
 /**
  * Object that stores tokens values for the current theme.
@@ -56,9 +60,11 @@ internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { 
 object OudsTheme {
 
     /**
-     * Tweak of the current [OudsTheme] which can be passed to [OudsThemeTweak] composable:
-     *   - Invert set theme in dark when app is in light or in light when app is in dark
-     *   - ForceDark and ForceLight force the theme to be in dark or in light
+     * Defines adjustments that can be applied to the current [OudsTheme] via the [OudsThemeTweak] composable.
+     *
+     * @property Invert Inverts the current theme (switches from Light to Dark or Dark to Light).
+     * @property ForceDark Forces the theme to Dark mode, regardless of the system setting.
+     * @property ForceLight Forces the theme to Light mode, regardless of the system setting.
      */
     enum class Tweak {
         Invert, ForceDark, ForceLight
@@ -73,6 +79,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalBorders.current
+
+    val effects: OudsEffects
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalEffects.current
 
     val elevations: OudsElevations
         @Composable
@@ -104,6 +115,11 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
+    val components: OudsComponents
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalComponents.current
+
     internal val componentsTokens: OudsComponentsTokens
         @Composable
         @ReadOnlyComposable
@@ -121,11 +137,9 @@ object OudsTheme {
 }
 
 /**
- * [OudsTheme] is the theme to apply to your screens in a Jetpack Compose application. Use it at the top of
- * your application in replacement of the `MaterialTheme`.
- * Cause OUDS supports multi-theme, you should pass the OUDS supported [theme] used by your application.
+ * Applies the OUDS theme to the composable hierarchy.
  *
- * @param theme Theme to apply to your application. It must implement [OudsThemeContract] (e.g. OrangeTheme, SoshTheme, ...)
+ * @param theme Theme to apply to your application. It must implement [OudsThemeContract] (e.g., OrangeTheme, SoshTheme, ...)
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
  * @param content Theme nested content. The provided [theme] will be applied to this content.
  */
@@ -137,7 +151,7 @@ fun OudsTheme(
 ) {
     with(theme) {
         val colorScheme = if (darkThemeEnabled) colorTokens.darkColorScheme else colorTokens.lightColorScheme
-        val materialColorScheme = if (darkThemeEnabled) OudsMaterialColorTokens.materialDarkColorScheme else OudsMaterialColorTokens.materialLightColorScheme
+        val materialColorScheme = if (darkThemeEnabled) materialColorTokens.materialDarkColorScheme else materialColorTokens.materialLightColorScheme
         val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
 
         CompositionLocalProvider(
@@ -146,18 +160,20 @@ fun OudsTheme(
             LocalColorScheme provides colorScheme,
             LocalLightColorScheme provides colorTokens.lightColorScheme,
             LocalDarkColorScheme provides colorTokens.darkColorScheme,
-            LocalMaterialLightColorScheme provides OudsMaterialColorTokens.materialLightColorScheme,
-            LocalMaterialDarkColorScheme provides OudsMaterialColorTokens.materialDarkColorScheme,
+            LocalMaterialLightColorScheme provides materialColorTokens.materialLightColorScheme,
+            LocalMaterialDarkColorScheme provides materialColorTokens.materialDarkColorScheme,
             LocalBorders provides borderTokens.getBorders(),
-            LocalElevations provides elevationTokens.getElevation(),
+            LocalEffects provides effectTokens.getEffects(),
+            LocalElevations provides elevationTokens.getElevations(),
             LocalTypography provides fontTokens.getTypography(fontFamily, windowWidthSizeClass),
             LocalGrids provides gridTokens.getGrids(windowWidthSizeClass),
-            LocalOpacities provides opacityTokens.getOpacity(),
+            LocalOpacities provides opacityTokens.getOpacities(),
             LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),
             LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),
             LocalComponentsTokens provides componentsTokens,
             LocalDrawableResources provides drawableResources,
-            LocalThemeSettings provides settings
+            LocalThemeSettings provides settings,
+            LocalComponents provides componentsTokens.getComponents()
         ) {
             MaterialTheme(
                 colorScheme = materialColorScheme,
@@ -168,12 +184,12 @@ fun OudsTheme(
 }
 
 /**
- * Tweaks the current OUDS theme and displays given [content] according to the selected [tweak].
+ * Modifies the current OUDS theme configuration and applies it to the given [content].
  *
- * Note: This composable is directly related to [OudsTheme] and MUST be used inside it.
+ * Note: This composable relies on [OudsTheme] and must be nested within it.
  *
- * @param tweak Tweak applied to the current [OudsTheme].
- * @param content Theme tweak nested content. OudsThemeTweak will be applied to this content.
+ * @param tweak The specific adjustment to apply to the current [OudsTheme] (e.g., forcing dark mode).
+ * @param content The content to which the tweaked theme will be applied.
  */
 @Composable
 fun OudsThemeTweak(tweak: OudsTheme.Tweak, content: @Composable () -> Unit) {
@@ -197,12 +213,16 @@ fun OudsThemeTweak(tweak: OudsTheme.Tweak, content: @Composable () -> Unit) {
 }
 
 /**
- * This function is equivalent to [isSystemInDarkTheme] except it takes the OUDS theme setting into account instead of the system one.
+ * Determines if the OUDS theme is currently in dark mode.
  *
- * The OUDS theme can be inverted or forced to light or dark when calling [OudsThemeTweak] and the value returned by this method reflects that kind of change.
- * If there is no call to [OudsThemeTweak] anywhere in the layout hierarchy, then this function returns the same value as [isSystemInDarkTheme].
+ * This function is equivalent to [isSystemInDarkTheme], but it respects overrides applied by [OudsThemeTweak].
  *
- * @return `true` if OUDS is considered to be in 'dark theme'.
+ * The OUDS theme can be inverted or forced to light/dark modes using [OudsThemeTweak].
+ * The value returned by this function reflects these effective changes.
+ *
+ * If [OudsThemeTweak] is not used in the layout hierarchy, this function returns the value of the `darkThemeEnabled` parameter of the root `OudsTheme` method.
+ *
+ * @return `true` if the effective OUDS theme is dark, `false` otherwise.
  */
 @Composable
 @ReadOnlyComposable

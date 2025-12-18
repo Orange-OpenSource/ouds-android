@@ -59,6 +59,9 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -119,14 +122,15 @@ fun CustomizationBottomSheetScaffold(
                 val angle by animateFloatAsState(targetValue = degrees, label = "ComponentCustomizationBottomSheetScaffoldIconRotation")
                 Icon(
                     modifier = Modifier.rotate(angle),
-                    painter = painterResource(id = R.drawable.ic_chevron_down),
+                    painter = painterResource(id = LocalThemeDrawableResources.current.formChevronDown),
                     contentDescription = null,
                     tint = OudsTheme.colorScheme.content.default
                 )
                 Text(
                     modifier = Modifier.padding(start = OudsTheme.spaces.fixed.medium),
                     text = stringResource(id = titleResId),
-                    style = OudsTheme.typography.body.strong.large
+                    style = OudsTheme.typography.body.strong.large,
+                    color = OudsTheme.colorScheme.content.default
                 )
             }
 
@@ -137,6 +141,7 @@ fun CustomizationBottomSheetScaffold(
                     .heightIn(max = customizationContentMaxHeight)
                     .verticalScrollbar(scrollState)
                     .verticalScroll(scrollState)
+                    .padding(bottom = OudsTheme.spaces.fixed.small)
                     // We should write this line to disable the focus on children when the bottom sheet is not expanded:
                     // focusProperties { canFocus = bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded }
                     // But for some reason setting canFocus to true breaks the focus in CustomizationFilterChips,
@@ -160,7 +165,9 @@ fun CustomizationBottomSheetScaffold(
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState())
                     .consumeWindowInsets(innerPadding)
-                    .padding(innerPadding),
+                    .padding(innerPadding)
+                    .consumeTopBarsTopWindowInsets()
+                    .padding(top = topBarsTopPadding),
             ) {
                 content()
             }

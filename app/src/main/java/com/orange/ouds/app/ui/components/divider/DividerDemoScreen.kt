@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -33,7 +34,6 @@ import com.orange.ouds.core.component.OudsDividerColor
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsVerticalDivider
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -102,12 +102,12 @@ private fun Code.Builder.dividerDemoCodeSnippet(state: DividerDemoState, vertica
 
 @PreviewLightDark
 @Composable
-private fun PreviewHorizontalDividerDemoScreen() = OudsPreview {
+private fun PreviewHorizontalDividerDemoScreen() = AppPreview {
     DividerDemoScreen()
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewVerticalDividerDemoScreen() = OudsPreview {
+private fun PreviewVerticalDividerDemoScreen() = AppPreview {
     DividerDemoScreen(vertical = true)
 }

@@ -13,27 +13,43 @@
 package com.orange.ouds.app.ui.about
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.declaredMemberProperties
 
 @Composable
 fun AboutVersionsScreen() {
     Screen {
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier.consumeTopBarsTopWindowInsets(),
+            contentPadding = PaddingValues(
+                top = topBarsTopPadding,
+                bottom = OudsTheme.spaces.fixed.medium
+            )
+        ) {
             item {
                 VersionsSectionTitle(titleRes = R.string.app_about_versions_tokens_label)
             }
@@ -101,6 +117,6 @@ private inline fun <reified T : Any> getVersions(): List<Version> {
 
 @PreviewLightDark
 @Composable
-fun PreviewVersionsScreen() = OudsPreview {
+fun PreviewVersionsScreen() = AppPreview {
     AboutVersionsScreen()
 }

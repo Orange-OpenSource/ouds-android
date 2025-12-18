@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.components.radiobutton
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,21 +27,25 @@ import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsRadioButtonItem
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun RadioButtonItemDemoScreen() {
     val state = rememberRadioButtonItemDemoState()
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         bottomSheetContent = { RadioButtonItemDemoBottomSheetContent(state = state) },
-        codeSnippet = { radioButtonItemDemoCodeSnippet(state = state) },
+        codeSnippet = { radioButtonItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { RadioButtonItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(),
         version = OudsVersion.Component.RadioButton
@@ -58,11 +63,12 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
                     onCheckedChange = { outlined = it },
                 )
             },
-            controlItemCustomization(8) {
+            controlItemCustomization(9) {
                 CustomizationTextField(
-                    label = stringResource(R.string.app_components_radioButton_radioButtonItem_additionalLabel_label),
-                    value = additionalLabel.orEmpty(),
-                    onValueChange = { value -> additionalLabel = value }
+                    applyTopPadding = true,
+                    label = stringResource(R.string.app_components_radioButton_radioButtonItem_extraLabel_label),
+                    value = extraLabel.orEmpty(),
+                    onValueChange = { value -> extraLabel = value }
                 )
             }
         )
@@ -73,28 +79,37 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
 @Composable
 private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
     with(state) {
-        Column(modifier = Modifier.selectableGroup()) {
-            RadioButtonItemDemoState.values.forEach { radioButtonValue ->
+        Column(
+            modifier = if (edgeToEdge) {
+                Modifier
+            } else {
+                Modifier.padding(horizontal = OudsTheme.grids.margin)
+            }.selectableGroup()
+        ) {
+            RadioButtonItemDemoState.values.forEachIndexed { index, radioButtonValue ->
+                val isLastItem = index == RadioButtonItemDemoState.values.lastIndex
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
                     label = label,
-                    additionalLabel = additionalLabel,
-                    helperText = helperText,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = R.drawable.ic_heart)) else null,
+                    extraLabel = extraLabel,
+                    description = description,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+                    edgeToEdge = edgeToEdge,
                     divider = divider,
                     outlined = outlined,
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    constrainedMaxWidth = constrainedMaxWidth
                 )
             }
         }
     }
 }
 
-private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState) {
+private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, themeDrawableResources: ThemeDrawableResources) {
     comment("First radio button item")
     with(state) {
         functionCall("OudsRadioButtonItem") {
@@ -102,8 +117,8 @@ private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDe
             onClickArgument {
                 comment("Change selection")
             }
-            controlItemArguments(state)
-            if (!additionalLabel.isNullOrBlank()) typedArgument("additionalLabel", additionalLabel)
+            controlItemArguments(state, themeDrawableResources)
+            if (!extraLabel.isNullOrBlank()) typedArgument("extraLabel", extraLabel)
             if (outlined) typedArgument("outlined", outlined)
         }
     }
@@ -111,6 +126,6 @@ private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDe
 
 @PreviewLightDark
 @Composable
-private fun PreviewRadioButtonItemDemoScreen() = OudsPreview {
+private fun PreviewRadioButtonItemDemoScreen() = AppPreview {
     RadioButtonItemDemoScreen()
 }

@@ -21,20 +21,53 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 
 /**
- * @suppress
+ * Holds the size values defined in the OUDS theme.
+ *
+ * These values ensure consistent sizing for icons, touch targets, and layout constraints
+ * across different screen sizes and contexts.
+ *
+ * > Design guidelines: [Size tokens documentation](https://r.orange.fr/r/S-ouds-doc-token-size)
+ *
+ * @property icon Sizes related to icons.
+ * @property maxWidth Max width constraints for layouts.
+ * @property minInteractiveArea The minimum size for an interactive touch target.
  */
-data class OudsSizes(
+@ConsistentCopyVisibility
+data class OudsSizes internal constructor(
     val icon: Icon,
     val maxWidth: MaxWidth,
     val minInteractiveArea: Dp
 ) {
-    data class Icon(
+    /**
+     * Sizes for icons depending on their usage context.
+     *
+     * @property decorative Sizes for standalone decorative icons.
+     * @property withHeading Sizes for icons paired with heading typography.
+     * @property withLabel Sizes for icons paired with label typography.
+     * @property withBody Sizes for icons paired with body typography.
+     */
+    @ConsistentCopyVisibility
+    data class Icon internal constructor(
         val decorative: Decorative,
         val withHeading: WithHeading,
         val withLabel: WithLabel,
         val withBody: WithBody
     ) {
-        data class Decorative(
+        /**
+         * Sizes for standalone decorative icons.
+         *
+         * @property fourExtraSmall 4xs size.
+         * @property threeExtraSmall 3xs size.
+         * @property twoExtraSmall 2xs size.
+         * @property extraSmall Extra small size.
+         * @property small Small size.
+         * @property medium Medium size.
+         * @property large Large size.
+         * @property extraLarge Extra large size.
+         * @property twoExtraLarge 2xl size.
+         */
+        @ConsistentCopyVisibility
+        data class Decorative internal constructor(
             val fourExtraSmall: Dp,
             val threeExtraSmall: Dp,
             val twoExtraSmall: Dp,
@@ -46,58 +79,140 @@ data class OudsSizes(
             val twoExtraLarge: Dp,
         )
 
-        data class WithHeading(
+        /**
+         * Sizes for icons paired with heading typography.
+         *
+         * The properties correspond to the size of the associated heading text.
+         *
+         * @property small Icons associated with small heading.
+         * @property medium Icons associated with medium heading.
+         * @property large Icons associated with large heading.
+         * @property extraLarge Icons associated with extra large heading.
+         */
+        @ConsistentCopyVisibility
+        data class WithHeading internal constructor(
             val small: Small,
             val medium: Medium,
             val large: Large,
             val extraLarge: ExtraLarge
         ) {
-            data class Small(
+            /**
+             * Icon sizes for small heading.
+             *
+             * @property sizeSmall Small icon size for use with a small heading.
+             * @property sizeMedium Medium icon size for use with a small heading.
+             * @property sizeLarge Large icon size for use with a small heading.
+             */
+            @ConsistentCopyVisibility
+            data class Small internal constructor(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
-            data class Medium(
+            /**
+             * Icon sizes for medium heading.
+             *
+             * @property sizeSmall Small icon size for use with a medium heading.
+             * @property sizeMedium Medium icon size for use with a medium heading.
+             * @property sizeLarge Large icon size for use with a medium heading.
+             */
+            @ConsistentCopyVisibility
+            data class Medium internal constructor(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
-            data class Large(
+            /**
+             * Icon sizes for large heading.
+             *
+             * @property sizeSmall Small icon size for use with a large heading.
+             * @property sizeMedium Medium icon size for use with a large heading.
+             * @property sizeLarge Large icon size for use with a large heading.
+             */
+            @ConsistentCopyVisibility
+            data class Large internal constructor(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
-            data class ExtraLarge(
+            /**
+             * Icon sizes for extra large heading.
+             *
+             * @property sizeSmall Small icon size for use with an extra large heading.
+             * @property sizeMedium Medium icon size for use with an extra large heading.
+             * @property sizeLarge Large icon size for use with an extra large heading.
+             */
+            @ConsistentCopyVisibility
+            data class ExtraLarge internal constructor(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
         }
 
-        data class WithLabel(
+        /**
+         * Sizes for icons paired with label typography.
+         *
+         * The properties correspond to the size of the associated label text.
+         *
+         * @property small Icons associated with small labels.
+         * @property medium Icons associated with medium labels.
+         * @property large Icons associated with large labels.
+         * @property extraLarge Icons associated with extra large labels.
+         */
+        @ConsistentCopyVisibility
+        data class WithLabel internal constructor(
             val small: Small,
             val medium: Medium,
             val large: Large,
             val extraLarge: ExtraLarge
         ) {
-            data class Small(
+            /**
+             * Icon sizes for small label.
+             *
+             * @property sizeExtraSmall Extra small icon size for use with a small label.
+             * @property sizeSmall Small icon size for use with a small label.
+             * @property sizeMedium Medium icon size for use with a small label.
+             * @property sizeLarge Large icon size for use with a small label.
+             */
+            @ConsistentCopyVisibility
+            data class Small internal constructor(
                 val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
-            data class Medium(
+            /**
+             * Icon sizes for medium label.
+             *
+             * @property sizeExtraSmall Extra small icon size for use with a medium label.
+             * @property sizeSmall Small icon size for use with a medium label.
+             * @property sizeMedium Medium icon size for use with a medium label.
+             * @property sizeLarge Large icon size for use with a medium label.
+             */
+            @ConsistentCopyVisibility
+            data class Medium internal constructor(
                 val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
-            data class Large(
+            /**
+             * Icon sizes for large label.
+             *
+             * @property sizeExtraSmall Extra small icon size for use with a large label.
+             * @property sizeSmall Small icon size for use with a large label.
+             * @property sizeMedium Medium icon size for use with a large label.
+             * @property sizeLarge Large icon size for use with a large label.
+             * @property sizeExtraLarge Extra large icon size for use with a large label.
+             */
+            @ConsistentCopyVisibility
+            data class Large internal constructor(
                 val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
@@ -105,31 +220,73 @@ data class OudsSizes(
                 val sizeExtraLarge: Dp,
             )
 
-            data class ExtraLarge(
+            /**
+             * Icon sizes for extra large label.
+             *
+             * @property sizeSmall Small icon size for use with an extra large label.
+             * @property sizeMedium Medium icon size for use with an extra large label.
+             * @property sizeLarge Large icon size for use with an extra large label.
+             */
+            @ConsistentCopyVisibility
+            data class ExtraLarge internal constructor(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
         }
 
-        data class WithBody(
+        /**
+         * Sizes for icons paired with body typography.
+         *
+         * The properties correspond to the size of the associated body text.
+         *
+         * @property small Icons associated with small body.
+         * @property medium Icons associated with medium body.
+         * @property large Icons associated with large body.
+         */
+        @ConsistentCopyVisibility
+        data class WithBody internal constructor(
             val small: Small,
             val medium: Medium,
             val large: Large,
         ) {
-            data class Small(
+            /**
+             * Icon sizes for small body.
+             *
+             * @property sizeSmall Small icon size for use with small body text.
+             * @property sizeMedium Medium icon size for use with small body text.
+             * @property sizeLarge Large icon size for use with small body text.
+             */
+            @ConsistentCopyVisibility
+            data class Small internal constructor(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
-            data class Medium(
+            /**
+             * Icon sizes for medium body.
+             *
+             * @property sizeSmall Small icon size for use with medium body text.
+             * @property sizeMedium Medium icon size for use with medium body text.
+             * @property sizeLarge Large icon size for use with medium body text.
+             */
+            @ConsistentCopyVisibility
+            data class Medium internal constructor(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
             )
 
-            data class Large(
+            /**
+             * Icon sizes for large body.
+             *
+             * @property sizeSmall Small icon size for use with large body text.
+             * @property sizeMedium Medium icon size for use with large body text.
+             * @property sizeLarge Large icon size for use with large body text.
+             */
+            @ConsistentCopyVisibility
+            data class Large internal constructor(
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
@@ -137,31 +294,88 @@ data class OudsSizes(
         }
     }
 
-    data class MaxWidth(
+    /**
+     * Maximum width constraints used to control line length and layout density.
+     *
+     * @property type Contains max width values grouped by typography type.
+     */
+    @ConsistentCopyVisibility
+    data class MaxWidth internal constructor(
         val type: Type
     ) {
-        data class Type(
+        /**
+         * Max width values grouped by typography type.
+         *
+         * @property body Max widths for body text contexts.
+         * @property display Max widths for display text contexts.
+         * @property heading Max widths for heading text contexts.
+         * @property label Max widths for label text contexts.
+         */
+        @ConsistentCopyVisibility
+        data class Type internal constructor(
+            val body: Body,
             val display: Display,
             val heading: Heading,
-            val body: Body
+            val label: Label
         ) {
-            data class Display(
+            /**
+             * Max widths for body text contexts.
+             *
+             * @property small Max width constraint for small body text.
+             * @property medium Max width constraint for medium body text.
+             * @property large Max width constraint for large body text.
+             */
+            @ConsistentCopyVisibility
+            data class Body internal constructor(
                 val small: Dp,
                 val medium: Dp,
                 val large: Dp
             )
 
-            data class Heading(
+            /**
+             * Max widths for display text contexts.
+             *
+             * @property small Max width constraint for small display text.
+             * @property medium Max width constraint for medium display text.
+             * @property large Max width constraint for large display text.
+             */
+            @ConsistentCopyVisibility
+            data class Display internal constructor(
+                val small: Dp,
+                val medium: Dp,
+                val large: Dp
+            )
+
+            /**
+             * Max widths for heading text contexts.
+             *
+             * @property small Max width constraint for small heading text.
+             * @property medium Max width constraint for medium heading text.
+             * @property large Max width constraint for large heading text.
+             * @property extraLarge Max width constraint for extra large heading text.
+             */
+            @ConsistentCopyVisibility
+            data class Heading internal constructor(
                 val small: Dp,
                 val medium: Dp,
                 val large: Dp,
                 val extraLarge: Dp
             )
 
-            data class Body(
+            /**
+             * Max widths for label text contexts.
+             *
+             * @property small Max width constraint for small label text.
+             * @property medium Max width constraint for medium label text.
+             * @property large Max width constraint for large label text.
+             * @property extraLarge Max width constraint for extra large label text.
+             */
+            @ConsistentCopyVisibility
+            data class Label internal constructor(
                 val small: Dp,
                 val medium: Dp,
-                val large: Dp
+                val large: Dp,
+                val extraLarge: Dp
             )
         }
     }
@@ -249,6 +463,11 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
         ),
         maxWidth = OudsSizes.MaxWidth(
             type = OudsSizes.MaxWidth.Type(
+                body = OudsSizes.MaxWidth.Type.Body(
+                    small = getTokenValue(maxWidthTypeBodySmallMobile, maxWidthTypeBodySmallTablet).dp,
+                    medium = getTokenValue(maxWidthTypeBodyMediumMobile, maxWidthTypeBodyMediumTablet).dp,
+                    large = getTokenValue(maxWidthTypeBodyLargeMobile, maxWidthTypeBodyLargeTablet).dp,
+                ),
                 display = OudsSizes.MaxWidth.Type.Display(
                     small = getTokenValue(maxWidthTypeDisplaySmallMobile, maxWidthTypeDisplaySmallTablet).dp,
                     medium = getTokenValue(maxWidthTypeDisplayMediumMobile, maxWidthTypeDisplayMediumTablet).dp,
@@ -260,10 +479,11 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
                     large = getTokenValue(maxWidthTypeHeadingLargeMobile, maxWidthTypeHeadingLargeTablet).dp,
                     extraLarge = getTokenValue(maxWidthTypeHeadingXlargeMobile, maxWidthTypeHeadingXlargeTablet).dp,
                 ),
-                body = OudsSizes.MaxWidth.Type.Body(
-                    small = getTokenValue(maxWidthTypeBodySmallMobile, maxWidthTypeBodySmallTablet).dp,
-                    medium = getTokenValue(maxWidthTypeBodyMediumMobile, maxWidthTypeBodyMediumTablet).dp,
-                    large = getTokenValue(maxWidthTypeBodyLargeMobile, maxWidthTypeBodyLargeTablet).dp,
+                label = OudsSizes.MaxWidth.Type.Label(
+                    small = getTokenValue(maxWidthTypeLabelSmallMobile, maxWidthTypeLabelSmallTablet).dp,
+                    medium = getTokenValue(maxWidthTypeLabelMediumMobile, maxWidthTypeLabelMediumTablet).dp,
+                    large = getTokenValue(maxWidthTypeLabelLargeMobile, maxWidthTypeLabelLargeTablet).dp,
+                    extraLarge = getTokenValue(maxWidthTypeLabelXlargeMobile, maxWidthTypeLabelXlargeTablet).dp,
                 )
             )
         ),
@@ -353,6 +573,9 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel): Dp {
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
     return with(maxWidth.type) {
         when (token) {
+            OudsSizeKeyToken.MaxWidth.Type.Body.Small -> body.small
+            OudsSizeKeyToken.MaxWidth.Type.Body.Medium -> body.medium
+            OudsSizeKeyToken.MaxWidth.Type.Body.Large -> body.large
             OudsSizeKeyToken.MaxWidth.Type.Display.Small -> display.small
             OudsSizeKeyToken.MaxWidth.Type.Display.Medium -> display.medium
             OudsSizeKeyToken.MaxWidth.Type.Display.Large -> display.large
@@ -360,13 +583,19 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
             OudsSizeKeyToken.MaxWidth.Type.Heading.Medium -> heading.medium
             OudsSizeKeyToken.MaxWidth.Type.Heading.Large -> heading.large
             OudsSizeKeyToken.MaxWidth.Type.Heading.ExtraLarge -> heading.extraLarge
-            OudsSizeKeyToken.MaxWidth.Type.Body.Small -> body.small
-            OudsSizeKeyToken.MaxWidth.Type.Body.Medium -> body.medium
-            OudsSizeKeyToken.MaxWidth.Type.Body.Large -> body.large
+            OudsSizeKeyToken.MaxWidth.Type.Label.ExtraLarge -> label.extraLarge
+            OudsSizeKeyToken.MaxWidth.Type.Label.Large -> label.large
+            OudsSizeKeyToken.MaxWidth.Type.Label.Medium -> label.medium
+            OudsSizeKeyToken.MaxWidth.Type.Label.Small -> label.small
         }
     }
 }
 
+/**
+ * Converts an OUDS size token to the local size value provided by the theme.
+ *
+ * @suppress
+ */
 @InternalOudsApi
 val OudsSizeKeyToken.value: Dp
     @Composable

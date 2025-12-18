@@ -12,7 +12,7 @@
 
 package com.orange.ouds.app.ui
 
-import androidx.annotation.DrawableRes
+import android.os.Build
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
@@ -31,56 +31,45 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.core.component.OudsNavigationBar
+import com.orange.ouds.core.component.OudsNavigationBarItem
+import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
-fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: Boolean = true) {
+fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier: Modifier = Modifier, visible: Boolean = true) {
     Column(modifier = Modifier.windowInsetsPadding(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))) {
-        val navigationBarBackgroundColor = OudsTheme.colorScheme.background.secondary //TODO Temporary color. Waiting for Material colors from Maxime.
+        val systemNavigationBackgroundColor = OudsTheme.colorScheme.background.secondary //TODO Temporary color. Waiting for Material colors from Maxime.
         AnimatedVisibility(
             visible = visible,
             enter = fadeIn(tween(100)),
             exit = fadeOut(tween(100))
         ) {
-            val items = BottomBarItem.entries.toTypedArray()
-            NavigationBar(
-                modifier = Modifier.consumeWindowInsets(WindowInsets.navigationBars),
-                containerColor = navigationBarBackgroundColor,
-                content = {
-                    items.forEach { item ->
-                        NavigationBarItem(
-                            selected = currentRoute == item.route,
-                            icon = {
-                                Icon(painterResource(item.iconRes), null)
-                            },
-                            label = {
-                                Text(
-                                    text = stringResource(item.titleRes),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                )
-                            },
-                            onClick = { navigateToRoute(item.route) }
-                        )
-                    }
-                }
+            OudsNavigationBar(
+                items = BottomBarItem.entries.map { item ->
+                    OudsNavigationBarItem(
+                        selected = currentRoute == item.route,
+                        icon = OudsNavigationBarItemIcon(painter = painterResource(item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
+                        label = stringResource(item.titleRes),
+                        onClick = { navigateToRoute(item.route) }
+                    )
+                },
+                modifier = modifier.consumeWindowInsets(WindowInsets.navigationBars.only(WindowInsetsSides.Bottom)),
+                translucent = Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2
             )
         }
-        val systemNavigationBarBackgroundColor by animateColorAsState(if (visible) navigationBarBackgroundColor else MaterialTheme.colorScheme.surface)
+        val systemNavigationBarBackgroundColor by animateColorAsState(if (visible) systemNavigationBackgroundColor else MaterialTheme.colorScheme.surface)
         Spacer(
             modifier = Modifier
                 .background(systemNavigationBarBackgroundColor)
@@ -92,16 +81,16 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, visible: 
 
 enum class BottomBarItem(
     @StringRes val titleRes: Int,
-    @DrawableRes val iconRes: Int,
+    val iconResourceProvider: ThemeDrawableResourceProvider,
     val route: String
 ) {
-    Tokens(R.string.app_bottomBar_tokens_label, R.drawable.ic_design_token_figma, "main/tokens"),
-    Components(R.string.app_bottomBar_components_label, R.drawable.ic_component_atom, "main/components"),
-    About(R.string.app_bottomBar_about_label, R.drawable.ic_info, "main/about");
+    Tokens(R.string.app_bottomBar_tokens_label, { R.drawable.ic_design_token_figma }, "main/tokens"),
+    Components(R.string.app_bottomBar_components_label, { R.drawable.ic_component_atom }, "main/components"),
+    About(R.string.app_bottomBar_about_label, { it.info }, "main/about");
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewBottomBar() = OudsPreview {
+private fun PreviewBottomBar() = AppPreview {
     BottomBar(currentRoute = "", navigateToRoute = {})
 }

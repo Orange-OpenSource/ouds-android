@@ -12,10 +12,10 @@
 
 package com.orange.ouds.app.ui.tokens
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -24,7 +24,7 @@ val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.obje
 @Immutable
 sealed class TokenCategory<T>(
     @StringRes val nameRes: Int,
-    @DrawableRes val imageRes: Int,
+    val imageResourceProvider: ThemeDrawableResourceProvider,
     @StringRes val descriptionRes: Int,
     val properties: List<TokenProperty<T>> = emptyList(),
     val subcategories: List<TokenCategory<*>> = emptyList(),
@@ -46,14 +46,14 @@ sealed class TokenCategory<T>(
 
     data object Border : TokenCategory<Border>(
         R.string.app_tokens_border_label,
-        R.drawable.ic_border,
+        { R.drawable.ic_border },
         R.string.app_tokens_border_description_text,
         listOf(TokenProperty.BorderWidth, TokenProperty.BorderRadius, TokenProperty.BorderStyle),
     )
 
     data object Color : TokenCategory<Color>(
         R.string.app_tokens_color_label,
-        R.drawable.ic_palette,
+        { it.palette },
         R.string.app_tokens_color_description_text,
         listOf(
             TokenProperty.ColorAction,
@@ -61,6 +61,7 @@ sealed class TokenCategory<T>(
             TokenProperty.ColorBackground,
             TokenProperty.ColorBorder,
             TokenProperty.ColorContent,
+            TokenProperty.ColorOpacity,
             TokenProperty.ColorOverlay,
             TokenProperty.ColorSurface,
         )
@@ -68,20 +69,20 @@ sealed class TokenCategory<T>(
 
     data object Dimension : TokenCategory<Dimension>(
         R.string.app_tokens_dimension_label,
-        R.drawable.ic_dimension,
+        { R.drawable.ic_dimension },
         R.string.app_tokens_dimension_description_text,
         subcategories = listOf(Space, Size)
     ) {
         data object Space : TokenCategory<Space>(
             R.string.app_tokens_dimension_space_label,
-            R.drawable.ic_dimension,
+            { R.drawable.ic_dimension },
             R.string.app_tokens_dimension_space_description_text,
             listOf(
                 TokenProperty.SpaceScaled,
                 TokenProperty.SpaceFixed,
                 TokenProperty.SpacePaddingInline,
-                TokenProperty.SpacePaddingStack,
-                TokenProperty.SpacePaddingInset,
+                TokenProperty.SpacePaddingBlock,
+                TokenProperty.SpaceInset,
                 TokenProperty.SpaceColumnGap,
                 TokenProperty.SpaceRowGap,
             ),
@@ -89,36 +90,36 @@ sealed class TokenCategory<T>(
 
         data object Size : TokenCategory<Size>(
             R.string.app_tokens_dimension_size_label,
-            R.drawable.ic_dimension,
+            { R.drawable.ic_dimension },
             R.string.app_tokens_dimension_size_description_text,
-            listOf(TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText),
+            listOf(TokenProperty.SizeMinInteractiveArea, TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText, TokenProperty.SizeMaxWidth),
         )
     }
 
     data object Elevation : TokenCategory<Elevation>(
         R.string.app_tokens_elevation_label,
-        R.drawable.ic_layers,
+        { R.drawable.ic_layers },
         R.string.app_tokens_elevation_description_text,
         listOf(TokenProperty.Elevation)
     )
 
     data object Grid : TokenCategory<Grid>(
         R.string.app_tokens_grid_label,
-        R.drawable.ic_menu_grid,
+        { it.menuGrid },
         R.string.app_tokens_grid_description_text,
         listOf(TokenProperty.Grid)
     )
 
     data object Opacity : TokenCategory<Opacity>(
         R.string.app_tokens_opacity_label,
-        R.drawable.ic_filter_effects,
+        { R.drawable.ic_filter_effects },
         R.string.app_tokens_opacity_description_text,
         listOf(TokenProperty.Opacity)
     )
 
     data object Typography : TokenCategory<Typography>(
         R.string.app_tokens_typography_label,
-        R.drawable.ic_typography,
+        { R.drawable.ic_typography },
         R.string.app_tokens_typography_description_text,
         listOf(TokenProperty.Typography)
     )

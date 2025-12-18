@@ -22,11 +22,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.LargeCard
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun TokensScreen(onTokenCategoryClick: (Long) -> Unit) {
@@ -43,13 +47,16 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
+                .consumeTopBarsTopWindowInsets()
+                .padding(top = topBarsTopPadding)
+                .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
+                .padding(bottom = OudsNavigationBarHeight),
             verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
         ) {
             tokenCategories.forEach { token ->
                 LargeCard(
                     title = stringResource(id = token.nameRes),
-                    illustration = { ImageIllustration(token.imageRes) },
+                    illustration = { ImageIllustration(token.imageResourceProvider.getResource(LocalThemeDrawableResources.current)) },
                     onClick = { onTokenCategoryClick(token.id) }
                 )
             }
@@ -59,7 +66,7 @@ private fun TokensScreen(tokenCategories: List<TokenCategory<*>>, onTokenCategor
 
 @PreviewLightDark
 @Composable
-private fun PreviewTokensScreen() = OudsPreview {
+private fun PreviewTokensScreen() = AppPreview {
     TokensScreen(
         tokenCategories = listOf(
             TokenCategory.Border,

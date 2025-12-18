@@ -55,38 +55,38 @@ internal class OudsCheckboxItemTest {
     }
 
     @Test
-    fun oudsCheckboxItem_withHelperText_helperTextDisplayed() {
+    fun oudsCheckboxItem_withDescription_descriptionDisplayed() {
         with(composeTestRule) {
-            val helperText = "Helper text"
+            val description = "Description"
 
             setOudsContent {
                 OudsCheckboxItem(
                     checked = false,
                     label = "Label",
-                    helperText = helperText,
+                    description = description,
                     onCheckedChange = { },
                 )
             }
 
-            onNodeWithText(helperText).assertIsDisplayed()
+            onNodeWithText(description).assertIsDisplayed()
         }
     }
 
     @Test
-    fun oudsCheckboxItem_withBlankHelperText_helperTextNotDisplayed() {
+    fun oudsCheckboxItem_withBlankDescription_descriptionNotDisplayed() {
         with(composeTestRule) {
-            val helperText = "   "
+            val description = "   "
 
             setOudsContent {
                 OudsCheckboxItem(
                     checked = false,
                     label = "Label",
-                    helperText = helperText,
+                    description = description,
                     onCheckedChange = { },
                 )
             }
 
-            onNodeWithText(helperText).assertIsNotDisplayed()
+            onNodeWithText(description).assertIsNotDisplayed()
         }
     }
 }

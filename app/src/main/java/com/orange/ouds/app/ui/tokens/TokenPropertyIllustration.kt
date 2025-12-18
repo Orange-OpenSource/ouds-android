@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.tokens
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,6 +20,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,24 +32,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.isUnspecified
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
 import com.orange.ouds.core.theme.dottedBorder
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
-private val defaultIllustrationSize = 64.dp
+private val DefaultIllustrationSize = 64.dp
+private val SizeTokenIllustrationSize = 80.dp
+
 
 @Composable
-fun IllustrationBox(
+private fun IllustrationBox(
     modifier: Modifier = Modifier,
     backgroundColor: Color = OudsTheme.colorScheme.surface.secondary,
     contentAlignment: Alignment = Alignment.TopStart,
@@ -55,7 +66,7 @@ fun IllustrationBox(
 ) {
     Box(
         modifier = modifier
-            .size(defaultIllustrationSize)
+            .size(DefaultIllustrationSize)
             .background(color = backgroundColor),
         contentAlignment = contentAlignment,
         content = content
@@ -63,7 +74,7 @@ fun IllustrationBox(
 }
 
 @Composable
-fun BorderIllustrationBox(
+fun BorderIllustration(
     width: Dp = 1.dp,
     shape: Shape = RectangleShape,
     style: OudsBorderStyle = OudsBorderStyle.Solid,
@@ -86,14 +97,38 @@ fun BorderIllustrationBox(
 }
 
 @Composable
-fun ElevationIllustrationSurface(elevation: Dp) {
+fun ColorIllustration(color: Color) {
+    IllustrationBox(
+        modifier = Modifier.border(width = 1.dp, color = OudsTheme.colorScheme.border.emphasized),
+        backgroundColor = if (color.isUnspecified) Color.White else color
+    ) {
+        if (color.isUnspecified) {
+            Canvas(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(shape = RectangleShape)
+            ) {
+                drawLine(
+                    color = Color.Red,
+                    start = Offset(x = size.width, y = 0f),
+                    end = Offset(x = 0f, y = size.height),
+                    strokeWidth = 2.dp.toPx(),
+                    cap = StrokeCap.Square
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun ElevationIllustration(elevation: Dp) {
     Surface(shadowElevation = elevation) {
         IllustrationBox(backgroundColor = OudsTheme.colorScheme.background.secondary)
     }
 }
 
 @Composable
-fun OpacityIllustrationBox(opacity: Float) {
+fun OpacityIllustration(opacity: Float) {
     val squareColor = if (isSystemInDarkTheme()) Color.White else Color.Black
     Box {
         Image(painter = painterResource(id = R.drawable.il_opacity_union), contentDescription = null)
@@ -108,8 +143,8 @@ fun OpacityIllustrationBox(opacity: Float) {
 }
 
 @Composable
-fun SizeIconIllustrationBox(size: Dp) {
-    IllustrationBox(modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center) {
+fun SizeIconIllustration(size: Dp) {
+    IllustrationBox(modifier = Modifier.size(SizeTokenIllustrationSize), contentAlignment = Alignment.Center) {
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.ic_design_token_figma),
@@ -120,7 +155,18 @@ fun SizeIconIllustrationBox(size: Dp) {
 }
 
 @Composable
-fun SpacePaddingInsetIllustrationBox(size: Dp) {
+fun SizeMinInteractiveAreaIllustration(size: Dp) {
+    IllustrationBox(modifier = Modifier.size(SizeTokenIllustrationSize), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .size(size)
+                .background(color = OudsTheme.colorScheme.content.status.info),
+        )
+    }
+}
+
+@Composable
+fun SpacePaddingInsetIllustration(size: Dp) {
     IllustrationBox {
         Box(
             modifier = Modifier
@@ -138,7 +184,7 @@ fun SpacePaddingInsetIllustrationBox(size: Dp) {
 }
 
 @Composable
-fun SpaceIllustrationBox(
+fun SpaceIllustration(
     size: Dp,
     orientation: SpaceOrientation = SpaceOrientation.Horizontal,
     contentAlignment: Alignment = Alignment.TopStart
@@ -161,4 +207,50 @@ fun SpaceIllustrationBox(
 
 enum class SpaceOrientation {
     Horizontal, Vertical
+}
+
+@PreviewLightDark
+@Composable
+fun PreviewBorderIllustration() = AppPreview {
+    BorderIllustration()
+}
+
+@PreviewLightDark
+@Composable
+fun PreviewColorIllustration(@PreviewParameter(ColorIllustrationPreviewParameterProvider::class) color: Color) = AppPreview {
+    ColorIllustration(color)
+}
+
+private class ColorIllustrationPreviewParameterProvider : BasicPreviewParameterProvider<Color>(Color.Magenta, Color.Unspecified)
+
+@PreviewLightDark
+@Composable
+fun PreviewElevationIllustration() = AppPreview {
+    Box(modifier = Modifier.padding(10.dp)) {
+        ElevationIllustration(8.dp)
+    }
+}
+
+@PreviewLightDark
+@Composable
+fun PreviewOpacityIllustration() = AppPreview {
+    OpacityIllustration(0.5f)
+}
+
+@PreviewLightDark
+@Composable
+fun PreviewSizeIconIllustration() = AppPreview {
+    SizeIconIllustration(size = 32.dp)
+}
+
+@PreviewLightDark
+@Composable
+fun PreviewSpacePaddingInsetIllustration() = AppPreview {
+    SpacePaddingInsetIllustration(4.dp)
+}
+
+@PreviewLightDark
+@Composable
+fun PreviewSpaceIllustration() = AppPreview {
+    SpaceIllustration(8.dp)
 }

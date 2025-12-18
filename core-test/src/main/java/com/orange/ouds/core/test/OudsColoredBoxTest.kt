@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsColoredBoxTest(parameter: OudsColoredBoxColor) : OudsComponentSnapshotTest(
+internal class OudsColoredBoxTest(parameter: OudsColoredBoxColor) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.ColoredBox,
     parameter,
     OudsComponentTestSuite.theme

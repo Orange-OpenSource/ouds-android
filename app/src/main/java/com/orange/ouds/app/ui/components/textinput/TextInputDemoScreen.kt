@@ -18,9 +18,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -30,16 +37,16 @@ import com.orange.ouds.core.component.OudsTextInputLeadingIcon
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun TextInputDemoScreen() {
     val state = rememberTextInputDemoState()
+    val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         description = stringResource(id = Component.TextInput.descriptionRes),
         bottomSheetContent = { TextInputDemoBottomSheetContent(state = state) },
-        codeSnippet = { textInputDemoCodeSnippet(state = state) },
+        codeSnippet = { textInputDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { TextInputDemoContent(state = state) },
         version = OudsVersion.Component.TextInput
     )
@@ -59,7 +66,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             onCheckedChange = { leadingIcon = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_textInput_trailingIcon_label),
+            label = stringResource(R.string.app_components_textInput_trailingAction_label),
             checked = trailingIcon,
             onCheckedChange = { trailingIcon = it },
         )
@@ -88,40 +95,52 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             enabled = errorSwitchEnabled
         )
         CustomizationTextField(
-            label = stringResource(R.string.app_components_textInput_errorDescription_label),
-            value = errorDescription,
-            onValueChange = { value -> errorDescription = value },
-            enabled = errorDescriptionTextInputEnabled
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_errorMessage_label),
+            value = errorMessage,
+            onValueChange = { value -> errorMessage = value },
+            enabled = errorMessageTextInputEnabled
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_placeholder_label),
             value = placeholder,
             onValueChange = { value -> placeholder = value }
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_prefix_label),
             value = prefix,
             onValueChange = { value -> prefix = value }
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_suffix_label),
             value = suffix,
             onValueChange = { value -> suffix = value }
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_label),
             value = helperText,
             onValueChange = { value -> helperText = value }
         )
         CustomizationTextField(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_helperLink_label),
             value = helperLink,
             onValueChange = { value -> helperLink = value }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_constrainedMaxWidth_label),
+            checked = constrainedMaxWidth,
+            onCheckedChange = { constrainedMaxWidth = it },
         )
     }
 }
@@ -135,11 +154,18 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             label = label,
             placeholder = placeholder,
             outlined = outlined,
-            leadingIcon = if (leadingIcon) OudsTextInputLeadingIcon(painterResource(id = R.drawable.ic_heart), contentDescription = "") else null,
+            leadingIcon = if (leadingIcon) {
+                OudsTextInputLeadingIcon(
+                    painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+                    contentDescription = ""
+                )
+            } else {
+                null
+            },
             trailingIconButton = if (trailingIcon) {
                 OudsTextInputTrailingIconButton(
-                    painterResource(id = R.drawable.ic_heart),
-                    contentDescription = stringResource(id = R.string.app_components_textInput_trailingIcon_a11y),
+                    painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+                    contentDescription = stringResource(id = R.string.app_components_textInput_trailingAction_a11y),
                     onClick = { })
             } else {
                 null
@@ -147,16 +173,17 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
-            error = if (error) OudsError(errorDescription) else null,
+            error = if (error) OudsError(errorMessage) else null,
             prefix = prefix,
             suffix = suffix,
             helperText = helperText,
-            helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null
+            helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
+            constrainedMaxWidth = constrainedMaxWidth
         )
     }
 }
 
-private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
+private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsTextInput") {
             typedArgument("value", value)
@@ -168,12 +195,13 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
             typedArgument("outlined", outlined)
             if (leadingIcon) {
                 constructorCallArgument<OudsTextInputLeadingIcon>("leadingIcon") {
-                    painterArgument(R.drawable.ic_heart)
+                    painterArgument(themeDrawableResources.tipsAndTricks)
                 }
             }
             if (trailingIcon) {
                 constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
-                    painterArgument(R.drawable.ic_heart)
+                    painterArgument(themeDrawableResources.tipsAndTricks)
+                    contentDescriptionArgument(R.string.app_components_textInput_trailingAction_a11y)
                     onClickArgument {
                         comment("Do something")
                     }
@@ -184,9 +212,13 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
                     typedArgument("progress", null)
                 }
             }
-            if (!enabled) typedArgument("enabled", false)
-            if (readOnly) typedArgument("readOnly", true)
-            if (error) typedArgument("error", true)
+            if (!enabled) enabledArgument(false)
+            if (readOnly) readOnlyArgument(true)
+            if (error) {
+                constructorCallArgument<OudsError>("error") {
+                    typedArgument("message", errorMessage)
+                }
+            }
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
             if (suffix.isNotEmpty()) typedArgument("suffix", suffix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
@@ -198,12 +230,13 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState) {
                     }
                 }
             }
+            if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewTextInputDemoScreen() = OudsPreview {
+private fun PreviewTextInputDemoScreen() = AppPreview {
     TextInputDemoScreen()
 }

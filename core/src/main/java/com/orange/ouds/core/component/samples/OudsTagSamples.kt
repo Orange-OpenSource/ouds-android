@@ -17,7 +17,7 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsTag
-import com.orange.ouds.core.component.OudsTagIcon
+import com.orange.ouds.core.component.OudsTagAsset
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.utilities.OudsPreview
@@ -35,7 +35,7 @@ internal fun OudsTagSample() {
 internal fun OudsTagWithBulletSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Positive(icon = OudsTagIcon.Bullet)
+        status = OudsTagStatus.Positive(asset = OudsTagAsset.Bullet)
     )
 }
 
@@ -43,15 +43,15 @@ internal fun OudsTagWithBulletSample() {
 internal fun OudsTagWithDefaultIconSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Positive(icon = OudsTagIcon.Default)
+        status = OudsTagStatus.Positive(asset = OudsTagAsset.Icon.Default)
     )
 }
 
 @Composable
-internal fun OudsTagWithCustomIconSample() {
+internal fun OudsTagWithIconSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Neutral(icon = OudsTagIcon.Custom(imageVector = Icons.Filled.FavoriteBorder))
+        status = OudsTagStatus.Neutral(asset = OudsTagAsset.Icon(imageVector = Icons.Filled.FavoriteBorder))
     )
 }
 
@@ -75,6 +75,6 @@ private fun PreviewOudsTagWithDefaultIconSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsTagWithCustomIconSample() = OudsPreview {
-    OudsTagWithCustomIconSample()
+private fun PreviewOudsTagWithIconSample() = OudsPreview {
+    OudsTagWithIconSample()
 }

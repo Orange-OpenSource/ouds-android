@@ -32,6 +32,7 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -40,9 +41,8 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.component.OudsLinkArrow
+import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun ColoredBackgroundDemoScreen() {
@@ -58,7 +58,7 @@ fun ColoredBackgroundDemoScreen() {
 @Composable
 private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemoState) {
     with(state) {
-        val colors = OudsColoredBoxColor.entries.filter { it.mode.isSupported }
+        val colors = OudsColoredBoxColor.entries.filter { it.isSupported }
         CustomizationDropdownMenu(
             applyTopPadding = false,
             label = stringResource(id = R.string.app_components_coloredBackground_color_label),
@@ -83,7 +83,7 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
 @Composable
 private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
     with(state) {
-        if (!color.mode.isSupported) {
+        if (!color.isSupported) {
             Toast.makeText(
                 LocalContext.current,
                 stringResource(id = R.string.app_components_coloredBackground_unsupportedColor_text, color.name.toSentenceCase()),
@@ -112,7 +112,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
                 )
                 OudsLink(
                     label = stringResource(id = R.string.app_components_link_label),
-                    arrow = OudsLinkArrow.Next,
+                    chevron = OudsLinkChevron.Next,
                     onClick = {},
                 )
             }
@@ -126,18 +126,23 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
             trailingLambda = true
             typedArgument("color", color)
             lambdaArgument(null) {
-                functionCall("Text") {
-                    typedArgument("text", color.name.toSentenceCase())
-                    rawArgument("color", "OudsTheme.colorScheme.content.default")
-                }
-                functionCall("OudsButton") {
-                    labelArgument(R.string.app_components_button_label)
-                    onClickArgument {}
-                }
-                functionCall("OudsLink") {
-                    labelArgument(R.string.app_components_link_label)
-                    typedArgument("arrow", OudsLinkArrow.Next)
-                    onClickArgument {}
+                functionCall("Column") {
+                    trailingLambda = true
+                    lambdaArgument(null) {
+                        functionCall("Text") {
+                            typedArgument("text", color.name.toSentenceCase())
+                            rawArgument("color", "OudsTheme.colorScheme.content.default")
+                        }
+                        functionCall("OudsButton") {
+                            labelArgument(R.string.app_components_button_label)
+                            onClickArgument {}
+                        }
+                        functionCall("OudsLink") {
+                            labelArgument(R.string.app_components_link_label)
+                            typedArgument("chevron", OudsLinkChevron.Next)
+                            onClickArgument {}
+                        }
+                    }
                 }
             }
         }
@@ -146,6 +151,6 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
 
 @PreviewLightDark
 @Composable
-private fun PreviewColoredBackgroundDemoScreen() = OudsPreview {
+private fun PreviewColoredBackgroundDemoScreen() = AppPreview {
     ColoredBackgroundDemoScreen()
 }

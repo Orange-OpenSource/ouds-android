@@ -24,9 +24,11 @@ import org.junit.runners.Suite
     OudsCheckboxTest::class,
     OudsColoredBoxTest::class,
     OudsFilterChipTest::class,
-    OudsHorizontalDividerTest::class,
+    OudsDividerTest::class,
     OudsInputTagTest::class,
     OudsLinkTest::class,
+    OudsNavigationBarTest::class,
+    OudsNavigationBarItemTest::class,
     OudsRadioButtonItemTest::class,
     OudsRadioButtonTest::class,
     OudsSuggestionChipTest::class,
@@ -34,7 +36,7 @@ import org.junit.runners.Suite
     OudsSwitchTest::class,
     OudsTagTest::class,
     OudsTextInputTest::class,
-    OudsVerticalDividerTest::class
+    OudsTopAppBarTest::class
 )
 abstract class OudsComponentTestSuite {
 

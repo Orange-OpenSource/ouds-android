@@ -16,21 +16,26 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
+import com.orange.ouds.core.component.OudsTag
+import com.orange.ouds.core.component.OudsTagAppearance
+import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 fun Screen(content: @Composable () -> Unit) {
@@ -78,23 +83,15 @@ fun DemoScreen(
                 init = codeSnippet
             )
             if (version != null) {
-                ListItem(
-                    modifier = Modifier.listItemHorizontalPadding(),
-                    headlineContent = {
-                        Text(
-                            text = stringResource(R.string.app_components_common_version_label),
-                            style = OudsTheme.typography.label.strong.large,
-                            color = OudsTheme.colorScheme.content.default
-                        )
-                    },
-                    trailingContent = {
-                        Text(
-                            text = version,
-                            style = OudsTheme.typography.label.default.large,
-                            color = OudsTheme.colorScheme.content.default
-                        )
-                    }
-                )
+                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = OudsTheme.grids.margin), verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        modifier = Modifier.weight(1f),
+                        text = stringResource(R.string.app_components_common_version_label),
+                        style = with(OudsTheme.typography.label.strong.large) { copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center)) },
+                        color = OudsTheme.colorScheme.content.default
+                    )
+                    OudsTag(modifier = Modifier.padding(start = 10.dp), label = version, appearance = OudsTagAppearance.Muted, status = OudsTagStatus.Info())
+                }
             }
         }
     }
@@ -102,6 +99,6 @@ fun DemoScreen(
 
 @PreviewLightDark
 @Composable
-private fun PreviewScreen() = OudsPreview {
+private fun PreviewScreen() = AppPreview {
     Screen {}
 }

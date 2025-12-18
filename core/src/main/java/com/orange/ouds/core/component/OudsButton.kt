@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -41,6 +42,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -62,7 +65,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -81,25 +83,25 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 /**
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * This version of the button uses the *text only* layout which is the most used layout.
+ * This version of the button uses the *text only* layout, which is the most common layout.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
- * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
- * the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
  *
  * > Design version: 3.2.0
  *
- * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
+ * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [loader] is not null.
+ *   Has no effect if [loader] is provided.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param appearance Appearance of the button among [OudsButtonAppearance] values.
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
@@ -135,16 +137,16 @@ fun OudsButton(
 /**
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * This version of the button uses the *icon only* layout which is typically used in business or back-office interfaces, it is rarely used alone (usually part of a group of elements).
+ * This version of the button uses the *icon only* layout, which is typically used in business or back-office interfaces. It is rarely used alone (usually part of a group of elements).
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
- * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
- * the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
  *
  * > Design version: 3.2.0
  *
@@ -153,7 +155,7 @@ fun OudsButton(
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [loader] is not null.
+ *   Has no effect if [loader] is provided.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param appearance Appearance of the button among [OudsButtonAppearance] values.
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
@@ -189,27 +191,27 @@ fun OudsButton(
 /**
  * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
  *
- * This version of the button uses the *text + icon* layout which should remain specific to some clearly identified contexts (e.g. the use of an icon with a
+ * This version of the button uses the *text + icon* layout, which should remain specific to clearly identified contexts (e.g., the use of an icon with a
  * "Play" button is standard in the context of TV or video streaming).
  * Other layouts are available for this component: *text only* and *icon only*.
  *
- * Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
- * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property of an [OudsThemeSettings] when calling
- * the [com.orange.ouds.core.theme.OudsTheme] method.
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
  *
  * > Design version: 3.2.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
- * @param label Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
+ * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
- *   Has no effect when [loader] is not null.
+ *   Has no effect if [loader] is provided.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param appearance Appearance of the button among [OudsButtonAppearance] values.
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
@@ -245,7 +247,7 @@ fun OudsButton(
 
 @Composable
 @JvmName("OudsButtonNullableIconAndLabel")
-private fun OudsButton(
+internal fun OudsButton(
     nullableIcon: OudsButtonIcon?,
     nullableLabel: String?,
     onClick: () -> Unit,
@@ -253,6 +255,7 @@ private fun OudsButton(
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
+    iconOnlyBadge: OudsButtonIconBadge? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     val icon = nullableIcon
@@ -326,23 +329,54 @@ private fun OudsButton(
             }
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f
+            val paddingValues = contentPadding(icon = icon, label = label)
             Row(
                 modifier = Modifier
                     .alpha(alpha = alpha)
-                    .padding(contentPadding(icon = icon, label = label)),
+                    .padding(paddingValues),
                 horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (icon != null) {
                     val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
-                    icon.Content(
-                        modifier = Modifier
-                            .size(size.value * iconScale)
-                            .semantics {
-                                contentDescription = if (label == null) icon.contentDescription else ""
-                            },
-                        extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
-                    )
+                    val iconContent: @Composable () -> Unit = {
+                        icon.Content(
+                            modifier = Modifier
+                                .size(size.value * iconScale)
+                                .semantics {
+                                    contentDescription = when {
+                                        // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
+                                        label == null && iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
+                                        label == null -> icon.contentDescription
+                                        else -> ""
+                                    }
+                                },
+                            extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
+                        )
+                    }
+
+                    if (iconOnlyBadge != null && label == null) {
+                        val buttonEndPadding = paddingValues.calculateEndPadding(LocalLayoutDirection.current)
+                        val maximumBorderWidth = OudsButtonAppearance.entries.flatMap { appearance ->
+                            OudsButtonState.entries.mapNotNull { state ->
+                                borderWidth(appearance, state)
+                            }
+                        }.maxOrNull().orElse { 0.dp }
+                        val maximumEndOverflow = with(LocalDensity.current) {
+                            val iconBadgeEndPadding = OudsTheme.spaces.paddingInline.fourExtraSmall
+                            return@with buttonEndPadding - maximumBorderWidth - iconBadgeEndPadding
+                        }
+                        OudsBadgedIcon(
+                            modifier = Modifier.size(size.value * iconScale),
+                            badgeCount = iconOnlyBadge.count,
+                            badgeBorderColor = iconOnlyBadge.borderColor,
+                            badgeMaximumEndOverflow = maximumEndOverflow,
+                        ) {
+                            iconContent()
+                        }
+                    } else {
+                        iconContent()
+                    }
                 }
                 if (label != null) {
                     Text(
@@ -448,11 +482,11 @@ private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonS
                 }.value
                 OudsButtonAppearance.Minimal -> when (state) {
                     OudsButtonState.Enabled,
-                    OudsButtonState.Disabled -> Color.Transparent
+                    OudsButtonState.Disabled,
+                    OudsButtonState.Loading -> Color.Transparent
                     OudsButtonState.Focused -> colorBgMinimalFocus.value
                     OudsButtonState.Hovered -> colorBgMinimalHover.value
                     OudsButtonState.Pressed -> colorBgMinimalPressed.value
-                    OudsButtonState.Loading -> if (isOudsInDarkTheme()) OudsTheme.colorScheme.repository.opacity.black.higher else OudsTheme.colorScheme.repository.opacity.white.higher
                 }
                 OudsButtonAppearance.Strong -> when (state) {
                     OudsButtonState.Enabled -> colorBgStrongEnabled
@@ -479,11 +513,11 @@ private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonS
                 }.value
                 OudsButtonAppearance.Minimal -> when (state) {
                     OudsButtonState.Enabled,
-                    OudsButtonState.Disabled -> Color.Transparent
+                    OudsButtonState.Disabled,
+                    OudsButtonState.Loading -> Color.Transparent
                     OudsButtonState.Focused -> colorBgMinimalFocus.value
                     OudsButtonState.Hovered -> colorBgMinimalHover.value
                     OudsButtonState.Pressed -> colorBgMinimalPressed.value
-                    OudsButtonState.Loading -> OudsTheme.colorScheme.action.support.loading
                 }
                 OudsButtonAppearance.Strong -> when (state) {
                     OudsButtonState.Enabled -> OudsTheme.colorScheme.action.enabled
@@ -724,6 +758,8 @@ enum class OudsButtonAppearance {
  */
 data class OudsButtonLoader(val progress: Float?)
 
+internal data class OudsButtonIconBadge(val contentDescription: String, val borderColor: Color, val count: Int? = null)
+
 internal enum class OudsButtonState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused
 }
@@ -746,7 +782,12 @@ internal fun PreviewOudsButton(
         val icon = if (hasIcon) OudsButtonIcon(Icons.Filled.FavoriteBorder, "") else null
         val content: @Composable () -> Unit = {
             PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
-                OudsButton(nullableIcon = icon, nullableLabel = label, onClick = {}, appearance = appearance)
+                OudsButton(
+                    nullableIcon = icon,
+                    nullableLabel = label,
+                    onClick = {},
+                    appearance = appearance
+                )
             }
         }
         if (onColoredBox) {
@@ -768,7 +809,7 @@ private fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRounded
 internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
         val appearance = OudsButtonAppearance.Default
-        PreviewEnumEntries<OudsButtonState>(columnCount = 2) { state ->
+        PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
             OudsButton(
                 nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
                 nullableLabel = appearance.name,
@@ -777,6 +818,25 @@ internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
             )
         }
     }
+
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsButtonWithIconBadge(@PreviewParameter(OudsButtonWithIconBadgePreviewParameterProvider::class) count: Int) =
+    PreviewOudsButtonWithIconBadge(theme = getPreviewTheme(), count = count)
+
+@Composable
+internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+        OudsButton(
+            nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
+            nullableLabel = null,
+            onClick = {},
+            appearance = OudsButtonAppearance.Minimal,
+            iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.componentsTokens.bar.colorBorderBadge.value, count = count)
+        )
+    }
+}
 
 internal data class OudsButtonPreviewParameter(
     val appearance: OudsButtonAppearance,
@@ -799,3 +859,5 @@ private val previewParameterValues: List<OudsButtonPreviewParameter>
             addAll(parameters.map { it.copy(onColoredBox = true) })
         }
     }
+
+internal class OudsButtonWithIconBadgePreviewParameterProvider : BasicPreviewParameterProvider<Int>(1, OudsBadgeMaxCount + 1)

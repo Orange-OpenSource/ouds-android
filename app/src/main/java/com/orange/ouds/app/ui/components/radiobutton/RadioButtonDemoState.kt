@@ -25,14 +25,16 @@ import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoState.Compan
 fun rememberRadioButtonDemoState(
     selectedValue: Int = values.first(),
     enabled: Boolean = true,
+    readOnly: Boolean = false,
     error: Boolean = false
-) = rememberSaveable(selectedValue, enabled, error, saver = RadioButtonDemoState.Saver) {
-    RadioButtonDemoState(selectedValue, enabled, error)
+) = rememberSaveable(selectedValue, enabled, readOnly, error, saver = RadioButtonDemoState.Saver) {
+    RadioButtonDemoState(selectedValue, enabled, readOnly, error)
 }
 
 class RadioButtonDemoState(
     selectedValue: Int,
     enabled: Boolean,
+    readOnly: Boolean,
     error: Boolean
 ) {
     companion object {
@@ -41,12 +43,14 @@ class RadioButtonDemoState(
         val Saver = run {
             val selectedValueKey = "selectedValue"
             val enabledKey = "enabled"
+            val readOnlyKey = "readOnly"
             val errorKey = "error"
             mapSaver(
                 save = { state ->
                     mapOf(
                         selectedValueKey to state.selectedValue,
                         enabledKey to state.enabled,
+                        readOnlyKey to state.readOnly,
                         errorKey to state.error,
                     )
                 },
@@ -54,6 +58,7 @@ class RadioButtonDemoState(
                     RadioButtonDemoState(
                         map[selectedValueKey] as Int,
                         map[enabledKey] as Boolean,
+                        map[readOnlyKey] as Boolean,
                         map[errorKey] as Boolean
                     )
                 }
@@ -65,12 +70,17 @@ class RadioButtonDemoState(
 
     var enabled: Boolean by mutableStateOf(enabled)
 
+    var readOnly: Boolean by mutableStateOf(readOnly)
+
     var error: Boolean by mutableStateOf(error)
 
     val enabledSwitchEnabled: Boolean
         get() = !error
 
+    val readOnlySwitchEnabled: Boolean
+        get() = !error
+
     val errorSwitchEnabled: Boolean
-        get() = enabled
+        get() = enabled && !readOnly
 
 }

@@ -12,7 +12,6 @@
 
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
-import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
@@ -25,7 +24,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 
-class WireframeColorSemanticTokens(
+internal data class WireframeColorSemanticTokens(
     override val actionColorTokens: OudsColorActionSemanticTokens = WireframeColorActionSemanticTokens(),
     override val alwaysColorTokens: OudsColorAlwaysSemanticTokens = WireframeColorAlwaysSemanticTokens(),
     override val backgroundColorTokens: OudsColorBgSemanticTokens = WireframeColorBgSemanticTokens(),
@@ -34,6 +33,6 @@ class WireframeColorSemanticTokens(
     override val opacityColorTokens: OudsColorOpacitySemanticTokens = WireframeColorOpacitySemanticTokens(),
     override val overlayColorTokens: OudsColorOverlaySemanticTokens = WireframeColorOverlaySemanticTokens(),
     override val surfaceColorTokens: OudsColorSurfaceSemanticTokens = WireframeColorSurfaceSemanticTokens(),
-    @InternalOudsApi override val repositoryColorTokens: OudsColorRepositorySemanticTokens = WireframeColorRepositorySemanticTokens(),
-    @InternalOudsApi override val colorModeTokens: OudsColorModeSemanticTokens = WireframeColorModeSemanticTokens()
+    override val repositoryColorTokens: OudsColorRepositorySemanticTokens = WireframeColorRepositorySemanticTokens(),
+    override val colorModeTokens: OudsColorModeSemanticTokens = WireframeColorModeSemanticTokens()
 ) : OudsColorSemanticTokens

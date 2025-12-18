@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 
-data class SoshInputTagTokens(
+internal data class SoshInputTagTokens(
     override val borderWidthDefault: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Thin,
     override val borderWidthDefaultInteraction: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Default,
     override val colorBgEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Enabled,

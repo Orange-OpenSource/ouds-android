@@ -25,6 +25,7 @@ import com.orange.ouds.app.ui.components.chip.SuggestionChipDemoScreen
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
+import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
@@ -32,6 +33,7 @@ import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
 import com.orange.ouds.app.ui.components.tag.InputTagDemoScreen
 import com.orange.ouds.app.ui.components.tag.TagDemoScreen
 import com.orange.ouds.app.ui.components.textinput.TextInputDemoScreen
+import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoScreen
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -100,6 +102,13 @@ sealed class Component(
         demoScreen = { LinkDemoScreen() }
     )
 
+    data object NavigationBar : Component(
+        R.string.app_components_navigationBar_label,
+        R.string.app_components_navigationBar_description_text,
+        { NavigationBarIllustration() },
+        demoScreen = { NavigationBarDemoScreen() }
+    )
+
     data object RadioButton : Component(
         R.string.app_components_radioButton_label,
         R.string.app_components_radioButton_description_text,
@@ -126,6 +135,13 @@ sealed class Component(
         R.string.app_components_textInput_description_text,
         { TextInputIllustration() },
         demoScreen = { TextInputDemoScreen() }
+    )
+
+    data object TopAppBar : Component(
+        R.string.app_components_topAppBar_label,
+        R.string.app_components_topAppBar_description_text,
+        { TopAppBarIllustration() },
+        demoScreen = { TopAppBarDemoScreen() }
     )
 }
 

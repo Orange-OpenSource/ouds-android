@@ -19,8 +19,10 @@ import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.sosh.tokens.components.SoshComponentsTokens
+import com.orange.ouds.theme.sosh.tokens.material.SoshMaterialColorTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshBorderSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshColorSemanticTokens
+import com.orange.ouds.theme.sosh.tokens.semantic.SoshEffectSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshElevationSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshFontSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshGridSemanticTokens
@@ -28,8 +30,10 @@ import com.orange.ouds.theme.sosh.tokens.semantic.SoshOpacitySemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshSizeSemanticTokens
 import com.orange.ouds.theme.sosh.tokens.semantic.SoshSpaceSemanticTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
@@ -61,8 +65,14 @@ class SoshTheme : OudsThemeContract {
     override val colorTokens: OudsColorSemanticTokens
         get() = SoshColorSemanticTokens()
 
+    override val materialColorTokens: OudsMaterialColorTokens
+        get() = SoshMaterialColorTokens()
+    
     override val borderTokens: OudsBorderSemanticTokens
         get() = SoshBorderSemanticTokens()
+
+    override val effectTokens: OudsEffectSemanticTokens
+        get() = SoshEffectSemanticTokens()
 
     override val elevationTokens: OudsElevationSemanticTokens
         get() = SoshElevationSemanticTokens()

@@ -25,21 +25,24 @@ fun rememberCheckboxDemoState(
     checkedValues: Pair<Boolean, Boolean> = Pair(false, false), // only used for checkbox demo
     toggleableStateValues: Pair<ToggleableState, ToggleableState> = Pair(ToggleableState.Off, ToggleableState.Off), // only used for indeterminate checkbox demo
     enabled: Boolean = true,
+    readOnly: Boolean = false,
     error: Boolean = false
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
     enabled,
+    readOnly,
     error,
     saver = CheckboxDemoState.Saver
 ) {
-    CheckboxDemoState(checkedValues, toggleableStateValues, enabled, error)
+    CheckboxDemoState(checkedValues, toggleableStateValues, enabled, readOnly, error)
 }
 
 class CheckboxDemoState(
     checkedValues: Pair<Boolean, Boolean>,
     toggleableStateValues: Pair<ToggleableState, ToggleableState>,
     enabled: Boolean,
+    readOnly: Boolean,
     error: Boolean
 ) {
     companion object {
@@ -47,6 +50,7 @@ class CheckboxDemoState(
             val checkedValuesKey = "checkedValues"
             val toggleableStateValuesKey = "toggleableStateValues"
             val enabledKey = "enabled"
+            val readOnlyKey = "readOnly"
             val errorKey = "error"
             mapSaver(
                 save = { state ->
@@ -54,6 +58,7 @@ class CheckboxDemoState(
                         checkedValuesKey to state.checkedValues,
                         toggleableStateValuesKey to state.toggleableStateValues,
                         enabledKey to state.enabled,
+                        readOnlyKey to state.readOnly,
                         errorKey to state.error,
                     )
                 },
@@ -63,6 +68,7 @@ class CheckboxDemoState(
                         map[checkedValuesKey] as Pair<Boolean, Boolean>,
                         map[toggleableStateValuesKey] as Pair<ToggleableState, ToggleableState>,
                         map[enabledKey] as Boolean,
+                        map[readOnlyKey] as Boolean,
                         map[errorKey] as Boolean
                     )
                 }
@@ -76,12 +82,17 @@ class CheckboxDemoState(
 
     var enabled: Boolean by mutableStateOf(enabled)
 
+    var readOnly: Boolean by mutableStateOf(readOnly)
+
     var error: Boolean by mutableStateOf(error)
 
     val enabledSwitchEnabled: Boolean
         get() = !error
 
+    val readOnlySwitchEnabled: Boolean
+        get() = !error
+
     val errorSwitchEnabled: Boolean
-        get() = enabled
+        get() = enabled && !readOnly
 
 }

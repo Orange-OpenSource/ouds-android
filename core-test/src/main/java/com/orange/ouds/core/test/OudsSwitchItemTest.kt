@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
-class OudsSwitchItemTest {
+internal class OudsSwitchItemTest {
 
     @RunWith(Parameterized::class)
     class Default(parameter: Any) : OudsComponentSnapshotTest(
@@ -34,9 +34,29 @@ class OudsSwitchItemTest {
         }
     }
 
-    class WithLongHelperText : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.SwitchItem.WithLongHelperText,
+    class WithLongDescription : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.WithLongDescription,
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.WithEdgeToEdgeDisabled,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
+
+    @RunWith(Parameterized::class)
+    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.parameters
+        }
+    }
 }

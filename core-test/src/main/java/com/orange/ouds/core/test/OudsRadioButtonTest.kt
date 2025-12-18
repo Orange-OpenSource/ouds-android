@@ -17,10 +17,11 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class OudsRadioButtonTest(parameter: Any) : OudsComponentSnapshotTest(
+internal class OudsRadioButtonTest(parameter: Any) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.RadioButton,
     parameter,
-    OudsComponentTestSuite.theme
+    OudsComponentTestSuite.theme,
+    OudsPreviewableComponent.RadioButton.PreviewWidthDp
 ) {
 
     companion object {

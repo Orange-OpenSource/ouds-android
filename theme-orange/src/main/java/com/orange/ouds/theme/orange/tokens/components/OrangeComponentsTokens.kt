@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.orange.tokens.components
 
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
+import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
@@ -29,8 +30,9 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
-data class OrangeComponentsTokens(
+internal data class OrangeComponentsTokens(
     override val badge: OudsBadgeTokens = OrangeBadgeTokens(),
+    override val bar: OudsBarTokens = OrangeBarTokens(),
     override val button: OudsButtonTokens = OrangeButtonTokens(),
     override val buttonMonochrome: OudsButtonMonoTokens = OrangeButtonMonoTokens(),
     override val checkbox: OudsCheckboxTokens = OrangeCheckboxTokens(),

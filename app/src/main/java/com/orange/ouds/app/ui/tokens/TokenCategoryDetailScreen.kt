@@ -60,27 +60,35 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.Screen
+import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
+import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsTypography
-import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClick: (Long) -> Unit) {
-
     Screen {
-        LazyColumn(contentPadding = PaddingValues(bottom = OudsTheme.spaces.fixed.medium)) {
+        LazyColumn(
+            modifier = Modifier.consumeTopBarsTopWindowInsets(),
+            contentPadding = PaddingValues(
+                top = topBarsTopPadding,
+                bottom = OudsTheme.spaces.fixed.medium
+            )
+        ) {
             item {
                 DetailScreenHeader(
                     description = stringResource(id = tokenCategory.descriptionRes),
-                    illustration = { ImageIllustration(imageRes = tokenCategory.imageRes) }
+                    illustration = { ImageIllustration(imageRes = tokenCategory.imageResourceProvider.getResource(LocalThemeDrawableResources.current)) }
                 )
                 tokenCategory.valueCodeExample?.let { codeExample ->
                     CodeColumn(modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall), codeExample = codeExample)
@@ -111,22 +119,24 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     item {
                         Spacer(modifier = Modifier.height(OudsTheme.spaces.fixed.medium))
                     }
-                    stickyHeader {
-                        tokenProperty.nameRes?.let {
-                            Text(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(color = OudsTheme.colorScheme.background.primary)
-                                    .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
-                                    .semantics {
-                                        heading()
-                                    },
-                                text = stringResource(id = tokenProperty.nameRes),
-                                color = OudsTheme.colorScheme.content.default,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                style = OudsTheme.typography.heading.medium
-                            )
+                    if (tokenProperty != TokenProperty.SizeMinInteractiveArea) {
+                        stickyHeader {
+                            tokenProperty.nameRes?.let {
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(color = OudsTheme.colorScheme.background.primary)
+                                        .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
+                                        .semantics {
+                                            heading()
+                                        },
+                                    text = stringResource(id = tokenProperty.nameRes),
+                                    color = OudsTheme.colorScheme.content.default,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                    style = OudsTheme.typography.heading.medium
+                                )
+                            }
                         }
                     }
                     item {
@@ -192,10 +202,10 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = if (tokenProperty == TokenProperty.SizeIconWithText) {
-                    token.relativeName.substringAfterLast('.')
-                } else {
-                    token.relativeName
+                text = when (tokenProperty) {
+                    is TokenProperty.SizeIconWithText -> token.relativeName.substringAfterLast('.')
+                    is TokenProperty.SizeMaxWidth -> token.name.substringAfter("type.")
+                    else -> token.relativeName
                 },
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
@@ -218,24 +228,25 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
 
 @Composable
 private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) = when (tokenProperty) {
-    is TokenProperty.BorderWidth -> BorderIllustrationBox(width = token.value() as Dp)
-    is TokenProperty.BorderRadius -> BorderIllustrationBox(shape = RoundedCornerShape(token.value() as Dp))
-    is TokenProperty.BorderStyle -> BorderIllustrationBox(style = token.value() as OudsBorderStyle)
+    is TokenProperty.BorderWidth -> BorderIllustration(width = token.value() as Dp)
+    is TokenProperty.BorderRadius -> BorderIllustration(shape = RoundedCornerShape(token.value() as Dp))
+    is TokenProperty.BorderStyle -> BorderIllustration(style = token.value() as OudsBorderStyle)
     is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorContent,
-    TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> BorderIllustrationBox(backgroundColor = token.value() as Color)
-    is TokenProperty.Opacity -> OpacityIllustrationBox(opacity = token.value() as Float)
-    is TokenProperty.Elevation -> ElevationIllustrationSurface(elevation = token.value() as Dp)
-    is TokenProperty.SizeIconDecorative -> SizeIconIllustrationBox(size = token.value() as Dp)
-    is TokenProperty.SizeIconWithText -> SizeIconIllustrationBox(size = token.value() as Dp)
-    is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustrationBox(
+    TokenProperty.ColorOpacity, TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> ColorIllustration(color = token.value() as Color)
+    is TokenProperty.Opacity -> OpacityIllustration(opacity = token.value() as Float)
+    is TokenProperty.Elevation -> ElevationIllustration(elevation = token.value() as Dp)
+    is TokenProperty.SizeIconDecorative -> SizeIconIllustration(size = token.value() as Dp)
+    is TokenProperty.SizeIconWithText -> SizeIconIllustration(size = token.value() as Dp)
+    is TokenProperty.SizeMinInteractiveArea -> SizeMinInteractiveAreaIllustration(size = token.value() as Dp)
+    is TokenProperty.SpaceColumnGap, TokenProperty.SpaceFixed, TokenProperty.SpaceScaled -> SpaceIllustration(
         size = token.value() as Dp,
         contentAlignment = Alignment.Center
     )
-    TokenProperty.SpacePaddingInline -> SpaceIllustrationBox(size = token.value() as Dp)
-    TokenProperty.SpacePaddingInset -> SpacePaddingInsetIllustrationBox(size = token.value() as Dp)
-    TokenProperty.SpacePaddingStack -> SpaceIllustrationBox(size = token.value() as Dp, orientation = SpaceOrientation.Vertical)
-    TokenProperty.SpaceRowGap -> SpaceIllustrationBox(size = token.value() as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
-    TokenProperty.Typography, TokenProperty.Grid -> Unit
+    TokenProperty.SpacePaddingInline -> SpaceIllustration(size = token.value() as Dp)
+    TokenProperty.SpaceInset -> SpacePaddingInsetIllustration(size = token.value() as Dp)
+    TokenProperty.SpacePaddingBlock -> SpaceIllustration(size = token.value() as Dp, orientation = SpaceOrientation.Vertical)
+    TokenProperty.SpaceRowGap -> SpaceIllustration(size = token.value() as Dp, orientation = SpaceOrientation.Vertical, contentAlignment = Alignment.Center)
+    TokenProperty.SizeMaxWidth, TokenProperty.Typography, TokenProperty.Grid -> Unit
 }
 
 @Composable
@@ -257,9 +268,9 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     val linkStateDescription = stringResource(if (isExpanded) R.string.app_common_expanded_a11y else R.string.app_common_collapsed_a11y)
     val linkContentDescription = stringResource(R.string.app_tokens_common_viewCodeExample_label)
-    val transition = updateTransition(targetState = isExpanded, label = "LinkArrowTransition")
-    val linkArrowRotation by transition.animateFloat(
-        label = "LinkArrowRotation",
+    val transition = updateTransition(targetState = isExpanded, label = "LinkChevronTransition")
+    val linkChevronRotation by transition.animateFloat(
+        label = "LinkChevronRotation",
         transitionSpec = {
             tween(durationMillis = 300, easing = FastOutSlowInEasing)
         }
@@ -289,8 +300,8 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                     color = OudsTheme.colorScheme.content.default
                 )
                 Icon(
-                    modifier = Modifier.rotate(linkArrowRotation),
-                    painter = painterResource(R.drawable.ic_chevron_down),
+                    modifier = Modifier.rotate(linkChevronRotation),
+                    painter = painterResource(LocalThemeDrawableResources.current.formChevronDown),
                     tint = OudsTheme.colorScheme.content.brandPrimary,
                     contentDescription = null
                 )
@@ -306,7 +317,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
 @Composable
 private fun PreviewTokenCategoryDetailScreen(
     @PreviewParameter(TokenCategoryDetailScreenPreviewParameterProvider::class) parameter: TokenCategory<*>
-) = OudsPreview {
+) = AppPreview {
     TokenCategoryDetailScreen(parameter) {}
 }
 
