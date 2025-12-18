@@ -192,9 +192,9 @@ private data class BulletListItem(
 private fun Bullet(type: OudsBulletListType, level: OudsBulletListItemNestedLevel, index: Int, typography: TextStyle, size: Dp) {
     when (type) {
         OudsBulletListType.Unordered -> when (level) {
-            OudsBulletListItemNestedLevel.Zero -> UnorderedBullet(iconRes = OudsTheme.drawableResources.bulletListLevel0, size = size)
-            OudsBulletListItemNestedLevel.One -> UnorderedBullet(iconRes = OudsTheme.drawableResources.bulletListLevel1, size = size)
-            OudsBulletListItemNestedLevel.Two -> UnorderedBullet(iconRes = OudsTheme.drawableResources.bulletListLevel2, size = size)
+            OudsBulletListItemNestedLevel.Zero -> UnorderedBullet(iconRes = OudsTheme.drawableResources.component.bulletList.level0, size = size)
+            OudsBulletListItemNestedLevel.One -> UnorderedBullet(iconRes = OudsTheme.drawableResources.component.bulletList.level1, size = size)
+            OudsBulletListItemNestedLevel.Two -> UnorderedBullet(iconRes = OudsTheme.drawableResources.component.bulletList.level2, size = size)
         }
         OudsBulletListType.Ordered -> when (level) {
             OudsBulletListItemNestedLevel.Zero -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
