@@ -538,7 +538,7 @@ enum class OudsTagSize {
 sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
     @Composable
-    internal abstract fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter?
+    internal open fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter? = null
 
     /**
      * Default or inactive status. Used for standard labels, categories, or when no specific status needs to be communicated.
@@ -559,9 +559,6 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
          * Creates an instance of [OudsTagStatus.Neutral] with no asset.
          */
         constructor() : this(null)
-
-        @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter? = null
     }
 
     /**
@@ -584,9 +581,6 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
          * Creates an instance of [OudsTagStatus.Accent] with no asset.
          */
         constructor() : this(null)
-
-        @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter? = null
     }
 
     /**
