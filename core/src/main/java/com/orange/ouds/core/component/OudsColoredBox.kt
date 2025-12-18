@@ -64,7 +64,7 @@ fun OudsColoredBox(
     content: @Composable BoxScope.() -> Unit
 ) {
     CheckedContent(
-        expression = color.mode.isSupported,
+        expression = color.isSupported,
         exceptionMessage = { "Current theme does not support an OudsColoredBox with color parameter set to ${color.name}." },
         previewMessage = { "${color.name} is not supported by current theme" }
     ) {
