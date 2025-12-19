@@ -181,16 +181,13 @@ fun OudsTextInput(
     val emptyText = textFieldState.text.isEmpty()
 
     OudsTextInput(
-        modifier = modifier,
-        label = label,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        constrainedMaxWidth = constrainedMaxWidth,
-        basicTextField = { modifier ->
+        basicTextField = {
             BasicTextField(
-                modifier = modifier,
+                modifier = modifier.semantic(label),
                 state = textFieldState,
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
@@ -218,7 +215,8 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        helperLink = helperLink
+                        helperLink = helperLink,
+                        constrainedMaxWidth = constrainedMaxWidth
                     )
                 }
             )
@@ -303,18 +301,15 @@ fun OudsTextInput(
     val emptyText = value.isEmpty()
 
     OudsTextInput(
-        modifier = modifier,
-        label = label,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        constrainedMaxWidth = constrainedMaxWidth,
-        basicTextField = { modifier ->
+        basicTextField = {
             BasicTextField(
+                modifier = modifier.semantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                modifier = modifier,
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(state = state),
@@ -340,7 +335,8 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        helperLink = helperLink
+                        helperLink = helperLink,
+                        constrainedMaxWidth = constrainedMaxWidth
                     )
                 }
             )
@@ -425,18 +421,15 @@ fun OudsTextInput(
     val emptyText = value.text.isEmpty()
 
     OudsTextInput(
-        modifier = modifier,
-        label = label,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        constrainedMaxWidth = constrainedMaxWidth,
-        basicTextField = { modifier ->
+        basicTextField = {
             BasicTextField(
+                modifier = modifier.semantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                modifier = modifier,
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(state = state),
@@ -462,7 +455,8 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        helperLink = helperLink
+                        helperLink = helperLink,
+                        constrainedMaxWidth = constrainedMaxWidth
                     )
                 }
             )
@@ -476,14 +470,11 @@ private fun Modifier.semantic(label: String?): Modifier = this.semantics {
 
 @Composable
 internal fun OudsTextInput(
-    label: String?,
     state: OudsTextInputState,
     emptyText: Boolean,
     readOnly: Boolean,
     error: OudsError?,
-    constrainedMaxWidth: Boolean,
-    modifier: Modifier,
-    basicTextField: @Composable (modifier: Modifier) -> Unit
+    basicTextField: @Composable () -> Unit
 ) {
 
     val isForbidden = (state == OudsTextInputState.Loading && (emptyText || error != null)) || (error != null && state in listOf(
@@ -511,16 +502,7 @@ internal fun OudsTextInput(
             }
         }
     ) {
-        with(OudsTheme.componentsTokens.textInput) {
-            basicTextField(
-                modifier
-                    .sizeIn(
-                        minWidth = sizeMinWidth.dp,
-                        maxWidth = if (constrainedMaxWidth) sizeMaxWidth.dp else Dp.Unspecified
-                    )
-                    .semantic(label)
-            )
-        }
+        basicTextField()
     }
 }
 
@@ -540,6 +522,7 @@ private fun OudsTextInputDecorator(
     error: OudsError?,
     helperText: String?,
     helperLink: OudsTextInputHelperLink?,
+    constrainedMaxWidth: Boolean,
 ) {
     val hasError = error != null
     with(OudsTheme.componentsTokens.textInput) {
@@ -570,7 +553,7 @@ private fun OudsTextInputDecorator(
         Column {
             Row(
                 modifier = styleModifier
-                    .sizeIn(minHeight = sizeMinHeight.dp)
+                    .sizeIn(minWidth = sizeMinWidth.dp, maxWidth = if (constrainedMaxWidth) sizeMaxWidth.dp else Dp.Unspecified, minHeight = sizeMinHeight.dp)
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
                         start = spacePaddingInlineDefault.value,
