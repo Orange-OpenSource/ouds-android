@@ -22,7 +22,7 @@ plugins {
     id("firebase")
     id(libs.plugins.android.application.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     id(libs.plugins.kotlin.android.get().pluginId)
-    id(libs.plugins.kotlin.kapt.get().pluginId)
+    alias(libs.plugins.ksp)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     alias(libs.plugins.compose.compiler)
     id(libs.plugins.firebase.appdistribution.get().pluginId)
@@ -140,7 +140,8 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.haze)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
+    ksp(libs.kotlin.metadata.jvm) // TODO Remove when https://github.com/google/dagger/pull/5062 is merged. See also https://github.com/google/dagger/issues/5001
     implementation(libs.kotlin.reflect)
 }
 

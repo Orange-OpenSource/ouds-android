@@ -33,13 +33,13 @@ internal fun OudsPolymorphicComponentContent.PolymorphicContent(modifier: Modifi
 }
 
 @Composable
-internal fun <T> OudsPolymorphicComponentContent.PolymorphicContent(extraParameters: T) {
+internal fun <T> OudsPolymorphicComponentContent.PolymorphicContent(extraParameters: T) where T : OudsComponentContent.ExtraParameters {
     @Suppress("UNCHECKED_CAST")
     return (this as OudsComponentContent<T>).Content(extraParameters)
 }
 
 @Composable
-internal fun <T> OudsPolymorphicComponentContent.PolymorphicContent(modifier: Modifier, extraParameters: T) {
+internal fun <T> OudsPolymorphicComponentContent.PolymorphicContent(modifier: Modifier, extraParameters: T) where T : OudsComponentContent.ExtraParameters {
     @Suppress("UNCHECKED_CAST")
     return (this as OudsComponentContent<T>).Content(modifier, extraParameters)
 }
