@@ -148,17 +148,26 @@ tasks.register<DefaultTask>("updateAppChangelog") {
     doLast {
         val rawResourcesPath = "src/main/res/raw"
         val changelogFilename = "CHANGELOG.md"
-        try {
+        val updateAppChangelog = {
             delete("$rawResourcesPath/$changelogFilename")
             updateChangelog(null)
             copy {
                 from("../$changelogFilename").into(rawResourcesPath).rename { it.lowercase() }
             }
             execute("git", "checkout", changelogFilename)
-        } catch (_: Exception) {
-            val errorMessage = "There was an error while generating the changelog."
-            logger.error(errorMessage)
-            file("$rawResourcesPath/${changelogFilename.lowercase()}").writeText(errorMessage)
+        }
+        // Ignore failure with local builds
+        val ignoreFailure = Environment.getVariablesOrNull("CI").firstOrNull().toBoolean().not()
+        if (ignoreFailure) {
+            try {
+                updateAppChangelog()
+            } catch (_: Exception) {
+                val errorMessage = "There was an error while generating the changelog."
+                logger.error(errorMessage)
+                file("$rawResourcesPath/${changelogFilename.lowercase()}").writeText(errorMessage)
+            }
+        } else {
+            updateAppChangelog()
         }
     }
 }
