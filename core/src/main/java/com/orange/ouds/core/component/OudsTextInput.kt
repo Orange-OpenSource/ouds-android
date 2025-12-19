@@ -187,9 +187,7 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .semantic(label),
+                modifier = modifier.semantic(label),
                 state = textFieldState,
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
@@ -309,11 +307,9 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
+                modifier = modifier.semantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                modifier = modifier
-                    .fillMaxWidth()
-                    .semantic(label),
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(state = state),
@@ -342,7 +338,6 @@ fun OudsTextInput(
                         helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
-
                 }
             )
         }
@@ -432,11 +427,9 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
+                modifier = modifier.semantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                modifier = modifier
-                    .fillMaxWidth()
-                    .semantic(label),
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(state = state),
