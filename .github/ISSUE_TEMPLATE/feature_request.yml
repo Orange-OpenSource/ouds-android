@@ -1,20 +1,25 @@
-name: Feature Request
-description: Suggest a new Epic to be added to the backlog
-title: "Feature - <Write here your feature summary>"
+name: Feature request
+description: Suggest a new feature to be added to the backlog
+title: "[Feature]: "
 labels: [ "🗳️ feature", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
+projects: [ "⚛️ [OUDS] Project" ]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve OUDS Android!
   - type: checkboxes
     attributes:
       label: Prerequisites
       description: Take a couple minutes to help our maintainers work faster.
       options:
-        - label: I have [searched the backlog](https://github.com/Orange-OpenSource/ouds-android/issues) for duplicate or closed feature requests
+        - label: I have [searched the backlog](https://github.com/Orange-OpenSource/ouds-android/issues) for duplicate or closed feature requests.
           required: true
   - type: markdown
     attributes:
       value: |
-        New Feature Description
+        ### New feature description
   - type: textarea
     id: user
     attributes:
@@ -42,29 +47,21 @@ body:
       label: Motivation and context
       description: Is your feature request related to a problem? Please describe.
       placeholder: A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
-    validations:
-      required: false
   - type: textarea
     id: solution
     attributes:
-      label: Proposed Solution
+      label: Proposed solution
       description: Describe the solution you'd like
       placeholder: A clear and concise description of what you want to happen.
-    validations:
-      required: false
   - type: textarea
     id: other
     attributes:
       label: Other
-      description: Additional Context
+      description: Additional context
       placeholder: Add any other context about the problem here.
-    validations:
-      required: false
   - type: input
     id: contact
     attributes:
-      label: Contact Details
+      label: Contact details
       description: How can we get in touch with you if we need more info?
       placeholder: ex. email@example.com
-    validations:
-      required: false

@@ -1,34 +1,37 @@
-name: Documentation Update
+name: Documentation update
 description: Propose a documentation change
-title: "Documentation - <Write here the title of the update>"
+title: "[Documentation]: "
 labels: [ "📖 documentation", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
+projects: [ "⚛️ [OUDS] Project" ]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this form!
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: Take a couple minutes to help our maintainers work faster.
+      options:
+        - label: I have [searched the backlog](https://github.com/Orange-OpenSource/ouds-android/issues) for duplicate or closed feature requests.
+          required: true
   - type: textarea
     id: location
     attributes:
-      label: Documentation Location
+      label: Documentation location
       description: Where in the documentation should there be an update.
-    validations:
-      required: true
-  - type: textarea
-    id: what-happened
-    attributes:
-      label: Current issue
-      description: A description of what is currently in the doc.
     validations:
       required: true
   - type: textarea
     id: correction
     attributes:
-      label: Expected Correction
-      description: A clear and concise description of what you expected to be updated.
+      label: Expected correction
+      description: A clear and concise description of what you expect to be updated.
     validations:
       required: true
   - type: textarea
-    id: other
+    id: additional-context
     attributes:
       label: Additional context
-      description: Add any other context about the problem here.
-    validations:
-      required: false
+      description: Add any other context about the problem.

@@ -1,55 +1,49 @@
-name: Report a bug
+name: Bug report
 description: Tell us about a bug or issue you may have identified in OUDS Android
-title: "Bug - <Write here the bug summary>"
+title: "[Bug]: "
 labels: [ "🐞 bug", "🔍 triage" ]
+projects: [ "⚛️ [OUDS] Project" ]
 assignees: [ "florentmaitre", "paulinea" ]
+type: bug
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
   - type: checkboxes
     attributes:
       label: Prerequisites
       description: Take a couple minutes to help our maintainers work faster.
       options:
-        - label: I have [searched the backlog](https://github.com/Orange-OpenSource/ouds-android/issues) for duplicate or closed feature requests
+        - label: I have [searched the backlog](https://github.com/Orange-OpenSource/ouds-android/issues) for duplicate or closed feature requests.
           required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Provide a clear and concise description of the issue, including specific steps to reproduce. Do not forget to hide sensitive or personal data (phone numbers, accounts, emails etc). Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: input
+    id: ouds-android-version
+    attributes:
+      label: OUDS Android version
+      placeholder: 1.0.0
+    validations:
+      required: true
   - type: input
     id: device
     attributes:
       label: Your test device
-      placeholder: Huawei Mate 20 Pro
-    validations:
-      required: true
+      placeholder: Samsung Galaxy S20
   - type: input
     id: os-version
     attributes:
-      label: OS Version
-      placeholder: Android 10.x
-    validations:
-      required: true
-  - type: input
-    id: app-version
-    attributes:
-      label: App version
-      placeholder: v1.0.1
-    validations:
-      required: true
+      label: OS version
+      placeholder: Android 16.x
   - type: textarea
-    id: what-happened
+    id: additional-context
     attributes:
-      label: Describe the issue
-      description: Provide a summary of the issue, including specific steps to reproduce with as much detail as possible. Do not forget to hide sensitive or personal data (phone numbers, accounts, messages, emails etc).
-    validations:
-      required: true
-  - type: textarea
-    id: expected
-    attributes:
-      label: Expected Behavior
-      description: Provide a description of what you expected to happen.
-    validations:
-      required: true
-  - type: textarea
-    id: a11y-settings
-    attributes:
-      label: Accessibility settings
-      description: Provide a description about the accessibility settings you have (vocalization with Talkback, increased text sizes, keyboard navigation, high contrast, etc.)
-    validations:
-      required: false
+      label: Additional context
+      description: Add any other context about the problem (e.g., accessibility settings).
