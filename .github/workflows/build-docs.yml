@@ -83,6 +83,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+
       - name: Download artifacts
         uses: actions/download-artifact@v7
         with:

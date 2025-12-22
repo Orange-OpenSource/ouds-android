@@ -29,6 +29,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
         with:
@@ -101,6 +104,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
         with:
@@ -139,6 +145,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
         with:
@@ -171,6 +180,9 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Publish release to Google Play Store
         run: |
