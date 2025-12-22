@@ -19,6 +19,7 @@ plugins {
     id(libs.plugins.firebase.appdistribution.get().pluginId) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.ksp) apply false
     id(libs.plugins.dokka.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     id("github")
     id("release")
