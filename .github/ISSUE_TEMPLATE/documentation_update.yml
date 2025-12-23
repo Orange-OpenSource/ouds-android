@@ -1,6 +1,6 @@
 name: Documentation update
 description: Propose a documentation change
-title: "[Documentation]: "
+title: "[Documentation] "
 labels: [ "📖 documentation", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
 projects: [ "⚛️ [OUDS] Project" ]

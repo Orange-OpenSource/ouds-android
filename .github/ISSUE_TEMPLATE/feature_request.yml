@@ -1,6 +1,6 @@
 name: Feature request
 description: Suggest a new feature to be added to the backlog
-title: "[Feature]: "
+title: "[Feature] "
 labels: [ "🗳️ feature", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
 projects: [ "⚛️ [OUDS] Project" ]

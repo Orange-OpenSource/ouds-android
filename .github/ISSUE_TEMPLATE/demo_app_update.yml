@@ -1,6 +1,6 @@
 name: Demo app update
 description: Propose a change in the Design Toolbox application
-title: "[Design Toolbox]: "
+title: "[Design Toolbox] "
 labels: [ "📱 demo app", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
 projects: [ "⚛️ [OUDS] Project" ]
