@@ -62,7 +62,7 @@ OudsTheme(theme = OrangeTheme()) {
 ```
 
 > [!WARNING]
-> Make sure to import the corresponding theme artifact.
+> Make sure to add the corresponding theme as a Gradle dependency.
 
 ## :iphone: Design Toolbox App
 
@@ -101,6 +101,6 @@ The Orange Unified Design System library is an SDK that allows a developer to cr
 - this SDK does not handle any personal data.
 - this SDK does not require any device permission to work.
 
-## Copyright and License
+## :balance_scale: Copyright and License
 
 Code released under the [MIT License](https://github.com/Orange-OpenSource/ouds-android/blob/main/LICENSE).
