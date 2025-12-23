@@ -1,6 +1,6 @@
 # OUDS Android
 
-[![minSdkVersion](https://img.shields.io/badge/minSdkVersion-21-yellowgreen?logo=android&logoColor=white)](https://apilevels.com)
+[![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-yellowgreen?logo=android&logoColor=white)](https://apilevels.com)
 [![License](https://img.shields.io/github/license/Orange-OpenSource/ouds-android)](LICENSE)
 [![Documentation](https://img.shields.io/badge/documentation-7F52FF?logo=kotlin&logoColor=white)](https://android.unified-design-system.orange.com/)
 
@@ -8,15 +8,63 @@ This repository contains the OUDS Android library that provides Orange Android c
 
 OUDS stands for "Orange Unified Design System". Its aim is to merge all the requirements of Orange brands and affiliates to provide a unique Design System,
 unified across all platforms and all countries.
-It should replace internal frameworks and also [ODS](https://github.com/Orange-OpenSource/ods-android) in the near future.
 
-## Documentation
+OUDS Android documentation is available at [android.unified-design-system.orange.com](https://android.unified-design-system.orange.com/).
 
-Documentation for OUDS Android is available at [android.unified-design-system.orange.com](https://android.unified-design-system.orange.com/)
+To see OUDS Android in action, you can download the [Design Toolbox demo app](http://oran.ge/designtoolbox). The `app` module contains the code for this
+application.
 
-<!-- TODO ## Get started with OUDS Android -->
+## :rocket: Quick Start
 
-## Design Toolbox app
+### Add OUDS Android to your project
+
+OUDS Android is available through [Maven Central Repository](https://central.sonatype.com/search?q=com.orange.ouds.android). To use it, add the OUDS Android
+library core and the theme you want to use in the `dependencies` section of your app build script:
+
+<details open>
+<summary>Kotlin DSL</summary>
+
+```kotlin
+dependencies {
+    // ...
+    implementation("com.orange.ouds.android:ouds-core:1.0.0")
+    implementation("com.orange.ouds.android:ouds-theme-orange:1.0.0")
+    // ...
+}
+```
+
+</details>
+
+<details>
+<summary>Groovy DSL</summary>
+
+```shell
+dependencies {
+    // ...
+    implementation 'com.orange.ouds.android:ouds-core:1.0.0'
+    implementation 'com.orange.ouds.android:ouds-theme-orange:1.0.0'
+    // ...
+}
+```
+
+</details>
+
+### Select and apply your theme
+
+To access OUDS components and tokens throughout your app, you must wrap your UI hierarchy with `OudsTheme` instead of `MaterialTheme`.  
+This composable requires a `theme` parameter to define the visual identity to apply (e.g., `OrangeTheme`, `SoshTheme`, `WireframeTheme`).
+
+```kotlin
+OudsTheme(theme = OrangeTheme()) {
+    // Use OUDS Android or Material components here for an interface
+    // matching the Orange Unified Design System with the Orange theme
+}
+```
+
+> [!WARNING]
+> Make sure to add the corresponding theme as a Gradle dependency.
+
+## :iphone: Design Toolbox App
 
 The `app` directory of this repository contains Design Toolbox app which is a showcase of what OUDS Android library offers.
 It allows you to benefit from sample codes to help you learn about OUDS Android use.
@@ -36,23 +84,23 @@ The Design Toolbox app allows you to test OUDS components in several themes in L
     </tr>
 </table>
 
-## Bugs and feature requests
+## :beetle: Bugs and Feature Requests
 
 Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed
 yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-android/issues/new/choose).
 
-## Contributing
+## :handshake: Contributing
 
 Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-android/blob/main/CONTRIBUTING.md).
 Included are directions for opening issues, coding standards, and notes on development.
 
-## Data privacy
+## :lock: Data Privacy
 
 The Orange Unified Design System library is an SDK that allows a developer to create Orange branded mobile application. As such:
 
 - this SDK does not handle any personal data.
 - this SDK does not require any device permission to work.
 
-## Copyright and license
+## :balance_scale: Copyright and License
 
 Code released under the [MIT License](https://github.com/Orange-OpenSource/ouds-android/blob/main/LICENSE).

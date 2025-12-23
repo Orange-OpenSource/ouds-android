@@ -74,7 +74,8 @@ fun updateDependencies(version: String) {
     val transform: (MatchResult) -> CharSequence = { matchResult ->
         "${matchResult.groupValues[1]}$version"
     }
-    File("docs/index.md").replace(regex, transform)
+    val filePaths = listOf("docs/index.md", "README.md")
+    filePaths.forEach { File(it).replace(regex, transform) }
 }
 
 fun updateVersionCode() {
