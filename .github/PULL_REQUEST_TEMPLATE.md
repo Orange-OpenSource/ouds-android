@@ -28,4 +28,3 @@ Closes #
 - [ ] Design review
 - [ ] A11y review
 - [ ] Internal files have been updated if relevant (THIRD_PARTY, NOTICE)
-- [ ] changelog.md has been updated respecting [keep a changelog rules](https://keepachangelog.com/en/1.0.0/) and referencing the issue
