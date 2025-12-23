@@ -22,7 +22,6 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.figma.code.connect)
     id(libs.plugins.dokka.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
-    alias(libs.plugins.figma.code.connect) apply false
     id("github")
     id("release")
     id("netlify")
