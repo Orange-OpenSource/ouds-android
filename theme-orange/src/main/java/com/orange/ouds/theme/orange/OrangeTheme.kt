@@ -12,6 +12,20 @@
 
 package com.orange.ouds.theme.orange
 
+import android.content.Context
+import android.content.pm.PackageManager
+import android.graphics.Typeface
+import android.os.Build
+import androidx.compose.ui.text.font.AndroidFont
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontLoadingStrategy
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontVariation.Settings
+import androidx.compose.ui.text.font.FontWeight
+import androidx.core.content.ContextCompat
+import androidx.core.provider.FontRequest
+import androidx.core.provider.FontsContractCompat
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -37,25 +51,103 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
-import kotlinx.parcelize.Parcelize
 
 const val ORANGE_THEME_NAME = "Orange"
 
-@Parcelize
 open class OrangeTheme(
+    fontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
-    private val roundedCornerTextInputs: Boolean = false
+    private val roundedCornerTextInputs: Boolean = false,
 ) : OudsThemeContract {
+
+    @Deprecated("Please use constructor with fontFamily parameter instead.")
+    constructor(
+        roundedCornerButtons: Boolean = false,
+        roundedCornerTextInputs: Boolean = false
+    ) : this(OrangeFontFamily.Downloadable, roundedCornerButtons, roundedCornerTextInputs)
+
+    companion object {
+
+        private var downloadableFontFamily: FontFamily? = null
+
+        fun preloadDownloadableFontFamily(context: Context, onComplete: (success: Boolean) -> Unit) {
+            if (downloadableFontFamily != null) {
+                onComplete(true)
+            } else {
+                val certificates = try {
+                    @Suppress("DEPRECATION")
+                    val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) PackageManager.GET_SIGNING_CERTIFICATES else PackageManager.GET_SIGNATURES
+                    val packageInfo = context.packageManager.getPackageInfo(context.packageName, flags)
+                    val signatures = with(packageInfo) {
+                        @Suppress("DEPRECATION")
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) signingInfo?.apkContentsSigners else signatures
+                    }
+                    listOf(signatures.orEmpty().map { it.toByteArray() })
+                } catch (_: Exception) {
+                    emptyList()
+                }
+
+                val fontWeights = listOf(FontWeight.Normal, FontWeight.Medium, FontWeight.Bold)
+                val typefaces = mutableMapOf<FontWeight, Typeface?>()
+                val callbackExecutor = ContextCompat.getMainExecutor(context)
+
+                fontWeights.forEach { fontWeight ->
+                    val query = "${OrangeFontProvider.QUERY_WEIGHT_PARAMETER}=${fontWeight.weight}"
+                    val fontRequest = FontRequest(OrangeFontProvider.AUTHORITY, context.packageName, query, certificates)
+
+                    val callback = object : FontsContractCompat.FontRequestCallback() {
+
+                        override fun onTypefaceRetrieved(typeface: Typeface?) {
+                            onTypefaceRequestComplete(fontWeight, typeface)
+                        }
+
+                        override fun onTypefaceRequestFailed(reason: Int) {
+                            onTypefaceRequestComplete(fontWeight, null)
+                        }
+
+                        private fun onTypefaceRequestComplete(fontWeight: FontWeight, typeface: Typeface?) {
+                            typefaces[fontWeight] = typeface
+                            if (typefaces.size == fontWeights.size) {
+                                if (typefaces.values.any { it == null }) {
+                                    onComplete(false)
+                                } else {
+                                    val fonts = typefaces.mapNotNull { (fontWeight, typeface) ->
+                                        typeface?.let { Font(fontWeight, typeface) }
+                                    }
+                                    downloadableFontFamily = FontFamily(fonts)
+                                    onComplete(true)
+                                }
+                            }
+                        }
+                    }
+
+                    FontsContractCompat.requestFont(context, fontRequest, Typeface.NORMAL, null, callbackExecutor, callback)
+                }
+            }
+        }
+    }
 
     override val name: String
         get() = ORANGE_THEME_NAME
+
+    private val orangeFontFamily: OrangeFontFamily = fontFamily
+
+    override val fontFamily: FontFamily
+        get() = when (orangeFontFamily) {
+            is OrangeFontFamily.Bundled -> FontFamily(
+                Font(orangeFontFamily.regularFontResId, FontWeight.Normal),
+                Font(orangeFontFamily.mediumFontResId, FontWeight.Medium),
+                Font(orangeFontFamily.boldFontResId, FontWeight.Bold)
+            )
+            is OrangeFontFamily.Downloadable -> downloadableFontFamily ?: super.fontFamily
+        }
 
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs)
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeColorSemanticTokens()
-    
+
     override val materialColorTokens: OudsMaterialColorTokens
         get() = OrangeMaterialColorTokens()
 
@@ -88,4 +180,16 @@ open class OrangeTheme(
 
     override val drawableResources: OudsDrawableResources
         get() = OrangeDrawableResources()
+}
+
+private fun Font(weight: FontWeight, typeface: Typeface, style: FontStyle = FontStyle.Normal): Font {
+    val typefaceLoader = object : AndroidFont.TypefaceLoader {
+        override fun loadBlocking(context: Context, font: AndroidFont): Typeface? = typeface
+        override suspend fun awaitLoad(context: Context, font: AndroidFont): Typeface? = typeface
+    }
+
+    return object : AndroidFont(FontLoadingStrategy.Blocking, typefaceLoader, Settings()) {
+        override val weight: FontWeight = weight
+        override val style: FontStyle = style
+    }
 }

@@ -13,19 +13,32 @@
 package com.orange.ouds.app
 
 import android.app.Application
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import com.google.firebase.Firebase
 import com.google.firebase.crashlytics.crashlytics
+import com.orange.ouds.theme.orange.OrangeTheme
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class OudsApplication : Application() {
 
+    companion object {
+        
+        var isDownloadableOrangeFontFamilyPreloaded by mutableStateOf(false)
+            private set
+    }
+
     override fun onCreate() {
         super.onCreate()
         initializeCrashlytics()
+        OrangeTheme.preloadDownloadableFontFamily(this) {
+            isDownloadableOrangeFontFamilyPreloaded = true
+        }
     }
 
     private fun initializeCrashlytics() {
-        Firebase.crashlytics.setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
+        Firebase.crashlytics.isCrashlyticsCollectionEnabled = !BuildConfig.DEBUG
     }
 }

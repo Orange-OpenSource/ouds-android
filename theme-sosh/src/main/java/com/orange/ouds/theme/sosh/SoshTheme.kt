@@ -40,11 +40,9 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
-import kotlinx.parcelize.Parcelize
 
 const val SOSH_THEME_NAME = "Sosh"
 
-@Parcelize
 class SoshTheme : OudsThemeContract {
 
     override val name: String
@@ -67,7 +65,7 @@ class SoshTheme : OudsThemeContract {
 
     override val materialColorTokens: OudsMaterialColorTokens
         get() = SoshMaterialColorTokens()
-    
+
     override val borderTokens: OudsBorderSemanticTokens
         get() = SoshBorderSemanticTokens()
 

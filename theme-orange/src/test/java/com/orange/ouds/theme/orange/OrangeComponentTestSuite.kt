@@ -22,7 +22,7 @@ internal class OrangeComponentTestSuite : OudsComponentTestSuite() {
         @BeforeClass
         @JvmStatic
         fun setUpClass() {
-            theme = OrangeTheme()
+            theme = OrangeTheme(OrangeFontFamily.Downloadable)
         }
     }
 }

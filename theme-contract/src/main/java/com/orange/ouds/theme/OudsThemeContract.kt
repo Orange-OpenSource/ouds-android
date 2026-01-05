@@ -12,7 +12,6 @@
 
 package com.orange.ouds.theme
 
-import android.os.Parcelable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
@@ -33,7 +32,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
  * (colors, typography, spacing, etc.). Any values not explicitly set will generally rely on abstract definitions,
  * but typical implementations should provide full sets of tokens.
  */
-interface OudsThemeContract : Parcelable {
+interface OudsThemeContract {
 
     /**
      * The display name of the theme (e.g., "Orange", "Sosh").

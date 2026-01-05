@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.getSystemService
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
+import com.orange.ouds.app.OudsApplication
 import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -85,7 +86,8 @@ fun MainScreen(
     val mainState = rememberMainState(
         themeState = rememberThemeState(
             settings = themeSettings,
-            currentThemeName = currentThemeName
+            currentThemeName = currentThemeName,
+            isDownloadableOrangeFontFamilyPreloaded = OudsApplication.isDownloadableOrangeFontFamilyPreloaded
         )
     )
 
