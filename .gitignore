@@ -22,6 +22,9 @@
 .gradle
 build/
 
+# Temporary files
+tmp/
+
 # Local configuration file
 local.properties
 
