@@ -29,6 +29,7 @@ import androidx.core.provider.FontsContractCompat
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+import com.orange.ouds.theme.orange.OrangeTheme.Companion.preloadDownloadableFontFamily
 import com.orange.ouds.theme.orange.tokens.components.OrangeComponentsTokens
 import com.orange.ouds.theme.orange.tokens.material.OrangeMaterialColorTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeBorderSemanticTokens
@@ -54,13 +55,66 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
 const val ORANGE_THEME_NAME = "Orange"
 
+/**
+ * The Orange theme.
+ *
+ * This theme uses the Helvetica Neue font family. Due to legal issues Helvetica Neue font files are not bundled with this library.
+ * There are two ways of configuring the Helvetica Neue font family for the Orange theme:
+ *
+ * - Bundle the font files in your app by copying the regular, medium and bold font files in your project and setting [OrangeTheme.fontFamily] parameter to an instance of [OrangeFontFamily.Bundled].
+ * - Download font files through Android Downloadable Fonts feature by setting [OrangeTheme.fontFamily] to [OrangeFontFamily.Downloadable].
+ *
+ *   In order to enable the Android Downloadable Fonts feature for the Orange theme, please also add [OrangeFontProvider] as a provider in your app manifest:
+ *
+ *   ```
+ *   <provider
+ *       android:name="com.orange.ouds.theme.orange.OrangeFontProvider"
+ *       android:authorities="com.orange.ouds.theme.orange.fontprovider"
+ *       android:exported="false" />
+ *   ```
+ *
+ *   As well as the following permission:
+ *
+ *   ```
+ *   <uses-permission android:name="android.permission.INTERNET" />
+ *   ```
+ *
+ *   Finally, call the [OrangeTheme.preloadDownloadableFontFamily] method in the `onCreate` method of your application singleton or main activity,
+ *   and use the `onComplete` parameter to update your UI when preload is complete:
+ *
+ *   ```
+ *   var isDownloadableOrangeFontFamilyPreloaded by mutableStateOf(false)
+ *       private set
+ *   ```
+ *   ```
+ *   OrangeTheme.preloadDownloadableFontFamily(this) {
+ *       isDownloadableOrangeFontFamilyPreloaded = true
+ *   }
+ *   ```
+ *
+ *   Please note that [FontFamily.Default] will be used if download fails.
+ *
+ * @param fontFamily The font family to use for the Orange theme.
+ *   If [OrangeFontFamily.Bundled] is used, the regular, medium and bold resource identifiers should reference Helvetica Neue font files.
+ *   If [OrangeFontFamily.Downloadable] is used, the [preloadDownloadableFontFamily] method should be called to download the font files through Android Downloadable Fonts feature.
+ * @param roundedCornerButtons Whether or not buttons have rounded corners.
+ * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
+ */
 open class OrangeTheme(
     fontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
     private val roundedCornerTextInputs: Boolean = false,
 ) : OudsThemeContract {
 
-    @Deprecated("Please use constructor with fontFamily parameter instead.")
+    /**
+     * Creates a new Orange theme.
+     *
+     * @param roundedCornerButtons Whether or not buttons have rounded corners.
+     * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
+     *
+     * @deprecated Use constructor with fontFamily parameter instead.
+     */
+    @Deprecated("Use constructor with fontFamily parameter instead.")
     constructor(
         roundedCornerButtons: Boolean = false,
         roundedCornerTextInputs: Boolean = false
@@ -70,10 +124,20 @@ open class OrangeTheme(
 
         private var downloadableFontFamily: FontFamily? = null
 
+        /**
+         * Preloads the downloadable font family for the Orange theme.
+         * Call this method if [OrangeTheme.fontFamily] is set to [OrangeFontFamily.Downloadable].
+         *
+         * @param context The context.
+         * @param onComplete A callback that is called when the font family is fully loaded.
+         */
         fun preloadDownloadableFontFamily(context: Context, onComplete: (success: Boolean) -> Unit) {
             if (downloadableFontFamily != null) {
                 onComplete(true)
             } else {
+                // Font requests require the list of sets of hashes for the certificates the provider is signed with
+                // As OrangeFontProvider is embedded in the app, it is signed with the app certificate
+                // That is why we can retrieve the certificate using methods on package manager
                 val certificates = try {
                     @Suppress("DEPRECATION")
                     val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) PackageManager.GET_SIGNING_CERTIFICATES else PackageManager.GET_SIGNATURES
@@ -121,7 +185,8 @@ open class OrangeTheme(
                         }
                     }
 
-                    FontsContractCompat.requestFont(context, fontRequest, Typeface.NORMAL, null, callbackExecutor, callback)
+                    val style = if (fontWeight.weight >= FontWeight.Bold.weight) Typeface.BOLD else Typeface.NORMAL
+                    FontsContractCompat.requestFont(context, fontRequest, style, null, callbackExecutor, callback)
                 }
             }
         }

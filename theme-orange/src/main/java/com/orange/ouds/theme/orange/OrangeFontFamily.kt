@@ -14,13 +14,26 @@ package com.orange.ouds.theme.orange
 
 import androidx.annotation.FontRes
 
+/**
+ * The font family to use for the Orange theme.
+ */
 sealed class OrangeFontFamily {
 
+    /**
+     * A bundled font family.
+     *
+     * @param regularFontResId The resource identifier of the regular font.
+     * @param mediumFontResId The resource identifier of the medium font.
+     * @param boldFontResId The resource identifier of the bold font.
+     */
     data class Bundled(
         @FontRes val regularFontResId: Int,
         @FontRes val mediumFontResId: Int,
         @FontRes val boldFontResId: Int
     ) : OrangeFontFamily()
 
+    /**
+     * A downloadable font family.
+     */
     object Downloadable : OrangeFontFamily()
 }

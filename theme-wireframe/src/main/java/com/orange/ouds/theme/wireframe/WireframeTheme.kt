@@ -44,6 +44,9 @@ import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeSpaceSemanticTok
 
 const val WIREFRAME_THEME_NAME = "Wireframe"
 
+/**
+ * The Wireframe theme.
+ */
 class WireframeTheme : OudsThemeContract {
 
     override val name: String

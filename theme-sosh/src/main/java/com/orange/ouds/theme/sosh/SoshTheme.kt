@@ -43,6 +43,9 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
 const val SOSH_THEME_NAME = "Sosh"
 
+/**
+ * The Sosh theme.
+ */
 class SoshTheme : OudsThemeContract {
 
     override val name: String

@@ -53,7 +53,17 @@ In your application, you must provide the `OrangeTheme` instance to the `OudsThe
 > Use `OudsTheme` as a replacement for the traditional `MaterialTheme`.
 
 ```kotlin
-OudsTheme(theme = OrangeTheme(roundedCornerButtons = true, roundedCornerTextInputs = true)) {
+OudsTheme(
+    theme = OrangeTheme(
+        fontFamily = OrangeFontFamily.Bundled(
+            regularFontResId = R.font.helvetica_neue_roman,
+            mediumFontResId = R.font.helvetica_neue_medium,
+            boldFontResId = R.font.helvetica_neue_bold
+        ),
+        roundedCornerButtons = true,
+        roundedCornerTextInputs = true
+    )
+) {
     // Use OUDS Android or Material components here for an interface
     // matching the Orange Unified Design System with the customized Orange theme
 }

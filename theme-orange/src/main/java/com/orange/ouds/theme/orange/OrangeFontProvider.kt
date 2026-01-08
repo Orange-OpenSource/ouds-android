@@ -25,15 +25,22 @@ import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
 
+/**
+ * The font provider for the Orange theme.
+ */
 class OrangeFontProvider : ContentProvider() {
 
     companion object {
+
+        /** The Orange font provider authority */
         const val AUTHORITY = "com.orange.ouds.theme.orange.fontprovider"
+
         internal const val QUERY_WEIGHT_PARAMETER = "weight"
-        private const val BASE_URL = "https://mastermedia.dam-broadcast.com"
+
+        private const val CDN_BASE_URL = "https://mastermedia.dam-broadcast.com"
     }
 
-    private enum class Font(val localFilename: String, val remoteFilename: String, val fontWeight: FontWeight) {
+    private enum class Font(val filename: String, val cdnFilename: String, val fontWeight: FontWeight) {
 
         HelveticaNeueRoman("helvetica_neue_roman.ttf", "pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf", FontWeight.Normal),
         HelveticaNeueMedium("helvetica_neue_medium.ttf", "pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf", FontWeight.Medium),
@@ -60,10 +67,10 @@ class OrangeFontProvider : ContentProvider() {
             var cursor: Cursor? = null
             val font = Font.entries.firstOrNull { it.fontWeight == fontWeight }
             if (font != null) {
-                val fontFile = File(context.filesDir, font.localFilename)
+                val fontFile = File(context.filesDir, font.filename)
                 if (!fontFile.exists()) {
                     try {
-                        URL("$BASE_URL/${font.remoteFilename}").openStream().use { input ->
+                        URL("$CDN_BASE_URL/${font.cdnFilename}").openStream().use { input ->
                             FileOutputStream(fontFile).use { output ->
                                 input.copyTo(output)
                             }
@@ -105,7 +112,7 @@ class OrangeFontProvider : ContentProvider() {
     override fun openFile(uri: Uri, mode: String): ParcelFileDescriptor? {
         return context?.let { context ->
             val font = uri.lastPathSegment?.toIntOrNull()?.let { Font.entries[it] }
-            font?.localFilename?.let { filename ->
+            font?.filename?.let { filename ->
                 val file = File(context.filesDir, filename)
                 if (file.exists()) {
                     ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
