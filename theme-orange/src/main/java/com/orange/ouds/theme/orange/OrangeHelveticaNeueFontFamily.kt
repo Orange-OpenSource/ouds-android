@@ -15,25 +15,25 @@ package com.orange.ouds.theme.orange
 import androidx.annotation.FontRes
 
 /**
- * The font family to use for the Orange theme.
+ * The Helvetica Neue font family to use for the Orange theme.
  */
-sealed class OrangeFontFamily {
+sealed class OrangeHelveticaNeueFontFamily {
 
     /**
-     * A bundled font family.
+     * A bundled Helvetica Neue font family.
      *
-     * @param regularFontResId The resource identifier of the regular font.
-     * @param mediumFontResId The resource identifier of the medium font.
-     * @param boldFontResId The resource identifier of the bold font.
+     * @param regularFontResId The resource identifier of the Helvetica Neue regular font.
+     * @param mediumFontResId The resource identifier of the Helvetica Neue medium font.
+     * @param boldFontResId The resource identifier of the Helvetica Neue bold font.
      */
     data class Bundled(
         @FontRes val regularFontResId: Int,
         @FontRes val mediumFontResId: Int,
         @FontRes val boldFontResId: Int
-    ) : OrangeFontFamily()
+    ) : OrangeHelveticaNeueFontFamily()
 
     /**
-     * A downloadable font family.
+     * A downloadable Helvetica Neue font family.
      */
-    object Downloadable : OrangeFontFamily()
+    object Downloadable : OrangeHelveticaNeueFontFamily()
 }

@@ -14,13 +14,14 @@ package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
 import com.orange.ouds.core.test.OudsSnapshotTest
-import com.orange.ouds.theme.orange.OrangeFontFamily
+import com.orange.ouds.theme.orange.OrangeHelveticaNeueFontFamily
 import com.orange.ouds.theme.orange.OrangeTheme
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsBadgedIconTest(val parameter: OudsBadgedIconPreviewParameter) : OudsSnapshotTest(theme = OrangeTheme(OrangeFontFamily.Downloadable)) {
+internal class OudsBadgedIconTest(val parameter: OudsBadgedIconPreviewParameter) :
+    OudsSnapshotTest(theme = OrangeTheme(OrangeHelveticaNeueFontFamily.Downloadable)) {
 
     companion object {
         @JvmStatic

@@ -22,7 +22,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
-import com.orange.ouds.theme.orange.OrangeFontFamily
+import com.orange.ouds.theme.orange.OrangeHelveticaNeueFontFamily
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
 import com.orange.ouds.theme.sosh.SoshTheme
@@ -107,7 +107,7 @@ class ThemeState(
             names.mapNotNull { name ->
                 when (name) {
                     ORANGE_THEME_NAME -> OrangeTheme(
-                        fontFamily = OrangeFontFamily.Downloadable,
+                        helveticaNeueFontFamily = OrangeHelveticaNeueFontFamily.Downloadable,
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
                     )
