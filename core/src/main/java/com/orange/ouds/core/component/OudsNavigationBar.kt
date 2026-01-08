@@ -12,20 +12,15 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Call
@@ -34,24 +29,25 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.LocalRippleConfiguration
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.ShortNavigationBar
+import androidx.compose.material3.ShortNavigationBarDefaults
+import androidx.compose.material3.ShortNavigationBarItem
+import androidx.compose.material3.ShortNavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
@@ -59,8 +55,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -116,10 +110,10 @@ fun OudsNavigationBar(
     items: List<OudsNavigationBarItem>,
     modifier: Modifier = Modifier,
     translucent: Boolean = false,
-    windowInsets: WindowInsets = NavigationBarDefaults.windowInsets
+    windowInsets: WindowInsets = ShortNavigationBarDefaults.windowInsets
 ) {
     with(OudsTheme.componentsTokens.bar) {
-        NavigationBar(
+        ShortNavigationBar(
             modifier = modifier,
             containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
             contentColor = colorContentUnselectedEnabled.value,
@@ -196,92 +190,164 @@ data class OudsNavigationBarItem(
             val selectedContentColor = contentColor(state = state, selected = true)
             val unselectedContentColor = contentColor(state = state, selected = false)
 
-            ConstraintLayout(
-                modifier = modifier
-                    .selectable(
-                        selected = selected,
-                        onClick = { },
-                        role = Role.Tab
-                    )
-            ) {
-                val (itemRef, topIndicatorRef) = createRefs()
+            /* ConstraintLayout(
+                 modifier = modifier.fillMaxHeight()
+                     .selectable(
+                         selected = selected,
+                         onClick = { },
+                         role = Role.Tab
+                     )
+             ) {
+                 val (itemRef, topIndicatorRef) = createRefs()
 
-                // Top active indicator: visual alternative for selected item
-                val topIndicatorColor = topIndicatorColor(state = state)
-                val topIndicatorShape = RoundedCornerShape(
-                    topStart = 0.dp,
-                    topEnd = 0.dp,
-                    bottomStart = borderRadiusActiveIndicatorCustomTop.value,
-                    bottomEnd = borderRadiusActiveIndicatorCustomTop.value
-                )
+                 // Top active indicator: visual alternative for selected item
+                 val topIndicatorColor = topIndicatorColor(state = state)
+                 val topIndicatorShape = RoundedCornerShape(
+                     topStart = 0.dp,
+                     topEnd = 0.dp,
+                     bottomStart = borderRadiusActiveIndicatorCustomTop.value,
+                     bottomEnd = borderRadiusActiveIndicatorCustomTop.value
+                 )
 
-                // This is the same animation spec that the NavigationBarItem internally uses to animate the color of the icon and the text
-                val animationSpec = spring<Float>(
-                    dampingRatio = 1.0f, // StandardMotionTokens.SpringDefaultEffectsDamping
-                    stiffness = 1600.0f // StandardMotionTokens.SpringDefaultEffectsStiffness
-                )
+                 // This is the same animation spec that the NavigationBarItem internally uses to animate the color of the icon and the text
+                 val animationSpec = spring<Float>(
+                     dampingRatio = 1.0f, // StandardMotionTokens.SpringDefaultEffectsDamping
+                     stiffness = 1600.0f // StandardMotionTokens.SpringDefaultEffectsStiffness
+                 )
 
-                extraParameters.rowScope.AnimatedVisibility(
-                    modifier = Modifier.constrainAs(topIndicatorRef) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        height = Dimension.value(sizeHeightActiveIndicatorCustom.dp)
-                        width = Dimension.value(sizeWidthActiveIndicatorCustomTop.dp)
-                    },
-                    visible = selected || state == OudsNavigationBarItemState.Hovered,
-                    enter = fadeIn(animationSpec),
-                    exit = fadeOut(animationSpec)
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .alpha(opacityActiveIndicatorCustom.value)
-                            .background(color = topIndicatorColor, shape = topIndicatorShape)
-                    )
-                }
-
-                CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                    extraParameters.rowScope.NavigationBarItem(
-                        selected = selected,
-                        onClick = onClick,
-                        icon = {
-                            if (badge != null) {
-                                OudsBadgedIcon(
-                                    modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
-                                    badgeCount = badge.count,
-                                    badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
-                                ) {
-                                    icon.Content()
-                                }
-                            } else {
+                 extraParameters.rowScope.AnimatedVisibility(
+                     modifier = Modifier.constrainAs(topIndicatorRef) {
+                         top.linkTo(parent.top)
+                         start.linkTo(parent.start)
+                         end.linkTo(parent.end)
+                         height = Dimension.value(sizeHeightActiveIndicatorCustom.dp)
+                         width = Dimension.value(sizeWidthActiveIndicatorCustomTop.dp)
+                     },
+                     visible = selected || state == OudsNavigationBarItemState.Hovered,
+                     enter = fadeIn(animationSpec),
+                     exit = fadeOut(animationSpec)
+                 ) {
+                     Box(
+                         modifier = Modifier
+                             .alpha(opacityActiveIndicatorCustom.value)
+                             .background(color = topIndicatorColor, shape = topIndicatorShape)
+                     )
+                 }
+ */
+            CompositionLocalProvider(LocalRippleConfiguration provides null) {
+                ShortNavigationBarItem(
+                    modifier = modifier
+                        .indicator(state = state, selected = selected)
+                        .semantics {
+                            contentDescription = badge?.contentDescription.orEmpty()
+                        },
+                    selected = selected,
+                    onClick = onClick,
+                    icon = {
+                        if (badge != null) {
+                            OudsBadgedIcon(
+                                modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
+                                badgeCount = badge.count,
+                                badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
+                            ) {
                                 icon.Content()
                             }
-                        },
-                        modifier = Modifier
-                            .constrainAs(itemRef) {
-                                centerTo(parent)
-                            }
-                            .semantics {
-                                contentDescription = badge?.contentDescription.orEmpty()
-                            },
-                        label = label?.let {
-                            {
-                                Text(
-                                    text = it,
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    style = OudsTheme.typography.label.moderate.small
-                                )
-                            }
-                        },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = selectedContentColor,
-                            selectedTextColor = selectedContentColor,
-                            indicatorColor = materialIndicatorColor(state = state, selected = selected),
-                            unselectedIconColor = unselectedContentColor,
-                            unselectedTextColor = unselectedContentColor,
-                        ),
-                        interactionSource = interactionSource
+                        } else {
+                            icon.Content()
+                        }
+                    },
+                    label = label?.let {
+                        {
+                            Text(
+                                text = it,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                style = OudsTheme.typography.label.moderate.small
+                            )
+                        }
+                    },
+                    colors = ShortNavigationBarItemDefaults.colors(
+                        selectedIconColor = selectedContentColor,
+                        selectedTextColor = selectedContentColor,
+                        selectedIndicatorColor = materialIndicatorColor(state = state, selected = selected),
+                        unselectedIconColor = unselectedContentColor,
+                        unselectedTextColor = unselectedContentColor,
+                    ),
+                    interactionSource = interactionSource
+                )
+            }
+            //}
+        }
+    }
+}
+
+@Composable
+private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Boolean): Modifier {
+    with(OudsTheme.componentsTokens.bar) {
+        val indicatorColor = topIndicatorColor(state = state)
+        val indicatorBottomCornersRadius = borderRadiusActiveIndicatorCustomTop.value
+        val indicatorHeight = sizeHeightActiveIndicatorCustom.dp
+        val indicatorWidth = sizeWidthActiveIndicatorCustomTop.dp
+
+        // This is the same animation spec that the NavigationBarItem internally uses to animate the color of the icon and the text
+        val animationSpec = spring<Float>(
+            dampingRatio = 1.0f, // StandardMotionTokens.SpringDefaultEffectsDamping
+            stiffness = 1600.0f // StandardMotionTokens.SpringDefaultEffectsStiffness
+        )
+
+        val indicatorAnimatedAlpha by animateFloatAsState(
+            targetValue = if (selected || state == OudsNavigationBarItemState.Hovered) 1.0f else 0.0f,
+            animationSpec = animationSpec,
+        )
+
+        return if (indicatorAnimatedAlpha == 0f || opacityActiveIndicatorCustom.value == 0f) {
+            this@indicator
+        } else {
+            drawWithContent {
+                drawContent()
+                val margin = (size.width - indicatorWidth.toPx()).coerceAtLeast(0f) / 2
+                val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * indicatorAnimatedAlpha)
+
+                if (indicatorBottomCornersRadius > 0.dp) {
+                    val bottomCornersRadiusPx = indicatorBottomCornersRadius.toPx()
+                    val path = Path().apply {
+                        moveTo(margin, 0f)
+                        lineTo(margin, indicatorHeight.toPx() - 2 * bottomCornersRadiusPx)
+                        arcTo(
+                            rect = Rect(
+                                top = indicatorHeight.toPx() - 2 * bottomCornersRadiusPx,
+                                left = margin,
+                                bottom = indicatorHeight.toPx(),
+                                right = 2 * bottomCornersRadiusPx + margin
+                            ),
+                            startAngleDegrees = 180f,
+                            sweepAngleDegrees = -90f,
+                            forceMoveTo = false
+                        )
+                        lineTo(size.width - 2 * bottomCornersRadiusPx - margin, indicatorHeight.toPx())
+                        arcTo(
+                            rect = Rect(
+                                top = indicatorHeight.toPx() - 2 * bottomCornersRadiusPx,
+                                left = size.width - 2 * bottomCornersRadiusPx - margin,
+                                bottom = indicatorHeight.toPx(),
+                                right = size.width - margin
+                            ),
+                            startAngleDegrees = 90f,
+                            sweepAngleDegrees = -90f,
+                            forceMoveTo = false
+                        )
+                        lineTo(size.width - margin, 0f)
+                        lineTo(margin, 0f)
+                        close()
+                    }
+                    drawPath(path, color = indicatorAlphaColor)
+                } else {
+                    val lineY = indicatorHeight.toPx() / 2
+                    drawLine(
+                        color = indicatorAlphaColor,
+                        start = Offset(margin, lineY),
+                        end = Offset(size.width - margin, lineY),
+                        strokeWidth = indicatorHeight.toPx()
                     )
                 }
             }
