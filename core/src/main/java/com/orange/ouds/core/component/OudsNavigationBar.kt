@@ -190,50 +190,6 @@ data class OudsNavigationBarItem(
             val selectedContentColor = contentColor(state = state, selected = true)
             val unselectedContentColor = contentColor(state = state, selected = false)
 
-            /* ConstraintLayout(
-                 modifier = modifier.fillMaxHeight()
-                     .selectable(
-                         selected = selected,
-                         onClick = { },
-                         role = Role.Tab
-                     )
-             ) {
-                 val (itemRef, topIndicatorRef) = createRefs()
-
-                 // Top active indicator: visual alternative for selected item
-                 val topIndicatorColor = topIndicatorColor(state = state)
-                 val topIndicatorShape = RoundedCornerShape(
-                     topStart = 0.dp,
-                     topEnd = 0.dp,
-                     bottomStart = borderRadiusActiveIndicatorCustomTop.value,
-                     bottomEnd = borderRadiusActiveIndicatorCustomTop.value
-                 )
-
-                 // This is the same animation spec that the NavigationBarItem internally uses to animate the color of the icon and the text
-                 val animationSpec = spring<Float>(
-                     dampingRatio = 1.0f, // StandardMotionTokens.SpringDefaultEffectsDamping
-                     stiffness = 1600.0f // StandardMotionTokens.SpringDefaultEffectsStiffness
-                 )
-
-                 extraParameters.rowScope.AnimatedVisibility(
-                     modifier = Modifier.constrainAs(topIndicatorRef) {
-                         top.linkTo(parent.top)
-                         start.linkTo(parent.start)
-                         end.linkTo(parent.end)
-                         height = Dimension.value(sizeHeightActiveIndicatorCustom.dp)
-                         width = Dimension.value(sizeWidthActiveIndicatorCustomTop.dp)
-                     },
-                     visible = selected || state == OudsNavigationBarItemState.Hovered,
-                     enter = fadeIn(animationSpec),
-                     exit = fadeOut(animationSpec)
-                 ) {
-                     Box(
-                         modifier = Modifier
-                             .alpha(opacityActiveIndicatorCustom.value)
-                             .background(color = topIndicatorColor, shape = topIndicatorShape)
-                     )
-                 }
- */
             CompositionLocalProvider(LocalRippleConfiguration provides null) {
                 ShortNavigationBarItem(
                     modifier = modifier
@@ -276,7 +232,6 @@ data class OudsNavigationBarItem(
                     interactionSource = interactionSource
                 )
             }
-            //}
         }
     }
 }
