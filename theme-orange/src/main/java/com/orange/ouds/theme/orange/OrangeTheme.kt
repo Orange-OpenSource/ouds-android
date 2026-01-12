@@ -70,9 +70,9 @@ const val ORANGE_THEME_NAME = "Orange"
  * OrangeTheme(
  *     orangeFontFamily = OrangeFontFamily(
  *         latin = OrangeHelveticaNeueLatin.Bundled(
- *             R.font.helvetica_neue_regular,
- *             R.font.helvetica_neue_medium,
- *             R.font.helvetica_neue_bold
+ *             R.font.helvetica_neue_latin_regular,
+ *             R.font.helvetica_neue_latin_medium,
+ *             R.font.helvetica_neue_latin_bold
  *         ),
  *         arabic = OrangeHelveticaNeueArabic.Bundled(
  *             R.font.helvetica_neue_arabic_light,
@@ -134,7 +134,7 @@ const val ORANGE_THEME_NAME = "Orange"
 open class OrangeTheme(
     private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
-    private val roundedCornerTextInputs: Boolean = false,
+    private val roundedCornerTextInputs: Boolean = false
 ) : OudsThemeContract {
 
     /**
@@ -165,7 +165,7 @@ open class OrangeTheme(
          *
          * @param context The context.
          * @param downloadableFontFamilies The downloadable font families to preload.
-         * @param onComplete A callback that is called when the font family is fully loaded.
+         * @param onComplete A callback that is called when the font families are fully loaded.
          */
         fun preloadDownloadableFontFamilies(
             context: Context,
@@ -178,11 +178,12 @@ open class OrangeTheme(
                     is OrangeHelveticaNeueArabic.Downloadable -> downloadedArabicFontFamily == null
                 }
             }
-            var preloadedDownloadableFontFamilyCount = 0
 
             if (downloadableFontFamiliesToPreload.isEmpty()) {
                 onComplete(true)
             } else {
+                var preloadedDownloadableFontFamilyCount = 0
+
                 // Font requests require the list of sets of hashes for the certificates the provider is signed with
                 // As OrangeFontProvider is embedded in the app, it is signed with the app certificate
                 // That is why we can retrieve the certificate using methods on package manager

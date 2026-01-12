@@ -82,7 +82,7 @@ interface OudsThemeContract {
         ReplaceWith("getFontFamily(Locale.getDefault())")
     )
     val fontFamily: FontFamily
-        get() = FontFamily.Cursive
+        get() = FontFamily.Default
 
     /**
      * The font family used in the theme.

@@ -55,10 +55,17 @@ In your application, you must provide the `OrangeTheme` instance to the `OudsThe
 ```kotlin
 OudsTheme(
     theme = OrangeTheme(
-        fontFamily = OrangeFontFamily.Bundled(
-            regularFontResId = R.font.helvetica_neue_roman,
-            mediumFontResId = R.font.helvetica_neue_medium,
-            boldFontResId = R.font.helvetica_neue_bold
+        orangeFontFamily = OrangeFontFamily(
+            latin = OrangeHelveticaNeueLatin.Bundled(
+                regularFontResId = R.font.helvetica_neue_latin_roman,
+                mediumFontResId = R.font.helvetica_neue_latin_medium,
+                boldFontResId = R.font.helvetica_neue_latin_bold
+            ),
+            arabic = OrangeHelveticaNeueArabic.Bundled(
+                lightFontResId = R.font.helvetica_neue_arabic_medium,
+                regularFontResId = R.font.helvetica_neue_arabic_roman,
+                boldFontResId = R.font.helvetica_neue_arabic_bold
+            )
         ),
         roundedCornerButtons = true,
         roundedCornerTextInputs = true

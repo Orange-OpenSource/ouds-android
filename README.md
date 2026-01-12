@@ -55,7 +55,17 @@ To access OUDS components and tokens throughout your app, you must wrap your UI 
 This composable requires a `theme` parameter to define the visual identity to apply (e.g., `OrangeTheme`, `SoshTheme`, `WireframeTheme`).
 
 ```kotlin
-OudsTheme(theme = OrangeTheme()) {
+OudsTheme(
+    theme = OrangeTheme(
+        orangeFontFamily = OrangeFontFamily(
+            latin = OrangeHelveticaNeueLatin.Bundled(
+                regularFontResId = R.font.helvetica_neue_latin_roman,
+                mediumFontResId = R.font.helvetica_neue_latin_medium,
+                boldFontResId = R.font.helvetica_neue_latin_bold
+            )
+        )
+    )
+) {
     // Use OUDS Android or Material components here for an interface
     // matching the Orange Unified Design System with the Orange theme
 }
