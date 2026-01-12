@@ -21,7 +21,8 @@ import androidx.compose.ui.Modifier
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.theme.orange.OrangeHelveticaNeueFontFamily
+import com.orange.ouds.theme.orange.OrangeFontFamily
+import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orange.OrangeTheme
 
 @Composable
@@ -29,7 +30,7 @@ fun AppPreview(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
-    val theme = OrangeTheme(OrangeHelveticaNeueFontFamily.Downloadable)
+    val theme = OrangeTheme(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable))
     CompositionLocalProvider(value = LocalThemeDrawableResources provides ThemeDrawableResources(theme)) {
         OudsTheme(
             theme = theme,

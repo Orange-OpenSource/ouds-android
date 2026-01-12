@@ -54,6 +54,7 @@ class SoshTheme : OudsThemeContract {
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings(roundedCornerButtons = null, roundedCornerTextInputs = null)
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override val fontFamily: FontFamily
         get() = FontFamily(
             Font(R.font.sosh_black, weight = FontWeight.Black),

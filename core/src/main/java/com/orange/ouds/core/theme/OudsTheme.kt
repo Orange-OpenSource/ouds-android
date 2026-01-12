@@ -20,11 +20,15 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.app.LocaleManagerCompat
+import androidx.core.os.ConfigurationCompat
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceDark
 import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceLight
 import com.orange.ouds.core.theme.OudsTheme.Tweak.Invert
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -153,6 +157,9 @@ fun OudsTheme(
         val colorScheme = if (darkThemeEnabled) colorTokens.darkColorScheme else colorTokens.lightColorScheme
         val materialColorScheme = if (darkThemeEnabled) materialColorTokens.materialDarkColorScheme else materialColorTokens.materialLightColorScheme
         val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
+        val locale = LocaleManagerCompat.getApplicationLocales(LocalContext.current).get(0)
+            .orElse { ConfigurationCompat.getLocales(LocalConfiguration.current).get(0) }
+            .orElse { java.util.Locale.getDefault() }
 
         CompositionLocalProvider(
             LocalDarkThemeEnabled provides darkThemeEnabled,
@@ -165,7 +172,7 @@ fun OudsTheme(
             LocalBorders provides borderTokens.getBorders(),
             LocalEffects provides effectTokens.getEffects(),
             LocalElevations provides elevationTokens.getElevations(),
-            LocalTypography provides fontTokens.getTypography(fontFamily, windowWidthSizeClass),
+            LocalTypography provides fontTokens.getTypography(getFontFamily(locale), windowWidthSizeClass),
             LocalGrids provides gridTokens.getGrids(windowWidthSizeClass),
             LocalOpacities provides opacityTokens.getOpacities(),
             LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),

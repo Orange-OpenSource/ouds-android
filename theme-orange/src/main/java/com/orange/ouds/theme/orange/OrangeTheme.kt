@@ -26,10 +26,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.core.content.ContextCompat
 import androidx.core.provider.FontRequest
 import androidx.core.provider.FontsContractCompat
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
-import com.orange.ouds.theme.orange.OrangeTheme.Companion.preloadDownloadableFontFamily
+import com.orange.ouds.theme.orange.OrangeTheme.Companion.preloadDownloadableFontFamilies
 import com.orange.ouds.theme.orange.tokens.components.OrangeComponentsTokens
 import com.orange.ouds.theme.orange.tokens.material.OrangeMaterialColorTokens
 import com.orange.ouds.theme.orange.tokens.semantic.OrangeBorderSemanticTokens
@@ -52,6 +53,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
+import java.util.Locale
 
 const val ORANGE_THEME_NAME = "Orange"
 
@@ -59,49 +61,78 @@ const val ORANGE_THEME_NAME = "Orange"
  * The Orange theme.
  *
  * This theme uses the Helvetica Neue font family. Due to legal issues Helvetica Neue font files are not bundled with this library.
- * There are two ways of configuring the Helvetica Neue font family for the Orange theme:
  *
- * - Bundle the font files in your app by copying the regular, medium and bold font files in your project and setting [OrangeTheme.fontFamily] parameter to an instance of [OrangeHelveticaNeueFontFamily.Bundled].
- * - Download font files through Android Downloadable Fonts feature by setting [OrangeTheme.fontFamily] to [OrangeHelveticaNeueFontFamily.Downloadable].
+ * The Helvetica Neue font files for the Orange theme can be retrieved by copying the `ttf` files in the `res/font` directory of the project
+ * and use an implementation of [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled] or [OrangeHelveticaNeueArabic.Bundled])
+ * when creating the [OrangeFontFamily] instance passed as the [OrangeTheme.orangeFontFamily] parameter:
  *
- *   In order to enable the Android Downloadable Fonts feature for the Orange theme, please also add [OrangeFontProvider] as a provider in your app manifest:
+ * ```
+ * OrangeTheme(
+ *     orangeFontFamily = OrangeFontFamily(
+ *         latin = OrangeHelveticaNeueLatin.Bundled(
+ *             R.font.helvetica_neue_regular,
+ *             R.font.helvetica_neue_medium,
+ *             R.font.helvetica_neue_bold
+ *         ),
+ *         arabic = OrangeHelveticaNeueArabic.Bundled(
+ *             R.font.helvetica_neue_arabic_light,
+ *             R.font.helvetica_neue_arabic_regular,
+ *             R.font.helvetica_neue_arabic_medium,
+ *         )
+ *     )
+ * )
+ * ```
  *
- *   ```
- *   <provider
- *       android:name="com.orange.ouds.theme.orange.OrangeFontProvider"
- *       android:authorities="com.orange.ouds.theme.orange.fontprovider"
- *       android:exported="false" />
- *   ```
+ * The Helvetica Neue font files can alternatively be downloaded through the Android Downloadable Fonts feature
+ * by using an implementation of [OrangeDownloadableFontFamily] ([OrangeHelveticaNeueLatin.Downloadable] or [OrangeHelveticaNeueArabic.Downloadable]) instead:
  *
- *   As well as the following permission:
+ * ```
+ * OrangeTheme(
+ *     orangeFontFamily = OrangeFontFamily(
+ *         latin = OrangeHelveticaNeueLatin.Downloadable,
+ *         arabic = OrangeHelveticaNeueArabic.Downloadable
+ *     )
+ * )
+ * ```
  *
- *   ```
- *   <uses-permission android:name="android.permission.INTERNET" />
- *   ```
+ * In order to enable the Android Downloadable Fonts feature for the Orange theme, please also add [OrangeFontProvider] as a provider in your app manifest:
  *
- *   Finally, call the [OrangeTheme.preloadDownloadableFontFamily] method in the `onCreate` method of your application singleton or main activity,
- *   and use the `onComplete` parameter to update your UI when preload is complete:
+ * ```
+ * <provider
+ *     android:name="com.orange.ouds.theme.orange.OrangeFontProvider"
+ *     android:authorities="com.orange.ouds.theme.orange.fontprovider"
+ *     android:exported="false" />
+ * ```
  *
- *   ```
- *   var isDownloadableOrangeFontFamilyPreloaded by mutableStateOf(false)
- *       private set
- *   ```
- *   ```
- *   OrangeTheme.preloadDownloadableFontFamily(this) {
- *       isDownloadableOrangeFontFamilyPreloaded = true
- *   }
- *   ```
+ * As well as the following permission:
  *
- *   Please note that [FontFamily.Default] will be used if download fails.
+ * ```
+ * <uses-permission android:name="android.permission.INTERNET" />
+ * ```
  *
- * @param helveticaNeueFontFamily The Helvetica Neue font family to use for the Orange theme.
- *   If [OrangeHelveticaNeueFontFamily.Bundled] is used, the regular, medium and bold resource identifiers should reference Helvetica Neue font files.
- *   If [OrangeHelveticaNeueFontFamily.Downloadable] is used, the [preloadDownloadableFontFamily] method should be called to download the Helvetica Neue font files through Android Downloadable Fonts feature.
+ * Finally, call the [OrangeTheme.preloadDownloadableFontFamilies] method in the `onCreate` method of your application singleton or main activity,
+ * and use the `onComplete` parameter to update your UI when preload is complete:
+ *
+ * ```
+ * var areDownloadableOrangeFontFamiliesPreloaded by mutableStateOf(false)
+ *     private set
+ * ```
+ * ```
+ * OrangeTheme.preloadDownloadableFontFamily(this, listOf(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable)) {
+ *     areDownloadableOrangeFontFamiliesPreloaded = true
+ * }
+ * ```
+ *
+ * Please note that [FontFamily.Default] will be used if download fails.
+ *
+ * @param orangeFontFamily The Helvetica Neue font family to use for the Orange theme.
+ *   If an [OrangeBundledFontFamily] is used, the resource identifiers should reference Helvetica Neue font files.
+ *   If an [OrangeDownloadableFontFamily] is used, the [preloadDownloadableFontFamilies] method should be called to download the Helvetica Neue font files through the Android Downloadable Fonts feature.
  * @param roundedCornerButtons Whether or not buttons have rounded corners.
  * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
  */
 open class OrangeTheme(
-    private val helveticaNeueFontFamily: OrangeHelveticaNeueFontFamily,
+    private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
     private val roundedCornerTextInputs: Boolean = false,
 ) : OudsThemeContract {
@@ -112,27 +143,44 @@ open class OrangeTheme(
      * @param roundedCornerButtons Whether or not buttons have rounded corners.
      * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
      *
-     * @deprecated Use constructor with fontFamily parameter instead.
+     * @deprecated Use constructor with orangeFontFamily parameter instead.
      */
-    @Deprecated("Use constructor with fontFamily parameter instead.")
+    @Deprecated(
+        "Use constructor with orangeFontFamily parameter instead.",
+        ReplaceWith("OrangeTheme(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable), roundedCornerButtons, roundedCornerTextInputs)")
+    )
     constructor(
         roundedCornerButtons: Boolean = false,
         roundedCornerTextInputs: Boolean = false
-    ) : this(OrangeHelveticaNeueFontFamily.Downloadable, roundedCornerButtons, roundedCornerTextInputs)
+    ) : this(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable), roundedCornerButtons, roundedCornerTextInputs)
 
     companion object {
 
-        private var downloadedFontFamily: FontFamily? = null
+        private var downloadedLatinFontFamily: FontFamily? = null
+        private var downloadedArabicFontFamily: FontFamily? = null
 
         /**
-         * Preloads the downloadable font family for the Orange theme.
-         * Call this method if [OrangeTheme.fontFamily] is set to [OrangeHelveticaNeueFontFamily.Downloadable].
+         * Preloads the downloadable font families for the Orange theme.
+         * Call this method if any of the [OrangeTheme.orangeFontFamily] properties of the Orange theme instance is an implementation of [OrangeDownloadableFontFamily] ([OrangeHelveticaNeueLatin.Downloadable] or [OrangeHelveticaNeueArabic.Downloadable]).
          *
          * @param context The context.
+         * @param downloadableFontFamilies The downloadable font families to preload.
          * @param onComplete A callback that is called when the font family is fully loaded.
          */
-        fun preloadDownloadableFontFamily(context: Context, onComplete: (success: Boolean) -> Unit) {
-            if (downloadedFontFamily != null) {
+        fun preloadDownloadableFontFamilies(
+            context: Context,
+            downloadableFontFamilies: List<OrangeDownloadableFontFamily>,
+            onComplete: (success: Boolean) -> Unit
+        ) {
+            val downloadableFontFamiliesToPreload = downloadableFontFamilies.filter { downloadableFontFamily ->
+                when (downloadableFontFamily) {
+                    is OrangeHelveticaNeueLatin.Downloadable -> downloadedLatinFontFamily == null
+                    is OrangeHelveticaNeueArabic.Downloadable -> downloadedArabicFontFamily == null
+                }
+            }
+            var preloadedDownloadableFontFamilyCount = 0
+
+            if (downloadableFontFamiliesToPreload.isEmpty()) {
                 onComplete(true)
             } else {
                 // Font requests require the list of sets of hashes for the certificates the provider is signed with
@@ -151,42 +199,60 @@ open class OrangeTheme(
                     emptyList()
                 }
 
-                val fontWeights = listOf(FontWeight.Normal, FontWeight.Medium, FontWeight.Bold)
-                val typefaces = mutableMapOf<FontWeight, Typeface?>()
+                var success = true
                 val callbackExecutor = ContextCompat.getMainExecutor(context)
+                downloadableFontFamiliesToPreload.forEach { downloadableFontFamily ->
+                    val fontWeights = when (downloadableFontFamily) {
+                        is OrangeHelveticaNeueLatin.Downloadable -> listOf(FontWeight.Normal, FontWeight.Medium, FontWeight.Bold)
+                        is OrangeHelveticaNeueArabic.Downloadable -> listOf(FontWeight.Light, FontWeight.Normal, FontWeight.Bold)
+                    }
+                    val script = when (downloadableFontFamily) {
+                        is OrangeHelveticaNeueLatin.Downloadable -> OrangeFontProvider.QUERY_SCRIPT_PARAMETER_VALUE_LATIN
+                        is OrangeHelveticaNeueArabic.Downloadable -> OrangeFontProvider.QUERY_SCRIPT_PARAMETER_VALUE_ARABIC
+                    }
+                    val typefaces = mutableMapOf<FontWeight, Typeface?>()
 
-                fontWeights.forEach { fontWeight ->
-                    val query = "${OrangeFontProvider.QUERY_WEIGHT_PARAMETER}=${fontWeight.weight}"
-                    val fontRequest = FontRequest(OrangeFontProvider.AUTHORITY, context.packageName, query, certificates)
+                    fontWeights.forEach { fontWeight ->
+                        val query =
+                            "${OrangeFontProvider.QUERY_WEIGHT_PARAMETER_KEY}=${fontWeight.weight}&${OrangeFontProvider.QUERY_SCRIPT_PARAMETER_KEY}=$script"
+                        val fontRequest = FontRequest(OrangeFontProvider.AUTHORITY, context.packageName, query, certificates)
 
-                    val callback = object : FontsContractCompat.FontRequestCallback() {
+                        val callback = object : FontsContractCompat.FontRequestCallback() {
 
-                        override fun onTypefaceRetrieved(typeface: Typeface?) {
-                            onTypefaceRequestComplete(fontWeight, typeface)
-                        }
+                            override fun onTypefaceRetrieved(typeface: Typeface?) {
+                                onTypefaceRequestComplete(fontWeight, typeface)
+                            }
 
-                        override fun onTypefaceRequestFailed(reason: Int) {
-                            onTypefaceRequestComplete(fontWeight, null)
-                        }
+                            override fun onTypefaceRequestFailed(reason: Int) {
+                                onTypefaceRequestComplete(fontWeight, null)
+                            }
 
-                        private fun onTypefaceRequestComplete(fontWeight: FontWeight, typeface: Typeface?) {
-                            typefaces[fontWeight] = typeface
-                            if (typefaces.size == fontWeights.size) {
-                                if (typefaces.values.any { it == null }) {
-                                    onComplete(false)
-                                } else {
-                                    val fonts = typefaces.mapNotNull { (fontWeight, typeface) ->
-                                        typeface?.let { Font(fontWeight, typeface) }
+                            private fun onTypefaceRequestComplete(fontWeight: FontWeight, typeface: Typeface?) {
+                                typefaces[fontWeight] = typeface
+                                if (typefaces.size == fontWeights.size) {
+                                    if (typefaces.values.any { it == null }) {
+                                        success = false
+                                    } else {
+                                        val fonts = typefaces.mapNotNull { (fontWeight, typeface) ->
+                                            typeface?.let { Font(fontWeight, typeface) }
+                                        }
+                                        val downloadedFontFamily = FontFamily(fonts)
+                                        when (downloadableFontFamily) {
+                                            is OrangeHelveticaNeueLatin.Downloadable -> downloadedLatinFontFamily = downloadedFontFamily
+                                            is OrangeHelveticaNeueArabic.Downloadable -> downloadedArabicFontFamily = downloadedFontFamily
+                                        }
                                     }
-                                    downloadedFontFamily = FontFamily(fonts)
-                                    onComplete(true)
+                                    preloadedDownloadableFontFamilyCount++
+                                    if (downloadableFontFamiliesToPreload.size == preloadedDownloadableFontFamilyCount) {
+                                        onComplete(success)
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    val style = if (fontWeight.weight >= FontWeight.Bold.weight) Typeface.BOLD else Typeface.NORMAL
-                    FontsContractCompat.requestFont(context, fontRequest, style, null, callbackExecutor, callback)
+                        val style = if (fontWeight.weight >= FontWeight.Bold.weight) Typeface.BOLD else Typeface.NORMAL
+                        FontsContractCompat.requestFont(context, fontRequest, style, null, callbackExecutor, callback)
+                    }
                 }
             }
         }
@@ -195,15 +261,19 @@ open class OrangeTheme(
     override val name: String
         get() = ORANGE_THEME_NAME
 
-    override val fontFamily: FontFamily
-        get() = when (helveticaNeueFontFamily) {
-            is OrangeHelveticaNeueFontFamily.Bundled -> FontFamily(
-                Font(helveticaNeueFontFamily.regularFontResId, FontWeight.Normal),
-                Font(helveticaNeueFontFamily.mediumFontResId, FontWeight.Medium),
-                Font(helveticaNeueFontFamily.boldFontResId, FontWeight.Bold)
-            )
-            is OrangeHelveticaNeueFontFamily.Downloadable -> downloadedFontFamily ?: super.fontFamily
+    override fun getFontFamily(locale: Locale): FontFamily {
+        val localizedFontFamily = if (locale.language == "ar") orangeFontFamily.arabic else orangeFontFamily.latin
+        return when (localizedFontFamily) {
+            is OrangeBundledFontFamily -> localizedFontFamily.fontFamily
+            is OrangeDownloadableFontFamily -> when (localizedFontFamily) {
+                is OrangeHelveticaNeueLatin.Downloadable -> downloadedLatinFontFamily
+                is OrangeHelveticaNeueArabic.Downloadable -> downloadedArabicFontFamily
+            }
+            else -> null
+        }.orElse {
+            super.getFontFamily(locale)
         }
+    }
 
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs)

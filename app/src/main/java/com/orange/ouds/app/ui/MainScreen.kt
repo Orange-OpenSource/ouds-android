@@ -87,7 +87,7 @@ fun MainScreen(
         themeState = rememberThemeState(
             settings = themeSettings,
             currentThemeName = currentThemeName,
-            isDownloadableOrangeFontFamilyPreloaded = OudsApplication.isDownloadableOrangeFontFamilyPreloaded
+            areDownloadableOrangeFontFamiliesPreloaded = OudsApplication.areDownloadableOrangeFontFamiliesPreloaded
         )
     )
 

@@ -22,7 +22,9 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
-import com.orange.ouds.theme.orange.OrangeHelveticaNeueFontFamily
+import com.orange.ouds.theme.orange.OrangeFontFamily
+import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
+import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
 import com.orange.ouds.theme.sosh.SoshTheme
@@ -34,9 +36,9 @@ fun rememberThemeState(
     settings: OudsThemeSettings = OudsThemeSettings(),
     themeNames: List<String> = listOf(ORANGE_THEME_NAME, SOSH_THEME_NAME, WIREFRAME_THEME_NAME),
     currentThemeName: String = ORANGE_THEME_NAME,
-    isDownloadableOrangeFontFamilyPreloaded: Boolean = false
-) = rememberSaveable(settings, themeNames, currentThemeName, isDownloadableOrangeFontFamilyPreloaded, saver = ThemeState.Saver) {
-    ThemeState(settings, themeNames, currentThemeName, isDownloadableOrangeFontFamilyPreloaded)
+    areDownloadableOrangeFontFamiliesPreloaded: Boolean = false
+) = rememberSaveable(settings, themeNames, currentThemeName, areDownloadableOrangeFontFamiliesPreloaded, saver = ThemeState.Saver) {
+    ThemeState(settings, themeNames, currentThemeName, areDownloadableOrangeFontFamiliesPreloaded)
 }
 
 /**
@@ -46,7 +48,7 @@ class ThemeState(
     settings: OudsThemeSettings,
     private val themeNames: List<String>,
     private var currentThemeName: String,
-    isDownloadableOrangeFontFamilyPreloaded: Boolean
+    areDownloadableOrangeFontFamiliesPreloaded: Boolean
 ) {
 
     companion object {
@@ -58,7 +60,7 @@ class ThemeState(
                         settings,
                         themeNames,
                         currentThemeName,
-                        isDownloadableOrangeFontFamilyPreloaded
+                        areDownloadableOrangeFontFamilyPreloaded
                     )
                 }
             },
@@ -83,7 +85,7 @@ class ThemeState(
             setCurrentTheme(currentThemeName)
         }
 
-    val isDownloadableOrangeFontFamilyPreloaded by mutableStateOf(isDownloadableOrangeFontFamilyPreloaded)
+    val areDownloadableOrangeFontFamilyPreloaded by mutableStateOf(areDownloadableOrangeFontFamiliesPreloaded)
 
     var themes by mutableStateOf(getThemes(settings, themeNames))
         private set
@@ -107,7 +109,7 @@ class ThemeState(
             names.mapNotNull { name ->
                 when (name) {
                     ORANGE_THEME_NAME -> OrangeTheme(
-                        helveticaNeueFontFamily = OrangeHelveticaNeueFontFamily.Downloadable,
+                        orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
                     )

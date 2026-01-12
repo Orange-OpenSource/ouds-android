@@ -18,6 +18,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.google.firebase.Firebase
 import com.google.firebase.crashlytics.crashlytics
+import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
+import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orange.OrangeTheme
 import dagger.hilt.android.HiltAndroidApp
 
@@ -25,16 +27,16 @@ import dagger.hilt.android.HiltAndroidApp
 class OudsApplication : Application() {
 
     companion object {
-        
-        var isDownloadableOrangeFontFamilyPreloaded by mutableStateOf(false)
+
+        var areDownloadableOrangeFontFamiliesPreloaded by mutableStateOf(false)
             private set
     }
 
     override fun onCreate() {
         super.onCreate()
         initializeCrashlytics()
-        OrangeTheme.preloadDownloadableFontFamily(this) {
-            isDownloadableOrangeFontFamilyPreloaded = true
+        OrangeTheme.preloadDownloadableFontFamilies(this, listOf(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable)) {
+            areDownloadableOrangeFontFamiliesPreloaded = true
         }
     }
 

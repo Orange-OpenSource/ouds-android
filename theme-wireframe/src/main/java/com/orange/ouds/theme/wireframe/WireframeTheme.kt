@@ -55,6 +55,7 @@ class WireframeTheme : OudsThemeContract {
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings(roundedCornerButtons = null)
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override val fontFamily: FontFamily
         get() = FontFamily(
             Font(R.font.shantellsans_extrabold, weight = FontWeight.ExtraBold),

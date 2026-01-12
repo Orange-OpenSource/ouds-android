@@ -32,19 +32,55 @@ class OrangeFontProvider : ContentProvider() {
 
     companion object {
 
-        /** The Orange font provider authority */
+        /** The Orange font provider authority. */
         const val AUTHORITY = "com.orange.ouds.theme.orange.fontprovider"
 
-        internal const val QUERY_WEIGHT_PARAMETER = "weight"
+        internal const val QUERY_WEIGHT_PARAMETER_KEY = "weight"
+        internal const val QUERY_SCRIPT_PARAMETER_KEY = "script"
+        internal const val QUERY_SCRIPT_PARAMETER_VALUE_LATIN = "latin"
+        internal const val QUERY_SCRIPT_PARAMETER_VALUE_ARABIC = "arabic"
 
         private const val CDN_BASE_URL = "https://mastermedia.dam-broadcast.com"
     }
 
-    private enum class Font(val filename: String, val cdnFilename: String, val fontWeight: FontWeight) {
+    private enum class Font(val filename: String, val cdnFilename: String, val fontWeight: FontWeight, val script: String) {
 
-        HelveticaNeueRoman("helvetica_neue_roman.ttf", "pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf", FontWeight.Normal),
-        HelveticaNeueMedium("helvetica_neue_medium.ttf", "pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf", FontWeight.Medium),
-        HelveticaNeueBold("helvetica_neue_bold.ttf", "pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf", FontWeight.Bold)
+        HelveticaNeueLatinRoman(
+            "helvetica_neue_latin_roman.ttf",
+            "pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf",
+            FontWeight.Normal,
+            QUERY_SCRIPT_PARAMETER_VALUE_LATIN
+        ),
+        HelveticaNeueLatinMedium(
+            "helvetica_neue_latin_medium.ttf",
+            "pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf",
+            FontWeight.Medium,
+            QUERY_SCRIPT_PARAMETER_VALUE_LATIN
+        ),
+        HelveticaNeueLatinBold(
+            "helvetica_neue_latin_bold.ttf",
+            "pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf",
+            FontWeight.Bold,
+            QUERY_SCRIPT_PARAMETER_VALUE_LATIN
+        ),
+        HelveticaNeueArabicLight(
+            "helvetica_neue_arabic_light.ttf",
+            "pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf",
+            FontWeight.Light,
+            QUERY_SCRIPT_PARAMETER_VALUE_ARABIC
+        ),
+        HelveticaNeueArabicRoman(
+            "helvetica_neue_arabic_roman.ttf",
+            "pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf",
+            FontWeight.Normal,
+            QUERY_SCRIPT_PARAMETER_VALUE_ARABIC
+        ),
+        HelveticaNeueArabicBold(
+            "helvetica_neue_arabic_bold.ttf",
+            "pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf",
+            FontWeight.Bold,
+            QUERY_SCRIPT_PARAMETER_VALUE_ARABIC
+        )
     }
 
     override fun onCreate(): Boolean = true
@@ -63,9 +99,10 @@ class OrangeFontProvider : ContentProvider() {
                 ?.map { it.split("=") }
                 ?.associate { it[0] to it[1] }
                 .orEmpty()
-            val fontWeight = arguments[QUERY_WEIGHT_PARAMETER]?.toIntOrNull()?.let { FontWeight(it) }
+            val fontWeight = arguments[QUERY_WEIGHT_PARAMETER_KEY]?.toIntOrNull()?.let { FontWeight(it) }
+            val script = arguments[QUERY_SCRIPT_PARAMETER_KEY]
+            val font = Font.entries.firstOrNull { it.fontWeight == fontWeight && it.script == script }
             var cursor: Cursor? = null
-            val font = Font.entries.firstOrNull { it.fontWeight == fontWeight }
             if (font != null) {
                 val fontFile = File(context.filesDir, font.filename)
                 if (!fontFile.exists()) {
