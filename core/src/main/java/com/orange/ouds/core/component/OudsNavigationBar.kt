@@ -31,7 +31,9 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.LocalRippleConfiguration
+import androidx.compose.material3.NavigationItemIconPosition
 import androidx.compose.material3.ShortNavigationBar
+import androidx.compose.material3.ShortNavigationBarArrangement
 import androidx.compose.material3.ShortNavigationBarDefaults
 import androidx.compose.material3.ShortNavigationBarItem
 import androidx.compose.material3.ShortNavigationBarItemDefaults
@@ -107,15 +109,18 @@ val OudsNavigationBarHeight = 80.dp
  * @param modifier [Modifier] applied to the navigation bar.
  * @param translucent Whether the navigation bar should be translucent.
  * @param windowInsets Window insets of the navigation bar.
+ * @param arrangement The [ShortNavigationBarArrangement] of this navigation bar.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationBarWithHorizontalItemsSample
  */
 @Composable
 fun OudsNavigationBar(
     items: List<OudsNavigationBarItem>,
     modifier: Modifier = Modifier,
     translucent: Boolean = false,
-    windowInsets: WindowInsets = ShortNavigationBarDefaults.windowInsets
+    windowInsets: WindowInsets = ShortNavigationBarDefaults.windowInsets,
+    arrangement: ShortNavigationBarArrangement = ShortNavigationBarDefaults.arrangement
 ) {
     with(OudsTheme.componentsTokens.bar) {
         ShortNavigationBar(
@@ -123,6 +128,7 @@ fun OudsNavigationBar(
             containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
             contentColor = colorContentUnselectedEnabled.value,
             windowInsets = windowInsets,
+            arrangement = arrangement,
             content = {
                 val topBorderColor = OudsTheme.colorScheme.border.minimal
                 Row(
@@ -167,8 +173,9 @@ fun OudsNavigationBar(
  * @param onClick Called when this item is clicked.
  * @param icon Icon of the item.
  * @param label Label of the item.
- * @param badge Optional badge display on the item icon.
+ * @param badge Optional badge displayed on the item icon.
  * @param interactionSource [MutableInteractionSource] that will be used to dispatch events when this item is pressed, hovered or focused.
+ * @param iconPosition The [NavigationItemIconPosition] for the icon. By default, the icon is positioned on top of the label.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  */
@@ -178,7 +185,8 @@ data class OudsNavigationBarItem(
     val icon: OudsNavigationBarItemIcon,
     val label: String? = null,
     val badge: OudsNavigationBarItemBadge? = null,
-    val interactionSource: MutableInteractionSource? = null
+    val interactionSource: MutableInteractionSource? = null,
+    val iconPosition: NavigationItemIconPosition = NavigationItemIconPosition.Top
 ) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>(ExtraParameters::class.java) {
 
     @ConsistentCopyVisibility
@@ -217,6 +225,7 @@ data class OudsNavigationBarItem(
                             icon.Content()
                         }
                     },
+                    iconPosition = iconPosition,
                     label = label?.let {
                         {
                             Text(
@@ -403,12 +412,31 @@ private fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewP
     PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount)
 }
 
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.PreviewWithHorizontalItemsWidthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.PreviewWithHorizontalItemsWidthDp)
+@Composable
+private fun PreviewOudsNavigationBarWithHorizontalItems(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
+    PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount, horizontalItems = true)
+}
+
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
     PreviewOudsNavigationBarItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), selected = selected)
+}
+
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
+@Composable
+private fun PreviewOudsNavigationBarHorizontalItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
+    PreviewOudsNavigationBarItem(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        selected = selected,
+        iconPosition = NavigationItemIconPosition.Start
+    )
 }
 
 private data class OudsNavigationBarPreviewItem(
@@ -446,14 +474,17 @@ private val navigationBarPreviewItems = listOf(
 internal fun PreviewOudsNavigationBar(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    itemCount: Int
+    itemCount: Int,
+    horizontalItems: Boolean = false
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsNavigationBar(
+        arrangement = if (horizontalItems) ShortNavigationBarArrangement.Centered else ShortNavigationBarArrangement.EqualWeight,
         items = navigationBarPreviewItems.take(itemCount).mapIndexed { index, item ->
             OudsNavigationBarItem(
                 selected = index == 0,
                 onClick = {},
                 icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
+                iconPosition = if (horizontalItems) NavigationItemIconPosition.Start else NavigationItemIconPosition.Top,
                 label = item.label,
                 badge = item.badge
             )
@@ -465,13 +496,15 @@ internal fun PreviewOudsNavigationBar(
 internal fun PreviewOudsNavigationBarItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    selected: Boolean
+    selected: Boolean,
+    iconPosition: NavigationItemIconPosition = NavigationItemIconPosition.Top
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     Row {
         val item = OudsNavigationBarItem(
             selected = selected,
             onClick = {},
             icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star),
+            iconPosition = iconPosition,
             label = "Label"
         )
         PreviewEnumEntries<OudsNavigationBarItemState> {
