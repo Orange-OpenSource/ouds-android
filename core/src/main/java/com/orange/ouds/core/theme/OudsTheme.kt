@@ -22,8 +22,10 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
+import androidx.core.os.LocaleListCompat
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceDark
 import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceLight
@@ -157,13 +159,19 @@ fun OudsTheme(
         val colorScheme = if (darkThemeEnabled) colorTokens.darkColorScheme else colorTokens.lightColorScheme
         val materialColorScheme = if (darkThemeEnabled) materialColorTokens.materialDarkColorScheme else materialColorTokens.materialLightColorScheme
         val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
-        val locale = LocaleManagerCompat.getApplicationLocales(LocalContext.current).get(0)
+        val context = LocalContext.current
+        val applicationLocaleList = if (!LocalInspectionMode.current) {
+            LocaleManagerCompat.getApplicationLocales(context)
+        } else {
+            LocaleListCompat.getEmptyLocaleList()
+        }
+        val locale = applicationLocaleList.get(0)
             .orElse { ConfigurationCompat.getLocales(LocalConfiguration.current).get(0) }
             .orElse { java.util.Locale.getDefault() }
 
         CompositionLocalProvider(
             LocalDarkThemeEnabled provides darkThemeEnabled,
-            LocalHighContrastModeEnabled provides LocalContext.current.isHighContrastModeEnabled(),
+            LocalHighContrastModeEnabled provides context.isHighContrastModeEnabled(),
             LocalColorScheme provides colorScheme,
             LocalLightColorScheme provides colorTokens.lightColorScheme,
             LocalDarkColorScheme provides colorTokens.darkColorScheme,
