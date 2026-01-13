@@ -34,60 +34,51 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
             data object TwoExtraLarge : Decorative
             data object TwoExtraSmall : Decorative
         }
-
         sealed interface WithBody : Icon {
             sealed interface Large : WithBody {
                 data object SizeLarge : Large
                 data object SizeMedium : Large
                 data object SizeSmall : Large
             }
-
             sealed interface Medium : WithBody {
                 data object SizeLarge : Medium
                 data object SizeMedium : Medium
                 data object SizeSmall : Medium
             }
-
             sealed interface Small : WithBody {
                 data object SizeLarge : Small
                 data object SizeMedium : Small
                 data object SizeSmall : Small
             }
         }
-
         sealed interface WithHeading : Icon {
             sealed interface ExtraLarge : WithHeading {
                 data object SizeLarge : ExtraLarge
                 data object SizeMedium : ExtraLarge
                 data object SizeSmall : ExtraLarge
             }
-
             sealed interface Large : WithHeading {
                 data object SizeLarge : Large
                 data object SizeMedium : Large
                 data object SizeSmall : Large
             }
-
             sealed interface Medium : WithHeading {
                 data object SizeLarge : Medium
                 data object SizeMedium : Medium
                 data object SizeSmall : Medium
             }
-
             sealed interface Small : WithHeading {
                 data object SizeLarge : Small
                 data object SizeMedium : Small
                 data object SizeSmall : Small
             }
         }
-
         sealed interface WithLabel : Icon {
             sealed interface ExtraLarge : WithLabel {
                 data object SizeLarge : ExtraLarge
                 data object SizeMedium : ExtraLarge
                 data object SizeSmall : ExtraLarge
             }
-
             sealed interface Large : WithLabel {
                 data object SizeExtraLarge : Large
                 data object SizeExtraSmall : Large
@@ -95,14 +86,12 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
                 data object SizeMedium : Large
                 data object SizeSmall : Large
             }
-
             sealed interface Medium : WithLabel {
                 data object SizeExtraSmall : Medium
                 data object SizeLarge : Medium
                 data object SizeMedium : Medium
                 data object SizeSmall : Medium
             }
-
             sealed interface Small : WithLabel {
                 data object SizeExtraSmall : Small
                 data object SizeLarge : Small
@@ -111,7 +100,6 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
             }
         }
     }
-
     sealed interface MaxWidth : OudsSizeKeyToken {
         sealed interface Type : MaxWidth {
             sealed interface Body : Type {
@@ -119,20 +107,17 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
                 data object Medium : Body
                 data object Small : Body
             }
-
             sealed interface Display : Type {
                 data object Large : Display
                 data object Medium : Display
                 data object Small : Display
             }
-
             sealed interface Heading : Type {
                 data object ExtraLarge : Heading
                 data object Large : Heading
                 data object Medium : Heading
                 data object Small : Heading
             }
-
             sealed interface Label : Type {
                 data object ExtraLarge : Label
                 data object Large : Label
@@ -141,7 +126,6 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
             }
         }
     }
-
     data object MinInteractiveArea : OudsSizeKeyToken
 }
 

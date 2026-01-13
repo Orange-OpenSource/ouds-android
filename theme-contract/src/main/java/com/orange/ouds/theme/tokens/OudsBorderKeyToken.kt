@@ -30,12 +30,10 @@ sealed interface OudsBorderKeyToken : OudsKeyToken {
         data object Pill : Radius
         data object Small : Radius
     }
-
     sealed interface Style : OudsBorderKeyToken {
         data object Default : Style
         data object Drag : Style
     }
-
     sealed interface Width : OudsBorderKeyToken {
         data object Default : Width
         data object Focus : Width
