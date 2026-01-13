@@ -33,7 +33,6 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
         data object TwoExtraLarge : ColumnGap
         data object TwoExtraSmall : ColumnGap
     }
-
     sealed interface Fixed : OudsSpaceKeyToken {
         data object ExtraLarge : Fixed
         data object ExtraSmall : Fixed
@@ -48,7 +47,6 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
         data object TwoExtraLarge : Fixed
         data object TwoExtraSmall : Fixed
     }
-
     sealed interface Inset : OudsSpaceKeyToken {
         data object ExtraLarge : Inset
         data object ExtraSmall : Inset
@@ -62,7 +60,6 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
         data object TwoExtraLarge : Inset
         data object TwoExtraSmall : Inset
     }
-
     sealed interface PaddingBlock : OudsSpaceKeyToken {
         data object ExtraLarge : PaddingBlock
         data object ExtraSmall : PaddingBlock
@@ -77,7 +74,6 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
         data object TwoExtraLarge : PaddingBlock
         data object TwoExtraSmall : PaddingBlock
     }
-
     sealed interface PaddingInline : OudsSpaceKeyToken {
         data object ExtraLarge : PaddingInline
         data object ExtraSmall : PaddingInline
@@ -92,7 +88,6 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
         data object TwoExtraLarge : PaddingInline
         data object TwoExtraSmall : PaddingInline
     }
-
     sealed interface RowGap : OudsSpaceKeyToken {
         data object ExtraSmall : RowGap
         data object Large : RowGap
@@ -102,7 +97,6 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
         data object ThreeExtraSmall : RowGap
         data object TwoExtraSmall : RowGap
     }
-
     sealed interface Scaled : OudsSpaceKeyToken {
         data object ExtraLarge : Scaled
         data object ExtraSmall : Scaled
