@@ -27,7 +27,6 @@ json = "20250517"
 kotlin = "2.3.0"
 ksp = "2.3.4"
 material = "1.13.0"
-material3Android = "1.4.0"
 mockitoAndroid = "5.21.0"
 mockitoKotlin = "6.2.2"
 mustacheJava = "0.9.14"
@@ -44,7 +43,6 @@ androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", versi
 androidx-compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive" }
-androidx-compose-material3-android = { module = "androidx.compose.material3:material3-android", version.ref = "material3Android" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
