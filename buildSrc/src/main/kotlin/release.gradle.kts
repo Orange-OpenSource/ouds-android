@@ -74,7 +74,10 @@ fun updateDependencies(version: String) {
     val transform: (MatchResult) -> CharSequence = { matchResult ->
         "${matchResult.groupValues[1]}$version"
     }
-    val filePaths = listOf("docs/index.md", "README.md")
+
+    @Suppress("UNCHECKED_CAST")
+    val moduleDocumentationDirectories = project.extra["moduleDocumentationDirectories"] as List<String>
+    val filePaths = listOf("docs/index.md", "README.md") + moduleDocumentationDirectories.map { "$it/Module.mustache" }
     filePaths.forEach { File(it).replace(regex, transform) }
 }
 
