@@ -17,6 +17,16 @@ import java.io.FileOutputStream
 import java.io.PrintWriter
 import kotlin.reflect.full.declaredMemberProperties
 
+private val moduleDocumentationDirectories = listOf(
+    "global-raw-tokens",
+    "theme-contract",
+    "theme-orange",
+    "theme-sosh",
+    "theme-wireframe"
+)
+
+project.extra["moduleDocumentationDirectories"] = moduleDocumentationDirectories
+
 tasks.register<DefaultTask>("prepareDocumentation") {
     dependsOn(tasks["checkDocumentation"])
 
@@ -42,13 +52,6 @@ tasks.register<DefaultTask>("prepareDocumentation") {
             .flush()
 
         // Fill the tokens versions in various Module.md files with the values from OudsVersion.Tokens
-        val moduleDocumentationDirectories = listOf(
-            "global-raw-tokens",
-            "theme-contract",
-            "theme-orange",
-            "theme-sosh",
-            "theme-wireframe"
-        )
         moduleDocumentationDirectories.forEach { moduleDocumentationDirectory ->
             val moduleDocumentationWriter = PrintWriter(FileOutputStream("$moduleDocumentationDirectory/Module.md"))
             mustacheFactory.compile("$moduleDocumentationDirectory/Module.mustache")
