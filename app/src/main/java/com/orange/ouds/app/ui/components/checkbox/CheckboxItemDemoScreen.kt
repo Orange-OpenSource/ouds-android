@@ -48,7 +48,7 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
                 CheckboxItemDemoContent(state = state)
             }
         },
-        demoContentPaddingValues = PaddingValues(),
+        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.Checkbox
     )
 }
