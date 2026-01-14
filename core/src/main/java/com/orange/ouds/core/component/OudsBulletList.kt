@@ -13,7 +13,6 @@
 package com.orange.ouds.core.component
 
 import android.util.Log
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +20,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +29,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -41,6 +44,21 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
+/**
+ * Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.
+ *
+ * Bullet list is also known as “Unordered list” or “Ordered list” and is not an interactive element by default, although text items can support hypertext links.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/49e7bf-bullet-list)
+ *
+ * > Design version: 1.0.0
+ *
+ * @param modifier [Modifier] applied to the list.
+ * @param type The visual type of the list (e.g., ordered, unordered, bare). See [OudsBulletListType].
+ * @param textStyle The typography style for the list items. See [OudsBulletListTextStyle].
+ * @param bold Whether the list item text should be bold. This can be overridden for sub-lists. Defaults to `true`.
+ * @param builder A lambda scope using the [OudsBulletListBuilder] to define the list items.
+ */
 @Composable
 fun OudsBulletList(
     modifier: Modifier = Modifier,
@@ -67,12 +85,32 @@ fun OudsBulletList(
     }
 }
 
+/**
+ * A DSL builder for constructing an [OudsBulletList].
+ *
+ * This interface provides a structured way to define list items and nested sub-lists.
+ */
 interface OudsBulletListBuilder {
+
+    /**
+     * Adds an item to the bullet list.
+     *
+     * This function can also define a nested sub-list by providing a `builder` lambda.
+     *
+     * @param label The text content of the list item.
+     * @param subListType The specific [OudsBulletListType] for the nested sub-list, if any.
+     *   If `null`, the type is inherited from the parent list.
+     * @param subListTextStyle The specific [OudsBulletListTextStyle] for the nested sub-list, if any.
+     *   If `null`, the text style is inherited from the parent list.
+     * @param subListHasBoldText Whether the text of the nested sub-list should be bold.
+     *   If `null`, the bold setting is inherited from the parent list.
+     * @param builder A lambda scope for defining nested list items.
+     */
     fun item(
         label: String,
-        type: OudsBulletListType? = null,
-        textStyle: OudsBulletListTextStyle? = null,
-        bold: Boolean? = null,
+        subListType: OudsBulletListType? = null,
+        subListTextStyle: OudsBulletListTextStyle? = null,
+        subListHasBoldText: Boolean? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
     )
 }
@@ -82,13 +120,13 @@ private class OudsBulletListBuilderImpl : OudsBulletListBuilder {
 
     override fun item(
         label: String,
-        type: OudsBulletListType?,
-        textStyle: OudsBulletListTextStyle?,
-        bold: Boolean?,
+        subListType: OudsBulletListType?,
+        subListTextStyle: OudsBulletListTextStyle?,
+        subListHasBoldText: Boolean?,
         builder: (OudsBulletListBuilder.() -> Unit)?
     ) {
         val children = builder?.let { OudsBulletListBuilderImpl().apply(it).build() } ?: emptyList()
-        items.add(BulletListItem(label, type, textStyle, bold, children))
+        items.add(BulletListItem(label, subListType, subListTextStyle, subListHasBoldText, children))
     }
 
     fun build(): List<BulletListItem> = items
@@ -191,26 +229,36 @@ private data class BulletListItem(
 @Composable
 private fun Bullet(type: OudsBulletListType, level: OudsBulletListItemNestedLevel, index: Int, typography: TextStyle, size: Dp) {
     when (type) {
-        OudsBulletListType.Unordered -> when (level) {
-            OudsBulletListItemNestedLevel.Zero -> UnorderedBullet(iconRes = OudsTheme.drawableResources.component.bulletList.level0, size = size)
-            OudsBulletListItemNestedLevel.One -> UnorderedBullet(iconRes = OudsTheme.drawableResources.component.bulletList.level1, size = size)
-            OudsBulletListItemNestedLevel.Two -> UnorderedBullet(iconRes = OudsTheme.drawableResources.component.bulletList.level2, size = size)
+        is OudsBulletListType.Unordered -> {
+            val painter = when (type.bullet) {
+                is OudsBulletListUnorderedBullet.Default -> {
+                    val iconRes = when (level) {
+                        OudsBulletListItemNestedLevel.Zero -> OudsTheme.drawableResources.component.bulletList.level0
+                        OudsBulletListItemNestedLevel.One -> OudsTheme.drawableResources.component.bulletList.level1
+                        OudsBulletListItemNestedLevel.Two -> OudsTheme.drawableResources.component.bulletList.level2
+                    }
+                    painterResource(iconRes)
+                }
+                is OudsBulletListUnorderedBullet.Tick -> painterResource(OudsTheme.drawableResources.component.bulletList.tick)
+                is OudsBulletListUnorderedBullet.Free -> type.bullet.painter
+            }
+            UnorderedBullet(painter = painter, size = size, brandColor = type.bullet.brandColor)
         }
-        OudsBulletListType.Ordered -> when (level) {
+        is OudsBulletListType.Ordered -> when (level) {
             OudsBulletListItemNestedLevel.Zero -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
             OudsBulletListItemNestedLevel.One -> OrderedBullet("${('A' + index)}.", textStyle = typography, size = size)
             OudsBulletListItemNestedLevel.Two -> OrderedBullet("${('a' + index)}.", textStyle = typography, size = size)
         }
-        OudsBulletListType.Bare -> Box(modifier = Modifier.size(20.dp))
+        is OudsBulletListType.Bare -> Box(modifier = Modifier.size(20.dp))
     }
 }
 
 @Composable
-private fun UnorderedBullet(@DrawableRes iconRes: Int, size: Dp) {
+private fun UnorderedBullet(painter: Painter, size: Dp, brandColor: Boolean) {
     Icon(
         modifier = Modifier.size(size),
-        painter = painterResource(iconRes),
-        tint = OudsTheme.colorScheme.content.default,
+        painter = painter,
+        tint = if (brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default,
         contentDescription = null
     )
 }
@@ -230,7 +278,7 @@ object OudsBulletListDefaults {
     /**
      * Default type of an [OudsBulletList].
      */
-    val Type = OudsBulletListType.Bare
+    val Type = OudsBulletListType.Bare()
 
     /**
      * Default text style of an [OudsBulletList].
@@ -238,26 +286,75 @@ object OudsBulletListDefaults {
     val TextStyle = OudsBulletListTextStyle.BodyLarge
 }
 
-enum class OudsBulletListType {
+/**
+ * The type of an [OudsBulletList].
+ */
+sealed class OudsBulletListType {
+
     /**
      * Collects related items that don't need to be in a specific order or sequence.List items are typically marked with bullets, but it is also possible
-     * to use a tick or any Solaris icon. //TODO list with Solaris icon
+     * to use a tick or any Solaris icon.
+     *
+     * @constructor Creates an instance of [OudsBulletListType.Unordered].
+     * @param bullet The type of bullet to display, from the [OudsBulletListUnorderedBullet] sealed class. Defaults to [OudsBulletListUnorderedBullet.Default].
+     * @param brandColor Controls the color of the unordered bullet. If `true`, the brand color is used; otherwise, the default content color is used.
      */
-    Unordered,
+    class Unordered(val bullet: OudsBulletListUnorderedBullet = OudsBulletListUnorderedBullet.Default()) : OudsBulletListType()
 
     /**
      * Collects related items with numeric order or sequence. Numbering starts at 1 with the first list item and increases by increments of 1 for each
      * successive ordered list item.
+     *
+     * @constructor Creates an instance of [OudsBulletListType.Ordered].
      */
-    Ordered,
+    class Ordered : OudsBulletListType()
 
     /**
      * An unordered list without any bullet or alphanumeric sequence. It sill has left-padding, so list items will appear indented. This is the default and
      * is also known as undecorated "Unstyled" list.
+     *
+     *  @constructor Creates an instance of [OudsBulletListType.Bare].
      */
-    Bare
+    class Bare : OudsBulletListType()
 }
 
+/**
+ * The bullet used in an unordered [OudsBulletList].
+ */
+sealed class OudsBulletListUnorderedBullet(val brandColor: Boolean) {
+
+    /**
+     * The default bullet style.
+     *
+     * Its visual representation changes automatically based on the nesting level of the item within the [OudsBulletList]:
+     * - **Level 0**: A solid square bullet.
+     * - **Level 1**: An outlined square bullet.
+     * - **Level 2**: A dash.
+     *
+     * @constructor Creates an instance of [OudsBulletListUnorderedBullet.Default].
+     */
+    class Default(brandColor: Boolean = false) : OudsBulletListUnorderedBullet(brandColor)
+
+    /**
+     * A bullet represented by a tick (check) icon.
+     *
+     * @constructor Creates an instance of [OudsBulletListUnorderedBullet.Tick].
+     */
+    class Tick(brandColor: Boolean = false) : OudsBulletListUnorderedBullet(brandColor)
+
+    /**
+     * A bullet represented by a custom [Painter].
+     * This allows for complete visual customization of the bullet, for instance by using a Solaris icon.
+     *
+     * @constructor Creates an instance of [OudsBulletListUnorderedBullet.Free].
+     * @param painter The custom [Painter] to be used as a bullet.
+     */
+    class Free(val painter: Painter, brandColor: Boolean = false) : OudsBulletListUnorderedBullet(brandColor)
+}
+
+/**
+ * The text style of an [OudsBulletList].
+ */
 enum class OudsBulletListTextStyle {
     /**
      * Make sure to use this reference if the text accompanying the list component is the body large text.
@@ -270,6 +367,14 @@ enum class OudsBulletListTextStyle {
      * This variant is best suited for functional, task oriented experiences.
      */
     BodyMedium
+}
+
+/**
+ * The font weight of an [OudsBulletList].
+ */
+enum class OudsBulletListFontWeight {
+    Bold,
+    Regular
 }
 
 private enum class OudsBulletListItemNestedLevel {
@@ -304,34 +409,42 @@ private fun PreviewOudsBulletList(@PreviewParameter(OudsBulletListPreviewParamet
 
 @Composable
 private fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBulletListPreviewParameter) {
+    val customBullet = rememberVectorPainter(Icons.Outlined.FavoriteBorder)
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
+            val typeName = type.javaClass.simpleName
             OudsBulletList(
                 type = type,
                 textStyle = textStyle
             ) {
-                item(label = "${type.name} first item")
+                item(label = "$typeName first item")
                 item(
-                    label = "${type.name} second item with an unordered sublist",
-                    type = OudsBulletListType.Unordered
+                    label = "$typeName second item with a non-bold, unordered sublist",
+                    subListType = OudsBulletListType.Unordered(bullet = OudsBulletListUnorderedBullet.Tick(brandColor = true)),
+                    subListHasBoldText = false
                 ) {
                     item(label = "Unordered subitem")
                     item(
                         label = "Unordered subitem with an ordered sublist",
-                        type = OudsBulletListType.Ordered,
-                        bold = false
+                        subListType = OudsBulletListType.Ordered(),
                     ) {
                         item(label = "Ordered subitem")
                         item(label = "Ordered subitem")
                     }
                 }
                 item(
-                    label = "${type.name} third item with a sublist that inherits from the parent type",
+                    label = "$typeName third item with a sublist that inherits from the parent type",
                 ) {
-                    item(label = "${type.name} subitem")
-                    item(label = "${type.name} subitem")
+                    item(label = "$typeName subitem")
+                    item(label = "$typeName subitem")
                 }
-                item(label = "Ordered fourth item")
+                item(
+                    label = "$typeName fourth item with an unordered sublist and free bullets",
+                    subListType = OudsBulletListType.Unordered(bullet = OudsBulletListUnorderedBullet.Free(customBullet))
+                ) {
+                    item(label = "Unordered subitem")
+                    item(label = "Unordered subitem")
+                }
             }
         }
     }
@@ -347,6 +460,6 @@ internal class OudsBulletListPreviewParameterProvider : BasicPreviewParameterPro
 private val previewParameterValues: List<OudsBulletListPreviewParameter>
     get() = listOf(
         OudsBulletListPreviewParameter(),
-        OudsBulletListPreviewParameter(type = OudsBulletListType.Ordered, textStyle = OudsBulletListTextStyle.BodyMedium),
-        OudsBulletListPreviewParameter(type = OudsBulletListType.Unordered),
+        OudsBulletListPreviewParameter(type = OudsBulletListType.Ordered(), textStyle = OudsBulletListTextStyle.BodyMedium),
+        OudsBulletListPreviewParameter(type = OudsBulletListType.Unordered()),
     )
