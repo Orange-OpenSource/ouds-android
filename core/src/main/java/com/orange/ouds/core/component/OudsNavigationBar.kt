@@ -43,8 +43,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.RoundRect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Path
@@ -270,34 +273,13 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
                 if (indicatorBottomCornersRadius > 0.dp) {
                     val bottomCornersRadiusPx = indicatorBottomCornersRadius.toPx()
                     val path = Path().apply {
-                        moveTo(margin, 0f)
-                        lineTo(margin, indicatorHeight.toPx() - 2 * bottomCornersRadiusPx)
-                        arcTo(
-                            rect = Rect(
-                                top = indicatorHeight.toPx() - 2 * bottomCornersRadiusPx,
-                                left = margin,
-                                bottom = indicatorHeight.toPx(),
-                                right = 2 * bottomCornersRadiusPx + margin
-                            ),
-                            startAngleDegrees = 180f,
-                            sweepAngleDegrees = -90f,
-                            forceMoveTo = false
+                        addRoundRect(
+                            RoundRect(
+                                rect = Rect(offset = Offset(margin, 0f), size = Size(indicatorWidth.toPx(), indicatorHeight.toPx())),
+                                bottomLeft = CornerRadius(bottomCornersRadiusPx),
+                                bottomRight = CornerRadius(bottomCornersRadiusPx)
+                            )
                         )
-                        lineTo(size.width - 2 * bottomCornersRadiusPx - margin, indicatorHeight.toPx())
-                        arcTo(
-                            rect = Rect(
-                                top = indicatorHeight.toPx() - 2 * bottomCornersRadiusPx,
-                                left = size.width - 2 * bottomCornersRadiusPx - margin,
-                                bottom = indicatorHeight.toPx(),
-                                right = size.width - margin
-                            ),
-                            startAngleDegrees = 90f,
-                            sweepAngleDegrees = -90f,
-                            forceMoveTo = false
-                        )
-                        lineTo(size.width - margin, 0f)
-                        lineTo(margin, 0f)
-                        close()
                     }
                     drawPath(path, color = indicatorAlphaColor)
                 } else {
