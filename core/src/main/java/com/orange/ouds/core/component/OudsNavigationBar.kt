@@ -257,13 +257,15 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
             animationSpec = animationSpec,
         )
 
-        return if (indicatorAnimatedAlpha == 0f || opacityActiveIndicatorCustom.value == 0f) {
+        val opacityActiveIndicatorCustomValue = opacityActiveIndicatorCustom.value
+
+        return if (indicatorAnimatedAlpha == 0f || opacityActiveIndicatorCustomValue == 0f) {
             this@indicator
         } else {
             drawWithContent {
                 drawContent()
                 val margin = (size.width - indicatorWidth.toPx()).coerceAtLeast(0f) / 2
-                val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * indicatorAnimatedAlpha)
+                val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * opacityActiveIndicatorCustomValue * indicatorAnimatedAlpha)
 
                 if (indicatorBottomCornersRadius > 0.dp) {
                     val bottomCornersRadiusPx = indicatorBottomCornersRadius.toPx()
