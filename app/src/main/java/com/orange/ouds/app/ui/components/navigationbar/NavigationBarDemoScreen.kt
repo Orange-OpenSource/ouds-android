@@ -14,8 +14,11 @@ package com.orange.ouds.app.ui.components.navigationbar
 
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.NavigationItemIconPosition
+import androidx.compose.material3.ShortNavigationBarArrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -47,11 +50,19 @@ fun NavigationBarDemoScreen() {
     val state = rememberNavigationBarDemoState()
     val context = LocalContext.current
     val themeDrawableResources = LocalThemeDrawableResources.current
+    val compactWindowSize = LocalConfiguration.current.screenWidthDp < 600
     DemoScreen(
         description = stringResource(id = Component.NavigationBar.descriptionRes),
         bottomSheetContent = { NavigationBarDemoBottomSheetContent(state = state) },
-        codeSnippet = { navigationBarDemoCodeSnippet(state = state, context = context, themeDrawableResources = themeDrawableResources) },
-        demoContent = { NavigationBarDemoContent(state = state) },
+        codeSnippet = {
+            navigationBarDemoCodeSnippet(
+                state = state,
+                context = context,
+                themeDrawableResources = themeDrawableResources,
+                compactWindowSize = compactWindowSize
+            )
+        },
+        demoContent = { NavigationBarDemoContent(state = state, compactWindowSize = compactWindowSize) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.Bar
     )
@@ -79,7 +90,7 @@ private fun NavigationBarDemoBottomSheetContent(state: NavigationBarDemoState) {
 }
 
 @Composable
-private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
+private fun NavigationBarDemoContent(state: NavigationBarDemoState, compactWindowSize: Boolean) {
     with(state) {
         OudsNavigationBar(
             items = items.mapIndexed { index, item ->
@@ -90,6 +101,7 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     onClick = { selectedItemId = index },
                     label = label,
                     icon = OudsNavigationBarItemIcon(painter = painterResource(id = item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
+                    iconPosition = getNavigationItemIconPosition(compactWindowSize),
                     badge = if (isLastItem) {
                         when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null
@@ -107,12 +119,18 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                         null
                     }
                 )
-            }
+            },
+            arrangement = getArrangement(compactWindowSize)
         )
     }
 }
 
-private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoState, context: Context, themeDrawableResources: ThemeDrawableResources) {
+private fun Code.Builder.navigationBarDemoCodeSnippet(
+    state: NavigationBarDemoState,
+    context: Context,
+    themeDrawableResources: ThemeDrawableResources,
+    compactWindowSize: Boolean
+) {
     with(state) {
         functionCall("OudsNavigationBar") {
             functionCallArgument("items", "listOf") {
@@ -125,6 +143,9 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
                         labelArgument(label)
                         functionCallArgument("icon", OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
                             painterArgument(id = item.iconResourceProvider.getResource(themeDrawableResources))
+                        }
+                        if (!compactWindowSize) {
+                            typedArgument("iconPosition", NavigationItemIconPosition.Start)
                         }
                         if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
                             functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
@@ -144,6 +165,9 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
                         }
                     }
                 }
+            }
+            if (!compactWindowSize) {
+                typedArgument("arrangement", ShortNavigationBarArrangement.Centered)
             }
         }
     }

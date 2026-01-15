@@ -13,6 +13,8 @@
 package com.orange.ouds.app.ui.components.navigationbar
 
 import androidx.annotation.StringRes
+import androidx.compose.material3.NavigationItemIconPosition
+import androidx.compose.material3.ShortNavigationBarArrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -28,7 +30,7 @@ fun rememberNavigationBarDemoState(
     itemCount: Int = NavigationBarDemoState.MinItemCount,
     selectedItemId: Int = 0,
     lastItemBadge: NavigationBarDemoState.ItemBadge = NavigationBarDemoState.ItemBadge.None
-) = rememberSaveable(itemCount, lastItemBadge, saver = NavigationBarDemoState.Saver) {
+) = rememberSaveable(itemCount, selectedItemId, lastItemBadge, saver = NavigationBarDemoState.Saver) {
     NavigationBarDemoState(itemCount, selectedItemId, lastItemBadge)
 }
 
@@ -68,6 +70,11 @@ class NavigationBarDemoState(
 
     val items: List<Item>
         get() = Item.entries.take(itemCount)
+
+    fun getArrangement(compactWindowSize: Boolean) =
+        if (compactWindowSize) ShortNavigationBarArrangement.EqualWeight else ShortNavigationBarArrangement.Centered
+
+    fun getNavigationItemIconPosition(compactWindowSize: Boolean) = if (compactWindowSize) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
 
     enum class ItemBadge(@StringRes val labelRes: Int) {
         None(R.string.app_components_common_none_label),
