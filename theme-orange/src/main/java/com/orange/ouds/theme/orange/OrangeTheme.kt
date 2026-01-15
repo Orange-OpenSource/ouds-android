@@ -146,8 +146,6 @@ open class OrangeTheme(
      *
      * @param roundedCornerButtons Whether or not buttons have rounded corners.
      * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
-     *
-     * @deprecated Use constructor with orangeFontFamily parameter instead.
      */
     @Deprecated(
         "Use constructor with orangeFontFamily parameter instead.",
