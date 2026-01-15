@@ -23,7 +23,7 @@ import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.common.OudsError
 
@@ -136,7 +136,7 @@ private fun ControlItemErrorCustomization(state: ControlItemDemoState) {
 @Composable
 private fun ControlItemErrorMessageCustomization(state: ControlItemDemoState) {
     with(state) {
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_errorMessage_label),
             value = errorMessage,
@@ -149,7 +149,7 @@ private fun ControlItemErrorMessageCustomization(state: ControlItemDemoState) {
 @Composable
 private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
@@ -161,7 +161,7 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
 @Composable
 private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     with(state) {
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_controlItem_description_label),
             value = description.orEmpty(),

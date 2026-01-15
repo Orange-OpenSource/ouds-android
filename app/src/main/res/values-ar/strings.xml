@@ -145,6 +145,7 @@
     <string name="app_components_topAppBar_description_text">ُعرض Top app bars المعلومات والإجراءات في أعلى الشاشة.</string> <!--TODO update with OUDS description-->
     <string name="app_components_topAppBar_firstAction_a11y">الإجراء الأول</string>
     <string name="app_components_topAppBar_secondAction_a11y">الإجراء الثاني</string>
+    <string name="app_components_topAppBar_thirdAction_a11y">Third action</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>

@@ -142,6 +142,7 @@
     <string name="app_components_topAppBar_description_text">Les Top App Bars affichent des informations et des actions en haut d\'un écran.</string>
     <string name="app_components_topAppBar_firstAction_a11y">Première action</string>
     <string name="app_components_topAppBar_secondAction_a11y">Deuxième action</string>
+    <string name="app_components_topAppBar_thirdAction_a11y">Troisième action</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>

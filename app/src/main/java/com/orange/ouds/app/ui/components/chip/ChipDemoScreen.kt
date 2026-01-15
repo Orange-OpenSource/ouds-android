@@ -30,7 +30,7 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -47,14 +47,14 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = ChipDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ChipDemoState.Layout.entries.indexOf(layout),
-            onSelectionChange = { id -> layout = ChipDemoState.Layout.entries[id] }
+            onSelectionChange = { index -> layout = ChipDemoState.Layout.entries[index] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value },
-            enabled = labelTextFieldEnabled
+            enabled = labelTextInputEnabled
         )
     }
 }

@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui.components.navigationbar
 
 import android.content.Context
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -27,12 +26,11 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.ItemBadgeCount
-import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MaxNavigationBarItemCount
-import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MinNavigationBarItemCount
+import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MaxItemCount
+import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MinItemCount
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
@@ -62,31 +60,29 @@ fun NavigationBarDemoScreen() {
 @Composable
 private fun NavigationBarDemoBottomSheetContent(state: NavigationBarDemoState) {
     with(state) {
-        val itemCountOptions = remember { (MinNavigationBarItemCount..MaxNavigationBarItemCount).toList() }
+        val itemCountOptions = remember { (MinItemCount..MaxItemCount).toList() }
         CustomizationFilterChips(
             applyTopPadding = false,
             label = stringResource(R.string.app_components_navigationBar_itemCount_label),
             chipLabels = itemCountOptions.map { it.toString() },
             selectedChipIndex = itemCountOptions.indexOf(itemCount),
-            onSelectionChange = { id -> itemCount = itemCountOptions[id] }
+            onSelectionChange = { index -> itemCount = itemCountOptions[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_navigationBar_lastItemBadge_label),
             chipLabels = NavigationBarDemoState.ItemBadge.entries.map { it.name },
             selectedChipIndex = NavigationBarDemoState.ItemBadge.entries.indexOf(lastItemBadge),
-            onSelectionChange = { id -> lastItemBadge = NavigationBarDemoState.ItemBadge.entries[id] }
+            onSelectionChange = { index -> lastItemBadge = NavigationBarDemoState.ItemBadge.entries[index] }
         )
     }
 }
 
 @Composable
 private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
-    val navigationBarItems = NavigationBarItem.entries
-
     with(state) {
         OudsNavigationBar(
-            items = navigationBarItems.take(itemCount).mapIndexed { index, item ->
+            items = items.mapIndexed { index, item ->
                 val label = stringResource(id = item.labelRes)
                 val isLastItem = index == itemCount - 1
                 OudsNavigationBarItem(
@@ -99,7 +95,11 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                             NavigationBarDemoState.ItemBadge.None -> null
                             NavigationBarDemoState.ItemBadge.Standard -> OudsNavigationBarItemBadge(stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y))
                             NavigationBarDemoState.ItemBadge.Count -> OudsNavigationBarItemBadge(
-                                contentDescription = pluralStringResource(id = R.plurals.app_components_common_unreadMessageCountBadge_a11y, count = ItemBadgeCount, ItemBadgeCount),
+                                contentDescription = pluralStringResource(
+                                    id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                    count = ItemBadgeCount,
+                                    ItemBadgeCount
+                                ),
                                 count = ItemBadgeCount
                             )
                         }
@@ -114,10 +114,9 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
 
 private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoState, context: Context, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
-        val navigationBarItems = NavigationBarItem.entries
         functionCall("OudsNavigationBar") {
             functionCallArgument("items", "listOf") {
-                navigationBarItems.take(state.itemCount).forEachIndexed { index, item ->
+                items.forEachIndexed { index, item ->
                     val isLastItem = index == itemCount - 1
                     val label = context.resources.getString(item.labelRes)
                     functionCallArgument(null, "OudsNavigationBarItem") {
@@ -148,14 +147,6 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoSt
             }
         }
     }
-}
-
-enum class NavigationBarItem(val iconResourceProvider: ThemeDrawableResourceProvider, @StringRes val labelRes: Int) {
-    Home({ it.home }, R.string.app_components_navigationBar_homeItem_label),
-    Notification({ it.notificationAlert }, R.string.app_components_navigationBar_notificationsItem_label),
-    Shop({ it.shop }, R.string.app_components_navigationBar_shopItem_label),
-    Account({ it.avatar }, R.string.app_components_navigationBar_accountItem_label),
-    Settings({ it.settings }, R.string.app_components_navigationBar_settingsItem_label),
 }
 
 @PreviewLightDark

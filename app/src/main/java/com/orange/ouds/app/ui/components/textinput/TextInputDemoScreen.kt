@@ -29,7 +29,7 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
@@ -94,44 +94,44 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             onCheckedChange = { error = it },
             enabled = errorSwitchEnabled
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_errorMessage_label),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
             enabled = errorMessageTextInputEnabled
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_placeholder_label),
             value = placeholder,
             onValueChange = { value -> placeholder = value }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_prefix_label),
             value = prefix,
             onValueChange = { value -> prefix = value }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_suffix_label),
             value = suffix,
             onValueChange = { value -> suffix = value }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_label),
             value = helperText,
             onValueChange = { value -> helperText = value }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_helperLink_label),
             value = helperLink,
