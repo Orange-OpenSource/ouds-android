@@ -45,6 +45,7 @@ import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.OrangeFontFamily
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
 import kotlin.enums.enumEntries
 import kotlin.math.ceil
 
@@ -101,7 +102,7 @@ internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (Ou
     }
 }
 
-internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable))
+internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme(getPreviewOrangeFontFamily())
 
 @Composable
 internal inline fun <reified T> getPreviewEnumEntry(): T? {

@@ -16,6 +16,7 @@ import androidx.annotation.FontRes
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import com.orange.ouds.foundation.InternalOudsApi
 
 /**
  * The font family to use for the Orange theme.
@@ -61,7 +62,6 @@ class OrangeFontFamily private constructor() {
         this.arabic = arabic
     }
 }
-
 
 /**
  * A bundled font family for the Orange theme.
@@ -138,3 +138,9 @@ sealed class OrangeHelveticaNeueArabic {
      */
     object Downloadable : OrangeHelveticaNeueArabic(), OrangeDownloadableFontFamily
 }
+
+/**
+ * @suppress
+ */
+@InternalOudsApi
+fun getPreviewOrangeFontFamily() = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable)

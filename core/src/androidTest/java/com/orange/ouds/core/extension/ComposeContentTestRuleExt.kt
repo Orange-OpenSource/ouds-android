@@ -15,12 +15,11 @@ package com.orange.ouds.core.extension
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.theme.orange.OrangeFontFamily
-import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
 
 internal fun ComposeContentTestRule.setOudsContent(composable: @Composable () -> Unit) {
     setContent {
-        OudsTheme(theme = OrangeTheme(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable)), content = composable)
+        OudsTheme(theme = OrangeTheme(getPreviewOrangeFontFamily()), content = composable)
     }
 }
