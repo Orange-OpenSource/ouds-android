@@ -47,7 +47,7 @@ fun RadioButtonItemDemoScreen() {
         bottomSheetContent = { RadioButtonItemDemoBottomSheetContent(state = state) },
         codeSnippet = { radioButtonItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { RadioButtonItemDemoContent(state = state) },
-        demoContentPaddingValues = PaddingValues(),
+        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.RadioButton
     )
 }

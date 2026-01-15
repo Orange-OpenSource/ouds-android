@@ -83,7 +83,13 @@ fun DemoScreen(
                 init = codeSnippet
             )
             if (version != null) {
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = OudsTheme.grids.margin), verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = OudsTheme.grids.margin)
+                        .padding(bottom = OudsTheme.spaces.fixed.medium),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
                         modifier = Modifier.weight(1f),
                         text = stringResource(R.string.app_components_common_version_label),
