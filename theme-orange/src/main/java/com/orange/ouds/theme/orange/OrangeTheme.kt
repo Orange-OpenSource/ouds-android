@@ -118,7 +118,7 @@ const val ORANGE_THEME_NAME = "Orange"
  *     private set
  * ```
  * ```
- * OrangeTheme.preloadDownloadableFontFamily(this, listOf(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable)) {
+ * OrangeTheme.preloadDownloadableFontFamilies(this, listOf(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable)) {
  *     areDownloadableOrangeFontFamiliesPreloaded = true
  * }
  * ```
@@ -261,7 +261,7 @@ open class OrangeTheme(
 
     override val name: String
         get() = ORANGE_THEME_NAME
-    
+
     @Suppress("OVERRIDE_DEPRECATION")
     override val fontFamily: FontFamily
         get() = getFontFamily(Locale.getDefault())

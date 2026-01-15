@@ -20,8 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 /**
  * The font family to use for the Orange theme.
  */
-// The primary constructor should theoretically contain nullable latin and arabic parameters but this leads to a platform declaration clash
-// That's why we use a private empty primary constructor and set latin and arabic properties later on
+// The primary constructor should theoretically contain nullable Latin and Arabic parameters but this leads to a platform declaration clash
+// That's why we use a private empty primary constructor and set Latin and Arabic properties later on
 class OrangeFontFamily private constructor() {
 
     /** The Helvetica Neue Latin font family. */
@@ -86,8 +86,8 @@ sealed class OrangeHelveticaNeueLatin {
      * The bundled Helvetica Neue Latin font family for the Orange theme.
      *
      * @param regularFontResId The resource identifier of the Helvetica Neue Latin regular font.
-     * @param  mediumFontResId The resource identifier of the Helvetica Neue Latin medium font.
-     * @param  boldFontResId The resource identifier of the Helvetica Neue Latin bold font.
+     * @param mediumFontResId The resource identifier of the Helvetica Neue Latin medium font.
+     * @param boldFontResId The resource identifier of the Helvetica Neue Latin bold font.
      */
     class Bundled(
         @FontRes regularFontResId: Int,
@@ -116,9 +116,9 @@ sealed class OrangeHelveticaNeueArabic {
     /**
      * The bundled Helvetica Neue Arabic font family for the Orange theme.
      *
-     * @param  lightFontResId The resource identifier of the Helvetica Neue Arabic light font.
-     * @param  regularFontResId The resource identifier of the Helvetica Neue Arabic regular font.
-     * @param  boldFontResId The resource identifier of the Helvetica Neue Arabic bold font.
+     * @param lightFontResId The resource identifier of the Helvetica Neue Arabic light font.
+     * @param regularFontResId The resource identifier of the Helvetica Neue Arabic regular font.
+     * @param boldFontResId The resource identifier of the Helvetica Neue Arabic bold font.
      */
     class Bundled(
         @FontRes lightFontResId: Int,
