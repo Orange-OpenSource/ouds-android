@@ -60,7 +60,7 @@ const val ORANGE_THEME_NAME = "Orange"
 /**
  * The Orange theme.
  *
- * This theme uses the Helvetica Neue font family. Due to legal issues Helvetica Neue font files are not bundled with this library.
+ * This theme uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with this library.**
  *
  * The Helvetica Neue font files for the Orange theme can be retrieved by copying the `ttf` files in the `res/font` directory of the project
  * and use an implementation of [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled] or [OrangeHelveticaNeueArabic.Bundled])
