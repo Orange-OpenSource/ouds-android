@@ -206,7 +206,7 @@ data class OudsNavigationBarItem(
             CompositionLocalProvider(LocalRippleConfiguration provides null) {
                 ShortNavigationBarItem(
                     modifier = modifier
-                        .indicator(state = state, selected = selected)
+                        .indicator(state = state, selected = selected, iconPosition = iconPosition)
                         .semantics {
                             contentDescription = badge?.contentDescription.orEmpty()
                         },
@@ -251,12 +251,11 @@ data class OudsNavigationBarItem(
 }
 
 @Composable
-private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Boolean): Modifier {
+private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Boolean, iconPosition: NavigationItemIconPosition): Modifier {
     with(OudsTheme.componentsTokens.bar) {
         val indicatorColor = topIndicatorColor(state = state)
         val indicatorBottomCornersRadius = borderRadiusActiveIndicatorCustomTop.value
-        val indicatorHeight = sizeHeightActiveIndicatorCustom.dp
-        val indicatorWidth = sizeWidthActiveIndicatorCustomTop.dp
+        val opacityActiveIndicatorCustomValue = opacityActiveIndicatorCustom.value
 
         // This is the same animation spec that the NavigationBarItem internally uses to animate the color of the icon and the text
         val animationSpec = spring<Float>(
@@ -269,22 +268,38 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
             animationSpec = animationSpec,
         )
 
-        val opacityActiveIndicatorCustomValue = opacityActiveIndicatorCustom.value
-
         return if (indicatorAnimatedAlpha == 0f || opacityActiveIndicatorCustomValue == 0f) {
             this@indicator
         } else {
             drawWithContent {
-                drawContent()
-                val margin = (size.width - indicatorWidth.toPx()).coerceAtLeast(0f) / 2
                 val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * opacityActiveIndicatorCustomValue * indicatorAnimatedAlpha)
+                val indicatorHeight = sizeHeightActiveIndicatorCustom.dp.toPx()
+                val indicatorWidth: Float
+                val indicatorStartXOffset: Float
+                val indicatorEndXOffset: Float
+                when (iconPosition) {
+                    NavigationItemIconPosition.Top -> {
+                        indicatorWidth = sizeWidthActiveIndicatorCustomTop.dp.toPx()
+                        indicatorStartXOffset = (size.width - indicatorWidth).coerceAtLeast(0f) / 2
+                        indicatorEndXOffset = size.width - indicatorStartXOffset
+                    }
+                    else -> {
+                        val horizontalItemIndicatorPaddingStart = 14.dp.toPx() // Constant value defined in Figma
+                        val horizontalItemIndicatorPaddingEnd = 10.dp.toPx() // Constant value defined in Figma
+                        indicatorWidth = size.width - (horizontalItemIndicatorPaddingStart + horizontalItemIndicatorPaddingEnd)
+                        indicatorStartXOffset = horizontalItemIndicatorPaddingStart
+                        indicatorEndXOffset = size.width - horizontalItemIndicatorPaddingEnd
+                    }
+                }
+
+                drawContent()
 
                 if (indicatorBottomCornersRadius > 0.dp) {
                     val bottomCornersRadiusPx = indicatorBottomCornersRadius.toPx()
                     val path = Path().apply {
                         addRoundRect(
                             RoundRect(
-                                rect = Rect(offset = Offset(margin, 0f), size = Size(indicatorWidth.toPx(), indicatorHeight.toPx())),
+                                rect = Rect(offset = Offset(indicatorStartXOffset, 0f), size = Size(indicatorWidth, indicatorHeight)),
                                 bottomLeft = CornerRadius(bottomCornersRadiusPx),
                                 bottomRight = CornerRadius(bottomCornersRadiusPx)
                             )
@@ -292,12 +307,12 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
                     }
                     drawPath(path, color = indicatorAlphaColor)
                 } else {
-                    val lineY = indicatorHeight.toPx() / 2
+                    val lineY = indicatorHeight / 2
                     drawLine(
                         color = indicatorAlphaColor,
-                        start = Offset(margin, lineY),
-                        end = Offset(size.width - margin, lineY),
-                        strokeWidth = indicatorHeight.toPx()
+                        start = Offset(indicatorStartXOffset, lineY),
+                        end = Offset(indicatorEndXOffset, lineY),
+                        strokeWidth = indicatorHeight
                     )
                 }
             }
