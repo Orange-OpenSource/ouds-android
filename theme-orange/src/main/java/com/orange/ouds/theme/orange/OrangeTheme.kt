@@ -261,6 +261,10 @@ open class OrangeTheme(
 
     override val name: String
         get() = ORANGE_THEME_NAME
+    
+    @Suppress("OVERRIDE_DEPRECATION")
+    override val fontFamily: FontFamily
+        get() = getFontFamily(Locale.getDefault())
 
     override fun getFontFamily(locale: Locale): FontFamily {
         val localizedFontFamily = if (locale.language == "ar") orangeFontFamily.arabic else orangeFontFamily.latin
@@ -272,7 +276,7 @@ open class OrangeTheme(
             }
             else -> null
         }.orElse {
-            super.getFontFamily(locale)
+            FontFamily.Default
         }
     }
 
