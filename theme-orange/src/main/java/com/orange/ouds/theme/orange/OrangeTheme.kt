@@ -188,9 +188,9 @@ open class OrangeTheme(
             } else {
                 var preloadedDownloadableFontFamilyCount = 0
 
-                // Font requests require the list of sets of hashes for the certificates the provider is signed with
-                // As OrangeFontProvider is embedded in the app, it is signed with the app certificate
-                // That is why we can retrieve the certificate using methods on package manager
+                // Font requests require the list of sets of hashes for the certificates the provider is signed with.
+                // As OrangeFontProvider is embedded in the app, it is signed with the app certificate.
+                // That is why we can retrieve the certificate using methods on package manager.
                 val certificates = try {
                     @Suppress("DEPRECATION")
                     val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) PackageManager.GET_SIGNING_CERTIFICATES else PackageManager.GET_SIGNATURES
