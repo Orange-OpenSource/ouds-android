@@ -62,9 +62,10 @@ const val ORANGE_THEME_NAME = "Orange"
  *
  * This theme uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with this library.**
  *
- * The Helvetica Neue font files for the Orange theme can be retrieved by copying the `ttf` files in the `res/font` directory of the project
- * and use an implementation of [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled] or [OrangeHelveticaNeueArabic.Bundled])
- * when creating the [OrangeFontFamily] instance passed as the [OrangeTheme.orangeFontFamily] parameter:
+ * The Helvetica Neue font files for the Orange theme are available at
+ * [https://brand.orange.com/en/brand-basics/typography](https://brand.orange.com/en/brand-basics/typography) and can be used by copying the `ttf` files
+ * in the `res/font` directory of the project and by using an implementation of [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled]
+ * or [OrangeHelveticaNeueArabic.Bundled]) when creating the [OrangeFontFamily] instance passed as the [OrangeTheme.orangeFontFamily] parameter:
  *
  * ```
  * OrangeTheme(
@@ -83,8 +84,10 @@ const val ORANGE_THEME_NAME = "Orange"
  * )
  * ```
  *
- * The Helvetica Neue font files can alternatively be downloaded through the Android Downloadable Fonts feature
- * by using an implementation of [OrangeDownloadableFontFamily] ([OrangeHelveticaNeueLatin.Downloadable] or [OrangeHelveticaNeueArabic.Downloadable]) instead:
+ * Although the preferred way of using the Helvetica Neue font is configuring bundled font files, there are some cases where this is not possible,
+ * for instance in open source projects where the font files cannot be bundled due to legal issues. In these cases, the font files can
+ * alternatively be downloaded through the Android Downloadable Fonts feature by using an implementation of
+ * [OrangeDownloadableFontFamily] ([OrangeHelveticaNeueLatin.Downloadable] or [OrangeHelveticaNeueArabic.Downloadable]) instead:
  *
  * ```
  * OrangeTheme(
@@ -123,7 +126,8 @@ const val ORANGE_THEME_NAME = "Orange"
  * }
  * ```
  *
- * Please note that [FontFamily.Default] will be used if download fails.
+ * Please note that the Android Downloadable Font feature works asynchronously, whether the font is already downloaded or not,
+ * ant that [FontFamily.Default] will be used if download fails.
  *
  * @param orangeFontFamily The Helvetica Neue font family to use for the Orange theme.
  *   If an [OrangeBundledFontFamily] is used, the resource identifiers should reference Helvetica Neue font files.
