@@ -127,7 +127,7 @@ internal fun OudsChip(
                             interactionSource = interactionSource,
                             indication = indication,
                             onClick = onClick,
-                            role = Role.Checkbox
+                            role = Role.Button
                         )
                     } else {
                         clickable(
