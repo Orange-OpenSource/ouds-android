@@ -20,10 +20,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
@@ -50,7 +52,7 @@ fun NavigationBarDemoScreen() {
     val state = rememberNavigationBarDemoState()
     val context = LocalContext.current
     val themeDrawableResources = LocalThemeDrawableResources.current
-    val compactWindowSize = LocalConfiguration.current.screenWidthDp < 600
+    val compactWindowSize = LocalWindowInfo.current.containerDpSize.width < 600.dp
     DemoScreen(
         description = stringResource(id = Component.NavigationBar.descriptionRes),
         bottomSheetContent = { NavigationBarDemoBottomSheetContent(state = state) },

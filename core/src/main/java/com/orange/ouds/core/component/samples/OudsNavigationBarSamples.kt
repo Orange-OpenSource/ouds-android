@@ -106,8 +106,8 @@ private fun PreviewOudsNavigationBarSample() = OudsPreview {
     OudsNavigationBarSample()
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.PreviewWithHorizontalItemsWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.PreviewWithHorizontalItemsWidthDp)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.MediumWindowSize.PreviewWidthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.MediumWindowSize.PreviewWidthDp)
 @Composable
 private fun PreviewOudsNavigationBarWithHorizontalItemsSample() = OudsPreview {
     OudsNavigationBarWithHorizontalItemsSample()

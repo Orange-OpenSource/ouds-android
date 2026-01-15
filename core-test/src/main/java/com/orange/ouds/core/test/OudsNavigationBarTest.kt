@@ -13,34 +13,69 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsNavigationBarTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.NavigationBar,
-    parameter,
-    OudsComponentTestSuite.theme
-) {
+@RunWith(Enclosed::class)
+internal class OudsNavigationBarTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.NavigationBar.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationBar.Default,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBar.Default.parameters
+        }
+    }
+
+    @RunWith(Parameterized::class)
+    class MediumWindowSize(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationBar.MediumWindowSize,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.NavigationBar.MediumWindowSize.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBar.MediumWindowSize.parameters
+        }
     }
 }
 
-@RunWith(Parameterized::class)
-internal class OudsNavigationBarItemTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.NavigationBarItem,
-    parameter,
-    OudsComponentTestSuite.theme,
-    OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp
-) {
+@RunWith(Enclosed::class)
+internal class OudsNavigationBarItemTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.NavigationBarItem.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationBarItem.Default,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBarItem.Default.parameters
+        }
+    }
+
+    @RunWith(Parameterized::class)
+    class MediumWindowSize(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationBarItem.MediumWindowSize,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBarItem.MediumWindowSize.parameters
+        }
     }
 }
