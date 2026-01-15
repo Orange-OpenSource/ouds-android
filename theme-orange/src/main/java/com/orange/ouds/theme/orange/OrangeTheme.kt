@@ -165,6 +165,8 @@ open class OrangeTheme(
          * Preloads the downloadable font families for the Orange theme.
          * Call this method if any of the [OrangeTheme.orangeFontFamily] properties of the Orange theme instance is an implementation of [OrangeDownloadableFontFamily] ([OrangeHelveticaNeueLatin.Downloadable] or [OrangeHelveticaNeueArabic.Downloadable]).
          *
+         * Please note that downloading font files is not the preferred way of configuring font families for the Orange theme. See [OrangeTheme] documentation for more information.
+         *
          * @param context The context.
          * @param downloadableFontFamilies The downloadable font families to preload.
          * @param onComplete A callback that is called when the font families are fully loaded.
