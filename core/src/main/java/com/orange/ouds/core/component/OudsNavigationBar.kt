@@ -110,7 +110,9 @@ val OudsNavigationBarHeight = 80.dp
  * @param modifier [Modifier] applied to the navigation bar.
  * @param translucent Whether the navigation bar should be translucent.
  * @param windowInsets Window insets of the navigation bar.
- * @param arrangement The [ShortNavigationBarArrangement] of this navigation bar.
+ * @param arrangement The horizontal arrangement of the navigation bar items.
+ *   On medium window sizes (window width from 600dp), it is recommended to use [ShortNavigationBarArrangement.Centered] in combination
+ *   with [NavigationItemIconPosition.Start] for the items.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarWithHorizontalItemsSample
@@ -176,7 +178,9 @@ fun OudsNavigationBar(
  * @param label Label of the item.
  * @param badge Optional badge displayed on the item icon.
  * @param interactionSource [MutableInteractionSource] that will be used to dispatch events when this item is pressed, hovered or focused.
- * @param iconPosition The [NavigationItemIconPosition] for the icon. By default, the icon is positioned on top of the label.
+ * @param iconPosition The position of the icon relative to the label.
+ *   On medium window sizes (from 600dp), it is recommended to use [NavigationItemIconPosition.Start]
+ *   in combination with [ShortNavigationBarArrangement.Centered] for the navigation bar.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  */
