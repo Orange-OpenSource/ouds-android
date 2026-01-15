@@ -76,8 +76,12 @@ OudsTheme(
 }
 ```
 
-In the example above, you can see that Orange theme includes several customizable elements such as the possibility of having rounded corners on certain
-components rather than rectangular ones.
+In the example above, you can see that Orange theme includes several customizable elements such as the Helvetica Neue font family configuration, as well as the possibility
+ of having rounded corners on certain components rather than rectangular ones.
+
+**Important note on fonts:** The `theme-orange` module does not bundle the Helvetica Neue font files. As OUDS Android is an open-source library, we are not licensed to distribute this proprietary font.
+As a consequence, you are responsible for obtaining the necessary font files from the official [Orange Brand portal](https://brand.orange.com/en/brand-basics/typography)
+and including them in your application's `res/font` directory. The example above shows how to provide these local font resources to the `OrangeTheme`.
 
 ## Relationship with other modules
 
