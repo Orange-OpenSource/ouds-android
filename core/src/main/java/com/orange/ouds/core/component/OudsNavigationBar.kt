@@ -22,6 +22,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -206,6 +207,7 @@ data class OudsNavigationBarItem(
             CompositionLocalProvider(LocalRippleConfiguration provides null) {
                 ShortNavigationBarItem(
                     modifier = modifier
+                        .fillMaxHeight()
                         .indicator(state = state, selected = selected, iconPosition = iconPosition)
                         .semantics {
                             contentDescription = badge?.contentDescription.orEmpty()
