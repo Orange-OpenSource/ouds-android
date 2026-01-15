@@ -35,6 +35,10 @@ class OudsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initializeCrashlytics()
+        // Due to legal issues the Helvetica Neue font files for the Orange theme are not bundled with this project.
+        // Thus we use the Android Downloadable Fonts feature to retrieve the files on a remote server.
+        // However the preferred way of using the Helvetica Neue font in the Orange theme is configuring
+        // bundled font files with `OrangeHelveticaNeueLatin.Bundled` and/or `OrangeHelveticaNeueArabic.Bundled`.
         OrangeTheme.preloadDownloadableFontFamilies(this, listOf(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable)) {
             areDownloadableOrangeFontFamiliesPreloaded = true
         }
