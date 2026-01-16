@@ -141,7 +141,6 @@ dependencies {
     implementation(libs.haze)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    ksp(libs.kotlin.metadata.jvm) // TODO Remove when https://github.com/google/dagger/pull/5062 is merged. See also https://github.com/google/dagger/issues/5001
     implementation(libs.kotlin.reflect)
 }
 

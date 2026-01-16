@@ -73,7 +73,6 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.r
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javaPoet" }
 json = { module = "org.json:json", version.ref = "json" }
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-metadata-jvm = { group = "org.jetbrains.kotlin", name = "kotlin-metadata-jvm", version.ref = "kotlin" }
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockitoAndroid" }
