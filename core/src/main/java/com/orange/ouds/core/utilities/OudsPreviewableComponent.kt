@@ -403,7 +403,7 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object MediumWindowSize : OudsPreviewableComponent {
+        object WithHorizontalItems : OudsPreviewableComponent {
 
             const val PreviewWidthDp = 600
 
@@ -415,7 +415,7 @@ interface OudsPreviewableComponent {
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
                     itemCount = parameter as Int,
-                    mediumWindowSize = true
+                    horizontalItems = true
                 )
             }
         }

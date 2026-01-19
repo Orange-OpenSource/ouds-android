@@ -433,11 +433,11 @@ private fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewP
     PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount)
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.MediumWindowSize.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.MediumWindowSize.PreviewWidthDp)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
 @Composable
-private fun PreviewOudsNavigationBarForMediumWindowSize(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
-    PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount, mediumWindowSize = true)
+private fun PreviewOudsNavigationBarWithHorizontalItems(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
+    PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount, horizontalItems = true)
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
@@ -451,7 +451,7 @@ private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItem
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Composable
-private fun PreviewOudsNavigationBarItemForMediumWindowSize(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
+private fun PreviewOudsNavigationBarHorizontalItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
     PreviewOudsNavigationBarItem(
         theme = getPreviewTheme(),
         darkThemeEnabled = isSystemInDarkTheme(),
@@ -496,16 +496,16 @@ internal fun PreviewOudsNavigationBar(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     itemCount: Int,
-    mediumWindowSize: Boolean = false
+    horizontalItems: Boolean = false
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsNavigationBar(
-        arrangement = if (mediumWindowSize) ShortNavigationBarArrangement.Centered else ShortNavigationBarArrangement.EqualWeight,
+        arrangement = if (horizontalItems) ShortNavigationBarArrangement.Centered else ShortNavigationBarArrangement.EqualWeight,
         items = navigationBarPreviewItems.take(itemCount).mapIndexed { index, item ->
             OudsNavigationBarItem(
                 selected = index == 0,
                 onClick = {},
                 icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
-                iconPosition = if (mediumWindowSize) NavigationItemIconPosition.Start else NavigationItemIconPosition.Top,
+                iconPosition = if (horizontalItems) NavigationItemIconPosition.Start else NavigationItemIconPosition.Top,
                 label = item.label,
                 badge = item.badge
             )

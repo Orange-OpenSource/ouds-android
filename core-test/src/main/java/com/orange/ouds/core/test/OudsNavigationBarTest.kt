@@ -35,15 +35,15 @@ internal class OudsNavigationBarTest {
 
     @RunWith(Parameterized::class)
     class MediumWindowSize(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.NavigationBar.MediumWindowSize,
+        OudsPreviewableComponent.NavigationBar.WithHorizontalItems,
         parameter,
         OudsComponentTestSuite.theme,
-        OudsPreviewableComponent.NavigationBar.MediumWindowSize.PreviewWidthDp
+        OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp
     ) {
         companion object {
             @JvmStatic
             @Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.NavigationBar.MediumWindowSize.parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.parameters
         }
     }
 }
