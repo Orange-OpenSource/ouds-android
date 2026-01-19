@@ -146,7 +146,7 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(
                             painterArgument(id = item.iconResourceProvider.getResource(themeDrawableResources))
                         }
                         if (windowWidthSize == WindowWidthSizeClass.MEDIUM) {
-                            typedArgument("iconPosition", NavigationItemIconPosition.Start)
+                            rawArgument("iconPosition", "NavigationItemIconPosition.Start")
                         }
                         if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
                             functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
@@ -168,7 +168,7 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(
                 }
             }
             if (windowWidthSize == WindowWidthSizeClass.MEDIUM) {
-                typedArgument("arrangement", ShortNavigationBarArrangement.Centered)
+                rawArgument("arrangement", "ShortNavigationBarArrangement.Centered")
             }
         }
     }
