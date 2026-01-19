@@ -451,7 +451,7 @@ private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItem
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Composable
-private fun PreviewOudsNavigationBarForMediumWindowSize(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
+private fun PreviewOudsNavigationBarItemForMediumWindowSize(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
     PreviewOudsNavigationBarItem(
         theme = getPreviewTheme(),
         darkThemeEnabled = isSystemInDarkTheme(),
