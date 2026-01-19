@@ -41,11 +41,12 @@ import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeGridSemanticToke
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeOpacitySemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeSizeSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeSpaceSemanticTokens
-import kotlinx.parcelize.Parcelize
 
 const val WIREFRAME_THEME_NAME = "Wireframe"
 
-@Parcelize
+/**
+ * The Wireframe theme.
+ */
 class WireframeTheme : OudsThemeContract {
 
     override val name: String
@@ -54,6 +55,7 @@ class WireframeTheme : OudsThemeContract {
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings(roundedCornerButtons = null)
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override val fontFamily: FontFamily
         get() = FontFamily(
             Font(R.font.shantellsans_extrabold, weight = FontWeight.ExtraBold),
@@ -72,7 +74,7 @@ class WireframeTheme : OudsThemeContract {
 
     override val colorTokens: OudsColorSemanticTokens
         get() = WireframeColorSemanticTokens()
-    
+
     override val materialColorTokens: OudsMaterialColorTokens
         get() = WireframeMaterialColorTokens()
 

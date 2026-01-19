@@ -19,7 +19,7 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 import com.orange.ouds.core.theme.OudsTheme
 
-val tokenCategories = TokenCategory::class.sealedSubclasses.mapNotNull { it.objectInstance }
+val tokenCategories = TokenCategory::class.previewCompatibleClass.sealedSubclasses.mapNotNull { it.objectInstance }
 
 @Immutable
 sealed class TokenCategory<T>(

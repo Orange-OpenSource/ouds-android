@@ -21,14 +21,17 @@ import androidx.compose.ui.Modifier
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun AppPreview(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
-    val theme = OrangeTheme()
+    val theme = OrangeTheme(getPreviewOrangeFontFamily())
     CompositionLocalProvider(value = LocalThemeDrawableResources provides ThemeDrawableResources(theme)) {
         OudsTheme(
             theme = theme,
