@@ -45,10 +45,21 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
                     )
                 }
             }
-            is Float -> "\u200e${value}f" // "\u200e" forces LTR display even if the app is in arabic
-            is Dp -> "\u200e${value} dp".replace(".0.dp", "").substringBeforeLast(".dp")
-            is TextStyle -> "\u200e${value.fontSize} sp".replace(".0.sp", "").substringBeforeLast(".sp")
+            is Float -> "${value}f"
+            // "\u200e" forces LTR display even if the app is in arabic
+            is Dp -> "\u200e${value.value.normalized} dp"
+            is TextStyle -> {
+                listOfNotNull(
+                    stringResource(R.string.app_tokens_typography_size_label, value.fontSize.value.normalized.toString()),
+                    value.fontWeight?.weight?.let { stringResource(R.string.app_tokens_typography_weight_label, it) },
+                    stringResource(R.string.app_tokens_typography_letterSpacing_label, value.letterSpacing.value.normalized.toString()),
+                    stringResource(R.string.app_tokens_typography_lineHeight_label, value.lineHeight.value.normalized.toString())
+                ).joinToString("\n")
+            }
             is Enum<*> -> value.name
             else -> this.value.toString()
         }
 }
+
+private val Float.normalized: Number
+    get() = if (this % 1 == 0f) toInt() else this

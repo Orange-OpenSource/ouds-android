@@ -218,8 +218,6 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = token.literalValue,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
                 style = OudsTheme.typography.body.default.medium.copy(color = OudsTheme.colorScheme.content.muted)
             )
         }

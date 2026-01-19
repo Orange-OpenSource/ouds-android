@@ -115,6 +115,10 @@
     <!-- Tokens: typography -->
     <string name="app_tokens_typography_label" translatable="false">Typography</string>
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. It enhances communication and reinforces the brand style.</string>
+    <string name="app_tokens_typography_size_label" translatable="false">Size: %s sp</string>
+    <string name="app_tokens_typography_weight_label" translatable="false">Weight: %s</string>
+    <string name="app_tokens_typography_letterSpacing_label" translatable="false">Letter spacing: %s sp</string>
+    <string name="app_tokens_typography_lineHeight_label" translatable="false">Line height: %s sp</string>
 
     <!-- Components -->
     <string name="app_components_common_appearance_label" translatable="false">Appearance</string>
