@@ -75,7 +75,7 @@ class NavigationBarDemoState(
     fun getArrangement(windowWidthSize: WindowWidthSizeClass) =
         if (windowWidthSize != WindowWidthSizeClass.MEDIUM) ShortNavigationBarArrangement.EqualWeight else ShortNavigationBarArrangement.Centered
 
-    fun getNavigationItemIconPosition(windowWidthSize: WindowWidthSizeClass) =
+    fun getItemIconPosition(windowWidthSize: WindowWidthSizeClass) =
         if (windowWidthSize != WindowWidthSizeClass.MEDIUM) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
 
     enum class ItemBadge(@StringRes val labelRes: Int) {

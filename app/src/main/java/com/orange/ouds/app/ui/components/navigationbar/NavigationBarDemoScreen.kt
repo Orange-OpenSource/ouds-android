@@ -102,7 +102,7 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState, windowWidthS
                     onClick = { selectedItemId = index },
                     label = label,
                     icon = OudsNavigationBarItemIcon(painter = painterResource(id = item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
-                    iconPosition = getNavigationItemIconPosition(windowWidthSize),
+                    iconPosition = getItemIconPosition(windowWidthSize),
                     badge = if (isLastItem) {
                         when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null
