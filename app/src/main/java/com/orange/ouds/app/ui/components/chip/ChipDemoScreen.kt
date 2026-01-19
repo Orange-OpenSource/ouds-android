@@ -14,7 +14,9 @@ package com.orange.ouds.app.ui.components.chip
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
@@ -64,7 +66,10 @@ fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Uni
         themeDrawableResources.call,
         themeDrawableResources.smsMessage
     )
-    FlowRow(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
+    FlowRow(
+        modifier = Modifier.selectableGroup(),
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
+    ) {
         repeat(ChipDemoState.ChipCount) { index ->
             val icon = OudsChipIcon(
                 painter = painterResource(icons[index % icons.count()]),
