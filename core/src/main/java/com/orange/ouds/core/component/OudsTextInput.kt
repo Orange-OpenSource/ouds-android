@@ -605,7 +605,7 @@ private fun OudsTextInputDecorator(
                             if (value.isEmpty()) {
                                 if (!placeholder.isNullOrBlank()) {
                                     Text(
-                                        modifier = Modifier.semantics { hideFromAccessibility() },
+                                        modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
                                         text = placeholder,
                                         style = OudsTheme.typography.label.default.large,
                                         color = decorativeContentColor(state = state),
