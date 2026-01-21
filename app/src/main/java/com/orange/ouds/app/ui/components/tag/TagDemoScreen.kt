@@ -34,7 +34,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.toSentenceCase
@@ -74,7 +74,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             label = stringResource(R.string.app_components_common_appearance_label),
             chipLabels = OudsTagAppearance.entries.map { it.name },
             selectedChipIndex = OudsTagAppearance.entries.indexOf(appearance),
-            onSelectionChange = { id -> appearance = OudsTagAppearance.entries[id] }
+            onSelectionChange = { index -> appearance = OudsTagAppearance.entries[index] }
         )
         val statuses = if (LocalInspectionMode.current) {
             // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
@@ -122,7 +122,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = TagDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TagDemoState.Layout.entries.indexOf(layout),
-            onSelectionChange = { id -> layout = TagDemoState.Layout.entries[id] }
+            onSelectionChange = { index -> layout = TagDemoState.Layout.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_label),
@@ -140,9 +140,9 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             label = stringResource(R.string.app_components_common_size_label),
             chipLabels = OudsTagSize.entries.map { it.name },
             selectedChipIndex = OudsTagSize.entries.indexOf(size),
-            onSelectionChange = { id -> size = OudsTagSize.entries[id] }
+            onSelectionChange = { index -> size = OudsTagSize.entries[index] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,

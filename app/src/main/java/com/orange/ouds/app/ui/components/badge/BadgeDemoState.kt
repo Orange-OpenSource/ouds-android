@@ -112,7 +112,7 @@ class BadgeDemoState(
 
     var enabled: Boolean by mutableStateOf(enabled)
 
-    val countTextFieldEnabled: Boolean
+    val countTextInputEnabled: Boolean
         get() = type == Type.Count
 
     private fun getEnabledSizes(type: Type): List<OudsBadgeSize> {

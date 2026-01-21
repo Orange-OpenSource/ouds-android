@@ -30,7 +30,7 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
@@ -72,7 +72,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             label = stringResource(R.string.app_components_common_appearance_label),
             chipLabels = OudsButtonAppearance.entries.map { it.name },
             selectedChipIndex = OudsButtonAppearance.entries.indexOf(appearance),
-            onSelectionChange = { id -> appearance = OudsButtonAppearance.entries[id] }
+            onSelectionChange = { index -> appearance = OudsButtonAppearance.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_label),
@@ -85,14 +85,14 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
-            onSelectionChange = { id -> layout = ButtonDemoState.Layout.entries[id] }
+            onSelectionChange = { index -> layout = ButtonDemoState.Layout.entries[index] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value },
-            enabled = labelTextFieldEnabled
+            enabled = labelTextInputEnabled
         )
     }
 }

@@ -255,6 +255,7 @@
     <string name="app_components_topAppBar_description_text">Top app bars display information and actions at the top of a screen.</string> <!--TODO update with OUDS description-->
     <string name="app_components_topAppBar_firstAction_a11y">First action</string>
     <string name="app_components_topAppBar_secondAction_a11y">Second action</string>
+    <string name="app_components_topAppBar_thirdAction_a11y">Third action</string>
     <string name="app_components_topAppBar_smallSize_label" translatable="false">Small</string>
     <string name="app_components_topAppBar_mediumSize_label" translatable="false">Medium</string>
     <string name="app_components_topAppBar_largeSize_label" translatable="false">Large</string>
@@ -265,7 +266,8 @@
     <string name="app_components_topAppBar_menuNavigationIcon_label" translatable="false">Menu</string>
     <string name="app_components_topAppBar_customNavigationIcon_label" translatable="false">Custom</string>
     <string name="app_components_topAppBar_title_label" translatable="false">Title</string>
-    <string name="app_components_topAppBar_actionIconBadge_label" translatable="false">Action icon badge</string>
+    <string name="app_components_topAppBar_actionCount_label" translatable="false">Action count</string>
+    <string name="app_components_topAppBar_lastActionIconBadge_label" translatable="false">Last action icon badge</string>
     <string name="app_components_topAppBar_actionAvatar_label" translatable="false">Action avatar</string>
     <string name="app_components_topAppBar_imageActionAvatar_label" translatable="false">Image</string>
     <string name="app_components_topAppBar_monogramActionAvatar_label" translatable="false">Monogram</string>

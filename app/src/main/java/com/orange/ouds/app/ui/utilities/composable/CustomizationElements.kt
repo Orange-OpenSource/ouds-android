@@ -113,7 +113,7 @@ fun CustomizationFilterChips(
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        CustomizationText(label = label)
+        CustomizationText(label = label, enabled = chips.any { it.enabled })
 
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
@@ -128,10 +128,10 @@ fun CustomizationFilterChips(
                 .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
-            chips.forEachIndexed { id, chip ->
+            chips.forEachIndexed { index, chip ->
                 OudsFilterChip(
-                    selected = selectedChipIndex == id,
-                    onClick = { onSelectionChange(id) },
+                    selected = selectedChipIndex == index,
+                    onClick = { onSelectionChange(index) },
                     label = chip.label,
                     enabled = chip.enabled
                 )
@@ -141,7 +141,7 @@ fun CustomizationFilterChips(
 }
 
 @Composable
-fun CustomizationTextField(
+fun CustomizationTextInput(
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
@@ -152,7 +152,7 @@ fun CustomizationTextField(
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value, selection = TextRange(value.length))) }
 
-    CustomizationTextField(
+    CustomizationTextInput(
         label = label,
         value = textFieldValue.copy(text = value),
         onValueChange = { newTextFieldValue ->
@@ -167,7 +167,7 @@ fun CustomizationTextField(
 }
 
 @Composable
-fun CustomizationTextField(
+fun CustomizationTextInput(
     label: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
@@ -219,7 +219,7 @@ fun CustomizationDropdownMenu(
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        CustomizationText(label = label)
+        CustomizationText(label = label, enabled = items.any { it.enabled })
 
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
@@ -266,11 +266,11 @@ data class CustomizationDropdownMenuItem(val label: String, val leadingIcon: (@C
 data class CustomizationFilterChip(val label: String, val enabled: Boolean = true)
 
 @Composable
-private fun CustomizationText(label: String) {
+private fun CustomizationText(label: String, enabled: Boolean = true) {
     Text(
         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin),
         text = label,
         style = labelTextStyle,
-        color = OudsTheme.colorScheme.content.default
+        color = if (enabled) OudsTheme.colorScheme.content.default else OudsTheme.colorScheme.content.disabled
     )
 }

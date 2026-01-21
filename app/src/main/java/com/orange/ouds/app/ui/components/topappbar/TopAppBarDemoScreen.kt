@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.topappbar
 
-import android.R.attr.label
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -32,9 +31,10 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.core.component.OudsCenterAlignedTopAppBar
@@ -70,7 +70,7 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
             label = stringResource(R.string.app_components_common_size_label),
             chipLabels = TopAppBarDemoState.Size.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TopAppBarDemoState.Size.entries.indexOf(size),
-            onSelectionChange = { id -> size = TopAppBarDemoState.Size.entries[id] }
+            onSelectionChange = { index -> size = TopAppBarDemoState.Size.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_topAppBar_centerAligned_label),
@@ -83,34 +83,42 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
             label = stringResource(R.string.app_components_topAppBar_navigationIcon_label),
             chipLabels = TopAppBarDemoState.NavigationIcon.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TopAppBarDemoState.NavigationIcon.entries.indexOf(navigationIcon),
-            onSelectionChange = { id -> navigationIcon = TopAppBarDemoState.NavigationIcon.entries[id] }
+            onSelectionChange = { index -> navigationIcon = TopAppBarDemoState.NavigationIcon.entries[index] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_topAppBar_title_label),
             value = title,
             onValueChange = { value -> title = value }
         )
+        val actionCountOptions = (TopAppBarDemoState.MinActionCount..TopAppBarDemoState.MaxActionCount).toList()
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_actionIconBadge_label),
-            chipLabels = TopAppBarDemoState.ActionIconBadge.entries.map { it.name },
-            selectedChipIndex = TopAppBarDemoState.ActionIconBadge.entries.indexOf(actionIconBadge),
-            onSelectionChange = { id -> actionIconBadge = TopAppBarDemoState.ActionIconBadge.entries[id] }
+            label = stringResource(R.string.app_components_topAppBar_actionCount_label),
+            chipLabels = actionCountOptions.map { it.toString() },
+            selectedChipIndex = actionCountOptions.indexOf(actionCount),
+            onSelectionChange = { index -> actionCount = actionCountOptions[index] }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_lastActionIconBadge_label),
+            chips = TopAppBarDemoState.ActionIconBadge.entries.map { CustomizationFilterChip(it.name, lastActionIconBadgeFilterChipsEnabled) },
+            selectedChipIndex = TopAppBarDemoState.ActionIconBadge.entries.indexOf(lastActionIconBadge),
+            onSelectionChange = { index -> lastActionIconBadge = TopAppBarDemoState.ActionIconBadge.entries[index] },
         )
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_topAppBar_actionAvatar_label),
-            chipLabels = TopAppBarDemoState.ActionAvatar.entries.map { stringResource(it.labelRes) },
+            chips = TopAppBarDemoState.ActionAvatar.entries.map { CustomizationFilterChip(stringResource(it.labelRes), actionAvatarFilterChipsEnabled) },
             selectedChipIndex = TopAppBarDemoState.ActionAvatar.entries.indexOf(actionAvatar),
-            onSelectionChange = { id -> actionAvatar = TopAppBarDemoState.ActionAvatar.entries[id] }
+            onSelectionChange = { index -> actionAvatar = TopAppBarDemoState.ActionAvatar.entries[index] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_topAppBar_actionAvatarMonogram_label),
             value = actionAvatarMonogram.toString().trim(),
             onValueChange = { value -> actionAvatarMonogram = value.firstOrNull().orElse { ' ' } },
-            enabled = actionAvatarMonogramTextFieldEnabled
+            enabled = actionAvatarMonogramTextInputEnabled
         )
     }
 }
@@ -132,39 +140,48 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
             )
         }
 
-        val firstAction = OudsTopAppBarAction.Icon(
-            painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-            contentDescription = stringResource(R.string.app_components_topAppBar_firstAction_a11y),
-            badge = when (actionIconBadge) {
-                TopAppBarDemoState.ActionIconBadge.None -> null
-                TopAppBarDemoState.ActionIconBadge.Standard -> OudsTopAppBarActionBadge(contentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y))
-                TopAppBarDemoState.ActionIconBadge.Count -> OudsTopAppBarActionBadge(
-                    contentDescription = pluralStringResource(
-                        id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
-                        count = ActionIconBadgeCount,
-                        ActionIconBadgeCount
-                    ),
-                    count = ActionIconBadgeCount
-                )
-            },
-            onClick = {}
-        )
-        val secondActionContentDescription = stringResource(R.string.app_components_topAppBar_secondAction_a11y)
-        val secondAction = when (actionAvatar) {
-            TopAppBarDemoState.ActionAvatar.Image -> OudsTopAppBarAction.Avatar(
-                painter = painterResource(id = R.drawable.il_top_app_bar_avatar),
-                contentDescription = secondActionContentDescription,
-                onClick = {}
-            )
-            TopAppBarDemoState.ActionAvatar.Monogram -> OudsTopAppBarAction.Avatar(
-                monogram = actionAvatarMonogram,
-                color = Color.White,
-                backgroundColor = Color(0xff138126),
-                contentDescription = secondActionContentDescription,
-                onClick = {}
+        val lastActionIconIndex = actions.indexOfLast { it == TopAppBarDemoState.Action.Icon }
+        val lastTopAppBarActionIconBadge = when (lastActionIconBadge) {
+            TopAppBarDemoState.ActionIconBadge.None -> null
+            TopAppBarDemoState.ActionIconBadge.Standard -> OudsTopAppBarActionBadge(contentDescription = stringResource(id = R.string.app_components_common_unreadNotificationsBadge_a11y))
+            TopAppBarDemoState.ActionIconBadge.Count -> OudsTopAppBarActionBadge(
+                contentDescription = pluralStringResource(
+                    id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                    count = ActionIconBadgeCount,
+                    ActionIconBadgeCount
+                ),
+                count = ActionIconBadgeCount
             )
         }
-        val actions = listOf(firstAction, secondAction)
+        val topAppBarActions = actions.mapIndexed { index, action ->
+            val contentDescription = getActionContentDescriptionResId(index)?.let { stringResource(it) }.orEmpty()
+            when (action) {
+                TopAppBarDemoState.Action.Icon -> {
+                    OudsTopAppBarAction.Icon(
+                        painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+                        contentDescription = contentDescription,
+                        badge = if (index == lastActionIconIndex) lastTopAppBarActionIconBadge else null,
+                        onClick = {}
+                    )
+                }
+                TopAppBarDemoState.Action.Avatar -> {
+                    when (actionAvatar) {
+                        TopAppBarDemoState.ActionAvatar.Image -> OudsTopAppBarAction.Avatar(
+                            painter = painterResource(id = R.drawable.il_top_app_bar_avatar),
+                            contentDescription = contentDescription,
+                            onClick = {}
+                        )
+                        TopAppBarDemoState.ActionAvatar.Monogram -> OudsTopAppBarAction.Avatar(
+                            monogram = actionAvatarMonogram,
+                            color = Color.White,
+                            backgroundColor = Color(0xff138126),
+                            contentDescription = contentDescription,
+                            onClick = {}
+                        )
+                    }
+                }
+            }
+        }
 
         when (size) {
             TopAppBarDemoState.Size.Small -> {
@@ -172,13 +189,13 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
                     OudsCenterAlignedTopAppBar(
                         title = title,
                         navigationIcon = navigationIcon,
-                        actions = actions
+                        actions = topAppBarActions
                     )
                 } else {
                     OudsTopAppBar(
                         title = title,
                         navigationIcon = navigationIcon,
-                        actions = actions
+                        actions = topAppBarActions
                     )
                 }
             }
@@ -186,17 +203,26 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
                 OudsMediumTopAppBar(
                     title = title,
                     navigationIcon = navigationIcon,
-                    actions = actions
+                    actions = topAppBarActions
                 )
             }
             TopAppBarDemoState.Size.Large -> {
                 OudsLargeTopAppBar(
                     title = title,
                     navigationIcon = navigationIcon,
-                    actions = actions
+                    actions = topAppBarActions
                 )
             }
         }
+    }
+}
+
+private fun getActionContentDescriptionResId(index: Int): Int? {
+    return when (index) {
+        0 -> R.string.app_components_topAppBar_firstAction_a11y
+        1 -> R.string.app_components_topAppBar_secondAction_a11y
+        2 -> R.string.app_components_topAppBar_thirdAction_a11y
+        else -> null
     }
 }
 
@@ -226,41 +252,57 @@ private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, the
                     onClickArgument()
                 }
             }
-            functionCallArgument("actions", "listOf") {
-                constructorCallArgument<OudsTopAppBarAction.Icon>(null) {
-                    painterArgument(themeDrawableResources.tipsAndTricks)
-                    contentDescriptionArgument(R.string.app_components_topAppBar_firstAction_a11y)
-                    if (actionIconBadge != TopAppBarDemoState.ActionIconBadge.None) {
-                        functionCallArgument("badge", OudsTopAppBarActionBadge::class.simpleName.orEmpty()) {
-                            when (actionIconBadge) {
-                                TopAppBarDemoState.ActionIconBadge.None -> {}
-                                TopAppBarDemoState.ActionIconBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
-                                TopAppBarDemoState.ActionIconBadge.Count -> contentDescriptionArgument(
-                                    id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
-                                    count = ActionIconBadgeCount,
-                                    ActionIconBadgeCount
-                                )
+            if (actions.isNotEmpty()) {
+                functionCallArgument("actions", "listOf") {
+                    actions.forEachIndexed { index, action ->
+                        val contentDescriptionResId = getActionContentDescriptionResId(index)
+                        when (action) {
+                            TopAppBarDemoState.Action.Icon -> {
+                                constructorCallArgument<OudsTopAppBarAction.Icon>(null) {
+                                    painterArgument(themeDrawableResources.tipsAndTricks)
+                                    if (contentDescriptionResId != null) {
+                                        contentDescriptionArgument(contentDescriptionResId)
+                                    }
+                                    val lastActionIconIndex = actions.indexOfLast { it == TopAppBarDemoState.Action.Icon }
+                                    if (lastActionIconIndex == index && lastActionIconBadge != TopAppBarDemoState.ActionIconBadge.None) {
+                                        functionCallArgument("badge", OudsTopAppBarActionBadge::class.simpleName.orEmpty()) {
+                                            when (lastActionIconBadge) {
+                                                TopAppBarDemoState.ActionIconBadge.None -> {}
+                                                TopAppBarDemoState.ActionIconBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
+                                                TopAppBarDemoState.ActionIconBadge.Count -> contentDescriptionArgument(
+                                                    id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                                    count = ActionIconBadgeCount,
+                                                    ActionIconBadgeCount
+                                                )
+                                            }
+                                            if (lastActionIconBadge == TopAppBarDemoState.ActionIconBadge.Count) {
+                                                typedArgument("count", ActionIconBadgeCount)
+                                            }
+                                        }
+                                    }
+                                    onClickArgument()
+                                }
                             }
-                            if (actionIconBadge == TopAppBarDemoState.ActionIconBadge.Count) {
-                                typedArgument("count", ActionIconBadgeCount)
+                            TopAppBarDemoState.Action.Avatar -> {
+                                constructorCallArgument<OudsTopAppBarAction.Avatar>(null) {
+                                    when (actionAvatar) {
+                                        TopAppBarDemoState.ActionAvatar.Image -> {
+                                            painterArgument(R.drawable.il_top_app_bar_avatar)
+                                        }
+                                        TopAppBarDemoState.ActionAvatar.Monogram -> {
+                                            typedArgument("monogram", actionAvatarMonogram)
+                                            colorArgument("color", Color.White)
+                                            colorArgument("backgroundColor", Color(0xff138126))
+                                        }
+                                    }
+                                    if (contentDescriptionResId != null) {
+                                        contentDescriptionArgument(contentDescriptionResId)
+                                    }
+                                    onClickArgument()
+                                }
                             }
                         }
                     }
-                    onClickArgument()
-                }
-                constructorCallArgument<OudsTopAppBarAction.Avatar>(null) {
-                    when (actionAvatar) {
-                        TopAppBarDemoState.ActionAvatar.Image -> {
-                            painterArgument(R.drawable.il_top_app_bar_avatar)
-                        }
-                        TopAppBarDemoState.ActionAvatar.Monogram -> {
-                            typedArgument("monogram", actionAvatarMonogram)
-                            colorArgument("color", Color.White)
-                            colorArgument("backgroundColor", Color(0xff138126))
-                        }
-                    }
-                    contentDescriptionArgument(R.string.app_components_topAppBar_secondAction_a11y)
-                    onClickArgument()
                 }
             }
         }

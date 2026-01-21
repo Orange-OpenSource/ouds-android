@@ -29,7 +29,7 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkChevron
@@ -70,16 +70,16 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
             label = stringResource(R.string.app_components_common_size_label),
             chipLabels = sizes.map { it.name },
             selectedChipIndex = sizes.indexOf(size),
-            onSelectionChange = { id -> size = sizes[id] }
+            onSelectionChange = { index -> size = sizes[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
-            onSelectionChange = { id -> layout = LinkDemoState.Layout.entries[id] }
+            onSelectionChange = { index -> layout = LinkDemoState.Layout.entries[index] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
