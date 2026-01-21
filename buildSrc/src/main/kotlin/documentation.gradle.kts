@@ -21,6 +21,7 @@ private val moduleDocumentationDirectories = listOf(
     "global-raw-tokens",
     "theme-contract",
     "theme-orange",
+    "theme-orange-business-tools",
     "theme-sosh",
     "theme-wireframe"
 )
