@@ -43,6 +43,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.drawWithContent
@@ -56,6 +57,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
@@ -69,6 +71,8 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.WindowWidthSizeClass
+import com.orange.ouds.core.theme.currentWindowWidth
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
@@ -78,6 +82,8 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+
+private val LocalWindowWidthSizeClass = staticCompositionLocalOf { WindowWidthSizeClass.COMPACT }
 
 /**
  * Height of OUDS navigation bar.
@@ -90,6 +96,10 @@ val OudsNavigationBarHeight = 80.dp
  * between top-level sections, following Material Design navigation patterns.
  *
  * [OudsNavigationBar] should contain three to five [OudsNavigationBarItem], each representing a singular destination.
+ *
+ * The layout of the items automatically adapts to the screen width:
+ * - **On medium screens** (width >= 600dp): Items are centered, with the icon positioned at the start of the label.
+ * - **On compact screens** (width < 600dp): Items are equally distributed, with the icon positioned on top of the label.
  *
  * [OudsNavigationBar] default appearance is opaque but, if you need a **translucent blurred navigation bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsNavigationBar] with
@@ -110,28 +120,29 @@ val OudsNavigationBarHeight = 80.dp
  * @param modifier [Modifier] applied to the navigation bar.
  * @param translucent Whether the navigation bar should be translucent.
  * @param windowInsets Window insets of the navigation bar.
- * @param arrangement The horizontal arrangement of the navigation bar items.
- *   On medium window sizes (window width from 600dp), it is recommended to use [ShortNavigationBarArrangement.Centered] in combination
- *   with [NavigationItemIconPosition.Start] for the items.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
- * @sample com.orange.ouds.core.component.samples.OudsNavigationBarWithHorizontalItemsSample
  */
 @Composable
 fun OudsNavigationBar(
     items: List<OudsNavigationBarItem>,
     modifier: Modifier = Modifier,
     translucent: Boolean = false,
-    windowInsets: WindowInsets = ShortNavigationBarDefaults.windowInsets,
-    arrangement: ShortNavigationBarArrangement = ShortNavigationBarDefaults.arrangement
+    windowInsets: WindowInsets = ShortNavigationBarDefaults.windowInsets
 ) {
+    val windowWidthSizeClass = if (LocalInspectionMode.current) {
+        LocalWindowWidthSizeClass.current
+    } else {
+        WindowWidthSizeClass.compute(currentWindowWidth())
+    }
+
     with(OudsTheme.componentsTokens.bar) {
         ShortNavigationBar(
             modifier = modifier,
             containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
             contentColor = colorContentUnselectedEnabled.value,
             windowInsets = windowInsets,
-            arrangement = arrangement,
+            arrangement = if (windowWidthSizeClass != WindowWidthSizeClass.MEDIUM) ShortNavigationBarArrangement.EqualWeight else ShortNavigationBarArrangement.Centered,
             content = {
                 val topBorderColor = OudsTheme.colorScheme.border.minimal
                 Row(
@@ -168,6 +179,10 @@ fun OudsNavigationBar(
  *
  * [OudsNavigationBarItem] always shows text labels.
  *
+ * The layout of the item automatically adapts to the screen width:
+ *  - **On medium screens** (width >= 600dp): The icon is positioned at the start of the label.
+ *  - **On compact screens** (width < 600dp): The icon is positioned on top of the label.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
  *
  * > Design version: 1.0.0
@@ -178,9 +193,6 @@ fun OudsNavigationBar(
  * @param label Label of the item.
  * @param badge Optional badge displayed on the item icon.
  * @param interactionSource [MutableInteractionSource] that will be used to dispatch events when this item is pressed, hovered or focused.
- * @param iconPosition The position of the icon relative to the label.
- *   On medium window sizes (from 600dp), it is recommended to use [NavigationItemIconPosition.Start]
- *   in combination with [ShortNavigationBarArrangement.Centered] for the navigation bar.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  */
@@ -190,8 +202,7 @@ data class OudsNavigationBarItem(
     val icon: OudsNavigationBarItemIcon,
     val label: String? = null,
     val badge: OudsNavigationBarItemBadge? = null,
-    val interactionSource: MutableInteractionSource? = null,
-    val iconPosition: NavigationItemIconPosition = NavigationItemIconPosition.Top
+    val interactionSource: MutableInteractionSource? = null
 ) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>(ExtraParameters::class.java) {
 
     @ConsistentCopyVisibility
@@ -204,6 +215,13 @@ data class OudsNavigationBarItem(
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getNavigationBarItemState(interactionState = interactionState)
+        val windowWidthSizeClass = if (LocalInspectionMode.current) {
+            LocalWindowWidthSizeClass.current
+        } else {
+            WindowWidthSizeClass.compute(currentWindowWidth())
+        }
+        val iconPosition = if (windowWidthSizeClass != WindowWidthSizeClass.MEDIUM) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
+
         with(OudsTheme.componentsTokens.bar) {
             val selectedContentColor = contentColor(state = state, selected = true)
             val unselectedContentColor = contentColor(state = state, selected = false)
@@ -437,7 +455,9 @@ private fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewP
 @Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
 @Composable
 private fun PreviewOudsNavigationBarWithHorizontalItems(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
-    PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount, horizontalItems = true)
+    CompositionLocalProvider(LocalWindowWidthSizeClass provides WindowWidthSizeClass.MEDIUM) {
+        PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount)
+    }
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
@@ -452,12 +472,13 @@ private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItem
 @Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Composable
 private fun PreviewOudsNavigationBarHorizontalItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
-    PreviewOudsNavigationBarItem(
-        theme = getPreviewTheme(),
-        darkThemeEnabled = isSystemInDarkTheme(),
-        selected = selected,
-        iconPosition = NavigationItemIconPosition.Start
-    )
+    CompositionLocalProvider(LocalWindowWidthSizeClass provides WindowWidthSizeClass.MEDIUM) {
+        PreviewOudsNavigationBarItem(
+            theme = getPreviewTheme(),
+            darkThemeEnabled = isSystemInDarkTheme(),
+            selected = selected,
+        )
+    }
 }
 
 private data class OudsNavigationBarPreviewItem(
@@ -496,16 +517,13 @@ internal fun PreviewOudsNavigationBar(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     itemCount: Int,
-    horizontalItems: Boolean = false
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsNavigationBar(
-        arrangement = if (horizontalItems) ShortNavigationBarArrangement.Centered else ShortNavigationBarArrangement.EqualWeight,
         items = navigationBarPreviewItems.take(itemCount).mapIndexed { index, item ->
             OudsNavigationBarItem(
                 selected = index == 0,
                 onClick = {},
                 icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
-                iconPosition = if (horizontalItems) NavigationItemIconPosition.Start else NavigationItemIconPosition.Top,
                 label = item.label,
                 badge = item.badge
             )
@@ -517,15 +535,13 @@ internal fun PreviewOudsNavigationBar(
 internal fun PreviewOudsNavigationBarItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    selected: Boolean,
-    iconPosition: NavigationItemIconPosition = NavigationItemIconPosition.Top
+    selected: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     Row {
         val item = OudsNavigationBarItem(
             selected = selected,
             onClick = {},
             icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star),
-            iconPosition = iconPosition,
             label = "Label"
         )
         PreviewEnumEntries<OudsNavigationBarItemState> {

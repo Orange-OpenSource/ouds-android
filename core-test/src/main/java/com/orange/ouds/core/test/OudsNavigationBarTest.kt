@@ -34,7 +34,7 @@ internal class OudsNavigationBarTest {
     }
 
     @RunWith(Parameterized::class)
-    class MediumWindowSize(parameter: Any) : OudsComponentSnapshotTest(
+    class WithHorizontalItems(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.NavigationBar.WithHorizontalItems,
         parameter,
         OudsComponentTestSuite.theme,
@@ -66,8 +66,8 @@ internal class OudsNavigationBarItemTest {
     }
 
     @RunWith(Parameterized::class)
-    class MediumWindowSize(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.NavigationBarItem.MediumWindowSize,
+    class Horizontal(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationBarItem.Horizontal,
         parameter,
         OudsComponentTestSuite.theme,
         OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp
@@ -75,7 +75,7 @@ internal class OudsNavigationBarItemTest {
         companion object {
             @JvmStatic
             @Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.NavigationBarItem.MediumWindowSize.parameters
+            internal fun data() = OudsPreviewableComponent.NavigationBarItem.Horizontal.parameters
         }
     }
 }

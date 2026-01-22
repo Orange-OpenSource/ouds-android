@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.utilities
 
-import androidx.compose.material3.NavigationItemIconPosition
 import androidx.compose.runtime.Composable
 import com.orange.ouds.core.component.OudsBadgePreviewParameter
 import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
@@ -415,7 +414,6 @@ interface OudsPreviewableComponent {
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
                     itemCount = parameter as Int,
-                    horizontalItems = true
                 )
             }
         }
@@ -438,7 +436,7 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object MediumWindowSize : OudsPreviewableComponent {
+        object Horizontal : OudsPreviewableComponent {
             override val parameters: List<Any> = OudsNavigationBarItemPreviewParameterProvider().values.toList()
 
             @Composable
@@ -447,7 +445,6 @@ interface OudsPreviewableComponent {
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
                     selected = parameter as Boolean,
-                    iconPosition = NavigationItemIconPosition.Start
                 )
             }
         }

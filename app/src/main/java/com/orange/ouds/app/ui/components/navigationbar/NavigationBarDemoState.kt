@@ -13,8 +13,6 @@
 package com.orange.ouds.app.ui.components.navigationbar
 
 import androidx.annotation.StringRes
-import androidx.compose.material3.NavigationItemIconPosition
-import androidx.compose.material3.ShortNavigationBarArrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -24,7 +22,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
-import com.orange.ouds.core.theme.WindowWidthSizeClass
 
 @Composable
 fun rememberNavigationBarDemoState(
@@ -71,12 +68,6 @@ class NavigationBarDemoState(
 
     val items: List<Item>
         get() = Item.entries.take(itemCount)
-
-    fun getArrangement(windowWidthSize: WindowWidthSizeClass) =
-        if (windowWidthSize != WindowWidthSizeClass.MEDIUM) ShortNavigationBarArrangement.EqualWeight else ShortNavigationBarArrangement.Centered
-
-    fun getItemIconPosition(windowWidthSize: WindowWidthSizeClass) =
-        if (windowWidthSize != WindowWidthSizeClass.MEDIUM) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
 
     enum class ItemBadge(@StringRes val labelRes: Int) {
         None(R.string.app_components_common_none_label),

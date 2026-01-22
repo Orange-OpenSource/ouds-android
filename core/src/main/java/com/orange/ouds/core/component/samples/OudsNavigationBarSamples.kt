@@ -12,29 +12,23 @@
 
 package com.orange.ouds.core.component.samples
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.NavigationItemIconPosition
-import androidx.compose.material3.ShortNavigationBarArrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemBadge
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.OudsPreviewableComponent
 
 @Composable
 internal fun OudsNavigationBarSample() {
@@ -67,48 +61,8 @@ internal fun OudsNavigationBarSample() {
     )
 }
 
-@Composable
-internal fun OudsNavigationBarWithHorizontalItemsSample() {
-    data class Item(val label: String, val imageVector: ImageVector, val count: Int? = null)
-
-    val items = listOf(
-        Item("Call", Icons.Default.Call),
-        Item("Email", Icons.Default.Email, count = 27),
-        Item("Agenda", Icons.Default.DateRange),
-        Item("Settings", Icons.Default.Settings)
-    )
-    var selectedItemIndex: Int by rememberSaveable { mutableIntStateOf(0) }
-
-    OudsNavigationBar(
-        arrangement = ShortNavigationBarArrangement.Centered,
-        items = items.mapIndexed { index, item ->
-            val isSelected = index == selectedItemIndex
-            OudsNavigationBarItem(
-                selected = isSelected,
-                onClick = {
-                    selectedItemIndex = index
-                    // Do something else here
-                },
-                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
-                iconPosition = NavigationItemIconPosition.Start,
-                label = item.label,
-                badge = item.count?.let { count ->
-                    OudsNavigationBarItemBadge(contentDescription = "$count unread emails", count = count)
-                }
-            )
-        }
-    )
-}
-
 @PreviewLightDark
 @Composable
 private fun PreviewOudsNavigationBarSample() = OudsPreview {
     OudsNavigationBarSample()
-}
-
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
-@Composable
-private fun PreviewOudsNavigationBarWithHorizontalItemsSample() = OudsPreview {
-    OudsNavigationBarWithHorizontalItemsSample()
 }
