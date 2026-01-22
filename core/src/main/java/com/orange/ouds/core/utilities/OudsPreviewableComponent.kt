@@ -96,6 +96,7 @@ import com.orange.ouds.core.component.PreviewOudsTextInputConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsTextInputWithLongLabels
 import com.orange.ouds.core.component.PreviewOudsTextInputWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsTopAppBar
+import com.orange.ouds.core.theme.WindowWidthSizeClass
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -397,7 +398,8 @@ interface OudsPreviewableComponent {
                 PreviewOudsNavigationBar(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    itemCount = parameter as Int
+                    itemCount = parameter as Int,
+                    windowWidthSizeClass = WindowWidthSizeClass.COMPACT
                 )
             }
         }
@@ -414,6 +416,7 @@ interface OudsPreviewableComponent {
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
                     itemCount = parameter as Int,
+                    windowWidthSizeClass = WindowWidthSizeClass.MEDIUM
                 )
             }
         }
@@ -431,7 +434,8 @@ interface OudsPreviewableComponent {
                 PreviewOudsNavigationBarItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    selected = parameter as Boolean
+                    selected = parameter as Boolean,
+                    windowWidthSizeClass = WindowWidthSizeClass.COMPACT
                 )
             }
         }
@@ -445,6 +449,7 @@ interface OudsPreviewableComponent {
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
                     selected = parameter as Boolean,
+                    windowWidthSizeClass = WindowWidthSizeClass.MEDIUM
                 )
             }
         }

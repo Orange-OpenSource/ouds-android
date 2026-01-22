@@ -446,16 +446,24 @@ internal enum class OudsNavigationBarItemState {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
-    PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount)
+    PreviewOudsNavigationBar(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        itemCount = itemCount,
+        windowWidthSizeClass = WindowWidthSizeClass.COMPACT
+    )
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
 @Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
 @Composable
 private fun PreviewOudsNavigationBarWithHorizontalItems(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
-    CompositionLocalProvider(LocalWindowWidthSizeClass provides WindowWidthSizeClass.MEDIUM) {
-        PreviewOudsNavigationBar(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), itemCount = itemCount)
-    }
+    PreviewOudsNavigationBar(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        itemCount = itemCount,
+        windowWidthSizeClass = WindowWidthSizeClass.MEDIUM
+    )
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
@@ -463,20 +471,24 @@ private fun PreviewOudsNavigationBarWithHorizontalItems(@PreviewParameter(OudsNa
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
-    PreviewOudsNavigationBarItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), selected = selected)
+    PreviewOudsNavigationBarItem(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        selected = selected,
+        windowWidthSizeClass = WindowWidthSizeClass.COMPACT
+    )
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
 @Composable
 private fun PreviewOudsNavigationBarHorizontalItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
-    CompositionLocalProvider(LocalWindowWidthSizeClass provides WindowWidthSizeClass.MEDIUM) {
-        PreviewOudsNavigationBarItem(
-            theme = getPreviewTheme(),
-            darkThemeEnabled = isSystemInDarkTheme(),
-            selected = selected,
-        )
-    }
+    PreviewOudsNavigationBarItem(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        selected = selected,
+        windowWidthSizeClass = WindowWidthSizeClass.MEDIUM
+    )
 }
 
 private data class OudsNavigationBarPreviewItem(
@@ -515,40 +527,46 @@ internal fun PreviewOudsNavigationBar(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     itemCount: Int,
+    windowWidthSizeClass: WindowWidthSizeClass
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    OudsNavigationBar(
-        items = navigationBarPreviewItems.take(itemCount).mapIndexed { index, item ->
-            OudsNavigationBarItem(
-                selected = index == 0,
-                onClick = {},
-                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
-                label = item.label,
-                badge = item.badge
-            )
-        }
-    )
+    CompositionLocalProvider(LocalWindowWidthSizeClass provides windowWidthSizeClass) {
+        OudsNavigationBar(
+            items = navigationBarPreviewItems.take(itemCount).mapIndexed { index, item ->
+                OudsNavigationBarItem(
+                    selected = index == 0,
+                    onClick = {},
+                    icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
+                    label = item.label,
+                    badge = item.badge
+                )
+            }
+        )
+    }
 }
 
 @Composable
 internal fun PreviewOudsNavigationBarItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    selected: Boolean
+    selected: Boolean,
+    windowWidthSizeClass: WindowWidthSizeClass
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    Row {
-        val item = OudsNavigationBarItem(
-            selected = selected,
-            onClick = {},
-            icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star),
-            label = "Label"
-        )
-        PreviewEnumEntries<OudsNavigationBarItemState> {
-            item.Content(
-                modifier = Modifier
-                    .size(width = 80.dp, height = 64.dp)
-                    .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value),
-                extraParameters = OudsNavigationBarItem.ExtraParameters(this)
+    CompositionLocalProvider(LocalWindowWidthSizeClass provides windowWidthSizeClass) {
+        Row {
+            val item = OudsNavigationBarItem(
+                selected = selected,
+                onClick = {},
+                icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star),
+                label = "Label"
             )
+            PreviewEnumEntries<OudsNavigationBarItemState> {
+                item.Content(
+                    modifier = Modifier
+                        .size(width = 80.dp, height = 64.dp)
+                        .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value),
+                    extraParameters = OudsNavigationBarItem.ExtraParameters(this)
+                )
+            }
         }
     }
 }
