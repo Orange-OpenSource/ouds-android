@@ -300,21 +300,19 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
                 val indicatorHeight = sizeHeightActiveIndicatorCustom.dp.toPx()
                 val indicatorWidth: Float
                 val indicatorStartXOffset: Float
-                val indicatorEndXOffset: Float
                 when (iconPosition) {
                     NavigationItemIconPosition.Top -> {
                         indicatorWidth = sizeWidthActiveIndicatorCustomTop.dp.toPx()
                         indicatorStartXOffset = (size.width - indicatorWidth).coerceAtLeast(0f) / 2
-                        indicatorEndXOffset = indicatorStartXOffset + indicatorWidth
                     }
                     else -> {
                         val horizontalItemIndicatorPaddingStart = 14.dp.toPx() // Constant value defined in Figma
                         val horizontalItemIndicatorPaddingEnd = 10.dp.toPx() // Constant value defined in Figma
                         indicatorWidth = size.width - (horizontalItemIndicatorPaddingStart + horizontalItemIndicatorPaddingEnd)
                         indicatorStartXOffset = horizontalItemIndicatorPaddingStart
-                        indicatorEndXOffset = size.width - horizontalItemIndicatorPaddingEnd
                     }
                 }
+                val indicatorEndXOffset = indicatorStartXOffset + indicatorWidth
 
                 drawContent()
 
