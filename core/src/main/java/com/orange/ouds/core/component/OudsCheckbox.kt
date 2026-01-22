@@ -61,7 +61,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Checkboxes are input controls that allow users to select one or more options from a number of choices.
+ * Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox that does not show icon or text,
+ * provides greater flexibility when creating other components that require a checkbox to be displayed.
  *
  * The **standalone checkbox variant** is used when the checkbox input is nested within another component and an alternative label is provided. For example,
  * a checkbox can be used in a data table where its purpose is clear from its position or its connection to other items in the same row or column.
@@ -110,7 +111,8 @@ fun OudsCheckbox(
 }
 
 /**
- * Checkboxes are input controls that allow users to select one or more options from a number of choices.
+ * Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox that does not show icon or text,
+ * provides greater flexibility when creating other components that require a checkbox to be displayed.
  *
  * This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,
  * all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are checked,

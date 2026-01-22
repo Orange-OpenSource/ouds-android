@@ -28,13 +28,9 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Chips help people enter information, make selections, filter content, or trigger actions. Chips
- * can show multiple interactive elements together in the same area, such as a list of selectable
- * movie times, or a series of email contacts.
- *
- * A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context.
- * Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
- * They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.
+ * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
+ * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
+ * or clicked to apply the suggestion, streamlining input and enhancing usability.
  *
  * This version of the suggestion chip uses the *text only* layout which displays only text, offering a clean and minimalistic look.
  * Best suited for category-based filters that do not require additional visual elements.
@@ -76,13 +72,9 @@ fun OudsSuggestionChip(
 }
 
 /**
- * Chips help people enter information, make selections, filter content, or trigger actions. Chips
- * can show multiple interactive elements together in the same area, such as a list of selectable
- * movie times, or a series of email contacts.
- *
- * A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context.
- * Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
- * They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.
+ * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
+ * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
+ * or clicked to apply the suggestion, streamlining input and enhancing usability.
  *
  * This version of the chip uses the *icon only* layout which uses only an icon, making it a compact option for limited space.
  * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
@@ -124,13 +116,9 @@ fun OudsSuggestionChip(
 }
 
 /**
- * Chips help people enter information, make selections, filter content, or trigger actions. Chips
- * can show multiple interactive elements together in the same area, such as a list of selectable
- * movie times, or a series of email contacts.
- *
- * A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context.
- * Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
- * They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.
+ * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
+ * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
+ * or clicked to apply the suggestion, streamlining input and enhancing usability.
  *
  * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
  * Ideal when a visual cue helps reinforce the filter’s meaning.

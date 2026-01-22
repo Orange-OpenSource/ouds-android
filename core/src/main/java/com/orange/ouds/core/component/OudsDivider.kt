@@ -32,8 +32,8 @@ import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Dividers are used to visually structure an interface by clearly separating content sections. They help to improve readability and content organization
- * without introducing a strong hierarchy like a heading or a container would.
+ * Divider is a UI element that allows to structure the content by visually separating the content zones. Divider improves readability
+ * and content organization without introducing a stronger visual hierarchy like a heading or a container would.
  *
  * The **horizontal divider** renders a horizontal line to separate stacked vertical sections.
  *
@@ -58,8 +58,8 @@ fun OudsHorizontalDivider(
 }
 
 /**
- * Dividers are used to visually structure an interface by clearly separating content sections. They help to improve readability and content organization
- * without introducing a strong hierarchy like a heading or a container would.
+ * Divider is a UI element that allows to structure the content by visually separating the content zones. Divider improves readability
+ * and content organization without introducing a stronger visual hierarchy like a heading or a container would.
  *
  * The **vertical divider** renders a vertical line to separate horizontally aligned elements.
  *

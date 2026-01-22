@@ -62,7 +62,9 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 
 /**
- * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
  *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
@@ -99,7 +101,9 @@ fun OudsLink(
 }
 
 /**
- * Links are interactive elements that allow users to navigate to a new screen, website, or a specific section within the current screen.
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
  *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
@@ -138,7 +142,11 @@ fun OudsLink(
 }
 
 /**
- * An OUDS link which displays a [chevron] before ([OudsLinkChevron.Back]) or after ([OudsLinkChevron.Next]) a label.
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
+ *
+ * This version of the link displays a [chevron] before ([OudsLinkChevron.Back]) or after ([OudsLinkChevron.Next]) a label.
  *
  * If it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].

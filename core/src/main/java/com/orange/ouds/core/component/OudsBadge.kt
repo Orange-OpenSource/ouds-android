@@ -62,8 +62,9 @@ import com.orange.ouds.theme.OudsThemeContract
 import kotlin.enums.enumEntries
 
 /**
- * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
- * It is often displayed as a label or indicator with a distinct background color and text.
+ * Badge is a UI element that emphasizes system notifications, status, or the categorization of an information,
+ * throughout colour only. Badge is rendered as a coloured shape, without icon, text or number; and its chosen
+ * size remains unchanged regardless of the changes of the interface size.
  *
  * Badges have five statuses depending on the context of the information they represent.
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
@@ -105,8 +106,9 @@ fun OudsBadge(
 }
 
 /**
- * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
- * It is often displayed as a label or indicator with a distinct background color and text.
+ * Badge is a UI element that emphasizes system notifications, status, or the categorization of an information,
+ * throughout colour only. Badge is rendered as a coloured shape, without icon, text or number; and its chosen
+ * size remains unchanged regardless of the changes of the interface size.
  *
  * Badges have five statuses depending on the context of the information they represent.
  * Each status is designed to convey a specific meaning and ensure clarity in communication.
@@ -152,8 +154,9 @@ fun OudsBadge(
 }
 
 /**
- * The badge is a small UI element used to highlight status, notifications, or categorization within an interface.
- * It is often displayed as a label or indicator with a distinct background color and text.
+ * Badge is a UI element that emphasizes system notifications, status, or the categorization of an information,
+ * throughout colour only. Badge is rendered as a coloured shape, without icon, text or number; and its chosen
+ * size remains unchanged regardless of the changes of the interface size.
  *
  * Badges have five statuses depending on the context of the information they represent.
  * Each status is designed to convey a specific meaning and ensure clarity in communication.

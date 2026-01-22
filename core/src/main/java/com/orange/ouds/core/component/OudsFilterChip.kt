@@ -28,12 +28,9 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Chips help people enter information, make selections, filter content, or trigger actions. Chips
- * can show multiple interactive elements together in the same area, such as a list of selectable
- * movie times, or a series of email contacts.
- *
- * A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
- * Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
+ * Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
+ * Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
+ * and selected Filter Chips remain visually distinct to indicate active filters.
  *
  * This version of the filter chip uses the *text only* layout which displays only text, offering a clean and minimalistic look.
  * Best suited for category-based filters that do not require additional visual elements.
@@ -78,12 +75,9 @@ fun OudsFilterChip(
 }
 
 /**
- * Chips help people enter information, make selections, filter content, or trigger actions. Chips
- * can show multiple interactive elements together in the same area, such as a list of selectable
- * movie times, or a series of email contacts.
- *
- * A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
- * Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
+ * Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
+ * Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
+ * and selected Filter Chips remain visually distinct to indicate active filters.
  *
  * This version of the chip uses the *icon only* layout which uses only an icon, making it a compact option for limited space.
  * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
@@ -128,12 +122,9 @@ fun OudsFilterChip(
 }
 
 /**
- * Chips help people enter information, make selections, filter content, or trigger actions. Chips
- * can show multiple interactive elements together in the same area, such as a list of selectable
- * movie times, or a series of email contacts.
- *
- * A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
- * Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
+ * Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
+ * Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
+ * and selected Filter Chips remain visually distinct to indicate active filters.
  *
  * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
  * Ideal when a visual cue helps reinforce the filter’s meaning.

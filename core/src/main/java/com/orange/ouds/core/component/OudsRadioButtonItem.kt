@@ -1,14 +1,14 @@
 /*
- * Software Name: OUDS Android
- * SPDX-FileCopyrightText: Copyright (c) Orange SA
- * SPDX-License-Identifier: MIT
- *
- * This software is distributed under the MIT license,
- * the text of which is available at https://opensource.org/license/MIT/
- * or see the "LICENSE" file for more details.
- *
- * Software description: Android library of reusable graphical components
- */
+* Software Name: OUDS Android
+* SPDX-FileCopyrightText: Copyright (c) Orange SA
+* SPDX-License-Identifier: MIT
+*
+* This software is distributed under the MIT license,
+* the text of which is available at https://opensource.org/license/MIT/
+* or see the "LICENSE" file for more details.
+*
+* Software description: Android library of reusable graphical components
+*/
 
 package com.orange.ouds.core.component
 
@@ -43,7 +43,8 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
+ * Radio button item is a UI element that allows to select a single option from a set of mutually exclusive choices.
+ * Radio button item covers a wider range of contexts by allowing to toggle the visibility of additional text labels and icon assets.
  *
  * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as
  * extra label, description, a divider, or an icon, allowing it to suit various use cases.

@@ -55,9 +55,9 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * An input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing
- * enter, comma, or tab), each value is transformed into a tag.
- * Input tags are often used for adding labels, categories, or participants. They typically support editing, removing, and validating individual tags.
+ * Input tag is a UI element that allows to enter multiple values, each represented as a tag. As users type
+ * and submit values (usually by pressing enter, comma, or tab), each value is transformed into a tag.
+ * Input tag is often used for adding labels, categories, or participants.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-input-tag)
  *
@@ -166,9 +166,9 @@ fun OudsInputTag(
 }
 
 /**
- * An input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing
- * enter, comma, or tab), each value is transformed into a tag.
- * Input tags are often used for adding labels, categories, or participants. They typically support editing, removing, and validating individual tags.
+ * Input tag is a UI element that allows to enter multiple values, each represented as a tag. As users type
+ * and submit values (usually by pressing enter, comma, or tab), each value is transformed into a tag.
+ * Input tag is often used for adding labels, categories, or participants.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-input-tag)
  *
