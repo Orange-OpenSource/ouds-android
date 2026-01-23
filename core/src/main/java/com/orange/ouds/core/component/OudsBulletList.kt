@@ -58,6 +58,10 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param textStyle The typography style for the list items. See [OudsBulletListTextStyle].
  * @param bold Whether the list item text should be bold. This can be overridden for sub-lists. Defaults to `true`.
  * @param builder A lambda scope using the [OudsBulletListBuilder] to define the list items.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsBulletListUnorderedSample
+ * @sample com.orange.ouds.core.component.samples.OudsBulletListOrderedSample
+ * @sample com.orange.ouds.core.component.samples.OudsBulletListBareSample
  */
 @Composable
 fun OudsBulletList(
