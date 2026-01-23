@@ -242,7 +242,7 @@ private fun Bullet(type: OudsBulletListType, level: OudsBulletListItemNestedLeve
                 is OudsBulletListUnorderedBullet.Tick -> painterResource(OudsTheme.drawableResources.component.bulletList.tick)
                 is OudsBulletListUnorderedBullet.Free -> type.bullet.painter
             }
-            UnorderedBullet(painter = painter, size = size, brandColor = type.bullet.brandColor)
+            UnorderedBullet(painter = painter, size = size, brandColor = type.brandColor)
         }
         is OudsBulletListType.Ordered -> when (level) {
             OudsBulletListItemNestedLevel.Zero -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
@@ -299,7 +299,7 @@ sealed class OudsBulletListType {
      * @param bullet The type of bullet to display, from the [OudsBulletListUnorderedBullet] sealed class. Defaults to [OudsBulletListUnorderedBullet.Default].
      * @param brandColor Controls the color of the unordered bullet. If `true`, the brand color is used; otherwise, the default content color is used.
      */
-    class Unordered(val bullet: OudsBulletListUnorderedBullet = OudsBulletListUnorderedBullet.Default()) : OudsBulletListType()
+    class Unordered(val bullet: OudsBulletListUnorderedBullet = OudsBulletListUnorderedBullet.Default(), val brandColor: Boolean = false) : OudsBulletListType()
 
     /**
      * Collects related items with numeric order or sequence. Numbering starts at 1 with the first list item and increases by increments of 1 for each
@@ -321,7 +321,7 @@ sealed class OudsBulletListType {
 /**
  * The bullet used in an unordered [OudsBulletList].
  */
-sealed class OudsBulletListUnorderedBullet(val brandColor: Boolean) {
+sealed class OudsBulletListUnorderedBullet() {
 
     /**
      * The default bullet style.
@@ -333,14 +333,14 @@ sealed class OudsBulletListUnorderedBullet(val brandColor: Boolean) {
      *
      * @constructor Creates an instance of [OudsBulletListUnorderedBullet.Default].
      */
-    class Default(brandColor: Boolean = false) : OudsBulletListUnorderedBullet(brandColor)
+    class Default : OudsBulletListUnorderedBullet()
 
     /**
      * A bullet represented by a tick (check) icon.
      *
      * @constructor Creates an instance of [OudsBulletListUnorderedBullet.Tick].
      */
-    class Tick(brandColor: Boolean = false) : OudsBulletListUnorderedBullet(brandColor)
+    class Tick : OudsBulletListUnorderedBullet()
 
     /**
      * A bullet represented by a custom [Painter].
@@ -349,7 +349,7 @@ sealed class OudsBulletListUnorderedBullet(val brandColor: Boolean) {
      * @constructor Creates an instance of [OudsBulletListUnorderedBullet.Free].
      * @param painter The custom [Painter] to be used as a bullet.
      */
-    class Free(val painter: Painter, brandColor: Boolean = false) : OudsBulletListUnorderedBullet(brandColor)
+    class Free(val painter: Painter) : OudsBulletListUnorderedBullet()
 }
 
 /**
@@ -420,7 +420,7 @@ private fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: Bo
                 item(label = "$typeName first item")
                 item(
                     label = "$typeName second item with a non-bold, unordered sublist",
-                    subListType = OudsBulletListType.Unordered(bullet = OudsBulletListUnorderedBullet.Tick(brandColor = true)),
+                    subListType = OudsBulletListType.Unordered(bullet = OudsBulletListUnorderedBullet.Tick(), brandColor = true),
                     subListHasBoldText = false
                 ) {
                     item(label = "Unordered subitem")
