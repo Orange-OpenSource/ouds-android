@@ -130,7 +130,7 @@ const val ORANGE_BUSINESS_TOOLS_THEME_NAME = "Orange Business Tools"
 open class OrangeBusinessToolsTheme(
     private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
-    private val roundedCornerTextInputs: Boolean = false
+    private val roundedCornerTextInputs: Boolean = true
 ) : OudsThemeContract {
 
     override val name: String
