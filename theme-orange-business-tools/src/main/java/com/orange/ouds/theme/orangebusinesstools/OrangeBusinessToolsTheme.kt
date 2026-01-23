@@ -90,7 +90,7 @@ const val ORANGE_BUSINESS_TOOLS_THEME_NAME = "Orange Business Tools"
  * )
  * ```
  *
- * In order to enable the Android Downloadable Fonts feature for the Orange theme, please also add [OrangeFontProvider] as a provider in your app manifest:
+ * In order to enable the Android Downloadable Fonts feature for the Orange Business Tools theme, please also add [OrangeFontProvider] as a provider in your app manifest:
  *
  * ```
  * <provider
