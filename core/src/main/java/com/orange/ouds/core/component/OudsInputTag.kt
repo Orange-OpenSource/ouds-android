@@ -188,7 +188,10 @@ fun OudsInputTag(
  * @sample com.orange.ouds.core.component.samples.OudsInputTagSample
  */
 @Composable
-@Deprecated("Please use OudsInputTag composable instead, which is the equivalent of Material InputChip in OUDS Android.")
+@Deprecated(
+    "Please use OudsInputTag composable instead, which is the equivalent of Material InputChip in OUDS Android.",
+    ReplaceWith("OudsInputTag(label = label, onClick = onClick, modifier = modifier, enabled = enabled, interactionSource = interactionSource)")
+)
 fun OudsInputChip(
     label: String,
     onClick: () -> Unit,
