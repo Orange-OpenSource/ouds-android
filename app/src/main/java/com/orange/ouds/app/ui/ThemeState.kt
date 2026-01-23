@@ -26,6 +26,8 @@ import com.orange.ouds.theme.orange.OrangeFontFamily
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.orangebusinesstools.ORANGE_BUSINESS_TOOLS_THEME_NAME
+import com.orange.ouds.theme.orangebusinesstools.OrangeBusinessToolsTheme
 import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
 import com.orange.ouds.theme.sosh.SoshTheme
 import com.orange.ouds.theme.wireframe.WIREFRAME_THEME_NAME
@@ -34,7 +36,12 @@ import com.orange.ouds.theme.wireframe.WireframeTheme
 @Composable
 fun rememberThemeState(
     settings: OudsThemeSettings = OudsThemeSettings(),
-    themeNames: List<String> = listOf(ORANGE_THEME_NAME, SOSH_THEME_NAME, WIREFRAME_THEME_NAME),
+    themeNames: List<String> = listOf(
+        ORANGE_THEME_NAME,
+        ORANGE_BUSINESS_TOOLS_THEME_NAME,
+        SOSH_THEME_NAME,
+        WIREFRAME_THEME_NAME
+    ),
     currentThemeName: String = ORANGE_THEME_NAME,
     areDownloadableOrangeFontFamiliesPreloaded: Boolean = false
 ) = rememberSaveable(settings, themeNames, currentThemeName, areDownloadableOrangeFontFamiliesPreloaded, saver = ThemeState.Saver) {
@@ -109,6 +116,11 @@ class ThemeState(
             names.mapNotNull { name ->
                 when (name) {
                     ORANGE_THEME_NAME -> OrangeTheme(
+                        orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
+                        roundedCornerButtons = roundedCornerButtons.orElse { false },
+                        roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
+                    )
+                    ORANGE_BUSINESS_TOOLS_THEME_NAME -> OrangeBusinessToolsTheme(
                         orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
