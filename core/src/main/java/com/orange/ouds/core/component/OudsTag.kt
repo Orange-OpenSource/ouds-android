@@ -65,8 +65,7 @@ import com.orange.ouds.theme.OudsThemeContract
 import kotlin.enums.enumEntries
 
 /**
- * A tag is a small element that shows short info like a label, keyword, or category.
- * It helps users quickly find, group, or understand content.
+ * Tag is a UI element that allows to display short info like a label, keyword, or category. Tag helps users quickly find, group, or understand content.
  *
  * Tags have six statuses depending on the context of the information they represent. Each status is designed
  * to convey a specific meaning and ensure clarity in communication.

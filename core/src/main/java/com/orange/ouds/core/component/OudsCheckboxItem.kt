@@ -40,7 +40,8 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Checkboxes are input controls that allow users to select one or more options from a number of choices.
+ * Checkbox item is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox item covers a wider range of
+ * contexts by allowing to toggle the visibility of additional text labels and icon assets.
  *
  * The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as description, a divider, or an icon,
  * allowing it to suit various use cases.
@@ -116,7 +117,8 @@ fun OudsCheckboxItem(
 }
 
 /**
- * Checkboxes are input controls that allow users to select one or more options from a number of choices.
+ * Checkbox item is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox item covers a wider range of
+ * contexts by allowing to toggle the visibility of additional text labels and icon assets.
  *
  * This checkbox item supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is
  * checked, all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are

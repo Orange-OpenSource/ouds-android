@@ -78,7 +78,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Top app bars display information and actions at the top of a screen.
+ * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
+ * elements. It may include an Up button, action icons, overflow menus, search, or tabs. It provides context and controls relevant to the current view.
  *
  * This small top app bar has slots for a title, navigation icon, and actions.
  *
@@ -148,7 +149,8 @@ fun OudsTopAppBar(
 }
 
 /**
- * Top app bars display information and actions at the top of a screen.
+ * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
+ * elements. It may include an Up button, action icons, overflow menus, search, or tabs. It provides context and controls relevant to the current view.
  *
  * This small top app bar has slots for a title that is horizontally aligned to the center, navigation icon, and actions.
  *
@@ -218,7 +220,8 @@ fun OudsCenterAlignedTopAppBar(
 }
 
 /**
- * Top app bars display information and actions at the top of a screen.
+ * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
+ * elements. It may include an Up button, action icons, overflow menus, search, or tabs. It provides context and controls relevant to the current view.
  *
  * This medium top app bar has slots for a title, navigation icon, and actions. In its default expanded
  * state, the title is displayed in a second row under the navigation and actions.
@@ -300,7 +303,8 @@ fun OudsMediumTopAppBar(
 }
 
 /**
- * Top app bars display information and actions at the top of a screen.
+ * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
+ * elements. It may include an Up button, action icons, overflow menus, search, or tabs. It provides context and controls relevant to the current view.
  *
  * This LargeTopAppBar has slots for a title, navigation icon, and actions. In its default expanded
  * state, the title is displayed in a second row under the navigation and actions.
