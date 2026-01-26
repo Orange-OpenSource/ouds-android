@@ -28,7 +28,7 @@ fun rememberNavigationBarDemoState(
     itemCount: Int = NavigationBarDemoState.MinItemCount,
     selectedItemId: Int = 0,
     lastItemBadge: NavigationBarDemoState.ItemBadge = NavigationBarDemoState.ItemBadge.None
-) = rememberSaveable(itemCount, lastItemBadge, saver = NavigationBarDemoState.Saver) {
+) = rememberSaveable(itemCount, selectedItemId, lastItemBadge, saver = NavigationBarDemoState.Saver) {
     NavigationBarDemoState(itemCount, selectedItemId, lastItemBadge)
 }
 

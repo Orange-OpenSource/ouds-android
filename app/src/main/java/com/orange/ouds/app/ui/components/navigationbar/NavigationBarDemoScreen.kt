@@ -50,7 +50,13 @@ fun NavigationBarDemoScreen() {
     DemoScreen(
         description = stringResource(id = Component.NavigationBar.descriptionRes),
         bottomSheetContent = { NavigationBarDemoBottomSheetContent(state = state) },
-        codeSnippet = { navigationBarDemoCodeSnippet(state = state, context = context, themeDrawableResources = themeDrawableResources) },
+        codeSnippet = {
+            navigationBarDemoCodeSnippet(
+                state = state,
+                context = context,
+                themeDrawableResources = themeDrawableResources
+            )
+        },
         demoContent = { NavigationBarDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.Bar
@@ -112,7 +118,11 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
     }
 }
 
-private fun Code.Builder.navigationBarDemoCodeSnippet(state: NavigationBarDemoState, context: Context, themeDrawableResources: ThemeDrawableResources) {
+private fun Code.Builder.navigationBarDemoCodeSnippet(
+    state: NavigationBarDemoState,
+    context: Context,
+    themeDrawableResources: ThemeDrawableResources,
+) {
     with(state) {
         functionCall("OudsNavigationBar") {
             functionCallArgument("items", "listOf") {

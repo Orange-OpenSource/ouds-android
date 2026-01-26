@@ -96,6 +96,7 @@ import com.orange.ouds.core.component.PreviewOudsTextInputConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsTextInputWithLongLabels
 import com.orange.ouds.core.component.PreviewOudsTextInputWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsTopAppBar
+import com.orange.ouds.core.theme.WindowWidthSizeClass
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -387,33 +388,70 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object NavigationBar : OudsPreviewableComponent {
+    object NavigationBar {
 
-        override val parameters: List<Any> = OudsNavigationBarPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsNavigationBarPreviewParameterProvider().values.toList()
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsNavigationBar(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                itemCount = parameter as Int
-            )
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationBar(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    itemCount = parameter as Int,
+                    windowWidthSizeClass = WindowWidthSizeClass.COMPACT
+                )
+            }
+        }
+
+        object WithHorizontalItems : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 600
+
+            override val parameters: List<Any> = OudsNavigationBarPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationBar(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    itemCount = parameter as Int,
+                    windowWidthSizeClass = WindowWidthSizeClass.MEDIUM
+                )
+            }
         }
     }
 
-    object NavigationBarItem : OudsPreviewableComponent {
+    object NavigationBarItem {
 
         const val PreviewWidthDp = 400
 
-        override val parameters: List<Any> = OudsNavigationBarItemPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsNavigationBarItemPreviewParameterProvider().values.toList()
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsNavigationBarItem(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                selected = parameter as Boolean
-            )
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationBarItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    selected = parameter as Boolean,
+                    windowWidthSizeClass = WindowWidthSizeClass.COMPACT
+                )
+            }
+        }
+
+        object Horizontal : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsNavigationBarItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationBarItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    selected = parameter as Boolean,
+                    windowWidthSizeClass = WindowWidthSizeClass.MEDIUM
+                )
+            }
         }
     }
 
