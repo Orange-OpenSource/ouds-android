@@ -87,6 +87,7 @@
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="one">%d message non lu</item>
         <item quantity="many">%d messages non lus</item>
+        <item quantity="other">%d messages non lus</item>
     </plurals>
     <string name="app_components_common_unreadNotificationsBadge_a11y">Notifications non lues</string>
     <string name="app_components_common_version_label">Version du design composant</string>
