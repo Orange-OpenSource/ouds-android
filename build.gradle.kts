@@ -35,6 +35,7 @@ dependencies {
     dokka(project(":global-raw-tokens"))
     dokka(project(":theme-contract"))
     dokka(project(":theme-orange"))
+    dokka(project(":theme-orange-business-tools"))
     dokka(project(":theme-sosh"))
     dokka(project(":theme-wireframe"))
 }
