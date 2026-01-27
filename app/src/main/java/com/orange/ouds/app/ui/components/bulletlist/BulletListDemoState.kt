@@ -19,12 +19,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedIcon
 import kotlin.reflect.full.createInstance
+
+val DefaultUnorderedFreeIconId
+    @Composable
+    get() = LocalThemeDrawableResources.current.home
 
 @Composable
 fun rememberBulletListDemoState(
@@ -35,16 +42,28 @@ fun rememberBulletListDemoState(
     bold: Boolean = true,
     levelCount: BulletListDemoState.LevelCount = BulletListDemoState.LevelCount.One,
     label: String = stringResource(R.string.app_components_common_label_label)
-) = rememberSaveable(type, unorderedIcon, brandColorIcon, textStyle, bold, levelCount, label, saver = BulletListDemoState.Saver) {
-    BulletListDemoState(
-        type = type,
-        unorderedIcon = unorderedIcon,
-        brandColorIcon = brandColorIcon,
-        textStyle = textStyle,
-        bold = bold,
-        levelCount = levelCount,
-        label = label
-    )
+): BulletListDemoState {
+    val defaultFreeIconPainter = painterResource(DefaultUnorderedFreeIconId)
+    return rememberSaveable(
+        type,
+        unorderedIcon,
+        brandColorIcon,
+        textStyle,
+        bold,
+        levelCount,
+        label,
+        saver = BulletListDemoState.getSaver(defaultFreeIconPainter)
+    ) {
+        BulletListDemoState(
+            type = type,
+            unorderedIcon = unorderedIcon,
+            brandColorIcon = brandColorIcon,
+            textStyle = textStyle,
+            bold = bold,
+            levelCount = levelCount,
+            label = label
+        )
+    }
 }
 
 class BulletListDemoState(
@@ -59,7 +78,7 @@ class BulletListDemoState(
 
     companion object {
 
-        val Saver = listSaver(
+        fun getSaver(defaultFreeIconPainter: Painter) = listSaver(
             save = { state ->
                 with(state) {
                     listOf(
@@ -76,10 +95,15 @@ class BulletListDemoState(
             restore = { list: List<Any?> ->
                 val typeName = list[0] as String
                 val unorderedIconName = list[1] as String
+                val unorderedIcon = if (unorderedIconName == OudsBulletListUnorderedIcon.Free::class.java.name) {
+                    OudsBulletListUnorderedIcon.Free(painter = defaultFreeIconPainter)
+                } else {
+                    Class.forName(unorderedIconName).kotlin.createInstance() as OudsBulletListUnorderedIcon
+                }
 
                 BulletListDemoState(
                     Class.forName(typeName).kotlin.createInstance() as OudsBulletListType,
-                    Class.forName(unorderedIconName).kotlin.createInstance() as OudsBulletListUnorderedIcon,
+                    unorderedIcon,
                     list[2] as Boolean,
                     list[3] as OudsBulletListTextStyle,
                     list[4] as Boolean,

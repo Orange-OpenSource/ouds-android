@@ -45,11 +45,11 @@ import kotlin.reflect.full.createInstance
 @Composable
 fun BulletListDemoScreen() {
     val state = rememberBulletListDemoState()
-    val unorderedFreeIconPainterId = LocalThemeDrawableResources.current.home
+    val unorderedFreeIconId = DefaultUnorderedFreeIconId
     DemoScreen(
         description = stringResource(id = Component.BulletList.descriptionRes),
         bottomSheetContent = { BulletListDemoBottomSheetContent(state = state) },
-        codeSnippet = { bulletListDemoCodeSnippet(state = state, unorderedFreeIconPainterId = unorderedFreeIconPainterId) },
+        codeSnippet = { bulletListDemoCodeSnippet(state = state, unorderedFreeIconId = unorderedFreeIconId) },
         demoContent = { BulletListDemoContent(state = state) },
         version = OudsVersion.Component.BulletList
     )
@@ -154,7 +154,7 @@ private fun BulletListDemoContent(state: BulletListDemoState) {
     }
 }
 
-private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, unorderedFreeIconPainterId: Int) {
+private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, unorderedFreeIconId: Int) {
     with(state) {
         functionCall("OudsBulletList") {
             trailingLambda = true
@@ -162,7 +162,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, u
                 functionCallArgument("type", type::class.java.nestedName) {
                     functionCallArgument("icon", unorderedIcon::class.java.nestedName) {
                         if (unorderedIcon is OudsBulletListUnorderedIcon.Free) {
-                            painterArgument(unorderedFreeIconPainterId)
+                            painterArgument(unorderedFreeIconId)
                         }
                     }
                     if (brandColorIcon) typedArgument("brandColor", brandColorIcon)
