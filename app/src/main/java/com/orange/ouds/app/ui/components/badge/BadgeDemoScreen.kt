@@ -76,7 +76,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_badge_type_label),
+            label = stringResource(R.string.app_components_common_type_label),
             chipLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
             onSelectionChange = { index -> type = BadgeDemoState.Type.entries[index] }

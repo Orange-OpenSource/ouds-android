@@ -35,6 +35,8 @@ import com.orange.ouds.app.ui.utilities.composable.Illustration
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsBulletList
+import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsCheckbox
@@ -64,6 +66,14 @@ fun BadgeIllustration() = ComponentIllustration {
         status = OudsBadgeStatus.Negative,
         size = OudsBadgeSize.Large
     )
+}
+
+@Composable
+fun BulletListIllustration() = ComponentIllustration {
+    OudsBulletList(modifier = Modifier.padding(end = 16.dp), type = OudsBulletListType.Unordered()) {
+        item(label = "Label")
+        item(label = "Label")
+    }
 }
 
 @Composable

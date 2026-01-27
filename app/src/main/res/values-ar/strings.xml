@@ -97,6 +97,9 @@
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
 
+    <!-- Components: bullet list -->
+    <string name="app_components_bulletList_description_text">Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.</string>
+
     <!-- Components: button -->
     <string name="app_components_button_description_text">Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.</string>
 

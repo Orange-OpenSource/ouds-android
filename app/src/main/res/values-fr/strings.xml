@@ -95,6 +95,9 @@
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>
 
+    <!-- Components: bullet list -->
+    <string name="app_components_bulletList_description_text">La Bullet list (ou liste à puces) est un élément d\'interface utilisateur qui permet de visualiser des éléments de texte individuels liés, regroupés par ordre alphabétique ; ces éléments commencent généralement par un chiffre ou une puce.</string>
+
     <!-- Components: button -->
     <string name="app_components_button_description_text">Un Button (ou bouton) est un élément d\'interface utilisateur qui déclenche une action ou un événement, et sert à lancer des tâches ou à confirmer une action.</string>
 
