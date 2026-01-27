@@ -131,7 +131,7 @@ class BulletListDemoState(
 
     enum class LevelCount(@StringRes val labelRes: Int) {
         One(R.string.app_components_bulletList_oneLevel_label),
-        Two(R.string.app_components_bulletList_twoLevel_label),
-        Three(R.string.app_components_bulletList_threeLevel_label)
+        Two(R.string.app_components_bulletList_twoLevels_label),
+        Three(R.string.app_components_bulletList_threeLevels_label)
     }
 }

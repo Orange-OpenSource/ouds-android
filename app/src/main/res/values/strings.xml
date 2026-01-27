@@ -173,8 +173,8 @@
     <string name="app_components_bulletList_brandColor_label" translatable="false">Brand color icon</string>
     <string name="app_components_bulletList_levelCount_label" translatable="false">Level count</string>
     <string name="app_components_bulletList_oneLevel_label" translatable="false">One</string>
-    <string name="app_components_bulletList_twoLevel_label" translatable="false">Two</string>
-    <string name="app_components_bulletList_threeLevel_label" translatable="false">Three</string>
+    <string name="app_components_bulletList_twoLevels_label" translatable="false">Two</string>
+    <string name="app_components_bulletList_threeLevels_label" translatable="false">Three</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label" translatable="false">Button</string>
