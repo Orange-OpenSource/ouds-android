@@ -1,0 +1,257 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>core</title>
+<link href="../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../scripts/sourceset_dependencies.js" async></script>
+<link href="../styles/style.css" rel="Stylesheet">
+<link href="../styles/main.css" rel="Stylesheet">
+<link href="../styles/prism.css" rel="Stylesheet">
+<link href="../styles/logo-styles.css" rel="Stylesheet">
+<link href="../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../scripts/main.js" defer></script>
+<script type="text/javascript" src="../scripts/prism.js" async></script>
+<script type="text/javascript" src="../ui-kit/ui-kit.min.js" defer></script>
+<link href="../images/logo-icon.svg">
+<link href="../images/banner.png">
+<link href="../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="1.1.0"><span class="versions-dropdown-button-text">1.1.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.1.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">1.1.0</span></a><a href="../older/1.0.0/core/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.0.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.0.0</span></a><a href="../older/0.4.0/core/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../older/0.3.0/core/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../older/0.2.0/core/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../older/0.1.0/core/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":core/main">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":core/main" data-filter=":core/main">
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" id="content" pageids="core::////PointingToDeclaration//-2055549142">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>core</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><p class="paragraph">The <strong>OUDS Core</strong> module provides the essential implementation of OUDS Android library. It acts as a semantic wrapper around Material Design 3, ensuring that all UI elements strictly adhere to the brand's visual guidelines without requiring manual configuration from the developer.</p><p class="paragraph">This module is divided into two main pillars:</p><ol><li><p class="paragraph">The <strong>OUDS Theme</strong>: Foundation of colors, typography, sizes, etc.</p></li><li><p class="paragraph">The <strong>OUDS Components</strong>: Ready-to-use UI elements (Buttons, Chips, Navigation Bar, etc.).</p></li></ol><h2 class="">OUDS Theme</h2><p class="paragraph"><strong>Package:</strong> <code class="lang-kotlin">com.orange.ouds.core.theme</code></p><p class="paragraph">The <code class="lang-kotlin">OudsTheme</code> composable is the entry point of OUDS Android. It automatically applies the correct color palette (Light or Dark) to the entire application hierarchy and provides OUDS tokens values.</p><h3 class="">Applying the theme</h3><p class="paragraph">Wrap your application's root composable or any specific screen with OudsTheme. It internally handles the switch between Light and Dark modes based on the system settings.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">import com.orange.ouds.core.theme.OudsTheme<br><br>setContent {<br>    OudsTheme {<br>        // Your app content goes here<br>    }<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h3 class="">Accessing theme attributes</h3><p class="paragraph">The module exposes a singleton object <code class="lang-kotlin">OudsTheme</code> (similar to <code class="lang-kotlin">MaterialTheme</code>) to access design tokens within your composables. This object provides direct access to all semantic design tokens (colors, typography, borders, etc.) defined in the system, allowing you to build custom UIs that remain consistent with the global brand style.</p><p class="paragraph"><strong>IMPORTANT: You should always use these semantic values instead of hardcoded values.</strong></p><h4 class="">Borders</h4><p class="paragraph">Access border width, radius and style tokens via <code class="lang-kotlin">OudsTheme.borders</code>.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Box(<br>    modifier = Modifier.border(<br>        width = OudsTheme.borders.width.medium,<br>        color = OudsTheme.colorScheme.border.default<br>    )<br>)</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h4 class="">Colors</h4><p class="paragraph">Access the semantic color palette via <code class="lang-kotlin">OudsTheme.colorScheme</code>. This ensures your UI adapts automatically to Light or Dark mode.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Text(<br>    text = "Hello World",<br>    color = OudsTheme.colorScheme.content.default, // Semantic color<br>    style = OudsTheme.typography.body.strong.large<br>)</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h4 class="">Elevations</h4><p class="paragraph">Access elevation tokens via <code class="lang-kotlin">OudsTheme.elevations</code>. These values represent the depth of an element on the z-axis (shadows) and follow Material Design elevation principles.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Surface(<br>    shadowElevation = OudsTheme.elevations.default<br>) {<br>    // Content<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h4 class="">Grids</h4><p class="paragraph">Access layout grid definitions (column gaps, margins, min and max widths) based on the window size via <code class="lang-kotlin">OudsTheme.grids</code>.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Column(<br>    modifier = Modifier.padding(horizontal = OudsTheme.grids.margin),<br>) {<br>    // Content<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h4 class="">Opacities</h4><p class="paragraph">Access alpha transparency levels via <code class="lang-kotlin">OudsTheme.opacities</code>.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Box(<br>    modifier = Modifier.alpha(OudsTheme.opacities.weak)<br>)</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h4 class="">Sizes</h4><p class="paragraph">Access standardized fixed dimensions (e.g., for icons, avatars, or touch targets) via <code class="lang-kotlin">OudsTheme.sizes</code>.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Icon(<br>    painter = painterResource(id = R.drawable.ic_heart),<br>    contentDescription = null,<br>    modifier = Modifier.size(OudsTheme.sizes.icon.medium)<br>)</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h4 class="">Spaces</h4><p class="paragraph">Access spacing and padding values via <code class="lang-kotlin">OudsTheme.spaces</code>. This is essential for maintaining consistent white space between elements.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Column(<br>    verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)<br>) {<br>    // Content<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h4 class="">Typography</h4><p class="paragraph">Access the brand's typography styles via <code class="lang-kotlin">OudsTheme.typography</code>.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Text(<br>    text = "Headline",<br>    style = OudsTheme.typography.heading.large<br>)</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h3 class="">Overriding theme modes</h3><p class="paragraph">Sometimes you may need to display a specific part of your screen in a different mode than the rest of the application (e.g., a dark section inside a light screen). The module provides the <code class="lang-kotlin">OudsThemeTweak</code> composable for this purpose.</p><p class="paragraph">It allows you to <strong>invert the current mode</strong> or <strong>force a specific mode</strong> (Light or Dark) for its content.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">// Example: Force a specific section to be in Dark Mode<br>OudsThemeTweak(tweak = OudsTheme.Tweak.ForceDark) {<br>    Surface {<br>        Text("This text is always in Dark Mode")<br>    }<br>}<br><br>// Example: Invert the current mode (Light -&gt; Dark, Dark -&gt; Light)<br>OudsThemeTweak(tweak = OudsTheme.Tweak.Invert) {<br>    // Content with inverted theme<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h2 class="">OUDS Components</h2><p class="paragraph"><strong>Package:</strong> <code class="lang-kotlin">com.orange.ouds.core.component</code></p><p class="paragraph">The Core module exposes a set of Jetpack Compose components prefixed with <code class="lang-kotlin">Ouds</code> (e.g., <code class="lang-kotlin">OudsButton</code>, <code class="lang-kotlin">OudsNavigationBar</code>). These components serve as the building blocks for your application's UI.</p><h3 class="">Implementation strategy</h3><p class="paragraph">The library adopts an hybrid approach to component implementation to best serve the design system:</p><ol><li><p class="paragraph"><strong>Direct Wrappers:</strong> When the Material Design 3 specification aligns with OUDS, we wrap the standard Material 3 composables and configure them with OUDS-specific default values (tokens for colors, shapes, typography) to ensure brand consistency without reinventing the wheel.</p></li><li><p class="paragraph"><strong>Custom Implementations:</strong> When a specific OUDS component diverges significantly from the standard Material 3 behavior or layout, we provide a full custom implementation. This ensures that unique design requirements are met pixel-perfectly, rather than forcing a standard component to behave in a way it wasn't designed for.</p></li></ol><p class="paragraph">Regardless of the implementation strategy, the API remains consistent and easy to use for the developer.</p><h3 class="">Philosophy</h3><ul><li><p class="paragraph"><strong>Zero Configuration:</strong> You do not need to pass design parameters like color or shape for standard states. The component knows how to render itself in Enabled, Disabled, Selected, Hovered or Focused states.</p></li><li><p class="paragraph"><strong>Controlled Flexibility:</strong> Components use structured parameters (specific classes or data objects) instead of open composable slots. This ensures that while you can customize content like text or icons, the structural integrity and visual consistency of the Orange Unified Design System are always preserved.</p></li><li><p class="paragraph"><strong>Modifier Support:</strong> Following Jetpack Compose best practices, every OUDS component exposes a modifier parameter. This allows you to easily customize layout behavior (padding, positioning, semantics) externally without modifying the component's internal logic.</p></li></ul><h3 class="">Example: Navigation Bar</h3><p class="paragraph">The <code class="lang-kotlin">OudsNavigationBar</code> manages the bottom navigation. It works in tandem with <code class="lang-kotlin">OudsNavigationBarItem</code>.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">import com.orange.ouds.core.component.OudsNavigationBar<br>import com.orange.ouds.core.component.OudsNavigationBarItem<br><br>@Composable<br>internal fun OudsNavigationBarSample() {<br>    data class Item(val label: String, val imageVector: ImageVector)<br>    val items = listOf(<br>        Item("Call", Icons.Default.Call),<br>        Item("Email", Icons.Default.Email),<br>        Item("Settings", Icons.Default.Settings)<br>    )<br>    var selectedItemIndex: Int by rememberSaveable { mutableIntStateOf(0) }<br><br>    OudsNavigationBar(<br>        items = items.mapIndexed { index, item -&gt;<br>            OudsNavigationBarItem(<br>                selected =  index == selectedItemIndex,<br>                onClick = { selectedItemIndex = index },<br>                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),<br>                label = item.label,<br>                // Optional: Add a badge<br>                badge = if (index == 1) OudsNavigationBarItemBadge(contentDescription = "Unread emails", count = "2") else null<br>            )<br>        }<br>    )<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h3 class="">Available components and versions</h3><table>
+        <tbody><tr>
+            <td>Badge</td>
+            <td>1.2.0</td>
+        </tr>
+        <tr>
+            <td>Bar</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>Bullet list</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>Button</td>
+            <td>3.2.0</td>
+        </tr>
+        <tr>
+            <td>Checkbox</td>
+            <td>2.4.0</td>
+        </tr>
+        <tr>
+            <td>Chip</td>
+            <td>1.3.0</td>
+        </tr>
+        <tr>
+            <td>Divider</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>Link</td>
+            <td>2.2.0</td>
+        </tr>
+        <tr>
+            <td>Radio button</td>
+            <td>1.4.0</td>
+        </tr>
+        <tr>
+            <td>Switch</td>
+            <td>1.5.0</td>
+        </tr>
+        <tr>
+            <td>Tag</td>
+            <td>1.4.0</td>
+        </tr>
+        <tr>
+            <td>Text input</td>
+            <td>1.3.0</td>
+        </tr>
+</tbody></table><h2 class="">Best Practices</h2><ol><li><p class="paragraph"><strong>Do not mix Material 3 components directly with OUDS components</strong> if an OUDS equivalent exists. Using the native components might result in incorrect colors or spacing that violates the brand guidelines.</p></li><li><p class="paragraph"><strong>Use </strong><code class="strong lang-kotlin"><strong>OudsTheme</strong></code><strong> tokens</strong> for custom layouts. If you need to build a custom card or row, use OudsTheme.colorScheme instead of Color.Black or Color.White to ensure Dark mode compatibility.</p></li><li><p class="paragraph"><strong>Window Insets:</strong> The library is designed to work edge-to-edge. Components like OudsNavigationBar can be transparent to allow content to blur behind them (if supported), but they require proper handling of WindowInsets in your layouts.</p></li></ol></div></div>
+  </div>
+  <h2 class="">Packages</h2>
+  <div class="table"><a data-name="1338643510%2FPackages%2F-2055549142" anchor-label="com.orange.ouds.core.component" id="1338643510%2FPackages%2F-2055549142" data-filterable-set=":core/main"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":core/main" data-filterable-set=":core/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.orange.ouds.core.component/index.html">com.orange.ouds.core.component</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1338643510%2FPackages%2F-2055549142"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1338643510%2FPackages%2F-2055549142" anchor-label="com.orange.ouds.core.component" id="1338643510%2FPackages%2F-2055549142" data-filterable-set=":core/main"></a>
+            <p class="paragraph">This package contains the catalog of ready-to-use UI components (like OudsButton, OudsNavigationBar) that implement the design system specifications using Jetpack Compose.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="847612263%2FPackages%2F-2055549142" anchor-label="com.orange.ouds.core.component.common" id="847612263%2FPackages%2F-2055549142" data-filterable-set=":core/main"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":core/main" data-filterable-set=":core/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.orange.ouds.core.component.common/index.html">com.orange.ouds.core.component.common</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="847612263%2FPackages%2F-2055549142"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="847612263%2FPackages%2F-2055549142" anchor-label="com.orange.ouds.core.component.common" id="847612263%2FPackages%2F-2055549142" data-filterable-set=":core/main"></a>
+            <p class="paragraph">This package holds shared elements that are reused across multiple higher-level OUDS components to ensure consistent behavior and reduce code duplication.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1963467519%2FPackages%2F-2055549142" anchor-label="com.orange.ouds.core.component.content" id="-1963467519%2FPackages%2F-2055549142" data-filterable-set=":core/main"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":core/main" data-filterable-set=":core/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.orange.ouds.core.component.content/index.html">com.orange.ouds.core.component.content</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1963467519%2FPackages%2F-2055549142"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1272949122%2FPackages%2F-2055549142" anchor-label="com.orange.ouds.core.theme" id="1272949122%2FPackages%2F-2055549142" data-filterable-set=":core/main"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":core/main" data-filterable-set=":core/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.orange.ouds.core.theme/index.html">com.orange.ouds.core.theme</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1272949122%2FPackages%2F-2055549142"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1272949122%2FPackages%2F-2055549142" anchor-label="com.orange.ouds.core.theme" id="1272949122%2FPackages%2F-2055549142" data-filterable-set=":core/main"></a>
+            <p class="paragraph">This package contains the logic for the OudsTheme composable, including the OudsThemeTweak mechanism and the implementation of the theme contract that injects visual data into the application.</p>
+          </span></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

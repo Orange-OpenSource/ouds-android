@@ -5,6 +5,33 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.0.0...1.1.0) (2026-01-27)
+
+### Features
+
+- **navigation-bar** manage display of items with a start icon position for large screens ([#1032](https://github.com/Orange-OpenSource/ouds-android/issues/1032))
+- **navigation-bar** Use ShortNavigationBar of Material 3 Expressive for a more compact display ([#1018](https://github.com/Orange-OpenSource/ouds-android/issues/1018))
+- **a11y** text input placeholder is now read by TalkBack if there is no helper text ([#1044](https://github.com/Orange-OpenSource/ouds-android/issues/1044))
+- management of Helvetica Neue 75 font for Orange themes ([#1017](https://github.com/Orange-OpenSource/ouds-android/issues/1017))
+
+### Bug Fixes
+
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.42.1 ([#1060](https://github.com/Orange-OpenSource/ouds-android/issues/1060))
+- **deps** update dependency org.mockito.kotlin:mockito-kotlin to v6.2.2 ([#1058](https://github.com/Orange-OpenSource/ouds-android/issues/1058))
+- **deps** update dependency org.mockito.kotlin:mockito-kotlin to v6.2.1 ([#1047](https://github.com/Orange-OpenSource/ouds-android/issues/1047))
+- **a11y** OudsFilterChip role is now button instead of checkbox ([#1031](https://github.com/Orange-OpenSource/ouds-android/issues/1031))
+- **a11y** remove button role for OudsLink ([#1030](https://github.com/Orange-OpenSource/ouds-android/issues/1030))
+- **deps** update hilt to v2.58 ([#1034](https://github.com/Orange-OpenSource/ouds-android/issues/1034))
+- **deps** update dependency androidx.compose:compose-bom to v2026 ([#1038](https://github.com/Orange-OpenSource/ouds-android/issues/1038))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.8.0 ([#1039](https://github.com/Orange-OpenSource/ouds-android/issues/1039))
+- **deps** update dependency org.mockito.kotlin:mockito-kotlin to v6.2.0 ([#1037](https://github.com/Orange-OpenSource/ouds-android/issues/1037))
+- **deps** update dependency com.google.firebase:firebase-bom to v34 ([#1035](https://github.com/Orange-OpenSource/ouds-android/issues/1035))
+- **deps** update grpc-java monorepo to v1.78.0 ([#1015](https://github.com/Orange-OpenSource/ouds-android/issues/1015))
+- **deps** update kotlin monorepo to v2.3.0 ([#1003](https://github.com/Orange-OpenSource/ouds-android/issues/1003))
+- **deps** update dependency androidx.compose:compose-bom to v2025.12.01 ([#1011](https://github.com/Orange-OpenSource/ouds-android/issues/1011))
+- **deps** update dependency androidx.activity:activity-compose to v1.12.2 ([#1010](https://github.com/Orange-OpenSource/ouds-android/issues/1010))
+- **text-input** text input takes up the entire width even if it has width constraint ([#1001](https://github.com/Orange-OpenSource/ouds-android/issues/1001))
+
 ## [1.0.0](https://github.com/Orange-OpenSource/ouds-android/compare/0.4.0...1.0.0) (2025-12-18)
 
 ### Features
