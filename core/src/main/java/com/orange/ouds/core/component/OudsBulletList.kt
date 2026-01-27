@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import android.util.Log
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -147,7 +148,6 @@ private fun OudsBulletListItem(
     modifier: Modifier = Modifier
 ) {
     with(OudsTheme.componentsTokens.bulletList) {
-
         val typography: TextStyle
         val columnGap: Dp
         val verticalPadding: Dp
@@ -180,42 +180,39 @@ private fun OudsBulletListItem(
             modifier = modifier
                 .padding(start = paddingStart)
                 .padding(vertical = verticalPadding),
-            verticalAlignment = Alignment.Top
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.spacedBy(columnGap)
         ) {
             Box(modifier = Modifier.size(bulletContainerSize), contentAlignment = Alignment.CenterEnd) {
                 Bullet(type = currentType, level = level, index = index, typography = typography, size = bulletSize)
             }
+            Text(
+                text = item.label,
+                style = typography,
+                color = OudsTheme.colorScheme.content.default
+            )
+        }
 
-            Column {
-                Text(
-                    modifier = Modifier.padding(start = columnGap),
-                    text = item.label,
-                    style = typography,
-                    color = OudsTheme.colorScheme.content.default
-                )
+        if (item.children.isNotEmpty()) {
+            val nextLevel = OudsBulletListItemNestedLevel.entries.getOrNull(level.ordinal + 1)
+            if (nextLevel != null) {
+                val nextType = item.subListType ?: currentType
+                val nextTextStyle = item.subListTextStyle ?: currentTextStyle
+                val nextBoldValue = item.subListHasBoldText ?: currentHasBoldText
 
-                if (item.children.isNotEmpty()) {
-                    val nextLevel = OudsBulletListItemNestedLevel.entries.getOrNull(level.ordinal + 1)
-                    if (nextLevel != null) {
-                        val nextType = item.subListType ?: currentType
-                        val nextTextStyle = item.subListTextStyle ?: currentTextStyle
-                        val nextBoldValue = item.subListHasBoldText ?: currentHasBoldText
-
-                        item.children.forEachIndexed { childIndex, childItem ->
-                            OudsBulletListItem(
-                                item = childItem,
-                                currentType = nextType,
-                                currentTextStyle = nextTextStyle,
-                                currentHasBoldText = nextBoldValue,
-                                index = childIndex,
-                                level = nextLevel
-                            )
-                        }
-                    } else {
-                        LaunchedEffect(Unit) {
-                            Log.w("OudsBulletList", "Maximum list depth (3 levels) reached. Children of '${item.label}' will not be displayed.")
-                        }
-                    }
+                item.children.forEachIndexed { childIndex, childItem ->
+                    OudsBulletListItem(
+                        item = childItem,
+                        currentType = nextType,
+                        currentTextStyle = nextTextStyle,
+                        currentHasBoldText = nextBoldValue,
+                        index = childIndex,
+                        level = nextLevel
+                    )
+                }
+            } else {
+                LaunchedEffect(Unit) {
+                    Log.w("OudsBulletList", "Maximum list depth (3 levels) reached. Children of '${item.label}' will not be displayed.")
                 }
             }
         }
