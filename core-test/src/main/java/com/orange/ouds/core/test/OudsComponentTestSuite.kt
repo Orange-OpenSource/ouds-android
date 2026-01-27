@@ -19,6 +19,7 @@ import org.junit.runners.Suite
 @RunWith(Suite::class)
 @Suite.SuiteClasses(
     OudsBadgeTest::class,
+    OudsBulletListTest::class,
     OudsButtonTest::class,
     OudsCheckboxItemTest::class,
     OudsCheckboxTest::class,
