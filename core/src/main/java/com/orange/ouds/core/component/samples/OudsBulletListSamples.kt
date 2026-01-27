@@ -20,7 +20,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsBulletListUnorderedSample() {
-    OudsBulletList(type = OudsBulletListType.Unordered()) {
+    OudsBulletList {
         item(label = "Milk")
         item(label = "Vegetables", subListType = OudsBulletListType.Unordered(brandColor = true)) {
             item(label = "Tomatoes")
