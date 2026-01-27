@@ -28,7 +28,7 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.toSentenceCase
@@ -100,7 +100,7 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
             selectedChipIndex = BulletListDemoState.LevelCount.entries.indexOf(levelCount),
             onSelectionChange = { id -> levelCount = BulletListDemoState.LevelCount.entries[id] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
