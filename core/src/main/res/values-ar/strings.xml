@@ -13,6 +13,8 @@
 <resources>
     <string name="core_common_loading_a11y">جاري التحميل</string>
 
+    <string name="core_inputTag_onClick_a11y">Remove</string>
+
     <string name="core_topAppBar_backNavigationIcon_a11y">رجوع</string>
     <string name="core_topAppBar_closeNavigationIcon_a11y">إغلاق</string>
     <string name="core_topAppBar_menuNavigationIcon_a11y">القائمة</string>

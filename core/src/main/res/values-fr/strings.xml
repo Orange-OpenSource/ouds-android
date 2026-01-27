@@ -13,6 +13,8 @@
 <resources>
     <string name="core_common_loading_a11y">Chargement</string>
 
+    <string name="core_inputTag_onClick_a11y">Supprimer</string>
+
     <string name="core_topAppBar_backNavigationIcon_a11y">Retour</string>
     <string name="core_topAppBar_closeNavigationIcon_a11y">Fermer</string>
     <string name="core_topAppBar_menuNavigationIcon_a11y">Menu</string>
