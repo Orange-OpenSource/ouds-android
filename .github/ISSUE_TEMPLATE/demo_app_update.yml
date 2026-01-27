@@ -1,9 +1,21 @@
-name: Request demo app update
-description: Propose a change in the Design Toolbox demo application
-title: "Demo App - <Write here the title of the update>"
+name: Demo app update
+description: Propose a change in the Design Toolbox application
+title: "[Design Toolbox] "
 labels: [ "📱 demo app", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
+projects: [ "⚛️ [OUDS] Project" ]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve the Design Toolbox demo app!
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: Take a couple minutes to help our maintainers work faster.
+      options:
+        - label: I have [searched the backlog](https://github.com/Orange-OpenSource/ouds-android/issues) for duplicate or closed issues.
+          required: true
   - type: textarea
     id: description
     attributes:
@@ -11,11 +23,3 @@ body:
       description: Describe your need in details. Which screens? Which tokens, components or modules?
     validations:
       required: true
-  - type: checkboxes
-    attributes:
-      label: Checklist for the Core Team
-      description: Some points to check before any merge
-      options:
-        - label: Unit tests have been updated and still pass
-        - label: UI tests have been updated and still pass
-        - label: A11y tests are ok

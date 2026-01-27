@@ -81,7 +81,8 @@ import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 /**
- * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
+ * Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+ * Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
  *
  * This version of the button uses the *text only* layout, which is the most common layout.
  * Other layouts are available for this component: *text + icon* and *icon only*.
@@ -135,7 +136,8 @@ fun OudsButton(
 }
 
 /**
- * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
+ * Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+ * Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
  *
  * This version of the button uses the *icon only* layout, which is typically used in business or back-office interfaces. It is rarely used alone (usually part of a group of elements).
  * Other layouts are available for this component: *text only* and *text + icon*.
@@ -189,7 +191,8 @@ fun OudsButton(
 }
 
 /**
- * Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
+ * Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+ * Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
  *
  * This version of the button uses the *text + icon* layout, which should remain specific to clearly identified contexts (e.g., the use of an icon with a
  * "Play" button is standard in the context of TV or video streaming).

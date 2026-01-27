@@ -61,8 +61,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Switches allow the user to toggle between two states, typically "on" and "off". They are represented as sliders that change their position or color to indicate
- * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
+ * Switch is a UI element that allows to toggle between two states, typically "On" and "Off", and used to enable or disable features, options or settings.
+ * Switch that does not show icon or text, provides greater flexibility when creating other components that require a Switch to be displayed.
  *
  * The **standalone switch variant** can be used when the switch selector control is nested within another component and an alternative label is provided.
  *

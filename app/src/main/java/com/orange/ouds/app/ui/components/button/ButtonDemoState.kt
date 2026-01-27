@@ -103,7 +103,7 @@ class ButtonDemoState(
     val loaderSwitchEnabled: Boolean
         get() = enabled
 
-    val labelTextFieldEnabled: Boolean
+    val labelTextInputEnabled: Boolean
         get() = layout != Layout.IconOnly
 
     enum class Layout(@StringRes val labelRes: Int) {

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.orange
 
+import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -37,25 +38,126 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
-import kotlinx.parcelize.Parcelize
+import java.util.Locale
 
 const val ORANGE_THEME_NAME = "Orange"
 
-@Parcelize
+/**
+ * The Orange theme.
+ *
+ * This theme uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with this library.**
+ *
+ * The Helvetica Neue font files for the Orange theme are available at
+ * [https://brand.orange.com/en/brand-basics/typography](https://brand.orange.com/en/brand-basics/typography) and can be used by copying the `ttf` files
+ * in the `res/font` directory of the project and by using an implementation of [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled]
+ * or [OrangeHelveticaNeueArabic.Bundled]) when creating the [OrangeFontFamily] instance passed as the [OrangeTheme.orangeFontFamily] parameter:
+ *
+ * ```
+ * OrangeTheme(
+ *     orangeFontFamily = OrangeFontFamily(
+ *         latin = OrangeHelveticaNeueLatin.Bundled(
+ *             R.font.helvetica_neue_latin_regular,
+ *             R.font.helvetica_neue_latin_medium,
+ *             R.font.helvetica_neue_latin_bold
+ *         ),
+ *         arabic = OrangeHelveticaNeueArabic.Bundled(
+ *             R.font.helvetica_neue_arabic_light,
+ *             R.font.helvetica_neue_arabic_regular,
+ *             R.font.helvetica_neue_arabic_medium,
+ *         )
+ *     )
+ * )
+ * ```
+ *
+ * Although the preferred way of using the Helvetica Neue font is configuring bundled font files, there are some cases where this is not possible,
+ * for instance in open source projects where the font files cannot be bundled due to legal issues. In these cases, the font files can
+ * alternatively be downloaded through the Android Downloadable Fonts feature by using an implementation of
+ * [OrangeDownloadableFontFamily] ([OrangeHelveticaNeueLatin.Downloadable] or [OrangeHelveticaNeueArabic.Downloadable]) instead:
+ *
+ * ```
+ * OrangeTheme(
+ *     orangeFontFamily = OrangeFontFamily(
+ *         latin = OrangeHelveticaNeueLatin.Downloadable,
+ *         arabic = OrangeHelveticaNeueArabic.Downloadable
+ *     )
+ * )
+ * ```
+ *
+ * In order to enable the Android Downloadable Fonts feature for the Orange theme, please also add [OrangeFontProvider] as a provider in your app manifest:
+ *
+ * ```
+ * <provider
+ *     android:name="com.orange.ouds.theme.orange.OrangeFontProvider"
+ *     android:authorities="com.orange.ouds.theme.orange.fontprovider"
+ *     android:exported="false" />
+ * ```
+ *
+ * As well as the following permission:
+ *
+ * ```
+ * <uses-permission android:name="android.permission.INTERNET" />
+ * ```
+ *
+ * Finally, call the [OrangeFontFamily.preloadDownloadableFontFamilies] method in the `onCreate` method of your application singleton or main activity,
+ * and use the `onComplete` parameter to update your UI when preload is complete:
+ *
+ * ```
+ * var areDownloadableOrangeFontFamiliesPreloaded by mutableStateOf(false)
+ *     private set
+ * ```
+ * ```
+ * OrangeFontFamily.preloadDownloadableFontFamilies(this, listOf(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable)) {
+ *     areDownloadableOrangeFontFamiliesPreloaded = true
+ * }
+ * ```
+ *
+ * Please note that the Android Downloadable Font feature works asynchronously, whether the font is already downloaded or not,
+ * and that [FontFamily.Default] will be used if download fails.
+ *
+ * @param orangeFontFamily The Helvetica Neue font family to use for the Orange theme.
+ *   If an [OrangeBundledFontFamily] is used, the resource identifiers should reference Helvetica Neue font files.
+ *   If an [OrangeDownloadableFontFamily] is used, the [OrangeFontFamily.preloadDownloadableFontFamilies] method should be called to download the Helvetica Neue font files through the Android Downloadable Fonts feature.
+ * @param roundedCornerButtons Whether or not buttons have rounded corners.
+ * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
+ */
 open class OrangeTheme(
+    private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
     private val roundedCornerTextInputs: Boolean = false
 ) : OudsThemeContract {
 
+    /**
+     * Creates a new Orange theme.
+     *
+     * @param roundedCornerButtons Whether or not buttons have rounded corners.
+     * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
+     */
+    @Deprecated(
+        "Use constructor with orangeFontFamily parameter instead.",
+        ReplaceWith("OrangeTheme(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable), roundedCornerButtons, roundedCornerTextInputs)")
+    )
+    constructor(
+        roundedCornerButtons: Boolean = false,
+        roundedCornerTextInputs: Boolean = false
+    ) : this(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable), roundedCornerButtons, roundedCornerTextInputs)
+
     override val name: String
         get() = ORANGE_THEME_NAME
+
+    @Suppress("OVERRIDE_DEPRECATION")
+    override val fontFamily: FontFamily
+        get() = getFontFamily(Locale.getDefault())
+
+    override fun getFontFamily(locale: Locale): FontFamily {
+        return orangeFontFamily.getFontFamily(locale)
+    }
 
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs)
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeColorSemanticTokens()
-    
+
     override val materialColorTokens: OudsMaterialColorTokens
         get() = OrangeMaterialColorTokens()
 

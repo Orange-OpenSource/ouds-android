@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
+import com.google.firebase.appdistribution.gradle.firebaseAppDistributionDefault
 import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.execute
 import com.orange.ouds.gradle.findTypedProperty
@@ -22,7 +22,7 @@ plugins {
     id("firebase")
     id(libs.plugins.android.application.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     id(libs.plugins.kotlin.android.get().pluginId)
-    id(libs.plugins.kotlin.kapt.get().pluginId)
+    alias(libs.plugins.ksp)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     alias(libs.plugins.compose.compiler)
     id(libs.plugins.firebase.appdistribution.get().pluginId)
@@ -39,7 +39,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 6
+        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 7
         versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -116,7 +116,7 @@ android {
     }
 }
 
-firebaseAppDistribution {
+firebaseAppDistributionDefault {
     groups = project.findTypedProperty("appDistributionGroup")
 }
 
@@ -124,6 +124,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
     implementation(project(":theme-orange"))
+    implementation(project(":theme-orange-business-tools"))
     implementation(project(":theme-sosh"))
     implementation(project(":theme-wireframe"))
 
@@ -140,17 +141,35 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.haze)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.kotlin.reflect)
 }
 
 tasks.register<DefaultTask>("updateAppChangelog") {
     doLast {
-        updateChangelog(null)
-        copy {
-            from("../CHANGELOG.md").into("src/main/res/raw").rename { it.lowercase() }
+        val rawResourcesPath = "src/main/res/raw"
+        val changelogFilename = "CHANGELOG.md"
+        val updateAppChangelog = {
+            delete("$rawResourcesPath/$changelogFilename")
+            updateChangelog(null)
+            copy {
+                from("../$changelogFilename").into(rawResourcesPath).rename { it.lowercase() }
+            }
+            execute("git", "checkout", changelogFilename)
         }
-        execute("git", "checkout", "CHANGELOG.md")
+        // Ignore failure with local builds
+        val ignoreFailure = Environment.getVariablesOrNull("CI").firstOrNull().toBoolean().not()
+        if (ignoreFailure) {
+            try {
+                updateAppChangelog()
+            } catch (_: Exception) {
+                val errorMessage = "There was an error while generating the changelog."
+                logger.error(errorMessage)
+                file("$rawResourcesPath/${changelogFilename.lowercase()}").writeText(errorMessage)
+            }
+        } else {
+            updateAppChangelog()
+        }
     }
 }
 

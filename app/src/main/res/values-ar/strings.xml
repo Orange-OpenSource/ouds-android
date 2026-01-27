@@ -98,10 +98,10 @@
     <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
 
     <!-- Components: button -->
-    <string name="app_components_button_description_text">تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.</string>
+    <string name="app_components_button_description_text">Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.</string>
 
     <!-- Components: checkbox -->
-    <string name="app_components_checkbox_description_text">تتيح Checkboxes للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.</string>
+    <string name="app_components_checkbox_description_text">Checkbox هو عنصر واجهة مستخدم يسمح باختيار خيارات متعددة من مجموعة من الخيارات غير الحصرية.</string>
     <string name="app_components_checkbox_checkbox_a11y">وصف محتوى مربع الاختيار %s</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">وصف محتوى مربع الاختيار غير المحدد %s</string>
 
@@ -113,13 +113,13 @@
     <string name="app_components_coloredBackground_unsupportedColor_text">السمة الحالية لا تدعم لون "%s".</string>
 
     <!-- Components: divider -->
-    <string name="app_components_divider_description_text">ينظم Divider واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.</string>
+    <string name="app_components_divider_description_text">Divider هو عنصر واجهة مستخدم يسمح بتنظيم المحتوى عن طريق فصل مناطق المحتوى بصريًا</string>
 
     <!-- Components: link -->
-    <string name="app_components_link_description_text">تُستخدم Links لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).</string>
+    <string name="app_components_link_description_text">Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي</string>
 
     <!-- Components: navigation bar -->
-    <string name="app_components_navigationBar_description_text">Navigation bars  يتيح للناس التبديل بين عروض واجهة المستخدم على الأجهزة الصغيرة</string> <!--TODO update with OUDS description-->
+    <string name="app_components_navigationBar_description_text">Navigation bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.</string>
     <string name="app_components_navigationBar_homeItem_label">الصفحة الرئيسية</string>
     <string name="app_components_navigationBar_shopItem_label">المتجر</string>
     <string name="app_components_navigationBar_notificationsItem_label">الإشعارات</string>
@@ -127,24 +127,25 @@
     <string name="app_components_navigationBar_settingsItem_label">الإعدادات</string>
 
     <!-- Components: radio button -->
-    <string name="app_components_radioButton_description_text">يُستخدم زر الاختيار لتمكين المستخدم من تحديد خيار واحد فقط من بين مجموعة خيارات حصرية. يُعرض عادةً كدائرة صغيرة مع تسمية، وتُملأ عند التحديد.</string>
+    <string name="app_components_radioButton_description_text">Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.</string>
     <string name="app_components_radioButton_radioButton_a11y">وصف محتوى زر الاختيار %s</string>
 
     <!-- Components: switch -->
-    <string name="app_components_switch_description_text">يتيح Switch للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.</string>
+    <string name="app_components_switch_description_text">Switch هو عنصر واجهة مستخدم يسمح بالتبديل بين حالتين، عادةً "تشغيل" و "إيقاف"، ويستخدم لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات.</string>
     <string name="app_components_switch_switch_a11y">تبديل وصف المحتوى</string>
 
     <!-- Components: tag -->
-    <string name="app_components_tag_description_text">Tag هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.</string>
+    <string name="app_components_tag_description_text">Tag هي عنصر واجهة مستخدم يعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو فئة.</string>
 
     <!-- Components: text input -->
-    <string name="app_components_textInput_description_text">Text Input هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث</string>
+    <string name="app_components_textInput_description_text">Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.</string>
     <string name="app_components_textInput_trailingAction_a11y">وصف محتوى أيقونة النهاية</string>
 
     <!-- Components: top app bar -->
-    <string name="app_components_topAppBar_description_text">ُعرض Top app bars المعلومات والإجراءات في أعلى الشاشة.</string> <!--TODO update with OUDS description-->
+    <string name="app_components_topAppBar_description_text">ُApp bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.</string>
     <string name="app_components_topAppBar_firstAction_a11y">الإجراء الأول</string>
     <string name="app_components_topAppBar_secondAction_a11y">الإجراء الثاني</string>
+    <string name="app_components_topAppBar_thirdAction_a11y">الإجراء الثالث</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>

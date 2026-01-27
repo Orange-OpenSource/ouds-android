@@ -40,11 +40,12 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
-import kotlinx.parcelize.Parcelize
 
 const val SOSH_THEME_NAME = "Sosh"
 
-@Parcelize
+/**
+ * The Sosh theme.
+ */
 class SoshTheme : OudsThemeContract {
 
     override val name: String
@@ -53,6 +54,7 @@ class SoshTheme : OudsThemeContract {
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings(roundedCornerButtons = null, roundedCornerTextInputs = null)
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override val fontFamily: FontFamily
         get() = FontFamily(
             Font(R.font.sosh_black, weight = FontWeight.Black),
@@ -67,7 +69,7 @@ class SoshTheme : OudsThemeContract {
 
     override val materialColorTokens: OudsMaterialColorTokens
         get() = SoshMaterialColorTokens()
-    
+
     override val borderTokens: OudsBorderSemanticTokens
         get() = SoshBorderSemanticTokens()
 

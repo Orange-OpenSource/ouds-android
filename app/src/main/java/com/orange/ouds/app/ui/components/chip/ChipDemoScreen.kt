@@ -14,7 +14,9 @@ package com.orange.ouds.app.ui.components.chip
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
@@ -28,7 +30,7 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -45,14 +47,14 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             label = stringResource(R.string.app_components_common_layout_label),
             chipLabels = ChipDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ChipDemoState.Layout.entries.indexOf(layout),
-            onSelectionChange = { id -> layout = ChipDemoState.Layout.entries[id] }
+            onSelectionChange = { index -> layout = ChipDemoState.Layout.entries[index] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
             value = label,
             onValueChange = { value -> label = value },
-            enabled = labelTextFieldEnabled
+            enabled = labelTextInputEnabled
         )
     }
 }
@@ -64,7 +66,10 @@ fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Uni
         themeDrawableResources.call,
         themeDrawableResources.smsMessage
     )
-    FlowRow(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
+    FlowRow(
+        modifier = Modifier.selectableGroup(),
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
+    ) {
         repeat(ChipDemoState.ChipCount) { index ->
             val icon = OudsChipIcon(
                 painter = painterResource(icons[index % icons.count()]),

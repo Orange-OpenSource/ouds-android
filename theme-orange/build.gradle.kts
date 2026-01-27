@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":foundation"))
     implementation(project(":global-raw-tokens"))
     implementation(project(":theme-contract"))
-    
+    implementation(libs.androidx.core)
+
     testImplementation(project(":core-test"))
 }

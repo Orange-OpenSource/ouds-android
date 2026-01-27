@@ -11,7 +11,7 @@
  */
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
+import com.google.firebase.appdistribution.gradle.firebaseAppDistributionDefault
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.client.j2se.MatrixToImageWriter
@@ -256,7 +256,7 @@ private fun generateQrCode(release: FirebaseAppDistributionRelease): File {
 }
 
 afterEvaluate {
-    firebaseAppDistribution {
+    firebaseAppDistributionDefault {
         releaseNotesFile = releaseNotesFilePath
     }
 }

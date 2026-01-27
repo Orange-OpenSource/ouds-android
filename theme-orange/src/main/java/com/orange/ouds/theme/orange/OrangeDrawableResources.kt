@@ -12,9 +12,14 @@
 
 package com.orange.ouds.theme.orange
 
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsDrawableResources
 
-internal class OrangeDrawableResources : OudsDrawableResources {
+/**
+ * @suppress
+ */
+@InternalOudsApi
+class OrangeDrawableResources : OudsDrawableResources {
 
     override val component = Component()
     override val functional = Functional()

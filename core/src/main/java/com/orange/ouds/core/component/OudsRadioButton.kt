@@ -60,7 +60,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Radio buttons are input controls that allow users to select a single option from a set of mutually exclusive choices.
+ * Radio button is a UI element that allows to select a single option from a set of mutually exclusive choices. Radio button that does not show icon or text,
+ * provides greater flexibility when creating other components that require a Radio button to be displayed.
  *
  * The **standalone radio button variant** can be used when the radio selector control is nested within another component and an alternative label is provided.
  *

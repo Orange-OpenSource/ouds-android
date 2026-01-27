@@ -12,6 +12,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".OudsApplication"
         android:allowBackup="true"
@@ -20,6 +22,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
+        <provider
+            android:name="com.orange.ouds.theme.orange.OrangeFontProvider"
+            android:authorities="com.orange.ouds.theme.orange.fontprovider"
+            android:exported="false" />
         <activity
             android:name="com.orange.ouds.app.ui.MainActivity"
             android:exported="true">

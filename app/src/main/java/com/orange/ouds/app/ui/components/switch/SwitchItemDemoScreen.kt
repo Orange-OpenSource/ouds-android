@@ -39,7 +39,7 @@ fun SwitchItemDemoScreen() {
         bottomSheetContent = { ControlItemCustomizations(state = state) },
         codeSnippet = { switchItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { SwitchItemDemoContent(state = state) },
-        demoContentPaddingValues = PaddingValues(),
+        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.Switch
     )
 }

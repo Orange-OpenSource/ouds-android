@@ -27,11 +27,22 @@ fun rememberTopAppBarDemoState(
     centerAligned: Boolean = false,
     navigationIcon: TopAppBarDemoState.NavigationIcon = TopAppBarDemoState.NavigationIcon.None,
     title: String = "Title",
-    actionIconBadge: TopAppBarDemoState.ActionIconBadge = TopAppBarDemoState.ActionIconBadge.None,
+    actionCount: Int = 2,
+    lastActionIconBadge: TopAppBarDemoState.ActionIconBadge = TopAppBarDemoState.ActionIconBadge.None,
     actionAvatar: TopAppBarDemoState.ActionAvatar = TopAppBarDemoState.ActionAvatar.Image,
     actionAvatarMonogram: Char = 'A'
-) = rememberSaveable(size, centerAligned, navigationIcon, title, actionIconBadge, actionAvatar, actionAvatarMonogram, saver = TopAppBarDemoState.Saver) {
-    TopAppBarDemoState(size, centerAligned, navigationIcon, title, actionIconBadge, actionAvatar, actionAvatarMonogram)
+) = rememberSaveable(
+    size,
+    centerAligned,
+    navigationIcon,
+    title,
+    actionCount,
+    lastActionIconBadge,
+    actionAvatar,
+    actionAvatarMonogram,
+    saver = TopAppBarDemoState.Saver
+) {
+    TopAppBarDemoState(size, centerAligned, navigationIcon, title, actionCount, lastActionIconBadge, actionAvatar, actionAvatarMonogram)
 }
 
 class TopAppBarDemoState(
@@ -39,12 +50,15 @@ class TopAppBarDemoState(
     centerAligned: Boolean,
     navigationIcon: NavigationIcon,
     title: String,
-    actionIconBadge: ActionIconBadge,
+    actionCount: Int,
+    lastActionIconBadge: ActionIconBadge,
     actionAvatar: ActionAvatar,
     actionAvatarMonogram: Char
 ) {
     companion object {
 
+        const val MinActionCount = 0
+        const val MaxActionCount = 3
         const val ActionIconBadgeCount = 1
 
         val Saver = listSaver(
@@ -55,7 +69,8 @@ class TopAppBarDemoState(
                         centerAligned,
                         navigationIcon,
                         title,
-                        actionIconBadge,
+                        actionCount,
+                        lastActionIconBadge,
                         actionAvatar,
                         actionAvatarMonogram
                     )
@@ -67,9 +82,10 @@ class TopAppBarDemoState(
                     list[1] as Boolean,
                     list[2] as NavigationIcon,
                     list[3] as String,
-                    list[4] as ActionIconBadge,
-                    list[5] as ActionAvatar,
-                    list[6] as Char
+                    list[4] as Int,
+                    list[5] as ActionIconBadge,
+                    list[6] as ActionAvatar,
+                    list[7] as Char
                 )
             }
         )
@@ -91,7 +107,14 @@ class TopAppBarDemoState(
 
     var title: String by mutableStateOf(title)
 
-    var actionIconBadge: ActionIconBadge by mutableStateOf(actionIconBadge)
+    var actionCount: Int by mutableStateOf(actionCount)
+
+    val actions: List<Action>
+        get() = List(actionCount) { index ->
+            if (actionCount > 1 && index == actionCount - 1) Action.Avatar else Action.Icon
+        }
+
+    var lastActionIconBadge: ActionIconBadge by mutableStateOf(lastActionIconBadge)
 
     var actionAvatar: ActionAvatar by mutableStateOf(actionAvatar)
 
@@ -100,8 +123,14 @@ class TopAppBarDemoState(
     val centerAlignedSwitchEnabled: Boolean
         get() = size == Size.Small
 
-    val actionAvatarMonogramTextFieldEnabled: Boolean
-        get() = actionAvatar == ActionAvatar.Monogram
+    val lastActionIconBadgeFilterChipsEnabled: Boolean
+        get() = actions.contains(Action.Icon)
+
+    val actionAvatarFilterChipsEnabled: Boolean
+        get() = actions.contains(Action.Avatar)
+
+    val actionAvatarMonogramTextInputEnabled: Boolean
+        get() = actions.contains(Action.Avatar) && actionAvatar == ActionAvatar.Monogram
 
     enum class Size(@StringRes val labelRes: Int) {
         Small(R.string.app_components_topAppBar_smallSize_label),
@@ -126,5 +155,10 @@ class TopAppBarDemoState(
     enum class ActionAvatar(@StringRes val labelRes: Int) {
         Image(R.string.app_components_topAppBar_imageActionAvatar_label),
         Monogram(R.string.app_components_topAppBar_monogramActionAvatar_label)
+    }
+
+    enum class Action {
+        Icon,
+        Avatar
     }
 }

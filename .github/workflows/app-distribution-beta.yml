@@ -21,6 +21,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
         with:

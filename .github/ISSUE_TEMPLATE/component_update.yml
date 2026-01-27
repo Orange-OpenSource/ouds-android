@@ -1,9 +1,21 @@
-name: Request a component update
+name: Component update
 description: Propose a change for a specific component
-title: "Component update - <Write here the title of the update>"
-labels: [ "⚛️ component", "🔍 triage" ]
+title: "[Component] "
+labels: [ "⚛️ component", "🧰 library", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
+projects: [ "⚛️ [OUDS] Project" ]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve OUDS Android!
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: Take a couple minutes to help our maintainers work faster.
+      options:
+        - label: I have [searched the backlog](https://github.com/Orange-OpenSource/ouds-android/issues) for duplicate or closed issues.
+          required: true
   - type: textarea
     id: description
     attributes:
@@ -14,16 +26,5 @@ body:
   - type: textarea
     id: motivation_context
     attributes:
-      label: Motivation & Context
+      label: Motivation & context
       description: Why is this change required? What problem does it solve?
-  - type: checkboxes
-    attributes:
-      label: Checklist for the Core Team
-      description: Some points to check before any merge
-      options:
-        - label: Tokens have been updated
-        - label: Documentations have been updated
-        - label: Unit tests have been updated
-        - label: UI tests have been updated
-        - label: Design System Toolbox has been updated
-        - label: Backward compatibility has been checked, or broken API have been flagged as deprecated with a workaround

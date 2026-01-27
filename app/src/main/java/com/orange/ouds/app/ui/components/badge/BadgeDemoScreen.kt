@@ -40,7 +40,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.toSentenceCase
@@ -79,14 +79,14 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
             label = stringResource(R.string.app_components_badge_type_label),
             chipLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
-            onSelectionChange = { id -> type = BadgeDemoState.Type.entries[id] }
+            onSelectionChange = { index -> type = BadgeDemoState.Type.entries[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_size_label),
             chips = OudsBadgeSize.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = it in enabledSizes) },
             selectedChipIndex = OudsBadgeSize.entries.indexOf(size),
-            onSelectionChange = { id -> size = OudsBadgeSize.entries[id] }
+            onSelectionChange = { index -> size = OudsBadgeSize.entries[index] }
         )
         val statuses = OudsBadgeStatus.entries
         CustomizationDropdownMenu(
@@ -107,7 +107,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
             selectedItemIndex = statuses.indexOf(status),
             onSelectionChange = { status = statuses[it] }
         )
-        CustomizationTextField(
+        CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_badge_count_label),
             value = TextFieldValue(count.toString(), TextRange(count.toString().length)),
@@ -118,7 +118,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
                     .ifEmpty { "0" }
                 count = filteredCount.toIntOrNull().orElse { if (filteredCount.isEmpty()) 0 else Int.MAX_VALUE }
             },
-            enabled = countTextFieldEnabled,
+            enabled = countTextInputEnabled,
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
         )
     }

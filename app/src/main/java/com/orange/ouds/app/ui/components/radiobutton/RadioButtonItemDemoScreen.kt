@@ -31,7 +31,7 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextField
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsRadioButtonItem
@@ -47,7 +47,7 @@ fun RadioButtonItemDemoScreen() {
         bottomSheetContent = { RadioButtonItemDemoBottomSheetContent(state = state) },
         codeSnippet = { radioButtonItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { RadioButtonItemDemoContent(state = state) },
-        demoContentPaddingValues = PaddingValues(),
+        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.RadioButton
     )
 }
@@ -64,7 +64,7 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
                 )
             },
             controlItemCustomization(9) {
-                CustomizationTextField(
+                CustomizationTextInput(
                     applyTopPadding = true,
                     label = stringResource(R.string.app_components_radioButton_radioButtonItem_extraLabel_label),
                     value = extraLabel.orEmpty(),

@@ -36,12 +36,11 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
-import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * Switches allow the user to toggle between two states, typically "on" and "off". They are represented as sliders that change their position or color to indicate
- * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
+ * Switch item is a UI element that allows to toggle between two states, typically "On" and "Off", and used to enable or disable features, options or settings.
+ * Switch item covers a wider range of contexts by allowing to toggle the visibility of additional text labels and icon assets.
  *
  * The **switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as description, a divider,
  * or an icon, allowing it to suit various use cases.
@@ -210,7 +209,7 @@ internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContrac
 @Preview(widthDp = OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.PreviewWidthDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-internal fun PreviewOudsSwitchItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider ::class) constrainedMaxWidth: Boolean) {
+internal fun PreviewOudsSwitchItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
     PreviewOudsSwitchItemConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
 }
 

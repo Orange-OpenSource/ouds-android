@@ -99,10 +99,9 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 
 /**
- * A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental
- * form elements used to capture user input such as names, emails, passwords, or search queries.
- *
- * It provides a visual and interactive affordance for text entry while supporting labels, placeholders, icons, helper messages, and validation feedback.
+ * Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
+ * to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
+ * while supporting labels, placeholders, icons, descriptions, and validation feedback.
  *
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
@@ -187,9 +186,7 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .semantic(label),
+                modifier = modifier.semantic(label),
                 state = textFieldState,
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
@@ -227,10 +224,9 @@ fun OudsTextInput(
 }
 
 /**
- * A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental
- * form elements used to capture user input such as names, emails, passwords, or search queries.
- *
- * It provides a visual and interactive affordance for text entry while supporting labels, placeholders, icons, helper messages, and validation feedback.
+ * Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
+ * to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
+ * while supporting labels, placeholders, icons, descriptions, and validation feedback.
  *
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
@@ -309,11 +305,9 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
+                modifier = modifier.semantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                modifier = modifier
-                    .fillMaxWidth()
-                    .semantic(label),
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(state = state),
@@ -342,7 +336,6 @@ fun OudsTextInput(
                         helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
-
                 }
             )
         }
@@ -350,10 +343,9 @@ fun OudsTextInput(
 }
 
 /**
- * A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental
- * form elements used to capture user input such as names, emails, passwords, or search queries.
- *
- * It provides a visual and interactive affordance for text entry while supporting labels, placeholders, icons, helper messages, and validation feedback.
+ * Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
+ * to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
+ * while supporting labels, placeholders, icons, descriptions, and validation feedback.
  *
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
@@ -432,11 +424,9 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
+                modifier = modifier.semantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                modifier = modifier
-                    .fillMaxWidth()
-                    .semantic(label),
                 enabled = textFieldEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textFieldTextStyle(state = state),
@@ -612,7 +602,7 @@ private fun OudsTextInputDecorator(
                             if (value.isEmpty()) {
                                 if (!placeholder.isNullOrBlank()) {
                                     Text(
-                                        modifier = Modifier.semantics { hideFromAccessibility() },
+                                        modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
                                         text = placeholder,
                                         style = OudsTheme.typography.label.default.large,
                                         color = decorativeContentColor(state = state),
