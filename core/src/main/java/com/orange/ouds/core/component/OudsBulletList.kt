@@ -370,14 +370,6 @@ enum class OudsBulletListTextStyle {
     BodyMedium
 }
 
-/**
- * The font weight of an [OudsBulletList].
- */
-enum class OudsBulletListFontWeight {
-    Bold,
-    Regular
-}
-
 private enum class OudsBulletListItemNestedLevel {
     /**
      * Level 0 list items define the main structure.
