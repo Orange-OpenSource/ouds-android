@@ -279,7 +279,7 @@ object OudsBulletListDefaults {
     /**
      * Default type of an [OudsBulletList].
      */
-    val Type = OudsBulletListType.Bare()
+    val Type = OudsBulletListType.Unordered()
 
     /**
      * Default text style of an [OudsBulletList].
@@ -452,7 +452,7 @@ internal class OudsBulletListPreviewParameterProvider : BasicPreviewParameterPro
 
 private val previewParameterValues: List<OudsBulletListPreviewParameter>
     get() = listOf(
-        OudsBulletListPreviewParameter(),
+        OudsBulletListPreviewParameter(type = OudsBulletListType.Bare()),
         OudsBulletListPreviewParameter(type = OudsBulletListType.Ordered(), textStyle = OudsBulletListTextStyle.BodyMedium),
-        OudsBulletListPreviewParameter(type = OudsBulletListType.Unordered()),
+        OudsBulletListPreviewParameter(),
     )
