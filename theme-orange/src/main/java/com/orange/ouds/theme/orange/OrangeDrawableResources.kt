@@ -20,9 +20,22 @@ import com.orange.ouds.theme.OudsDrawableResources
  */
 @InternalOudsApi
 class OrangeDrawableResources : OudsDrawableResources {
-
+    override val communication = Communication()
     override val component = Component()
     override val functional = Functional()
+
+    class Communication : OudsDrawableResources.Communication {
+        override val accessibility = Accessibility()
+        override val securityAndSafety = SecurityAndSafety()
+
+        class Accessibility : OudsDrawableResources.Communication.Accessibility {
+            override val vision = R.drawable.ic_orange_communication_accessibility_vision
+        }
+
+        class SecurityAndSafety : OudsDrawableResources.Communication.SecurityAndSafety {
+            override val lock = R.drawable.ic_orange_communication_security_and_safety_lock
+        }
+    }
 
     class Component : OudsDrawableResources.Component {
         override val alert = Alert()
@@ -71,6 +84,7 @@ class OrangeDrawableResources : OudsDrawableResources {
     class Functional : OudsDrawableResources.Functional {
         override val actions = Actions()
         override val navigation = Navigation()
+        override val settingsAndTools = SettingsAndTools()
 
         class Actions : OudsDrawableResources.Functional.Actions {
             override val delete = R.drawable.ic_orange_functional_actions_delete
@@ -79,6 +93,10 @@ class OrangeDrawableResources : OudsDrawableResources {
         class Navigation : OudsDrawableResources.Functional.Navigation {
             override val formChevronLeft = R.drawable.ic_orange_functional_navigation_form_chevron_left
             override val menu = R.drawable.ic_orange_functional_navigation_menu
+        }
+
+        class SettingsAndTools : OudsDrawableResources.Functional.SettingsAndTools {
+            override val hide = R.drawable.ic_orange_functional_settings_and_tools_hide
         }
     }
 }

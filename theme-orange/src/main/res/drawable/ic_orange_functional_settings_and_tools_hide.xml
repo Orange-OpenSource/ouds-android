@@ -1,0 +1,21 @@
+<!--
+  ~ Software Name: OUDS Android
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M22.797,11.813a11.971,11.971 0,0 0,-3.67 -3.86l-1.108,1.11c1.198,0.695 2.292,1.658 3.091,2.747 -0.715,0.999 -1.857,2.019 -3.19,2.828 -0.465,0.283 -0.947,0.537 -1.444,0.76 1.183,-1.353 1.632,-3.763 0.857,-5.647l-1.198,1.198c0.468,2.246 -0.751,4.812 -3.76,5.165v-0.005a5.504,5.504 0,0 1,-0.236 0.019c-0.36,0.012 -0.72,-0.026 -1.073,-0.11L9.53,17.554l0.464,0.108L9.99,17.662c4.906,1.053 11.102,-2.39 12.811,-5.85h-0.005ZM6.374,14.767c-1.284,-0.64 -2.27,-1.428 -3.475,-2.957h-0.01c0.716,-0.996 1.858,-2.016 3.188,-2.824 0.427,-0.26 0.87,-0.497 1.327,-0.706 -1.193,1.354 -1.666,4.106 -0.595,6.053l1.099,-1.1a4.209,4.209 0,0 1,-0.218 -0.784c-0.45,-2.825 2.073,-5.35 4.907,-4.91a4.7,4.7 0,0 1,0.79 0.213l1.574,-1.574c-5.044,-1.148 -10.754,0.72 -13.763,5.635 1.147,1.725 2.304,3.06 4.039,4.092l1.137,-1.138ZM11.085,14.3 L21.026,4.356 19.754,3.084 3.194,19.644 4.469,20.916 9.857,15.526 11.086,14.299Z"
+      android:fillColor="#000000" />
+</vector>
