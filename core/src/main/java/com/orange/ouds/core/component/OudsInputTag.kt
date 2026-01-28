@@ -143,7 +143,7 @@ fun OudsInputTag(
                     interactionSource = interactionSource,
                     indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                     onClick = onClick,
-                    onClickLabel = stringResource(R.string.core_inputTag_onClick_a11y),
+                    onClickLabel = stringResource(R.string.core_inputTag_remove_a11y),
                     role = Role.Button
                 )
                 .padding(vertical = tagTokens.spacePaddingBlockDefault.value)
