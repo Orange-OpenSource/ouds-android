@@ -76,7 +76,7 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
                 onSelectionChange = { unorderedIcon = unorderedIcons[it] }
             )
             CustomizationSwitchItem(
-                label = stringResource(R.string.app_components_bulletList_brandColor_label),
+                label = stringResource(R.string.app_components_bulletList_unorderedIconBrandColor_label),
                 checked = brandColorIcon,
                 onCheckedChange = { brandColorIcon = it },
             )
