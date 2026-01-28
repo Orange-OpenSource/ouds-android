@@ -10,50 +10,40 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.app.ui.components.textinput
+package com.orange.ouds.app.ui.components.passwordinput
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
-import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.core.component.OudsTextInput
-import com.orange.ouds.core.component.OudsTextInputHelperLink
-import com.orange.ouds.core.component.OudsTextInputLeadingIcon
+import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsTextInputLoader
-import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
-fun TextInputDemoScreen() {
-    val state = rememberTextInputDemoState()
-    val themeDrawableResources = LocalThemeDrawableResources.current
+fun PasswordInputDemoScreen() {
+    val state = rememberPasswordInputDemoState()
     DemoScreen(
-        description = stringResource(id = Component.TextInput.descriptionRes),
-        bottomSheetContent = { TextInputDemoBottomSheetContent(state = state) },
-        codeSnippet = { textInputDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
-        demoContent = { TextInputDemoContent(state = state) },
-        version = OudsVersion.Component.TextInput
+        description = stringResource(id = Component.PasswordInput.descriptionRes),
+        bottomSheetContent = { PasswordInputDemoBottomSheetContent(state = state) },
+        codeSnippet = { passwordInputDemoCodeSnippet(state = state) },
+        demoContent = { PasswordInputDemoContent(state = state) },
+        version = OudsVersion.Component.PasswordInput
     )
 }
 
 @Composable
-private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
+private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
     with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_outlined_label),
@@ -64,11 +54,6 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             label = stringResource(R.string.app_components_common_leadingIcon_label),
             checked = leadingIcon,
             onCheckedChange = { leadingIcon = it },
-        )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_textInput_trailingAction_label),
-            checked = trailingIcon,
-            onCheckedChange = { trailingIcon = it },
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_label),
@@ -121,21 +106,9 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_textInput_suffix_label),
-            value = suffix,
-            onValueChange = { value -> suffix = value }
-        )
-        CustomizationTextInput(
-            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_label),
             value = helperText,
             onValueChange = { value -> helperText = value }
-        )
-        CustomizationTextInput(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_textInput_helperLink_label),
-            value = helperLink,
-            onValueChange = { value -> helperLink = value }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_constrainedMaxWidth_label),
@@ -146,46 +119,29 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
 }
 
 @Composable
-private fun TextInputDemoContent(state: TextInputDemoState) {
+private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
     with(state) {
-        OudsTextInput(
+        OudsPasswordInput(
             value = value,
             onValueChange = { value = it },
             label = label,
             placeholder = placeholder,
             outlined = outlined,
-            leadingIcon = if (leadingIcon) {
-                OudsTextInputLeadingIcon(
-                    painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-                    contentDescription = ""
-                )
-            } else {
-                null
-            },
-            trailingIconButton = if (trailingIcon) {
-                OudsTextInputTrailingIconButton(
-                    painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-                    contentDescription = stringResource(id = R.string.app_components_textInput_trailingAction_a11y),
-                    onClick = { })
-            } else {
-                null
-            },
+            leadingIcon = leadingIcon,
             loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
             error = if (error) OudsError(errorMessage) else null,
             prefix = prefix,
-            suffix = suffix,
             helperText = helperText,
-            helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
             constrainedMaxWidth = constrainedMaxWidth
         )
     }
 }
 
-private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, themeDrawableResources: ThemeDrawableResources) {
+private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoState) {
     with(state) {
-        functionCall("OudsTextInput") {
+        functionCall("OudsPasswordInput") {
             typedArgument("value", value)
             lambdaArgument("onValueChange") {
                 comment("Update value")
@@ -193,20 +149,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             if (label.isNotEmpty()) typedArgument("label", label)
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
-            if (leadingIcon) {
-                constructorCallArgument<OudsTextInputLeadingIcon>("leadingIcon") {
-                    painterArgument(themeDrawableResources.tipsAndTricks)
-                }
-            }
-            if (trailingIcon) {
-                constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
-                    painterArgument(themeDrawableResources.tipsAndTricks)
-                    contentDescriptionArgument(R.string.app_components_textInput_trailingAction_a11y)
-                    onClickArgument {
-                        comment("Do something")
-                    }
-                }
-            }
+            if (leadingIcon) typedArgument("leadingIcon", leadingIcon)
             if (hasLoader) {
                 constructorCallArgument<OudsTextInputLoader>("loader") {
                     typedArgument("progress", null)
@@ -220,16 +163,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
                 }
             }
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
-            if (suffix.isNotEmpty()) typedArgument("suffix", suffix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
-            if (helperLink.isNotEmpty()) {
-                constructorCallArgument<OudsTextInputHelperLink>("helperLink") {
-                    typedArgument("text", helperLink)
-                    onClickArgument {
-                        comment("Do something")
-                    }
-                }
-            }
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
         }
     }
@@ -237,6 +171,6 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
 
 @PreviewLightDark
 @Composable
-private fun PreviewTextInputDemoScreen() = AppPreview {
-    TextInputDemoScreen()
+private fun PreviewPasswordInputDemoScreen() = AppPreview {
+    PasswordInputDemoScreen()
 }

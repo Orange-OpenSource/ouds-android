@@ -46,6 +46,7 @@ import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
+import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
@@ -149,6 +150,17 @@ fun NavigationBarIllustration() = ComponentIllustration {
     OudsNavigationBar(
         items = items,
         modifier = Modifier.padding(horizontal = 12.dp)
+    )
+}
+
+@Composable
+fun PasswordInputIllustration() = ComponentIllustration {
+    OudsPasswordInput(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        value = "",
+        onValueChange = {},
+        label = "Password",
+        helperText = "Your password must be at least 8 characters."
     )
 }
 
