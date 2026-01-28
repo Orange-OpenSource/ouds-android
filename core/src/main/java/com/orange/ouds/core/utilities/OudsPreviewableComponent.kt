@@ -38,6 +38,8 @@ import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarPreviewParameterProvider
+import com.orange.ouds.core.component.OudsPasswordInputPreviewParameter
+import com.orange.ouds.core.component.OudsPasswordInputPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
@@ -78,6 +80,7 @@ import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsMediumTopAppBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
+import com.orange.ouds.core.component.PreviewOudsPasswordInput
 import com.orange.ouds.core.component.PreviewOudsRadioButton
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItem
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemConstrainedMaxWidth
@@ -452,6 +455,20 @@ interface OudsPreviewableComponent {
                     windowWidthSizeClass = WindowWidthSizeClass.MEDIUM
                 )
             }
+        }
+    }
+
+    object PasswordInput : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = OudsPasswordInputPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsPasswordInput(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter as OudsPasswordInputPreviewParameter
+            )
         }
     }
 
