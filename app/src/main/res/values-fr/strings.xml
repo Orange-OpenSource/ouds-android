@@ -90,7 +90,7 @@
         <item quantity="other">%d messages non lus</item>
     </plurals>
     <string name="app_components_common_unreadNotificationsBadge_a11y">Notifications non lues</string>
-    <string name="app_components_common_version_label">Version du design composant</string>
+    <string name="app_components_common_version_label">Version design du composant</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>
