@@ -239,13 +239,13 @@ private fun getUnorderedIcons() = if (LocalInspectionMode.current) {
     listOf(
         OudsBulletListUnorderedIcon.Bullet(),
         OudsBulletListUnorderedIcon.Tick(),
-        OudsBulletListUnorderedIcon.Free(painter = painterResource(LocalThemeDrawableResources.current.home)),
+        OudsBulletListUnorderedIcon.Free(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
     )
 } else {
     OudsBulletListUnorderedIcon::class.sealedSubclasses.mapNotNull { kClass ->
         tryOrNull {
             if (kClass == OudsBulletListUnorderedIcon.Free::class) {
-                OudsBulletListUnorderedIcon.Free(painter = painterResource(LocalThemeDrawableResources.current.home))
+                OudsBulletListUnorderedIcon.Free(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
             } else {
                 kClass.createInstance()
             }
