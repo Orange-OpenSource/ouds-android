@@ -178,7 +178,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, u
             lambdaArgument("builder") {
                 when (levelCount) {
                     1 -> {
-                        for (i in 1..3) {
+                        repeat(3) {
                             itemFunctionCall(label)
                         }
                     }
