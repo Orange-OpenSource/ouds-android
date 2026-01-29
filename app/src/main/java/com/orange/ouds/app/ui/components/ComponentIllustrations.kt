@@ -71,8 +71,9 @@ fun BadgeIllustration() = ComponentIllustration {
 @Composable
 fun BulletListIllustration() = ComponentIllustration {
     OudsBulletList(modifier = Modifier.padding(end = 16.dp), type = OudsBulletListType.Unordered()) {
-        item(label = "Label")
-        item(label = "Label")
+        repeat(2) {
+            item(label = "Label")
+        }
     }
 }
 

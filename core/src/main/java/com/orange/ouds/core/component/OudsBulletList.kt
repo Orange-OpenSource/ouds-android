@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -183,7 +184,7 @@ private fun OudsBulletListItem(
                 .padding(vertical = verticalPadding),
             horizontalArrangement = Arrangement.spacedBy(columnGap)
         ) {
-            Box(modifier = Modifier.size(bulletContainerSize), contentAlignment = Alignment.CenterEnd) {
+            Box(modifier = Modifier.size(bulletContainerSize * LocalDensity.current.fontScale), contentAlignment = Alignment.CenterEnd) {
                 Bullet(type = currentType, level = level, index = index, typography = typography, size = bulletSize, typeByLevel = typeByLevel)
             }
             Text(
