@@ -123,8 +123,8 @@ class OudsBulletListBuilder internal constructor() {
         subListHasBoldText: Boolean? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
     ) {
-        val children = builder?.let { OudsBulletListBuilder().apply(it).build() }.orEmpty()
-        items.add(BulletListItem(label, subListType, subListTextStyle, subListHasBoldText, children))
+        val subListItems = builder?.let { OudsBulletListBuilder().apply(it).build() }.orEmpty()
+        items.add(BulletListItem(label, subListType, subListTextStyle, subListHasBoldText, subListItems))
     }
 
     internal fun build(): List<BulletListItem> = items
@@ -186,14 +186,14 @@ private fun OudsBulletListItem(
             )
         }
 
-        if (item.children.isNotEmpty()) {
+        if (item.subListItems.isNotEmpty()) {
             val nextLevel = OudsBulletListItemNestedLevel.entries.getOrNull(level.ordinal + 1)
             if (nextLevel != null) {
                 val nextType = item.subListType ?: currentType
                 val nextTextStyle = item.subListTextStyle ?: currentTextStyle
                 val nextHasBoldText = item.subListHasBoldText ?: currentHasBoldText
 
-                item.children.forEachIndexed { childIndex, childItem ->
+                item.subListItems.forEachIndexed { childIndex, childItem ->
                     OudsBulletListItem(
                         item = childItem,
                         currentType = nextType,
@@ -217,7 +217,7 @@ internal data class BulletListItem(
     val subListType: OudsBulletListType?,
     val subListTextStyle: OudsBulletListTextStyle?,
     val subListHasBoldText: Boolean?,
-    val children: List<BulletListItem> = emptyList()
+    val subListItems: List<BulletListItem> = emptyList()
 )
 
 @Composable
