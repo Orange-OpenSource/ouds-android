@@ -93,7 +93,8 @@ fun OudsBulletList(
                 currentTextStyle = textStyle,
                 currentHasBoldText = bold,
                 index = index,
-                level = 0
+                level = 0,
+                typeByLevel = mutableMapOf(0 to type)
             )
         }
     }
@@ -144,7 +145,8 @@ private fun OudsBulletListItem(
     currentHasBoldText: Boolean,
     index: Int,
     level: Int,
-    modifier: Modifier = Modifier
+    typeByLevel: MutableMap<Int, OudsBulletListType>,
+    modifier: Modifier = Modifier,
 ) {
     with(OudsTheme.componentsTokens.bulletList) {
         val typography: TextStyle
@@ -182,7 +184,7 @@ private fun OudsBulletListItem(
             horizontalArrangement = Arrangement.spacedBy(columnGap)
         ) {
             Box(modifier = Modifier.size(bulletContainerSize), contentAlignment = Alignment.CenterEnd) {
-                Bullet(type = currentType, level = level, index = index, typography = typography, size = bulletSize)
+                Bullet(type = currentType, level = level, index = index, typography = typography, size = bulletSize, typeByLevel = typeByLevel)
             }
             Text(
                 text = item.label,
@@ -197,6 +199,7 @@ private fun OudsBulletListItem(
                 val nextType = item.subListType ?: currentType
                 val nextTextStyle = item.subListTextStyle ?: currentTextStyle
                 val nextHasBoldText = item.subListHasBoldText ?: currentHasBoldText
+                typeByLevel[nextLevel] = nextType
 
                 item.subListItems.forEachIndexed { childIndex, childItem ->
                     OudsBulletListItem(
@@ -205,7 +208,8 @@ private fun OudsBulletListItem(
                         currentTextStyle = nextTextStyle,
                         currentHasBoldText = nextHasBoldText,
                         index = childIndex,
-                        level = nextLevel
+                        level = nextLevel,
+                        typeByLevel = typeByLevel
                     )
                 }
             } else {
@@ -226,12 +230,21 @@ internal data class BulletListItem(
 )
 
 @Composable
-private fun Bullet(type: OudsBulletListType, level: Int, index: Int, typography: TextStyle, size: Dp) {
+private fun Bullet(type: OudsBulletListType, level: Int, index: Int, typography: TextStyle, size: Dp, typeByLevel: Map<Int, OudsBulletListType>) {
     when (type) {
         is OudsBulletListType.Unordered -> {
+            val unorderedBulletLevel = when (level) {
+                0 -> 0
+                1 -> if (typeByLevel[0] is OudsBulletListType.Ordered) 0 else level
+                else -> when {
+                    typeByLevel[1] is OudsBulletListType.Ordered -> 0
+                    typeByLevel[0] is OudsBulletListType.Ordered && typeByLevel[1] !is OudsBulletListType.Ordered -> level - 1
+                    else -> level
+                }
+            }
             val painter = when (type.icon) {
                 is OudsBulletListUnorderedIcon.Bullet -> {
-                    val iconRes = when (level) {
+                    val iconRes = when (unorderedBulletLevel) {
                         0 -> OudsTheme.drawableResources.component.bulletList.level0
                         1 -> OudsTheme.drawableResources.component.bulletList.level1
                         else -> OudsTheme.drawableResources.component.bulletList.level2
