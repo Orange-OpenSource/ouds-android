@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -292,7 +291,7 @@ object OudsBulletListDefaults {
 sealed class OudsBulletListType {
 
     /**
-     * Collects related items that don't need to be in a specific order or sequence.List items are typically marked with bullets, but it is also possible
+     * Collects related items that don't need to be in a specific order or sequence. List items are typically marked with bullets, but it is also possible
      * to use a tick or any Solaris icon.
      *
      * @constructor Creates an instance of [OudsBulletListType.Unordered].
