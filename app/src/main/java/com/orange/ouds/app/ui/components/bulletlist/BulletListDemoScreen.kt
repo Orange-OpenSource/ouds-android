@@ -203,6 +203,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, u
 
 private fun Code.Builder.itemFunctionCall(label: String, content: (Code.Builder.() -> Unit)? = null) = functionCall("item") {
     trailingLambda = true
+    isMultiline = false
     typedArgument("label", label)
     content?.let {
         lambdaArgument("builder") {
