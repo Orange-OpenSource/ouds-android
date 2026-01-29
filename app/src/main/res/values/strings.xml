@@ -158,7 +158,6 @@
     <!-- Components: badge -->
     <string name="app_components_badge_label" translatable="false">Badge</string>
     <string name="app_components_badge_description_text">Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.</string>
-    <string name="app_components_badge_type_label" translatable="false">Type</string>
     <string name="app_components_badge_standardType_label" translatable="false">Standard</string>
     <string name="app_components_badge_countType_label" translatable="false">Count</string>
     <string name="app_components_badge_iconType_label" translatable="false">Icon</string>
