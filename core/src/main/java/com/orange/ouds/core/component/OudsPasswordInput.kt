@@ -59,7 +59,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param modifier [Modifier] applied to the password input.
  * @param label Label displayed above the password input. It describes the purpose of the input.
  * @param placeholder Text displayed when the password input is empty. It provides a hint or guidance inside the field to suggest expected input.
- * @param leadingIcon When `true`, a lock icon is displayed at the start of the password input to visually reinforce the security context. Defaults to `false`.
+ * @param lockIcon When `true`, a lock icon is displayed at the start of the password input to visually reinforce the security context. Defaults to `false`.
  * @param prefix Text placed before the user's input. A prefix is not common and is discouraged in a Password Input component. In very specific cases,
  *   it can provide context or format requirements (e.g., “DEV-” for test accounts, "admin-" as a pattern to define an admin password)
  * @param enabled Controls the enabled state of the password input. When `false`, this password input will not be focusable and will not react to input events.
@@ -90,7 +90,7 @@ fun OudsPasswordInput(
     modifier: Modifier = Modifier,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: Boolean = false,
+    lockIcon: Boolean = false,
     prefix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -110,7 +110,7 @@ fun OudsPasswordInput(
         modifier = modifier,
         label = label,
         placeholder = placeholder,
-        leadingIcon = if (leadingIcon) textInputLeadingIcon() else null,
+        leadingIcon = if (lockIcon) textInputLockIcon() else null,
         trailingIconButton = trailingIconButton(isPasswordVisible = isPasswordVisible) {
             isPasswordVisible = !isPasswordVisible
         },
@@ -146,7 +146,7 @@ fun OudsPasswordInput(
  * @param modifier [Modifier] applied to the password input.
  * @param label Label displayed above the password input. It describes the purpose of the input.
  * @param placeholder Text displayed when the password input is empty. It provides a hint or guidance inside the field to suggest expected input.
- * @param leadingIcon When `true`, a lock icon is displayed at the start of the password input to visually reinforce the security context. Defaults to `false`.
+ * @param lockIcon When `true`, a lock icon is displayed at the start of the password input to visually reinforce the security context. Defaults to `false`.
  * @param prefix Text placed before the user's input. A prefix is not common and is discouraged in a Password Input component. In very specific cases,
  *   it can provide context or format requirements (e.g., “DEV-” for test accounts, "admin-" as a pattern to define an admin password)
  * @param enabled Controls the enabled state of the password input. When `false`, this password input will not be focusable and will not react to input events.
@@ -177,7 +177,7 @@ fun OudsPasswordInput(
     modifier: Modifier = Modifier,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: Boolean = false,
+    lockIcon: Boolean = false,
     prefix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -197,7 +197,7 @@ fun OudsPasswordInput(
         modifier = modifier,
         label = label,
         placeholder = placeholder,
-        leadingIcon = if (leadingIcon) textInputLeadingIcon() else null,
+        leadingIcon = if (lockIcon) textInputLockIcon() else null,
         trailingIconButton = trailingIconButton(isPasswordVisible = isPasswordVisible) {
             isPasswordVisible = !isPasswordVisible
         },
@@ -217,7 +217,7 @@ fun OudsPasswordInput(
 }
 
 @Composable
-private fun textInputLeadingIcon() = OudsTextInputLeadingIcon(
+private fun textInputLockIcon() = OudsTextInputLeadingIcon(
     painter = painterResource(OudsTheme.drawableResources.communication.securityAndSafety.lock),
     contentDescription = ""
 )
@@ -266,7 +266,7 @@ internal fun PreviewOudsPasswordInput(
                 label = label,
                 placeholder = placeholder,
                 //outlined = true,
-                leadingIcon = leadingIcon,
+                lockIcon = leadingIcon,
                 prefix = prefix,
                 error = error,
                 helperText = helperText,

@@ -27,7 +27,7 @@ fun rememberPasswordInputDemoState(
     label: String = stringResource(id = R.string.app_components_passwordInput_password_label),
     placeholder: String = "",
     outlined: Boolean = false,
-    leadingIcon: Boolean = false,
+    lockIcon: Boolean = false,
     hasLoader: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -41,7 +41,7 @@ fun rememberPasswordInputDemoState(
     label,
     placeholder,
     outlined,
-    leadingIcon,
+    lockIcon,
     enabled,
     readOnly,
     hasLoader,
@@ -56,7 +56,7 @@ fun rememberPasswordInputDemoState(
         label,
         placeholder,
         outlined,
-        leadingIcon,
+        lockIcon,
         hasLoader,
         enabled,
         readOnly,
@@ -73,7 +73,7 @@ class PasswordInputDemoState(
     label: String,
     placeholder: String,
     outlined: Boolean,
-    leadingIcon: Boolean,
+    lockIcon: Boolean,
     hasLoader: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
@@ -93,7 +93,7 @@ class PasswordInputDemoState(
                         label,
                         placeholder,
                         outlined,
-                        leadingIcon,
+                        lockIcon,
                         hasLoader,
                         enabled,
                         readOnly,
@@ -137,7 +137,7 @@ class PasswordInputDemoState(
 
     var errorMessage: String by mutableStateOf(errorMessage)
 
-    var leadingIcon: Boolean by mutableStateOf(leadingIcon)
+    var lockIcon: Boolean by mutableStateOf(lockIcon)
 
     var hasLoader: Boolean by mutableStateOf(hasLoader)
 

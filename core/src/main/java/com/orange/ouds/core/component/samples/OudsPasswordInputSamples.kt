@@ -24,7 +24,7 @@ internal fun OudsPasswordInputSample() {
     OudsPasswordInput(
         value = value,
         onValueChange = { value = it },
-        leadingIcon = true,
+        lockIcon = true,
         label = "Password",
         helperText = "Password must be at least 8 characters.",
     )

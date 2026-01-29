@@ -51,9 +51,9 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
             onCheckedChange = { outlined = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_leadingIcon_label),
-            checked = leadingIcon,
-            onCheckedChange = { leadingIcon = it },
+            label = stringResource(R.string.app_components_passwordInput_lockIcon_label),
+            checked = lockIcon,
+            onCheckedChange = { lockIcon = it },
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_label),
@@ -127,7 +127,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
             label = label,
             placeholder = placeholder,
             outlined = outlined,
-            leadingIcon = leadingIcon,
+            lockIcon = lockIcon,
             loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
@@ -149,7 +149,7 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             if (label.isNotEmpty()) typedArgument("label", label)
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
-            if (leadingIcon) typedArgument("leadingIcon", leadingIcon)
+            if (lockIcon) typedArgument("lockIcon", lockIcon)
             if (hasLoader) {
                 constructorCallArgument<OudsTextInputLoader>("loader") {
                     typedArgument("progress", null)
