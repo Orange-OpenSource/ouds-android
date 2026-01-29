@@ -74,7 +74,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param keyboardImeAction IME (Input Method Editor) action. This defines the visual appearance of the action button on the software keyboard
- *   (e.g., a checkmark for [ImeAction.Done])
+ *   (e.g., a checkmark for [ImeAction.Done]).
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
@@ -166,7 +166,7 @@ fun OudsPasswordInput(
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param keyboardImeAction IME (Input Method Editor) action. This defines the visual appearance of the action button on the software keyboard
- *   (e.g., a checkmark for [ImeAction.Done])
+ *   (e.g., a checkmark for [ImeAction.Done]).
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
