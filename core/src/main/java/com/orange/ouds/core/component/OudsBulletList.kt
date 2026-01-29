@@ -134,7 +134,7 @@ private class OudsBulletListBuilderImpl : OudsBulletListBuilder {
         subListHasBoldText: Boolean?,
         builder: (OudsBulletListBuilder.() -> Unit)?
     ) {
-        val children = builder?.let { OudsBulletListBuilderImpl().apply(it).build() } ?: emptyList()
+        val children = builder?.let { OudsBulletListBuilderImpl().apply(it).build() }.orEmpty()
         items.add(BulletListItem(label, subListType, subListTextStyle, subListHasBoldText, children))
     }
 
