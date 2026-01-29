@@ -25,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -76,6 +77,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   (e.g., a checkmark for [ImeAction.Done])
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
+ *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
+ *   For example, to draw a cursor or selection around the text.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -101,6 +105,7 @@ fun OudsPasswordInput(
     constrainedMaxWidth: Boolean = false,
     keyboardImeAction: ImeAction = ImeAction.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
     interactionSource: MutableInteractionSource? = null
 ) {
     var isPasswordVisible by remember { mutableStateOf(false) }
@@ -124,6 +129,7 @@ fun OudsPasswordInput(
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = getKeyboardOptions(keyboardImeAction),
         keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
         visualTransformation = visualTransformation(isPasswordVisible),
         interactionSource = interactionSource
     )
@@ -163,6 +169,9 @@ fun OudsPasswordInput(
  *   (e.g., a checkmark for [ImeAction.Done])
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
+ *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
+ *   For example, to draw a cursor or selection around the text.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -188,6 +197,7 @@ fun OudsPasswordInput(
     constrainedMaxWidth: Boolean = false,
     keyboardImeAction: ImeAction = ImeAction.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
     interactionSource: MutableInteractionSource? = null
 ) {
     var isPasswordVisible by remember { mutableStateOf(false) }
@@ -211,6 +221,7 @@ fun OudsPasswordInput(
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = getKeyboardOptions(keyboardImeAction),
         keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
         visualTransformation = visualTransformation(isPasswordVisible),
         interactionSource = interactionSource
     )
