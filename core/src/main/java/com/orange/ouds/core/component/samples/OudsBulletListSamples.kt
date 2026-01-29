@@ -34,7 +34,7 @@ internal fun OudsBulletListUnorderedSample() {
 
 @Composable
 internal fun OudsBulletListOrderedSample() {
-    OudsBulletList(type = OudsBulletListType.Ordered()) {
+    OudsBulletList(type = OudsBulletListType.Ordered) {
         item(label = "Prepare the ingredients")
         item(label = "Cook the pasta") {
             item(label = "Boil water in a large pot")
@@ -49,7 +49,7 @@ internal fun OudsBulletListOrderedSample() {
 
 @Composable
 internal fun OudsBulletListBareSample() {
-    OudsBulletList(type = OudsBulletListType.Bare()) {
+    OudsBulletList(type = OudsBulletListType.Bare) {
         item(label = "Event Planning")
         item(label = "Logistic Team", subListHasBoldText = false) {
             item(label = "Venue Booking")
