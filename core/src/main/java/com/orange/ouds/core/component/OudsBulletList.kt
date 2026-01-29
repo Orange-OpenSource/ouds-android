@@ -76,7 +76,7 @@ fun OudsBulletList(
     builder: OudsBulletListBuilder.() -> Unit
 ) {
     val items = remember(builder) {
-        OudsBulletListBuilderImpl().apply(builder).build()
+        OudsBulletListBuilder().apply(builder).build()
     }
 
     Column(modifier = modifier) {
@@ -96,10 +96,11 @@ fun OudsBulletList(
 /**
  * A DSL builder for constructing an [OudsBulletList].
  *
- * This interface provides a structured way to define list items and nested sub-lists.
+ * This class provides a structured way to define list items and nested sub-lists.
  */
 @OudsBulletListDslMarker
-interface OudsBulletListBuilder {
+class OudsBulletListBuilder internal constructor() {
+    private val items = mutableListOf<BulletListItem>()
 
     /**
      * Adds an item to the bullet list.
@@ -121,24 +122,12 @@ interface OudsBulletListBuilder {
         subListTextStyle: OudsBulletListTextStyle? = null,
         subListHasBoldText: Boolean? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
-    )
-}
-
-private class OudsBulletListBuilderImpl : OudsBulletListBuilder {
-    private val items = mutableListOf<BulletListItem>()
-
-    override fun item(
-        label: String,
-        subListType: OudsBulletListType?,
-        subListTextStyle: OudsBulletListTextStyle?,
-        subListHasBoldText: Boolean?,
-        builder: (OudsBulletListBuilder.() -> Unit)?
     ) {
-        val children = builder?.let { OudsBulletListBuilderImpl().apply(it).build() }.orEmpty()
+        val children = builder?.let { OudsBulletListBuilder().apply(it).build() }.orEmpty()
         items.add(BulletListItem(label, subListType, subListTextStyle, subListHasBoldText, children))
     }
 
-    fun build(): List<BulletListItem> = items
+    internal fun build(): List<BulletListItem> = items
 }
 
 @Composable
@@ -223,7 +212,7 @@ private fun OudsBulletListItem(
     }
 }
 
-private data class BulletListItem(
+internal data class BulletListItem(
     val label: String,
     val subListType: OudsBulletListType?,
     val subListTextStyle: OudsBulletListTextStyle?,
