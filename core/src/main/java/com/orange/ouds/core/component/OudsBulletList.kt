@@ -179,7 +179,6 @@ private fun OudsBulletListItem(
             modifier = modifier
                 .padding(start = paddingStart)
                 .padding(vertical = verticalPadding),
-            verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.spacedBy(columnGap)
         ) {
             Box(modifier = Modifier.size(bulletContainerSize), contentAlignment = Alignment.CenterEnd) {
