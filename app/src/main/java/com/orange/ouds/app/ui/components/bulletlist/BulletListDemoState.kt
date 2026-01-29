@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.components.bulletlist
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -40,7 +41,7 @@ fun rememberBulletListDemoState(
     brandColorIcon: Boolean = false,
     textStyle: OudsBulletListTextStyle = OudsBulletListTextStyle.BodyLarge,
     bold: Boolean = true,
-    levelCount: BulletListDemoState.LevelCount = BulletListDemoState.LevelCount.One,
+    levelCount: Int = BulletListDemoState.MinLevelCount,
     label: String = stringResource(R.string.app_components_common_label_label)
 ): BulletListDemoState {
     val defaultFreeIconPainter = painterResource(DefaultUnorderedFreeIconId)
@@ -72,11 +73,13 @@ class BulletListDemoState(
     brandColorIcon: Boolean,
     textStyle: OudsBulletListTextStyle,
     bold: Boolean,
-    levelCount: LevelCount,
+    levelCount: Int,
     label: String
 ) {
 
     companion object {
+        const val MinLevelCount = 1
+        const val MaxLevelCount = 3
 
         fun getSaver(defaultFreeIconPainter: Painter) = listSaver(
             save = { state ->
@@ -107,7 +110,7 @@ class BulletListDemoState(
                     list[2] as Boolean,
                     list[3] as OudsBulletListTextStyle,
                     list[4] as Boolean,
-                    list[5] as LevelCount,
+                    list[5] as Int,
                     list[6] as String
                 )
             }
@@ -122,16 +125,10 @@ class BulletListDemoState(
 
     var textStyle: OudsBulletListTextStyle by mutableStateOf(textStyle)
 
-
     var bold: Boolean by mutableStateOf(bold)
 
-    var levelCount: LevelCount by mutableStateOf(levelCount)
+    var levelCount: Int by mutableIntStateOf(levelCount)
 
     var label: String by mutableStateOf(label)
 
-    enum class LevelCount(@StringRes val labelRes: Int) {
-        One(R.string.app_components_bulletList_oneLevel_label),
-        Two(R.string.app_components_bulletList_twoLevels_label),
-        Three(R.string.app_components_bulletList_threeLevels_label)
-    }
 }

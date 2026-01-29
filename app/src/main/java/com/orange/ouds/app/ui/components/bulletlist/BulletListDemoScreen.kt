@@ -22,6 +22,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MaxLevelCount
+import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MinLevelCount
+import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MaxItemCount
+import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MinItemCount
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -40,6 +44,7 @@ import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedIcon
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
+import kotlin.collections.toList
 import kotlin.reflect.full.createInstance
 
 @Composable
@@ -93,12 +98,14 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
             checked = bold,
             onCheckedChange = { bold = it },
         )
+        val levelCountOptions = remember { (MinLevelCount..MaxLevelCount).toList() }
+
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_bulletList_levelCount_label),
-            chipLabels = BulletListDemoState.LevelCount.entries.map { stringResource(it.labelRes) },
-            selectedChipIndex = BulletListDemoState.LevelCount.entries.indexOf(levelCount),
-            onSelectionChange = { id -> levelCount = BulletListDemoState.LevelCount.entries[id] }
+            chipLabels = levelCountOptions.map { it.toString() },
+            selectedChipIndex = levelCountOptions.indexOf(levelCount),
+            onSelectionChange = { index -> levelCount = levelCountOptions[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -115,18 +122,18 @@ private fun BulletListDemoContent(state: BulletListDemoState) {
         val builder: OudsBulletListBuilder.() -> Unit = remember(levelCount, label) {
             {
                 when (levelCount) {
-                    BulletListDemoState.LevelCount.One -> {
+                    1 -> {
                         item(label = label)
                         item(label = label)
                         item(label = label)
                     }
-                    BulletListDemoState.LevelCount.Two -> {
+                    2 -> {
                         item(label = label) {
                             item(label = label)
                             item(label = label)
                         }
                     }
-                    BulletListDemoState.LevelCount.Three -> {
+                    else -> {
                         item(label = label) {
                             item(label = label) {
                                 item(label = label)
@@ -174,18 +181,18 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, u
             if (!bold) typedArgument("bold", bold)
             lambdaArgument("builder") {
                 when (levelCount) {
-                    BulletListDemoState.LevelCount.One -> {
+                    1 -> {
                         for (i in 1..3) {
                             itemFunctionCall(label)
                         }
                     }
-                    BulletListDemoState.LevelCount.Two -> {
+                    2 -> {
                         itemFunctionCall(label) {
                             itemFunctionCall(label)
                             itemFunctionCall(label)
                         }
                     }
-                    BulletListDemoState.LevelCount.Three -> {
+                    else -> {
                         itemFunctionCall(label) {
                             itemFunctionCall(label) {
                                 itemFunctionCall(label)
