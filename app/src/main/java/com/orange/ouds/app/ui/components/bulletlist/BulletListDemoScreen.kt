@@ -214,8 +214,8 @@ private fun getTypes() = if (LocalInspectionMode.current) {
     // See https://issuetracker.google.com/issues/240601093
     listOf(
         OudsBulletListType.Unordered(),
-        OudsBulletListType.Ordered(),
-        OudsBulletListType.Bare()
+        OudsBulletListType.Ordered,
+        OudsBulletListType.Bare
     )
 } else {
     OudsBulletListType::class.sealedSubclasses.mapNotNull { kClass ->

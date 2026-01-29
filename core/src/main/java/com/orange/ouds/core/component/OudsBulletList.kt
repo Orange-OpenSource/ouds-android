@@ -303,18 +303,14 @@ sealed class OudsBulletListType {
     /**
      * Collects related items with numeric order or sequence. Numbering starts at 1 with the first list item and increases by increments of 1 for each
      * successive ordered list item.
-     *
-     * @constructor Creates an instance of [OudsBulletListType.Ordered].
      */
-    class Ordered : OudsBulletListType()
+    object Ordered : OudsBulletListType()
 
     /**
      * An unordered list without any bullet or alphanumeric sequence. It sill has left-padding, so list items will appear indented. This is the default and
      * is also known as undecorated "Unstyled" list.
-     *
-     *  @constructor Creates an instance of [OudsBulletListType.Bare].
      */
-    class Bare : OudsBulletListType()
+    object Bare : OudsBulletListType()
 }
 
 /**
@@ -417,7 +413,7 @@ internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: B
                     item(label = "Unordered subitem")
                     item(
                         label = "Unordered subitem with an ordered sublist",
-                        subListType = OudsBulletListType.Ordered(),
+                        subListType = OudsBulletListType.Ordered,
                     ) {
                         item(label = "Ordered subitem")
                         item(label = "Ordered subitem")
@@ -450,7 +446,7 @@ internal class OudsBulletListPreviewParameterProvider : BasicPreviewParameterPro
 
 private val previewParameterValues: List<OudsBulletListPreviewParameter>
     get() = listOf(
-        OudsBulletListPreviewParameter(type = OudsBulletListType.Bare()),
-        OudsBulletListPreviewParameter(type = OudsBulletListType.Ordered(), textStyle = OudsBulletListTextStyle.BodyMedium),
+        OudsBulletListPreviewParameter(type = OudsBulletListType.Bare),
+        OudsBulletListPreviewParameter(type = OudsBulletListType.Ordered, textStyle = OudsBulletListTextStyle.BodyMedium),
         OudsBulletListPreviewParameter(),
     )
