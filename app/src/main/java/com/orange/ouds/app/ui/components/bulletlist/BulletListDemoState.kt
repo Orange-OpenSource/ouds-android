@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.bulletlist
 
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -87,7 +86,7 @@ class BulletListDemoState(
                     listOf(
                         type::class.java.name,
                         unorderedIcon::class.java.name,
-                        this.brandColorIcon,
+                        brandColorIcon,
                         textStyle,
                         bold,
                         levelCount,
