@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -151,15 +152,15 @@ private fun OudsBulletListItem(
                 typography = if (currentHasBoldText) OudsTheme.typography.body.strong.large else OudsTheme.typography.body.default.large
                 columnGap = spaceColumnGapBodyLarge.value
                 verticalPadding = spacePaddingBlockBodyLarge.value
-                bulletSize = 20.dp
-                bulletContainerSize = 24.dp
+                bulletSize = OudsTheme.sizes.icon.withBody.large.sizeSmall
+                bulletContainerSize = OudsTheme.sizes.icon.withBody.large.sizeMedium
             }
             OudsBulletListTextStyle.BodyMedium -> {
                 typography = if (currentHasBoldText) OudsTheme.typography.body.strong.medium else OudsTheme.typography.body.default.medium
                 columnGap = spaceColumnGapBodyMedium.value
                 verticalPadding = spacePaddingBlockBodyMedium.value
-                bulletSize = 16.dp
-                bulletContainerSize = 20.dp
+                bulletSize = OudsTheme.sizes.icon.withBody.medium.sizeSmall
+                bulletContainerSize = OudsTheme.sizes.icon.withBody.medium.sizeMedium
             }
         }
 
