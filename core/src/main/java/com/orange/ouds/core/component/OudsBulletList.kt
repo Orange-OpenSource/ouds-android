@@ -427,16 +427,22 @@ internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: B
                 item(
                     label = "$typeName third item with a sublist that inherits from the parent type",
                 ) {
-                    repeat(2) {
-                        item(label = "$typeName subitem")
+                    item(label = "$typeName subitem")
+                    item(label = "$typeName subitem with an unordered sublist", subListType = OudsBulletListType.Unordered()) {
+                        repeat(2) {
+                            item(label = "Unordered subitem")
+                        }
                     }
                 }
                 item(
                     label = "$typeName fourth item with an unordered sublist and free bullets",
                     subListType = OudsBulletListType.Unordered(icon = OudsBulletListUnorderedIcon.Free(customBullet))
                 ) {
-                    repeat(2) {
-                        item(label = "Unordered subitem")
+                    item(label = "Unordered subitem")
+                    item(label = "Unordered subitem with an unordered sublist", subListType = OudsBulletListType.Unordered()) {
+                        repeat(2) {
+                            item(label = "Unordered subitem")
+                        }
                     }
                 }
             }
