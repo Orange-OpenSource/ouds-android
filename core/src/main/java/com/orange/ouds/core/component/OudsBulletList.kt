@@ -50,6 +50,11 @@ import com.orange.ouds.theme.OudsThemeContract
 annotation class OudsBulletListDslMarker
 
 /**
+ * Maximum bullet list depth.
+ */
+private const val MaxLevelCount = 3
+
+/**
  * Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.
  *
  * Bullet list is also known as “Unordered list” or “Ordered list” and is not an interactive element by default, although text items can support hypertext links.
@@ -88,7 +93,7 @@ fun OudsBulletList(
                 currentTextStyle = textStyle,
                 currentHasBoldText = bold,
                 index = index,
-                level = OudsBulletListItemNestedLevel.Zero
+                level = 0
             )
         }
     }
@@ -138,7 +143,7 @@ private fun OudsBulletListItem(
     currentTextStyle: OudsBulletListTextStyle,
     currentHasBoldText: Boolean,
     index: Int,
-    level: OudsBulletListItemNestedLevel,
+    level: Int,
     modifier: Modifier = Modifier
 ) {
     with(OudsTheme.componentsTokens.bulletList) {
@@ -165,9 +170,9 @@ private fun OudsBulletListItem(
         }
 
         val paddingStart = when (level) {
-            OudsBulletListItemNestedLevel.Zero -> spacePaddingInlineLevel0
-            OudsBulletListItemNestedLevel.One -> spacePaddingInlineLevel1
-            OudsBulletListItemNestedLevel.Two -> spacePaddingInlineLevel2
+            0 -> spacePaddingInlineLevel0
+            1 -> spacePaddingInlineLevel1
+            else -> spacePaddingInlineLevel2
         }.dp
 
         Row(
@@ -188,8 +193,8 @@ private fun OudsBulletListItem(
         }
 
         if (item.subListItems.isNotEmpty()) {
-            val nextLevel = OudsBulletListItemNestedLevel.entries.getOrNull(level.ordinal + 1)
-            if (nextLevel != null) {
+            val nextLevel = level + 1
+            if (nextLevel < MaxLevelCount) {
                 val nextType = item.subListType ?: currentType
                 val nextTextStyle = item.subListTextStyle ?: currentTextStyle
                 val nextHasBoldText = item.subListHasBoldText ?: currentHasBoldText
@@ -206,7 +211,7 @@ private fun OudsBulletListItem(
                 }
             } else {
                 LaunchedEffect(Unit) {
-                    Log.w("OudsBulletList", "Maximum list depth (3 levels) reached. Children of '${item.label}' will not be displayed.")
+                    Log.w("OudsBulletList", "Maximum list depth ($MaxLevelCount levels) reached. Children of '${item.label}' will not be displayed.")
                 }
             }
         }
@@ -222,15 +227,15 @@ internal data class BulletListItem(
 )
 
 @Composable
-private fun Bullet(type: OudsBulletListType, level: OudsBulletListItemNestedLevel, index: Int, typography: TextStyle, size: Dp) {
+private fun Bullet(type: OudsBulletListType, level: Int, index: Int, typography: TextStyle, size: Dp) {
     when (type) {
         is OudsBulletListType.Unordered -> {
             val painter = when (type.icon) {
                 is OudsBulletListUnorderedIcon.Bullet -> {
                     val iconRes = when (level) {
-                        OudsBulletListItemNestedLevel.Zero -> OudsTheme.drawableResources.component.bulletList.level0
-                        OudsBulletListItemNestedLevel.One -> OudsTheme.drawableResources.component.bulletList.level1
-                        OudsBulletListItemNestedLevel.Two -> OudsTheme.drawableResources.component.bulletList.level2
+                        0 -> OudsTheme.drawableResources.component.bulletList.level0
+                        1 -> OudsTheme.drawableResources.component.bulletList.level1
+                        else -> OudsTheme.drawableResources.component.bulletList.level2
                     }
                     painterResource(iconRes)
                 }
@@ -240,9 +245,9 @@ private fun Bullet(type: OudsBulletListType, level: OudsBulletListItemNestedLeve
             UnorderedBullet(painter = painter, size = size, brandColor = type.brandColor)
         }
         is OudsBulletListType.Ordered -> when (level) {
-            OudsBulletListItemNestedLevel.Zero -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
-            OudsBulletListItemNestedLevel.One -> OrderedBullet("${('A' + index)}.", textStyle = typography, size = size)
-            OudsBulletListItemNestedLevel.Two -> OrderedBullet("${('a' + index)}.", textStyle = typography, size = size)
+            0 -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
+            1 -> OrderedBullet("${('A' + index)}.", textStyle = typography, size = size)
+            else -> OrderedBullet("${('a' + index)}.", textStyle = typography, size = size)
         }
         is OudsBulletListType.Bare -> {}
     }
