@@ -59,7 +59,7 @@ private const val MaxLevelCount = 3
  *
  * Bullet list is also known as “Unordered list” or “Ordered list” and is not an interactive element by default, although text items can support hypertext links.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/49e7bf-bullet-list)
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-bullet-list)
  *
  * > Design version: 1.0.0
  *
