@@ -244,7 +244,7 @@ private fun Bullet(type: OudsBulletListType, level: OudsBulletListItemNestedLeve
             OudsBulletListItemNestedLevel.One -> OrderedBullet("${('A' + index)}.", textStyle = typography, size = size)
             OudsBulletListItemNestedLevel.Two -> OrderedBullet("${('a' + index)}.", textStyle = typography, size = size)
         }
-        is OudsBulletListType.Bare -> Box(modifier = Modifier.size(20.dp))
+        is OudsBulletListType.Bare -> {}
     }
 }
 
