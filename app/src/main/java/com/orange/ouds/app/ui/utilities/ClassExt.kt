@@ -13,4 +13,7 @@
 package com.orange.ouds.app.ui.utilities
 
 val Class<*>.nestedName: String
-    get() = name.substringAfterLast(".").replace("$", ".")
+    get() = name.nestedName
+
+val String.nestedName: String
+    get() = this.substringAfterLast(".").replace("$", ".")

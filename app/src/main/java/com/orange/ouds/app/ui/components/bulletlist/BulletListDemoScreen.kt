@@ -24,11 +24,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MaxLevelCount
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MinLevelCount
-import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MaxItemCount
-import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MinItemCount
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
-import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -44,7 +41,6 @@ import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedIcon
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
-import kotlin.collections.toList
 import kotlin.reflect.full.createInstance
 
 @Composable
@@ -77,8 +73,8 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
                 applyTopPadding = true,
                 label = stringResource(R.string.app_components_bulletList_unorderedIcon_label),
                 chipLabels = unorderedIcons.map { it::class.simpleName.orEmpty().toSentenceCase() },
-                selectedChipIndex = unorderedIcons.indexOfFirst { it::class.qualifiedName == unorderedIcon::class.qualifiedName },
-                onSelectionChange = { unorderedIcon = unorderedIcons[it] }
+                selectedChipIndex = unorderedIcons.indexOfFirst { it::class.java.name == unorderedIconClassName },
+                onSelectionChange = { unorderedIconClassName = unorderedIcons[it]::class.java.name }
             )
             CustomizationSwitchItem(
                 label = stringResource(R.string.app_components_bulletList_unorderedIconBrandColor_label),
@@ -147,7 +143,7 @@ private fun BulletListDemoContent(state: BulletListDemoState) {
             modifier = Modifier.fillMaxWidth(),
             type = if (type is OudsBulletListType.Unordered) {
                 OudsBulletListType.Unordered(
-                    icon = unorderedIcon,
+                    icon = unorderedIcon(unorderedIconClassName),
                     brandColor = brandColorIcon
                 )
             } else {
@@ -167,8 +163,8 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, u
             trailingLambda = true
             if (type is OudsBulletListType.Unordered) {
                 functionCallArgument("type", type::class.java.nestedName) {
-                    functionCallArgument("icon", unorderedIcon::class.java.nestedName) {
-                        if (unorderedIcon is OudsBulletListUnorderedIcon.Free) {
+                    functionCallArgument("icon", unorderedIconClassName.nestedName) {
+                        if (unorderedIconClassName == OudsBulletListUnorderedIcon.Free::class.java.name) {
                             painterArgument(unorderedFreeIconId)
                         }
                     }
@@ -216,6 +212,15 @@ private fun Code.Builder.itemFunctionCall(label: String, content: (Code.Builder.
 }
 
 @Composable
+private fun unorderedIcon(unorderedIconClassName: String): OudsBulletListUnorderedIcon {
+    return if (unorderedIconClassName == OudsBulletListUnorderedIcon.Free::class.java.name) {
+        OudsBulletListUnorderedIcon.Free(painter = painterResource(DefaultUnorderedFreeIconId))
+    } else {
+        Class.forName(unorderedIconClassName).kotlin.createInstance() as OudsBulletListUnorderedIcon
+    }
+}
+
+@Composable
 private fun getTypes() = if (LocalInspectionMode.current) {
     // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
     // See https://issuetracker.google.com/issues/240601093
@@ -239,13 +244,13 @@ private fun getUnorderedIcons() = if (LocalInspectionMode.current) {
     listOf(
         OudsBulletListUnorderedIcon.Bullet(),
         OudsBulletListUnorderedIcon.Tick(),
-        OudsBulletListUnorderedIcon.Free(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
+        OudsBulletListUnorderedIcon.Free(painter = painterResource(DefaultUnorderedFreeIconId)),
     )
 } else {
     OudsBulletListUnorderedIcon::class.sealedSubclasses.mapNotNull { kClass ->
         tryOrNull {
             if (kClass == OudsBulletListUnorderedIcon.Free::class) {
-                OudsBulletListUnorderedIcon.Free(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
+                OudsBulletListUnorderedIcon.Free(painter = painterResource(DefaultUnorderedFreeIconId))
             } else {
                 kClass.createInstance()
             }
