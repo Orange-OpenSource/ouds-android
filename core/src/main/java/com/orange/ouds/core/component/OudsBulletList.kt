@@ -45,6 +45,9 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
+@DslMarker
+annotation class OudsBulletListDslMarker
+
 /**
  * Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.
  *
@@ -95,6 +98,7 @@ fun OudsBulletList(
  *
  * This interface provides a structured way to define list items and nested sub-lists.
  */
+@OudsBulletListDslMarker
 interface OudsBulletListBuilder {
 
     /**
