@@ -202,14 +202,14 @@ private fun OudsBulletListItem(
             if (nextLevel != null) {
                 val nextType = item.subListType ?: currentType
                 val nextTextStyle = item.subListTextStyle ?: currentTextStyle
-                val nextBoldValue = item.subListHasBoldText ?: currentHasBoldText
+                val nextHasBoldText = item.subListHasBoldText ?: currentHasBoldText
 
                 item.children.forEachIndexed { childIndex, childItem ->
                     OudsBulletListItem(
                         item = childItem,
                         currentType = nextType,
                         currentTextStyle = nextTextStyle,
-                        currentHasBoldText = nextBoldValue,
+                        currentHasBoldText = nextHasBoldText,
                         index = childIndex,
                         level = nextLevel
                     )
