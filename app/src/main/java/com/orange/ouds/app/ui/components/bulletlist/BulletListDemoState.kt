@@ -120,4 +120,10 @@ class BulletListDemoState(
 
     var label: String by mutableStateOf(label)
 
+    val unorderedIconChipsEnabled: Boolean
+        get() = type is OudsBulletListType.Unordered
+
+    val unorderedIconBrandColorSwitchEnabled: Boolean
+        get() = type is OudsBulletListType.Unordered
+
 }

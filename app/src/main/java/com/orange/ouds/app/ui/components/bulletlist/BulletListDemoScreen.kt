@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companio
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -68,20 +69,19 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
             selectedChipIndex = types.indexOfFirst { it::class.qualifiedName == type::class.qualifiedName },
             onSelectionChange = { type = types[it] }
         )
-        if (type is OudsBulletListType.Unordered) {
-            CustomizationFilterChips(
-                applyTopPadding = true,
-                label = stringResource(R.string.app_components_bulletList_unorderedIcon_label),
-                chipLabels = unorderedIcons.map { it::class.simpleName.orEmpty().toSentenceCase() },
-                selectedChipIndex = unorderedIcons.indexOfFirst { it::class.java.name == unorderedIconClassName },
-                onSelectionChange = { unorderedIconClassName = unorderedIcons[it]::class.java.name }
-            )
-            CustomizationSwitchItem(
-                label = stringResource(R.string.app_components_bulletList_unorderedIconBrandColor_label),
-                checked = brandColorIcon,
-                onCheckedChange = { brandColorIcon = it },
-            )
-        }
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_bulletList_unorderedIcon_label),
+            chips = unorderedIcons.map { CustomizationFilterChip(it::class.simpleName.orEmpty().toSentenceCase(), enabled = unorderedIconChipsEnabled) },
+            selectedChipIndex = unorderedIcons.indexOfFirst { it::class.java.name == unorderedIconClassName },
+            onSelectionChange = { unorderedIconClassName = unorderedIcons[it]::class.java.name }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_bulletList_unorderedIconBrandColor_label),
+            checked = brandColorIcon,
+            onCheckedChange = { brandColorIcon = it },
+            enabled = unorderedIconBrandColorSwitchEnabled
+        )
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_bulletList_textStyle_label),
