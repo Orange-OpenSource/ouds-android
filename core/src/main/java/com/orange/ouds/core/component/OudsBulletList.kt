@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -260,9 +261,13 @@ private fun UnorderedBullet(painter: Painter, size: Dp, brandColor: Boolean) {
 
 @Composable
 private fun OrderedBullet(text: String, textStyle: TextStyle, size: Dp) {
-    Box(modifier = Modifier.width(size), contentAlignment = Alignment.CenterEnd) {
-        Text(text = text, style = textStyle, color = OudsTheme.colorScheme.content.default)
-    }
+    Text(
+        modifier = Modifier.width(size),
+        text = text,
+        style = textStyle,
+        color = OudsTheme.colorScheme.content.default,
+        textAlign = TextAlign.End
+    )
 }
 
 /**
