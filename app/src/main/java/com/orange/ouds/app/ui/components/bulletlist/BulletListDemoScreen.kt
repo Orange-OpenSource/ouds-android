@@ -232,7 +232,7 @@ private fun getTypes() = if (LocalInspectionMode.current) {
 } else {
     OudsBulletListType::class.sealedSubclasses.mapNotNull { kClass ->
         tryOrNull {
-            kClass.createInstance()
+            kClass.objectInstance ?: kClass.createInstance()
         }
     }
 }
