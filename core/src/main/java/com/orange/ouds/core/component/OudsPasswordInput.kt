@@ -264,17 +264,17 @@ private fun textInputLockIcon() = OudsTextInputLeadingIcon(
 @Composable
 private fun trailingIconButton(isPasswordVisible: Boolean, onClick: () -> Unit): OudsTextInputTrailingIconButton {
     val painterResId: Int
-    val contentDescription: String
+    val contentDescriptionResId: Int
     if (isPasswordVisible) {
         painterResId = OudsTheme.drawableResources.functional.settingsAndTools.hide
-        contentDescription = stringResource(R.string.core_passwordInput_hidePassword_a11y)
+        contentDescriptionResId = R.string.core_passwordInput_hidePassword_a11y
     } else {
         painterResId = OudsTheme.drawableResources.communication.accessibility.vision
-        contentDescription = stringResource(R.string.core_passwordInput_showPassword_a11y)
+        contentDescriptionResId = R.string.core_passwordInput_showPassword_a11y
     }
     return OudsTextInputTrailingIconButton(
         painter = painterResource(painterResId),
-        contentDescription = contentDescription,
+        contentDescription = stringResource(contentDescriptionResId),
         onClick = onClick
     )
 }
