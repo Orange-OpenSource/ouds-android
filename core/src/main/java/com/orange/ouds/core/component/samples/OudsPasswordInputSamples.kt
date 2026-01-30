@@ -13,6 +13,10 @@
 package com.orange.ouds.core.component.samples
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.common.OudsError
@@ -20,7 +24,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsPasswordInputSample() {
-    var value = ""
+    var value by remember { mutableStateOf("") }
     OudsPasswordInput(
         value = value,
         onValueChange = { value = it },
@@ -32,7 +36,7 @@ internal fun OudsPasswordInputSample() {
 
 @Composable
 internal fun OudsPasswordInputErrorSample() {
-    var value = "abc"
+    var value by remember { mutableStateOf("abc123") }
     OudsPasswordInput(
         value = value,
         onValueChange = { value = it },
