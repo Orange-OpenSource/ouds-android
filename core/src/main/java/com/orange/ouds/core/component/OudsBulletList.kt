@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -43,6 +42,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.OudsBulletListUnorderedAsset.Bullet.extraParameters
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
@@ -237,9 +237,13 @@ internal data class BulletListItem(
 @Composable
 private fun Bullet(type: OudsBulletListType, index: Int, typography: TextStyle, size: Dp, parentTypes: List<OudsBulletListType>) {
     when (type) {
-        is OudsBulletListType.Unordered -> type.asset.PolymorphicContent(
-            extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(size, type.brandColor, parentTypes)
-        )
+        is OudsBulletListType.Unordered -> {
+            val tint = if (type.brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default
+            type.asset.PolymorphicContent(
+                modifier = Modifier.size(size),
+                extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(tint, parentTypes)
+            )
+        }
         is OudsBulletListType.Ordered -> {
             val level = parentTypes.count()
             when (level) {
@@ -250,16 +254,6 @@ private fun Bullet(type: OudsBulletListType, index: Int, typography: TextStyle, 
         }
         is OudsBulletListType.Bare -> {}
     }
-}
-
-@Composable
-private fun UnorderedBullet(painter: Painter, size: Dp, brandColor: Boolean) {
-    Icon(
-        modifier = Modifier.size(size),
-        painter = painter,
-        tint = if (brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default,
-        contentDescription = null
-    )
 }
 
 @Composable
@@ -350,14 +344,9 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
          */
         constructor(bitmap: ImageBitmap) : this(bitmap as Any)
 
-        @Composable
-        override fun Content(modifier: Modifier) {
-            super.Content(modifier.size(extraParameters.size))
-        }
-
         override val tint: Color?
             @Composable
-            get() = if (extraParameters.brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default
+            get() = extraParameters.tint
     }
 
     /**
@@ -369,42 +358,45 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
      * - **Level 2**: A dash.
      */
     object Bullet : OudsBulletListUnorderedAsset,
-        OudsComponentContent<OudsBulletListUnorderedAsset.ExtraParameters>(OudsBulletListUnorderedAsset.ExtraParameters::class.java) {
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            with(extraParameters) {
-                val parentOrderedTypeCount = parentTypes.count { it is OudsBulletListType.Ordered }
-                val level = parentTypes.count()
-                val unorderedBulletLevel = level - parentOrderedTypeCount
-                val iconRes = when (unorderedBulletLevel) {
-                    0 -> OudsTheme.drawableResources.component.bulletList.level0
-                    1 -> OudsTheme.drawableResources.component.bulletList.level1
-                    else -> OudsTheme.drawableResources.component.bulletList.level2
+        OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Bullet>(
+            OudsBulletListUnorderedAsset.ExtraParameters::class.java,
+            {
+                with(extraParameters) {
+                    val parentOrderedTypeCount = parentTypes.count { it is OudsBulletListType.Ordered }
+                    val level = parentTypes.count()
+                    val unorderedBulletLevel = level - parentOrderedTypeCount
+                    val iconRes = when (unorderedBulletLevel) {
+                        0 -> OudsTheme.drawableResources.component.bulletList.level0
+                        1 -> OudsTheme.drawableResources.component.bulletList.level1
+                        else -> OudsTheme.drawableResources.component.bulletList.level2
+                    }
+                    painterResource(iconRes)
                 }
-                UnorderedBullet(painter = painterResource(iconRes), size = size, brandColor = brandColor)
-            }
-        }
+            },
+            { "" }) {
+
+        override val tint: Color?
+            @Composable
+            get() = extraParameters.tint
     }
 
     /**
      * A bullet represented by a tick (check) icon.
      */
-    object Tick : OudsBulletListUnorderedAsset,
-        OudsComponentContent<OudsBulletListUnorderedAsset.ExtraParameters>(OudsBulletListUnorderedAsset.ExtraParameters::class.java) {
+    object Tick : OudsBulletListUnorderedAsset, OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Tick>(
+        OudsBulletListUnorderedAsset.ExtraParameters::class.java,
+        { painterResource(OudsTheme.drawableResources.component.bulletList.tick) },
+        { "" }
+    ) {
 
-        @Composable
-        override fun Content(modifier: Modifier) {
-            with(extraParameters) {
-                UnorderedBullet(painter = painterResource(OudsTheme.drawableResources.component.bulletList.tick), size = size, brandColor = brandColor)
-            }
-        }
+        override val tint: Color?
+            @Composable
+            get() = extraParameters.tint
     }
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
-        internal val size: Dp,
-        internal val brandColor: Boolean,
+        internal val tint: Color,
         internal val parentTypes: List<OudsBulletListType>
     ) : OudsComponentContent.ExtraParameters()
 }
