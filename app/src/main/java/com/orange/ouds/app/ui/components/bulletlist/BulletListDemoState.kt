@@ -21,15 +21,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
 import kotlin.reflect.full.createInstance
-
-val DefaultUnorderedFreeIconId
-    @Composable
-    get() = LocalThemeDrawableResources.current.tipsAndTricks
 
 @Composable
 fun rememberBulletListDemoState(
