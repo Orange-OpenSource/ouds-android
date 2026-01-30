@@ -133,7 +133,6 @@
     <string name="app_components_common_iconOnlyLayout_label" translatable="false">Icon only</string>
     <string name="app_components_common_label_label" translatable="false">Label</string>
     <string name="app_components_common_layout_label" translatable="false">Layout</string>
-    <string name="app_components_common_leadingIcon_label" translatable="false">Leading icon</string>
     <string name="app_components_common_loader_label" translatable="false">Loader</string>
     <string name="app_components_common_none_label" translatable="false">None</string>
     <string name="app_components_common_onColoredBackground_label" translatable="false">On colored background</string>
@@ -251,6 +250,7 @@
     <!-- Components: text input -->
     <string name="app_components_textInput_label" translatable="false">Text input</string>
     <string name="app_components_textInput_description_text">Text input is a UI element that allows to type, edit, or select single line of textual data, such as names, emails or search queries.</string>
+    <string name="app_components_textInput_leadingIcon_label" translatable="false">Leading icon</string>
     <string name="app_components_textInput_trailingAction_label" translatable="false">Trailing action</string>
     <string name="app_components_textInput_trailingAction_a11y">Trailing action content description</string>
     <string name="app_components_textInput_suffix_label" translatable="false">Suffix</string>

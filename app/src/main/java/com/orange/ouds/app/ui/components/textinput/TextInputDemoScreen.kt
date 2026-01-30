@@ -61,7 +61,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             onCheckedChange = { outlined = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_leadingIcon_label),
+            label = stringResource(R.string.app_components_textInput_leadingIcon_label),
             checked = leadingIcon,
             onCheckedChange = { leadingIcon = it },
         )
