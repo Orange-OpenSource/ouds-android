@@ -101,8 +101,7 @@ fun OudsBulletList(
                 currentTextStyle = textStyle,
                 currentHasBoldText = bold,
                 index = index,
-                level = 0,
-                typeByLevel = mutableMapOf(0 to type)
+                parentTypes = emptyList()
             )
         }
     }
@@ -152,8 +151,7 @@ private fun OudsBulletListItem(
     currentTextStyle: OudsBulletListTextStyle,
     currentHasBoldText: Boolean,
     index: Int,
-    level: Int,
-    typeByLevel: MutableMap<Int, OudsBulletListType>,
+    parentTypes: List<OudsBulletListType>,
     modifier: Modifier = Modifier,
 ) {
     with(OudsTheme.componentsTokens.bulletList) {
@@ -179,6 +177,7 @@ private fun OudsBulletListItem(
             }
         }
 
+        val level = parentTypes.count()
         val paddingStart = when (level) {
             0 -> spacePaddingInlineLevel0
             1 -> spacePaddingInlineLevel1
@@ -192,7 +191,7 @@ private fun OudsBulletListItem(
             horizontalArrangement = Arrangement.spacedBy(columnGap)
         ) {
             Box(modifier = Modifier.size(bulletContainerSize * LocalDensity.current.fontScale), contentAlignment = Alignment.CenterEnd) {
-                Bullet(type = currentType, level = level, index = index, typography = typography, size = bulletSize, typeByLevel = typeByLevel)
+                Bullet(type = currentType, index = index, typography = typography, size = bulletSize, parentTypes = parentTypes)
             }
             Text(
                 text = item.label,
@@ -207,7 +206,6 @@ private fun OudsBulletListItem(
                 val nextType = item.subListType ?: currentType
                 val nextTextStyle = item.subListTextStyle ?: currentTextStyle
                 val nextHasBoldText = item.subListHasBoldText ?: currentHasBoldText
-                typeByLevel[nextLevel] = nextType
 
                 item.subListItems.forEachIndexed { index, subListItem ->
                     OudsBulletListItem(
@@ -216,8 +214,7 @@ private fun OudsBulletListItem(
                         currentTextStyle = nextTextStyle,
                         currentHasBoldText = nextHasBoldText,
                         index = index,
-                        level = nextLevel,
-                        typeByLevel = typeByLevel
+                        parentTypes = parentTypes + currentType
                     )
                 }
             } else {
@@ -238,15 +235,18 @@ internal data class BulletListItem(
 )
 
 @Composable
-private fun Bullet(type: OudsBulletListType, level: Int, index: Int, typography: TextStyle, size: Dp, typeByLevel: Map<Int, OudsBulletListType>) {
+private fun Bullet(type: OudsBulletListType, index: Int, typography: TextStyle, size: Dp, parentTypes: List<OudsBulletListType>) {
     when (type) {
         is OudsBulletListType.Unordered -> type.asset.PolymorphicContent(
-            extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(size, level, type.brandColor, typeByLevel)
+            extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(size, type.brandColor, parentTypes)
         )
-        is OudsBulletListType.Ordered -> when (level) {
-            0 -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
-            1 -> OrderedBullet("${('A' + index)}.", textStyle = typography, size = size)
-            else -> OrderedBullet("${('a' + index)}.", textStyle = typography, size = size)
+        is OudsBulletListType.Ordered -> {
+            val level = parentTypes.count()
+            when (level) {
+                0 -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
+                1 -> OrderedBullet("${('A' + index)}.", textStyle = typography, size = size)
+                else -> OrderedBullet("${('a' + index)}.", textStyle = typography, size = size)
+            }
         }
         is OudsBulletListType.Bare -> {}
     }
@@ -374,15 +374,9 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
         @Composable
         override fun Content(modifier: Modifier) {
             with(extraParameters) {
-                val unorderedBulletLevel = when (level) {
-                    0 -> 0
-                    1 -> if (typeByLevel[0] is OudsBulletListType.Ordered) 0 else level
-                    else -> when {
-                        typeByLevel[1] is OudsBulletListType.Ordered -> 0
-                        typeByLevel[0] is OudsBulletListType.Ordered && typeByLevel[1] !is OudsBulletListType.Ordered -> level - 1
-                        else -> level
-                    }
-                }
+                val parentOrderedTypeCount = parentTypes.count { it is OudsBulletListType.Ordered }
+                val level = parentTypes.count()
+                val unorderedBulletLevel = level - parentOrderedTypeCount
                 val iconRes = when (unorderedBulletLevel) {
                     0 -> OudsTheme.drawableResources.component.bulletList.level0
                     1 -> OudsTheme.drawableResources.component.bulletList.level1
@@ -410,9 +404,8 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val size: Dp,
-        internal val level: Int,
         internal val brandColor: Boolean,
-        internal val typeByLevel: Map<Int, OudsBulletListType>
+        internal val parentTypes: List<OudsBulletListType>
     ) : OudsComponentContent.ExtraParameters()
 }
 
