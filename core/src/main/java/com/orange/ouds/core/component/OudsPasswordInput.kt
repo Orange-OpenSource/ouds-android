@@ -297,8 +297,6 @@ internal fun PreviewOudsPasswordInput(
     parameter: OudsPasswordInputPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val value by remember { mutableStateOf(value) }
-
         PreviewEnumEntries<OudsTextInputState>(columnCount = 1) {
             OudsPasswordInput(
                 value = value,
