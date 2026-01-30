@@ -29,6 +29,7 @@ import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.PlatformImeOptions
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -73,10 +74,11 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
- * @param keyboardImeAction IME (Input Method Editor) action. This defines the visual appearance of the action button on the software keyboard
- *   (e.g., a checkmark for [ImeAction.Done]).
+ * @param keyboardOptions Software-keyboard options that can be customized for this password input. This parameter is of type [OudsPasswordInputKeyboardOptions],
+ *   which is a specific class for password fields. It ensures that the keyboard type is always `KeyboardType.Password`, while allowing for the customization of
+ *   other common options.
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
- *   you specified in [KeyboardOptions.imeAction].
+ *   you specified in [OudsPasswordInputKeyboardOptions.imeAction].
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
  *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
  *   For example, to draw a cursor or selection around the text.
@@ -103,7 +105,7 @@ fun OudsPasswordInput(
     error: OudsError? = null,
     helperText: String? = null,
     constrainedMaxWidth: Boolean = false,
-    keyboardImeAction: ImeAction = ImeAction.Default,
+    keyboardOptions: OudsPasswordInputKeyboardOptions = OudsPasswordInputKeyboardOptions(),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
     interactionSource: MutableInteractionSource? = null
@@ -127,7 +129,7 @@ fun OudsPasswordInput(
         error = error,
         helperText = helperText,
         constrainedMaxWidth = constrainedMaxWidth,
-        keyboardOptions = getKeyboardOptions(keyboardImeAction),
+        keyboardOptions = keyboardOptions.toKeyboardOptions(),
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation(isPasswordVisible),
@@ -165,10 +167,11 @@ fun OudsPasswordInput(
  * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
- * @param keyboardImeAction IME (Input Method Editor) action. This defines the visual appearance of the action button on the software keyboard
- *   (e.g., a checkmark for [ImeAction.Done]).
+ * @param keyboardOptions Software-keyboard options that can be customized for this password input. This parameter is of type [OudsPasswordInputKeyboardOptions],
+ *   which is a specific class for password fields. It ensures that the keyboard type is always `KeyboardType.Password`, while allowing for the customization of
+ *   other common options.
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
- *   you specified in [KeyboardOptions.imeAction].
+ *   you specified in [OudsPasswordInputKeyboardOptions.imeAction].
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
  *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
  *   For example, to draw a cursor or selection around the text.
@@ -195,7 +198,7 @@ fun OudsPasswordInput(
     error: OudsError? = null,
     helperText: String? = null,
     constrainedMaxWidth: Boolean = false,
-    keyboardImeAction: ImeAction = ImeAction.Default,
+    keyboardOptions: OudsPasswordInputKeyboardOptions = OudsPasswordInputKeyboardOptions(),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
     interactionSource: MutableInteractionSource? = null
@@ -219,7 +222,7 @@ fun OudsPasswordInput(
         error = error,
         helperText = helperText,
         constrainedMaxWidth = constrainedMaxWidth,
-        keyboardOptions = getKeyboardOptions(keyboardImeAction),
+        keyboardOptions = keyboardOptions.toKeyboardOptions(),
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation(isPasswordVisible),
@@ -227,15 +230,35 @@ fun OudsPasswordInput(
     )
 }
 
+/**
+ * Keyboard options specific to the [OudsPasswordInput] component.
+ *
+ * This class encapsulates [KeyboardOptions] to configure the software keyboard for password entry.
+ * It ensures that the [KeyboardType] is always set to [KeyboardType.Password] and allows for the customization
+ * of other common keyboard options.
+ *
+ * @property imeAction The action to be displayed in the bottom corner of the keyboard (e.g., "Done", "Next").
+ * @property platformImeOptions Platform-specific input method editor (IME) options.
+ * @property showKeyboardOnFocus When set to `true`, software keyboard will show on focus gain. When false, the user must interact (e.g. tap)
+ * before the keyboard is shown. A `null` value (the default parameter value) means the keyboard will be shown on focus.
+ */
+data class OudsPasswordInputKeyboardOptions(
+    val imeAction: ImeAction = ImeAction.Unspecified,
+    val platformImeOptions: PlatformImeOptions? = null,
+    val showKeyboardOnFocus: Boolean? = null
+) {
+    internal fun toKeyboardOptions() = KeyboardOptions(
+        keyboardType = KeyboardType.Password,
+        imeAction = imeAction,
+        platformImeOptions = platformImeOptions,
+        showKeyboardOnFocus = showKeyboardOnFocus
+    )
+}
+
 @Composable
 private fun textInputLockIcon() = OudsTextInputLeadingIcon(
     painter = painterResource(OudsTheme.drawableResources.communication.securityAndSafety.lock),
     contentDescription = ""
-)
-
-private fun getKeyboardOptions(imeAction: ImeAction) = KeyboardOptions(
-    keyboardType = KeyboardType.Password,
-    imeAction = imeAction
 )
 
 @Composable
