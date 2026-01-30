@@ -209,13 +209,13 @@ private fun OudsBulletListItem(
                 val nextHasBoldText = item.subListHasBoldText ?: currentHasBoldText
                 typeByLevel[nextLevel] = nextType
 
-                item.subListItems.forEachIndexed { childIndex, childItem ->
+                item.subListItems.forEachIndexed { index, subListItem ->
                     OudsBulletListItem(
-                        item = childItem,
+                        item = subListItem,
                         currentType = nextType,
                         currentTextStyle = nextTextStyle,
                         currentHasBoldText = nextHasBoldText,
-                        index = childIndex,
+                        index = index,
                         level = nextLevel,
                         typeByLevel = typeByLevel
                     )

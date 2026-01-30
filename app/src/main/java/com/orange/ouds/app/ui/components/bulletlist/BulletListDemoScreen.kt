@@ -42,7 +42,6 @@ import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
-import kotlin.jvm.java
 import kotlin.reflect.full.createInstance
 
 @Composable
@@ -79,8 +78,8 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_bulletList_unorderedIconBrandColor_label),
-            checked = brandColorIcon,
-            onCheckedChange = { brandColorIcon = it },
+            checked = unorderedIconBrandColor,
+            onCheckedChange = { unorderedIconBrandColor = it },
             enabled = unorderedIconBrandColorSwitchEnabled
         )
         CustomizationFilterChips(
@@ -145,7 +144,7 @@ private fun BulletListDemoContent(state: BulletListDemoState) {
             type = if (type is OudsBulletListType.Unordered) {
                 OudsBulletListType.Unordered(
                     icon = unorderedIcon(unorderedIconClassName),
-                    brandColor = brandColorIcon
+                    brandColor = unorderedIconBrandColor
                 )
             } else {
                 type
@@ -169,7 +168,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, u
                             painterArgument(unorderedFreeIconId)
                         }
                     }
-                    if (brandColorIcon) typedArgument("brandColor", brandColorIcon)
+                    if (unorderedIconBrandColor) typedArgument("brandColor", unorderedIconBrandColor)
                 }
             } else {
                 functionCallArgument("type", type::class.java.nestedName)

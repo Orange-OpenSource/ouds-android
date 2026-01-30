@@ -16,4 +16,4 @@ val Class<*>.nestedName: String
     get() = name.nestedName
 
 val String.nestedName: String
-    get() = this.substringAfterLast(".").replace("$", ".")
+    get() = substringAfterLast(".").replace("$", ".")

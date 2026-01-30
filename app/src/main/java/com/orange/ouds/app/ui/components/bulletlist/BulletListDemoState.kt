@@ -35,7 +35,7 @@ val DefaultUnorderedFreeIconId
 fun rememberBulletListDemoState(
     type: OudsBulletListType = OudsBulletListType.Unordered(),
     unorderedIconClassName: String = OudsBulletListUnorderedAsset.Bullet::class.java.name,
-    brandColorIcon: Boolean = true,
+    unorderedIconBrandColor: Boolean = true,
     textStyle: OudsBulletListTextStyle = OudsBulletListTextStyle.BodyLarge,
     bold: Boolean = true,
     levelCount: Int = BulletListDemoState.MinLevelCount,
@@ -44,7 +44,7 @@ fun rememberBulletListDemoState(
     return rememberSaveable(
         type,
         unorderedIconClassName,
-        brandColorIcon,
+        unorderedIconBrandColor,
         textStyle,
         bold,
         levelCount,
@@ -54,7 +54,7 @@ fun rememberBulletListDemoState(
         BulletListDemoState(
             type = type,
             unorderedIconClassName = unorderedIconClassName,
-            brandColorIcon = brandColorIcon,
+            unorderedIconBrandColor = unorderedIconBrandColor,
             textStyle = textStyle,
             bold = bold,
             levelCount = levelCount,
@@ -66,7 +66,7 @@ fun rememberBulletListDemoState(
 class BulletListDemoState(
     type: OudsBulletListType,
     unorderedIconClassName: String,
-    brandColorIcon: Boolean,
+    unorderedIconBrandColor: Boolean,
     textStyle: OudsBulletListTextStyle,
     bold: Boolean,
     levelCount: Int,
@@ -83,7 +83,7 @@ class BulletListDemoState(
                     listOf(
                         type::class.java.name,
                         unorderedIconClassName,
-                        brandColorIcon,
+                        unorderedIconBrandColor,
                         textStyle,
                         bold,
                         levelCount,
@@ -110,7 +110,7 @@ class BulletListDemoState(
 
     var unorderedIconClassName: String by mutableStateOf(unorderedIconClassName)
 
-    var brandColorIcon: Boolean by mutableStateOf(brandColorIcon)
+    var unorderedIconBrandColor: Boolean by mutableStateOf(unorderedIconBrandColor)
 
     var textStyle: OudsBulletListTextStyle by mutableStateOf(textStyle)
 
