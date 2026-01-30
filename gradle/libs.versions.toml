@@ -31,7 +31,7 @@ mockitoAndroid = "5.21.0"
 mockitoKotlin = "6.2.3"
 mustacheJava = "0.9.14"
 navigationCompose = "2.9.6"
-paparazzi = "2.0.0-alpha02"
+paparazzi = "2.0.0-alpha04"
 zxing = "3.5.4"
 
 [libraries]

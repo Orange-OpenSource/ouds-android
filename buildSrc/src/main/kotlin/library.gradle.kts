@@ -26,11 +26,18 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
-        val targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        testOptions.targetSdk = targetSdk
-        lint.targetSdk = targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFile("consumer-rules.pro")
+    }
+
+    val targetSdk = libs.versions.androidTargetSdk.get().toInt()
+    lint.targetSdk = targetSdk
+    testOptions {
+        this.targetSdk = targetSdk
+        val javaLauncher = javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+        unitTests.all { it.javaLauncher.set(javaLauncher) }
     }
 
     buildTypes {
