@@ -30,7 +30,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -40,6 +43,10 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.content.OudsComponentContent
+import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
+import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -233,30 +240,9 @@ internal data class BulletListItem(
 @Composable
 private fun Bullet(type: OudsBulletListType, level: Int, index: Int, typography: TextStyle, size: Dp, typeByLevel: Map<Int, OudsBulletListType>) {
     when (type) {
-        is OudsBulletListType.Unordered -> {
-            val unorderedBulletLevel = when (level) {
-                0 -> 0
-                1 -> if (typeByLevel[0] is OudsBulletListType.Ordered) 0 else level
-                else -> when {
-                    typeByLevel[1] is OudsBulletListType.Ordered -> 0
-                    typeByLevel[0] is OudsBulletListType.Ordered && typeByLevel[1] !is OudsBulletListType.Ordered -> level - 1
-                    else -> level
-                }
-            }
-            val painter = when (type.icon) {
-                is OudsBulletListUnorderedIcon.Bullet -> {
-                    val iconRes = when (unorderedBulletLevel) {
-                        0 -> OudsTheme.drawableResources.component.bulletList.level0
-                        1 -> OudsTheme.drawableResources.component.bulletList.level1
-                        else -> OudsTheme.drawableResources.component.bulletList.level2
-                    }
-                    painterResource(iconRes)
-                }
-                is OudsBulletListUnorderedIcon.Tick -> painterResource(OudsTheme.drawableResources.component.bulletList.tick)
-                is OudsBulletListUnorderedIcon.Free -> type.icon.painter
-            }
-            UnorderedBullet(painter = painter, size = size, brandColor = type.brandColor)
-        }
+        is OudsBulletListType.Unordered -> type.icon.PolymorphicContent(
+            extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(size, level, type.brandColor, typeByLevel)
+        )
         is OudsBulletListType.Ordered -> when (level) {
             0 -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
             1 -> OrderedBullet("${('A' + index)}.", textStyle = typography, size = size)
@@ -313,10 +299,10 @@ sealed class OudsBulletListType {
      * to use a tick or any Solaris icon.
      *
      * @constructor Creates an instance of [OudsBulletListType.Unordered].
-     * @param icon The type of icon to display, from the [OudsBulletListUnorderedIcon] sealed class. Defaults to [OudsBulletListUnorderedIcon.Bullet].
+     * @param icon The type of icon to display, from [OudsBulletListUnorderedAsset]. Defaults to [OudsBulletListUnorderedAsset.Bullet].
      * @param brandColor Controls the color of the unordered bullet. If `true`, the brand color is used; otherwise, the default content color is used.
      */
-    class Unordered(val icon: OudsBulletListUnorderedIcon = OudsBulletListUnorderedIcon.Bullet(), val brandColor: Boolean = false) : OudsBulletListType()
+    class Unordered(val icon: OudsBulletListUnorderedAsset = OudsBulletListUnorderedAsset.Bullet, val brandColor: Boolean = true) : OudsBulletListType()
 
     /**
      * Collects related items with numeric order or sequence. Numbering starts at 1 with the first list item and increases by increments of 1 for each
@@ -332,9 +318,47 @@ sealed class OudsBulletListType {
 }
 
 /**
- * The icon to be used in an unordered [OudsBulletList].
+ * The asset to be used in an unordered [OudsBulletList].
  */
-sealed class OudsBulletListUnorderedIcon() {
+sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent {
+
+    /**
+     * A bullet represented by a custom icon.
+     * This allows for complete visual customization of the bullet, for instance by using a Solaris icon.
+     */
+    class Icon private constructor(graphicsObject: Any) : OudsBulletListUnorderedAsset,
+        OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Icon>(OudsBulletListUnorderedAsset.ExtraParameters::class.java, graphicsObject, "") {
+
+        /**
+         * Creates an instance of [OudsBulletListUnorderedAsset.Icon].
+         *
+         * @param painter The custom [Painter] to be used as a bullet.
+         */
+        constructor(painter: Painter) : this(painter as Any)
+
+        /**
+         * Creates an instance of [OudsBulletListUnorderedAsset.Icon].
+         *
+         * @param imageVector Image vector to be used as a bullet.
+         */
+        constructor(imageVector: ImageVector) : this(imageVector as Any)
+
+        /**
+         * Creates an instance of [OudsBulletListUnorderedAsset.Icon].
+         *
+         * @param bitmap Image bitmap to be used as a bullet.
+         */
+        constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            super.Content(modifier.size(extraParameters.size))
+        }
+
+        override val tint: Color?
+            @Composable
+            get() = if (extraParameters.brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default
+    }
 
     /**
      * The default bullet style.
@@ -343,26 +367,53 @@ sealed class OudsBulletListUnorderedIcon() {
      * - **Level 0**: A solid square bullet.
      * - **Level 1**: An outlined square bullet.
      * - **Level 2**: A dash.
-     *
-     * @constructor Creates an instance of [OudsBulletListUnorderedIcon.Bullet].
      */
-    class Bullet : OudsBulletListUnorderedIcon()
+    object Bullet : OudsBulletListUnorderedAsset,
+        OudsComponentContent<OudsBulletListUnorderedAsset.ExtraParameters>(OudsBulletListUnorderedAsset.ExtraParameters::class.java) {
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            with(extraParameters) {
+                val unorderedBulletLevel = when (level) {
+                    0 -> 0
+                    1 -> if (typeByLevel[0] is OudsBulletListType.Ordered) 0 else level
+                    else -> when {
+                        typeByLevel[1] is OudsBulletListType.Ordered -> 0
+                        typeByLevel[0] is OudsBulletListType.Ordered && typeByLevel[1] !is OudsBulletListType.Ordered -> level - 1
+                        else -> level
+                    }
+                }
+                val iconRes = when (unorderedBulletLevel) {
+                    0 -> OudsTheme.drawableResources.component.bulletList.level0
+                    1 -> OudsTheme.drawableResources.component.bulletList.level1
+                    else -> OudsTheme.drawableResources.component.bulletList.level2
+                }
+                UnorderedBullet(painter = painterResource(iconRes), size = size, brandColor = brandColor)
+            }
+        }
+    }
 
     /**
      * A bullet represented by a tick (check) icon.
-     *
-     * @constructor Creates an instance of [OudsBulletListUnorderedIcon.Tick].
      */
-    class Tick : OudsBulletListUnorderedIcon()
+    object Tick : OudsBulletListUnorderedAsset,
+        OudsComponentContent<OudsBulletListUnorderedAsset.ExtraParameters>(OudsBulletListUnorderedAsset.ExtraParameters::class.java) {
 
-    /**
-     * A bullet represented by a custom [Painter].
-     * This allows for complete visual customization of the bullet, for instance by using a Solaris icon.
-     *
-     * @constructor Creates an instance of [OudsBulletListUnorderedIcon.Free].
-     * @param painter The custom [Painter] to be used as a bullet.
-     */
-    class Free(val painter: Painter) : OudsBulletListUnorderedIcon()
+        @Composable
+        override fun Content(modifier: Modifier) {
+            with(extraParameters) {
+                UnorderedBullet(painter = painterResource(OudsTheme.drawableResources.component.bulletList.tick), size = size, brandColor = brandColor)
+            }
+        }
+    }
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val size: Dp,
+        internal val level: Int,
+        internal val brandColor: Boolean,
+        internal val typeByLevel: Map<Int, OudsBulletListType>
+    ) : OudsComponentContent.ExtraParameters()
 }
 
 /**
@@ -402,7 +453,7 @@ internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: B
                 item(label = "$typeName first item")
                 item(
                     label = "$typeName second item with a non-bold, unordered sublist",
-                    subListType = OudsBulletListType.Unordered(icon = OudsBulletListUnorderedIcon.Tick(), brandColor = true),
+                    subListType = OudsBulletListType.Unordered(icon = OudsBulletListUnorderedAsset.Tick, brandColor = false),
                     subListHasBoldText = false
                 ) {
                     item(label = "Unordered subitem")
@@ -427,7 +478,7 @@ internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: B
                 }
                 item(
                     label = "$typeName fourth item with an unordered sublist and free bullets",
-                    subListType = OudsBulletListType.Unordered(icon = OudsBulletListUnorderedIcon.Free(customBullet))
+                    subListType = OudsBulletListType.Unordered(icon = OudsBulletListUnorderedAsset.Icon(customBullet))
                 ) {
                     item(label = "Unordered subitem")
                     item(label = "Unordered subitem with an unordered sublist", subListType = OudsBulletListType.Unordered()) {

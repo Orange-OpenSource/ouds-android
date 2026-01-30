@@ -24,7 +24,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
-import com.orange.ouds.core.component.OudsBulletListUnorderedIcon
+import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
 import kotlin.reflect.full.createInstance
 
 val DefaultUnorderedFreeIconId
@@ -34,8 +34,8 @@ val DefaultUnorderedFreeIconId
 @Composable
 fun rememberBulletListDemoState(
     type: OudsBulletListType = OudsBulletListType.Unordered(),
-    unorderedIconClassName: String = OudsBulletListUnorderedIcon.Bullet::class.java.name,
-    brandColorIcon: Boolean = false,
+    unorderedIconClassName: String = OudsBulletListUnorderedAsset.Bullet::class.java.name,
+    brandColorIcon: Boolean = true,
     textStyle: OudsBulletListTextStyle = OudsBulletListTextStyle.BodyLarge,
     bold: Boolean = true,
     levelCount: Int = BulletListDemoState.MinLevelCount,

@@ -39,9 +39,10 @@ import com.orange.ouds.core.component.OudsBulletListBuilder
 import com.orange.ouds.core.component.OudsBulletListDefaults
 import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
-import com.orange.ouds.core.component.OudsBulletListUnorderedIcon
+import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
+import kotlin.jvm.java
 import kotlin.reflect.full.createInstance
 
 @Composable
@@ -164,7 +165,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, u
             if (type is OudsBulletListType.Unordered) {
                 functionCallArgument("type", type::class.java.nestedName) {
                     functionCallArgument("icon", unorderedIconClassName.nestedName) {
-                        if (unorderedIconClassName == OudsBulletListUnorderedIcon.Free::class.java.name) {
+                        if (unorderedIconClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
                             painterArgument(unorderedFreeIconId)
                         }
                     }
@@ -213,11 +214,12 @@ private fun Code.Builder.itemFunctionCall(label: String, content: (Code.Builder.
 }
 
 @Composable
-private fun unorderedIcon(unorderedIconClassName: String): OudsBulletListUnorderedIcon {
-    return if (unorderedIconClassName == OudsBulletListUnorderedIcon.Free::class.java.name) {
-        OudsBulletListUnorderedIcon.Free(painter = painterResource(DefaultUnorderedFreeIconId))
+private fun unorderedIcon(unorderedIconClassName: String): OudsBulletListUnorderedAsset {
+    return if (unorderedIconClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
+        OudsBulletListUnorderedAsset.Icon(painter = painterResource(DefaultUnorderedFreeIconId))
     } else {
-        Class.forName(unorderedIconClassName).kotlin.createInstance() as OudsBulletListUnorderedIcon
+        val kClass = Class.forName(unorderedIconClassName).kotlin
+        (kClass.objectInstance ?: kClass.createInstance()) as OudsBulletListUnorderedAsset
     }
 }
 
@@ -243,17 +245,17 @@ private fun getUnorderedIcons() = if (LocalInspectionMode.current) {
     // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
     // See https://issuetracker.google.com/issues/240601093
     listOf(
-        OudsBulletListUnorderedIcon.Bullet(),
-        OudsBulletListUnorderedIcon.Tick(),
-        OudsBulletListUnorderedIcon.Free(painter = painterResource(DefaultUnorderedFreeIconId)),
+        OudsBulletListUnorderedAsset.Bullet,
+        OudsBulletListUnorderedAsset.Tick,
+        OudsBulletListUnorderedAsset.Icon(painter = painterResource(DefaultUnorderedFreeIconId)),
     )
 } else {
-    OudsBulletListUnorderedIcon::class.sealedSubclasses.mapNotNull { kClass ->
+    OudsBulletListUnorderedAsset::class.sealedSubclasses.mapNotNull { kClass ->
         tryOrNull {
-            if (kClass == OudsBulletListUnorderedIcon.Free::class) {
-                OudsBulletListUnorderedIcon.Free(painter = painterResource(DefaultUnorderedFreeIconId))
+            if (kClass == OudsBulletListUnorderedAsset.Icon::class) {
+                OudsBulletListUnorderedAsset.Icon(painter = painterResource(DefaultUnorderedFreeIconId))
             } else {
-                kClass.createInstance()
+                kClass.objectInstance ?: kClass.createInstance()
             }
         }
     }
