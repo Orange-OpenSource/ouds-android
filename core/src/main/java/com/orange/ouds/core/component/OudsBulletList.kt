@@ -74,7 +74,6 @@ private const val MaxLevelCount = 3
  * @param modifier [Modifier] applied to the list.
  * @param type The visual type of the list (e.g., ordered, unordered, bare). See [OudsBulletListType].
  * @param textStyle The typography style for the list items. See [OudsBulletListTextStyle].
- * @param bold Whether the list item text should be bold. This can be overridden for sub-lists. Defaults to `true`.
  * @param builder A lambda scope using the [OudsBulletListBuilder] to define the list items.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBulletListUnorderedSample
@@ -86,7 +85,6 @@ fun OudsBulletList(
     modifier: Modifier = Modifier,
     type: OudsBulletListType = OudsBulletListDefaults.Type,
     textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle,
-    bold: Boolean = true,
     builder: OudsBulletListBuilder.() -> Unit
 ) {
     val items = remember(builder) {
@@ -99,7 +97,6 @@ fun OudsBulletList(
                 item = item,
                 currentType = type,
                 currentTextStyle = textStyle,
-                currentHasBoldText = bold,
                 index = index,
                 parentTypes = emptyList()
             )
@@ -126,19 +123,16 @@ class OudsBulletListBuilder internal constructor() {
      *   If `null`, the type is inherited from the parent list.
      * @param subListTextStyle The specific [OudsBulletListTextStyle] for the nested sub-list, if any.
      *   If `null`, the text style is inherited from the parent list.
-     * @param subListHasBoldText Whether the text of the nested sub-list should be bold.
-     *   If `null`, the bold setting is inherited from the parent list.
      * @param builder A lambda scope for defining nested list items.
      */
     fun item(
         label: String,
         subListType: OudsBulletListType? = null,
         subListTextStyle: OudsBulletListTextStyle? = null,
-        subListHasBoldText: Boolean? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
     ) {
         val subListItems = builder?.let { OudsBulletListBuilder().apply(it).build() }.orEmpty()
-        items.add(BulletListItem(label, subListType, subListTextStyle, subListHasBoldText, subListItems))
+        items.add(BulletListItem(label, subListType, subListTextStyle, subListItems))
     }
 
     internal fun build(): List<BulletListItem> = items
@@ -149,7 +143,6 @@ private fun OudsBulletListItem(
     item: BulletListItem,
     currentType: OudsBulletListType,
     currentTextStyle: OudsBulletListTextStyle,
-    currentHasBoldText: Boolean,
     index: Int,
     parentTypes: List<OudsBulletListType>,
     modifier: Modifier = Modifier,
@@ -160,16 +153,22 @@ private fun OudsBulletListItem(
         val verticalPadding: Dp
         val bulletSize: Dp
         val bulletContainerSize: Dp
-        when (currentTextStyle) {
-            OudsBulletListTextStyle.BodyLarge -> {
-                typography = if (currentHasBoldText) OudsTheme.typography.body.strong.large else OudsTheme.typography.body.default.large
+        when (currentTextStyle.fontSize) {
+            OudsBulletListFontSize.BodyLarge -> {
+                typography = when (currentTextStyle.fontWeight) {
+                    OudsBulletListFontWeight.Normal -> OudsTheme.typography.body.default.large
+                    OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.large
+                }
                 columnGap = spaceColumnGapBodyLarge.value
                 verticalPadding = spacePaddingBlockBodyLarge.value
                 bulletSize = OudsTheme.sizes.icon.withBody.large.sizeSmall
                 bulletContainerSize = OudsTheme.sizes.icon.withBody.large.sizeMedium
             }
-            OudsBulletListTextStyle.BodyMedium -> {
-                typography = if (currentHasBoldText) OudsTheme.typography.body.strong.medium else OudsTheme.typography.body.default.medium
+            OudsBulletListFontSize.BodyMedium -> {
+                typography = when (currentTextStyle.fontWeight) {
+                    OudsBulletListFontWeight.Normal -> OudsTheme.typography.body.default.medium
+                    OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.medium
+                }
                 columnGap = spaceColumnGapBodyMedium.value
                 verticalPadding = spacePaddingBlockBodyMedium.value
                 bulletSize = OudsTheme.sizes.icon.withBody.medium.sizeSmall
@@ -205,14 +204,12 @@ private fun OudsBulletListItem(
             if (nextLevel < MaxLevelCount) {
                 val nextType = item.subListType ?: currentType
                 val nextTextStyle = item.subListTextStyle ?: currentTextStyle
-                val nextHasBoldText = item.subListHasBoldText ?: currentHasBoldText
 
                 item.subListItems.forEachIndexed { index, subListItem ->
                     OudsBulletListItem(
                         item = subListItem,
                         currentType = nextType,
                         currentTextStyle = nextTextStyle,
-                        currentHasBoldText = nextHasBoldText,
                         index = index,
                         parentTypes = parentTypes + currentType
                     )
@@ -230,7 +227,6 @@ internal data class BulletListItem(
     val label: String,
     val subListType: OudsBulletListType?,
     val subListTextStyle: OudsBulletListTextStyle?,
-    val subListHasBoldText: Boolean?,
     val subListItems: List<BulletListItem> = emptyList()
 )
 
@@ -280,7 +276,7 @@ object OudsBulletListDefaults {
     /**
      * Default text style of an [OudsBulletList].
      */
-    val TextStyle = OudsBulletListTextStyle.BodyLarge
+    val TextStyle = OudsBulletListTextStyle(OudsBulletListFontSize.BodyLarge, OudsBulletListFontWeight.Bold)
 }
 
 /**
@@ -403,19 +399,41 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
 
 /**
  * The text style of an [OudsBulletList].
+ *
+ * @property fontSize The font size of the list.
+ * @property fontWeight The font weight of the list.
+ * @constructor Creates an instance of [OudsBulletListTextStyle].
  */
-enum class OudsBulletListTextStyle {
-    /**
-     * Make sure to use this reference if the text accompanying the list component is the body large text.
-     * This variant is designed for more visual, engaging experiences.
-     */
-    BodyLarge,
+data class OudsBulletListTextStyle(val fontSize: OudsBulletListFontSize, val fontWeight: OudsBulletListFontWeight)
+
+/**
+ * The font size of an [OudsBulletList].
+ */
+enum class OudsBulletListFontSize {
 
     /**
      * Make sure to use this reference if the text accompanying the list component is the body medium text.
      * This variant is best suited for functional, task oriented experiences.
      */
-    BodyMedium
+    BodyMedium,
+
+    /**
+     * Make sure to use this reference if the text accompanying the list component is the body large text.
+     * This variant is designed for more visual, engaging experiences.
+     */
+    BodyLarge
+}
+
+/**
+ * The font weight of an [OudsBulletList].
+ */
+enum class OudsBulletListFontWeight {
+
+    /** Normal font weight. */
+    Normal,
+
+    /** Bold font weight. */
+    Bold
 }
 
 @PreviewLightDark
@@ -439,7 +457,7 @@ internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: B
                 item(
                     label = "$typeName second item with a non-bold, unordered sublist",
                     subListType = OudsBulletListType.Unordered(asset = OudsBulletListUnorderedAsset.Tick, brandColor = false),
-                    subListHasBoldText = false
+                    subListTextStyle = textStyle.copy(fontWeight = OudsBulletListFontWeight.Normal)
                 ) {
                     item(label = "Unordered subitem")
                     item(
@@ -487,6 +505,9 @@ internal class OudsBulletListPreviewParameterProvider : BasicPreviewParameterPro
 private val previewParameterValues: List<OudsBulletListPreviewParameter>
     get() = listOf(
         OudsBulletListPreviewParameter(type = OudsBulletListType.Bare),
-        OudsBulletListPreviewParameter(type = OudsBulletListType.Ordered, textStyle = OudsBulletListTextStyle.BodyMedium),
+        OudsBulletListPreviewParameter(
+            type = OudsBulletListType.Ordered,
+            textStyle = OudsBulletListDefaults.TextStyle.copy(fontSize = OudsBulletListFontSize.BodyMedium)
+        ),
         OudsBulletListPreviewParameter(),
     )

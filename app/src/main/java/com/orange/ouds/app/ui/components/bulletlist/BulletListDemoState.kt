@@ -21,7 +21,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.core.component.OudsBulletListTextStyle
+import com.orange.ouds.core.component.OudsBulletListDefaults
+import com.orange.ouds.core.component.OudsBulletListFontSize
+import com.orange.ouds.core.component.OudsBulletListFontWeight
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
 import kotlin.reflect.full.createInstance
@@ -31,8 +33,8 @@ fun rememberBulletListDemoState(
     type: OudsBulletListType = OudsBulletListType.Unordered(),
     unorderedAssetClassName: String = OudsBulletListUnorderedAsset.Bullet::class.java.name,
     unorderedAssetBrandColor: Boolean = true,
-    textStyle: OudsBulletListTextStyle = OudsBulletListTextStyle.BodyLarge,
-    bold: Boolean = true,
+    fontSize: OudsBulletListFontSize = OudsBulletListDefaults.TextStyle.fontSize,
+    fontWeight: OudsBulletListFontWeight = OudsBulletListDefaults.TextStyle.fontWeight,
     levelCount: Int = BulletListDemoState.MinLevelCount,
     label: String = stringResource(R.string.app_components_common_label_label)
 ): BulletListDemoState {
@@ -40,8 +42,8 @@ fun rememberBulletListDemoState(
         type,
         unorderedAssetClassName,
         unorderedAssetBrandColor,
-        textStyle,
-        bold,
+        fontSize,
+        fontWeight,
         levelCount,
         label,
         saver = BulletListDemoState.Saver
@@ -50,8 +52,8 @@ fun rememberBulletListDemoState(
             type = type,
             unorderedAssetClassName = unorderedAssetClassName,
             unorderedAssetBrandColor = unorderedAssetBrandColor,
-            textStyle = textStyle,
-            bold = bold,
+            fontSize = fontSize,
+            fontWeight = fontWeight,
             levelCount = levelCount,
             label = label
         )
@@ -62,8 +64,8 @@ class BulletListDemoState(
     type: OudsBulletListType,
     unorderedAssetClassName: String,
     unorderedAssetBrandColor: Boolean,
-    textStyle: OudsBulletListTextStyle,
-    bold: Boolean,
+    fontSize: OudsBulletListFontSize,
+    fontWeight: OudsBulletListFontWeight,
     levelCount: Int,
     label: String
 ) {
@@ -79,8 +81,8 @@ class BulletListDemoState(
                         type::class.java.name,
                         unorderedAssetClassName,
                         unorderedAssetBrandColor,
-                        textStyle,
-                        bold,
+                        fontSize,
+                        fontWeight,
                         levelCount,
                         label
                     )
@@ -92,8 +94,8 @@ class BulletListDemoState(
                     Class.forName(typeName).kotlin.createInstance() as OudsBulletListType,
                     list[1] as String,
                     list[2] as Boolean,
-                    list[3] as OudsBulletListTextStyle,
-                    list[4] as Boolean,
+                    list[3] as OudsBulletListFontSize,
+                    list[4] as OudsBulletListFontWeight,
                     list[5] as Int,
                     list[6] as String
                 )
@@ -107,9 +109,9 @@ class BulletListDemoState(
 
     var unorderedAssetBrandColor: Boolean by mutableStateOf(unorderedAssetBrandColor)
 
-    var textStyle: OudsBulletListTextStyle by mutableStateOf(textStyle)
+    var fontSize: OudsBulletListFontSize by mutableStateOf(fontSize)
 
-    var bold: Boolean by mutableStateOf(bold)
+    var fontWeight: OudsBulletListFontWeight by mutableStateOf(fontWeight)
 
     var levelCount: Int by mutableIntStateOf(levelCount)
 

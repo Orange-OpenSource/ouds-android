@@ -166,8 +166,8 @@
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_label" translatable="false">Bullet list</string>
     <string name="app_components_bulletList_description_text">Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.</string>
-    <string name="app_components_bulletList_textStyle_label" translatable="false">Text style</string>
-    <string name="app_components_bulletList_bold_label" translatable="false">Bold</string>
+    <string name="app_components_bulletList_fontSize_label" translatable="false">Font size</string>
+    <string name="app_components_bulletList_fontWeight_label" translatable="false">Font weight</string>
     <string name="app_components_bulletList_unorderedAsset_label" translatable="false">Unordered asset</string>
     <string name="app_components_bulletList_unorderedAssetBrandColor_label" translatable="false">Unordered asset brand color</string>
     <string name="app_components_bulletList_levelCount_label" translatable="false">Level count</string>

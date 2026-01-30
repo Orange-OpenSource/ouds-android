@@ -15,6 +15,9 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsBulletList
+import com.orange.ouds.core.component.OudsBulletListFontSize
+import com.orange.ouds.core.component.OudsBulletListFontWeight
+import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -22,9 +25,15 @@ import com.orange.ouds.core.utilities.OudsPreview
 internal fun OudsBulletListUnorderedSample() {
     OudsBulletList {
         item(label = "Milk")
-        item(label = "Vegetables", subListType = OudsBulletListType.Unordered(brandColor = true)) {
+        item(label = "Vegetables", subListType = OudsBulletListType.Unordered(brandColor = false)) {
             item(label = "Tomatoes")
-            item(label = "Salad", subListHasBoldText = false) {
+            item(
+                label = "Salad",
+                subListTextStyle = OudsBulletListTextStyle(
+                    fontSize = OudsBulletListFontSize.BodyLarge,
+                    fontWeight = OudsBulletListFontWeight.Normal
+                )
+            ) {
                 item(label = "Lettuce")
                 item(label = "Arugula")
             }
@@ -38,7 +47,13 @@ internal fun OudsBulletListOrderedSample() {
         item(label = "Prepare the ingredients")
         item(label = "Cook the pasta") {
             item(label = "Boil water in a large pot")
-            item(label = "Add salt and then the pasta", subListHasBoldText = false) {
+            item(
+                label = "Add salt and then the pasta",
+                subListTextStyle = OudsBulletListTextStyle(
+                    fontSize = OudsBulletListFontSize.BodyLarge,
+                    fontWeight = OudsBulletListFontWeight.Normal
+                )
+            ) {
                 item(label = "Cook for 8-10 minutes")
                 item(label = "Stir occasionally")
             }
@@ -51,11 +66,23 @@ internal fun OudsBulletListOrderedSample() {
 internal fun OudsBulletListBareSample() {
     OudsBulletList(type = OudsBulletListType.Bare) {
         item(label = "Event Planning")
-        item(label = "Logistic Team", subListHasBoldText = false) {
+        item(
+            label = "Logistic Team",
+            subListTextStyle = OudsBulletListTextStyle(
+                fontSize = OudsBulletListFontSize.BodyLarge,
+                fontWeight = OudsBulletListFontWeight.Normal
+            )
+        ) {
             item(label = "Venue Booking")
             item(label = "Catering")
         }
-        item(label = "Communication Team", subListHasBoldText = false) {
+        item(
+            label = "Communication Team",
+            subListTextStyle = OudsBulletListTextStyle(
+                fontSize = OudsBulletListFontSize.BodyLarge,
+                fontWeight = OudsBulletListFontWeight.Normal
+            )
+        ) {
             item(label = "Invitations")
             item(label = "Social Media")
         }

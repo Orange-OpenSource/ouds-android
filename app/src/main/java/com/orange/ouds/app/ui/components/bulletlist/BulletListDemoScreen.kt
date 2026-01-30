@@ -39,6 +39,8 @@ import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsBulletList
 import com.orange.ouds.core.component.OudsBulletListBuilder
 import com.orange.ouds.core.component.OudsBulletListDefaults
+import com.orange.ouds.core.component.OudsBulletListFontSize
+import com.orange.ouds.core.component.OudsBulletListFontWeight
 import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
@@ -86,18 +88,19 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_textStyle_label),
-            chipLabels = OudsBulletListTextStyle.entries.map { it.name.toSentenceCase() },
-            selectedChipIndex = OudsBulletListTextStyle.entries.indexOf(textStyle),
-            onSelectionChange = { id -> textStyle = OudsBulletListTextStyle.entries[id] }
+            label = stringResource(R.string.app_components_bulletList_fontSize_label),
+            chipLabels = OudsBulletListFontSize.entries.map { it.name.toSentenceCase() },
+            selectedChipIndex = OudsBulletListFontSize.entries.indexOf(fontSize),
+            onSelectionChange = { id -> fontSize = OudsBulletListFontSize.entries[id] }
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bulletList_bold_label),
-            checked = bold,
-            onCheckedChange = { bold = it },
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_bulletList_fontWeight_label),
+            chipLabels = OudsBulletListFontWeight.entries.map { it.name.toSentenceCase() },
+            selectedChipIndex = OudsBulletListFontWeight.entries.indexOf(fontWeight),
+            onSelectionChange = { id -> fontWeight = OudsBulletListFontWeight.entries[id] }
         )
         val levelCountOptions = remember { (MinLevelCount..MaxLevelCount).toList() }
-
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_bulletList_levelCount_label),
@@ -151,8 +154,7 @@ private fun BulletListDemoContent(state: BulletListDemoState) {
             } else {
                 type
             },
-            textStyle = textStyle,
-            bold = bold
+            textStyle = OudsBulletListTextStyle(fontSize, fontWeight)
         ) {
             builder()
         }
@@ -175,8 +177,12 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
             } else {
                 functionCallArgument("type", type::class.java.nestedName)
             }
-            if (textStyle != OudsBulletListDefaults.TextStyle) typedArgument("textStyle", textStyle)
-            if (!bold) typedArgument("bold", bold)
+            if (fontSize != OudsBulletListDefaults.TextStyle.fontSize || fontWeight != OudsBulletListDefaults.TextStyle.fontWeight) {
+                constructorCallArgument<OudsBulletListTextStyle>("textStyle") {
+                    typedArgument(OudsBulletListTextStyle::fontSize.name, fontSize)
+                    typedArgument(OudsBulletListTextStyle::fontWeight.name, fontWeight)
+                }
+            }
             lambdaArgument("builder") {
                 when (levelCount) {
                     1 -> {
