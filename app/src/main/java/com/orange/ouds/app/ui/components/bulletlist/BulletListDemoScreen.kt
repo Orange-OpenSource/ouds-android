@@ -63,7 +63,7 @@ fun BulletListDemoScreen() {
 private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
     with(state) {
         val types = getTypes()
-        val unorderedIconClasses = getUnorderedIconClasses()
+        val unorderedAssetClasses = getUnorderedAssetClasses()
         CustomizationFilterChips(
             applyTopPadding = false,
             label = stringResource(R.string.app_components_common_type_label),
@@ -73,16 +73,16 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_unorderedIcon_label),
-            chips = unorderedIconClasses.map { CustomizationFilterChip(it.java.simpleName.toSentenceCase(), enabled = unorderedIconChipsEnabled) },
-            selectedChipIndex = unorderedIconClasses.indexOfFirst { it.java.name == unorderedIconClassName },
-            onSelectionChange = { unorderedIconClassName = unorderedIconClasses[it].java.name }
+            label = stringResource(R.string.app_components_bulletList_unorderedAsset_label),
+            chips = unorderedAssetClasses.map { CustomizationFilterChip(it.java.simpleName.toSentenceCase(), enabled = unorderedAssetChipsEnabled) },
+            selectedChipIndex = unorderedAssetClasses.indexOfFirst { it.java.name == unorderedAssetClassName },
+            onSelectionChange = { unorderedAssetClassName = unorderedAssetClasses[it].java.name }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bulletList_unorderedIconBrandColor_label),
-            checked = unorderedIconBrandColor,
-            onCheckedChange = { unorderedIconBrandColor = it },
-            enabled = unorderedIconBrandColorSwitchEnabled
+            label = stringResource(R.string.app_components_bulletList_unorderedAssetBrandColor_label),
+            checked = unorderedAssetBrandColor,
+            onCheckedChange = { unorderedAssetBrandColor = it },
+            enabled = unorderedAssetBrandColorSwitchEnabled
         )
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -145,8 +145,8 @@ private fun BulletListDemoContent(state: BulletListDemoState) {
             modifier = Modifier.fillMaxWidth(),
             type = if (type is OudsBulletListType.Unordered) {
                 OudsBulletListType.Unordered(
-                    icon = unorderedIcon(unorderedIconClassName),
-                    brandColor = unorderedIconBrandColor
+                    asset = unorderedAsset(unorderedAssetClassName),
+                    brandColor = unorderedAssetBrandColor
                 )
             } else {
                 type
@@ -165,12 +165,12 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
             trailingLambda = true
             if (type is OudsBulletListType.Unordered) {
                 functionCallArgument("type", type::class.java.nestedName) {
-                    functionCallArgument("icon", unorderedIconClassName.nestedName) {
-                        if (unorderedIconClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
+                    functionCallArgument("asset", unorderedAssetClassName.nestedName) {
+                        if (unorderedAssetClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
                             painterArgument(themeDrawableResources.tipsAndTricks)
                         }
                     }
-                    if (unorderedIconBrandColor) typedArgument("brandColor", unorderedIconBrandColor)
+                    if (unorderedAssetBrandColor) typedArgument("brandColor", unorderedAssetBrandColor)
                 }
             } else {
                 functionCallArgument("type", type::class.java.nestedName)
@@ -215,11 +215,11 @@ private fun Code.Builder.itemFunctionCall(label: String, content: (Code.Builder.
 }
 
 @Composable
-private fun unorderedIcon(unorderedIconClassName: String): OudsBulletListUnorderedAsset {
-    return if (unorderedIconClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
+private fun unorderedAsset(unorderedAssetClassName: String): OudsBulletListUnorderedAsset {
+    return if (unorderedAssetClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
         OudsBulletListUnorderedAsset.Icon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
     } else {
-        val kClass = Class.forName(unorderedIconClassName).kotlin
+        val kClass = Class.forName(unorderedAssetClassName).kotlin
         (kClass.objectInstance ?: kClass.createInstance()) as OudsBulletListUnorderedAsset
     }
 }
@@ -242,7 +242,7 @@ private fun getTypes() = if (LocalInspectionMode.current) {
 }
 
 @Composable
-private fun getUnorderedIconClasses() = if (LocalInspectionMode.current) {
+private fun getUnorderedAssetClasses() = if (LocalInspectionMode.current) {
     // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
     // See https://issuetracker.google.com/issues/240601093
     listOf(

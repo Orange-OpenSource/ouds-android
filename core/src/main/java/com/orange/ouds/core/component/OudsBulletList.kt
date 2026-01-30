@@ -240,7 +240,7 @@ internal data class BulletListItem(
 @Composable
 private fun Bullet(type: OudsBulletListType, level: Int, index: Int, typography: TextStyle, size: Dp, typeByLevel: Map<Int, OudsBulletListType>) {
     when (type) {
-        is OudsBulletListType.Unordered -> type.icon.PolymorphicContent(
+        is OudsBulletListType.Unordered -> type.asset.PolymorphicContent(
             extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(size, level, type.brandColor, typeByLevel)
         )
         is OudsBulletListType.Ordered -> when (level) {
@@ -299,10 +299,10 @@ sealed class OudsBulletListType {
      * to use a tick or any Solaris icon.
      *
      * @constructor Creates an instance of [OudsBulletListType.Unordered].
-     * @param icon The type of icon to display, from [OudsBulletListUnorderedAsset]. Defaults to [OudsBulletListUnorderedAsset.Bullet].
+     * @param asset The type of asset to display, from [OudsBulletListUnorderedAsset]. Defaults to [OudsBulletListUnorderedAsset.Bullet].
      * @param brandColor Controls the color of the unordered bullet. If `true`, the brand color is used; otherwise, the default content color is used.
      */
-    class Unordered(val icon: OudsBulletListUnorderedAsset = OudsBulletListUnorderedAsset.Bullet, val brandColor: Boolean = true) : OudsBulletListType()
+    class Unordered(val asset: OudsBulletListUnorderedAsset = OudsBulletListUnorderedAsset.Bullet, val brandColor: Boolean = true) : OudsBulletListType()
 
     /**
      * Collects related items with numeric order or sequence. Numbering starts at 1 with the first list item and increases by increments of 1 for each
@@ -453,7 +453,7 @@ internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: B
                 item(label = "$typeName first item")
                 item(
                     label = "$typeName second item with a non-bold, unordered sublist",
-                    subListType = OudsBulletListType.Unordered(icon = OudsBulletListUnorderedAsset.Tick, brandColor = false),
+                    subListType = OudsBulletListType.Unordered(asset = OudsBulletListUnorderedAsset.Tick, brandColor = false),
                     subListHasBoldText = false
                 ) {
                     item(label = "Unordered subitem")
@@ -478,7 +478,7 @@ internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: B
                 }
                 item(
                     label = "$typeName fourth item with an unordered sublist and free bullets",
-                    subListType = OudsBulletListType.Unordered(icon = OudsBulletListUnorderedAsset.Icon(customBullet))
+                    subListType = OudsBulletListType.Unordered(asset = OudsBulletListUnorderedAsset.Icon(customBullet))
                 ) {
                     item(label = "Unordered subitem")
                     item(label = "Unordered subitem with an unordered sublist", subListType = OudsBulletListType.Unordered()) {

@@ -29,8 +29,8 @@ import kotlin.reflect.full.createInstance
 @Composable
 fun rememberBulletListDemoState(
     type: OudsBulletListType = OudsBulletListType.Unordered(),
-    unorderedIconClassName: String = OudsBulletListUnorderedAsset.Bullet::class.java.name,
-    unorderedIconBrandColor: Boolean = true,
+    unorderedAssetClassName: String = OudsBulletListUnorderedAsset.Bullet::class.java.name,
+    unorderedAssetBrandColor: Boolean = true,
     textStyle: OudsBulletListTextStyle = OudsBulletListTextStyle.BodyLarge,
     bold: Boolean = true,
     levelCount: Int = BulletListDemoState.MinLevelCount,
@@ -38,8 +38,8 @@ fun rememberBulletListDemoState(
 ): BulletListDemoState {
     return rememberSaveable(
         type,
-        unorderedIconClassName,
-        unorderedIconBrandColor,
+        unorderedAssetClassName,
+        unorderedAssetBrandColor,
         textStyle,
         bold,
         levelCount,
@@ -48,8 +48,8 @@ fun rememberBulletListDemoState(
     ) {
         BulletListDemoState(
             type = type,
-            unorderedIconClassName = unorderedIconClassName,
-            unorderedIconBrandColor = unorderedIconBrandColor,
+            unorderedAssetClassName = unorderedAssetClassName,
+            unorderedAssetBrandColor = unorderedAssetBrandColor,
             textStyle = textStyle,
             bold = bold,
             levelCount = levelCount,
@@ -60,8 +60,8 @@ fun rememberBulletListDemoState(
 
 class BulletListDemoState(
     type: OudsBulletListType,
-    unorderedIconClassName: String,
-    unorderedIconBrandColor: Boolean,
+    unorderedAssetClassName: String,
+    unorderedAssetBrandColor: Boolean,
     textStyle: OudsBulletListTextStyle,
     bold: Boolean,
     levelCount: Int,
@@ -77,8 +77,8 @@ class BulletListDemoState(
                 with(state) {
                     listOf(
                         type::class.java.name,
-                        unorderedIconClassName,
-                        unorderedIconBrandColor,
+                        unorderedAssetClassName,
+                        unorderedAssetBrandColor,
                         textStyle,
                         bold,
                         levelCount,
@@ -103,9 +103,9 @@ class BulletListDemoState(
 
     var type: OudsBulletListType by mutableStateOf(type)
 
-    var unorderedIconClassName: String by mutableStateOf(unorderedIconClassName)
+    var unorderedAssetClassName: String by mutableStateOf(unorderedAssetClassName)
 
-    var unorderedIconBrandColor: Boolean by mutableStateOf(unorderedIconBrandColor)
+    var unorderedAssetBrandColor: Boolean by mutableStateOf(unorderedAssetBrandColor)
 
     var textStyle: OudsBulletListTextStyle by mutableStateOf(textStyle)
 
@@ -115,10 +115,10 @@ class BulletListDemoState(
 
     var label: String by mutableStateOf(label)
 
-    val unorderedIconChipsEnabled: Boolean
+    val unorderedAssetChipsEnabled: Boolean
         get() = type is OudsBulletListType.Unordered
 
-    val unorderedIconBrandColorSwitchEnabled: Boolean
+    val unorderedAssetBrandColorSwitchEnabled: Boolean
         get() = type is OudsBulletListType.Unordered
 
 }
