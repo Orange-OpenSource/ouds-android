@@ -159,8 +159,8 @@ fun PasswordInputIllustration() = ComponentIllustration {
         modifier = Modifier.padding(horizontal = 12.dp),
         value = "",
         onValueChange = {},
-        label = "Password",
-        helperText = "Your password must be at least 8 characters."
+        label = stringResource(id = R.string.app_components_passwordInput_password_label),
+        helperText = stringResource(id = R.string.app_components_passwordInputHelperText_label)
     )
 }
 
