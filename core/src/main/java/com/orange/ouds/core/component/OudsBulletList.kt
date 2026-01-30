@@ -382,29 +382,6 @@ enum class OudsBulletListTextStyle {
     BodyMedium
 }
 
-private enum class OudsBulletListItemNestedLevel {
-    /**
-     * Level 0 list items define the main structure.
-     * Unordered level 0 list items are marked with full squares.
-     * Ordered level 0 list items are marked with numbers.
-     */
-    Zero,
-
-    /**
-     * Level 1 (nested) list items provide hierarchy or subcategories.
-     * Unordered level 1 list items are marked with outlined squares.
-     * Ordered level 1 list items are marked with uppercase letters.
-     */
-    One,
-
-    /**
-     * Level 2 (nested) list items provide hierarchy or subcategories.
-     * Unordered level 1 list items are marked with dashes.
-     * Ordered level 1 list items are marked with lowercase letters.
-     */
-    Two
-}
-
 @PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
