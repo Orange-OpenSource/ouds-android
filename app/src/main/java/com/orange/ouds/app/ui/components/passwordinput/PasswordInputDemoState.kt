@@ -46,6 +46,7 @@ fun rememberPasswordInputDemoState(
     readOnly,
     hasLoader,
     error,
+    errorMessage,
     prefix,
     helperText,
     constrainedMaxWidth,
@@ -98,7 +99,7 @@ class PasswordInputDemoState(
                         enabled,
                         readOnly,
                         error,
-                        this.errorMessage,
+                        errorMessage,
                         prefix,
                         helperText,
                         constrainedMaxWidth

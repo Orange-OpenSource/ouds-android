@@ -50,6 +50,7 @@ fun rememberTextInputDemoState(
     readOnly,
     hasLoader,
     error,
+    errorMessage,
     prefix,
     suffix,
     helperText,
