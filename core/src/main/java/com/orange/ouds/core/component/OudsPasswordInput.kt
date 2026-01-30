@@ -280,7 +280,8 @@ private fun trailingIconButton(isPasswordVisible: Boolean, onClick: () -> Unit):
 }
 
 @Composable
-private fun visualTransformation(isPasswordVisible: Boolean) = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
+private fun visualTransformation(isPasswordVisible: Boolean) =
+    if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(mask = '\u25cf')
 
 @PreviewLightDark
 @Composable
