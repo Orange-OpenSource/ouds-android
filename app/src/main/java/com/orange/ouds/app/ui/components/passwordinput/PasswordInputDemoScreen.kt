@@ -12,7 +12,9 @@
 
 package com.orange.ouds.app.ui.components.passwordinput
 
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
@@ -120,6 +122,7 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
 
 @Composable
 private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
+    val focusManager = LocalFocusManager.current
     with(state) {
         OudsPasswordInput(
             value = value,
@@ -134,7 +137,8 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
             error = if (error) OudsError(errorMessage) else null,
             prefix = prefix,
             helperText = helperText,
-            constrainedMaxWidth = constrainedMaxWidth
+            constrainedMaxWidth = constrainedMaxWidth,
+            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
         )
     }
 }
@@ -165,6 +169,11 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
+            constructorCallArgument<KeyboardActions>("keyboardActions") {
+                lambdaArgument("onDone") {
+                    functionCall("focusManager.clearFocus")
+                }
+            }
         }
     }
 }
