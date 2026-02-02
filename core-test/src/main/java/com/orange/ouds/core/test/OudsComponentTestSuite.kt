@@ -29,6 +29,7 @@ import org.junit.runners.Suite
     OudsLinkTest::class,
     OudsNavigationBarTest::class,
     OudsNavigationBarItemTest::class,
+    OudsPasswordInputTest::class,
     OudsRadioButtonItemTest::class,
     OudsRadioButtonTest::class,
     OudsSuggestionChipTest::class,

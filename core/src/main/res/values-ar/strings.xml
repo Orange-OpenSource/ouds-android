@@ -22,4 +22,6 @@
     <string name="core_textInput_empty_a11y">فارغ</string>
     <string name="core_textInput_error_a11y">خطأ</string>
 
+    <string name="core_passwordInput_showPassword_a11y">Show password</string>
+    <string name="core_passwordInput_hidePassword_a11y">Hide password</string>
 </resources>

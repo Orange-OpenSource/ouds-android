@@ -20,8 +20,24 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 interface OudsDrawableResources {
+    val communication: Communication
     val component: Component
     val functional: Functional
+
+    interface Communication {
+        val accessibility: Accessibility
+        val securityAndSafety: SecurityAndSafety
+
+        interface Accessibility {
+            @get:DrawableRes
+            val vision: Int
+        }
+
+        interface SecurityAndSafety {
+            @get:DrawableRes
+            val lock: Int
+        }
+    }
 
     interface Component {
         val alert: Alert
@@ -89,6 +105,7 @@ interface OudsDrawableResources {
     interface Functional {
         val actions: Actions
         val navigation: Navigation
+        val settingsAndTools: SettingsAndTools
 
         interface Actions {
             @get:DrawableRes
@@ -101,6 +118,11 @@ interface OudsDrawableResources {
 
             @get:DrawableRes
             val menu: Int
+        }
+
+        interface SettingsAndTools {
+            @get:DrawableRes
+            val hide: Int
         }
     }
 }

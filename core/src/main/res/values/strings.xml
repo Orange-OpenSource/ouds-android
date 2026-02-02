@@ -22,4 +22,6 @@
     <string name="core_textInput_empty_a11y">Empty</string>
     <string name="core_textInput_error_a11y">Error</string>
 
+    <string name="core_passwordInput_showPassword_a11y">Show password</string>
+    <string name="core_passwordInput_hidePassword_a11y">Hide password</string>
 </resources>

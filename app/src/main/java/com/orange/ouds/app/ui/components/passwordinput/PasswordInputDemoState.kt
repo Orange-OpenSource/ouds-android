@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components 
  */
 
-package com.orange.ouds.app.ui.components.textinput
+package com.orange.ouds.app.ui.components.passwordinput
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,83 +22,70 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 
 @Composable
-fun rememberTextInputDemoState(
+fun rememberPasswordInputDemoState(
     value: String = "",
-    label: String = stringResource(id = R.string.app_components_common_label_label),
+    label: String = stringResource(id = R.string.app_components_passwordInput_password_label),
     placeholder: String = "",
     outlined: Boolean = false,
-    leadingIcon: Boolean = false,
-    trailingIcon: Boolean = false,
+    lockIcon: Boolean = false,
     hasLoader: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     prefix: String = "",
-    suffix: String = "",
     helperText: String = "",
-    helperLink: String = "",
     constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(
     value,
     label,
     placeholder,
     outlined,
-    leadingIcon,
-    trailingIcon,
+    lockIcon,
     enabled,
     readOnly,
     hasLoader,
     error,
     errorMessage,
     prefix,
-    suffix,
     helperText,
-    helperLink,
     constrainedMaxWidth,
-    saver = TextInputDemoState.Saver
+    saver = PasswordInputDemoState.Saver
 ) {
-    TextInputDemoState(
+    PasswordInputDemoState(
         value,
         label,
         placeholder,
         outlined,
-        leadingIcon,
-        trailingIcon,
+        lockIcon,
         hasLoader,
         enabled,
         readOnly,
         error,
         errorMessage,
         prefix,
-        suffix,
         helperText,
-        helperLink,
         constrainedMaxWidth
     )
 }
 
-class TextInputDemoState(
+class PasswordInputDemoState(
     value: String,
     label: String,
     placeholder: String,
     outlined: Boolean,
-    leadingIcon: Boolean,
-    trailingIcon: Boolean,
+    lockIcon: Boolean,
     hasLoader: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
     error: Boolean,
     errorMessage: String,
     prefix: String,
-    suffix: String,
     helperText: String,
-    helperLink: String,
     constrainedMaxWidth: Boolean
 ) {
 
     companion object {
-
         val Saver = listSaver(
             save = { state ->
                 with(state) {
@@ -107,23 +94,20 @@ class TextInputDemoState(
                         label,
                         placeholder,
                         outlined,
-                        leadingIcon,
-                        trailingIcon,
+                        lockIcon,
                         hasLoader,
                         enabled,
                         readOnly,
                         error,
-                        this.errorMessage,
+                        errorMessage,
                         prefix,
-                        suffix,
                         helperText,
-                        helperLink,
                         constrainedMaxWidth
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                TextInputDemoState(
+                PasswordInputDemoState(
                     list[0] as String,
                     list[1] as String,
                     list[2] as String,
@@ -133,13 +117,10 @@ class TextInputDemoState(
                     list[6] as Boolean,
                     list[7] as Boolean,
                     list[8] as Boolean,
-                    list[9] as Boolean,
+                    list[9] as String,
                     list[10] as String,
                     list[11] as String,
-                    list[12] as String,
-                    list[13] as String,
-                    list[14] as String,
-                    list[15] as Boolean
+                    list[12] as Boolean
                 )
             }
         )
@@ -157,9 +138,7 @@ class TextInputDemoState(
 
     var errorMessage: String by mutableStateOf(errorMessage)
 
-    var leadingIcon: Boolean by mutableStateOf(leadingIcon)
-
-    var trailingIcon: Boolean by mutableStateOf(trailingIcon)
+    var lockIcon: Boolean by mutableStateOf(lockIcon)
 
     var hasLoader: Boolean by mutableStateOf(hasLoader)
 
@@ -169,11 +148,7 @@ class TextInputDemoState(
 
     var prefix: String by mutableStateOf(prefix)
 
-    var suffix: String by mutableStateOf(suffix)
-
     var helperText: String by mutableStateOf(helperText)
-
-    var helperLink: String by mutableStateOf(helperLink)
 
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
 
