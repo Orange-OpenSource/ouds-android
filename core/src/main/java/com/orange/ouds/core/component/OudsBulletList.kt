@@ -240,20 +240,20 @@ private fun Bullet(type: OudsBulletListType, index: Int, typography: TextStyle, 
                 extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(tint, parentTypes)
             )
         }
-        is OudsBulletListType.Ordered -> {
-            val level = parentTypes.count()
-            when (level) {
-                0 -> OrderedBullet("${index + 1}.", textStyle = typography, size = size)
-                1 -> OrderedBullet("${('A' + index)}.", textStyle = typography, size = size)
-                else -> OrderedBullet("${('a' + index)}.", textStyle = typography, size = size)
-            }
-        }
+        is OudsBulletListType.Ordered -> OrderedBullet(index = index, level = parentTypes.count(), textStyle = typography, size = size)
         is OudsBulletListType.Bare -> {}
     }
 }
 
 @Composable
-private fun OrderedBullet(text: String, textStyle: TextStyle, size: Dp) {
+private fun OrderedBullet(index: Int, level: Int, textStyle: TextStyle, size: Dp) {
+    val text = if (level == 0) {
+        "${index + 1}."
+    } else {
+        val startingChar = if (level == 1) 'A' else 'a'
+        "${startingChar + index % 26}."
+    }
+
     Text(
         modifier = Modifier.width(size),
         text = text,
