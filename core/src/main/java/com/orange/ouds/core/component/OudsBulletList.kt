@@ -17,10 +17,16 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Text
@@ -34,6 +40,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -148,31 +155,16 @@ private fun OudsBulletListItem(
     modifier: Modifier = Modifier,
 ) {
     with(OudsTheme.componentsTokens.bulletList) {
-        val typography: TextStyle
         val columnGap: Dp
         val verticalPadding: Dp
-        val bulletSize: Dp
-        val bulletContainerSize: Dp
         when (currentTextStyle.fontSize) {
             OudsBulletListFontSize.BodyLarge -> {
-                typography = when (currentTextStyle.fontWeight) {
-                    OudsBulletListFontWeight.Normal -> OudsTheme.typography.body.default.large
-                    OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.large
-                }
                 columnGap = spaceColumnGapBodyLarge.value
                 verticalPadding = spacePaddingBlockBodyLarge.value
-                bulletSize = OudsTheme.sizes.icon.withBody.large.sizeSmall
-                bulletContainerSize = OudsTheme.sizes.icon.withBody.large.sizeMedium
             }
             OudsBulletListFontSize.BodyMedium -> {
-                typography = when (currentTextStyle.fontWeight) {
-                    OudsBulletListFontWeight.Normal -> OudsTheme.typography.body.default.medium
-                    OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.medium
-                }
                 columnGap = spaceColumnGapBodyMedium.value
                 verticalPadding = spacePaddingBlockBodyMedium.value
-                bulletSize = OudsTheme.sizes.icon.withBody.medium.sizeSmall
-                bulletContainerSize = OudsTheme.sizes.icon.withBody.medium.sizeMedium
             }
         }
 
@@ -185,16 +177,28 @@ private fun OudsBulletListItem(
 
         Row(
             modifier = modifier
+                .height(IntrinsicSize.Min)
                 .padding(start = paddingStart)
                 .padding(vertical = verticalPadding),
             horizontalArrangement = Arrangement.spacedBy(columnGap)
         ) {
-            Box(modifier = Modifier.size(bulletContainerSize * LocalDensity.current.fontScale), contentAlignment = Alignment.CenterEnd) {
-                Bullet(type = currentType, index = index, typography = typography, size = bulletSize, parentTypes = parentTypes)
+            Bullet(
+                type = currentType,
+                textStyle = currentTextStyle,
+                index = index,
+                parentTypes = parentTypes
+            )
+            val textMaxWidth = when (currentTextStyle.fontSize) {
+                OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.type.body.large
+                OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.type.body.medium
             }
             Text(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
+                    .widthIn(max = textMaxWidth),
                 text = item.label,
-                style = typography,
+                style = currentTextStyle.toTextStyle(),
                 color = OudsTheme.colorScheme.content.default
             )
         }
@@ -231,36 +235,55 @@ internal data class BulletListItem(
 )
 
 @Composable
-private fun Bullet(type: OudsBulletListType, index: Int, typography: TextStyle, size: Dp, parentTypes: List<OudsBulletListType>) {
+private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle, index: Int, parentTypes: List<OudsBulletListType>) {
+    val scale = LocalConfiguration.current.fontScale
+    val width = when (textStyle.fontSize) {
+        OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.icon.withBody.medium.sizeMedium
+        OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.icon.withBody.large.sizeMedium
+    }
     when (type) {
+        OudsBulletListType.Bare,
         is OudsBulletListType.Unordered -> {
-            val tint = if (type.brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default
-            type.asset.PolymorphicContent(
-                modifier = Modifier.size(size),
-                extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(tint, parentTypes)
+            // Max height is equal to font/line-height/body/large or font/line-height/body/medium depending on the font size 
+            val maxHeight = with(LocalDensity.current) { textStyle.toTextStyle().lineHeight.toDp() }
+            Box(
+                modifier = Modifier
+                    .width(width * scale)
+                    .heightIn(max = maxHeight * scale)
+                    .fillMaxHeight(),
+                contentAlignment = Alignment.CenterEnd
+            ) {
+                if (type is OudsBulletListType.Unordered) {
+                    val iconSize = when (textStyle.fontSize) {
+                        OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.icon.withBody.medium.sizeSmall
+                        OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.icon.withBody.large.sizeSmall
+                    }
+                    val tint = if (type.brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default
+                    type.asset.PolymorphicContent(
+                        modifier = Modifier.size(iconSize),
+                        extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(tint, parentTypes)
+                    )
+                }
+            }
+        }
+        OudsBulletListType.Ordered -> {
+            val level = parentTypes.count()
+            val text = if (level == 0) {
+                "${index + 1}."
+            } else {
+                val startingChar = if (level == 1) 'A' else 'a'
+                "${startingChar + index % 26}."
+            }
+
+            Text(
+                modifier = Modifier.width(width * scale),
+                text = text,
+                style = textStyle.toTextStyle(),
+                color = OudsTheme.colorScheme.content.default,
+                textAlign = TextAlign.End
             )
         }
-        is OudsBulletListType.Ordered -> OrderedBullet(index = index, level = parentTypes.count(), textStyle = typography, size = size)
-        is OudsBulletListType.Bare -> {}
     }
-}
-
-@Composable
-private fun OrderedBullet(index: Int, level: Int, textStyle: TextStyle, size: Dp) {
-    val text = if (level == 0) {
-        "${index + 1}."
-    } else {
-        val startingChar = if (level == 1) 'A' else 'a'
-        "${startingChar + index % 26}."
-    }
-
-    Text(
-        modifier = Modifier.width(size),
-        text = text,
-        style = textStyle,
-        color = OudsTheme.colorScheme.content.default,
-        textAlign = TextAlign.End
-    )
 }
 
 /**
@@ -404,7 +427,22 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
  * @property fontWeight The font weight of the list.
  * @constructor Creates an instance of [OudsBulletListTextStyle].
  */
-data class OudsBulletListTextStyle(val fontSize: OudsBulletListFontSize, val fontWeight: OudsBulletListFontWeight)
+data class OudsBulletListTextStyle(val fontSize: OudsBulletListFontSize, val fontWeight: OudsBulletListFontWeight) {
+
+    @Composable
+    internal fun toTextStyle(): TextStyle {
+        return when (fontSize) {
+            OudsBulletListFontSize.BodyLarge -> when (fontWeight) {
+                OudsBulletListFontWeight.Normal -> OudsTheme.typography.body.default.large
+                OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.large
+            }
+            OudsBulletListFontSize.BodyMedium -> when (fontWeight) {
+                OudsBulletListFontWeight.Normal -> OudsTheme.typography.body.default.medium
+                OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.medium
+            }
+        }
+    }
+}
 
 /**
  * The font size of an [OudsBulletList].
