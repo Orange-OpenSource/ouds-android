@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.wireframe.tokens.components
 
+import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
@@ -32,6 +33,7 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 internal data class WireframeComponentsTokens(
+    override val alert: OudsAlertTokens = WireframeAlertTokens(),
     override val badge: OudsBadgeTokens = WireframeBadgeTokens(),
     override val bar: OudsBarTokens = WireframeBarTokens(),
     override val bulletList: OudsBulletListTokens = WireframeBulletListTokens(),
