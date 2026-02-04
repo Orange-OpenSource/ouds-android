@@ -25,6 +25,7 @@ import com.orange.ouds.app.ui.components.chip.FilterChipDemoScreen
 import com.orange.ouds.app.ui.components.chip.SuggestionChipDemoScreen
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
+import com.orange.ouds.app.ui.components.floatingactionbutton.FloatingActionButtonDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.passwordinput.PasswordInputDemoScreen
@@ -102,6 +103,13 @@ sealed class Component(
         R.string.app_components_divider_description_text,
         { DividerIllustration() },
         listOf(Variant.HorizontalDivider, Variant.VerticalDivider)
+    )
+
+    data object FloatingActionButton : Component(
+        R.string.app_components_floatingActionButton_label,
+        R.string.app_components_floatingActionButton_description_text,
+        { FloatingActionButtonIllustration() },
+        demoScreen = { FloatingActionButtonDemoScreen() }
     )
 
     data object Link : Component(

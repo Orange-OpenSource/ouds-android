@@ -81,18 +81,19 @@ class BadgeDemoState(
         set(value) {
             if (_type != value) {
                 _type = value
-                enabledSizes = getEnabledSizes(value)
+                if (size !in enabledSizes) {
+                    size = enabledSizes.first()
+                }
             }
         }
 
     var size: OudsBadgeSize by mutableStateOf(size)
 
-    var enabledSizes: List<OudsBadgeSize> = getEnabledSizes(type)
-        private set(value) {
-            field = value
-            if (size !in enabledSizes) {
-                size = enabledSizes.first()
-            }
+    val enabledSizes: List<OudsBadgeSize>
+        get() = when (type) {
+            Type.Standard -> OudsBadgeSize.entries
+            Type.Count,
+            Type.Icon -> listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large)
         }
 
     var status: OudsBadgeStatus by mutableStateOf(status)
@@ -114,14 +115,6 @@ class BadgeDemoState(
 
     val countTextInputEnabled: Boolean
         get() = type == Type.Count
-
-    private fun getEnabledSizes(type: Type): List<OudsBadgeSize> {
-        return when (type) {
-            Type.Standard -> OudsBadgeSize.entries
-            Type.Count,
-            Type.Icon -> listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large)
-        }
-    }
 
     enum class Type(@StringRes val labelRes: Int) {
         Standard(R.string.app_components_badge_standardType_label),

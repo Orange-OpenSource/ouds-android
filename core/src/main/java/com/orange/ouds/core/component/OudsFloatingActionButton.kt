@@ -279,7 +279,7 @@ object OudsFloatingActionButtonDefaults {
     /**
      * Default appearance of an [OudsFloatingActionButton].
      */
-    val Appearance = OudsFloatingActionButtonAppearance.Brand
+    val Appearance = OudsFloatingActionButtonAppearance.Strong
 }
 
 /**

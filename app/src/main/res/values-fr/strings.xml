@@ -116,6 +116,9 @@
     <!-- Components: divider -->
     <string name="app_components_divider_description_text">Un Divider (ou séparateur) est un élément d\'interface utilisateur qui permet de structurer le contenu en séparant visuellement les zones de contenu.</string>
 
+    <!-- Components: floating action button -->
+    <string name="app_components_floatingActionButton_description_text">Un Floating Action Button (ou bouton d\'action flottant, également appelé FAB) représente l\'action la plus importante sur un écran. Il met en valeur les actions principales.</string>
+
     <!-- Components: link -->
     <string name="app_components_link_description_text">Un Link (ou lien) est un élément d\'interface utilisateur qui permet de naviguer d\'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.</string>
 

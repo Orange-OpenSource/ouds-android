@@ -141,6 +141,9 @@
     <string name="app_components_common_prefix_label" translatable="false">Prefix</string>
     <string name="app_components_common_readOnly_label" translatable="false">Read only</string>
     <string name="app_components_common_size_label" translatable="false">Size</string>
+    <string name="app_components_common_smallSize_label" translatable="false">Small</string>
+    <string name="app_components_common_mediumSize_label" translatable="false">Medium</string>
+    <string name="app_components_common_largeSize_label" translatable="false">Large</string>
     <string name="app_components_common_status_label" translatable="false">Status</string>
     <string name="app_components_common_textOnlyLayout_label" translatable="false">Text only</string>
     <string name="app_components_common_textAndIconLayout_label" translatable="false">Text + icon</string>
@@ -211,6 +214,11 @@
     <string name="app_components_divider_horizontalDivider_label" translatable="false">Horizontal divider</string>
     <string name="app_components_divider_verticalDivider_label" translatable="false">Vertical divider</string>
 
+    <!-- Components: floating action button -->
+    <string name="app_components_floatingActionButton_label" translatable="false">Floating action button</string>
+    <string name="app_components_floatingActionButton_description_text">Floating action button (also known as FAB) represents the most important action on a screen. It puts key actions within reach.</string>
+    <string name="app_components_floatingActionButton_expanded_label" translatable="false">Expanded</string>
+
     <!-- Components: link -->
     <string name="app_components_link_label" translatable="false">Link</string>
     <string name="app_components_link_description_text">Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.</string>
@@ -272,9 +280,6 @@
     <string name="app_components_topAppBar_firstAction_a11y">First action</string>
     <string name="app_components_topAppBar_secondAction_a11y">Second action</string>
     <string name="app_components_topAppBar_thirdAction_a11y">Third action</string>
-    <string name="app_components_topAppBar_smallSize_label" translatable="false">Small</string>
-    <string name="app_components_topAppBar_mediumSize_label" translatable="false">Medium</string>
-    <string name="app_components_topAppBar_largeSize_label" translatable="false">Large</string>
     <string name="app_components_topAppBar_centerAligned_label" translatable="false">Center aligned</string>
     <string name="app_components_topAppBar_navigationIcon_label" translatable="false">Navigation icon</string>
     <string name="app_components_topAppBar_backNavigationIcon_label" translatable="false">Back</string>
