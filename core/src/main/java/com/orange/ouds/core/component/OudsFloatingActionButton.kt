@@ -127,7 +127,7 @@ fun OudsLargeFloatingActionButton(
         elevation = elevation(),
         interactionSource = interactionSource
     ) {
-        Icon(icon = icon, appearance = appearance, state = state)
+        Icon(icon = icon, appearance = appearance, state = state, large = true)
     }
 }
 
@@ -189,13 +189,18 @@ private fun elevation() = FloatingActionButtonDefaults.elevation(
 )
 
 @Composable
-private fun Icon(icon: OudsFloatingActionButtonIcon, appearance: OudsFloatingActionButtonAppearance, state: OudsFloatingActionButtonState) {
-    val iconSize = OudsTheme.componentsTokens.button.sizeIconOnly
+private fun Icon(
+    icon: OudsFloatingActionButtonIcon,
+    appearance: OudsFloatingActionButtonAppearance,
+    state: OudsFloatingActionButtonState,
+    large: Boolean = false
+) {
+    val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnly.value
     val iconScale = LocalConfiguration.current.fontScale
     val tint = contentColor(appearance = appearance, state = state)
     icon.Content(
         modifier = Modifier
-            .size(iconSize.value * iconScale)
+            .size(iconSize * iconScale)
             .semantics {
                 contentDescription = icon.contentDescription
             },
