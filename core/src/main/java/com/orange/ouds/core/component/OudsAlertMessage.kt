@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import android.R.attr.end
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Text
@@ -35,6 +37,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontVariation.weight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -42,6 +45,7 @@ import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.LocalDrawableResources
+import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -90,19 +94,21 @@ fun OudsAlertMessage(
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
-        val linkPosition = link?.position
+        val borderRadius = if (LocalThemeSettings.current.roundedCornerAlertMessages == true) borderRadiusRounded else borderRadiusDefault
+        val shape = RoundedCornerShape(borderRadius.value)
+        val hasCloseButton = onClose != null
         Box(
             modifier = modifier
                 .widthIn(min = sizeMinWidth.dp)
-                .background(color = status.color())
+                .background(color = status.color(), shape = shape)
                 .run {
                     borderWidth.value.takeUnlessHairline?.let {
-                        border(width = it, color = borderColor(status))
+                        border(width = it, color = borderColor(status), shape = shape)
                     } ?: this
                 }
         ) {
             Row(
-                modifier = Modifier.padding(start = spacePaddingInline.value),
+                modifier = Modifier.padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
             ) {
@@ -115,7 +121,7 @@ fun OudsAlertMessage(
                         status = status,
                     )
                 )
-                Column(modifier = Modifier.padding(vertical = spacePaddingBlock.value), verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
+                Column(modifier = Modifier.weight(1f).padding(vertical = spacePaddingBlock.value), verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
                     Text(
                         modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
                         text = label,
@@ -140,7 +146,7 @@ fun OudsAlertMessage(
                 }
 
                 val hasTopEndLink = link?.position == OudsAlertMessageLinkPosition.TopEnd
-                if (onClose != null || hasTopEndLink) {
+                if (hasCloseButton || hasTopEndLink) {
                     Row(horizontalArrangement = Arrangement.spacedBy(spaceColumnGapAction.value)) {
                         if (hasTopEndLink) {
                             link.Content()
@@ -420,6 +426,7 @@ internal fun PreviewOudsAlertMessage(
         Column {
             statuses.forEach { status ->
                 OudsAlertMessage(
+                    modifier = Modifier.padding(all = 10.dp),
                     label = label,
                     status = status,
                     description = description,
@@ -466,7 +473,6 @@ private val previewParameterValues: List<OudsAlertMessagePreviewParameter>
             OudsAlertMessagePreviewParameter(
                 statusesWithIcon,
                 description = "Here is a long description that need two lines to be displayed.",
-                onClose = {},
                 link = OudsAlertMessageLink(linkLabel, onClick = {})
             ),
             OudsAlertMessagePreviewParameter(

@@ -52,7 +52,7 @@ class SoshTheme : OudsThemeContract {
         get() = SOSH_THEME_NAME
 
     override val settings: OudsThemeSettings
-        get() = OudsThemeSettings(roundedCornerButtons = null, roundedCornerTextInputs = null)
+        get() = OudsThemeSettings()
 
     @Suppress("OVERRIDE_DEPRECATION")
     override val fontFamily: FontFamily

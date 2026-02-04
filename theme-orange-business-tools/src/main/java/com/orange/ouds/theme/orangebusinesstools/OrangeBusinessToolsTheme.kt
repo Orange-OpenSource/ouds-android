@@ -126,11 +126,13 @@ const val ORANGE_BUSINESS_TOOLS_THEME_NAME = "Orange Business Tools"
  *   If an [OrangeDownloadableFontFamily] is used, the [OrangeFontFamily.preloadDownloadableFontFamilies] method should be called to download the Helvetica Neue font files through the Android Downloadable Fonts feature.
  * @param roundedCornerButtons Whether or not buttons have rounded corners.
  * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
+ * @param roundedCornerAlertMessages Whether or not alert messages have rounded corners.
  */
 open class OrangeBusinessToolsTheme(
     private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
-    private val roundedCornerTextInputs: Boolean = true
+    private val roundedCornerTextInputs: Boolean = true,
+    private val roundedCornerAlertMessages: Boolean = false
 ) : OudsThemeContract {
 
     override val name: String
@@ -145,7 +147,7 @@ open class OrangeBusinessToolsTheme(
     }
 
     override val settings: OudsThemeSettings
-        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs)
+        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages)
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeBusinessToolsColorSemanticTokens()
