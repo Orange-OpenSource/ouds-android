@@ -36,6 +36,8 @@ import com.orange.ouds.core.component.OudsDividerOrientation
 import com.orange.ouds.core.component.OudsDividerPreviewParameterProvider
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameter
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
+import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
+import com.orange.ouds.core.component.OudsFloatingActionButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
@@ -75,8 +77,11 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithEdgeToEdgeDisab
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
+import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFilterChip
+import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsInputTag
+import com.orange.ouds.core.component.PreviewOudsLargeFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
 import com.orange.ouds.core.component.PreviewOudsLink
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
@@ -90,6 +95,7 @@ import com.orange.ouds.core.component.PreviewOudsRadioButtonItemConstrainedMaxWi
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithDescriptionText
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled
+import com.orange.ouds.core.component.PreviewOudsSmallFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
 import com.orange.ouds.core.component.PreviewOudsSwitch
 import com.orange.ouds.core.component.PreviewOudsSwitchItem
@@ -363,6 +369,69 @@ interface OudsPreviewableComponent {
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsFilterChipPreviewParameter
             )
+        }
+    }
+
+    object FloatingActionButton {
+
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsFloatingActionButtonPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsFloatingActionButton(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    appearance = parameter as OudsFloatingActionButtonAppearance
+                )
+            }
+        }
+
+        object Small : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsFloatingActionButtonPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSmallFloatingActionButton(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    appearance = parameter as OudsFloatingActionButtonAppearance
+                )
+            }
+        }
+
+        object Large : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 480
+
+            override val parameters: List<Any> = OudsFloatingActionButtonPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsLargeFloatingActionButton(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    appearance = parameter as OudsFloatingActionButtonAppearance
+                )
+            }
+        }
+
+        object Extended : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 700
+
+            override val parameters: List<Any> = OudsFloatingActionButtonPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsExtendedFloatingActionButton(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    appearance = parameter as OudsFloatingActionButtonAppearance
+                )
+            }
         }
     }
 
