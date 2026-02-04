@@ -24,6 +24,7 @@ import org.junit.runners.Suite
     OudsCheckboxItemTest::class,
     OudsCheckboxTest::class,
     OudsColoredBoxTest::class,
+    //OudsFloatingActionButtonTest::class,
     OudsFilterChipTest::class,
     OudsDividerTest::class,
     OudsInputTagTest::class,
