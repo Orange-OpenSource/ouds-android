@@ -16,6 +16,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.size
@@ -64,6 +65,20 @@ import com.orange.ouds.theme.OudsThemeContract
 import kotlin.enums.enumEntries
 
 /**
+ * The FAB represents the most important action on a screen. It puts key actions within reach.
+ *
+ * FAB typically contains an icon, for a FAB with text and an icon, see
+ * [OudsExtendedFloatingActionButton].
+ *
+ * @param icon Icon for this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
  * @sample com.orange.ouds.core.component.samples.OudsFloatingActionButtonSample
  */
 @Composable
@@ -96,6 +111,20 @@ fun OudsFloatingActionButton(
 }
 
 /**
+ * The FAB represents the most important action on a screen. It puts key actions within reach.
+ *
+ * FAB typically contains an icon, for a FAB with text and an icon, see
+ * [OudsExtendedFloatingActionButton].
+ *
+ * @param icon Icon for this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
  * @sample com.orange.ouds.core.component.samples.OudsSmallFloatingActionButtonSample
  */
 @Composable
@@ -128,6 +157,20 @@ fun OudsSmallFloatingActionButton(
 }
 
 /**
+ * The FAB represents the most important action on a screen. It puts key actions within reach.
+ *
+ * FAB typically contains an icon, for a FAB with text and an icon, see
+ * [OudsExtendedFloatingActionButton].
+ *
+ * @param icon Icon for this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
  * @sample com.orange.ouds.core.component.samples.OudsLargeFloatingActionButtonSample
  */
 @Composable
@@ -160,6 +203,20 @@ fun OudsLargeFloatingActionButton(
 }
 
 /**
+ * Extended FABs help people take primary actions. They're wider than FABs to accommodate a text
+ * label and larger target area.
+ *
+ * The other extended floating action button overload supports a text label and icon.
+ *
+ * @param label Label displayed inside this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
  * @sample com.orange.ouds.core.component.samples.OudsExtendedFloatingActionButtonSampleWithLabelOnly
  */
 @Composable
@@ -192,6 +249,25 @@ fun OudsExtendedFloatingActionButton(
 }
 
 /**
+ * Extended FABs help people take primary actions. They're wider than FABs to accommodate a text
+ * label and larger target area.
+ *
+ * The other extended floating action button overload is for FABs without an icon.
+ *
+ * Default content description for accessibility is extended from the extended fabs icon. For custom
+ * behavior, you can provide your own via [Modifier.semantics].
+ *
+ * @param label Label displayed inside this FAB.
+ * @param icon Icon for this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param expanded Controls the expansion state of this FAB. In an expanded state, the FAB will show
+ *   both the [icon] and [label]. In a collapsed state, the FAB will show only the [icon].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
  * @sample com.orange.ouds.core.component.samples.OudsExtendedFloatingActionButtonSampleWithLabelAndIcon
  */
 @Composable
@@ -384,11 +460,16 @@ class OudsFloatingActionButtonIcon private constructor(
 /**
  * Represents the appearance of an [OudsFloatingActionButton].
  */
-// TODO: Add FAB specific documentation for appearance
 enum class OudsFloatingActionButtonAppearance {
 
+    /**
+     * Strong appearance of an [OudsFloatingActionButton].
+     */
     Strong,
 
+    /**
+     * A brand primary color alternative to the Strong floating action button.
+     */
     Brand
 }
 
