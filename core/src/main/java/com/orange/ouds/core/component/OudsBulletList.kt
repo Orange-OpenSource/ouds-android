@@ -249,7 +249,7 @@ private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle,
             Box(
                 modifier = Modifier
                     .width(width * scale)
-                    .heightIn(max = maxHeight * scale)
+                    .heightIn(max = maxHeight) // Don't multiply by scale because maxHeight already takes it into account by using LocalDensity.current
                     .fillMaxHeight(),
                 contentAlignment = Alignment.CenterEnd
             ) {
