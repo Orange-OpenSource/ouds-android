@@ -245,11 +245,11 @@ private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle,
         OudsBulletListType.Bare,
         is OudsBulletListType.Unordered -> {
             // Max height is equal to font/line-height/body/large or font/line-height/body/medium depending on the font size 
-            val maxHeight = with(LocalDensity.current) { textStyle.toTextStyle().lineHeight.toDp() }
+            val maxHeight = textStyle.toTextStyle().lineHeight.value.dp
             Box(
                 modifier = Modifier
                     .width(width * scale)
-                    .heightIn(max = maxHeight) // Don't multiply by scale because maxHeight already takes it into account by using LocalDensity.current
+                    .heightIn(max = maxHeight * scale)
                     .fillMaxHeight(),
                 contentAlignment = Alignment.CenterEnd
             ) {
