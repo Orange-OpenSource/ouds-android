@@ -63,6 +63,9 @@ import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import kotlin.enums.enumEntries
 
+/**
+ * @sample com.orange.ouds.core.component.samples.OudsFloatingActionButtonSample
+ */
 @Composable
 fun OudsFloatingActionButton(
     icon: OudsFloatingActionButtonIcon,
@@ -92,6 +95,9 @@ fun OudsFloatingActionButton(
     }
 }
 
+/**
+ * @sample com.orange.ouds.core.component.samples.OudsSmallFloatingActionButtonSample
+ */
 @Composable
 fun OudsSmallFloatingActionButton(
     icon: OudsFloatingActionButtonIcon,
@@ -121,6 +127,9 @@ fun OudsSmallFloatingActionButton(
     }
 }
 
+/**
+ * @sample com.orange.ouds.core.component.samples.OudsLargeFloatingActionButtonSample
+ */
 @Composable
 fun OudsLargeFloatingActionButton(
     icon: OudsFloatingActionButtonIcon,
@@ -150,6 +159,9 @@ fun OudsLargeFloatingActionButton(
     }
 }
 
+/**
+ * @sample com.orange.ouds.core.component.samples.OudsExtendedFloatingActionButtonSampleWithLabelOnly
+ */
 @Composable
 fun OudsExtendedFloatingActionButton(
     label: String,
@@ -179,6 +191,9 @@ fun OudsExtendedFloatingActionButton(
     }
 }
 
+/**
+ * @sample com.orange.ouds.core.component.samples.OudsExtendedFloatingActionButtonSampleWithLabelAndIcon
+ */
 @Composable
 fun OudsExtendedFloatingActionButton(
     label: String,
