@@ -260,7 +260,7 @@ private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle,
                     }
                     val tint = if (type.brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default
                     type.asset.PolymorphicContent(
-                        modifier = Modifier.size(iconSize),
+                        modifier = Modifier.size(iconSize * scale),
                         extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(tint, parentTypes)
                     )
                 }
