@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import android.R.attr.end
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -30,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
@@ -37,7 +37,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontVariation.weight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -100,10 +99,10 @@ fun OudsAlertMessage(
         Box(
             modifier = modifier
                 .widthIn(min = sizeMinWidth.dp)
-                .background(color = status.color(), shape = shape)
+                .background(color = status.backgroundColor(), shape = shape)
                 .run {
                     borderWidth.value.takeUnlessHairline?.let {
-                        border(width = it, color = borderColor(status), shape = shape)
+                        border(width = it, color = status.borderColor(), shape = shape)
                     } ?: this
                 }
         ) {
@@ -117,11 +116,15 @@ fun OudsAlertMessage(
                         .padding(top = spacePaddingBlock.value)
                         .size(24.dp * scale),
                     extraParameters = OudsAlertMessageIcon.ExtraParameters(
-                        tint = assetColor(alertMessageStatus = status),
-                        status = status,
+                        tint = status.assetColor()
                     )
                 )
-                Column(modifier = Modifier.weight(1f).padding(vertical = spacePaddingBlock.value), verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(vertical = spacePaddingBlock.value),
+                    verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)
+                ) {
                     Text(
                         modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
                         text = label,
@@ -153,6 +156,7 @@ fun OudsAlertMessage(
                         }
                         onClose?.let {
                             OudsButton(
+                                modifier = Modifier.clip(shape = shape),
                                 icon = OudsButtonIcon(
                                     painter = painterResource(LocalDrawableResources.current.component.button.expurge),
                                     contentDescription = stringResource(R.string.core_alertMessage_close_a11y)
@@ -176,6 +180,11 @@ object OudsAlertMessageDefaults {
      * Default status of an [OudsAlertMessage].
      */
     val Status = OudsAlertMessageStatus.Positive()
+
+    /**
+     * Default position of an [OudsAlertMessage] action link.
+     */
+    val LinkPosition = OudsAlertMessageLinkPosition.Bottom
 }
 
 /**
@@ -188,7 +197,7 @@ object OudsAlertMessageDefaults {
 data class OudsAlertMessageLink(
     val label: String,
     val onClick: () -> Unit,
-    val position: OudsAlertMessageLinkPosition = OudsAlertMessageLinkPosition.Bottom
+    val position: OudsAlertMessageLinkPosition = OudsAlertMessageDefaults.LinkPosition
 ) {
     @Composable
     fun Content(modifier: Modifier = Modifier) {
@@ -218,47 +227,6 @@ enum class OudsAlertMessageLinkPosition {
      * Best suited for wider layouts or short, single-line alerts where horizontal alignment keeps content compact and balanced.
      */
     TopEnd
-}
-
-/**
- * Represents a non-clickable icon to be displayed within an [OudsAlertMessage].
- *
- * This class handles the creation of the icon from different sources like [Painter], [ImageVector], or [ImageBitmap].
- * An accessibility description is not required as the alert's main `label` should provide the necessary context.
- */
-class OudsAlertMessageIcon private constructor(graphicsObject: Any) :
-    OudsComponentIcon<OudsAlertMessageIcon.ExtraParameters, OudsAlertMessageIcon>(OudsAlertMessageIcon.ExtraParameters::class.java, graphicsObject, "") {
-
-    /**
-     * Creates an instance of [OudsAlertMessageIcon].
-     *
-     * @param painter Painter of the icon.
-     */
-    constructor(painter: Painter) : this(painter as Any)
-
-    /**
-     * Creates an instance of [OudsAlertMessageIcon].
-     *
-     * @param imageVector Image vector of the icon.
-     */
-    constructor(imageVector: ImageVector) : this(imageVector as Any)
-
-    /**
-     * Creates an instance of [OudsAlertMessageIcon].
-     *
-     * @param bitmap Image bitmap of the icon.
-     */
-    constructor(bitmap: ImageBitmap) : this(bitmap as Any)
-
-    override val tint: Color?
-        @Composable
-        get() = extraParameters.tint
-
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
-        internal val tint: Color,
-        internal val status: OudsAlertMessageStatus,
-    ) : OudsComponentContent.ExtraParameters()
 }
 
 /**
@@ -368,7 +336,7 @@ sealed class OudsAlertMessageStatus {
      * The color associated with this status.
      */
     @Composable
-    internal fun color(): Color {
+    fun backgroundColor(): Color {
         return when (this) {
             is Neutral -> OudsTheme.colorScheme.surface.secondary
             is Accent -> OudsTheme.colorScheme.surface.status.accent.muted
@@ -378,34 +346,78 @@ sealed class OudsAlertMessageStatus {
             is Info -> OudsTheme.colorScheme.surface.status.info.muted
         }
     }
-}
 
-@Composable
-private fun assetColor(alertMessageStatus: OudsAlertMessageStatus): Color {
-    return with(OudsTheme.colorScheme.content) {
-        when (alertMessageStatus) {
-            is OudsAlertMessageStatus.Neutral -> default
-            is OudsAlertMessageStatus.Accent -> status.accent
-            is OudsAlertMessageStatus.Positive -> status.positive
-            is OudsAlertMessageStatus.Warning -> status.warning
-            is OudsAlertMessageStatus.Negative -> status.negative
-            is OudsAlertMessageStatus.Info -> status.info
+    @Composable
+    internal fun assetColor(): Color {
+        return with(OudsTheme.colorScheme.content) {
+            when (this@OudsAlertMessageStatus) {
+                is Neutral -> default
+                is Accent -> status.accent
+                is Positive -> status.positive
+                is Warning -> status.warning
+                is Negative -> status.negative
+                is Info -> status.info
+            }
+        }
+    }
+
+    @Composable
+    internal fun borderColor(): Color {
+        return with(OudsTheme.colorScheme.border) {
+            when (this@OudsAlertMessageStatus) {
+                is Neutral -> default
+                is Accent -> status.accent
+                is Positive -> status.positive
+                is Warning -> status.warning
+                is Negative -> status.negative
+                is Info -> status.info
+            }
         }
     }
 }
 
-@Composable
-private fun borderColor(alertMessageStatus: OudsAlertMessageStatus): Color {
-    return with(OudsTheme.colorScheme.border) {
-        when (alertMessageStatus) {
-            is OudsAlertMessageStatus.Neutral -> default
-            is OudsAlertMessageStatus.Accent -> status.accent
-            is OudsAlertMessageStatus.Positive -> status.positive
-            is OudsAlertMessageStatus.Warning -> status.warning
-            is OudsAlertMessageStatus.Negative -> status.negative
-            is OudsAlertMessageStatus.Info -> status.info
-        }
-    }
+/**
+ * Represents a non-clickable icon to be displayed within an [OudsAlertMessage].
+ *
+ * This class handles the creation of the icon from different sources like [Painter], [ImageVector], or [ImageBitmap].
+ * An accessibility description is not required as the alert's main `label` should provide the necessary context.
+ */
+class OudsAlertMessageIcon private constructor(graphicsObject: Any) :
+    OudsComponentIcon<OudsAlertMessageIcon.ExtraParameters, OudsAlertMessageIcon>(
+        OudsAlertMessageIcon.ExtraParameters::class.java,
+        graphicsObject,
+        ""
+    ) {
+
+    /**
+     * Creates an instance of [OudsAlertMessageIcon].
+     *
+     * @param painter Painter of the icon.
+     */
+    constructor(painter: Painter) : this(painter as Any)
+
+    /**
+     * Creates an instance of [OudsAlertMessageIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     */
+    constructor(imageVector: ImageVector) : this(imageVector as Any)
+
+    /**
+     * Creates an instance of [OudsAlertMessageIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     */
+    constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+
+    override val tint: Color?
+        @Composable
+        get() = extraParameters.tint
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val tint: Color
+    ) : OudsComponentContent.ExtraParameters()
 }
 
 @PreviewLightDark
