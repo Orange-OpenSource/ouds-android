@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -23,6 +24,7 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.FloatingActionButtonElevation
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.SmallFloatingActionButton
@@ -44,7 +46,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.outerBorder
-import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -71,26 +72,22 @@ fun OudsFloatingActionButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getFloatingActionButtonState(interactionState = interactionState)
-    val containerColor = rememberInteractionContainerColor(interactionState = interactionState, appearance = appearance)
-    val contentColor = rememberInteractionContentColor(interactionState = interactionState, appearance = appearance)
 
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
+    OudsFloatingActionButton(
+        appearance = appearance,
+        interactionSource = interactionSource
+    ) { state, indication, containerColor, contentColor, elevation ->
         FloatingActionButton(
             onClick = onClick,
             modifier = modifier
                 .outerBorder(state = state, shape = FloatingActionButtonDefaults.shape)
-                .indication(
-                    interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(containerColor, contentColor)
-                ),
-            containerColor = containerColor.value,
-            contentColor = Color.Unspecified,
-            elevation = elevation(),
+                .indication(interactionSource = interactionSource, indication = indication),
+            containerColor = containerColor,
+            contentColor = contentColor,
+            elevation = elevation,
             interactionSource = interactionSource
         ) {
-            Icon(icon = icon, tint = contentColor.value)
+            Icon(icon = icon)
         }
     }
 }
@@ -104,26 +101,22 @@ fun OudsSmallFloatingActionButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getFloatingActionButtonState(interactionState = interactionState)
-    val containerColor = rememberInteractionContainerColor(interactionState = interactionState, appearance = appearance)
-    val contentColor = rememberInteractionContentColor(interactionState = interactionState, appearance = appearance)
 
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
+    OudsFloatingActionButton(
+        appearance = appearance,
+        interactionSource = interactionSource
+    ) { state, indication, containerColor, contentColor, elevation ->
         SmallFloatingActionButton(
             onClick = onClick,
             modifier = modifier
                 .outerBorder(state = state, shape = FloatingActionButtonDefaults.smallShape)
-                .indication(
-                    interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(containerColor, contentColor)
-                ),
-            containerColor = containerColor.value,
-            contentColor = Color.Unspecified,
-            elevation = elevation(),
+                .indication(interactionSource = interactionSource, indication = indication),
+            containerColor = containerColor,
+            contentColor = contentColor,
+            elevation = elevation,
             interactionSource = interactionSource
         ) {
-            Icon(icon = icon, tint = contentColor.value)
+            Icon(icon = icon)
         }
     }
 }
@@ -137,26 +130,22 @@ fun OudsLargeFloatingActionButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getFloatingActionButtonState(interactionState = interactionState)
-    val containerColor = rememberInteractionContainerColor(interactionState = interactionState, appearance = appearance)
-    val contentColor = rememberInteractionContentColor(interactionState = interactionState, appearance = appearance)
 
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
+    OudsFloatingActionButton(
+        appearance = appearance,
+        interactionSource = interactionSource
+    ) { state, indication, containerColor, contentColor, elevation ->
         LargeFloatingActionButton(
             onClick = onClick,
             modifier = modifier
                 .outerBorder(state = state, shape = FloatingActionButtonDefaults.largeShape)
-                .indication(
-                    interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(containerColor, contentColor)
-                ),
-            containerColor = containerColor.value,
-            contentColor = Color.Unspecified,
-            elevation = elevation(),
+                .indication(interactionSource = interactionSource, indication = indication),
+            containerColor = containerColor,
+            contentColor = contentColor,
+            elevation = elevation,
             interactionSource = interactionSource
         ) {
-            Icon(icon = icon, tint = contentColor.value, large = true)
+            Icon(icon = icon, large = true)
         }
     }
 }
@@ -170,25 +159,22 @@ fun OudsExtendedFloatingActionButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getFloatingActionButtonState(interactionState = interactionState)
-    val containerColor = rememberInteractionContainerColor(interactionState = interactionState, appearance = appearance)
 
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
+    OudsFloatingActionButton(
+        appearance = appearance,
+        interactionSource = interactionSource
+    ) { state, indication, containerColor, contentColor, elevation ->
         ExtendedFloatingActionButton(
             onClick = onClick,
             modifier = modifier
                 .outerBorder(state = state, shape = FloatingActionButtonDefaults.extendedFabShape)
-                .indication(
-                    interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(containerColor)
-                ),
-            containerColor = containerColor.value,
-            contentColor = Color.Unspecified,
-            elevation = elevation(),
+                .indication(interactionSource = interactionSource, indication = indication),
+            containerColor = containerColor,
+            contentColor = contentColor,
+            elevation = elevation,
             interactionSource = interactionSource
         ) {
-            Text(label = label, appearance = appearance, state = state)
+            Text(label = label)
         }
     }
 }
@@ -204,63 +190,64 @@ fun OudsExtendedFloatingActionButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getFloatingActionButtonState(interactionState = interactionState)
-    val containerColor = rememberInteractionContainerColor(interactionState = interactionState, appearance = appearance)
-    val contentColor = rememberInteractionContentColor(interactionState = interactionState, appearance = appearance)
 
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
+    OudsFloatingActionButton(
+        appearance = appearance,
+        interactionSource = interactionSource
+    ) { state, indication, containerColor, contentColor, elevation ->
         ExtendedFloatingActionButton(
-            text = { Text(label = label, appearance = appearance, state = state) },
-            icon = { Icon(icon = icon, tint = contentColor.value) },
+            text = { Text(label = label) },
+            icon = { Icon(icon = icon) },
             onClick = onClick,
             modifier = modifier
                 .outerBorder(state = state, shape = FloatingActionButtonDefaults.extendedFabShape)
-                .indication(
-                    interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(containerColor, contentColor)
-                ),
+                .indication(interactionSource = interactionSource, indication = indication),
             expanded = expanded,
-            containerColor = containerColor.value,
-            contentColor = Color.Unspecified,
-            elevation = elevation(),
+            containerColor = containerColor,
+            contentColor = contentColor,
+            elevation = elevation,
             interactionSource = interactionSource
         )
     }
 }
 
 @Composable
-private fun rememberInteractionContainerColor(
-    interactionState: InteractionState,
-    appearance: OudsFloatingActionButtonAppearance
-) = rememberInteractionColor(interactionState = interactionState) { floatingActionButtonInteractionState ->
-    val state = getFloatingActionButtonState(interactionState = floatingActionButtonInteractionState)
-    containerColor(appearance = appearance, state = state)
-}
-
-@Composable
-private fun rememberInteractionContentColor(
-    interactionState: InteractionState,
-    appearance: OudsFloatingActionButtonAppearance
-) = rememberInteractionColor(interactionState = interactionState) { floatingActionButtonInteractionState ->
-    val state = getFloatingActionButtonState(interactionState = floatingActionButtonInteractionState)
-    contentColor(appearance = appearance, state = state)
-}
-
-@Composable
-private fun elevation() = FloatingActionButtonDefaults.elevation(
-    defaultElevation = 0.dp,
-    pressedElevation = 0.dp,
-    focusedElevation = 0.dp,
-    hoveredElevation = 0.dp
-)
-
-@Composable
-private fun Icon(
-    icon: OudsFloatingActionButtonIcon,
-    tint: Color,
-    large: Boolean = false
+private fun OudsFloatingActionButton(
+    appearance: OudsFloatingActionButtonAppearance,
+    interactionSource: MutableInteractionSource,
+    content: @Composable (
+        state: OudsFloatingActionButtonState,
+        indication: Indication,
+        containerColor: Color,
+        contentColor: Color,
+        elevation: FloatingActionButtonElevation,
+    ) -> Unit
 ) {
+    val interactionState by interactionSource.collectInteractionStateAsState()
+    val state = getFloatingActionButtonState(interactionState = interactionState)
+    val containerColor = rememberInteractionColor(interactionState = interactionState) { floatingActionButtonInteractionState ->
+        val floatingActionButtonState = getFloatingActionButtonState(interactionState = floatingActionButtonInteractionState)
+        containerColor(appearance = appearance, state = floatingActionButtonState)
+    }
+    val contentColor = rememberInteractionColor(interactionState = interactionState) { floatingActionButtonInteractionState ->
+        val floatingActionButtonState = getFloatingActionButtonState(interactionState = floatingActionButtonInteractionState)
+        contentColor(appearance = appearance, state = floatingActionButtonState)
+    }
+    val indication = InteractionValuesIndication(containerColor, contentColor)
+    val elevation = FloatingActionButtonDefaults.elevation(
+        defaultElevation = 0.dp,
+        pressedElevation = 0.dp,
+        focusedElevation = 0.dp,
+        hoveredElevation = 0.dp
+    )
+
+    CompositionLocalProvider(LocalRippleConfiguration provides null) {
+        content(state, indication, containerColor.value, contentColor.value, elevation)
+    }
+}
+
+@Composable
+private fun Icon(icon: OudsFloatingActionButtonIcon, large: Boolean = false) {
     val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnly.value
     val iconScale = LocalConfiguration.current.fontScale
     icon.Content(
@@ -268,18 +255,13 @@ private fun Icon(
             .size(iconSize * iconScale)
             .semantics {
                 contentDescription = icon.contentDescription
-            },
-        extraParameters = OudsFloatingActionButtonIcon.ExtraParameters(tint = tint)
+            }
     )
 }
 
 @Composable
-private fun Text(label: String, appearance: OudsFloatingActionButtonAppearance, state: OudsFloatingActionButtonState) {
-    Text(
-        text = label,
-        color = contentColor(appearance = appearance, state = state),
-        style = OudsTheme.typography.label.strong.large
-    )
+private fun Text(label: String) {
+    Text(text = label, style = OudsTheme.typography.label.strong.large)
 }
 
 @Composable
@@ -353,16 +335,11 @@ object OudsFloatingActionButtonDefaults {
 class OudsFloatingActionButtonIcon private constructor(
     graphicsObject: Any,
     val contentDescription: String
-) : OudsComponentIcon<OudsFloatingActionButtonIcon.ExtraParameters, OudsFloatingActionButtonIcon>(
-    ExtraParameters::class.java,
+) : OudsComponentIcon<Nothing, OudsFloatingActionButtonIcon>(
+    Nothing::class.java,
     graphicsObject,
     contentDescription
 ) {
-
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
-        internal val tint: Color
-    ) : OudsComponentContent.ExtraParameters()
 
     /**
      * Creates an instance of [OudsFloatingActionButtonIcon].
@@ -387,10 +364,6 @@ class OudsFloatingActionButtonIcon private constructor(
      * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon]. This value is ignored if the floating action button also contains label.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
-
-    override val tint: Color?
-        @Composable
-        get() = extraParameters.tint
 }
 
 /**
