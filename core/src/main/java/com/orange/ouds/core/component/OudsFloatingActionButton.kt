@@ -197,7 +197,7 @@ fun OudsExtendedFloatingActionButton(
     ) { state, indication, containerColor, contentColor, elevation ->
         ExtendedFloatingActionButton(
             text = { Text(label = label) },
-            icon = { Icon(icon = icon) },
+            icon = { Icon(icon = icon, label = label) },
             onClick = onClick,
             modifier = modifier
                 .outerBorder(state = state, shape = FloatingActionButtonDefaults.extendedFabShape)
@@ -247,14 +247,14 @@ private fun OudsFloatingActionButton(
 }
 
 @Composable
-private fun Icon(icon: OudsFloatingActionButtonIcon, large: Boolean = false) {
+private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, large: Boolean = false) {
     val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnly.value
     val iconScale = LocalConfiguration.current.fontScale
     icon.Content(
         modifier = Modifier
             .size(iconSize * iconScale)
             .semantics {
-                contentDescription = icon.contentDescription
+                contentDescription = icon.contentDescription.takeIf { it.isNotBlank() }.orElse { label }.orEmpty()
             }
     )
 }
@@ -345,7 +345,7 @@ class OudsFloatingActionButtonIcon private constructor(
      * Creates an instance of [OudsFloatingActionButtonIcon].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon]. This value is ignored if the floating action button also contains label.
+     * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon].
      */
     constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
@@ -353,7 +353,7 @@ class OudsFloatingActionButtonIcon private constructor(
      * Creates an instance of [OudsFloatingActionButtonIcon].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon]. This value is ignored if the floating action button also contains label.
+     * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
@@ -361,7 +361,7 @@ class OudsFloatingActionButtonIcon private constructor(
      * Creates an instance of [OudsFloatingActionButtonIcon].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon]. This value is ignored if the floating action button also contains label.
+     * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 }
