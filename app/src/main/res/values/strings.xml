@@ -122,9 +122,9 @@
 
     <!-- Components -->
     <string name="app_components_common_appearance_label" translatable="false">Appearance</string>
-    <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
     <string name="app_components_common_color_label" translatable="false">Color</string>
     <string name="app_components_common_constrainedMaxWidth_label" translatable="false">Constrained max width</string>
+    <string name="app_components_common_description_label" translatable="false">Description</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_label" translatable="false">Error</string>
     <string name="app_components_common_errorMessage_label" translatable="false">Error message</string>
@@ -145,6 +145,7 @@
     <string name="app_components_common_mediumSize_label" translatable="false">Medium</string>
     <string name="app_components_common_largeSize_label" translatable="false">Large</string>
     <string name="app_components_common_status_label" translatable="false">Status</string>
+    <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
     <string name="app_components_common_textOnlyLayout_label" translatable="false">Text only</string>
     <string name="app_components_common_textAndIconLayout_label" translatable="false">Text + icon</string>
     <string name="app_components_common_type_label" translatable="false">Type</string>
@@ -157,6 +158,16 @@
     <string name="app_components_common_version_label">Component design version</string>
     <string name="app_components_textInputHelperText_label" translatable="false">Helper text.</string>
     <string name="app_components_passwordInputHelperText_label" translatable="false">Your password must be at least 8 characters.</string>
+
+    <!-- Components: alert -->
+    <string name="app_components_alert_label" translatable="false">Alert</string>
+    <string name="app_components_alert_description_text">Alert components are UI elements that display information, system feedback or status changes.</string>
+    <string name="app_components_alert_alertMessage_label" translatable="false">Alert message</string>
+    <string name="app_components_alert_alertMessage_description_text">Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.</string>
+    <string name="app_components_alert_alertMessage_closeButton_label" translatable="false">Close button</string>
+    <string name="app_components_alert_alertMessage_statusIcon_label" translatable="false">Status icon</string>
+    <string name="app_components_alert_alertMessage_actionLink_label" translatable="false">Action link</string>
+    <string name="app_components_alert_alertMessage_actionLinkPosition_label" translatable="false">Action link position</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label" translatable="false">Badge</string>
@@ -202,7 +213,6 @@
     <string name="app_components_coloredBackground_unsupportedColor_text">Current theme does not support \"%s\" color.</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
-    <string name="app_components_controlItem_description_label" translatable="false">Description</string>
     <string name="app_components_controlItem_icon_label" translatable="false">Icon</string>
     <string name="app_components_controlItem_edgeToEdge_label" translatable="false">Edge to edge</string>
     <string name="app_components_controlItem_divider_label" translatable="false">Divider</string>

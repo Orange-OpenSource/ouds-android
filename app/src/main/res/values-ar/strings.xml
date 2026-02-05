@@ -94,6 +94,10 @@
     </plurals>
     <string name="app_components_common_version_label">نسخة تصميم المكون</string>
 
+    <!-- Components: alert -->
+    <string name="app_components_alert_description_text">Alert components are UI elements that display information, system feedback or status changes.</string>
+    <string name="app_components_alert_alertMessage_description_text">Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.</string>
+
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
 
