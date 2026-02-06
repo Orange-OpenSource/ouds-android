@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
+import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
@@ -59,6 +60,13 @@ sealed class Component(
         R.string.app_components_badge_description_text,
         { BadgeIllustration() },
         demoScreen = { BadgeDemoScreen() }
+    )
+
+    data object BulletList : Component(
+        R.string.app_components_bulletList_label,
+        R.string.app_components_bulletList_description_text,
+        { BulletListIllustration() },
+        demoScreen = { BulletListDemoScreen() }
     )
 
     data object Button : Component(

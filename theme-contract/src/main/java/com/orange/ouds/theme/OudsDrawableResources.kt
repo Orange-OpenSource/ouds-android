@@ -41,6 +41,7 @@ interface OudsDrawableResources {
 
     interface Component {
         val alert: Alert
+        val bulletList: BulletList
         val checkbox: Checkbox
         val chip: Chip
         val link: Link
@@ -63,6 +64,20 @@ interface OudsDrawableResources {
 
             @get:DrawableRes
             val warningInternalShape: Int
+        }
+
+        interface BulletList {
+            @get:DrawableRes
+            val level0: Int
+
+            @get:DrawableRes
+            val level1: Int
+
+            @get:DrawableRes
+            val level2: Int
+
+            @get:DrawableRes
+            val tick: Int
         }
 
         interface Checkbox {

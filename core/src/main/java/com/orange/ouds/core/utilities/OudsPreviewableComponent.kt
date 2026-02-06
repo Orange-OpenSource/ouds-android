@@ -17,6 +17,8 @@ import com.orange.ouds.core.component.OudsBadgePreviewParameter
 import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
 import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameter
 import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameterProvider
+import com.orange.ouds.core.component.OudsBulletListPreviewParameter
+import com.orange.ouds.core.component.OudsBulletListPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonPreviewParameter
 import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
@@ -60,6 +62,7 @@ import com.orange.ouds.core.component.OudsTopAppBarPreviewParameter
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
+import com.orange.ouds.core.component.PreviewOudsBulletList
 import com.orange.ouds.core.component.PreviewOudsButton
 import com.orange.ouds.core.component.PreviewOudsButtonWithIconBadge
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
@@ -149,6 +152,20 @@ interface OudsPreviewableComponent {
                     parameter = parameter as OudsBadgeWithIconPreviewParameter
                 )
             }
+        }
+    }
+
+    object BulletList : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsBulletList(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter as OudsBulletListPreviewParameter
+            )
         }
     }
 

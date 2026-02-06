@@ -18,6 +18,7 @@ import org.gradle.api.Project
 enum class Component {
     Badge,
     Bar,
+    BulletList,
     Button,
     Checkbox,
     Chip,
@@ -34,6 +35,7 @@ enum class Component {
             when (this@Component) {
                 Component.Badge -> Badge
                 Component.Bar -> Bar
+                Component.BulletList -> BulletList
                 Component.Button -> Button
                 Component.Checkbox -> Checkbox
                 Component.Chip -> Chip
@@ -51,6 +53,7 @@ enum class Component {
         val filenames = when (this) {
             Badge -> listOf("OudsBadge")
             Bar -> listOf("OudsNavigationBar", "OudsTopAppBar")
+            BulletList -> listOf("OudsBulletList")
             Button -> listOf("OudsButton")
             Checkbox -> listOf("OudsCheckbox", "OudsCheckboxItem")
             Chip -> listOf("OudsFilterChip", "OudsSuggestionChip")

@@ -39,6 +39,7 @@ class OrangeDrawableResources : OudsDrawableResources {
 
     class Component : OudsDrawableResources.Component {
         override val alert = Alert()
+        override val bulletList = BulletList()
         override val checkbox = Checkbox()
         override val chip = Chip()
         override val link = Link()
@@ -52,6 +53,13 @@ class OrangeDrawableResources : OudsDrawableResources {
             override val tickConfirmationFill = R.drawable.ic_orange_component_alert_tick_confirmation_fill
             override val warningExternalShape = R.drawable.ic_orange_component_alert_warning_external_shape
             override val warningInternalShape = R.drawable.ic_orange_component_alert_warning_internal_shape
+        }
+
+        class BulletList : OudsDrawableResources.Component.BulletList {
+            override val level0 = R.drawable.ic_orange_component_bullet_list_level0
+            override val level1 = R.drawable.ic_orange_component_bullet_list_level1
+            override val level2 = R.drawable.ic_orange_component_bullet_list_level2
+            override val tick = R.drawable.ic_orange_component_bullet_list_tick
         }
 
         class Checkbox : OudsDrawableResources.Component.Checkbox {

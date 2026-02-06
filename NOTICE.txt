@@ -106,6 +106,10 @@ theme-orange/src/main/res/drawable/ic_orange_component_alert_info_fill.xml
 theme-orange/src/main/res/drawable/ic_orange_component_alert_tick_confirmation_fill.xml
 theme-orange/src/main/res/drawable/ic_orange_component_alert_warning_external_shape.xml
 theme-orange/src/main/res/drawable/ic_orange_component_alert_warning_internal_shape.xml
+theme-orange/src/main/res/drawable/ic_orange_component_bullet_list_level0.xml
+theme-orange/src/main/res/drawable/ic_orange_component_bullet_list_level1.xml
+theme-orange/src/main/res/drawable/ic_orange_component_bullet_list_level2.xml
+theme-orange/src/main/res/drawable/ic_orange_component_bullet_list_tick.xml
 theme-orange/src/main/res/drawable/ic_orange_component_checkbox_selected.xml
 theme-orange/src/main/res/drawable/ic_orange_component_checkbox_undetermined.xml
 theme-orange/src/main/res/drawable/ic_orange_component_chip_tick.xml
@@ -126,6 +130,10 @@ theme-sosh/src/main/res/drawable/ic_sosh_component_alert_info_fill.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_alert_tick_confirmation_fill.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_alert_warning_external_shape.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_alert_warning_internal_shape.xml
+theme-sosh/src/main/res/drawable/ic_sosh_component_bullet_list_level0.xml
+theme-sosh/src/main/res/drawable/ic_sosh_component_bullet_list_level1.xml
+theme-sosh/src/main/res/drawable/ic_sosh_component_bullet_list_level2.xml
+theme-sosh/src/main/res/drawable/ic_sosh_component_bullet_list_tick.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_checkbox_selected.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_checkbox_undetermined.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_chip_tick.xml
@@ -151,6 +159,10 @@ theme-wireframe/src/main/res/drawable/ic_wireframe_component_alert_info_fill.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_alert_tick_confirmation_fill.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_alert_warning_external_shape.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_alert_warning_internal_shape.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_component_bullet_list_level0.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_component_bullet_list_level1.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_component_bullet_list_level2.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_component_bullet_list_tick.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_checkbox_selected.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_checkbox_undetermined.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_chip_tick.xml

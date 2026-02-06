@@ -144,6 +144,7 @@
     <string name="app_components_common_status_label" translatable="false">Status</string>
     <string name="app_components_common_textOnlyLayout_label" translatable="false">Text only</string>
     <string name="app_components_common_textAndIconLayout_label" translatable="false">Text + icon</string>
+    <string name="app_components_common_type_label" translatable="false">Type</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="zero">No unread message</item>
         <item quantity="one">%d unread message</item>
@@ -157,11 +158,19 @@
     <!-- Components: badge -->
     <string name="app_components_badge_label" translatable="false">Badge</string>
     <string name="app_components_badge_description_text">Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.</string>
-    <string name="app_components_badge_type_label" translatable="false">Type</string>
     <string name="app_components_badge_standardType_label" translatable="false">Standard</string>
     <string name="app_components_badge_countType_label" translatable="false">Count</string>
     <string name="app_components_badge_iconType_label" translatable="false">Icon</string>
     <string name="app_components_badge_count_label" translatable="false">Count</string>
+
+    <!-- Components: bullet list -->
+    <string name="app_components_bulletList_label" translatable="false">Bullet list</string>
+    <string name="app_components_bulletList_description_text">Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.</string>
+    <string name="app_components_bulletList_fontSize_label" translatable="false">Font size</string>
+    <string name="app_components_bulletList_fontWeight_label" translatable="false">Font weight</string>
+    <string name="app_components_bulletList_unorderedAsset_label" translatable="false">Unordered asset</string>
+    <string name="app_components_bulletList_unorderedAssetBrandColor_label" translatable="false">Unordered asset brand color</string>
+    <string name="app_components_bulletList_levelCount_label" translatable="false">Level count</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label" translatable="false">Button</string>
