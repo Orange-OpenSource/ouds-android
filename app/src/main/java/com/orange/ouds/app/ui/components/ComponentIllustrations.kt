@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -237,11 +239,12 @@ fun TopAppBarIllustration() = ComponentIllustration {
 
 @Composable
 private fun ComponentIllustration(content: @Composable () -> Unit) {
+    // Do not take user font scale into account
+    val configuration = Configuration(LocalConfiguration.current).apply { fontScale = 1f }
+    val density = Density(LocalDensity.current.density, 1f)
     CompositionLocalProvider(
-        value = LocalDensity provides Density(
-            LocalDensity.current.density,
-            1f // Do not take user font scale into account
-        )
+        LocalDensity provides density,
+        LocalConfiguration provides configuration
     ) {
         Illustration(content = content)
     }
