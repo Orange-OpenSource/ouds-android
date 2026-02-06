@@ -389,15 +389,17 @@ private fun getFloatingActionButtonState(interactionState: InteractionState): Ou
 
 @Composable
 private fun contentColor(appearance: OudsFloatingActionButtonAppearance, state: OudsFloatingActionButtonState): Color {
-    return with(OudsTheme.componentsTokens.button) {
-        when (appearance) {
-            OudsFloatingActionButtonAppearance.Strong -> when (state) {
-                OudsFloatingActionButtonState.Enabled -> OudsTheme.colorScheme.content.onAction.enabled
-                OudsFloatingActionButtonState.Focused -> OudsTheme.colorScheme.content.onAction.focus
-                OudsFloatingActionButtonState.Hovered -> OudsTheme.colorScheme.content.onAction.hover
-                OudsFloatingActionButtonState.Pressed -> OudsTheme.colorScheme.content.onAction.pressed
+    return when (appearance) {
+        OudsFloatingActionButtonAppearance.Strong -> with(OudsTheme.colorScheme.content.onAction) {
+            when (state) {
+                OudsFloatingActionButtonState.Enabled -> enabled
+                OudsFloatingActionButtonState.Focused -> focus
+                OudsFloatingActionButtonState.Hovered -> hover
+                OudsFloatingActionButtonState.Pressed -> pressed
             }
-            OudsFloatingActionButtonAppearance.Brand -> when (state) {
+        }
+        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.componentsTokens.button) {
+            when (state) {
                 OudsFloatingActionButtonState.Enabled -> colorContentBrandEnabled.value
                 OudsFloatingActionButtonState.Focused -> colorContentBrandFocus.value
                 OudsFloatingActionButtonState.Hovered -> colorContentBrandHover.value
@@ -409,15 +411,17 @@ private fun contentColor(appearance: OudsFloatingActionButtonAppearance, state: 
 
 @Composable
 private fun containerColor(appearance: OudsFloatingActionButtonAppearance, state: OudsFloatingActionButtonState): Color {
-    return with(OudsTheme.componentsTokens.button) {
-        when (appearance) {
-            OudsFloatingActionButtonAppearance.Strong -> when (state) {
-                OudsFloatingActionButtonState.Enabled -> OudsTheme.colorScheme.action.enabled
-                OudsFloatingActionButtonState.Focused -> OudsTheme.colorScheme.action.focus
-                OudsFloatingActionButtonState.Hovered -> OudsTheme.colorScheme.action.hover
-                OudsFloatingActionButtonState.Pressed -> OudsTheme.colorScheme.action.pressed
+    return when (appearance) {
+        OudsFloatingActionButtonAppearance.Strong -> with(OudsTheme.colorScheme.action) {
+            when (state) {
+                OudsFloatingActionButtonState.Enabled -> enabled
+                OudsFloatingActionButtonState.Focused -> focus
+                OudsFloatingActionButtonState.Hovered -> hover
+                OudsFloatingActionButtonState.Pressed -> pressed
             }
-            OudsFloatingActionButtonAppearance.Brand -> when (state) {
+        }
+        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.componentsTokens.button) {
+            when (state) {
                 OudsFloatingActionButtonState.Enabled -> colorBgBrandEnabled.value
                 OudsFloatingActionButtonState.Focused -> colorBgBrandFocus.value
                 OudsFloatingActionButtonState.Hovered -> colorBgBrandHover.value
@@ -590,6 +594,7 @@ internal fun PreviewOudsExtendedFloatingActionButton(
         OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon(isExpanded = true),
         OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon(isExpanded = false)
     )
+    val icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, "")
     PreviewGrid(
         columns = enumEntries<OudsFloatingActionButtonState>(),
         rows = rows,
@@ -601,7 +606,6 @@ internal fun PreviewOudsExtendedFloatingActionButton(
             }
         }
     ) { _, row ->
-        val icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, "")
         when (row) {
             OudsExtendedFloatingActionButtonPreviewGridRow.LabelOnly -> {
                 OudsExtendedFloatingActionButton(
@@ -628,5 +632,6 @@ internal class OudsFloatingActionButtonPreviewParameterProvider : EnumPreviewPar
 private sealed class OudsExtendedFloatingActionButtonPreviewGridRow {
 
     object LabelOnly : OudsExtendedFloatingActionButtonPreviewGridRow()
+    
     class LabelAndIcon(val isExpanded: Boolean) : OudsExtendedFloatingActionButtonPreviewGridRow()
 }

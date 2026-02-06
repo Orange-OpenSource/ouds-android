@@ -85,9 +85,11 @@ class FloatingActionButtonDemoState(
     var layout: Layout
         get() = _layout
         set(value) {
-            _layout = value
-            if (value == Layout.TextAndIcon) {
-                expanded = true
+            if (_layout != value) {
+                _layout = value
+                if (value == Layout.TextAndIcon) {
+                    expanded = true
+                }
             }
         }
 

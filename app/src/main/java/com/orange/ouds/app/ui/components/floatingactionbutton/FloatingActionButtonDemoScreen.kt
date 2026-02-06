@@ -73,7 +73,6 @@ private fun FloatingActionButtonDemoBottomSheetContent(state: FloatingActionButt
             selectedChipIndex = FloatingActionButtonDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = FloatingActionButtonDemoState.Layout.entries[index] }
         )
-
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
