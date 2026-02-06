@@ -41,8 +41,8 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -260,7 +260,9 @@ private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle,
                     }
                     val tint = if (type.brandColor) OudsTheme.colorScheme.content.brandPrimary else OudsTheme.colorScheme.content.default
                     type.asset.PolymorphicContent(
-                        modifier = Modifier.size(iconSize * scale),
+                        modifier = Modifier
+                            .size(iconSize * scale)
+                            .clearAndSetSemantics {},
                         extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(tint, parentTypes)
                     )
                 }
