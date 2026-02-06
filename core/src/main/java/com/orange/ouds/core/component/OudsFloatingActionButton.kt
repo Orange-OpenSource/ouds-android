@@ -20,6 +20,7 @@ import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -37,6 +38,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
@@ -45,7 +48,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -73,6 +75,7 @@ import kotlin.enums.enumEntries
  * @param icon Icon for this FAB.
  * @param onClick Called when this FAB is clicked.
  * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
  * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
@@ -86,6 +89,7 @@ fun OudsFloatingActionButton(
     icon: OudsFloatingActionButtonIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
     appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -98,9 +102,10 @@ fun OudsFloatingActionButton(
         FloatingActionButton(
             onClick = onClick,
             modifier = modifier
-                .outerBorder(state = state, shape = FloatingActionButtonDefaults.shape)
+                .outerBorder(state = state, shape = shape)
                 .indication(interactionSource = interactionSource, indication = indication),
             containerColor = containerColor,
+            shape = shape,
             contentColor = contentColor,
             elevation = elevation,
             interactionSource = interactionSource
@@ -119,6 +124,7 @@ fun OudsFloatingActionButton(
  * @param icon Icon for this FAB.
  * @param onClick Called when this FAB is clicked.
  * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
  * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
@@ -132,6 +138,7 @@ fun OudsSmallFloatingActionButton(
     icon: OudsFloatingActionButtonIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
     appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -144,8 +151,9 @@ fun OudsSmallFloatingActionButton(
         SmallFloatingActionButton(
             onClick = onClick,
             modifier = modifier
-                .outerBorder(state = state, shape = FloatingActionButtonDefaults.smallShape)
+                .outerBorder(state = state, shape = shape)
                 .indication(interactionSource = interactionSource, indication = indication),
+            shape = shape,
             containerColor = containerColor,
             contentColor = contentColor,
             elevation = elevation,
@@ -165,6 +173,7 @@ fun OudsSmallFloatingActionButton(
  * @param icon Icon for this FAB.
  * @param onClick Called when this FAB is clicked.
  * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
  * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
@@ -178,6 +187,7 @@ fun OudsLargeFloatingActionButton(
     icon: OudsFloatingActionButtonIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
     appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -190,8 +200,9 @@ fun OudsLargeFloatingActionButton(
         LargeFloatingActionButton(
             onClick = onClick,
             modifier = modifier
-                .outerBorder(state = state, shape = FloatingActionButtonDefaults.largeShape)
+                .outerBorder(state = state, shape = shape)
                 .indication(interactionSource = interactionSource, indication = indication),
+            shape = shape,
             containerColor = containerColor,
             contentColor = contentColor,
             elevation = elevation,
@@ -211,6 +222,7 @@ fun OudsLargeFloatingActionButton(
  * @param label Label displayed inside this FAB.
  * @param onClick Called when this FAB is clicked.
  * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
  * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
  *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
@@ -224,6 +236,7 @@ fun OudsExtendedFloatingActionButton(
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
     appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -236,8 +249,9 @@ fun OudsExtendedFloatingActionButton(
         ExtendedFloatingActionButton(
             onClick = onClick,
             modifier = modifier
-                .outerBorder(state = state, shape = FloatingActionButtonDefaults.extendedFabShape)
+                .outerBorder(state = state, shape = shape)
                 .indication(interactionSource = interactionSource, indication = indication),
+            shape = shape,
             containerColor = containerColor,
             contentColor = contentColor,
             elevation = elevation,
@@ -261,6 +275,7 @@ fun OudsExtendedFloatingActionButton(
  * @param icon Icon for this FAB.
  * @param onClick Called when this FAB is clicked.
  * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
  * @param expanded Controls the expansion state of this FAB. In an expanded state, the FAB will show
  *   both the [icon] and [label]. In a collapsed state, the FAB will show only the [icon].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
@@ -277,6 +292,7 @@ fun OudsExtendedFloatingActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     expanded: Boolean = true,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
     appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -291,8 +307,9 @@ fun OudsExtendedFloatingActionButton(
             icon = { Icon(icon = icon, label = label) },
             onClick = onClick,
             modifier = modifier
-                .outerBorder(state = state, shape = FloatingActionButtonDefaults.extendedFabShape)
+                .outerBorder(state = state, shape = shape)
                 .indication(interactionSource = interactionSource, indication = indication),
+            shape = shape,
             expanded = expanded,
             containerColor = containerColor,
             contentColor = contentColor,
@@ -325,15 +342,16 @@ private fun OudsFloatingActionButton(
         contentColor(appearance = appearance, state = floatingActionButtonState)
     }
     val indication = InteractionValuesIndication(containerColor, contentColor)
-    val elevation = FloatingActionButtonDefaults.elevation(
-        defaultElevation = 0.dp,
-        pressedElevation = 0.dp,
-        focusedElevation = 0.dp,
-        hoveredElevation = 0.dp
+    val elevation = OudsTheme.elevations.sticky
+    val floatingActionButtonElevation = FloatingActionButtonDefaults.elevation(
+        defaultElevation = elevation,
+        pressedElevation = elevation,
+        focusedElevation = elevation,
+        hoveredElevation = elevation
     )
 
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
-        content(state, indication, containerColor.value, contentColor.value, elevation)
+        content(state, indication, containerColor.value, contentColor.value, floatingActionButtonElevation)
     }
 }
 
@@ -407,6 +425,8 @@ private fun containerColor(appearance: OudsFloatingActionButtonAppearance, state
             }
         }
     }
+        // Composite color over an opaque background color otherwise a shadow is visible inside the FAB with non opaque container colors
+        .compositeOver(OudsTheme.colorScheme.background.primary)
 }
 
 /**
@@ -417,7 +437,14 @@ object OudsFloatingActionButtonDefaults {
     /**
      * Default appearance of an [OudsFloatingActionButton].
      */
-    val Appearance = OudsFloatingActionButtonAppearance.Strong
+    val Appearance = OudsFloatingActionButtonAppearance.Brand
+
+    /**
+     * Default shape of an [OudsFloatingActionButton].
+     */
+    val shape: Shape
+        @Composable
+        get() = RoundedCornerShape(OudsTheme.borders.radius.pill)
 }
 
 /**
