@@ -71,6 +71,7 @@ import org.jetbrains.dokka.model.doc.Li
 import org.jetbrains.dokka.model.doc.Link
 import org.jetbrains.dokka.model.doc.Listing
 import org.jetbrains.dokka.model.doc.Main
+import org.jetbrains.dokka.model.doc.Mark
 import org.jetbrains.dokka.model.doc.Menu
 import org.jetbrains.dokka.model.doc.Meta
 import org.jetbrains.dokka.model.doc.Nav
@@ -283,6 +284,7 @@ class OudsComponentDocumentableTransformer : DocumentableTransformer {
             is Link -> copy(children = children)
             is Listing -> copy(children = children)
             is Main -> copy(children = children)
+            is Mark -> copy(children = children)
             is Menu -> copy(children = children)
             is Meta -> copy(children = children)
             is Nav -> copy(children = children)
