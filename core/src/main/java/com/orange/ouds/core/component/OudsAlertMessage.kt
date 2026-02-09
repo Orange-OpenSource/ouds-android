@@ -120,6 +120,7 @@ fun OudsAlertMessage(
         Box(
             modifier = modifier
                 .widthIn(min = sizeMinWidth.dp)
+                .heightIn(min = if (link != null && link.position == OudsAlertMessageLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
                 .background(color = status.backgroundColor(), shape = shape)
                 .run {
                     borderWidth.value.takeUnlessHairline?.let {
@@ -135,7 +136,7 @@ fun OudsAlertMessage(
                 status.statusIcon?.Content(
                     modifier = Modifier
                         .padding(top = spacePaddingBlock.value)
-                        .size(24.dp * scale),
+                        .size(sizeIcon.value * scale),
                     extraParameters = OudsAlertMessageIcon.ExtraParameters(
                         tint = status.assetColor()
                     )
@@ -161,7 +162,7 @@ fun OudsAlertMessage(
                         )
                     }
                     bulletList?.let { list ->
-                        Column {
+                        Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
                             list.forEach { label ->
                                 if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label)
                             }
