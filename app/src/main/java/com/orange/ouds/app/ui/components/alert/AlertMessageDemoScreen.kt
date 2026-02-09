@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.alert.AlertMessageDemoState.Companion.MaxBulletCount
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -130,6 +131,16 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             selectedChipIndex = OudsAlertMessageLinkPosition.entries.indexOf(actionLinkPosition),
             onSelectionChange = { id -> actionLinkPosition = OudsAlertMessageLinkPosition.entries[id] }
         )
+        for (id in 1..MaxBulletCount) {
+            CustomizationTextInput(
+                applyTopPadding = true,
+                label = stringResource(R.string.app_components_alert_alertMessage_bullet_label, id),
+                value = bulletList?.get(id).orEmpty(),
+                onValueChange = { value ->
+                    bulletList = bulletList.orEmpty().toMutableMap().apply { put(id, value) }
+                }
+            )
+        }
     }
 }
 
@@ -155,7 +166,8 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
             },
             link = actionLink.takeIf { !it.isNullOrEmpty() }?.let { actionLinkLabel ->
                 OudsAlertMessageLink(label = actionLinkLabel, onClick = {}, position = actionLinkPosition)
-            }
+            },
+            bulletList = bulletList?.toSortedMap()?.values?.toList()
         )
     }
 }
@@ -194,6 +206,13 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                         comment("Implement click")
                     }
                     typedArgument("position", actionLinkPosition)
+                }
+            }
+            bulletList?.let { bulletLabelById ->
+                functionCallArgument("bulletList", "listOf") {
+                    bulletLabelById.toSortedMap().values.forEach { label ->
+                        rawArgument(null, label)
+                    }
                 }
             }
         }

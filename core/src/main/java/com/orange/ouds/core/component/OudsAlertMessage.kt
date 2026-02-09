@@ -18,13 +18,21 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,6 +45,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -81,6 +90,9 @@ import com.orange.ouds.theme.OudsThemeContract
  *   allowing the user to dismiss it when he has acknowledged the message.
  *   Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.
  * @param link An optional link to be displayed in the alert message. It can be used to trigger an action.
+ * @param bulletList An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
+ *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
+ *   as a clear phrase or fragment — avoid long sentences or complex structures.
  */
 @Composable
 fun OudsAlertMessage(
@@ -89,7 +101,8 @@ fun OudsAlertMessage(
     status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
     description: String? = null,
     onClose: (() -> Unit)? = null,
-    link: OudsAlertMessageLink? = null
+    link: OudsAlertMessageLink? = null,
+    bulletList: List<String>? = null
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
@@ -138,6 +151,13 @@ fun OudsAlertMessage(
                             color = OudsTheme.colorScheme.content.muted,
                             style = OudsTheme.typography.label.default.medium
                         )
+                    }
+                    bulletList?.let { list ->
+                        Column {
+                            list.forEach { label ->
+                                if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label)
+                            }
+                        }
                     }
                     if (link != null && link.position == OudsAlertMessageLinkPosition.Bottom) {
                         OudsLink(
@@ -420,6 +440,43 @@ class OudsAlertMessageIcon private constructor(graphicsObject: Any) :
     ) : OudsComponentContent.ExtraParameters()
 }
 
+@Composable
+private fun OudsAlertMessageBulletListItem(label: String) {
+    val scale = LocalConfiguration.current.fontScale
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(IntrinsicSize.Min),
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.bulletList.spaceColumnGapBodyMedium.value)
+    ) {
+        Box(
+            modifier = Modifier
+                .width(OudsTheme.sizes.icon.withLabel.medium.sizeMedium * scale)
+                .heightIn(max = OudsTheme.typography.label.default.medium.lineHeight.value.dp * scale)
+                .fillMaxHeight(),
+            contentAlignment = Alignment.CenterEnd
+        ) {
+            Icon(
+                modifier = Modifier
+                    .size(OudsTheme.sizes.icon.withLabel.medium.sizeSmall * scale)
+                    .clearAndSetSemantics {},
+                painter = painterResource(OudsTheme.drawableResources.component.bulletList.level0),
+                contentDescription = null,
+                tint = OudsTheme.colorScheme.content.muted
+            )
+        }
+        Text(
+            modifier = Modifier
+                .fillMaxHeight()
+                .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
+                .widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
+            text = label,
+            style = OudsTheme.typography.label.default.medium,
+            color = OudsTheme.colorScheme.content.muted
+        )
+    }
+}
+
 @PreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
@@ -443,7 +500,8 @@ internal fun PreviewOudsAlertMessage(
                     status = status,
                     description = description,
                     onClose = onClose,
-                    link = link
+                    link = link,
+                    bulletList = bulletList
                 )
             }
         }
@@ -461,7 +519,8 @@ internal data class OudsAlertMessagePreviewParameter(
     ),
     val description: String? = null,
     val onClose: (() -> Unit)? = null,
-    val link: OudsAlertMessageLink? = null
+    val link: OudsAlertMessageLink? = null,
+    val bulletList: List<String>? = null
 )
 
 internal class OudsAlertMessagePreviewParameterProvider :
@@ -485,7 +544,8 @@ private val previewParameterValues: List<OudsAlertMessagePreviewParameter>
             OudsAlertMessagePreviewParameter(
                 statusesWithIcon,
                 description = "Here is a long description that need two lines to be displayed.",
-                link = OudsAlertMessageLink(linkLabel, onClick = {})
+                link = OudsAlertMessageLink(linkLabel, onClick = {}),
+                bulletList = listOf("Bullet 1", "Bullet 3 is a bullet with a very long label to test the wrapping", "Bullet 3")
             ),
             OudsAlertMessagePreviewParameter(
                 statusesWithIcon,

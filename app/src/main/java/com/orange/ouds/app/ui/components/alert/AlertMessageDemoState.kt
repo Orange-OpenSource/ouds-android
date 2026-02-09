@@ -33,9 +33,20 @@ fun rememberAlertMessageDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
     actionLink: String? = null,
-    actionLinkPosition: OudsAlertMessageLinkPosition = OudsAlertMessageDefaults.LinkPosition
-) = rememberSaveable(status, hasStatusIcon, hasCloseButton, label, description, actionLink, actionLinkPosition, saver = AlertMessageDemoState.Saver) {
-    AlertMessageDemoState(status, hasStatusIcon, hasCloseButton, label, description, actionLink, actionLinkPosition)
+    actionLinkPosition: OudsAlertMessageLinkPosition = OudsAlertMessageDefaults.LinkPosition,
+    bulletList: Map<Int, String>? = null
+) = rememberSaveable(
+    status,
+    hasStatusIcon,
+    hasCloseButton,
+    label,
+    description,
+    actionLink,
+    actionLinkPosition,
+    bulletList,
+    saver = AlertMessageDemoState.Saver
+) {
+    AlertMessageDemoState(status, hasStatusIcon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList)
 }
 
 class AlertMessageDemoState(
@@ -45,10 +56,14 @@ class AlertMessageDemoState(
     label: String,
     description: String?,
     actionLink: String?,
-    actionLinkPosition: OudsAlertMessageLinkPosition
+    actionLinkPosition: OudsAlertMessageLinkPosition,
+    bulletList: Map<Int, String>?
 ) {
 
+    @Suppress("UNCHECKED_CAST")
     companion object {
+        const val MaxBulletCount = 3
+
         val Saver = listSaver(
             save = { state ->
                 with(state) {
@@ -59,7 +74,8 @@ class AlertMessageDemoState(
                         label,
                         description,
                         actionLink,
-                        actionLinkPosition
+                        actionLinkPosition,
+                        bulletList?.toMap()
                     )
                 }
             },
@@ -74,7 +90,8 @@ class AlertMessageDemoState(
                     list[3] as String,
                     list[4] as String?,
                     list[5] as String?,
-                    list[6] as OudsAlertMessageLinkPosition
+                    list[6] as OudsAlertMessageLinkPosition,
+                    list[7] as Map<Int, String>?
                 )
             }
         )
@@ -96,5 +113,7 @@ class AlertMessageDemoState(
 
     val actionLinkPositionChipsEnabled: Boolean
         get() = !actionLink.isNullOrEmpty()
+
+    var bulletList: Map<Int, String>? by mutableStateOf(bulletList)
 
 }
