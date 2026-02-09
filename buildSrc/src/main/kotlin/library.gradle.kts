@@ -17,7 +17,6 @@ private val libs = the<LibrariesForLibs>() // https://github.com/gradle/gradle/i
 
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
     id("maven-central-publish")
 }
 
