@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -46,7 +48,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
@@ -58,6 +61,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -481,7 +485,8 @@ private fun OudsAlertMessageBulletListItem(label: String) {
     }
 }
 
-@PreviewLightDark
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsAlertMessage(@PreviewParameter(OudsAlertMessagePreviewParameterProvider::class) parameter: OudsAlertMessagePreviewParameter) {
@@ -541,21 +546,21 @@ private val previewParameterValues: List<OudsAlertMessagePreviewParameter>
             OudsAlertMessageStatus.Negative(),
             OudsAlertMessageStatus.Info()
         )
+        val description = "Here is a long description that need two lines to be displayed."
         val linkLabel = "Action"
 
         return listOf(
-            OudsAlertMessagePreviewParameter(),
             OudsAlertMessagePreviewParameter(
                 statusesWithIcon,
-                description = "Here is a long description that need two lines to be displayed.",
-                link = OudsAlertMessageLink(linkLabel, onClick = {}),
+                description = description,
+                link = OudsAlertMessageLink(linkLabel, onClick = {}, position = OudsAlertMessageLinkPosition.TopEnd),
                 bulletList = listOf("Bullet 1", "Bullet 3 is a bullet with a very long label to test the wrapping", "Bullet 3")
             ),
             OudsAlertMessagePreviewParameter(
                 statusesWithIcon,
-                description = "Description",
+                description = description,
                 onClose = {},
-                link = OudsAlertMessageLink(linkLabel, onClick = {}, position = OudsAlertMessageLinkPosition.TopEnd)
+                link = OudsAlertMessageLink(linkLabel, onClick = {})
             ),
         )
     }
