@@ -93,6 +93,10 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param bulletList An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsAlertMessageSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsAlertMessageFunctionalWithTopEndLinkSample
  */
 @Composable
 fun OudsAlertMessage(
