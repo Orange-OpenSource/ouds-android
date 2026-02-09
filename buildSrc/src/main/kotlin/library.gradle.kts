@@ -26,7 +26,6 @@ android {
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFile("consumer-rules.pro")
     }
 
     val targetSdk = libs.versions.androidTargetSdk.get().toInt()
