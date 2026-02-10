@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.passwordinput
 
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -127,8 +126,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
     val focusManager = LocalFocusManager.current
     with(state) {
         OudsPasswordInput(
-            value = value,
-            onValueChange = { value = it },
+            textFieldState = textFieldState,
             label = label,
             placeholder = placeholder,
             outlined = outlined,
@@ -140,7 +138,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
             prefix = prefix,
             helperText = helperText,
             constrainedMaxWidth = constrainedMaxWidth,
-            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
+            onKeyboardAction = { focusManager.clearFocus() }
         )
     }
 }
@@ -148,7 +146,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
 private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoState) {
     with(state) {
         functionCall("OudsPasswordInput") {
-            typedArgument("value", value)
+            functionCallArgument("textFieldState", "rememberTextFieldState")
             lambdaArgument("onValueChange") {
                 comment("Update value")
             }
@@ -171,10 +169,8 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
-            constructorCallArgument<KeyboardActions>("keyboardActions") {
-                lambdaArgument("onDone") {
-                    functionCall("focusManager.clearFocus")
-                }
+            lambdaArgument("onKeyboardAction") {
+                functionCall("focusManager.clearFocus")
             }
         }
     }

@@ -12,6 +12,8 @@
 
 package com.orange.ouds.app.ui.components.passwordinput
 
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,7 +25,7 @@ import com.orange.ouds.app.R
 
 @Composable
 fun rememberPasswordInputDemoState(
-    value: String = "",
+    textFieldState: TextFieldState = rememberTextFieldState(),
     label: String = stringResource(id = R.string.app_components_passwordInput_password_label),
     placeholder: String = "",
     outlined: Boolean = false,
@@ -37,7 +39,7 @@ fun rememberPasswordInputDemoState(
     helperText: String = "",
     constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(
-    value,
+    textFieldState,
     label,
     placeholder,
     outlined,
@@ -53,7 +55,7 @@ fun rememberPasswordInputDemoState(
     saver = PasswordInputDemoState.Saver
 ) {
     PasswordInputDemoState(
-        value,
+        textFieldState,
         label,
         placeholder,
         outlined,
@@ -70,7 +72,7 @@ fun rememberPasswordInputDemoState(
 }
 
 class PasswordInputDemoState(
-    value: String,
+    textFieldState: TextFieldState,
     label: String,
     placeholder: String,
     outlined: Boolean,
@@ -90,7 +92,7 @@ class PasswordInputDemoState(
             save = { state ->
                 with(state) {
                     listOf(
-                        value,
+                        with(TextFieldState.Saver) { save(textFieldState) },
                         label,
                         placeholder,
                         outlined,
@@ -107,8 +109,9 @@ class PasswordInputDemoState(
                 }
             },
             restore = { list: List<Any?> ->
+                val textFieldState = list[0]?.let { TextFieldState.Saver.restore(it) }
                 PasswordInputDemoState(
-                    list[0] as String,
+                    textFieldState as TextFieldState,
                     list[1] as String,
                     list[2] as String,
                     list[3] as Boolean,
@@ -126,7 +129,7 @@ class PasswordInputDemoState(
         )
     }
 
-    var value: String by mutableStateOf(value)
+    var textFieldState: TextFieldState by mutableStateOf(textFieldState)
 
     var label: String by mutableStateOf(label)
 
@@ -165,5 +168,5 @@ class PasswordInputDemoState(
         get() = !error && !hasLoader
 
     val loaderSwitchEnabled: Boolean
-        get() = enabled && !readOnly && !error && value.isNotEmpty()
+        get() = enabled && !readOnly && !error && textFieldState.text.isNotEmpty()
 }

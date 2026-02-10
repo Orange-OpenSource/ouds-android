@@ -17,6 +17,11 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.InputTransformation
+import androidx.compose.foundation.text.input.KeyboardActionHandler
+import androidx.compose.foundation.text.input.OutputTransformation
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -34,6 +40,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Density
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.theme.OudsTheme
@@ -44,6 +51,110 @@ import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+
+/**
+ * Password input is a UI element that allows to securely and confidentially capture a user's password.
+ * Password Input enhances privacy by replacing characters with dots, while they are being typed; and also embeds usability features such as the ability
+ * to show and hide password, and helper text to guide password creation.
+ *
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-password-input)
+ *
+ * > Design version: 1.2.0
+ *
+ * @param textFieldState The editable text state of the password input, including the text itself, position of the cursor or selection and the password visibility.
+ * @param modifier [Modifier] applied to the password input.
+ * @param label Label displayed above the password input. It describes the purpose of the input.
+ * @param placeholder Text displayed when the password input is empty. It provides a hint or guidance inside the field to suggest expected input.
+ * @param lockIcon When `true`, a lock icon is displayed at the start of the password input to visually reinforce the security context. Defaults to `false`.
+ * @param prefix Text placed before the user's input. A prefix is not common and is discouraged in a Password Input component. In very specific cases,
+ *   it can provide context or format requirements (e.g., “DEV-” for test accounts, "admin-" as a pattern to define an admin password)
+ * @param enabled Controls the enabled state of the password input. When `false`, this password input will not be focusable and will not react to input events.
+ *   True by default.
+ * @param readOnly Controls the read-only state of the password input. When `true`, the text is visible but not editable.
+ *   False by default.
+ * @param loader An optional loading progress indicator displayed in the password input to indicate an ongoing operation.
+ * @param outlined Controls the style of the password input. When `true`, it displays a minimalist password input with a transparent background and a visible
+ *   stroke outlining the field.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
+ * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param keyboardOptions Software-keyboard options that can be customized for this password input. This parameter is of type [OudsPasswordInputKeyboardOptions],
+ *   which is a specific class for password fields. It ensures that the keyboard type is always `KeyboardType.Password`, while allowing for the customization of
+ *   other common options.
+ * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
+ *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
+ *   [ImeAction.Next] would switch the focus to the next focusable item on the screen.
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
+ *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
+ *   For example, to draw a cursor or selection around the text.
+ * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [TextFieldState] made by the user. The transformation
+ *   will be applied to changes made by hardware and software keyboard events, pasting or dropping text, accessibility services, and tests. The transformation
+ *   will _not_ be applied when changing the [textFieldState] programmatically, or when the transformation is changed. If the transformation is changed on an
+ *   existing text field, it will be applied to the next user edit. The transformation will not immediately affect the current [textFieldState].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputStateBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputStateBasedErrorSample
+ */
+@Composable
+fun OudsPasswordInput(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    lockIcon: Boolean = false,
+    prefix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: OudsPasswordInputKeyboardOptions = OudsPasswordInputKeyboardOptions(),
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
+    var isPasswordVisible by remember { mutableStateOf(false) }
+    OudsTextInput(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = if (lockIcon) textInputLockIcon() else null,
+        trailingIconButton = trailingIconButton(isPasswordVisible = isPasswordVisible) {
+            isPasswordVisible = !isPasswordVisible
+        },
+        prefix = prefix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions.toKeyboardOptions(),
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = OutputTransformation {
+            val visualTransformation = visualTransformation(isPasswordVisible)
+            val transformedText = visualTransformation.filter(AnnotatedString(textFieldState.text.toString()))
+            replace(start = 0, end = length, text = transformedText.text)
+        },
+        interactionSource = interactionSource
+    )
+}
 
 /**
  * Password input is a UI element that allows to securely and confidentially capture a user's password.
@@ -75,6 +186,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param keyboardOptions Software-keyboard options that can be customized for this password input. This parameter is of type [OudsPasswordInputKeyboardOptions],
  *   which is a specific class for password fields. It ensures that the keyboard type is always `KeyboardType.Password`, while allowing for the customization of
  *   other common options.
@@ -86,9 +200,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsPasswordInputSample
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputValueBasedSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputValueBasedErrorSample
  */
 @Composable
 @ExperimentalOudsApi
@@ -169,6 +283,9 @@ fun OudsPasswordInput(
  * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param keyboardOptions Software-keyboard options that can be customized for this password input. This parameter is of type [OudsPasswordInputKeyboardOptions],
  *   which is a specific class for password fields. It ensures that the keyboard type is always `KeyboardType.Password`, while allowing for the customization of
  *   other common options.
@@ -180,9 +297,9 @@ fun OudsPasswordInput(
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
- * @sample com.orange.ouds.core.component.samples.OudsPasswordInputSample
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputValueBasedSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputValueBasedErrorSample
  */
 @Composable
 @ExperimentalOudsApi
@@ -283,7 +400,6 @@ private fun trailingIconButton(isPasswordVisible: Boolean, onClick: () -> Unit):
     )
 }
 
-@Composable
 private fun visualTransformation(isPasswordVisible: Boolean) =
     if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(mask = '\u25cf')
 
@@ -303,8 +419,7 @@ internal fun PreviewOudsPasswordInput(
     with(parameter) {
         PreviewEnumEntries<OudsTextInputState>(columnCount = 1) {
             OudsPasswordInput(
-                value = value,
-                onValueChange = { },
+                textFieldState = rememberTextFieldState(initialText),
                 label = label,
                 placeholder = placeholder,
                 //outlined = true,
@@ -318,7 +433,7 @@ internal fun PreviewOudsPasswordInput(
 }
 
 internal data class OudsPasswordInputPreviewParameter(
-    val value: String,
+    val initialText: String,
     val label: String? = null,
     val placeholder: String? = null,
     val lockIcon: Boolean = false,
@@ -340,9 +455,9 @@ private val previewParameterValues: List<OudsPasswordInputPreviewParameter>
         val error = OudsError("Error message.")
         val helperText = "Helper text."
         return listOf(
-            OudsPasswordInputPreviewParameter("", label = label),
+            OudsPasswordInputPreviewParameter(initialText = "", label = label),
             OudsPasswordInputPreviewParameter(
-                "",
+                initialText = "",
                 label = label,
                 placeholder = placeholder,
                 lockIcon = false,
@@ -350,13 +465,13 @@ private val previewParameterValues: List<OudsPasswordInputPreviewParameter>
                 error = error
             ),
             OudsPasswordInputPreviewParameter(
-                "Text",
+                initialText = "Text",
                 label = label,
                 placeholder = placeholder,
                 lockIcon = true,
                 prefix = prefix,
                 helperText = helperText,
             ),
-            OudsPasswordInputPreviewParameter("Error text", label = label, error = error, helperText = helperText)
+            OudsPasswordInputPreviewParameter(initialText = "Error text", label = label, error = error, helperText = helperText)
         )
     }
