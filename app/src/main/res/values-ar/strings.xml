@@ -119,7 +119,7 @@
     <string name="app_components_divider_description_text">Divider هو عنصر واجهة مستخدم يسمح بتنظيم المحتوى عن طريق فصل مناطق المحتوى بصريًا</string>
 
     <!-- Components: floating action button -->
-    <string name="app_components_floatingActionButton_description_text">Floating action button (also known as FAB) represents the most important action on a screen. It puts key actions within reach.</string>
+    <string name="app_components_floatingActionButton_description_text">Floating action button (أو زر الإجراء العائم) يمثل الإجراء الأهم على الشاشة. يسلط الضوء على الإجراءات الرئيسية.</string>
 
     <!-- Components: link -->
     <string name="app_components_link_description_text">Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي</string>
