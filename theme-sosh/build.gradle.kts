@@ -18,6 +18,10 @@ plugins {
     alias(libs.plugins.paparazzi)
 }
 
+// Temporary workaround for https://issuetracker.google.com/issues/476936389
+val dokkaKotlinAdapter = objects.newInstance(org.jetbrains.dokka.gradle.adapters.KotlinAdapter::class)
+dokkaKotlinAdapter.apply(project)
+
 android {
     namespace = "com.orange.ouds.theme.sosh"
 

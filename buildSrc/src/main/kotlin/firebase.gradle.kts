@@ -10,7 +10,6 @@
  * Software description: Android library of reusable graphical components 
  */
 
-import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.google.firebase.appdistribution.gradle.firebaseAppDistributionDefault
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
@@ -152,9 +151,7 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
     mustRunAfter("appDistributionUpload")
 
     doLast {
-        val variant = project.findTypedProperty<String>("variant")
-        val androidExtension = rootProject.subprojects.firstNotNullOf { it.extensions.getByName("android") as? BaseAppModuleExtension }
-        val applicationId = androidExtension.applicationVariants.firstOrNull { it.name == variant }?.applicationId
+        val applicationId = project.findTypedProperty<String>("applicationId")
         val googleServices = GoogleServices("${rootProject.projectDir}/app/google-services.json")
         val app = googleServices.apps.firstOrNull { it.packageName == applicationId }
         if (app != null) {
@@ -213,7 +210,6 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                                             "- Application name: **DesignToolbox**\\n" +
                                             "- Version name: **${release.displayVersion}**\\n" +
                                             "- Version code: **${release.buildVersion}**\\n" +
-                                            "- Variant: **$variant**\\n\\n" +
                                             "cc @B3nz01d (product owner)\\n" +
                                             "cc @florentmaitre @paulinea (dev team)\\n" +
                                             "cc @jerome-regnier (design team)\\n" +
@@ -235,7 +231,7 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                 }
             }
         } else {
-            throw GradleException("Could not find an app with package name $applicationId in google-services.json.")
+            throw GradleException("Could not find an app with application ID $applicationId in google-services.json.")
         }
     }
 }
