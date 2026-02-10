@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component.samples
 
-import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,12 +20,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.rememberOudsPasswordInputState
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsPasswordInputStateBasedSample() {
     OudsPasswordInput(
-        textFieldState = rememberTextFieldState(),
+        state = rememberOudsPasswordInputState(),
         lockIcon = true,
         label = "Password",
         helperText = "Your password must be between 8 and 20 characters long.",
@@ -36,7 +36,7 @@ internal fun OudsPasswordInputStateBasedSample() {
 @Composable
 internal fun OudsPasswordInputStateBasedErrorSample() {
     OudsPasswordInput(
-        textFieldState = rememberTextFieldState(),
+        state = rememberOudsPasswordInputState(),
         label = "Password",
         error = OudsError("Password must be at least 8 characters.")
     )

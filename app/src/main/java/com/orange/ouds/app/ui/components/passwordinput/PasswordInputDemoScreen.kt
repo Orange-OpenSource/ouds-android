@@ -117,6 +117,13 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_passwordInput_passwordHidden_label),
+            checked = passwordInputState.isPasswordHidden,
+            onCheckedChange = { isPasswordHidden ->
+                passwordInputState.isPasswordHidden = isPasswordHidden
+            },
+        )
     }
 }
 
@@ -126,7 +133,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
     val focusManager = LocalFocusManager.current
     with(state) {
         OudsPasswordInput(
-            textFieldState = textFieldState,
+            state = passwordInputState,
             label = label,
             placeholder = placeholder,
             outlined = outlined,
@@ -146,7 +153,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
 private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoState) {
     with(state) {
         functionCall("OudsPasswordInput") {
-            functionCallArgument("textFieldState", "rememberTextFieldState")
+            functionCallArgument("state", "rememberOudsPasswordInputState")
             lambdaArgument("onValueChange") {
                 comment("Update value")
             }

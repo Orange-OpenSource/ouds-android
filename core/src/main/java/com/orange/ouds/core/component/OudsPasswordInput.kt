@@ -21,7 +21,6 @@ import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldState
-import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -64,7 +63,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design version: 1.2.0
  *
- * @param textFieldState The editable text state of the password input, including the text itself, position of the cursor or selection and the password visibility.
+ * @param state The editable text state of the password input, including the text itself, position of the cursor or selection and the password visibility.
  * @param modifier [Modifier] applied to the password input.
  * @param label Label displayed above the password input. It describes the purpose of the input.
  * @param placeholder Text displayed when the password input is empty. It provides a hint or guidance inside the field to suggest expected input.
@@ -95,8 +94,8 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   For example, to draw a cursor or selection around the text.
  * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [TextFieldState] made by the user. The transformation
  *   will be applied to changes made by hardware and software keyboard events, pasting or dropping text, accessibility services, and tests. The transformation
- *   will _not_ be applied when changing the [textFieldState] programmatically, or when the transformation is changed. If the transformation is changed on an
- *   existing text field, it will be applied to the next user edit. The transformation will not immediately affect the current [textFieldState].
+ *   will _not_ be applied when changing the [state] programmatically, or when the transformation is changed. If the transformation is changed on an
+ *   existing text field, it will be applied to the next user edit. The transformation will not immediately affect the current [state].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -106,7 +105,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  */
 @Composable
 fun OudsPasswordInput(
-    textFieldState: TextFieldState,
+    state: OudsPasswordInputState,
     modifier: Modifier = Modifier,
     label: String? = null,
     placeholder: String? = null,
@@ -125,15 +124,14 @@ fun OudsPasswordInput(
     inputTransformation: InputTransformation? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
-    var isPasswordVisible by remember { mutableStateOf(false) }
     OudsTextInput(
-        textFieldState = textFieldState,
+        textFieldState = state.textFieldState,
         modifier = modifier,
         label = label,
         placeholder = placeholder,
         leadingIcon = if (lockIcon) textInputLockIcon() else null,
-        trailingIconButton = trailingIconButton(isPasswordVisible = isPasswordVisible) {
-            isPasswordVisible = !isPasswordVisible
+        trailingIconButton = trailingIconButton(isPasswordHidden = state.isPasswordHidden) {
+            state.isPasswordHidden = !state.isPasswordHidden
         },
         prefix = prefix,
         enabled = enabled,
@@ -148,8 +146,8 @@ fun OudsPasswordInput(
         onTextLayout = onTextLayout,
         inputTransformation = inputTransformation,
         outputTransformation = OutputTransformation {
-            val visualTransformation = visualTransformation(isPasswordVisible)
-            val transformedText = visualTransformation.filter(AnnotatedString(textFieldState.text.toString()))
+            val visualTransformation = visualTransformation(state.isPasswordHidden)
+            val transformedText = visualTransformation.filter(AnnotatedString(state.textFieldState.text.toString()))
             replace(start = 0, end = length, text = transformedText.text)
         },
         interactionSource = interactionSource
@@ -226,7 +224,7 @@ fun OudsPasswordInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     interactionSource: MutableInteractionSource? = null
 ) {
-    var isPasswordVisible by remember { mutableStateOf(false) }
+    var isPasswordHidden by remember { mutableStateOf(true) }
     OudsTextInput(
         value = value,
         onValueChange = onValueChange,
@@ -234,8 +232,8 @@ fun OudsPasswordInput(
         label = label,
         placeholder = placeholder,
         leadingIcon = if (lockIcon) textInputLockIcon() else null,
-        trailingIconButton = trailingIconButton(isPasswordVisible = isPasswordVisible) {
-            isPasswordVisible = !isPasswordVisible
+        trailingIconButton = trailingIconButton(isPasswordHidden = isPasswordHidden) {
+            isPasswordHidden = !isPasswordHidden
         },
         prefix = prefix,
         enabled = enabled,
@@ -248,7 +246,7 @@ fun OudsPasswordInput(
         keyboardOptions = keyboardOptions.toKeyboardOptions(),
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
-        visualTransformation = visualTransformation(isPasswordVisible),
+        visualTransformation = visualTransformation(isPasswordHidden),
         interactionSource = interactionSource
     )
 }
@@ -323,7 +321,7 @@ fun OudsPasswordInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     interactionSource: MutableInteractionSource? = null
 ) {
-    var isPasswordVisible by remember { mutableStateOf(false) }
+    var isPasswordHidden by remember { mutableStateOf(true) }
     OudsTextInput(
         value = value,
         onValueChange = onValueChange,
@@ -331,8 +329,8 @@ fun OudsPasswordInput(
         label = label,
         placeholder = placeholder,
         leadingIcon = if (lockIcon) textInputLockIcon() else null,
-        trailingIconButton = trailingIconButton(isPasswordVisible = isPasswordVisible) {
-            isPasswordVisible = !isPasswordVisible
+        trailingIconButton = trailingIconButton(isPasswordHidden = isPasswordHidden) {
+            isPasswordHidden = !isPasswordHidden
         },
         prefix = prefix,
         enabled = enabled,
@@ -345,7 +343,7 @@ fun OudsPasswordInput(
         keyboardOptions = keyboardOptions.toKeyboardOptions(),
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
-        visualTransformation = visualTransformation(isPasswordVisible),
+        visualTransformation = visualTransformation(isPasswordHidden),
         interactionSource = interactionSource
     )
 }
@@ -383,15 +381,15 @@ private fun textInputLockIcon() = OudsTextInputLeadingIcon(
 )
 
 @Composable
-private fun trailingIconButton(isPasswordVisible: Boolean, onClick: () -> Unit): OudsTextInputTrailingIconButton {
+private fun trailingIconButton(isPasswordHidden: Boolean, onClick: () -> Unit): OudsTextInputTrailingIconButton {
     val painterResId: Int
     val contentDescriptionResId: Int
-    if (isPasswordVisible) {
-        painterResId = OudsTheme.drawableResources.functional.settingsAndTools.hide
-        contentDescriptionResId = R.string.core_passwordInput_hidePassword_a11y
-    } else {
+    if (isPasswordHidden) {
         painterResId = OudsTheme.drawableResources.communication.accessibility.vision
         contentDescriptionResId = R.string.core_passwordInput_showPassword_a11y
+    } else {
+        painterResId = OudsTheme.drawableResources.functional.settingsAndTools.hide
+        contentDescriptionResId = R.string.core_passwordInput_hidePassword_a11y
     }
     return OudsTextInputTrailingIconButton(
         painter = painterResource(painterResId),
@@ -400,8 +398,8 @@ private fun trailingIconButton(isPasswordVisible: Boolean, onClick: () -> Unit):
     )
 }
 
-private fun visualTransformation(isPasswordVisible: Boolean) =
-    if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(mask = '\u25cf')
+private fun visualTransformation(isPasswordHidden: Boolean) =
+    if (isPasswordHidden) PasswordVisualTransformation(mask = '\u25cf') else VisualTransformation.None
 
 @PreviewLightDark
 @Composable
@@ -419,7 +417,7 @@ internal fun PreviewOudsPasswordInput(
     with(parameter) {
         PreviewEnumEntries<OudsTextInputState>(columnCount = 1) {
             OudsPasswordInput(
-                textFieldState = rememberTextFieldState(initialText),
+                state = rememberOudsPasswordInputState(initialText),
                 label = label,
                 placeholder = placeholder,
                 //outlined = true,
