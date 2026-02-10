@@ -66,7 +66,7 @@ android {
 
     sourceSets {
         named("main") {
-            res.srcDirs("src/main/res", "src/main/res-public")
+            res.directories.add("src/main/res-public")
         }
     }
 }
