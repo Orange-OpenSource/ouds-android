@@ -120,9 +120,7 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_passwordInput_passwordHidden_label),
             checked = passwordInputState.isPasswordHidden,
-            onCheckedChange = { isPasswordHidden ->
-                passwordInputState.isPasswordHidden = isPasswordHidden
-            },
+            onCheckedChange = { passwordInputState.isPasswordHidden = it }
         )
     }
 }

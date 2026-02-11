@@ -91,7 +91,7 @@ class PasswordInputDemoState(
             save = { state ->
                 with(state) {
                     listOf(
-                        with(OudsPasswordInputState.Saver) { save(state.passwordInputState) },
+                        with(OudsPasswordInputState.Saver) { save(passwordInputState) },
                         label,
                         placeholder,
                         outlined,

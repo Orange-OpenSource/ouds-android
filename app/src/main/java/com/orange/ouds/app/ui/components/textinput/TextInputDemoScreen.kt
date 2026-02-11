@@ -180,7 +180,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             helperText = helperText,
             helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
             constrainedMaxWidth = constrainedMaxWidth,
-            onKeyboardAction = { focusManager.clearFocus() },
+            onKeyboardAction = { focusManager.clearFocus() }
         )
     }
 }

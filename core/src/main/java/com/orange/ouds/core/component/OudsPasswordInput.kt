@@ -20,7 +20,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.OutputTransformation
-import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -80,7 +79,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
- * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ * @param constrainedMaxWidth When `true`, the password input width is constrained to a maximum value defined by the design system.
  *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
  *   Defaults to `false`.
  * @param keyboardOptions Software-keyboard options that can be customized for this password input. This parameter is of type [OudsPasswordInputKeyboardOptions],
@@ -92,7 +91,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
  *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
  *   For example, to draw a cursor or selection around the text.
- * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [TextFieldState] made by the user. The transformation
+ * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [OudsPasswordInputState] made by the user. The transformation
  *   will be applied to changes made by hardware and software keyboard events, pasting or dropping text, accessibility services, and tests. The transformation
  *   will _not_ be applied when changing the [state] programmatically, or when the transformation is changed. If the transformation is changed on an
  *   existing text field, it will be applied to the next user edit. The transformation will not immediately affect the current [state].
@@ -147,7 +146,7 @@ fun OudsPasswordInput(
         inputTransformation = inputTransformation,
         outputTransformation = OutputTransformation {
             val visualTransformation = visualTransformation(state.isPasswordHidden)
-            val transformedText = visualTransformation.filter(AnnotatedString(state.textFieldState.text.toString()))
+            val transformedText = visualTransformation.filter(AnnotatedString(state.text.toString()))
             replace(start = 0, end = length, text = transformedText.text)
         },
         interactionSource = interactionSource
@@ -184,7 +183,7 @@ fun OudsPasswordInput(
  * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
- * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ * @param constrainedMaxWidth When `true`, the password input width is constrained to a maximum value defined by the design system.
  *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
  *   Defaults to `false`.
  * @param keyboardOptions Software-keyboard options that can be customized for this password input. This parameter is of type [OudsPasswordInputKeyboardOptions],
@@ -281,7 +280,7 @@ fun OudsPasswordInput(
  * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
  * @param helperText An optional helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
- * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ * @param constrainedMaxWidth When `true`, the password input width is constrained to a maximum value defined by the design system.
  *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
  *   Defaults to `false`.
  * @param keyboardOptions Software-keyboard options that can be customized for this password input. This parameter is of type [OudsPasswordInputKeyboardOptions],

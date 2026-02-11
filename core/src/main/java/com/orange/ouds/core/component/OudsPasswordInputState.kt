@@ -13,7 +13,6 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.UndoState
@@ -224,9 +223,7 @@ fun OudsPasswordInputState.clearText(): Unit = textFieldState.clearText()
  * Creates a temporary, mutable [TextFieldBuffer] representing the current state of this
  * [OudsPasswordInputState].
  *
- * Use a [TextFieldBuffer] to:
- * * Apply transformations for testing purposes
- * * Preview how the TextField would render with a specific [OutputTransformation]
+ * Use a [TextFieldBuffer] to apply transformations for testing purposes.
  *
  * This is similar to calling [OudsPasswordInputState.edit], but without committing the changes back to the
  * [OudsPasswordInputState].
