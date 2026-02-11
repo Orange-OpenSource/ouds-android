@@ -499,7 +499,7 @@ enum class OudsFloatingActionButtonAppearance {
     Strong,
 
     /**
-     * A brand primary color alternative to the Strong floating action button.
+     * Brand primary color appearance of an [OudsFloatingActionButton].
      */
     Brand
 }
@@ -632,6 +632,6 @@ internal class OudsFloatingActionButtonPreviewParameterProvider : EnumPreviewPar
 private sealed class OudsExtendedFloatingActionButtonPreviewGridRow {
 
     object LabelOnly : OudsExtendedFloatingActionButtonPreviewGridRow()
-    
+
     class LabelAndIcon(val isExpanded: Boolean) : OudsExtendedFloatingActionButtonPreviewGridRow()
 }
