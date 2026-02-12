@@ -68,6 +68,7 @@ import com.orange.ouds.core.component.PreviewOudsAlertMessage
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsBulletList
+import com.orange.ouds.core.component.PreviewOudsBulletListRtl
 import com.orange.ouds.core.component.PreviewOudsButton
 import com.orange.ouds.core.component.PreviewOudsButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsButtonWithIconBadge
@@ -181,17 +182,34 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object BulletList : OudsPreviewableComponent {
+    object BulletList {
 
-        override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsBulletList(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsBulletListPreviewParameter
-            )
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBulletList(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsBulletListPreviewParameter
+                )
+            }
+        }
+
+        object Rtl : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBulletListRtl(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsBulletListPreviewParameter
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
