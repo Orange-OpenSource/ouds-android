@@ -117,82 +117,79 @@ fun OudsAlertMessage(
         val borderRadius = if (LocalThemeSettings.current.roundedCornerAlertMessages == true) borderRadiusRounded else borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
         val hasCloseButton = onClose != null
-        Box(
+        Row(
             modifier = modifier
                 .widthIn(min = sizeMinWidth.dp)
                 .heightIn(min = if (link != null && link.position == OudsAlertMessageLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
                 .background(color = status.backgroundColor(), shape = shape)
+                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value)
                 .run {
                     borderWidth.value.takeUnlessHairline?.let {
                         border(width = it, color = status.borderColor(), shape = shape)
                     } ?: this
-                }
+                },
+            horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
         ) {
-            Row(
-                modifier = Modifier.padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
-                horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
-            ) {
-                status.statusIcon?.Content(
-                    modifier = Modifier
-                        .padding(top = spacePaddingBlock.value)
-                        .size(sizeIcon.value * scale),
-                    extraParameters = OudsAlertMessageIcon.ExtraParameters(
-                        tint = status.assetColor()
-                    )
+            status.statusIcon?.Content(
+                modifier = Modifier
+                    .padding(top = spacePaddingBlock.value)
+                    .size(sizeIcon.value * scale),
+                extraParameters = OudsAlertMessageIcon.ExtraParameters(
+                    tint = status.assetColor()
                 )
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(vertical = spacePaddingBlock.value),
-                    verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)
-                ) {
+            )
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(vertical = spacePaddingBlock.value),
+                verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)
+            ) {
+                Text(
+                    modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
+                    text = label,
+                    color = OudsTheme.colorScheme.content.default,
+                    style = OudsTheme.typography.label.moderate.large
+                )
+                description?.let {
                     Text(
-                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
-                        text = label,
-                        color = OudsTheme.colorScheme.content.default,
-                        style = OudsTheme.typography.label.moderate.large
+                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
+                        text = description,
+                        color = OudsTheme.colorScheme.content.muted,
+                        style = OudsTheme.typography.label.default.medium
                     )
-                    description?.let {
-                        Text(
-                            modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
-                            text = description,
-                            color = OudsTheme.colorScheme.content.muted,
-                            style = OudsTheme.typography.label.default.medium
-                        )
-                    }
-                    bulletList?.let { list ->
-                        Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
-                            list.forEach { label ->
-                                if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label)
-                            }
+                }
+                bulletList?.let { list ->
+                    Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
+                        list.forEach { label ->
+                            if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label)
                         }
-                    }
-                    if (link != null && link.position == OudsAlertMessageLinkPosition.Bottom) {
-                        OudsLink(
-                            modifier = Modifier.padding(top = spaceRowGapAction.value),
-                            label = link.label,
-                            onClick = link.onClick
-                        )
                     }
                 }
+                if (link != null && link.position == OudsAlertMessageLinkPosition.Bottom) {
+                    OudsLink(
+                        modifier = Modifier.padding(top = spaceRowGapAction.value),
+                        label = link.label,
+                        onClick = link.onClick
+                    )
+                }
+            }
 
-                val hasTopEndLink = link?.position == OudsAlertMessageLinkPosition.TopEnd
-                if (hasCloseButton || hasTopEndLink) {
-                    Row(horizontalArrangement = Arrangement.spacedBy(spaceColumnGapAction.value)) {
-                        if (hasTopEndLink) {
-                            link.Content()
-                        }
-                        onClose?.let {
-                            OudsButton(
-                                modifier = Modifier.clip(shape = shape),
-                                icon = OudsButtonIcon(
-                                    painter = painterResource(LocalDrawableResources.current.component.button.expurge),
-                                    contentDescription = stringResource(R.string.core_alertMessage_close_a11y)
-                                ),
-                                onClick = onClose,
-                                appearance = OudsButtonAppearance.Minimal
-                            )
-                        }
+            val hasTopEndLink = link?.position == OudsAlertMessageLinkPosition.TopEnd
+            if (hasCloseButton || hasTopEndLink) {
+                Row(horizontalArrangement = Arrangement.spacedBy(spaceColumnGapAction.value)) {
+                    if (hasTopEndLink) {
+                        link.Content()
+                    }
+                    onClose?.let {
+                        OudsButton(
+                            modifier = Modifier.clip(shape = shape),
+                            icon = OudsButtonIcon(
+                                painter = painterResource(LocalDrawableResources.current.component.button.expurge),
+                                contentDescription = stringResource(R.string.core_alertMessage_close_a11y)
+                            ),
+                            onClick = onClose,
+                            appearance = OudsButtonAppearance.Minimal
+                        )
                     }
                 }
             }
