@@ -140,27 +140,28 @@ fun OudsAlertMessage(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(vertical = spacePaddingBlock.value),
-                verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)
+                    .padding(vertical = spacePaddingBlock.value)
             ) {
-                Text(
-                    modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
-                    text = label,
-                    color = OudsTheme.colorScheme.content.default,
-                    style = OudsTheme.typography.label.moderate.large
-                )
-                description?.let {
+                Column(verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
                     Text(
-                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
-                        text = description,
-                        color = OudsTheme.colorScheme.content.muted,
-                        style = OudsTheme.typography.label.default.medium
+                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
+                        text = label,
+                        color = OudsTheme.colorScheme.content.default,
+                        style = OudsTheme.typography.label.moderate.large
                     )
-                }
-                bulletList?.let { list ->
-                    Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
-                        list.forEach { label ->
-                            if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label)
+                    description?.let {
+                        Text(
+                            modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
+                            text = description,
+                            color = OudsTheme.colorScheme.content.muted,
+                            style = OudsTheme.typography.label.default.medium
+                        )
+                    }
+                    bulletList?.let { list ->
+                        Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
+                            list.forEach { label ->
+                                if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label)
+                            }
                         }
                     }
                 }
