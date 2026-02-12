@@ -48,7 +48,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -130,7 +129,7 @@ fun OudsAlertMessage(
                 },
             horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
         ) {
-            status.statusIcon?.Content(
+            status.icon?.Content(
                 modifier = Modifier
                     .padding(top = spacePaddingBlock.value)
                     .size(sizeIcon.value * scale),
@@ -261,7 +260,7 @@ enum class OudsAlertMessageLinkPosition {
  */
 sealed class OudsAlertMessageStatus {
 
-    internal abstract val statusIcon: OudsAlertMessageIcon?
+    internal abstract val icon: OudsAlertMessageIcon?
         @Composable get
 
     /**
@@ -271,10 +270,12 @@ sealed class OudsAlertMessageStatus {
      *
      * @param icon Optional icon to be displayed in the alert message. Pass `null` if no icon is needed.
      */
-    data class Neutral(private val icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
-        override val statusIcon: OudsAlertMessageIcon?
+     class Neutral(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
+
+        private val _icon = icon
+        override val icon: OudsAlertMessageIcon?
             @Composable
-            get() = icon
+            get() = _icon
     }
 
     /**
@@ -284,10 +285,12 @@ sealed class OudsAlertMessageStatus {
      *
      * @param icon Optional icon to be displayed in the alert message. Pass `null` if no icon is needed.
      */
-    data class Accent(private val icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
-        override val statusIcon: OudsAlertMessageIcon?
+     class Accent(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
+
+        private val _icon = icon
+        override val icon: OudsAlertMessageIcon?
             @Composable
-            get() = icon
+            get() = _icon
     }
 
     /**
@@ -297,7 +300,7 @@ sealed class OudsAlertMessageStatus {
      * @param showIcon Controls whether the icon should be displayed or not. `true` displays the default positive icon.
      */
     data class Positive(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
-        override val statusIcon: OudsAlertMessageIcon?
+        override val icon: OudsAlertMessageIcon?
             @Composable
             get() = if (showIcon) {
                 OudsAlertMessageIcon(painter = painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill))
@@ -314,7 +317,7 @@ sealed class OudsAlertMessageStatus {
      * @param showIcon Controls whether the icon should be displayed or not. `true` displays the default info icon.
      */
     data class Info(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
-        override val statusIcon: OudsAlertMessageIcon?
+        override val icon: OudsAlertMessageIcon?
             @Composable
             get() = if (showIcon) {
                 OudsAlertMessageIcon(painter = painterResource(OudsTheme.drawableResources.component.alert.infoFill))
@@ -331,7 +334,7 @@ sealed class OudsAlertMessageStatus {
      * @param showIcon Controls whether the icon should be displayed or not. `true` displays the default warning icon.
      */
     data class Warning(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
-        override val statusIcon: OudsAlertMessageIcon?
+        override val icon: OudsAlertMessageIcon?
             @Composable
             get() = if (showIcon) {
                 OudsAlertMessageIcon(painter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape))
@@ -348,7 +351,7 @@ sealed class OudsAlertMessageStatus {
      * @param showIcon Controls whether the icon should be displayed or not. `true` displays the default negative icon.
      */
     data class Negative(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
-        override val statusIcon: OudsAlertMessageIcon?
+        override val icon: OudsAlertMessageIcon?
             @Composable
             get() = if (showIcon) {
                 OudsAlertMessageIcon(painter = painterResource(OudsTheme.drawableResources.component.alert.importantFill))
