@@ -84,6 +84,7 @@
     <string name="app_components_common_textInputClearIcon_a11y">Effacer la valeur</string>
     <string name="app_components_common_error_a11y">Message d\'erreur</string>
     <string name="app_components_common_icon_a11y">Icône</string>
+    <string name="app_components_common_label_value">Label</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="one">%d message non lu</item>
         <item quantity="many">%d messages non lus</item>

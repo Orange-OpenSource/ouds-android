@@ -31,6 +31,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -41,13 +42,16 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset.Bullet.extraParameters
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -270,16 +274,24 @@ private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle,
         }
         OudsBulletListType.Ordered -> {
             val level = parentTypes.count()
-            val text = if (level == 0) {
-                "${index + 1}."
-            } else {
-                val startingChar = if (level == 1) 'A' else 'a'
-                "${startingChar + index % 26}."
+            val text = when {
+                level == 0 -> "${index + 1}." // Level 0 is always digital
+                LocalLayoutDirection.current == LayoutDirection.Rtl -> {
+                    // RTL case for level 1 and higher
+                    val bulletChar = arabicLetters[index % arabicLetters.size]
+                    if (level == 1) "$bulletChar." else "($bulletChar)."
+                }
+                else -> {
+                    // LTR case for level 1 and higher
+                    val startingChar = if (level == 1) 'A' else 'a'
+                    "${startingChar + index % 26}."
+                }
             }
 
             Text(
-                modifier = Modifier.width(width * scale),
+                modifier = Modifier.widthIn(width * scale),
                 text = text,
+                softWrap = false,
                 style = textStyle.toTextStyle(),
                 color = OudsTheme.colorScheme.content.default,
                 textAlign = TextAlign.End
@@ -483,6 +495,15 @@ private fun PreviewOudsBulletList(@PreviewParameter(OudsBulletListPreviewParamet
     PreviewOudsBulletList(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
+@Preview(locale = "ar")
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsBulletListArabic(@PreviewParameter(OudsBulletListPreviewParameterProvider::class) parameter: OudsBulletListPreviewParameter) {
+    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
+        PreviewOudsBulletList(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+    }
+}
+
 @Composable
 internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBulletListPreviewParameter) {
     val customBullet = rememberVectorPainter(Icons.Outlined.FavoriteBorder)
@@ -551,3 +572,34 @@ private val previewParameterValues: List<OudsBulletListPreviewParameter>
         ),
         OudsBulletListPreviewParameter(),
     )
+
+private val arabicLetters = listOf(
+    "أ",
+    "ب",
+    "ت",
+    "ث",
+    "ج",
+    "ح",
+    "خ",
+    "د",
+    "ذ",
+    "ر",
+    "ز",
+    "س",
+    "ش",
+    "ص",
+    "ض",
+    "ط",
+    "ظ",
+    "ع",
+    "غ",
+    "ف",
+    "ق",
+    "ك",
+    "ل",
+    "م",
+    "ن",
+    "ه",
+    "و",
+    "ي",
+)

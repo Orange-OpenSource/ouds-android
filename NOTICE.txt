@@ -123,6 +123,9 @@ theme-orange/src/main/res/drawable/ic_orange_functional_actions_delete.xml
 theme-orange/src/main/res/drawable/ic_orange_functional_navigation_form_chevron_left.xml
 theme-orange/src/main/res/drawable/ic_orange_functional_navigation_menu.xml
 theme-orange/src/main/res/drawable/ic_orange_functional_settings_and_tools_hide.xml
+theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level0.xml
+theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level1.xml
+theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level2.xml
 
 theme-sosh/src/main/res/drawable/ic_sosh_communication_accessibility_vision.xml
 theme-sosh/src/main/res/drawable/ic_sosh_communication_security_and_safety_lock.xml

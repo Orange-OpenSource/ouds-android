@@ -36,7 +36,7 @@ fun rememberBulletListDemoState(
     fontSize: OudsBulletListFontSize = OudsBulletListDefaults.TextStyle.fontSize,
     fontWeight: OudsBulletListFontWeight = OudsBulletListDefaults.TextStyle.fontWeight,
     levelCount: Int = BulletListDemoState.MinLevelCount,
-    label: String = stringResource(R.string.app_components_common_label_label)
+    label: String = stringResource(R.string.app_components_common_label_value)
 ): BulletListDemoState {
     return rememberSaveable(
         type,

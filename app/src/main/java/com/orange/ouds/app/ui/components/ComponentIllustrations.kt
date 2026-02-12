@@ -85,9 +85,10 @@ fun BadgeIllustration() = ComponentIllustration {
 
 @Composable
 fun BulletListIllustration() = ComponentIllustration {
+    val label = stringResource(id = R.string.app_components_common_label_value)
     OudsBulletList(modifier = Modifier.padding(end = 16.dp), type = OudsBulletListType.Unordered()) {
         repeat(2) {
-            item(label = "Label")
+            item(label = label)
         }
     }
 }
