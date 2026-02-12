@@ -78,6 +78,9 @@ class OudsPasswordInputState internal constructor(
 
     companion object {
 
+        /**
+         * Saves and restores an [OudsPasswordInputState] for [rememberSaveable].
+         */
         val Saver = listSaver(
             save = { state ->
                 with(state) {
