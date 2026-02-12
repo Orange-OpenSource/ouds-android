@@ -106,6 +106,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
@@ -234,6 +237,9 @@ fun OudsTextInput(
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
@@ -355,6 +361,9 @@ fun OudsTextInput(
  *
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *

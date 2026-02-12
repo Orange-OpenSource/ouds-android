@@ -58,6 +58,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based password inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a password input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-password-input)
  *
  * > Design version: 1.2.0
@@ -161,6 +164,9 @@ fun OudsPasswordInput(
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based password inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a password input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-password-input)
  *
  * > Design version: 1.2.0
@@ -257,6 +263,9 @@ fun OudsPasswordInput(
  *
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * It is recommended to use state-based password inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a password input.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-password-input)
  *
