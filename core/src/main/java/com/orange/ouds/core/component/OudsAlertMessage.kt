@@ -130,7 +130,6 @@ fun OudsAlertMessage(
         ) {
             Row(
                 modifier = Modifier.padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
-                verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
             ) {
                 status.statusIcon?.Content(
