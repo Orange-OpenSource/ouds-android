@@ -101,10 +101,11 @@ class OudsPasswordInputState internal constructor(
     }
 
     /**
+     * Creates an instance of [OudsPasswordInputState].
+     *
      * @param initialText The initial text state.
      * @param initialSelection The initial selection state.
      * @param initialIsPasswordHidden Whether the password should initially be hidden (masked). Defaults to `true`.
-     * @constructor Creates an instance of [OudsPasswordInputState].
      */
     constructor(
         initialText: String = "",
