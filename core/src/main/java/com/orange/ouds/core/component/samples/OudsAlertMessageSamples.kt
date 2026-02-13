@@ -18,8 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageIcon
-import com.orange.ouds.core.component.OudsAlertMessageLink
-import com.orange.ouds.core.component.OudsAlertMessageLinkPosition
+import com.orange.ouds.core.component.OudsAlertMessageActionLink
+import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -30,7 +30,7 @@ internal fun OudsAlertMessageSample() {
         description = "Description of the alert message.",
         status = OudsAlertMessageStatus.Accent(OudsAlertMessageIcon(imageVector = Icons.Filled.FavoriteBorder)),
         onClose = { /* Close the alert message */ },
-        link = OudsAlertMessageLink(label = "Action", onClick = { /* Do something */ }),
+        actionLink = OudsAlertMessageActionLink(label = "Action", onClick = { /* Do something */ }),
         bulletList = listOf(
             "Bullet 1",
             "Bullet 2",
@@ -46,7 +46,7 @@ internal fun OudsAlertMessageFunctionalWithTopEndLinkSample() {
         description = "Description of the alert message.",
         status = OudsAlertMessageStatus.Positive(),
         onClose = { /* Close the alert message */ },
-        link = OudsAlertMessageLink(label = "Action", onClick = { /* Do something */ }, position = OudsAlertMessageLinkPosition.TopEnd),
+        actionLink = OudsAlertMessageActionLink(label = "Action", onClick = { /* Do something */ }, position = OudsAlertMessageActionLinkPosition.TopEnd),
         bulletList = listOf(
             "Bullet 1",
             "Bullet 2",

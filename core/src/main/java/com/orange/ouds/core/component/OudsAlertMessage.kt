@@ -92,7 +92,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert message is dismissable and includes a close button,
  *   allowing the user to dismiss it when he has acknowledged the message.
  *   Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.
- * @param link An optional link to be displayed in the alert message. It can be used to trigger an action.
+ * @param actionLink An optional link to be displayed in the alert message. It can be used to trigger an action.
  * @param bulletList An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
@@ -108,7 +108,7 @@ fun OudsAlertMessage(
     status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
     description: String? = null,
     onClose: (() -> Unit)? = null,
-    link: OudsAlertMessageLink? = null,
+    actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<String>? = null
 ) {
     with(OudsTheme.componentsTokens.alert) {
@@ -116,11 +116,11 @@ fun OudsAlertMessage(
         val borderRadius = if (LocalThemeSettings.current.roundedCornerAlertMessages == true) borderRadiusRounded else borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
         val hasCloseButton = onClose != null
-        val hasLink = link != null && link.label.isNotBlank()
+        val hasActionLink = actionLink != null && actionLink.label.isNotBlank()
         Row(
             modifier = modifier
                 .widthIn(min = sizeMinWidth.dp)
-                .heightIn(min = if (hasLink && link.position == OudsAlertMessageLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
+                .heightIn(min = if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
                 .background(color = status.backgroundColor(), shape = shape)
                 .clip(shape)
                 .run {
@@ -167,20 +167,20 @@ fun OudsAlertMessage(
                         }
                     }
                 }
-                if (hasLink && link.position == OudsAlertMessageLinkPosition.Bottom) {
+                if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
                     OudsLink(
                         modifier = Modifier.padding(top = spaceRowGapAction.value),
-                        label = link.label,
-                        onClick = link.onClick
+                        label = actionLink.label,
+                        onClick = actionLink.onClick
                     )
                 }
             }
 
-            val hasTopEndLink = hasLink && link.position == OudsAlertMessageLinkPosition.TopEnd
-            if (hasCloseButton || hasTopEndLink) {
+            val hasTopEndActionLink = hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.TopEnd
+            if (hasCloseButton || hasTopEndActionLink) {
                 Row(horizontalArrangement = Arrangement.spacedBy(spaceColumnGapAction.value)) {
-                    if (hasTopEndLink) {
-                        link.Content()
+                    if (hasTopEndActionLink) {
+                        actionLink.Content()
                     }
                     onClose?.let {
                         OudsButton(
@@ -210,20 +210,20 @@ object OudsAlertMessageDefaults {
     /**
      * Default position of an [OudsAlertMessage] action link.
      */
-    val LinkPosition = OudsAlertMessageLinkPosition.Bottom
+    val ActionLinkPosition = OudsAlertMessageActionLinkPosition.Bottom
 }
 
 /**
- * Link to be displayed in an [OudsAlertMessage].
+ * Action link to be displayed in an [OudsAlertMessage].
  *
  * @param label Text label of the link.
  * @param onClick Callback invoked when the link is clicked.
- * @param position [OudsAlertMessageLinkPosition] of the link within the alert message.
+ * @param position [OudsAlertMessageActionLinkPosition] of the link within the alert message.
  */
-data class OudsAlertMessageLink(
+data class OudsAlertMessageActionLink(
     val label: String,
     val onClick: () -> Unit,
-    val position: OudsAlertMessageLinkPosition = OudsAlertMessageDefaults.LinkPosition
+    val position: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition
 ) : OudsComponentContent<Nothing>(Nothing::class.java) {
     @Composable
     override fun Content(modifier: Modifier) {
@@ -236,9 +236,9 @@ data class OudsAlertMessageLink(
 }
 
 /**
- * The position of an [OudsAlertMessageLink] in the alert message.
+ * The position of an [OudsAlertMessageActionLink] in the alert message.
  */
-enum class OudsAlertMessageLinkPosition {
+enum class OudsAlertMessageActionLinkPosition {
     /**
      * The link is displayed at the bottom of the alert message below the main message content.
      * Recommended for mobile or narrow layouts, or when the text spans multiple lines. This vertical structure improves clarity and ensures the action remains
@@ -518,7 +518,7 @@ internal fun PreviewOudsAlertMessage(
                     status = status,
                     description = description,
                     onClose = onClose,
-                    link = link,
+                    actionLink = actionLink,
                     bulletList = bulletList
                 )
             }
@@ -537,7 +537,7 @@ internal data class OudsAlertMessagePreviewParameter(
     ),
     val description: String? = null,
     val onClose: (() -> Unit)? = null,
-    val link: OudsAlertMessageLink? = null,
+    val actionLink: OudsAlertMessageActionLink? = null,
     val bulletList: List<String>? = null
 )
 
@@ -564,25 +564,25 @@ private val previewParameterValues: List<OudsAlertMessagePreviewParameter>
             OudsAlertMessageStatus.Info(showIcon = false)
         )
         val description = "Here is a long description that need two lines to be displayed."
-        val linkLabel = "Action"
+        val actionLinkLabel = "Action"
 
         return listOf(
             OudsAlertMessagePreviewParameter(
                 statusesWithIcon,
                 description = description,
-                link = OudsAlertMessageLink(linkLabel, onClick = {}, position = OudsAlertMessageLinkPosition.TopEnd),
+                actionLink = OudsAlertMessageActionLink(actionLinkLabel, onClick = {}, position = OudsAlertMessageActionLinkPosition.TopEnd),
                 bulletList = listOf("Bullet 1", "Bullet 2 is a bullet with a very long label to test the wrapping", "Bullet 3")
             ),
             OudsAlertMessagePreviewParameter(
                 statusesWithIcon,
                 description = description,
                 onClose = {},
-                link = OudsAlertMessageLink(linkLabel, onClick = {})
+                actionLink = OudsAlertMessageActionLink(actionLinkLabel, onClick = {})
             ),
             OudsAlertMessagePreviewParameter(
                 statusesWithoutIcon,
                 onClose = {},
-                link = OudsAlertMessageLink(linkLabel, onClick = {}, position = OudsAlertMessageLinkPosition.TopEnd)
+                actionLink = OudsAlertMessageActionLink(actionLinkLabel, onClick = {}, position = OudsAlertMessageActionLinkPosition.TopEnd)
             ),
         )
     }

@@ -20,8 +20,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageDefaults
-import com.orange.ouds.core.component.OudsAlertMessageLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
 import kotlin.reflect.full.createInstance
 
@@ -33,7 +33,7 @@ fun rememberAlertMessageDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
     actionLink: String? = null,
-    actionLinkPosition: OudsAlertMessageLinkPosition = OudsAlertMessageDefaults.LinkPosition,
+    actionLinkPosition: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition,
     bulletList: Map<Int, String>? = null
 ) = rememberSaveable(
     status,
@@ -56,7 +56,7 @@ class AlertMessageDemoState(
     label: String,
     description: String?,
     actionLink: String?,
-    actionLinkPosition: OudsAlertMessageLinkPosition,
+    actionLinkPosition: OudsAlertMessageActionLinkPosition,
     bulletList: Map<Int, String>?
 ) {
 
@@ -90,7 +90,7 @@ class AlertMessageDemoState(
                     list[3] as String,
                     list[4] as String?,
                     list[5] as String?,
-                    list[6] as OudsAlertMessageLinkPosition,
+                    list[6] as OudsAlertMessageActionLinkPosition,
                     list[7] as Map<Int, String>?
                 )
             }
@@ -109,7 +109,7 @@ class AlertMessageDemoState(
 
     var actionLink: String? by mutableStateOf(actionLink)
 
-    var actionLinkPosition: OudsAlertMessageLinkPosition by mutableStateOf(actionLinkPosition)
+    var actionLinkPosition: OudsAlertMessageActionLinkPosition by mutableStateOf(actionLinkPosition)
 
     val actionLinkPositionChipsEnabled: Boolean
         get() = !actionLink.isNullOrEmpty()

@@ -38,7 +38,7 @@ class OudsAlertMessageTest {
             setOudsContent {
                 OudsAlertMessage(
                     label = "Label",
-                    link = OudsAlertMessageLink(linkLabel, onClick = onClick)
+                    actionLink = OudsAlertMessageActionLink(linkLabel, onClick = onClick)
                 )
             }
 
@@ -71,7 +71,7 @@ class OudsAlertMessageTest {
             setOudsContent {
                 OudsAlertMessage(
                     label = "Label",
-                    link = OudsAlertMessageLink(label = linkLabel, onClick = {})
+                    actionLink = OudsAlertMessageActionLink(label = linkLabel, onClick = {})
                 )
             }
 

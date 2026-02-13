@@ -36,9 +36,9 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsAlertMessage
+import com.orange.ouds.core.component.OudsAlertMessageActionLink
+import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageIcon
-import com.orange.ouds.core.component.OudsAlertMessageLink
-import com.orange.ouds.core.component.OudsAlertMessageLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -127,9 +127,14 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_alert_alertMessage_actionLinkPosition_label),
-            chips = OudsAlertMessageLinkPosition.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = actionLinkPositionChipsEnabled) },
-            selectedChipIndex = OudsAlertMessageLinkPosition.entries.indexOf(actionLinkPosition),
-            onSelectionChange = { id -> actionLinkPosition = OudsAlertMessageLinkPosition.entries[id] }
+            chips = OudsAlertMessageActionLinkPosition.entries.map {
+                CustomizationFilterChip(
+                    it.name.toSentenceCase(),
+                    enabled = actionLinkPositionChipsEnabled
+                )
+            },
+            selectedChipIndex = OudsAlertMessageActionLinkPosition.entries.indexOf(actionLinkPosition),
+            onSelectionChange = { id -> actionLinkPosition = OudsAlertMessageActionLinkPosition.entries[id] }
         )
         for (id in 1..MaxBulletCount) {
             CustomizationTextInput(
@@ -164,8 +169,8 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
             } else {
                 null
             },
-            link = actionLink.takeIf { !it.isNullOrEmpty() }?.let { actionLinkLabel ->
-                OudsAlertMessageLink(label = actionLinkLabel, onClick = {}, position = actionLinkPosition)
+            actionLink = actionLink.takeIf { !it.isNullOrEmpty() }?.let { actionLinkLabel ->
+                OudsAlertMessageActionLink(label = actionLinkLabel, onClick = {}, position = actionLinkPosition)
             },
             bulletList = bulletList?.toSortedMap()?.values?.toList()
         )
@@ -200,7 +205,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 }
             }
             if (!actionLink.isNullOrEmpty()) {
-                functionCallArgument("link", OudsAlertMessageLink::class.java.nestedName) {
+                functionCallArgument("link", OudsAlertMessageActionLink::class.java.nestedName) {
                     typedArgument("label", actionLink)
                     lambdaArgument("onClick") {
                         comment("Implement click")
