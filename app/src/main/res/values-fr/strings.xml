@@ -114,7 +114,7 @@
     <string name="app_components_chip_description_text">Un Chip aide les utilisateurs à saisir des informations, faire des sélections, filtrer du contenu ou déclencher des actions.</string>
 
     <!-- Components: colored background -->
-    <string name="app_components_coloredBackground_description_text">Un Colored Background (ou fond coloré) utilise des couleurs spécifiques pour maximiser le contraste avec son contenu. Plusieurs composants tels que les Buttons ou les Links adaptent leur affichage en conséquence lorsqu\'ils sont présentés sur des fonds colorés.</string>
+    <string name="app_components_coloredBackground_description_text">Un Colored background (ou fond coloré) utilise des couleurs spécifiques pour maximiser le contraste avec son contenu. Plusieurs composants tels que les Buttons ou les Links adaptent leur affichage en conséquence lorsqu\'ils sont présentés sur des fonds colorés.</string>
     <string name="app_components_coloredBackground_unsupportedColor_text">Le thème courant ne prend pas en charge la couleur \"%s\".</string>
 
     <!-- Components: divider -->
