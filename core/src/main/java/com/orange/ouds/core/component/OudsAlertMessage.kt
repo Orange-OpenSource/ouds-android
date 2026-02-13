@@ -223,9 +223,9 @@ data class OudsAlertMessageLink(
     val label: String,
     val onClick: () -> Unit,
     val position: OudsAlertMessageLinkPosition = OudsAlertMessageDefaults.LinkPosition
-) {
+) : OudsComponentContent<Nothing>(Nothing::class.java) {
     @Composable
-    fun Content(modifier: Modifier = Modifier) {
+    override fun Content(modifier: Modifier) {
         with(OudsTheme.componentsTokens.alert) {
             OudsLink(
                 modifier = modifier,
