@@ -364,13 +364,15 @@ sealed class OudsAlertMessageStatus {
      */
     @Composable
     fun backgroundColor(): Color {
-        return when (this) {
-            is Neutral -> OudsTheme.colorScheme.surface.secondary
-            is Accent -> OudsTheme.colorScheme.surface.status.accent.muted
-            is Positive -> OudsTheme.colorScheme.surface.status.positive.muted
-            is Warning -> OudsTheme.colorScheme.surface.status.warning.muted
-            is Negative -> OudsTheme.colorScheme.surface.status.negative.muted
-            is Info -> OudsTheme.colorScheme.surface.status.info.muted
+        return with (OudsTheme.colorScheme.surface) {
+            when (this@OudsAlertMessageStatus) {
+                is Neutral -> secondary
+                is Accent -> status.accent.muted
+                is Positive -> status.positive.muted
+                is Warning -> status.warning.muted
+                is Negative -> status.negative.muted
+                is Info -> status.info.muted
+            }
         }
     }
 
