@@ -5,6 +5,32 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.1.0...1.2.0) (2026-02-13)
+
+### Features
+
+- add ExperimentalOudsApi annotation to OudsPasswordInput ([#1101](https://github.com/Orange-OpenSource/ouds-android/issues/1101))
+- create component - FAB ([#1082](https://github.com/Orange-OpenSource/ouds-android/issues/1082))
+- create component - bullet list ([#852](https://github.com/Orange-OpenSource/ouds-android/issues/852))
+- create component - password input ([#1071](https://github.com/Orange-OpenSource/ouds-android/issues/1071))
+
+### Bug Fixes
+
+- **button** OudsButton modifier applied twice ([#1099](https://github.com/Orange-OpenSource/ouds-android/issues/1099))
+- **deps** update hilt to v2.59.1 ([#1056](https://github.com/Orange-OpenSource/ouds-android/issues/1056))
+- **deps** update gradle to v9 (major) ([#1040](https://github.com/Orange-OpenSource/ouds-android/issues/1040))
+- **deps** update kotlin monorepo to v2.3.10 ([#1087](https://github.com/Orange-OpenSource/ouds-android/issues/1087))
+- **deps** update firebaseappdistribution to v5.2.1 ([#1088](https://github.com/Orange-OpenSource/ouds-android/issues/1088))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.9.0 ([#1089](https://github.com/Orange-OpenSource/ouds-android/issues/1089))
+- **deps** update grpc-java monorepo to v1.79.0 ([#1085](https://github.com/Orange-OpenSource/ouds-android/issues/1085))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-gradle-plugin to v3.1.2 ([#1084](https://github.com/Orange-OpenSource/ouds-android/issues/1084))
+- **deps** update dependency androidx.navigation:navigation-compose to v2.9.7 ([#1077](https://github.com/Orange-OpenSource/ouds-android/issues/1077))
+- **deps** update dependency androidx.activity:activity-compose to v1.12.3 ([#1078](https://github.com/Orange-OpenSource/ouds-android/issues/1078))
+- **deps** update dependency androidx.compose:compose-bom to v2026.01.01 ([#1079](https://github.com/Orange-OpenSource/ouds-android/issues/1079))
+- **deps** update paparazzi to v2.0.0-alpha04 ([#1055](https://github.com/Orange-OpenSource/ouds-android/issues/1055))
+- **deps** update dependency org.mockito.kotlin:mockito-kotlin to v6.2.3 ([#1075](https://github.com/Orange-OpenSource/ouds-android/issues/1075))
+- **OudsInputTag** wrong accessible hint ([#1069](https://github.com/Orange-OpenSource/ouds-android/issues/1069))
+
 ## [1.1.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.0.0...1.1.0) (2026-01-27)
 
 ### Features
