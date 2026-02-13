@@ -180,8 +180,7 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
 private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsAlertMessage") {
-            val statusParameterName = "status"
-            functionCallArgument(statusParameterName, status::class.java.nestedName) {
+            functionCallArgument("status", status::class.java.nestedName) {
                 when (status) {
                     is OudsAlertMessageStatus.Neutral,
                     is OudsAlertMessageStatus.Accent -> {
