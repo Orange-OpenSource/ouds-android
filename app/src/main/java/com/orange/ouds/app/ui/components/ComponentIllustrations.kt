@@ -85,7 +85,7 @@ fun BadgeIllustration() = ComponentIllustration {
 
 @Composable
 fun BulletListIllustration() = ComponentIllustration {
-    val label = stringResource(id = R.string.app_components_common_label_value)
+    val label = stringResource(id = R.string.app_components_common_label_label)
     OudsBulletList(modifier = Modifier.padding(end = 16.dp), type = OudsBulletListType.Unordered()) {
         repeat(2) {
             item(label = label)
@@ -96,7 +96,7 @@ fun BulletListIllustration() = ComponentIllustration {
 @Composable
 fun ButtonIllustration() = ComponentIllustration {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        val label = stringResource(id = R.string.app_components_common_label_label)
+        val label = stringResource(id = R.string.app_components_common_label_tech)
         OudsButton(
             label = label,
             onClick = {},
@@ -130,12 +130,12 @@ fun ChipIllustration() = ComponentIllustration {
         OudsFilterChip(
             selected = true,
             onClick = {},
-            label = stringResource(id = R.string.app_components_common_label_label)
+            label = stringResource(id = R.string.app_components_common_label_tech)
         )
         OudsFilterChip(
             selected = false,
             onClick = {},
-            label = stringResource(id = R.string.app_components_common_label_label)
+            label = stringResource(id = R.string.app_components_common_label_tech)
         )
     }
 }
@@ -169,7 +169,7 @@ fun FloatingActionButtonIllustration() = ComponentIllustration {
 @Composable
 fun LinkIllustration() = ComponentIllustration {
     OudsLink(
-        label = stringResource(id = R.string.app_components_common_label_label),
+        label = stringResource(id = R.string.app_components_common_label_tech),
         chevron = OudsLinkChevron.Next,
         onClick = {}
     )
@@ -182,7 +182,7 @@ fun NavigationBarIllustration() = ComponentIllustration {
             selected = index == 0,
             onClick = {},
             icon = OudsNavigationBarItemIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
-            label = stringResource(R.string.app_components_common_label_label)
+            label = stringResource(R.string.app_components_common_label_tech)
         )
     }
     OudsNavigationBar(
@@ -233,7 +233,7 @@ fun SwitchIllustration() = ComponentIllustration {
 
 @Composable
 fun TagIllustration() = ComponentIllustration {
-    OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTagStatus.Positive())
+    OudsTag(label = stringResource(id = R.string.app_components_common_label_tech), status = OudsTagStatus.Positive())
 }
 
 @Composable
@@ -241,7 +241,7 @@ fun TextInputIllustration() = ComponentIllustration {
     OudsTextInput(
         modifier = Modifier.padding(horizontal = 12.dp),
         textFieldState = rememberTextFieldState(),
-        label = stringResource(id = R.string.app_components_common_label_label),
+        label = stringResource(id = R.string.app_components_common_label_tech),
         helperText = stringResource(id = R.string.app_components_textInputHelperText_label)
     )
 }
@@ -251,7 +251,7 @@ fun TextInputIllustration() = ComponentIllustration {
 fun TopAppBarIllustration() = ComponentIllustration {
     OudsTopAppBar(
         modifier = Modifier.padding(horizontal = 12.dp),
-        title = stringResource(id = R.string.app_components_common_label_label),
+        title = stringResource(id = R.string.app_components_common_label_tech),
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(

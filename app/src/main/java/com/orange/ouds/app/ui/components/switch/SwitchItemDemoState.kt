@@ -33,7 +33,7 @@ fun rememberSwitchItemDemoState(
     readOnly: Boolean = false,
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
-    text: String = stringResource(id = R.string.app_components_common_label_label),
+    text: String = stringResource(id = R.string.app_components_common_label_tech),
     description: String? = null,
     constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(

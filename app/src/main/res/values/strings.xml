@@ -131,8 +131,8 @@
     <string name="app_components_common_helperText_label" translatable="false">Helper text</string>
     <string name="app_components_common_icon_a11y">Icon</string>
     <string name="app_components_common_iconOnlyLayout_label" translatable="false">Icon only</string>
-    <string name="app_components_common_label_label" translatable="false">Label</string>
-    <string name="app_components_common_label_value">Label</string>
+    <string name="app_components_common_label_label">Label</string>
+    <string name="app_components_common_label_tech" translatable="false">Label</string>
     <string name="app_components_common_layout_label" translatable="false">Layout</string>
     <string name="app_components_common_loader_label" translatable="false">Loader</string>
     <string name="app_components_common_none_label" translatable="false">None</string>
