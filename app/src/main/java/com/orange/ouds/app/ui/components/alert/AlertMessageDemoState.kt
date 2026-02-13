@@ -80,8 +80,8 @@ class AlertMessageDemoState(
                 }
             },
             restore = { list: List<Any?> ->
-                val statusName = list[0] as String
-                val status = Class.forName(statusName).kotlin.createInstance() as OudsAlertMessageStatus
+                val statusClassName = list[0] as String
+                val status = Class.forName(statusClassName).kotlin.createInstance() as OudsAlertMessageStatus
 
                 AlertMessageDemoState(
                     status,
