@@ -30,6 +30,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -120,6 +121,7 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
     }
 }
 
+@OptIn(ExperimentalOudsApi::class)
 @Composable
 private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
     val focusManager = LocalFocusManager.current
