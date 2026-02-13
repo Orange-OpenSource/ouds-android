@@ -13,7 +13,6 @@
 package com.orange.ouds.core.component
 
 import androidx.activity.ComponentActivity
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -30,7 +29,6 @@ class OudsAlertMessageTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-    @OptIn(ExperimentalMaterial3Api::class)
     @Test
     fun oudsAlertMessage_linkClick_succeeds() {
         with(composeTestRule) {
@@ -49,7 +47,6 @@ class OudsAlertMessageTest {
         }
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
     @Test
     fun oudsAlertMessage_closeClick_succeeds() {
 
@@ -63,7 +60,7 @@ class OudsAlertMessageTest {
                     onClose = onClose
                 )
             }
-            
+
             onNodeWithContentDescription(activity.getString(R.string.core_alertMessage_close_a11y)).performClick()
             verify(onClose).invoke()
         }
