@@ -16,7 +16,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -69,9 +68,7 @@ import com.orange.ouds.foundation.ExperimentalOudsApi
 @Composable
 fun AlertIllustration() = ComponentIllustration {
     OudsAlertMessage(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp),
+        modifier = Modifier.padding(horizontal = 12.dp),
         label = stringResource(id = R.string.app_components_common_label_label),
         onClose = {},
     )
