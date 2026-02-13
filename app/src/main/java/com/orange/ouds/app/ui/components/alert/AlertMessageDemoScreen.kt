@@ -215,7 +215,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
             bulletList?.let { bulletLabelById ->
                 functionCallArgument("bulletList", "listOf") {
                     bulletLabelById.toSortedMap().values.forEach { label ->
-                        rawArgument(null, label)
+                        typedArgument(null, label)
                     }
                 }
             }
