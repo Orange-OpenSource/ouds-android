@@ -119,7 +119,7 @@ fun OudsAlertMessage(
         Row(
             modifier = modifier
                 .widthIn(min = sizeMinWidth.dp)
-                .heightIn(min = if (link != null && link.position == OudsAlertMessageLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
+                .heightIn(min = if (link?.position == OudsAlertMessageLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
                 .background(color = status.backgroundColor(), shape = shape)
                 .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value)
                 .run {
