@@ -106,6 +106,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputStateBasedErrorSample
  */
 @Composable
+@ExperimentalOudsApi
 fun OudsPasswordInput(
     state: OudsPasswordInputState,
     modifier: Modifier = Modifier,
