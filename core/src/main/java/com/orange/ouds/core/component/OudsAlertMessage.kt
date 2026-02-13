@@ -58,6 +58,7 @@ import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -335,10 +336,19 @@ sealed class OudsAlertMessageStatus {
     data class Warning(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
         override val icon: OudsAlertMessageIcon?
             @Composable
-            get() = if (showIcon) {
-                OudsAlertMessageIcon(painter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape))
-            } else {
-                null
+            get() {
+                val iconTokens = OudsTheme.componentsTokens.icon
+                return if (showIcon) {
+                    val painter = LayeredTintedPainter(
+                        backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
+                        backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                        frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
+                        frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                    )
+                    OudsAlertMessageIcon(painter = painter)
+                } else {
+                    null
+                }
             }
     }
 
@@ -383,7 +393,7 @@ sealed class OudsAlertMessageStatus {
                 is Neutral -> default
                 is Accent -> status.accent
                 is Positive -> status.positive
-                is Warning -> status.warning
+                is Warning -> Color.Unspecified
                 is Negative -> status.negative
                 is Info -> status.info
             }
