@@ -75,7 +75,7 @@ class AlertMessageDemoState(
                         description,
                         actionLink,
                         actionLinkPosition,
-                        bulletList?.toMap()
+                        bulletList
                     )
                 }
             },
