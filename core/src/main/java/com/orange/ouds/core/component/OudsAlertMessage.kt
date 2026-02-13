@@ -545,6 +545,14 @@ private val previewParameterValues: List<OudsAlertMessagePreviewParameter>
             OudsAlertMessageStatus.Negative(),
             OudsAlertMessageStatus.Info()
         )
+        val statusesWithoutIcon = listOf(
+            OudsAlertMessageStatus.Neutral(),
+            OudsAlertMessageStatus.Accent(),
+            OudsAlertMessageStatus.Positive(showIcon = false),
+            OudsAlertMessageStatus.Warning(showIcon = false),
+            OudsAlertMessageStatus.Negative(showIcon = false),
+            OudsAlertMessageStatus.Info(showIcon = false)
+        )
         val description = "Here is a long description that need two lines to be displayed."
         val linkLabel = "Action"
 
@@ -553,13 +561,18 @@ private val previewParameterValues: List<OudsAlertMessagePreviewParameter>
                 statusesWithIcon,
                 description = description,
                 link = OudsAlertMessageLink(linkLabel, onClick = {}, position = OudsAlertMessageLinkPosition.TopEnd),
-                bulletList = listOf("Bullet 1", "Bullet 3 is a bullet with a very long label to test the wrapping", "Bullet 3")
+                bulletList = listOf("Bullet 1", "Bullet 2 is a bullet with a very long label to test the wrapping", "Bullet 3")
             ),
             OudsAlertMessagePreviewParameter(
                 statusesWithIcon,
                 description = description,
                 onClose = {},
                 link = OudsAlertMessageLink(linkLabel, onClick = {})
+            ),
+            OudsAlertMessagePreviewParameter(
+                statusesWithoutIcon,
+                onClose = {},
+                link = OudsAlertMessageLink(linkLabel, onClick = {}, position = OudsAlertMessageLinkPosition.TopEnd)
             ),
         )
     }
