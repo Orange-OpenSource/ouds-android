@@ -63,14 +63,14 @@ const val ORANGE_BUSINESS_TOOLS_THEME_NAME = "Orange Business Tools"
  * OrangeBusinessToolsTheme(
  *     orangeFontFamily = OrangeFontFamily(
  *         latin = OrangeHelveticaNeueLatin.Bundled(
- *             R.font.helvetica_neue_latin_regular,
+ *             R.font.helvetica_neue_latin_roman,
  *             R.font.helvetica_neue_latin_medium,
  *             R.font.helvetica_neue_latin_bold
  *         ),
  *         arabic = OrangeHelveticaNeueArabic.Bundled(
  *             R.font.helvetica_neue_arabic_light,
- *             R.font.helvetica_neue_arabic_regular,
- *             R.font.helvetica_neue_arabic_medium,
+ *             R.font.helvetica_neue_arabic_roman,
+ *             R.font.helvetica_neue_arabic_bold,
  *         )
  *     )
  * )
