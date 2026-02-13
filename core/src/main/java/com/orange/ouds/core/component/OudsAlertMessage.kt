@@ -122,12 +122,13 @@ fun OudsAlertMessage(
                 .widthIn(min = sizeMinWidth.dp)
                 .heightIn(min = if (hasLink && link.position == OudsAlertMessageLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
                 .background(color = status.backgroundColor(), shape = shape)
-                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value)
+                .clip(shape)
                 .run {
                     borderWidth.value.takeUnlessHairline?.let {
                         border(width = it, color = status.borderColor(), shape = shape)
                     } ?: this
-                },
+                }
+                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
             horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
         ) {
             status.icon?.Content(
@@ -183,7 +184,6 @@ fun OudsAlertMessage(
                     }
                     onClose?.let {
                         OudsButton(
-                            modifier = Modifier.clip(shape = shape),
                             icon = OudsButtonIcon(
                                 painter = painterResource(LocalDrawableResources.current.component.button.expurge),
                                 contentDescription = stringResource(R.string.core_alertMessage_close_a11y)
