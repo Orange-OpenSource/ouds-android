@@ -499,13 +499,12 @@ internal fun PreviewOudsAlertMessage(
     darkThemeEnabled: Boolean,
     parameter: OudsAlertMessagePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    val label = "Label"
     with(parameter) {
         Column {
             statuses.forEach { status ->
                 OudsAlertMessage(
                     modifier = Modifier.padding(all = 10.dp),
-                    label = label,
+                    label = "Label",
                     status = status,
                     description = description,
                     onClose = onClose,
