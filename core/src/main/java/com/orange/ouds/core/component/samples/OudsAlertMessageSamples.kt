@@ -44,7 +44,7 @@ internal fun OudsAlertMessageFunctionalWithTopEndLinkSample() {
     OudsAlertMessage(
         label = "Label",
         description = "Description of the alert message.",
-        status = OudsAlertMessageStatus.Positive(),
+        status = OudsAlertMessageStatus.Positive,
         onClose = { /* Close the alert message */ },
         actionLink = OudsAlertMessageActionLink(label = "Action", onClick = { /* Do something */ }, position = OudsAlertMessageActionLinkPosition.TopEnd),
         bulletList = listOf(

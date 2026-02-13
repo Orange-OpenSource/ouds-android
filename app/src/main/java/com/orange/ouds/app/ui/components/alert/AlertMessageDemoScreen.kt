@@ -66,15 +66,15 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             listOf(
                 OudsAlertMessageStatus.Accent(),
                 OudsAlertMessageStatus.Neutral(),
-                OudsAlertMessageStatus.Positive(),
-                OudsAlertMessageStatus.Info(),
-                OudsAlertMessageStatus.Warning(),
-                OudsAlertMessageStatus.Negative()
+                OudsAlertMessageStatus.Positive,
+                OudsAlertMessageStatus.Info,
+                OudsAlertMessageStatus.Warning,
+                OudsAlertMessageStatus.Negative
             )
         } else {
             OudsAlertMessageStatus::class.sealedSubclasses.mapNotNull { kClass ->
                 tryOrNull {
-                    kClass.createInstance()
+                    (kClass.objectInstance ?: kClass.createInstance())
                 }
             }
         }
@@ -159,10 +159,10 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
             status = when (status) {
                 is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(if (hasStatusIcon) icon else null)
                 is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(if (hasStatusIcon) icon else null)
-                is OudsAlertMessageStatus.Info -> OudsAlertMessageStatus.Info(showIcon = hasStatusIcon)
-                is OudsAlertMessageStatus.Negative -> OudsAlertMessageStatus.Negative(showIcon = hasStatusIcon)
-                is OudsAlertMessageStatus.Positive -> OudsAlertMessageStatus.Positive(showIcon = hasStatusIcon)
-                is OudsAlertMessageStatus.Warning -> OudsAlertMessageStatus.Warning(showIcon = hasStatusIcon)
+                is OudsAlertMessageStatus.Info -> OudsAlertMessageStatus.Info
+                is OudsAlertMessageStatus.Negative -> OudsAlertMessageStatus.Negative
+                is OudsAlertMessageStatus.Positive -> OudsAlertMessageStatus.Positive
+                is OudsAlertMessageStatus.Warning -> OudsAlertMessageStatus.Warning
             },
             onClose = if (hasCloseButton) {
                 {}

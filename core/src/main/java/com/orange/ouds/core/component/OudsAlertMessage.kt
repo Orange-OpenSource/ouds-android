@@ -62,6 +62,7 @@ import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -136,7 +137,8 @@ fun OudsAlertMessage(
                     .padding(top = spacePaddingBlock.value)
                     .size(sizeIcon.value * scale),
                 extraParameters = OudsAlertMessageIcon.ExtraParameters(
-                    tint = status.assetColor()
+                    tint = status.assetColor(),
+                    status = status
                 )
             )
             Column(
@@ -205,7 +207,7 @@ object OudsAlertMessageDefaults {
     /**
      * Default status of an [OudsAlertMessage].
      */
-    val Status = OudsAlertMessageStatus.Positive()
+    val Status = OudsAlertMessageStatus.Positive
 
     /**
      * Default position of an [OudsAlertMessage] action link.
@@ -258,10 +260,11 @@ enum class OudsAlertMessageActionLinkPosition {
  * It determines the background and the icon colors of the alert message.
  * It also carries the optional icon to be displayed in the alert message. Depending on the status, this icon can be customizable or be a status dedicated icon.
  */
-sealed class OudsAlertMessageStatus {
+sealed class OudsAlertMessageStatus(val icon: OudsAlertMessageIcon? = null) {
 
-    internal abstract val icon: OudsAlertMessageIcon?
-        @Composable get
+    internal open val defaultIconPainter: Painter?
+        @Composable
+        get() = null
 
     /**
      * Neutral status can be used as a generic informative alert without semantic meaning or colour association. Suitable for a wide range of contexts — such as
@@ -270,13 +273,7 @@ sealed class OudsAlertMessageStatus {
      *
      * @param icon Optional icon to be displayed in the alert message. Pass `null` if no icon is needed.
      */
-    class Neutral(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
-
-        private val _icon = icon
-        override val icon: OudsAlertMessageIcon?
-            @Composable
-            get() = _icon
-    }
+    class Neutral(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus(icon)
 
     /**
      * Accent status uses brand colours to draw attention to promotional or highlighted information while remaining non-critical. Ideal for marketing content,
@@ -285,70 +282,45 @@ sealed class OudsAlertMessageStatus {
      *
      * @param icon Optional icon to be displayed in the alert message. Pass `null` if no icon is needed.
      */
-    class Accent(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
-
-        private val _icon = icon
-        override val icon: OudsAlertMessageIcon?
-            @Composable
-            get() = _icon
-    }
+    class Accent(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus(icon)
 
     /**
      * Positive status indicates that a task or process has been completed successfully. These alerts reassure users and confirm that no further action is needed.
      * This status displays a dedicated default icon.
-     *
-     * @param showIcon Controls whether the icon should be displayed or not. `true` displays the default positive icon.
      */
-    data class Positive(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
-        override val icon: OudsAlertMessageIcon?
+    object Positive : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
+        override val defaultIconPainter: Painter?
             @Composable
-            get() = if (showIcon) {
-                OudsAlertMessageIcon(painter = painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill))
-            } else {
-                null
-            }
+            get() = painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
     }
 
     /**
      * Info status is used to share neutral system information or service updates that do not require immediate action. Ideal for background processes or status
      * messages where users simply need to stay informed.
      * This status displays a dedicated default icon.
-     *
-     * @param showIcon Controls whether the icon should be displayed or not. `true` displays the default info icon.
      */
-    data class Info(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
-        override val icon: OudsAlertMessageIcon?
+    object Info : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
+        override val defaultIconPainter: Painter?
             @Composable
-            get() = if (showIcon) {
-                OudsAlertMessageIcon(painter = painterResource(OudsTheme.drawableResources.component.alert.infoFill))
-            } else {
-                null
-            }
+            get() = painterResource(OudsTheme.drawableResources.component.alert.infoFill)
     }
 
     /**
      * Used to draw attention to potential issues or upcoming changes that might affect the user’s service or experience. Warnings encourage awareness but
      * typically do not block actions.
      * This status displays a dedicated default icon.
-     *
-     * @param showIcon Controls whether the icon should be displayed or not. `true` displays the default warning icon.
      */
-    data class Warning(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
-        override val icon: OudsAlertMessageIcon?
+    object Warning : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
+        override val defaultIconPainter: Painter?
             @Composable
             get() {
                 val iconTokens = OudsTheme.componentsTokens.icon
-                return if (showIcon) {
-                    val painter = LayeredTintedPainter(
-                        backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                        backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                        frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                        frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
-                    )
-                    OudsAlertMessageIcon(painter = painter)
-                } else {
-                    null
-                }
+                return LayeredTintedPainter(
+                    backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
+                    backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                    frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
+                    frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                )
             }
     }
 
@@ -356,17 +328,11 @@ sealed class OudsAlertMessageStatus {
      * Negative status communicates a critical issue or error that prevents the user from proceeding until it is resolved. These alerts remain visible until
      * the problem is fixed or dismissed by the user.
      * This status displays a dedicated default icon.
-     *
-     * @param showIcon Controls whether the icon should be displayed or not. `true` displays the default negative icon.
      */
-    data class Negative(val showIcon: Boolean = true) : OudsAlertMessageStatus() {
-        override val icon: OudsAlertMessageIcon?
+    object Negative : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
+        override val defaultIconPainter: Painter?
             @Composable
-            get() = if (showIcon) {
-                OudsAlertMessageIcon(painter = painterResource(OudsTheme.drawableResources.component.alert.importantFill))
-            } else {
-                null
-            }
+            get() = painterResource(OudsTheme.drawableResources.component.alert.importantFill)
     }
 
     /**
@@ -421,33 +387,41 @@ sealed class OudsAlertMessageStatus {
  * This class handles the creation of the icon from different sources like [Painter], [ImageVector], or [ImageBitmap].
  * An accessibility description is not required as the alert's main `label` should provide the necessary context.
  */
-class OudsAlertMessageIcon private constructor(graphicsObject: Any) :
+open class OudsAlertMessageIcon private constructor(graphicsObjectProvider: @Composable (OudsAlertMessageIcon) -> Any) :
     OudsComponentIcon<OudsAlertMessageIcon.ExtraParameters, OudsAlertMessageIcon>(
         OudsAlertMessageIcon.ExtraParameters::class.java,
-        graphicsObject,
-        ""
+        graphicsObjectProvider,
+        { "" }
     ) {
+
+    object Default : OudsAlertMessageIcon({ icon ->
+        with(icon.extraParameters) {
+            status.defaultIconPainter.orElse {
+                error("No default icon for status ${status::class.simpleName}")
+            }
+        }
+    })
 
     /**
      * Creates an instance of [OudsAlertMessageIcon].
      *
      * @param painter Painter of the icon.
      */
-    constructor(painter: Painter) : this(painter as Any)
+    constructor(painter: Painter) : this({ painter })
 
     /**
      * Creates an instance of [OudsAlertMessageIcon].
      *
      * @param imageVector Image vector of the icon.
      */
-    constructor(imageVector: ImageVector) : this(imageVector as Any)
+    constructor(imageVector: ImageVector) : this({ imageVector })
 
     /**
      * Creates an instance of [OudsAlertMessageIcon].
      *
      * @param bitmap Image bitmap of the icon.
      */
-    constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+    constructor(bitmap: ImageBitmap) : this({ bitmap })
 
     override val tint: Color?
         @Composable
@@ -455,7 +429,8 @@ class OudsAlertMessageIcon private constructor(graphicsObject: Any) :
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
-        internal val tint: Color
+        internal val tint: Color,
+        internal val status: OudsAlertMessageStatus
     ) : OudsComponentContent.ExtraParameters()
 }
 
@@ -510,8 +485,16 @@ internal fun PreviewOudsAlertMessage(
     parameter: OudsAlertMessagePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
+        val icon = if (hasIcon) OudsAlertMessageIcon(Icons.Outlined.FavoriteBorder) else null
         Column {
-            statuses.forEach { status ->
+            listOf(
+                OudsAlertMessageStatus.Neutral(icon),
+                OudsAlertMessageStatus.Accent(icon),
+                OudsAlertMessageStatus.Positive,
+                OudsAlertMessageStatus.Warning,
+                OudsAlertMessageStatus.Negative,
+                OudsAlertMessageStatus.Info
+            ).forEach { status ->
                 OudsAlertMessage(
                     modifier = Modifier.padding(all = 10.dp),
                     label = "Label",
@@ -527,14 +510,7 @@ internal fun PreviewOudsAlertMessage(
 }
 
 internal data class OudsAlertMessagePreviewParameter(
-    val statuses: List<OudsAlertMessageStatus> = listOf(
-        OudsAlertMessageStatus.Neutral(),
-        OudsAlertMessageStatus.Accent(),
-        OudsAlertMessageStatus.Positive(),
-        OudsAlertMessageStatus.Warning(),
-        OudsAlertMessageStatus.Negative(),
-        OudsAlertMessageStatus.Info()
-    ),
+    val hasIcon: Boolean = false,
     val description: String? = null,
     val onClose: (() -> Unit)? = null,
     val actionLink: OudsAlertMessageActionLink? = null,
@@ -546,41 +522,22 @@ internal class OudsAlertMessagePreviewParameterProvider :
 
 private val previewParameterValues: List<OudsAlertMessagePreviewParameter>
     get() {
-        val icon = OudsAlertMessageIcon(Icons.Outlined.FavoriteBorder)
-        val statusesWithIcon = listOf(
-            OudsAlertMessageStatus.Neutral(icon = icon),
-            OudsAlertMessageStatus.Accent(icon = icon),
-            OudsAlertMessageStatus.Positive(),
-            OudsAlertMessageStatus.Warning(),
-            OudsAlertMessageStatus.Negative(),
-            OudsAlertMessageStatus.Info()
-        )
-        val statusesWithoutIcon = listOf(
-            OudsAlertMessageStatus.Neutral(),
-            OudsAlertMessageStatus.Accent(),
-            OudsAlertMessageStatus.Positive(showIcon = false),
-            OudsAlertMessageStatus.Warning(showIcon = false),
-            OudsAlertMessageStatus.Negative(showIcon = false),
-            OudsAlertMessageStatus.Info(showIcon = false)
-        )
         val description = "Here is a long description that need two lines to be displayed."
         val actionLinkLabel = "Action"
-
         return listOf(
             OudsAlertMessagePreviewParameter(
-                statusesWithIcon,
+                hasIcon = true,
                 description = description,
                 actionLink = OudsAlertMessageActionLink(actionLinkLabel, onClick = {}, position = OudsAlertMessageActionLinkPosition.TopEnd),
                 bulletList = listOf("Bullet 1", "Bullet 2 is a bullet with a very long label to test the wrapping", "Bullet 3")
             ),
             OudsAlertMessagePreviewParameter(
-                statusesWithIcon,
+                hasIcon = true,
                 description = description,
                 onClose = {},
                 actionLink = OudsAlertMessageActionLink(actionLinkLabel, onClick = {})
             ),
             OudsAlertMessagePreviewParameter(
-                statusesWithoutIcon,
                 onClose = {},
                 actionLink = OudsAlertMessageActionLink(actionLinkLabel, onClick = {}, position = OudsAlertMessageActionLinkPosition.TopEnd)
             ),
