@@ -467,8 +467,7 @@ private fun OudsAlertMessageBulletListItem(label: String) {
         ) {
             Icon(
                 modifier = Modifier
-                    .size(OudsTheme.sizes.icon.withLabel.medium.sizeSmall * scale)
-                    .clearAndSetSemantics {},
+                    .size(OudsTheme.sizes.icon.withLabel.medium.sizeSmall * scale),
                 painter = painterResource(OudsTheme.drawableResources.component.bulletList.level0),
                 contentDescription = null,
                 tint = OudsTheme.colorScheme.content.muted
