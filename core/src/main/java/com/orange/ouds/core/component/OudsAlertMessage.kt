@@ -47,7 +47,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -269,7 +268,7 @@ sealed class OudsAlertMessageStatus {
      *
      * @param icon Optional icon to be displayed in the alert message. Pass `null` if no icon is needed.
      */
-     class Neutral(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
+    class Neutral(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
 
         private val _icon = icon
         override val icon: OudsAlertMessageIcon?
@@ -284,7 +283,7 @@ sealed class OudsAlertMessageStatus {
      *
      * @param icon Optional icon to be displayed in the alert message. Pass `null` if no icon is needed.
      */
-     class Accent(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
+    class Accent(icon: OudsAlertMessageIcon? = null) : OudsAlertMessageStatus() {
 
         private val _icon = icon
         override val icon: OudsAlertMessageIcon?
@@ -364,7 +363,7 @@ sealed class OudsAlertMessageStatus {
      */
     @Composable
     fun backgroundColor(): Color {
-        return with (OudsTheme.colorScheme.surface) {
+        return with(OudsTheme.colorScheme.surface) {
             when (this@OudsAlertMessageStatus) {
                 is Neutral -> secondary
                 is Accent -> status.accent.muted
