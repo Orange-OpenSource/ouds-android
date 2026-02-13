@@ -44,6 +44,8 @@ import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
+import com.orange.ouds.core.component.OudsFloatingActionButton
+import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkChevron
@@ -139,6 +141,17 @@ fun ColoredBackgroundIllustration() = ComponentIllustration {
 @Composable
 fun DividerIllustration() = ComponentIllustration {
     OudsHorizontalDivider(modifier = Modifier.padding(horizontal = 40.dp))
+}
+
+@Composable
+fun FloatingActionButtonIllustration() = ComponentIllustration {
+    OudsFloatingActionButton(
+        icon = OudsFloatingActionButtonIcon(
+            painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks),
+            contentDescription = ""
+        ),
+        onClick = {}
+    )
 }
 
 @Composable

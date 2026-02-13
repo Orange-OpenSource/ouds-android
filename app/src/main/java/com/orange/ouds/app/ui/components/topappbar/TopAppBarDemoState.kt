@@ -133,9 +133,9 @@ class TopAppBarDemoState(
         get() = actions.contains(Action.Avatar) && actionAvatar == ActionAvatar.Monogram
 
     enum class Size(@StringRes val labelRes: Int) {
-        Small(R.string.app_components_topAppBar_smallSize_label),
-        Medium(R.string.app_components_topAppBar_mediumSize_label),
-        Large(R.string.app_components_topAppBar_largeSize_label)
+        Small(R.string.app_components_common_smallSize_label),
+        Medium(R.string.app_components_common_mediumSize_label),
+        Large(R.string.app_components_common_largeSize_label)
     }
 
     enum class NavigationIcon(@StringRes val labelRes: Int) {
