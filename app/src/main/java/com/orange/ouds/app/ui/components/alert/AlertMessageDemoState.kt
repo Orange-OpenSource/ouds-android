@@ -115,5 +115,4 @@ class AlertMessageDemoState(
         get() = !actionLink.isNullOrEmpty()
 
     var bulletList: Map<Int, String>? by mutableStateOf(bulletList)
-
 }
