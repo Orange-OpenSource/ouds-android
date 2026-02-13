@@ -62,6 +62,7 @@ import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.theme.isOudsInDarkTheme
+import com.orange.ouds.foundation.ExperimentalOudsApi
 
 @Composable
 fun BadgeIllustration() = ComponentIllustration {
@@ -179,6 +180,7 @@ fun NavigationBarIllustration() = ComponentIllustration {
     )
 }
 
+@OptIn(ExperimentalOudsApi::class)
 @Composable
 fun PasswordInputIllustration() = ComponentIllustration {
     OudsPasswordInput(

@@ -32,7 +32,10 @@ android {
 
     kotlin {
         compilerOptions {
-            freeCompilerArgs.add("-opt-in=com.orange.ouds.foundation.InternalOudsApi")
+            freeCompilerArgs.addAll(
+                "-opt-in=com.orange.ouds.foundation.ExperimentalOudsApi",
+                "-opt-in=com.orange.ouds.foundation.InternalOudsApi"
+            )
         }
     }
 }

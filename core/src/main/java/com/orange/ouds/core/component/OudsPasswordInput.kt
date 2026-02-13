@@ -40,6 +40,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -90,6 +91,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
  */
 @Composable
+@ExperimentalOudsApi
 fun OudsPasswordInput(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
@@ -183,6 +185,7 @@ fun OudsPasswordInput(
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
  */
 @Composable
+@ExperimentalOudsApi
 fun OudsPasswordInput(
     value: String,
     onValueChange: (String) -> Unit,
@@ -242,6 +245,7 @@ fun OudsPasswordInput(
  * @property showKeyboardOnFocus When set to `true`, software keyboard will show on focus gain. When false, the user must interact (e.g. tap)
  * before the keyboard is shown. A `null` value (the default parameter value) means the keyboard will be shown on focus.
  */
+@ExperimentalOudsApi
 data class OudsPasswordInputKeyboardOptions(
     val imeAction: ImeAction = ImeAction.Unspecified,
     val platformImeOptions: PlatformImeOptions? = null,
