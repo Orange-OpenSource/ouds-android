@@ -49,9 +49,7 @@ class OudsAlertMessageTest {
 
     @Test
     fun oudsAlertMessage_closeClick_succeeds() {
-
         with(composeTestRule) {
-
             val onClose = mock<() -> Unit>()
 
             setOudsContent {
@@ -65,5 +63,4 @@ class OudsAlertMessageTest {
             verify(onClose).invoke()
         }
     }
-
 }
