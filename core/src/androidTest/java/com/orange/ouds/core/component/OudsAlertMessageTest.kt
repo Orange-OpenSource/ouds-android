@@ -63,4 +63,19 @@ class OudsAlertMessageTest {
             verify(onClose).invoke()
         }
     }
+
+    @Test
+    fun oudsAlertMessage_blankLinkLabel_linkNotDisplayed() {
+        with(composeTestRule) {
+            val linkLabel = "   "
+            setOudsContent {
+                OudsAlertMessage(
+                    label = "Label",
+                    link = OudsAlertMessageLink(label = linkLabel, onClick = {})
+                )
+            }
+
+            onNodeWithText(linkLabel).assertDoesNotExist()
+        }
+    }
 }

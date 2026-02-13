@@ -115,10 +115,11 @@ fun OudsAlertMessage(
         val borderRadius = if (LocalThemeSettings.current.roundedCornerAlertMessages == true) borderRadiusRounded else borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
         val hasCloseButton = onClose != null
+        val hasLink = link != null && link.label.isNotBlank()
         Row(
             modifier = modifier
                 .widthIn(min = sizeMinWidth.dp)
-                .heightIn(min = if (link?.position == OudsAlertMessageLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
+                .heightIn(min = if (hasLink && link.position == OudsAlertMessageLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
                 .background(color = status.backgroundColor(), shape = shape)
                 .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value)
                 .run {
@@ -164,7 +165,7 @@ fun OudsAlertMessage(
                         }
                     }
                 }
-                if (link != null && link.position == OudsAlertMessageLinkPosition.Bottom) {
+                if (hasLink && link.position == OudsAlertMessageLinkPosition.Bottom) {
                     OudsLink(
                         modifier = Modifier.padding(top = spaceRowGapAction.value),
                         label = link.label,
@@ -173,7 +174,7 @@ fun OudsAlertMessage(
                 }
             }
 
-            val hasTopEndLink = link?.position == OudsAlertMessageLinkPosition.TopEnd
+            val hasTopEndLink = hasLink && link.position == OudsAlertMessageLinkPosition.TopEnd
             if (hasCloseButton || hasTopEndLink) {
                 Row(horizontalArrangement = Arrangement.spacedBy(spaceColumnGapAction.value)) {
                     if (hasTopEndLink) {
