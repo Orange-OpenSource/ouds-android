@@ -226,13 +226,11 @@ data class OudsAlertMessageLink(
 ) : OudsComponentContent<Nothing>(Nothing::class.java) {
     @Composable
     override fun Content(modifier: Modifier) {
-        with(OudsTheme.componentsTokens.alert) {
-            OudsLink(
-                modifier = modifier,
-                label = label,
-                onClick = onClick
-            )
-        }
+        OudsLink(
+            modifier = modifier,
+            label = label,
+            onClick = onClick
+        )
     }
 }
 
